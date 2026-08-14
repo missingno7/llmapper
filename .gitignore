@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.coverage
+work/
+
+# The regression corpus comes from a commercial game and is supplied locally by
+# each developer. Keep its setup notes, never redistribute the original maps.
+maps/*
+!maps/README.md
+
+# Rendered original-map geometry is a local diagnostic artifact.
+reports/*.svg
