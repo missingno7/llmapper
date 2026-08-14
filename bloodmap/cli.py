@@ -12,13 +12,17 @@ from .analysis import channel_graph, corpus_statistics, geometry_view, render_sv
 from .composition import (
     CompositionError, attach_fragment, connect_portals, connect_with_pathway, insert_fragment,
 )
+from .construction import ConstructionError
+from .designs import build_first_puzzle_room
 from .format import BloodMapError, encode_map, locate_offset, read_map, write_map
 from .fragment import (
     FragmentError, LevelFragment, apply_fragment_in_place,
     extract_behavior_closed_fragment, extract_fragment,
 )
 from .model import LevelIR
-from .oracle import OracleError, run_nblood_behavior_oracle, run_nblood_oracle
+from .oracle import (
+    OracleError, run_nblood_action_oracle, run_nblood_behavior_oracle, run_nblood_oracle,
+)
 from .recipe import RecipeError, build_composition_recipe
 from .semantics import ObservationError
 
@@ -366,6 +370,35 @@ def cmd_recipe(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_design_first_room(args: argparse.Namespace) -> int:
+    result = build_first_puzzle_room()
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    write_map(result.level.to_disk_map(), args.output)
+    reparsed = read_map(args.output)
+    if any(item.severity == "error" for item in validate_map(reparsed)):
+        raise ConstructionError("written first puzzle room failed reparse validation")
+    if args.report:
+        _write_text(args.report, _json(result.report))
+    print(
+        f"WROTE {args.output}: scratch puzzle room with {len(result.level.sectors)} sectors, "
+        f"{len(result.level.walls)} walls, and {len(result.level.sprites)} sprites"
+    )
+    return 0
+
+
+def cmd_oracle_nblood_action(args: argparse.Namespace) -> int:
+    report = run_nblood_action_oracle(
+        args.map,
+        nblood=args.nblood,
+        game_dir=args.game_dir,
+        startup_timeout=args.startup_timeout,
+        settle_seconds=args.settle_seconds,
+        work_dir=args.work_dir,
+    )
+    _write_text(args.output, _json(report))
+    return 0 if report["status"] == "pass" else 1
+
+
 def cmd_attach(args: argparse.Namespace) -> int:
     destination = read_map(args.map).to_level_ir()
     fragment = LevelFragment.from_dict(json.loads(Path(args.fragment).read_text(encoding="utf-8")))
@@ -516,6 +549,13 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--report", help="write full closure/composition report JSON")
     p.add_argument("-o", "--output", required=True)
     p.set_defaults(func=cmd_recipe)
+    p = sub.add_parser(
+        "design-first-room",
+        help="build the scratch-authored two-switch introductory puzzle room",
+    )
+    p.add_argument("--report", help="write construction, clearance, and channel report JSON")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_design_first_room)
     p = sub.add_parser("attach", help="align, insert, and portal-connect an extracted room")
     p.add_argument("map", help="destination MAP")
     p.add_argument("fragment", help="LevelFragment JSON")
@@ -554,6 +594,18 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--work-dir", help="preserve generated MAPs and screenshots under this ignored directory")
     p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")
     p.set_defaults(func=cmd_oracle_nblood_behavior)
+    p = sub.add_parser(
+        "oracle-nblood-action",
+        help="press Use once in a MAP and require a stable visible state change",
+    )
+    p.add_argument("map", help="candidate MAP positioned in front of the intended interaction")
+    p.add_argument("--nblood", required=True, help="path to NBlood executable")
+    p.add_argument("--game-dir", required=True, help="path to local Blood/NBlood game data")
+    p.add_argument("--startup-timeout", type=float, default=15.0)
+    p.add_argument("--settle-seconds", type=float, default=2.0)
+    p.add_argument("--work-dir", help="preserve logs and screenshots under this ignored directory")
+    p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")
+    p.set_defaults(func=cmd_oracle_nblood_action)
 
     p = sub.add_parser("transform", help="apply a safe IR transformation")
     p.add_argument("map"); p.add_argument("-o", "--output", required=True)
@@ -568,7 +620,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args = build_parser().parse_args(argv)
         return int(args.func(args))
-    except (BloodMapError, CompositionError, FragmentError, ObservationError, OracleError, RecipeError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+    except (BloodMapError, CompositionError, ConstructionError, FragmentError, ObservationError, OracleError, RecipeError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         print(f"bloodmap: error: {exc}", file=sys.stderr)
         return 2
 

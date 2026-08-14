@@ -11,12 +11,15 @@ Generated against the supplied `maps/` corpus.
 | Byte-exact LevelIR roundtrip | 43/43 |
 | Reparse success | 43/43 |
 | Hard validation success | 43/43 |
-| Unit/corpus/mutation/fragment/composition/semantic/oracle tests | 58/58 |
+| Unit/corpus/mutation/fragment/composition/semantic/oracle tests | 63/63 |
 | NBlood baseline load smoke | pass (6 seconds) |
 | NBlood composed-map load smoke | pass (6 seconds) |
 | NBlood real-map attached-room load smoke | pass (6 seconds) |
 | NBlood three-map mashup load smoke | pass (6 seconds) |
 | NBlood E1M2 reordered-room remix load smoke | pass (6 seconds) |
+| NBlood scratch puzzle-room load smoke | pass (6 seconds) |
+| NBlood scratch puzzle-room Switch A action | pass |
+| NBlood scratch puzzle-room Switch B action | pass (temporary alternate start) |
 | NBlood baseline trigger/Z-motion behavior | pass |
 | NBlood composed trigger/Z-motion behavior | pass |
 
@@ -77,6 +80,21 @@ LevelIR semantic verification:
   objects, relevant remote channel endpoints, and classified dependencies;
 - observations use stable `sector:`, `wall:`, and `sprite:` references and omit
   packed/opaque serialization details.
+
+Scratch-construction verification:
+
+- empty-level and deterministic object/extended-record allocation are first-class
+  LevelIR operations;
+- invalid winding, self-intersecting polygons, invalid placement, and mismatched
+  portal endpoints fail closed;
+- the first custom puzzle uses four reciprocal connections, all 3072–4096 units
+  wide with 32768 units of configured-open clearance;
+- channels 100 and 101 each have exactly one push-switch transmitter and one
+  vertical-door receiver;
+- two consecutive builds are byte-identical and the result reparses with zero
+  errors or warnings.
+- independent idle/action captures pass for both switch transmitters; Switch B is
+  probed with a temporary start-only MAP so the authored progression stays intact.
 
 Independent load-oracle verification:
 

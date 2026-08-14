@@ -115,9 +115,19 @@ and mutation/property tests. Operations fail closed when semantics are uncertain
 Goal: create complete maps from validated authored fragments and explicit design
 constraints, without introducing an LLM dependency into the core library.
 
+Status: started. The deterministic `LevelBuilder` creates empty v7 levels,
+clockwise polygon sectors, exact portals, sprites, extended behavior records, and
+validated player starts. Portal profiles reject narrow connections and distinguish
+closed-at-rest moving doors from their configured-open clearance. The first
+scratch-authored two-switch puzzle room writes, reparses, loads, and responds to
+controlled Use-key interaction in NBlood. Multi-room progression and richer
+construction recipes remain.
+
 Deliverables:
 
 - new-level allocator and deterministic defaults derived from references;
+- explicit polygon/portal/sprite/behavior allocation with construction-time guards;
+- minimum-width and dynamic-opening portal profiles;
 - topology and progression constraint model;
 - spawn/start/exit and reachability checks;
 - channel namespace planning;

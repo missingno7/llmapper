@@ -1,0 +1,53 @@
+{
+  "$schema": "bloodmap.nblood-action-oracle-report",
+  "action": {
+    "input": "Open",
+    "virtual_key": "E"
+  },
+  "probe": {
+    "after_view": {
+      "files": 2,
+      "unique_sha256": [
+        "a1b8b0a3e3c6e87daca41d7bc8c49d7f768218f73f10a453bc5931e292617a36"
+      ]
+    },
+    "before_view": {
+      "files": 1,
+      "unique_sha256": [
+        "5015dc9afdfd25b1447d863d96907c408bf8dca4d819ea46e357539b380f2037"
+      ]
+    },
+    "engine_revision": "r14378-fbc5e1186",
+    "fatal_indicators": [],
+    "identity": {
+      "counts": {
+        "sectors": 5,
+        "sprites": 7,
+        "walls": 28
+      },
+      "filename": "first-puzzle-room-switch-b.MAP",
+      "sha256": "aaacabef9bab308a4b2dc6e9fff9323db4bfd6aacc93213087b8c107ba5d9287",
+      "size": 1869
+    },
+    "idle_control_unchanged": true,
+    "idle_control_view": {
+      "files": 1,
+      "unique_sha256": [
+        "5015dc9afdfd25b1447d863d96907c408bf8dca4d819ea46e357539b380f2037"
+      ]
+    },
+    "input_control_error": null,
+    "markers": {
+      "autoexec": true,
+      "game_loop": true,
+      "map_initialization": true
+    },
+    "stable_views": true,
+    "status": "pass",
+    "stayed_alive_for_grace_period": true,
+    "terminated_by_harness": true,
+    "visible_state_changed": true
+  },
+  "schema_version": 1,
+  "status": "pass"
+}

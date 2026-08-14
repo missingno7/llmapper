@@ -47,6 +47,8 @@ echo BLOODMAP_ORACLE_BOOTSTRAPPED
 """
 
 _BEHAVIOR_AUTOEXEC = """echo BLOODMAP_ORACLE_BEGIN
+cl_viewhbob 0
+cl_viewvbob 0
 bind "E" "gamefunc_Open"
 bind "F11" "screenshot"
 echo BLOODMAP_ORACLE_BOOTSTRAPPED
@@ -353,14 +355,16 @@ def _press_key(window: int, virtual_key: int) -> None:
     if not user32.SetForegroundWindow(target):
         raise OracleError("could not focus the isolated NBlood behavior window")
     deadline = time.monotonic() + 1.0
-    while time.monotonic() < deadline and int(user32.GetForegroundWindow()) != window:
+    while time.monotonic() < deadline and int(user32.GetForegroundWindow() or 0) != window:
         time.sleep(0.01)
-    if int(user32.GetForegroundWindow()) != window:
+    if int(user32.GetForegroundWindow() or 0) != window:
         raise OracleError("Windows did not make the NBlood behavior window foreground")
     time.sleep(0.2)
     scan_code = user32.MapVirtualKeyW(virtual_key, 0)
     user32.keybd_event(virtual_key, scan_code, 0, 0)
-    time.sleep(0.05)
+    # Keep the synthetic key pulse below a game tick. Longer pulses can repeat
+    # screenshot bindings and sample several frames instead of one controlled view.
+    time.sleep(0.005)
     user32.keybd_event(virtual_key, scan_code, 2, 0)
 
 
@@ -481,6 +485,55 @@ def _probe_behavior_map(
         terminated_by_harness=stayed_alive,
     )
     return assessment
+
+
+def run_nblood_action_oracle(
+    map_path: str | Path,
+    *,
+    nblood: str | Path,
+    game_dir: str | Path,
+    startup_timeout: float = 15.0,
+    settle_seconds: float = 2.0,
+    work_dir: str | Path | None = None,
+) -> dict[str, Any]:
+    """Press Use once in a supplied MAP and require a stable visible state change."""
+    if os.name != "nt":
+        raise OracleError("the screenshot action oracle currently requires Windows")
+    candidate = Path(map_path).resolve()
+    nblood_path = Path(nblood).resolve()
+    game_path = Path(game_dir).resolve()
+    if not candidate.is_file():
+        raise OracleError(f"action-oracle MAP does not exist: {candidate}")
+    if not nblood_path.is_file():
+        raise OracleError(f"NBlood executable does not exist: {nblood_path}")
+    if not game_path.is_dir():
+        raise OracleError(f"NBlood game-data directory does not exist: {game_path}")
+    if not 1.0 <= startup_timeout <= 60.0:
+        raise OracleError("startup_timeout must be between 1 and 60")
+    if not 0.5 <= settle_seconds <= 30.0:
+        raise OracleError("settle_seconds must be between 0.5 and 30")
+
+    def execute(root: Path) -> dict[str, Any]:
+        probe = _probe_behavior_map(
+            candidate,
+            nblood=nblood_path,
+            game_dir=game_path,
+            startup_timeout=startup_timeout,
+            settle_seconds=settle_seconds,
+            work_dir=root,
+        )
+        return {
+            "$schema": "bloodmap.nblood-action-oracle-report",
+            "schema_version": 1,
+            "status": probe["status"],
+            "action": {"input": "Open", "virtual_key": "E"},
+            "probe": probe,
+        }
+
+    if work_dir is not None:
+        return execute(Path(work_dir).resolve())
+    with tempfile.TemporaryDirectory(prefix="bloodmap-nblood-action-") as directory:
+        return execute(Path(directory))
 
 
 def assess_behavior_equivalence(baseline: dict[str, Any], candidate: dict[str, Any]) -> dict[str, Any]:

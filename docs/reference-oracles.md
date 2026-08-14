@@ -105,6 +105,26 @@ the composition-sensitive wall trigger, channel dispatch, and sector Z-motion
 path. Doors, lifts with markers, sprite-driven systems, combat, secrets, and level
 progression need additional deterministic scenarios before broader claims.
 
+## Single-map action oracle
+
+`oracle-nblood-action` applies the same idle/action capture gate to an existing
+MAP. It is useful for confirming that a scratch-authored switch is reachable from
+the declared player start and produces a stable engine-visible response:
+
+```text
+python -m bloodmap oracle-nblood-action work/first-puzzle-room.MAP \
+  --nblood reference/blood/nblood.exe \
+  --game-dir reference/blood \
+  --work-dir work/first-puzzle-room-action \
+  -o reports/nblood_first_puzzle_room_action.json
+```
+
+The oracle proves a controlled Use input changed the rendered game state while
+the process remained healthy. The LevelIR channel graph and portal profiles supply
+the complementary evidence about the exact transmitter, receiver, and configured
+door clearance; a screenshot difference by itself is not treated as proof of an
+entire progression path.
+
 ## Real-map room attachment smoke
 
 The attachment gate is reproducible with the ignored commercial corpus. It extracts

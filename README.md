@@ -44,8 +44,10 @@ python -m bloodmap attach maps/E1M2.MAP work/fragment.json --destination-wall 12
 python -m bloodmap pathway work/separated.MAP --wall-a 120 --wall-b 845 --max-step-height 2048 --report work/pathway.json -o work/connected.MAP
 python -m bloodmap recipe recipes/e1m2-crossroads.json --source-dir maps --report work/mashup.json -o work/e1m2-crossroads.MAP
 python -m bloodmap recipe recipes/e1m2-remix.json --source-dir maps --report work/remix.json -o work/e1m2-remix.MAP
+python -m bloodmap design-first-room --report work/first-room.json -o work/first-puzzle-room.MAP
 python -m bloodmap oracle-nblood work/composed.MAP --baseline maps/E1M2.MAP --nblood reference/blood/nblood.exe --game-dir reference/blood -o work/oracle.json
 python -m bloodmap oracle-nblood-behavior --nblood reference/blood/nblood.exe --game-dir reference/blood -o work/behavior-oracle.json
+python -m bloodmap oracle-nblood-action work/first-puzzle-room.MAP --nblood reference/blood/nblood.exe --game-dir reference/blood -o work/action-oracle.json
 ```
 
 Safe whole-map transformations operate through `LevelIR`, then write, reparse,
@@ -72,6 +74,14 @@ bounded stair risers. Allocation-aware JSON recipes make multi-map assemblies
 replayable without hard-coding post-insertion wall indices and can relocate the
 player start using coordinates local to a transformed donor room.
 
+Scratch construction starts with `new_level()` or `LevelBuilder`. The builder
+allocates polygon sectors, walls, sprites, and Blood extended records directly in
+LevelIR; connects only exact reversed portal walls; rejects invalid winding and
+self-intersection; validates player placement; and reports both at-rest and
+configured-open portal clearance. `design-first-room` builds the first completely
+original example: a sequential two-switch/two-door puzzle with 3072- and
+4096-unit-wide connections.
+
 Run the test suite with:
 
 ```text
@@ -90,7 +100,9 @@ The optional NBlood load and deterministic behavior oracles are documented in
 - [Local corpus setup and policy](docs/corpus.md)
 - [Sector fragments and remapping](docs/fragments.md)
 - [Deterministic composition](docs/composition.md)
+- [Scratch construction](docs/construction.md)
 - [E1M2 room-order remix](reports/e1m2_remix.md)
+- [First custom puzzle room](reports/first_puzzle_room.md)
 - [Local reference oracles](docs/reference-oracles.md)
 - [Long-term roadmap](docs/roadmap.md)
 - [Contributing and verification gates](CONTRIBUTING.md)
