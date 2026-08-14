@@ -45,8 +45,9 @@ Goal: place multiple verified fragments in one level without raw concatenation.
 
 Status: deterministic insertion, object/extra allocation, user-channel collision
 handling, placement transforms, unresolved-dependency reports, and explicit portal
-connection are implemented. Independent engine-oracle gameplay verification remains
-before this milestone is considered production-complete.
+connection are implemented. A reproducible baseline/candidate NBlood load smoke now
+passes; deterministic gameplay-behavior verification remains before this milestone
+is considered production-complete.
 
 Deliverables:
 
@@ -57,8 +58,9 @@ Deliverables:
 - explicit connector API for selected boundary walls;
 - validation of portal reciprocity, marker ownership, and trigger reachability.
 
-Gate: composed fixtures write, reparse, validate, and preserve each fragment's
-internal behavior under an oracle-backed integration test.
+Gate: composed fixtures write, reparse, validate, load into NBlood, and preserve
+each fragment's internal behavior under an oracle-backed integration test. The
+write/reparse/validate/load portion is complete; behavior scenarios remain.
 
 ## Milestone 3 — semantic pattern library
 

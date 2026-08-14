@@ -29,3 +29,44 @@ reproducible.
 Never copy game resources, generated screenshots, executables, or nested Git
 metadata into tracked paths. Only derived facts, focused tests, and documentation
 belong in the repository.
+
+## Bounded NBlood load smoke
+
+`oracle-nblood` launches a candidate MAP and, preferably, an untouched baseline in
+separate temporary working directories. It supplies a low-resolution local config,
+disables autoloads, starts the MAP through NBlood's normal command-line path, and
+requires three startup observations:
+
+- the controlled autoexec reached the registered OSD environment;
+- NBlood entered its normal game loop;
+- MAP initialization processed the loaded level.
+
+Each process must remain healthy for the requested grace period. The harness then
+terminates that exact process and reports hashes, object counts, engine revision,
+markers, and fatal indicators as JSON. On Windows the child is created hidden.
+
+```text
+python -m bloodmap oracle-nblood work/oracle_composed.MAP \
+  --baseline maps/E1M2.MAP \
+  --nblood reference/blood/nblood.exe \
+  --game-dir reference/blood \
+  --seconds 6 \
+  --work-dir work/oracle-harness \
+  -o reports/nblood_oracle.json
+```
+
+The current composition fixture is reproducible from the ignored corpus:
+
+```text
+python -m bloodmap extract maps/E1M1.MAP --sectors 0 \
+  -o work/oracle/fragment.json
+python -m bloodmap compose maps/E1M2.MAP work/oracle/fragment.json \
+  --x 1000000 --y 1000000 --channel-policy remap \
+  --report work/oracle/composition.json \
+  -o work/oracle/oracle_composed.MAP
+```
+
+The smoke is deliberately narrower than gameplay equivalence: it detects loader,
+initialization, startup-crash, and early-exit failures, but it does not assert that
+triggers, motion, combat, or progression behave identically. Those require a
+separate deterministic scenario or demo oracle.

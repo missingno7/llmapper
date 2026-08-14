@@ -1,0 +1,58 @@
+{
+  "$schema": "bloodmap.nblood-oracle-report",
+  "engine_revisions": [
+    "r14378-fbc5e1186"
+  ],
+  "probes": {
+    "baseline": {
+      "early_exit_code": null,
+      "engine_revision": "r14378-fbc5e1186",
+      "fatal_indicators": [],
+      "grace_seconds": 6.0,
+      "identity": {
+        "counts": {
+          "sectors": 313,
+          "sprites": 698,
+          "walls": 2469
+        },
+        "filename": "E1M2.MAP",
+        "sha256": "d82e5a135ee0f911a7cea11388b4a96d4841c672dfa207529058464cf7947466",
+        "size": 165083
+      },
+      "markers": {
+        "autoexec": true,
+        "game_loop": true,
+        "map_initialization": true
+      },
+      "status": "pass",
+      "stayed_alive_for_grace_period": true,
+      "terminated_by_harness": true
+    },
+    "candidate": {
+      "early_exit_code": null,
+      "engine_revision": "r14378-fbc5e1186",
+      "fatal_indicators": [],
+      "grace_seconds": 6.0,
+      "identity": {
+        "counts": {
+          "sectors": 314,
+          "sprites": 700,
+          "walls": 2475
+        },
+        "filename": "oracle_composed.MAP",
+        "sha256": "e17cf70be7021f354e7034e1f4e974c35e0323f5861a8a8db1bebb8edf9e315c",
+        "size": 165575
+      },
+      "markers": {
+        "autoexec": true,
+        "game_loop": true,
+        "map_initialization": true
+      },
+      "status": "pass",
+      "stayed_alive_for_grace_period": true,
+      "terminated_by_harness": true
+    }
+  },
+  "schema_version": 1,
+  "status": "pass"
+}

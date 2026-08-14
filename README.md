@@ -33,6 +33,7 @@ python -m bloodmap extract maps/E1M1.MAP --sectors 12,13,20-24 -o work/fragment.
 python -m bloodmap apply-fragment maps/E1M1.MAP work/fragment.json -o work/restored.MAP
 python -m bloodmap compose maps/E1M2.MAP work/fragment.json --x 8192 --channel-policy remap --report work/composition.json -o work/composed.MAP
 python -m bloodmap connect work/composed.MAP --wall-a 120 --wall-b 845 -o work/connected.MAP
+python -m bloodmap oracle-nblood work/composed.MAP --baseline maps/E1M2.MAP --nblood reference/blood/nblood.exe --game-dir reference/blood -o work/oracle.json
 ```
 
 Safe whole-map transformations operate through `LevelIR`, then write, reparse,
@@ -56,6 +57,8 @@ python -m unittest discover -s tests -v
 
 See [docs/format.md](docs/format.md) for the evidence-backed disk specification
 and [reports/verification.md](reports/verification.md) for the latest corpus result.
+The optional NBlood load-smoke workflow is documented in
+[docs/reference-oracles.md](docs/reference-oracles.md).
 
 ## Project documentation
 

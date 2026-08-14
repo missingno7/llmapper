@@ -11,7 +11,9 @@ Generated against the supplied `maps/` corpus.
 | Byte-exact LevelIR roundtrip | 43/43 |
 | Reparse success | 43/43 |
 | Hard validation success | 43/43 |
-| Unit/corpus/mutation/fragment/composition tests | 34/34 |
+| Unit/corpus/mutation/fragment/composition/oracle tests | 36/36 |
+| NBlood baseline load smoke | pass (6 seconds) |
+| NBlood composed-map load smoke | pass (6 seconds) |
 
 Corpus totals: 14,079 sectors, 113,261 walls, and 24,730 sprites across
 6,846,491 source bytes.
@@ -43,6 +45,16 @@ Composition verification:
 - composed fixtures encode, reparse, and pass structural validation;
 - allocation and unresolved-dependency reports are JSON-serializable and stable.
 
+Independent load-oracle verification:
+
+- untouched E1M2 and a deterministic E1M2 plus E1M1-sector-0 composition both
+  reached NBlood's initialized game loop and remained healthy for six seconds;
+- both probes ran in isolated directories with autoloads disabled and were
+  terminated by the bounded harness after their grace periods;
+- engine revision, hashes, counts, required markers, and fatal indicators are in
+  `reports/nblood_oracle.json`;
+- this proves load/startup compatibility, not trigger or progression equivalence.
+
 Source cross-checks used the local upstream checkouts at XMAPEDIT `ea89fb1a9875`
 and NBlood `fbc5e11861a7`. They remain untracked development oracles; see
 `docs/reference-oracles.md`.
@@ -59,6 +71,6 @@ Remaining scope boundaries:
   regression-verified;
 - the final four bytes of XSPRITE are preserved as an opaque per-record tail because
   NBlood explicitly skips the former runtime pointer slot;
-- structurally valid composition is implemented, but independent engine-oracle
-  gameplay verification is still required before arbitrary production use is
-  claimed.
+- structurally valid composition now passes an independent engine load smoke, but
+  deterministic gameplay scenarios are still required before arbitrary production
+  use is claimed.

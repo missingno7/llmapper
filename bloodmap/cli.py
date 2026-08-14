@@ -13,6 +13,7 @@ from .composition import CompositionError, connect_portals, insert_fragment
 from .format import BloodMapError, encode_map, locate_offset, read_map, write_map
 from .fragment import FragmentError, LevelFragment, apply_fragment_in_place, extract_fragment
 from .model import LevelIR
+from .oracle import OracleError, run_nblood_oracle
 
 
 def _json(value: Any) -> str:
@@ -287,6 +288,15 @@ def cmd_connect(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_oracle_nblood(args: argparse.Namespace) -> int:
+    report = run_nblood_oracle(
+        args.map, nblood=args.nblood, game_dir=args.game_dir,
+        baseline=args.baseline, grace_seconds=args.seconds, work_dir=args.work_dir,
+    )
+    _write_text(args.output, _json(report))
+    return 0 if report["status"] == "pass" else 1
+
+
 def cmd_transform(args: argparse.Namespace) -> int:
     disk = read_map(args.map)
     ir = disk.to_level_ir()
@@ -352,6 +362,15 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("connect", help="connect reversed coincident one-sided walls")
     p.add_argument("map"); p.add_argument("--wall-a", type=int, required=True); p.add_argument("--wall-b", type=int, required=True)
     p.add_argument("-o", "--output", required=True); p.set_defaults(func=cmd_connect)
+    p = sub.add_parser("oracle-nblood", help="run a bounded external NBlood MAP-load smoke test")
+    p.add_argument("map", help="candidate MAP")
+    p.add_argument("--baseline", help="known-good MAP checked in the same environment")
+    p.add_argument("--nblood", required=True, help="path to NBlood executable")
+    p.add_argument("--game-dir", required=True, help="path to local Blood/NBlood game data")
+    p.add_argument("--seconds", type=float, default=5.0, help="required healthy runtime, 1..60")
+    p.add_argument("--work-dir", help="preserve per-probe logs under this ignored directory")
+    p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")
+    p.set_defaults(func=cmd_oracle_nblood)
 
     p = sub.add_parser("transform", help="apply a safe IR transformation")
     p.add_argument("map"); p.add_argument("-o", "--output", required=True)
@@ -366,7 +385,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args = build_parser().parse_args(argv)
         return int(args.func(args))
-    except (BloodMapError, CompositionError, FragmentError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+    except (BloodMapError, CompositionError, FragmentError, OracleError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         print(f"bloodmap: error: {exc}", file=sys.stderr)
         return 2
 
