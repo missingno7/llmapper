@@ -1,0 +1,164 @@
+{
+  "$schema": "bloodmap.nblood-behavior-oracle-report",
+  "equivalence": {
+    "both_idle_controls_unchanged": true,
+    "both_states_changed": true,
+    "both_views_stable": true,
+    "final_view_equal": true,
+    "idle_control_view_equal": true,
+    "initial_view_equal": true,
+    "status": "pass"
+  },
+  "probes": {
+    "baseline": {
+      "after_view": {
+        "files": 16,
+        "unique_sha256": [
+          "991d856b4fa64369519d811398fae4ed23a991e8466a2c10bf739d2bcc8aceb3"
+        ]
+      },
+      "before_view": {
+        "files": 15,
+        "unique_sha256": [
+          "395721155b92b13588766ddc5c2867fa0049fd5c9539885d4d799c42b83c206d"
+        ]
+      },
+      "engine_revision": "r14378-fbc5e1186",
+      "fatal_indicators": [],
+      "identity": {
+        "counts": {
+          "sectors": 1,
+          "sprites": 0,
+          "walls": 4
+        },
+        "filename": "baseline.MAP",
+        "sha256": "65ca0deb3f740a4ca1bbb0a4f01cd3a0db15068f9156b63f7224ea18e3593873",
+        "size": 429
+      },
+      "idle_control_unchanged": true,
+      "idle_control_view": {
+        "files": 15,
+        "unique_sha256": [
+          "395721155b92b13588766ddc5c2867fa0049fd5c9539885d4d799c42b83c206d"
+        ]
+      },
+      "input_control_error": null,
+      "markers": {
+        "autoexec": true,
+        "game_loop": true,
+        "map_initialization": true
+      },
+      "stable_views": true,
+      "status": "pass",
+      "stayed_alive_for_grace_period": true,
+      "terminated_by_harness": true,
+      "visible_state_changed": true
+    },
+    "candidate": {
+      "after_view": {
+        "files": 15,
+        "unique_sha256": [
+          "991d856b4fa64369519d811398fae4ed23a991e8466a2c10bf739d2bcc8aceb3"
+        ]
+      },
+      "before_view": {
+        "files": 14,
+        "unique_sha256": [
+          "395721155b92b13588766ddc5c2867fa0049fd5c9539885d4d799c42b83c206d"
+        ]
+      },
+      "engine_revision": "r14378-fbc5e1186",
+      "fatal_indicators": [],
+      "identity": {
+        "counts": {
+          "sectors": 2,
+          "sprites": 0,
+          "walls": 8
+        },
+        "filename": "candidate.MAP",
+        "sha256": "52bf63631f876b584480435a3041092c76a9f2fc85d200aaf3ae57809fcf3b4d",
+        "size": 597
+      },
+      "idle_control_unchanged": true,
+      "idle_control_view": {
+        "files": 14,
+        "unique_sha256": [
+          "395721155b92b13588766ddc5c2867fa0049fd5c9539885d4d799c42b83c206d"
+        ]
+      },
+      "input_control_error": null,
+      "markers": {
+        "autoexec": true,
+        "game_loop": true,
+        "map_initialization": true
+      },
+      "stable_views": true,
+      "status": "pass",
+      "stayed_alive_for_grace_period": true,
+      "terminated_by_harness": true,
+      "visible_state_changed": true
+    }
+  },
+  "scenario": {
+    "action": {
+      "channel": 100,
+      "command": "On",
+      "effect": "ceiling_z -8192 -> -4096",
+      "input": "Open",
+      "source": "wall[1].XWALL",
+      "target": "sector[0].XSECTOR"
+    },
+    "composition": {
+      "allocations": {
+        "sector": {
+          "fragment_to_destination": {
+            "0": 1
+          },
+          "kind": "sector"
+        },
+        "sprite": {
+          "fragment_to_destination": {},
+          "kind": "sprite"
+        },
+        "wall": {
+          "fragment_to_destination": {
+            "0": 4,
+            "1": 5,
+            "2": 6,
+            "3": 7
+          },
+          "kind": "wall"
+        },
+        "xsector": {
+          "fragment_to_destination": {
+            "1": 1
+          },
+          "kind": "xsector"
+        },
+        "xsprite": {
+          "fragment_to_destination": {},
+          "kind": "xsprite"
+        },
+        "xwall": {
+          "fragment_to_destination": {
+            "1": 1
+          },
+          "kind": "xwall"
+        }
+      },
+      "channel_map": {
+        "100": 100
+      },
+      "result_counts": {
+        "sectors": 2,
+        "sprites": 0,
+        "walls": 8
+      },
+      "unresolved_relationships": [],
+      "warnings": []
+    },
+    "name": "wall-push-zmotion-v1"
+  },
+  "schema_version": 1,
+  "status": "pass"
+}

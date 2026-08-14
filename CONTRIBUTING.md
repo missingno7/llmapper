@@ -37,6 +37,20 @@ This gate proves that both files reach NBlood's initialized game loop and remain
 healthy for the configured grace period. It does not by itself prove gameplay
 equivalence.
 
+Changes to fragment allocation, channel remapping, or extended-record ownership
+should also run the Windows behavior oracle when local NBlood game data is
+available. It briefly foregrounds the NBlood window to send raw keyboard input:
+
+```text
+python -m bloodmap oracle-nblood-behavior \
+  --nblood reference/blood/nblood.exe \
+  --game-dir reference/blood \
+  -o work/behavior-oracle.json
+```
+
+This gate covers the synthetic wall-trigger/channel/Z-motion scenario documented
+in `docs/reference-oracles.md`; it is not evidence for untested gameplay systems.
+
 Do not normalize values in lossless paths, rely on compiler bitfield layout, retain
 the complete input blob, or silently discard references.
 

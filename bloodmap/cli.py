@@ -13,7 +13,7 @@ from .composition import CompositionError, connect_portals, insert_fragment
 from .format import BloodMapError, encode_map, locate_offset, read_map, write_map
 from .fragment import FragmentError, LevelFragment, apply_fragment_in_place, extract_fragment
 from .model import LevelIR
-from .oracle import OracleError, run_nblood_oracle
+from .oracle import OracleError, run_nblood_behavior_oracle, run_nblood_oracle
 
 
 def _json(value: Any) -> str:
@@ -297,6 +297,16 @@ def cmd_oracle_nblood(args: argparse.Namespace) -> int:
     return 0 if report["status"] == "pass" else 1
 
 
+def cmd_oracle_nblood_behavior(args: argparse.Namespace) -> int:
+    report = run_nblood_behavior_oracle(
+        nblood=args.nblood, game_dir=args.game_dir,
+        startup_timeout=args.startup_timeout, settle_seconds=args.settle_seconds,
+        work_dir=args.work_dir,
+    )
+    _write_text(args.output, _json(report))
+    return 0 if report["status"] == "pass" else 1
+
+
 def cmd_transform(args: argparse.Namespace) -> int:
     disk = read_map(args.map)
     ir = disk.to_level_ir()
@@ -371,6 +381,17 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--work-dir", help="preserve per-probe logs under this ignored directory")
     p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")
     p.set_defaults(func=cmd_oracle_nblood)
+    p = sub.add_parser(
+        "oracle-nblood-behavior",
+        help="compare a synthetic trigger/Z-motion scenario before and after composition",
+    )
+    p.add_argument("--nblood", required=True, help="path to NBlood executable")
+    p.add_argument("--game-dir", required=True, help="path to local Blood/NBlood game data")
+    p.add_argument("--startup-timeout", type=float, default=15.0)
+    p.add_argument("--settle-seconds", type=float, default=2.0)
+    p.add_argument("--work-dir", help="preserve generated MAPs and screenshots under this ignored directory")
+    p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")
+    p.set_defaults(func=cmd_oracle_nblood_behavior)
 
     p = sub.add_parser("transform", help="apply a safe IR transformation")
     p.add_argument("map"); p.add_argument("-o", "--output", required=True)

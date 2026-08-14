@@ -70,6 +70,8 @@ python -m bloodmap connect work/composed.MAP \
   --wall-a 120 --wall-b 845 -o work/connected.MAP
 ```
 
-Independent engine-oracle verification of composed gameplay behavior remains a
-release gate before composition is treated as complete for arbitrary production
-use.
+A deterministic independent-engine oracle now verifies that a decoupled wall-push
+trigger, user-channel dispatch, and sector Z motion retain exact before/after views
+after fragment insertion. See `docs/reference-oracles.md`. This focused scenario
+does not yet make composition complete for arbitrary production use; additional
+marker-, sprite-, and progression-driven behavior gates remain.

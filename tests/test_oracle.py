@@ -2,7 +2,14 @@ from __future__ import annotations
 
 import unittest
 
-from bloodmap.oracle import assess_nblood_output
+import tempfile
+from pathlib import Path
+
+from bloodmap.analysis import validate_map
+from bloodmap.format import read_map
+from bloodmap.oracle import (
+    assess_behavior_equivalence, assess_nblood_output, build_zmotion_behavior_scenario,
+)
 
 
 class OracleAssessmentTests(unittest.TestCase):
@@ -27,6 +34,32 @@ Modern types erased: 0.
         crashed = assess_nblood_output(healthy, "Caught signal: SIGSEGV", stayed_alive=True)
         self.assertEqual(crashed["status"], "fail")
         self.assertEqual(crashed["fatal_indicators"], ["Caught signal"])
+
+    def test_public_behavior_scenario_is_valid_and_composed(self):
+        with tempfile.TemporaryDirectory() as directory:
+            scenario = build_zmotion_behavior_scenario(directory)
+            baseline = read_map(scenario["baseline"])
+            candidate = read_map(scenario["candidate"])
+            self.assertFalse([item for item in validate_map(baseline) if item.severity == "error"])
+            self.assertFalse([item for item in validate_map(candidate) if item.severity == "error"])
+            self.assertEqual((len(baseline.sectors), len(baseline.walls)), (1, 4))
+            self.assertEqual((len(candidate.sectors), len(candidate.walls)), (2, 8))
+            self.assertEqual(candidate.sectors[1].extra.fields["rx_id"], 100)
+            self.assertEqual(candidate.walls[5].extra.fields["tx_id"], 100)
+            self.assertEqual(scenario["composition"]["unresolved_relationships"], [])
+
+    def test_behavior_equivalence_requires_stable_changed_matching_views(self):
+        probe = {
+            "status": "pass", "stable_views": True, "idle_control_unchanged": True,
+            "visible_state_changed": True,
+            "before_view": {"unique_sha256": ["before"]},
+            "idle_control_view": {"unique_sha256": ["before"]},
+            "after_view": {"unique_sha256": ["after"]},
+        }
+        self.assertEqual(assess_behavior_equivalence(probe, probe)["status"], "pass")
+        changed = dict(probe)
+        changed["after_view"] = {"unique_sha256": ["different"]}
+        self.assertEqual(assess_behavior_equivalence(probe, changed)["status"], "fail")
 
 
 if __name__ == "__main__":

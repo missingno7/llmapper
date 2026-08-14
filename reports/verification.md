@@ -11,9 +11,11 @@ Generated against the supplied `maps/` corpus.
 | Byte-exact LevelIR roundtrip | 43/43 |
 | Reparse success | 43/43 |
 | Hard validation success | 43/43 |
-| Unit/corpus/mutation/fragment/composition/oracle tests | 36/36 |
+| Unit/corpus/mutation/fragment/composition/oracle tests | 38/38 |
 | NBlood baseline load smoke | pass (6 seconds) |
 | NBlood composed-map load smoke | pass (6 seconds) |
+| NBlood baseline trigger/Z-motion behavior | pass |
+| NBlood composed trigger/Z-motion behavior | pass |
 
 Corpus totals: 14,079 sectors, 113,261 walls, and 24,730 sprites across
 6,846,491 source bytes.
@@ -55,6 +57,19 @@ Independent load-oracle verification:
   `reports/nblood_oracle.json`;
 - this proves load/startup compatibility, not trigger or progression equivalence.
 
+Independent behavior-oracle verification:
+
+- a synthetic decoupled wall-push XWALL sends command `On` over channel 100 to a
+  type-600 XSECTOR, moving its ceiling from -8192 to -4096;
+- the candidate extracts that mechanism and inserts it into a separate destination
+  through the public deterministic composition path;
+- both baseline and candidate retained one stable image hash across an idle control
+  interval and produced a different stable image hash only after input;
+- baseline and candidate hashes matched exactly in both states under NBlood
+  `r14378-fbc5e1186`;
+- map identities, allocations, action metadata, and derived view hashes are in
+  `reports/nblood_behavior_oracle.json`.
+
 Source cross-checks used the local upstream checkouts at XMAPEDIT `ea89fb1a9875`
 and NBlood `fbc5e11861a7`. They remain untracked development oracles; see
 `docs/reference-oracles.md`.
@@ -71,6 +86,6 @@ Remaining scope boundaries:
   regression-verified;
 - the final four bytes of XSPRITE are preserved as an opaque per-record tail because
   NBlood explicitly skips the former runtime pointer slot;
-- structurally valid composition now passes an independent engine load smoke, but
-  deterministic gameplay scenarios are still required before arbitrary production
-  use is claimed.
+- composition now passes an independent engine load smoke and one deterministic
+  wall-trigger/channel/Z-motion scenario, but broader gameplay scenarios are still
+  required before arbitrary production use is claimed.

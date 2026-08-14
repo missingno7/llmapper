@@ -45,9 +45,9 @@ Goal: place multiple verified fragments in one level without raw concatenation.
 
 Status: deterministic insertion, object/extra allocation, user-channel collision
 handling, placement transforms, unresolved-dependency reports, and explicit portal
-connection are implemented. A reproducible baseline/candidate NBlood load smoke now
-passes; deterministic gameplay-behavior verification remains before this milestone
-is considered production-complete.
+connection are implemented. Reproducible baseline/candidate NBlood load smoke and
+a deterministic wall-trigger/channel/Z-motion behavior scenario now pass. Broader
+behavior coverage remains before composition is considered production-complete.
 
 Deliverables:
 
@@ -59,8 +59,10 @@ Deliverables:
 - validation of portal reciprocity, marker ownership, and trigger reachability.
 
 Gate: composed fixtures write, reparse, validate, load into NBlood, and preserve
-each fragment's internal behavior under an oracle-backed integration test. The
-write/reparse/validate/load portion is complete; behavior scenarios remain.
+each fragment's internal behavior under oracle-backed integration tests. The first
+behavior scenario proves exact before/after visual equivalence for a composed
+wall-push trigger driving sector Z motion; marker-, sprite-, and progression-driven
+scenarios remain.
 
 ## Milestone 3 — semantic pattern library
 
