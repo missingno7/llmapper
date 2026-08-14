@@ -9,6 +9,7 @@ from .fragment import (
     FragmentError, IndexMap, LevelFragment, apply_fragment_in_place, extract_fragment,
 )
 from .model import DiskMap, LevelIR
+from .semantics import ObservationError, observe_level
 
 __all__ = [
     "AttachmentResult",
@@ -21,15 +22,17 @@ __all__ = [
     "IndexMap",
     "LevelIR",
     "LevelFragment",
+    "ObservationError",
     "apply_fragment_in_place",
     "attach_fragment",
     "connect_portals",
     "extract_fragment",
     "insert_fragment",
+    "observe_level",
     "parse_map",
     "read_map",
     "transform_fragment",
     "write_map",
 ]
 
-__version__ = "0.5.0"
+__version__ = "0.6.0"

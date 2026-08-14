@@ -45,6 +45,11 @@ preserves all DiskMap information while exposing IDs, player start, geometry,
 visual fields, and named Blood trigger properties. Conversion in both directions
 must remain lossless for unchanged data.
 
+`LevelIR` is also the only mutation boundary. Extraction, insertion, attachment,
+portal connection, translation, and rotation accept and return `LevelIR` or its
+derived `LevelFragment`; they never edit `DiskMap` records in place. CLI commands
+parse once at ingress and serialize once at egress.
+
 Schema evolution rules:
 
 1. Never silently reinterpret an existing field.
@@ -74,6 +79,9 @@ and stale redundant extended-record owner fields are preserved exactly.
   combinations.
 - SVG renderer: deterministic diagnostic geometry, portals, IDs, sprites, player
   start, and selection highlighting.
+- Level observation: an LLM-friendly semantic index with stable `sector:`, `wall:`,
+  and `sprite:` references, plus focused geometry, contents, connectors, channel
+  edges, and dependency closure for selected sectors.
 
 These services can be recomputed at any time and must not be needed for roundtrip.
 

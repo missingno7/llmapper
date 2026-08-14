@@ -72,6 +72,11 @@ scenarios remain.
 Goal: answer questions such as “show original keyed-door implementations” from
 derived evidence rather than hardcoded map lore.
 
+Status: the LevelIR-native observation contract now indexes sectors, geometry,
+contents, connectors, type/tile inventories, channel endpoints, active trigger
+modes, and selection dependencies. Source-backed pattern naming and structural
+fingerprints remain.
+
 Deliverables:
 
 - indexed corpus observations for object types, channels, commands, keys, and

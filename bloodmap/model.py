@@ -235,11 +235,23 @@ class LevelIR:
 
         return insert_fragment(self, fragment, **options)
 
+    def attach(self, fragment: Any, **options: Any) -> Any:
+        """Align, insert, and portal-connect a LevelFragment."""
+        from .composition import attach_fragment
+
+        return attach_fragment(self, fragment, **options)
+
     def connect_portals(self, wall_a: int, wall_b: int) -> "LevelIR":
         """Connect reversed coincident one-sided walls."""
         from .composition import connect_portals
 
         return connect_portals(self, wall_a, wall_b)
+
+    def observe(self, sector_ids: Any = None) -> dict[str, Any]:
+        """Return an LLM-friendly semantic observation derived directly from this IR."""
+        from .semantics import observe_level
+
+        return observe_level(self, sector_ids)
 
     @classmethod
     def from_dict(cls, value: dict[str, Any]) -> "LevelIR":

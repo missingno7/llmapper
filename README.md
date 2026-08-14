@@ -15,6 +15,11 @@ The architecture deliberately has two layers:
 The writer always rebuilds the file from these fields. It never retains or returns
 the original complete file blob.
 
+All authoring operations run on `LevelIR`. MAP parsing and writing exist only at
+the input/output boundary. `LevelIR.observe()` emits a compact semantic index or a
+detailed room selection with stable object references, geometry, contents,
+connectors, trigger channels, and dependency closure information for LLM clients.
+
 ## Quick start
 
 Python 3.10 or newer is sufficient; there are no runtime dependencies.
@@ -24,6 +29,7 @@ python -m bloodmap corpus maps -o reports/corpus_inventory.json
 python -m bloodmap roundtrip-all maps
 python -m bloodmap validate maps/E1M1.MAP
 python -m bloodmap inspect maps/E1M1.MAP --sector 42
+python -m bloodmap observe maps/E1M1.MAP --sectors 12,13 -o work/room-observation.json
 python -m bloodmap channels maps/E1M1.MAP --channel 104
 python -m bloodmap dump maps/E1M1.MAP -o work/E1M1.json
 python -m bloodmap build work/E1M1.json -o work/E1M1_rebuilt.MAP
@@ -67,6 +73,7 @@ The optional NBlood load and deterministic behavior oracles are documented in
 ## Project documentation
 
 - [Architecture and invariants](docs/architecture.md)
+- [LevelIR authoring and semantic observations](docs/level-ir.md)
 - [Local corpus setup and policy](docs/corpus.md)
 - [Sector fragments and remapping](docs/fragments.md)
 - [Deterministic composition](docs/composition.md)

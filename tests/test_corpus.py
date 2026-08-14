@@ -20,12 +20,18 @@ class CorpusTests(unittest.TestCase):
             with self.subTest(path=path.name):
                 original = path.read_bytes()
                 disk = read_map(path)
+                level = disk.to_level_ir()
                 self.assertEqual(disk.version, 0x0700)
                 self.assertEqual(encode_map(disk), original)
-                self.assertEqual(encode_map(disk.to_level_ir().to_disk_map()), original)
+                self.assertEqual(encode_map(level.to_disk_map()), original)
                 reparsed = parse_map(encode_map(disk))
                 self.assertEqual(reparsed, disk)
                 self.assertFalse([d for d in validate_map(disk) if d.severity == "error"])
+                observation = level.observe()
+                self.assertEqual(len(observation["sector_index"]), len(disk.sectors))
+                self.assertEqual(observation["level"]["counts"]["walls"], len(disk.walls))
+                focused = level.observe([level.player_start["sector"]])
+                self.assertEqual(focused["selection"]["sector_ids"], [level.player_start["sector"]])
 
     def test_derived_views_cover_objects(self):
         path = MAPS / "E1M1.MAP"

@@ -14,6 +14,7 @@ from .format import BloodMapError, encode_map, locate_offset, read_map, write_ma
 from .fragment import FragmentError, LevelFragment, apply_fragment_in_place, extract_fragment
 from .model import LevelIR
 from .oracle import OracleError, run_nblood_behavior_oracle, run_nblood_oracle
+from .semantics import ObservationError
 
 
 def _json(value: Any) -> str:
@@ -243,6 +244,13 @@ def cmd_extract(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_observe(args: argparse.Namespace) -> int:
+    level = read_map(args.map).to_level_ir()
+    sector_ids = _parse_id_set(args.sectors) if args.sectors is not None else None
+    _write_text(args.output, _json(level.observe(sector_ids)))
+    return 0
+
+
 def cmd_apply_fragment(args: argparse.Namespace) -> int:
     source = read_map(args.map).to_level_ir()
     value = json.loads(Path(args.fragment).read_text(encoding="utf-8"))
@@ -385,6 +393,11 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("extract", help="extract selected sectors into a self-describing fragment")
     p.add_argument("map"); p.add_argument("--sectors", required=True, help="comma-separated IDs/ranges, e.g. 1,4-7")
     p.add_argument("-o", "--output", required=True); p.set_defaults(func=cmd_extract)
+    p = sub.add_parser("observe", help="emit an LLM-friendly LevelIR semantic observation")
+    p.add_argument("map")
+    p.add_argument("--sectors", help="optional detailed sector IDs/ranges; omission emits the level index")
+    p.add_argument("-o", "--output", help="write JSON observation; defaults to stdout")
+    p.set_defaults(func=cmd_observe)
     p = sub.add_parser("apply-fragment", help="apply a fragment back to the exact same source map")
     p.add_argument("map"); p.add_argument("fragment"); p.add_argument("-o", "--output", required=True)
     p.set_defaults(func=cmd_apply_fragment)
@@ -448,7 +461,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args = build_parser().parse_args(argv)
         return int(args.func(args))
-    except (BloodMapError, CompositionError, FragmentError, OracleError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+    except (BloodMapError, CompositionError, FragmentError, ObservationError, OracleError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         print(f"bloodmap: error: {exc}", file=sys.stderr)
         return 2
 

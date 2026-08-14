@@ -61,12 +61,11 @@ chooses connectors automatically.
 
 ## Automatic room attachment
 
-`attach_fragment` combines placement, insertion, and portal connection. The caller
+`LevelIR.attach` combines placement, insertion, and portal connection. The caller
 selects one one-sided wall in the destination and one fragment-local one-sided wall:
 
 ```python
-result = attach_fragment(
-    destination,
+result = destination.attach(
     room,
     destination_wall=120,
     fragment_wall=3,

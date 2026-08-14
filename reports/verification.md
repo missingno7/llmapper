@@ -11,7 +11,7 @@ Generated against the supplied `maps/` corpus.
 | Byte-exact LevelIR roundtrip | 43/43 |
 | Reparse success | 43/43 |
 | Hard validation success | 43/43 |
-| Unit/corpus/mutation/fragment/composition/oracle tests | 44/44 |
+| Unit/corpus/mutation/fragment/composition/semantic/oracle tests | 49/49 |
 | NBlood baseline load smoke | pass (6 seconds) |
 | NBlood composed-map load smoke | pass (6 seconds) |
 | NBlood real-map attached-room load smoke | pass (6 seconds) |
@@ -54,6 +54,16 @@ Composition verification:
   automatic quarter-turns, a -36864 Z offset, and 32768 units of slope-aware
   endpoint clearance; allocation and dependency evidence is recorded in
   `reports/attachment_fixture.json`.
+
+LevelIR semantic verification:
+
+- attachment is exposed as a first-class `LevelIR.attach` operation;
+- whole-level observations index bounds, sectors, type/tile inventories, player
+  start, and TX/RX endpoints without reading binary structures;
+- focused observations report room geometry, connectors, contents, interactive
+  objects, relevant remote channel endpoints, and classified dependencies;
+- observations use stable `sector:`, `wall:`, and `sprite:` references and omit
+  packed/opaque serialization details.
 
 Independent load-oracle verification:
 

@@ -12,6 +12,11 @@ python -m bloodmap --help
 Original Blood maps are not distributed. See `maps/README.md` and
 `docs/corpus.md` for optional local corpus setup.
 
+All editing APIs must operate on `LevelIR` or a documented derivative such as
+`LevelFragment`. `DiskMap` is the lossless import/export representation, not an
+authoring API. New LLM-facing observations must use stable semantic references and
+must label unknown numeric semantics instead of inventing names.
+
 ## Change gates
 
 Changes to binary parsing, packing, models, or conversion logic must include:
