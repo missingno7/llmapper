@@ -21,6 +21,9 @@ No later milestone may weaken these gates.
 Goal: select sectors and obtain a self-describing fragment without corrupting
 relationships.
 
+Status: implemented for extraction, dependency classification, compact index maps,
+and exact same-source reinsertion. Cross-map allocation remains Milestone 2.
+
 Deliverables:
 
 - `LevelFragment` containing selected sectors, owned walls, contained sprites, and
@@ -39,6 +42,11 @@ source structures exactly, and no reference is silently dropped.
 ## Milestone 2 — deterministic fragment composition
 
 Goal: place multiple verified fragments in one level without raw concatenation.
+
+Status: deterministic insertion, object/extra allocation, user-channel collision
+handling, placement transforms, unresolved-dependency reports, and explicit portal
+connection are implemented. Independent engine-oracle gameplay verification remains
+before this milestone is considered production-complete.
 
 Deliverables:
 

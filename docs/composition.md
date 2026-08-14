@@ -1,0 +1,75 @@
+# Deterministic fragment composition
+
+Composition appends a verified `LevelFragment` to an existing `LevelIR`. It is
+deliberately allocation-oriented: it does not infer gameplay design, automatically
+join geometry, or hide unresolved source relationships.
+
+```python
+result = destination.insert(
+    fragment,
+    dx=4096,
+    dy=-2048,
+    quarter_turns=1,
+    channel_policy="remap",
+)
+composed = result.level
+report = result.report()
+```
+
+## Allocation contract
+
+Each insertion appends sectors, walls, and sprites and returns explicit
+fragment-to-destination maps. XSECTOR, XWALL, and XSPRITE indices are assigned the
+lowest free positive ID in their independent namespaces. Owner/reference, marker,
+portal, and sprite links that are internal to the fragment are remapped through
+those allocations.
+
+The v7 limits (1,024 sectors, 8,192 walls, 4,096 sprites) are checked before any
+result is returned.
+
+## Channel policy
+
+Blood channels are not ordinary array indices.
+
+- Verified system/global channels retain their source-defined IDs.
+- Undefined values below 100 are never guessed or automatically remapped. A
+  collision fails closed.
+- User channels 100–1023 remain unchanged when free.
+- A user-channel collision either raises (`error`, the default) or receives the
+  lowest free user channel (`remap`). TX and RX fields inside the fragment use the
+  same deterministic map.
+
+External fragment dependencies remain visible in `CompositionResult`; insertion
+does not claim they were resolved merely because the output is structurally valid.
+
+## Placement
+
+Insertion supports integer X/Y/Z translation and quarter-turn rotation around an
+explicit pivot. Only the same verified world-space coordinates and direction fields
+used by whole-map transforms are touched.
+
+## Explicit portal connection
+
+```python
+connected = composed.connect_portals(wall_a, wall_b)
+```
+
+Both walls must be one-sided, belong to different sectors, and have exactly
+coincident reversed endpoints. The operation creates reciprocal `next_wall` and
+`next_sector` links, then runs structural validation. It never searches for or
+chooses connectors automatically.
+
+## CLI
+
+```text
+python -m bloodmap compose destination.MAP fragment.json \
+  --x 4096 --y -2048 --channel-policy remap \
+  --report work/composition.json -o work/composed.MAP
+
+python -m bloodmap connect work/composed.MAP \
+  --wall-a 120 --wall-b 845 -o work/connected.MAP
+```
+
+Independent engine-oracle verification of composed gameplay behavior remains a
+release gate before composition is treated as complete for arbitrary production
+use.

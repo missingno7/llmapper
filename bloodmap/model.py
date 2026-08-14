@@ -223,6 +223,24 @@ class LevelIR:
             "sprites": self.sprites,
         }
 
+    def extract(self, sector_ids: Any) -> Any:
+        """Extract sectors into a dependency-classified LevelFragment."""
+        from .fragment import extract_fragment
+
+        return extract_fragment(self, sector_ids)
+
+    def insert(self, fragment: Any, **options: Any) -> Any:
+        """Insert a LevelFragment with deterministic allocation."""
+        from .composition import insert_fragment
+
+        return insert_fragment(self, fragment, **options)
+
+    def connect_portals(self, wall_a: int, wall_b: int) -> "LevelIR":
+        """Connect reversed coincident one-sided walls."""
+        from .composition import connect_portals
+
+        return connect_portals(self, wall_a, wall_b)
+
     @classmethod
     def from_dict(cls, value: dict[str, Any]) -> "LevelIR":
         return cls(

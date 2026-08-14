@@ -9,7 +9,9 @@ from pathlib import Path
 from typing import Any
 
 from .analysis import channel_graph, corpus_statistics, geometry_view, render_svg, validate_map
+from .composition import CompositionError, connect_portals, insert_fragment
 from .format import BloodMapError, encode_map, locate_offset, read_map, write_map
+from .fragment import FragmentError, LevelFragment, apply_fragment_in_place, extract_fragment
 from .model import LevelIR
 
 
@@ -215,6 +217,76 @@ def cmd_stats(args: argparse.Namespace) -> int:
     return 0
 
 
+def _parse_id_set(value: str) -> list[int]:
+    result: set[int] = set()
+    for part in value.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        if "-" in part:
+            first_text, last_text = part.split("-", 1)
+            first, last = int(first_text), int(last_text)
+            if last < first:
+                raise ValueError(f"invalid descending range {part!r}")
+            result.update(range(first, last + 1))
+        else:
+            result.add(int(part))
+    if not result:
+        raise ValueError("sector selection is empty")
+    return sorted(result)
+
+
+def cmd_extract(args: argparse.Namespace) -> int:
+    fragment = extract_fragment(read_map(args.map).to_level_ir(), _parse_id_set(args.sectors))
+    _write_text(args.output, _json(fragment.to_dict()))
+    return 0
+
+
+def cmd_apply_fragment(args: argparse.Namespace) -> int:
+    source = read_map(args.map).to_level_ir()
+    value = json.loads(Path(args.fragment).read_text(encoding="utf-8"))
+    fragment = LevelFragment.from_dict(value)
+    rebuilt = apply_fragment_in_place(source, fragment).to_disk_map()
+    errors = [item for item in validate_map(rebuilt) if item.severity == "error"]
+    if errors:
+        raise FragmentError(f"fragment application produced {len(errors)} validation errors")
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    write_map(rebuilt, args.output)
+    read_map(args.output)
+    print(f"WROTE {args.output}: same-source fragment applied, reparsed, and validated")
+    return 0
+
+
+def cmd_compose(args: argparse.Namespace) -> int:
+    destination = read_map(args.map).to_level_ir()
+    fragment = LevelFragment.from_dict(json.loads(Path(args.fragment).read_text(encoding="utf-8")))
+    result = insert_fragment(
+        destination, fragment, dx=args.x, dy=args.y, dz=args.z,
+        quarter_turns=args.turns, pivot_x=args.pivot_x, pivot_y=args.pivot_y,
+        channel_policy=args.channel_policy,
+    )
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    write_map(result.level.to_disk_map(), args.output)
+    reparsed = read_map(args.output)
+    if any(item.severity == "error" for item in validate_map(reparsed)):
+        raise CompositionError("written composition failed reparse validation")
+    if args.report:
+        _write_text(args.report, _json(result.report()))
+    print(f"WROTE {args.output}: fragment inserted, reparsed, and validated")
+    return 0
+
+
+def cmd_connect(args: argparse.Namespace) -> int:
+    level = connect_portals(read_map(args.map).to_level_ir(), args.wall_a, args.wall_b)
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    write_map(level.to_disk_map(), args.output)
+    reparsed = read_map(args.output)
+    if any(item.severity == "error" for item in validate_map(reparsed)):
+        raise CompositionError("written portal connection failed reparse validation")
+    print(f"WROTE {args.output}: walls {args.wall_a} and {args.wall_b} connected and validated")
+    return 0
+
+
 def cmd_transform(args: argparse.Namespace) -> int:
     disk = read_map(args.map)
     ir = disk.to_level_ir()
@@ -262,6 +334,24 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--sector", type=int); p.add_argument("--wall", type=int); p.add_argument("--sprite", type=int); p.set_defaults(func=cmd_render)
     p = sub.add_parser("stats", help="generate corpus geometry/gameplay statistics")
     p.add_argument("directory"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_stats)
+    p = sub.add_parser("extract", help="extract selected sectors into a self-describing fragment")
+    p.add_argument("map"); p.add_argument("--sectors", required=True, help="comma-separated IDs/ranges, e.g. 1,4-7")
+    p.add_argument("-o", "--output", required=True); p.set_defaults(func=cmd_extract)
+    p = sub.add_parser("apply-fragment", help="apply a fragment back to the exact same source map")
+    p.add_argument("map"); p.add_argument("fragment"); p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_apply_fragment)
+    p = sub.add_parser("compose", help="insert a fragment with deterministic allocation")
+    p.add_argument("map", help="destination MAP")
+    p.add_argument("fragment", help="LevelFragment JSON")
+    p.add_argument("-o", "--output", required=True)
+    p.add_argument("--report", help="write allocation/dependency report JSON")
+    p.add_argument("--x", type=int, default=0); p.add_argument("--y", type=int, default=0); p.add_argument("--z", type=int, default=0)
+    p.add_argument("--turns", type=int, default=0); p.add_argument("--pivot-x", type=int, default=0); p.add_argument("--pivot-y", type=int, default=0)
+    p.add_argument("--channel-policy", choices=("error", "remap"), default="error")
+    p.set_defaults(func=cmd_compose)
+    p = sub.add_parser("connect", help="connect reversed coincident one-sided walls")
+    p.add_argument("map"); p.add_argument("--wall-a", type=int, required=True); p.add_argument("--wall-b", type=int, required=True)
+    p.add_argument("-o", "--output", required=True); p.set_defaults(func=cmd_connect)
 
     p = sub.add_parser("transform", help="apply a safe IR transformation")
     p.add_argument("map"); p.add_argument("-o", "--output", required=True)
@@ -276,7 +366,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args = build_parser().parse_args(argv)
         return int(args.func(args))
-    except (BloodMapError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+    except (BloodMapError, CompositionError, FragmentError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         print(f"bloodmap: error: {exc}", file=sys.stderr)
         return 2
 

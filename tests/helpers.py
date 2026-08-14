@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import copy
+
 from bloodmap.format import (
-    SECTOR_FIELDS, SPRITE_FIELDS, WALL_FIELDS, XSPRITE_SCHEMA, encode_map, parse_map,
+    SECTOR_FIELDS, SPRITE_FIELDS, WALL_FIELDS, XSECTOR_SCHEMA, XSPRITE_SCHEMA,
+    encode_map, parse_map,
 )
 from bloodmap.model import DiskMap, DiskObject, ExtraHeader, PackedExtra
 
@@ -47,4 +50,64 @@ def synthetic_map() -> DiskMap:
         sectors=[DiskObject(sector)], walls=walls,
         sprites=[DiskObject(sprite, xsprite)], source_crc32=0, source_size=0,
     )
+    return parse_map(encode_map(disk))
+
+
+def synthetic_two_sector_map() -> DiskMap:
+    """Two portal-linked sectors with cross-boundary markers, owners, and triggers."""
+    disk = synthetic_map()
+    sector0 = disk.sectors[0]
+    sector0.fields["extra"] = 1
+    xsector_fields = {name: 0 for name, _bits, _signed in XSECTOR_SCHEMA}
+    xsector_fields.update(reference=9, marker_0=1, marker_1=-1)
+    sector0.extra = PackedExtra("XSECTOR", xsector_fields)
+
+    sector1 = copy.deepcopy(sector0)
+    sector1.fields.update(wall_ptr=4, extra=-1)
+    sector1.extra = None
+    disk.sectors = [sector0, sector1]
+
+    points = [
+        (0, 0), (1024, 0), (1024, 1024), (0, 1024),
+        (1024, 0), (2048, 0), (2048, 1024), (1024, 1024),
+    ]
+    walls = []
+    for index, (x, y) in enumerate(points):
+        wall = {name: 0 for name, _codec in WALL_FIELDS}
+        point2 = (index + 1) if index not in (3, 7) else (0 if index == 3 else 4)
+        wall.update(x=x, y=y, point2=point2, next_wall=-1, next_sector=-1,
+                    picnum=1, over_picnum=-1, extra=-1)
+        walls.append(DiskObject(wall))
+    walls[1].fields.update(next_wall=7, next_sector=1)
+    walls[7].fields.update(next_wall=1, next_sector=0)
+    disk.walls = walls
+
+    sprite0 = disk.sprites[0]
+    sprite0.fields.update(owner=1, index=0, sector=0, extra=1)
+    sprite0.extra.fields.update(reference=12, tx_id=100, rx_id=0, target=1, burn_source=-1)
+    sprite1 = copy.deepcopy(sprite0)
+    sprite1.fields.update(x=1536, sector=1, owner=-1, index=1, extra=2)
+    sprite1.extra.fields.update(reference=1, tx_id=0, rx_id=100, target=-1, burn_source=-1)
+    disk.sprites = [sprite0, sprite1]
+    disk.header.update(num_sectors=2, num_walls=8, num_sprites=2)
+    return parse_map(encode_map(disk))
+
+
+def synthetic_multi_loop_map() -> DiskMap:
+    """One sector with an outer loop and an oppositely wound inner loop."""
+    disk = synthetic_map()
+    disk.sectors[0].fields["wall_count"] = 8
+    points = [
+        (0, 0), (4096, 0), (4096, 4096), (0, 4096),
+        (1024, 1024), (1024, 3072), (3072, 3072), (3072, 1024),
+    ]
+    walls = []
+    for index, (x, y) in enumerate(points):
+        wall = {name: 0 for name, _codec in WALL_FIELDS}
+        point2 = (index + 1) if index not in (3, 7) else (0 if index == 3 else 4)
+        wall.update(x=x, y=y, point2=point2, next_wall=-1, next_sector=-1,
+                    picnum=1, over_picnum=-1, extra=-1)
+        walls.append(DiskObject(wall))
+    disk.walls = walls
+    disk.header["num_walls"] = 8
     return parse_map(encode_map(disk))

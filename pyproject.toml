@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bloodmap"
-version = "0.1.0"
-description = "Lossless Blood MAP parser, writer, validator, and inspection tools"
+version = "0.3.0"
+description = "Lossless Blood MAP parsing, validation, fragment extraction, and composition"
 requires-python = ">=3.10"
 dependencies = []
 

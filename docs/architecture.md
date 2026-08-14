@@ -77,6 +77,15 @@ and stale redundant extended-record owner fields are preserved exactly.
 
 These services can be recomputed at any time and must not be needed for roundtrip.
 
+## Layer 3: LevelFragment
+
+`LevelFragment` is a composition-oriented selection, not authoritative map state.
+It owns compact sector/wall/sprite/extra index maps and classifies internal,
+external geometry, trigger, marker, ownership, and system/global relationships.
+External references are detached locally but retained in bounded preservation
+records. A canonical source-IR SHA-256 prevents accidental application to a merely
+similar map. See `docs/fragments.md`.
+
 ## Transform contract
 
 Transformations operate on `LevelIR`, convert back to `DiskMap`, write, reparse,
@@ -86,3 +95,7 @@ are objectively testable.
 
 Future extraction and composition must use explicit index/channel remapping. Raw
 array concatenation is forbidden.
+
+The composition layer appends through returned destination maps, allocates the
+lowest free extended IDs, applies deterministic placement, and detects channel
+collisions. Geometry is connected only by an explicit reversed-endpoint portal API.

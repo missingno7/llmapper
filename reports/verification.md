@@ -11,7 +11,7 @@ Generated against the supplied `maps/` corpus.
 | Byte-exact LevelIR roundtrip | 43/43 |
 | Reparse success | 43/43 |
 | Hard validation success | 43/43 |
-| Unit/corpus/mutation tests | 14/14 |
+| Unit/corpus/mutation/fragment/composition tests | 34/34 |
 
 Corpus totals: 14,079 sectors, 113,261 walls, and 24,730 sprites across
 6,846,491 source bytes.
@@ -26,6 +26,27 @@ Implemented transformations:
 Both transformations write through `LevelIR -> DiskMap`, then reparse and validate
 the produced MAP before reporting success.
 
+Fragment verification:
+
+- synthetic fixtures cover portal boundaries, cross-boundary triggers, markers,
+  sprite ownership/targets, stale redundant references, and multiple wall loops;
+- all 43 corpus maps exactly reproduce their original bytes after extracting and
+  reinserting representative first, middle, and last sectors;
+- fragment JSON carries compact maps for sector, wall, sprite, XSECTOR, XWALL, and
+  XSPRITE indices plus a canonical source-IR SHA-256.
+
+Composition verification:
+
+- synthetic fixtures cover deterministic object and extended-record allocation,
+  user-channel collision failure/remapping, reserved and system channel policy,
+  repeated insertion, placement transforms, and explicit portal connection;
+- composed fixtures encode, reparse, and pass structural validation;
+- allocation and unresolved-dependency reports are JSON-serializable and stable.
+
+Source cross-checks used the local upstream checkouts at XMAPEDIT `ea89fb1a9875`
+and NBlood `fbc5e11861a7`. They remain untracked development oracles; see
+`docs/reference-oracles.md`.
+
 Semantic corpus warnings (not hard errors):
 
 - E3M5: two diagnostics for an original non-reciprocal portal association accepted
@@ -38,6 +59,6 @@ Remaining scope boundaries:
   regression-verified;
 - the final four bytes of XSPRITE are preserved as an opaque per-record tail because
   NBlood explicitly skips the former runtime pointer slot;
-- region extraction/cloning has an architectural path through explicit IDs and
-  relationship fields, but automatic subgraph remapping/composition is intentionally
-  deferred until it can be verified against a dedicated fixture corpus.
+- structurally valid composition is implemented, but independent engine-oracle
+  gameplay verification is still required before arbitrary production use is
+  claimed.

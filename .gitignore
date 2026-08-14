@@ -11,3 +11,7 @@ maps/*
 
 # Rendered original-map geometry is a local diagnostic artifact.
 reports/*.svg
+
+# Local game data and upstream source checkouts used as development oracles.
+# This tree may contain commercial assets and is never part of the repository.
+reference/
