@@ -64,6 +64,7 @@ Deliverables:
 - generated tapered corridors and bounded-height stair connections;
 - new-vs-existing and pathway self-overlap rejection;
 - gameplay-dependency closure and replayable composition recipes;
+- transform-relative player-start placement with geometric validation;
 - validation of portal reciprocity, marker ownership, and trigger reachability.
 
 Gate: composed fixtures write, reparse, validate, load into NBlood, and preserve
@@ -71,6 +72,11 @@ each fragment's internal behavior under oracle-backed integration tests. The fir
 behavior scenario proves exact before/after visual equivalence for a composed
 wall-push trigger driving sector Z motion; marker-, sprite-, and progression-driven
 scenarios remain.
+
+The E1M2 remix recipe now demonstrates controlled room reordering at LevelIR level:
+four behavior-closed rooms are rotated/repositioned into a new opening sequence,
+joined by bounded stairs, assigned a transformed local player start, and returned
+to the preserved base progression. Static reachability and NBlood load gates pass.
 
 ## Milestone 3 — semantic pattern library
 

@@ -103,7 +103,10 @@ geometry requires an explicit override and remains visible in the report.
 
 `LevelIR.extract_closed()` starts from requested sectors and recursively includes
 the sectors owning external trigger endpoints, markers, sprite owners, targets,
-and burn sources. Portal adjacency is not followed: detached portals are useful
+and burn sources. NBlood/XMAPEDIT source rules distinguish authored modern-patrol
+targets and active burn sources from ordinary AI runtime indices. The latter are
+preserved byte-for-byte but do not pull unrelated sectors into behavior closure.
+Portal adjacency is not followed: detached portals are useful
 room boundaries, whereas following them would usually absorb the whole map.
 Game-valid TX/RX channels with no matching endpoint remain explicitly unresolved.
 A maximum-sector bound prevents an unexpectedly global mechanism from silently
@@ -146,6 +149,25 @@ map to later operations, allowing references such as:
 This removes brittle post-insertion wall arithmetic. Plain `insert` operations
 also receive the same layout collision gate when run through a recipe.
 
+A recipe can move the player into an inserted or attached room without calculating
+destination coordinates. `set_player_start` accepts a source operation, a
+fragment-local sector, and an X/Y/Z/angle expressed in the donor's original
+coordinate system. The recipe applies that operation's translation and rotation,
+then rejects positions outside the allocated sector or its vertical span.
+
+```json
+{
+  "op": "set_player_start",
+  "id": "remixed_start",
+  "source_operation": "opening_room",
+  "fragment_sector": 0,
+  "x": -20864,
+  "y": 44544,
+  "z": -45056,
+  "angle": 1280
+}
+```
+
 ## CLI
 
 ```text
@@ -166,6 +188,9 @@ python -m bloodmap pathway work/separated.MAP \
 
 python -m bloodmap recipe recipes/e1m2-crossroads.json \
   --source-dir maps --report work/mashup.json -o work/e1m2-crossroads.MAP
+
+python -m bloodmap recipe recipes/e1m2-remix.json \
+  --source-dir maps --report work/remix.json -o work/e1m2-remix.MAP
 ```
 
 A deterministic independent-engine oracle now verifies that a decoupled wall-push

@@ -1,0 +1,83 @@
+{
+  "$schema": "bloodmap.composition-recipe",
+  "schema_version": 1,
+  "base": "E1M2.MAP",
+  "operations": [
+    {
+      "op": "attach",
+      "id": "late_arena",
+      "source": "E1M2.MAP",
+      "sectors": [299],
+      "destination_wall": {"absolute": 1721},
+      "fragment_wall": 14,
+      "dz": 78848,
+      "channel_policy": "remap"
+    },
+    {
+      "op": "insert",
+      "id": "tall_chamber",
+      "source": "E1M2.MAP",
+      "sectors": [185],
+      "dx": -15040,
+      "dy": 37744,
+      "dz": 31744,
+      "channel_policy": "remap"
+    },
+    {
+      "op": "pathway",
+      "id": "arena_stair",
+      "wall_a": {"operation": "late_arena", "fragment_wall": 5},
+      "wall_b": {"operation": "tall_chamber", "fragment_wall": 4},
+      "max_step_height": 2048,
+      "clear_blocking": true
+    },
+    {
+      "op": "insert",
+      "id": "wide_gauntlet",
+      "source": "E1M2.MAP",
+      "sectors": [157],
+      "dx": -51504,
+      "dy": 94560,
+      "dz": 29696,
+      "quarter_turns": 2,
+      "channel_policy": "remap"
+    },
+    {
+      "op": "pathway",
+      "id": "chamber_stair",
+      "wall_a": {"operation": "tall_chamber", "fragment_wall": 1},
+      "wall_b": {"operation": "wide_gauntlet", "fragment_wall": 9},
+      "max_step_height": 2048,
+      "clear_blocking": true
+    },
+    {
+      "op": "insert",
+      "id": "opening_ambush",
+      "source": "E1M2.MAP",
+      "sectors": [70],
+      "dx": 6672,
+      "dy": 86504,
+      "dz": 27648,
+      "quarter_turns": 1,
+      "channel_policy": "remap"
+    },
+    {
+      "op": "pathway",
+      "id": "opening_stair",
+      "wall_a": {"operation": "opening_ambush", "fragment_wall": 4},
+      "wall_b": {"operation": "wide_gauntlet", "fragment_wall": 12},
+      "max_step_height": 2048,
+      "clear_blocking": true
+    },
+    {
+      "op": "set_player_start",
+      "id": "remixed_player_start",
+      "source_operation": "opening_ambush",
+      "fragment_sector": 0,
+      "x": -20864,
+      "y": 44544,
+      "z": -45056,
+      "angle": 1280
+    }
+  ]
+}

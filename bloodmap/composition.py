@@ -337,6 +337,14 @@ def insert_fragment(
         "xsector": xsector_map, "xwall": xwall_map, "xsprite": xsprite_map,
     }
     channel_map, warnings = _allocate_channels(result, fragment, channel_policy)
+    runtime_sprite_fields = {
+        (int(relationship.source["id"]), relationship.field.rsplit(".", 1)[-1])
+        for relationship in fragment.relationships
+        if relationship.classification == "system_global"
+        and relationship.relation == "runtime_state"
+        and relationship.source.get("space") == "fragment"
+        and relationship.source.get("kind") == "sprite"
+    }
 
     def prepare(item: dict[str, Any], kind: str, local_id: int) -> dict[str, Any]:
         value = copy.deepcopy(item)
@@ -385,7 +393,7 @@ def insert_fragment(
         blood = _blood(value)
         if blood is not None:
             for name in ("target", "burn_source"):
-                if blood[name] >= 0:
+                if blood[name] >= 0 and (local_id, name) not in runtime_sprite_fields:
                     blood[name] = sprite_map.resolve(blood[name])
         result.sprites.append(value)
 

@@ -7,7 +7,7 @@ from typing import Any
 
 from .analysis import validate_map
 from .composition import (
-    CompositionError, find_layout_conflicts,
+    CompositionError, _point_in_sector, _sector_surface_z, find_layout_conflicts,
 )
 from .format import read_map
 from .model import LevelIR
@@ -55,6 +55,7 @@ def build_composition_recipe(
     level = read_map(base_path).to_level_ir()
     operation_reports: list[dict[str, Any]] = []
     allocations: dict[str, dict[str, dict[int, int]]] = {}
+    transforms: dict[str, dict[str, int]] = {}
 
     def resolve_wall(reference: Any) -> int:
         if isinstance(reference, int):
@@ -73,6 +74,32 @@ def build_composition_recipe(
             raise RecipeError(
                 f"operation {operation_id!r} has no fragment wall {fragment_id}"
             ) from exc
+
+    def resolve_sector(operation_id: str, fragment_id: int) -> int:
+        if operation_id not in allocations:
+            raise RecipeError(f"sector reference uses unknown operation {operation_id!r}")
+        try:
+            return allocations[operation_id]["sector"][fragment_id]
+        except KeyError as exc:
+            raise RecipeError(
+                f"operation {operation_id!r} has no fragment sector {fragment_id}"
+            ) from exc
+
+    def transform_point(operation_id: str, x: int, y: int) -> tuple[int, int]:
+        try:
+            placement = transforms[operation_id]
+        except KeyError as exc:
+            raise RecipeError(
+                f"position reference uses unknown operation {operation_id!r}"
+            ) from exc
+        x -= placement["pivot_x"]
+        y -= placement["pivot_y"]
+        for _ in range(placement["quarter_turns"] % 4):
+            x, y = -y, x
+        return (
+            x + placement["pivot_x"] + placement["dx"],
+            y + placement["pivot_y"] + placement["dy"],
+        )
 
     seen_ids: set[str] = set()
     for index, operation_value in enumerate(value.get("operations", [])):
@@ -122,6 +149,19 @@ def build_composition_recipe(
                 name: dict(mapping.fragment_to_destination)
                 for name, mapping in composition.allocations.items()
             }
+            if kind == "attach":
+                transforms[operation_id] = {
+                    "dx": result.dx, "dy": result.dy, "dz": result.dz,
+                    "quarter_turns": result.quarter_turns,
+                    "pivot_x": 0, "pivot_y": 0,
+                }
+            else:
+                transforms[operation_id] = {
+                    name: int(operation.get(name, 0))
+                    for name in (
+                        "dx", "dy", "dz", "quarter_turns", "pivot_x", "pivot_y",
+                    )
+                }
             operation_reports.append({
                 "id": operation_id,
                 "op": kind,
@@ -139,6 +179,46 @@ def build_composition_recipe(
             result = level.connect_pathway(wall_a, wall_b, **operation)
             level = result.level
             operation_reports.append({"id": operation_id, "op": kind, "result": result.report()})
+            continue
+
+        if kind == "set_player_start":
+            source_operation = str(operation.pop("source_operation"))
+            fragment_sector = int(operation.pop("fragment_sector"))
+            sector_id = resolve_sector(source_operation, fragment_sector)
+            source_x, source_y = int(operation.pop("x")), int(operation.pop("y"))
+            source_z = int(operation.pop("z"))
+            source_angle = int(operation.pop("angle"))
+            if operation:
+                raise RecipeError(
+                    f"operation {operation_id!r} has unsupported options: {sorted(operation)}"
+                )
+            x, y = transform_point(source_operation, source_x, source_y)
+            placement = transforms[source_operation]
+            z = source_z + placement["dz"]
+            angle = (source_angle + 512 * placement["quarter_turns"]) & 2047
+            if _point_in_sector(level, sector_id, (x, y)) != 1:
+                raise RecipeError(
+                    f"operation {operation_id!r} places the player outside sector {sector_id}"
+                )
+            ceiling_z = _sector_surface_z(level, sector_id, x, y, "ceiling")
+            floor_z = _sector_surface_z(level, sector_id, x, y, "floor")
+            if not ceiling_z <= z <= floor_z:
+                raise RecipeError(
+                    f"operation {operation_id!r} player z {z} is outside sector vertical "
+                    f"range {ceiling_z}..{floor_z}"
+                )
+            before = dict(level.player_start)
+            level.player_start = {
+                "x": x, "y": y, "z": z, "angle": angle, "sector": sector_id,
+            }
+            operation_reports.append({
+                "id": operation_id,
+                "op": kind,
+                "source_operation": source_operation,
+                "fragment_sector": fragment_sector,
+                "before": before,
+                "result": dict(level.player_start),
+            })
             continue
 
         raise RecipeError(f"unsupported recipe operation {kind!r}")

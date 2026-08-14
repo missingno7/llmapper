@@ -84,7 +84,9 @@ def synthetic_two_sector_map() -> DiskMap:
 
     sprite0 = disk.sprites[0]
     sprite0.fields.update(owner=1, index=0, sector=0, extra=1)
-    sprite0.extra.fields.update(reference=12, tx_id=100, rx_id=0, target=1, burn_source=-1)
+    sprite0.extra.fields.update(
+        reference=12, tx_id=100, rx_id=0, target=1, burn_source=-1, dude_flag_4=1,
+    )
     sprite1 = copy.deepcopy(sprite0)
     sprite1.fields.update(x=1536, sector=1, owner=-1, index=1, extra=2)
     sprite1.extra.fields.update(reference=1, tx_id=0, rx_id=100, target=-1, burn_source=-1)

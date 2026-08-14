@@ -11,11 +11,12 @@ Generated against the supplied `maps/` corpus.
 | Byte-exact LevelIR roundtrip | 43/43 |
 | Reparse success | 43/43 |
 | Hard validation success | 43/43 |
-| Unit/corpus/mutation/fragment/composition/semantic/oracle tests | 56/56 |
+| Unit/corpus/mutation/fragment/composition/semantic/oracle tests | 58/58 |
 | NBlood baseline load smoke | pass (6 seconds) |
 | NBlood composed-map load smoke | pass (6 seconds) |
 | NBlood real-map attached-room load smoke | pass (6 seconds) |
 | NBlood three-map mashup load smoke | pass (6 seconds) |
+| NBlood E1M2 reordered-room remix load smoke | pass (6 seconds) |
 | NBlood baseline trigger/Z-motion behavior | pass |
 | NBlood composed trigger/Z-motion behavior | pass |
 
@@ -63,6 +64,9 @@ Composition verification:
 - `recipes/e1m2-crossroads.json` composes E1M2, E1M3 sector 287, and E1M1 sector
   112 through allocation-aware LevelIR operations. All six added sectors are
   statically reachable from the preserved E1M2 player start.
+- `recipes/e1m2-remix.json` creates a new four-room E1M2 opening sequence with
+  three generated four-sector stairs and a transform-relative player start. All
+  16 added sectors and the original start sector are statically reachable.
 
 LevelIR semantic verification:
 
@@ -88,6 +92,8 @@ Independent load-oracle verification:
 - the E1M2/E1M3/E1M1 Crossroads recipe result reached the same initialized game
   loop and remained healthy for six seconds; `reports/nblood_mashup_oracle.json`
   records the baseline and candidate identities;
+- the reordered E1M2 remix also initialized and remained healthy for six seconds;
+  `reports/nblood_e1m2_remix_oracle.json` records its independent result;
 - this proves load/startup compatibility, not trigger or progression equivalence.
 
 Independent behavior-oracle verification:

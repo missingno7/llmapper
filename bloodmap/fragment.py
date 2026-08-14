@@ -442,6 +442,22 @@ def extract_fragment(level: LevelIR, sector_ids: Iterable[int]) -> LevelFragment
         if blood is not None:
             for field, relation in (("target", "target"), ("burn_source", "burn_source")):
                 target = blood[field]
+                authored_reference = (
+                    field == "target" and bool(blood["dude_flag_4"]) and target > 0
+                ) or (
+                    field == "burn_source" and blood["burn_time"] > 0 and target >= 0
+                )
+                if not authored_reference:
+                    relationships.append(FragmentRelationship(
+                        "system_global", "runtime_state", _fragment_ref("sprite", local_id),
+                        f"blood.fields.{field}",
+                        {"space": "runtime", "kind": "sprite_index_value", "id": target},
+                        note=(
+                            "NBlood resets ordinary AI targets during aiInitSprite; "
+                            "burn_source is inactive when burn_time is zero"
+                        ),
+                    ))
+                    continue
                 if not 0 <= target < len(level.sprites):
                     if target >= 0:
                         relationships.append(FragmentRelationship(
@@ -675,6 +691,14 @@ def apply_fragment_in_place(level: LevelIR, fragment: LevelFragment) -> LevelIR:
 
     result = copy.deepcopy(level)
     preserved = {(p.object_kind, p.fragment_id, p.path): p for p in fragment.preserved_references}
+    runtime_sprite_fields = {
+        (int(relationship.source["id"]), relationship.field.rsplit(".", 1)[-1])
+        for relationship in fragment.relationships
+        if relationship.classification == "system_global"
+        and relationship.relation == "runtime_state"
+        and relationship.source.get("space") == "fragment"
+        and relationship.source.get("kind") == "sprite"
+    }
 
     def restore_item(kind: str, fragment_item: dict[str, Any]) -> dict[str, Any]:
         item = copy.deepcopy(fragment_item)
@@ -741,7 +765,7 @@ def apply_fragment_in_place(level: LevelIR, fragment: LevelFragment) -> LevelIR:
                 entry = preserved.get(("sprite", local_id, path))
                 if entry is not None and blood[field] == entry.localized_value:
                     blood[field] = entry.source_value
-                elif blood[field] >= 0:
+                elif blood[field] >= 0 and (local_id, field) not in runtime_sprite_fields:
                     blood[field] = fragment.index_maps["sprite"].restore(blood[field])
         result.sprites[item["id"]] = item
 

@@ -67,12 +67,14 @@ it is not serialized back into the MAP.
 
 ## Composition recipes
 
-`bloodmap.composition-recipe` schema version 1 records `attach`, `insert`, and
-`pathway` operations. Later operations reference allocated walls by operation ID
+`bloodmap.composition-recipe` schema version 1 records `attach`, `insert`,
+`pathway`, and `set_player_start` operations. Later operations reference allocated walls by operation ID
 and fragment-local wall ID, so an LLM never predicts destination array offsets.
 Every donor selection uses behavior closure; unresolved gameplay dependencies and
-inserted-layout collisions fail the build. `recipes/e1m2-crossroads.json` is a
-working multi-map example.
+inserted-layout collisions fail the build. Player starts reference an allocated
+fragment sector and donor-local position, so the same placement transform controls
+the room and start together. `recipes/e1m2-crossroads.json` is a working multi-map
+example; `recipes/e1m2-remix.json` creates a four-room reordered E1M2 prologue.
 
 Construction remains above `LevelIR`: recipes choose semantic rooms and request
 bounded operations, while the binary writer stays the deterministic final backend.

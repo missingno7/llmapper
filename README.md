@@ -43,6 +43,7 @@ python -m bloodmap connect work/composed.MAP --wall-a 120 --wall-b 845 -o work/c
 python -m bloodmap attach maps/E1M2.MAP work/fragment.json --destination-wall 120 --fragment-wall 3 --channel-policy remap --report work/attachment.json -o work/attached.MAP
 python -m bloodmap pathway work/separated.MAP --wall-a 120 --wall-b 845 --max-step-height 2048 --report work/pathway.json -o work/connected.MAP
 python -m bloodmap recipe recipes/e1m2-crossroads.json --source-dir maps --report work/mashup.json -o work/e1m2-crossroads.MAP
+python -m bloodmap recipe recipes/e1m2-remix.json --source-dir maps --report work/remix.json -o work/e1m2-remix.MAP
 python -m bloodmap oracle-nblood work/composed.MAP --baseline maps/E1M2.MAP --nblood reference/blood/nblood.exe --game-dir reference/blood -o work/oracle.json
 python -m bloodmap oracle-nblood-behavior --nblood reference/blood/nblood.exe --game-dir reference/blood -o work/behavior-oracle.json
 ```
@@ -63,11 +64,13 @@ attachment can automatically quarter-turn and translate a fragment so selected
 equal-length walls coincide, then create the reciprocal portal.
 
 `extract-closed` recursively includes sectors that own trigger endpoints, markers,
-sprite owners, targets, and burn sources while retaining geometry portals as room
-boundaries. `LevelIR.connect_pathway()` joins unequal, separated room walls with a
+sprite owners, authored patrol targets, and active burn sources while retaining
+geometry portals as room boundaries. Inactive runtime AI indices remain losslessly
+preserved without becoming false gameplay dependencies. `LevelIR.connect_pathway()` joins unequal, separated room walls with a
 collision-checked corridor, optional routed centerline, width interpolation, and
 bounded stair risers. Allocation-aware JSON recipes make multi-map assemblies
-replayable without hard-coding post-insertion wall indices.
+replayable without hard-coding post-insertion wall indices and can relocate the
+player start using coordinates local to a transformed donor room.
 
 Run the test suite with:
 
@@ -87,6 +90,7 @@ The optional NBlood load and deterministic behavior oracles are documented in
 - [Local corpus setup and policy](docs/corpus.md)
 - [Sector fragments and remapping](docs/fragments.md)
 - [Deterministic composition](docs/composition.md)
+- [E1M2 room-order remix](reports/e1m2_remix.md)
 - [Local reference oracles](docs/reference-oracles.md)
 - [Long-term roadmap](docs/roadmap.md)
 - [Contributing and verification gates](CONTRIBUTING.md)

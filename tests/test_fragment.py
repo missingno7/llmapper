@@ -64,6 +64,26 @@ class FragmentTests(unittest.TestCase):
         with self.assertRaisesRegex(FragmentError, "max_sectors"):
             extract_behavior_closed_fragment(self.level, [0], max_sectors=1)
 
+    def test_inactive_runtime_sprite_indices_are_not_dependencies(self):
+        self.level.sprites[0]["blood"]["fields"].update(
+            dude_flag_4=0, target=1, burn_time=0, burn_source=1,
+        )
+        fragment = extract_fragment(self.level, [0])
+        external = [
+            relationship for relationship in fragment.relationships
+            if relationship.classification == "external_ownership"
+            and relationship.relation in {"target", "burn_source"}
+        ]
+        self.assertFalse(external)
+        runtime = [
+            relationship for relationship in fragment.relationships
+            if relationship.relation == "runtime_state"
+        ]
+        self.assertEqual(len(runtime), 2)
+        restored = apply_fragment_in_place(self.level, fragment)
+        self.assertEqual(restored.sprites[0]["blood"]["fields"]["target"], 1)
+        self.assertEqual(restored.sprites[0]["blood"]["fields"]["burn_source"], 1)
+
     def test_same_source_reinsertion_is_exact_and_restores_stale_values(self):
         fragment = extract_fragment(self.level, [0])
         restored = apply_fragment_in_place(self.level, fragment)
