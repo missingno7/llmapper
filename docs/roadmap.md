@@ -43,10 +43,12 @@ source structures exactly, and no reference is silently dropped.
 
 Goal: place multiple verified fragments in one level without raw concatenation.
 
-Status: deterministic insertion, object/extra allocation, user-channel collision
-handling, placement transforms, unresolved-dependency reports, and explicit portal
-connection are implemented. Equal-length room walls can now be automatically
-quarter-turned, aligned, inserted, and connected in one operation. Reproducible
+Status: deterministic insertion, behavior-closed extraction, object/extra
+allocation, user-channel collision handling, placement transforms,
+unresolved-dependency reports, and explicit portal connection are implemented.
+Equal-length room walls can be automatically attached; arbitrary separated and
+unequal-width walls can be joined by collision-checked routed corridors/stairs.
+Allocation-aware composition recipes replay multi-map assemblies. Reproducible
 baseline/candidate NBlood load smoke and a deterministic wall-trigger/channel/Z-motion
 behavior scenario pass. Broader layout and behavior coverage remains before
 composition is considered production-complete.
@@ -59,6 +61,9 @@ Deliverables:
 - translation/rotation during insertion through the existing transform machinery;
 - explicit connector API for selected boundary walls;
 - automatic exact-wall room attachment with deterministic placement reports;
+- generated tapered corridors and bounded-height stair connections;
+- new-vs-existing and pathway self-overlap rejection;
+- gameplay-dependency closure and replayable composition recipes;
 - validation of portal reciprocity, marker ownership, and trigger reachability.
 
 Gate: composed fixtures write, reparse, validate, load into NBlood, and preserve

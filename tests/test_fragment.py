@@ -7,7 +7,8 @@ import unittest
 from pathlib import Path
 
 from bloodmap.fragment import (
-    FragmentError, LevelFragment, apply_fragment_in_place, extract_fragment,
+    FragmentError, LevelFragment, apply_fragment_in_place,
+    extract_behavior_closed_fragment, extract_fragment,
 )
 from bloodmap.format import encode_map, parse_map, read_map
 from tests.helpers import synthetic_multi_loop_map, synthetic_two_sector_map
@@ -39,6 +40,29 @@ class FragmentTests(unittest.TestCase):
         self.assertEqual(fragment.walls[1]["fields"]["next_wall"], 7)
         self.assertEqual(fragment.sprites[0]["fields"]["owner"], 1)
         self.assertEqual(fragment.sprites[0]["blood"]["fields"]["target"], 1)
+
+    def test_behavior_closure_follows_gameplay_but_not_geometry(self):
+        result = extract_behavior_closed_fragment(self.level, [0])
+        self.assertEqual(result.requested_sector_ids, [0])
+        self.assertEqual(result.selected_sector_ids, [0, 1])
+        self.assertEqual([item["sector_id"] for item in result.additions], [1])
+        self.assertFalse(result.unresolved_relationships)
+        self.assertFalse(any(
+            relationship.classification == "external_geometry"
+            for relationship in result.fragment.relationships
+        ))
+
+    def test_behavior_closure_preserves_dangling_channels_and_limit(self):
+        self.level.sprites[1]["blood"]["fields"]["rx_id"] = 0
+        result = self.level.extract_closed([0])
+        self.assertEqual(result.selected_sector_ids, [0, 1])
+        dangling = [
+            relationship for relationship in result.unresolved_relationships
+            if relationship.target.get("status") == "no_receiver"
+        ]
+        self.assertTrue(dangling)
+        with self.assertRaisesRegex(FragmentError, "max_sectors"):
+            extract_behavior_closed_fragment(self.level, [0], max_sectors=1)
 
     def test_same_source_reinsertion_is_exact_and_restores_stale_values(self):
         fragment = extract_fragment(self.level, [0])

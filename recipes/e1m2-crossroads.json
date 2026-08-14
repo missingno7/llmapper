@@ -1,0 +1,35 @@
+{
+  "$schema": "bloodmap.composition-recipe",
+  "schema_version": 1,
+  "base": "E1M2.MAP",
+  "operations": [
+    {
+      "op": "attach",
+      "id": "e1m3_start_gallery",
+      "source": "E1M3.MAP",
+      "sectors": [287],
+      "destination_wall": {"absolute": 1720},
+      "fragment_wall": 0,
+      "dz": 9216,
+      "channel_policy": "remap"
+    },
+    {
+      "op": "insert",
+      "id": "e1m1_tall_hall",
+      "source": "E1M1.MAP",
+      "sectors": [112],
+      "dx": -44032,
+      "dy": 60528,
+      "dz": 4096,
+      "channel_policy": "remap"
+    },
+    {
+      "op": "pathway",
+      "id": "descending_stair",
+      "wall_a": {"operation": "e1m3_start_gallery", "fragment_wall": 8},
+      "wall_b": {"operation": "e1m1_tall_hall", "fragment_wall": 1},
+      "max_step_height": 2048,
+      "min_opening": 8192
+    }
+  ]
+}

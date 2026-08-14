@@ -95,9 +95,56 @@ python -m bloodmap attach destination.MAP room.json \
   --report work/attachment.json -o work/attached.MAP
 ```
 
-Attachment currently requires exact equal-length walls and does not synthesize an
-adapter corridor. It also does not yet perform whole-layout polygon overlap checks;
-render and inspect nontrivial assemblies before runtime verification.
+Attachment requires exact equal-length walls. New-vs-existing segment crossings,
+collinear overlaps, and polygon containment fail closed; intentional stacked XY
+geometry requires an explicit override and remains visible in the report.
+
+## Behavior-closed room extraction
+
+`LevelIR.extract_closed()` starts from requested sectors and recursively includes
+the sectors owning external trigger endpoints, markers, sprite owners, targets,
+and burn sources. Portal adjacency is not followed: detached portals are useful
+room boundaries, whereas following them would usually absorb the whole map.
+Game-valid TX/RX channels with no matching endpoint remain explicitly unresolved.
+A maximum-sector bound prevents an unexpectedly global mechanism from silently
+turning into a huge fragment.
+
+## Generated pathways and stairs
+
+`LevelIR.connect_pathway()` connects any two free walls already present in a
+level. Endpoint lengths may differ and the rooms need not be coincident. The
+operation generates a strip of inert quadrilateral sectors, interpolates doorway
+width and ceiling/floor height, and creates reciprocal portals throughout.
+
+```python
+result = level.connect_pathway(
+    wall_a=2477,
+    wall_b=2482,
+    via=[(-20000, 70000)],
+    max_step_height=2048,
+    min_opening=8192,
+)
+```
+
+The automatic sector count is large enough to keep every floor transition within
+the requested maximum. Callers may add centerline waypoints or request more
+sectors. Zero-width sections, insufficient vertical opening, over-height risers,
+self-crossing strips, and intersections/containment against existing geometry all
+fail closed. This permits corridors, tapered adapters, and stairs while keeping
+room placement and routing explicit.
+
+## Composition recipes
+
+The `recipe` command replays a `bloodmap.composition-recipe` JSON document. Each
+donor is extracted with gameplay closure. An operation ID exposes its allocation
+map to later operations, allowing references such as:
+
+```json
+{"operation": "gallery", "fragment_wall": 8}
+```
+
+This removes brittle post-insertion wall arithmetic. Plain `insert` operations
+also receive the same layout collision gate when run through a recipe.
 
 ## CLI
 
@@ -112,6 +159,13 @@ python -m bloodmap connect work/composed.MAP \
 python -m bloodmap attach destination.MAP fragment.json \
   --destination-wall 120 --fragment-wall 3 \
   --report work/attachment.json -o work/attached.MAP
+
+python -m bloodmap pathway work/separated.MAP \
+  --wall-a 120 --wall-b 845 --via 4096,8192 \
+  --report work/pathway.json -o work/connected.MAP
+
+python -m bloodmap recipe recipes/e1m2-crossroads.json \
+  --source-dir maps --report work/mashup.json -o work/e1m2-crossroads.MAP
 ```
 
 A deterministic independent-engine oracle now verifies that a decoupled wall-push

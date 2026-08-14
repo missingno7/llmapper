@@ -11,10 +11,11 @@ Generated against the supplied `maps/` corpus.
 | Byte-exact LevelIR roundtrip | 43/43 |
 | Reparse success | 43/43 |
 | Hard validation success | 43/43 |
-| Unit/corpus/mutation/fragment/composition/semantic/oracle tests | 49/49 |
+| Unit/corpus/mutation/fragment/composition/semantic/oracle tests | 56/56 |
 | NBlood baseline load smoke | pass (6 seconds) |
 | NBlood composed-map load smoke | pass (6 seconds) |
 | NBlood real-map attached-room load smoke | pass (6 seconds) |
+| NBlood three-map mashup load smoke | pass (6 seconds) |
 | NBlood baseline trigger/Z-motion behavior | pass |
 | NBlood composed trigger/Z-motion behavior | pass |
 
@@ -54,6 +55,14 @@ Composition verification:
   automatic quarter-turns, a -36864 Z offset, and 32768 units of slope-aware
   endpoint clearance; allocation and dependency evidence is recorded in
   `reports/attachment_fixture.json`.
+- gameplay closure follows trigger, marker, ownership, target, and burn-source
+  references without following geometry boundaries;
+- generated pathway fixtures cover separated rooms, unequal doorway widths,
+  routed centerlines, collision rejection, and a 6144-unit elevation change split
+  into three 2048-unit risers;
+- `recipes/e1m2-crossroads.json` composes E1M2, E1M3 sector 287, and E1M1 sector
+  112 through allocation-aware LevelIR operations. All six added sectors are
+  statically reachable from the preserved E1M2 player start.
 
 LevelIR semantic verification:
 
@@ -76,6 +85,9 @@ Independent load-oracle verification:
 - the real E1M1-room/E1M2 attachment also reached the initialized game loop and
   remained healthy for six seconds; its independent result is recorded in
   `reports/nblood_attachment_oracle.json`;
+- the E1M2/E1M3/E1M1 Crossroads recipe result reached the same initialized game
+  loop and remained healthy for six seconds; `reports/nblood_mashup_oracle.json`
+  records the baseline and candidate identities;
 - this proves load/startup compatibility, not trigger or progression equivalence.
 
 Independent behavior-oracle verification:

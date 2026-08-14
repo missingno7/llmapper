@@ -36,10 +36,13 @@ python -m bloodmap build work/E1M1.json -o work/E1M1_rebuilt.MAP
 python -m bloodmap render maps/E1M1.MAP -o reports/E1M1.svg
 python -m bloodmap stats maps -o reports/corpus_statistics.json
 python -m bloodmap extract maps/E1M1.MAP --sectors 12,13,20-24 -o work/fragment.json
+python -m bloodmap extract-closed maps/E1M1.MAP --sectors 12,13 --report work/closure.json -o work/closed-fragment.json
 python -m bloodmap apply-fragment maps/E1M1.MAP work/fragment.json -o work/restored.MAP
 python -m bloodmap compose maps/E1M2.MAP work/fragment.json --x 8192 --channel-policy remap --report work/composition.json -o work/composed.MAP
 python -m bloodmap connect work/composed.MAP --wall-a 120 --wall-b 845 -o work/connected.MAP
 python -m bloodmap attach maps/E1M2.MAP work/fragment.json --destination-wall 120 --fragment-wall 3 --channel-policy remap --report work/attachment.json -o work/attached.MAP
+python -m bloodmap pathway work/separated.MAP --wall-a 120 --wall-b 845 --max-step-height 2048 --report work/pathway.json -o work/connected.MAP
+python -m bloodmap recipe recipes/e1m2-crossroads.json --source-dir maps --report work/mashup.json -o work/e1m2-crossroads.MAP
 python -m bloodmap oracle-nblood work/composed.MAP --baseline maps/E1M2.MAP --nblood reference/blood/nblood.exe --game-dir reference/blood -o work/oracle.json
 python -m bloodmap oracle-nblood-behavior --nblood reference/blood/nblood.exe --game-dir reference/blood -o work/behavior-oracle.json
 ```
@@ -58,6 +61,13 @@ exactly; cross-map composition allocates object, extra-record, and user-channel
 identities deterministically and leaves external dependencies explicit. Room
 attachment can automatically quarter-turn and translate a fragment so selected
 equal-length walls coincide, then create the reciprocal portal.
+
+`extract-closed` recursively includes sectors that own trigger endpoints, markers,
+sprite owners, targets, and burn sources while retaining geometry portals as room
+boundaries. `LevelIR.connect_pathway()` joins unequal, separated room walls with a
+collision-checked corridor, optional routed centerline, width interpolation, and
+bounded stair risers. Allocation-aware JSON recipes make multi-map assemblies
+replayable without hard-coding post-insertion wall indices.
 
 Run the test suite with:
 

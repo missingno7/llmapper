@@ -229,6 +229,12 @@ class LevelIR:
 
         return extract_fragment(self, sector_ids)
 
+    def extract_closed(self, sector_ids: Any, **options: Any) -> Any:
+        """Extract a room closed over resolvable Blood gameplay dependencies."""
+        from .fragment import extract_behavior_closed_fragment
+
+        return extract_behavior_closed_fragment(self, sector_ids, **options)
+
     def insert(self, fragment: Any, **options: Any) -> Any:
         """Insert a LevelFragment with deterministic allocation."""
         from .composition import insert_fragment
@@ -246,6 +252,12 @@ class LevelIR:
         from .composition import connect_portals
 
         return connect_portals(self, wall_a, wall_b)
+
+    def connect_pathway(self, wall_a: int, wall_b: int, **options: Any) -> Any:
+        """Generate a checked corridor/stair connection between free room walls."""
+        from .composition import connect_with_pathway
+
+        return connect_with_pathway(self, wall_a, wall_b, **options)
 
     def observe(self, sector_ids: Any = None) -> dict[str, Any]:
         """Return an LLM-friendly semantic observation derived directly from this IR."""

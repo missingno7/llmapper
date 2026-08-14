@@ -9,9 +9,10 @@ from pathlib import Path
 from bloodmap.analysis import validate_map
 from bloodmap.cli import main
 from bloodmap.composition import (
-    CompositionError, attach_fragment, connect_portals, insert_fragment,
+    CompositionError, attach_fragment, connect_portals, connect_with_pathway, insert_fragment,
 )
 from bloodmap.format import encode_map, parse_map, read_map, write_map
+from bloodmap.recipe import build_composition_recipe
 from tests.helpers import synthetic_map, synthetic_two_sector_map
 
 
@@ -90,6 +91,68 @@ class CompositionTests(unittest.TestCase):
         with self.assertRaises(CompositionError):
             connect_portals(inserted, 0, 4)
 
+    def test_pathway_connects_separated_rooms_with_generated_sector(self):
+        other = synthetic_map().to_level_ir().extract([0])
+        separated = insert_fragment(self.destination, other, dx=4096).level
+        result = connect_with_pathway(separated, 1, 7)
+        self.assertEqual(result.sector_ids, [2])
+        self.assertEqual(result.portal_pairs, [(1, 8), (7, 10)])
+        self.assertEqual(result.level.walls[1]["fields"]["next_wall"], 8)
+        self.assertEqual(result.level.walls[7]["fields"]["next_wall"], 10)
+        self.assertEqual(result.layout_conflicts, [])
+        self.assertTrue(all(opening >= 8192 for opening in result.portal_openings))
+        self.assertFalse([
+            diagnostic for diagnostic in validate_map(result.level.to_disk_map())
+            if diagnostic.severity == "error"
+        ])
+
+    def test_pathway_generates_bounded_stairs_for_height_difference(self):
+        other = synthetic_map().to_level_ir().extract([0])
+        separated = insert_fragment(self.destination, other, dx=8192, dz=6144).level
+        result = separated.connect_pathway(1, 7, max_step_height=2048)
+        self.assertEqual(len(result.sector_ids), 4)
+        self.assertEqual(result.floor_z, [8192, 10240, 12288, 14336])
+        self.assertTrue(all(step <= 2048 for step in result.step_heights))
+        self.assertEqual(len(result.portal_pairs), 5)
+
+    def test_pathway_supports_unequal_widths_and_routed_centerline(self):
+        other = synthetic_map().to_level_ir().extract([0])
+        separated = insert_fragment(self.destination, other, dx=8192).level
+        separated.walls[6]["fields"]["y"] = 2048
+        separated.walls[7]["fields"]["y"] = 2048
+        result = connect_with_pathway(
+            separated, 1, 7, via=[(4096, 512), (6144, 1024)], sectors=3,
+        )
+        self.assertEqual(len(result.sector_ids), 3)
+        self.assertEqual(result.level.walls[result.wall_ids[-2]]["fields"]["next_wall"], 7)
+        self.assertFalse(result.layout_conflicts)
+
+    def test_composition_recipe_resolves_fragment_wall_allocations(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            write_map(self.destination.to_disk_map(), root / "base.MAP")
+            write_map(synthetic_map(), root / "room.MAP")
+            recipe = {
+                "$schema": "bloodmap.composition-recipe",
+                "schema_version": 1,
+                "base": "base.MAP",
+                "operations": [
+                    {
+                        "op": "insert", "id": "room", "source": "room.MAP",
+                        "sectors": [0], "dx": 4096,
+                    },
+                    {
+                        "op": "pathway", "id": "hall",
+                        "wall_a": {"absolute": 1},
+                        "wall_b": {"operation": "room", "fragment_wall": 3},
+                    },
+                ],
+            }
+            result = build_composition_recipe(recipe, root)
+            self.assertEqual(len(result.operations), 2)
+            self.assertEqual((len(result.level.sectors), len(result.level.walls)), (3, 12))
+            self.assertEqual(result.operations[1]["result"]["layout_check"]["status"], "pass")
+
     def test_quarter_turn_placement_transforms_geometry_and_angles(self):
         fragment = synthetic_map().to_level_ir().extract([0])
         result = insert_fragment(
@@ -144,6 +207,23 @@ class CompositionTests(unittest.TestCase):
         self.assertEqual(second.composition.channel_map, {100: 101})
         self.assertEqual(second.level.sprites[2]["blood"]["fields"]["tx_id"], 101)
         self.assertEqual(second.level.walls[5]["fields"]["next_wall"], 11)
+
+    def test_attach_fragment_rejects_new_geometry_overlapping_destination(self):
+        fragment = synthetic_map().to_level_ir().extract([0])
+        # Keep wall 3 as the doorway but fold the opposite edge through the
+        # destination room after placement.
+        fragment.walls[1]["fields"]["x"] = -512
+        fragment.walls[2]["fields"]["x"] = -512
+        with self.assertRaisesRegex(CompositionError, "overlaps existing layout"):
+            attach_fragment(
+                self.destination, fragment, destination_wall=1, fragment_wall=3,
+            )
+        allowed = attach_fragment(
+            self.destination, fragment, destination_wall=1, fragment_wall=3,
+            allow_overlap=True,
+        )
+        self.assertTrue(allowed.layout_conflicts)
+        self.assertEqual(allowed.report()["layout_check"]["status"], "fail")
 
     def test_attach_fragment_resolves_selected_external_portal_dependency(self):
         result = attach_fragment(

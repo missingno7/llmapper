@@ -198,6 +198,37 @@ class LevelFragment:
         return apply_fragment_in_place(level, self)
 
 
+@dataclass
+class BehaviorClosureResult:
+    """A fragment plus the source sectors required by its gameplay references."""
+
+    fragment: LevelFragment
+    requested_sector_ids: list[int]
+    selected_sector_ids: list[int]
+    additions: list[dict[str, Any]]
+    unresolved_relationships: list[FragmentRelationship]
+
+    def report(self) -> dict[str, Any]:
+        return {
+            "operation": "extract_behavior_closed_fragment",
+            "requested_sector_ids": self.requested_sector_ids,
+            "selected_sector_ids": self.selected_sector_ids,
+            "added_sector_ids": sorted(
+                set(self.selected_sector_ids) - set(self.requested_sector_ids)
+            ),
+            "additions": self.additions,
+            "unresolved_relationships": [
+                relationship.to_dict() for relationship in self.unresolved_relationships
+            ],
+            "dependency_summary": self.fragment.dependency_summary(),
+            "fragment_counts": {
+                "sectors": len(self.fragment.sectors),
+                "walls": len(self.fragment.walls),
+                "sprites": len(self.fragment.sprites),
+            },
+        }
+
+
 def _fragment_ref(kind: str, identifier: int) -> dict[str, Any]:
     return {"space": "fragment", "kind": kind, "id": identifier}
 
@@ -513,6 +544,97 @@ def extract_fragment(level: LevelIR, sector_ids: Iterable[int]) -> LevelFragment
         },
         index_maps=maps, sectors=sectors, walls=walls, sprites=sprites,
         relationships=relationships, preserved_references=preserved,
+    )
+
+
+def extract_behavior_closed_fragment(
+    level: LevelIR,
+    sector_ids: Iterable[int],
+    *,
+    max_sectors: int = 256,
+) -> BehaviorClosureResult:
+    """Extract sectors and recursively include their resolvable gameplay dependencies.
+
+    Geometry portals remain boundaries. Gameplay references are followed to the
+    sector owning the referenced sector, wall, or sprite. Game-valid channels
+    without an endpoint and malformed/out-of-range references remain explicit.
+    """
+    requested = sorted(set(int(value) for value in sector_ids))
+    if not requested:
+        raise FragmentError("at least one sector must be selected")
+    if max_sectors < len(requested):
+        raise FragmentError(
+            f"requested selection has {len(requested)} sectors, exceeding max_sectors={max_sectors}"
+        )
+
+    wall_owners: list[int | None] = [None] * len(level.walls)
+    for sector_id, sector in enumerate(level.sectors):
+        first = int(sector["fields"]["wall_ptr"])
+        count = int(sector["fields"]["wall_count"])
+        for wall_id in range(first, first + count):
+            if not 0 <= wall_id < len(wall_owners):
+                raise FragmentError(f"sector {sector_id} has an invalid wall range")
+            if wall_owners[wall_id] is not None:
+                raise FragmentError(f"wall {wall_id} is owned by multiple sectors")
+            wall_owners[wall_id] = sector_id
+
+    def owning_sector(reference: dict[str, Any]) -> int | None:
+        if reference.get("space") != "source" or "id" not in reference:
+            return None
+        identifier = int(reference["id"])
+        kind = reference.get("kind")
+        if kind == "sector" and 0 <= identifier < len(level.sectors):
+            return identifier
+        if kind == "wall" and 0 <= identifier < len(wall_owners):
+            return wall_owners[identifier]
+        if kind == "sprite" and 0 <= identifier < len(level.sprites):
+            sector = int(level.sprites[identifier]["fields"]["sector"])
+            return sector if 0 <= sector < len(level.sectors) else None
+        return None
+
+    selected = set(requested)
+    additions: list[dict[str, Any]] = []
+    gameplay_classes = {"external_trigger", "external_marker", "external_ownership"}
+    while True:
+        fragment = extract_fragment(level, selected)
+        discovered: dict[int, list[dict[str, Any]]] = {}
+        for relationship in fragment.relationships:
+            if relationship.classification not in gameplay_classes:
+                continue
+            for role, reference in (
+                ("source", relationship.source), ("target", relationship.target),
+            ):
+                sector_id = owning_sector(reference)
+                if sector_id is None or sector_id in selected:
+                    continue
+                discovered.setdefault(sector_id, []).append({
+                    "classification": relationship.classification,
+                    "relation": relationship.relation,
+                    "role": role,
+                    "reference": dict(reference),
+                    "channel": relationship.channel,
+                })
+        if not discovered:
+            break
+        if len(selected) + len(discovered) > max_sectors:
+            raise FragmentError(
+                "behavior closure would exceed "
+                f"max_sectors={max_sectors}; selected={len(selected)}, next={sorted(discovered)}"
+            )
+        for sector_id in sorted(discovered):
+            additions.append({"sector_id": sector_id, "reasons": discovered[sector_id]})
+            selected.add(sector_id)
+
+    unresolved = [
+        relationship for relationship in fragment.relationships
+        if relationship.classification in gameplay_classes
+    ]
+    return BehaviorClosureResult(
+        fragment=fragment,
+        requested_sector_ids=requested,
+        selected_sector_ids=sorted(selected),
+        additions=additions,
+        unresolved_relationships=unresolved,
     )
 
 

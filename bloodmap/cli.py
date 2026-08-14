@@ -9,11 +9,17 @@ from pathlib import Path
 from typing import Any
 
 from .analysis import channel_graph, corpus_statistics, geometry_view, render_svg, validate_map
-from .composition import CompositionError, attach_fragment, connect_portals, insert_fragment
+from .composition import (
+    CompositionError, attach_fragment, connect_portals, connect_with_pathway, insert_fragment,
+)
 from .format import BloodMapError, encode_map, locate_offset, read_map, write_map
-from .fragment import FragmentError, LevelFragment, apply_fragment_in_place, extract_fragment
+from .fragment import (
+    FragmentError, LevelFragment, apply_fragment_in_place,
+    extract_behavior_closed_fragment, extract_fragment,
+)
 from .model import LevelIR
 from .oracle import OracleError, run_nblood_behavior_oracle, run_nblood_oracle
+from .recipe import RecipeError, build_composition_recipe
 from .semantics import ObservationError
 
 
@@ -244,6 +250,18 @@ def cmd_extract(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_extract_closed(args: argparse.Namespace) -> int:
+    result = extract_behavior_closed_fragment(
+        read_map(args.map).to_level_ir(),
+        _parse_id_set(args.sectors),
+        max_sectors=args.max_sectors,
+    )
+    _write_text(args.output, _json(result.fragment.to_dict()))
+    if args.report:
+        _write_text(args.report, _json(result.report()))
+    return 0
+
+
 def cmd_observe(args: argparse.Namespace) -> int:
     level = read_map(args.map).to_level_ir()
     sector_ids = _parse_id_set(args.sectors) if args.sectors is not None else None
@@ -296,6 +314,58 @@ def cmd_connect(args: argparse.Namespace) -> int:
     return 0
 
 
+def _parse_point(value: str) -> tuple[int, int]:
+    try:
+        x_text, y_text = value.split(",", 1)
+        return int(x_text), int(y_text)
+    except ValueError as exc:
+        raise ValueError(f"invalid point {value!r}; expected X,Y") from exc
+
+
+def cmd_pathway(args: argparse.Namespace) -> int:
+    level = read_map(args.map).to_level_ir()
+    result = connect_with_pathway(
+        level,
+        args.wall_a,
+        args.wall_b,
+        via=[_parse_point(value) for value in args.via],
+        sectors=args.sectors,
+        max_step_height=args.max_step_height,
+        min_opening=args.min_opening,
+        clear_blocking=args.clear_blocking,
+        allow_overlap=args.allow_overlap,
+    )
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    write_map(result.level.to_disk_map(), args.output)
+    reparsed = read_map(args.output)
+    if any(item.severity == "error" for item in validate_map(reparsed)):
+        raise CompositionError("written pathway failed reparse validation")
+    if args.report:
+        _write_text(args.report, _json(result.report()))
+    print(
+        f"WROTE {args.output}: generated {len(result.sector_ids)}-sector pathway "
+        f"between walls {args.wall_a} and {args.wall_b}, reparsed and validated"
+    )
+    return 0
+
+
+def cmd_recipe(args: argparse.Namespace) -> int:
+    value = json.loads(Path(args.recipe).read_text(encoding="utf-8"))
+    result = build_composition_recipe(value, args.source_dir)
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    write_map(result.level.to_disk_map(), args.output)
+    reparsed = read_map(args.output)
+    if any(item.severity == "error" for item in validate_map(reparsed)):
+        raise RecipeError("written recipe result failed reparse validation")
+    if args.report:
+        _write_text(args.report, _json(result.report()))
+    print(
+        f"WROTE {args.output}: {len(result.operations)} recipe operations, "
+        "reparsed and validated"
+    )
+    return 0
+
+
 def cmd_attach(args: argparse.Namespace) -> int:
     destination = read_map(args.map).to_level_ir()
     fragment = LevelFragment.from_dict(json.loads(Path(args.fragment).read_text(encoding="utf-8")))
@@ -309,6 +379,7 @@ def cmd_attach(args: argparse.Namespace) -> int:
         channel_policy=args.channel_policy,
         clear_blocking=args.clear_blocking,
         allow_blocked=args.allow_blocked,
+        allow_overlap=args.allow_overlap,
     )
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     write_map(result.level.to_disk_map(), args.output)
@@ -393,6 +464,16 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("extract", help="extract selected sectors into a self-describing fragment")
     p.add_argument("map"); p.add_argument("--sectors", required=True, help="comma-separated IDs/ranges, e.g. 1,4-7")
     p.add_argument("-o", "--output", required=True); p.set_defaults(func=cmd_extract)
+    p = sub.add_parser(
+        "extract-closed",
+        help="extract a room plus sectors required by its gameplay dependencies",
+    )
+    p.add_argument("map")
+    p.add_argument("--sectors", required=True, help="comma-separated IDs/ranges")
+    p.add_argument("--max-sectors", type=int, default=256)
+    p.add_argument("--report", help="write closure/dependency report JSON")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_extract_closed)
     p = sub.add_parser("observe", help="emit an LLM-friendly LevelIR semantic observation")
     p.add_argument("map")
     p.add_argument("--sectors", help="optional detailed sector IDs/ranges; omission emits the level index")
@@ -413,6 +494,28 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("connect", help="connect reversed coincident one-sided walls")
     p.add_argument("map"); p.add_argument("--wall-a", type=int, required=True); p.add_argument("--wall-b", type=int, required=True)
     p.add_argument("-o", "--output", required=True); p.set_defaults(func=cmd_connect)
+    p = sub.add_parser("pathway", help="generate a corridor/stair strip between two room walls")
+    p.add_argument("map")
+    p.add_argument("--wall-a", type=int, required=True)
+    p.add_argument("--wall-b", type=int, required=True)
+    p.add_argument(
+        "--via", action="append", default=[], metavar="X,Y",
+        help="optional centerline waypoint; repeat to route around geometry",
+    )
+    p.add_argument("--sectors", type=int, help="explicit number of generated pathway sectors")
+    p.add_argument("--max-step-height", type=int, default=2048)
+    p.add_argument("--min-opening", type=int, default=8192)
+    p.add_argument("--clear-blocking", action="store_true")
+    p.add_argument("--allow-overlap", action="store_true")
+    p.add_argument("--report")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_pathway)
+    p = sub.add_parser("recipe", help="build an allocation-aware LevelIR composition recipe")
+    p.add_argument("recipe", help="composition recipe JSON")
+    p.add_argument("--source-dir", required=True, help="directory containing referenced MAP files")
+    p.add_argument("--report", help="write full closure/composition report JSON")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_recipe)
     p = sub.add_parser("attach", help="align, insert, and portal-connect an extracted room")
     p.add_argument("map", help="destination MAP")
     p.add_argument("fragment", help="LevelFragment JSON")
@@ -424,6 +527,10 @@ def build_parser() -> argparse.ArgumentParser:
     blocking = p.add_mutually_exclusive_group()
     blocking.add_argument("--clear-blocking", action="store_true", help="clear movement-blocking flags on the portal walls")
     blocking.add_argument("--allow-blocked", action="store_true", help="allow an intentionally blocked or vertically closed portal")
+    p.add_argument(
+        "--allow-overlap", action="store_true",
+        help="allow intentional stacked/intersecting XY geometry and report conflicts",
+    )
     p.add_argument("--report", help="write placement/allocation/dependency report JSON")
     p.add_argument("-o", "--output", required=True)
     p.set_defaults(func=cmd_attach)
@@ -461,7 +568,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args = build_parser().parse_args(argv)
         return int(args.func(args))
-    except (BloodMapError, CompositionError, FragmentError, ObservationError, OracleError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+    except (BloodMapError, CompositionError, FragmentError, ObservationError, OracleError, RecipeError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         print(f"bloodmap: error: {exc}", file=sys.stderr)
         return 2
 

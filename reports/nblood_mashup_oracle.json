@@ -1,0 +1,40 @@
+{
+  "$schema": "bloodmap.nblood-oracle-report",
+  "engine_revisions": ["r14378-fbc5e1186"],
+  "probes": {
+    "baseline": {
+      "early_exit_code": null,
+      "engine_revision": "r14378-fbc5e1186",
+      "fatal_indicators": [],
+      "grace_seconds": 6.0,
+      "identity": {
+        "counts": {"sectors": 313, "sprites": 698, "walls": 2469},
+        "filename": "E1M2.MAP",
+        "sha256": "d82e5a135ee0f911a7cea11388b4a96d4841c672dfa207529058464cf7947466",
+        "size": 165083
+      },
+      "markers": {"autoexec": true, "game_loop": true, "map_initialization": true},
+      "status": "pass",
+      "stayed_alive_for_grace_period": true,
+      "terminated_by_harness": true
+    },
+    "candidate": {
+      "early_exit_code": null,
+      "engine_revision": "r14378-fbc5e1186",
+      "fatal_indicators": [],
+      "grace_seconds": 6.0,
+      "identity": {
+        "counts": {"sectors": 319, "sprites": 714, "walls": 2503},
+        "filename": "e1m2-crossroads.MAP",
+        "sha256": "b1ec5db182cf45b313e283a4ac930b15b790ffa53556d2a98b46acde2c576b74",
+        "size": 167735
+      },
+      "markers": {"autoexec": true, "game_loop": true, "map_initialization": true},
+      "status": "pass",
+      "stayed_alive_for_grace_period": true,
+      "terminated_by_harness": true
+    }
+  },
+  "schema_version": 1,
+  "status": "pass"
+}

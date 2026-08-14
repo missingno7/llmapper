@@ -16,6 +16,7 @@ bounded LevelIR operations.
 ```python
 level = read_map("maps/E1M2.MAP").to_level_ir()
 room = read_map("maps/E1M1.MAP").to_level_ir().extract([12, 13])
+closed_room = read_map("maps/E1M1.MAP").to_level_ir().extract_closed([12, 13])
 
 observation = level.observe([14])
 attached = level.attach(
@@ -25,10 +26,12 @@ attached = level.attach(
     channel_policy="remap",
 ).level
 connected = attached.connect_portals(200, 900)
+stairs = connected.connect_pathway(240, 910, max_step_height=2048).level
 ```
 
-`extract`, `insert`, `attach`, `connect_portals`, `translate`, and
-`rotate_quarter_turns` all operate at this layer. Allocation reports map local room
+`extract`, `extract_closed`, `insert`, `attach`, `connect_portals`,
+`connect_pathway`, `translate`, and `rotate_quarter_turns` all operate at this
+layer. Allocation reports map local room
 references to final LevelIR references so later operations do not infer array
 offsets.
 
@@ -62,9 +65,14 @@ Blood type, command, and tile IDs remain neutral until their names are establish
 from source or corpus evidence. Observation is derived and can always be rebuilt;
 it is not serialized back into the MAP.
 
-## Construction direction
+## Composition recipes
 
-Future assembly manifests and constructive generation belong above `LevelIR`.
-They will create or combine semantic rooms, choose connectors, plan channels,
-position the player start and exits, and request validation. The binary writer
-remains the final deterministic backend rather than the authoring interface.
+`bloodmap.composition-recipe` schema version 1 records `attach`, `insert`, and
+`pathway` operations. Later operations reference allocated walls by operation ID
+and fragment-local wall ID, so an LLM never predicts destination array offsets.
+Every donor selection uses behavior closure; unresolved gameplay dependencies and
+inserted-layout collisions fail the build. `recipes/e1m2-crossroads.json` is a
+working multi-map example.
+
+Construction remains above `LevelIR`: recipes choose semantic rooms and request
+bounded operations, while the binary writer stays the deterministic final backend.

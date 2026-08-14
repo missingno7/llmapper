@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import copy
 from dataclasses import dataclass
-from math import isqrt
+from fractions import Fraction
+from math import ceil, hypot, isqrt
 from typing import Any
 
 from .analysis import validate_map
@@ -73,6 +74,7 @@ class AttachmentResult:
     vertical_opening_at_endpoints: tuple[int, int]
     blocking_cleared: bool
     resolved_relationships: list[FragmentRelationship]
+    layout_conflicts: list[dict[str, Any]]
 
     def report(self) -> dict[str, Any]:
         value = self.composition.report()
@@ -99,8 +101,55 @@ class AttachmentResult:
                 "blocking_cleared": self.blocking_cleared,
             },
             "resolved_relationships": [item.to_dict() for item in self.resolved_relationships],
+            "layout_check": {
+                "status": "pass" if not self.layout_conflicts else "fail",
+                "conflicts": self.layout_conflicts,
+            },
         })
         return value
+
+
+@dataclass
+class PathwayResult:
+    level: LevelIR
+    wall_a: int
+    wall_b: int
+    sector_ids: list[int]
+    wall_ids: list[int]
+    portal_pairs: list[tuple[int, int]]
+    floor_z: list[int]
+    ceiling_z: list[int]
+    step_heights: list[int]
+    portal_openings: list[int]
+    route: list[tuple[int, int]]
+    layout_conflicts: list[dict[str, Any]]
+    blocking_cleared: bool
+
+    def report(self) -> dict[str, Any]:
+        return {
+            "operation": "connect_with_pathway",
+            "endpoint_walls": [self.wall_a, self.wall_b],
+            "generated": {
+                "sector_ids": self.sector_ids,
+                "wall_ids": self.wall_ids,
+                "portal_pairs": [list(pair) for pair in self.portal_pairs],
+                "floor_z": self.floor_z,
+                "ceiling_z": self.ceiling_z,
+                "step_heights": self.step_heights,
+                "portal_openings": self.portal_openings,
+                "route": [list(point) for point in self.route],
+            },
+            "layout_check": {
+                "status": "pass" if not self.layout_conflicts else "fail",
+                "conflicts": self.layout_conflicts,
+            },
+            "blocking_cleared": self.blocking_cleared,
+            "result_counts": {
+                "sectors": len(self.level.sectors),
+                "walls": len(self.level.walls),
+                "sprites": len(self.level.sprites),
+            },
+        }
 
 
 def _blood(item: dict[str, Any]) -> dict[str, int] | None:
@@ -369,6 +418,116 @@ def _wall_owners(level: LevelIR) -> list[int | None]:
     return owners
 
 
+def _wall_segment(level: LevelIR, wall_id: int) -> tuple[tuple[int, int], tuple[int, int]]:
+    wall = level.walls[wall_id]["fields"]
+    end = level.walls[int(wall["point2"])]["fields"]
+    return (int(wall["x"]), int(wall["y"])), (int(end["x"]), int(end["y"]))
+
+
+def _orientation(a: tuple[int, int], b: tuple[int, int], c: tuple[int, int]) -> int:
+    value = (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])
+    return (value > 0) - (value < 0)
+
+
+def _segment_conflict(
+    a: tuple[int, int], b: tuple[int, int], c: tuple[int, int], d: tuple[int, int],
+) -> str | None:
+    """Return crossing/overlap; endpoint-only contact is intentionally allowed."""
+    oa, ob = _orientation(a, b, c), _orientation(a, b, d)
+    oc, od = _orientation(c, d, a), _orientation(c, d, b)
+    if oa * ob < 0 and oc * od < 0:
+        return "crossing"
+    if oa == ob == oc == od == 0:
+        axis = 0 if abs(b[0] - a[0]) >= abs(b[1] - a[1]) else 1
+        left = max(min(a[axis], b[axis]), min(c[axis], d[axis]))
+        right = min(max(a[axis], b[axis]), max(c[axis], d[axis]))
+        if right > left:
+            return "collinear_overlap"
+    return None
+
+
+def _point_in_sector(level: LevelIR, sector_id: int, point: tuple[int, int]) -> int:
+    """Return -1 on boundary, 0 outside, and 1 inside (even-odd across all loops)."""
+    x, y = point
+    sector = level.sectors[sector_id]["fields"]
+    first, count = int(sector["wall_ptr"]), int(sector["wall_count"])
+    inside = False
+    for wall_id in range(first, first + count):
+        a, b = _wall_segment(level, wall_id)
+        if _orientation(a, b, point) == 0 and (
+            min(a[0], b[0]) <= x <= max(a[0], b[0])
+            and min(a[1], b[1]) <= y <= max(a[1], b[1])
+        ):
+            return -1
+        if (a[1] > y) != (b[1] > y):
+            crossing_x = Fraction(a[0]) + Fraction(
+                (y - a[1]) * (b[0] - a[0]), b[1] - a[1]
+            )
+            if crossing_x > x:
+                inside = not inside
+    return int(inside)
+
+
+def find_layout_conflicts(
+    level: LevelIR,
+    *,
+    existing_sector_count: int,
+    existing_wall_count: int,
+    portal_walls: tuple[int, int] | None = None,
+    portal_wall_pairs: list[tuple[int, int]] | None = None,
+) -> list[dict[str, Any]]:
+    """Find new-vs-existing XY crossings, overlaps, and containment."""
+    new_sector_ids = range(existing_sector_count, len(level.sectors))
+    new_wall_ids: list[int] = []
+    for sector_id in new_sector_ids:
+        fields = level.sectors[sector_id]["fields"]
+        new_wall_ids.extend(range(int(fields["wall_ptr"]), int(fields["wall_ptr"]) + int(fields["wall_count"])))
+    ignored_pairs = {
+        frozenset(pair) for pair in (portal_wall_pairs or [])
+    }
+    if portal_walls is not None:
+        ignored_pairs.add(frozenset(portal_walls))
+    conflicts: list[dict[str, Any]] = []
+    for old_wall in range(existing_wall_count):
+        old_segment = _wall_segment(level, old_wall)
+        for new_wall in new_wall_ids:
+            if frozenset((old_wall, new_wall)) in ignored_pairs:
+                continue
+            kind = _segment_conflict(*old_segment, *_wall_segment(level, new_wall))
+            if kind:
+                conflicts.append({
+                    "kind": kind,
+                    "existing_wall": old_wall,
+                    "new_wall": new_wall,
+                })
+
+    # Crossings cover interpenetration. These tests cover one footprint wholly
+    # inside another without accepting boundary points at the intended doorway.
+    for new_wall in new_wall_ids:
+        point = _wall_segment(level, new_wall)[0]
+        for old_sector in range(existing_sector_count):
+            if _point_in_sector(level, old_sector, point) == 1:
+                conflicts.append({
+                    "kind": "new_inside_existing",
+                    "existing_sector": old_sector,
+                    "new_wall": new_wall,
+                    "point": list(point),
+                })
+                break
+    for old_wall in range(existing_wall_count):
+        point = _wall_segment(level, old_wall)[0]
+        for new_sector in new_sector_ids:
+            if _point_in_sector(level, new_sector, point) == 1:
+                conflicts.append({
+                    "kind": "existing_inside_new",
+                    "existing_wall": old_wall,
+                    "new_sector": new_sector,
+                    "point": list(point),
+                })
+                break
+    return conflicts
+
+
 def _sector_surface_z(
     level: LevelIR, sector_id: int, x: int, y: int, surface: str,
 ) -> int:
@@ -394,6 +553,275 @@ def _sector_surface_z(
     if numerator < 0:
         correction = -correction
     return z + correction
+
+
+def _sample_centerline(
+    points: list[tuple[float, float]], section_count: int,
+) -> list[tuple[float, float]]:
+    lengths = [
+        hypot(points[index + 1][0] - points[index][0], points[index + 1][1] - points[index][1])
+        for index in range(len(points) - 1)
+    ]
+    if any(length == 0 for length in lengths):
+        raise CompositionError("pathway route contains a zero-length leg")
+    total = sum(lengths)
+    samples: list[tuple[float, float]] = []
+    for sample_id in range(section_count + 1):
+        distance = total * sample_id / section_count
+        traversed = 0.0
+        for leg_id, length in enumerate(lengths):
+            if distance <= traversed + length or leg_id == len(lengths) - 1:
+                ratio = min(1.0, max(0.0, (distance - traversed) / length))
+                a, b = points[leg_id], points[leg_id + 1]
+                samples.append((
+                    a[0] + (b[0] - a[0]) * ratio,
+                    a[1] + (b[1] - a[1]) * ratio,
+                ))
+                break
+            traversed += length
+    return samples
+
+
+def connect_with_pathway(
+    level: LevelIR,
+    wall_a: int,
+    wall_b: int,
+    *,
+    via: list[tuple[int, int]] | None = None,
+    sectors: int | None = None,
+    max_step_height: int = 2048,
+    min_opening: int = 8192,
+    clear_blocking: bool = False,
+    allow_overlap: bool = False,
+) -> PathwayResult:
+    """Generate an inert corridor/stair strip between two free room walls.
+
+    Endpoint wall lengths may differ. The generated strip follows an optional
+    centerline, interpolates width, and adds enough flat sectors to keep every
+    floor transition within ``max_step_height``.
+    """
+    if wall_a == wall_b:
+        raise CompositionError("pathway endpoint walls must be different")
+    if not 0 <= wall_a < len(level.walls) or not 0 <= wall_b < len(level.walls):
+        raise CompositionError("pathway endpoint wall id is out of range")
+    if max_step_height <= 0 or min_opening <= 0:
+        raise CompositionError("max_step_height and min_opening must be positive")
+    owners = _wall_owners(level)
+    owner_a, owner_b = owners[wall_a], owners[wall_b]
+    if owner_a is None or owner_b is None or owner_a == owner_b:
+        raise CompositionError("pathway endpoints must belong to two different sectors")
+    for wall_id in (wall_a, wall_b):
+        fields = level.walls[wall_id]["fields"]
+        if fields["next_wall"] != -1 or fields["next_sector"] != -1:
+            raise CompositionError(f"pathway endpoint wall {wall_id} must be one-sided")
+
+    a0, a1 = _wall_segment(level, wall_a)
+    b0, b1 = _wall_segment(level, wall_b)
+    width_a, width_b = hypot(a1[0] - a0[0], a1[1] - a0[1]), hypot(b1[0] - b0[0], b1[1] - b0[1])
+    if width_a == 0 or width_b == 0:
+        raise CompositionError("pathway endpoint walls must have nonzero length")
+
+    endpoint_points = ((a0, a1, owner_a), (b0, b1, owner_b))
+    endpoint_floors: list[int] = []
+    endpoint_ceilings: list[int] = []
+    for start, end, sector_id in endpoint_points:
+        floors = [_sector_surface_z(level, sector_id, *point, "floor") for point in (start, end)]
+        ceilings = [_sector_surface_z(level, sector_id, *point, "ceiling") for point in (start, end)]
+        endpoint_floors.append(round(sum(floors) / 2))
+        endpoint_ceilings.append(round(sum(ceilings) / 2))
+
+    floor_delta = abs(endpoint_floors[1] - endpoint_floors[0])
+    required_for_height = 1 if floor_delta == 0 else ceil(floor_delta / max_step_height) + 1
+    center_a = ((a0[0] + a1[0]) / 2, (a0[1] + a1[1]) / 2)
+    center_b = ((b0[0] + b1[0]) / 2, (b0[1] + b1[1]) / 2)
+    route_points = [center_a, *[(float(x), float(y)) for x, y in (via or [])], center_b]
+    required_for_route = len(route_points) - 1
+    required_sectors = max(1, required_for_height, required_for_route)
+    sector_count = required_sectors if sectors is None else int(sectors)
+    if sector_count < required_sectors:
+        raise CompositionError(
+            f"pathway requires at least {required_sectors} sectors for its route and elevation; "
+            f"got {sector_count}"
+        )
+
+    centers = _sample_centerline(route_points, sector_count)
+    sections: list[tuple[tuple[int, int], tuple[int, int]]] = [(a1, a0)]
+    previous_vector = (a1[0] - a0[0], a1[1] - a0[1])
+    for index in range(1, sector_count):
+        before, after = centers[index - 1], centers[index + 1]
+        tx, ty = after[0] - before[0], after[1] - before[1]
+        length = hypot(tx, ty)
+        if length == 0:
+            raise CompositionError("pathway sampling produced a zero-length tangent")
+        width = width_a + (width_b - width_a) * index / sector_count
+        px, py = -ty / length * width / 2, tx / length * width / 2
+        candidate = (px * 2, py * 2)
+        if candidate[0] * previous_vector[0] + candidate[1] * previous_vector[1] < 0:
+            px, py = -px, -py
+        center = centers[index]
+        left = (round(center[0] + px), round(center[1] + py))
+        right = (round(center[0] - px), round(center[1] - py))
+        if left == right:
+            raise CompositionError("pathway interpolation collapsed to zero width")
+        sections.append((left, right))
+        previous_vector = (left[0] - right[0], left[1] - right[1])
+    sections.append((b0, b1))
+
+    if sector_count == 1:
+        floor_z = [endpoint_floors[0]]
+        ceiling_z = [endpoint_ceilings[0]]
+        if endpoint_floors[0] != endpoint_floors[1]:
+            raise CompositionError("one-sector pathway cannot represent differing floor heights")
+    else:
+        floor_z = [
+            round(endpoint_floors[0] + (endpoint_floors[1] - endpoint_floors[0]) * index / (sector_count - 1))
+            for index in range(sector_count)
+        ]
+        ceiling_z = [
+            round(endpoint_ceilings[0] + (endpoint_ceilings[1] - endpoint_ceilings[0]) * index / (sector_count - 1))
+            for index in range(sector_count)
+        ]
+    for index, (ceiling, floor) in enumerate(zip(ceiling_z, floor_z)):
+        if floor - ceiling < min_opening:
+            raise CompositionError(
+                f"generated pathway sector {index} has {floor - ceiling} Z units of clearance; "
+                f"minimum is {min_opening}"
+            )
+
+    result = copy.deepcopy(level)
+    old_sector_count, old_wall_count = len(result.sectors), len(result.walls)
+    sector_ids: list[int] = []
+    wall_ids: list[int] = []
+    for index in range(sector_count):
+        sector_id = len(result.sectors)
+        first_wall = len(result.walls)
+        sector = copy.deepcopy(level.sectors[owner_a])
+        sector["id"] = sector_id
+        sector["blood"] = None
+        sector["fields"].update(
+            wall_ptr=first_wall, wall_count=4, ceiling_z=ceiling_z[index], floor_z=floor_z[index],
+            ceiling_heinum=0, floor_heinum=0, extra=-1, type=0, hitag=0,
+        )
+        sector["fields"]["ceiling_stat"] &= ~2
+        sector["fields"]["floor_stat"] &= ~2
+        result.sectors.append(sector)
+        sector_ids.append(sector_id)
+
+        left, right = sections[index]
+        next_left, next_right = sections[index + 1]
+        points = [left, right, next_right, next_left]
+        for point_id, (x, y) in enumerate(points):
+            wall_id = len(result.walls)
+            wall = copy.deepcopy(level.walls[wall_a])
+            wall["id"] = wall_id
+            wall["blood"] = None
+            wall["fields"].update(
+                x=x, y=y, point2=first_wall + (point_id + 1) % 4,
+                next_wall=-1, next_sector=-1, cstat=0, extra=-1, type=0, hitag=0,
+            )
+            result.walls.append(wall)
+            wall_ids.append(wall_id)
+
+    portal_pairs = [(wall_a, wall_ids[0])]
+    portal_pairs.extend(
+        (wall_ids[index * 4 + 2], wall_ids[(index + 1) * 4])
+        for index in range(sector_count - 1)
+    )
+    portal_pairs.append((wall_b, wall_ids[-2]))
+
+    internal_pairs = {frozenset(pair) for pair in portal_pairs[1:-1]}
+    layout_conflicts = find_layout_conflicts(
+        result,
+        existing_sector_count=old_sector_count,
+        existing_wall_count=old_wall_count,
+        portal_wall_pairs=[portal_pairs[0], portal_pairs[-1]],
+    )
+    for left_index, left_wall in enumerate(wall_ids):
+        left_segment = _wall_segment(result, left_wall)
+        for right_wall in wall_ids[left_index + 1:]:
+            if frozenset((left_wall, right_wall)) in internal_pairs:
+                continue
+            kind = _segment_conflict(*left_segment, *_wall_segment(result, right_wall))
+            if kind:
+                layout_conflicts.append({
+                    "kind": "pathway_" + kind,
+                    "new_wall_a": left_wall,
+                    "new_wall_b": right_wall,
+                })
+    if layout_conflicts and not allow_overlap:
+        raise CompositionError(
+            f"generated pathway overlaps level geometry: {layout_conflicts[0]}; "
+            "adjust the room placement or route"
+        )
+
+    all_owners = _wall_owners(result)
+    for left_wall, right_wall in portal_pairs:
+        left_owner, right_owner = all_owners[left_wall], all_owners[right_wall]
+        if left_owner is None or right_owner is None:
+            raise CompositionError("generated pathway portal has no owning sector")
+        result.walls[left_wall]["fields"].update(next_wall=right_wall, next_sector=right_owner)
+        result.walls[right_wall]["fields"].update(next_wall=left_wall, next_sector=left_owner)
+
+    blocking_cleared = False
+    for endpoint in (wall_a, wall_b):
+        if result.walls[endpoint]["fields"]["cstat"] & 1:
+            if not clear_blocking:
+                raise CompositionError(
+                    f"pathway endpoint wall {endpoint} blocks movement; use clear_blocking=True"
+                )
+            result.walls[endpoint]["fields"]["cstat"] &= ~1
+            blocking_cleared = True
+
+    portal_openings: list[int] = []
+    step_heights: list[int] = []
+    for left_wall, right_wall in portal_pairs:
+        left_owner, right_owner = all_owners[left_wall], all_owners[right_wall]
+        points = _wall_segment(result, left_wall)
+        openings: list[int] = []
+        steps_at_portal: list[int] = []
+        for x, y in points:
+            left_floor = _sector_surface_z(result, int(left_owner), x, y, "floor")
+            right_floor = _sector_surface_z(result, int(right_owner), x, y, "floor")
+            left_ceiling = _sector_surface_z(result, int(left_owner), x, y, "ceiling")
+            right_ceiling = _sector_surface_z(result, int(right_owner), x, y, "ceiling")
+            openings.append(min(left_floor, right_floor) - max(left_ceiling, right_ceiling))
+            steps_at_portal.append(abs(left_floor - right_floor))
+        portal_opening, step_height = min(openings), max(steps_at_portal)
+        if portal_opening < min_opening:
+            raise CompositionError(
+                f"pathway portal {left_wall}/{right_wall} has {portal_opening} Z units of opening; "
+                f"minimum is {min_opening}"
+            )
+        if step_height > max_step_height:
+            raise CompositionError(
+                f"pathway portal {left_wall}/{right_wall} has step height {step_height}; "
+                f"maximum is {max_step_height}"
+            )
+        portal_openings.append(portal_opening)
+        step_heights.append(step_height)
+
+    result.metadata["source_crc32"] = "00000000"
+    errors = [item for item in validate_map(result.to_disk_map()) if item.severity == "error"]
+    if errors:
+        first = errors[0]
+        raise CompositionError(
+            f"generated pathway violates structure: {first.code} at {first.location}: {first.message}"
+        )
+    return PathwayResult(
+        level=result,
+        wall_a=wall_a,
+        wall_b=wall_b,
+        sector_ids=sector_ids,
+        wall_ids=wall_ids,
+        portal_pairs=portal_pairs,
+        floor_z=floor_z,
+        ceiling_z=ceiling_z,
+        step_heights=step_heights,
+        portal_openings=portal_openings,
+        route=[(round(x), round(y)) for x, y in centers],
+        layout_conflicts=layout_conflicts,
+        blocking_cleared=blocking_cleared,
+    )
 
 
 def connect_portals(level: LevelIR, wall_a: int, wall_b: int) -> LevelIR:
@@ -434,8 +862,9 @@ def attach_fragment(
     channel_policy: str = "error",
     clear_blocking: bool = False,
     allow_blocked: bool = False,
+    allow_overlap: bool = False,
 ) -> AttachmentResult:
-    """Align a fragment wall to a destination wall, insert it, and connect the portal."""
+    """Align a fragment wall to a destination wall, reject overlap, and connect it."""
     _validate_fragment_identity(fragment)
     if clear_blocking and allow_blocked:
         raise CompositionError("clear_blocking and allow_blocked are mutually exclusive")
@@ -512,6 +941,23 @@ def attach_fragment(
     if attached_sector is None:
         raise CompositionError(f"attached wall {attached_wall} has no owning sector")
 
+    layout_conflicts = find_layout_conflicts(
+        composition.level,
+        existing_sector_count=len(level.sectors),
+        existing_wall_count=len(level.walls),
+        portal_walls=(destination_wall, attached_wall),
+    )
+    if layout_conflicts and not allow_overlap:
+        first = layout_conflicts[0]
+        raise CompositionError(
+            f"attached fragment overlaps existing layout: {first}; "
+            "use allow_overlap=True only for intentional stacked geometry"
+        )
+    if layout_conflicts:
+        composition.warnings.append(
+            f"attachment allowed {len(layout_conflicts)} intentional layout conflict(s)"
+        )
+
     portal_points = (
         (int(destination["x"]), int(destination["y"])),
         (int(destination_end["x"]), int(destination_end["y"])),
@@ -586,4 +1032,5 @@ def attach_fragment(
         vertical_opening_at_endpoints=vertical_opening_at_endpoints,
         blocking_cleared=blocking_cleared,
         resolved_relationships=resolved,
+        layout_conflicts=layout_conflicts,
     )
