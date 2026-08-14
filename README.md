@@ -33,6 +33,7 @@ python -m bloodmap extract maps/E1M1.MAP --sectors 12,13,20-24 -o work/fragment.
 python -m bloodmap apply-fragment maps/E1M1.MAP work/fragment.json -o work/restored.MAP
 python -m bloodmap compose maps/E1M2.MAP work/fragment.json --x 8192 --channel-policy remap --report work/composition.json -o work/composed.MAP
 python -m bloodmap connect work/composed.MAP --wall-a 120 --wall-b 845 -o work/connected.MAP
+python -m bloodmap attach maps/E1M2.MAP work/fragment.json --destination-wall 120 --fragment-wall 3 --channel-policy remap --report work/attachment.json -o work/attached.MAP
 python -m bloodmap oracle-nblood work/composed.MAP --baseline maps/E1M2.MAP --nblood reference/blood/nblood.exe --game-dir reference/blood -o work/oracle.json
 python -m bloodmap oracle-nblood-behavior --nblood reference/blood/nblood.exe --game-dir reference/blood -o work/behavior-oracle.json
 ```
@@ -48,7 +49,9 @@ python -m bloodmap transform maps/E1M1.MAP -o work/turned.MAP rotate --turns 1 -
 Sector extraction uses `LevelFragment` with explicit index maps and classified
 external dependencies. Same-source application restores detached relationships
 exactly; cross-map composition allocates object, extra-record, and user-channel
-identities deterministically and leaves external dependencies explicit.
+identities deterministically and leaves external dependencies explicit. Room
+attachment can automatically quarter-turn and translate a fragment so selected
+equal-length walls coincide, then create the reciprocal portal.
 
 Run the test suite with:
 

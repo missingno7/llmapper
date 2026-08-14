@@ -45,9 +45,11 @@ Goal: place multiple verified fragments in one level without raw concatenation.
 
 Status: deterministic insertion, object/extra allocation, user-channel collision
 handling, placement transforms, unresolved-dependency reports, and explicit portal
-connection are implemented. Reproducible baseline/candidate NBlood load smoke and
-a deterministic wall-trigger/channel/Z-motion behavior scenario now pass. Broader
-behavior coverage remains before composition is considered production-complete.
+connection are implemented. Equal-length room walls can now be automatically
+quarter-turned, aligned, inserted, and connected in one operation. Reproducible
+baseline/candidate NBlood load smoke and a deterministic wall-trigger/channel/Z-motion
+behavior scenario pass. Broader layout and behavior coverage remains before
+composition is considered production-complete.
 
 Deliverables:
 
@@ -56,6 +58,7 @@ Deliverables:
 - source-derived handling of reserved/special Blood channels;
 - translation/rotation during insertion through the existing transform machinery;
 - explicit connector API for selected boundary walls;
+- automatic exact-wall room attachment with deterministic placement reports;
 - validation of portal reciprocity, marker ownership, and trigger reachability.
 
 Gate: composed fixtures write, reparse, validate, load into NBlood, and preserve

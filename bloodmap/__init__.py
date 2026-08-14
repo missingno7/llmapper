@@ -2,8 +2,8 @@
 
 from .format import BloodMapError, parse_map, read_map, write_map
 from .composition import (
-    CompositionError, CompositionResult, DestinationMap, connect_portals,
-    insert_fragment, transform_fragment,
+    AttachmentResult, CompositionError, CompositionResult, DestinationMap,
+    attach_fragment, connect_portals, insert_fragment, transform_fragment,
 )
 from .fragment import (
     FragmentError, IndexMap, LevelFragment, apply_fragment_in_place, extract_fragment,
@@ -11,6 +11,7 @@ from .fragment import (
 from .model import DiskMap, LevelIR
 
 __all__ = [
+    "AttachmentResult",
     "BloodMapError",
     "CompositionError",
     "CompositionResult",
@@ -21,6 +22,7 @@ __all__ = [
     "LevelIR",
     "LevelFragment",
     "apply_fragment_in_place",
+    "attach_fragment",
     "connect_portals",
     "extract_fragment",
     "insert_fragment",
@@ -30,4 +32,4 @@ __all__ = [
     "write_map",
 ]
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"

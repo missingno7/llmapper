@@ -45,9 +45,14 @@ python -m bloodmap apply-fragment maps/E1M1.MAP work/fragment.json -o work/rebui
 counts. It restores detached relationships, writes, reparses, and validates. This
 proves extraction and remapping without pretending cross-map placement is solved.
 
-## Current boundary
+## Composition boundary
 
-Cross-map insertion, channel collision allocation, boundary-wall connection, and
-new extra-index allocation remain Milestone 2 work. Callers cannot silently opt out
-of dependency classification; unresolved relationships stay visible in fragment
-JSON and its dependency summary.
+Cross-map insertion now allocates object, extra-record, and user-channel identities.
+Fragments can be translated, quarter-turned, inserted repeatedly, and attached to
+an existing one-sided wall through an exact equal-length portal. Callers still
+cannot silently opt out of dependency classification: relationships outside the
+selected sectors remain visible in fragment JSON and composition reports until a
+specific operation resolves them.
+
+Automatic dependency closure, unequal-width corridor generation, whole-layout
+overlap checks, and progression validation remain future gates.

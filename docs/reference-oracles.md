@@ -104,3 +104,26 @@ This is a focused integration scenario, not a universal gameplay proof. It cover
 the composition-sensitive wall trigger, channel dispatch, and sector Z-motion
 path. Doors, lifts with markers, sprite-driven systems, combat, secrets, and level
 progression need additional deterministic scenarios before broader claims.
+
+## Real-map room attachment smoke
+
+The attachment gate is reproducible with the ignored commercial corpus. It extracts
+E1M1 sector 1, attaches its fragment wall 0 to E1M2 wall 138, automatically selects
+three quarter-turns, aligns floors with a Z offset, and verifies the result against
+the untouched E1M2 baseline:
+
+```text
+python -m bloodmap extract maps/E1M1.MAP --sectors 1 \
+  -o work/attachment-room.json
+python -m bloodmap attach maps/E1M2.MAP work/attachment-room.json \
+  --destination-wall 138 --fragment-wall 0 --z -36864 \
+  --channel-policy remap --report reports/attachment_fixture.json \
+  -o work/real-attachment.MAP
+python -m bloodmap oracle-nblood work/real-attachment.MAP \
+  --baseline maps/E1M2.MAP --nblood reference/blood/nblood.exe \
+  --game-dir reference/blood --seconds 6 \
+  -o reports/nblood_attachment_oracle.json
+```
+
+Only derived reports are tracked. The source maps and generated mashup remain in
+ignored local paths.

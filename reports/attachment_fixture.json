@@ -1,0 +1,138 @@
+{
+  "allocations": {
+    "sector": {
+      "fragment_to_destination": {
+        "0": 313
+      },
+      "kind": "sector"
+    },
+    "sprite": {
+      "fragment_to_destination": {},
+      "kind": "sprite"
+    },
+    "wall": {
+      "fragment_to_destination": {
+        "0": 2469,
+        "1": 2470,
+        "2": 2471,
+        "3": 2472,
+        "4": 2473
+      },
+      "kind": "wall"
+    },
+    "xsector": {
+      "fragment_to_destination": {
+        "1": 1
+      },
+      "kind": "xsector"
+    },
+    "xsprite": {
+      "fragment_to_destination": {},
+      "kind": "xsprite"
+    },
+    "xwall": {
+      "fragment_to_destination": {},
+      "kind": "xwall"
+    }
+  },
+  "channel_map": {},
+  "connection": {
+    "attached_sector": 313,
+    "attached_wall": 2469,
+    "blocking_cleared": false,
+    "destination_sector": 14,
+    "destination_wall": 138,
+    "fragment_wall": 0,
+    "passable_at_rest": true,
+    "vertical_opening": 32768,
+    "vertical_opening_at_endpoints": [
+      32768,
+      32768
+    ]
+  },
+  "operation": "attach",
+  "placement": {
+    "dx": -58112,
+    "dy": 17664,
+    "dz": -36864,
+    "quarter_turns": 3
+  },
+  "resolved_relationships": [
+    {
+      "classification": "external_geometry",
+      "field": "fields.next_wall/next_sector",
+      "note": "detached in fragment; preserved for same-source reinsertion",
+      "relation": "portal",
+      "source": {
+        "id": 0,
+        "kind": "wall",
+        "space": "fragment"
+      },
+      "target": {
+        "kind": "portal",
+        "sector": 150,
+        "space": "source",
+        "wall": 1428
+      }
+    }
+  ],
+  "result_counts": {
+    "sectors": 314,
+    "sprites": 698,
+    "walls": 2474
+  },
+  "unresolved_relationships": [
+    {
+      "classification": "external_geometry",
+      "field": "fields.next_wall/next_sector",
+      "note": "detached in fragment; preserved for same-source reinsertion",
+      "relation": "portal",
+      "source": {
+        "id": 1,
+        "kind": "wall",
+        "space": "fragment"
+      },
+      "target": {
+        "kind": "portal",
+        "sector": 3,
+        "space": "source",
+        "wall": 19
+      }
+    },
+    {
+      "classification": "external_geometry",
+      "field": "fields.next_wall/next_sector",
+      "note": "detached in fragment; preserved for same-source reinsertion",
+      "relation": "portal",
+      "source": {
+        "id": 2,
+        "kind": "wall",
+        "space": "fragment"
+      },
+      "target": {
+        "kind": "portal",
+        "sector": 28,
+        "space": "source",
+        "wall": 222
+      }
+    },
+    {
+      "classification": "external_geometry",
+      "field": "fields.next_wall/next_sector",
+      "note": "detached in fragment; preserved for same-source reinsertion",
+      "relation": "portal",
+      "source": {
+        "id": 3,
+        "kind": "wall",
+        "space": "fragment"
+      },
+      "target": {
+        "kind": "portal",
+        "sector": 27,
+        "space": "source",
+        "wall": 220
+      }
+    }
+  ],
+  "warnings": []
+}

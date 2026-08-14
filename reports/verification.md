@@ -11,9 +11,10 @@ Generated against the supplied `maps/` corpus.
 | Byte-exact LevelIR roundtrip | 43/43 |
 | Reparse success | 43/43 |
 | Hard validation success | 43/43 |
-| Unit/corpus/mutation/fragment/composition/oracle tests | 38/38 |
+| Unit/corpus/mutation/fragment/composition/oracle tests | 44/44 |
 | NBlood baseline load smoke | pass (6 seconds) |
 | NBlood composed-map load smoke | pass (6 seconds) |
+| NBlood real-map attached-room load smoke | pass (6 seconds) |
 | NBlood baseline trigger/Z-motion behavior | pass |
 | NBlood composed trigger/Z-motion behavior | pass |
 
@@ -46,6 +47,13 @@ Composition verification:
   repeated insertion, placement transforms, and explicit portal connection;
 - composed fixtures encode, reparse, and pass structural validation;
 - allocation and unresolved-dependency reports are JSON-serializable and stable.
+- automatic attachment fixtures cover straight and rotated room placement, repeated
+  copies with independent channel allocation, selected portal-dependency resolution,
+  blocked-wall policy, vertical-clearance failure, and CLI report generation.
+- the public CLI reproducibly attaches E1M1 sector 1 to E1M2 wall 138 with three
+  automatic quarter-turns, a -36864 Z offset, and 32768 units of slope-aware
+  endpoint clearance; allocation and dependency evidence is recorded in
+  `reports/attachment_fixture.json`.
 
 Independent load-oracle verification:
 
@@ -55,6 +63,9 @@ Independent load-oracle verification:
   terminated by the bounded harness after their grace periods;
 - engine revision, hashes, counts, required markers, and fatal indicators are in
   `reports/nblood_oracle.json`;
+- the real E1M1-room/E1M2 attachment also reached the initialized game loop and
+  remained healthy for six seconds; its independent result is recorded in
+  `reports/nblood_attachment_oracle.json`;
 - this proves load/startup compatibility, not trigger or progression equivalence.
 
 Independent behavior-oracle verification:

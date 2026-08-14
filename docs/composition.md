@@ -59,6 +59,47 @@ coincident reversed endpoints. The operation creates reciprocal `next_wall` and
 `next_sector` links, then runs structural validation. It never searches for or
 chooses connectors automatically.
 
+## Automatic room attachment
+
+`attach_fragment` combines placement, insertion, and portal connection. The caller
+selects one one-sided wall in the destination and one fragment-local one-sided wall:
+
+```python
+result = attach_fragment(
+    destination,
+    room,
+    destination_wall=120,
+    fragment_wall=3,
+    channel_policy="remap",
+)
+attached = result.level
+```
+
+The walls must have equal nonzero lengths. Unless a turn is forced, the operation
+tries 0, 1, 2, and 3 quarter-turns and chooses the first exact reversed alignment.
+It then calculates the required X/Y translation, applies an explicit Z offset,
+inserts the room through the normal deterministic allocator, and connects the
+allocated wall pair. Selecting different fragment walls gives different room
+orientations and connections without hand-calculating coordinates.
+
+Movement-blocking wall flags and vertically closed openings fail closed by default.
+Callers may explicitly clear the blocking bit for a normal doorway or retain a
+blocked/closed portal for a door mechanism. At-rest clearance is evaluated at both
+portal endpoints with Blood's source-derived sloped-sector arithmetic. The report
+records placement, allocation, channel mapping, portal IDs, endpoint clearance,
+and the external portal dependency resolved by the new connection.
+
+```text
+python -m bloodmap attach destination.MAP room.json \
+  --destination-wall 120 --fragment-wall 3 \
+  --channel-policy remap --clear-blocking \
+  --report work/attachment.json -o work/attached.MAP
+```
+
+Attachment currently requires exact equal-length walls and does not synthesize an
+adapter corridor. It also does not yet perform whole-layout polygon overlap checks;
+render and inspect nontrivial assemblies before runtime verification.
+
 ## CLI
 
 ```text
@@ -68,6 +109,10 @@ python -m bloodmap compose destination.MAP fragment.json \
 
 python -m bloodmap connect work/composed.MAP \
   --wall-a 120 --wall-b 845 -o work/connected.MAP
+
+python -m bloodmap attach destination.MAP fragment.json \
+  --destination-wall 120 --fragment-wall 3 \
+  --report work/attachment.json -o work/attached.MAP
 ```
 
 A deterministic independent-engine oracle now verifies that a decoupled wall-push

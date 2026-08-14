@@ -37,6 +37,11 @@ This gate proves that both files reach NBlood's initialized game loop and remain
 healthy for the configured grace period. It does not by itself prove gameplay
 equivalence.
 
+Room-attachment changes must additionally cover automatic rotation, repeated room
+copies, channel remapping, blocked-wall policy, and slope-aware endpoint clearance.
+When the original-map corpus is present, reproduce the attachment fixture in
+`docs/reference-oracles.md` and run its NBlood load smoke.
+
 Changes to fragment allocation, channel remapping, or extended-record ownership
 should also run the Windows behavior oracle when local NBlood game data is
 available. It briefly foregrounds the NBlood window to send raw keyboard input:

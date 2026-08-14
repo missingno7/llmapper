@@ -8,7 +8,9 @@ from pathlib import Path
 
 from bloodmap.analysis import validate_map
 from bloodmap.cli import main
-from bloodmap.composition import CompositionError, connect_portals, insert_fragment
+from bloodmap.composition import (
+    CompositionError, attach_fragment, connect_portals, insert_fragment,
+)
 from bloodmap.format import encode_map, parse_map, read_map, write_map
 from tests.helpers import synthetic_map, synthetic_two_sector_map
 
@@ -101,6 +103,105 @@ class CompositionTests(unittest.TestCase):
         )
         self.assertEqual(result.level.sprites[1]["fields"]["angle"], 512)
 
+    def test_attach_fragment_aligns_translates_and_connects_room(self):
+        fragment = synthetic_map().to_level_ir().extract([0])
+        result = attach_fragment(
+            self.destination, fragment, destination_wall=1, fragment_wall=3,
+        )
+        self.assertEqual((result.quarter_turns, result.dx, result.dy), (0, 1024, 0))
+        self.assertEqual(result.attached_wall, 7)
+        self.assertEqual(result.level.walls[1]["fields"]["next_wall"], 7)
+        self.assertEqual(result.level.walls[7]["fields"]["next_wall"], 1)
+        self.assertEqual(result.level.walls[1]["fields"]["next_sector"], 1)
+        self.assertEqual(result.level.walls[7]["fields"]["next_sector"], 0)
+        self.assertEqual(result.report()["connection"]["passable_at_rest"], True)
+        self.assertFalse([
+            item for item in validate_map(result.level.to_disk_map())
+            if item.severity == "error"
+        ])
+
+    def test_attach_fragment_chooses_quarter_turn_and_rotates_contents(self):
+        fragment = synthetic_map().to_level_ir().extract([0])
+        result = attach_fragment(
+            self.destination, fragment, destination_wall=1, fragment_wall=0,
+        )
+        self.assertEqual((result.quarter_turns, result.dx, result.dy), (3, 1024, 1024))
+        self.assertEqual(
+            (result.level.sprites[1]["fields"]["x"], result.level.sprites[1]["fields"]["y"]),
+            (1536, 512),
+        )
+        self.assertEqual(result.level.sprites[1]["fields"]["angle"], 1536)
+
+    def test_attach_fragment_can_copy_rooms_and_remap_each_channel_namespace(self):
+        first = attach_fragment(
+            self.destination, self.fragment, destination_wall=1, fragment_wall=3,
+        )
+        second = attach_fragment(
+            first.level, self.fragment, destination_wall=5, fragment_wall=3,
+            channel_policy="remap",
+        )
+        self.assertEqual((len(second.level.sectors), len(second.level.walls)), (3, 12))
+        self.assertEqual(second.composition.channel_map, {100: 101})
+        self.assertEqual(second.level.sprites[2]["blood"]["fields"]["tx_id"], 101)
+        self.assertEqual(second.level.walls[5]["fields"]["next_wall"], 11)
+
+    def test_attach_fragment_resolves_selected_external_portal_dependency(self):
+        result = attach_fragment(
+            self.destination, self.fragment, destination_wall=1, fragment_wall=1,
+        )
+        self.assertEqual(result.quarter_turns, 2)
+        self.assertTrue(result.resolved_relationships)
+        self.assertTrue(all(
+            item.classification == "external_geometry"
+            and item.source.get("id") == 1
+            for item in result.resolved_relationships
+        ))
+        self.assertFalse(any(
+            item.classification == "external_geometry" and item.source.get("id") == 1
+            for item in result.composition.unresolved_relationships
+        ))
+
+    def test_attach_fragment_fails_closed_on_unsafe_connections(self):
+        fragment = synthetic_map().to_level_ir().extract([0])
+        with self.assertRaisesRegex(CompositionError, "quarter-turn"):
+            attach_fragment(
+                self.destination, fragment, destination_wall=1, fragment_wall=3,
+                quarter_turns=1,
+            )
+
+        unequal = copy.deepcopy(fragment)
+        unequal.walls[0]["fields"]["x"] = 2048
+        with self.assertRaisesRegex(CompositionError, "equal length"):
+            attach_fragment(self.destination, unequal, destination_wall=1, fragment_wall=3)
+
+        blocked = copy.deepcopy(self.destination)
+        blocked.walls[1]["fields"]["cstat"] |= 1
+        with self.assertRaisesRegex(CompositionError, "blocks movement"):
+            attach_fragment(blocked, fragment, destination_wall=1, fragment_wall=3)
+        cleared = attach_fragment(
+            blocked, fragment, destination_wall=1, fragment_wall=3, clear_blocking=True,
+        )
+        self.assertTrue(cleared.blocking_cleared)
+        self.assertEqual(cleared.level.walls[1]["fields"]["cstat"] & 1, 0)
+
+        with self.assertRaisesRegex(CompositionError, "no vertical opening"):
+            attach_fragment(
+                self.destination, fragment, destination_wall=1, fragment_wall=3,
+                dz=50000,
+            )
+        intentionally_closed = attach_fragment(
+            self.destination, fragment, destination_wall=1, fragment_wall=3,
+            dz=50000, allow_blocked=True,
+        )
+        self.assertFalse(intentionally_closed.report()["connection"]["passable_at_rest"])
+        self.assertTrue(intentionally_closed.composition.warnings)
+
+        sloped = copy.deepcopy(fragment)
+        sloped.sectors[0]["fields"]["ceiling_stat"] |= 2
+        sloped.sectors[0]["fields"]["ceiling_heinum"] = 4096
+        with self.assertRaisesRegex(CompositionError, "no vertical opening"):
+            attach_fragment(self.destination, sloped, destination_wall=1, fragment_wall=3)
+
     def test_report_is_machine_readable(self):
         result = insert_fragment(self.destination, self.fragment)
         report = result.report()
@@ -148,6 +249,31 @@ class CompositionTests(unittest.TestCase):
             connected = read_map(output_path)
             self.assertEqual(connected.walls[1].next_wall, 7)
             self.assertEqual(connected.walls[7].next_wall, 1)
+
+    def test_attach_cli_writes_connected_map_and_placement_report(self):
+        fragment = synthetic_map().to_level_ir().extract([0])
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            destination_path = root / "destination.MAP"
+            fragment_path = root / "room.json"
+            output_path = root / "attached.MAP"
+            report_path = root / "attachment.json"
+            write_map(self.destination.to_disk_map(), destination_path)
+            fragment_path.write_text(json.dumps(fragment.to_dict()), encoding="utf-8")
+
+            status = main([
+                "attach", str(destination_path), str(fragment_path),
+                "--destination-wall", "1", "--fragment-wall", "0",
+                "--report", str(report_path), "-o", str(output_path),
+            ])
+
+            self.assertEqual(status, 0)
+            attached = read_map(output_path)
+            self.assertEqual(attached.walls[1].next_wall, 4)
+            self.assertEqual(attached.walls[4].next_wall, 1)
+            report = json.loads(report_path.read_text(encoding="utf-8"))
+            self.assertEqual(report["placement"]["quarter_turns"], 3)
+            self.assertTrue(report["connection"]["passable_at_rest"])
 
 
 if __name__ == "__main__":

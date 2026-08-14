@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 from dataclasses import dataclass
+from math import isqrt
 from typing import Any
 
 from .analysis import validate_map
@@ -53,6 +54,53 @@ class CompositionResult:
                 "sprites": len(self.level.sprites),
             },
         }
+
+
+@dataclass
+class AttachmentResult:
+    level: LevelIR
+    composition: CompositionResult
+    destination_wall: int
+    fragment_wall: int
+    attached_wall: int
+    destination_sector: int
+    attached_sector: int
+    quarter_turns: int
+    dx: int
+    dy: int
+    dz: int
+    vertical_opening: int
+    vertical_opening_at_endpoints: tuple[int, int]
+    blocking_cleared: bool
+    resolved_relationships: list[FragmentRelationship]
+
+    def report(self) -> dict[str, Any]:
+        value = self.composition.report()
+        value.update({
+            "operation": "attach",
+            "placement": {
+                "quarter_turns": self.quarter_turns,
+                "dx": self.dx,
+                "dy": self.dy,
+                "dz": self.dz,
+            },
+            "connection": {
+                "destination_wall": self.destination_wall,
+                "fragment_wall": self.fragment_wall,
+                "attached_wall": self.attached_wall,
+                "destination_sector": self.destination_sector,
+                "attached_sector": self.attached_sector,
+                "vertical_opening": self.vertical_opening,
+                "vertical_opening_at_endpoints": list(self.vertical_opening_at_endpoints),
+                "passable_at_rest": self.vertical_opening > 0 and not (
+                    self.level.walls[self.destination_wall]["fields"]["cstat"] & 1
+                    or self.level.walls[self.attached_wall]["fields"]["cstat"] & 1
+                ),
+                "blocking_cleared": self.blocking_cleared,
+            },
+            "resolved_relationships": [item.to_dict() for item in self.resolved_relationships],
+        })
+        return value
 
 
 def _blood(item: dict[str, Any]) -> dict[str, int] | None:
@@ -321,6 +369,33 @@ def _wall_owners(level: LevelIR) -> list[int | None]:
     return owners
 
 
+def _sector_surface_z(
+    level: LevelIR, sector_id: int, x: int, y: int, surface: str,
+) -> int:
+    """Evaluate a Blood/Build sector plane at a point using getzsofslope arithmetic."""
+    sector = level.sectors[sector_id]["fields"]
+    if surface not in {"ceiling", "floor"}:
+        raise CompositionError(f"unknown sector surface {surface!r}")
+    z = int(sector[f"{surface}_z"])
+    if not int(sector[f"{surface}_stat"]) & 2:
+        return z
+    wall_id = int(sector["wall_ptr"])
+    wall = level.walls[wall_id]["fields"]
+    next_wall = level.walls[int(wall["point2"])]["fields"]
+    dx, dy = int(next_wall["x"]) - int(wall["x"]), int(next_wall["y"]) - int(wall["y"])
+    divisor = isqrt(dx * dx + dy * dy) << 5
+    if divisor == 0:
+        return z
+    # NBlood selects ENGINE_19960925, so getzsofslope uses dmulscale3 without
+    # the extra EDUKE32 compatibility shift.
+    cross = (dx * (y - int(wall["y"])) - dy * (x - int(wall["x"]))) >> 3
+    numerator = int(sector[f"{surface}_heinum"]) * cross
+    correction = abs(numerator) // divisor
+    if numerator < 0:
+        correction = -correction
+    return z + correction
+
+
 def connect_portals(level: LevelIR, wall_a: int, wall_b: int) -> LevelIR:
     """Connect two reversed, coincident one-sided walls as a reciprocal portal."""
     if wall_a == wall_b:
@@ -346,3 +421,169 @@ def connect_portals(level: LevelIR, wall_a: int, wall_b: int) -> LevelIR:
     if errors:
         raise CompositionError(f"portal connection failed validation: {errors[0].message}")
     return result
+
+
+def attach_fragment(
+    level: LevelIR,
+    fragment: LevelFragment,
+    *,
+    destination_wall: int,
+    fragment_wall: int,
+    dz: int = 0,
+    quarter_turns: int | None = None,
+    channel_policy: str = "error",
+    clear_blocking: bool = False,
+    allow_blocked: bool = False,
+) -> AttachmentResult:
+    """Align a fragment wall to a destination wall, insert it, and connect the portal."""
+    _validate_fragment_identity(fragment)
+    if clear_blocking and allow_blocked:
+        raise CompositionError("clear_blocking and allow_blocked are mutually exclusive")
+    if not 0 <= destination_wall < len(level.walls):
+        raise CompositionError(f"destination wall {destination_wall} is out of range")
+    if not 0 <= fragment_wall < len(fragment.walls):
+        raise CompositionError(f"fragment wall {fragment_wall} is out of range")
+
+    destination_owners = _wall_owners(level)
+    destination_sector = destination_owners[destination_wall]
+    if destination_sector is None:
+        raise CompositionError(f"destination wall {destination_wall} has no owning sector")
+
+    destination = level.walls[destination_wall]["fields"]
+    source = fragment.walls[fragment_wall]["fields"]
+    if destination["next_wall"] != -1 or destination["next_sector"] != -1:
+        raise CompositionError("destination attachment wall must be one-sided")
+    if source["next_wall"] != -1 or source["next_sector"] != -1:
+        raise CompositionError("fragment attachment wall must be one-sided")
+    if not 0 <= destination["point2"] < len(level.walls):
+        raise CompositionError("destination attachment wall has an invalid point2")
+    if not 0 <= source["point2"] < len(fragment.walls):
+        raise CompositionError("fragment attachment wall has an invalid point2")
+
+    destination_end = level.walls[destination["point2"]]["fields"]
+    source_end = fragment.walls[source["point2"]]["fields"]
+    destination_vector = (
+        destination_end["x"] - destination["x"],
+        destination_end["y"] - destination["y"],
+    )
+    source_vector = (source_end["x"] - source["x"], source_end["y"] - source["y"])
+    destination_length = destination_vector[0] ** 2 + destination_vector[1] ** 2
+    source_length = source_vector[0] ** 2 + source_vector[1] ** 2
+    if destination_length == 0 or source_length == 0:
+        raise CompositionError("attachment walls must have nonzero length")
+    if destination_length != source_length:
+        raise CompositionError("attachment walls must have equal length")
+
+    def rotate(x: int, y: int, turns: int) -> tuple[int, int]:
+        for _ in range(turns):
+            x, y = -y, x
+        return x, y
+
+    turns_to_try = [quarter_turns % 4] if quarter_turns is not None else list(range(4))
+    placement: tuple[int, int, int] | None = None
+    for turns in turns_to_try:
+        start_x, start_y = rotate(source["x"], source["y"], turns)
+        end_x, end_y = rotate(source_end["x"], source_end["y"], turns)
+        dx, dy = destination_end["x"] - start_x, destination_end["y"] - start_y
+        if (end_x + dx, end_y + dy) == (destination["x"], destination["y"]):
+            placement = turns, dx, dy
+            break
+    if placement is None:
+        qualifier = f" with quarter_turns={quarter_turns % 4}" if quarter_turns is not None else ""
+        raise CompositionError(
+            "attachment walls cannot be aligned by an exact quarter-turn rotation" + qualifier
+        )
+    turns, dx, dy = placement
+
+    destination_blocking = bool(destination["cstat"] & 1)
+    source_blocking = bool(source["cstat"] & 1)
+    if (destination_blocking or source_blocking) and not (clear_blocking or allow_blocked):
+        raise CompositionError(
+            "attachment wall blocks movement; use clear_blocking=True or allow_blocked=True explicitly"
+        )
+
+    composition = insert_fragment(
+        level, fragment, dx=dx, dy=dy, dz=dz, quarter_turns=turns,
+        channel_policy=channel_policy,
+    )
+    attached_wall = composition.allocations["wall"].resolve(fragment_wall)
+    attached_owners = _wall_owners(composition.level)
+    attached_sector = attached_owners[attached_wall]
+    if attached_sector is None:
+        raise CompositionError(f"attached wall {attached_wall} has no owning sector")
+
+    portal_points = (
+        (int(destination["x"]), int(destination["y"])),
+        (int(destination_end["x"]), int(destination_end["y"])),
+    )
+    opening_at_endpoints: list[int] = []
+    for x, y in portal_points:
+        destination_ceiling = _sector_surface_z(
+            composition.level, destination_sector, x, y, "ceiling",
+        )
+        destination_floor = _sector_surface_z(
+            composition.level, destination_sector, x, y, "floor",
+        )
+        attached_ceiling = _sector_surface_z(
+            composition.level, attached_sector, x, y, "ceiling",
+        )
+        attached_floor = _sector_surface_z(
+            composition.level, attached_sector, x, y, "floor",
+        )
+        opening_at_endpoints.append(
+            min(destination_floor, attached_floor) - max(destination_ceiling, attached_ceiling)
+        )
+    vertical_opening_at_endpoints = tuple(opening_at_endpoints)
+    vertical_opening = min(vertical_opening_at_endpoints)
+    if vertical_opening <= 0 and not allow_blocked:
+        raise CompositionError(
+            "attached sectors have no vertical opening at rest; use allow_blocked=True explicitly"
+        )
+
+    connected = connect_portals(composition.level, destination_wall, attached_wall)
+    blocking_cleared = False
+    if clear_blocking:
+        for wall_id in (destination_wall, attached_wall):
+            fields = connected.walls[wall_id]["fields"]
+            if fields["cstat"] & 1:
+                fields["cstat"] &= ~1
+                blocking_cleared = True
+
+    resolved = [
+        item for item in composition.unresolved_relationships
+        if item.classification == "external_geometry"
+        and item.source.get("space") == "fragment"
+        and item.source.get("kind") == "wall"
+        and item.source.get("id") == fragment_wall
+    ]
+    composition.unresolved_relationships = [
+        item for item in composition.unresolved_relationships if item not in resolved
+    ]
+    if vertical_opening <= 0:
+        composition.warnings.append("attached portal has no vertical opening at rest")
+    if allow_blocked and (destination_blocking or source_blocking):
+        composition.warnings.append("attached portal retains a movement-blocking wall flag")
+
+    errors = [item for item in validate_map(connected.to_disk_map()) if item.severity == "error"]
+    if errors:
+        first = errors[0]
+        raise CompositionError(
+            f"attached fragment violates structure: {first.code} at {first.location}: {first.message}"
+        )
+    return AttachmentResult(
+        level=connected,
+        composition=composition,
+        destination_wall=destination_wall,
+        fragment_wall=fragment_wall,
+        attached_wall=attached_wall,
+        destination_sector=destination_sector,
+        attached_sector=attached_sector,
+        quarter_turns=turns,
+        dx=dx,
+        dy=dy,
+        dz=dz,
+        vertical_opening=vertical_opening,
+        vertical_opening_at_endpoints=vertical_opening_at_endpoints,
+        blocking_cleared=blocking_cleared,
+        resolved_relationships=resolved,
+    )

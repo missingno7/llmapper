@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from .analysis import channel_graph, corpus_statistics, geometry_view, render_svg, validate_map
-from .composition import CompositionError, connect_portals, insert_fragment
+from .composition import CompositionError, attach_fragment, connect_portals, insert_fragment
 from .format import BloodMapError, encode_map, locate_offset, read_map, write_map
 from .fragment import FragmentError, LevelFragment, apply_fragment_in_place, extract_fragment
 from .model import LevelIR
@@ -288,6 +288,34 @@ def cmd_connect(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_attach(args: argparse.Namespace) -> int:
+    destination = read_map(args.map).to_level_ir()
+    fragment = LevelFragment.from_dict(json.loads(Path(args.fragment).read_text(encoding="utf-8")))
+    result = attach_fragment(
+        destination,
+        fragment,
+        destination_wall=args.destination_wall,
+        fragment_wall=args.fragment_wall,
+        dz=args.z,
+        quarter_turns=args.turns,
+        channel_policy=args.channel_policy,
+        clear_blocking=args.clear_blocking,
+        allow_blocked=args.allow_blocked,
+    )
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    write_map(result.level.to_disk_map(), args.output)
+    reparsed = read_map(args.output)
+    if any(item.severity == "error" for item in validate_map(reparsed)):
+        raise CompositionError("written attachment failed reparse validation")
+    if args.report:
+        _write_text(args.report, _json(result.report()))
+    print(
+        f"WROTE {args.output}: fragment wall {args.fragment_wall} attached to "
+        f"destination wall {args.destination_wall}, reparsed and validated"
+    )
+    return 0
+
+
 def cmd_oracle_nblood(args: argparse.Namespace) -> int:
     report = run_nblood_oracle(
         args.map, nblood=args.nblood, game_dir=args.game_dir,
@@ -372,6 +400,20 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("connect", help="connect reversed coincident one-sided walls")
     p.add_argument("map"); p.add_argument("--wall-a", type=int, required=True); p.add_argument("--wall-b", type=int, required=True)
     p.add_argument("-o", "--output", required=True); p.set_defaults(func=cmd_connect)
+    p = sub.add_parser("attach", help="align, insert, and portal-connect an extracted room")
+    p.add_argument("map", help="destination MAP")
+    p.add_argument("fragment", help="LevelFragment JSON")
+    p.add_argument("--destination-wall", type=int, required=True)
+    p.add_argument("--fragment-wall", type=int, required=True)
+    p.add_argument("--z", type=int, default=0, help="vertical offset applied to the fragment")
+    p.add_argument("--turns", type=int, choices=range(4), help="force a quarter-turn count; default chooses automatically")
+    p.add_argument("--channel-policy", choices=("error", "remap"), default="error")
+    blocking = p.add_mutually_exclusive_group()
+    blocking.add_argument("--clear-blocking", action="store_true", help="clear movement-blocking flags on the portal walls")
+    blocking.add_argument("--allow-blocked", action="store_true", help="allow an intentionally blocked or vertically closed portal")
+    p.add_argument("--report", help="write placement/allocation/dependency report JSON")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_attach)
     p = sub.add_parser("oracle-nblood", help="run a bounded external NBlood MAP-load smoke test")
     p.add_argument("map", help="candidate MAP")
     p.add_argument("--baseline", help="known-good MAP checked in the same environment")
