@@ -31,6 +31,27 @@ def _safe_design_fingerprint(level: "LevelIR", sector_ids: Iterable[int] | None 
         }
 
 
+def _safe_spatial_context(level: "LevelIR", sector_ids: Iterable[int] | None = None) -> dict[str, Any]:
+    """Expose derived multi-view context without making it authoritative."""
+    from .spatial import SpatialAnalysisError, analyze_spatial, spatial_selection_context
+
+    try:
+        if sector_ids is None:
+            analysis = analyze_spatial(level.to_disk_map().to_build_ir())
+            return {
+                "status": "available",
+                "views": sorted(analysis["views"]),
+                "hypothesis_count": len(analysis["hypotheses"]),
+                "limitations": analysis["provenance"]["not_inferred"],
+            }
+        return spatial_selection_context(level.to_disk_map().to_build_ir(), sector_ids)
+    except SpatialAnalysisError as exc:
+        return {
+            "status": "unavailable", "error": str(exc),
+            "limitations": ["derived spatial views require valid sector wall ownership"],
+        }
+
+
 _BEHAVIOR_FIELDS = (
     "rx_id", "tx_id", "command", "state", "rest_state", "busy",
     "busy_time", "busy_time_a", "busy_time_b", "wait_time", "wait_time_a",
@@ -275,6 +296,7 @@ def observe_level(level: LevelIR, sector_ids: Iterable[int] | None = None) -> di
     }
     if sector_ids is None:
         observation["design_fingerprint"] = _safe_design_fingerprint(level)
+        observation["spatial_analysis"] = _safe_spatial_context(level)
         return observation
 
     selected_ids = sorted(set(int(value) for value in sector_ids))
@@ -365,6 +387,7 @@ def observe_level(level: LevelIR, sector_ids: Iterable[int] | None = None) -> di
         "sprites": sprites,
         "interactive_objects": interactive_objects,
         "design_fingerprint": _safe_design_fingerprint(level, selected_ids),
+        "spatial_context": _safe_spatial_context(level, selected_ids),
     }
     selected_refs = {
         *(_ref("sector", value) for value in selected_ids),

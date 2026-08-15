@@ -120,6 +120,14 @@ searched by multi-dimensional similarity, source mechanism, or explicitly
 labeled soft motifs. Source-backed pattern naming and finer region extraction
 remain.
 
+The next multi-view layer is also implemented as a first sensory foundation:
+geometry, static traversability, direct-portal visibility candidates, vertical
+relationships, mechanism memberships, static progression candidates, and raw
+material continuity remain separate views. Its overlapping region hypotheses do
+not partition the level or assert a canonical room model. Renderer-derived views,
+stateful traversal, fine region retrieval/ranking, and playtester feedback remain
+future gates.
+
 Deliverables:
 
 - indexed corpus observations for object types, channels, commands, keys, and

@@ -1,0 +1,41 @@
+{
+  "$schema": "bloodmap.spatial-ambiguity-demonstration",
+  "schema_version": 1,
+  "purpose": "Show that several grounded selections can describe one source map without defining canonical rooms.",
+  "examples": [
+    {
+      "source": {"game": "blood", "map": "E3M8.MAP"},
+      "view": "perceptual_space",
+      "hypothesis": "perceptual_space:21",
+      "sector_count": 232,
+      "sector_evidence": ["sector:78", "sector:79", "sector:80", "sector:81", "sector:82", "sector:83"],
+      "basis": ["direct portal candidates", "floor delta <= 4096", "shade delta <= 12"],
+      "interpretation_boundary": "This is evidence for local perceptual continuity across many implementation sectors, not proof of one perceived room."
+    },
+    {
+      "source": {"game": "blood", "map": "E4M1.MAP"},
+      "view": "mechanism_region",
+      "hypothesis": "mechanism_region:7",
+      "mechanism": "channel:100",
+      "sector_count": 60,
+      "member_evidence": ["sector:10", "sector:100", "sprite:56", "sprite:207"],
+      "interpretation_boundary": "A behavior membership can connect distant sectors and sprites; it is intentionally not an architectural or combat-space claim."
+    },
+    {
+      "source": {"game": "duke3d", "map": "E1L1.MAP"},
+      "view": "vertical_layer",
+      "hypothesis": "vertical_layer:0",
+      "sectors": ["sector:0", "sector:243"],
+      "evidence": {"xy_overlap": "bounding-box", "relation": "below", "floor_delta": 59392},
+      "interpretation_boundary": "XY/Z overlap reveals a stacked-space candidate. It does not claim visual contact, walkability, or a balcony without renderer/runtime evidence."
+    },
+    {
+      "source": {"game": "synthetic fixture", "map": "synthetic_multi_loop_map"},
+      "view": "geometry",
+      "sectors": ["sector:0"],
+      "evidence": {"wall_loop_count": 2, "area": 12582912.0},
+      "interpretation_boundary": "One sector can contain multiple wall loops, so a sector ID/range is not itself a simple spatial-volume label."
+    }
+  ],
+  "conclusion": "The hypotheses overlap and may disagree by task. An LLM should inspect their evidence and choose an interpretation rather than treating any selection as authoritative."
+}

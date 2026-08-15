@@ -15,7 +15,7 @@ engine installations.
 | Duke native DiskMap roundtrip | 41 / 41 byte-exact |
 | Duke BuildIR roundtrip | 41 / 41 byte-exact |
 | Structural hard errors | 0 across both corpora |
-| Unit/corpus/mutation/composition/conversion/design tests | 77 / 77 pass |
+| Unit/corpus/mutation/composition/conversion/design tests | 80 / 80 pass |
 | E3L1 -> Blood geometry conversion in NBlood | pass |
 | DNE3L1 -> Duke geometry conversion in EDuke32 | pass |
 | E3L11 -> Blood playable-profile conversion in NBlood | pass |
@@ -49,6 +49,23 @@ Duke E3L4, and Duke E4L1 remain explicit index errors because their original
 sector wall ownership cannot support reliable polygon-derived metrics. No source
 data is repaired or rewritten. Similarity, source-mechanism, and soft-motif
 queries are demonstrated in [design_corpus_examples.json](design_corpus_examples.json).
+
+## Multi-view spatial understanding
+
+The derived spatial layer now exposes independent raw geometry, static
+traversability, direct-portal visibility candidates, vertical XY/Z
+relationships, native mechanism memberships, static progression candidates, and
+raw tile/shade continuity. It explicitly avoids a canonical room partition.
+Overlapping `perceptual_space`, `navigation_region`, `material_region`,
+`mechanism_region`, and `vertical_layer` hypotheses retain source object evidence
+and their approximation limits. Real-map ambiguity cases are recorded in
+[spatial_ambiguity_examples.json](spatial_ambiguity_examples.json).
+
+The final spatial-index pass fingerprints 43 Blood maps and 39 Duke3D maps
+(the same accepted malformed-ownership originals remain explicit unavailable
+entries). It records 10,069 overlapping Blood hypotheses and 12,715 Duke3D
+hypotheses across the five views; these are retrieval candidates, never a count
+of canonical rooms.
 
 ## Shared BuildIR
 

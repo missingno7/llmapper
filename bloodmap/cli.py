@@ -19,6 +19,7 @@ from .designs import build_first_puzzle_room
 from .differential import compare_e3l1_pair
 from .duke import DukeMapError, encode_duke_map, read_duke_map, write_duke_map
 from .design import DesignUnderstandingError, design_fingerprint
+from .spatial import SpatialAnalysisError, analyze_spatial
 from .e3l11 import E3L11ConversionError, convert_e3l11_to_blood
 from .duke_semantics import analyze_duke_mechanisms
 from .format import BloodMapError, SIGNATURE, encode_map, locate_offset, read_map, write_map
@@ -386,6 +387,16 @@ def cmd_design_fingerprint(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_analyze_space(args: argparse.Namespace) -> int:
+    """Emit non-authoritative multi-view spatial evidence for either game."""
+    game, build = _read_design_build(args.map)
+    analysis = analyze_spatial(build, _parse_id_set(args.sectors) if args.sectors else None)
+    analysis["map"] = str(args.map)
+    analysis["detected_game"] = game
+    _write_text(args.output, _json(analysis))
+    return 0
+
+
 def _fingerprint_vector(fingerprint: dict[str, Any]) -> dict[str, float]:
     metrics = fingerprint["metrics"]
     paths = (
@@ -471,7 +482,19 @@ def cmd_design_index(args: argparse.Namespace) -> int:
         try:
             game, build = _read_design_build(path)
             fingerprint = design_fingerprint(build)
-            entries.append({"map": path.name, "path": str(path), "game": game, "fingerprint": fingerprint, "status": "ok"})
+            entry: dict[str, Any] = {
+                "map": path.name, "path": str(path), "game": game,
+                "fingerprint": fingerprint, "status": "ok",
+            }
+            if args.include_spatial:
+                spatial = analyze_spatial(build)
+                entry["spatial_index"] = {
+                    "sectors": spatial["views"]["geometry"]["sectors"],
+                    "hypotheses": spatial["hypotheses"],
+                    "mechanism_groups": spatial["views"]["mechanism"]["groups"],
+                    "provenance": spatial["provenance"],
+                }
+            entries.append(entry)
         except (DukeMapError, BloodMapError, DesignUnderstandingError, ValueError) as exc:
             entries.append({"map": path.name, "path": str(path), "status": "error", "error": str(exc)})
     _write_text(args.output, _json({
@@ -506,18 +529,26 @@ def cmd_design_search(args: argparse.Namespace) -> int:
                 continue
         if args.min_enemies is not None and fingerprint["metrics"]["gameplay"]["enemy_count"]["value"] < args.min_enemies:
             continue
-        result = {"map": entry["map"], "path": entry["path"], "game": entry["game"], "evidence": fingerprint["evidence"], "interpretations": fingerprint["interpretations"]}
+        base = {"map": entry["map"], "path": entry["path"], "game": entry["game"], "evidence": fingerprint["evidence"], "interpretations": fingerprint["interpretations"]}
         if match_basis is not None:
-            result["motif"] = args.motif
-            result["match_basis"] = match_basis
+            base["motif"] = args.motif
+            base["match_basis"] = match_basis
         if query is not None:
-            result["distance"] = _fingerprint_distance(query, fingerprint)
-        results.append(result)
-    results.sort(key=lambda item: (item.get("distance", 0), item["map"]))
+            base["distance"] = _fingerprint_distance(query, fingerprint)
+        if args.region_kind:
+            spatial_index = entry.get("spatial_index")
+            if spatial_index is None:
+                continue
+            for hypothesis in spatial_index["hypotheses"]:
+                if hypothesis["kind"] == args.region_kind:
+                    results.append({**base, "region": hypothesis})
+        else:
+            results.append(base)
+    results.sort(key=lambda item: (item.get("distance", 0), item["map"], item.get("region", {}).get("id", "")))
     _write_text(args.output, _json({
         "$schema": "bloodmap.design-search",
         "schema_version": 1,
-        "query": {"like": args.like, "game": args.game, "mechanism": args.mechanism, "motif": args.motif, "min_enemies": args.min_enemies},
+        "query": {"like": args.like, "game": args.game, "mechanism": args.mechanism, "motif": args.motif, "region_kind": args.region_kind, "min_enemies": args.min_enemies},
         "results": results[:args.limit],
     }))
     return 0
@@ -838,14 +869,22 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--sectors", help="optional comma-separated sector IDs/ranges")
     p.add_argument("-o", "--output", help="write JSON; defaults to stdout")
     p.set_defaults(func=cmd_design_fingerprint)
+    p = sub.add_parser("analyze-space", help="derive independent geometry, traversal, vertical, mechanism, progression, and material views")
+    p.add_argument("map")
+    p.add_argument("--sectors", help="optional comma-separated sector IDs/ranges")
+    p.add_argument("-o", "--output", help="write JSON; defaults to stdout")
+    p.set_defaults(func=cmd_analyze_space)
     p = sub.add_parser("design-index", help="index Blood and Duke3D maps by design fingerprint")
-    p.add_argument("directory"); p.add_argument("-o", "--output", required=True); p.set_defaults(func=cmd_design_index)
+    p.add_argument("directory")
+    p.add_argument("--include-spatial", action="store_true", help="also index overlapping spatial hypotheses and mechanism memberships")
+    p.add_argument("-o", "--output", required=True); p.set_defaults(func=cmd_design_index)
     p = sub.add_parser("design-search", help="retrieve maps by multi-dimensional design similarity or evidence")
     p.add_argument("index")
     p.add_argument("--like", help="rank by fingerprint similarity to this MAP")
     p.add_argument("--game", choices=("blood", "duke3d"))
     p.add_argument("--mechanism", help="require a source mechanism kind")
     p.add_argument("--motif", choices=("arena", "branching", "compressed", "loop", "repeated-bays", "vertical"), help="require a soft structural motif heuristic")
+    p.add_argument("--region-kind", choices=("perceptual_space", "navigation_region", "material_region", "mechanism_region", "vertical_layer"), help="return overlapping hypothesis selections from an --include-spatial index")
     p.add_argument("--min-enemies", type=int)
     p.add_argument("--limit", type=int, default=10)
     p.add_argument("-o", "--output", help="write JSON; defaults to stdout")

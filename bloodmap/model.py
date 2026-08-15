@@ -277,6 +277,12 @@ class LevelIR:
 
         return design_fingerprint(self.to_disk_map().to_build_ir(), sector_ids)
 
+    def spatial_analysis(self, sector_ids: Any = None) -> dict[str, Any]:
+        """Return independent derived spatial views, never canonical rooms."""
+        from .spatial import analyze_spatial
+
+        return analyze_spatial(self.to_disk_map().to_build_ir(), sector_ids)
+
     @classmethod
     def from_dict(cls, value: dict[str, Any]) -> "LevelIR":
         return cls(

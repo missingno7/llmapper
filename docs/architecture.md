@@ -13,6 +13,7 @@ Blood bytes -> DiskMap -----\
 Duke bytes  -> DukeDiskMap-/
 
 BuildIR -> Design Understanding sensors -> fingerprints / corpus retrieval
+        -> multi-view spatial analysis -> overlapping hypotheses / context
 
 Blood DiskMap <-> LevelIR -> fragments / composition / construction
 ```
@@ -43,6 +44,13 @@ named soft motifs. Search results retain the fingerprint's sector, wall, sprite,
 and mechanism evidence so an LLM can inspect the source rather than trust a
 label. This is a sensory and retrieval layer, not a finite room taxonomy or a
 procedural replacement for design judgment.
+
+The next sensor layer, `bloodmap.spatial`, keeps geometry, static
+traversability, portal-visibility candidates, vertical relationships, mechanism
+memberships, progression candidates, and raw material continuity as separate
+views. It does not create `level.rooms`. Instead it returns explicitly derived,
+overlapping region hypotheses and selection context. See
+[spatial-understanding.md](spatial-understanding.md).
 
 ## Native disk models
 

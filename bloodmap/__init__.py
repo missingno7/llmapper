@@ -12,6 +12,7 @@ from .construction import (
 )
 from .conversion import ConversionError, GAME_PROFILES, convert_build_ir, convert_shade, native_scale
 from .design import DesignUnderstandingError, design_fingerprint
+from .spatial import SpatialAnalysisError, analyze_spatial, spatial_selection_context
 from .designs import DesignedLevel, build_first_puzzle_room
 from .differential import compare_e3l1_pair, infer_xy_scale
 from .duke import (
@@ -52,9 +53,11 @@ __all__ = [
     "PathwayResult",
     "RecipeError",
     "RecipeResult",
+    "SpatialAnalysisError",
     "SectorAllocation",
     "GAME_PROFILES",
     "apply_fragment_in_place",
+    "analyze_spatial",
     "attach_fragment",
     "build_composition_recipe",
     "build_first_puzzle_room",
@@ -79,6 +82,7 @@ __all__ = [
     "read_map",
     "read_duke_map",
     "run_eduke32_oracle",
+    "spatial_selection_context",
     "transform_fragment",
     "validate_build_ir",
     "write_map",

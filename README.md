@@ -34,6 +34,12 @@ python -m bloodmap design-fingerprint maps/blood/E1M1.MAP --sectors 12,13 \
 python -m bloodmap design-index maps/blood -o work/blood.design-index.json
 python -m bloodmap design-search work/blood.design-index.json \
   --motif repeated-bays --limit 5
+python -m bloodmap analyze-space maps/blood/E1M1.MAP --sectors 12,13 \
+  -o work/E1M1.spatial.json
+python -m bloodmap design-index maps/duke3d --include-spatial \
+  -o work/duke.spatial-index.json
+python -m bloodmap design-search work/duke.spatial-index.json \
+  --region-kind mechanism_region --limit 5
 ```
 
 Cross-game conversion requires an explicit fidelity policy:
@@ -103,6 +109,7 @@ python -m unittest discover -s tests -v
 
 - [Architecture and invariants](docs/architecture.md)
 - [Design Understanding and grounded retrieval](docs/architecture.md#design-understanding)
+- [Multi-view spatial understanding](docs/spatial-understanding.md)
 - [Shared BuildIR contract](docs/build-ir.md)
 - [Duke3D v7 format support](docs/duke3d.md)
 - [Cross-game normalization and conversion](docs/conversion.md)

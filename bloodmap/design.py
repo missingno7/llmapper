@@ -28,14 +28,36 @@ def _metric(value: Any, *, basis: str = "derived", confidence: str = "measured")
 
 
 def _polygon(build: BuildIR, sector_id: int) -> list[tuple[int, int]]:
+    """Return all loop points flattened for legacy callers.
+
+    Area-aware consumers must use :func:`_polygon_loops`: a Build sector can
+    contain an outer loop and one or more inner loops.
+    """
+    return [point for loop in _polygon_loops(build, sector_id) for point in loop]
+
+
+def _polygon_loops(build: BuildIR, sector_id: int) -> list[list[tuple[int, int]]]:
     fields = build.sectors[sector_id]["fields"]
     first, count = int(fields["wall_ptr"]), int(fields["wall_count"])
     if first < 0 or count < 3 or first + count > len(build.walls):
         raise DesignUnderstandingError(f"sector:{sector_id} has invalid wall ownership")
-    return [
-        (int(build.walls[index]["fields"]["x"]), int(build.walls[index]["fields"]["y"]))
-        for index in range(first, first + count)
-    ]
+    allowed, remaining = set(range(first, first + count)), set(range(first, first + count))
+    loops: list[list[tuple[int, int]]] = []
+    while remaining:
+        root, current, visited = min(remaining), min(remaining), set()
+        points: list[tuple[int, int]] = []
+        while current not in visited:
+            if current not in allowed:
+                raise DesignUnderstandingError(f"sector:{sector_id} wall loop leaves owning range")
+            visited.add(current)
+            remaining.discard(current)
+            wall = build.walls[current]["fields"]
+            points.append((int(wall["x"]), int(wall["y"])))
+            current = int(wall["point2"])
+        if current != root or len(points) < 3:
+            raise DesignUnderstandingError(f"sector:{sector_id} has an invalid wall loop")
+        loops.append(points)
+    return loops
 
 
 def _area(points: list[tuple[int, int]]) -> float:
@@ -44,6 +66,14 @@ def _area(points: list[tuple[int, int]]) -> float:
         - points[(index + 1) % len(points)][0] * points[index][1]
         for index in range(len(points))
     )) / 2.0
+
+
+def _signed_area(points: list[tuple[int, int]]) -> float:
+    return sum(
+        points[index][0] * points[(index + 1) % len(points)][1]
+        - points[(index + 1) % len(points)][0] * points[index][1]
+        for index in range(len(points))
+    ) / 2.0
 
 
 def _components(graph: dict[int, set[int]]) -> list[set[int]]:
@@ -140,8 +170,9 @@ def design_fingerprint(build: BuildIR, sector_ids: Iterable[int] | None = None) 
     connector_widths: list[float] = []
     connector_refs: list[str] = []
     for sector_id in sorted(selected):
-        points = _polygon(build, sector_id)
-        area = _area(points)
+        loops = _polygon_loops(build, sector_id)
+        points = [point for loop in loops for point in loop]
+        area = abs(sum(_signed_area(loop) for loop in loops))
         fields = build.sectors[sector_id]["fields"]
         areas[sector_id] = area
         ceiling_z, floor_z = int(fields["ceiling_z"]), int(fields["floor_z"])
@@ -151,7 +182,7 @@ def design_fingerprint(build: BuildIR, sector_ids: Iterable[int] | None = None) 
         min_x, max_x = min(point[0] for point in points), max(point[0] for point in points)
         min_y, max_y = min(point[1] for point in points), max(point[1] for point in points)
         centroids[sector_id] = ((min_x + max_x) / 2, (min_y + max_y) / 2)
-        shape_signatures[(len(points), round((max_x - min_x) / max(1.0, max_y - min_y), 2), round(area / 1_000_000))] += 1
+        shape_signatures[(len(points), len(loops), round((max_x - min_x) / max(1.0, max_y - min_y), 2), round(area / 1_000_000))] += 1
         for wall_id in range(int(fields["wall_ptr"]), int(fields["wall_ptr"]) + int(fields["wall_count"])):
             wall = build.walls[wall_id]["fields"]
             next_sector = int(wall["next_sector"])
