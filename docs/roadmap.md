@@ -128,6 +128,13 @@ not partition the level or assert a canonical room model. Renderer-derived views
 stateful traversal, fine region retrieval/ranking, and playtester feedback remain
 future gates.
 
+The Experience Atlas / persistent workspace foundation is implemented at Level
+0: replayable static route, transition, visibility-candidate, and progression
+probes; separately declared world state and player knowledge; an append-only
+evidence ledger; design decision/episode records; and contextual LevelSlice
+precedents. Level-1 movement/state simulation, engine-derived visual perception,
+and autonomous playtesting remain intentionally separate future gates.
+
 Deliverables:
 
 - indexed corpus observations for object types, channels, commands, keys, and

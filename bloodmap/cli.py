@@ -20,6 +20,11 @@ from .differential import compare_e3l1_pair
 from .duke import DukeMapError, encode_duke_map, read_duke_map, write_duke_map
 from .design import DesignUnderstandingError, design_fingerprint
 from .spatial import SpatialAnalysisError, analyze_spatial
+from .experience import probe_progression, probe_route, probe_transition, probe_visibility
+from .workspace import (
+    append_decision, append_episode, append_evidence, initialize_project,
+    make_level_slice, source_identity, store_level_slice,
+)
 from .e3l11 import E3L11ConversionError, convert_e3l11_to_blood
 from .duke_semantics import analyze_duke_mechanisms
 from .format import BloodMapError, SIGNATURE, encode_map, locate_offset, read_map, write_map
@@ -394,6 +399,93 @@ def cmd_analyze_space(args: argparse.Namespace) -> int:
     analysis["map"] = str(args.map)
     analysis["detected_game"] = game
     _write_text(args.output, _json(analysis))
+    return 0
+
+
+def _optional_json(value: str | None) -> dict[str, Any] | None:
+    if value is None:
+        return None
+    parsed = json.loads(value)
+    if not isinstance(parsed, dict):
+        raise ValueError("JSON option must be an object")
+    return parsed
+
+
+def cmd_probe_route(args: argparse.Namespace) -> int:
+    _game, build = _read_design_build(args.map)
+    result = probe_route(
+        build, args.from_sector, args.to_sector,
+        world_state=_optional_json(args.world_state), player_knowledge=_optional_json(args.knowledge),
+    )
+    result["map"] = str(args.map)
+    _write_text(args.output, _json(result))
+    return 0
+
+
+def cmd_probe_transition(args: argparse.Namespace) -> int:
+    _game, build = _read_design_build(args.map)
+    result = probe_transition(build, args.from_sector, args.to_sector, world_state=_optional_json(args.world_state))
+    result["map"] = str(args.map)
+    _write_text(args.output, _json(result))
+    return 0
+
+
+def cmd_probe_visibility(args: argparse.Namespace) -> int:
+    _game, build = _read_design_build(args.map)
+    result = probe_visibility(build, args.from_sector, args.target_sector, world_state=_optional_json(args.world_state))
+    result["map"] = str(args.map)
+    _write_text(args.output, _json(result))
+    return 0
+
+
+def cmd_probe_progression(args: argparse.Namespace) -> int:
+    _game, build = _read_design_build(args.map)
+    result = probe_progression(build, world_state=_optional_json(args.world_state))
+    result["map"] = str(args.map)
+    _write_text(args.output, _json(result))
+    return 0
+
+
+def cmd_project_init(args: argparse.Namespace) -> int:
+    brief = Path(args.brief_file).read_text(encoding="utf-8") if args.brief_file else args.brief
+    _write_text(args.output, _json(initialize_project(args.directory, name=args.name, brief=brief or "")))
+    return 0
+
+
+def cmd_project_evidence(args: argparse.Namespace) -> int:
+    entry = append_evidence(args.project, {
+        "id": args.id, "concept": args.concept, "status": args.status, "claim": args.claim,
+        "evidence": json.loads(args.evidence), "unknowns": args.unknown,
+    })
+    _write_text(args.output, _json(entry))
+    return 0
+
+
+def cmd_project_decision(args: argparse.Namespace) -> int:
+    entry = append_decision(
+        args.project, intent=args.intent, decision=args.decision, expected=args.expected,
+        evidence=json.loads(args.evidence), status=args.status,
+    )
+    _write_text(args.output, _json(entry))
+    return 0
+
+
+def cmd_project_episode(args: argparse.Namespace) -> int:
+    entry = append_episode(
+        args.project, intent=args.intent, expected=args.expected,
+        observed=json.loads(args.observed), correction=args.correction,
+    )
+    _write_text(args.output, _json(entry))
+    return 0
+
+
+def cmd_project_slice(args: argparse.Namespace) -> int:
+    game, build = _read_design_build(args.map)
+    sample = make_level_slice(
+        build, _parse_id_set(args.sectors), source=source_identity(args.map, game=game),
+    )
+    result = store_level_slice(args.project, sample, sample_id=args.id)
+    _write_text(args.output, _json(result))
     return 0
 
 
@@ -874,6 +966,41 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--sectors", help="optional comma-separated sector IDs/ranges")
     p.add_argument("-o", "--output", help="write JSON; defaults to stdout")
     p.set_defaults(func=cmd_analyze_space)
+    p = sub.add_parser("probe-route", help="run a bounded Level-0 route/access probe")
+    p.add_argument("map"); p.add_argument("--from-sector", type=int, required=True); p.add_argument("--to-sector", type=int, required=True)
+    p.add_argument("--world-state", help="inline JSON world state, e.g. {\"opened_portals\":[\"portal:12\"]}")
+    p.add_argument("--knowledge", help="inline JSON player knowledge")
+    p.add_argument("-o", "--output"); p.set_defaults(func=cmd_probe_route)
+    p = sub.add_parser("probe-transition", help="compare a bounded adjacent Level-0 experience transition")
+    p.add_argument("map"); p.add_argument("--from-sector", type=int, required=True); p.add_argument("--to-sector", type=int, required=True)
+    p.add_argument("--world-state", help="inline JSON world state")
+    p.add_argument("-o", "--output"); p.set_defaults(func=cmd_probe_transition)
+    p = sub.add_parser("probe-visibility", help="probe direct-portal visibility along a bounded Level-0 route")
+    p.add_argument("map"); p.add_argument("--from-sector", type=int, required=True); p.add_argument("--target-sector", type=int, required=True)
+    p.add_argument("--world-state", help="inline JSON world state")
+    p.add_argument("-o", "--output"); p.set_defaults(func=cmd_probe_visibility)
+    p = sub.add_parser("probe-progression", help="summarize static accessibility and state-change candidates")
+    p.add_argument("map"); p.add_argument("--world-state", help="inline JSON world state")
+    p.add_argument("-o", "--output"); p.set_defaults(func=cmd_probe_progression)
+    p = sub.add_parser("project-init", help="create a non-destructive persistent level-design workspace")
+    p.add_argument("directory"); p.add_argument("--name", required=True); p.add_argument("--brief", default="")
+    p.add_argument("--brief-file", help="read the initial brief from UTF-8 text")
+    p.add_argument("-o", "--output"); p.set_defaults(func=cmd_project_init)
+    p = sub.add_parser("project-evidence", help="append an evidence-backed semantic claim to a project ledger")
+    p.add_argument("project"); p.add_argument("--concept", required=True); p.add_argument("--claim", required=True)
+    p.add_argument("--status", choices=("verified", "heuristic", "disputed", "superseded", "rejected"), default="heuristic")
+    p.add_argument("--evidence", default="[]", help="inline JSON evidence list"); p.add_argument("--unknown", action="append", default=[]); p.add_argument("--id")
+    p.add_argument("-o", "--output"); p.set_defaults(func=cmd_project_evidence)
+    p = sub.add_parser("project-decision", help="append a design intent/decision/expected-result record")
+    p.add_argument("project"); p.add_argument("--intent", required=True); p.add_argument("--decision", required=True); p.add_argument("--expected", required=True)
+    p.add_argument("--evidence", default="[]", help="inline JSON evidence list"); p.add_argument("--status", default="proposed")
+    p.add_argument("-o", "--output"); p.set_defaults(func=cmd_project_decision)
+    p = sub.add_parser("project-episode", help="append an observed design episode and optional correction")
+    p.add_argument("project"); p.add_argument("--intent", required=True); p.add_argument("--expected", required=True); p.add_argument("--observed", required=True, help="inline JSON probe/observation result")
+    p.add_argument("--correction"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_project_episode)
+    p = sub.add_parser("project-slice", help="store a contextual source-backed LevelSlice precedent")
+    p.add_argument("project"); p.add_argument("map"); p.add_argument("--sectors", required=True); p.add_argument("--id")
+    p.add_argument("-o", "--output"); p.set_defaults(func=cmd_project_slice)
     p = sub.add_parser("design-index", help="index Blood and Duke3D maps by design fingerprint")
     p.add_argument("directory")
     p.add_argument("--include-spatial", action="store_true", help="also index overlapping spatial hypotheses and mechanism memberships")

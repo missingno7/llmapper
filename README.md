@@ -40,6 +40,9 @@ python -m bloodmap design-index maps/duke3d --include-spatial \
   -o work/duke.spatial-index.json
 python -m bloodmap design-search work/duke.spatial-index.json \
   --region-kind mechanism_region --limit 5
+python -m bloodmap probe-route maps/blood/E1M1.MAP \
+  --from-sector 22 --to-sector 0 -o work/E1M1-route.json
+python -m bloodmap project-init projects/crypt --name "Monastery crypt"
 ```
 
 Cross-game conversion requires an explicit fidelity policy:
@@ -110,6 +113,7 @@ python -m unittest discover -s tests -v
 - [Architecture and invariants](docs/architecture.md)
 - [Design Understanding and grounded retrieval](docs/architecture.md#design-understanding)
 - [Multi-view spatial understanding](docs/spatial-understanding.md)
+- [Experience Atlas and persistent level projects](docs/experience-atlas.md)
 - [Shared BuildIR contract](docs/build-ir.md)
 - [Duke3D v7 format support](docs/duke3d.md)
 - [Cross-game normalization and conversion](docs/conversion.md)

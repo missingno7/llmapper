@@ -12,7 +12,14 @@ from .construction import (
 )
 from .conversion import ConversionError, GAME_PROFILES, convert_build_ir, convert_shade, native_scale
 from .design import DesignUnderstandingError, design_fingerprint
+from .experience import (
+    ExperienceProbeError, probe_progression, probe_route, probe_transition, probe_visibility,
+)
 from .spatial import SpatialAnalysisError, analyze_spatial, spatial_selection_context
+from .workspace import (
+    WorkspaceError, append_decision, append_episode, append_evidence, initialize_project,
+    make_level_slice, store_level_slice,
+)
 from .designs import DesignedLevel, build_first_puzzle_room
 from .differential import compare_e3l1_pair, infer_xy_scale
 from .duke import (
@@ -39,6 +46,7 @@ __all__ = [
     "ConstructionError",
     "ConversionError",
     "DesignUnderstandingError",
+    "ExperienceProbeError",
     "DestinationMap",
     "DesignedLevel",
     "DiskMap",
@@ -54,11 +62,15 @@ __all__ = [
     "RecipeError",
     "RecipeResult",
     "SpatialAnalysisError",
+    "WorkspaceError",
     "SectorAllocation",
     "GAME_PROFILES",
     "apply_fragment_in_place",
     "analyze_spatial",
     "attach_fragment",
+    "append_decision",
+    "append_episode",
+    "append_evidence",
     "build_composition_recipe",
     "build_first_puzzle_room",
     "compare_e3l1_pair",
@@ -73,16 +85,23 @@ __all__ = [
     "find_layout_conflicts",
     "insert_fragment",
     "infer_xy_scale",
+    "initialize_project",
     "new_level",
     "observe_level",
     "native_scale",
     "parse_map",
     "parse_duke_map",
     "portal_profiles",
+    "probe_progression",
+    "probe_route",
+    "probe_transition",
+    "probe_visibility",
     "read_map",
     "read_duke_map",
     "run_eduke32_oracle",
     "spatial_selection_context",
+    "make_level_slice",
+    "store_level_slice",
     "transform_fragment",
     "validate_build_ir",
     "write_map",

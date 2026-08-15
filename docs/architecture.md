@@ -52,6 +52,14 @@ views. It does not create `level.rooms`. Instead it returns explicitly derived,
 overlapping region hypotheses and selection context. See
 [spatial-understanding.md](spatial-understanding.md).
 
+`bloodmap.experience` adds bounded Level-0 probes over those views. It models a
+declared `WorldState` separately from `PlayerKnowledge`, reports routes,
+transitions, direct-portal visibility candidates, and static progression, and
+never claims renderer-accurate perception. `bloodmap.workspace` persists the
+brief, decisions, evidence claims, LevelSlice precedents, and observed design
+episodes needed to reproduce an agent's work. See
+[experience-atlas.md](experience-atlas.md).
+
 ## Native disk models
 
 `DiskMap` mirrors Blood v7, including encryption, CRC, packed extended records,

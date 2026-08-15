@@ -1,0 +1,41 @@
+{
+  "$schema": "bloodmap.experience-atlas-demonstration",
+  "schema_version": 1,
+  "model": "Level-0 static graph/traversal and direct-portal visibility candidates; no renderer or dynamic mechanism simulation.",
+  "probes": [
+    {
+      "source": {"game": "blood", "map": "E1M1.MAP"},
+      "kind": "route",
+      "from": "sector:22",
+      "to": "sector:0",
+      "path": ["sector:22", "sector:59", "sector:120", "sector:64", "sector:150", "sector:0"],
+      "step_count": 5,
+      "world_state": {"opened_portals": [], "activated_mechanisms": []},
+      "knowledge_effect": "The probe records traversed sectors as seen but does not claim that nearby gates or landmarks were understood."
+    },
+    {
+      "source": {"game": "blood", "map": "E1M1.MAP"},
+      "kind": "visibility",
+      "from": "sector:22",
+      "target": "sector:0",
+      "route_step_count": 5,
+      "first_direct_portal_candidate_step": 4,
+      "route_fraction": 0.8,
+      "interpretation_boundary": "This means a direct shared-portal candidate appears late on the static route; it is not a rendered line-of-sight proof."
+    },
+    {
+      "source": {"game": "duke3d", "map": "E1L1.MAP"},
+      "kind": "route",
+      "from": "sector:306",
+      "to": "sector:0",
+      "path": ["sector:306", "sector:268", "sector:269", "sector:256", "sector:304", "sector:305", "sector:180", "sector:0"],
+      "step_count": 7,
+      "interpretation_boundary": "The route is a reproducible Level-0 graph path, not a claim about optimal human navigation or gameplay pacing."
+    }
+  ],
+  "workspace_contract": {
+    "evidence_states": ["verified", "heuristic", "disputed", "superseded", "rejected"],
+    "persistent_records": ["brief", "plan", "decisions", "evidence", "LevelSlices", "probe episodes"],
+    "artifact_boundary": "The MAP remains compiled output from authoring operations/recipes; derived memories never overwrite native map truth."
+  }
+}

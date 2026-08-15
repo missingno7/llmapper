@@ -15,7 +15,7 @@ engine installations.
 | Duke native DiskMap roundtrip | 41 / 41 byte-exact |
 | Duke BuildIR roundtrip | 41 / 41 byte-exact |
 | Structural hard errors | 0 across both corpora |
-| Unit/corpus/mutation/composition/conversion/design tests | 80 / 80 pass |
+| Unit/corpus/mutation/composition/conversion/design/experience tests | 84 / 84 pass |
 | E3L1 -> Blood geometry conversion in NBlood | pass |
 | DNE3L1 -> Duke geometry conversion in EDuke32 | pass |
 | E3L11 -> Blood playable-profile conversion in NBlood | pass |
@@ -66,6 +66,16 @@ The final spatial-index pass fingerprints 43 Blood maps and 39 Duke3D maps
 entries). It records 10,069 overlapping Blood hypotheses and 12,715 Duke3D
 hypotheses across the five views; these are retrieval candidates, never a count
 of canonical rooms.
+
+## Experience Atlas and persistent workspace
+
+Level-0 Experience Atlas probes now return replayable static routes, adjacency
+transitions, direct-portal visibility candidates, and progression/state-change
+candidates. Declared world state and player knowledge are separate records. The
+project workspace persists briefs, revisable plans, intent/decision/expected
+records, append-only evidence states, contextual LevelSlices, and observed design
+episodes; the MAP remains a compiled artifact. Original-map probe examples are
+recorded in [experience_atlas_examples.json](experience_atlas_examples.json).
 
 ## Shared BuildIR
 
