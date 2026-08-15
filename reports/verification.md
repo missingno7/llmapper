@@ -15,7 +15,7 @@ engine installations.
 | Duke native DiskMap roundtrip | 41 / 41 byte-exact |
 | Duke BuildIR roundtrip | 41 / 41 byte-exact |
 | Structural hard errors | 0 across both corpora |
-| Unit/corpus/mutation/composition/conversion tests | 73 / 73 pass |
+| Unit/corpus/mutation/composition/conversion tests | 74 / 74 pass |
 | E3L1 -> Blood geometry conversion in NBlood | pass |
 | DNE3L1 -> Duke geometry conversion in EDuke32 | pass |
 | E3L11 -> Blood playable-profile conversion in NBlood | pass |
@@ -73,14 +73,15 @@ lighting as approximate, and gameplay fidelity as unsupported.
 These are load/startup proofs, not claims that triggers, combat, secrets, sounds,
 or progression were translated.
 
-The source-specific E3L11 profile produces 253 sectors, 1,600 walls, and 219
-sprites. Structural validation reports zero errors and zero warnings. The result
-contains ten Z-motion sectors, five rotating sectors, one sliding sector, four
-teleporter sectors, twenty paired water links, keys and switches, weapons,
-inventory, enemies, and an exit on channel 4. A configured-open static graph
-reaches the exit from the player start. Candidate and DNE3L1 baseline both entered
-the NBlood game loop and remained healthy for five seconds under
-`r14378-fbc5e1186`.
+The E3L11 regression profile produces 253 sectors, 1,600 walls, and 225 sprites.
+Structural validation reports zero errors and zero warnings. The result contains
+ten Z-motion sectors, five rotating sectors, one sliding sector, four teleporter
+sectors, twenty paired water links, keys and switches, weapons, inventory,
+enemies, thirty-two switchable XSECTOR lights, fourteen ambient light flickers,
+six impact-triggered gib walls, six linked hidden exploders, and an exit on channel
+4. A configured-open static graph reaches the exit from the player start. Candidate
+and DNE3L1 baseline both entered the NBlood game loop and remained healthy for five
+seconds under `r14378-fbc5e1186`.
 
 This proves initialization and basic structural progression only. Manual
 completion, combat balance, material curation, and action-level checks for every
@@ -111,8 +112,10 @@ screenshots stay under ignored local directories.
   are not claimed.
 - Blood historical v6 files are not corpus-verified.
 - Generic geometry conversion does not preserve native gameplay mechanisms; the
-  E3L11 source-specific profile covers a documented subset.
-- Sound, secrets, spawn conditions, complex lights/destruction, and exact combat
-  balance need more evidence and abstractions.
+  semantic gameplay profile covers a documented subset and keeps E3L11 as its
+  principal integration regression.
+- Sound, secrets, spawn conditions, persistent Duke light states, quake/camera
+  choreography, complex destruction, and exact combat balance need more evidence
+  and abstractions.
 - Original accepted oddities remain warnings: Duke E2L6 portal ownership, Blood
   E3M5 non-reciprocal portal association, and Blood E6M7's two-wall sector.

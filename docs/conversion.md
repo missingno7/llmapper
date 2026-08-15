@@ -68,9 +68,10 @@ not established.
 
 ## Playable E3L11 vertical slice
 
-`convert-e3l11` is the first source-specific gameplay profile layered above the
-conservative generic policies. It proves a complete lowering path without treating
-unrelated Duke and Blood tag numbers as equivalent.
+`convert-e3l11` is the first gameplay profile layered above the conservative
+generic policies. E3L11 is its regression board, not an object-index recipe:
+controller groups, rotating-sector MasterSwitch channels, water pairs, crack-wall
+attachment, and linked effects are recovered from the source map's relationships.
 
 The converter preserves E3L11's 253-sector/1,600-wall topology at the measured 3:2
 scale and creates native Blood behavior records for:
@@ -79,6 +80,10 @@ scale and creates native Blood behavior records for:
 - one two-marker sliding door and five axis-marker rotating bridges;
 - twenty upper/lower water pairs and two bidirectional teleporter pairs;
 - nine floor-panning conveyors and six enter-trigger touchplates;
+- thirty-two switchable light sectors as Blood XSECTOR light pulses, plus fourteen
+  autonomous flicker sectors as visual approximations;
+- six damage-triggered CRACK wall groups as Blood `kWallGib` architecture linked
+  to six hidden Blood exploders;
 - keyed and ordinary switches on allocated user channels, plus a normal exit on
   Blood's reserved channel 4.
 
@@ -87,16 +92,21 @@ substitutions. Each one is classified in the report: a Duke RPG becomes a Blood
 napalm launcher, while a Battlelord becoming Cerberus is recorded as a balance
 approximation.
 
-Materials are selected only from tiles already used as surfaces in the local Blood
-corpus. The matcher compares ART dimensions, palette colour moments, luminance
-histograms, and a small spatial thumbnail; the five exact differential mappings
-still take precedence. Water interfaces use a corpus-backed Blood water-surface
-tile. This is a coherent first pass, not final art direction.
+Materials are selected only from tiles already used as the *same surface role* in
+the local Blood corpus. Ceiling, floor, and wall candidate families are matched
+separately using ART dimensions, palette colour moments, luminance histograms, and
+a small spatial thumbnail; known/manual differential mappings still take
+precedence. Water interfaces use a corpus-backed Blood water-surface tile. This is
+a coherent first pass, not final art direction.
 
 Conversion fails if water endpoints are unpaired, structural validation fails, or
 the exit is absent from a static reachability graph containing configured-open
-portals, water links, and teleporters. Unsupported lighting, explosions, quake
-debris, and demo-camera effectors remain listed rather than silently discarded.
+portals, water links, and teleporters. The report distinguishes faithful
+conversion, semantic approximation, visual-only approximation, and unsupported
+mechanisms. CRACK/SE13 chains and switchable lights are now represented;
+earthquake, door-linked lighting, quake debris, and demo-camera choreography
+remain listed rather than silently discarded. See
+[Duke/Blood mechanism correspondences](duke-blood-mechanisms.md).
 Local game data and generated maps stay ignored and are never redistributed.
 
 Every successful conversion report states structural validity and separately

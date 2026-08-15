@@ -3,13 +3,13 @@
   "schema_version": 1,
   "source": "Duke3D E3L11.MAP (local ignored corpus)",
   "target": "Blood v7",
-  "profile": "playable-e3l11",
+  "profile": "playable-duke-to-blood (E3L11 regression target)",
   "output": {
-    "sha256": "28f9eeed9ec282884741bd4604a0d90b1a866d5fc57d53972570c2af7afe7bd0",
-    "size": 86081,
+    "sha256": "13e313d7031c8a0e1c633133945e58169497c841b0d3d45407458c2df8aa355b",
+    "size": 89225,
     "sectors": 253,
     "walls": 1600,
-    "sprites": 219,
+    "sprites": 225,
     "validation_errors": 0,
     "validation_warnings": 0
   },
@@ -23,9 +23,13 @@
     "teleporter": 4,
     "water_marker": 40,
     "conveyor": 9,
-    "touchplate": 6
+    "touchplate": 6,
+    "switchable_light_pulse": 32,
+    "ambient_light_flicker": 14,
+    "destructible_wall": 6,
+    "linked_explosion": 6
   },
-  "unsupported_trigger_channels": [127, 130, 139, 143, 154, 155, 159, 160, 161],
+  "unsupported_trigger_channels": [139, 159, 160, 161],
   "static_progression": {
     "start_sector": 139,
     "reachable_sectors": 225,
@@ -42,8 +46,8 @@
   },
   "limitations": [
     "Manual completion and combat balance are not yet certified.",
-    "Nine trigger channels associated with unsupported lighting, explosion, or choreography effectors are intentionally reported as dangling.",
-    "Lighting, explosion, quake, camera, locator, respawn, and master-switch choreography remains unsupported.",
+    "Four trigger channels associated with earthquake, door-light, and camera choreography remain intentionally dangling.",
+    "CRACK/SE13 chains are native impact-triggered Blood gib walls plus linked hidden explosions; switchable lighting is an XSECTOR pulse approximation.",
     "Material and entity substitutions are explicit approximations where no exact equivalent exists."
   ]
 }

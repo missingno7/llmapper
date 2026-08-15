@@ -27,14 +27,17 @@ Status: initial foundation complete.
 - explicit geometry-only, conservative semantic, and fail-closed strict policies;
 - bidirectional outputs that reparse, validate, and initialize in NBlood/EDuke32;
 - machine-readable fidelity reports with unsupported mechanisms called out.
-- source-specific E3L11 playable lowering for doors, lifts, rotating/sliding
-  sectors, water, teleporters, conveyors, switches, keys, exit, and population;
-- ART-driven material matching constrained to actual Blood map surfaces.
+- E3L11-regressed semantic lowering for doors, lifts, rotating/sliding sectors,
+  water, teleporters, conveyors, switches, keys, exit, population, lighting, and
+  CRACK/SE13 destruction chains;
+- ART-driven material matching constrained to role-equivalent Blood map surfaces;
+- source-backed Duke mechanism inventories and a corpus query command, rather than
+  hardcoded E3L11 controller indices.
 
 Next gates:
 
 - broaden hand-converted-map evidence beyond one pair;
-- broaden global ART similarity into context-aware material-role profiles;
+- broaden role-aware ART similarity into material-family and neighborhood profiles;
 - add palette, translucency, and sprite-size normalization;
 - model common concepts such as doors, lifts, switches, keys, exits, secrets, and
   spawn conditions above each game's native controller graph;

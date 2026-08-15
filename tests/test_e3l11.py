@@ -36,6 +36,7 @@ class E3L11PlayableConversionTests(unittest.TestCase):
         self.assertEqual(sprite_types[9], 20)
         self.assertEqual(sprite_types[10], 20)
         self.assertEqual(sprite_types[8], 4)
+        self.assertEqual(sprite_types[459], 6)  # hidden exploders linked to CRACK1..4 groups
         self.assertEqual(sprite_types[41], 2)
         self.assertGreater(sprite_types[201] + sprite_types[202], 40)
         exits = [sprite for sprite in reparsed.sprites if sprite.extra and sprite.extra.tx_id == 4]
@@ -50,6 +51,13 @@ class E3L11PlayableConversionTests(unittest.TestCase):
         self.assertTrue(all(count == 2 for count in report["mechanisms"]["water_link_ids"].values()))
         self.assertNotIn(31, report["mechanisms"]["unsupported_sector_effector_lotags"])
         self.assertNotIn(32, report["mechanisms"]["unsupported_sector_effector_lotags"])
+        self.assertEqual(report["mechanisms"]["counts"]["destructible-wall"], 6)
+        self.assertEqual(report["mechanisms"]["counts"]["linked-explosion"], 6)
+        self.assertEqual(report["mechanisms"]["counts"]["switchable-light-pulse"], 32)
+        self.assertEqual(report["mechanisms"]["channel_audit"]["dangling_user_transmit_channels"], [139, 159, 160, 161])
+        gib_walls = [wall for wall in reparsed.walls if wall.type == 511]
+        self.assertEqual(len(gib_walls), 6)
+        self.assertTrue(all(wall.extra and wall.extra.trigger_vector for wall in gib_walls))
 
 
 if __name__ == "__main__":

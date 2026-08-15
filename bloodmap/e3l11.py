@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from collections import Counter, defaultdict
+from math import hypot
 from pathlib import Path
 from typing import Any
 
@@ -10,6 +11,7 @@ from .construction import LevelBuilder, portal_profiles
 from .composition import _sector_surface_z
 from .conversion import DUKE_TO_BLOOD_MATERIAL_EXACT, _scale, convert_build_ir, native_scale
 from .duke import DukeDiskMap
+from .duke_semantics import CRACK_TILES, analyze_duke_mechanisms
 from .format import read_map
 
 
@@ -80,15 +82,24 @@ def _neighbors(duke: DukeDiskMap, sector_id: int) -> list[int]:
     })
 
 
-def _surface_candidates(blood_maps: Path) -> set[int]:
-    result: set[int] = set()
+def _surface_candidates(blood_maps: Path) -> dict[str, set[int]]:
+    """Corpus-backed candidates separated by authored surface role.
+
+    A ceiling light or a floor material may be close in raw ART feature space to
+    a wall texture, but that is normally a worse conversion.  Keep each role's
+    candidate family distinct before doing the visual match.
+    """
+    result: dict[str, set[int]] = {"ceiling": set(), "floor": set(), "wall": set()}
     for path in sorted(blood_maps.glob("*.MAP")):
         disk = read_map(path)
-        result.update(sector.ceiling_picnum for sector in disk.sectors)
-        result.update(sector.floor_picnum for sector in disk.sectors)
-        result.update(wall.picnum for wall in disk.walls)
-        result.update(wall.over_picnum for wall in disk.walls if wall.over_picnum)
-    return {value for value in result if 0 < value < 4096}
+        result["ceiling"].update(sector.ceiling_picnum for sector in disk.sectors)
+        result["floor"].update(sector.floor_picnum for sector in disk.sectors)
+        result["wall"].update(wall.picnum for wall in disk.walls)
+        result["wall"].update(wall.over_picnum for wall in disk.walls if wall.over_picnum)
+    return {
+        role: {value for value in candidates if 0 < value < 4096}
+        for role, candidates in result.items()
+    }
 
 
 def _apply_materials(
@@ -100,46 +111,44 @@ def _apply_materials(
     blood_maps: Path | None,
 ) -> dict[str, Any]:
     source_tiles = {
-        sector.ceiling_picnum for sector in duke.sectors
-    } | {
-        sector.floor_picnum for sector in duke.sectors
-    } | {
-        wall.picnum for wall in duke.walls
-    } | {
-        wall.over_picnum for wall in duke.walls if wall.over_picnum
+        "ceiling": {sector.ceiling_picnum for sector in duke.sectors},
+        "floor": {sector.floor_picnum for sector in duke.sectors},
+        "wall": {wall.picnum for wall in duke.walls} | {wall.over_picnum for wall in duke.walls if wall.over_picnum},
     }
-    matches: dict[int, dict[str, float | int]] = {}
+    matches: dict[str, dict[int, dict[str, float | int]]] = {role: {} for role in source_tiles}
     engine = "role-default"
     warning = None
     if duke_art and blood_art and blood_maps:
         try:
-            matches = nearest_art_tiles(
-                source_tiles,
-                _surface_candidates(blood_maps),
-                source_art=duke_art,
-                target_art=blood_art,
-                source_palette=blood_art / "xmapedit" / "palettes" / "import" / "DUKE3D.PAL",
-                target_palette=blood_art / "xmapedit" / "palettes" / "import" / "BLOOD.PAL",
-            )
-            engine = "ART palette/spatial nearest-neighbour over tiles used as Blood map surfaces"
+            candidates = _surface_candidates(blood_maps)
+            for role, source in source_tiles.items():
+                matches[role] = nearest_art_tiles(
+                    source,
+                    candidates[role],
+                    source_art=duke_art,
+                    target_art=blood_art,
+                    source_palette=blood_art / "xmapedit" / "palettes" / "import" / "DUKE3D.PAL",
+                    target_palette=blood_art / "xmapedit" / "palettes" / "import" / "BLOOD.PAL",
+                )
+            engine = "role-aware ART palette/spatial nearest-neighbour over corpus ceiling, floor, and wall families"
         except (ArtError, OSError, ValueError) as exc:
             warning = str(exc)
     decisions: Counter[str] = Counter()
 
-    def material(tile: int, fallback: int) -> int:
+    def material(tile: int, fallback: int, role: str) -> int:
         if tile in DUKE_TO_BLOOD_MATERIAL_EXACT:
-            decisions["exact-differential"] += 1
+            decisions["known/manual-mapping"] += 1
             return DUKE_TO_BLOOD_MATERIAL_EXACT[tile]
-        if tile in matches:
-            decisions["art-nearest"] += 1
-            return int(matches[tile]["blood_tile"])
-        decisions["role-default"] += 1
+        if tile in matches[role]:
+            decisions["semantic+visual-match"] += 1
+            return int(matches[role][tile]["blood_tile"])
+        decisions["unmapped-role-default"] += 1
         return fallback
 
     for index, source in enumerate(duke.sectors):
         target = builder.level.sectors[index]["fields"]
-        target["ceiling_picnum"] = material(source.ceiling_picnum, 385)
-        target["floor_picnum"] = material(source.floor_picnum, 292)
+        target["ceiling_picnum"] = material(source.ceiling_picnum, 385, "ceiling")
+        target["floor_picnum"] = material(source.floor_picnum, 292, "floor")
         if (source.lotag & 0x3FFF) == 1:
             target["floor_picnum"] = 2915
             decisions["water-surface"] += 1
@@ -148,23 +157,26 @@ def _apply_materials(
             decisions["water-surface"] += 1
     for index, source in enumerate(duke.walls):
         target = builder.level.walls[index]["fields"]
-        target["picnum"] = material(source.picnum, 180)
-        target["over_picnum"] = material(source.over_picnum, 180) if source.over_picnum else 0
+        target["picnum"] = material(source.picnum, 180, "wall")
+        target["over_picnum"] = material(source.over_picnum, 180, "wall") if source.over_picnum else 0
     tile_matches = {
-        str(tile): (
-            {"blood_tile": DUKE_TO_BLOOD_MATERIAL_EXACT[tile], "classification": "exact-differential"}
-            if tile in DUKE_TO_BLOOD_MATERIAL_EXACT else
-            ({**matches[tile], "classification": "art-nearest"} if tile in matches else
-             {"blood_tile": None, "classification": "role-default"})
-        )
-        for tile in sorted(source_tiles)
+        role: {
+            str(tile): (
+                {"blood_tile": DUKE_TO_BLOOD_MATERIAL_EXACT[tile], "classification": "known/manual-mapping"}
+                if tile in DUKE_TO_BLOOD_MATERIAL_EXACT else
+                ({**matches[role][tile], "classification": "semantic+visual-match"} if tile in matches[role] else
+                 {"blood_tile": None, "classification": "unmapped"})
+            )
+            for tile in sorted(tiles)
+        }
+        for role, tiles in source_tiles.items()
     }
     return {
         "classification": "approximation",
         "engine": engine,
         "decisions": dict(sorted(decisions.items())),
-        "unique_source_tiles": len(source_tiles),
-        "matched_tiles": len(matches),
+        "unique_source_tiles": len(set().union(*source_tiles.values())),
+        "matched_tiles": sum(len(value) for value in matches.values()),
         "tile_matches": tile_matches,
         "warning": warning,
     }
@@ -190,6 +202,48 @@ def _scaled_position(builder: LevelBuilder, source: Any, scale: Any) -> tuple[in
     ceiling = _sector_surface_z(builder.level, source.sector, x, y, "ceiling")
     floor = _sector_surface_z(builder.level, source.sector, x, y, "floor")
     return x, y, max(ceiling, min(floor, z))
+
+
+def _crack_wall_target(duke: DukeDiskMap, source: Any, *, maximum_distance: float = 8.0) -> int | None:
+    """Resolve a wall-aligned Duke crack to the wall it damages.
+
+    CRACK sprites sit on the affected wall at runtime.  Projection onto the
+    containing sector's wall segments is portable across board ordering and is
+    intentionally conservative: an imprecise decorative crack is reported,
+    not converted into a potentially wrong breakable wall.
+    """
+    sector = duke.sectors[source.sector]
+    candidates: list[tuple[float, int]] = []
+    for wall_id in range(sector.wall_ptr, sector.wall_ptr + sector.wall_count):
+        start = duke.walls[wall_id]
+        end = duke.walls[start.point2]
+        dx, dy = end.x - start.x, end.y - start.y
+        length2 = dx * dx + dy * dy
+        if not length2:
+            continue
+        ratio = max(0.0, min(1.0, ((source.x - start.x) * dx + (source.y - start.y) * dy) / length2))
+        distance = hypot(source.x - (start.x + ratio * dx), source.y - (start.y + ratio * dy))
+        candidates.append((distance, wall_id))
+    if not candidates:
+        return None
+    distance, wall_id = min(candidates)
+    return wall_id if distance <= maximum_distance else None
+
+
+def _rotation_activation_tag(duke: DukeDiskMap, sectors: set[int]) -> int | None:
+    """Find the common Duke MasterSwitch group governing a rotating assembly.
+
+    Duke ST30 sectors point at their SE0 controller through a sector-local
+    sprite index.  The player's activation is normally mediated by MasterSwitch
+    sprites placed in each member sector.  Recover their common lotag instead
+    of using an authored map's channel number.
+    """
+    tags = {
+        sprite.lotag
+        for sprite in duke.sprites
+        if sprite.picnum == 8 and sprite.sector in sectors and sprite.lotag
+    }
+    return next(iter(tags)) if len(tags) == 1 else None
 
 
 def _static_progression(disk: Any) -> dict[str, Any]:
@@ -265,13 +319,6 @@ def convert_e3l11_to_blood(
     blood_art: str | Path | None = None,
     blood_maps: str | Path | None = None,
 ) -> tuple[Any, dict[str, Any]]:
-    if (
-        len(duke.sectors) != 253 or len(duke.walls) != 1600 or len(duke.sprites) != 512
-        or duke.header["start_sector"] != 139
-    ):
-        raise E3L11ConversionError(
-            "playable-e3l11 is intentionally source-specific; expected the known 253-sector/1600-wall/512-sprite E3L11 board"
-        )
     scale = native_scale("duke3d", "blood")
     geometry, _base_report = convert_build_ir(duke.to_build_ir(), "blood", policy="geometry-only")
     builder = LevelBuilder(geometry.to_level_ir())
@@ -392,6 +439,10 @@ def convert_e3l11_to_blood(
 
     # Duke ST30/SE0 rotates 256 Build-angle units about the matching SE1 pivot.
     pivots = {sprite.hitag: sprite for sprite in duke.sprites if sprite.picnum == 1 and sprite.lotag == 1}
+    rotation_groups: dict[int, set[int]] = defaultdict(set)
+    for sprite in duke.sprites:
+        if sprite.picnum == 1 and sprite.lotag == 0 and (duke.sectors[sprite.sector].lotag & 0x3FFF) == 30:
+            rotation_groups[sprite.hitag].add(sprite.sector)
     for source_id, sprite in enumerate(duke.sprites):
         if sprite.picnum != 1 or sprite.lotag != 0 or (duke.sectors[sprite.sector].lotag & 0x3FFF) != 30:
             continue
@@ -406,13 +457,17 @@ def convert_e3l11_to_blood(
             x=_scale(pivot.x, scale), y=_scale(pivot.y, scale), z=_scale(pivot.z, scale),
             type=5, angle=256 if sprite.pal else -256,
         )
-        fields = motion_fields(
-            sector_id, marker_0=marker, trigger_push=0, rx_id=_channel(49),
-            busy_time_a=32, busy_time_b=32,
-        )
+        activation_tag = _rotation_activation_tag(duke, rotation_groups[sprite.hitag])
+        fields = motion_fields(sector_id, marker_0=marker, busy_time_a=32, busy_time_b=32)
+        if activation_tag is not None:
+            fields.update(trigger_push=0, rx_id=_channel(activation_tag))
         builder.set_behavior("sector", sector_id, **fields)
         mechanism_counts["rotate-bridge"] += 1
-        mechanism_records.append({"source_sector": sector_id, "source_effector": source_id, "blood_type": 617, "kind": "rotate-bridge"})
+        mechanism_records.append({
+            "source_sector": sector_id, "source_effector": source_id, "blood_type": 617,
+            "kind": "rotate-bridge", "classification": "faithfully-convertible" if activation_tag is not None else "semantically-approximated",
+            "activation_tag": activation_tag,
+        })
 
     # Duke SE7 represents both water links and ordinary teleports. Classify the
     # complete pair first: only an ST1/ST2 pair is a Blood upper/lower link.
@@ -479,6 +534,87 @@ def convert_e3l11_to_blood(
         mechanism_counts["touchplate"] += 1
         mechanism_records.append({"source_sprite": source_id, "source_sector": sprite.sector, "kind": "touchplate", "channel": _channel(sprite.lotag)})
 
+    # Duke SE12 switches a tagged group of sectors between their authored dark
+    # and bright states.  Blood's XSECTOR lighting effect is a native animated
+    # shade operation, not a Duke shade-controller emulation.  It provides a
+    # deterministic pulse on the same tag channel; the report calls out that
+    # this is an approximation rather than claiming identical persistent shade.
+    for source_id, sprite in enumerate(duke.sprites):
+        if sprite.picnum != 1 or sprite.lotag != 12 or not sprite.hitag:
+            continue
+        builder.set_behavior(
+            "sector", sprite.sector,
+            rx_id=_channel(sprite.hitag), command=3,
+            busy_time_a=18, busy_time_b=18, interruptable=1,
+            amplitude=16, shade_frequency=18, shade_wave=1,
+            shade_floor=1, shade_ceiling=1, shade_walls=1,
+        )
+        mechanism_counts["switchable-light-pulse"] += 1
+        mechanism_records.append({
+            "source_effector": source_id, "source_sector": sprite.sector,
+            "kind": "switchable-light-pulse", "classification": "semantically-approximated",
+            "channel": _channel(sprite.hitag), "blood": "XSECTOR lighting busy wave",
+        })
+
+    # Duke SE3/SE4 are autonomous random light controllers.  Blood offers the
+    # equivalent class of continuous sector-light wave, though not Duke's PRNG
+    # sequence.  They are deliberately marked visual-only in the report.
+    for source_id, sprite in enumerate(duke.sprites):
+        if sprite.picnum != 1 or sprite.lotag not in {3, 4}:
+            continue
+        builder.set_behavior(
+            "sector", sprite.sector,
+            shade_always=1, amplitude=12, shade_frequency=12, shade_wave=1,
+            shade_floor=1, shade_ceiling=1, shade_walls=1,
+        )
+        mechanism_counts["ambient-light-flicker"] += 1
+        mechanism_records.append({
+            "source_effector": source_id, "source_sector": sprite.sector,
+            "kind": "ambient-light-flicker", "classification": "visual-only-approximation",
+            "blood": "XSECTOR continuous lighting wave",
+        })
+
+    # In EDuke32, CRACK1..4 accept qualifying damage, then signal same-hitag
+    # SE13 effectors.  Blood's kWallGib is itself impact-triggered and removes
+    # blocking/hitscan state; its TX channel drives a hidden Blood exploder.
+    # This preserves the meaningful chain: impact -> open passage -> explosion.
+    explosive_tags = {
+        sprite.hitag for sprite in duke.sprites
+        if sprite.picnum == 1 and sprite.lotag == 13 and sprite.hitag
+    }
+    for source_id, sprite in enumerate(duke.sprites):
+        if sprite.picnum not in CRACK_TILES or sprite.hitag not in explosive_tags:
+            continue
+        wall_id = _crack_wall_target(duke, sprite)
+        if wall_id is None:
+            mechanism_records.append({
+                "source_sprite": source_id, "kind": "destructible-wall",
+                "classification": "unsupported", "reason": "no unique containing-sector wall within 8 Duke units",
+            })
+            continue
+        channel = _channel(sprite.hitag)
+        wall = builder.level.walls[wall_id]["fields"]
+        wall["type"] = 511  # Blood kWallGib
+        wall["cstat"] |= 65  # initially block movement and hitscan; kWallGib clears both on impact
+        builder.set_behavior(
+            "wall", wall_id, state=0, data=12, tx_id=channel, command=3,
+            trigger_on=1, trigger_vector=1,
+        )
+        x, y, z = _scaled_position(builder, sprite, scale)
+        explosive = builder.add_sprite(
+            sector=sprite.sector, x=x, y=y, z=z, type=459, picnum=908,
+            status=4, angle=sprite.angle, cstat=0, x_repeat=4, y_repeat=4,
+        )
+        builder.set_behavior("sprite", explosive, rx_id=channel)
+        mechanism_counts["destructible-wall"] += 1
+        mechanism_counts["linked-explosion"] += 1
+        mechanism_records.append({
+            "source_sprite": source_id, "source_wall": wall_id, "target_wall": wall_id,
+            "target_exploder": explosive, "link": sprite.hitag,
+            "kind": "destructible-wall", "classification": "semantically-approximated",
+            "graph": "impact -> kWallGib open -> TX -> hidden exploder",
+        })
+
     entity_counts: Counter[str] = Counter()
     entity_records: list[dict[str, Any]] = []
     omitted: Counter[int] = Counter()
@@ -544,16 +680,18 @@ def convert_e3l11_to_blood(
     if not progression["all_exits_reachable"]:
         raise E3L11ConversionError("converted map has no statically reachable Blood exit")
 
+    semantic_inventory = analyze_duke_mechanisms(duke)
+    lowered_effectors = {0, 1, 3, 4, 7, 12, 13, 15, 24, 31, 32}
     unsupported_effectors = Counter(
         sprite.lotag for sprite in duke.sprites
-        if sprite.picnum == 1 and sprite.lotag not in {0, 1, 7, 15, 24, 31, 32}
+        if sprite.picnum == 1 and sprite.lotag not in lowered_effectors
     )
     report = {
         "$schema": "llmapper.playable-conversion-report",
         "schema_version": 1,
         "source_game": "duke3d",
         "target_game": "blood",
-        "profile": "playable-e3l11",
+        "profile": "playable-duke-to-blood (E3L11 regression target)",
         "geometry": {
             "coordinate_scale": "3:2", "topology_preserved": True,
             "sectors": len(duke.sectors), "walls": len(duke.walls),
@@ -563,6 +701,7 @@ def convert_e3l11_to_blood(
             "classification": "mixed-equivalent-and-approximate",
             "counts": dict(sorted(mechanism_counts.items())),
             "records": mechanism_records,
+            "semantic_inventory": semantic_inventory,
             "water_link_ids": dict(sorted(water_links.items())),
             "channel_audit": channel_audit,
             "unsupported_sector_effector_lotags": dict(sorted(unsupported_effectors.items())),
@@ -578,9 +717,11 @@ def convert_e3l11_to_blood(
             "guaranteed_exit_channel": 4,
             "static_progression": progression,
             "limitations": [
-                "Duke lighting, explosion, quake, demo-camera, locator, respawn, and master-switch choreography is reported but not synthesized.",
+                "Switchable lighting uses a Blood XSECTOR pulse rather than Duke's persistent shade state; random lighting uses a continuous visual approximation.",
+                "CRACK1..4 groups linked to SE13 become impact-triggered Blood gib walls and hidden exploders; unresolvable crack placement remains unsupported.",
+                "Earthquake, door-linked lighting, demo-camera, locator, respawn, and master-switch choreography remains explicitly unsupported or visual-only.",
                 "Enemy and inventory substitutions preserve combat roles, not exact balance.",
-                "ART nearest-neighbour materials are visual approximations and should receive an artistic review pass.",
+                "ART material selection is role-aware but still needs an artistic review pass for material-family consistency.",
             ],
         },
     }

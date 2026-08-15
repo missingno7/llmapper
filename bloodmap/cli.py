@@ -19,6 +19,7 @@ from .designs import build_first_puzzle_room
 from .differential import compare_e3l1_pair
 from .duke import DukeMapError, encode_duke_map, read_duke_map, write_duke_map
 from .e3l11 import E3L11ConversionError, convert_e3l11_to_blood
+from .duke_semantics import analyze_duke_mechanisms
 from .format import BloodMapError, SIGNATURE, encode_map, locate_offset, read_map, write_map
 from .fragment import (
     FragmentError, LevelFragment, apply_fragment_in_place,
@@ -98,6 +99,30 @@ def cmd_corpus(args: argparse.Namespace) -> int:
     inventory = _inventory(directory)
     _write_text(args.output, _json(inventory))
     return 1 if any(item["status"] != "ok" for item in inventory["files"]) else 0
+
+
+def cmd_duke_mechanisms(args: argparse.Namespace) -> int:
+    """Build a reusable evidence corpus for classic Duke mechanisms."""
+    directory = Path(args.directory)
+    maps: list[dict[str, Any]] = []
+    aggregate: dict[str, int] = {}
+    for path in _map_files(directory):
+        try:
+            inventory = analyze_duke_mechanisms(read_duke_map(path))
+        except DukeMapError as exc:
+            maps.append({"map": path.name, "status": "error", "error": str(exc)})
+            continue
+        maps.append({"map": path.name, "status": "ok", "inventory": inventory})
+        for lotag, count in inventory["counts_by_effector_lotag"].items():
+            aggregate[lotag] = aggregate.get(lotag, 0) + count
+    _write_text(args.output, _json({
+        "$schema": "llmapper.duke-mechanism-corpus",
+        "schema_version": 1,
+        "directory": str(directory),
+        "maps": maps,
+        "aggregate_effector_lotags": dict(sorted(aggregate.items(), key=lambda item: int(item[0]))),
+    }))
+    return 0
 
 
 def cmd_dump(args: argparse.Namespace) -> int:
@@ -602,6 +627,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     p = sub.add_parser("corpus", help="inventory every file in a map directory")
     p.add_argument("directory"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_corpus)
+    p = sub.add_parser("duke-mechanisms", help="derive a semantic mechanism corpus from classic Duke3D MAPs")
+    p.add_argument("directory")
+    p.add_argument("-o", "--output", help="write JSON; defaults to stdout")
+    p.set_defaults(func=cmd_duke_mechanisms)
     p = sub.add_parser("dump", help="write canonical Level IR JSON")
     p.add_argument("map"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_dump)
     p = sub.add_parser("dump-build", help="write game-neutral BuildIR JSON for Blood or Duke3D")

@@ -48,9 +48,10 @@ controllers, and triggers. `semantic` additionally enables only the few mappings
 whose evidence and classification are explicit in the report. `strict` refuses a
 cross-game export while any asset or gameplay mechanism is unresolved.
 
-E3L11 also has a source-specific playable conversion profile. It uses the local
-Duke and Blood ART sets for surface-only visual matching, translates the gameplay
-population by role, and lowers supported Duke mechanisms to native Blood records:
+E3L11 is the principal regression board for the playable Duke-to-Blood conversion
+profile. It uses the local Duke and Blood ART sets for role-aware surface matching,
+translates the gameplay population by role, and lowers supported Duke mechanisms
+to native Blood records:
 
 ```text
 python -m bloodmap convert-e3l11 maps/duke3d/E3L11.MAP \
@@ -60,10 +61,10 @@ python -m bloodmap convert-e3l11 maps/duke3d/E3L11.MAP \
 ```
 
 The profile converts doors, lifts, rotating/sliding sectors, paired water links,
-teleporters, conveyors, touchplates, keyed switches, weapons, inventory, enemies,
-and the normal exit. Unsupported cinematic, lighting, and destruction effectors
-remain explicit in the report. This is a playable approximation, not a claim of
-exact game equivalence.
+teleporters, conveyors, touchplates, keyed switches, switchable/ambient lights,
+CRACK/SE13 breakable-wall explosion chains, weapons, inventory, enemies, and the
+normal exit. Unsupported choreography remains explicit in the report. This is a
+playable approximation, not a claim of exact game equivalence.
 
 Blood-specific authoring remains available through `LevelIR`:
 
