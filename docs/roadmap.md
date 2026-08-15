@@ -5,16 +5,39 @@ come before abstraction or generation. Milestones are capability gates, not date
 
 ## Baseline — verified binary foundation
 
-Status: complete for the supplied Blood v7 corpus.
+Status: complete for the supplied Blood v7 and Duke3D v7 corpora.
 
-- explicit v7 parser/writer, encryption, packed extras, and CRC;
-- lossless `DiskMap` and schema-versioned `LevelIR`;
-- byte-exact direct and IR corpus roundtrips;
+- explicit native parsers/writers, including Blood encryption, packed extras, and CRC;
+- lossless `DiskMap`, `DukeDiskMap`, `LevelIR`, and shared `BuildIR`;
+- byte-exact direct, native-IR, and shared-IR corpus roundtrips;
 - mutation tests and structural validation;
 - geometry/channel observations, statistics, SVG inspection;
 - safe translation and quarter-turn rotation.
 
 No later milestone may weaken these gates.
+
+## Cross-game foundation — normalized BuildIR and measured conversion
+
+Status: initial foundation complete.
+
+- shared game-neutral geometry, topology, slope, lighting, and player-start model;
+- native-lossless Blood and Duke adapters;
+- shared translation and quarter-turn rotation;
+- E3L1/DNE3L1 differential inference independent of object indices;
+- explicit geometry-only, conservative semantic, and fail-closed strict policies;
+- bidirectional outputs that reparse, validate, and initialize in NBlood/EDuke32;
+- machine-readable fidelity reports with unsupported mechanisms called out.
+
+Next gates:
+
+- broaden hand-converted-map evidence beyond one pair;
+- build context-aware material profiles from ART metadata and map usage;
+- add palette, translucency, and sprite-size normalization;
+- model common concepts such as doors, lifts, switches, keys, exits, secrets, and
+  spawn conditions above each game's native controller graph;
+- add deterministic behavior oracles for mapped mechanisms in both games;
+- introduce game-neutral room fragments only after semantic dependency closure is
+  as explicit as Blood `LevelFragment` closure.
 
 ## Milestone 1 — extraction and reference remapping
 

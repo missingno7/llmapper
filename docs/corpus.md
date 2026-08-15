@@ -1,48 +1,66 @@
 # Corpus policy and verification
 
-## Why the corpus is local
+## Local-only data
 
-The primary regression corpus consists of original Blood game maps. Those assets
-are useful evidence but remain proprietary. They are excluded from Git and must be
-obtained lawfully by each developer. The tooling has no runtime dependency on them.
+The regression corpora consist of proprietary Blood and Duke3D maps. They are
+excluded from Git and must be obtained lawfully by each developer. The package has
+no runtime dependency on them.
 
-By default tests look in the repository's `maps/` directory. Set
-`BLOODMAP_CORPUS` to use another directory. Corpus-dependent tests skip cleanly
-when no `.MAP` files are available; low-level format tests continue to run.
-
-## Corpus gate
-
-A supported corpus is acceptable only when every map satisfies all of these:
-
-1. Signature, version, sizes, and CRC are recognized.
-2. Parsing consumes the complete file without hidden trailing content.
-3. `parse -> encode` is byte-identical.
-4. `parse -> LevelIR -> DiskMap -> encode` is byte-identical.
-5. Rebuilt bytes parse to a deeply equal DiskMap.
-6. Structural validation has zero hard errors.
-7. Any semantic warnings are investigated and documented.
-
-Run the gate with:
+Default layout:
 
 ```text
-python -m bloodmap roundtrip-all maps
+maps/blood/*.MAP
+maps/duke3d/*.MAP
+```
+
+Set `BLOODMAP_CORPUS` or `DUKEMAP_CORPUS` to override a location. Tests skip the
+corresponding corpus gate cleanly when no maps are available.
+
+## Native losslessness gate
+
+Every supported map must satisfy:
+
+1. version, sizes, and record counts are recognized;
+2. parsing consumes the defined file while deliberately preserving allowed tails;
+3. native disk parse/write is byte-identical;
+4. `BuildIR` native reconstruction is byte-identical;
+5. `BuildIR` JSON serialization and restoration are byte-identical;
+6. genuine mutations reach new output and reparse correctly;
+7. structural validation has zero hard errors;
+8. original-map warnings are investigated and documented.
+
+Blood additionally requires byte-exact reconstruction through `LevelIR`, including
+encryption, CRC, and all extended records.
+
+```text
+python -m bloodmap roundtrip-all maps/blood
+python -m bloodmap roundtrip-all maps/duke3d
 python -m unittest discover -s tests -v
 ```
 
-## Generated evidence
+The current local result is 44/44 Blood maps and 41/41 Duke3D maps.
+Derived, non-proprietary inventories are tracked in
+`reports/corpus_inventory.json` and `reports/duke3d_corpus_inventory.json`;
+`reports/corpus_statistics.json` retains the richer Blood semantic statistics.
 
-- `reports/corpus_inventory.json` records filename, size, SHA-256, version, counts,
-  and CRC without containing map bytes.
-- `reports/corpus_statistics.json` records aggregate structural/gameplay facts.
-- `reports/verification.md` summarizes the verified baseline and known warnings.
+## Cross-game evidence gate
 
-SVG renderings of original map geometry are treated as local diagnostic artifacts
-and ignored by Git.
+`maps/duke3d/E3L1.MAP` and `maps/blood/DNE3L1.MAP` form an independently authored
+conversion pair. `compare-e3l1` derives scale, exact geometry correspondences,
+topology agreement, Z residuals, shade regressions, material candidates, and
+mechanism inventories without assuming equal object indices.
 
-## Adding a supported variant
+Derived mappings are enabled only when their classification and support threshold
+are explicit. Context-dependent candidates remain evidence, not conversion rules.
 
-Do not generalize from a header byte alone. Add a legally usable fixture/corpus,
-trace the relevant XMAPEDIT and NBlood load/save paths, encode new knowledge in
-explicit parsing and packing code, add focused primitive tests, and then run every
-existing corpus gate. Unsupported variants must fail clearly rather than being
-guessed or normalized.
+```text
+python -m bloodmap compare-e3l1 --duke maps/duke3d/E3L1.MAP \
+  --blood maps/blood/DNE3L1.MAP -o work/e3l1-differential.json
+```
+
+## Adding a format or variant
+
+Do not generalize from a header byte alone. Add a legally usable fixture or local
+corpus, trace a primary engine/editor load and save path, encode the exact field
+layout, add mutation tests, and run every existing gate. Unsupported variants must
+fail clearly instead of being guessed or normalized.

@@ -187,10 +187,10 @@ python -m bloodmap pathway work/separated.MAP \
   --report work/pathway.json -o work/connected.MAP
 
 python -m bloodmap recipe recipes/e1m2-crossroads.json \
-  --source-dir maps --report work/mashup.json -o work/e1m2-crossroads.MAP
+  --source-dir maps/blood --report work/mashup.json -o work/e1m2-crossroads.MAP
 
 python -m bloodmap recipe recipes/e1m2-remix.json \
-  --source-dir maps --report work/remix.json -o work/e1m2-remix.MAP
+  --source-dir maps/blood --report work/remix.json -o work/e1m2-remix.MAP
 ```
 
 A deterministic independent-engine oracle now verifies that a decoupled wall-push

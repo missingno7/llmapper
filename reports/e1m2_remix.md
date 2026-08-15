@@ -2,7 +2,7 @@
 
 `recipes/e1m2-remix.json` is a replayable LevelIR-level restructuring of E1M2.
 It does not distribute original game data; building it requires the developer's
-local, legally obtained `E1M2.MAP` under `maps/`.
+local, legally obtained `E1M2.MAP` under `maps/blood/`.
 
 The design adds a new opening act assembled from four recognizable E1M2 rooms in
 a deliberately different order:
@@ -40,6 +40,6 @@ Build it locally:
 
 ```text
 python -m bloodmap recipe recipes/e1m2-remix.json \
-  --source-dir maps --report work/e1m2-remix-report.json \
+  --source-dir maps/blood --report work/e1m2-remix-report.json \
   -o work/e1m2-remix.MAP
 ```

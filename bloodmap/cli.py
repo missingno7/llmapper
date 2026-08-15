@@ -9,19 +9,24 @@ from pathlib import Path
 from typing import Any
 
 from .analysis import channel_graph, corpus_statistics, geometry_view, render_svg, validate_map
+from .build_ir import BuildIR
 from .composition import (
     CompositionError, attach_fragment, connect_portals, connect_with_pathway, insert_fragment,
 )
 from .construction import ConstructionError
+from .conversion import ConversionError, convert_build_ir
 from .designs import build_first_puzzle_room
-from .format import BloodMapError, encode_map, locate_offset, read_map, write_map
+from .differential import compare_e3l1_pair
+from .duke import DukeMapError, encode_duke_map, read_duke_map, write_duke_map
+from .format import BloodMapError, SIGNATURE, encode_map, locate_offset, read_map, write_map
 from .fragment import (
     FragmentError, LevelFragment, apply_fragment_in_place,
     extract_behavior_closed_fragment, extract_fragment,
 )
 from .model import LevelIR
 from .oracle import (
-    OracleError, run_nblood_action_oracle, run_nblood_behavior_oracle, run_nblood_oracle,
+    OracleError, run_eduke32_oracle, run_nblood_action_oracle, run_nblood_behavior_oracle,
+    run_nblood_oracle,
 )
 from .recipe import RecipeError, build_composition_recipe
 from .semantics import ObservationError
@@ -43,6 +48,19 @@ def _map_files(directory: Path) -> list[Path]:
     return sorted(path for path in directory.iterdir() if path.is_file() and path.suffix.lower() == ".map")
 
 
+def _game_for_path(path: str | Path) -> str:
+    prefix = Path(path).read_bytes()[:4]
+    if prefix == SIGNATURE:
+        return "blood"
+    if len(prefix) == 4 and int.from_bytes(prefix, "little", signed=True) == 7:
+        return "duke3d"
+    raise ValueError(f"cannot detect MAP game/format for {path}")
+
+
+def _read_build_ir(path: str | Path):
+    return read_map(path).to_build_ir() if _game_for_path(path) == "blood" else read_duke_map(path).to_build_ir()
+
+
 def _inventory(directory: Path) -> dict[str, Any]:
     files = []
     versions: dict[str, int] = {}
@@ -53,14 +71,17 @@ def _inventory(directory: Path) -> dict[str, Any]:
             "sha256": hashlib.sha256(data).hexdigest(),
         }
         try:
-            disk = read_map(path)
-            version = f"0x{disk.version:04x}"
+            game = _game_for_path(path)
+            disk = read_map(path) if game == "blood" else read_duke_map(path)
+            version = f"0x{disk.version:04x}" if game == "blood" else str(disk.version)
             versions[version] = versions.get(version, 0) + 1
             entry.update(
-                detected_format="Blood MAP", map_version=version,
+                detected_format=disk.format_name, game=game, map_version=version,
                 sectors=len(disk.sectors), walls=len(disk.walls), sprites=len(disk.sprites),
-                crc32=f"{disk.source_crc32:08x}", status="ok",
+                status="ok",
             )
+            if game == "blood":
+                entry["crc32"] = f"{disk.source_crc32:08x}"
         except Exception as exc:
             entry.update(detected_format="unknown", status="error", error=str(exc))
         files.append(entry)
@@ -92,12 +113,13 @@ def cmd_build(args: argparse.Namespace) -> int:
 
 
 def cmd_validate(args: argparse.Namespace) -> int:
-    disk = read_map(args.map)
-    diagnostics = validate_map(disk)
+    game = _game_for_path(args.map)
+    disk = read_map(args.map) if game == "blood" else read_duke_map(args.map)
+    diagnostics = validate_map(disk) if game == "blood" else disk.to_build_ir().validate()
     errors = sum(x.severity == "error" for x in diagnostics)
     warnings = sum(x.severity == "warning" for x in diagnostics)
     if args.json:
-        print(_json({"file": args.map, "errors": errors, "warnings": warnings,
+        print(_json({"file": args.map, "game": game, "errors": errors, "warnings": warnings,
                      "diagnostics": [x.__dict__ for x in diagnostics]}), end="")
     else:
         for item in diagnostics:
@@ -109,8 +131,9 @@ def cmd_validate(args: argparse.Namespace) -> int:
 def cmd_roundtrip(args: argparse.Namespace) -> int:
     path = Path(args.map)
     original = path.read_bytes()
-    disk = read_map(path)
-    rebuilt = encode_map(disk)
+    game = _game_for_path(path)
+    disk = read_map(path) if game == "blood" else read_duke_map(path)
+    rebuilt = encode_map(disk) if game == "blood" else encode_duke_map(disk)
     if rebuilt == original:
         print(f"PASS {path}: byte-exact ({len(original)} bytes)")
         if args.output:
@@ -120,7 +143,8 @@ def cmd_roundtrip(args: argparse.Namespace) -> int:
     offset = next((i for i in range(limit) if original[i] != rebuilt[i]), limit)
     a = original[offset] if offset < len(original) else None
     b = rebuilt[offset] if offset < len(rebuilt) else None
-    print(f"FAIL {path}: first mismatch at 0x{offset:08x}; original={a!r}, rebuilt={b!r}; {locate_offset(disk, offset)}")
+    location = locate_offset(disk, offset) if game == "blood" else "Duke v7 record stream"
+    print(f"FAIL {path}: first mismatch at 0x{offset:08x}; original={a!r}, rebuilt={b!r}; {location}")
     return 1
 
 
@@ -130,13 +154,15 @@ def cmd_roundtrip_all(args: argparse.Namespace) -> int:
     for path in _map_files(Path(args.directory)):
         try:
             original = path.read_bytes()
-            disk = read_map(path)
-            rebuilt = encode_map(disk)
-            ir_rebuilt = encode_map(disk.to_level_ir().to_disk_map())
-            diagnostics = validate_map(disk)
+            game = _game_for_path(path)
+            disk = read_map(path) if game == "blood" else read_duke_map(path)
+            encoder = encode_map if game == "blood" else encode_duke_map
+            rebuilt = encoder(disk)
+            ir_rebuilt = encoder(disk.to_build_ir().to_native_disk_map())
+            diagnostics = validate_map(disk) if game == "blood" else disk.to_build_ir().validate()
             errors = sum(x.severity == "error" for x in diagnostics)
             item = {
-                "filename": path.name, "parse": True, "byte_exact": original == rebuilt,
+                "filename": path.name, "game": game, "parse": True, "byte_exact": original == rebuilt,
                 "ir_byte_exact": original == ir_rebuilt, "validation_errors": errors,
                 "validation_warnings": sum(x.severity == "warning" for x in diagnostics),
             }
@@ -154,6 +180,66 @@ def cmd_roundtrip_all(args: argparse.Namespace) -> int:
     else:
         print(f"{summary['passed']}/{summary['maps']} maps passed parse, byte roundtrip, IR roundtrip, and validation")
     return 1 if failed else 0
+
+
+def cmd_dump_build_ir(args: argparse.Namespace) -> int:
+    _write_text(args.output, _json(_read_build_ir(args.map).to_dict()))
+    return 0
+
+
+def cmd_build_build_ir(args: argparse.Namespace) -> int:
+    build = BuildIR.from_dict(json.loads(Path(args.json).read_text(encoding="utf-8")))
+    disk = build.to_native_disk_map()
+    diagnostics = validate_map(disk) if build.source_game == "blood" else disk.to_build_ir().validate()
+    errors = [item for item in diagnostics if item.severity == "error"]
+    if errors:
+        raise ValueError(f"BuildIR output has {len(errors)} structural error(s); first: {errors[0].message}")
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    if build.source_game == "blood":
+        write_map(disk, args.output)
+        reparsed = read_map(args.output)
+    else:
+        write_duke_map(disk, args.output)
+        reparsed = read_duke_map(args.output)
+    if len(reparsed.sectors) != len(build.sectors) or len(reparsed.walls) != len(build.walls):
+        raise ValueError("written BuildIR output changed object counts during reparse")
+    reparsed_diagnostics = validate_map(reparsed) if build.source_game == "blood" else reparsed.to_build_ir().validate()
+    if any(item.severity == "error" for item in reparsed_diagnostics):
+        raise ValueError("written BuildIR output failed structural validation after reparse")
+    print(f"WROTE {args.output}: {build.source_game} BuildIR, reparsed and validated")
+    return 0
+
+
+def cmd_compare_pair(args: argparse.Namespace) -> int:
+    _write_text(args.output, _json(compare_e3l1_pair(args.duke, args.blood)))
+    return 0
+
+
+def cmd_convert(args: argparse.Namespace) -> int:
+    build = _read_build_ir(args.map)
+    disk, report = convert_build_ir(build, args.to, policy=args.policy)
+    target = "duke3d" if args.to in {"duke", "duke3d"} else "blood"
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    if target == "blood":
+        write_map(disk, args.output)
+        reparsed = read_map(args.output)
+        diagnostics = validate_map(reparsed)
+    else:
+        write_duke_map(disk, args.output)
+        reparsed = read_duke_map(args.output)
+        diagnostics = reparsed.to_build_ir().validate()
+    errors = [item for item in diagnostics if item.severity == "error"]
+    if errors:
+        raise ConversionError(f"written conversion failed reparse validation: {errors[0].code}")
+    payload = Path(args.output).read_bytes()
+    report["output"] = {
+        "path": str(args.output), "size": len(payload), "sha256": hashlib.sha256(payload).hexdigest(),
+        "counts": {"sectors": len(reparsed.sectors), "walls": len(reparsed.walls), "sprites": len(reparsed.sprites)},
+        "reparsed": True,
+    }
+    _write_text(args.report, _json(report))
+    print(f"WROTE {args.output}: {build.source_game}->{target} {args.policy}, reparsed and validated")
+    return 0
 
 
 def cmd_diff(args: argparse.Namespace) -> int:
@@ -399,6 +485,16 @@ def cmd_oracle_nblood_action(args: argparse.Namespace) -> int:
     return 0 if report["status"] == "pass" else 1
 
 
+def cmd_oracle_eduke32(args: argparse.Namespace) -> int:
+    report = run_eduke32_oracle(
+        args.map, eduke32=args.eduke32, game_dir=args.game_dir,
+        baseline=args.baseline, startup_timeout=args.startup_timeout,
+        grace_seconds=args.seconds, work_dir=args.work_dir,
+    )
+    _write_text(args.output, _json(report))
+    return 0 if report["status"] == "pass" else 1
+
+
 def cmd_attach(args: argparse.Namespace) -> int:
     destination = read_map(args.map).to_level_ir()
     fragment = LevelFragment.from_dict(json.loads(Path(args.fragment).read_text(encoding="utf-8")))
@@ -448,33 +544,41 @@ def cmd_oracle_nblood_behavior(args: argparse.Namespace) -> int:
 
 
 def cmd_transform(args: argparse.Namespace) -> int:
-    disk = read_map(args.map)
-    ir = disk.to_level_ir()
+    game = _game_for_path(args.map)
+    ir = _read_build_ir(args.map)
     if args.operation == "translate":
         ir.translate(args.x, args.y, args.z)
     elif args.operation == "rotate":
         ir.rotate_quarter_turns(args.turns, args.pivot_x, args.pivot_y)
-    transformed = ir.to_disk_map()
-    errors = [d for d in validate_map(transformed) if d.severity == "error"]
+    transformed = ir.to_native_disk_map()
+    errors = [
+        d for d in (validate_map(transformed) if game == "blood" else transformed.to_build_ir().validate())
+        if d.severity == "error"
+    ]
     if errors:
         raise BloodMapError(f"transformation produced {len(errors)} validation errors; first: {errors[0].message}")
-    write_map(transformed, args.output)
+    (write_map if game == "blood" else write_duke_map)(transformed, args.output)
     # Reparse is part of the command's contract.
-    reparsed = read_map(args.output)
-    if any(d.severity == "error" for d in validate_map(reparsed)):
+    reparsed = read_map(args.output) if game == "blood" else read_duke_map(args.output)
+    reparsed_diagnostics = validate_map(reparsed) if game == "blood" else reparsed.to_build_ir().validate()
+    if any(d.severity == "error" for d in reparsed_diagnostics):
         raise BloodMapError("written transformation failed reparse validation")
     print(f"WROTE {args.output}: {args.operation}, reparsed and validated")
     return 0
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="bloodmap", description="Lossless Blood MAP tooling")
+    parser = argparse.ArgumentParser(prog="llmapper", description="Lossless Blood and Duke3D Build MAP tooling")
     sub = parser.add_subparsers(dest="command", required=True)
 
     p = sub.add_parser("corpus", help="inventory every file in a map directory")
     p.add_argument("directory"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_corpus)
     p = sub.add_parser("dump", help="write canonical Level IR JSON")
     p.add_argument("map"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_dump)
+    p = sub.add_parser("dump-build", help="write game-neutral BuildIR JSON for Blood or Duke3D")
+    p.add_argument("map"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_dump_build_ir)
+    p = sub.add_parser("build-build", help="build a native MAP from game-neutral BuildIR JSON")
+    p.add_argument("json"); p.add_argument("-o", "--output", required=True); p.set_defaults(func=cmd_build_build_ir)
     p = sub.add_parser("build", help="build a MAP from Level IR JSON")
     p.add_argument("json"); p.add_argument("-o", "--output", required=True); p.set_defaults(func=cmd_build)
     p = sub.add_parser("validate", help="validate Build/Blood structure")
@@ -483,6 +587,18 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("map"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_roundtrip)
     p = sub.add_parser("roundtrip-all", help="test parsing, disk/IR roundtrips, and validation")
     p.add_argument("directory"); p.add_argument("--json", action="store_true"); p.set_defaults(func=cmd_roundtrip_all)
+    p = sub.add_parser("compare-e3l1", help="differentially analyze Duke E3L1 and Blood DNE3L1")
+    p.add_argument("--duke", default="maps/duke3d/E3L1.MAP")
+    p.add_argument("--blood", default="maps/blood/DNE3L1.MAP")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_compare_pair)
+    p = sub.add_parser("convert", help="convert Blood/Duke3D through BuildIR with an explicit fidelity policy")
+    p.add_argument("map")
+    p.add_argument("--to", choices=("blood", "duke", "duke3d"), required=True)
+    p.add_argument("--policy", choices=("strict", "semantic", "geometry-only"), default="geometry-only")
+    p.add_argument("--report", help="write the required conversion fidelity report")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_convert)
     p = sub.add_parser("diff", help="locate the first structural byte difference")
     p.add_argument("a"); p.add_argument("b"); p.set_defaults(func=cmd_diff)
     p = sub.add_parser("inspect", help="show a concise map or object observation")
@@ -583,6 +699,16 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--work-dir", help="preserve per-probe logs under this ignored directory")
     p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")
     p.set_defaults(func=cmd_oracle_nblood)
+    p = sub.add_parser("oracle-eduke32", help="run a bounded external EDuke32 MAP-load smoke test")
+    p.add_argument("map", help="candidate Duke3D v7 MAP")
+    p.add_argument("--baseline", help="known-good Duke3D MAP checked in the same environment")
+    p.add_argument("--eduke32", required=True, help="path to EDuke32 executable")
+    p.add_argument("--game-dir", required=True, help="path to local Duke3D game data")
+    p.add_argument("--startup-timeout", type=float, default=30.0)
+    p.add_argument("--seconds", type=float, default=3.0, help="healthy runtime after board load, 1..60")
+    p.add_argument("--work-dir", help="preserve per-probe logs under this ignored directory")
+    p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")
+    p.set_defaults(func=cmd_oracle_eduke32)
     p = sub.add_parser(
         "oracle-nblood-behavior",
         help="compare a synthetic trigger/Z-motion scenario before and after composition",
@@ -620,7 +746,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args = build_parser().parse_args(argv)
         return int(args.func(args))
-    except (BloodMapError, CompositionError, ConstructionError, FragmentError, ObservationError, OracleError, RecipeError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+    except (BloodMapError, CompositionError, ConstructionError, ConversionError, DukeMapError, FragmentError, ObservationError, OracleError, RecipeError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         print(f"bloodmap: error: {exc}", file=sys.stderr)
         return 2
 

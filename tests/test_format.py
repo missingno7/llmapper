@@ -18,7 +18,7 @@ from bloodmap.model import LevelIR
 from tests.helpers import synthetic_map
 
 
-MAPS = Path(os.environ.get("BLOODMAP_CORPUS", Path(__file__).resolve().parents[1] / "maps"))
+MAPS = Path(os.environ.get("BLOODMAP_CORPUS", Path(__file__).resolve().parents[1] / "maps" / "blood"))
 
 
 class PrimitiveTests(unittest.TestCase):

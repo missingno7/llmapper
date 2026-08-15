@@ -8,7 +8,7 @@ from bloodmap.analysis import channel_graph, geometry_view, validate_map
 from bloodmap.format import encode_map, parse_map, read_map
 
 
-MAPS = Path(os.environ.get("BLOODMAP_CORPUS", Path(__file__).resolve().parents[1] / "maps"))
+MAPS = Path(os.environ.get("BLOODMAP_CORPUS", Path(__file__).resolve().parents[1] / "maps" / "blood"))
 
 
 class CorpusTests(unittest.TestCase):
@@ -24,6 +24,7 @@ class CorpusTests(unittest.TestCase):
                 self.assertEqual(disk.version, 0x0700)
                 self.assertEqual(encode_map(disk), original)
                 self.assertEqual(encode_map(level.to_disk_map()), original)
+                self.assertEqual(encode_map(disk.to_build_ir().to_native_disk_map()), original)
                 reparsed = parse_map(encode_map(disk))
                 self.assertEqual(reparsed, disk)
                 self.assertFalse([d for d in validate_map(disk) if d.severity == "error"])

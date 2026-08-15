@@ -1,0 +1,42 @@
+{
+  "$schema": "llmapper.eduke32-oracle-report",
+  "schema_version": 1,
+  "status": "pass",
+  "engine_revisions": ["r10669-ec5824db8"],
+  "probes": {
+    "baseline": {
+      "status": "pass",
+      "identity": {
+        "filename": "E3L1.MAP",
+        "sha256": "31957af58e82855d318a82e99a6f4d9b915250bec53a86d8aead9992d89da1dd",
+        "size": 118478,
+        "counts": {"sectors": 345, "walls": 2334, "sprites": 681}
+      },
+      "engine_revision": "r10669-ec5824db8",
+      "markers": {"autoexec": true, "board_loaded": true, "game_data": true},
+      "fatal_indicators": [],
+      "startup_seconds": 1.265,
+      "grace_seconds": 3.0,
+      "stayed_alive_for_grace_period": true,
+      "terminated_by_harness": true,
+      "early_exit_code": null
+    },
+    "candidate": {
+      "status": "pass",
+      "identity": {
+        "filename": "DNE3L1-geometry-duke.MAP",
+        "sha256": "4968dd8b7eeed995de4350cbceead158ac8169eeb954331ea3513d99ead56a0b",
+        "size": 88234,
+        "counts": {"sectors": 346, "walls": 2324, "sprites": 0}
+      },
+      "engine_revision": "r10669-ec5824db8",
+      "markers": {"autoexec": true, "board_loaded": true, "game_data": true},
+      "fatal_indicators": [],
+      "startup_seconds": 0.937,
+      "grace_seconds": 3.0,
+      "stayed_alive_for_grace_period": true,
+      "terminated_by_harness": true,
+      "early_exit_code": null
+    }
+  }
+}

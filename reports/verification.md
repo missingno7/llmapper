@@ -1,148 +1,103 @@
 # Verification report
 
-Generated against the supplied `maps/` corpus.
+Verified locally on 2026-08-15 against ignored commercial corpora and independent
+engine installations.
+
+## Automated gates
 
 | Gate | Result |
 |---|---:|
-| Maps discovered | 43 |
-| Detected versions | 43 × Blood MAP `0x0700` |
-| Parse success | 43/43 |
-| Byte-exact DiskMap roundtrip | 43/43 |
-| Byte-exact LevelIR roundtrip | 43/43 |
-| Reparse success | 43/43 |
-| Hard validation success | 43/43 |
-| Unit/corpus/mutation/fragment/composition/semantic/oracle tests | 63/63 |
-| NBlood baseline load smoke | pass (6 seconds) |
-| NBlood composed-map load smoke | pass (6 seconds) |
-| NBlood real-map attached-room load smoke | pass (6 seconds) |
-| NBlood three-map mashup load smoke | pass (6 seconds) |
-| NBlood E1M2 reordered-room remix load smoke | pass (6 seconds) |
-| NBlood scratch puzzle-room load smoke | pass (6 seconds) |
-| NBlood scratch puzzle-room Switch A action | pass |
-| NBlood scratch puzzle-room Switch B action | pass (temporary alternate start) |
-| NBlood baseline trigger/Z-motion behavior | pass |
-| NBlood composed trigger/Z-motion behavior | pass |
+| Blood v7 maps | 44 / 44 pass |
+| Duke3D v7 maps | 41 / 41 pass |
+| Blood native DiskMap roundtrip | 44 / 44 byte-exact |
+| Blood LevelIR roundtrip | 44 / 44 byte-exact |
+| Blood BuildIR roundtrip | 44 / 44 byte-exact |
+| Duke native DiskMap roundtrip | 41 / 41 byte-exact |
+| Duke BuildIR roundtrip | 41 / 41 byte-exact |
+| Structural hard errors | 0 across both corpora |
+| Unit/corpus/mutation/composition/conversion tests | 72 / 72 pass |
+| E3L1 -> Blood geometry conversion in NBlood | pass |
+| DNE3L1 -> Duke geometry conversion in EDuke32 | pass |
 
-Corpus totals: 14,079 sectors, 113,261 walls, and 24,730 sprites across
-6,846,491 source bytes.
+Corpus totals:
 
-Implemented transformations:
+| Game | Sectors | Walls | Sprites | Bytes |
+|---|---:|---:|---:|---:|
+| Blood | 14,425 | 115,585 | 25,109 | 6,975,270 |
+| Duke3D | 14,680 | 98,503 | 28,224 | 4,982,218 |
 
-- whole-map translation in X/Y/Z, including player, geometry, sprites, absolute
-  sector motion Z values, and known XSPRITE target coordinates;
-- safe quarter-turn rotation around an explicit pivot, including known world-space
-  points and direction angles.
+The full test command was:
 
-Both transformations write through `LevelIR -> DiskMap`, then reparse and validate
-the produced MAP before reporting success.
+```text
+python -m unittest discover -s tests -v
+```
 
-Fragment verification:
+## Shared BuildIR
 
-- synthetic fixtures cover portal boundaries, cross-boundary triggers, markers,
-  sprite ownership/targets, stale redundant references, and multiple wall loops;
-- all 43 corpus maps exactly reproduce their original bytes after extracting and
-  reinserting representative first, middle, and last sectors;
-- fragment JSON carries compact maps for sector, wall, sprite, XSECTOR, XWALL, and
-  XSPRITE indices plus a canonical source-IR SHA-256.
+Both native models project player start, sectors, walls, sprites, topology, slopes,
+shade, palette, panning, repetition, and common tags into schema-versioned
+`llmapper.build-ir` JSON. Unchanged maps reconstruct exactly from that shared form.
+Translation and quarter-turn rotation write back through the same path for both
+games. Game-native data remains in a lossless adapter extension and is never
+treated as a cross-game semantic mapping by numeric coincidence.
 
-Composition verification:
+## E3L1/DNE3L1 differential
 
-- synthetic fixtures cover deterministic object and extended-record allocation,
-  user-channel collision failure/remapping, reserved and system channel policy,
-  repeated insertion, placement transforms, and explicit portal connection;
-- composed fixtures encode, reparse, and pass structural validation;
-- allocation and unresolved-dependency reports are JSON-serializable and stable.
-- automatic attachment fixtures cover straight and rotated room placement, repeated
-  copies with independent channel allocation, selected portal-dependency resolution,
-  blocked-wall policy, vertical-clearance failure, and CLI report generation.
-- the public CLI reproducibly attaches E1M1 sector 1 to E1M2 wall 138 with three
-  automatic quarter-turns, a -36864 Z offset, and 32768 units of slope-aware
-  endpoint clearance; allocation and dependency evidence is recorded in
-  `reports/attachment_fixture.json`.
-- gameplay closure follows trigger, marker, ownership, target, and burn-source
-  references without following geometry boundaries;
-- generated pathway fixtures cover separated rooms, unequal doorway widths,
-  routed centerlines, collision rejection, and a 6144-unit elevation change split
-  into three 2048-unit risers;
-- `recipes/e1m2-crossroads.json` composes E1M2, E1M3 sector 287, and E1M1 sector
-  112 through allocation-aware LevelIR operations. All six added sectors are
-  statically reachable from the preserved E1M2 player start.
-- `recipes/e1m2-remix.json` creates a new four-room E1M2 opening sequence with
-  three generated four-sector stairs and a transform-relative player start. All
-  16 added sectors and the original start sector are statically reachable.
+The measured Duke-to-Blood scale is 3:2, selected by 1,831 matching directed edge
+vectors versus 984 for the next candidate. At that scale the matcher finds 232
+unique exact sector correspondences, 1,665 exact wall correspondences, equal portal
+degree in 227 of the matched sectors, and 433 exact Z surfaces among 464 samples.
 
-LevelIR semantic verification:
+Ordinary matched wall shading follows `Blood = 2 * Duke` in 1,387 of 1,621 samples
+(85.56%); the fitted slope is 1.9876 with mean absolute error 2.81. Five globally
+unambiguous nonzero material mappings currently meet the minimum support rule. No
+entity map is inferred from proximity: the pair has only three unique exact-XY
+sprite matches.
 
-- attachment is exposed as a first-class `LevelIR.attach` operation;
-- whole-level observations index bounds, sectors, type/tile inventories, player
-  start, and TX/RX endpoints without reading binary structures;
-- focused observations report room geometry, connectors, contents, interactive
-  objects, relevant remote channel endpoints, and classified dependencies;
-- observations use stable `sector:`, `wall:`, and `sprite:` references and omit
-  packed/opaque serialization details.
+## Cross-game outputs
 
-Scratch-construction verification:
+Geometry-only conversion preserves sector/wall counts, index topology, portals,
+slopes, normalized coordinates and Z, player start, and supported common visual
+fields. It deliberately emits zero sprites and strips native mechanisms. Unknown
+assets use explicit target defaults. Reports classify geometry as normalized,
+lighting as approximate, and gameplay fidelity as unsupported.
 
-- empty-level and deterministic object/extended-record allocation are first-class
-  LevelIR operations;
-- invalid winding, self-intersecting polygons, invalid placement, and mismatched
-  portal endpoints fail closed;
-- the first custom puzzle uses four reciprocal connections, all 3072–4096 units
-  wide with 32768 units of configured-open clearance;
-- channels 100 and 101 each have exactly one push-switch transmitter and one
-  vertical-door receiver;
-- two consecutive builds are byte-identical and the result reparses with zero
-  errors or warnings.
-- independent idle/action captures pass for both switch transmitters; Switch B is
-  probed with a temporary start-only MAP so the authored progression stays intact.
+- Duke E3L1 -> Blood: 345 sectors, 2,334 walls, 0 sprites; reparses and validates.
+  Candidate and untouched DNE3L1 baseline both initialized and stayed healthy in
+  NBlood `r14378-fbc5e1186` with all markers and no fatal indicators.
+- Blood DNE3L1 -> Duke: 346 sectors, 2,324 walls, 0 sprites; reparses and validates.
+  Candidate and untouched E3L1 baseline both initialized and stayed healthy in
+  EDuke32 `r10669-ec5824db8` with all markers and no fatal indicators.
 
-Independent load-oracle verification:
+These are load/startup proofs, not claims that triggers, combat, secrets, sounds,
+or progression were translated.
 
-- untouched E1M2 and a deterministic E1M2 plus E1M1-sector-0 composition both
-  reached NBlood's initialized game loop and remained healthy for six seconds;
-- both probes ran in isolated directories with autoloads disabled and were
-  terminated by the bounded harness after their grace periods;
-- engine revision, hashes, counts, required markers, and fatal indicators are in
-  `reports/nblood_oracle.json`;
-- the real E1M1-room/E1M2 attachment also reached the initialized game loop and
-  remained healthy for six seconds; its independent result is recorded in
-  `reports/nblood_attachment_oracle.json`;
-- the E1M2/E1M3/E1M1 Crossroads recipe result reached the same initialized game
-  loop and remained healthy for six seconds; `reports/nblood_mashup_oracle.json`
-  records the baseline and candidate identities;
-- the reordered E1M2 remix also initialized and remained healthy for six seconds;
-  `reports/nblood_e1m2_remix_oracle.json` records its independent result;
-- this proves load/startup compatibility, not trigger or progression equivalence.
+## Existing Blood authoring gates
 
-Independent behavior-oracle verification:
+The prior Blood-specific gates remain green: behavior-closed extraction,
+same-source exact reinsertion, deterministic allocation and channel remapping,
+room copying/rotation/attachment, routed corridors, bounded stairs, recipe-driven
+mashups, the E1M2 room-order remix, and the scratch two-switch puzzle room.
+Independent NBlood load checks pass for the attachment, mashup, remix, and scratch
+room. The deterministic wall-trigger/channel/Z-motion behavior oracle and both
+scratch-room switch action probes also pass.
 
-- a synthetic decoupled wall-push XWALL sends command `On` over channel 100 to a
-  type-600 XSECTOR, moving its ceiling from -8192 to -4096;
-- the candidate extracts that mechanism and inserts it into a separate destination
-  through the public deterministic composition path;
-- both baseline and candidate retained one stable image hash across an idle control
-  interval and produced a different stable image hash only after input;
-- baseline and candidate hashes matched exactly in both states under NBlood
-  `r14378-fbc5e1186`;
-- map identities, allocations, action metadata, and derived view hashes are in
-  `reports/nblood_behavior_oracle.json`.
+## Source provenance
 
-Source cross-checks used the local upstream checkouts at XMAPEDIT `ea89fb1a9875`
-and NBlood `fbc5e11861a7`. They remain untracked development oracles; see
-`docs/reference-oracles.md`.
+- EDuke32 `ec5824db81817866f70da326d3811bb0f52b3517`
+- NBlood `fbc5e11861a74f4ec4fbf2b80cc3b06bb17696f3`
+- XMAPEDIT `ea89fb1a9875cd2764bd1eb8ab12b17de4f9916d`
 
-Semantic corpus warnings (not hard errors):
+The source checkouts, game data, engines, maps, generated binaries, logs, and
+screenshots stay under ignored local directories.
 
-- E3M5: two diagnostics for an original non-reciprocal portal association accepted
-  by Build;
-- E6M7: one diagnostic for an original two-wall degenerate sector accepted by Build.
+## Known boundaries
 
-Remaining scope boundaries:
-
-- historical v6 files are not in the supplied corpus and are not claimed as
-  regression-verified;
-- the final four bytes of XSPRITE are preserved as an opaque per-record tail because
-  NBlood explicitly skips the former runtime pointer slot;
-- composition now passes an independent engine load smoke and one deterministic
-  wall-trigger/channel/Z-motion scenario, but broader gameplay scenarios are still
-  required before arbitrary production use is claimed.
+- Duke support is classic MAP version 7; old v5/v6 and newer map-text/VX variants
+  are not claimed.
+- Blood historical v6 files are not corpus-verified.
+- Geometry conversion does not preserve native gameplay mechanisms.
+- Palette equivalence, translucency, ART dimensions, sound, weapons, enemy state,
+  keys, exits, secrets, and spawn conditions need more evidence and abstractions.
+- Original accepted oddities remain warnings: Duke E2L6 portal ownership, Blood
+  E3M5 non-reciprocal portal association, and Blood E6M7's two-wall sector.

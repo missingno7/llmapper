@@ -18,6 +18,7 @@ from .format import (
     encode_map, parse_map, read_map, write_map,
 )
 from .model import DiskMap, DiskObject, ExtraHeader, PackedExtra
+from .duke import read_duke_map
 
 
 class OracleError(RuntimeError):
@@ -53,6 +54,34 @@ bind "E" "gamefunc_Open"
 bind "F11" "screenshot"
 echo BLOODMAP_ORACLE_BOOTSTRAPPED
 """
+
+_EDUKE_CONFIG = """[Misc]
+Executions = 1
+Locale = "en"
+
+[Updates]
+CheckForUpdates = 0
+
+[Setup]
+ConfigVersion = 348
+ForceSetup = 0
+NoAutoLoad = 1
+SelectedGRP = "duke3d.grp"
+ModDir = "/"
+
+[Screen Setup]
+Polymer = 0
+ScreenBPP = 32
+ScreenHeight = 480
+ScreenMode = 0
+ScreenWidth = 640
+MaxRefreshFreq = 0
+"""
+
+_EDUKE_AUTOEXEC = """echo LLMAPPER_EDUKE_ORACLE_BEGIN
+echo LLMAPPER_EDUKE_ORACLE_BOOTSTRAPPED
+"""
+_EDUKE_REVISION_PATTERN = re.compile(r"\bEDuke32 ([^\r\n]+)")
 
 _REQUIRED_MARKERS = {
     "autoexec": "BLOODMAP_ORACLE_BOOTSTRAPPED",
@@ -97,6 +126,23 @@ def _map_identity(path: Path) -> dict[str, Any]:
             "walls": len(disk.walls),
             "sprites": len(disk.sprites),
         },
+    }
+
+
+def _duke_map_identity(path: Path) -> dict[str, Any]:
+    data = path.read_bytes()
+    disk = read_duke_map(path)
+    errors = [item for item in disk.to_build_ir().validate() if item.severity == "error"]
+    if errors:
+        first = errors[0]
+        raise OracleError(
+            f"{path} failed shared Build validation: {first.code} at {first.location}: {first.message}"
+        )
+    return {
+        "filename": path.name,
+        "sha256": hashlib.sha256(data).hexdigest(),
+        "size": len(data),
+        "counts": {"sectors": len(disk.sectors), "walls": len(disk.walls), "sprites": len(disk.sprites)},
     }
 
 
@@ -231,6 +277,151 @@ def run_nblood_oracle(
     if work_dir is not None:
         return execute(Path(work_dir).resolve())
     with tempfile.TemporaryDirectory(prefix="bloodmap-nblood-oracle-") as directory:
+        return execute(Path(directory))
+
+
+def _probe_eduke32_map(
+    map_path: Path,
+    *,
+    eduke32: Path,
+    game_dir: Path,
+    startup_timeout: float,
+    grace_seconds: float,
+    work_dir: Path,
+) -> dict[str, Any]:
+    identity = _duke_map_identity(map_path)
+    work_dir.mkdir(parents=True, exist_ok=True)
+    for name in (
+        "eduke32.log", "stdout.txt", "stderr.txt", "settings.cfg",
+        "llmapper.cfg", "oracle.cfg",  # oracle.cfg cleans up pre-v1.0 harness runs
+    ):
+        candidate = work_dir / name
+        if candidate.exists():
+            candidate.unlink()
+    shutil.copy2(map_path, work_dir / "oracle.MAP")
+    # Keep the engine config basename different from oracle.MAP. EDuke32 looks
+    # for a map-local ``oracle.cfg`` and would otherwise execute the INI file
+    # as console commands after loading the board.
+    (work_dir / "llmapper.cfg").write_text(_EDUKE_CONFIG, encoding="utf-8", newline="\n")
+    (work_dir / "autoexec.cfg").write_text(_EDUKE_AUTOEXEC, encoding="utf-8", newline="\n")
+    command = [
+        str(eduke32), "-usecwd", "-j", str(game_dir), "-cfg", "llmapper.cfg",
+        "-map", "oracle.MAP", "-nosetup",
+    ]
+    stdout_path, stderr_path = work_dir / "stdout.txt", work_dir / "stderr.txt"
+    stayed_alive, board_loaded = False, False
+    returncode: int | None = None
+    started = time.monotonic()
+    with stdout_path.open("wb") as stdout, stderr_path.open("wb") as stderr:
+        process = subprocess.Popen(
+            command, cwd=work_dir, stdout=stdout, stderr=stderr,
+            **_hidden_process_options(),
+        )
+        startup_deadline = started + startup_timeout
+        while time.monotonic() < startup_deadline and process.poll() is None:
+            log = (work_dir / "eduke32.log").read_text(encoding="utf-8", errors="replace") \
+                if (work_dir / "eduke32.log").exists() else ""
+            # Current EDuke32 revisions announce a command-line board as a
+            # "User Map" and then enter the game loop without emitting the
+            # older "Board loaded." message.
+            if "Board loaded." in log or "User Map: /oracle.MAP" in log:
+                board_loaded = True
+                break
+            time.sleep(0.1)
+        if board_loaded:
+            grace_deadline = time.monotonic() + grace_seconds
+            while time.monotonic() < grace_deadline and process.poll() is None:
+                time.sleep(min(0.1, max(0.0, grace_deadline - time.monotonic())))
+            stayed_alive = process.poll() is None
+        if process.poll() is None:
+            process.kill()
+        try:
+            returncode = process.wait(timeout=5)
+        except subprocess.TimeoutExpired as exc:
+            process.kill()
+            process.wait(timeout=5)
+            raise OracleError(f"EDuke32 process {process.pid} could not be reaped") from exc
+    log = (work_dir / "eduke32.log").read_text(encoding="utf-8", errors="replace") \
+        if (work_dir / "eduke32.log").exists() else ""
+    stderr_text = stderr_path.read_text(encoding="utf-8", errors="replace")
+    combined = log + "\n" + stderr_text
+    fatal = sorted(set(match.group(0) for match in _FATAL_PATTERN.finditer(combined)))
+    markers = {
+        "autoexec": "LLMAPPER_EDUKE_ORACLE_BOOTSTRAPPED" in combined,
+        "game_data": "Using duke3d.grp as main data file." in combined,
+        "board_loaded": board_loaded,
+    }
+    revision = _EDUKE_REVISION_PATTERN.search(combined)
+    passed = stayed_alive and all(markers.values()) and not fatal
+    result = {
+        "status": "pass" if passed else "fail",
+        "identity": identity,
+        "engine_revision": revision.group(1).strip() if revision else None,
+        "markers": markers,
+        "fatal_indicators": fatal,
+        "startup_seconds": time.monotonic() - started - (grace_seconds if stayed_alive else 0),
+        "grace_seconds": grace_seconds,
+        "stayed_alive_for_grace_period": stayed_alive,
+        "terminated_by_harness": stayed_alive,
+        "early_exit_code": None if stayed_alive else returncode,
+    }
+    if not passed:
+        result["failure_excerpt"] = [
+            line for line in combined.splitlines()
+            if "LLMAPPER_EDUKE" in line or "Board loaded" in line or "User Map:" in line
+            or _FATAL_PATTERN.search(line)
+        ][-30:]
+    return result
+
+
+def run_eduke32_oracle(
+    candidate: str | Path,
+    *,
+    eduke32: str | Path,
+    game_dir: str | Path,
+    baseline: str | Path | None = None,
+    startup_timeout: float = 30.0,
+    grace_seconds: float = 3.0,
+    work_dir: str | Path | None = None,
+) -> dict[str, Any]:
+    """Load Duke v7 MAPs in EDuke32 and require an initialized, healthy board."""
+    candidate_path, executable, game_path = Path(candidate).resolve(), Path(eduke32).resolve(), Path(game_dir).resolve()
+    baseline_path = Path(baseline).resolve() if baseline else None
+    if not candidate_path.is_file():
+        raise OracleError(f"candidate Duke MAP does not exist: {candidate_path}")
+    if not executable.is_file():
+        raise OracleError(f"EDuke32 executable does not exist: {executable}")
+    if not game_path.is_dir():
+        raise OracleError(f"Duke3D game-data directory does not exist: {game_path}")
+    if baseline_path is not None and not baseline_path.is_file():
+        raise OracleError(f"baseline Duke MAP does not exist: {baseline_path}")
+    if not 2.0 <= startup_timeout <= 120.0 or not 1.0 <= grace_seconds <= 60.0:
+        raise OracleError("EDuke32 startup timeout/grace period is outside the safe bounds")
+
+    def execute(root: Path) -> dict[str, Any]:
+        probes = {}
+        if baseline_path is not None:
+            probes["baseline"] = _probe_eduke32_map(
+                baseline_path, eduke32=executable, game_dir=game_path,
+                startup_timeout=startup_timeout, grace_seconds=grace_seconds,
+                work_dir=root / "baseline",
+            )
+        probes["candidate"] = _probe_eduke32_map(
+            candidate_path, eduke32=executable, game_dir=game_path,
+            startup_timeout=startup_timeout, grace_seconds=grace_seconds,
+            work_dir=root / "candidate",
+        )
+        return {
+            "$schema": "llmapper.eduke32-oracle-report",
+            "schema_version": 1,
+            "status": "pass" if all(item["status"] == "pass" for item in probes.values()) else "fail",
+            "engine_revisions": sorted({item["engine_revision"] for item in probes.values() if item["engine_revision"]}),
+            "probes": probes,
+        }
+
+    if work_dir is not None:
+        return execute(Path(work_dir).resolve())
+    with tempfile.TemporaryDirectory(prefix="llmapper-eduke32-") as directory:
         return execute(Path(directory))
 
 

@@ -1,0 +1,44 @@
+{
+  "$schema": "llmapper.cross-game-evidence-summary",
+  "schema_version": 1,
+  "sources": {
+    "duke": {"filename": "E3L1.MAP", "sectors": 345, "walls": 2334, "sprites": 681},
+    "blood": {"filename": "DNE3L1.MAP", "sectors": 346, "walls": 2324, "sprites": 379}
+  },
+  "normalization": {
+    "duke_to_blood_scale": {"numerator": 3, "denominator": 2},
+    "matching_directed_edges": 1831,
+    "next_best_matching_directed_edges": 984,
+    "exact_scaled_z_samples": 433,
+    "total_matched_z_samples": 464
+  },
+  "geometry": {
+    "unique_exact_sector_correspondences": 232,
+    "unique_exact_wall_correspondences": 1665,
+    "matched_sector_portal_degree_equal": 227
+  },
+  "lighting": {
+    "model": "blood_shade = 2 * duke_shade for ordinary samples",
+    "wall_samples": 1621,
+    "wall_exact_double": 1387,
+    "least_squares_slope": 1.9876,
+    "mean_absolute_error": 2.81
+  },
+  "enabled_exact_material_mappings": [
+    {"duke_tile": 89, "blood_tile": 2500, "support": 35},
+    {"duke_tile": 793, "blood_tile": 1353, "support": 13},
+    {"duke_tile": 698, "blood_tile": 471, "support": 10},
+    {"duke_tile": 893, "blood_tile": 458, "support": 10},
+    {"duke_tile": 216, "blood_tile": 492, "support": 7}
+  ],
+  "conversion": {
+    "duke_to_blood_geometry": {"reparse": "pass", "validation": "pass", "nblood": "pass"},
+    "blood_to_duke_geometry": {"reparse": "pass", "validation": "pass", "eduke32": "pass"},
+    "gameplay_fidelity": "unsupported"
+  },
+  "limitations": [
+    "full differential detail is reproducible with the compare-e3l1 command",
+    "entities are not inferred from proximity",
+    "native triggers and controllers are not cross-game translated"
+  ]
+}

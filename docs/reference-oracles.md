@@ -2,13 +2,16 @@
 
 The project can use a local `reference/` tree for source cross-checks, format
 probes, and independent runtime verification. The entire tree is ignored by Git
-because it may contain commercial Blood data and nested upstream repositories.
+because it may contain commercial game data, executables, and nested upstream
+repositories.
 
 The expected local layout is:
 
 ```text
 reference/
   blood/       legally obtained game data and local executables
+  duke3d/      legally obtained Duke3D data and a local EDuke32 executable
+  eduke32/     https://github.com/EDuke32/eduke32.git
   xmapedit/    https://github.com/NoOneBlood/xmapedit.git
   NBlood/      https://github.com/NBlood/NBlood.git
 ```
@@ -18,6 +21,7 @@ Clone the open-source references locally when needed:
 ```text
 git clone https://github.com/NoOneBlood/xmapedit.git reference/xmapedit
 git clone https://github.com/NBlood/NBlood.git reference/NBlood
+git clone https://github.com/EDuke32/eduke32.git reference/eduke32
 ```
 
 These inputs are evidence, not runtime dependencies. The Python package must keep
@@ -26,9 +30,28 @@ separately ignored `maps/` corpus. When a verification claim depends on an
 upstream checkout, record its commit in `reports/verification.md` so the result is
 reproducible.
 
-Never copy game resources, generated screenshots, executables, or nested Git
+Never copy game resources, ART files, generated screenshots, executables, or nested Git
 metadata into tracked paths. Only derived facts, focused tests, and documentation
 belong in the repository.
+
+## Bounded EDuke32 load smoke
+
+`oracle-eduke32` validates a Duke v7 candidate structurally, copies it into an
+isolated working directory, supplies a controlled config and autoexec, and launches
+it through EDuke32's normal `-map` path. It requires the autoexec marker, Duke3D
+game-data marker, user-map initialization marker, no fatal indicator, and a healthy
+grace period. A baseline can be tested in the same environment.
+
+```text
+python -m bloodmap oracle-eduke32 work/DNE3L1-geometry-duke.MAP \
+  --baseline maps/duke3d/E3L1.MAP \
+  --eduke32 reference/duke3d/eduke32.exe \
+  --game-dir reference/duke3d --seconds 3 \
+  -o work/eduke-oracle.json
+```
+
+The harness deliberately names its engine configuration `llmapper.cfg`; EDuke32
+reserves a config matching the MAP basename for map-local console commands.
 
 ## Bounded NBlood load smoke
 
@@ -47,7 +70,7 @@ markers, and fatal indicators as JSON. On Windows the child is created hidden.
 
 ```text
 python -m bloodmap oracle-nblood work/oracle_composed.MAP \
-  --baseline maps/E1M2.MAP \
+  --baseline maps/blood/E1M2.MAP \
   --nblood reference/blood/nblood.exe \
   --game-dir reference/blood \
   --seconds 6 \
@@ -58,9 +81,9 @@ python -m bloodmap oracle-nblood work/oracle_composed.MAP \
 The current composition fixture is reproducible from the ignored corpus:
 
 ```text
-python -m bloodmap extract maps/E1M1.MAP --sectors 0 \
+python -m bloodmap extract maps/blood/E1M1.MAP --sectors 0 \
   -o work/oracle/fragment.json
-python -m bloodmap compose maps/E1M2.MAP work/oracle/fragment.json \
+python -m bloodmap compose maps/blood/E1M2.MAP work/oracle/fragment.json \
   --x 1000000 --y 1000000 --channel-policy remap \
   --report work/oracle/composition.json \
   -o work/oracle/oracle_composed.MAP
@@ -133,14 +156,14 @@ three quarter-turns, aligns floors with a Z offset, and verifies the result agai
 the untouched E1M2 baseline:
 
 ```text
-python -m bloodmap extract maps/E1M1.MAP --sectors 1 \
+python -m bloodmap extract maps/blood/E1M1.MAP --sectors 1 \
   -o work/attachment-room.json
-python -m bloodmap attach maps/E1M2.MAP work/attachment-room.json \
+python -m bloodmap attach maps/blood/E1M2.MAP work/attachment-room.json \
   --destination-wall 138 --fragment-wall 0 --z -36864 \
   --channel-policy remap --report reports/attachment_fixture.json \
   -o work/real-attachment.MAP
 python -m bloodmap oracle-nblood work/real-attachment.MAP \
-  --baseline maps/E1M2.MAP --nblood reference/blood/nblood.exe \
+  --baseline maps/blood/E1M2.MAP --nblood reference/blood/nblood.exe \
   --game-dir reference/blood --seconds 6 \
   -o reports/nblood_attachment_oracle.json
 ```

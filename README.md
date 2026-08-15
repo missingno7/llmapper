@@ -1,112 +1,94 @@
-# bloodmap
+# llmapper
 
-`bloodmap` is a dependency-free Python toolkit for inspecting and editing Monolith
-Blood MAP files through a verified lossless representation. It was built from the
-actual XMAPEDIT and NBlood load/save paths and regression-tested against every MAP
-under `maps/`.
+`llmapper` is a dependency-free Python toolkit for lossless Build-engine MAP
+inspection, transformation, and evidence-driven conversion. It currently supports
+Blood v7 (`0x0700`) and classic Duke Nukem 3D v7 maps.
 
-The architecture deliberately has two layers:
+The project separates three concerns:
 
-1. `DiskMap` preserves every decoded disk field, packed extended field, reserved
-   header region, original index, and the genuinely opaque four-byte XSPRITE tail.
-2. `LevelIR` is a stable, editable JSON representation with explicit object IDs,
-   relationships, player start, geometry, and named Blood properties.
+1. `DiskMap` and `DukeDiskMap` preserve each game's native file exactly.
+2. `BuildIR` exposes common sectors, walls, sprites, topology, slopes, lighting,
+   and player start through one JSON contract while retaining a lossless native
+   extension.
+3. `LevelIR` remains the richer Blood authoring layer for triggers, channels,
+   fragments, room attachment, corridors, stairs, and scratch construction.
 
-The writer always rebuilds the file from these fields. It never retains or returns
-the original complete file blob.
-
-All authoring operations run on `LevelIR`. MAP parsing and writing exist only at
-the input/output boundary. `LevelIR.observe()` emits a compact semantic index or a
-detailed room selection with stable object references, geometry, contents,
-connectors, trigger channels, and dependency closure information for LLM clients.
+Neither writer caches the original file blob. The 44-map Blood corpus and 41-map
+Duke3D corpus both pass byte-exact native and `BuildIR` roundtrips.
 
 ## Quick start
 
 Python 3.10 or newer is sufficient; there are no runtime dependencies.
 
 ```text
-python -m bloodmap corpus maps -o reports/corpus_inventory.json
-python -m bloodmap roundtrip-all maps
-python -m bloodmap validate maps/E1M1.MAP
-python -m bloodmap inspect maps/E1M1.MAP --sector 42
-python -m bloodmap observe maps/E1M1.MAP --sectors 12,13 -o work/room-observation.json
-python -m bloodmap channels maps/E1M1.MAP --channel 104
-python -m bloodmap dump maps/E1M1.MAP -o work/E1M1.json
-python -m bloodmap build work/E1M1.json -o work/E1M1_rebuilt.MAP
-python -m bloodmap render maps/E1M1.MAP -o reports/E1M1.svg
-python -m bloodmap stats maps -o reports/corpus_statistics.json
-python -m bloodmap extract maps/E1M1.MAP --sectors 12,13,20-24 -o work/fragment.json
-python -m bloodmap extract-closed maps/E1M1.MAP --sectors 12,13 --report work/closure.json -o work/closed-fragment.json
-python -m bloodmap apply-fragment maps/E1M1.MAP work/fragment.json -o work/restored.MAP
-python -m bloodmap compose maps/E1M2.MAP work/fragment.json --x 8192 --channel-policy remap --report work/composition.json -o work/composed.MAP
-python -m bloodmap connect work/composed.MAP --wall-a 120 --wall-b 845 -o work/connected.MAP
-python -m bloodmap attach maps/E1M2.MAP work/fragment.json --destination-wall 120 --fragment-wall 3 --channel-policy remap --report work/attachment.json -o work/attached.MAP
-python -m bloodmap pathway work/separated.MAP --wall-a 120 --wall-b 845 --max-step-height 2048 --report work/pathway.json -o work/connected.MAP
-python -m bloodmap recipe recipes/e1m2-crossroads.json --source-dir maps --report work/mashup.json -o work/e1m2-crossroads.MAP
-python -m bloodmap recipe recipes/e1m2-remix.json --source-dir maps --report work/remix.json -o work/e1m2-remix.MAP
-python -m bloodmap design-first-room --report work/first-room.json -o work/first-puzzle-room.MAP
-python -m bloodmap oracle-nblood work/composed.MAP --baseline maps/E1M2.MAP --nblood reference/blood/nblood.exe --game-dir reference/blood -o work/oracle.json
-python -m bloodmap oracle-nblood-behavior --nblood reference/blood/nblood.exe --game-dir reference/blood -o work/behavior-oracle.json
-python -m bloodmap oracle-nblood-action work/first-puzzle-room.MAP --nblood reference/blood/nblood.exe --game-dir reference/blood -o work/action-oracle.json
+python -m bloodmap roundtrip-all maps/blood
+python -m bloodmap roundtrip-all maps/duke3d
+python -m bloodmap validate maps/duke3d/E3L1.MAP
+python -m bloodmap dump-build maps/duke3d/E3L1.MAP -o work/E3L1.build.json
+python -m bloodmap build-build work/E3L1.build.json -o work/E3L1.rebuilt.MAP
+python -m bloodmap transform maps/duke3d/E1L1.MAP -o work/turned.MAP rotate --turns 1
+python -m bloodmap compare-e3l1 --duke maps/duke3d/E3L1.MAP \
+  --blood maps/blood/DNE3L1.MAP -o work/e3l1-differential.json
 ```
 
-Safe whole-map transformations operate through `LevelIR`, then write, reparse,
-and validate their output:
+Cross-game conversion requires an explicit fidelity policy:
 
 ```text
-python -m bloodmap transform maps/E1M1.MAP -o work/moved.MAP translate --x 4096 --y -2048
-python -m bloodmap transform maps/E1M1.MAP -o work/turned.MAP rotate --turns 1 --pivot-x 0 --pivot-y 0
+python -m bloodmap convert maps/duke3d/E3L1.MAP --to blood \
+  --policy geometry-only --report work/E3L1-to-blood.json \
+  -o work/E3L1-geometry-blood.MAP
+python -m bloodmap convert maps/blood/DNE3L1.MAP --to duke3d \
+  --policy semantic --report work/DNE3L1-to-duke.json \
+  -o work/DNE3L1-semantic-duke.MAP
 ```
 
-Sector extraction uses `LevelFragment` with explicit index maps and classified
-external dependencies. Same-source application restores detached relationships
-exactly; cross-map composition allocates object, extra-record, and user-channel
-identities deterministically and leaves external dependencies explicit. Room
-attachment can automatically quarter-turn and translate a fragment so selected
-equal-length walls coincide, then create the reciprocal portal.
+`geometry-only` preserves normalized geometry, topology, slopes, player start,
+and the supported lighting model; it intentionally removes sprites, native tags,
+controllers, and triggers. `semantic` additionally enables only the few mappings
+whose evidence and classification are explicit in the report. `strict` refuses a
+cross-game export while any asset or gameplay mechanism is unresolved.
 
-`extract-closed` recursively includes sectors that own trigger endpoints, markers,
-sprite owners, authored patrol targets, and active burn sources while retaining
-geometry portals as room boundaries. Inactive runtime AI indices remain losslessly
-preserved without becoming false gameplay dependencies. `LevelIR.connect_pathway()` joins unequal, separated room walls with a
-collision-checked corridor, optional routed centerline, width interpolation, and
-bounded stair risers. Allocation-aware JSON recipes make multi-map assemblies
-replayable without hard-coding post-insertion wall indices and can relocate the
-player start using coordinates local to a transformed donor room.
+Blood-specific authoring remains available through `LevelIR`:
 
-Scratch construction starts with `new_level()` or `LevelBuilder`. The builder
-allocates polygon sectors, walls, sprites, and Blood extended records directly in
-LevelIR; connects only exact reversed portal walls; rejects invalid winding and
-self-intersection; validates player placement; and reports both at-rest and
-configured-open portal clearance. `design-first-room` builds the first completely
-original example: a sequential two-switch/two-door puzzle with 3072- and
-4096-unit-wide connections.
+```text
+python -m bloodmap observe maps/blood/E1M1.MAP --sectors 12,13 -o work/room.json
+python -m bloodmap extract-closed maps/blood/E1M1.MAP --sectors 12,13 -o work/fragment.json
+python -m bloodmap attach maps/blood/E1M2.MAP work/fragment.json \
+  --destination-wall 120 --fragment-wall 3 -o work/attached.MAP
+python -m bloodmap design-first-room --report work/first-room.json \
+  -o work/first-puzzle-room.MAP
+```
 
-Run the test suite with:
+Independent local engine load checks are optional:
+
+```text
+python -m bloodmap oracle-eduke32 work/DNE3L1-geometry-duke.MAP \
+  --baseline maps/duke3d/E3L1.MAP --eduke32 reference/duke3d/eduke32.exe \
+  --game-dir reference/duke3d -o work/eduke-report.json
+python -m bloodmap oracle-nblood work/E3L1-geometry-blood.MAP \
+  --baseline maps/blood/DNE3L1.MAP --nblood reference/blood/nblood.exe \
+  --game-dir reference/blood -o work/nblood-report.json
+```
+
+Run all tests with:
 
 ```text
 python -m unittest discover -s tests -v
 ```
 
-See [docs/format.md](docs/format.md) for the evidence-backed disk specification
-and [reports/verification.md](reports/verification.md) for the latest corpus result.
-The optional NBlood load and deterministic behavior oracles are documented in
-[docs/reference-oracles.md](docs/reference-oracles.md).
-
-## Project documentation
+## Documentation
 
 - [Architecture and invariants](docs/architecture.md)
-- [LevelIR authoring and semantic observations](docs/level-ir.md)
-- [Local corpus setup and policy](docs/corpus.md)
-- [Sector fragments and remapping](docs/fragments.md)
-- [Deterministic composition](docs/composition.md)
-- [Scratch construction](docs/construction.md)
-- [E1M2 room-order remix](reports/e1m2_remix.md)
-- [First custom puzzle room](reports/first_puzzle_room.md)
+- [Shared BuildIR contract](docs/build-ir.md)
+- [Duke3D v7 format support](docs/duke3d.md)
+- [Cross-game normalization and conversion](docs/conversion.md)
+- [LevelIR authoring](docs/level-ir.md)
+- [Corpus policy](docs/corpus.md)
 - [Local reference oracles](docs/reference-oracles.md)
 - [Long-term roadmap](docs/roadmap.md)
-- [Contributing and verification gates](CONTRIBUTING.md)
+- [Current verification](reports/verification.md)
 
-The original Blood maps are intentionally not distributed by this repository.
-Place a legally obtained local corpus under `maps/` or point `BLOODMAP_CORPUS` at
-one before running corpus and mutation tests. See `maps/README.md` for details.
+Commercial game data, maps, executables, ART files, and upstream reference
+checkouts are intentionally ignored. See [maps/README.md](maps/README.md) and
+[docs/reference-oracles.md](docs/reference-oracles.md) for the expected local
+layout.

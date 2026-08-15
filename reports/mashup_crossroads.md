@@ -35,6 +35,6 @@ Build it locally:
 
 ```text
 python -m bloodmap recipe recipes/e1m2-crossroads.json \
-  --source-dir maps --report work/e1m2-crossroads-report.json \
+  --source-dir maps/blood --report work/e1m2-crossroads-report.json \
   -o work/e1m2-crossroads.MAP
 ```

@@ -37,8 +37,8 @@ undefined channel values are not guessed to be global.
 ## CLI
 
 ```text
-python -m bloodmap extract maps/E1M1.MAP --sectors 12,13,20-24 -o work/fragment.json
-python -m bloodmap apply-fragment maps/E1M1.MAP work/fragment.json -o work/rebuilt.MAP
+python -m bloodmap extract maps/blood/E1M1.MAP --sectors 12,13,20-24 -o work/fragment.json
+python -m bloodmap apply-fragment maps/blood/E1M1.MAP work/fragment.json -o work/rebuilt.MAP
 ```
 
 `apply-fragment` is intentionally restricted to the exact source identity and object

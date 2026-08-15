@@ -1,25 +1,18 @@
-# Local Blood MAP corpus
+# Local MAP corpora
 
-Place legally obtained Blood `.MAP` files in this directory for regression testing.
-The original game maps are proprietary and are deliberately ignored by Git; this
-repository does not distribute them.
-
-The canonical development corpus used for the initial verification contained 43
-version `0x0700` maps named from `E1M1.MAP` through the supplied episode set. A
-different directory can be selected for tests with `BLOODMAP_CORPUS`:
-
-```powershell
-$env:BLOODMAP_CORPUS = 'D:\path\to\blood-maps'
-python -m unittest discover -s tests -v
-```
-
-Useful corpus commands:
+Commercial maps are not distributed with this repository. Put legally obtained
+files in these ignored directories:
 
 ```text
-python -m bloodmap corpus maps -o reports/corpus_inventory.json
-python -m bloodmap roundtrip-all maps
-python -m bloodmap stats maps -o reports/corpus_statistics.json
+maps/
+  blood/    Blood v7 maps, including DNE3L1.MAP when available
+  duke3d/   classic Duke3D v7 maps, including E3L1.MAP when available
 ```
 
-Never edit the source corpus in place. Write rebuilt or transformed maps to a
-separate ignored `work/` directory.
+Tests use these locations by default. Override them with `BLOODMAP_CORPUS` and
+`DUKEMAP_CORPUS`. Corpus-dependent tests skip when their local data is absent.
+
+```text
+python -m bloodmap roundtrip-all maps/blood
+python -m bloodmap roundtrip-all maps/duke3d
+```

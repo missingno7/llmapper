@@ -2,108 +2,95 @@
 
 ## Purpose
 
-`bloodmap` is a binary-first foundation for future Blood level tooling. Its core
-job is not generation: it is to make every byte of a supported map explainable,
-editable, reconstructable, and testable before higher-level composition is trusted.
+`llmapper` is a binary-first, game-neutral foundation for Build-engine level
+tooling. Every supported native map must remain explainable, editable,
+reconstructable, and independently testable before higher-level conversion or
+generation is trusted.
 
 ```text
-Blood MAP bytes
-    -> explicit parser
-    -> DiskMap (lossless disk truth)
-    -> LevelIR (canonical authoring form)
-    -> DiskMap
-    -> explicit writer + CRC
-    -> Blood MAP bytes
+Blood bytes -> DiskMap -----\
+                           BuildIR -> shared transforms / conversion
+Duke bytes  -> DukeDiskMap-/
+
+Blood DiskMap <-> LevelIR -> fragments / composition / construction
 ```
 
-Derived geometry, trigger graphs, statistics, renderings, and future semantic
-analysis observe the IR. They are never authoritative serialized state.
+Derived geometry, trigger graphs, differential evidence, statistics, renderings,
+and semantic annotations are never authoritative serialized state.
 
-## Layer 1: DiskMap
+## Native disk models
 
-`DiskMap` mirrors the supported file organization without relying on native C/C++
-layout. It retains:
+`DiskMap` mirrors Blood v7, including encryption, CRC, packed extended records,
+reserved header data, stale redundant values, and the opaque XSPRITE tail.
+`DukeDiskMap` mirrors classic Duke v7's 20-byte header and fixed 40/32/44-byte
+sector/wall/sprite records, plus any trailing bytes.
 
-- signature and exact format version;
-- all main- and extra-header fields;
-- bounded reserved header regions;
-- sky offsets and revision metadata;
-- every Build sector, wall, and sprite field;
-- every known packed XSECTOR, XWALL, and XSPRITE field;
-- original indices and redundant/stale disk values;
-- the four-byte XSPRITE tail that NBlood explicitly skips;
-- source CRC and size as provenance metadata.
+Neither object retains the complete source blob. Each writer reconstructs bytes
+from decoded fields. Genuine mutation tests prove changed values reach the output.
 
-The complete source blob is never stored. `encode_map` reconstructs all content and
-computes a new CRC from the result. Mutation tests prove that changed model values
-reach the written file.
+## Shared BuildIR
 
-## Layer 2: LevelIR
+`BuildIR` schema version 1 is the common contract. It gives the same names and
+shape to player start, sectors, walls, sprites, portals, slopes, shade, palettes,
+panning, repetition, and common Build tags. `source_game` and `map_version` make
+the native context explicit.
 
-`LevelIR` is the stable, JSON-serializable authoring contract. Schema version 1
-preserves all DiskMap information while exposing IDs, player start, geometry,
-visual fields, and named Blood trigger properties. Conversion in both directions
-must remain lossless for unchanged data.
+The `native` extension is an opaque lossless adapter envelope. It preserves the
+complete Blood `LevelIR` document or Duke-native fields needed for exact unchanged
+reconstruction. Common-field edits are overlaid on that envelope when exporting
+back to the source game. This deliberately favors proven preservation over an
+early attempt to assign cross-game meanings to native tags.
 
-`LevelIR` is also the only mutation boundary. Extraction, insertion, attachment,
-portal connection, translation, and rotation accept and return `LevelIR` or its
-derived `LevelFragment`; they never edit `DiskMap` records in place. CLI commands
-parse once at ingress and serialize once at egress.
+Shared translation and quarter-turn rotation operate on `BuildIR`, so both games
+use one geometry operation path. Blood-only absolute XSPRITE target coordinates
+and XSECTOR motion destinations are kept coherent through the native adapter.
 
-Schema evolution rules:
+Schema rules:
 
 1. Never silently reinterpret an existing field.
-2. Add neutral names when semantics are uncertain.
-3. Increment the schema version for incompatible shape or meaning changes.
-4. Provide an explicit migration before removing or renaming serialized fields.
-5. Keep disk-only preservation data structurally local to the owning object.
+2. Keep uncertain semantics neutral or native.
+3. Increment the schema version for incompatible changes.
+4. Require explicit migrations for renamed or removed serialized fields.
+5. Do not use native numeric tags as cross-game semantic equivalence.
 
-## Validation boundary
+## Blood LevelIR
 
-Validation distinguishes engine-breaking structure from unusual but accepted map
-techniques.
+`LevelIR` remains the stable, JSON-serializable Blood authoring contract. It owns
+the mature Blood semantics: extended records, TX/RX channels, dependency closure,
+room fragments, allocation, portal attachment, pathways, stairs, and scratch
+construction. Existing Blood workflows therefore retain their stronger domain
+model while neutral operations move to `BuildIR`.
 
-Hard errors include invalid ranges, open loops, out-of-range indices, inconsistent
-extra ownership, invalid starts, and impossible portal references. Semantic warnings
-include corpus-proven constructs that Build accepts, such as the original E3M5
-non-reciprocal portal and E6M7 two-wall sector.
+## Validation boundaries
 
-The parser does not normalize or repair data. In particular, signed sprite angles
-and stale redundant extended-record owner fields are preserved exactly.
+Shared validation checks engine-level topology and references without interpreting
+game tags: object limits, sector wall ranges, wall loops, portal pairs, sprite
+sectors, player start, and Build angles. Game-native validation then adds Blood or
+Duke-specific requirements.
 
-## Derived services
+Validation distinguishes engine-breaking structure from accepted original-map
+oddities. For example, Duke E2L6's portal-owner mismatch and Blood E3M5's
+non-reciprocal portal are warnings rather than automatic repairs.
 
-- Geometry view: sector bounds, centroid, adjacency, portals, heights, and sprites.
-- Channel graph: TX objects, commands, trigger edges, and RX objects by channel.
-- Statistics: dimensions, object/type/tile/channel/key/command usage and trigger
-  combinations.
-- SVG renderer: deterministic diagnostic geometry, portals, IDs, sprites, player
-  start, and selection highlighting.
-- Level observation: an LLM-friendly semantic index with stable `sector:`, `wall:`,
-  and `sprite:` references, plus focused geometry, contents, connectors, channel
-  edges, and dependency closure for selected sectors.
+## Conversion boundary
 
-These services can be recomputed at any time and must not be needed for roundtrip.
+Cross-game export is a new authored map, never a native roundtrip. It always emits
+a fidelity report covering geometry, lighting, materials, entities, mechanisms,
+validation, and known gameplay differences. Unsupported data is removed or
+defaulted explicitly; it is never smuggled across by matching tag numbers.
 
-## Layer 3: LevelFragment
+The three policies are:
 
-`LevelFragment` is a composition-oriented selection, not authoritative map state.
-It owns compact sector/wall/sprite/extra index maps and classifies internal,
-external geometry, trigger, marker, ownership, and system/global relationships.
-External references are detached locally but retained in bounded preservation
-records. A canonical source-IR SHA-256 prevents accidental application to a merely
-similar map. See `docs/fragments.md`.
+- `strict`: fail unless every required cross-game feature is verified;
+- `semantic`: use the small evidence-backed mapping registry and report omissions;
+- `geometry-only`: preserve neutral structure and remove gameplay semantics.
 
-## Transform contract
+See [conversion.md](conversion.md) for measured normalization and current limits.
 
-Transformations operate on `LevelIR`, convert back to `DiskMap`, write, reparse,
-and validate. They may change only fields whose semantics are verified. Translation
-and quarter-turn rotation are the first operations because their expected results
-are objectively testable.
+## Runtime oracles
 
-Future extraction and composition must use explicit index/channel remapping. Raw
-array concatenation is forbidden.
-
-The composition layer appends through returned destination maps, allocates the
-lowest free extended IDs, applies deterministic placement, and detects channel
-collisions. Geometry is connected only by an explicit reversed-endpoint portal API.
+The package has no engine dependency. Optional bounded harnesses load generated
+maps in local NBlood and EDuke32 installations. They compare a known-good baseline
+and candidate in isolated directories, require engine-specific initialization
+markers and a healthy grace period, and report revisions, identities, and fatal
+indicators. These are load/startup checks, not gameplay-equivalence proofs.

@@ -80,6 +80,12 @@ class DiskMap:
     def to_level_ir(self) -> "LevelIR":
         return LevelIR.from_disk_map(self)
 
+    def to_build_ir(self):
+        """Project Blood disk truth into the shared Build representation."""
+        from .build_ir import build_ir_from_blood
+
+        return build_ir_from_blood(self)
+
 
 @dataclass
 class LevelIR:

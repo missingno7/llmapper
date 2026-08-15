@@ -4,8 +4,8 @@ __pycache__/
 .coverage
 work/
 
-# The regression corpus comes from a commercial game and is supplied locally by
-# each developer. Keep its setup notes, never redistribute the original maps.
+# The regression corpora come from commercial games and are supplied locally by
+# each developer. Keep the setup notes, never redistribute original maps.
 maps/*
 !maps/README.md
 

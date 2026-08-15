@@ -14,9 +14,9 @@ bounded LevelIR operations.
 ## First-class operations
 
 ```python
-level = read_map("maps/E1M2.MAP").to_level_ir()
-room = read_map("maps/E1M1.MAP").to_level_ir().extract([12, 13])
-closed_room = read_map("maps/E1M1.MAP").to_level_ir().extract_closed([12, 13])
+level = read_map("maps/blood/E1M2.MAP").to_level_ir()
+room = read_map("maps/blood/E1M1.MAP").to_level_ir().extract([12, 13])
+closed_room = read_map("maps/blood/E1M1.MAP").to_level_ir().extract_closed([12, 13])
 
 observation = level.observe([14])
 attached = level.attach(
@@ -48,7 +48,7 @@ selection it provides:
 With selected sectors it instead focuses the response:
 
 ```text
-python -m bloodmap observe maps/E1M2.MAP --sectors 14 \
+python -m bloodmap observe maps/blood/E1M2.MAP --sectors 14 \
   -o work/E1M2-sector-14.json
 ```
 

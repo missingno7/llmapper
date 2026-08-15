@@ -4,13 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bloodmap"
-version = "0.9.0"
-description = "Lossless Blood MAP parsing, validation, and LevelIR composition"
+version = "1.0.0"
+description = "Lossless Blood and Duke3D Build MAP parsing, shared IR, and conversion"
 requires-python = ">=3.10"
 dependencies = []
 
 [project.scripts]
 bloodmap = "bloodmap.cli:main"
+llmapper = "bloodmap.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["bloodmap*"]

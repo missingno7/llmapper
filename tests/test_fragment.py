@@ -14,7 +14,7 @@ from bloodmap.format import encode_map, parse_map, read_map
 from tests.helpers import synthetic_multi_loop_map, synthetic_two_sector_map
 
 
-MAPS = Path(os.environ.get("BLOODMAP_CORPUS", Path(__file__).resolve().parents[1] / "maps"))
+MAPS = Path(os.environ.get("BLOODMAP_CORPUS", Path(__file__).resolve().parents[1] / "maps" / "blood"))
 
 
 class FragmentTests(unittest.TestCase):

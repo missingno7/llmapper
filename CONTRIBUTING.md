@@ -9,30 +9,31 @@ python -m unittest discover -s tests -v
 python -m bloodmap --help
 ```
 
-Original Blood maps are not distributed. See `maps/README.md` and
+Original Blood and Duke3D maps are not distributed. See `maps/README.md` and
 `docs/corpus.md` for optional local corpus setup.
 
-All editing APIs must operate on `LevelIR` or a documented derivative such as
-`LevelFragment`. `DiskMap` is the lossless import/export representation, not an
-authoring API. New LLM-facing observations must use stable semantic references and
-must label unknown numeric semantics instead of inventing names.
+Game-neutral editing APIs must operate on `BuildIR`. Blood-specific authoring APIs
+operate on `LevelIR` or a documented derivative such as `LevelFragment`.
+`DiskMap` and `DukeDiskMap` are lossless import/export representations, not
+authoring APIs. New LLM-facing observations must use stable semantic references
+and label unknown numeric semantics instead of inventing names.
 
 ## Change gates
 
 Changes to binary parsing, packing, models, or conversion logic must include:
 
-1. evidence from XMAPEDIT, NBlood, or an isolated reproducible fixture;
+1. evidence from XMAPEDIT, NBlood, EDuke32, or an isolated reproducible fixture;
 2. a focused unit or mutation test;
 3. a full available-corpus direct and IR roundtrip run;
 4. a validator run with every new warning investigated;
-5. a short update to `docs/format.md` for non-obvious format knowledge.
+5. a short update to `docs/format.md` or `docs/duke3d.md` for non-obvious format knowledge.
 
 Changes to fragment composition, map writing, or structural limits should also run
 the optional baseline/candidate NBlood load smoke when local game data is available:
 
 ```text
 python -m bloodmap oracle-nblood work/candidate.MAP \
-  --baseline maps/E1M2.MAP \
+  --baseline maps/blood/E1M2.MAP \
   --nblood reference/blood/nblood.exe \
   --game-dir reference/blood \
   -o work/oracle.json
@@ -41,6 +42,11 @@ python -m bloodmap oracle-nblood work/candidate.MAP \
 This gate proves that both files reach NBlood's initialized game loop and remain
 healthy for the configured grace period. It does not by itself prove gameplay
 equivalence.
+
+Duke writer and cross-game geometry changes should run the corresponding EDuke32
+baseline/candidate smoke. Cross-game changes must also update or reproduce the
+fidelity report and must never equate native tags solely because their numbers
+match.
 
 Room-attachment changes must additionally cover automatic rotation, repeated room
 copies, channel remapping, blocked-wall policy, and slope-aware endpoint clearance.

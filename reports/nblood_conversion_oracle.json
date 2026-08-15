@@ -1,0 +1,40 @@
+{
+  "$schema": "bloodmap.nblood-oracle-report",
+  "schema_version": 1,
+  "status": "pass",
+  "engine_revisions": ["r14378-fbc5e1186"],
+  "probes": {
+    "baseline": {
+      "status": "pass",
+      "identity": {
+        "filename": "DNE3L1.MAP",
+        "sha256": "8f35f72ca26e5c2745cc07f87d5af0f448940a2c696a35dbbe9340fb9ea49921",
+        "size": 128779,
+        "counts": {"sectors": 346, "walls": 2324, "sprites": 379}
+      },
+      "engine_revision": "r14378-fbc5e1186",
+      "markers": {"autoexec": true, "game_loop": true, "map_initialization": true},
+      "fatal_indicators": [],
+      "grace_seconds": 3.0,
+      "stayed_alive_for_grace_period": true,
+      "terminated_by_harness": true,
+      "early_exit_code": null
+    },
+    "candidate": {
+      "status": "pass",
+      "identity": {
+        "filename": "E3L1-geometry-blood.MAP",
+        "sha256": "383a20f7015a71f31a3754866a1dfd3b3eb333aa275afc2c202b6585ae5bcab8",
+        "size": 88665,
+        "counts": {"sectors": 345, "walls": 2334, "sprites": 0}
+      },
+      "engine_revision": "r14378-fbc5e1186",
+      "markers": {"autoexec": true, "game_loop": true, "map_initialization": true},
+      "fatal_indicators": [],
+      "grace_seconds": 3.0,
+      "stayed_alive_for_grace_period": true,
+      "terminated_by_harness": true,
+      "early_exit_code": null
+    }
+  }
+}
