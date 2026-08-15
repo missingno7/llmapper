@@ -1,6 +1,6 @@
 # Verification report
 
-Verified locally on 2026-08-15 against ignored commercial corpora and independent
+Verified locally on 2026-08-16 against ignored commercial corpora and independent
 engine installations.
 
 ## Automated gates
@@ -15,9 +15,10 @@ engine installations.
 | Duke native DiskMap roundtrip | 41 / 41 byte-exact |
 | Duke BuildIR roundtrip | 41 / 41 byte-exact |
 | Structural hard errors | 0 across both corpora |
-| Unit/corpus/mutation/composition/conversion tests | 72 / 72 pass |
+| Unit/corpus/mutation/composition/conversion tests | 73 / 73 pass |
 | E3L1 -> Blood geometry conversion in NBlood | pass |
 | DNE3L1 -> Duke geometry conversion in EDuke32 | pass |
+| E3L11 -> Blood playable-profile conversion in NBlood | pass |
 
 Corpus totals:
 
@@ -72,6 +73,19 @@ lighting as approximate, and gameplay fidelity as unsupported.
 These are load/startup proofs, not claims that triggers, combat, secrets, sounds,
 or progression were translated.
 
+The source-specific E3L11 profile produces 253 sectors, 1,600 walls, and 219
+sprites. Structural validation reports zero errors and zero warnings. The result
+contains ten Z-motion sectors, five rotating sectors, one sliding sector, four
+teleporter sectors, twenty paired water links, keys and switches, weapons,
+inventory, enemies, and an exit on channel 4. A configured-open static graph
+reaches the exit from the player start. Candidate and DNE3L1 baseline both entered
+the NBlood game loop and remained healthy for five seconds under
+`r14378-fbc5e1186`.
+
+This proves initialization and basic structural progression only. Manual
+completion, combat balance, material curation, and action-level checks for every
+converted mechanism remain release gates.
+
 ## Existing Blood authoring gates
 
 The prior Blood-specific gates remain green: behavior-closed extraction,
@@ -96,8 +110,9 @@ screenshots stay under ignored local directories.
 - Duke support is classic MAP version 7; old v5/v6 and newer map-text/VX variants
   are not claimed.
 - Blood historical v6 files are not corpus-verified.
-- Geometry conversion does not preserve native gameplay mechanisms.
-- Palette equivalence, translucency, ART dimensions, sound, weapons, enemy state,
-  keys, exits, secrets, and spawn conditions need more evidence and abstractions.
+- Generic geometry conversion does not preserve native gameplay mechanisms; the
+  E3L11 source-specific profile covers a documented subset.
+- Sound, secrets, spawn conditions, complex lights/destruction, and exact combat
+  balance need more evidence and abstractions.
 - Original accepted oddities remain warnings: Duke E2L6 portal ownership, Blood
   E3M5 non-reciprocal portal association, and Blood E6M7's two-wall sector.

@@ -18,6 +18,7 @@ from .conversion import ConversionError, convert_build_ir
 from .designs import build_first_puzzle_room
 from .differential import compare_e3l1_pair
 from .duke import DukeMapError, encode_duke_map, read_duke_map, write_duke_map
+from .e3l11 import E3L11ConversionError, convert_e3l11_to_blood
 from .format import BloodMapError, SIGNATURE, encode_map, locate_offset, read_map, write_map
 from .fragment import (
     FragmentError, LevelFragment, apply_fragment_in_place,
@@ -239,6 +240,34 @@ def cmd_convert(args: argparse.Namespace) -> int:
     }
     _write_text(args.report, _json(report))
     print(f"WROTE {args.output}: {build.source_game}->{target} {args.policy}, reparsed and validated")
+    return 0
+
+
+def cmd_convert_e3l11(args: argparse.Namespace) -> int:
+    source = read_duke_map(args.map)
+    disk, report = convert_e3l11_to_blood(
+        source,
+        duke_art=args.duke_art,
+        blood_art=args.blood_art,
+        blood_maps=args.blood_maps,
+    )
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    write_map(disk, args.output)
+    reparsed = read_map(args.output)
+    diagnostics = validate_map(reparsed)
+    errors = [item for item in diagnostics if item.severity == "error"]
+    if errors:
+        raise E3L11ConversionError(f"written conversion failed validation: {errors[0].code}")
+    payload = Path(args.output).read_bytes()
+    report["output"] = {
+        "path": str(args.output), "size": len(payload),
+        "sha256": hashlib.sha256(payload).hexdigest(),
+        "counts": {"sectors": len(reparsed.sectors), "walls": len(reparsed.walls), "sprites": len(reparsed.sprites)},
+        "reparsed": True,
+        "validation_warnings": sum(item.severity == "warning" for item in diagnostics),
+    }
+    _write_text(args.report, _json(report))
+    print(f"WROTE {args.output}: Duke E3L11 -> playable Blood approximation, reparsed and validated")
     return 0
 
 
@@ -599,6 +628,17 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--report", help="write the required conversion fidelity report")
     p.add_argument("-o", "--output", required=True)
     p.set_defaults(func=cmd_convert)
+    p = sub.add_parser(
+        "convert-e3l11",
+        help="convert Duke3D E3L11 to a playable Blood approximation with native mechanisms",
+    )
+    p.add_argument("map", nargs="?", default="maps/duke3d/E3L11.MAP")
+    p.add_argument("--duke-art", default="reference/duke3d")
+    p.add_argument("--blood-art", default="reference/blood")
+    p.add_argument("--blood-maps", default="maps/blood")
+    p.add_argument("--report", help="write the detailed fidelity and unsupported-feature report")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_convert_e3l11)
     p = sub.add_parser("diff", help="locate the first structural byte difference")
     p.add_argument("a"); p.add_argument("b"); p.set_defaults(func=cmd_diff)
     p = sub.add_parser("inspect", help="show a concise map or object observation")
@@ -746,7 +786,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args = build_parser().parse_args(argv)
         return int(args.func(args))
-    except (BloodMapError, CompositionError, ConstructionError, ConversionError, DukeMapError, FragmentError, ObservationError, OracleError, RecipeError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+    except (BloodMapError, CompositionError, ConstructionError, ConversionError, DukeMapError, E3L11ConversionError, FragmentError, ObservationError, OracleError, RecipeError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         print(f"bloodmap: error: {exc}", file=sys.stderr)
         return 2
 

@@ -1,0 +1,49 @@
+{
+  "$schema": "llmapper.playable-conversion-summary",
+  "schema_version": 1,
+  "source": "Duke3D E3L11.MAP (local ignored corpus)",
+  "target": "Blood v7",
+  "profile": "playable-e3l11",
+  "output": {
+    "sha256": "28f9eeed9ec282884741bd4604a0d90b1a866d5fc57d53972570c2af7afe7bd0",
+    "size": 86081,
+    "sectors": 253,
+    "walls": 1600,
+    "sprites": 219,
+    "validation_errors": 0,
+    "validation_warnings": 0
+  },
+  "mechanisms": {
+    "ceiling_door": 4,
+    "elevator": 1,
+    "ceiling_rise_fall": 3,
+    "floor_rise_fall": 2,
+    "sliding_door": 1,
+    "rotate_bridge": 5,
+    "teleporter": 4,
+    "water_marker": 40,
+    "conveyor": 9,
+    "touchplate": 6
+  },
+  "unsupported_trigger_channels": [127, 130, 139, 143, 154, 155, 159, 160, 161],
+  "static_progression": {
+    "start_sector": 139,
+    "reachable_sectors": 225,
+    "exit_sector": 189,
+    "exit_reachable": true,
+    "minimum_portal_width": 512,
+    "minimum_opening": 4096
+  },
+  "runtime_oracle": {
+    "engine": "NBlood r14378-fbc5e1186",
+    "baseline": "pass",
+    "candidate": "pass",
+    "grace_seconds": 5
+  },
+  "limitations": [
+    "Manual completion and combat balance are not yet certified.",
+    "Nine trigger channels associated with unsupported lighting, explosion, or choreography effectors are intentionally reported as dangling.",
+    "Lighting, explosion, quake, camera, locator, respawn, and master-switch choreography remains unsupported.",
+    "Material and entity substitutions are explicit approximations where no exact equivalent exists."
+  ]
+}

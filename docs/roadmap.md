@@ -27,11 +27,14 @@ Status: initial foundation complete.
 - explicit geometry-only, conservative semantic, and fail-closed strict policies;
 - bidirectional outputs that reparse, validate, and initialize in NBlood/EDuke32;
 - machine-readable fidelity reports with unsupported mechanisms called out.
+- source-specific E3L11 playable lowering for doors, lifts, rotating/sliding
+  sectors, water, teleporters, conveyors, switches, keys, exit, and population;
+- ART-driven material matching constrained to actual Blood map surfaces.
 
 Next gates:
 
 - broaden hand-converted-map evidence beyond one pair;
-- build context-aware material profiles from ART metadata and map usage;
+- broaden global ART similarity into context-aware material-role profiles;
 - add palette, translucency, and sprite-size normalization;
 - model common concepts such as doors, lifts, switches, keys, exits, secrets, and
   spawn conditions above each game's native controller graph;

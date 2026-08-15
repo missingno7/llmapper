@@ -66,6 +66,39 @@ tiles 559 and 2820 respectively.
 entity, sound, weapon, controller, trigger, secret, and progression equivalence is
 not established.
 
+## Playable E3L11 vertical slice
+
+`convert-e3l11` is the first source-specific gameplay profile layered above the
+conservative generic policies. It proves a complete lowering path without treating
+unrelated Duke and Blood tag numbers as equivalent.
+
+The converter preserves E3L11's 253-sector/1,600-wall topology at the measured 3:2
+scale and creates native Blood behavior records for:
+
+- four ceiling doors, one elevator, three ceiling and two floor rise/fall sectors;
+- one two-marker sliding door and five axis-marker rotating bridges;
+- twenty upper/lower water pairs and two bidirectional teleporter pairs;
+- nine floor-panning conveyors and six enter-trigger touchplates;
+- keyed and ordinary switches on allocated user channels, plus a normal exit on
+  Blood's reserved channel 4.
+
+Weapons, ammo, health, inventory, keys, and enemies use explicit role
+substitutions. Each one is classified in the report: a Duke RPG becomes a Blood
+napalm launcher, while a Battlelord becoming Cerberus is recorded as a balance
+approximation.
+
+Materials are selected only from tiles already used as surfaces in the local Blood
+corpus. The matcher compares ART dimensions, palette colour moments, luminance
+histograms, and a small spatial thumbnail; the five exact differential mappings
+still take precedence. Water interfaces use a corpus-backed Blood water-surface
+tile. This is a coherent first pass, not final art direction.
+
+Conversion fails if water endpoints are unpaired, structural validation fails, or
+the exit is absent from a static reachability graph containing configured-open
+portals, water links, and teleporters. Unsupported lighting, explosions, quake
+debris, and demo-camera effectors remain listed rather than silently discarded.
+Local game data and generated maps stay ignored and are never redistributed.
+
 Every successful conversion report states structural validity and separately
 classifies geometry, visual, and gameplay fidelity. A structurally valid converted
 map is not described as gameplay-equivalent.
@@ -82,3 +115,7 @@ The E3L1 geometry-only Blood output initializes and remains healthy in NBlood
 `r14378-fbc5e1186`. The DNE3L1 geometry-only Duke output does the same in EDuke32
 `r10669-ec5824db8`. Both were tested beside untouched baselines in isolated
 directories. See [verification.md](../reports/verification.md).
+
+The E3L11 playable output also initializes, enters the game loop, and remains
+healthy for the bounded NBlood oracle run. This is a load/startup proof;
+interactive completion and balance remain separate playtest gates.
