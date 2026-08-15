@@ -15,7 +15,7 @@ engine installations.
 | Duke native DiskMap roundtrip | 41 / 41 byte-exact |
 | Duke BuildIR roundtrip | 41 / 41 byte-exact |
 | Structural hard errors | 0 across both corpora |
-| Unit/corpus/mutation/composition/conversion tests | 74 / 74 pass |
+| Unit/corpus/mutation/composition/conversion/design tests | 77 / 77 pass |
 | E3L1 -> Blood geometry conversion in NBlood | pass |
 | DNE3L1 -> Duke geometry conversion in EDuke32 | pass |
 | E3L11 -> Blood playable-profile conversion in NBlood | pass |
@@ -32,6 +32,23 @@ The full test command was:
 ```text
 python -m unittest discover -s tests -v
 ```
+
+## Design Understanding foundation
+
+The deterministic design sensor now runs over the game-neutral `BuildIR` and
+exposes whole-level or selected-region fingerprints. Metrics are grouped into
+topology, space, architecture, visual proxies, and gameplay inventories. Every
+metric is marked as measured/derived, heuristic interpretations are separate
+records, and exact sector/wall/sprite/mechanism evidence is retained. A malformed
+accepted source oddity does not break the ordinary observation API; its design
+sensor reports `status: unavailable` with the structural reason.
+
+The local corpus index contains 44 Blood and 41 Duke3D maps. The current design
+sensor successfully fingerprints 43 Blood maps and 39 Duke3D maps; Blood E6M7,
+Duke E3L4, and Duke E4L1 remain explicit index errors because their original
+sector wall ownership cannot support reliable polygon-derived metrics. No source
+data is repaired or rewritten. Similarity, source-mechanism, and soft-motif
+queries are demonstrated in [design_corpus_examples.json](design_corpus_examples.json).
 
 ## Shared BuildIR
 

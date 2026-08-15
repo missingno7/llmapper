@@ -1,0 +1,54 @@
+{
+  "$schema": "bloodmap.design-corpus-demonstration",
+  "schema_version": 1,
+  "purpose": "Grounded examples produced by design-index and design-search over the local original-map corpora.",
+  "queries": [
+    {
+      "query": {"game": "blood", "motif": "repeated-bays"},
+      "examples": [
+        {"map": "E1M4.MAP", "match_basis": "repeated_shape_ratio=0.1131 >= 0.1", "evidence": ["sector:0", "wall:0"]},
+        {"map": "E2M3.MAP", "match_basis": "repeated_shape_ratio=0.1235 >= 0.1", "evidence": ["sector:0", "wall:0"]},
+        {"map": "E3M7.MAP", "match_basis": "repeated_shape_ratio=0.1056 >= 0.1", "evidence": ["sector:0", "wall:0"]}
+      ]
+    },
+    {
+      "query": {"game": "duke3d", "motif": "vertical"},
+      "examples": [
+        {"map": "E1L1.MAP", "match_basis": "vertical_range=475136 > max(4096, mean_clear_height*0.5)", "evidence": ["sector:0", "wall:0"]},
+        {"map": "E1L2.MAP", "match_basis": "vertical_range=516096 > max(4096, mean_clear_height*0.5)", "evidence": ["sector:0", "wall:0"]},
+        {"map": "E1L3.MAP", "match_basis": "vertical_range=446464 > max(4096, mean_clear_height*0.5)", "evidence": ["sector:0", "wall:0"]}
+      ]
+    },
+    {
+      "query": {"game": "duke3d", "mechanism": "rotating_sector"},
+      "examples": [
+        {"map": "E1L1.MAP", "count": 4, "evidence": ["sprite:0", "sprite:1"]},
+        {"map": "E1L2.MAP", "count": 3, "evidence": ["sprite:24", "sprite:31"]},
+        {"map": "E1L3.MAP", "count": 8, "evidence": ["sprite:17", "sprite:19"]}
+      ]
+    }
+  ],
+  "region_demonstrations": [
+    {
+      "map": "maps/blood/E1M1.MAP",
+      "game": "blood",
+      "sectors": [0, 1],
+      "derived": {"area": 2654208.0, "mean_clear_height": 32256.0, "vertical_range": 32768, "connector_width_mean": 1229.255},
+      "heuristic_interpretations": ["Many selected sectors behave as terminal or near-terminal spaces.", "Connections are relatively compressed compared with Build units."],
+      "evidence": ["sector:0", "sector:1", "wall:0", "sprite:386"]
+    },
+    {
+      "map": "maps/duke3d/E1L1.MAP",
+      "game": "duke3d",
+      "sectors": [0, 1],
+      "derived": {"area": 466880.0, "mean_clear_height": 25088.0, "vertical_range": 48128, "connector_width_mean": 1432.66},
+      "heuristic_interpretations": ["The region has meaningful vertical contrast.", "Connections are relatively compressed compared with Build units."],
+      "evidence": ["sector:0", "sector:1", "wall:0", "sprite:30"]
+    }
+  ],
+  "notes": [
+    "Examples are retrieved from exact map/object evidence, not map-lore labels.",
+    "Motif thresholds are soft retrieval heuristics and are not generation rules.",
+    "The current index reports accepted malformed-ownership oddities as unavailable design fingerprints rather than repairing them."
+  ]
+}

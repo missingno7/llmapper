@@ -29,6 +29,11 @@ python -m bloodmap build-build work/E3L1.build.json -o work/E3L1.rebuilt.MAP
 python -m bloodmap transform maps/duke3d/E1L1.MAP -o work/turned.MAP rotate --turns 1
 python -m bloodmap compare-e3l1 --duke maps/duke3d/E3L1.MAP \
   --blood maps/blood/DNE3L1.MAP -o work/e3l1-differential.json
+python -m bloodmap design-fingerprint maps/blood/E1M1.MAP --sectors 12,13 \
+  -o work/E1M1.design.json
+python -m bloodmap design-index maps/blood -o work/blood.design-index.json
+python -m bloodmap design-search work/blood.design-index.json \
+  --motif repeated-bays --limit 5
 ```
 
 Cross-game conversion requires an explicit fidelity policy:
@@ -97,6 +102,7 @@ python -m unittest discover -s tests -v
 ## Documentation
 
 - [Architecture and invariants](docs/architecture.md)
+- [Design Understanding and grounded retrieval](docs/architecture.md#design-understanding)
 - [Shared BuildIR contract](docs/build-ir.md)
 - [Duke3D v7 format support](docs/duke3d.md)
 - [Cross-game normalization and conversion](docs/conversion.md)

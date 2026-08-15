@@ -14,6 +14,23 @@ class ObservationError(ValueError):
     pass
 
 
+def _safe_design_fingerprint(level: "LevelIR", sector_ids: Iterable[int] | None = None) -> dict[str, Any]:
+    """Keep the observation sensor non-authoritative for accepted oddities."""
+    from .design import DesignUnderstandingError
+
+    try:
+        return level.design_fingerprint(sector_ids)
+    except DesignUnderstandingError as exc:
+        return {
+            "status": "unavailable",
+            "error": str(exc),
+            "provenance": {
+                "verified_facts": ["the source LevelIR observation remains available"],
+                "not_inferred": ["design metrics require valid sector wall ownership"],
+            },
+        }
+
+
 _BEHAVIOR_FIELDS = (
     "rx_id", "tx_id", "command", "state", "rest_state", "busy",
     "busy_time", "busy_time_a", "busy_time_b", "wait_time", "wait_time_a",
@@ -257,6 +274,7 @@ def observe_level(level: LevelIR, sector_ids: Iterable[int] | None = None) -> di
         "selection": None,
     }
     if sector_ids is None:
+        observation["design_fingerprint"] = _safe_design_fingerprint(level)
         return observation
 
     selected_ids = sorted(set(int(value) for value in sector_ids))
@@ -346,6 +364,7 @@ def observe_level(level: LevelIR, sector_ids: Iterable[int] | None = None) -> di
         "connectors": connectors,
         "sprites": sprites,
         "interactive_objects": interactive_objects,
+        "design_fingerprint": _safe_design_fingerprint(level, selected_ids),
     }
     selected_refs = {
         *(_ref("sector", value) for value in selected_ids),

@@ -112,10 +112,13 @@ to the preserved base progression. Static reachability and NBlood load gates pas
 Goal: answer questions such as “show original keyed-door implementations” from
 derived evidence rather than hardcoded map lore.
 
-Status: the LevelIR-native observation contract now indexes sectors, geometry,
-contents, connectors, type/tile inventories, channel endpoints, active trigger
-modes, and selection dependencies. Source-backed pattern naming and structural
-fingerprints remain.
+Status: implemented foundation. The LevelIR-native observation contract indexes
+sectors, geometry, contents, connectors, type/tile inventories, channel
+endpoints, active trigger modes, selection dependencies, and a grounded Design
+Understanding fingerprint. Blood and Duke3D map directories can be indexed and
+searched by multi-dimensional similarity, source mechanism, or explicitly
+labeled soft motifs. Source-backed pattern naming and finer region extraction
+remain.
 
 Deliverables:
 
@@ -123,6 +126,9 @@ Deliverables:
   trigger combinations;
 - structural subgraph fingerprints;
 - explainable queries that cite source map/object IDs;
+- verified/derived/heuristic provenance on region and level observations;
+- design fingerprints covering topology, space, architecture, visual proxies,
+  gameplay inventories, and source mechanism evidence;
 - pattern extraction for doors, switches, lifts, traps, secrets, spawn systems,
   and progression gates only after their semantics are source-verified.
 

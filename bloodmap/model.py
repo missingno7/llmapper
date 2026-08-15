@@ -271,6 +271,12 @@ class LevelIR:
 
         return observe_level(self, sector_ids)
 
+    def design_fingerprint(self, sector_ids: Any = None) -> dict[str, Any]:
+        """Return measured and explicitly heuristic design characteristics."""
+        from .design import design_fingerprint
+
+        return design_fingerprint(self.to_disk_map().to_build_ir(), sector_ids)
+
     @classmethod
     def from_dict(cls, value: dict[str, Any]) -> "LevelIR":
         return cls(

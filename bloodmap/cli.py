@@ -18,6 +18,7 @@ from .conversion import ConversionError, convert_build_ir
 from .designs import build_first_puzzle_room
 from .differential import compare_e3l1_pair
 from .duke import DukeMapError, encode_duke_map, read_duke_map, write_duke_map
+from .design import DesignUnderstandingError, design_fingerprint
 from .e3l11 import E3L11ConversionError, convert_e3l11_to_blood
 from .duke_semantics import analyze_duke_mechanisms
 from .format import BloodMapError, SIGNATURE, encode_map, locate_offset, read_map, write_map
@@ -369,6 +370,159 @@ def cmd_stats(args: argparse.Namespace) -> int:
     return 0
 
 
+def _read_design_build(path: str | Path) -> tuple[str, BuildIR]:
+    game = _game_for_path(path)
+    if game == "blood":
+        return game, read_map(path).to_build_ir()
+    return game, read_duke_map(path).to_build_ir()
+
+
+def cmd_design_fingerprint(args: argparse.Namespace) -> int:
+    game, build = _read_design_build(args.map)
+    fingerprint = design_fingerprint(build, _parse_id_set(args.sectors) if args.sectors else None)
+    fingerprint["map"] = str(args.map)
+    fingerprint["detected_game"] = game
+    _write_text(args.output, _json(fingerprint))
+    return 0
+
+
+def _fingerprint_vector(fingerprint: dict[str, Any]) -> dict[str, float]:
+    metrics = fingerprint["metrics"]
+    paths = (
+        ("topology.average_degree", metrics["topology"]["average_degree"]["value"]),
+        ("topology.branching_ratio", metrics["topology"]["branching_ratio"]["value"]),
+        ("topology.dead_end_ratio", metrics["topology"]["dead_end_ratio"]["value"]),
+        ("topology.loopiness", metrics["topology"]["loopiness"]["value"]),
+        ("topology.linearity", metrics["topology"]["linearity"]["value"]),
+        ("space.mean_sector_area", metrics["space"]["mean_sector_area"]["value"]),
+        ("space.mean_clear_height", metrics["space"]["mean_clear_height"]["value"]),
+        ("space.vertical_range", metrics["space"]["vertical_range"]["value"]),
+        ("space.connector_width_mean", metrics["space"]["connector_width_mean"]["value"]),
+        ("architecture.repeated_shape_ratio", metrics["architecture"]["repeated_shape_ratio"]["value"]),
+        ("architecture.irregularity_proxy", metrics["architecture"]["irregularity_proxy"]["value"]),
+        ("architecture.material_diversity", metrics["architecture"]["material_diversity"]["value"]),
+        ("visual.shade_mean", metrics["visual"]["shade_mean"]["value"]),
+        ("visual.shade_range", metrics["visual"]["shade_range"]["value"]),
+        ("gameplay.enemy_count", metrics["gameplay"]["enemy_count"]["value"]),
+        ("gameplay.mechanism_density", metrics["gameplay"]["mechanism_density"]["value"]),
+    )
+    return {name: float(value) for name, value in paths if value is not None}
+
+
+def _fingerprint_distance(left: dict[str, Any], right: dict[str, Any]) -> float:
+    a, b = _fingerprint_vector(left), _fingerprint_vector(right)
+    common = sorted(set(a) & set(b))
+    if not common:
+        return float("inf")
+    # Log-scale large spatial values so area does not drown topology/gameplay.
+    import math
+
+    distance = 0.0
+    for name in common:
+        av, bv = a[name], b[name]
+        if "area" in name or "height" in name or "width" in name or "range" in name:
+            av, bv = math.log1p(abs(av)), math.log1p(abs(bv))
+        denominator = max(1.0, abs(av), abs(bv))
+        distance += abs(av - bv) / denominator
+    return round(distance / len(common), 6)
+
+
+def _motif_match(fingerprint: dict[str, Any], motif: str) -> tuple[bool, str]:
+    """Apply a deliberately soft, evidence-backed retrieval heuristic.
+
+    Motifs are search vocabulary, not structural truth.  The returned basis
+    makes the threshold visible to an LLM or a human reviewing the corpus.
+    """
+    metrics = fingerprint["metrics"]
+    topology, space, architecture = metrics["topology"], metrics["space"], metrics["architecture"]
+    if motif == "loop":
+        value = topology["loopiness"]["value"]
+        return value > 0, f"loopiness={value} > 0"
+    if motif == "branching":
+        value = topology["branching_ratio"]["value"]
+        return value >= 0.34, f"branching_ratio={value} >= 0.34"
+    if motif == "vertical":
+        vertical, clear = space["vertical_range"]["value"], space["mean_clear_height"]["value"]
+        return vertical > max(4096, clear * 0.5), f"vertical_range={vertical} > max(4096, mean_clear_height*0.5)"
+    if motif == "repeated-bays":
+        value = architecture["repeated_shape_ratio"]["value"]
+        # Real maps contain gradual scale variation, so retrieval uses a
+        # lower soft signal than the stronger interpretation emitted by the
+        # fingerprint itself.
+        return value >= 0.1, f"repeated_shape_ratio={value} >= 0.1"
+    if motif == "compressed":
+        value = space["connector_width_mean"]["value"]
+        return value is not None and value < 2048, f"connector_width_mean={value} < 2048"
+    if motif == "arena":
+        branching = topology["branching_ratio"]["value"]
+        degree = topology["average_degree"]["value"]
+        dead_ends = topology["dead_end_ratio"]["value"]
+        return branching >= 0.2 and degree >= 1.5 and dead_ends <= 0.5, (
+            f"branching_ratio={branching} >= 0.2, average_degree={degree} >= 1.5, "
+            f"dead_end_ratio={dead_ends} <= 0.5"
+        )
+    raise ValueError(f"unknown design motif: {motif}")
+
+
+def cmd_design_index(args: argparse.Namespace) -> int:
+    directory = Path(args.directory)
+    entries: list[dict[str, Any]] = []
+    for path in _map_files(directory):
+        try:
+            game, build = _read_design_build(path)
+            fingerprint = design_fingerprint(build)
+            entries.append({"map": path.name, "path": str(path), "game": game, "fingerprint": fingerprint, "status": "ok"})
+        except (DukeMapError, BloodMapError, DesignUnderstandingError, ValueError) as exc:
+            entries.append({"map": path.name, "path": str(path), "status": "error", "error": str(exc)})
+    _write_text(args.output, _json({
+        "$schema": "bloodmap.design-index",
+        "schema_version": 1,
+        "directory": str(directory),
+        "entries": entries,
+    }))
+    return 0
+
+
+def cmd_design_search(args: argparse.Namespace) -> int:
+    document = json.loads(Path(args.index).read_text(encoding="utf-8"))
+    query = None
+    if args.like:
+        _game, query_build = _read_design_build(args.like)
+        query = design_fingerprint(query_build)
+    results: list[dict[str, Any]] = []
+    for entry in document.get("entries", []):
+        if entry.get("status") != "ok":
+            continue
+        fingerprint = entry["fingerprint"]
+        if args.game and entry.get("game") != args.game:
+            continue
+        if args.mechanism:
+            if args.mechanism not in fingerprint.get("source_mechanisms", {}).get("kinds", {}):
+                continue
+        match_basis = None
+        if args.motif:
+            matched, match_basis = _motif_match(fingerprint, args.motif)
+            if not matched:
+                continue
+        if args.min_enemies is not None and fingerprint["metrics"]["gameplay"]["enemy_count"]["value"] < args.min_enemies:
+            continue
+        result = {"map": entry["map"], "path": entry["path"], "game": entry["game"], "evidence": fingerprint["evidence"], "interpretations": fingerprint["interpretations"]}
+        if match_basis is not None:
+            result["motif"] = args.motif
+            result["match_basis"] = match_basis
+        if query is not None:
+            result["distance"] = _fingerprint_distance(query, fingerprint)
+        results.append(result)
+    results.sort(key=lambda item: (item.get("distance", 0), item["map"]))
+    _write_text(args.output, _json({
+        "$schema": "bloodmap.design-search",
+        "schema_version": 1,
+        "query": {"like": args.like, "game": args.game, "mechanism": args.mechanism, "motif": args.motif, "min_enemies": args.min_enemies},
+        "results": results[:args.limit],
+    }))
+    return 0
+
+
 def _parse_id_set(value: str) -> list[int]:
     result: set[int] = set()
     for part in value.split(","):
@@ -679,6 +833,23 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--sector", type=int); p.add_argument("--wall", type=int); p.add_argument("--sprite", type=int); p.set_defaults(func=cmd_render)
     p = sub.add_parser("stats", help="generate corpus geometry/gameplay statistics")
     p.add_argument("directory"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_stats)
+    p = sub.add_parser("design-fingerprint", help="measure a level or region as grounded design characteristics")
+    p.add_argument("map")
+    p.add_argument("--sectors", help="optional comma-separated sector IDs/ranges")
+    p.add_argument("-o", "--output", help="write JSON; defaults to stdout")
+    p.set_defaults(func=cmd_design_fingerprint)
+    p = sub.add_parser("design-index", help="index Blood and Duke3D maps by design fingerprint")
+    p.add_argument("directory"); p.add_argument("-o", "--output", required=True); p.set_defaults(func=cmd_design_index)
+    p = sub.add_parser("design-search", help="retrieve maps by multi-dimensional design similarity or evidence")
+    p.add_argument("index")
+    p.add_argument("--like", help="rank by fingerprint similarity to this MAP")
+    p.add_argument("--game", choices=("blood", "duke3d"))
+    p.add_argument("--mechanism", help="require a source mechanism kind")
+    p.add_argument("--motif", choices=("arena", "branching", "compressed", "loop", "repeated-bays", "vertical"), help="require a soft structural motif heuristic")
+    p.add_argument("--min-enemies", type=int)
+    p.add_argument("--limit", type=int, default=10)
+    p.add_argument("-o", "--output", help="write JSON; defaults to stdout")
+    p.set_defaults(func=cmd_design_search)
     p = sub.add_parser("extract", help="extract selected sectors into a self-describing fragment")
     p.add_argument("map"); p.add_argument("--sectors", required=True, help="comma-separated IDs/ranges, e.g. 1,4-7")
     p.add_argument("-o", "--output", required=True); p.set_defaults(func=cmd_extract)

@@ -12,11 +12,37 @@ Blood bytes -> DiskMap -----\
                            BuildIR -> shared transforms / conversion
 Duke bytes  -> DukeDiskMap-/
 
+BuildIR -> Design Understanding sensors -> fingerprints / corpus retrieval
+
 Blood DiskMap <-> LevelIR -> fragments / composition / construction
 ```
 
 Derived geometry, trigger graphs, differential evidence, statistics, renderings,
-and semantic annotations are never authoritative serialized state.
+semantic annotations, and Design Understanding observations are never
+authoritative serialized state.
+
+## Design Understanding
+
+`bloodmap.design` is a deterministic sensor layer over `BuildIR`. It measures
+topology, space, architecture, visual proxies, and gameplay inventories for a
+whole map or an explicitly selected set of sectors. Every fingerprint keeps
+three kinds of knowledge separate:
+
+- verified facts: exact object references, source game, and native counts;
+- derived metrics: reproducible measurements such as portal degree, area,
+  vertical range, repetition proxies, and enemy density;
+- heuristic interpretations: soft statements such as branching, compression,
+  vertical contrast, or structural rhythm.
+
+Heuristics never mutate LevelIR or native disk data. They include their basis
+and confidence, while `provenance.not_inferred` records questions the sensor
+does not answer (for example material-family meaning or player intent).
+`design-index` stores these grounded fingerprints for original Blood and Duke3D
+maps, and `design-search` retrieves multi-dimensional similarities or explicitly
+named soft motifs. Search results retain the fingerprint's sector, wall, sprite,
+and mechanism evidence so an LLM can inspect the source rather than trust a
+label. This is a sensory and retrieval layer, not a finite room taxonomy or a
+procedural replacement for design judgment.
 
 ## Native disk models
 

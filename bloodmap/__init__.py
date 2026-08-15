@@ -11,6 +11,7 @@ from .construction import (
     ConstructionError, LevelBuilder, SectorAllocation, new_level, portal_profiles,
 )
 from .conversion import ConversionError, GAME_PROFILES, convert_build_ir, convert_shade, native_scale
+from .design import DesignUnderstandingError, design_fingerprint
 from .designs import DesignedLevel, build_first_puzzle_room
 from .differential import compare_e3l1_pair, infer_xy_scale
 from .duke import (
@@ -36,6 +37,7 @@ __all__ = [
     "CompositionResult",
     "ConstructionError",
     "ConversionError",
+    "DesignUnderstandingError",
     "DestinationMap",
     "DesignedLevel",
     "DiskMap",
@@ -61,6 +63,7 @@ __all__ = [
     "connect_with_pathway",
     "convert_build_ir",
     "convert_shade",
+    "design_fingerprint",
     "encode_duke_map",
     "extract_fragment",
     "extract_behavior_closed_fragment",
