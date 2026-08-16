@@ -36,11 +36,16 @@ Status: initial foundation complete.
 
 Next gates:
 
-- broaden hand-converted-map evidence beyond one pair;
-- broaden role-aware ART similarity into material-family and neighborhood profiles;
+- broaden hand-converted-map evidence beyond one pair (E3L3/DNE3L3 is a
+  reimagination pair: mechanism vocabulary, not geometry matching; E2L1/DWE2M3
+  is a style pair: indoor Blood vocabulary, not geometry matching);
+- broaden role-aware ART similarity into material-family and neighborhood profiles
+  (style-map candidate constraint and tile+pal+shade bundles are the first step);
 - add palette, translucency, and sprite-size normalization;
 - model common concepts such as doors, lifts, switches, keys, exits, secrets, and
   spawn conditions above each game's native controller graph;
+- classic Doom native maps, semantic mechanisms, and one-way Doom → Blood lowering
+  as an engine-independence experiment (`docs/doom.md`); `BuildIR` stays Build-only;
 - add deterministic behavior oracles for mapped mechanisms in both games;
 - introduce game-neutral room fragments only after semantic dependency closure is
   as explicit as Blood `LevelFragment` closure.

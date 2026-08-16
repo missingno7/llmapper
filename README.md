@@ -1,16 +1,21 @@
 # llmapper
 
-`llmapper` is a dependency-free Python toolkit for lossless Build-engine MAP
-inspection, transformation, and evidence-driven conversion. It currently supports
-Blood v7 (`0x0700`) and classic Duke Nukem 3D v7 maps.
+`llmapper` is a dependency-free Python toolkit for lossless map inspection,
+transformation, and evidence-driven conversion. It currently supports Blood v7
+(`0x0700`), classic Duke Nukem 3D v7 maps, and classic Doom / Doom II binary
+maps as an engine-independence experiment.
 
-The project separates three concerns:
+The project separates these concerns:
 
-1. `DiskMap` and `DukeDiskMap` preserve each game's native file exactly.
-2. `BuildIR` exposes common sectors, walls, sprites, topology, slopes, lighting,
-   and player start through one JSON contract while retaining a lossless native
-   extension.
-3. `LevelIR` remains the richer Blood authoring layer for triggers, channels,
+1. `DiskMap`, `DukeDiskMap`, and `DoomDiskMap` preserve each game's native file
+   exactly. Doom does **not** live inside `BuildIR`.
+2. `BuildIR` exposes common Build sectors, walls, sprites, topology, slopes,
+   lighting, and player start through one JSON contract while retaining a
+   lossless native extension.
+3. `SemanticLevel` / `SemanticMechanism` sit above native encodings so a keyed
+   door can be recognized in Doom, reasoned about without linedef numbers, and
+   lowered into Blood XSECTOR motion.
+4. `LevelIR` remains the richer Blood authoring layer for triggers, channels,
    fragments, room attachment, corridors, stairs, and scratch construction.
 
 Neither writer caches the original file blob. The 44-map Blood corpus and 41-map
@@ -54,6 +59,9 @@ python -m bloodmap convert maps/duke3d/E3L1.MAP --to blood \
 python -m bloodmap convert maps/blood/DNE3L1.MAP --to duke3d \
   --policy semantic --report work/DNE3L1-to-duke.json \
   -o work/DNE3L1-semantic-duke.MAP
+python -m bloodmap doom-corpus maps/doom/doom.wad -o work/doom-corpus.json
+python -m bloodmap convert-doom maps/doom/doom.wad --map E1M1 \
+  --report work/E1M1-BLOOD.report.json -o work/E1M1-BLOOD.MAP
 ```
 
 `geometry-only` preserves normalized geometry, topology, slopes, player start,
@@ -62,21 +70,35 @@ controllers, and triggers. `semantic` additionally enables only the few mappings
 whose evidence and classification are explicit in the report. `strict` refuses a
 cross-game export while any asset or gameplay mechanism is unresolved.
 
-E3L11 is the principal regression board for the playable Duke-to-Blood conversion
-profile. It uses the local Duke and Blood ART sets for role-aware surface matching,
-translates the gameplay population by role, and lowers supported Duke mechanisms
-to native Blood records:
+E3L11 and E3L3 are the regression boards for the playable Duke-to-Blood conversion
+profile. DNE3L3 is a Blood reimagination of E3L3 used as mechanism vocabulary, not
+as a geometry oracle. DWE2M3 is a Blood space-station style reference for E2L1:
+same mood, not the same geometry. The profile uses local ART sets for role-aware
+surface matching, optionally constrained to one Blood style map, translates the
+gameplay population by role, and lowers supported Duke mechanisms to native Blood
+records:
 
 ```text
-python -m bloodmap convert-e3l11 maps/duke3d/E3L11.MAP \
+python -m bloodmap convert-playable maps/duke3d/E3L11.MAP \
   --duke-art reference/duke3d --blood-art reference/blood \
   --blood-maps maps/blood --report work/E3L11-BLOOD.report.json \
   -o work/E3L11-BLOOD.MAP
+python -m bloodmap convert-playable maps/duke3d/E3L3.MAP \
+  --duke-art reference/duke3d --blood-art reference/blood \
+  --blood-maps maps/blood --report work/E3L3-BLOOD.report.json \
+  -o work/E3L3-BLOOD.MAP
+python -m bloodmap convert-playable maps/duke3d/E2L1.MAP \
+  --duke-art reference/duke3d --blood-art reference/blood \
+  --blood-maps maps/blood --style-map maps/blood/DWE2M3.MAP \
+  --report work/E2L1-BLOOD.report.json \
+  -o work/E2L1-BLOOD.MAP
+python -m bloodmap compare-e3l1 --duke maps/duke3d/E3L3.MAP \
+  --blood maps/blood/DNE3L3.map -o work/e3l3-differential.json
 ```
 
-The profile converts doors, lifts, rotating/sliding sectors, paired water links,
-teleporters, conveyors, touchplates, keyed switches, switchable/ambient lights,
-CRACK/SE13 breakable-wall explosion chains, weapons, inventory, enemies, and the
+The profile converts doors, lifts, rotating/sliding/swinging sectors, paired water
+links, teleporters, hatches, conveyors, touchplates, keyed switches, switchable/ambient
+lights, CRACK/SE13 destruction chains, weapons, inventory, enemies, and the
 normal exit. Unsupported choreography remains explicit in the report. This is a
 playable approximation, not a claim of exact game equivalence.
 
@@ -115,6 +137,7 @@ python -m unittest discover -s tests -v
 - [Multi-view spatial understanding](docs/spatial-understanding.md)
 - [Experience Atlas and persistent level projects](docs/experience-atlas.md)
 - [Shared BuildIR contract](docs/build-ir.md)
+- [Classic Doom maps and engine-neutral mechanisms](docs/doom.md)
 - [Duke3D v7 format support](docs/duke3d.md)
 - [Cross-game normalization and conversion](docs/conversion.md)
 - [LevelIR authoring](docs/level-ir.md)

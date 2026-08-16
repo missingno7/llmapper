@@ -798,3 +798,87 @@ def run_nblood_behavior_oracle(
         return execute(Path(work_dir).resolve())
     with tempfile.TemporaryDirectory(prefix="bloodmap-nblood-behavior-") as directory:
         return execute(Path(directory))
+
+
+def run_gzdoom_oracle(
+    iwad: str | Path,
+    *,
+    gzdoom: str | Path,
+    map_name: str,
+    pwad: str | Path | None = None,
+    grace_seconds: float = 4.0,
+    work_dir: str | Path | None = None,
+) -> dict[str, Any]:
+    """Bounded GZDoom map-load smoke. GZDoom is an oracle, not a package dependency."""
+    iwad_path = Path(iwad).resolve()
+    gzdoom_path = Path(gzdoom).resolve()
+    pwad_path = Path(pwad).resolve() if pwad is not None else None
+    if not iwad_path.is_file():
+        raise OracleError(f"IWAD does not exist: {iwad_path}")
+    if not gzdoom_path.is_file():
+        raise OracleError(f"GZDoom executable does not exist: {gzdoom_path}")
+    if pwad_path is not None and not pwad_path.is_file():
+        raise OracleError(f"PWAD does not exist: {pwad_path}")
+    if not 1.0 <= grace_seconds <= 60.0:
+        raise OracleError("grace_seconds must be between 1 and 60")
+
+    def execute(root: Path) -> dict[str, Any]:
+        root.mkdir(parents=True, exist_ok=True)
+        log_path = root / "gzdoom.log"
+        if log_path.exists():
+            log_path.unlink()
+        command = [
+            str(gzdoom_path),
+            "-iwad", str(iwad_path),
+            "-nosound", "-nomusic", "-nologo", "-stdout",
+            "+map", map_name,
+        ]
+        if pwad_path is not None:
+            command[4:4] = ["-file", str(pwad_path)]
+        stdout_path, stderr_path = root / "stdout.txt", root / "stderr.txt"
+        stayed_alive = False
+        returncode: int | None = None
+        with stdout_path.open("wb") as stdout, stderr_path.open("wb") as stderr:
+            process = subprocess.Popen(
+                command, cwd=root, stdout=stdout, stderr=stderr,
+                **_hidden_process_options(),
+            )
+            deadline = time.monotonic() + grace_seconds
+            while time.monotonic() < deadline:
+                if process.poll() is not None:
+                    break
+                time.sleep(0.2)
+            else:
+                stayed_alive = True
+            if process.poll() is None:
+                process.terminate()
+                try:
+                    process.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    process.kill()
+                    process.wait(timeout=5)
+            returncode = process.poll()
+        log = log_path.read_text(encoding="utf-8", errors="replace") if log_path.exists() else ""
+        stdout_text = stdout_path.read_text(encoding="utf-8", errors="replace")
+        stderr_text = stderr_path.read_text(encoding="utf-8", errors="replace")
+        combined = "\n".join((log, stdout_text, stderr_text))
+        marker = map_name.upper() in combined.upper()
+        fatal = bool(re.search(r"execution could not continue|fatal error|access violation", combined, re.I))
+        status = "pass" if stayed_alive and marker and not fatal else "fail"
+        return {
+            "$schema": "llmapper.gzdoom-oracle-report",
+            "schema_version": 1,
+            "status": status,
+            "map": map_name,
+            "stayed_alive": stayed_alive,
+            "map_marker_seen": marker,
+            "fatal": fatal,
+            "returncode": returncode,
+            "iwad": str(iwad_path),
+            "pwad": str(pwad_path) if pwad_path else "",
+        }
+
+    if work_dir is not None:
+        return execute(Path(work_dir).resolve())
+    with tempfile.TemporaryDirectory(prefix="bloodmap-gzdoom-oracle-") as directory:
+        return execute(Path(directory))

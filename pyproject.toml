@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "bloodmap"
 version = "1.0.0"
-description = "Lossless Blood and Duke3D Build MAP parsing, shared IR, and conversion"
+description = "Lossless Blood, Duke3D, and classic Doom map parsing, shared semantics, and conversion"
 requires-python = ">=3.10"
 dependencies = []
 

@@ -11,6 +11,8 @@ The expected local layout is:
 reference/
   blood/       legally obtained game data and local executables
   duke3d/      legally obtained Duke3D data and a local EDuke32 executable
+  doom/        runnable GZDoom binary plus local Doom IWADs
+  gzdoom/      https://github.com/ZDoom/gzdoom.git source checkout
   eduke32/     https://github.com/EDuke32/eduke32.git
   xmapedit/    https://github.com/NoOneBlood/xmapedit.git
   NBlood/      https://github.com/NBlood/NBlood.git
@@ -33,6 +35,11 @@ reproducible.
 Never copy game resources, ART files, generated screenshots, executables, or nested Git
 metadata into tracked paths. Only derived facts, focused tests, and documentation
 belong in the repository.
+
+NBlood `source/tools/src/wad2map.cpp` is the historical Doom→Build converter
+(Ken Silverman). Doom→Blood XY×16 and Z×256 come from that tool, confirmed
+against `maps/blood/TEDE1M9.MAP`. `oracle-gzdoom` is an optional GZDoom map-load
+smoke; GZDoom is an oracle, not a package dependency.
 
 ## Bounded EDuke32 load smoke
 

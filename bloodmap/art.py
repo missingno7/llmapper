@@ -101,6 +101,7 @@ def nearest_art_tiles(
     target_art: str | Path,
     source_palette: str | Path,
     target_palette: str | Path,
+    target_weights: dict[int, int] | None = None,
 ) -> dict[int, dict[str, float | int]]:
     source_library, target_library = read_art_directory(source_art), read_art_directory(target_art)
     source_pal, target_pal = read_palette(source_palette), read_palette(target_palette)
@@ -117,6 +118,8 @@ def nearest_art_tiles(
         ranked = []
         for target, other in target_features.items():
             distance = sum(weight * (left - right) ** 2 for weight, left, right in zip(weights, feature, other))
+            if target_weights:
+                distance /= 1.0 + 0.2 * math.log2(1.0 + max(0, int(target_weights.get(target, 0))))
             ranked.append((distance, target))
         distance, target = min(ranked)
         result[source] = {"blood_tile": target, "distance": round(math.sqrt(distance), 6)}

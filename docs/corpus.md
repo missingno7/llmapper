@@ -50,12 +50,55 @@ conversion pair. `compare-e3l1` derives scale, exact geometry correspondences,
 topology agreement, Z residuals, shade regressions, material candidates, and
 mechanism inventories without assuming equal object indices.
 
+`maps/duke3d/E3L3.MAP` and `maps/blood/DNE3L3.map` are a second pair. DNE3L3 is a
+Blood-native reimagination of E3L3, not an index-matched conversion: the
+differential still selects 3:2 from shared wall-vector lengths, but unique sector
+shapes do not correspond. Use it as Blood mechanism vocabulary (water markers,
+type-600 Z-motion, type-617 swinging doors), not as a geometry oracle.
+
+`maps/duke3d/E2L1.MAP` and `maps/blood/DWE2M3.MAP` are a visual-style pair: both
+are space-station maps, unique sector correspondences are zero, and DWE2M3 is
+much larger. Conversion keeps Duke E2L1 topology at the measured 3:2 profile and
+uses DWE2M3 as Blood indoor material, palette, shade, visibility, and sky
+vocabulary. Do not treat wall-vector overlap at 2:1 as an authoring scale; that
+ratio is coincidental on this unrelated pair.
+
+`maps/duke3d/E3L11.MAP` and `maps/blood/DNE3L11.map` are a partial 3:2 conversion:
+wall-vector overlap strongly selects 3:2, sector indices are mostly preserved,
+but unique sector shapes do not match after edits (250 vs 253 sectors). The Blood
+map is a water-layout pass: 15 water-marker pairs, one stack pair, and
+XSECTOR.Underwater on every Duke ST2 index, with no type-600 doors or cracks yet.
+Use it as stacked-flag evidence, not as a finished mechanism oracle.
+
+`maps/duke3d/E3L6.MAP` and `maps/blood/DNE3L6.map` are a partial-geometry
+reimagination (72 unique sector matches at 3:2). DNE3L6 supplies Blood vocabulary
+for type-408 cracks TX-ing type-459 exploders, Push+Wallpush type-600 doors, and
+XWALL switches. It also uses path/rotate-marked/damage sectors (612/615/618) on
+rebuilt geometry; those are not copied onto unmatched Duke tags.
+
+`maps/duke3d/BE1L1.map` … `BE1L4.map` and `BE1L7.map` are reverse (Blood→Duke)
+conversions of E1M1–E1M4 and E1M7. They are heavily rebuilt; vector overlap
+prefers 4:3 rather than 2:3. They confirm Duke ST1/ST2 as the water lowering and
+CRACK sprites as the crack lowering, but they leak Blood sector types (600, 618)
+into Duke lotags and are not a geometry oracle.
+
+`maps/blood/TEDE1M9.MAP` is a Blood-native recreation of Doom E1M1: close in
+layout, not a 1:1 sector conversion (105 Blood sectors vs 88 Doom sectors).
+Wall-vector overlap against Doom E1M1 peaks at XY ×16 with Y-flip, and
+floor/ceiling values match Doom heights ×256. That agrees with NBlood
+`source/tools/src/wad2map.cpp` (`<<4` XY, `-(z<<8)` Z). Use TEDE1M9 as a
+Doom→Blood scale/height oracle, not as a sector-index oracle.
+
 Derived mappings are enabled only when their classification and support threshold
 are explicit. Context-dependent candidates remain evidence, not conversion rules.
 
 ```text
 python -m bloodmap compare-e3l1 --duke maps/duke3d/E3L1.MAP \
   --blood maps/blood/DNE3L1.MAP -o work/e3l1-differential.json
+python -m bloodmap compare-e3l1 --duke maps/duke3d/E3L3.MAP \
+  --blood maps/blood/DNE3L3.map -o work/e3l3-differential.json
+python -m bloodmap compare-e3l1 --duke maps/duke3d/E2L1.MAP \
+  --blood maps/blood/DWE2M3.MAP -o work/e2l1-dwe2m3-differential.json
 ```
 
 ## Adding a format or variant

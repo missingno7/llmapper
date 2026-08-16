@@ -85,7 +85,7 @@ def validate_map(disk: DiskMap) -> list[Diagnostic]:
                 if other.next_sector != expected_owner:
                     emit("warning", "portal-nonreciprocal-sector", f"wall {nwall} points to sector {other.next_sector}, expected {expected_owner}", f"wall[{wi}]")
                 if 0 <= nsector < ns and wall_owner[nwall] != nsector:
-                    emit("error", "portal-owner", f"next wall {nwall} belongs to sector {wall_owner[nwall]}, not {nsector}", f"wall[{wi}]")
+                    emit("warning", "portal-owner", f"next wall {nwall} belongs to sector {wall_owner[nwall]}, not {nsector}", f"wall[{wi}]")
 
     for spi, sprite in enumerate(disk.sprites):
         if sprite.sector < 0 or sprite.sector >= ns:

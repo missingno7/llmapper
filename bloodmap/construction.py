@@ -249,7 +249,7 @@ class LevelBuilder:
             shade=int(shade), pal=int(pal), clipdist=int(clipdist),
             x_repeat=int(x_repeat), y_repeat=int(y_repeat), sector=sector_id,
             status=int(status), angle=int(angle) & 2047, owner=-1, index=sprite_id,
-            type=int(type), extra=-1,
+            type=int(type), initial_type=int(type), extra=-1,
         )
         self.level.sprites.append({"id": sprite_id, "fields": sprite, "blood": None})
         return sprite_id

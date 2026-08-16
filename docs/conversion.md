@@ -66,42 +66,61 @@ tiles 559 and 2820 respectively.
 entity, sound, weapon, controller, trigger, secret, and progression equivalence is
 not established.
 
-## Playable E3L11 vertical slice
+## Playable Duke-to-Blood profile
 
-`convert-e3l11` is the first gameplay profile layered above the conservative
-generic policies. E3L11 is its regression board, not an object-index recipe:
-controller groups, rotating-sector MasterSwitch channels, water pairs, crack-wall
-attachment, and linked effects are recovered from the source map's relationships.
+`convert-playable` (alias `convert-e3l11`) layers gameplay lowering above the
+conservative generic policies. E3L11 remains the first regression board; E3L3 is
+the second; E2L1 is the first style-referenced board. None of these boards is an
+object-index recipe: controller groups, water pairs, crack attachment, swinging
+doors, and linked effects are recovered from the source map's relationships.
 
-The converter preserves E3L11's 253-sector/1,600-wall topology at the measured 3:2
-scale and creates native Blood behavior records for:
+Duke tags that fit `100 + tag` keep that Blood user-channel encoding so E3L11
+stays stable. Larger tags, common on E3L3, occupy the next free channel in
+100-1023. Channel 4 stays reserved for the Blood normal exit.
 
-- four ceiling doors, one elevator, three ceiling and two floor rise/fall sectors;
-- one two-marker sliding door and five axis-marker rotating bridges;
-- twenty upper/lower water pairs and two bidirectional teleporter pairs;
-- nine floor-panning conveyors and six enter-trigger touchplates;
-- thirty-two switchable light sectors as Blood XSECTOR light pulses, plus fourteen
-  autonomous flicker sectors as visual approximations;
-- six damage-triggered CRACK wall groups as Blood `kWallGib` architecture linked
-  to six hidden Blood exploders;
-- keyed and ordinary switches on allocated user channels, plus a normal exit on
-  Blood's reserved channel 4.
+The converter preserves source topology at the measured 3:2 scale and creates
+native Blood behavior records for:
+
+- ceiling doors, elevators, SE31/SE32 rise/fall, and SE13 explosive holes as
+  type-600 Z-motion (unbuttoned surfaces use XSECTOR Push+Wallpush; buttoned
+  ones are RX-only, matching NBlood `ActionScan` and DNE3L1);
+- SE15 sliding doors and SE20 stretch bridges as two-marker type-616 slides;
+- ST30 rotating bridges and SE11/ST23 swinging doors as type-617 rotations;
+- SE7 water pairs, floor teleporters, and air-hatch stack/link markers;
+- SE17 warp elevators as type-604 cabin teleports with `dudeLockout`; ST16
+  platforms and ST22 splitting doors as type-600 Z-motion;
+- floor-panning conveyors, touchplates, and SE10 autoclose as `wait_time_a`
+  plus `retrigger_a`;
+- switchable light pulses, CYCLER, and autonomous flicker approximations;
+- CRACK/SE13 as shootable `kThingWallCrack` (Vector+Impact) TX plus collapsed
+  type 600 and trap-stat exploders; Duke ST2 stays underwater even when the
+  same sector is also a type-600 hole or a neighboring Z-door;
+- ACCESS SWITCH / ACCESS SWITCH2 / TECHSWITCH / LIGHTSWITCH / dipswitches on
+  allocated user channels, plus nuke-button exits on Blood channel 4.
 
 Weapons, ammo, health, inventory, keys, and enemies use explicit role
 substitutions. Each one is classified in the report: a Duke RPG becomes a Blood
 napalm launcher, while a Battlelord becoming Cerberus is recorded as a balance
 approximation.
 
+`--style-map` points at one Blood MAP used as visual vocabulary rather than as
+geometry to copy. Indoor ceiling, floor, and wall candidates come from that map's
+authored tiles; each chosen tile reuses the reference's modal palette and shade
+for the same surface role. Header visibility and sky come from the reference.
+Parallax ceilings still match tiles that the local Blood corpus actually used as
+skies, because a fully indoor style map may have none. The E3L1 3:2 scale is kept
+even when a style pair's wall vectors prefer another ratio.
+
 Materials are selected only from tiles already used as the *same surface role* in
-the local Blood corpus. Ceiling, floor, and wall candidate families are matched
-separately using ART dimensions, palette colour moments, luminance histograms, and
-a small spatial thumbnail; known/manual differential mappings still take
-precedence. Water interfaces use a corpus-backed Blood water-surface tile. This is
-a coherent first pass, not final art direction.
+the local Blood corpus, or in the style map when one is supplied. Ceiling, floor, wall, and
+parallax families are matched separately using ART dimensions, palette colour
+moments, luminance histograms, and a small spatial thumbnail. A style map overrides
+the generic E3L1 exact tile table. Water interfaces use a corpus-backed Blood
+water-surface tile. This is a coherent first pass, not final art direction.
 
 Conversion fails if water endpoints are unpaired, structural validation fails, or
 the exit is absent from a static reachability graph containing configured-open
-portals, water links, and teleporters. The report distinguishes faithful
+portals, water links, stack/link hatches, and teleporters. The report distinguishes faithful
 conversion, semantic approximation, visual-only approximation, and unsupported
 mechanisms. CRACK/SE13 chains and switchable lights are now represented;
 earthquake, door-linked lighting, quake debris, and demo-camera choreography

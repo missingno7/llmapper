@@ -9,14 +9,21 @@ generation is trusted.
 
 ```text
 Blood bytes -> DiskMap -----\
-                           BuildIR -> shared transforms / conversion
+                           BuildIR -> shared Build transforms / conversion
 Duke bytes  -> DukeDiskMap-/
+
+Doom WAD   -> DoomDiskMap -> SemanticLevel / SemanticMechanism
+Blood/Duke natives also compile into that semantic layer when justified.
 
 BuildIR -> Design Understanding sensors -> fingerprints / corpus retrieval
         -> multi-view spatial analysis -> overlapping hypotheses / context
 
 Blood DiskMap <-> LevelIR -> fragments / composition / construction
+Doom DiskMap  -> Blood LevelIR (one-way lowering)
 ```
+
+`BuildIR` remains a Build-engine contract. Supporting Doom does not make it a
+universal map IR. See [doom.md](doom.md).
 
 Derived geometry, trigger graphs, differential evidence, statistics, renderings,
 semantic annotations, and Design Understanding observations are never

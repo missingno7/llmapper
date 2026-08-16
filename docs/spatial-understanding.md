@@ -23,8 +23,8 @@ every sector to exactly one region.
 
 The output labels every approximation in its `model`, `basis`, and provenance.
 The renderer, locked states, slopes, occlusion, and long-term player knowledge
-remain future sensors or interpretations. Source-backed paired water and
-teleporter links are listed as non-portal transitions when recognized, but their
+remain future sensors or interpretations. Source-backed paired water, stack/link,
+and teleporter links are listed as non-portal transitions when recognized, but their
 runtime activation conditions are not simulated.
 
 ## Region hypotheses

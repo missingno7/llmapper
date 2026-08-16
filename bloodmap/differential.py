@@ -153,9 +153,27 @@ def compare_e3l1_pair(duke_path: str | Path, blood_path: str | Path) -> dict[str
         "xwalls": sum(item.extra is not None for item in blood.walls),
         "xsprites": sum(item.extra is not None for item in blood.sprites),
     }
+    coverage = len(sector_pairs) / len(duke.sectors) if duke.sectors else 0.0
+    if coverage >= 0.5:
+        pair_role = "geometry-matched-hand-conversion"
+    elif coverage == 0:
+        pair_role = "reimagination"
+    else:
+        pair_role = "partial-geometry-match"
+    limitations = [
+        "geometry matching is exact after the selected rational scale and does not force unmatched indices",
+        "sprite/entity correspondence is not inferred from proximity alone",
+        "material mappings marked context-dependent are not safe global substitutions",
+        "mechanisms are inventoried but not translated from tag numbers alone",
+    ]
+    if pair_role == "reimagination":
+        limitations.append(
+            "this pair shares an authoring scale but not unique sector shapes; treat Blood as a reimagination, not an index-matched conversion"
+        )
     return {
         "$schema": "llmapper.cross-game-differential",
         "schema_version": 1,
+        "pair_role": pair_role,
         "sources": {
             "duke": {"path": duke_path.as_posix(), "sha256": hashlib.sha256(duke_path.read_bytes()).hexdigest()},
             "blood": {"path": blood_path.as_posix(), "sha256": hashlib.sha256(blood_path.read_bytes()).hexdigest()},
@@ -200,10 +218,8 @@ def compare_e3l1_pair(duke_path: str | Path, blood_path: str | Path) -> dict[str
             "blood_extended_record_counts": blood_extras,
             "translation_status": "unresolved-native-features; no low-level tag equivalence inferred",
         },
-        "limitations": [
-            "geometry matching is exact after the selected rational scale and does not force unmatched indices",
-            "sprite/entity correspondence is not inferred from proximity alone",
-            "material mappings marked context-dependent are not safe global substitutions",
-            "mechanisms are inventoried but not translated from tag numbers alone",
-        ],
+        "limitations": limitations,
     }
+
+
+compare_hand_converted_pair = compare_e3l1_pair

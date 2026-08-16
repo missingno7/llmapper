@@ -25,8 +25,11 @@ from .workspace import (
     append_decision, append_episode, append_evidence, initialize_project,
     make_level_slice, source_identity, store_level_slice,
 )
-from .e3l11 import E3L11ConversionError, convert_e3l11_to_blood
+from .e3l11 import E3L11ConversionError, PlayableConversionError, convert_playable_duke_to_blood
 from .duke_semantics import analyze_duke_mechanisms
+from .doom import DoomError, encode_wad, read_wad, wad_map, write_wad, doom_corpus_report
+from .doom_convert import DoomConversionError, convert_doom_to_blood
+from .doom_semantics import analyze_doom_mechanisms
 from .format import BloodMapError, SIGNATURE, encode_map, locate_offset, read_map, write_map
 from .fragment import (
     FragmentError, LevelFragment, apply_fragment_in_place,
@@ -34,8 +37,8 @@ from .fragment import (
 )
 from .model import LevelIR
 from .oracle import (
-    OracleError, run_eduke32_oracle, run_nblood_action_oracle, run_nblood_behavior_oracle,
-    run_nblood_oracle,
+    OracleError, run_eduke32_oracle, run_gzdoom_oracle, run_nblood_action_oracle,
+    run_nblood_behavior_oracle, run_nblood_oracle,
 )
 from .recipe import RecipeError, build_composition_recipe
 from .semantics import ObservationError
@@ -129,6 +132,56 @@ def cmd_duke_mechanisms(args: argparse.Namespace) -> int:
         "maps": maps,
         "aggregate_effector_lotags": dict(sorted(aggregate.items(), key=lambda item: int(item[0]))),
     }))
+    return 0
+
+
+def cmd_doom_corpus(args: argparse.Namespace) -> int:
+    from .doom import validate_doom_map
+
+    wad = read_wad(args.wad)
+    report = doom_corpus_report(wad, path=args.wad)
+    rebuilt = encode_wad(wad)
+    original = Path(args.wad).read_bytes()
+    report["roundtrip_count"] = sum(1 for level in wad.maps if level.supported)
+    report["wad_byte_exact"] = rebuilt == original
+    report["validation_count"] = sum(
+        1 for level in wad.maps
+        if level.supported and not any(item["severity"] == "error" for item in validate_doom_map(level))
+    )
+    _write_text(args.output, _json(report))
+    return 0 if report["supported_count"] == report["parse_count"] else 1
+
+
+def cmd_doom_mechanisms(args: argparse.Namespace) -> int:
+    wad = read_wad(args.wad)
+    maps = []
+    for level in wad.maps:
+        if args.map and level.name != args.map.upper():
+            continue
+        maps.append(analyze_doom_mechanisms(level))
+    _write_text(args.output, _json({
+        "$schema": "llmapper.doom-mechanism-corpus",
+        "schema_version": 1,
+        "wad": str(args.wad),
+        "maps": maps,
+    }))
+    return 0
+
+
+def cmd_convert_doom(args: argparse.Namespace) -> int:
+    wad = read_wad(args.wad)
+    level = wad_map(wad, args.map)
+    blood, report = convert_doom_to_blood(level)
+    write_map(blood.to_disk_map(), args.output)
+    if args.report:
+        _write_text(args.report, _json(report))
+    else:
+        sys.stdout.write(_json({
+            "output": args.output,
+            "source": report["source"],
+            "converted_counts": report["converted_counts"],
+            "mechanisms_translated": report["mechanisms_translated"],
+        }))
     return 0
 
 
@@ -277,11 +330,12 @@ def cmd_convert(args: argparse.Namespace) -> int:
 
 def cmd_convert_e3l11(args: argparse.Namespace) -> int:
     source = read_duke_map(args.map)
-    disk, report = convert_e3l11_to_blood(
+    disk, report = convert_playable_duke_to_blood(
         source,
         duke_art=args.duke_art,
         blood_art=args.blood_art,
         blood_maps=args.blood_maps,
+        style_map=args.style_map,
     )
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     write_map(disk, args.output)
@@ -299,7 +353,7 @@ def cmd_convert_e3l11(args: argparse.Namespace) -> int:
         "validation_warnings": sum(item.severity == "warning" for item in diagnostics),
     }
     _write_text(args.report, _json(report))
-    print(f"WROTE {args.output}: Duke E3L11 -> playable Blood approximation, reparsed and validated")
+    print(f"WROTE {args.output}: Duke playable -> Blood approximation, reparsed and validated")
     return 0
 
 
@@ -864,6 +918,15 @@ def cmd_oracle_nblood(args: argparse.Namespace) -> int:
     return 0 if report["status"] == "pass" else 1
 
 
+def cmd_oracle_gzdoom(args: argparse.Namespace) -> int:
+    report = run_gzdoom_oracle(
+        args.iwad, gzdoom=args.gzdoom, map_name=args.map, pwad=args.file,
+        grace_seconds=args.seconds, work_dir=args.work_dir,
+    )
+    _write_text(args.output, _json(report))
+    return 0 if report["status"] == "pass" else 1
+
+
 def cmd_oracle_nblood_behavior(args: argparse.Namespace) -> int:
     report = run_nblood_behavior_oracle(
         nblood=args.nblood, game_dir=args.game_dir,
@@ -899,7 +962,7 @@ def cmd_transform(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="llmapper", description="Lossless Blood and Duke3D Build MAP tooling")
+    parser = argparse.ArgumentParser(prog="llmapper", description="Lossless Blood, Duke3D, and classic Doom map tooling")
     sub = parser.add_subparsers(dest="command", required=True)
 
     p = sub.add_parser("corpus", help="inventory every file in a map directory")
@@ -908,6 +971,21 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("directory")
     p.add_argument("-o", "--output", help="write JSON; defaults to stdout")
     p.set_defaults(func=cmd_duke_mechanisms)
+    p = sub.add_parser("doom-corpus", help="inventory classic Doom/Doom II maps in a WAD")
+    p.add_argument("wad")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_doom_corpus)
+    p = sub.add_parser("doom-mechanisms", help="inventory vanilla Doom linedef/sector mechanisms")
+    p.add_argument("wad")
+    p.add_argument("--map", help="restrict to one map marker, e.g. E1M1")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_doom_mechanisms)
+    p = sub.add_parser("convert-doom", help="convert a classic Doom map to a Blood MAP")
+    p.add_argument("wad")
+    p.add_argument("--map", required=True, help="map marker, e.g. E1M1 or MAP01")
+    p.add_argument("--report", help="write the Doom→Blood fidelity report")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_convert_doom)
     p = sub.add_parser("dump", help="write canonical Level IR JSON")
     p.add_argument("map"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_dump)
     p = sub.add_parser("dump-build", help="write game-neutral BuildIR JSON for Blood or Duke3D")
@@ -922,7 +1000,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("map"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_roundtrip)
     p = sub.add_parser("roundtrip-all", help="test parsing, disk/IR roundtrips, and validation")
     p.add_argument("directory"); p.add_argument("--json", action="store_true"); p.set_defaults(func=cmd_roundtrip_all)
-    p = sub.add_parser("compare-e3l1", help="differentially analyze Duke E3L1 and Blood DNE3L1")
+    p = sub.add_parser("compare-e3l1", help="differentially analyze a Duke/Blood map pair (E3L1 defaults)")
     p.add_argument("--duke", default="maps/duke3d/E3L1.MAP")
     p.add_argument("--blood", default="maps/blood/DNE3L1.MAP")
     p.add_argument("-o", "--output")
@@ -936,12 +1014,25 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_convert)
     p = sub.add_parser(
         "convert-e3l11",
-        help="convert Duke3D E3L11 to a playable Blood approximation with native mechanisms",
+        help="convert a classic Duke3D map to a playable Blood approximation (E3L11 regression alias)",
     )
     p.add_argument("map", nargs="?", default="maps/duke3d/E3L11.MAP")
     p.add_argument("--duke-art", default="reference/duke3d")
     p.add_argument("--blood-art", default="reference/blood")
     p.add_argument("--blood-maps", default="maps/blood")
+    p.add_argument("--style-map", help="Blood MAP whose tiles, palettes, shades, visibility, and sky become the visual vocabulary")
+    p.add_argument("--report", help="write the detailed fidelity and unsupported-feature report")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_convert_e3l11)
+    p = sub.add_parser(
+        "convert-playable",
+        help="convert a classic Duke3D map to a playable Blood approximation with native mechanisms",
+    )
+    p.add_argument("map", nargs="?", default="maps/duke3d/E3L11.MAP")
+    p.add_argument("--duke-art", default="reference/duke3d")
+    p.add_argument("--blood-art", default="reference/blood")
+    p.add_argument("--blood-maps", default="maps/blood")
+    p.add_argument("--style-map", help="Blood MAP whose tiles, palettes, shades, visibility, and sky become the visual vocabulary")
     p.add_argument("--report", help="write the detailed fidelity and unsupported-feature report")
     p.add_argument("-o", "--output", required=True)
     p.set_defaults(func=cmd_convert_e3l11)
@@ -1138,6 +1229,15 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--work-dir", help="preserve logs and screenshots under this ignored directory")
     p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")
     p.set_defaults(func=cmd_oracle_nblood_action)
+    p = sub.add_parser("oracle-gzdoom", help="run a bounded GZDoom map-load smoke test")
+    p.add_argument("--iwad", required=True)
+    p.add_argument("--gzdoom", required=True)
+    p.add_argument("--map", required=True, help="map marker, e.g. E1M1")
+    p.add_argument("--file", help="optional PWAD")
+    p.add_argument("--seconds", type=float, default=4.0)
+    p.add_argument("--work-dir")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_oracle_gzdoom)
 
     p = sub.add_parser("transform", help="apply a safe IR transformation")
     p.add_argument("map"); p.add_argument("-o", "--output", required=True)
@@ -1152,7 +1252,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args = build_parser().parse_args(argv)
         return int(args.func(args))
-    except (BloodMapError, CompositionError, ConstructionError, ConversionError, DukeMapError, E3L11ConversionError, FragmentError, ObservationError, OracleError, RecipeError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+    except (BloodMapError, CompositionError, ConstructionError, ConversionError, DoomConversionError, DoomError, DukeMapError, E3L11ConversionError, PlayableConversionError, FragmentError, ObservationError, OracleError, RecipeError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         print(f"bloodmap: error: {exc}", file=sys.stderr)
         return 2
 

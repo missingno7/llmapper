@@ -187,14 +187,18 @@ def _known_non_portal_transitions(build: BuildIR, selected: set[int]) -> list[di
         from .duke_semantics import analyze_duke_mechanisms
 
         inventory = analyze_duke_mechanisms(build.to_native_disk_map())
-        groups: dict[int, set[int]] = defaultdict(set)
+        groups: dict[int, dict[str, Any]] = {}
         for record in inventory["effectors"]:
-            if record["kind"] == "teleport_or_water_link" and int(record["hitag"]):
-                groups[int(record["hitag"])].add(int(record["source_sector"]))
-        for tag, sectors in sorted(groups.items()):
+            kind = record["kind"]
+            if kind in {"water_link", "floor_teleport", "air_hatch", "teleport_or_water_link"} and int(record["hitag"]):
+                tag = int(record["hitag"])
+                group = groups.setdefault(tag, {"kind": kind, "sectors": set()})
+                group["sectors"].add(int(record["source_sector"]))
+        for tag, group in sorted(groups.items()):
+            sectors = group["sectors"]
             if len(sectors) == 2 and sectors <= selected:
                 transitions.append({
-                    "id": f"duke-link:{tag}", "kind": "teleport_or_water_link",
+                    "id": f"duke-link:{tag}", "kind": group["kind"],
                     "sectors": [_ref("sector", value) for value in sorted(sectors)],
                     "evidence": [f"Duke Sector Effector hitag {tag}"],
                     "state": "runtime conditions are not simulated",
@@ -202,20 +206,31 @@ def _known_non_portal_transitions(build: BuildIR, selected: set[int]) -> list[di
         return transitions
 
     water: dict[int, set[int]] = defaultdict(set)
+    marker_types: dict[int, set[int]] = defaultdict(set)
     for sprite_id, sprite in enumerate(build.sprites):
         sector_id = int(sprite["fields"]["sector"])
-        if sector_id not in selected or int(sprite["fields"]["lotag"]) not in {9, 10}:
+        lotag = int(sprite["fields"]["lotag"])
+        if sector_id not in selected or lotag not in {6, 7, 9, 10, 11, 12}:
             continue
         blood = _native_blood(build, "sprite", sprite_id)
         if blood is not None and int(blood["fields"].get("data_1", 0)):
-            water[int(blood["fields"]["data_1"])].add(sector_id)
+            link = int(blood["fields"]["data_1"])
+            water[link].add(sector_id)
+            marker_types[link].add(lotag)
     for link, sectors in sorted(water.items()):
         if len(sectors) == 2:
+            types = marker_types[link]
+            if types <= {9, 10}:
+                kind = "paired_water_link"
+            elif types <= {11, 12}:
+                kind = "paired_stack"
+            else:
+                kind = "paired_room_link"
             transitions.append({
-                "id": f"blood-water:{link}", "kind": "paired_water_link",
+                "id": f"blood-link:{link}", "kind": kind,
                 "sectors": [_ref("sector", value) for value in sorted(sectors)],
-                "evidence": [f"Blood water XSPRITE data_1 {link}"],
-                "state": "water-entry rules are not simulated",
+                "evidence": [f"Blood XSPRITE data_1 {link}"],
+                "state": "link activation conditions are not simulated",
             })
     for sector_id in sorted(selected):
         if int(build.sectors[sector_id]["fields"]["lotag"]) != 604:

@@ -405,3 +405,171 @@ def observe_level(level: LevelIR, sector_ids: Iterable[int] | None = None) -> di
     observation["level"].pop("type_inventory")
     observation["level"].pop("tile_inventory")
     return observation
+
+
+def blood_to_semantic_level(level: "LevelIR") -> "SemanticLevel":
+    """Compile Blood LevelIR into the engine-neutral progression graph.
+
+    Native TX/RX, XSECTOR motion, and sprite types remain references. The
+    solver never reads those encodings.
+    """
+    from .mechanisms import SemanticConnection, SemanticLevel, SemanticMechanism, SemanticRegion
+
+    owners = _wall_owners(level)
+    regions = [
+        SemanticRegion(id=f"region:{index}", native_refs=[_ref("sector", index)])
+        for index in range(len(level.sectors))
+    ]
+    key_types = {100: "blue", 101: "yellow", 102: "red"}
+    for sprite_id, sprite in enumerate(level.sprites):
+        kind = int(sprite["fields"]["type"])
+        sector_id = int(sprite["fields"]["sector"])
+        if kind in key_types and 0 <= sector_id < len(regions):
+            regions[sector_id].items.append(f"key:{key_types[kind]}")
+
+    mechanisms: list[SemanticMechanism] = []
+    door_sectors: dict[int, SemanticMechanism] = {}
+    for sector_id, sector in enumerate(level.sectors):
+        blood = sector.get("blood")
+        type_id = int(sector["fields"]["type"])
+        fields = blood["fields"] if blood else {}
+        key_id = int(fields.get("key", 0) or 0)
+        off_ceil, on_ceil = int(fields.get("off_ceiling_z", 0)), int(fields.get("on_ceiling_z", 0))
+        off_floor, on_floor = int(fields.get("off_floor_z", 0)), int(fields.get("on_floor_z", 0))
+        ceiling_moves = type_id == 600 and off_ceil != on_ceil
+        floor_moves = type_id == 600 and off_floor != on_floor
+        if not ceiling_moves and not floor_moves and not key_id:
+            continue
+        kind = "key_gate" if key_id else ("lift" if floor_moves and not ceiling_moves else "door")
+        rx = int(fields.get("rx_id", 0) or 0)
+        if rx:
+            activation = "switch"
+        elif int(fields.get("trigger_enter", 0)):
+            activation = "enter"
+        else:
+            activation = "use"
+        required = []
+        if key_id == 1:
+            required = ["blue"]
+        elif key_id == 2:
+            required = ["yellow"]
+        elif key_id == 3:
+            required = ["red"]
+        mechanism = SemanticMechanism(
+            id=f"blood-sector:{sector_id}",
+            kind=kind,
+            source_game="blood",
+            native_refs=[_ref("sector", sector_id)],
+            activation=activation,
+            repeatable=bool(int(fields.get("retrigger_a", 0))),
+            state="closed",
+            parameters={"type": type_id, "rx_id": rx, "key": key_id},
+            required_keys=required,
+            targets=[_ref("sector", sector_id)],
+        )
+        mechanisms.append(mechanism)
+        door_sectors[sector_id] = mechanism
+
+    connections: list[SemanticConnection] = []
+    seen: set[tuple[int, int]] = set()
+    for wall_id, owner in enumerate(owners):
+        if owner < 0:
+            continue
+        neighbor = int(level.walls[wall_id]["fields"]["next_sector"])
+        if neighbor < 0 or neighbor == owner:
+            continue
+        pair = tuple(sorted((owner, neighbor)))
+        if pair in seen:
+            continue
+        seen.add(pair)
+        door = door_sectors.get(owner) or door_sectors.get(neighbor)
+        if door is not None:
+            door_sector = owner if owner in door_sectors else neighbor
+            other = neighbor if door_sector == owner else owner
+            for source, target in ((other, door_sector), (door_sector, other)):
+                connections.append(SemanticConnection(
+                    id=f"conn:{source}:{target}",
+                    kind=door.kind,
+                    source=f"region:{source}",
+                    target=f"region:{target}",
+                    mechanism_id=door.id,
+                    required_keys=list(door.required_keys),
+                    initial="closed",
+                ))
+            continue
+        floor_a = int(level.sectors[owner]["fields"]["floor_z"])
+        floor_b = int(level.sectors[neighbor]["fields"]["floor_z"])
+        ceil_a = int(level.sectors[owner]["fields"]["ceiling_z"])
+        ceil_b = int(level.sectors[neighbor]["fields"]["ceiling_z"])
+        opening = min(floor_a, floor_b) - max(ceil_a, ceil_b)
+        if opening <= 0:
+            continue
+        connections.append(SemanticConnection(
+            id=f"conn:{owner}:{neighbor}", kind="open",
+            source=f"region:{owner}", target=f"region:{neighbor}", initial="open",
+        ))
+        connections.append(SemanticConnection(
+            id=f"conn:{neighbor}:{owner}", kind="open",
+            source=f"region:{neighbor}", target=f"region:{owner}", initial="open",
+        ))
+
+    for sector_id, sector in enumerate(level.sectors):
+        if int(sector["fields"]["type"]) != 604:
+            continue
+        blood = sector.get("blood")
+        if blood is None:
+            continue
+        marker = int(blood["fields"].get("marker_0", -1))
+        if not 0 <= marker < len(level.sprites):
+            continue
+        dest = int(level.sprites[marker]["fields"]["sector"])
+        mechanism = SemanticMechanism(
+            id=f"blood-teleport:{sector_id}",
+            kind="teleport",
+            source_game="blood",
+            native_refs=[_ref("sector", sector_id), _ref("sprite", marker)],
+            activation="enter",
+            repeatable=True,
+            state="idle",
+            targets=[_ref("sector", dest)],
+        )
+        mechanisms.append(mechanism)
+        connections.append(SemanticConnection(
+            id=f"conn:teleport:{sector_id}:{dest}",
+            kind="teleport",
+            source=f"region:{sector_id}",
+            target=f"region:{dest}",
+            mechanism_id=mechanism.id,
+            initial="open",
+        ))
+
+    exit_regions: list[str] = []
+    for sprite_id, sprite in enumerate(level.sprites):
+        blood = sprite.get("blood")
+        if blood is None:
+            continue
+        if int(blood["fields"].get("tx_id", 0)) != 4:
+            continue
+        sector_id = int(sprite["fields"]["sector"])
+        mechanisms.append(SemanticMechanism(
+            id=f"blood-exit:{sprite_id}",
+            kind="exit",
+            source_game="blood",
+            native_refs=[_ref("sprite", sprite_id)],
+            activation="use",
+            repeatable=False,
+            state="idle",
+        ))
+        exit_regions.append(f"region:{sector_id}")
+
+    start = int(level.player_start["sector"])
+    return SemanticLevel(
+        source_game="blood",
+        regions=regions,
+        connections=connections,
+        mechanisms=mechanisms,
+        start_region=f"region:{start}",
+        exit_regions=sorted(set(exit_regions)),
+        notes="compiled from Blood XSECTOR motion, TX/RX, keys, and warp markers",
+    )
+

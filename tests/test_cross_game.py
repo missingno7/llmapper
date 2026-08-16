@@ -31,6 +31,7 @@ class CrossGameTests(unittest.TestCase):
         report = compare_e3l1_pair(duke, blood)
         selected = report["normalization"]["xy_scale_duke_to_blood"]["selected"]
         self.assertEqual((selected["numerator"], selected["denominator"]), (3, 2))
+        self.assertEqual(report["pair_role"], "geometry-matched-hand-conversion")
         self.assertGreaterEqual(report["geometry"]["unique_exact_sector_correspondences"], 230)
         self.assertGreaterEqual(report["geometry"]["unique_exact_wall_correspondences"], 1600)
         self.assertGreater(report["lighting"]["walls"]["exact_double_fraction"], 0.8)

@@ -140,7 +140,11 @@ def _source_mechanisms(build: BuildIR, selected: set[int]) -> dict[str, Any]:
     controller_extras = [item for item in extras if item[2] in {"XSECTOR", "XWALL"}]
     return {
         "controllers": len(controller_extras),
-        "destructible_or_damageable": sum(kind == "XWALL" and int(build.walls[identifier]["fields"]["type"]) == 511 for kind, identifier, _ in extras),
+        "destructible_or_damageable": sum(
+            (object_kind == "wall" and int(build.walls[identifier]["fields"]["lotag"]) == 511)
+            or (object_kind == "sprite" and int(build.sprites[identifier]["fields"]["lotag"]) == 408)
+            for object_kind, identifier, _extra_kind in extras
+        ),
         "kinds": dict(sorted(Counter(kind for _object_kind, _identifier, kind in extras).items())),
         "evidence": [_ref(kind, identifier) for kind, identifier, _ in extras[:64]],
     }
