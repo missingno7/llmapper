@@ -23,6 +23,9 @@ from .spatial import SpatialAnalysisError, analyze_spatial, spatial_selection_co
 from .blood_types import classify as classify_blood_type
 from .contents import explain_mechanisms, inventory_map, multiplayer_layout
 from .sight import SightError, line_of_sight, spawn_sight_report
+from .exposure import ExposureError, route_exposure_report, spawn_neighborhood_report
+from .morphology import MorphologyError, analyze_morphology
+from .understanding import understand_map
 from .player_space import (
     PlayerSpaceError, PLAYER_PROFILES, compare_transition, inspect_connection,
     inspect_space, player_profile, present_space,
@@ -78,6 +81,8 @@ __all__ = [
     "RecipeResult",
     "SightError",
     "SpatialAnalysisError",
+    "ExposureError",
+    "MorphologyError",
     "WorkspaceError",
     "SectorAllocation",
     "GAME_PROFILES",
@@ -89,6 +94,10 @@ __all__ = [
     "line_of_sight",
     "multiplayer_layout",
     "spawn_sight_report",
+    "spawn_neighborhood_report",
+    "route_exposure_report",
+    "analyze_morphology",
+    "understand_map",
     "blood_to_semantic_level",
     "attach_fragment",
     "append_decision",

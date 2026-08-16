@@ -1,0 +1,69 @@
+{
+  "$schema": "llmapper.semantic-roundtrip",
+  "schema_version": 1,
+  "benchmark": "Semantic Level Roundtrip",
+  "maps": {
+    "A": "maps/blood/BB2.MAP",
+    "B": "work/BB2-semantic-reconstruction.MAP"
+  },
+  "understandings": {
+    "A": "reports/BB2-understanding.md",
+    "B": "reports/BB2-reconstruction-understanding.md"
+  },
+  "independence": "B was frozen before A was re-read for this comparison",
+  "no_global_score": true,
+  "profile": {
+    "mode_purpose": "strong match",
+    "macro_spatial_organization": "strong match",
+    "height_enclosure": "strong match",
+    "spawn_concealment": "strong match",
+    "spawn_neighborhood_character": "weak match",
+    "resource_roles": "strong match",
+    "ammo_density": "weak match",
+    "mechanism_diversity": "partial match",
+    "architectural_morphology": "weak match",
+    "materials": "partial match",
+    "route_exposure": "weak match",
+    "outdoor_z": "weak match",
+    "landmarks_cue_kinds": "strong match",
+    "landmarks_silhouette": "weak match"
+  },
+  "deltas": [
+    {"property": "game mode", "class": "PRESERVED"},
+    {"property": "square enclosed compound", "class": "PRESERVED"},
+    {"property": "outdoor-majority footprint", "class": "APPROXIMATELY PRESERVED"},
+    {"property": "covered-sector majority", "class": "INVERTED"},
+    {"property": "height contrast", "class": "PRESERVED"},
+    {"property": "outdoor Z variation", "class": "LOST"},
+    {"property": "spawn-pair concealment", "class": "PRESERVED"},
+    {"property": "spawn neighborhood openness", "class": "LOST"},
+    {"property": "route covered-travel share", "class": "LOST"},
+    {"property": "sky fragmentation", "class": "LOST"},
+    {"property": "architectural morphology", "class": "LOST"},
+    {"property": "flag anchors", "class": "PRESERVED"},
+    {"property": "gated high-value pickups", "class": "PRESERVED"},
+    {"property": "underwater Tesla", "class": "PRESERVED"},
+    {"property": "ammo density", "class": "LOST"},
+    {"property": "mechanism toybox", "class": "LOST"},
+    {"property": "outdoor floor tile identity", "class": "LOST"},
+    {"property": "lighting", "class": "UNMEASURABLE"}
+  ],
+  "measured": {
+    "aabb_player_widths": {"A": [128, 128], "B": [80, 80]},
+    "spawn_pair_clear": {"A": [1, 28], "B": [0, 28]},
+    "orthogonal_length_fraction": {"A": 0.7251, "B": 1.0},
+    "orientation_diversity": {"A": 0.9444, "B": 0.0556},
+    "rectangular_fraction": {"A": 0.3017, "B": 1.0},
+    "spawn_sector_area_range": {"A": [27.6667, 455.1111], "B": [32.0, 161.7778]},
+    "spawn_portal_choice_range": {"A": [2, 8], "B": [1, 3]},
+    "ammo_piles": {"A": 47, "B": 18},
+    "z_motion": {"A": 13, "B": 3},
+    "slide_marked": {"A": 4, "B": 0},
+    "rotators": {"A": 6, "B": 0}
+  },
+  "sensors_justified_by_delta": [
+    "spawn-neighborhood exposure",
+    "route exposure",
+    "architectural morphology"
+  ]
+}

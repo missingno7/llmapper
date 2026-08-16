@@ -95,6 +95,13 @@ The exterior is one continuous ground in the traversal model, but it is not one
 perceptual room: buildings, fences, and height steps break sight and create
 cover without disconnecting walkability.
 
+**Derived — architectural morphology.** Walls are mostly orthogonal (**~0.73**
+of length) but **not a grid**: 5° orientation bins occupy **~34 of 36**
+(diversity ~0.94), diagonal length ~0.06, rectangular sector fraction **~0.30**,
+outer loops median **5** vertices (max 40), mean AABB-fill ~0.78, a small
+chamfer fraction, and on the order of **30** segmented-arc chains. The compound
+is rectilinear in spirit and irregular in mass.
+
 ---
 
 ## Important areas / spatial hypotheses
@@ -331,6 +338,21 @@ landmark sensor.
 
 **Fact.** 8 DM starts, 1 SP start (the SP start shares the large southern
 outdoor ground with one DM start).
+
+**Derived — spawn neighborhoods (sensor added after the first reconstruction).**
+Pairwise spawn LOS does not say whether a start sits in a hunting ground or a
+closet. For each DM start the neighborhood probe reports spawn-sector area,
+reachable area within 16 player-widths, portal choices, hops into the largest
+connected sky region, and the fraction of 32 rays that sample that region.
+
+Outdoor hunting-ground starts occupy **about 110–455 player-areas**, often
+**5–8** immediate portal choices, max 2D sight **~50–73** widths, and may
+already belong to the largest sky component. Enclosed indoor/porch starts
+occupy **about 28–35 player-areas**, **2–3** choices, max sight **~12–29**.
+Local 16-width reachable area is still hundreds of player-areas even for
+indoor starts because they connect into building clusters. Several sky-ceiling
+starts are *not* in the largest sky component: the outdoor field is
+walkable as one compound but **fragmented as sky**.
 
 **Derived spawn character.**
 

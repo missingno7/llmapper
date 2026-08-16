@@ -1,0 +1,116 @@
+{
+  "$schema": "llmapper.map-understanding-report",
+  "schema_version": 1,
+  "map": "work/BB2-semantic-reconstruction.MAP",
+  "independence": {
+    "read": ["candidate MAP", "llmapper sensors", "Blood type catalog", "ontology v2"],
+    "not_read": [
+      "reports/BB2-understanding.md",
+      "reports/BB2-understanding.json",
+      "reports/BB2-reconstruction-contract.json",
+      "reports/BB2-reconstruction-decisions.md",
+      "reports/BB2-reconstruction-comparison.md"
+    ]
+  },
+  "parse": {
+    "version": "0x0700",
+    "sectors": 112,
+    "walls": 448,
+    "sprites": 64,
+    "xsectors": 5,
+    "xwalls": 1,
+    "xsprites": 64,
+    "parallax_ceilings": 78,
+    "validation_errors": 0
+  },
+  "identity": {
+    "game_mode": "Blood deathmatch compound with CTF flag bases",
+    "board": "square enclosed 80x80 player-width compound",
+    "outdoor_majority": true,
+    "sky_sector_count": 78,
+    "covered_sector_count": 34,
+    "sky_footprint_player_areas": 4885.3333,
+    "covered_footprint_player_areas": 1658.6667,
+    "whole_footprint_player_areas": 6544.0
+  },
+  "scale": {
+    "aabb_player_widths": [80.0, 80.0],
+    "sky_clear_height_player_heights": 20.0,
+    "covered_median_clear_height_player_heights": 6.0,
+    "indoor_to_outdoor_height_ratio": 3.3333,
+    "opening_width_player_widths": {"min": 2.6667, "median": 8.0, "max": 24.0},
+    "outdoor_floor_z_unique": [0],
+    "covered_floor_z_unique": [0, 33792, 45056]
+  },
+  "visibility": {
+    "dm_start_pairs": 28,
+    "dm_start_pairs_clear": 0,
+    "spawn_median_sight_player_widths": [6.4944, 7.2161, 7.477, 7.477, 8.4853, 8.6667, 6.4944, 8.3998],
+    "spawn_max_sight_player_widths": [35.7127, 80.097, 17.9134, 17.9134, 58.7984, 15.6337, 32.6667, 19.3722]
+  },
+  "neighborhoods": {
+    "largest_sky_region_player_areas": 4679.1111,
+    "outdoor_starts": 5,
+    "indoor_starts": 3,
+    "spawn_sector_area_player_areas": [56.0, 144.0, 112.0, 112.0, 144.0, 161.7778, 32.0, 93.3333],
+    "local_reachable_area_player_areas": [280.0, 280.0, 330.6667, 293.3333, 176.0, 653.3333, 161.7778, 649.3333],
+    "hops_to_largest_sky_region": [0, 0, 2, 0, 0, 5, 1, 3],
+    "sky_region_ray_fraction": [1.0, 1.0, 0.1562, 1.0, 1.0, 0.3125, 0.25, 0.2812],
+    "immediate_portal_choices": [2, 1, 2, 2, 2, 2, 3, 3]
+  },
+  "routes": {
+    "sky_sample_fraction": [1.0, 1.0, 0.9333, 1.0, 1.0, 0.6429, 0.875, 0.75],
+    "cover_sky_transitions": [0, 0, 2, 0, 0, 1, 1, 1],
+    "mean_max_sight_player_widths": [50.1552, 56.0372, 56.1124, 56.259, 59.8186, 48.2457, 46.2316, 53.8697]
+  },
+  "morphology": {
+    "orthogonal_length_fraction": 1.0,
+    "diagonal_length_fraction": 0.0,
+    "orientation_diversity": 0.0556,
+    "rectangular_fraction": 1.0,
+    "convex_fraction": 1.0,
+    "chamfer_fraction": 0.0,
+    "segmented_arc_chain_count": 0,
+    "outer_vertex_counts": {"min": 4, "median": 4, "max": 4}
+  },
+  "contents": {
+    "dm_starts": 8,
+    "sp_starts": 1,
+    "pickup_categories": {"flag": 2, "weapon": 8, "ammo": 18, "health": 6, "armor": 5, "powerup": 2},
+    "z_motion_doors": 3,
+    "switches": 4,
+    "water_links": 2,
+    "underwater_sectors": [110, 111],
+    "gib_walls": 1,
+    "flags": {
+      "A": {"sky": true, "y_role": "north"},
+      "B": {"sky": false, "y_role": "south"}
+    },
+    "gated": ["kItemArmorSuper", "kItemTwoGuns", "kItemShadowCloak"],
+    "underwater_tesla": true
+  },
+  "materials": {
+    "outdoor": {"floor": 270, "wall": 110, "ceiling": 2500},
+    "indoor": {"floor": 2448, "wall": 5, "ceiling": 416},
+    "water": 90,
+    "shade_almost_uniform": true,
+    "visibility": 800
+  },
+  "spatial": {
+    "reachable_sectors": 101,
+    "unreachable_sectors": 11,
+    "navigation_regions": 1
+  },
+  "claims": {
+    "mode": "Blood deathmatch / CTF compound",
+    "enclosure": "square walled outdoor-majority yard with embedded covered structures",
+    "height_contrast": "sky 20 player-heights vs covered ~6",
+    "spawn_concealment": "complete pairwise 2D spawn LOS occlusion",
+    "spawn_neighborhoods": "small grid cells with short median sight; some already in the main sky region, others 1-5 hops inside covered clusters",
+    "routes": "outdoor starts remain in sky; indoor starts take one cover-to-sky transition then a long-sight ring",
+    "morphology": "entirely orthogonal rectangles; no diagonals, chamfers, or irregular loops",
+    "resources": "opposite N/S flags, three switch-gated prizes, east underwater Tesla",
+    "mechanisms": "three Z-doors plus water plus one gib; no slides/rotators/lifts",
+    "materials": "earth+stone+sky outdoors vs brick+indoor ceiling indoors; tile 90 water is mixed-use"
+  }
+}

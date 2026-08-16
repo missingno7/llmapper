@@ -22,6 +22,9 @@ from .design import DesignUnderstandingError, design_fingerprint
 from .spatial import SpatialAnalysisError, analyze_spatial
 from .contents import explain_mechanisms, inventory_map, multiplayer_layout
 from .sight import SightError, depth_samples, line_of_sight, spawn_sight_report
+from .exposure import ExposureError, route_exposure_report, spawn_neighborhood_report
+from .morphology import MorphologyError, analyze_morphology
+from .understanding import understand_map
 from .player_space import (
     PlayerSpaceError, compare_transition, conversion_player_scale_report,
     focus_observation, inspect_connection, inspect_doom_space, inspect_space,
@@ -655,6 +658,39 @@ def cmd_sightline(args: argparse.Namespace) -> int:
         payload = line_of_sight(build, args.from_x, args.from_y, args.to_x, args.to_y)
         if args.depth:
             payload["depth"] = depth_samples(build, args.from_x, args.from_y)
+    payload["map"] = str(args.map)
+    _write_text(args.output, _json(payload))
+    return 0
+
+
+def cmd_spawn_neighborhood(args: argparse.Namespace) -> int:
+    _game, build = _read_design_build(args.map)
+    payload = spawn_neighborhood_report(build, include_sp_start=not args.multiplayer_only)
+    payload["map"] = str(args.map)
+    _write_text(args.output, _json(payload))
+    return 0
+
+
+def cmd_route_exposure(args: argparse.Namespace) -> int:
+    _game, build = _read_design_build(args.map)
+    payload = route_exposure_report(build, include_sp_start=not args.multiplayer_only)
+    payload["map"] = str(args.map)
+    _write_text(args.output, _json(payload))
+    return 0
+
+
+def cmd_morphology(args: argparse.Namespace) -> int:
+    _game, build = _read_design_build(args.map)
+    payload = analyze_morphology(build)
+    payload["map"] = str(args.map)
+    _write_text(args.output, _json(payload))
+    return 0
+
+
+def cmd_understand(args: argparse.Namespace) -> int:
+    if _game_for_path(args.map) != "blood":
+        raise BloodMapError("understand currently bundles Blood sensors only")
+    payload = understand_map(read_map(args.map), include_sp_start=not args.multiplayer_only)
     payload["map"] = str(args.map)
     _write_text(args.output, _json(payload))
     return 0
@@ -1338,6 +1374,25 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--depth", action="store_true", help="also emit a depth rose from the from-point")
     p.add_argument("-o", "--output")
     p.set_defaults(func=cmd_sightline)
+    p = sub.add_parser("spawn-neighborhood", help="local footprint and field-access profile for each player start")
+    p.add_argument("map")
+    p.add_argument("--multiplayer-only", action="store_true", help="ignore the single-player start sprite")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_spawn_neighborhood)
+    p = sub.add_parser("route-exposure", help="2D sight and sky/cover samples along start-to-field routes")
+    p.add_argument("map")
+    p.add_argument("--multiplayer-only", action="store_true", help="ignore the single-player start sprite")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_route_exposure)
+    p = sub.add_parser("morphology", help="wall orientation, rectangularity, and loop-shape variation")
+    p.add_argument("map")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_morphology)
+    p = sub.add_parser("understand", help="bundle independent map-understanding sensors into one frozen packet")
+    p.add_argument("map")
+    p.add_argument("--multiplayer-only", action="store_true", help="ignore the single-player start sprite in spawn probes")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_understand)
     p = sub.add_parser("channels", help="derive the Blood TX/RX graph")
     p.add_argument("map"); p.add_argument("--channel", type=int); p.set_defaults(func=cmd_channels)
     p = sub.add_parser("render", help="render a deterministic top-down SVG")
@@ -1653,7 +1708,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args = build_parser().parse_args(argv)
         return int(args.func(args))
-    except (BloodMapError, CompositionError, ConstructionError, ConversionError, DoomConversionError, DoomError, DukeMapError, E3L11ConversionError, PlayableConversionError, FragmentError, MaterialsError, ObservationError, OracleError, RecipeError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+    except (BloodMapError, CompositionError, ConstructionError, ConversionError, DoomConversionError, DoomError, DukeMapError, E3L11ConversionError, PlayableConversionError, ExposureError, FragmentError, MaterialsError, MorphologyError, ObservationError, OracleError, RecipeError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         print(f"bloodmap: error: {exc}", file=sys.stderr)
         return 2
 
