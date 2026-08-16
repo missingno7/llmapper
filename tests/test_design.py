@@ -94,6 +94,7 @@ class DesignUnderstandingTests(unittest.TestCase):
         self.assertEqual(len(analysis["views"]["geometry"]["portals"]), 1)
         self.assertEqual(len(analysis["views"]["traversability"]["walkable_at_rest"]), 1)
         self.assertEqual(len(analysis["views"]["visibility"]["candidates"]), 1)
+        self.assertIn("geometric_sight", analysis["views"]["visibility"])
         self.assertTrue(any(item["kind"] == "blood_channel" for item in analysis["views"]["mechanism"]["groups"]))
         self.assertTrue(any(item["kind"] == "navigation_region" for item in analysis["hypotheses"]))
         self.assertTrue(all("status" in item and "sectors" in item for item in analysis["hypotheses"]))

@@ -20,6 +20,8 @@ from .differential import compare_e3l1_pair
 from .duke import DukeMapError, encode_duke_map, read_duke_map, write_duke_map
 from .design import DesignUnderstandingError, design_fingerprint
 from .spatial import SpatialAnalysisError, analyze_spatial
+from .contents import explain_mechanisms, inventory_map, multiplayer_layout
+from .sight import SightError, depth_samples, line_of_sight, spawn_sight_report
 from .player_space import (
     PlayerSpaceError, compare_transition, conversion_player_scale_report,
     focus_observation, inspect_connection, inspect_doom_space, inspect_space,
@@ -626,6 +628,35 @@ def cmd_player_profile(args: argparse.Namespace) -> int:
         game: player_profile(game).to_dict()
         for game in ("blood", "duke3d", "doom")
     }))
+    return 0
+
+
+def cmd_contents(args: argparse.Namespace) -> int:
+    if _game_for_path(args.map) != "blood":
+        raise BloodMapError("contents currently classifies Blood object types only")
+    disk = read_map(args.map)
+    payload: dict[str, Any] = inventory_map(disk)
+    payload["map"] = str(args.map)
+    if args.mechanisms:
+        payload["mechanisms"] = explain_mechanisms(disk)
+    if args.multiplayer:
+        payload["multiplayer"] = multiplayer_layout(disk)
+    _write_text(args.output, _json(payload))
+    return 0
+
+
+def cmd_sightline(args: argparse.Namespace) -> int:
+    _game, build = _read_design_build(args.map)
+    if args.spawns:
+        payload = spawn_sight_report(build, include_sp_start=not args.multiplayer_only)
+    elif args.from_x is None or args.from_y is None or args.to_x is None or args.to_y is None:
+        raise SightError("sightline requires --spawns or --from-x/--from-y/--to-x/--to-y")
+    else:
+        payload = line_of_sight(build, args.from_x, args.from_y, args.to_x, args.to_y)
+        if args.depth:
+            payload["depth"] = depth_samples(build, args.from_x, args.from_y)
+    payload["map"] = str(args.map)
+    _write_text(args.output, _json(payload))
     return 0
 
 
@@ -1292,6 +1323,21 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("a"); p.add_argument("b"); p.set_defaults(func=cmd_diff)
     p = sub.add_parser("inspect", help="show a concise map or object observation")
     p.add_argument("map"); p.add_argument("--sector", type=int); p.add_argument("--wall", type=int); p.add_argument("--sprite", type=int); p.set_defaults(func=cmd_inspect)
+    p = sub.add_parser("contents", help="classify Blood starts, pickups, types, and channel inventory")
+    p.add_argument("map")
+    p.add_argument("--mechanisms", action="store_true", help="include static XSECTOR/XWALL/XSPRITE mechanism listing")
+    p.add_argument("--multiplayer", action="store_true", help="include spawn/resource distances and 2D sight")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_contents)
+    p = sub.add_parser("sightline", help="2D geometric line-of-sight against occluding Build walls")
+    p.add_argument("map")
+    p.add_argument("--spawns", action="store_true", help="pairwise sight among player-start sprites")
+    p.add_argument("--multiplayer-only", action="store_true", help="with --spawns, ignore the single-player start sprite")
+    p.add_argument("--from-x", type=float); p.add_argument("--from-y", type=float)
+    p.add_argument("--to-x", type=float); p.add_argument("--to-y", type=float)
+    p.add_argument("--depth", action="store_true", help="also emit a depth rose from the from-point")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_sightline)
     p = sub.add_parser("channels", help="derive the Blood TX/RX graph")
     p.add_argument("map"); p.add_argument("--channel", type=int); p.set_defaults(func=cmd_channels)
     p = sub.add_parser("render", help="render a deterministic top-down SVG")

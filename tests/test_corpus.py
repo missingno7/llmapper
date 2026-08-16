@@ -12,7 +12,13 @@ MAPS = Path(os.environ.get("BLOODMAP_CORPUS", Path(__file__).resolve().parents[1
 
 
 class CorpusTests(unittest.TestCase):
-    def test_every_available_map_is_v7_and_byte_exact_through_both_models(self):
+    def test_every_available_map_is_supported_and_byte_exact_through_both_models(self):
+        """Every local Blood MAP must parse as a supported major version (6 or 7).
+
+        Canonical campaign maps (`E*.MAP`) are v7. Community/add-on maps in the
+        same folder may be v6 (for example BB9.MAP). The parser already handles
+        both; this gate must not assume the folder is campaign-only.
+        """
         paths = sorted(MAPS.glob("*.MAP"))
         if not paths:
             self.skipTest("no local Blood MAP corpus; set BLOODMAP_CORPUS to enable")
@@ -21,7 +27,7 @@ class CorpusTests(unittest.TestCase):
                 original = path.read_bytes()
                 disk = read_map(path)
                 level = disk.to_level_ir()
-                self.assertEqual(disk.version, 0x0700)
+                self.assertIn(disk.version >> 8, {6, 7}, f"{path.name} version 0x{disk.version:04x}")
                 self.assertEqual(encode_map(disk), original)
                 self.assertEqual(encode_map(level.to_disk_map()), original)
                 self.assertEqual(encode_map(disk.to_build_ir().to_native_disk_map()), original)
@@ -33,6 +39,14 @@ class CorpusTests(unittest.TestCase):
                 self.assertEqual(observation["level"]["counts"]["walls"], len(disk.walls))
                 focused = level.observe([level.player_start["sector"]])
                 self.assertEqual(focused["selection"]["sector_ids"], [level.player_start["sector"]])
+
+    def test_campaign_episode_maps_are_v7(self):
+        paths = sorted(MAPS.glob("E*.MAP"))
+        if not paths:
+            self.skipTest("no local Blood campaign E*.MAP files")
+        for path in paths:
+            with self.subTest(path=path.name):
+                self.assertEqual(read_map(path).version, 0x0700)
 
     def test_derived_views_cover_objects(self):
         path = MAPS / "E1M1.MAP"

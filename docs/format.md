@@ -9,9 +9,10 @@ The implementation follows and cross-checks these authoritative paths:
 - NBlood: `source/blood/src/db.cpp`, `source/blood/src/db.h`, and the Build record
   definitions reachable from `source/blood/src/common_game.h`.
 
-All 43 supplied maps are version `0x0700`, so v7 is the fully verified target.
-The parser has conservative v6 reading/writing scaffolding, but historical v6 is
-not claimed as corpus-verified.
+Campaign `E*.MAP` files are version `0x0700`, so v7 is the fully verified
+campaign target. The parser also reads and writes Blood major 6; local add-on
+maps such as `BB9.MAP` exercise that path. Historical v6 remains a supported
+format, not a second campaign corpus.
 
 ## File order
 

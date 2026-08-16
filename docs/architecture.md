@@ -55,9 +55,11 @@ procedural replacement for design judgment.
 The next sensor layer, `bloodmap.spatial`, keeps geometry, static
 traversability, portal-visibility candidates, vertical relationships, mechanism
 memberships, progression candidates, and raw material continuity as separate
-views. It does not create `level.rooms`. Instead it returns explicitly derived,
-overlapping region hypotheses and selection context. See
-[spatial-understanding.md](spatial-understanding.md).
+views. It does not create `level.rooms`. Geometric line of sight is a separate
+probe in `bloodmap.sight` (2D XY rays vs occluding walls). Blood object types,
+starts, pickups, and static mechanisms are named by `bloodmap.blood_types` and
+`bloodmap.contents`. See [spatial-understanding.md](spatial-understanding.md)
+and [map-understanding.md](map-understanding.md).
 
 `bloodmap.experience` adds bounded Level-0 probes over those views. It models a
 declared `WorldState` separately from `PlayerKnowledge`, reports routes,

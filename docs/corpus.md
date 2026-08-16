@@ -20,7 +20,8 @@ corresponding corpus gate cleanly when no maps are available.
 
 Every supported map must satisfy:
 
-1. version, sizes, and record counts are recognized;
+1. version is a supported Blood major (6 or 7) or Duke v7; campaign `E*.MAP`
+   files are Blood v7 (`0x0700`); sizes and record counts are recognized;
 2. parsing consumes the defined file while deliberately preserving allowed tails;
 3. native disk parse/write is byte-identical;
 4. `BuildIR` native reconstruction is byte-identical;

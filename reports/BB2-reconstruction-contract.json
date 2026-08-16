@@ -1,0 +1,189 @@
+{
+  "$schema": "llmapper.reconstruction-contract",
+  "schema_version": 1,
+  "source_spec": "reports/BB2-understanding.md",
+  "hidden": ["BB2.MAP", "reports/BB2-understanding.json", "BB2 sensor dumps"],
+  "notes": "Extracted from the prose specification only. Independent geometry is required.",
+  "items": [
+    {
+      "id": "dm-mode",
+      "intent": "Deathmatch map: 8 DM starts, 1 SP start, no enemies, no keys, no exit",
+      "importance": "high",
+      "basis": "fact",
+      "hardness": "hard",
+      "source": "Game mode / purpose",
+      "validation": "contents inventory: starts, dude count, keys, exit channels"
+    },
+    {
+      "id": "square-compound",
+      "intent": "Bounded approximately square walled compound, not wilderness",
+      "importance": "high",
+      "basis": "derived+interpreted",
+      "hardness": "soft",
+      "source": "Level identity; Enclosure",
+      "validation": "AABB aspect near 1; all 2D depth rays hit a boundary"
+    },
+    {
+      "id": "independent-geometry",
+      "intent": "Different footprint and sectorization than the hidden source",
+      "importance": "high",
+      "basis": "experiment rule",
+      "hardness": "hard",
+      "source": "Builder instruction",
+      "validation": "AABB not identical to 128 player-widths; different sector count"
+    },
+    {
+      "id": "outdoor-dominant",
+      "intent": "Sky-exposed exterior is the majority of footprint (~two-thirds)",
+      "importance": "high",
+      "basis": "derived",
+      "hardness": "soft",
+      "source": "Level identity / overview",
+      "validation": "inspect-space sky vs covered footprint ratio"
+    },
+    {
+      "id": "embedded-interiors",
+      "intent": "Masonry interiors / covered structures sit inside the compound",
+      "importance": "high",
+      "basis": "interpreted+derived",
+      "hardness": "hard",
+      "source": "Important areas",
+      "validation": "covered sectors exist; indoor spawn footprints in 28-173 player-areas band"
+    },
+    {
+      "id": "vertical-contrast",
+      "intent": "Exterior unusually tall (~17-23 player heights, sky); covered typical (~5-11)",
+      "importance": "high",
+      "basis": "derived",
+      "hardness": "hard",
+      "source": "Player-relative scale; Important relative transitions",
+      "validation": "clear_height_player_heights on sky vs covered selections"
+    },
+    {
+      "id": "typical-openings",
+      "intent": "Building mouths near corpus median ~2.67 player-widths; field connections may be wider",
+      "importance": "medium",
+      "basis": "derived",
+      "hardness": "soft",
+      "source": "Connectivity and circulation",
+      "validation": "portal width distribution; building entries ~1024 Build units"
+    },
+    {
+      "id": "spawn-concealment",
+      "intent": "Most DM spawn pairs have no immediate 2D sight; indoor starts hidden; at most a few outdoor pairs may see each other",
+      "importance": "high",
+      "basis": "derived+interpreted",
+      "hardness": "hard",
+      "source": "Visibility / exposure / cover",
+      "validation": "sightline --spawns --multiplayer-only; redesign if many pairs are clear"
+    },
+    {
+      "id": "spread-spawns",
+      "intent": "Spawns spread around the compound, mix of outdoor and covered",
+      "importance": "high",
+      "basis": "derived",
+      "hardness": "hard",
+      "source": "Spawns and resources table",
+      "validation": "starts in distinct regions; not all in one building"
+    },
+    {
+      "id": "loop-circulation",
+      "intent": "Loop around and through buildings; outdoor is the default connector; bottlenecks at building entries not the field",
+      "importance": "high",
+      "basis": "interpreted",
+      "hardness": "soft",
+      "source": "Connectivity and circulation",
+      "validation": "spatial navigation_region mostly one component; multiple routes around cover"
+    },
+    {
+      "id": "flag-anchors",
+      "intent": "Flag A and Flag B bases at opposite ends, near a spawn, as landmarks",
+      "importance": "high",
+      "basis": "fact+derived",
+      "hardness": "hard",
+      "source": "Flag-anchored ends; reserved channels 80/81",
+      "validation": "two flag bases; channels 80/81 RX; opposite sides of AABB"
+    },
+    {
+      "id": "gated-power",
+      "intent": "Super armor, Guns Akimbo, and Shadow Cloak are gated (switch/closed mover), not free on the field",
+      "importance": "high",
+      "basis": "fact+interpreted",
+      "hardness": "hard",
+      "source": "Gated power pockets",
+      "validation": "items behind type-600 closed doors or switch-driven RX"
+    },
+    {
+      "id": "water-tesla",
+      "intent": "Small swimable side pocket with Tesla as high-risk reward; paired water markers; extra underwater continuation allowed",
+      "importance": "high",
+      "basis": "fact+interpreted",
+      "hardness": "hard",
+      "source": "Water; Tesla high-risk swim",
+      "validation": "paired 9/10 markers; underwater XSECTOR; tesla in underwater sector"
+    },
+    {
+      "id": "napalm-field",
+      "intent": "Napalm is an outdoor field prize, not in the water",
+      "importance": "medium",
+      "basis": "interpreted",
+      "hardness": "soft",
+      "source": "Likely deathmatch design logic",
+      "validation": "napalm sprite in a sky sector"
+    },
+    {
+      "id": "abundant-ammo",
+      "intent": "Ammo-rich, few unique weapons: shotgun/Tommy/flare, tesla, napalm; health/armor including body/fire/spirit/super",
+      "importance": "medium",
+      "basis": "fact",
+      "hardness": "soft",
+      "source": "Fact pickup mix — exact counts not required",
+      "validation": "contents pickup categories present"
+    },
+    {
+      "id": "interior-exterior-transition",
+      "intent": "Leaving a building expands sky 0→1, height ~5→~18, sight ~12→50+",
+      "importance": "high",
+      "basis": "derived",
+      "hardness": "hard",
+      "source": "Important relative transitions",
+      "validation": "compare-space indoor selection vs outdoor"
+    },
+    {
+      "id": "material-split",
+      "intent": "Gray/organic earth + sky sheet outside; brick/stone interiors; distinct water surface floor; switch family 1070",
+      "importance": "high",
+      "basis": "derived+interpreted",
+      "hardness": "soft",
+      "source": "Material and visual language — do not copy unannotated BB2 brick IDs",
+      "validation": "ontology-backed tiles; sky vs brick contrast"
+    },
+    {
+      "id": "toybox-movers",
+      "intent": "Local doors/lifts wrapping item rooms, not a campaign lock sequence; most closed at rest",
+      "importance": "medium",
+      "basis": "interpreted",
+      "hardness": "soft",
+      "source": "Mechanisms",
+      "validation": "several type-600 RX doors; optional extra mover types"
+    },
+    {
+      "id": "match-and-flags-channels",
+      "intent": "Reserved channel 8 match-start listener; flag capture listeners 80/81 with no map TX",
+      "importance": "low",
+      "basis": "fact",
+      "hardness": "soft",
+      "source": "Match start; Flag capture listeners",
+      "validation": "channel graph"
+    },
+    {
+      "id": "no-teleporters",
+      "intent": "No teleporters; water is the only non-portal transition",
+      "importance": "medium",
+      "basis": "derived",
+      "hardness": "hard",
+      "source": "Connectivity",
+      "validation": "no type 604; water links present"
+    }
+  ]
+}

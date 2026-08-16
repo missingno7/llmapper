@@ -20,6 +20,9 @@ from .experience import (
     ExperienceProbeError, probe_progression, probe_route, probe_transition, probe_visibility,
 )
 from .spatial import SpatialAnalysisError, analyze_spatial, spatial_selection_context
+from .blood_types import classify as classify_blood_type
+from .contents import explain_mechanisms, inventory_map, multiplayer_layout
+from .sight import SightError, line_of_sight, spawn_sight_report
 from .player_space import (
     PlayerSpaceError, PLAYER_PROFILES, compare_transition, inspect_connection,
     inspect_space, player_profile, present_space,
@@ -73,12 +76,19 @@ __all__ = [
     "PlayerSpaceError",
     "RecipeError",
     "RecipeResult",
+    "SightError",
     "SpatialAnalysisError",
     "WorkspaceError",
     "SectorAllocation",
     "GAME_PROFILES",
     "apply_fragment_in_place",
     "analyze_spatial",
+    "classify_blood_type",
+    "explain_mechanisms",
+    "inventory_map",
+    "line_of_sight",
+    "multiplayer_layout",
+    "spawn_sight_report",
     "blood_to_semantic_level",
     "attach_fragment",
     "append_decision",

@@ -450,6 +450,7 @@ def analyze_spatial(build: BuildIR, sector_ids: Iterable[int] | None = None) -> 
             },
             "visibility": {
                 "model": "heuristic direct-portal candidates only; no renderer, occlusion, slopes, or multi-portal rays",
+                "geometric_sight": "bloodmap.sight line_of_sight / spawn_sight_report for 2D XY rays vs occluding walls",
                 "candidates": visibility,
             },
             "vertical": {

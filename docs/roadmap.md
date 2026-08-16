@@ -47,6 +47,9 @@ Next gates:
 - player-relative spatial presentation (`bloodmap.player_space`) normalizes
   openings, clearance, enclosure, and transitions against source-backed player
   profiles and original-map percentiles without replacing native geometry;
+- Blood type catalog, map contents inventory, and bounded 2D geometric sight
+  (`bloodmap.blood_types`, `bloodmap.contents`, `bloodmap.sight`), motivated by
+  the BB2 understanding experiment (`reports/BB2-understanding.md`);
 - add palette, translucency, and sprite-size normalization;
 - model common concepts such as doors, lifts, switches, keys, exits, secrets, and
   spawn conditions above each game's native controller graph;

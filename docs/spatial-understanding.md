@@ -14,6 +14,7 @@ every sector to exactly one region.
 - `traversability`: a deliberately limited at-rest check using portal width,
   vertical opening, and wall blocking flags;
 - `visibility`: direct-portal candidates only, not renderer-verified sightlines;
+  geometric 2D XY sight is `python -m bloodmap sightline` / `bloodmap.sight`;
 - `vertical`: flat floor/ceiling Z intervals where sector XY bounds overlap;
 - `mechanism`: Blood TX/RX memberships or source-backed Duke Sector Effector
   tag groups;
@@ -23,7 +24,9 @@ every sector to exactly one region.
 
 The output labels every approximation in its `model`, `basis`, and provenance.
 The renderer, locked states, slopes, occlusion, and long-term player knowledge
-remain future sensors or interpretations. Source-backed paired water, stack/link,
+remain future sensors or interpretations. `bloodmap.sight` adds a bounded 2D
+occlusion probe so portal adjacency is no longer the only visibility claim.
+Source-backed paired water, stack/link,
 and teleporter links are listed as non-portal transitions when recognized, but their
 runtime activation conditions are not simulated.
 

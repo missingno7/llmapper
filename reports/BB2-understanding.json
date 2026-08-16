@@ -1,0 +1,475 @@
+{
+  "$schema": "llmapper.map-understanding",
+  "schema_version": 1,
+  "map": "BB2.MAP",
+  "game": "blood",
+  "purpose": "Semantic bottleneck for a later reconstruction experiment. Not a MAP serialization.",
+  "sensors_used": [
+    "bloodmap.format.read_map",
+    "LevelIR/BuildIR roundtrip",
+    "bloodmap.analysis.validate_map",
+    "bloodmap.blood_types.classify",
+    "bloodmap.contents.inventory_map",
+    "bloodmap.contents.explain_mechanisms",
+    "bloodmap.contents.multiplayer_layout",
+    "bloodmap.spatial.analyze_spatial",
+    "bloodmap.player_space.inspect_space",
+    "bloodmap.sight.line_of_sight",
+    "bloodmap.sight.spawn_sight_report",
+    "bloodmap.design.design_fingerprint",
+    "knowledge/blood/ontology-v2.json",
+    "bloodmap.art.tile_preview_png"
+  ],
+  "confidence": {
+    "structure": "verified",
+    "types_and_channels": "verified",
+    "player_relative_scale": "high",
+    "geometric_sight_2d": "high_with_stated_limits",
+    "enclosure": "high",
+    "materials_annotated": "interpreted_ontology_plus_bb2_usage",
+    "materials_unannotated": "appearance_only",
+    "mechanism_runtime": "static_semantics_not_stepped",
+    "deathmatch_intent": "heuristic"
+  },
+  "facts": {
+    "parse": {
+      "version": "0x0700",
+      "native_roundtrip": true,
+      "levelir_roundtrip": true,
+      "buildir_roundtrip": true,
+      "validation_errors": 0,
+      "validation_warnings": 0,
+      "sectors": 179,
+      "walls": 1413,
+      "sprites": 230,
+      "xsectors": 58,
+      "xwalls": 20,
+      "xsprites": 171,
+      "portals": 820,
+      "masked_walls": 18,
+      "blocking_walls": 16,
+      "parallax_ceilings": 63,
+      "parallax_floors": 0,
+      "unknown_types": []
+    },
+    "sky_header": {
+      "sky_bits": 4,
+      "sky_type": 2,
+      "visibility": 800,
+      "sky_offset_count": 16
+    },
+    "starts": {
+      "single_player": 1,
+      "multiplayer": 8,
+      "dudes": 0
+    },
+    "pickups": {
+      "weapon": 8,
+      "ammo": 47,
+      "health": 7,
+      "armor": 7,
+      "powerup": 2,
+      "flag_bases": 2,
+      "weapons_present": [
+        "kItemWeaponSawedoff",
+        "kItemWeaponTommygun",
+        "kItemWeaponFlarePistol",
+        "kItemWeaponTeslaCannon",
+        "kItemWeaponNapalmLauncher"
+      ],
+      "notable": [
+        "kItemTwoGuns",
+        "kItemShadowCloak",
+        "kItemArmorSuper",
+        "kItemFlagABase",
+        "kItemFlagBBase"
+      ]
+    },
+    "reserved_channels": {
+      "8": "kChannelLevelStartMatch receives on an invisible switch that one-shots a kSoundPlayer",
+      "80": "kChannelTeamAFlagCaptured receives on Flag A base; no map transmitter",
+      "81": "kChannelTeamBFlagCaptured receives on Flag B base; no map transmitter"
+    },
+    "water": {
+      "paired_links": [
+        {"link_id": 1, "kind": "paired_water_link"},
+        {"link_id": 2, "kind": "paired_water_link"}
+      ],
+      "underwater_xsectors": 3,
+      "tesla_in_underwater": true
+    },
+    "movers": {
+      "kSectorZMotion": 13,
+      "kSectorRotate": 6,
+      "kSectorSlideMarked": 4,
+      "kWallGib": 10,
+      "kSwitchOneWay_or_toggle_sprites": 6
+    },
+    "ambient_sfx": {
+      "type": 710,
+      "count": 37,
+      "runtime": "NBlood asound.cpp kStatAmbience; data1/data2 distance, data3 SFX id",
+      "initial_state": 1
+    }
+  },
+  "derived": {
+    "player_profile": "player-profile:blood",
+    "body_width": 384,
+    "standing_height": 5632,
+    "aabb_player_widths": [128.0, 128.0],
+    "aabb_aspect": 1.0,
+    "footprint_player_areas": {
+      "whole": 7102.96,
+      "sky_sectors": 4589.55,
+      "covered_sectors": 2513.41
+    },
+    "enclosure": {
+      "whole": {
+        "sky_exposure": 0.352,
+        "lateral_enclosure": 1.0,
+        "vertical_enclosure": 0.3341,
+        "openness": 0.3329
+      },
+      "sky_sectors": {
+        "sky_exposure": 1.0,
+        "lateral_enclosure": 0.8714,
+        "vertical_enclosure": 0.0,
+        "openness": 0.5643,
+        "clear_height_player_heights": 15.6364
+      },
+      "covered_sectors": {
+        "sky_exposure": 0.0,
+        "lateral_enclosure": 0.9178,
+        "vertical_enclosure": 0.5893,
+        "openness": 0.2465,
+        "clear_height_player_heights": 5.0909
+      }
+    },
+    "portals": {
+      "walkable_at_rest": 291,
+      "blocked_or_state_dependent": 119,
+      "width_player_widths": {"min": 0.005, "median": 2.667, "max": 21.333},
+      "corpus_opening_median_player_widths": 2.6667
+    },
+    "spatial_hypotheses": {
+      "perceptual_space": 19,
+      "navigation_region": [151, 3],
+      "material_region": 24,
+      "mechanism_region": 23,
+      "vertical_layer": 11,
+      "reachable_from_sp_start": 154,
+      "unreachable_from_sp_start": 25
+    },
+    "sight_2d": {
+      "model": "2d-xy-ray-vs-occluding-walls",
+      "dm_spawn_pairs": 28,
+      "clear_spawn_pairs": 1,
+      "clear_pair": ["southern outdoor start", "northern outdoor start"],
+      "all_spawns_bounded_by_walls": true,
+      "notes": [
+        "masked walls treated as see-through",
+        "height/slopes/sprites/lighting ignored"
+      ]
+    },
+    "spawn_observations": [
+      {
+        "role": "southern outdoor / also SP neighborhood",
+        "sky_exposure": 1.0,
+        "openness": 0.8264,
+        "footprint_player_areas": 455.11,
+        "clear_height_player_heights": 21.82,
+        "max_2d_sight_player_widths": 73.17,
+        "nearby": "shotgun ammo at <1 player-width with clear sight"
+      },
+      {
+        "role": "northern outdoor, most laterally open",
+        "sky_exposure": 1.0,
+        "openness": 0.875,
+        "footprint_player_areas": 113.78,
+        "clear_height_player_heights": 17.45,
+        "nearby": "Flag A base in clear 2D sight"
+      },
+      {
+        "role": "northwest outdoor near Flag A",
+        "sky_exposure": 1.0,
+        "openness": 0.7074,
+        "nearby": "Flag A ~4.7 widths; shotgun weapon in sight"
+      },
+      {
+        "role": "west outdoor",
+        "sky_exposure": 1.0,
+        "openness": 0.6731,
+        "max_2d_sight_player_widths": 54.0
+      },
+      {
+        "role": "west indoor",
+        "sky_exposure": 0.0,
+        "openness": 0.3945,
+        "footprint_player_areas": 35.33,
+        "clear_height_player_heights": 5.09,
+        "max_2d_sight_player_widths": 28.86
+      },
+      {
+        "role": "west indoor larger",
+        "sky_exposure": 0.0,
+        "openness": 0.518,
+        "clear_height_player_heights": 10.91
+      },
+      {
+        "role": "southern covered near Flag B",
+        "sky_exposure": 0.0,
+        "openness": 0.4663,
+        "max_2d_sight_player_widths": 12.26,
+        "nearby": "Flag B base in clear 2D sight ~3.6 widths"
+      },
+      {
+        "role": "central-west outdoor",
+        "sky_exposure": 1.0,
+        "openness": 0.6273,
+        "clear_height_player_heights": 23.27
+      }
+    ],
+    "resource_relationships": {
+      "flag_a": "opposite end from flag B; outdoor; adjacent to a DM start",
+      "flag_b": "opposite end from flag A; covered; adjacent to a DM start",
+      "tesla": "underwater, far from most starts",
+      "napalm": "outdoor ground, nearer the compound middle than tesla",
+      "super_armor": "covered; ceiling mover driven by two push switches",
+      "akimbo": "covered sector not reachable from SP start at rest",
+      "shadow_cloak": "covered; colocated with a one-way switch",
+      "ammo": "abundant; shotgun/TNT/flare/gasoline/Tommy drums"
+    },
+    "materials": {
+      "unique_tiles": 119,
+      "ontology_v2_annotated": 30,
+      "unannotated": 89,
+      "exterior": {
+        "floor": {
+          "tile": 2448,
+          "uses": 63,
+          "ontology": {
+            "surface_applicability": "horizontal_floor",
+            "visual_material": "organic_earth",
+            "architectural_role": "structural_fill"
+          },
+          "appearance": "mottled gray; snow/earth/stone ambiguous"
+        },
+        "sky": {
+          "tile": 2500,
+          "uses": 63,
+          "ontology": {
+            "surface_applicability": "sky_parallax",
+            "architectural_role": "sky_sheet"
+          }
+        }
+      },
+      "dominant_walls": [
+        {"tile": 91, "uses": 308, "ontology_visual": "stone_masonry", "appearance": "dark brick with base trim"},
+        {"tile": 2455, "uses": 271, "ontology": null, "appearance": "red brick fill"},
+        {"tile": 2492, "uses": 192, "ontology": null, "appearance": "gray stacked masonry"},
+        {"tile": 5, "uses": 168, "ontology_visual": "brick"}
+      ],
+      "interior_floor_note": "tile 110 (ontology: vertical stone) is used as interior floor 45 times",
+      "interior_ceiling_note": "tile 385 (ontology: vertical brick) is used as ceiling 53 times",
+      "masked_overpics": [266, 114, 569, 142, 333],
+      "families_present": ["family:sky-sheets", "family:editor-markers", "family:switch-1070"]
+    },
+    "user_channels": {
+      "100": "enter-trigger sector slides a marked door",
+      "101": "Z-motion links a companion sector",
+      "102": "wall-crack sprite opens a Z-motion squeeze",
+      "103": "four push walls open a slide-marked door",
+      "104": "two 1070 switches raise a ceiling Z-motion",
+      "105": "that ceiling links a companion",
+      "106": "toggle walls drive a slide that starts ON",
+      "107": "push walls open a slide-marked door",
+      "108": "Z-motion links five companion sectors (indoor cluster)",
+      "109": "push Z-motion links one companion",
+      "110": "rotator toggles its pair",
+      "111": "paired rotator links back plus companions",
+      "112": "switch raises three Z-motion floors together",
+      "113": "one of those floors ons a ceiling mover",
+      "114": "rotator links two companions",
+      "115": "switch turns a rotator",
+      "116": "third 112 floor links two more sectors",
+      "117": "slow rotator links one companion",
+      "118": "second wall-crack opens a squeeze mover",
+      "119": "match-start switch to player SFX 3301"
+    }
+  },
+  "interpretations": [
+    {
+      "id": "compound-not-wilderness",
+      "text": "Sky-exposed ground is an open exterior compound, still laterally walled.",
+      "confidence": "heuristic",
+      "basis": "sky exposure 1.0 with lateral enclosure ~0.87 and finite 2D sight"
+    },
+    {
+      "id": "not-one-room",
+      "text": "The outdoor ground is one traversal component but not one perceptual room; buildings break sight and provide cover.",
+      "confidence": "heuristic",
+      "basis": "1 of 28 spawn pairs mutually visible; indoor max sight ~12 widths vs outdoor ~70"
+    },
+    {
+      "id": "snow-unproven",
+      "text": "Community 'snowy' label is not proven by isolated ART; gray mottled ground plus sky is the verified exterior palette.",
+      "confidence": "heuristic",
+      "basis": "tile 2448 appearance plus ontology organic_earth"
+    },
+    {
+      "id": "ffa-with-flag-anchors",
+      "text": "Primary mode is FFA deathmatch; flag bases also make opposite ends distinguishable and enable team-flag.",
+      "confidence": "heuristic",
+      "basis": "8 MP starts, no dudes, flag bases, reserved capture channels with no map TX"
+    },
+    {
+      "id": "gated-power",
+      "text": "Super armor, cloak, akimbo, and underwater Tesla pull players off the field into interiors/water.",
+      "confidence": "heuristic",
+      "basis": "item placement plus TX/RX and underwater flag"
+    },
+    {
+      "id": "circulation",
+      "text": "Default circulation is looping the compound and ducking into buildings; outdoor ground is the connector, interiors are loot/cover.",
+      "confidence": "heuristic",
+      "basis": "portal connectivity, spawn spread, pickup clustering"
+    }
+  ],
+  "source_references": [
+    "maps/blood/BB2.MAP",
+    "NBlood source/blood/src/common_game.h",
+    "NBlood source/blood/src/mapedit.cpp TextList type 710 Ambient SFX",
+    "NBlood source/blood/src/asound.cpp",
+    "NBlood source/blood/src/eventq.h reserved channels and commands",
+    "knowledge/blood/ontology-v2.json",
+    "reports/BB2-understanding.md"
+  ],
+  "unresolved": [
+    {
+      "id": "snow-appearance-in-engine",
+      "kind": "MISSING_VISUAL_CONTEXT",
+      "detail": "No player-eye render of 2448 under BB2 lighting/sky"
+    },
+    {
+      "id": "3d-sight",
+      "kind": "MISSING_SENSOR",
+      "detail": "2D rays ignore height separation, window sills, and ledges"
+    },
+    {
+      "id": "mover-runtime",
+      "kind": "MISSING_SEMANTICS",
+      "detail": "Busy-time duration, crush, and closed-door occlusion not stepped in NBlood"
+    },
+    {
+      "id": "channel-8-bloodbath",
+      "kind": "MISSING_SEMANTICS",
+      "detail": "Match-start SFX launch flags exclude bloodbath; runtime untested"
+    },
+    {
+      "id": "akimbo-dm-reachability",
+      "kind": "MISSING_MULTIPLAYER_MODEL",
+      "detail": "Unreachable from SP at-rest graph; DM route not proven"
+    },
+    {
+      "id": "unannotated-tiles",
+      "kind": "MISSING_MATERIAL_KNOWLEDGE",
+      "detail": "89 of 119 BB2 tiles lack ontology v2 rows, including dominant brick 2455"
+    },
+    {
+      "id": "lighting",
+      "kind": "MISSING_SENSOR",
+      "detail": "Shade/visibility/fog not turned into landmarks"
+    }
+  ],
+  "gaps": [
+    {
+      "id": "geometric-sight",
+      "class": "MISSING_SENSOR",
+      "wanted": "From each spawn, what is actually visible?",
+      "why_it_matters": "Portal adjacency called indoor and outdoor neighbors equally 'visible'.",
+      "blocked_understanding": true,
+      "smallest_capability": "Bounded 2D ray vs occluding Build walls",
+      "implemented": true,
+      "module": "bloodmap.sight"
+    },
+    {
+      "id": "type-catalog",
+      "class": "MISSING_SEMANTICS",
+      "wanted": "What is sprite type 710 / pickup 41 / channel 8?",
+      "why_it_matters": "Raw integers are not readable as deathmatch contents or ambient sound.",
+      "blocked_understanding": true,
+      "smallest_capability": "Source-backed NBlood type/command/channel catalog plus map inventory",
+      "implemented": true,
+      "module": "bloodmap.blood_types / bloodmap.contents"
+    },
+    {
+      "id": "type-710-runtime",
+      "class": "MISSING_SEMANTICS",
+      "wanted": "Does Ambient SFX actually play, and with what falloff?",
+      "why_it_matters": "37 sprites would otherwise look like unknown types.",
+      "blocked_understanding": false,
+      "smallest_capability": "Cite asound.cpp; optional NBlood audio oracle not added",
+      "implemented": false,
+      "notes": "Named and field-mapped; not heard"
+    },
+    {
+      "id": "bb2-material-coverage",
+      "class": "MISSING_MATERIAL_KNOWLEDGE",
+      "wanted": "What is tile 2455 / 2492 in the Blood vocabulary?",
+      "why_it_matters": "They are BB2's dominant building skins and were absent from E-series ontology sampling.",
+      "blocked_understanding": true,
+      "smallest_capability": "ART preview + usage roles; do not fake an ontology row",
+      "implemented": false,
+      "notes": "Previews generated locally; ontology not expanded in this iteration because BB2-only tiles should not silently become campaign truth"
+    },
+    {
+      "id": "player-eye-view",
+      "class": "MISSING_VISUAL_CONTEXT",
+      "wanted": "What does a spawn look like in 3D?",
+      "why_it_matters": "Sky sheet ART is a misleading strip; snow vs dirt needs in-situ lighting.",
+      "blocked_understanding": true,
+      "smallest_capability": "Selective engine screenshot or software vis",
+      "implemented": false
+    },
+    {
+      "id": "multiplayer-routes",
+      "class": "MISSING_MULTIPLAYER_MODEL",
+      "wanted": "Likely encounter zones and DM reachability including movers",
+      "why_it_matters": "SP at-rest reachability hides DM-gated items.",
+      "blocked_understanding": false,
+      "smallest_capability": "Spawn/resource distances + 2D sight; route simulation not added",
+      "implemented": true,
+      "module": "bloodmap.contents.multiplayer_layout"
+    },
+    {
+      "id": "corpus-summaries-percentiles",
+      "class": "MISSING_PLAYER_MODEL",
+      "wanted": "Unusually tall/wide vs original Blood percentiles on this observation",
+      "why_it_matters": "summaries-only JSON has min/median/max counts, not sample lists inspect_space consumes",
+      "blocked_understanding": false,
+      "smallest_capability": "Pass full spatial-corpus JSON or teach inspect_space to use summaries",
+      "implemented": false
+    }
+  ],
+  "reconstruction_sufficiency": {
+    "can_embody_design_logic": "plausible",
+    "missing_if_map_erased": {
+      "deliberately_omitted": [
+        "exact wall coordinates and sector polygons",
+        "precise building footprints and courtyard proportions",
+        "full tile-ID assignment per surface"
+      ],
+      "llmapper_failed_to_observe": [
+        "player-eye appearance of sky and ground",
+        "3D occlusion and lighting",
+        "ontology for 89 BB2 tiles",
+        "runtime mover timing"
+      ],
+      "hard_to_verbalize": [
+        "the exact irregularity of the outdoor boundary",
+        "prop clutter composition",
+        "authorial taste in brick vs gray masonry mix"
+      ]
+    }
+  }
+}

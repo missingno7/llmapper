@@ -113,3 +113,19 @@ def synthetic_multi_loop_map() -> DiskMap:
     disk.walls = walls
     disk.header["num_walls"] = 8
     return parse_map(encode_map(disk))
+
+
+def synthetic_separated_rooms_map() -> DiskMap:
+    """Two adjacent rooms with no portal; the shared edge is solid on both sides."""
+    disk = synthetic_two_sector_map()
+    disk.walls[1].fields.update(next_wall=-1, next_sector=-1)
+    disk.walls[7].fields.update(next_wall=-1, next_sector=-1)
+    return parse_map(encode_map(disk))
+
+
+def synthetic_masked_portal_map() -> DiskMap:
+    """Two rooms joined by a masked see-through portal."""
+    disk = synthetic_two_sector_map()
+    disk.walls[1].fields["cstat"] = 16
+    disk.walls[7].fields["cstat"] = 16
+    return parse_map(encode_map(disk))
