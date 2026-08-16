@@ -66,8 +66,12 @@ portals. This is a **geometric translation**, not an identity:
 Doom linedef ≠ Build wall
 ```
 
-except at that translation step. Disconnected extra outer loops, self-referencing
-sectors, and unclosed chains are reported; they are not silently repaired.
+except at that translation step. Successor choice at shared vertices uses
+geometric orientation (wad2map cross-product rule), not input order.
+Disconnected outer components are kept as additional Build loops of the same
+sector. Open chains, zero-length edges, and degenerate self-referencing loops
+raise `DoomGeometryError` identifying the source sector and linedefs. A warning
+followed by successful lossy output is not allowed.
 
 ## Scale
 

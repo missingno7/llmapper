@@ -14,7 +14,7 @@ from typing import Any
 from .analysis import validate_map
 from .construction import ConstructionError, LevelBuilder, new_level
 from .doom import DoomDiskMap, DoomLinedef, texture_label
-from .doom_geometry import lower_doom_geometry, scale_angle, scale_xy, scale_z
+from .doom_geometry import DoomGeometryError, lower_doom_geometry, scale_angle, scale_xy, scale_z
 from .doom_semantics import (
     KEY_COLORS, LINEDEF_SPECIALS, analyze_doom_mechanisms, containing_sector,
     doom_to_semantic_level, special_targets,
@@ -203,7 +203,10 @@ def convert_doom_to_blood(level: DoomDiskMap) -> tuple[LevelIR, dict[str, Any]]:
     if not level.supported:
         raise DoomConversionError(f"cannot convert {level.format} map {level.name}: {level.unsupported_reason}")
     ir = new_level()
-    geometry = lower_doom_geometry(level, ir=ir)
+    try:
+        geometry = lower_doom_geometry(level, ir=ir)
+    except DoomGeometryError as exc:
+        raise DoomConversionError(str(exc)) from exc
     if not ir.sectors:
         raise DoomConversionError(f"{level.name} produced no Build sectors")
     builder = LevelBuilder(ir)
@@ -510,6 +513,7 @@ def convert_doom_to_blood(level: DoomDiskMap) -> tuple[LevelIR, dict[str, Any]]:
             "portals": geometry["portals"],
             "warnings": geometry["warnings"],
             "rejected_sectors": sum(item < 0 for item in sector_map),
+            "conservation": geometry.get("conservation"),
         },
         "materials": dict(material_counts),
         "mechanisms_recognized": len(inventory["mechanisms"]),

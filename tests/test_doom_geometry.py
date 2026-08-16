@@ -14,7 +14,7 @@ from bloodmap.construction import new_level
 from bloodmap.doom import DoomThing
 from bloodmap.doom_convert import DoomConversionError, convert_doom_to_blood
 from bloodmap.doom_fixtures import _sector, assemble_doom
-from bloodmap.doom_geometry import DoomGeometryError, extract_sector_loops, lower_doom_geometry
+from bloodmap.doom_geometry import DoomGeometryError, canonical_topology, extract_sector_loops, lower_doom_geometry
 from bloodmap.model import LevelIR
 
 
@@ -112,6 +112,11 @@ def _emitted_edges(loops) -> list[tuple[int, int, int, int, int, int]]:
     edges = list(loops.outer)
     for hole in loops.holes:
         edges.extend(hole)
+    extra = getattr(loops, "extra_outers", None) or []
+    for loop in extra:
+        edges.extend(loop)
+    if hasattr(loops, "components"):
+        edges = [edge for component in loops.components for edge in component.all_edges()]
     return [(edge.x1, edge.y1, edge.x2, edge.y2, edge.linedef, edge.side) for edge in edges]
 
 
@@ -123,8 +128,14 @@ def _rotate_min(seq: tuple) -> tuple:
 
 
 def _canonical_loops_from_extract(loops) -> dict:
+    all_loops = []
+    if hasattr(loops, "components"):
+        for component in loops.components:
+            all_loops.append(component.outer.edges)
+            all_loops.extend(hole.edges for hole in component.holes)
+    else:
+        all_loops = [loops.outer, *loops.holes]
     components = []
-    all_loops = [loops.outer, *loops.holes]
     for loop in all_loops:
         directed = tuple((edge.x1, edge.y1, edge.x2, edge.y2, edge.linedef, edge.side) for edge in loop)
         components.append(_rotate_min(directed))
@@ -212,7 +223,6 @@ def _assert_conserved_or_typed_failure(test: unittest.TestCase, level, sector_id
 
 
 class DisconnectedComponentTests(unittest.TestCase):
-    @unittest.expectedFailure
     def test_two_disconnected_squares_preserve_all_eight_edges_or_fail_closed(self):
         level = _disconnected_two_squares()
         source = _source_directed_edges(level, 0)
@@ -232,7 +242,6 @@ class DisconnectedComponentTests(unittest.TestCase):
         self.assertEqual(len(ir.walls), 8)
         self.assertEqual(ir.sectors[0]["fields"]["wall_count"], 8)
 
-    @unittest.expectedFailure
     def test_conversion_cannot_succeed_with_four_walls_from_eight_edges(self):
         level = _disconnected_two_squares()
         try:
@@ -245,7 +254,6 @@ class DisconnectedComponentTests(unittest.TestCase):
 
 
 class LinedefPermutationTests(unittest.TestCase):
-    @unittest.expectedFailure
     def test_touching_loop_permutations_share_canonical_topology(self):
         signatures = []
         outcomes = []
@@ -268,10 +276,23 @@ class LinedefPermutationTests(unittest.TestCase):
             }
             self.assertEqual(conservation["source"], conservation["emitted"], msg=order)
             signatures.append({
-                "extract": _canonical_loops_from_extract(loops),
+                "extract": {
+                    "directed_edge_multiset": Counter(
+                        (x1, y1, x2, y2) for x1, y1, x2, y2, _linedef, _side in
+                        _canonical_loops_from_extract(loops)["directed_edge_multiset"].elements()
+                    ),
+                    "boundary_components": tuple(
+                        tuple((x1, y1, x2, y2) for x1, y1, x2, y2, _linedef, _side in component)
+                        for component in _canonical_loops_from_extract(loops)["boundary_components"]
+                    ),
+                },
                 "ir": _canonical_from_ir(ir),
+                "topology": canonical_topology(ir),
                 "portals": report.get("portals"),
                 "sector_map": report.get("sector_map"),
+                "conservation": (
+                    loops.conservation.to_dict() if getattr(loops, "conservation", None) else None
+                ),
             })
         self.assertEqual(len(set(outcomes)), 1, msg=f"permutation outcomes diverged: {outcomes}")
         if outcomes[0] == "ok":
@@ -279,10 +300,11 @@ class LinedefPermutationTests(unittest.TestCase):
             for other in signatures[1:]:
                 self.assertEqual(other["extract"]["directed_edge_multiset"], first["extract"]["directed_edge_multiset"])
                 self.assertEqual(other["extract"]["boundary_components"], first["extract"]["boundary_components"])
-                self.assertEqual(other["ir"]["directed_edge_multiset"], first["ir"]["directed_edge_multiset"])
-                self.assertEqual(other["ir"]["boundary_components"], first["ir"]["boundary_components"])
-                self.assertEqual(other["ir"]["portal_pairings"], first["ir"]["portal_pairings"])
-                self.assertEqual(other["ir"]["sector_ownership"], first["ir"]["sector_ownership"])
+                self.assertEqual(other["topology"]["directed_edge_multiset"], first["topology"]["directed_edge_multiset"])
+                self.assertEqual(other["topology"]["boundary_components"], first["topology"]["boundary_components"])
+                self.assertEqual(other["topology"]["portal_pairings"], first["topology"]["portal_pairings"])
+                self.assertEqual(other["topology"]["sector_ownership"], first["topology"]["sector_ownership"])
+                self.assertEqual(other["conservation"], first["conservation"])
 
 
 class GeometryEdgeCaseTests(unittest.TestCase):
@@ -297,7 +319,6 @@ class GeometryEdgeCaseTests(unittest.TestCase):
         self.assertEqual(len(loops.outer), 4)
         self.assertEqual(len(loops.holes[0]), 4)
 
-    @unittest.expectedFailure
     def test_multiple_disconnected_components_are_not_silently_lossy(self):
         vertices = _square((0, 0)) + _square((128, 0)) + _square((256, 0))
         lines = (
@@ -308,11 +329,9 @@ class GeometryEdgeCaseTests(unittest.TestCase):
         level = assemble_doom("MAP01", vertices, lines, [_sector()], [DoomThing(32, 32, 0, 1, 7)])
         _assert_conserved_or_typed_failure(self, level, 0)
 
-    @unittest.expectedFailure
     def test_touching_components_are_conserved(self):
         _assert_conserved_or_typed_failure(self, _touching_two_squares("ab"), 0)
 
-    @unittest.expectedFailure
     def test_ambiguous_vertex_is_reported_or_resolved_geometrically(self):
         level = _touching_two_squares("ab")
         try:
@@ -326,7 +345,6 @@ class GeometryEdgeCaseTests(unittest.TestCase):
             return
         self.assertEqual(len(_emitted_edges(loops)), 8)
 
-    @unittest.expectedFailure
     def test_self_referencing_linedef_is_not_silently_dropped(self):
         vertices = _square((0, 0), 192) + [(64, 64), (128, 64)]
         lines = _clockwise_square_lines(0, 0) + [(4, 5, 0, 0)]
@@ -342,7 +360,6 @@ class GeometryEdgeCaseTests(unittest.TestCase):
         emitted = _emitted_edges(loops)
         self.assertEqual(len(emitted), 6)
 
-    @unittest.expectedFailure
     def test_open_chain_fails_closed(self):
         vertices = [(0, 0), (64, 0), (64, 64), (0, 64)]
         lines = [(0, 1, 0, None), (1, 2, 0, None), (2, 3, 0, None)]
@@ -352,7 +369,6 @@ class GeometryEdgeCaseTests(unittest.TestCase):
         self.assertIn("sector:0", str(raised.exception))
         self.assertTrue(any(token in str(raised.exception) for token in ("linedef:0", "linedef:1", "linedef:2")))
 
-    @unittest.expectedFailure
     def test_reversed_sidedef_ownership_still_owns_the_named_sector(self):
         vertices = _square((0, 0), 128) + _square((128, 0), 128)
         lines = [
@@ -376,7 +392,6 @@ class GeometryEdgeCaseTests(unittest.TestCase):
         self.assertEqual(len(_emitted_edges(loops_0)), len(source_0))
         self.assertEqual(len(_emitted_edges(loops_1)), len(source_1))
 
-    @unittest.expectedFailure
     def test_zero_length_edge_fails_closed(self):
         vertices = [(0, 0), (64, 0), (64, 64), (0, 64), (32, 32)]
         lines = _clockwise_square_lines(0, 0) + [(4, 4, 0, None)]

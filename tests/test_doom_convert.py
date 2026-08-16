@@ -9,7 +9,7 @@ from pathlib import Path
 
 from bloodmap.analysis import validate_map
 from bloodmap.doom import encode_wad, new_wad, read_wad, wad_map
-from bloodmap.doom_convert import convert_doom_to_blood
+from bloodmap.doom_convert import DoomConversionError, convert_doom_to_blood
 from bloodmap.doom_fixtures import ALL_FIXTURES, fixture_basic_room, fixture_keyed_door
 from bloodmap.doom_geometry import XY_SCALE, Z_SCALE
 from bloodmap.doom_semantics import doom_to_semantic_level
@@ -55,6 +55,9 @@ class DoomConvertTests(unittest.TestCase):
         self.assertGreater(report["mechanisms_translated"], 0)
         self.assertGreater(len(level.sectors), 50)
         self.assertEqual(rebuilt.header["start_sector"], level.player_start["sector"])
+        conservation = report["geometry"]["conservation"]
+        self.assertEqual(conservation["dropped_source_edges"], [])
+        self.assertEqual(conservation["duplicated_source_edges"], [])
         work = Path(__file__).resolve().parents[1] / "work"
         work.mkdir(exist_ok=True)
         (work / "E1M1-BLOOD.MAP").write_bytes(encode_map(level.to_disk_map()))
@@ -114,10 +117,17 @@ class DoomConvertTests(unittest.TestCase):
         for wad_path, name in cases:
             with self.subTest(map=name):
                 doom = wad_map(read_wad(wad_path), name)
-                level, report = convert_doom_to_blood(doom)
+                try:
+                    level, report = convert_doom_to_blood(doom)
+                except DoomConversionError as exc:
+                    self.assertIn("sector:", str(exc))
+                    self.assertIn("linedef:", str(exc))
+                    continue
                 rebuilt = parse_map(encode_map(level.to_disk_map()))
                 self.assertFalse([item for item in validate_map(rebuilt) if item.severity == "error"])
                 self.assertGreater(report["mechanisms_translated"], 0)
+                self.assertEqual(report["geometry"]["conservation"]["dropped_source_edges"], [])
+                self.assertEqual(report["geometry"]["conservation"]["duplicated_source_edges"], [])
                 (work / f"{name}-BLOOD.MAP").write_bytes(encode_map(level.to_disk_map()))
                 (work / f"{name}-BLOOD.report.json").write_text(
                     json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8",
