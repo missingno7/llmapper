@@ -40,7 +40,13 @@ Next gates:
   reimagination pair: mechanism vocabulary, not geometry matching; E2L1/DWE2M3
   is a style pair: indoor Blood vocabulary, not geometry matching);
 - broaden role-aware ART similarity into material-family and neighborhood profiles
-  (style-map candidate constraint and tile+pal+shade bundles are the first step);
+  (style-map candidate constraint and tile+pal+shade bundles are the first step;
+  Blood now has an empirically discovered v2 facet ontology under
+  `knowledge/blood/`; the Duke converter still uses role-aware ART matching
+  until that probe is convincingly better globally);
+- player-relative spatial presentation (`bloodmap.player_space`) normalizes
+  openings, clearance, enclosure, and transitions against source-backed player
+  profiles and original-map percentiles without replacing native geometry;
 - add palette, translucency, and sprite-size normalization;
 - model common concepts such as doors, lifts, switches, keys, exits, secrets, and
   spawn conditions above each game's native controller graph;

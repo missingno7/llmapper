@@ -67,6 +67,19 @@ brief, decisions, evidence claims, LevelSlice precedents, and observed design
 episodes needed to reproduce an agent's work. See
 [experience-atlas.md](experience-atlas.md).
 
+`bloodmap.materials` measures ART appearance and original-map usage before any
+semantic texture vocabulary exists. Clusters and co-occurrence relations stay
+unlabeled until an offline review imports an INTERPRETED facet schema.
+Blood now has a versioned review under `knowledge/blood/` (v1 → contradiction
+pass → v2). Native IDs are never material semantics. See
+[materials.md](materials.md) and [materials-discovery.md](materials-discovery.md).
+
+`bloodmap.player_space` is a derived presentation over exact geometry. It
+normalizes openings, clearances, footprints, and steps against a source-backed
+player body, original-map percentiles, and neighbor ratios. It does not invent
+rooms, replace native units, or make meters the primary abstraction. See
+[player-space.md](player-space.md).
+
 ## Native disk models
 
 `DiskMap` mirrors Blood v7, including encryption, CRC, packed extended records,

@@ -1,0 +1,140 @@
+{
+  "count": 11,
+  "items": [
+    {
+      "asset": "blood:tile:255",
+      "facet": "status",
+      "value": "annotated",
+      "reason": "confident annotation on an asset whose usage is mixed across surfaces",
+      "evidence": {
+        "wall": 1581,
+        "floor": 398,
+        "ceiling": 850,
+        "total": 2829
+      },
+      "provenance": "DERIVED"
+    },
+    {
+      "asset": "blood:tile:90",
+      "facet": "status",
+      "value": "annotated",
+      "reason": "confident annotation on an asset whose usage is mixed across surfaces",
+      "evidence": {
+        "wall": 1542,
+        "floor": 679,
+        "ceiling": 330,
+        "total": 2557
+      },
+      "provenance": "DERIVED"
+    },
+    {
+      "asset": "blood:tile:281",
+      "facet": "status",
+      "value": "annotated",
+      "reason": "confident annotation on an asset whose usage is mixed across surfaces",
+      "evidence": {
+        "wall": 1012,
+        "floor": 511,
+        "ceiling": 154,
+        "total": 1678
+      },
+      "provenance": "DERIVED"
+    },
+    {
+      "asset": "blood:tile:0",
+      "facet": "surface_applicability",
+      "value": "vertical",
+      "reason": "classified vertical but original-map usage is never a wall",
+      "evidence": {
+        "wall": 0,
+        "overwall": 0,
+        "floor": 493,
+        "ceiling": 630
+      },
+      "provenance": "DERIVED"
+    },
+    {
+      "asset": "blood:tile:2500",
+      "facet": "surface_applicability",
+      "value": "vertical",
+      "reason": "classified vertical but original-map usage is never a wall",
+      "evidence": {
+        "wall": 0,
+        "overwall": 0,
+        "floor": 0,
+        "ceiling": 1028
+      },
+      "provenance": "DERIVED"
+    },
+    {
+      "asset": "blood:tile:3491",
+      "facet": "surface_applicability",
+      "value": "vertical",
+      "reason": "classified vertical but original-map usage is never a wall",
+      "evidence": {
+        "wall": 0,
+        "overwall": 0,
+        "floor": 6,
+        "ceiling": 382
+      },
+      "provenance": "DERIVED"
+    },
+    {
+      "asset": "blood:tile:3678",
+      "facet": "surface_applicability",
+      "value": "vertical",
+      "reason": "classified vertical but original-map usage is never a wall",
+      "evidence": {
+        "wall": 0,
+        "overwall": 0,
+        "floor": 1,
+        "ceiling": 363
+      },
+      "provenance": "DERIVED"
+    },
+    {
+      "asset": "blood:tile:1000",
+      "facet": "placement_kind",
+      "value": "surface",
+      "reason": "confident usage claim on an appearance-only asset with no original-map placements",
+      "evidence": {
+        "total": 0,
+        "status": "annotated"
+      },
+      "provenance": "DERIVED"
+    },
+    {
+      "asset": "blood:tile:1000",
+      "facet": "surface_applicability",
+      "value": "vertical",
+      "reason": "confident usage claim on an appearance-only asset with no original-map placements",
+      "evidence": {
+        "total": 0,
+        "status": "annotated"
+      },
+      "provenance": "DERIVED"
+    },
+    {
+      "asset": "blood:tile:1000",
+      "facet": "architectural_role",
+      "value": "structural_fill",
+      "reason": "confident usage claim on an appearance-only asset with no original-map placements",
+      "evidence": {
+        "total": 0,
+        "status": "annotated"
+      },
+      "provenance": "DERIVED"
+    },
+    {
+      "asset": "blood:tile:1000",
+      "facet": "scale_behavior",
+      "value": "repeating_fill",
+      "reason": "confident usage claim on an appearance-only asset with no original-map placements",
+      "evidence": {
+        "total": 0,
+        "status": "annotated"
+      },
+      "provenance": "DERIVED"
+    }
+  ]
+}

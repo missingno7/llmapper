@@ -41,6 +41,9 @@ python -m bloodmap design-search work/blood.design-index.json \
   --motif repeated-bays --limit 5
 python -m bloodmap analyze-space maps/blood/E1M1.MAP --sectors 12,13 \
   -o work/E1M1.spatial.json
+python -m bloodmap inspect-space maps/blood/E1M1.MAP --sectors 12 \
+  --corpus work/blood.spatial-corpus.json
+python -m bloodmap compare-space maps/blood/E1M1.MAP --from 12 --to 18
 python -m bloodmap design-index maps/duke3d --include-spatial \
   -o work/duke.spatial-index.json
 python -m bloodmap design-search work/duke.spatial-index.json \
@@ -138,6 +141,8 @@ python -m unittest discover -s tests -v
 - [Experience Atlas and persistent level projects](docs/experience-atlas.md)
 - [Shared BuildIR contract](docs/build-ir.md)
 - [Classic Doom maps and engine-neutral mechanisms](docs/doom.md)
+- [Material evidence and discovered annotation](docs/materials.md)
+- [Blood material ontology discovery](docs/materials-discovery.md)
 - [Duke3D v7 format support](docs/duke3d.md)
 - [Cross-game normalization and conversion](docs/conversion.md)
 - [LevelIR authoring](docs/level-ir.md)

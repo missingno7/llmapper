@@ -1,0 +1,1954 @@
+{
+  "$schema": "llmapper.material-ontology",
+  "schema_version": 1,
+  "version": "v1",
+  "status": "proposed",
+  "basis": "Offline multimodal review of a stratified Blood E*.MAP sample plus isolated ART previews. v1 over-trusts appearance for sky strips, the default tile, unused animation frames, and mixed-use fills.",
+  "useful_for": [
+    "usage_prediction",
+    "retrieval",
+    "authoring",
+    "conversion",
+    "family_grouping"
+  ],
+  "rejected_distinctions": [
+    {
+      "id": "single_primary_class",
+      "reason": "A tile can be stone and still be a sky sheet, or metal and still be a masked separator. One class hides the useful split."
+    },
+    {
+      "id": "visual_theme",
+      "reason": "Gothic/industrial labels did not predict wall vs floor vs sky better than placement shares already do."
+    },
+    {
+      "id": "is_door",
+      "reason": "Almost no sampled wall is both a complete authored door face and moving-sector-associated. Tile 104, used as a scratch door in construction defaults, has only 2 corpus placements."
+    },
+    {
+      "id": "indoor_outdoor",
+      "reason": "Sky/parallax is a ceiling rendering/placement fact. Indoor/outdoor is not independently evidenced by ART usage."
+    },
+    {
+      "id": "damage_progression",
+      "reason": "The stratified sample contained no verified damage-state tile runs. Native picanm families were liquid, wall, floor, or sprite loops, not wreckage sequences."
+    }
+  ],
+  "facets": [
+    {
+      "id": "placement_kind",
+      "label": "placement kind",
+      "values": [
+        "surface",
+        "sprite",
+        "marker",
+        "unknown"
+      ],
+      "basis": "Sprite-only tiles (2520/2521) never appear on walls/floors; surface tiles almost never appear only as sprites.",
+      "useful_for": [
+        "authoring",
+        "retrieval",
+        "conversion"
+      ]
+    },
+    {
+      "id": "surface_applicability",
+      "label": "surface applicability",
+      "values": [
+        "vertical",
+        "horizontal_floor",
+        "horizontal_ceiling",
+        "sky_parallax",
+        "mixed",
+        "none",
+        "unknown"
+      ],
+      "basis": "Tile 2500/3491/3678 are 64x400 and ceiling-only; 270/44 are floor-dominant; 110/5/80 are wall-dominant; 90/281 mix wall+floor.",
+      "useful_for": [
+        "usage_prediction",
+        "conversion",
+        "authoring"
+      ]
+    },
+    {
+      "id": "rendering_behavior",
+      "label": "rendering behavior",
+      "values": [
+        "opaque",
+        "masked",
+        "translucent",
+        "unknown"
+      ],
+      "basis": "Tile 330 is 560/560 masked overwalls; 1067 is often translucent hanging overlay. Opaque fill tiles have ~0 masked share.",
+      "useful_for": [
+        "replacement",
+        "authoring",
+        "retrieval"
+      ]
+    },
+    {
+      "id": "architectural_role",
+      "label": "architectural role",
+      "values": [
+        "structural_fill",
+        "masked_separator",
+        "hanging_overlay",
+        "narrow_strip",
+        "sky_sheet",
+        "control_face",
+        "marker",
+        "placeholder",
+        "unknown"
+      ],
+      "basis": "Function split independently of stone/metal names: 330 fence separator, 1067 cobweb overlay, 195/93 thin strips, 2500 sky sheet, 1070 32x32 mechanism sprite, tile 0 default/placeholder.",
+      "useful_for": [
+        "authoring",
+        "family_grouping",
+        "retrieval"
+      ]
+    },
+    {
+      "id": "interaction_role",
+      "label": "interaction role",
+      "values": [
+        "static",
+        "mechanism_associated",
+        "animated_surface",
+        "interactive_control",
+        "marker",
+        "unknown"
+      ],
+      "basis": "Native picanm families 1029-1036 and 1100-1104 are animated surfaces. 1070 is sprite+mechanism on 28 maps. High moving_sector on adjacent walls is not enough to call a tile a door.",
+      "useful_for": [
+        "authoring",
+        "family_grouping"
+      ]
+    },
+    {
+      "id": "scale_behavior",
+      "label": "scale behavior",
+      "values": [
+        "repeating_fill",
+        "discrete_instance",
+        "narrow_repeat",
+        "unknown"
+      ],
+      "basis": "Player-relative coverage: 110 tiles many times; 330/195 have tiny player_widths_per_repeat; 1067 sprite x-repeat is a discrete overlay instance.",
+      "useful_for": [
+        "authoring",
+        "replacement"
+      ]
+    },
+    {
+      "id": "visual_material",
+      "label": "visual material",
+      "values": [
+        "stone_masonry",
+        "brick",
+        "metal",
+        "organic_earth",
+        "liquid",
+        "unknown"
+      ],
+      "basis": "Useful for palette mood only. Does not predict placement: stone-looking 110 is a wall, stone-looking 2500 is sky, brown-noise 270 is a floor.",
+      "useful_for": [
+        "retrieval"
+      ]
+    }
+  ],
+  "families": [],
+  "annotations": [
+    {
+      "asset": "blood:tile:110",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "86% wall / 6613 uses / 23 maps; tileable irregular stone; rarely_tiled false.",
+      "supporting": [
+        "E1M1.MAP",
+        "preview",
+        "neighbors:330"
+      ],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:449",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "87% wall / 4971 uses; opaque repeating fill.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:5",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "98% wall / 4562 uses; running-bond brick 64x128.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "brick"
+      }
+    },
+    {
+      "asset": "blood:tile:80",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.55,
+      "basis": "v1 collapsed the header/footer wall band into generic structural_fill.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:20",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "74% wall / 3730 uses; remaining share is floor/ceiling, still wall-dominant.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:91",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "100% wall / 3132 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:194",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "99% wall / 2658 uses; 32% mechanism-associated but still a repeating wall fill, not a proven door face.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "brick"
+      }
+    },
+    {
+      "asset": "blood:tile:2499",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "97% wall / 2639 uses; 64x256 tall repeating wall.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:1011",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "98% wall / 2152 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:427",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "97% wall / 1761 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:109",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "100% wall / 1735 uses; co-occurs with fence 330.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:28",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "99% wall / 1547 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:492",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "95% wall / 1484 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:67",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "71% wall / 1462 uses; wall-dominant, not mixed by the 0.2/0.2 test.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:230",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "89% wall / 1393 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:406",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "100% wall / 1327 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:84",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "100% wall / 1297 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:414",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "95% wall / 1255 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:411",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "97% wall / 1205 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:130",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "99% wall / 1149 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:385",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "93% wall / 1125 uses. Isolated brick preview is a wall; construction default ceiling 385 is role-confused.",
+      "supporting": [
+        "preview"
+      ],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "brick"
+      }
+    },
+    {
+      "asset": "blood:tile:567",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "94% wall / 1081 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:369",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "99% wall / 1041 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "brick"
+      }
+    },
+    {
+      "asset": "blood:tile:2491",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "100% wall / 1010 uses; neighbor of fence 330.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:123",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "100% wall / 1002 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:452",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "82% wall / 983 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:421",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "95% wall / 957 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:108",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "100% wall / 897 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:180",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "97% wall / 335 uses / 7 maps. Scratch-room default wall; corpus-backed but not the highest-usage stone fill.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:181",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "98% wall / 549 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:556",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "94% wall / 2455 uses; 27% mechanism-associated, still a repeating fill.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:2490",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "96% wall / 1880 uses; 47% mechanism / 46% moving. Not labeled door: no complete door-face evidence.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "mechanism_associated",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:255",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.55,
+      "basis": "v1 over-confident wall label on a mixed-use tile (56/14/30).",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:90",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.55,
+      "basis": "v1 over-confident wall label on a mixed-use tile (60/27/13).",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:281",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.55,
+      "basis": "v1 over-confident wall label on a mixed-use tile (60/30/9).",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:21",
+      "status": "mixed_use",
+      "provenance": "INTERPRETED",
+      "confidence": 0.55,
+      "basis": "64/16/20 wall/floor/ceiling.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "mixed",
+        "rendering_behavior": "opaque",
+        "architectural_role": "unknown",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:379",
+      "status": "mixed_use",
+      "provenance": "INTERPRETED",
+      "confidence": 0.5,
+      "basis": "44/12/44 wall/floor/ceiling.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "mixed",
+        "rendering_behavior": "opaque",
+        "architectural_role": "unknown",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:273",
+      "status": "mixed_use",
+      "provenance": "INTERPRETED",
+      "confidence": 0.5,
+      "basis": "53/19/27 wall/floor/ceiling.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "mixed",
+        "rendering_behavior": "opaque",
+        "architectural_role": "unknown",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:512",
+      "status": "mixed_use",
+      "provenance": "INTERPRETED",
+      "confidence": 0.5,
+      "basis": "59/10/32 wall/floor/ceiling.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "mixed",
+        "rendering_behavior": "opaque",
+        "architectural_role": "unknown",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:491",
+      "status": "mixed_use",
+      "provenance": "INTERPRETED",
+      "confidence": 0.5,
+      "basis": "22/48/29 wall/floor/ceiling; floor-leaning mixed.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "mixed",
+        "rendering_behavior": "opaque",
+        "architectural_role": "unknown",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:253",
+      "status": "mixed_use",
+      "provenance": "INTERPRETED",
+      "confidence": 0.55,
+      "basis": "49/32/20 wall/floor/ceiling. E1M1 local palette member.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "mixed",
+        "rendering_behavior": "opaque",
+        "architectural_role": "unknown",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:529",
+      "status": "mixed_use",
+      "provenance": "INTERPRETED",
+      "confidence": 0.45,
+      "basis": "35/62/3 wall/floor/ceiling; tall-as-floor ambiguous bucket.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "mixed",
+        "rendering_behavior": "opaque",
+        "architectural_role": "unknown",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:456",
+      "status": "mixed_use",
+      "provenance": "INTERPRETED",
+      "confidence": 0.55,
+      "basis": "23% wall / 74% ceiling. Ceiling-leaning mixed.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "mixed",
+        "rendering_behavior": "opaque",
+        "architectural_role": "unknown",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:68",
+      "status": "mixed_use",
+      "provenance": "INTERPRETED",
+      "confidence": 0.45,
+      "basis": "64x16 strip used as wall/floor/ceiling (64/10/17). Not a clean trim class.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "mixed",
+        "rendering_behavior": "opaque",
+        "architectural_role": "narrow_strip",
+        "interaction_role": "static",
+        "scale_behavior": "narrow_repeat",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:330",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "100% overwall, 100% masked, 560 uses / 5 maps. Isolated preview is a wrought-iron fence. 0.03 player widths/repeat.",
+      "supporting": [
+        "preview",
+        "neighbors:110,109"
+      ],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "masked",
+        "architectural_role": "masked_separator",
+        "interaction_role": "static",
+        "scale_behavior": "narrow_repeat",
+        "visual_material": "metal"
+      }
+    },
+    {
+      "asset": "blood:tile:331",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "100% masked overwall; 32x128 fence variant of 330.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "masked",
+        "architectural_role": "masked_separator",
+        "interaction_role": "static",
+        "scale_behavior": "narrow_repeat",
+        "visual_material": "metal"
+      }
+    },
+    {
+      "asset": "blood:tile:463",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "100% masked overwall / 62 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "masked",
+        "architectural_role": "masked_separator",
+        "interaction_role": "static",
+        "scale_behavior": "narrow_repeat",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:266",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "94% masked / 55% mechanism / 22 maps. Grate-like separator, not a generic wall.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "masked",
+        "architectural_role": "masked_separator",
+        "interaction_role": "mechanism_associated",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:319",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.55,
+      "basis": "v1 lumped the 319 emblem with fence/grate separators because it is 100% masked overwall.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "masked",
+        "architectural_role": "masked_separator",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "metal"
+      }
+    },
+    {
+      "asset": "blood:tile:1067",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Cobweb overlay; 47% masked + 53% sprite; rarely_tiled_horizontally true.",
+      "supporting": [
+        "preview"
+      ],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "translucent",
+        "architectural_role": "hanging_overlay",
+        "interaction_role": "static",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:2342",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.4,
+      "basis": "100% wall but 46% masked / 67% mechanism. Ambiguous rendering; not structural_fill.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "mechanism_associated",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:502",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.45,
+      "basis": "55% overwall masked + 45% sprite; low count.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "masked",
+        "architectural_role": "hanging_overlay",
+        "interaction_role": "static",
+        "scale_behavior": "unknown",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:58",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.45,
+      "basis": "72% masked overwall + 28% sprite.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "masked",
+        "architectural_role": "hanging_overlay",
+        "interaction_role": "static",
+        "scale_behavior": "unknown",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:2521",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "ASOUND editor text; 100% sprite / 100% mechanism / 41 maps. Isolated preview looks like signage, context is a marker.",
+      "supporting": [
+        "preview"
+      ],
+      "values": {
+        "placement_kind": "marker",
+        "surface_applicability": "none",
+        "rendering_behavior": "unknown",
+        "architectural_role": "marker",
+        "interaction_role": "marker",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:2520",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Same 8x49 marker family as 2521; 1250 sprite uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "marker",
+        "surface_applicability": "none",
+        "rendering_behavior": "unknown",
+        "architectural_role": "marker",
+        "interaction_role": "marker",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:2519",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "8x41 sprite-only marker.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "marker",
+        "surface_applicability": "none",
+        "rendering_behavior": "unknown",
+        "architectural_role": "marker",
+        "interaction_role": "marker",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:908",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "42x80 sprite-only / 1102 uses / 100% mechanism. Not a surface material.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "sprite",
+        "surface_applicability": "none",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "mechanism_associated",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:3997",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Sprite-only / 1096 uses; no ART size in catalog.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "sprite",
+        "surface_applicability": "none",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "mechanism_associated",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:2825",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Shotgun-cultist-sized sprite; 885 uses. Actor, not a wall.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "sprite",
+        "surface_applicability": "none",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "mechanism_associated",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:2820",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Tommy-cultist-sized sprite; 692 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "sprite",
+        "surface_applicability": "none",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "mechanism_associated",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:1170",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "58x125 sprite-only / 691 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "sprite",
+        "surface_applicability": "none",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "mechanism_associated",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:2169",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Native anim 2169-2172; sprite pickup/actor frames, not a wall family.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "sprite",
+        "surface_applicability": "none",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "animated_surface",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:506",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Native anim 506-509; sprite-only.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "sprite",
+        "surface_applicability": "none",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "animated_surface",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:660",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Native anim 660-663; sprite-only.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "sprite",
+        "surface_applicability": "none",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "animated_surface",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:938",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Native anim 938-941; 100% mechanism sprites.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "sprite",
+        "surface_applicability": "none",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "animated_surface",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:2101",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Native anim 2101-2114; sprite-only, 0% mechanism.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "sprite",
+        "surface_applicability": "none",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "animated_surface",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:1070",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "32x32; 283 uses / 28 maps; 0 wall/floor/ceiling; 100% mechanism. Blood switch sprite. No native picanm; do not invent extra states.",
+      "supporting": [
+        "designs.py type 21"
+      ],
+      "values": {
+        "placement_kind": "sprite",
+        "surface_applicability": "none",
+        "rendering_behavior": "opaque",
+        "architectural_role": "control_face",
+        "interaction_role": "interactive_control",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:318",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "78x44; 46 uses / 42 maps (~1/map); 100% sprite+mechanism. Exit/marker, not the 319 overlay.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "marker",
+        "surface_applicability": "none",
+        "rendering_behavior": "unknown",
+        "architectural_role": "marker",
+        "interaction_role": "marker",
+        "scale_behavior": "discrete_instance",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:1100",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Native anim 1100-1104; 100% wall / 346 uses. Animated wall run, not per-frame materials.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "animated_surface",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:1030",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "99% ceiling / 213 uses; native family 1029-1036. Liquid animated ceiling, not a generic indoor fill. Later frames are mostly appearance_only because the engine plays them from the first tile.",
+      "supporting": [
+        "anim:1029-1036",
+        "cooccur:1120"
+      ],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "horizontal_ceiling",
+        "rendering_behavior": "opaque",
+        "architectural_role": "unknown",
+        "interaction_role": "animated_surface",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "liquid"
+      }
+    },
+    {
+      "asset": "blood:tile:1029",
+      "status": "mixed_use",
+      "provenance": "INTERPRETED",
+      "confidence": 0.5,
+      "basis": "First frame of the 1029-1036 liquid run; mixed surface use / 51 placements.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "mixed",
+        "rendering_behavior": "opaque",
+        "architectural_role": "unknown",
+        "interaction_role": "animated_surface",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "liquid"
+      }
+    },
+    {
+      "asset": "blood:tile:1120",
+      "status": "mixed_use",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Native anim 1120-1126; 75% floor / 21% ceiling; 105 pairings with 1030. Liquid floor/ceiling family, not a wall.",
+      "supporting": [
+        "anim:1120-1126"
+      ],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "mixed",
+        "rendering_behavior": "opaque",
+        "architectural_role": "unknown",
+        "interaction_role": "animated_surface",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "liquid"
+      }
+    },
+    {
+      "asset": "blood:tile:2915",
+      "status": "mixed_use",
+      "provenance": "INTERPRETED",
+      "confidence": 0.45,
+      "basis": "Native anim 2915-2924; 38% floor / 27% ceiling / 34% sprite. Water-like mixed family.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "mixed",
+        "rendering_behavior": "opaque",
+        "architectural_role": "unknown",
+        "interaction_role": "animated_surface",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:997",
+      "status": "mixed_use",
+      "provenance": "INTERPRETED",
+      "confidence": 0.4,
+      "basis": "First frame of 997-1003; 53 mixed uses. Later frames 998-1003 have zero map placements.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "mixed",
+        "rendering_behavior": "opaque",
+        "architectural_role": "unknown",
+        "interaction_role": "animated_surface",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:0",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.55,
+      "basis": "v1 appearance pass: default tile looks like running-bond masonry.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:200",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "32x16 riveted plate; 85% wall / 40% mechanism. Small panel, not a switch and not a door face.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "narrow_strip",
+        "interaction_role": "mechanism_associated",
+        "scale_behavior": "narrow_repeat",
+        "visual_material": "metal"
+      }
+    },
+    {
+      "asset": "blood:tile:195",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "16x128; xrepeat 1; 0.005 player widths/repeat; 62% mechanism / 52% moving. Door-adjacent jamb scale, not a proven door texture.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "narrow_strip",
+        "interaction_role": "mechanism_associated",
+        "scale_behavior": "narrow_repeat",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:93",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "32x128; 100% wall / 1220 uses; 0.01 player widths/repeat. Narrow authored strip / baseboard.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "narrow_strip",
+        "interaction_role": "static",
+        "scale_behavior": "narrow_repeat",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:2500",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.55,
+      "basis": "v1 appearance pass: 64x400 dark stone strip looks like a tall wall treatment.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:3491",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.55,
+      "basis": "v1 appearance pass: same 64x400 strip shape as 2500.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:3678",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.55,
+      "basis": "v1 appearance pass: 64x400 strip classified as wall from isolated preview.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:416",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "97% ceiling / 472 uses / 14 maps. Indoor ceiling fill, not a sky sheet.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "horizontal_ceiling",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:455",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "96% ceiling / 293 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "horizontal_ceiling",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:454",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "88% ceiling / 277 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "horizontal_ceiling",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:422",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "90% ceiling / 94 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "horizontal_ceiling",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:270",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "82% floor / 1151 uses / 23 maps. Noisy brown dirt; isolated preview matches floor, not wall.",
+      "supporting": [
+        "preview",
+        "E1M1.MAP"
+      ],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "horizontal_floor",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "organic_earth"
+      }
+    },
+    {
+      "asset": "blood:tile:2448",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "79% floor / 885 uses; neighbors fence 330 and emblem 319.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "horizontal_floor",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "organic_earth"
+      }
+    },
+    {
+      "asset": "blood:tile:280",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "93% floor / 372 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "horizontal_floor",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "organic_earth"
+      }
+    },
+    {
+      "asset": "blood:tile:290",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "89% floor / 360 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "horizontal_floor",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "organic_earth"
+      }
+    },
+    {
+      "asset": "blood:tile:294",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "98% floor / 271 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "horizontal_floor",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:287",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "98% floor / 265 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "horizontal_floor",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "organic_earth"
+      }
+    },
+    {
+      "asset": "blood:tile:301",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "85% floor / 227 uses.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "horizontal_floor",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "organic_earth"
+      }
+    },
+    {
+      "asset": "blood:tile:44",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "100% floor / 224 uses; geometric dark stone/marble tile.",
+      "supporting": [
+        "preview"
+      ],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "horizontal_floor",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:292",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "100% floor / only 58 uses / 7 maps. Scratch-room default floor; corpus-backed but sparse.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "horizontal_floor",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "mechanism_associated",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "stone_masonry"
+      }
+    },
+    {
+      "asset": "blood:tile:104",
+      "status": "ambiguous",
+      "provenance": "INTERPRETED",
+      "confidence": 0.2,
+      "basis": "Only 2 original-map placements, both masked+mechanism. Construction uses it as a door. Insufficient evidence to claim a door family.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "masked",
+        "architectural_role": "unknown",
+        "interaction_role": "mechanism_associated",
+        "scale_behavior": "unknown",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:1000",
+      "status": "annotated",
+      "provenance": "INTERPRETED",
+      "confidence": 0.55,
+      "basis": "v1 appearance pass: unused animation frame classified as a wall from pixels alone.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "surface",
+        "surface_applicability": "vertical",
+        "rendering_behavior": "opaque",
+        "architectural_role": "structural_fill",
+        "interaction_role": "static",
+        "scale_behavior": "repeating_fill",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:1001",
+      "status": "appearance_only",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Zero campaign placements; animation continuation of 997-1003.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "unknown",
+        "surface_applicability": "unknown",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "unknown",
+        "scale_behavior": "unknown",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:1002",
+      "status": "appearance_only",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Zero campaign placements; animation continuation of 997-1003.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "unknown",
+        "surface_applicability": "unknown",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "unknown",
+        "scale_behavior": "unknown",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:1003",
+      "status": "appearance_only",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Zero campaign placements; animation continuation of 997-1003.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "unknown",
+        "surface_applicability": "unknown",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "unknown",
+        "scale_behavior": "unknown",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:1014",
+      "status": "appearance_only",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Unused ART; appearance-only. Candidate visual similarity is speculative.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "unknown",
+        "surface_applicability": "unknown",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "unknown",
+        "scale_behavior": "unknown",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:1015",
+      "status": "appearance_only",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Unused ART; appearance-only.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "unknown",
+        "surface_applicability": "unknown",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "unknown",
+        "scale_behavior": "unknown",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:1016",
+      "status": "appearance_only",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Unused ART; appearance-only.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "unknown",
+        "surface_applicability": "unknown",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "unknown",
+        "scale_behavior": "unknown",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:1017",
+      "status": "appearance_only",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Unused ART; appearance-only.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "unknown",
+        "surface_applicability": "unknown",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "unknown",
+        "scale_behavior": "unknown",
+        "visual_material": "unknown"
+      }
+    },
+    {
+      "asset": "blood:tile:1018",
+      "status": "appearance_only",
+      "provenance": "INTERPRETED",
+      "confidence": 0.8,
+      "basis": "Unused ART; appearance-only.",
+      "supporting": [],
+      "values": {
+        "placement_kind": "unknown",
+        "surface_applicability": "unknown",
+        "rendering_behavior": "unknown",
+        "architectural_role": "unknown",
+        "interaction_role": "unknown",
+        "scale_behavior": "unknown",
+        "visual_material": "unknown"
+      }
+    }
+  ]
+}

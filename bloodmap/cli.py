@@ -20,6 +20,12 @@ from .differential import compare_e3l1_pair
 from .duke import DukeMapError, encode_duke_map, read_duke_map, write_duke_map
 from .design import DesignUnderstandingError, design_fingerprint
 from .spatial import SpatialAnalysisError, analyze_spatial
+from .player_space import (
+    PlayerSpaceError, compare_transition, conversion_player_scale_report,
+    focus_observation, inspect_connection, inspect_doom_space, inspect_space,
+    material_player_scale, mine_build_spatial_corpus, mine_doom_spatial_corpus,
+    player_profile, present_space,
+)
 from .experience import probe_progression, probe_route, probe_transition, probe_visibility
 from .workspace import (
     append_decision, append_episode, append_evidence, initialize_project,
@@ -42,6 +48,15 @@ from .oracle import (
 )
 from .recipe import RecipeError, build_composition_recipe
 from .semantics import ObservationError
+from .materials import (
+    MaterialsError, attach_appearance, contact_sheet_html, default_palette_path,
+    dump_json, export_classification_batch, families_from_evidence,
+    finalize_catalog, import_annotations, load_json, mine_blood_map, mine_doom_map,
+    mine_duke_map, new_catalog, palette_vocabulary, query_materials, rank_candidates,
+    retrieve_palette, select_authoring_kit, similar_palettes, summarize_catalog,
+    write_review_packet,
+)
+from .art import read_art_directory, read_palette
 
 
 def _json(value: Any) -> str:
@@ -56,8 +71,12 @@ def _write_text(path: str | None, value: str) -> None:
         sys.stdout.write(value)
 
 
-def _map_files(directory: Path) -> list[Path]:
-    return sorted(path for path in directory.iterdir() if path.is_file() and path.suffix.lower() == ".map")
+def _map_files(directory: Path, pattern: str | None = None) -> list[Path]:
+    from fnmatch import fnmatch
+    files = sorted(path for path in directory.iterdir() if path.is_file() and path.suffix.lower() == ".map")
+    if pattern:
+        files = [path for path in files if fnmatch(path.name, pattern)]
+    return files
 
 
 def _game_for_path(path: str | Path) -> str:
@@ -430,6 +449,134 @@ def cmd_stats(args: argparse.Namespace) -> int:
     return 0
 
 
+def _load_optional_art(game: str, art: str | None, palette: str | None):
+    if not art:
+        return None, None, None
+    tiles = read_art_directory(art)
+    palette_path = Path(palette) if palette else default_palette_path(art, game)
+    if palette_path is None:
+        raise MaterialsError(f"no palette found for {game}; pass --palette")
+    return tiles, read_palette(palette_path), str(palette_path)
+
+
+def cmd_materials_mine(args: argparse.Namespace) -> int:
+    catalog = new_catalog()
+    if args.catalog and Path(args.catalog).exists() and args.merge:
+        catalog = load_json(args.catalog)
+    if args.maps:
+        game = args.game
+        tiles, palette, _palette_path = _load_optional_art(game, args.art, args.palette)
+        if tiles and palette:
+            attach_appearance(catalog, game, tiles, palette, source=args.art)
+        for path in _map_files(Path(args.maps), args.glob):
+            if game == "blood":
+                mine_blood_map(catalog, read_map(path), map_name=path.name)
+            elif game == "duke3d":
+                mine_duke_map(catalog, read_duke_map(path), map_name=path.name)
+            else:
+                raise MaterialsError("--maps requires --game blood or duke3d")
+    if args.wad:
+        from .doom import read_wad
+        wad = read_wad(args.wad)
+        for level in wad.maps:
+            if level.supported:
+                mine_doom_map(catalog, level, map_name=level.name)
+    finalize_catalog(catalog)
+    if args.summary_only:
+        _write_text(args.output, _json(summarize_catalog(catalog)))
+    else:
+        dump_json(args.output, catalog) if args.output else sys.stdout.write(_json(catalog))
+    return 0
+
+
+def cmd_materials_export_batch(args: argparse.Namespace) -> int:
+    catalog = load_json(args.catalog)
+    tiles = palettes = None
+    if args.art:
+        game = args.game
+        loaded, palette, _path = _load_optional_art(game, args.art, args.palette)
+        tiles = {game: loaded}
+        palettes = {game: palette}
+    batch = export_classification_batch(
+        catalog, tiles=tiles, palettes=palettes, limit=args.limit, include_previews=not args.no_previews,
+    )
+    _write_text(args.output, _json(batch))
+    return 0
+
+
+def cmd_materials_import(args: argparse.Namespace) -> int:
+    catalog = load_json(args.catalog)
+    payload = load_json(args.input)
+    import_annotations(catalog, payload)
+    catalog["families"] = families_from_evidence(catalog)
+    dump_json(args.output or args.catalog, catalog)
+    _write_text(None, _json({
+        "summary": summarize_catalog(catalog),
+        "contradictions": catalog.get("contradictions") or [],
+    }))
+    return 0
+
+
+def cmd_materials_audit(args: argparse.Namespace) -> int:
+    catalog = load_json(args.catalog)
+    tiles = palettes = None
+    if args.art:
+        loaded, palette, _path = _load_optional_art(args.game, args.art, args.palette)
+        tiles = {args.game: loaded}
+        palettes = {args.game: palette}
+    html = contact_sheet_html(catalog, tiles=tiles, palettes=palettes, cluster_id=args.cluster)
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.output).write_text(html, encoding="utf-8", newline="\n")
+    return 0
+
+
+def cmd_materials_query(args: argparse.Namespace) -> int:
+    catalog = load_json(args.catalog)
+    require = json.loads(args.require) if args.require else None
+    if require is not None and not isinstance(require, dict):
+        raise MaterialsError("--require must be a JSON object of facet:value")
+    if args.like and args.like not in catalog["assets"]:
+        raise MaterialsError(f"unknown asset {args.like}")
+    if not args.like and not require:
+        raise MaterialsError("materials-query needs --like and/or --require")
+    ranked = query_materials(catalog, like=args.like, require=require, limit=args.limit)
+    palettes = retrieve_palette(catalog, like=args.like, map_name=args.map) if args.like else []
+    _write_text(args.output, _json({
+        "source": args.like,
+        "require": require,
+        "candidates": ranked,
+        "palettes": palettes[: args.limit],
+        "annotation": (catalog.get("annotations") or {}).get(args.like) if args.like else None,
+    }))
+    return 0
+
+
+def cmd_materials_kit(args: argparse.Namespace) -> int:
+    catalog = load_json(args.catalog)
+    roles = json.loads(args.roles)
+    if not isinstance(roles, dict):
+        raise MaterialsError("--roles must be a JSON object of role -> facet:value")
+    kit = select_authoring_kit(catalog, roles, limit=args.limit)
+    _write_text(args.output, _json(kit))
+    return 0
+
+
+def cmd_materials_packet(args: argparse.Namespace) -> int:
+    catalog = load_json(args.catalog)
+    tiles, palette, _path = _load_optional_art(args.game, args.art, args.palette)
+    ids = args.assets.split(",") if args.assets else None
+    index = write_review_packet(
+        catalog,
+        maps_directory=args.maps,
+        art_tiles=tiles,
+        palette=palette,
+        output_directory=args.output,
+        asset_ids=ids,
+    )
+    _write_text(None, _json(index))
+    return 0
+
+
 def _read_design_build(path: str | Path) -> tuple[str, BuildIR]:
     game = _game_for_path(path)
     if game == "blood":
@@ -453,6 +600,111 @@ def cmd_analyze_space(args: argparse.Namespace) -> int:
     analysis["map"] = str(args.map)
     analysis["detected_game"] = game
     _write_text(args.output, _json(analysis))
+    return 0
+
+
+def _load_spatial_corpus(path: str | None) -> dict[str, Any] | None:
+    if not path:
+        return None
+    return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
+def _emit_player_space(payload: dict[str, Any], args: argparse.Namespace) -> int:
+    if args.question:
+        payload = focus_observation(payload, args.question)
+    elif not args.full:
+        payload = present_space(payload)
+    _write_text(args.output, _json(payload))
+    return 0
+
+
+def cmd_player_profile(args: argparse.Namespace) -> int:
+    if args.game:
+        _write_text(args.output, _json(player_profile(args.game).to_dict()))
+        return 0
+    _write_text(args.output, _json({
+        game: player_profile(game).to_dict()
+        for game in ("blood", "duke3d", "doom")
+    }))
+    return 0
+
+
+def cmd_inspect_space(args: argparse.Namespace) -> int:
+    corpus = _load_spatial_corpus(args.corpus)
+    sectors = _parse_id_set(args.sectors) if args.sectors else None
+    if Path(args.map).suffix.lower() == ".wad":
+        if not args.wad_map:
+            raise PlayerSpaceError("inspect-space on a WAD requires --wad-map")
+        payload = inspect_doom_space(wad_map(read_wad(args.map), args.wad_map), sectors, corpus=corpus)
+    else:
+        _game, build = _read_design_build(args.map)
+        payload = inspect_space(build, sectors, corpus=corpus)
+    payload["map"] = str(args.map)
+    return _emit_player_space(payload, args)
+
+
+def cmd_inspect_connection(args: argparse.Namespace) -> int:
+    _game, build = _read_design_build(args.map)
+    payload = inspect_connection(
+        build, wall_id=args.wall, left=args.left, right=args.right,
+        corpus=_load_spatial_corpus(args.corpus),
+    )
+    payload["map"] = str(args.map)
+    return _emit_player_space(payload, args)
+
+
+def cmd_compare_space(args: argparse.Namespace) -> int:
+    _game, build = _read_design_build(args.map)
+    payload = compare_transition(
+        build, _parse_id_set(args.source), _parse_id_set(args.destination),
+        corpus=_load_spatial_corpus(args.corpus),
+    )
+    payload["map"] = str(args.map)
+    return _emit_player_space(payload, args)
+
+
+def cmd_spatial_corpus(args: argparse.Namespace) -> int:
+    if not args.wad and not args.maps:
+        raise PlayerSpaceError("spatial-corpus requires --maps or --wad")
+    if args.wad:
+        wad = read_wad(args.wad)
+        levels = [level for level in wad.maps if level.supported]
+        if args.wad_map:
+            levels = [wad_map(wad, args.wad_map)]
+        payload = mine_doom_spatial_corpus(levels)
+        payload["wad"] = str(args.wad)
+    else:
+        directory = Path(args.maps)
+        loaded: list[tuple[str, Any]] = []
+        for path in _map_files(directory, args.glob):
+            _game, build = _read_design_build(path)
+            loaded.append((path.name, build))
+        payload = mine_build_spatial_corpus(loaded)
+        payload["directory"] = str(directory)
+    if args.summaries_only:
+        for key in (
+            "opening_width_player_widths", "traversable_opening_width_player_widths",
+            "clear_height_player_heights",
+            "footprint_player_areas", "step_player_heights", "aabb_width_player_widths",
+        ):
+            payload.pop(key, None)
+    _write_text(args.output, _json(payload))
+    return 0
+
+
+def cmd_player_scale_report(args: argparse.Namespace) -> int:
+    _write_text(args.output, _json(conversion_player_scale_report()))
+    return 0
+
+
+def cmd_material_scale(args: argparse.Namespace) -> int:
+    catalog = json.loads(Path(args.catalog).read_text(encoding="utf-8"))
+    asset = (catalog.get("assets") or {}).get(args.asset)
+    if asset is None:
+        raise PlayerSpaceError(f"asset {args.asset} is not in the catalog")
+    payload = material_player_scale(asset, game=args.game or asset.get("game"))
+    payload["asset"] = args.asset
+    _write_text(args.output, _json(payload))
     return 0
 
 
@@ -1047,6 +1299,60 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--sector", type=int); p.add_argument("--wall", type=int); p.add_argument("--sprite", type=int); p.set_defaults(func=cmd_render)
     p = sub.add_parser("stats", help="generate corpus geometry/gameplay statistics")
     p.add_argument("directory"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_stats)
+    p = sub.add_parser("materials-mine", help="build a deterministic texture evidence catalog from maps and optional ART")
+    p.add_argument("--maps", help="directory of Blood or Duke MAP files")
+    p.add_argument("--glob", help="optional filename glob, e.g. E*.MAP for original Blood campaign maps")
+    p.add_argument("--game", choices=("blood", "duke3d"), default="blood")
+    p.add_argument("--wad", help="optional Doom IWAD/PWAD for named-texture usage")
+    p.add_argument("--art", help="optional TILES*.ART directory")
+    p.add_argument("--palette", help="768-byte palette; defaults to xmapedit import PAL for Blood")
+    p.add_argument("--catalog", help="existing catalog to merge into when --merge is set")
+    p.add_argument("--merge", action="store_true")
+    p.add_argument("--summary-only", action="store_true")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_materials_mine)
+    p = sub.add_parser("materials-export-batch", help="export an unlabeled classification batch for offline multimodal review")
+    p.add_argument("catalog")
+    p.add_argument("--game", choices=("blood", "duke3d"), default="blood")
+    p.add_argument("--art"); p.add_argument("--palette")
+    p.add_argument("--limit", type=int, default=80)
+    p.add_argument("--no-previews", action="store_true")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_materials_export_batch)
+    p = sub.add_parser("materials-import", help="import a proposed ontology and INTERPRETED annotations")
+    p.add_argument("catalog")
+    p.add_argument("input")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_materials_import)
+    p = sub.add_parser("materials-audit", help="write an HTML contact sheet of unlabeled clusters and annotations")
+    p.add_argument("catalog")
+    p.add_argument("-o", "--output", required=True)
+    p.add_argument("--game", choices=("blood", "duke3d"), default="blood")
+    p.add_argument("--art"); p.add_argument("--palette"); p.add_argument("--cluster")
+    p.set_defaults(func=cmd_materials_audit)
+    p = sub.add_parser("materials-query", help="rank related assets by usage signature then appearance")
+    p.add_argument("catalog")
+    p.add_argument("--like", help="source asset id, e.g. blood:tile:180")
+    p.add_argument("--require", help="JSON object of imported facet:value filters")
+    p.add_argument("--map", help="restrict palettes to one map name")
+    p.add_argument("--limit", type=int, default=8)
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_materials_query)
+    p = sub.add_parser("materials-kit", help="select corpus-backed assets for named authoring roles using imported facets")
+    p.add_argument("catalog")
+    p.add_argument("--roles", required=True, help="JSON object of role -> {facet: value}")
+    p.add_argument("--limit", type=int, default=3)
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_materials_kit)
+    p = sub.add_parser("materials-packet", help="write isolated previews and cropped map-context SVGs for review")
+    p.add_argument("catalog")
+    p.add_argument("--maps", required=True)
+    p.add_argument("--art")
+    p.add_argument("--palette")
+    p.add_argument("--game", choices=("blood", "duke3d"), default="blood")
+    p.add_argument("--assets", help="optional comma-separated asset ids")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_materials_packet)
     p = sub.add_parser("design-fingerprint", help="measure a level or region as grounded design characteristics")
     p.add_argument("map")
     p.add_argument("--sectors", help="optional comma-separated sector IDs/ranges")
@@ -1057,6 +1363,55 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--sectors", help="optional comma-separated sector IDs/ranges")
     p.add_argument("-o", "--output", help="write JSON; defaults to stdout")
     p.set_defaults(func=cmd_analyze_space)
+    p = sub.add_parser("player-profile", help="show source-backed player collision and movement profiles")
+    p.add_argument("--game", choices=("blood", "duke3d", "duke", "doom"))
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_player_profile)
+    p = sub.add_parser("inspect-space", help="compact player-relative observation of a selected space")
+    p.add_argument("map")
+    p.add_argument("--sectors", help="optional comma-separated sector IDs/ranges")
+    p.add_argument("--wad-map", help="Doom map marker when MAP is a WAD")
+    p.add_argument("--corpus", help="optional player-relative spatial corpus JSON")
+    p.add_argument("--question", choices=("traverse", "scale", "enclosure", "shape", "opening", "transition"))
+    p.add_argument("--full", action="store_true", help="emit layered raw/normalized/corpus evidence")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_inspect_space)
+    p = sub.add_parser("inspect-connection", help="player-relative observation of a portal opening")
+    p.add_argument("map")
+    p.add_argument("--wall", type=int, help="portal wall ID")
+    p.add_argument("--left", type=int, help="left sector ID; requires --right")
+    p.add_argument("--right", type=int, help="right sector ID; requires --left")
+    p.add_argument("--corpus")
+    p.add_argument("--question", choices=("traverse", "scale", "enclosure", "shape", "opening", "transition"))
+    p.add_argument("--full", action="store_true")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_inspect_connection)
+    p = sub.add_parser("compare-space", help="player-relative transition between two selections")
+    p.add_argument("map")
+    p.add_argument("--from", dest="source", required=True, help="source sector IDs/ranges")
+    p.add_argument("--to", dest="destination", required=True, help="destination sector IDs/ranges")
+    p.add_argument("--corpus")
+    p.add_argument("--question", choices=("traverse", "scale", "enclosure", "shape", "opening", "transition"))
+    p.add_argument("--full", action="store_true")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_compare_space)
+    p = sub.add_parser("spatial-corpus", help="mine player-relative spatial distributions from original maps")
+    p.add_argument("--maps", help="directory of Blood or Duke MAP files")
+    p.add_argument("--glob", help="optional filename glob, e.g. E*.MAP")
+    p.add_argument("--wad", help="optional Doom IWAD/PWAD")
+    p.add_argument("--wad-map", help="restrict Doom mining to one map marker")
+    p.add_argument("--summaries-only", action="store_true", help="omit raw sample arrays")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_spatial_corpus)
+    p = sub.add_parser("player-scale-report", help="compare conversion XY/Z scales with player-body ratios")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_player_scale_report)
+    p = sub.add_parser("material-scale", help="player-relative world coverage for a materials catalog asset")
+    p.add_argument("catalog")
+    p.add_argument("--asset", required=True)
+    p.add_argument("--game", choices=("blood", "duke3d", "duke", "doom"))
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_material_scale)
     p = sub.add_parser("probe-route", help="run a bounded Level-0 route/access probe")
     p.add_argument("map"); p.add_argument("--from-sector", type=int, required=True); p.add_argument("--to-sector", type=int, required=True)
     p.add_argument("--world-state", help="inline JSON world state, e.g. {\"opened_portals\":[\"portal:12\"]}")
@@ -1252,7 +1607,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args = build_parser().parse_args(argv)
         return int(args.func(args))
-    except (BloodMapError, CompositionError, ConstructionError, ConversionError, DoomConversionError, DoomError, DukeMapError, E3L11ConversionError, PlayableConversionError, FragmentError, ObservationError, OracleError, RecipeError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+    except (BloodMapError, CompositionError, ConstructionError, ConversionError, DoomConversionError, DoomError, DukeMapError, E3L11ConversionError, PlayableConversionError, FragmentError, MaterialsError, ObservationError, OracleError, RecipeError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         print(f"bloodmap: error: {exc}", file=sys.stderr)
         return 2
 

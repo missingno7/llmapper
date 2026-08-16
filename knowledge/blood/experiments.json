@@ -1,0 +1,1982 @@
+{
+  "summary": {
+    "schema_version": 1,
+    "games": [
+      "blood"
+    ],
+    "maps_mined": 43,
+    "assets": 4418,
+    "assets_by_game": {
+      "blood": 4418
+    },
+    "substantial_usage": 895,
+    "with_appearance": 4417,
+    "clusters": 160,
+    "relations": 16798,
+    "palettes": 1026,
+    "animation_families": 113,
+    "statuses": {
+      "annotated": 78,
+      "unannotated": 891,
+      "appearance_only": 3365,
+      "mixed_use": 83,
+      "ambiguous": 1
+    },
+    "annotations": 104,
+    "contradictions": 2,
+    "ontology_status": "refined",
+    "ontology_facets": [
+      "placement_kind",
+      "surface_applicability",
+      "rendering_behavior",
+      "architectural_role",
+      "interaction_role",
+      "scale_behavior",
+      "visual_material"
+    ]
+  },
+  "ontology": {
+    "version": "v2",
+    "history": [
+      "v1"
+    ],
+    "surviving_facets": [
+      {
+        "id": "placement_kind",
+        "values": [
+          "surface",
+          "sprite",
+          "marker",
+          "unknown"
+        ],
+        "useful_for": [
+          "authoring",
+          "retrieval",
+          "conversion"
+        ]
+      },
+      {
+        "id": "surface_applicability",
+        "values": [
+          "vertical",
+          "horizontal_floor",
+          "horizontal_ceiling",
+          "sky_parallax",
+          "mixed",
+          "none",
+          "unknown"
+        ],
+        "useful_for": [
+          "usage_prediction",
+          "conversion",
+          "authoring"
+        ]
+      },
+      {
+        "id": "rendering_behavior",
+        "values": [
+          "opaque",
+          "masked",
+          "translucent",
+          "unknown"
+        ],
+        "useful_for": [
+          "replacement",
+          "authoring",
+          "retrieval"
+        ]
+      },
+      {
+        "id": "architectural_role",
+        "values": [
+          "structural_fill",
+          "complete_wall_band",
+          "masked_separator",
+          "hanging_overlay",
+          "narrow_strip",
+          "sky_sheet",
+          "control_face",
+          "marker",
+          "placeholder",
+          "unknown"
+        ],
+        "useful_for": [
+          "authoring",
+          "family_grouping",
+          "retrieval"
+        ]
+      },
+      {
+        "id": "interaction_role",
+        "values": [
+          "static",
+          "mechanism_associated",
+          "animated_surface",
+          "interactive_control",
+          "marker",
+          "unknown"
+        ],
+        "useful_for": [
+          "authoring",
+          "family_grouping"
+        ]
+      },
+      {
+        "id": "scale_behavior",
+        "values": [
+          "repeating_fill",
+          "discrete_instance",
+          "narrow_repeat",
+          "unknown"
+        ],
+        "useful_for": [
+          "authoring",
+          "replacement"
+        ]
+      },
+      {
+        "id": "visual_material",
+        "values": [
+          "stone_masonry",
+          "brick",
+          "metal",
+          "organic_earth",
+          "liquid",
+          "unknown"
+        ],
+        "useful_for": [
+          "retrieval"
+        ]
+      }
+    ],
+    "rejected": [
+      {
+        "id": "single_primary_class",
+        "reason": "A tile can be stone and still be a sky sheet, or metal and still be a masked separator. One class hides the useful split."
+      },
+      {
+        "id": "visual_theme",
+        "reason": "Gothic/industrial labels did not predict wall vs floor vs sky better than placement shares already do."
+      },
+      {
+        "id": "is_door",
+        "reason": "Almost no sampled wall is both a complete authored door face and moving-sector-associated. Tile 104, used as a scratch door in construction defaults, has only 2 corpus placements."
+      },
+      {
+        "id": "indoor_outdoor",
+        "reason": "Sky/parallax is a ceiling rendering/placement fact. Indoor/outdoor is not independently evidenced by ART usage."
+      },
+      {
+        "id": "damage_progression",
+        "reason": "The stratified sample contained no verified damage-state tile runs. Native picanm families were liquid, wall, floor, or sprite loops, not wreckage sequences."
+      }
+    ],
+    "revision_notes": [
+      "Split sky_sheet/sky_parallax from vertical structural_fill for 2500/3491/3678 after ceiling-only usage contradicted the appearance pass.",
+      "Downgraded tile 0 from masonry wall to placeholder; isolated preview is masonry, corpus usage is never a wall.",
+      "Marked 1000-1003 appearance_only animation tails instead of walls.",
+      "Downgraded 90/255/281 from annotated vertical fill to mixed_use.",
+      "Split 319 hanging_overlay from the 330/331 masked_separator fence family.",
+      "Introduced complete_wall_band for tile 80 (header/footer) rather than collapsing it into structural_fill.",
+      "Did not add is_door: 104 has 2 placements; 195 is a narrow mechanism-associated jamb, not a door face.",
+      "1070 remains a one-member interactive_control family; no invented off/on ART pair."
+    ]
+  },
+  "v1_annotation_contradictions": 11,
+  "v2_annotation_contradictions": 0,
+  "queries": {
+    "vertical_opaque_fill": [
+      {
+        "asset": "blood:tile:110",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 6613,
+        "required": {
+          "surface_applicability": "vertical",
+          "rendering_behavior": "opaque",
+          "architectural_role": "structural_fill"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:449",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 4971,
+        "required": {
+          "surface_applicability": "vertical",
+          "rendering_behavior": "opaque",
+          "architectural_role": "structural_fill"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:5",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 4562,
+        "required": {
+          "surface_applicability": "vertical",
+          "rendering_behavior": "opaque",
+          "architectural_role": "structural_fill"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:20",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 3730,
+        "required": {
+          "surface_applicability": "vertical",
+          "rendering_behavior": "opaque",
+          "architectural_role": "structural_fill"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:91",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 3132,
+        "required": {
+          "surface_applicability": "vertical",
+          "rendering_behavior": "opaque",
+          "architectural_role": "structural_fill"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      }
+    ],
+    "floor_fill": [
+      {
+        "asset": "blood:tile:270",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 1151,
+        "required": {
+          "surface_applicability": "horizontal_floor"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:2448",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 885,
+        "required": {
+          "surface_applicability": "horizontal_floor"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:280",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 372,
+        "required": {
+          "surface_applicability": "horizontal_floor"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:290",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 360,
+        "required": {
+          "surface_applicability": "horizontal_floor"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:294",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 271,
+        "required": {
+          "surface_applicability": "horizontal_floor"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      }
+    ],
+    "indoor_ceiling": [
+      {
+        "asset": "blood:tile:416",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 472,
+        "required": {
+          "surface_applicability": "horizontal_ceiling",
+          "architectural_role": "structural_fill",
+          "interaction_role": "static"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:455",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 293,
+        "required": {
+          "surface_applicability": "horizontal_ceiling",
+          "architectural_role": "structural_fill",
+          "interaction_role": "static"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:454",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 277,
+        "required": {
+          "surface_applicability": "horizontal_ceiling",
+          "architectural_role": "structural_fill",
+          "interaction_role": "static"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:422",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 94,
+        "required": {
+          "surface_applicability": "horizontal_ceiling",
+          "architectural_role": "structural_fill",
+          "interaction_role": "static"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      }
+    ],
+    "sky_sheet": [
+      {
+        "asset": "blood:tile:2500",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 1028,
+        "required": {
+          "architectural_role": "sky_sheet"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:3491",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 388,
+        "required": {
+          "architectural_role": "sky_sheet"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:3678",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 364,
+        "required": {
+          "architectural_role": "sky_sheet"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      }
+    ],
+    "masked_separator": [
+      {
+        "asset": "blood:tile:330",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 560,
+        "required": {
+          "architectural_role": "masked_separator"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:266",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 377,
+        "required": {
+          "architectural_role": "masked_separator"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:463",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 62,
+        "required": {
+          "architectural_role": "masked_separator"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:331",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 58,
+        "required": {
+          "architectural_role": "masked_separator"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      }
+    ],
+    "like_110_floor": [
+      {
+        "asset": "blood:tile:270",
+        "game": "blood",
+        "score": 1.570216,
+        "usage_cosine": 0.711294,
+        "visual_distance": 0.415394,
+        "status": "annotated",
+        "basis": "usage-signature then ART feature; native IDs are not semantics",
+        "required": {
+          "surface_applicability": "horizontal_floor"
+        }
+      },
+      {
+        "asset": "blood:tile:280",
+        "game": "blood",
+        "score": 1.629231,
+        "usage_cosine": 0.660061,
+        "visual_distance": 0.269476,
+        "status": "annotated",
+        "basis": "usage-signature then ART feature; native IDs are not semantics",
+        "required": {
+          "surface_applicability": "horizontal_floor"
+        }
+      },
+      {
+        "asset": "blood:tile:301",
+        "game": "blood",
+        "score": 1.898486,
+        "usage_cosine": 0.694813,
+        "visual_distance": 0.677739,
+        "status": "annotated",
+        "basis": "usage-signature then ART feature; native IDs are not semantics",
+        "required": {
+          "surface_applicability": "horizontal_floor"
+        }
+      },
+      {
+        "asset": "blood:tile:287",
+        "game": "blood",
+        "score": 2.267863,
+        "usage_cosine": 0.619737,
+        "visual_distance": 0.746809,
+        "status": "annotated",
+        "basis": "usage-signature then ART feature; native IDs are not semantics",
+        "required": {
+          "surface_applicability": "horizontal_floor"
+        }
+      },
+      {
+        "asset": "blood:tile:290",
+        "game": "blood",
+        "score": 2.336603,
+        "usage_cosine": 0.647329,
+        "visual_distance": 0.92592,
+        "status": "annotated",
+        "basis": "usage-signature then ART feature; native IDs are not semantics",
+        "required": {
+          "surface_applicability": "horizontal_floor"
+        }
+      }
+    ],
+    "control": [
+      {
+        "asset": "blood:tile:1070",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 283,
+        "required": {
+          "interaction_role": "interactive_control"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      }
+    ],
+    "alternatives_to_110": [
+      {
+        "asset": "blood:tile:414",
+        "game": "blood",
+        "score": 0.209484,
+        "usage_cosine": 0.994302,
+        "visual_distance": 0.186691,
+        "status": "annotated",
+        "basis": "usage-signature then ART feature; native IDs are not semantics",
+        "required": {
+          "surface_applicability": "vertical",
+          "architectural_role": "structural_fill"
+        }
+      },
+      {
+        "asset": "blood:tile:427",
+        "game": "blood",
+        "score": 0.292103,
+        "usage_cosine": 0.985797,
+        "visual_distance": 0.235291,
+        "status": "annotated",
+        "basis": "usage-signature then ART feature; native IDs are not semantics",
+        "required": {
+          "surface_applicability": "vertical",
+          "architectural_role": "structural_fill"
+        }
+      },
+      {
+        "asset": "blood:tile:109",
+        "game": "blood",
+        "score": 0.36536,
+        "usage_cosine": 0.985004,
+        "visual_distance": 0.305374,
+        "status": "annotated",
+        "basis": "usage-signature then ART feature; native IDs are not semantics",
+        "required": {
+          "surface_applicability": "vertical",
+          "architectural_role": "structural_fill"
+        }
+      },
+      {
+        "asset": "blood:tile:421",
+        "game": "blood",
+        "score": 0.388832,
+        "usage_cosine": 0.987423,
+        "visual_distance": 0.338525,
+        "status": "annotated",
+        "basis": "usage-signature then ART feature; native IDs are not semantics",
+        "required": {
+          "surface_applicability": "vertical",
+          "architectural_role": "structural_fill"
+        }
+      },
+      {
+        "asset": "blood:tile:108",
+        "game": "blood",
+        "score": 0.425837,
+        "usage_cosine": 0.985823,
+        "visual_distance": 0.36913,
+        "status": "annotated",
+        "basis": "usage-signature then ART feature; native IDs are not semantics",
+        "required": {
+          "surface_applicability": "vertical",
+          "architectural_role": "structural_fill"
+        }
+      }
+    ]
+  },
+  "authoring_kit": {
+    "provenance": "INTERPRETED",
+    "roles": {
+      "structural_wall": {
+        "require": {
+          "surface_applicability": "vertical",
+          "rendering_behavior": "opaque",
+          "architectural_role": "structural_fill",
+          "scale_behavior": "repeating_fill"
+        },
+        "candidates": [
+          {
+            "asset": "blood:tile:110",
+            "game": "blood",
+            "status": "annotated",
+            "usage_total": 6613,
+            "required": {
+              "surface_applicability": "vertical",
+              "rendering_behavior": "opaque",
+              "architectural_role": "structural_fill",
+              "scale_behavior": "repeating_fill"
+            },
+            "basis": "ontology facet filter over corpus-backed assets"
+          },
+          {
+            "asset": "blood:tile:449",
+            "game": "blood",
+            "status": "annotated",
+            "usage_total": 4971,
+            "required": {
+              "surface_applicability": "vertical",
+              "rendering_behavior": "opaque",
+              "architectural_role": "structural_fill",
+              "scale_behavior": "repeating_fill"
+            },
+            "basis": "ontology facet filter over corpus-backed assets"
+          },
+          {
+            "asset": "blood:tile:5",
+            "game": "blood",
+            "status": "annotated",
+            "usage_total": 4562,
+            "required": {
+              "surface_applicability": "vertical",
+              "rendering_behavior": "opaque",
+              "architectural_role": "structural_fill",
+              "scale_behavior": "repeating_fill"
+            },
+            "basis": "ontology facet filter over corpus-backed assets"
+          }
+        ],
+        "chosen_asset": "blood:tile:110",
+        "chosen_tile": 110,
+        "basis": "highest-usage annotated asset matching imported facets"
+      },
+      "floor": {
+        "require": {
+          "surface_applicability": "horizontal_floor",
+          "rendering_behavior": "opaque",
+          "architectural_role": "structural_fill"
+        },
+        "candidates": [
+          {
+            "asset": "blood:tile:270",
+            "game": "blood",
+            "status": "annotated",
+            "usage_total": 1151,
+            "required": {
+              "surface_applicability": "horizontal_floor",
+              "rendering_behavior": "opaque",
+              "architectural_role": "structural_fill"
+            },
+            "basis": "ontology facet filter over corpus-backed assets"
+          },
+          {
+            "asset": "blood:tile:2448",
+            "game": "blood",
+            "status": "annotated",
+            "usage_total": 885,
+            "required": {
+              "surface_applicability": "horizontal_floor",
+              "rendering_behavior": "opaque",
+              "architectural_role": "structural_fill"
+            },
+            "basis": "ontology facet filter over corpus-backed assets"
+          },
+          {
+            "asset": "blood:tile:280",
+            "game": "blood",
+            "status": "annotated",
+            "usage_total": 372,
+            "required": {
+              "surface_applicability": "horizontal_floor",
+              "rendering_behavior": "opaque",
+              "architectural_role": "structural_fill"
+            },
+            "basis": "ontology facet filter over corpus-backed assets"
+          }
+        ],
+        "chosen_asset": "blood:tile:270",
+        "chosen_tile": 270,
+        "basis": "highest-usage annotated asset matching imported facets"
+      },
+      "ceiling": {
+        "require": {
+          "surface_applicability": "horizontal_ceiling",
+          "architectural_role": "structural_fill",
+          "interaction_role": "static"
+        },
+        "candidates": [
+          {
+            "asset": "blood:tile:416",
+            "game": "blood",
+            "status": "annotated",
+            "usage_total": 472,
+            "required": {
+              "surface_applicability": "horizontal_ceiling",
+              "architectural_role": "structural_fill",
+              "interaction_role": "static"
+            },
+            "basis": "ontology facet filter over corpus-backed assets"
+          },
+          {
+            "asset": "blood:tile:455",
+            "game": "blood",
+            "status": "annotated",
+            "usage_total": 293,
+            "required": {
+              "surface_applicability": "horizontal_ceiling",
+              "architectural_role": "structural_fill",
+              "interaction_role": "static"
+            },
+            "basis": "ontology facet filter over corpus-backed assets"
+          },
+          {
+            "asset": "blood:tile:454",
+            "game": "blood",
+            "status": "annotated",
+            "usage_total": 277,
+            "required": {
+              "surface_applicability": "horizontal_ceiling",
+              "architectural_role": "structural_fill",
+              "interaction_role": "static"
+            },
+            "basis": "ontology facet filter over corpus-backed assets"
+          }
+        ],
+        "chosen_asset": "blood:tile:416",
+        "chosen_tile": 416,
+        "basis": "highest-usage annotated asset matching imported facets"
+      },
+      "masked_separator": {
+        "require": {
+          "architectural_role": "masked_separator",
+          "rendering_behavior": "masked"
+        },
+        "candidates": [
+          {
+            "asset": "blood:tile:330",
+            "game": "blood",
+            "status": "annotated",
+            "usage_total": 560,
+            "required": {
+              "architectural_role": "masked_separator",
+              "rendering_behavior": "masked"
+            },
+            "basis": "ontology facet filter over corpus-backed assets"
+          },
+          {
+            "asset": "blood:tile:266",
+            "game": "blood",
+            "status": "annotated",
+            "usage_total": 377,
+            "required": {
+              "architectural_role": "masked_separator",
+              "rendering_behavior": "masked"
+            },
+            "basis": "ontology facet filter over corpus-backed assets"
+          },
+          {
+            "asset": "blood:tile:463",
+            "game": "blood",
+            "status": "annotated",
+            "usage_total": 62,
+            "required": {
+              "architectural_role": "masked_separator",
+              "rendering_behavior": "masked"
+            },
+            "basis": "ontology facet filter over corpus-backed assets"
+          }
+        ],
+        "chosen_asset": "blood:tile:330",
+        "chosen_tile": 330,
+        "basis": "highest-usage annotated asset matching imported facets"
+      },
+      "interactive_control": {
+        "require": {
+          "interaction_role": "interactive_control"
+        },
+        "candidates": [
+          {
+            "asset": "blood:tile:1070",
+            "game": "blood",
+            "status": "annotated",
+            "usage_total": 283,
+            "required": {
+              "interaction_role": "interactive_control"
+            },
+            "basis": "ontology facet filter over corpus-backed assets"
+          }
+        ],
+        "chosen_asset": "blood:tile:1070",
+        "chosen_tile": 1070,
+        "basis": "highest-usage annotated asset matching imported facets"
+      },
+      "narrow_trim": {
+        "require": {
+          "architectural_role": "narrow_strip",
+          "surface_applicability": "vertical",
+          "interaction_role": "static"
+        },
+        "candidates": [
+          {
+            "asset": "blood:tile:93",
+            "game": "blood",
+            "status": "annotated",
+            "usage_total": 1220,
+            "required": {
+              "architectural_role": "narrow_strip",
+              "surface_applicability": "vertical",
+              "interaction_role": "static"
+            },
+            "basis": "ontology facet filter over corpus-backed assets"
+          }
+        ],
+        "chosen_asset": "blood:tile:93",
+        "chosen_tile": 93,
+        "basis": "highest-usage annotated asset matching imported facets"
+      }
+    }
+  },
+  "palettes": {
+    "stone_and_fence": {
+      "seed": [
+        "blood:tile:110",
+        "blood:tile:270",
+        "blood:tile:330"
+      ],
+      "vocabulary": {
+        "assets": [
+          "blood:tile:110",
+          "blood:tile:270",
+          "blood:tile:330",
+          "blood:tile:109"
+        ],
+        "annotated": [
+          "blood:tile:110",
+          "blood:tile:270",
+          "blood:tile:330",
+          "blood:tile:109"
+        ],
+        "unannotated": [],
+        "facet_counts": [
+          {
+            "facet": "placement_kind",
+            "value": "surface",
+            "count": 4
+          },
+          {
+            "facet": "interaction_role",
+            "value": "static",
+            "count": 4
+          },
+          {
+            "facet": "surface_applicability",
+            "value": "vertical",
+            "count": 3
+          },
+          {
+            "facet": "rendering_behavior",
+            "value": "opaque",
+            "count": 3
+          },
+          {
+            "facet": "architectural_role",
+            "value": "structural_fill",
+            "count": 3
+          },
+          {
+            "facet": "scale_behavior",
+            "value": "repeating_fill",
+            "count": 3
+          },
+          {
+            "facet": "visual_material",
+            "value": "stone_masonry",
+            "count": 2
+          },
+          {
+            "facet": "surface_applicability",
+            "value": "horizontal_floor",
+            "count": 1
+          },
+          {
+            "facet": "visual_material",
+            "value": "organic_earth",
+            "count": 1
+          },
+          {
+            "facet": "rendering_behavior",
+            "value": "masked",
+            "count": 1
+          },
+          {
+            "facet": "architectural_role",
+            "value": "masked_separator",
+            "count": 1
+          },
+          {
+            "facet": "scale_behavior",
+            "value": "narrow_repeat",
+            "count": 1
+          },
+          {
+            "facet": "visual_material",
+            "value": "metal",
+            "count": 1
+          }
+        ],
+        "provenance": "INTERPRETED",
+        "basis": "imported facet values over the supplied local assets"
+      },
+      "similar": [
+        {
+          "id": "palette:blood:E3M8.MAP:83",
+          "map": "E3M8.MAP",
+          "sector_count": 51,
+          "overlap": [
+            "blood:tile:110",
+            "blood:tile:270"
+          ],
+          "overlap_count": 2,
+          "floor": "blood:tile:270",
+          "ceiling": "blood:tile:115",
+          "walls": [
+            "blood:tile:110"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E3M8.MAP:163",
+          "map": "E3M8.MAP",
+          "sector_count": 43,
+          "overlap": [
+            "blood:tile:110",
+            "blood:tile:270"
+          ],
+          "overlap_count": 2,
+          "floor": "blood:tile:270",
+          "ceiling": "blood:tile:115",
+          "walls": [
+            "blood:tile:110",
+            "blood:tile:115"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E3M8.MAP:199",
+          "map": "E3M8.MAP",
+          "sector_count": 38,
+          "overlap": [
+            "blood:tile:110",
+            "blood:tile:270"
+          ],
+          "overlap_count": 2,
+          "floor": "blood:tile:270",
+          "ceiling": "blood:tile:379",
+          "walls": [
+            "blood:tile:110"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E2M9.MAP:15",
+          "map": "E2M9.MAP",
+          "sector_count": 18,
+          "overlap": [
+            "blood:tile:110",
+            "blood:tile:270"
+          ],
+          "overlap_count": 2,
+          "floor": "blood:tile:270",
+          "ceiling": "blood:tile:449",
+          "walls": [
+            "blood:tile:110"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E3M8.MAP:377",
+          "map": "E3M8.MAP",
+          "sector_count": 10,
+          "overlap": [
+            "blood:tile:110",
+            "blood:tile:270"
+          ],
+          "overlap_count": 2,
+          "floor": "blood:tile:270",
+          "ceiling": "blood:tile:379",
+          "walls": [
+            "blood:tile:110",
+            "blood:tile:6"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E3M8.MAP:85",
+          "map": "E3M8.MAP",
+          "sector_count": 10,
+          "overlap": [
+            "blood:tile:110",
+            "blood:tile:270"
+          ],
+          "overlap_count": 2,
+          "floor": "blood:tile:270",
+          "ceiling": "blood:tile:115",
+          "walls": [
+            "blood:tile:110",
+            "blood:tile:174"
+          ],
+          "provenance": "DERIVED"
+        }
+      ],
+      "e1m1": [
+        {
+          "basis": "per-sector surface set; not a canonical room partition",
+          "ceiling": "blood:tile:253",
+          "floor": "blood:tile:270",
+          "game": "blood",
+          "id": "palette:blood:E1M1.MAP:38",
+          "map": "E1M1.MAP",
+          "provenance": "DERIVED",
+          "sector_count": 3,
+          "sectors": [
+            "sector:38",
+            "sector:144",
+            "sector:149"
+          ],
+          "walls": [
+            "blood:tile:110"
+          ]
+        },
+        {
+          "basis": "per-sector surface set; not a canonical room partition",
+          "ceiling": "blood:tile:253",
+          "floor": "blood:tile:346",
+          "game": "blood",
+          "id": "palette:blood:E1M1.MAP:0",
+          "map": "E1M1.MAP",
+          "provenance": "DERIVED",
+          "sector_count": 2,
+          "sectors": [
+            "sector:0",
+            "sector:9"
+          ],
+          "walls": [
+            "blood:tile:110",
+            "blood:tile:421"
+          ]
+        },
+        {
+          "basis": "per-sector surface set; not a canonical room partition",
+          "ceiling": "blood:tile:253",
+          "floor": "blood:tile:273",
+          "game": "blood",
+          "id": "palette:blood:E1M1.MAP:1",
+          "map": "E1M1.MAP",
+          "provenance": "DERIVED",
+          "sector_count": 2,
+          "sectors": [
+            "sector:1",
+            "sector:2"
+          ],
+          "walls": [
+            "blood:tile:110"
+          ]
+        },
+        {
+          "basis": "per-sector surface set; not a canonical room partition",
+          "ceiling": "blood:tile:449",
+          "floor": "blood:tile:270",
+          "game": "blood",
+          "id": "palette:blood:E1M1.MAP:116",
+          "map": "E1M1.MAP",
+          "provenance": "DERIVED",
+          "sector_count": 2,
+          "sectors": [
+            "sector:116",
+            "sector:117"
+          ],
+          "walls": [
+            "blood:tile:449"
+          ]
+        },
+        {
+          "basis": "per-sector surface set; not a canonical room partition",
+          "ceiling": "blood:tile:3678",
+          "floor": "blood:tile:361",
+          "game": "blood",
+          "id": "palette:blood:E1M1.MAP:13",
+          "map": "E1M1.MAP",
+          "provenance": "DERIVED",
+          "sector_count": 2,
+          "sectors": [
+            "sector:13",
+            "sector:15"
+          ],
+          "walls": [
+            "blood:tile:110",
+            "blood:tile:270"
+          ]
+        }
+      ]
+    },
+    "sky_exposed": {
+      "seed": [
+        "blood:tile:2500",
+        "blood:tile:3678"
+      ],
+      "vocabulary": {
+        "assets": [
+          "blood:tile:2500",
+          "blood:tile:3678",
+          "blood:tile:2448",
+          "blood:tile:319"
+        ],
+        "annotated": [
+          "blood:tile:2500",
+          "blood:tile:3678",
+          "blood:tile:2448",
+          "blood:tile:319"
+        ],
+        "unannotated": [],
+        "facet_counts": [
+          {
+            "facet": "placement_kind",
+            "value": "surface",
+            "count": 4
+          },
+          {
+            "facet": "interaction_role",
+            "value": "static",
+            "count": 4
+          },
+          {
+            "facet": "rendering_behavior",
+            "value": "opaque",
+            "count": 3
+          },
+          {
+            "facet": "scale_behavior",
+            "value": "repeating_fill",
+            "count": 3
+          },
+          {
+            "facet": "surface_applicability",
+            "value": "sky_parallax",
+            "count": 2
+          },
+          {
+            "facet": "architectural_role",
+            "value": "sky_sheet",
+            "count": 2
+          },
+          {
+            "facet": "visual_material",
+            "value": "stone_masonry",
+            "count": 2
+          },
+          {
+            "facet": "surface_applicability",
+            "value": "horizontal_floor",
+            "count": 1
+          },
+          {
+            "facet": "architectural_role",
+            "value": "structural_fill",
+            "count": 1
+          },
+          {
+            "facet": "visual_material",
+            "value": "organic_earth",
+            "count": 1
+          },
+          {
+            "facet": "surface_applicability",
+            "value": "vertical",
+            "count": 1
+          },
+          {
+            "facet": "rendering_behavior",
+            "value": "masked",
+            "count": 1
+          },
+          {
+            "facet": "architectural_role",
+            "value": "hanging_overlay",
+            "count": 1
+          },
+          {
+            "facet": "scale_behavior",
+            "value": "discrete_instance",
+            "count": 1
+          },
+          {
+            "facet": "visual_material",
+            "value": "unknown",
+            "count": 1
+          }
+        ],
+        "provenance": "INTERPRETED",
+        "basis": "imported facet values over the supplied local assets"
+      },
+      "similar": [
+        {
+          "id": "palette:blood:E2M4.MAP:11",
+          "map": "E2M4.MAP",
+          "sector_count": 27,
+          "overlap": [
+            "blood:tile:2500"
+          ],
+          "overlap_count": 1,
+          "floor": "blood:tile:2448",
+          "ceiling": "blood:tile:2500",
+          "walls": [
+            "blood:tile:2491",
+            "blood:tile:2499"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E2M3.MAP:4",
+          "map": "E2M3.MAP",
+          "sector_count": 24,
+          "overlap": [
+            "blood:tile:2500"
+          ],
+          "overlap_count": 1,
+          "floor": "blood:tile:2448",
+          "ceiling": "blood:tile:2500",
+          "walls": [
+            "blood:tile:2499"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E6M6.MAP:0",
+          "map": "E6M6.MAP",
+          "sector_count": 24,
+          "overlap": [
+            "blood:tile:2500"
+          ],
+          "overlap_count": 1,
+          "floor": "blood:tile:0",
+          "ceiling": "blood:tile:2500",
+          "walls": [
+            "blood:tile:5"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E2M9.MAP:64",
+          "map": "E2M9.MAP",
+          "sector_count": 18,
+          "overlap": [
+            "blood:tile:2500"
+          ],
+          "overlap_count": 1,
+          "floor": "blood:tile:2490",
+          "ceiling": "blood:tile:2500",
+          "walls": [
+            "blood:tile:2490"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E2M9.MAP:2",
+          "map": "E2M9.MAP",
+          "sector_count": 17,
+          "overlap": [
+            "blood:tile:2500"
+          ],
+          "overlap_count": 1,
+          "floor": "blood:tile:2448",
+          "ceiling": "blood:tile:2500",
+          "walls": [
+            "blood:tile:2473",
+            "blood:tile:2490"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E6M4.MAP:1",
+          "map": "E6M4.MAP",
+          "sector_count": 17,
+          "overlap": [
+            "blood:tile:2500"
+          ],
+          "overlap_count": 1,
+          "floor": "blood:tile:358",
+          "ceiling": "blood:tile:2500",
+          "walls": [
+            "blood:tile:80"
+          ],
+          "provenance": "DERIVED"
+        }
+      ]
+    },
+    "liquid": {
+      "seed": [
+        "blood:tile:1030",
+        "blood:tile:1120"
+      ],
+      "vocabulary": {
+        "assets": [
+          "blood:tile:1030",
+          "blood:tile:1120",
+          "blood:tile:1029"
+        ],
+        "annotated": [
+          "blood:tile:1030",
+          "blood:tile:1120",
+          "blood:tile:1029"
+        ],
+        "unannotated": [],
+        "facet_counts": [
+          {
+            "facet": "placement_kind",
+            "value": "surface",
+            "count": 3
+          },
+          {
+            "facet": "rendering_behavior",
+            "value": "opaque",
+            "count": 3
+          },
+          {
+            "facet": "architectural_role",
+            "value": "unknown",
+            "count": 3
+          },
+          {
+            "facet": "interaction_role",
+            "value": "animated_surface",
+            "count": 3
+          },
+          {
+            "facet": "scale_behavior",
+            "value": "repeating_fill",
+            "count": 3
+          },
+          {
+            "facet": "visual_material",
+            "value": "liquid",
+            "count": 3
+          },
+          {
+            "facet": "surface_applicability",
+            "value": "mixed",
+            "count": 2
+          },
+          {
+            "facet": "surface_applicability",
+            "value": "horizontal_ceiling",
+            "count": 1
+          }
+        ],
+        "provenance": "INTERPRETED",
+        "basis": "imported facet values over the supplied local assets"
+      },
+      "similar": [
+        {
+          "id": "palette:blood:E1M8.MAP:142",
+          "map": "E1M8.MAP",
+          "sector_count": 79,
+          "overlap": [
+            "blood:tile:1030",
+            "blood:tile:1120"
+          ],
+          "overlap_count": 2,
+          "floor": "blood:tile:1120",
+          "ceiling": "blood:tile:1030",
+          "walls": [
+            "blood:tile:230",
+            "blood:tile:487"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E1M8.MAP:157",
+          "map": "E1M8.MAP",
+          "sector_count": 7,
+          "overlap": [
+            "blood:tile:1030",
+            "blood:tile:1120"
+          ],
+          "overlap_count": 2,
+          "floor": "blood:tile:1120",
+          "ceiling": "blood:tile:1030",
+          "walls": [
+            "blood:tile:230",
+            "blood:tile:231",
+            "blood:tile:487"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E1M8.MAP:143",
+          "map": "E1M8.MAP",
+          "sector_count": 5,
+          "overlap": [
+            "blood:tile:1030",
+            "blood:tile:1120"
+          ],
+          "overlap_count": 2,
+          "floor": "blood:tile:1120",
+          "ceiling": "blood:tile:1030",
+          "walls": [
+            "blood:tile:230"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E1M8.MAP:159",
+          "map": "E1M8.MAP",
+          "sector_count": 4,
+          "overlap": [
+            "blood:tile:1030",
+            "blood:tile:1120"
+          ],
+          "overlap_count": 2,
+          "floor": "blood:tile:1120",
+          "ceiling": "blood:tile:1030",
+          "walls": [
+            "blood:tile:230",
+            "blood:tile:232",
+            "blood:tile:487"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E1M8.MAP:181",
+          "map": "E1M8.MAP",
+          "sector_count": 4,
+          "overlap": [
+            "blood:tile:1030",
+            "blood:tile:1120"
+          ],
+          "overlap_count": 2,
+          "floor": "blood:tile:1120",
+          "ceiling": "blood:tile:1030",
+          "walls": [
+            "blood:tile:230",
+            "blood:tile:233",
+            "blood:tile:487"
+          ],
+          "provenance": "DERIVED"
+        },
+        {
+          "id": "palette:blood:E1M8.MAP:289",
+          "map": "E1M8.MAP",
+          "sector_count": 90,
+          "overlap": [
+            "blood:tile:1030"
+          ],
+          "overlap_count": 1,
+          "floor": "blood:tile:255",
+          "ceiling": "blood:tile:1030",
+          "walls": [
+            "blood:tile:230",
+            "blood:tile:487"
+          ],
+          "provenance": "DERIVED"
+        }
+      ]
+    }
+  },
+  "naive_vs_knowledge": {
+    "intent": "dark old interior: structural wall, coherent floor/ceiling, door, masked separator, interactive control, limited trim",
+    "naive_appearance_neighbors_of_110": [
+      273,
+      100,
+      414,
+      113,
+      512,
+      42,
+      352,
+      427
+    ],
+    "naive": {
+      "map": "work\\material-authoring\\naive-appearance.MAP",
+      "svg": "work\\material-authoring\\naive-appearance.svg",
+      "errors": [],
+      "picnums": {
+        "wall": 110,
+        "floor": 273,
+        "ceiling": 100,
+        "door": 414,
+        "separator": 113,
+        "control": 512,
+        "trim": 42
+      },
+      "counts": {
+        "sectors": 3,
+        "walls": 18,
+        "sprites": 1
+      }
+    },
+    "knowledge": {
+      "map": "work\\material-authoring\\ontology-aware.MAP",
+      "svg": "work\\material-authoring\\ontology-aware.svg",
+      "errors": [],
+      "picnums": {
+        "wall": 110,
+        "floor": 270,
+        "ceiling": 416,
+        "door": 110,
+        "separator": 330,
+        "control": 1070,
+        "trim": 93
+      },
+      "counts": {
+        "sectors": 3,
+        "walls": 18,
+        "sprites": 1
+      }
+    },
+    "construction_defaults": {
+      "map": "work\\material-authoring\\construction-defaults.MAP",
+      "svg": "work\\material-authoring\\construction-defaults.svg",
+      "errors": [],
+      "picnums": {
+        "wall": 180,
+        "floor": 292,
+        "ceiling": 385,
+        "door": 104,
+        "separator": 104,
+        "control": 1070,
+        "trim": 180
+      },
+      "counts": {
+        "sectors": 3,
+        "walls": 18,
+        "sprites": 1
+      }
+    },
+    "evaluation": {
+      "functional_appropriateness": "Naive puts appearance-neighbors of wall 110 on floor (273), ceiling (100), separator (113), and control (512). Knowledge uses wall 110, floor 270, indoor ceiling 416, masked fence 330, switch 1070, trim 93.",
+      "surface_role_correctness": "Knowledge respects vertical/floor/ceiling/masked/sprite splits; naive does not.",
+      "scale": "Knowledge trim 93 and separator 330 are narrow_repeat; naive separator is another repeating fill.",
+      "palette_coherence": "110+270+330 co-occur in original maps; nearest-to-110 floors/ceilings need not.",
+      "construction_defaults_note": "Default ceiling 385 is 93% wall; default door 104 has 2 corpus uses."
+    }
+  },
+  "conversion": {
+    "source_a": {
+      "asset": "blood:tile:385",
+      "evidence": "93% wall brick; used as the scratch-room ceiling default",
+      "old_top": [
+        {
+          "asset": "blood:tile:474",
+          "game": "blood",
+          "score": 0.430133,
+          "usage_cosine": 0.953221,
+          "visual_distance": 0.243017,
+          "status": "unannotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics"
+        },
+        {
+          "asset": "blood:tile:177",
+          "game": "blood",
+          "score": 0.501008,
+          "usage_cosine": 0.941671,
+          "visual_distance": 0.267691,
+          "status": "unannotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics"
+        },
+        {
+          "asset": "blood:tile:373",
+          "game": "blood",
+          "score": 0.541699,
+          "usage_cosine": 0.973281,
+          "visual_distance": 0.434824,
+          "status": "unannotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics"
+        },
+        {
+          "asset": "blood:tile:20",
+          "game": "blood",
+          "score": 0.556074,
+          "usage_cosine": 0.978346,
+          "visual_distance": 0.469458,
+          "status": "annotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics"
+        },
+        {
+          "asset": "blood:tile:428",
+          "game": "blood",
+          "score": 0.559505,
+          "usage_cosine": 0.974826,
+          "visual_distance": 0.45881,
+          "status": "unannotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics"
+        }
+      ],
+      "new_top": [
+        {
+          "asset": "blood:tile:454",
+          "game": "blood",
+          "score": 1.989872,
+          "usage_cosine": 0.596059,
+          "visual_distance": 0.374106,
+          "status": "annotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics",
+          "required": {
+            "surface_applicability": "horizontal_ceiling",
+            "architectural_role": "structural_fill",
+            "interaction_role": "static"
+          }
+        },
+        {
+          "asset": "blood:tile:416",
+          "game": "blood",
+          "score": 2.319393,
+          "usage_cosine": 0.537138,
+          "visual_distance": 0.467943,
+          "status": "annotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics",
+          "required": {
+            "surface_applicability": "horizontal_ceiling",
+            "architectural_role": "structural_fill",
+            "interaction_role": "static"
+          }
+        },
+        {
+          "asset": "blood:tile:422",
+          "game": "blood",
+          "score": 2.345996,
+          "usage_cosine": 0.533437,
+          "visual_distance": 0.479743,
+          "status": "annotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics",
+          "required": {
+            "surface_applicability": "horizontal_ceiling",
+            "architectural_role": "structural_fill",
+            "interaction_role": "static"
+          }
+        },
+        {
+          "asset": "blood:tile:455",
+          "game": "blood",
+          "score": 2.434966,
+          "usage_cosine": 0.516282,
+          "visual_distance": 0.500094,
+          "status": "annotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics",
+          "required": {
+            "surface_applicability": "horizontal_ceiling",
+            "architectural_role": "structural_fill",
+            "interaction_role": "static"
+          }
+        }
+      ]
+    },
+    "source_b": {
+      "asset": "blood:tile:416",
+      "evidence": "97% ceiling indoor fill; role-aware pool still contains mixed and sky tiles",
+      "old_top": [
+        {
+          "asset": "blood:tile:454",
+          "game": "blood",
+          "score": 0.462911,
+          "usage_cosine": 0.995499,
+          "visual_distance": 0.444908,
+          "status": "annotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics"
+        },
+        {
+          "asset": "blood:tile:1030",
+          "game": "blood",
+          "score": 0.478027,
+          "usage_cosine": 0.994402,
+          "visual_distance": 0.455635,
+          "status": "annotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics"
+        },
+        {
+          "asset": "blood:tile:422",
+          "game": "blood",
+          "score": 0.479805,
+          "usage_cosine": 0.991823,
+          "visual_distance": 0.447096,
+          "status": "annotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics"
+        },
+        {
+          "asset": "blood:tile:455",
+          "game": "blood",
+          "score": 0.547761,
+          "usage_cosine": 0.992023,
+          "visual_distance": 0.515852,
+          "status": "annotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics"
+        },
+        {
+          "asset": "blood:tile:285",
+          "game": "blood",
+          "score": 0.556929,
+          "usage_cosine": 0.96719,
+          "visual_distance": 0.425689,
+          "status": "mixed_use",
+          "basis": "usage-signature then ART feature; native IDs are not semantics"
+        }
+      ],
+      "new_top": [
+        {
+          "asset": "blood:tile:454",
+          "game": "blood",
+          "score": 0.462911,
+          "usage_cosine": 0.995499,
+          "visual_distance": 0.444908,
+          "status": "annotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics",
+          "required": {
+            "surface_applicability": "horizontal_ceiling",
+            "architectural_role": "structural_fill",
+            "interaction_role": "static"
+          }
+        },
+        {
+          "asset": "blood:tile:422",
+          "game": "blood",
+          "score": 0.479805,
+          "usage_cosine": 0.991823,
+          "visual_distance": 0.447096,
+          "status": "annotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics",
+          "required": {
+            "surface_applicability": "horizontal_ceiling",
+            "architectural_role": "structural_fill",
+            "interaction_role": "static"
+          }
+        },
+        {
+          "asset": "blood:tile:455",
+          "game": "blood",
+          "score": 0.547761,
+          "usage_cosine": 0.992023,
+          "visual_distance": 0.515852,
+          "status": "annotated",
+          "basis": "usage-signature then ART feature; native IDs are not semantics",
+          "required": {
+            "surface_applicability": "horizontal_ceiling",
+            "architectural_role": "structural_fill",
+            "interaction_role": "static"
+          }
+        }
+      ]
+    },
+    "sky_family": [
+      {
+        "asset": "blood:tile:2500",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 1028,
+        "required": {
+          "architectural_role": "sky_sheet"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:3491",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 388,
+        "required": {
+          "architectural_role": "sky_sheet"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      },
+      {
+        "asset": "blood:tile:3678",
+        "game": "blood",
+        "status": "annotated",
+        "usage_total": 364,
+        "required": {
+          "architectural_role": "sky_sheet"
+        },
+        "basis": "ontology facet filter over corpus-backed assets"
+      }
+    ],
+    "old_method": "rank among any corpus tile with ceiling>0 (the role-aware ART ceiling pool, including mixed-use and parallax sheets)",
+    "new_method": "ontology require horizontal_ceiling + structural_fill + static",
+    "why_better": "Role-aware matching still treats 'used as a ceiling at least once' as one family. That pool includes sky sheets 2500/3491/3678 and mixed wall/ceiling tiles. Ontology keeps indoor fill, sky sheets, and animated liquid ceilings in different query slots. Assigning brick wall 385 as a ceiling is the construction-default failure mode.",
+    "kept_separable": true,
+    "converter_unchanged": "bloodmap.e3l11._apply_materials still uses role-aware ART nearest-neighbour"
+  },
+  "families": [
+    {
+      "id": "family:iron-fence",
+      "kind": "functional",
+      "members": [
+        "blood:tile:330",
+        "blood:tile:331"
+      ],
+      "basis": "Both 100% masked overwall fence ART; 330 neighbors stone 110/109. No missing door/trim role invented."
+    },
+    {
+      "id": "family:editor-markers",
+      "kind": "functional",
+      "members": [
+        "blood:tile:2520",
+        "blood:tile:2521",
+        "blood:tile:2519"
+      ],
+      "basis": "8-px-wide sprite-only mechanism markers; isolated 2521 reads as ASOUND text."
+    },
+    {
+      "id": "family:sky-sheets",
+      "kind": "functional",
+      "members": [
+        "blood:tile:2500",
+        "blood:tile:3491",
+        "blood:tile:3678"
+      ],
+      "basis": "Shared 64x400 identity and ceiling-only campaign usage across many maps."
+    },
+    {
+      "id": "family:liquid-e1m8",
+      "kind": "stateful",
+      "members": [
+        "blood:tile:1029",
+        "blood:tile:1030",
+        "blood:tile:1120"
+      ],
+      "basis": "Native animation plus 105 floor/ceiling pairings between 1120 and 1030. Later 1031-1035 frames are appearance_only."
+    },
+    {
+      "id": "family:animated-wall-1100",
+      "kind": "stateful",
+      "members": [
+        "blood:tile:1100",
+        "blood:tile:1101",
+        "blood:tile:1102",
+        "blood:tile:1103",
+        "blood:tile:1104"
+      ],
+      "basis": "100% wall usage on the head tile; do not classify continuation frames as independent materials."
+    },
+    {
+      "id": "family:anim-997-unused-tail",
+      "kind": "stateful",
+      "members": [
+        "blood:tile:997",
+        "blood:tile:1000",
+        "blood:tile:1001",
+        "blood:tile:1002",
+        "blood:tile:1003"
+      ],
+      "basis": "Only 997 is placed. 1000-1003 are appearance_only continuation frames, not unused walls."
+    },
+    {
+      "id": "family:switch-1070",
+      "kind": "stateful",
+      "members": [
+        "blood:tile:1070"
+      ],
+      "basis": "Single 32x32 control sprite. No native picanm pair. Blood rest/on state is XSPRITE, not a four-state ART family."
+    },
+    {
+      "id": "anim:77-79",
+      "kind": "native_animation",
+      "members": [
+        "blood:tile:77",
+        "blood:tile:78",
+        "blood:tile:79"
+      ],
+      "basis": "ART picanm frames/type on the first tile of the run"
+    },
+    {
+      "id": "anim:187-189",
+      "kind": "native_animation",
+      "members": [
+        "blood:tile:187",
+        "blood:tile:188",
+        "blood:tile:189"
+      ],
+      "basis": "ART picanm frames/type on the first tile of the run"
+    },
+    {
+      "id": "anim:506-509",
+      "kind": "native_animation",
+      "members": [
+        "blood:tile:506",
+        "blood:tile:507",
+        "blood:tile:508",
+        "blood:tile:509"
+      ],
+      "basis": "ART picanm frames/type on the first tile of the run"
+    },
+    {
+      "id": "anim:530-533",
+      "kind": "native_animation",
+      "members": [
+        "blood:tile:530",
+        "blood:tile:531",
+        "blood:tile:532",
+        "blood:tile:533"
+      ],
+      "basis": "ART picanm frames/type on the first tile of the run"
+    },
+    {
+      "id": "anim:580-583",
+      "kind": "native_animation",
+      "members": [
+        "blood:tile:580",
+        "blood:tile:581",
+        "blood:tile:582",
+        "blood:tile:583"
+      ],
+      "basis": "ART picanm frames/type on the first tile of the run"
+    },
+    {
+      "id": "anim:584-587",
+      "kind": "native_animation",
+      "members": [
+        "blood:tile:584",
+        "blood:tile:585",
+        "blood:tile:586",
+        "blood:tile:587"
+      ],
+      "basis": "ART picanm frames/type on the first tile of the run"
+    },
+    {
+      "id": "anim:590-595",
+      "kind": "native_animation",
+      "members": [
+        "blood:tile:590",
+        "blood:tile:591",
+        "blood:tile:592",
+        "blood:tile:593",
+        "blood:tile:594",
+        "blood:tile:595"
+      ],
+      "basis": "ART picanm frames/type on the first tile of the run"
+    },
+    {
+      "id": "anim:596-597",
+      "kind": "native_animation",
+      "members": [
+        "blood:tile:596",
+        "blood:tile:597"
+      ],
+      "basis": "ART picanm frames/type on the first tile of the run"
+    },
+    {
+      "id": "anim:601-603",
+      "kind": "native_animation",
+      "members": [
+        "blood:tile:601",
+        "blood:tile:602",
+        "blood:tile:603"
+      ],
+      "basis": "ART picanm frames/type on the first tile of the run"
+    },
+    {
+      "id": "anim:624-625",
+      "kind": "native_animation",
+      "members": [
+        "blood:tile:624",
+        "blood:tile:625"
+      ],
+      "basis": "ART picanm frames/type on the first tile of the run"
+    },
+    {
+      "id": "anim:626-627",
+      "kind": "native_animation",
+      "members": [
+        "blood:tile:626",
+        "blood:tile:627"
+      ],
+      "basis": "ART picanm frames/type on the first tile of the run"
+    },
+    {
+      "id": "anim:628-630",
+      "kind": "native_animation",
+      "members": [
+        "blood:tile:628",
+        "blood:tile:629",
+        "blood:tile:630"
+      ],
+      "basis": "ART picanm frames/type on the first tile of the run"
+    },
+    {
+      "id": "anim:655-657",
+      "kind": "native_animation",
+      "members": [
+        "blood:tile:655",
+        "blood:tile:656",
+        "blood:tile:657"
+      ],
+      "basis": "ART picanm frames/type on the first tile of the run"
+    }
+  ]
+}

@@ -73,3 +73,10 @@ No output proves a perceived room, combat arena, landmark, gameplay quality, or
 player intent. These views are intentionally additive: a malformed accepted
 original map leaves ordinary lossless parsing available while the derived sensor
 reports that its wall ownership cannot safely support a spatial analysis.
+
+## Player-relative presentation
+
+`analyze-space` still speaks native units. `inspect-space`, `inspect-connection`,
+and `compare-space` add a compact player-relative and corpus-relative view for
+an LLM client without replacing those native measurements. See
+[player-space.md](player-space.md).

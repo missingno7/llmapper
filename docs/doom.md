@@ -162,3 +162,14 @@ The same `solve_progression` reaches the exit on authored Blood fixtures, Doom
 compilations, and converted Blood maps for the five synthetic scenarios. E1M1,
 E1M3, E2M1, and Doom II MAP01 convert to structurally valid Blood maps with
 1:1 Doom→Build sector composition.
+
+## Appearance decoding is out of this Blood ontology pass
+
+Doom mining records named textures (`STARTAN2`, `F_SKY1`, …) and their usage.
+It does **not** decode composed wall textures from patches and PLAYPAL.
+
+Blood ontology discovery needs ART pixels plus original-map usage. Doom cannot
+run that same appearance+usage review until composed-texture decoding exists.
+That is a documented boundary, not an accidental omission. The Blood workflow
+is the thing that has to prove useful first; Doom is the later test of whether
+the ontology architecture generalizes beyond ART.

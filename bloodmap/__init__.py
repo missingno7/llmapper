@@ -20,6 +20,10 @@ from .experience import (
     ExperienceProbeError, probe_progression, probe_route, probe_transition, probe_visibility,
 )
 from .spatial import SpatialAnalysisError, analyze_spatial, spatial_selection_context
+from .player_space import (
+    PlayerSpaceError, PLAYER_PROFILES, compare_transition, inspect_connection,
+    inspect_space, player_profile, present_space,
+)
 from .workspace import (
     WorkspaceError, append_decision, append_episode, append_evidence, initialize_project,
     make_level_slice, store_level_slice,
@@ -63,8 +67,10 @@ __all__ = [
     "LevelBuilder",
     "LevelFragment",
     "ObservationError",
-    "SemanticLevel",
     "PathwayResult",
+    "SemanticLevel",
+    "PLAYER_PROFILES",
+    "PlayerSpaceError",
     "RecipeError",
     "RecipeResult",
     "SpatialAnalysisError",
@@ -101,7 +107,12 @@ __all__ = [
     "parse_map",
     "parse_duke_map",
     "parse_wad",
+    "player_profile",
     "portal_profiles",
+    "present_space",
+    "compare_transition",
+    "inspect_connection",
+    "inspect_space",
     "probe_progression",
     "probe_route",
     "probe_transition",
