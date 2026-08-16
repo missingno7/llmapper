@@ -5,8 +5,13 @@ import unittest
 from pathlib import Path
 
 from bloodmap.doom import read_wad, wad_map
-from bloodmap.doom_fixtures import fixture_keyed_door, fixture_switch_door, fixture_teleport
-from bloodmap.doom_semantics import LINEDEF_SPECIALS, analyze_doom_mechanisms, doom_to_semantic_level
+from bloodmap.doom_fixtures import (
+    fixture_keyed_door, fixture_switch_door, fixture_teleport, fixture_unreachable_remote_switch,
+)
+from bloodmap.doom_semantics import (
+    BOOM_SPECIALS_IN_VANILLA_RANGE, LINEDEF_SPECIALS, VANILLA_SPECIAL_MAX,
+    analyze_doom_mechanisms, doom_to_semantic_level,
+)
 from bloodmap.mechanisms import Representability, representability_matrix, solve_progression
 
 
@@ -62,6 +67,48 @@ class DoomSemanticsTests(unittest.TestCase):
         self.assertGreater(inventory["counts"].get("door", 0), 0)
         self.assertGreater(inventory["counts"].get("exit", 0), 0)
         self.assertIn("player_start", inventory["thing_roles"])
+
+    @unittest.expectedFailure
+    def test_vanilla_special_scope_is_explicit_for_every_value(self):
+        scope = [number for number in range(1, VANILLA_SPECIAL_MAX + 1) if number not in BOOM_SPECIALS_IN_VANILLA_RANGE]
+        missing = [number for number in scope if number not in LINEDEF_SPECIALS]
+        self.assertEqual(missing, [], msg=f"sparse inventory leaves {missing} classified only by absence")
+        self.assertIn(14, LINEDEF_SPECIALS)
+        self.assertNotEqual(getattr(LINEDEF_SPECIALS.get(14), "action", "boom-or-unknown"), "boom-or-unknown")
+
+    @unittest.expectedFailure
+    def test_previously_omitted_specials_are_not_boom_or_unknown(self):
+        from bloodmap.doom import DoomLinedef, DoomSector, DoomSidedef, DoomVertex, _tex8, NO_SIDE, ML_BLOCKING
+        from bloodmap.doom import DoomDiskMap
+
+        representatives = (14, 53, 141)
+        linedefs = []
+        sidedefs = []
+        for special in representatives:
+            front = len(sidedefs)
+            sidedefs.append(DoomSidedef(0, 0, _tex8("-"), _tex8("-"), _tex8("STARTAN2"), 0))
+            linedefs.append(DoomLinedef(0, 1, ML_BLOCKING, special, 1, front, NO_SIDE))
+        level = DoomDiskMap(
+            name="MAP01", format="doom",
+            things=[],
+            linedefs=linedefs,
+            sidedefs=sidedefs,
+            vertices=[DoomVertex(0, 0), DoomVertex(64, 0)],
+            sectors=[DoomSector(0, 128, _tex8(b"FLOOR0_1"), _tex8(b"CEIL1_1"), 192, 0, 1)],
+        )
+        inventory = analyze_doom_mechanisms(level)
+        by_special = {item["special"]: item for item in inventory["mechanisms"]}
+        unsupported = {item["special"]: item for item in inventory["unsupported"]}
+        for special in representatives:
+            self.assertNotIn(special, unsupported, msg=f"special {special} must not be boom-or-unknown")
+            self.assertIn(special, by_special)
+
+    @unittest.expectedFailure
+    def test_unreachable_remote_switch_does_not_open_the_exit(self):
+        semantic, _doom, _blood = fixture_unreachable_remote_switch()
+        solution = solve_progression(semantic)
+        self.assertFalse(solution["exit_reachable"])
+        self.assertNotIn("exit", solution["reached_regions"])
 
     def test_e1m3_recognizes_keyed_progression(self):
         if not DOOM_WAD.exists():

@@ -316,6 +316,32 @@ class TestDesignContract(unittest.TestCase):
         )
         self.assertEqual(evaluation.overall_status, "pass")
 
+    @unittest.expectedFailure
+    def test_contract_does_not_pass_on_self_certified_assertion_parameters(self):
+        from tests.helpers import synthetic_map
+
+        disk = synthetic_map()
+        disk.header["start_sector"] = -1
+        contract = DesignContract(name="Self-certified")
+        contract.add_hard_assertion(
+            "player_start_exists",
+            "Player start sector must be valid",
+            assertion_type="structural",
+            expected=True,
+            player_start_valid=True,
+        )
+        contract.add_hard_assertion(
+            "exit_reachable",
+            "Exit must be reachable",
+            assertion_type="structural",
+            expected=True,
+            exit_reachable=True,
+        )
+        evaluation = evaluate_contract(contract, {})
+        statuses = [item["status"] for item in evaluation.hard_assertion_results]
+        self.assertNotIn("pass", statuses)
+        self.assertNotEqual(evaluation.overall_status, "pass")
+
 
 class TestCounterfactualEvaluation(unittest.TestCase):
     def test_evaluate_candidates_compares_edits(self):

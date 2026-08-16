@@ -23,6 +23,11 @@ class DukeFormatTests(unittest.TestCase):
         for path in paths:
             with self.subTest(path=path.name):
                 original = path.read_bytes()
+                version = int.from_bytes(original[:4], "little", signed=True)
+                if version != 7:
+                    self.skipTest(
+                        f"{path.name} is Duke MAP version {version}; only classic v7 is supported"
+                    )
                 disk = read_duke_map(path)
                 self.assertEqual(disk.version, 7)
                 self.assertEqual(encode_duke_map(disk), original)

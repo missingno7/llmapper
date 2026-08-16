@@ -369,6 +369,79 @@ def _blood_teleport():
     return builder.build()
 
 
+def fixture_unreachable_remote_switch() -> tuple[SemanticLevel, DoomDiskMap, "object"]:
+    """Reachable start, closed door to exit, switch in an unreachable island.
+
+    The solver must not treat activation='switch' as sufficient merely because
+    the door-adjacent region is reachable.
+    """
+    semantic = SemanticLevel(
+        source_game="neutral",
+        regions=[
+            SemanticRegion("start", ["sector:0"]),
+            SemanticRegion("door", ["sector:1"]),
+            SemanticRegion("exit", ["sector:2"], tags=["exit"]),
+            SemanticRegion("island", ["sector:3"]),
+        ],
+        connections=[
+            SemanticConnection(
+                "d1", "door", "start", "door",
+                mechanism_id="remote-door", initial="closed",
+            ),
+            SemanticConnection("d2", "open", "door", "exit"),
+        ],
+        mechanisms=[
+            SemanticMechanism(
+                "remote-door", "door", "neutral",
+                ["linedef:switch", "sector:1", "sector:3"],
+                "switch", False, "closed", targets=["sector:1"],
+            ),
+            SemanticMechanism("exit", "exit", "neutral", ["linedef:exit"], "use", False, "idle"),
+        ],
+        start_region="start",
+        exit_regions=["exit"],
+    )
+    vertices = [
+        (0, 0), (192, 0), (192, 192), (0, 192),
+        (256, 0), (256, 192),
+        (448, 0), (448, 192),
+        (640, 0), (832, 0), (832, 192), (640, 192),
+    ]
+    doom = assemble_doom(
+        "MAP01",
+        vertices,
+        [
+            (0, 3, 0, None), (3, 2, 0, None), (2, 1, 0, 1), (1, 0, 0, None),
+            (4, 1, 1, None, 0, 0, b"BIGDOOR2"), (2, 5, 1, None, 0, 0, b"BIGDOOR2"), (5, 4, 1, 2),
+            (6, 4, 2, None), (5, 7, 2, None), (7, 6, 2, None, 11),
+            (8, 11, 3, None, 29, 1, b"SW1COMM"), (11, 10, 3, None), (10, 9, 3, None), (9, 8, 3, None),
+        ],
+        [_sector(), _sector(tag=1, ceil=0), _sector(), _sector()],
+        [DoomThing(96, 96, 0, 1, 7)],
+    )
+    builder = LevelBuilder()
+    start = builder.add_sector([(0, 0), (6144, 0), (6144, 6144), (0, 6144)], ceiling_z=-17536, floor_z=0)
+    door = builder.add_sector([(6144, 0), (8192, 0), (8192, 6144), (6144, 6144)], ceiling_z=0, floor_z=0, type=600)
+    exit_room = builder.add_sector([(8192, 0), (14336, 0), (14336, 6144), (8192, 6144)], ceiling_z=-17536, floor_z=0)
+    island = builder.add_sector([(20480, 0), (26624, 0), (26624, 6144), (20480, 6144)], ceiling_z=-17536, floor_z=0)
+    builder.connect(start.wall_ids[1], door.wall_ids[3])
+    builder.connect(door.wall_ids[1], exit_room.wall_ids[3])
+    builder.set_behavior(
+        "sector", door.sector_id, rx_id=100, busy_time_a=20, busy_time_b=20,
+        off_ceiling_z=0, on_ceiling_z=-17536, off_floor_z=0, on_floor_z=0,
+        trigger_push=0, trigger_wall_push=0,
+    )
+    switch = builder.add_sprite(
+        sector=island.sector_id, x=22528, y=3072, z=-4096,
+        type=21, picnum=1070, status=0, angle=1024, cstat=464, x_repeat=40, y_repeat=40,
+    )
+    builder.set_behavior("sprite", switch, tx_id=100, command=1, trigger_on=1, trigger_push=1)
+    builder.add_sprite(sector=2, x=9216, y=3072, z=0, type=20, picnum=318, status=0, x_repeat=40, y_repeat=40)
+    builder.set_behavior("sprite", len(builder.level.sprites) - 1, tx_id=4, command=1, trigger_on=1, trigger_push=1)
+    builder.set_player_start(sector=0, x=3072, y=3072, z=0, angle=0)
+    return semantic, doom, builder.build()
+
+
 ALL_FIXTURES = {
     "basic-room": fixture_basic_room,
     "switch-door": fixture_switch_door,

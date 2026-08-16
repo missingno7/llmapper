@@ -1,0 +1,46 @@
+{
+  "$schema": "llmapper.open-test-baseline",
+  "schema_version": 1,
+  "recorded_at": "2026-08-16T14:42:48Z",
+  "python": "3.11.9",
+  "platform": "win32",
+  "command": "python -m unittest discover -s tests -q",
+  "result": {
+    "tests_run": 130,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0,
+    "elapsed_seconds": 189.978
+  },
+  "error": {
+    "test": "test_duke.DukeFormatTests.test_every_available_duke_map_is_byte_exact_through_disk_and_build_ir",
+    "path": "BE1L8.map",
+    "exception": "DukeMapError: unsupported Duke3D MAP version 9; only classic v7 is supported"
+  },
+  "notes": [
+    "The supplied audit observed 130 passing tests and 29 skipped tests. That skip count is the open profile without private corpora/runtime installations.",
+    "This working tree has local maps/ and therefore executed corpus tests instead of skipping them.",
+    "The Duke v9 error is a declared format-scope rejection (classic v7 only), not a Doom-pipeline regression.",
+    "Private-corpus and runtime-oracle evidence is not claimed by this baseline.",
+    "coverage run --branch was not completed before characterization tests; it is recorded in the later verification manifest."
+  ],
+  "skip_profile": {
+    "open-fast": "synthetic fixtures only; corpus and oracle tests skip when assets are absent",
+    "open-corpus": "ignored maps/ when present; commercial contents are never committed",
+    "private-corpus": "must fail as unavailable when maps/ or env overrides are missing",
+    "runtime-oracle": "must fail as unavailable when reference/ engines are missing"
+  },
+  "skip_sources_when_assets_absent": [
+    "tests/test_corpus.py: BLOODMAP_CORPUS / maps/blood",
+    "tests/test_duke.py: DUKEMAP_CORPUS / maps/duke3d",
+    "tests/test_duke_semantics.py: maps/duke3d/E3L11.MAP",
+    "tests/test_e2l1.py: maps/duke3d/E2L1.MAP, maps/blood/DWE2M3.MAP, local ART",
+    "tests/test_e3l3.py: maps/duke3d/E3L3.MAP, maps/blood/DNE3L3.map",
+    "tests/test_e3l11.py: maps/duke3d/E3L11.MAP, maps/blood/DNE3L11",
+    "tests/test_cross_game.py: E3L1/DNE3L1 pair",
+    "tests/test_fragment.py: maps/blood/E1M1.MAP",
+    "tests/test_doom.py: maps/doom/doom.wad",
+    "tests/test_doom_semantics.py: maps/doom/doom.wad",
+    "tests/test_doom_convert.py: maps/doom IWADs, maps/blood/TEDE1M9.MAP"
+  ]
+}
