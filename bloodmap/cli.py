@@ -25,6 +25,15 @@ from .sight import SightError, depth_samples, line_of_sight, spawn_sight_report
 from .exposure import ExposureError, route_exposure_report, spawn_neighborhood_report
 from .morphology import MorphologyError, analyze_morphology
 from .understanding import understand_map
+from .geometry_audit import (
+    audit_geometry, audit_markdown, audit_svg, validate_authored_level,
+)
+from .patterns import (
+    PatternError, inspect_pattern, load_catalog, mine_directory,
+    pattern_aware_understanding, query_catalog,
+)
+from .placement import PlacementError, mine_attachments, validate_attachments
+from .progression import ProgressionError, analyze_progression, classify_mechanisms, completion_witness
 from .player_space import (
     PlayerSpaceError, compare_transition, conversion_player_scale_report,
     focus_observation, inspect_connection, inspect_doom_space, inspect_space,
@@ -690,9 +699,138 @@ def cmd_morphology(args: argparse.Namespace) -> int:
 def cmd_understand(args: argparse.Namespace) -> int:
     if _game_for_path(args.map) != "blood":
         raise BloodMapError("understand currently bundles Blood sensors only")
-    payload = understand_map(read_map(args.map), include_sp_start=not args.multiplayer_only)
+    disk = read_map(args.map)
+    if args.patterns:
+        from .patterns import classify_map_population
+        payload = pattern_aware_understanding(
+            disk, load_catalog(args.patterns),
+            map_id=Path(args.map).name,
+            population=classify_map_population(args.map),
+            include_sp_start=not args.multiplayer_only,
+        )
+    else:
+        payload = understand_map(disk, include_sp_start=not args.multiplayer_only)
     payload["map"] = str(args.map)
     _write_text(args.output, _json(payload))
+    return 0
+
+
+def cmd_pattern_mine(args: argparse.Namespace) -> int:
+    payload = mine_directory(args.maps, population=args.population)
+    _write_text(args.output, _json(payload))
+    print(
+        f"{args.population}: {payload['sample_count']} samples, "
+        f"{len(payload['candidates'])} unsigned candidates, "
+        f"{len(payload['maps_mined'])} maps"
+    )
+    return 0
+
+
+def cmd_pattern_query(args: argparse.Namespace) -> int:
+    require = json.loads(args.require) if args.require else {}
+    hits = query_catalog(
+        load_catalog(args.catalog),
+        view=args.view,
+        require=require,
+        map_name=args.map,
+        population=args.population,
+        limit=args.limit,
+    )
+    _write_text(args.output, _json({"hits": hits, "count": len(hits)}))
+    if not args.output:
+        for item in hits:
+            print(f"{item['pattern_id']} {item.get('interpretation')} {item['occurrence']}")
+    return 0
+
+
+def cmd_pattern_inspect(args: argparse.Namespace) -> int:
+    payload = inspect_pattern(load_catalog(args.catalog), args.pattern_id)
+    _write_text(args.output, _json(payload))
+    return 0
+
+
+def cmd_placement_mine(args: argparse.Namespace) -> int:
+    payload = mine_attachments(args.maps, population=args.population)
+    _write_text(args.output, _json(payload))
+    for kind, summary in payload["summaries"].items():
+        print(
+            f"{kind}: n={summary['count']} median_h={summary['median_height_player_heights']} "
+            f"median_wall={summary['median_wall_distance_player_widths']} sit={summary['sit']}"
+        )
+    return 0
+
+
+def cmd_progression(args: argparse.Namespace) -> int:
+    from .progression import compact_progression_report
+    disk = read_map(args.map)
+    report = analyze_progression(disk)
+    report["roles"] = classify_mechanisms(report, disk)
+    report["witness_summary"] = completion_witness(report)
+    report["map"] = str(args.map)
+    payload = compact_progression_report(report)
+    _write_text(args.output, _json(payload))
+    print(
+        f"{args.map}: rest={report['physical_reachable_at_rest']} "
+        f"final={report['final_reachable']} exit={report['exit_reachable']} "
+        f"keys={report['keys_collected']} channels={len(report['channels_activated'])}"
+    )
+    return 0
+
+
+def cmd_geometry_audit(args: argparse.Namespace) -> int:
+    disk = read_map(args.map)
+    audit = audit_geometry(disk)
+    if args.json:
+        _write_text(args.json, _json(audit))
+    if args.markdown:
+        _write_text(args.markdown, audit_markdown(audit, title=f"Geometry audit: {args.map}"))
+    if args.svg:
+        _write_text(args.svg, audit_svg(disk, audit))
+    if not (args.json or args.markdown or args.svg):
+        print(_json(audit), end="")
+    print(
+        f"{args.map}: native_errors={audit['native_validation_errors']} "
+        f"authored_errors={audit['counts']['error_conflicts']} "
+        f"DM {audit['traversal']['dm_starts_in_main']}/{audit['traversal']['dm_starts_total']} in main"
+    )
+    return 0 if audit["counts"]["error_conflicts"] == 0 else 1
+
+
+def cmd_validate_authored(args: argparse.Namespace) -> int:
+    diagnostics = validate_authored_level(read_map(args.map))
+    errors = sum(item.severity == "error" for item in diagnostics)
+    warnings = sum(item.severity == "warning" for item in diagnostics)
+    if args.json:
+        print(_json({
+            "file": args.map,
+            "errors": errors,
+            "warnings": warnings,
+            "diagnostics": [item.__dict__ for item in diagnostics],
+        }), end="")
+    else:
+        for item in diagnostics:
+            print(f"{item.severity.upper():7} {item.code:32} {item.location}: {item.message}")
+        print(f"{args.map}: {errors} authored error(s), {warnings} warning(s)")
+    return 1 if errors else 0
+
+
+def cmd_design_bb2_v3(args: argparse.Namespace) -> int:
+    from experiments.bb2_reconstruction_v3 import write_bb2_reconstruction_v3
+    compiled = write_bb2_reconstruction_v3(map_path=args.output, report_path=args.report)
+    print(
+        f"WROTE {args.output}: v3 {len(compiled.level.sectors)} sectors, "
+        f"{len(compiled.level.walls)} walls, {len(compiled.level.sprites)} sprites"
+    )
+    return 0
+
+
+def cmd_design_sp_v1(args: argparse.Namespace) -> int:
+    from experiments.sp_progression_v1 import write_sp_progression_v1
+    compiled = write_sp_progression_v1(map_path=args.output, report_path=args.report)
+    print(
+        f"WROTE {args.output}: SP-v1 {len(compiled.level.sectors)} sectors, "
+        f"{len(compiled.level.walls)} walls, {len(compiled.level.sprites)} sprites"
+    )
     return 0
 
 
@@ -1391,8 +1529,55 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("understand", help="bundle independent map-understanding sensors into one frozen packet")
     p.add_argument("map")
     p.add_argument("--multiplayer-only", action="store_true", help="ignore the single-player start sprite in spawn probes")
+    p.add_argument("--patterns", help="optional design-pattern catalog JSON to attach matches")
     p.add_argument("-o", "--output")
     p.set_defaults(func=cmd_understand)
+    p = sub.add_parser("pattern-mine", help="observe and cluster unsigned design-pattern candidates from original maps")
+    p.add_argument("--maps", default="maps/blood")
+    p.add_argument("--population", required=True, choices=("blood-campaign", "blood-bloodbath"))
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_pattern_mine)
+    p = sub.add_parser("pattern-query", help="retrieve multiple pattern occurrences from a catalog")
+    p.add_argument("catalog")
+    p.add_argument("--view", help="spawn-neighborhood, route-exposure, local-morphology, or vertical-transition")
+    p.add_argument("--require", help="JSON object of signature part filters")
+    p.add_argument("--map", help="restrict to one source map filename")
+    p.add_argument("--population")
+    p.add_argument("--limit", type=int, default=12)
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_pattern_query)
+    p = sub.add_parser("pattern-inspect", help="show one catalog pattern and its occurrences")
+    p.add_argument("catalog")
+    p.add_argument("pattern_id")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_pattern_inspect)
+    p = sub.add_parser("placement-mine", help="mine sprite-to-architecture attachment signatures from original maps")
+    p.add_argument("--maps", default="maps/blood")
+    p.add_argument("--population", default="blood-campaign", choices=("blood-campaign", "blood-bloodbath"))
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_placement_mine)
+    p = sub.add_parser("progression", help="state-dependent SP reachability witness (keys, RX motion, switches)")
+    p.add_argument("map")
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_progression)
+    p = sub.add_parser("geometry-audit", help="forensic planar geometry and connectivity audit")
+    p.add_argument("map")
+    p.add_argument("--json")
+    p.add_argument("--markdown")
+    p.add_argument("--svg")
+    p.set_defaults(func=cmd_geometry_audit)
+    p = sub.add_parser("validate-authored", help="strict authored-geometry and circulation gate")
+    p.add_argument("map")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(func=cmd_validate_authored)
+    p = sub.add_parser("design-bb2-v3", help="compile the replayable BB2 reconstruction v3 blueprint")
+    p.add_argument("-o", "--output", default="work/BB2-semantic-reconstruction-v3.MAP")
+    p.add_argument("--report", default="reports/BB2-v3-build-report.json")
+    p.set_defaults(func=cmd_design_bb2_v3)
+    p = sub.add_parser("design-sp-v1", help="compile the independent SP progression v1 blueprint")
+    p.add_argument("-o", "--output", default="work/SP-progression-v1.MAP")
+    p.add_argument("--report", default="reports/SP-progression-v1-build.json")
+    p.set_defaults(func=cmd_design_sp_v1)
     p = sub.add_parser("channels", help="derive the Blood TX/RX graph")
     p.add_argument("map"); p.add_argument("--channel", type=int); p.set_defaults(func=cmd_channels)
     p = sub.add_parser("render", help="render a deterministic top-down SVG")

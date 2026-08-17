@@ -1,0 +1,841 @@
+{
+  "archive": [
+    {
+      "max_spawn_area": 1384.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 2,
+        "east_span": 10,
+        "south_inset": 2
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 0,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1374.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 3,
+        "east_span": 11,
+        "south_inset": 3
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 1,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1360.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 4,
+        "east_span": 12,
+        "south_inset": 4
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 2,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1342.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 5,
+        "east_span": 13,
+        "south_inset": 5
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 3,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1320.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 6,
+        "east_span": 14,
+        "south_inset": 6
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 4,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1384.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 2,
+        "east_span": 15,
+        "south_inset": 2
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 5,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1374.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 3,
+        "east_span": 16,
+        "south_inset": 3
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 6,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1360.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 4,
+        "east_span": 17,
+        "south_inset": 4
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 7,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1342.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 5,
+        "east_span": 18,
+        "south_inset": 5
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 8,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1320.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 6,
+        "east_span": 10,
+        "south_inset": 6
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 9,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1384.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 2,
+        "east_span": 11,
+        "south_inset": 2
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 10,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1374.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 3,
+        "east_span": 12,
+        "south_inset": 3
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 11,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1360.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 4,
+        "east_span": 13,
+        "south_inset": 4
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 12,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1342.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 5,
+        "east_span": 14,
+        "south_inset": 5
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 13,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1320.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 6,
+        "east_span": 15,
+        "south_inset": 6
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 14,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1384.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 2,
+        "east_span": 16,
+        "south_inset": 2
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 15,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1374.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 3,
+        "east_span": 17,
+        "south_inset": 3
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 16,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1360.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 4,
+        "east_span": 18,
+        "south_inset": 4
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 17,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1342.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 5,
+        "east_span": 10,
+        "south_inset": 5
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 18,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1320.0,
+      "orientation_diversity": 0.25,
+      "params": {
+        "chamfer": 6,
+        "east_span": 11,
+        "south_inset": 6
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 19,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1384.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 2,
+        "east_span": 12,
+        "south_inset": 2
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 20,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1374.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 3,
+        "east_span": 13,
+        "south_inset": 3
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 21,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1360.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 4,
+        "east_span": 14,
+        "south_inset": 4
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 22,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1342.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 5,
+        "east_span": 15,
+        "south_inset": 5
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 23,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1320.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 6,
+        "east_span": 16,
+        "south_inset": 6
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 24,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1384.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 2,
+        "east_span": 17,
+        "south_inset": 2
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 25,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1374.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 3,
+        "east_span": 18,
+        "south_inset": 3
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 26,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1360.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 4,
+        "east_span": 10,
+        "south_inset": 4
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 27,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1342.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 5,
+        "east_span": 11,
+        "south_inset": 5
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 28,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1320.0,
+      "orientation_diversity": 0.25,
+      "params": {
+        "chamfer": 6,
+        "east_span": 12,
+        "south_inset": 6
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 29,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1384.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 2,
+        "east_span": 13,
+        "south_inset": 2
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 30,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1374.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 3,
+        "east_span": 14,
+        "south_inset": 3
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 31,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1360.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 4,
+        "east_span": 15,
+        "south_inset": 4
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 32,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1342.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 5,
+        "east_span": 16,
+        "south_inset": 5
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 33,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1320.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 6,
+        "east_span": 17,
+        "south_inset": 6
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 34,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1384.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 2,
+        "east_span": 18,
+        "south_inset": 2
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 35,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1374.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 3,
+        "east_span": 10,
+        "south_inset": 3
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 36,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1360.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 4,
+        "east_span": 11,
+        "south_inset": 4
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 37,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1342.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 5,
+        "east_span": 12,
+        "south_inset": 5
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 38,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1320.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 6,
+        "east_span": 13,
+        "south_inset": 6
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 39,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1384.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 2,
+        "east_span": 14,
+        "south_inset": 2
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 40,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1374.0,
+      "orientation_diversity": 0.25,
+      "params": {
+        "chamfer": 3,
+        "east_span": 15,
+        "south_inset": 3
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 41,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1360.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 4,
+        "east_span": 16,
+        "south_inset": 4
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 42,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1342.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 5,
+        "east_span": 17,
+        "south_inset": 5
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 43,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1320.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 6,
+        "east_span": 18,
+        "south_inset": 6
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 44,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1384.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 2,
+        "east_span": 10,
+        "south_inset": 2
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 45,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1374.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 3,
+        "east_span": 11,
+        "south_inset": 3
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 46,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1360.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 4,
+        "east_span": 12,
+        "south_inset": 4
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 47,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1342.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 5,
+        "east_span": 13,
+        "south_inset": 5
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 48,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1320.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 6,
+        "east_span": 14,
+        "south_inset": 6
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 49,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1384.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 2,
+        "east_span": 15,
+        "south_inset": 2
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 50,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1374.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 3,
+        "east_span": 16,
+        "south_inset": 3
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 51,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1360.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 4,
+        "east_span": 17,
+        "south_inset": 4
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 52,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1342.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 5,
+        "east_span": 18,
+        "south_inset": 5
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 53,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1320.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 6,
+        "east_span": 10,
+        "south_inset": 6
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 54,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1384.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 2,
+        "east_span": 11,
+        "south_inset": 2
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 55,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1374.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 3,
+        "east_span": 12,
+        "south_inset": 3
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 56,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1360.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 4,
+        "east_span": 13,
+        "south_inset": 4
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 57,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1342.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 5,
+        "east_span": 14,
+        "south_inset": 5
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 58,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1320.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 6,
+        "east_span": 15,
+        "south_inset": 6
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 59,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1384.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 2,
+        "east_span": 16,
+        "south_inset": 2
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 60,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1374.0,
+      "orientation_diversity": 0.2222,
+      "params": {
+        "chamfer": 3,
+        "east_span": 17,
+        "south_inset": 3
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 61,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1360.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 4,
+        "east_span": 18,
+        "south_inset": 4
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 62,
+      "sky_sectors": 5
+    },
+    {
+      "max_spawn_area": 1342.0,
+      "orientation_diversity": 0.1944,
+      "params": {
+        "chamfer": 5,
+        "east_span": 10,
+        "south_inset": 5
+      },
+      "rectangular_fraction": 0.3529,
+      "sectors": 17,
+      "seed": 63,
+      "sky_sectors": 5
+    }
+  ],
+  "archived": 64,
+  "attempted": 64,
+  "note": "invalid geometry never enters the archive; morphology is second-order",
+  "rejected": 0,
+  "rejected_sample": []
+}

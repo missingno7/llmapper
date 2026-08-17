@@ -1,0 +1,905 @@
+{
+  "compositions": {
+    "$schema": "llmapper.mechanism-compositions",
+    "kind": "derived",
+    "limitations": [
+      "signature is TX/RX cardinality plus motion/exit flags, not a named puzzle type",
+      "maps without a grounded channel graph are skipped"
+    ],
+    "maps_mined": 43,
+    "observe_errors": [],
+    "population": "blood-campaign",
+    "recurring": [
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M7.MAP",
+          "E1M8.MAP"
+        ],
+        "maps": 43,
+        "signature": "tx1|rx1|motion0|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M8.MAP",
+          "E2M2.MAP"
+        ],
+        "maps": 38,
+        "signature": "tx1|rx1|motion0|exit0|sector"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M8.MAP",
+          "E2M1.MAP"
+        ],
+        "maps": 35,
+        "signature": "tx1|rx2|motion0|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M8.MAP",
+          "E2M1.MAP",
+          "E2M2.MAP"
+        ],
+        "maps": 33,
+        "signature": "tx1|rx1|motion1|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M8.MAP",
+          "E2M1.MAP",
+          "E2M2.MAP"
+        ],
+        "maps": 26,
+        "signature": "tx1|rx2|motion1|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M7.MAP",
+          "E2M1.MAP",
+          "E2M5.MAP"
+        ],
+        "maps": 22,
+        "signature": "tx1|rx3|motion0|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M7.MAP",
+          "E2M2.MAP",
+          "E2M3.MAP"
+        ],
+        "maps": 21,
+        "signature": "tx1|rx4|motion1|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M8.MAP",
+          "E2M1.MAP"
+        ],
+        "maps": 21,
+        "signature": "tx1|rx2|motion0|exit0|sector"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E2M1.MAP",
+          "E2M2.MAP"
+        ],
+        "maps": 21,
+        "signature": "tx2|rx1|motion0|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M8.MAP",
+          "E2M2.MAP",
+          "E2M5.MAP",
+          "E2M6.MAP",
+          "E2M7.MAP"
+        ],
+        "maps": 18,
+        "signature": "tx2|rx1|motion1|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M2.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M8.MAP",
+          "E2M2.MAP",
+          "E2M6.MAP",
+          "E2M7.MAP",
+          "E2M9.MAP"
+        ],
+        "maps": 17,
+        "signature": "tx1|rx1|motion1|exit0|sector"
+      },
+      {
+        "examples": [
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M6.MAP",
+          "E1M8.MAP",
+          "E2M4.MAP",
+          "E2M6.MAP",
+          "E2M7.MAP",
+          "E2M8.MAP"
+        ],
+        "maps": 17,
+        "signature": "tx1|rx3|motion0|exit0|sector"
+      },
+      {
+        "examples": [
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M5.MAP",
+          "E2M2.MAP",
+          "E2M4.MAP",
+          "E2M5.MAP",
+          "E2M9.MAP",
+          "E3M1.MAP"
+        ],
+        "maps": 16,
+        "signature": "tx1|rx4|motion0|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E2M7.MAP",
+          "E2M8.MAP",
+          "E2M9.MAP",
+          "E3M4.MAP",
+          "E3M5.MAP"
+        ],
+        "maps": 16,
+        "signature": "tx1|rx3|motion1|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M5.MAP",
+          "E2M2.MAP",
+          "E2M3.MAP",
+          "E2M4.MAP",
+          "E3M1.MAP"
+        ],
+        "maps": 15,
+        "signature": "tx4|rx1|motion0|exit0|wall"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M6.MAP",
+          "E1M8.MAP",
+          "E2M1.MAP",
+          "E2M2.MAP"
+        ],
+        "maps": 15,
+        "signature": "tx2|rx2|motion0|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M6.MAP",
+          "E2M1.MAP",
+          "E2M2.MAP",
+          "E2M4.MAP",
+          "E3M1.MAP"
+        ],
+        "maps": 15,
+        "signature": "tx2|rx1|motion0|exit0|wall"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M6.MAP",
+          "E2M3.MAP",
+          "E2M7.MAP",
+          "E3M1.MAP"
+        ],
+        "maps": 13,
+        "signature": "tx1|rx5|motion1|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M3.MAP",
+          "E1M6.MAP",
+          "E2M5.MAP",
+          "E2M7.MAP",
+          "E2M9.MAP",
+          "E3M3.MAP",
+          "E3M5.MAP"
+        ],
+        "maps": 13,
+        "signature": "tx6|rx1|motion0|exit0|wall"
+      },
+      {
+        "examples": [
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M6.MAP",
+          "E2M2.MAP",
+          "E2M7.MAP",
+          "E2M8.MAP",
+          "E2M9.MAP",
+          "E3M2.MAP"
+        ],
+        "maps": 13,
+        "signature": "tx1|rx5|motion0|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M4.MAP",
+          "E2M2.MAP",
+          "E2M5.MAP",
+          "E3M1.MAP",
+          "E3M3.MAP",
+          "E3M5.MAP",
+          "E3M6.MAP"
+        ],
+        "maps": 12,
+        "signature": "tx3|rx1|motion0|exit0|wall"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M4.MAP",
+          "E1M6.MAP",
+          "E2M2.MAP",
+          "E2M4.MAP",
+          "E2M6.MAP",
+          "E2M7.MAP",
+          "E3M2.MAP"
+        ],
+        "maps": 11,
+        "signature": "tx1|rx4|motion0|exit0|sector"
+      },
+      {
+        "examples": [
+          "E1M6.MAP",
+          "E2M4.MAP",
+          "E2M5.MAP",
+          "E2M6.MAP",
+          "E2M7.MAP",
+          "E3M2.MAP",
+          "E3M5.MAP",
+          "E3M8.MAP"
+        ],
+        "maps": 11,
+        "signature": "tx1|rx2|motion1|exit0|sector"
+      },
+      {
+        "examples": [
+          "E1M8.MAP",
+          "E2M1.MAP",
+          "E2M6.MAP",
+          "E3M1.MAP",
+          "E3M2.MAP",
+          "E3M6.MAP",
+          "E3M8.MAP",
+          "E6M4.MAP"
+        ],
+        "maps": 10,
+        "signature": "tx1|rx7|motion1|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M2.MAP",
+          "E1M4.MAP",
+          "E2M4.MAP",
+          "E2M5.MAP",
+          "E2M7.MAP",
+          "E3M1.MAP",
+          "E3M2.MAP"
+        ],
+        "maps": 9,
+        "signature": "tx1|rx1|motion0|exit0|wall"
+      },
+      {
+        "examples": [
+          "E1M2.MAP",
+          "E1M6.MAP",
+          "E2M1.MAP",
+          "E2M7.MAP",
+          "E3M1.MAP",
+          "E3M6.MAP",
+          "E4M6.MAP",
+          "E6M4.MAP"
+        ],
+        "maps": 9,
+        "signature": "tx1|rx5|motion0|exit0|sector"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E1M2.MAP",
+          "E1M5.MAP",
+          "E2M6.MAP",
+          "E2M7.MAP",
+          "E3M4.MAP",
+          "E3M8.MAP",
+          "E6M7.MAP"
+        ],
+        "maps": 8,
+        "signature": "tx1|rx3|motion1|exit0|sector"
+      },
+      {
+        "examples": [
+          "E1M2.MAP",
+          "E1M6.MAP",
+          "E2M7.MAP",
+          "E2M9.MAP",
+          "E3M5.MAP",
+          "E4M7.MAP",
+          "E6M7.MAP",
+          "E6M9.MAP"
+        ],
+        "maps": 8,
+        "signature": "tx1|rx6|motion1|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E2M9.MAP",
+          "E3M2.MAP",
+          "E3M5.MAP",
+          "E3M8.MAP",
+          "E4M3.MAP",
+          "E6M7.MAP"
+        ],
+        "maps": 8,
+        "signature": "tx1|rx8|motion0|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M6.MAP",
+          "E2M4.MAP",
+          "E2M5.MAP",
+          "E3M2.MAP",
+          "E3M3.MAP",
+          "E3M5.MAP"
+        ],
+        "maps": 8,
+        "signature": "tx2|rx1|motion0|exit0|sector"
+      },
+      {
+        "examples": [
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E2M2.MAP",
+          "E2M4.MAP",
+          "E2M9.MAP",
+          "E6M1.MAP"
+        ],
+        "maps": 8,
+        "signature": "tx2|rx3|motion0|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E2M3.MAP",
+          "E2M5.MAP",
+          "E3M5.MAP",
+          "E3M6.MAP",
+          "E3M8.MAP",
+          "E4M1.MAP"
+        ],
+        "maps": 8,
+        "signature": "tx2|rx1|motion1|exit0|sprite+wall"
+      },
+      {
+        "examples": [
+          "E1M2.MAP",
+          "E1M4.MAP",
+          "E2M2.MAP",
+          "E2M4.MAP",
+          "E3M2.MAP",
+          "E4M2.MAP",
+          "E6M7.MAP"
+        ],
+        "maps": 7,
+        "signature": "tx2|rx1|motion0|exit0|sector+sprite"
+      },
+      {
+        "examples": [
+          "E1M3.MAP",
+          "E1M6.MAP",
+          "E2M7.MAP",
+          "E3M1.MAP",
+          "E4M2.MAP",
+          "E6M1.MAP",
+          "E6M4.MAP"
+        ],
+        "maps": 7,
+        "signature": "tx1|rx6|motion0|exit0|sector"
+      },
+      {
+        "examples": [
+          "E1M3.MAP",
+          "E2M9.MAP",
+          "E3M1.MAP",
+          "E3M4.MAP",
+          "E3M5.MAP",
+          "E3M7.MAP",
+          "E6M4.MAP"
+        ],
+        "maps": 7,
+        "signature": "tx1|rx6|motion0|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M6.MAP",
+          "E2M2.MAP",
+          "E3M2.MAP",
+          "E3M4.MAP",
+          "E4M8.MAP",
+          "E6M1.MAP",
+          "E6M4.MAP"
+        ],
+        "maps": 7,
+        "signature": "tx1|rx7|motion0|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M2.MAP",
+          "E1M6.MAP",
+          "E2M7.MAP",
+          "E3M2.MAP",
+          "E3M4.MAP",
+          "E6M9.MAP"
+        ],
+        "maps": 6,
+        "signature": "tx2|rx6|motion0|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M8.MAP",
+          "E6M4.MAP",
+          "E6M7.MAP",
+          "E6M9.MAP"
+        ],
+        "maps": 6,
+        "signature": "tx3|rx1|motion0|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M7.MAP",
+          "E3M2.MAP",
+          "E3M4.MAP",
+          "E3M6.MAP",
+          "E3M8.MAP",
+          "E4M8.MAP"
+        ],
+        "maps": 6,
+        "signature": "tx2|rx2|motion1|exit0|sprite"
+      },
+      {
+        "examples": [
+          "E1M1.MAP",
+          "E2M3.MAP",
+          "E2M5.MAP",
+          "E3M1.MAP",
+          "E3M2.MAP"
+        ],
+        "maps": 5,
+        "signature": "tx1|rx13|motion1|exit0|sprite"
+      }
+    ],
+    "schema_version": 1,
+    "unique_signatures": 230
+  },
+  "e2m2": {
+    "$schema": "llmapper.e2m2-mechanism-patterns",
+    "candidates": [
+      {
+        "campaign_maps": null,
+        "channel": 100,
+        "examples": null,
+        "interpretation": "fanout_receivers",
+        "signature": "tx2|rx11|motion0|exit0|sprite",
+        "status": "hypothesis"
+      },
+      {
+        "campaign_maps": 7,
+        "channel": 101,
+        "examples": [
+          "E1M6.MAP",
+          "E2M2.MAP",
+          "E3M2.MAP",
+          "E3M4.MAP",
+          "E4M8.MAP",
+          "E6M1.MAP",
+          "E6M4.MAP"
+        ],
+        "interpretation": "fanout_receivers",
+        "signature": "tx1|rx7|motion0|exit0|sprite",
+        "status": "supported"
+      },
+      {
+        "campaign_maps": null,
+        "channel": 102,
+        "examples": null,
+        "interpretation": "fanout_receivers",
+        "signature": "tx1|rx12|motion0|exit0|sprite",
+        "status": "hypothesis"
+      },
+      {
+        "campaign_maps": null,
+        "channel": 103,
+        "examples": null,
+        "interpretation": "fanout_receivers",
+        "signature": "tx6|rx3|motion0|exit0|sprite+wall",
+        "status": "hypothesis"
+      },
+      {
+        "campaign_maps": 21,
+        "channel": 104,
+        "examples": [
+          "E1M1.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M7.MAP",
+          "E2M2.MAP",
+          "E2M3.MAP"
+        ],
+        "interpretation": "fanout_motion",
+        "signature": "tx1|rx4|motion1|exit0|sprite",
+        "status": "supported"
+      },
+      {
+        "campaign_maps": null,
+        "channel": 107,
+        "examples": null,
+        "interpretation": "fanout_receivers",
+        "signature": "tx6|rx3|motion0|exit0|sprite+wall",
+        "status": "hypothesis"
+      },
+      {
+        "campaign_maps": null,
+        "channel": 108,
+        "examples": null,
+        "interpretation": "fanout_receivers",
+        "signature": "tx6|rx3|motion0|exit0|sprite+wall",
+        "status": "hypothesis"
+      },
+      {
+        "campaign_maps": 17,
+        "channel": 109,
+        "examples": [
+          "E1M2.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M8.MAP",
+          "E2M2.MAP",
+          "E2M6.MAP",
+          "E2M7.MAP",
+          "E2M9.MAP"
+        ],
+        "interpretation": "single_motion_gate",
+        "signature": "tx1|rx1|motion1|exit0|sector",
+        "status": "supported"
+      },
+      {
+        "campaign_maps": null,
+        "channel": 110,
+        "examples": null,
+        "interpretation": "fanout_motion",
+        "signature": "tx1|rx8|motion1|exit0|sprite",
+        "status": "hypothesis"
+      },
+      {
+        "campaign_maps": 18,
+        "channel": 111,
+        "examples": [
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M8.MAP",
+          "E2M2.MAP",
+          "E2M5.MAP",
+          "E2M6.MAP",
+          "E2M7.MAP"
+        ],
+        "interpretation": "single_motion_gate",
+        "signature": "tx2|rx1|motion1|exit0|sprite",
+        "status": "supported"
+      },
+      {
+        "campaign_maps": null,
+        "channel": 113,
+        "examples": null,
+        "interpretation": "fanout_receivers",
+        "signature": "tx6|rx3|motion0|exit0|sprite+wall",
+        "status": "hypothesis"
+      },
+      {
+        "campaign_maps": 16,
+        "channel": 115,
+        "examples": [
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M5.MAP",
+          "E2M2.MAP",
+          "E2M4.MAP",
+          "E2M5.MAP",
+          "E2M9.MAP",
+          "E3M1.MAP"
+        ],
+        "interpretation": "fanout_receivers",
+        "signature": "tx1|rx4|motion0|exit0|sprite",
+        "status": "supported"
+      },
+      {
+        "campaign_maps": 13,
+        "channel": 117,
+        "examples": [
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M6.MAP",
+          "E2M2.MAP",
+          "E2M7.MAP",
+          "E2M8.MAP",
+          "E2M9.MAP",
+          "E3M2.MAP"
+        ],
+        "interpretation": "fanout_receivers",
+        "signature": "tx1|rx5|motion0|exit0|sprite",
+        "status": "supported"
+      },
+      {
+        "campaign_maps": null,
+        "channel": 118,
+        "examples": null,
+        "interpretation": "fanout_receivers",
+        "signature": "tx1|rx10|motion0|exit0|sprite",
+        "status": "hypothesis"
+      },
+      {
+        "campaign_maps": 11,
+        "channel": 129,
+        "examples": [
+          "E1M1.MAP",
+          "E1M4.MAP",
+          "E1M6.MAP",
+          "E2M2.MAP",
+          "E2M4.MAP",
+          "E2M6.MAP",
+          "E2M7.MAP",
+          "E3M2.MAP"
+        ],
+        "interpretation": "fanout_receivers",
+        "signature": "tx1|rx4|motion0|exit0|sector",
+        "status": "supported"
+      },
+      {
+        "campaign_maps": 8,
+        "channel": 135,
+        "examples": [
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E2M2.MAP",
+          "E2M4.MAP",
+          "E2M9.MAP",
+          "E6M1.MAP"
+        ],
+        "interpretation": "fanout_receivers",
+        "signature": "tx2|rx3|motion0|exit0|sprite",
+        "status": "supported"
+      },
+      {
+        "campaign_maps": 16,
+        "channel": 143,
+        "examples": [
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M5.MAP",
+          "E2M2.MAP",
+          "E2M4.MAP",
+          "E2M5.MAP",
+          "E2M9.MAP",
+          "E3M1.MAP"
+        ],
+        "interpretation": "fanout_receivers",
+        "signature": "tx1|rx4|motion0|exit0|sprite",
+        "status": "supported"
+      },
+      {
+        "campaign_maps": null,
+        "channel": 147,
+        "examples": null,
+        "interpretation": "single_motion_gate",
+        "signature": "tx3|rx1|motion1|exit0|sprite",
+        "status": "hypothesis"
+      },
+      {
+        "campaign_maps": null,
+        "channel": 148,
+        "examples": null,
+        "interpretation": "single_motion_gate",
+        "signature": "tx3|rx1|motion1|exit0|sprite",
+        "status": "hypothesis"
+      },
+      {
+        "campaign_maps": null,
+        "channel": 149,
+        "examples": null,
+        "interpretation": "single_motion_gate",
+        "signature": "tx3|rx1|motion1|exit0|sprite",
+        "status": "hypothesis"
+      },
+      {
+        "campaign_maps": null,
+        "channel": 150,
+        "examples": null,
+        "interpretation": "single_motion_gate",
+        "signature": "tx3|rx1|motion1|exit0|sprite",
+        "status": "hypothesis"
+      },
+      {
+        "campaign_maps": 21,
+        "channel": 151,
+        "examples": [
+          "E1M1.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M7.MAP",
+          "E2M2.MAP",
+          "E2M3.MAP"
+        ],
+        "interpretation": "fanout_motion",
+        "signature": "tx1|rx4|motion1|exit0|sprite",
+        "status": "supported"
+      },
+      {
+        "campaign_maps": 15,
+        "channel": 152,
+        "examples": [
+          "E1M1.MAP",
+          "E1M2.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M6.MAP",
+          "E1M8.MAP",
+          "E2M1.MAP",
+          "E2M2.MAP"
+        ],
+        "interpretation": "fanout_receivers",
+        "signature": "tx2|rx2|motion0|exit0|sprite",
+        "status": "supported"
+      },
+      {
+        "campaign_maps": 33,
+        "channel": 153,
+        "examples": [
+          "E1M1.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M8.MAP",
+          "E2M1.MAP",
+          "E2M2.MAP"
+        ],
+        "interpretation": "single_motion_gate",
+        "signature": "tx1|rx1|motion1|exit0|sprite",
+        "status": "supported"
+      },
+      {
+        "campaign_maps": 26,
+        "channel": 154,
+        "examples": [
+          "E1M1.MAP",
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M5.MAP",
+          "E1M6.MAP",
+          "E1M8.MAP",
+          "E2M1.MAP",
+          "E2M2.MAP"
+        ],
+        "interpretation": "fanout_motion",
+        "signature": "tx1|rx2|motion1|exit0|sprite",
+        "status": "supported"
+      },
+      {
+        "campaign_maps": 13,
+        "channel": 155,
+        "examples": [
+          "E1M3.MAP",
+          "E1M4.MAP",
+          "E1M6.MAP",
+          "E2M2.MAP",
+          "E2M7.MAP",
+          "E2M8.MAP",
+          "E2M9.MAP",
+          "E3M2.MAP"
+        ],
+        "interpretation": "fanout_receivers",
+        "signature": "tx1|rx5|motion0|exit0|sprite",
+        "status": "supported"
+      }
+    ],
+    "kind": "derived",
+    "pipeline": "E2M2 observation \u2192 signature \u2192 campaign search \u2192 supported/hypothesis",
+    "schema_version": 1
+  }
+}

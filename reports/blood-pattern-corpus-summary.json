@@ -1,0 +1,588 @@
+{
+  "$schema": "llmapper.design-pattern-corpus-summary",
+  "schema_version": 1,
+  "catalog": "knowledge/blood/design/catalog-v1",
+  "catalog_version": "v1",
+  "pattern_count": 20,
+  "supported": 12,
+  "hypothesis": 5,
+  "disputed": 3,
+  "mines": [
+    {
+      "population": "blood-bloodbath",
+      "maps_mined": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB3.MAP",
+        "BB4.MAP",
+        "BB5.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "sample_count": 1796,
+      "candidate_count": 166,
+      "observe_errors": [],
+      "medians": {
+        "local_area": 370.1511,
+        "spawn_area": 126.6667
+      },
+      "by_subject": {
+        "local-morphology": {
+          "candidates": 72,
+          "samples": 858
+        },
+        "route-exposure": {
+          "candidates": 20,
+          "samples": 48
+        },
+        "spawn-neighborhood": {
+          "candidates": 43,
+          "samples": 73
+        },
+        "vertical-transition": {
+          "candidates": 31,
+          "samples": 817
+        }
+      }
+    },
+    {
+      "population": "blood-campaign",
+      "maps_mined": [
+        "E1M1.MAP",
+        "E1M2.MAP",
+        "E1M3.MAP",
+        "E1M4.MAP",
+        "E1M5.MAP",
+        "E1M6.MAP",
+        "E1M7.MAP",
+        "E1M8.MAP",
+        "E2M1.MAP",
+        "E2M2.MAP",
+        "E2M3.MAP",
+        "E2M4.MAP",
+        "E2M5.MAP",
+        "E2M6.MAP",
+        "E2M7.MAP",
+        "E2M8.MAP",
+        "E2M9.MAP",
+        "E3M1.MAP",
+        "E3M2.MAP",
+        "E3M3.MAP",
+        "E3M4.MAP",
+        "E3M5.MAP",
+        "E3M6.MAP",
+        "E3M7.MAP",
+        "E3M8.MAP",
+        "E4M1.MAP",
+        "E4M2.MAP",
+        "E4M3.MAP",
+        "E4M4.MAP",
+        "E4M5.MAP",
+        "E4M6.MAP",
+        "E4M7.MAP",
+        "E4M8.MAP",
+        "E4M9.MAP",
+        "E6M1.MAP",
+        "E6M2.MAP",
+        "E6M3.MAP",
+        "E6M4.MAP",
+        "E6M5.MAP",
+        "E6M6.MAP",
+        "E6M7.MAP",
+        "E6M8.MAP",
+        "E6M9.MAP"
+      ],
+      "sample_count": 23042,
+      "candidate_count": 243,
+      "observe_errors": [
+        {
+          "error": "sector:144 has invalid wall ownership",
+          "map": "E6M7.MAP"
+        }
+      ],
+      "medians": {
+        "local_area": 1.0,
+        "spawn_area": 1.0
+      },
+      "by_subject": {
+        "local-morphology": {
+          "candidates": 126,
+          "samples": 12126
+        },
+        "route-exposure": {
+          "candidates": 68,
+          "samples": 411
+        },
+        "vertical-transition": {
+          "candidates": 49,
+          "samples": 10505
+        }
+      }
+    }
+  ],
+  "patterns": [
+    {
+      "id": "pattern:spawn:open-hunting-cell",
+      "status": "supported",
+      "population": "blood-bloodbath",
+      "subject": "spawn-neighborhood",
+      "occurrence_count": 26,
+      "map_count": 6,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "interpretation": "spawn already occupies a shared outdoor hunting cell"
+    },
+    {
+      "id": "pattern:spawn:sky-porch-into-field",
+      "status": "supported",
+      "population": "blood-bloodbath",
+      "subject": "spawn-neighborhood",
+      "occurrence_count": 2,
+      "map_count": 1,
+      "maps": [
+        "BB6.MAP"
+      ],
+      "interpretation": "small sky porch that already belongs to a large hunting field"
+    },
+    {
+      "id": "pattern:spawn:sky-constrained-alcove",
+      "status": "hypothesis",
+      "population": "blood-bloodbath",
+      "subject": "spawn-neighborhood",
+      "occurrence_count": 7,
+      "map_count": 4,
+      "maps": [
+        "BB1.MAP",
+        "BB6.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "interpretation": "outdoor start in a constrained alcove rather than a hunting cell"
+    },
+    {
+      "id": "pattern:spawn:covered-hops-to-sky",
+      "status": "supported",
+      "population": "blood-bloodbath",
+      "subject": "spawn-neighborhood",
+      "occurrence_count": 10,
+      "map_count": 5,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "interpretation": "covered spawn with a short approach into outdoor circulation"
+    },
+    {
+      "id": "pattern:spawn:pairwise-2d-exposed",
+      "status": "disputed",
+      "population": "blood-bloodbath",
+      "subject": "spawn-neighborhood",
+      "occurrence_count": 18,
+      "map_count": 4,
+      "maps": [
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "interpretation": "2D spawn-to-spawn sight is open (not the same as 3D concealment)"
+    },
+    {
+      "id": "pattern:route:all-sky-shortest-path",
+      "status": "supported",
+      "population": "blood-bloodbath",
+      "subject": "route-exposure",
+      "occurrence_count": 29,
+      "map_count": 6,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "interpretation": "spawn-to-field shortest path stays under sky"
+    },
+    {
+      "id": "pattern:route:cover-then-open",
+      "status": "hypothesis",
+      "population": "blood-bloodbath",
+      "subject": "route-exposure",
+      "occurrence_count": 12,
+      "map_count": 5,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "interpretation": "covered approach into open circulation"
+    },
+    {
+      "id": "pattern:route:open-cover-open",
+      "status": "hypothesis",
+      "population": "blood-bloodbath",
+      "subject": "route-exposure",
+      "occurrence_count": 5,
+      "map_count": 2,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP"
+      ],
+      "interpretation": "outdoor circulation interrupted by a covered mass"
+    },
+    {
+      "id": "pattern:morph:rectangular-covered-cell",
+      "status": "disputed",
+      "population": "blood-bloodbath",
+      "subject": "local-morphology",
+      "occurrence_count": 202,
+      "map_count": 9,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB3.MAP",
+        "BB4.MAP",
+        "BB5.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "interpretation": "rectangular covered cell (too common to imply a gameplay role)"
+    },
+    {
+      "id": "pattern:morph:irregular-covered-footprint",
+      "status": "supported",
+      "population": "blood-bloodbath",
+      "subject": "local-morphology",
+      "occurrence_count": 153,
+      "map_count": 9,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB3.MAP",
+        "BB4.MAP",
+        "BB5.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "interpretation": "irregular covered footprint as Blood's indoor architectural grain"
+    },
+    {
+      "id": "pattern:morph:chamfered-irregular",
+      "status": "supported",
+      "population": "blood-bloodbath",
+      "subject": "local-morphology",
+      "occurrence_count": 107,
+      "map_count": 9,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB3.MAP",
+        "BB4.MAP",
+        "BB5.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "interpretation": "chamfered irregular indoor mass"
+    },
+    {
+      "id": "pattern:morph:segmented-curve-chain",
+      "status": "supported",
+      "population": "blood-bloodbath",
+      "subject": "local-morphology",
+      "occurrence_count": 131,
+      "map_count": 8,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB3.MAP",
+        "BB4.MAP",
+        "BB5.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP"
+      ],
+      "interpretation": "segmented curve as a local masonry motif"
+    },
+    {
+      "id": "pattern:morph:sky-host-with-holes",
+      "status": "supported",
+      "population": "blood-bloodbath",
+      "subject": "local-morphology",
+      "occurrence_count": 11,
+      "map_count": 5,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB6.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "interpretation": "outdoor host with carved building masses"
+    },
+    {
+      "id": "pattern:vertical:storey-same-cover-into-larger",
+      "status": "hypothesis",
+      "population": "blood-bloodbath",
+      "subject": "vertical-transition",
+      "occurrence_count": 242,
+      "map_count": 9,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB3.MAP",
+        "BB4.MAP",
+        "BB5.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "interpretation": "storey-scale height change into a larger same-cover cell"
+    },
+    {
+      "id": "pattern:vertical:open-into-cover",
+      "status": "supported",
+      "population": "blood-bloodbath",
+      "subject": "vertical-transition",
+      "occurrence_count": 29,
+      "map_count": 5,
+      "maps": [
+        "BB1.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "interpretation": "leaving outdoor circulation into a covered mass"
+    },
+    {
+      "id": "pattern:vertical:cover-into-open",
+      "status": "supported",
+      "population": "blood-bloodbath",
+      "subject": "vertical-transition",
+      "occurrence_count": 15,
+      "map_count": 3,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB6.MAP"
+      ],
+      "interpretation": "emerging from a covered mass into outdoor circulation"
+    },
+    {
+      "id": "pattern:campaign-route:cover-then-open",
+      "status": "supported",
+      "population": "blood-campaign",
+      "subject": "route-exposure",
+      "occurrence_count": 169,
+      "map_count": 27,
+      "maps": [
+        "E1M2.MAP",
+        "E1M3.MAP",
+        "E1M5.MAP",
+        "E1M6.MAP",
+        "E1M7.MAP",
+        "E2M1.MAP",
+        "E2M2.MAP",
+        "E2M3.MAP",
+        "E2M4.MAP",
+        "E2M5.MAP",
+        "E2M6.MAP",
+        "E2M9.MAP",
+        "E3M1.MAP",
+        "E3M5.MAP",
+        "E3M6.MAP",
+        "E3M8.MAP",
+        "E4M1.MAP",
+        "E4M2.MAP",
+        "E4M3.MAP",
+        "E4M5.MAP",
+        "E6M1.MAP",
+        "E6M2.MAP",
+        "E6M3.MAP",
+        "E6M4.MAP",
+        "E6M5.MAP",
+        "E6M6.MAP",
+        "E6M8.MAP"
+      ],
+      "interpretation": "single-player start typically approaches outdoor space from cover"
+    },
+    {
+      "id": "pattern:campaign-morph:rectangular-covered-cell",
+      "status": "disputed",
+      "population": "blood-campaign",
+      "subject": "local-morphology",
+      "occurrence_count": 3495,
+      "map_count": 42,
+      "maps": [
+        "E1M1.MAP",
+        "E1M2.MAP",
+        "E1M3.MAP",
+        "E1M4.MAP",
+        "E1M5.MAP",
+        "E1M6.MAP",
+        "E1M7.MAP",
+        "E1M8.MAP",
+        "E2M1.MAP",
+        "E2M2.MAP",
+        "E2M3.MAP",
+        "E2M4.MAP",
+        "E2M5.MAP",
+        "E2M6.MAP",
+        "E2M7.MAP",
+        "E2M8.MAP",
+        "E2M9.MAP",
+        "E3M1.MAP",
+        "E3M2.MAP",
+        "E3M3.MAP",
+        "E3M4.MAP",
+        "E3M5.MAP",
+        "E3M6.MAP",
+        "E3M7.MAP",
+        "E3M8.MAP",
+        "E4M1.MAP",
+        "E4M2.MAP",
+        "E4M3.MAP",
+        "E4M4.MAP",
+        "E4M5.MAP",
+        "E4M6.MAP",
+        "E4M7.MAP",
+        "E4M8.MAP",
+        "E4M9.MAP",
+        "E6M1.MAP",
+        "E6M2.MAP",
+        "E6M3.MAP",
+        "E6M4.MAP",
+        "E6M5.MAP",
+        "E6M6.MAP",
+        "E6M8.MAP",
+        "E6M9.MAP"
+      ],
+      "interpretation": "rectangular covered cell (campaign construction default)"
+    },
+    {
+      "id": "pattern:campaign-morph:irregular-covered-footprint",
+      "status": "supported",
+      "population": "blood-campaign",
+      "subject": "local-morphology",
+      "occurrence_count": 1431,
+      "map_count": 42,
+      "maps": [
+        "E1M1.MAP",
+        "E1M2.MAP",
+        "E1M3.MAP",
+        "E1M4.MAP",
+        "E1M5.MAP",
+        "E1M6.MAP",
+        "E1M7.MAP",
+        "E1M8.MAP",
+        "E2M1.MAP",
+        "E2M2.MAP",
+        "E2M3.MAP",
+        "E2M4.MAP",
+        "E2M5.MAP",
+        "E2M6.MAP",
+        "E2M7.MAP",
+        "E2M8.MAP",
+        "E2M9.MAP",
+        "E3M1.MAP",
+        "E3M2.MAP",
+        "E3M3.MAP",
+        "E3M4.MAP",
+        "E3M5.MAP",
+        "E3M6.MAP",
+        "E3M7.MAP",
+        "E3M8.MAP",
+        "E4M1.MAP",
+        "E4M2.MAP",
+        "E4M3.MAP",
+        "E4M4.MAP",
+        "E4M5.MAP",
+        "E4M6.MAP",
+        "E4M7.MAP",
+        "E4M8.MAP",
+        "E4M9.MAP",
+        "E6M1.MAP",
+        "E6M2.MAP",
+        "E6M3.MAP",
+        "E6M4.MAP",
+        "E6M5.MAP",
+        "E6M6.MAP",
+        "E6M8.MAP",
+        "E6M9.MAP"
+      ],
+      "interpretation": "irregular covered footprint in original campaign architecture"
+    },
+    {
+      "id": "pattern:campaign-vertical:storey-same-cover-into-larger",
+      "status": "hypothesis",
+      "population": "blood-campaign",
+      "subject": "vertical-transition",
+      "occurrence_count": 2296,
+      "map_count": 40,
+      "maps": [
+        "E1M1.MAP",
+        "E1M2.MAP",
+        "E1M3.MAP",
+        "E1M4.MAP",
+        "E1M5.MAP",
+        "E1M6.MAP",
+        "E1M7.MAP",
+        "E1M8.MAP",
+        "E2M1.MAP",
+        "E2M2.MAP",
+        "E2M3.MAP",
+        "E2M4.MAP",
+        "E2M5.MAP",
+        "E2M6.MAP",
+        "E2M7.MAP",
+        "E2M9.MAP",
+        "E3M1.MAP",
+        "E3M2.MAP",
+        "E3M3.MAP",
+        "E3M4.MAP",
+        "E3M5.MAP",
+        "E3M6.MAP",
+        "E3M7.MAP",
+        "E3M8.MAP",
+        "E4M1.MAP",
+        "E4M2.MAP",
+        "E4M3.MAP",
+        "E4M4.MAP",
+        "E4M5.MAP",
+        "E4M6.MAP",
+        "E4M7.MAP",
+        "E4M9.MAP",
+        "E6M1.MAP",
+        "E6M2.MAP",
+        "E6M3.MAP",
+        "E6M4.MAP",
+        "E6M5.MAP",
+        "E6M6.MAP",
+        "E6M8.MAP",
+        "E6M9.MAP"
+      ],
+      "interpretation": "storey height change into a larger same-cover cell (campaign)"
+    }
+  ]
+}

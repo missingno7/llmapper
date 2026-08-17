@@ -9,6 +9,7 @@ from bloodmap import ConstructionError, LevelBuilder, build_first_puzzle_room, p
 from bloodmap.analysis import validate_map
 from bloodmap.cli import main
 from bloodmap.format import encode_map, parse_map
+from bloodmap.geometry_audit import AuthoredGeometryError, construction_preflight, validate_authored_geometry
 
 
 class ConstructionTests(unittest.TestCase):
@@ -111,6 +112,18 @@ class ConstructionTests(unittest.TestCase):
         self.assertTrue(profile["wide_enough"])
         self.assertFalse(profile["walkable_at_rest"])
         self.assertTrue(profile["walkable_when_open"])
+
+    def test_builder_does_not_catch_cross_sector_overlap(self):
+        builder = LevelBuilder()
+        host = builder.add_sector([(0, 0), (8000, 0), (8000, 8000), (0, 8000)])
+        builder.add_sector([(2000, 2000), (6000, 2000), (6000, 6000), (2000, 6000)])
+        builder.set_player_start(sector=host.sector_id, x=500, y=500, z=0, angle=0)
+        level = builder.build()
+        self.assertFalse([item for item in validate_map(level.to_disk_map()) if item.severity == "error"])
+        authored = [item for item in validate_authored_geometry(level) if item.severity == "error"]
+        self.assertTrue(authored)
+        with self.assertRaisesRegex(AuthoredGeometryError, "authored-geometry"):
+            construction_preflight(authored)
 
 
 if __name__ == "__main__":

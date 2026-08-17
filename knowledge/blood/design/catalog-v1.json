@@ -1,0 +1,4615 @@
+{
+  "$schema": "llmapper.design-pattern-catalog",
+  "schema_version": 1,
+  "id": "knowledge/blood/design/catalog-v1",
+  "version": "v1",
+  "status": "hypothesis",
+  "kind": "derived+interpreted",
+  "populations": [
+    "blood-bloodbath",
+    "blood-campaign"
+  ],
+  "notes": [
+    "Names are INTERPRETED after discrete signature discovery.",
+    "Campaign maps are mined separately and are not mixed into these statistics.",
+    "Generated and conversion maps are not evidence.",
+    "A place may match several patterns."
+  ],
+  "patterns": [
+    {
+      "id": "pattern:spawn:open-hunting-cell",
+      "status": "supported",
+      "kind": "interpreted",
+      "scale": "neighborhood",
+      "subject": "spawn-neighborhood",
+      "population": "blood-bloodbath",
+      "match": {
+        "sky": "1",
+        "hops": "0",
+        "exits": "3+",
+        "field": "high",
+        "sight": "high"
+      },
+      "signature": {
+        "sky": "1",
+        "hops": "0",
+        "exits": "3+",
+        "field": "high",
+        "sight": "high"
+      },
+      "tags": [
+        "open-hunting-cell",
+        "spawn"
+      ],
+      "description": "A deathmatch start already sits in a large sky cell with many immediate portal choices and high local 2D sight.",
+      "required_evidence": [
+        "spawn_neighborhood_report",
+        "sky_ceiling"
+      ],
+      "confidence": "medium",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "spawn already occupies a shared outdoor hunting cell",
+        "rationale": "Recurs on BB6, BB8, BB9 (and variants on BB1/BB7). Area and peek bins vary; the stable relation is sky + zero hops + many exits + high field/sight."
+      },
+      "counterexamples": [
+        {
+          "claim_rejected": "outdoor hunting-cell spawn is concealed from other starts",
+          "why": "BB6 hunting-cell starts have spawn-pair 2D clear fraction 1.0",
+          "maps": [
+            "BB6.MAP"
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "origin": "sprite:7",
+            "sector": 12,
+            "sprite": 7
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "origin": "sprite:9",
+            "sector": 12,
+            "sprite": 9
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "origin": "sprite:11",
+            "sector": 15,
+            "sprite": 11
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "origin": "sprite:108",
+            "sector": 15,
+            "sprite": 108
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "origin": "sprite:7",
+            "sector": 12,
+            "sprite": 7
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "origin": "sprite:9",
+            "sector": 12,
+            "sprite": 9
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "origin": "sprite:11",
+            "sector": 15,
+            "sprite": 11
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "origin": "sprite:109",
+            "sector": 15,
+            "sprite": 109
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "origin": "sprite:122",
+            "sector": 6,
+            "sprite": 122
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:small|field:high|sight:high|peek:mid"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "origin": "sprite:10",
+            "sector": 24,
+            "sprite": 10
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:small|field:high|sight:high|peek:mid"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "origin": "sprite:109",
+            "sector": 32,
+            "sprite": 109
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:small|field:high|sight:high|peek:mid"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "origin": "sprite:10",
+            "sector": 24,
+            "sprite": 10
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:small|field:high|sight:high|peek:mid"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "origin": "sprite:110",
+            "sector": 32,
+            "sprite": 110
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:small|field:high|sight:high|peek:mid"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:579",
+            "sector": 157,
+            "sprite": 579
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:large|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:580",
+            "sector": 157,
+            "sprite": 580
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:large|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:583",
+            "sector": 15,
+            "sprite": 583
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:large|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:584",
+            "sector": 15,
+            "sprite": 584
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:large|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "origin": "sprite:10",
+            "sector": 19,
+            "sprite": 10
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "origin": "sprite:47",
+            "sector": 19,
+            "sprite": 47
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "origin": "sprite:126",
+            "sector": 0,
+            "sprite": 126
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:medium|field:high|sight:high|peek:mid"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "origin": "sprite:9",
+            "sector": 19,
+            "sprite": 9
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:medium|field:high|sight:high|peek:mid"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "origin": "sprite:93",
+            "sector": 9,
+            "sprite": 93
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:low"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "origin": "sprite:91",
+            "sector": 15,
+            "sprite": 91
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:mid"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:586",
+            "sector": 4,
+            "sprite": 586
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:large|field:high|sight:high|peek:high"
+        }
+      ],
+      "occurrence_count": 26,
+      "map_count": 6,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "occurrences_truncated": true
+    },
+    {
+      "id": "pattern:spawn:sky-porch-into-field",
+      "status": "supported",
+      "kind": "interpreted",
+      "scale": "neighborhood",
+      "subject": "spawn-neighborhood",
+      "population": "blood-bloodbath",
+      "match": {
+        "sky": "1",
+        "hops": "0",
+        "exits": "1",
+        "field": "high",
+        "local": "large"
+      },
+      "signature": {
+        "sky": "1",
+        "hops": "0",
+        "exits": "1",
+        "field": "high",
+        "local": "large"
+      },
+      "tags": [
+        "sky-porch",
+        "spawn"
+      ],
+      "description": "A small sky pad with a single exit whose reachable neighborhood is still a large field.",
+      "required_evidence": [
+        "spawn_neighborhood_report"
+      ],
+      "confidence": "medium",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "small sky porch that already belongs to a large hunting field",
+        "rationale": "BB6 has two 1-exit sky starts whose local reachable area matches the yards."
+      },
+      "counterexamples": [
+        {
+          "claim_rejected": "one exit means a closet spawn",
+          "why": "local reachable area is large; the pad is a mouth, not a sealed room",
+          "maps": [
+            "BB6.MAP"
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:581",
+            "sector": 12,
+            "sprite": 581
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:1|area:small|local:large|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:582",
+            "sector": 13,
+            "sprite": 582
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:1|area:small|local:large|field:high|sight:high|peek:high"
+        }
+      ],
+      "occurrence_count": 2,
+      "map_count": 1,
+      "maps": [
+        "BB6.MAP"
+      ],
+      "occurrences_truncated": false
+    },
+    {
+      "id": "pattern:spawn:sky-constrained-alcove",
+      "status": "hypothesis",
+      "kind": "interpreted",
+      "scale": "neighborhood",
+      "subject": "spawn-neighborhood",
+      "population": "blood-bloodbath",
+      "match": {
+        "sky": "1",
+        "hops": "0",
+        "local": "small"
+      },
+      "signature": {
+        "sky": "1",
+        "hops": "0",
+        "local": "small"
+      },
+      "tags": [
+        "sky-alcove",
+        "spawn"
+      ],
+      "description": "Sky start whose locally reachable area is small relative to the corpus median.",
+      "required_evidence": [
+        "spawn_neighborhood_report"
+      ],
+      "confidence": "low",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "outdoor start in a constrained alcove rather than a hunting cell",
+        "rationale": "Separates BB6's tiny-local sky start from the large-yard starts on the same map."
+      },
+      "counterexamples": [],
+      "occurrences": [
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "origin": "sprite:122",
+            "sector": 6,
+            "sprite": 122
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:small|field:high|sight:high|peek:mid"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "origin": "sprite:10",
+            "sector": 24,
+            "sprite": 10
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:small|field:high|sight:high|peek:mid"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "origin": "sprite:109",
+            "sector": 32,
+            "sprite": 109
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:small|field:high|sight:high|peek:mid"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "origin": "sprite:10",
+            "sector": 24,
+            "sprite": 10
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:small|field:high|sight:high|peek:mid"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "origin": "sprite:110",
+            "sector": 32,
+            "sprite": 110
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:small|field:high|sight:high|peek:mid"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:585",
+            "sector": 8,
+            "sprite": 585
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:small|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "origin": "sprite:14",
+            "sector": 3,
+            "sprite": 14
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:small|local:small|field:high|sight:high|peek:mid"
+        }
+      ],
+      "occurrence_count": 7,
+      "map_count": 4,
+      "maps": [
+        "BB1.MAP",
+        "BB6.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "occurrences_truncated": false
+    },
+    {
+      "id": "pattern:spawn:covered-hops-to-sky",
+      "status": "supported",
+      "kind": "interpreted",
+      "scale": "neighborhood",
+      "subject": "spawn-neighborhood",
+      "population": "blood-bloodbath",
+      "match": {
+        "sky": "0",
+        "hops": "2+"
+      },
+      "signature": {
+        "sky": "0",
+        "hops": "2+"
+      },
+      "tags": [
+        "covered-approach",
+        "spawn"
+      ],
+      "description": "Covered start that still reaches the largest sky component in a few portal hops.",
+      "required_evidence": [
+        "spawn_neighborhood_report"
+      ],
+      "confidence": "medium",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "covered spawn with a short approach into outdoor circulation",
+        "rationale": "Recurs on BB1, BB2, BB7, BB8, BB9. Distinct from indoor-only maps with hops:none."
+      },
+      "counterexamples": [
+        {
+          "claim_rejected": "any covered spawn is a closet isolated from the match",
+          "why": "hops 1\u20132+ still participate in the outdoor component; hops:none on BB3\u2013BB5 is the indoor-only case",
+          "maps": [
+            "BB2.MAP",
+            "BB3.MAP"
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "origin": "sprite:8",
+            "sector": 68,
+            "sprite": 8
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:0|hops:2+|exits:3+|area:medium|local:small|field:low|sight:mid|peek:low"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "origin": "sprite:107",
+            "sector": 47,
+            "sprite": 107
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:0|hops:2+|exits:3+|area:medium|local:small|field:low|sight:mid|peek:low"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "origin": "sprite:8",
+            "sector": 68,
+            "sprite": 8
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:0|hops:2+|exits:3+|area:medium|local:small|field:low|sight:mid|peek:low"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "origin": "sprite:108",
+            "sector": 47,
+            "sprite": 108
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:0|hops:2+|exits:3+|area:medium|local:small|field:low|sight:mid|peek:low"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "origin": "sprite:123",
+            "sector": 112,
+            "sprite": 123
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:0|hops:2+|exits:3+|area:medium|local:medium|field:low|sight:mid|peek:low"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "origin": "sprite:127",
+            "sector": 74,
+            "sprite": 127
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:0|hops:2+|exits:3+|area:medium|local:medium|field:low|sight:mid|peek:low"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "origin": "sprite:8",
+            "sector": 39,
+            "sprite": 8
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:0|hops:2+|exits:1|area:small|local:medium|field:low|sight:high|peek:low"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "origin": "sprite:88",
+            "sector": 125,
+            "sprite": 88
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:0|hops:2+|exits:2|area:small|local:medium|field:low|sight:high|peek:low"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "origin": "sprite:92",
+            "sector": 129,
+            "sprite": 92
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:0|hops:2+|exits:3+|area:medium|local:medium|field:low|sight:high|peek:low"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "origin": "sprite:90",
+            "sector": 162,
+            "sprite": 90
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:0|hops:2+|exits:3+|area:small|local:medium|field:low|sight:mid|peek:low"
+        }
+      ],
+      "occurrence_count": 10,
+      "map_count": 5,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "occurrences_truncated": false
+    },
+    {
+      "id": "pattern:spawn:pairwise-2d-exposed",
+      "status": "disputed",
+      "kind": "interpreted",
+      "scale": "neighborhood",
+      "subject": "spawn-neighborhood",
+      "population": "blood-bloodbath",
+      "match": {
+        "peek": "high",
+        "sky": "1"
+      },
+      "signature": {
+        "peek": "high",
+        "sky": "1"
+      },
+      "tags": [
+        "spawn-sight",
+        "2d-limit"
+      ],
+      "description": "Sky starts whose pairwise 2D sight to other starts is commonly clear.",
+      "required_evidence": [
+        "spawn_sight_report"
+      ],
+      "confidence": "low",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "2D spawn-to-spawn sight is open (not the same as 3D concealment)",
+        "rationale": "BB6 is 28/28 clear including lower-Z depression starts. The sensor ignores height, so this cannot be read as 'no concealment'."
+      },
+      "counterexamples": [
+        {
+          "claim_rejected": "high 2D peek means starts are unconcealed in play",
+          "why": "2D rays ignore floor delta; BB6 lower-Z starts may be vertically offset from yard starts",
+          "maps": [
+            "BB6.MAP"
+          ]
+        },
+        {
+          "claim_rejected": "outdoor BloodBath starts are pairwise hidden",
+          "why": "BB6 outdoor starts are pairwise 2D-visible; BB2 is the opposite extreme",
+          "maps": [
+            "BB6.MAP",
+            "BB2.MAP"
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "origin": "sprite:7",
+            "sector": 12,
+            "sprite": 7
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "origin": "sprite:9",
+            "sector": 12,
+            "sprite": 9
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "origin": "sprite:11",
+            "sector": 15,
+            "sprite": 11
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "origin": "sprite:108",
+            "sector": 15,
+            "sprite": 108
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "origin": "sprite:7",
+            "sector": 12,
+            "sprite": 7
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "origin": "sprite:9",
+            "sector": 12,
+            "sprite": 9
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "origin": "sprite:11",
+            "sector": 15,
+            "sprite": 11
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "origin": "sprite:109",
+            "sector": 15,
+            "sprite": 109
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:579",
+            "sector": 157,
+            "sprite": 579
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:large|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:580",
+            "sector": 157,
+            "sprite": 580
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:large|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:583",
+            "sector": 15,
+            "sprite": 583
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:large|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:584",
+            "sector": 15,
+            "sprite": 584
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:large|local:large|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:581",
+            "sector": 12,
+            "sprite": 581
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:1|area:small|local:large|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:582",
+            "sector": 13,
+            "sprite": 582
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:1|area:small|local:large|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "origin": "sprite:10",
+            "sector": 19,
+            "sprite": 10
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "origin": "sprite:47",
+            "sector": 19,
+            "sprite": 47
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:medium|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:586",
+            "sector": 4,
+            "sprite": 586
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:large|field:high|sight:high|peek:high"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "origin": "sprite:585",
+            "sector": 8,
+            "sprite": 585
+          },
+          "population": "blood-bloodbath",
+          "signature": "sky:1|hops:0|exits:3+|area:medium|local:small|field:high|sight:high|peek:high"
+        }
+      ],
+      "occurrence_count": 18,
+      "map_count": 4,
+      "maps": [
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "occurrences_truncated": false
+    },
+    {
+      "id": "pattern:route:all-sky-shortest-path",
+      "status": "supported",
+      "kind": "interpreted",
+      "scale": "route",
+      "subject": "route-exposure",
+      "population": "blood-bloodbath",
+      "match": {
+        "seq": "S",
+        "skyfrac": "high"
+      },
+      "signature": {
+        "seq": "S",
+        "skyfrac": "high"
+      },
+      "tags": [
+        "all-sky-route"
+      ],
+      "description": "Shortest at-rest path from a start to the largest sky sector never samples cover.",
+      "required_evidence": [
+        "route_exposure_report"
+      ],
+      "confidence": "medium",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "spawn-to-field shortest path stays under sky",
+        "rationale": "All eight BB6 routes and many BB8/BB9 routes. Also appears on BB1."
+      },
+      "counterexamples": [
+        {
+          "claim_rejected": "all-sky shortest path means the map has no interiors",
+          "why": "BB6 has 151 covered sectors and 11 holed outdoor loops; the route sensor only walks start\u2192largest sky",
+          "maps": [
+            "BB6.MAP"
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "hops": 4,
+            "origin": "sprite:7"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:flat|shade:brighter"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "hops": 4,
+            "origin": "sprite:9"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:flat|shade:brighter"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "hops": 2,
+            "origin": "sprite:11"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:flat|shade:brighter"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "hops": 2,
+            "origin": "sprite:108"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:flat|shade:brighter"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "hops": 4,
+            "origin": "sprite:7"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:flat|shade:brighter"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "hops": 4,
+            "origin": "sprite:9"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:flat|shade:brighter"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "hops": 2,
+            "origin": "sprite:11"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:flat|shade:brighter"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "hops": 2,
+            "origin": "sprite:109"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:flat|shade:brighter"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "hops": 2,
+            "origin": "sprite:14"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:storey|shade:darker"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "hops": 3,
+            "origin": "sprite:122"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:storey|shade:darker"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "hops": 2,
+            "origin": "sprite:125"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:storey|shade:darker"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "hops": 3,
+            "origin": "sprite:126"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:storey|shade:darker"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "hops": 3,
+            "origin": "sprite:10"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:storey|shade:flat"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "hops": 2,
+            "origin": "sprite:109"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:storey|shade:flat"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "hops": 3,
+            "origin": "sprite:10"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:storey|shade:flat"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "hops": 2,
+            "origin": "sprite:110"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:storey|shade:flat"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "hops": 1,
+            "origin": "sprite:9"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:1|skyfrac:high|z:storey|shade:darker"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "hops": 1,
+            "origin": "sprite:10"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:1|skyfrac:high|z:storey|shade:darker"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "hops": 1,
+            "origin": "sprite:47"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:1|skyfrac:high|z:storey|shade:darker"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "hops": 0,
+            "origin": "sprite:579"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:0|skyfrac:high|z:flat|shade:flat"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "hops": 0,
+            "origin": "sprite:580"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:0|skyfrac:high|z:flat|shade:flat"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "hops": 1,
+            "origin": "sprite:581"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:1|skyfrac:high|z:step|shade:brighter"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "hops": 1,
+            "origin": "sprite:585"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:1|skyfrac:high|z:step|shade:brighter"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "hops": 2,
+            "origin": "sprite:583"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:S|hops:2+|skyfrac:high|z:flat|shade:flat"
+        }
+      ],
+      "occurrence_count": 29,
+      "map_count": 6,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "occurrences_truncated": true
+    },
+    {
+      "id": "pattern:route:cover-then-open",
+      "status": "hypothesis",
+      "kind": "interpreted",
+      "scale": "route",
+      "subject": "route-exposure",
+      "population": "blood-bloodbath",
+      "match": {
+        "seq": "CS"
+      },
+      "signature": {
+        "seq": "CS"
+      },
+      "tags": [
+        "cover-to-open"
+      ],
+      "description": "Shortest path samples cover first, then sky.",
+      "required_evidence": [
+        "route_exposure_report"
+      ],
+      "confidence": "low",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "covered approach into open circulation",
+        "rationale": "Recurs on BB2, BB7, BB8, BB9. Shade/Z bins vary; geometry alone is not a reveal."
+      },
+      "counterexamples": [
+        {
+          "claim_rejected": "cover\u2192open is a dramatic reveal",
+          "why": "some CS routes are flat in Z and shade; they read as a doorway, not a staged reveal",
+          "maps": [
+            "BB1.MAP",
+            "BB8.MAP"
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "hops": 8,
+            "origin": "sprite:90"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:CS|hops:2+|skyfrac:mid|z:storey|shade:brighter"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "hops": 14,
+            "origin": "sprite:92"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:CS|hops:2+|skyfrac:mid|z:storey|shade:brighter"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "hops": 2,
+            "origin": "sprite:6"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:CS|hops:2+|skyfrac:mid|z:storey|shade:brighter"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "hops": 2,
+            "origin": "sprite:7"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:CS|hops:2+|skyfrac:mid|z:storey|shade:brighter"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "hops": 5,
+            "origin": "sprite:8"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:CS|hops:2+|skyfrac:mid|z:storey|shade:brighter"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "hops": 3,
+            "origin": "sprite:13"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:CS|hops:2+|skyfrac:mid|z:storey|shade:brighter"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "hops": 5,
+            "origin": "sprite:8"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:CS|hops:2+|skyfrac:mid|z:step|shade:brighter"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "hops": 7,
+            "origin": "sprite:107"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:CS|hops:2+|skyfrac:mid|z:step|shade:brighter"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "hops": 5,
+            "origin": "sprite:8"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:CS|hops:2+|skyfrac:mid|z:step|shade:brighter"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "hops": 7,
+            "origin": "sprite:108"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:CS|hops:2+|skyfrac:mid|z:step|shade:brighter"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "hops": 5,
+            "origin": "sprite:127"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:CS|hops:2+|skyfrac:mid|z:step|shade:flat"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "hops": 2,
+            "origin": "sprite:11"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:CS|hops:2+|skyfrac:mid|z:storey|shade:flat"
+        }
+      ],
+      "occurrence_count": 12,
+      "map_count": 5,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "occurrences_truncated": false
+    },
+    {
+      "id": "pattern:route:open-cover-open",
+      "status": "hypothesis",
+      "kind": "interpreted",
+      "scale": "route",
+      "subject": "route-exposure",
+      "population": "blood-bloodbath",
+      "match": {
+        "seq": "SCS"
+      },
+      "signature": {
+        "seq": "SCS"
+      },
+      "tags": [
+        "through-mass"
+      ],
+      "description": "Sky path interrupted by a covered sample, then sky again.",
+      "required_evidence": [
+        "route_exposure_report"
+      ],
+      "confidence": "low",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "outdoor circulation interrupted by a covered mass",
+        "rationale": "Appears on BB1 and BB2. Rare in the nine-map BloodBath set."
+      },
+      "counterexamples": [],
+      "occurrences": [
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "hops": 7,
+            "origin": "sprite:89"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:SCS|hops:2+|skyfrac:high|z:flat|shade:brighter"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "hops": 6,
+            "origin": "sprite:94"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:SCS|hops:2+|skyfrac:high|z:flat|shade:brighter"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "hops": 7,
+            "origin": "sprite:87"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:SCS|hops:2+|skyfrac:mid|z:flat|shade:brighter"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "hops": 7,
+            "origin": "sprite:121"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:SCS|hops:2+|skyfrac:mid|z:storey|shade:brighter"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "hops": 5,
+            "origin": "sprite:124"
+          },
+          "population": "blood-bloodbath",
+          "signature": "seq:SCS|hops:2+|skyfrac:mid|z:storey|shade:darker"
+        }
+      ],
+      "occurrence_count": 5,
+      "map_count": 2,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP"
+      ],
+      "occurrences_truncated": false
+    },
+    {
+      "id": "pattern:morph:rectangular-covered-cell",
+      "status": "disputed",
+      "kind": "interpreted",
+      "scale": "local",
+      "subject": "local-morphology",
+      "population": "blood-bloodbath",
+      "match": {
+        "rect": "1",
+        "convex": "1",
+        "verts": "4",
+        "sky": "0",
+        "holes": "0"
+      },
+      "signature": {
+        "rect": "1",
+        "convex": "1",
+        "verts": "4",
+        "sky": "0",
+        "holes": "0"
+      },
+      "tags": [
+        "orthogonal-cell",
+        "construction-default"
+      ],
+      "description": "Axis-aligned 4-vertex covered loop. The most common BloodBath local footprint.",
+      "required_evidence": [
+        "analyze_morphology"
+      ],
+      "confidence": "high",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "rectangular covered cell (too common to imply a gameplay role)",
+        "rationale": "202 samples on all 9 BB maps. Clustering geometry, not a reusable design relation."
+      },
+      "counterexamples": [
+        {
+          "claim_rejected": "a rectangle is a room type (arena, closet, hub)",
+          "why": "the same signature appears as storage, stairs, porches, and generic interiors",
+          "maps": [
+            "BB1.MAP",
+            "BB6.MAP"
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 15
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 18
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 21
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 30
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 31
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 32
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 33
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 37
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 45
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 46
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 47
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 51
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 52
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 53
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 54
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 57
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 73
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 80
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 82
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 83
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 84
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 86
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 94
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 100
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        }
+      ],
+      "occurrence_count": 202,
+      "map_count": 9,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB3.MAP",
+        "BB4.MAP",
+        "BB5.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "occurrences_truncated": true
+    },
+    {
+      "id": "pattern:morph:irregular-covered-footprint",
+      "status": "supported",
+      "kind": "interpreted",
+      "scale": "local",
+      "subject": "local-morphology",
+      "population": "blood-bloodbath",
+      "match": {
+        "rect": "0",
+        "verts": "9+",
+        "sky": "0",
+        "fill": "loose"
+      },
+      "signature": {
+        "rect": "0",
+        "verts": "9+",
+        "sky": "0",
+        "fill": "loose"
+      },
+      "tags": [
+        "irregular-footprint"
+      ],
+      "description": "Non-rectangular covered loop with 9+ vertices and loose AABB fill.",
+      "required_evidence": [
+        "analyze_morphology"
+      ],
+      "confidence": "medium",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "irregular covered footprint as Blood's indoor architectural grain",
+        "rationale": "Present on all 9 original BloodBath maps. Opposite of the rectangular default."
+      },
+      "counterexamples": [],
+      "occurrences": [
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 16
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 74
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 103
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 157
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 77
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 105
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 111
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 132
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 173
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB3.MAP",
+          "focus": {
+            "sector": 22
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB4.MAP",
+          "focus": {
+            "sector": 32
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB4.MAP",
+          "focus": {
+            "sector": 50
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB4.MAP",
+          "focus": {
+            "sector": 66
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB4.MAP",
+          "focus": {
+            "sector": 69
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 51
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 83
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sector": 28
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sector": 29
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sector": 30
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sector": 31
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sector": 32
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sector": 33
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sector": 79
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sector": 91
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        }
+      ],
+      "occurrence_count": 153,
+      "map_count": 9,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB3.MAP",
+        "BB4.MAP",
+        "BB5.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "occurrences_truncated": true
+    },
+    {
+      "id": "pattern:morph:chamfered-irregular",
+      "status": "supported",
+      "kind": "interpreted",
+      "scale": "local",
+      "subject": "local-morphology",
+      "population": "blood-bloodbath",
+      "match": {
+        "chamfer": "1+",
+        "verts": "9+",
+        "sky": "0"
+      },
+      "signature": {
+        "chamfer": "1+",
+        "verts": "9+",
+        "sky": "0"
+      },
+      "tags": [
+        "chamfer"
+      ],
+      "description": "High-vertex covered loop with chamfer-like corners.",
+      "required_evidence": [
+        "analyze_morphology"
+      ],
+      "confidence": "medium",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "chamfered irregular indoor mass",
+        "rationale": "Eight of nine BloodBath maps. A local wall-chain motif, not a named room."
+      },
+      "counterexamples": [],
+      "occurrences": [
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 85
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 112
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 128
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 138
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 139
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 141
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 159
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 83
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 124
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 130
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 133
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 160
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 175
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB3.MAP",
+          "focus": {
+            "sector": 13
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB3.MAP",
+          "focus": {
+            "sector": 40
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB3.MAP",
+          "focus": {
+            "sector": 45
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB3.MAP",
+          "focus": {
+            "sector": 47
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB4.MAP",
+          "focus": {
+            "sector": 33
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB4.MAP",
+          "focus": {
+            "sector": 36
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB4.MAP",
+          "focus": {
+            "sector": 52
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB4.MAP",
+          "focus": {
+            "sector": 68
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 108
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 113
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 115
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:0|fill:loose|sky:0|holes:0"
+        }
+      ],
+      "occurrence_count": 107,
+      "map_count": 9,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB3.MAP",
+        "BB4.MAP",
+        "BB5.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "occurrences_truncated": true
+    },
+    {
+      "id": "pattern:morph:segmented-curve-chain",
+      "status": "supported",
+      "kind": "interpreted",
+      "scale": "local",
+      "subject": "local-morphology",
+      "population": "blood-bloodbath",
+      "match": {
+        "curve": "1+",
+        "sky": "0"
+      },
+      "signature": {
+        "curve": "1+",
+        "sky": "0"
+      },
+      "tags": [
+        "segmented-curve"
+      ],
+      "description": "Covered loop containing a segmented-arc / curved-chain candidate.",
+      "required_evidence": [
+        "analyze_morphology"
+      ],
+      "confidence": "medium",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "segmented curve as a local masonry motif",
+        "rationale": "Six BloodBath maps. Distinct from chamfers and from pure rectangles."
+      },
+      "counterexamples": [],
+      "occurrences": [
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 22
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 23
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 24
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 107
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 91
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 92
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB4.MAP",
+          "focus": {
+            "sector": 27
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB4.MAP",
+          "focus": {
+            "sector": 28
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB4.MAP",
+          "focus": {
+            "sector": 30
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB4.MAP",
+          "focus": {
+            "sector": 31
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB4.MAP",
+          "focus": {
+            "sector": 35
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB4.MAP",
+          "focus": {
+            "sector": 40
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 39
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 42
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 43
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 45
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 54
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 60
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 61
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 63
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 66
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 70
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 71
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "BB5.MAP",
+          "focus": {
+            "sector": 76
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:0|holes:0"
+        }
+      ],
+      "occurrence_count": 131,
+      "map_count": 8,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB3.MAP",
+        "BB4.MAP",
+        "BB5.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP"
+      ],
+      "occurrences_truncated": true
+    },
+    {
+      "id": "pattern:morph:sky-host-with-holes",
+      "status": "supported",
+      "kind": "interpreted",
+      "scale": "local",
+      "subject": "local-morphology",
+      "population": "blood-bloodbath",
+      "match": {
+        "sky": "1",
+        "holes": "1+"
+      },
+      "signature": {
+        "sky": "1",
+        "holes": "1+"
+      },
+      "tags": [
+        "carved-mass",
+        "outdoor-host"
+      ],
+      "description": "Sky sector whose outer loop contains one or more holes.",
+      "required_evidence": [
+        "analyze_morphology"
+      ],
+      "confidence": "medium",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "outdoor host with carved building masses",
+        "rationale": "BB6 has multiple holed sky loops; this is the footprint relation behind twin fortresses, not 'octagon'."
+      },
+      "counterexamples": [],
+      "occurrences": [
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sector": 15
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:1|holes:1+"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "sector": 4
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:1|holes:1+"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "sector": 4
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:loose|sky:1|holes:1+"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 44
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:1+|fill:loose|sky:1|holes:1+"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 63
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:1+|fill:loose|sky:1|holes:1+"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sector": 157
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:1+|curve:1+|fill:loose|sky:1|holes:1+"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 64
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:boxy|sky:1|holes:1+"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 65
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:1+|fill:boxy|sky:1|holes:1+"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sector": 58
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:1|verts:4|chamfer:0|curve:0|fill:loose|sky:1|holes:1+"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 63
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:0|convex:1|verts:9+|chamfer:0|curve:1+|fill:boxy|sky:1|holes:1+"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sector": 61
+          },
+          "population": "blood-bloodbath",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:1|holes:1+"
+        }
+      ],
+      "occurrence_count": 11,
+      "map_count": 5,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB6.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "occurrences_truncated": false
+    },
+    {
+      "id": "pattern:vertical:storey-same-cover-into-larger",
+      "status": "hypothesis",
+      "kind": "interpreted",
+      "scale": "route",
+      "subject": "vertical-transition",
+      "population": "blood-bloodbath",
+      "match": {
+        "step": "storey",
+        "sky": "same",
+        "into": "large"
+      },
+      "signature": {
+        "step": "storey",
+        "sky": "same",
+        "into": "large"
+      },
+      "tags": [
+        "height-change"
+      ],
+      "description": "Walkable rest transition of about a storey within the same sky/cover class into a larger cell.",
+      "required_evidence": [
+        "spatial.traversability"
+      ],
+      "confidence": "low",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "storey-scale height change into a larger same-cover cell",
+        "rationale": "The single most common vertical signature on all 9 BB maps. Too frequent to mean 'overlook'."
+      },
+      "counterexamples": [
+        {
+          "claim_rejected": "a storey delta is an overlook / sniper balcony",
+          "why": "most samples are ordinary stairs or floor splits with no visibility or resource context",
+          "maps": [
+            "BB1.MAP",
+            "BB6.MAP"
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              0,
+              11
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              0,
+              11
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              3,
+              44
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              4,
+              8
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              4,
+              8
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              4,
+              8
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              5,
+              8
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              5,
+              8
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              5,
+              8
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              5,
+              8
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              2,
+              15
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              3,
+              8
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              3,
+              15
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              24,
+              165
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              24,
+              165
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              25,
+              165
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              26,
+              165
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              30,
+              43
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              31,
+              43
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              31,
+              43
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              47,
+              62
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              47,
+              62
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              48,
+              74
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              48,
+              60
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        }
+      ],
+      "occurrence_count": 242,
+      "map_count": 9,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB3.MAP",
+        "BB4.MAP",
+        "BB5.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "occurrences_truncated": true
+    },
+    {
+      "id": "pattern:vertical:open-into-cover",
+      "status": "supported",
+      "kind": "interpreted",
+      "scale": "route",
+      "subject": "vertical-transition",
+      "population": "blood-bloodbath",
+      "match": {
+        "sky": "open_to_cover"
+      },
+      "signature": {
+        "sky": "open_to_cover"
+      },
+      "tags": [
+        "enter-building"
+      ],
+      "description": "Walkable transition from a sky sector into a covered sector.",
+      "required_evidence": [
+        "spatial.traversability",
+        "ceiling_stat"
+      ],
+      "confidence": "medium",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "leaving outdoor circulation into a covered mass",
+        "rationale": "Rarer than same-sky steps. BB1, BB6, BB7. Often a descent on BB6."
+      },
+      "counterexamples": [],
+      "occurrences": [
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              3,
+              35
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              15,
+              100
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              15,
+              33
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              15,
+              33
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              15,
+              33
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              15,
+              33
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              15,
+              38
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              157,
+              158
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "sectors": [
+              19,
+              29
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "sectors": [
+              19,
+              29
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "sectors": [
+              19,
+              30
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "sectors": [
+              19,
+              30
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              6,
+              81
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              15,
+              98
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "sectors": [
+              12,
+              21
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "sectors": [
+              12,
+              53
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "sectors": [
+              12,
+              21
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "sectors": [
+              12,
+              53
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:open_to_cover|shade:darker|into:small"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              11,
+              16
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:open_to_cover|shade:flat|into:small"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "sectors": [
+              15,
+              52
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:open_to_cover|shade:flat|into:small"
+        },
+        {
+          "map": "BB8.MAP",
+          "focus": {
+            "sectors": [
+              15,
+              22
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:open_to_cover|shade:flat|into:small"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "sectors": [
+              15,
+              52
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:open_to_cover|shade:flat|into:small"
+        },
+        {
+          "map": "BB9.MAP",
+          "focus": {
+            "sectors": [
+              15,
+              22
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:open_to_cover|shade:flat|into:small"
+        },
+        {
+          "map": "BB7.MAP",
+          "focus": {
+            "sectors": [
+              16,
+              33
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:open_to_cover|shade:darker|into:medium"
+        }
+      ],
+      "occurrence_count": 29,
+      "map_count": 5,
+      "maps": [
+        "BB1.MAP",
+        "BB6.MAP",
+        "BB7.MAP",
+        "BB8.MAP",
+        "BB9.MAP"
+      ],
+      "occurrences_truncated": true
+    },
+    {
+      "id": "pattern:vertical:cover-into-open",
+      "status": "supported",
+      "kind": "interpreted",
+      "scale": "route",
+      "subject": "vertical-transition",
+      "population": "blood-bloodbath",
+      "match": {
+        "sky": "cover_to_open"
+      },
+      "signature": {
+        "sky": "cover_to_open"
+      },
+      "tags": [
+        "exit-building"
+      ],
+      "description": "Walkable transition from cover into sky.",
+      "required_evidence": [
+        "spatial.traversability",
+        "ceiling_stat"
+      ],
+      "confidence": "medium",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "emerging from a covered mass into outdoor circulation",
+        "rationale": "The reverse of open-into-cover. Needs route/resource context before calling it a reveal."
+      },
+      "counterexamples": [],
+      "occurrences": [
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              23,
+              165
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:cover_to_open|shade:brighter|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              53,
+              165
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:cover_to_open|shade:brighter|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              57,
+              62
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:cover_to_open|shade:brighter|into:large"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              28,
+              157
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:cover_to_open|shade:brighter|into:large"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              28,
+              157
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:cover_to_open|shade:brighter|into:large"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              28,
+              157
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:cover_to_open|shade:brighter|into:large"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              28,
+              157
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:cover_to_open|shade:brighter|into:large"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              35,
+              157
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:cover_to_open|shade:brighter|into:large"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              36,
+              157
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:cover_to_open|shade:brighter|into:large"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              51,
+              65
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:cover_to_open|shade:brighter|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              4,
+              11
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:cover_to_open|shade:brighter|into:large"
+        },
+        {
+          "map": "BB6.MAP",
+          "focus": {
+            "sectors": [
+              34,
+              157
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:cover_to_open|shade:brighter|into:large"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              83,
+              99
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:cover_to_open|shade:brighter|into:small"
+        },
+        {
+          "map": "BB1.MAP",
+          "focus": {
+            "sectors": [
+              57,
+              69
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:step|sky:cover_to_open|shade:flat|into:large"
+        },
+        {
+          "map": "BB2.MAP",
+          "focus": {
+            "sectors": [
+              59,
+              60
+            ],
+            "wall": null
+          },
+          "population": "blood-bloodbath",
+          "signature": "step:storey|sky:cover_to_open|shade:flat|into:large"
+        }
+      ],
+      "occurrence_count": 15,
+      "map_count": 3,
+      "maps": [
+        "BB1.MAP",
+        "BB2.MAP",
+        "BB6.MAP"
+      ],
+      "occurrences_truncated": false
+    },
+    {
+      "id": "pattern:campaign-route:cover-then-open",
+      "status": "supported",
+      "kind": "interpreted",
+      "scale": "route",
+      "subject": "route-exposure",
+      "population": "blood-campaign",
+      "match": {
+        "seq": "CS"
+      },
+      "signature": {
+        "seq": "CS"
+      },
+      "tags": [
+        "cover-to-open",
+        "campaign-start"
+      ],
+      "description": "Campaign start-to-sky shortest path samples cover first, then sky.",
+      "required_evidence": [
+        "route_exposure_report"
+      ],
+      "confidence": "medium",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "single-player start typically approaches outdoor space from cover",
+        "rationale": "Dominant unsigned campaign route family (many E* maps). Not mixed with BloodBath statistics; BB6 is the opposite (all-sky shortest paths)."
+      },
+      "counterexamples": [
+        {
+          "claim_rejected": "Blood maps generally spawn into outdoor hunting space",
+          "why": "original campaign routes are mostly CS; original BloodBath BB6 is all-sky",
+          "maps": [
+            "E1M3.MAP",
+            "BB6.MAP"
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "hops": 10,
+            "origin": "sprite:383"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "hops": 12,
+            "origin": "sprite:384"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "hops": 8,
+            "origin": "sprite:388"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E1M6.MAP",
+          "focus": {
+            "hops": 47,
+            "origin": "sprite:387"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E1M6.MAP",
+          "focus": {
+            "hops": 47,
+            "origin": "sprite:388"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E1M6.MAP",
+          "focus": {
+            "hops": 45,
+            "origin": "sprite:389"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E1M6.MAP",
+          "focus": {
+            "hops": 47,
+            "origin": "sprite:390"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E1M6.MAP",
+          "focus": {
+            "hops": 47,
+            "origin": "sprite:391"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E1M6.MAP",
+          "focus": {
+            "hops": 35,
+            "origin": "sprite:943"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E1M6.MAP",
+          "focus": {
+            "hops": 26,
+            "origin": "sprite:950"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E1M6.MAP",
+          "focus": {
+            "hops": 30,
+            "origin": "sprite:951"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E1M6.MAP",
+          "focus": {
+            "hops": 15,
+            "origin": "sprite:957"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E2M5.MAP",
+          "focus": {
+            "hops": 18,
+            "origin": "sprite:1131"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E3M1.MAP",
+          "focus": {
+            "hops": 19,
+            "origin": "sprite:484"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E3M1.MAP",
+          "focus": {
+            "hops": 19,
+            "origin": "sprite:486"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E3M5.MAP",
+          "focus": {
+            "hops": 36,
+            "origin": "sprite:124"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E3M5.MAP",
+          "focus": {
+            "hops": 30,
+            "origin": "sprite:127"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E3M5.MAP",
+          "focus": {
+            "hops": 22,
+            "origin": "sprite:128"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E3M5.MAP",
+          "focus": {
+            "hops": 38,
+            "origin": "sprite:131"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E3M6.MAP",
+          "focus": {
+            "hops": 29,
+            "origin": "sprite:162"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E3M6.MAP",
+          "focus": {
+            "hops": 29,
+            "origin": "sprite:163"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E3M6.MAP",
+          "focus": {
+            "hops": 28,
+            "origin": "sprite:164"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E3M6.MAP",
+          "focus": {
+            "hops": 30,
+            "origin": "sprite:165"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        },
+        {
+          "map": "E3M6.MAP",
+          "focus": {
+            "hops": 29,
+            "origin": "sprite:166"
+          },
+          "population": "blood-campaign",
+          "signature": "seq:CS|hops:2+|skyfrac:low|z:storey|shade:brighter"
+        }
+      ],
+      "occurrence_count": 169,
+      "map_count": 27,
+      "maps": [
+        "E1M2.MAP",
+        "E1M3.MAP",
+        "E1M5.MAP",
+        "E1M6.MAP",
+        "E1M7.MAP",
+        "E2M1.MAP",
+        "E2M2.MAP",
+        "E2M3.MAP",
+        "E2M4.MAP",
+        "E2M5.MAP",
+        "E2M6.MAP",
+        "E2M9.MAP",
+        "E3M1.MAP",
+        "E3M5.MAP",
+        "E3M6.MAP",
+        "E3M8.MAP",
+        "E4M1.MAP",
+        "E4M2.MAP",
+        "E4M3.MAP",
+        "E4M5.MAP",
+        "E6M1.MAP",
+        "E6M2.MAP",
+        "E6M3.MAP",
+        "E6M4.MAP",
+        "E6M5.MAP",
+        "E6M6.MAP",
+        "E6M8.MAP"
+      ],
+      "occurrences_truncated": true
+    },
+    {
+      "id": "pattern:campaign-morph:rectangular-covered-cell",
+      "status": "disputed",
+      "kind": "interpreted",
+      "scale": "local",
+      "subject": "local-morphology",
+      "population": "blood-campaign",
+      "match": {
+        "rect": "1",
+        "convex": "1",
+        "verts": "4",
+        "sky": "0",
+        "holes": "0"
+      },
+      "signature": {
+        "rect": "1",
+        "convex": "1",
+        "verts": "4",
+        "sky": "0",
+        "holes": "0"
+      },
+      "tags": [
+        "orthogonal-cell",
+        "construction-default"
+      ],
+      "description": "Axis-aligned 4-vertex covered loop. The modal campaign footprint.",
+      "required_evidence": [
+        "analyze_morphology"
+      ],
+      "confidence": "high",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "rectangular covered cell (campaign construction default)",
+        "rationale": "3495 samples on 42 campaign maps. Same signature as BloodBath; still not a room role."
+      },
+      "counterexamples": [],
+      "occurrences": [
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 9
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 22
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 23
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 28
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 30
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 31
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 33
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 34
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 39
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 40
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 46
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 47
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 48
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 49
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 52
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 53
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 57
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 60
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 69
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 70
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 79
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 95
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 96
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 97
+          },
+          "population": "blood-campaign",
+          "signature": "rect:1|convex:1|verts:4|chamfer:0|curve:0|fill:boxy|sky:0|holes:0"
+        }
+      ],
+      "occurrence_count": 3495,
+      "map_count": 42,
+      "maps": [
+        "E1M1.MAP",
+        "E1M2.MAP",
+        "E1M3.MAP",
+        "E1M4.MAP",
+        "E1M5.MAP",
+        "E1M6.MAP",
+        "E1M7.MAP",
+        "E1M8.MAP",
+        "E2M1.MAP",
+        "E2M2.MAP",
+        "E2M3.MAP",
+        "E2M4.MAP",
+        "E2M5.MAP",
+        "E2M6.MAP",
+        "E2M7.MAP",
+        "E2M8.MAP",
+        "E2M9.MAP",
+        "E3M1.MAP",
+        "E3M2.MAP",
+        "E3M3.MAP",
+        "E3M4.MAP",
+        "E3M5.MAP",
+        "E3M6.MAP",
+        "E3M7.MAP",
+        "E3M8.MAP",
+        "E4M1.MAP",
+        "E4M2.MAP",
+        "E4M3.MAP",
+        "E4M4.MAP",
+        "E4M5.MAP",
+        "E4M6.MAP",
+        "E4M7.MAP",
+        "E4M8.MAP",
+        "E4M9.MAP",
+        "E6M1.MAP",
+        "E6M2.MAP",
+        "E6M3.MAP",
+        "E6M4.MAP",
+        "E6M5.MAP",
+        "E6M6.MAP",
+        "E6M8.MAP",
+        "E6M9.MAP"
+      ],
+      "occurrences_truncated": true
+    },
+    {
+      "id": "pattern:campaign-morph:irregular-covered-footprint",
+      "status": "supported",
+      "kind": "interpreted",
+      "scale": "local",
+      "subject": "local-morphology",
+      "population": "blood-campaign",
+      "match": {
+        "rect": "0",
+        "verts": "9+",
+        "sky": "0",
+        "fill": "loose"
+      },
+      "signature": {
+        "rect": "0",
+        "verts": "9+",
+        "sky": "0",
+        "fill": "loose"
+      },
+      "tags": [
+        "irregular-footprint"
+      ],
+      "description": "Non-rectangular covered 9+ vertex loops with loose AABB fill in campaign maps.",
+      "required_evidence": [
+        "analyze_morphology"
+      ],
+      "confidence": "medium",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "irregular covered footprint in original campaign architecture",
+        "rationale": "Same relation as BloodBath, independently counted on E* maps."
+      },
+      "counterexamples": [],
+      "occurrences": [
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 4
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 63
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 94
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 103
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 106
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 117
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sector": 132
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sector": 0
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sector": 1
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sector": 80
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sector": 149
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sector": 249
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sector": 285
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sector": 297
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sector": 20
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sector": 21
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sector": 23
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sector": 24
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sector": 46
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sector": 74
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sector": 76
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sector": 77
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sector": 78
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sector": 79
+          },
+          "population": "blood-campaign",
+          "signature": "rect:0|convex:0|verts:9+|chamfer:0|curve:0|fill:loose|sky:0|holes:0"
+        }
+      ],
+      "occurrence_count": 1431,
+      "map_count": 42,
+      "maps": [
+        "E1M1.MAP",
+        "E1M2.MAP",
+        "E1M3.MAP",
+        "E1M4.MAP",
+        "E1M5.MAP",
+        "E1M6.MAP",
+        "E1M7.MAP",
+        "E1M8.MAP",
+        "E2M1.MAP",
+        "E2M2.MAP",
+        "E2M3.MAP",
+        "E2M4.MAP",
+        "E2M5.MAP",
+        "E2M6.MAP",
+        "E2M7.MAP",
+        "E2M8.MAP",
+        "E2M9.MAP",
+        "E3M1.MAP",
+        "E3M2.MAP",
+        "E3M3.MAP",
+        "E3M4.MAP",
+        "E3M5.MAP",
+        "E3M6.MAP",
+        "E3M7.MAP",
+        "E3M8.MAP",
+        "E4M1.MAP",
+        "E4M2.MAP",
+        "E4M3.MAP",
+        "E4M4.MAP",
+        "E4M5.MAP",
+        "E4M6.MAP",
+        "E4M7.MAP",
+        "E4M8.MAP",
+        "E4M9.MAP",
+        "E6M1.MAP",
+        "E6M2.MAP",
+        "E6M3.MAP",
+        "E6M4.MAP",
+        "E6M5.MAP",
+        "E6M6.MAP",
+        "E6M8.MAP",
+        "E6M9.MAP"
+      ],
+      "occurrences_truncated": true
+    },
+    {
+      "id": "pattern:campaign-vertical:storey-same-cover-into-larger",
+      "status": "hypothesis",
+      "kind": "interpreted",
+      "scale": "route",
+      "subject": "vertical-transition",
+      "population": "blood-campaign",
+      "match": {
+        "step": "storey",
+        "sky": "same",
+        "into": "large"
+      },
+      "signature": {
+        "step": "storey",
+        "sky": "same",
+        "into": "large"
+      },
+      "tags": [
+        "height-change"
+      ],
+      "description": "Campaign storey-scale rest transitions within the same sky/cover class into a larger cell.",
+      "required_evidence": [
+        "spatial.traversability"
+      ],
+      "confidence": "low",
+      "interpretation": {
+        "status": "INTERPRETED",
+        "label": "storey height change into a larger same-cover cell (campaign)",
+        "rationale": "Very common; still insufficient for 'overlook' without visibility/resource context."
+      },
+      "counterexamples": [],
+      "occurrences": [
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sectors": [
+              43,
+              61
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sectors": [
+              43,
+              61
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sectors": [
+              47,
+              122
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sectors": [
+              48,
+              122
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sectors": [
+              64,
+              120
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M1.MAP",
+          "focus": {
+            "sectors": [
+              89,
+              132
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sectors": [
+              9,
+              34
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sectors": [
+              12,
+              14
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sectors": [
+              12,
+              14
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sectors": [
+              12,
+              14
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sectors": [
+              12,
+              14
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sectors": [
+              13,
+              14
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sectors": [
+              13,
+              14
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sectors": [
+              13,
+              14
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sectors": [
+              13,
+              14
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sectors": [
+              105,
+              271
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sectors": [
+              105,
+              271
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sectors": [
+              105,
+              271
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M2.MAP",
+          "focus": {
+            "sectors": [
+              261,
+              268
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sectors": [
+              61,
+              75
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sectors": [
+              61,
+              75
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sectors": [
+              61,
+              288
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sectors": [
+              63,
+              285
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        },
+        {
+          "map": "E1M3.MAP",
+          "focus": {
+            "sectors": [
+              63,
+              285
+            ],
+            "wall": null
+          },
+          "population": "blood-campaign",
+          "signature": "step:storey|sky:same|shade:darker|into:large"
+        }
+      ],
+      "occurrence_count": 2296,
+      "map_count": 40,
+      "maps": [
+        "E1M1.MAP",
+        "E1M2.MAP",
+        "E1M3.MAP",
+        "E1M4.MAP",
+        "E1M5.MAP",
+        "E1M6.MAP",
+        "E1M7.MAP",
+        "E1M8.MAP",
+        "E2M1.MAP",
+        "E2M2.MAP",
+        "E2M3.MAP",
+        "E2M4.MAP",
+        "E2M5.MAP",
+        "E2M6.MAP",
+        "E2M7.MAP",
+        "E2M9.MAP",
+        "E3M1.MAP",
+        "E3M2.MAP",
+        "E3M3.MAP",
+        "E3M4.MAP",
+        "E3M5.MAP",
+        "E3M6.MAP",
+        "E3M7.MAP",
+        "E3M8.MAP",
+        "E4M1.MAP",
+        "E4M2.MAP",
+        "E4M3.MAP",
+        "E4M4.MAP",
+        "E4M5.MAP",
+        "E4M6.MAP",
+        "E4M7.MAP",
+        "E4M9.MAP",
+        "E6M1.MAP",
+        "E6M2.MAP",
+        "E6M3.MAP",
+        "E6M4.MAP",
+        "E6M5.MAP",
+        "E6M6.MAP",
+        "E6M8.MAP",
+        "E6M9.MAP"
+      ],
+      "occurrences_truncated": true
+    }
+  ],
+  "medians": {
+    "local_area": 370.1511,
+    "spawn_area": 126.6667
+  },
+  "pattern_count": 20,
+  "supported": 12,
+  "disputed": 3,
+  "hypothesis": 5
+}

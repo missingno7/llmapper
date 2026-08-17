@@ -313,10 +313,10 @@ class TestDesignContract(unittest.TestCase):
         evaluation = evaluate_contract(
             contract,
             {"transition_test": probe_result},
+            build=build,
         )
         self.assertEqual(evaluation.overall_status, "pass")
 
-    @unittest.expectedFailure
     def test_contract_does_not_pass_on_self_certified_assertion_parameters(self):
         from tests.helpers import synthetic_map
 
@@ -337,10 +337,11 @@ class TestDesignContract(unittest.TestCase):
             expected=True,
             exit_reachable=True,
         )
-        evaluation = evaluate_contract(contract, {})
+        evaluation = evaluate_contract(contract, {}, disk=disk)
         statuses = [item["status"] for item in evaluation.hard_assertion_results]
         self.assertNotIn("pass", statuses)
         self.assertNotEqual(evaluation.overall_status, "pass")
+        self.assertTrue(evaluation.blocking_hard_failures())
 
 
 class TestCounterfactualEvaluation(unittest.TestCase):

@@ -114,7 +114,22 @@ python -m bloodmap attach maps/blood/E1M2.MAP work/fragment.json \
   --destination-wall 120 --fragment-wall 3 -o work/attached.MAP
 python -m bloodmap design-first-room --report work/first-room.json \
   -o work/first-puzzle-room.MAP
+python -m bloodmap design-bb2-v3 --report reports/BB2-v3-build-report.json \
+  -o work/BB2-semantic-reconstruction-v3.MAP
+python -m bloodmap geometry-audit work/BB2-semantic-reconstruction-v2.MAP \
+  --markdown reports/BB2-v2-geometry-audit.md
+python -m bloodmap pattern-mine --maps maps/blood --population blood-bloodbath \
+  -o work/blood-pattern-unsigned-bloodbath.json
+python -m bloodmap understand maps/blood/BB6.MAP --multiplayer-only \
+  --patterns knowledge/blood/design/catalog-v1.json \
+  -o reports/BB6-understanding.json
 ```
+
+See [authored-geometry.md](authored-geometry.md) for the planar compiler and
+strict authored-geometry gate. `geometry-audit` on a frozen MAP is fail-closed
+without blueprint declarations; compile-time validation passes the declared
+water/partition/gated specials. Quality-diversity search is a second-order layer
+and may only archive candidates that pass that gate.
 
 Independent local engine load checks are optional:
 
@@ -144,8 +159,17 @@ python -m unittest discover -s tests -v
 - [Player-relative spatial presentation](docs/player-space.md)
 - [Material evidence and discovered annotation](docs/materials.md)
 - [Map understanding sensors (types, contents, sight, exposure, morphology)](docs/map-understanding.md)
+- [Design-pattern discovery](docs/design-pattern-discovery.md)
+- [Authored planar geometry](docs/authored-geometry.md)
+- [Scratch construction](docs/construction.md)
+- [Object placement and spatial anchors](docs/object-placement.md)
+- [Single-player understanding](docs/single-player-understanding.md)
 - [BB2 deathmatch understanding experiment](reports/BB2-understanding.md)
 - [BB2 semantic roundtrip](reports/BB2-semantic-roundtrip.md)
+- [BB6 pattern-aware understanding](reports/BB6-understanding.md)
+- [BB6 semantic roundtrip](reports/BB6-semantic-roundtrip.md)
+- [E2M2 single-player understanding](reports/E2M2-understanding.md)
+- [SP-progression-v1 independent understanding](reports/SP-progression-v1-understanding.md)
 - [Blood material ontology discovery](docs/materials-discovery.md)
 - [Duke3D v7 format support](docs/duke3d.md)
 - [Cross-game normalization and conversion](docs/conversion.md)

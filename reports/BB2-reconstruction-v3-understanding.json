@@ -1,0 +1,1878 @@
+{
+  "$schema": "llmapper.map-understanding",
+  "aabb_player_widths": [
+    88.0,
+    62.0
+  ],
+  "ceiling_z": {
+    "covered": [
+      -25600,
+      -24576,
+      8192
+    ],
+    "sky": [
+      -104448
+    ]
+  },
+  "floor_z": {
+    "covered": [
+      8192,
+      53248
+    ],
+    "sky": [
+      8192
+    ]
+  },
+  "header": {
+    "sky_bits": 0,
+    "sky_type": 0,
+    "visibility": 800
+  },
+  "indoor_multiplayer_starts": 3,
+  "kind": "derived",
+  "limitations": [
+    "2D sight ignores height, sprites, and lighting",
+    "prose interpretation is not generated here",
+    "this packet must be frozen before reading a target description"
+  ],
+  "map": "work/BB2-semantic-reconstruction-v3.MAP",
+  "markers": [
+    {
+      "angle": 0,
+      "category": "marker",
+      "known": true,
+      "picnum": 0,
+      "ref": "sprite:9",
+      "sector": 14,
+      "status": 0,
+      "type_id": 9,
+      "type_name": "kMarkerUpWater",
+      "x": 9216,
+      "xsprite": {
+        "busy_time": 0,
+        "command": 0,
+        "command_name": "kCmdOff",
+        "data_1": 7,
+        "data_2": 0,
+        "data_3": 0,
+        "data_4": 0,
+        "rx_id": 0,
+        "state": 0,
+        "triggers": [],
+        "tx_id": 0,
+        "wait_time": 0
+      },
+      "y": 11392,
+      "z": 8192
+    },
+    {
+      "angle": 0,
+      "category": "marker",
+      "known": true,
+      "picnum": 0,
+      "ref": "sprite:10",
+      "sector": 15,
+      "status": 0,
+      "type_id": 10,
+      "type_name": "kMarkerLowWater",
+      "x": 9216,
+      "xsprite": {
+        "busy_time": 0,
+        "command": 0,
+        "command_name": "kCmdOff",
+        "data_1": 7,
+        "data_2": 0,
+        "data_3": 0,
+        "data_4": 0,
+        "rx_id": 0,
+        "state": 0,
+        "triggers": [],
+        "tx_id": 0,
+        "wait_time": 0
+      },
+      "y": 11392,
+      "z": 10240
+    }
+  ],
+  "mechanisms": {
+    "notes": [
+      "kSectorZMotion interpolates floor/ceiling between off_*_z and on_*_z",
+      "kSectorSlideMarked / kSectorRotate use marker sprites 3/4/5",
+      "Ambient SFX (type 710) is processed by asound.cpp on kStatAmbience",
+      "This listing does not execute busy-time motion"
+    ],
+    "sectors": [
+      {
+        "category": "motion",
+        "ceiling_picnum": 104,
+        "ceiling_z": 8192,
+        "floor_picnum": 104,
+        "floor_z": 8192,
+        "known": true,
+        "parallax_ceiling": false,
+        "parallax_floor": false,
+        "ref": "sector:7",
+        "type_id": 600,
+        "type_name": "kSectorZMotion",
+        "xsector": {
+          "bob_always": 0,
+          "bob_z_range": 0,
+          "busy": 0,
+          "busy_time_a": 5,
+          "busy_time_b": 5,
+          "ceiling_z_delta": -33792,
+          "command": 0,
+          "command_name": "kCmdOff",
+          "crush": 0,
+          "damage_type": 0,
+          "depth": 0,
+          "floor_z_delta": 0,
+          "key": 0,
+          "locked": 0,
+          "marker_0": -1,
+          "marker_1": -1,
+          "off_ceiling_z": 8192,
+          "off_floor_z": 8192,
+          "on_ceiling_z": -25600,
+          "on_floor_z": 8192,
+          "rx_id": 100,
+          "state": 0,
+          "triggers": [],
+          "tx_id": 0,
+          "underwater": 0,
+          "wait_time_a": 0,
+          "wait_time_b": 0,
+          "wind_always": 0,
+          "wind_velocity": 0
+        }
+      },
+      {
+        "category": "motion",
+        "ceiling_picnum": 104,
+        "ceiling_z": 8192,
+        "floor_picnum": 104,
+        "floor_z": 8192,
+        "known": true,
+        "parallax_ceiling": false,
+        "parallax_floor": false,
+        "ref": "sector:9",
+        "type_id": 600,
+        "type_name": "kSectorZMotion",
+        "xsector": {
+          "bob_always": 0,
+          "bob_z_range": 0,
+          "busy": 0,
+          "busy_time_a": 5,
+          "busy_time_b": 5,
+          "ceiling_z_delta": -33792,
+          "command": 0,
+          "command_name": "kCmdOff",
+          "crush": 0,
+          "damage_type": 0,
+          "depth": 0,
+          "floor_z_delta": 0,
+          "key": 0,
+          "locked": 0,
+          "marker_0": -1,
+          "marker_1": -1,
+          "off_ceiling_z": 8192,
+          "off_floor_z": 8192,
+          "on_ceiling_z": -25600,
+          "on_floor_z": 8192,
+          "rx_id": 101,
+          "state": 0,
+          "triggers": [],
+          "tx_id": 0,
+          "underwater": 0,
+          "wait_time_a": 0,
+          "wait_time_b": 0,
+          "wind_always": 0,
+          "wind_velocity": 0
+        }
+      },
+      {
+        "category": "motion",
+        "ceiling_picnum": 104,
+        "ceiling_z": 8192,
+        "floor_picnum": 104,
+        "floor_z": 8192,
+        "known": true,
+        "parallax_ceiling": false,
+        "parallax_floor": false,
+        "ref": "sector:12",
+        "type_id": 600,
+        "type_name": "kSectorZMotion",
+        "xsector": {
+          "bob_always": 0,
+          "bob_z_range": 0,
+          "busy": 0,
+          "busy_time_a": 5,
+          "busy_time_b": 5,
+          "ceiling_z_delta": -33792,
+          "command": 0,
+          "command_name": "kCmdOff",
+          "crush": 0,
+          "damage_type": 0,
+          "depth": 0,
+          "floor_z_delta": 0,
+          "key": 0,
+          "locked": 0,
+          "marker_0": -1,
+          "marker_1": -1,
+          "off_ceiling_z": 8192,
+          "off_floor_z": 8192,
+          "on_ceiling_z": -25600,
+          "on_floor_z": 8192,
+          "rx_id": 102,
+          "state": 0,
+          "triggers": [],
+          "tx_id": 0,
+          "underwater": 0,
+          "wait_time_a": 0,
+          "wait_time_b": 0,
+          "wind_always": 0,
+          "wind_velocity": 0
+        }
+      },
+      {
+        "category": "plain",
+        "ceiling_picnum": 90,
+        "ceiling_z": 8192,
+        "floor_picnum": 90,
+        "floor_z": 53248,
+        "known": true,
+        "parallax_ceiling": false,
+        "parallax_floor": false,
+        "ref": "sector:15",
+        "type_id": 0,
+        "type_name": "Normal",
+        "xsector": {
+          "bob_always": 0,
+          "bob_z_range": 0,
+          "busy": 0,
+          "busy_time_a": 0,
+          "busy_time_b": 0,
+          "ceiling_z_delta": 0,
+          "command": 0,
+          "command_name": "kCmdOff",
+          "crush": 0,
+          "damage_type": 0,
+          "depth": 0,
+          "floor_z_delta": 0,
+          "key": 0,
+          "locked": 0,
+          "marker_0": -1,
+          "marker_1": -1,
+          "off_ceiling_z": 0,
+          "off_floor_z": 0,
+          "on_ceiling_z": 0,
+          "on_floor_z": 0,
+          "rx_id": 0,
+          "state": 0,
+          "triggers": [],
+          "tx_id": 0,
+          "underwater": 1,
+          "wait_time_a": 0,
+          "wait_time_b": 0,
+          "wind_always": 0,
+          "wind_velocity": 0
+        }
+      },
+      {
+        "category": "motion",
+        "ceiling_picnum": 2500,
+        "ceiling_z": -104448,
+        "floor_picnum": 270,
+        "floor_z": 8192,
+        "known": true,
+        "parallax_ceiling": true,
+        "parallax_floor": false,
+        "ref": "sector:16",
+        "type_id": 602,
+        "type_name": "kSectorZMotionSprite",
+        "xsector": {
+          "bob_always": 0,
+          "bob_z_range": 0,
+          "busy": 0,
+          "busy_time_a": 8,
+          "busy_time_b": 8,
+          "ceiling_z_delta": 0,
+          "command": 0,
+          "command_name": "kCmdOff",
+          "crush": 0,
+          "damage_type": 0,
+          "depth": 0,
+          "floor_z_delta": 33792,
+          "key": 0,
+          "locked": 0,
+          "marker_0": -1,
+          "marker_1": -1,
+          "off_ceiling_z": -104448,
+          "off_floor_z": 8192,
+          "on_ceiling_z": -104448,
+          "on_floor_z": 41984,
+          "rx_id": 103,
+          "state": 0,
+          "triggers": [],
+          "tx_id": 0,
+          "underwater": 0,
+          "wait_time_a": 0,
+          "wait_time_b": 0,
+          "wind_always": 0,
+          "wind_velocity": 0
+        }
+      }
+    ],
+    "walls": []
+  },
+  "model": "bundled independent sensors; not a room model and not a similarity score",
+  "morphology": {
+    "$schema": "llmapper.morphology",
+    "corners": {
+      "angle_deg": {
+        "count": 104,
+        "max": 90.0,
+        "mean": 58.8462,
+        "median": 74.0546,
+        "min": 0.0
+      },
+      "chamfer_fraction": 0.125,
+      "count": 104,
+      "orthogonal_fraction": 0.4712,
+      "segmented_arc_chain_count": 0
+    },
+    "kind": "derived",
+    "limitations": [
+      "inner loops are ignored for rectangularity",
+      "slopes and sprites are ignored",
+      "2 degree axis tolerance; 8 degree diagonal/right-angle tolerance",
+      "segmented-arc chains are consecutive shallow same-sign turns, not true curves"
+    ],
+    "model": "wall-chain and outer-loop morphology; not a room detector",
+    "schema_version": 1,
+    "sectors": {
+      "aabb_fill": {
+        "count": 17,
+        "max": 1.0,
+        "mean": 0.9603,
+        "median": 1.0,
+        "min": 0.8036
+      },
+      "convex_fraction": 1.0,
+      "count": 17,
+      "outer_vertex_counts": {
+        "count": 17,
+        "max": 14.0,
+        "mean": 6.1176,
+        "median": 6.0,
+        "min": 4.0
+      },
+      "rectangular_fraction": 0.3529
+    },
+    "walls": {
+      "counted": 126,
+      "diagonal_length_fraction": 0.0478,
+      "length_player_widths": {
+        "count": 126,
+        "max": 40.0,
+        "mean": 7.2915,
+        "median": 6.0,
+        "min": 2.0
+      },
+      "orientation_5deg_bins_occupied": 8,
+      "orientation_bins": [
+        0,
+        35,
+        45,
+        65,
+        90,
+        110,
+        115,
+        135
+      ],
+      "orientation_diversity": 0.2222,
+      "orthogonal_length_fraction": 0.7946,
+      "straight_run_player_widths": {
+        "count": 80,
+        "max": 40.0,
+        "mean": 9.5579,
+        "median": 8.0,
+        "min": 2.0
+      }
+    }
+  },
+  "nearest_resources": [
+    {
+      "nearest_pickups": [
+        {
+          "category": "flag",
+          "distance": 128.0,
+          "distance_player_widths": 0.333,
+          "pickup": "sprite:12",
+          "sight_clear": true,
+          "type_name": "kItemFlagABase"
+        },
+        {
+          "category": "ammo",
+          "distance": 2083.689,
+          "distance_player_widths": 5.426,
+          "pickup": "sprite:31",
+          "sight_clear": true,
+          "type_name": "kItemAmmoSprayCan"
+        },
+        {
+          "category": "ammo",
+          "distance": 3137.959,
+          "distance_player_widths": 8.172,
+          "pickup": "sprite:26",
+          "sight_clear": true,
+          "type_name": "kItemAmmoSawedoffFew"
+        },
+        {
+          "category": "weapon",
+          "distance": 4694.303,
+          "distance_player_widths": 12.225,
+          "pickup": "sprite:20",
+          "sight_clear": true,
+          "type_name": "kItemWeaponSawedoff"
+        },
+        {
+          "category": "weapon",
+          "distance": 7945.285,
+          "distance_player_widths": 20.691,
+          "pickup": "sprite:11",
+          "sight_clear": false,
+          "type_name": "kItemWeaponTeslaCannon"
+        },
+        {
+          "category": "ammo",
+          "distance": 9109.608,
+          "distance_player_widths": 23.723,
+          "pickup": "sprite:24",
+          "sight_clear": true,
+          "type_name": "kItemAmmoSawedoffBox"
+        },
+        {
+          "category": "weapon",
+          "distance": 9344.0,
+          "distance_player_widths": 24.333,
+          "pickup": "sprite:23",
+          "sight_clear": true,
+          "type_name": "kItemWeaponNapalmLauncher"
+        },
+        {
+          "category": "ammo",
+          "distance": 13169.079,
+          "distance_player_widths": 34.294,
+          "pickup": "sprite:30",
+          "sight_clear": false,
+          "type_name": "kItemAmmoTeslaCharge"
+        }
+      ],
+      "sector": 1,
+      "start": "sprite:1"
+    },
+    {
+      "nearest_pickups": [
+        {
+          "category": "weapon",
+          "distance": 286.217,
+          "distance_player_widths": 0.745,
+          "pickup": "sprite:21",
+          "sight_clear": true,
+          "type_name": "kItemWeaponTommygun"
+        },
+        {
+          "category": "armor",
+          "distance": 2818.908,
+          "distance_player_widths": 7.341,
+          "pickup": "sprite:35",
+          "sight_clear": true,
+          "type_name": "kItemArmorBasic"
+        },
+        {
+          "category": "ammo",
+          "distance": 3179.454,
+          "distance_player_widths": 8.28,
+          "pickup": "sprite:27",
+          "sight_clear": true,
+          "type_name": "kItemAmmoTommygunFew"
+        },
+        {
+          "category": "powerup",
+          "distance": 6037.748,
+          "distance_player_widths": 15.723,
+          "pickup": "sprite:15",
+          "sight_clear": false,
+          "type_name": "kItemShadowCloak"
+        },
+        {
+          "category": "ammo",
+          "distance": 7986.42,
+          "distance_player_widths": 20.798,
+          "pickup": "sprite:30",
+          "sight_clear": false,
+          "type_name": "kItemAmmoTeslaCharge"
+        },
+        {
+          "category": "health",
+          "distance": 8072.123,
+          "distance_player_widths": 21.021,
+          "pickup": "sprite:32",
+          "sight_clear": true,
+          "type_name": "kItemHealthDoctorBag"
+        },
+        {
+          "category": "ammo",
+          "distance": 9918.968,
+          "distance_player_widths": 25.831,
+          "pickup": "sprite:25",
+          "sight_clear": false,
+          "type_name": "kItemAmmoTommygunDrum"
+        },
+        {
+          "category": "armor",
+          "distance": 10774.073,
+          "distance_player_widths": 28.057,
+          "pickup": "sprite:14",
+          "sight_clear": false,
+          "type_name": "kItemArmorSuper"
+        }
+      ],
+      "sector": 2,
+      "start": "sprite:2"
+    },
+    {
+      "nearest_pickups": [
+        {
+          "category": "weapon",
+          "distance": 1086.116,
+          "distance_player_widths": 2.828,
+          "pickup": "sprite:22",
+          "sight_clear": true,
+          "type_name": "kItemWeaponFlarePistol"
+        },
+        {
+          "category": "health",
+          "distance": 2304.0,
+          "distance_player_widths": 6.0,
+          "pickup": "sprite:34",
+          "sight_clear": true,
+          "type_name": "kItemHealthDoctorBag"
+        },
+        {
+          "category": "ammo",
+          "distance": 2769.063,
+          "distance_player_widths": 7.211,
+          "pickup": "sprite:28",
+          "sight_clear": true,
+          "type_name": "kItemAmmoFlares"
+        },
+        {
+          "category": "powerup",
+          "distance": 6954.536,
+          "distance_player_widths": 18.111,
+          "pickup": "sprite:16",
+          "sight_clear": true,
+          "type_name": "kItemTwoGuns"
+        },
+        {
+          "category": "weapon",
+          "distance": 8163.952,
+          "distance_player_widths": 21.26,
+          "pickup": "sprite:23",
+          "sight_clear": true,
+          "type_name": "kItemWeaponNapalmLauncher"
+        },
+        {
+          "category": "ammo",
+          "distance": 9343.123,
+          "distance_player_widths": 24.331,
+          "pickup": "sprite:29",
+          "sight_clear": false,
+          "type_name": "kItemAmmoSawedoffBox"
+        },
+        {
+          "category": "ammo",
+          "distance": 9984.0,
+          "distance_player_widths": 26.0,
+          "pickup": "sprite:24",
+          "sight_clear": true,
+          "type_name": "kItemAmmoSawedoffBox"
+        },
+        {
+          "category": "flag",
+          "distance": 10246.398,
+          "distance_player_widths": 26.683,
+          "pickup": "sprite:13",
+          "sight_clear": false,
+          "type_name": "kItemFlagBBase"
+        }
+      ],
+      "sector": 11,
+      "start": "sprite:3"
+    },
+    {
+      "nearest_pickups": [
+        {
+          "category": "ammo",
+          "distance": 3166.545,
+          "distance_player_widths": 8.246,
+          "pickup": "sprite:29",
+          "sight_clear": false,
+          "type_name": "kItemAmmoSawedoffBox"
+        },
+        {
+          "category": "flag",
+          "distance": 3840.0,
+          "distance_player_widths": 10.0,
+          "pickup": "sprite:13",
+          "sight_clear": false,
+          "type_name": "kItemFlagBBase"
+        },
+        {
+          "category": "health",
+          "distance": 6144.0,
+          "distance_player_widths": 16.0,
+          "pickup": "sprite:34",
+          "sight_clear": true,
+          "type_name": "kItemHealthDoctorBag"
+        },
+        {
+          "category": "ammo",
+          "distance": 6869.201,
+          "distance_player_widths": 17.889,
+          "pickup": "sprite:24",
+          "sight_clear": false,
+          "type_name": "kItemAmmoSawedoffBox"
+        },
+        {
+          "category": "health",
+          "distance": 6954.536,
+          "distance_player_widths": 18.111,
+          "pickup": "sprite:33",
+          "sight_clear": false,
+          "type_name": "kItemHealthDoctorBag"
+        },
+        {
+          "category": "weapon",
+          "distance": 7080.61,
+          "distance_player_widths": 18.439,
+          "pickup": "sprite:22",
+          "sight_clear": true,
+          "type_name": "kItemWeaponFlarePistol"
+        },
+        {
+          "category": "weapon",
+          "distance": 7680.0,
+          "distance_player_widths": 20.0,
+          "pickup": "sprite:23",
+          "sight_clear": true,
+          "type_name": "kItemWeaponNapalmLauncher"
+        },
+        {
+          "category": "ammo",
+          "distance": 8956.342,
+          "distance_player_widths": 23.324,
+          "pickup": "sprite:28",
+          "sight_clear": true,
+          "type_name": "kItemAmmoFlares"
+        }
+      ],
+      "sector": 0,
+      "start": "sprite:4"
+    },
+    {
+      "nearest_pickups": [
+        {
+          "category": "ammo",
+          "distance": 4608.0,
+          "distance_player_widths": 12.0,
+          "pickup": "sprite:30",
+          "sight_clear": false,
+          "type_name": "kItemAmmoTeslaCharge"
+        },
+        {
+          "category": "powerup",
+          "distance": 5348.501,
+          "distance_player_widths": 13.928,
+          "pickup": "sprite:15",
+          "sight_clear": false,
+          "type_name": "kItemShadowCloak"
+        },
+        {
+          "category": "weapon",
+          "distance": 5829.272,
+          "distance_player_widths": 15.18,
+          "pickup": "sprite:11",
+          "sight_clear": false,
+          "type_name": "kItemWeaponTeslaCannon"
+        },
+        {
+          "category": "armor",
+          "distance": 7775.407,
+          "distance_player_widths": 20.248,
+          "pickup": "sprite:14",
+          "sight_clear": false,
+          "type_name": "kItemArmorSuper"
+        },
+        {
+          "category": "ammo",
+          "distance": 8271.613,
+          "distance_player_widths": 21.541,
+          "pickup": "sprite:26",
+          "sight_clear": true,
+          "type_name": "kItemAmmoSawedoffFew"
+        },
+        {
+          "category": "ammo",
+          "distance": 8586.501,
+          "distance_player_widths": 22.361,
+          "pickup": "sprite:25",
+          "sight_clear": false,
+          "type_name": "kItemAmmoTommygunDrum"
+        },
+        {
+          "category": "flag",
+          "distance": 9247.945,
+          "distance_player_widths": 24.083,
+          "pickup": "sprite:12",
+          "sight_clear": true,
+          "type_name": "kItemFlagABase"
+        },
+        {
+          "category": "health",
+          "distance": 9247.945,
+          "distance_player_widths": 24.083,
+          "pickup": "sprite:32",
+          "sight_clear": false,
+          "type_name": "kItemHealthDoctorBag"
+        }
+      ],
+      "sector": 0,
+      "start": "sprite:5"
+    },
+    {
+      "nearest_pickups": [
+        {
+          "category": "flag",
+          "distance": 1583.273,
+          "distance_player_widths": 4.123,
+          "pickup": "sprite:13",
+          "sight_clear": true,
+          "type_name": "kItemFlagBBase"
+        },
+        {
+          "category": "health",
+          "distance": 1920.0,
+          "distance_player_widths": 5.0,
+          "pickup": "sprite:33",
+          "sight_clear": true,
+          "type_name": "kItemHealthDoctorBag"
+        },
+        {
+          "category": "ammo",
+          "distance": 2335.781,
+          "distance_player_widths": 6.083,
+          "pickup": "sprite:29",
+          "sight_clear": true,
+          "type_name": "kItemAmmoSawedoffBox"
+        },
+        {
+          "category": "armor",
+          "distance": 4224.0,
+          "distance_player_widths": 11.0,
+          "pickup": "sprite:14",
+          "sight_clear": true,
+          "type_name": "kItemArmorSuper"
+        },
+        {
+          "category": "ammo",
+          "distance": 5498.043,
+          "distance_player_widths": 14.318,
+          "pickup": "sprite:25",
+          "sight_clear": false,
+          "type_name": "kItemAmmoTommygunDrum"
+        },
+        {
+          "category": "ammo",
+          "distance": 6203.71,
+          "distance_player_widths": 16.155,
+          "pickup": "sprite:24",
+          "sight_clear": false,
+          "type_name": "kItemAmmoSawedoffBox"
+        },
+        {
+          "category": "weapon",
+          "distance": 6502.854,
+          "distance_player_widths": 16.935,
+          "pickup": "sprite:11",
+          "sight_clear": false,
+          "type_name": "kItemWeaponTeslaCannon"
+        },
+        {
+          "category": "ammo",
+          "distance": 7416.272,
+          "distance_player_widths": 19.313,
+          "pickup": "sprite:30",
+          "sight_clear": false,
+          "type_name": "kItemAmmoTeslaCharge"
+        }
+      ],
+      "sector": 3,
+      "start": "sprite:6"
+    },
+    {
+      "nearest_pickups": [
+        {
+          "category": "ammo",
+          "distance": 543.058,
+          "distance_player_widths": 1.414,
+          "pickup": "sprite:30",
+          "sight_clear": true,
+          "type_name": "kItemAmmoTeslaCharge"
+        },
+        {
+          "category": "powerup",
+          "distance": 1536.0,
+          "distance_player_widths": 4.0,
+          "pickup": "sprite:15",
+          "sight_clear": true,
+          "type_name": "kItemShadowCloak"
+        },
+        {
+          "category": "armor",
+          "distance": 3840.0,
+          "distance_player_widths": 10.0,
+          "pickup": "sprite:14",
+          "sight_clear": false,
+          "type_name": "kItemArmorSuper"
+        },
+        {
+          "category": "ammo",
+          "distance": 3953.522,
+          "distance_player_widths": 10.296,
+          "pickup": "sprite:25",
+          "sight_clear": false,
+          "type_name": "kItemAmmoTommygunDrum"
+        },
+        {
+          "category": "health",
+          "distance": 4241.419,
+          "distance_player_widths": 11.045,
+          "pickup": "sprite:32",
+          "sight_clear": false,
+          "type_name": "kItemHealthDoctorBag"
+        },
+        {
+          "category": "armor",
+          "distance": 6356.331,
+          "distance_player_widths": 16.553,
+          "pickup": "sprite:35",
+          "sight_clear": false,
+          "type_name": "kItemArmorBasic"
+        },
+        {
+          "category": "health",
+          "distance": 6717.257,
+          "distance_player_widths": 17.493,
+          "pickup": "sprite:33",
+          "sight_clear": false,
+          "type_name": "kItemHealthDoctorBag"
+        },
+        {
+          "category": "weapon",
+          "distance": 7306.098,
+          "distance_player_widths": 19.026,
+          "pickup": "sprite:21",
+          "sight_clear": false,
+          "type_name": "kItemWeaponTommygun"
+        }
+      ],
+      "sector": 5,
+      "start": "sprite:7"
+    },
+    {
+      "nearest_pickups": [
+        {
+          "category": "weapon",
+          "distance": 1717.3,
+          "distance_player_widths": 4.472,
+          "pickup": "sprite:20",
+          "sight_clear": true,
+          "type_name": "kItemWeaponSawedoff"
+        },
+        {
+          "category": "ammo",
+          "distance": 2172.232,
+          "distance_player_widths": 5.657,
+          "pickup": "sprite:31",
+          "sight_clear": true,
+          "type_name": "kItemAmmoSprayCan"
+        },
+        {
+          "category": "flag",
+          "distance": 3072.0,
+          "distance_player_widths": 8.0,
+          "pickup": "sprite:12",
+          "sight_clear": true,
+          "type_name": "kItemFlagABase"
+        },
+        {
+          "category": "ammo",
+          "distance": 6191.814,
+          "distance_player_widths": 16.125,
+          "pickup": "sprite:26",
+          "sight_clear": true,
+          "type_name": "kItemAmmoSawedoffFew"
+        },
+        {
+          "category": "weapon",
+          "distance": 7563.923,
+          "distance_player_widths": 19.698,
+          "pickup": "sprite:23",
+          "sight_clear": true,
+          "type_name": "kItemWeaponNapalmLauncher"
+        },
+        {
+          "category": "ammo",
+          "distance": 8448.0,
+          "distance_player_widths": 22.0,
+          "pickup": "sprite:24",
+          "sight_clear": true,
+          "type_name": "kItemAmmoSawedoffBox"
+        },
+        {
+          "category": "weapon",
+          "distance": 8538.665,
+          "distance_player_widths": 22.236,
+          "pickup": "sprite:11",
+          "sight_clear": false,
+          "type_name": "kItemWeaponTeslaCannon"
+        },
+        {
+          "category": "powerup",
+          "distance": 11339.384,
+          "distance_player_widths": 29.53,
+          "pickup": "sprite:16",
+          "sight_clear": false,
+          "type_name": "kItemTwoGuns"
+        }
+      ],
+      "sector": 1,
+      "start": "sprite:8"
+    }
+  ],
+  "neighborhoods": {
+    "$schema": "llmapper.exposure",
+    "kind": "derived",
+    "largest_sky_region_player_areas": 2640.0,
+    "largest_sky_region_sectors": 5,
+    "limitations": [
+      "2D sight; height and sprites ignored",
+      "local area uses sector centroids versus Euclidean radius",
+      "labels such as closet/field are not assigned"
+    ],
+    "local_radius_player_widths": 16.0,
+    "model": "spawn-neighborhood: local traversal footprint plus 2D sight into the largest sky component",
+    "neighborhoods": [
+      {
+        "hops_to_largest_sky_region": 0,
+        "immediate_portal_choices": 2,
+        "local_reachable_area_player_areas": 660.0,
+        "max_2d_sight_player_widths": 60.4745,
+        "median_2d_sight_player_widths": 17.9081,
+        "origin": "sprite:1",
+        "ray_count": 32,
+        "rays_reaching_largest_sky_region": 32,
+        "sector": "sector:1",
+        "sky_ceiling": true,
+        "sky_region_ray_fraction": 1.0,
+        "spawn_sector_area_player_areas": 628.0,
+        "sprite_id": 1
+      },
+      {
+        "hops_to_largest_sky_region": 0,
+        "immediate_portal_choices": 1,
+        "local_reachable_area_player_areas": 540.0,
+        "max_2d_sight_player_widths": 65.1587,
+        "median_2d_sight_player_widths": 13.2857,
+        "origin": "sprite:2",
+        "ray_count": 32,
+        "rays_reaching_largest_sky_region": 32,
+        "sector": "sector:2",
+        "sky_ceiling": true,
+        "sky_region_ray_fraction": 1.0,
+        "spawn_sector_area_player_areas": 540.0,
+        "sprite_id": 2
+      },
+      {
+        "hops_to_largest_sky_region": 1,
+        "immediate_portal_choices": 1,
+        "local_reachable_area_player_areas": 320.0,
+        "max_2d_sight_player_widths": 68.973,
+        "median_2d_sight_player_widths": 11.3137,
+        "origin": "sprite:3",
+        "ray_count": 32,
+        "rays_reaching_largest_sky_region": 9,
+        "sector": "sector:11",
+        "sky_ceiling": false,
+        "sky_region_ray_fraction": 0.2812,
+        "spawn_sector_area_player_areas": 320.0,
+        "sprite_id": 3
+      },
+      {
+        "hops_to_largest_sky_region": 0,
+        "immediate_portal_choices": 6,
+        "local_reachable_area_player_areas": 1360.0,
+        "max_2d_sight_player_widths": 52.2625,
+        "median_2d_sight_player_widths": 12.2351,
+        "origin": "sprite:4",
+        "ray_count": 32,
+        "rays_reaching_largest_sky_region": 32,
+        "sector": "sector:0",
+        "sky_ceiling": true,
+        "sky_region_ray_fraction": 1.0,
+        "spawn_sector_area_player_areas": 1360.0,
+        "sprite_id": 4
+      },
+      {
+        "hops_to_largest_sky_region": 0,
+        "immediate_portal_choices": 6,
+        "local_reachable_area_player_areas": 1412.0,
+        "max_2d_sight_player_widths": 39.8585,
+        "median_2d_sight_player_widths": 8.6591,
+        "origin": "sprite:5",
+        "ray_count": 32,
+        "rays_reaching_largest_sky_region": 32,
+        "sector": "sector:0",
+        "sky_ceiling": true,
+        "sky_region_ray_fraction": 1.0,
+        "spawn_sector_area_player_areas": 1360.0,
+        "sprite_id": 5
+      },
+      {
+        "hops_to_largest_sky_region": 2,
+        "immediate_portal_choices": 1,
+        "local_reachable_area_player_areas": 1532.0,
+        "max_2d_sight_player_widths": 15.2386,
+        "median_2d_sight_player_widths": 8.1567,
+        "origin": "sprite:6",
+        "ray_count": 32,
+        "rays_reaching_largest_sky_region": 5,
+        "sector": "sector:3",
+        "sky_ceiling": false,
+        "sky_region_ray_fraction": 0.1562,
+        "spawn_sector_area_player_areas": 160.0,
+        "sprite_id": 6
+      },
+      {
+        "hops_to_largest_sky_region": 2,
+        "immediate_portal_choices": 1,
+        "local_reachable_area_player_areas": 1412.0,
+        "max_2d_sight_player_widths": 46.1325,
+        "median_2d_sight_player_widths": 5.098,
+        "origin": "sprite:7",
+        "ray_count": 32,
+        "rays_reaching_largest_sky_region": 6,
+        "sector": "sector:5",
+        "sky_ceiling": false,
+        "sky_region_ray_fraction": 0.1875,
+        "spawn_sector_area_player_areas": 40.0,
+        "sprite_id": 7
+      },
+      {
+        "hops_to_largest_sky_region": 0,
+        "immediate_portal_choices": 2,
+        "local_reachable_area_player_areas": 660.0,
+        "max_2d_sight_player_widths": 65.652,
+        "median_2d_sight_player_widths": 14.4323,
+        "origin": "sprite:8",
+        "ray_count": 32,
+        "rays_reaching_largest_sky_region": 32,
+        "sector": "sector:1",
+        "sky_ceiling": true,
+        "sky_region_ray_fraction": 1.0,
+        "spawn_sector_area_player_areas": 628.0,
+        "sprite_id": 8
+      }
+    ],
+    "player_body_width": 384,
+    "schema_version": 1
+  },
+  "outdoor_multiplayer_starts": 5,
+  "parse": {
+    "blocking_walls": 0,
+    "masked_walls": 0,
+    "parallax_ceilings": 5,
+    "sectors": 17,
+    "sprites": 36,
+    "validation_errors": 0,
+    "version": "0x0700",
+    "walls": 126,
+    "xsectors": 5,
+    "xsprites": 5,
+    "xwalls": 0
+  },
+  "pickup_categories": {
+    "ammo": 8,
+    "armor": 2,
+    "flag": 2,
+    "health": 3,
+    "powerup": 2,
+    "weapon": 5
+  },
+  "pickups": [
+    {
+      "category": "weapon",
+      "ref": "sprite:11",
+      "sector": 15,
+      "sky_ceiling": false,
+      "type_id": 45,
+      "type_name": "kItemWeaponTeslaCannon",
+      "underwater": true
+    },
+    {
+      "category": "flag",
+      "ref": "sprite:12",
+      "sector": 1,
+      "sky_ceiling": true,
+      "type_id": 145,
+      "type_name": "kItemFlagABase",
+      "underwater": false
+    },
+    {
+      "category": "flag",
+      "ref": "sprite:13",
+      "sector": 3,
+      "sky_ceiling": false,
+      "type_id": 146,
+      "type_name": "kItemFlagBBase",
+      "underwater": false
+    },
+    {
+      "category": "armor",
+      "ref": "sprite:14",
+      "sector": 8,
+      "sky_ceiling": false,
+      "type_id": 144,
+      "type_name": "kItemArmorSuper",
+      "underwater": false
+    },
+    {
+      "category": "powerup",
+      "ref": "sprite:15",
+      "sector": 10,
+      "sky_ceiling": false,
+      "type_id": 113,
+      "type_name": "kItemShadowCloak",
+      "underwater": false
+    },
+    {
+      "category": "powerup",
+      "ref": "sprite:16",
+      "sector": 13,
+      "sky_ceiling": false,
+      "type_id": 117,
+      "type_name": "kItemTwoGuns",
+      "underwater": false
+    },
+    {
+      "category": "weapon",
+      "ref": "sprite:20",
+      "sector": 1,
+      "sky_ceiling": true,
+      "type_id": 41,
+      "type_name": "kItemWeaponSawedoff",
+      "underwater": false
+    },
+    {
+      "category": "weapon",
+      "ref": "sprite:21",
+      "sector": 2,
+      "sky_ceiling": true,
+      "type_id": 42,
+      "type_name": "kItemWeaponTommygun",
+      "underwater": false
+    },
+    {
+      "category": "weapon",
+      "ref": "sprite:22",
+      "sector": 11,
+      "sky_ceiling": false,
+      "type_id": 43,
+      "type_name": "kItemWeaponFlarePistol",
+      "underwater": false
+    },
+    {
+      "category": "weapon",
+      "ref": "sprite:23",
+      "sector": 0,
+      "sky_ceiling": true,
+      "type_id": 46,
+      "type_name": "kItemWeaponNapalmLauncher",
+      "underwater": false
+    },
+    {
+      "category": "ammo",
+      "ref": "sprite:24",
+      "sector": 0,
+      "sky_ceiling": true,
+      "type_id": 68,
+      "type_name": "kItemAmmoSawedoffBox",
+      "underwater": false
+    },
+    {
+      "category": "ammo",
+      "ref": "sprite:25",
+      "sector": 0,
+      "sky_ceiling": true,
+      "type_id": 72,
+      "type_name": "kItemAmmoTommygunDrum",
+      "underwater": false
+    },
+    {
+      "category": "ammo",
+      "ref": "sprite:26",
+      "sector": 1,
+      "sky_ceiling": true,
+      "type_id": 67,
+      "type_name": "kItemAmmoSawedoffFew",
+      "underwater": false
+    },
+    {
+      "category": "ammo",
+      "ref": "sprite:27",
+      "sector": 2,
+      "sky_ceiling": true,
+      "type_id": 69,
+      "type_name": "kItemAmmoTommygunFew",
+      "underwater": false
+    },
+    {
+      "category": "ammo",
+      "ref": "sprite:28",
+      "sector": 11,
+      "sky_ceiling": false,
+      "type_id": 76,
+      "type_name": "kItemAmmoFlares",
+      "underwater": false
+    },
+    {
+      "category": "ammo",
+      "ref": "sprite:29",
+      "sector": 3,
+      "sky_ceiling": false,
+      "type_id": 68,
+      "type_name": "kItemAmmoSawedoffBox",
+      "underwater": false
+    },
+    {
+      "category": "ammo",
+      "ref": "sprite:30",
+      "sector": 5,
+      "sky_ceiling": false,
+      "type_id": 73,
+      "type_name": "kItemAmmoTeslaCharge",
+      "underwater": false
+    },
+    {
+      "category": "ammo",
+      "ref": "sprite:31",
+      "sector": 1,
+      "sky_ceiling": true,
+      "type_id": 60,
+      "type_name": "kItemAmmoSprayCan",
+      "underwater": false
+    },
+    {
+      "category": "health",
+      "ref": "sprite:32",
+      "sector": 0,
+      "sky_ceiling": true,
+      "type_id": 107,
+      "type_name": "kItemHealthDoctorBag",
+      "underwater": false
+    },
+    {
+      "category": "health",
+      "ref": "sprite:33",
+      "sector": 3,
+      "sky_ceiling": false,
+      "type_id": 107,
+      "type_name": "kItemHealthDoctorBag",
+      "underwater": false
+    },
+    {
+      "category": "health",
+      "ref": "sprite:34",
+      "sector": 11,
+      "sky_ceiling": false,
+      "type_id": 107,
+      "type_name": "kItemHealthDoctorBag",
+      "underwater": false
+    },
+    {
+      "category": "armor",
+      "ref": "sprite:35",
+      "sector": 2,
+      "sky_ceiling": true,
+      "type_id": 140,
+      "type_name": "kItemArmorBasic",
+      "underwater": false
+    }
+  ],
+  "picnums": {
+    "ceiling": {
+      "90": 1,
+      "104": 3,
+      "385": 2,
+      "416": 6,
+      "2500": 5
+    },
+    "floor": {
+      "90": 2,
+      "104": 3,
+      "270": 4,
+      "292": 2,
+      "2448": 6
+    },
+    "wall": {
+      "5": 40,
+      "104": 12,
+      "110": 66,
+      "180": 8
+    }
+  },
+  "routes": {
+    "summaries": [
+      {
+        "cover_sky_transitions": 0,
+        "hops": 1,
+        "mean_max_sight_player_widths": 52.3206,
+        "min_max_sight_player_widths": 44.1667,
+        "origin": "sprite:1",
+        "reachable": true,
+        "sky_sample_fraction": 1.0
+      },
+      {
+        "cover_sky_transitions": 0,
+        "hops": 1,
+        "mean_max_sight_player_widths": 36.5153,
+        "min_max_sight_player_widths": 28.8638,
+        "origin": "sprite:2",
+        "reachable": true,
+        "sky_sample_fraction": 1.0
+      },
+      {
+        "cover_sky_transitions": 1,
+        "hops": 1,
+        "mean_max_sight_player_widths": 50.3676,
+        "min_max_sight_player_widths": 44.1667,
+        "origin": "sprite:3",
+        "reachable": true,
+        "sky_sample_fraction": 0.5
+      },
+      {
+        "cover_sky_transitions": 0,
+        "hops": 0,
+        "mean_max_sight_player_widths": 52.2625,
+        "min_max_sight_player_widths": 52.2625,
+        "origin": "sprite:4",
+        "reachable": true,
+        "sky_sample_fraction": 1.0
+      },
+      {
+        "cover_sky_transitions": 0,
+        "hops": 0,
+        "mean_max_sight_player_widths": 36.8362,
+        "min_max_sight_player_widths": 36.8362,
+        "origin": "sprite:5",
+        "reachable": true,
+        "sky_sample_fraction": 1.0
+      },
+      {
+        "cover_sky_transitions": 1,
+        "hops": 2,
+        "mean_max_sight_player_widths": 29.3121,
+        "min_max_sight_player_widths": 14.0711,
+        "origin": "sprite:6",
+        "reachable": true,
+        "sky_sample_fraction": 0.3333
+      },
+      {
+        "cover_sky_transitions": 1,
+        "hops": 2,
+        "mean_max_sight_player_widths": 35.6272,
+        "min_max_sight_player_widths": 18.2919,
+        "origin": "sprite:7",
+        "reachable": true,
+        "sky_sample_fraction": 0.3333
+      },
+      {
+        "cover_sky_transitions": 0,
+        "hops": 1,
+        "mean_max_sight_player_widths": 44.8136,
+        "min_max_sight_player_widths": 44.1667,
+        "origin": "sprite:8",
+        "reachable": true,
+        "sky_sample_fraction": 1.0
+      }
+    ],
+    "target_sector": "sector:0"
+  },
+  "schema_version": 1,
+  "sight": {
+    "clear": 10,
+    "pairs": 28,
+    "roses": [
+      {
+        "max_occluder_distance": 23222.195,
+        "median_occluder_distance": 6876.698,
+        "min_occluder_distance": 3540.719,
+        "open_ray_count": 3,
+        "origin": "sprite:1"
+      },
+      {
+        "max_occluder_distance": 25020.938,
+        "median_occluder_distance": 5101.714,
+        "min_occluder_distance": 4021.184,
+        "open_ray_count": 1,
+        "origin": "sprite:2"
+      },
+      {
+        "max_occluder_distance": 26485.622,
+        "median_occluder_distance": 4344.464,
+        "min_occluder_distance": 3072.0,
+        "open_ray_count": 3,
+        "origin": "sprite:3"
+      },
+      {
+        "max_occluder_distance": 20068.807,
+        "median_occluder_distance": 4698.276,
+        "min_occluder_distance": 1536.0,
+        "open_ray_count": 0,
+        "origin": "sprite:4"
+      },
+      {
+        "max_occluder_distance": 15305.649,
+        "median_occluder_distance": 3325.109,
+        "min_occluder_distance": 2304.0,
+        "open_ray_count": 0,
+        "origin": "sprite:5"
+      },
+      {
+        "max_occluder_distance": 5851.63,
+        "median_occluder_distance": 3132.184,
+        "min_occluder_distance": 1920.0,
+        "open_ray_count": 0,
+        "origin": "sprite:6"
+      },
+      {
+        "max_occluder_distance": 17714.872,
+        "median_occluder_distance": 1957.615,
+        "min_occluder_distance": 923.666,
+        "open_ray_count": 0,
+        "origin": "sprite:7"
+      },
+      {
+        "max_occluder_distance": 25210.357,
+        "median_occluder_distance": 5541.994,
+        "min_occluder_distance": 3072.0,
+        "open_ray_count": 1,
+        "origin": "sprite:8"
+      }
+    ]
+  },
+  "sounds": [],
+  "space": {
+    "covered": {
+      "aabb_width_player_widths": 62.0,
+      "clear_height_player_heights": 6.0,
+      "clear_height_range": {
+        "max": 45056.0,
+        "median": 33792.0,
+        "min": 0.0,
+        "samples": 12
+      },
+      "enclosure": {
+        "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+        "interpretation": null,
+        "lateral_enclosure": 0.8815,
+        "openness": 0.3092,
+        "sky_exposure": 0.0,
+        "vertical_enclosure": 0.5
+      },
+      "footprint_player_areas": 800.0,
+      "opening_width_range": {
+        "max": 7680.0,
+        "median": 2304.0,
+        "min": 1536.0,
+        "samples": 11
+      },
+      "sector_count": 12,
+      "surfaces": {
+        "basis": "raw native picnum counts; not material-family names",
+        "dominant_ceiling_picnum": {
+          "picnum": 416,
+          "uses": 6
+        },
+        "dominant_floor_picnum": {
+          "picnum": 2448,
+          "uses": 6
+        },
+        "dominant_wall_picnum": {
+          "picnum": 5,
+          "uses": 40
+        }
+      }
+    },
+    "sky": {
+      "aabb_width_player_widths": 72.0,
+      "clear_height_player_heights": 20.0,
+      "clear_height_range": {
+        "max": 112640.0,
+        "median": 112640.0,
+        "min": 112640.0,
+        "samples": 5
+      },
+      "enclosure": {
+        "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+        "interpretation": null,
+        "lateral_enclosure": 0.915,
+        "openness": 0.5425,
+        "sky_exposure": 1.0,
+        "vertical_enclosure": 0.0
+      },
+      "footprint_player_areas": 2640.0,
+      "opening_width_range": {
+        "max": 12288.0,
+        "median": 3072.0,
+        "min": 1717.3,
+        "samples": 7
+      },
+      "sector_count": 5,
+      "surfaces": {
+        "basis": "raw native picnum counts; not material-family names",
+        "dominant_ceiling_picnum": {
+          "picnum": 2500,
+          "uses": 5
+        },
+        "dominant_floor_picnum": {
+          "picnum": 270,
+          "uses": 4
+        },
+        "dominant_wall_picnum": {
+          "picnum": 110,
+          "uses": 60
+        }
+      }
+    },
+    "whole": {
+      "aabb_width_player_widths": 88.0,
+      "clear_height_player_heights": 6.0,
+      "clear_height_range": {
+        "max": 112640.0,
+        "median": 33792.0,
+        "min": 0.0,
+        "samples": 17
+      },
+      "enclosure": {
+        "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+        "interpretation": null,
+        "lateral_enclosure": 1.0,
+        "openness": 0.3235,
+        "sky_exposure": 0.2941,
+        "vertical_enclosure": 0.3529
+      },
+      "footprint_player_areas": 3440.0,
+      "opening_width_range": {
+        "max": 12288.0,
+        "median": 2304.0,
+        "min": 1536.0,
+        "samples": 15
+      },
+      "sector_count": 17,
+      "surfaces": {
+        "basis": "raw native picnum counts; not material-family names",
+        "dominant_ceiling_picnum": {
+          "picnum": 416,
+          "uses": 6
+        },
+        "dominant_floor_picnum": {
+          "picnum": 2448,
+          "uses": 6
+        },
+        "dominant_wall_picnum": {
+          "picnum": 110,
+          "uses": 66
+        }
+      }
+    }
+  },
+  "spatial": {
+    "blocked_or_state_dependent": 6,
+    "hypothesis_counts": {
+      "material_region": 1,
+      "mechanism_region": 4,
+      "navigation_region": 1,
+      "perceptual_space": 1
+    },
+    "nonportal": [
+      {
+        "evidence": [
+          "Blood XSPRITE data_1 7"
+        ],
+        "id": "blood-link:7",
+        "kind": "paired_water_link",
+        "sectors": [
+          "sector:14",
+          "sector:15"
+        ],
+        "state": "link activation conditions are not simulated"
+      }
+    ],
+    "reachable": 11,
+    "unreachable": 6,
+    "walkable_at_rest": 14
+  },
+  "starts": {
+    "multiplayer": [
+      {
+        "angle": 1536,
+        "category": "start",
+        "known": true,
+        "picnum": 0,
+        "ref": "sprite:1",
+        "sector": 1,
+        "status": 1,
+        "type_id": 2,
+        "type_name": "kMarkerMPStart",
+        "x": 9216,
+        "y": 19328,
+        "z": 7168
+      },
+      {
+        "angle": 1024,
+        "category": "start",
+        "known": true,
+        "picnum": 0,
+        "ref": "sprite:2",
+        "sector": 2,
+        "status": 1,
+        "type_id": 2,
+        "type_name": "kMarkerMPStart",
+        "x": 23296,
+        "y": 6784,
+        "z": 7168
+      },
+      {
+        "angle": 0,
+        "category": "start",
+        "known": true,
+        "picnum": 0,
+        "ref": "sprite:3",
+        "sector": 11,
+        "status": 1,
+        "type_id": 2,
+        "type_name": "kMarkerMPStart",
+        "x": -3072,
+        "y": 6912,
+        "z": 7168
+      },
+      {
+        "angle": 512,
+        "category": "start",
+        "known": true,
+        "picnum": 0,
+        "ref": "sprite:4",
+        "sector": 0,
+        "status": 1,
+        "type_id": 2,
+        "type_name": "kMarkerMPStart",
+        "x": 3072,
+        "y": 4608,
+        "z": 7168
+      },
+      {
+        "angle": 1536,
+        "category": "start",
+        "known": true,
+        "picnum": 0,
+        "ref": "sprite:5",
+        "sector": 0,
+        "status": 1,
+        "type_id": 2,
+        "type_name": "kMarkerMPStart",
+        "x": 15360,
+        "y": 12288,
+        "z": 7168
+      },
+      {
+        "angle": 0,
+        "category": "start",
+        "known": true,
+        "picnum": 0,
+        "ref": "sprite:6",
+        "sector": 3,
+        "status": 1,
+        "type_id": 2,
+        "type_name": "kMarkerMPStart",
+        "x": 8448,
+        "y": 4992,
+        "z": 7168
+      },
+      {
+        "angle": 1024,
+        "category": "start",
+        "known": true,
+        "picnum": 0,
+        "ref": "sprite:7",
+        "sector": 5,
+        "status": 1,
+        "type_id": 2,
+        "type_name": "kMarkerMPStart",
+        "x": 15744,
+        "y": 7296,
+        "z": 7168
+      },
+      {
+        "angle": 512,
+        "category": "start",
+        "known": true,
+        "picnum": 0,
+        "ref": "sprite:8",
+        "sector": 1,
+        "status": 1,
+        "type_id": 2,
+        "type_name": "kMarkerMPStart",
+        "x": 6144,
+        "y": 19200,
+        "z": 7168
+      }
+    ],
+    "single_player": [
+      {
+        "angle": 0,
+        "category": "start",
+        "known": true,
+        "picnum": 0,
+        "ref": "sprite:0",
+        "sector": 0,
+        "status": 1,
+        "type_id": 1,
+        "type_name": "kMarkerSPStart",
+        "x": 3072,
+        "y": 4608,
+        "z": 7168
+      }
+    ]
+  },
+  "switches": [
+    {
+      "angle": 1024,
+      "category": "switch",
+      "known": true,
+      "picnum": 1070,
+      "ref": "sprite:17",
+      "sector": 3,
+      "status": 0,
+      "type_id": 21,
+      "type_name": "kSwitchOneWay",
+      "x": 10752,
+      "xsprite": {
+        "busy_time": 0,
+        "command": 1,
+        "command_name": "kCmdOn",
+        "data_1": 203,
+        "data_2": 0,
+        "data_3": 0,
+        "data_4": 0,
+        "rx_id": 0,
+        "state": 0,
+        "triggers": [
+          "trigger_push",
+          "trigger_on"
+        ],
+        "tx_id": 100,
+        "wait_time": 0
+      },
+      "y": 4992,
+      "z": 4096
+    },
+    {
+      "angle": 512,
+      "category": "switch",
+      "known": true,
+      "picnum": 1070,
+      "ref": "sprite:18",
+      "sector": 5,
+      "status": 0,
+      "type_id": 21,
+      "type_name": "kSwitchOneWay",
+      "x": 16128,
+      "xsprite": {
+        "busy_time": 0,
+        "command": 1,
+        "command_name": "kCmdOn",
+        "data_1": 203,
+        "data_2": 0,
+        "data_3": 0,
+        "data_4": 0,
+        "rx_id": 0,
+        "state": 0,
+        "triggers": [
+          "trigger_push",
+          "trigger_on"
+        ],
+        "tx_id": 101,
+        "wait_time": 0
+      },
+      "y": 8448,
+      "z": 4096
+    },
+    {
+      "angle": 0,
+      "category": "switch",
+      "known": true,
+      "picnum": 1070,
+      "ref": "sprite:19",
+      "sector": 11,
+      "status": 0,
+      "type_id": 21,
+      "type_name": "kSwitchOneWay",
+      "x": -2304,
+      "xsprite": {
+        "busy_time": 0,
+        "command": 1,
+        "command_name": "kCmdOn",
+        "data_1": 203,
+        "data_2": 0,
+        "data_3": 0,
+        "data_4": 0,
+        "rx_id": 0,
+        "state": 0,
+        "triggers": [
+          "trigger_push",
+          "trigger_on"
+        ],
+        "tx_id": 102,
+        "wait_time": 0
+      },
+      "y": 6912,
+      "z": 4096
+    }
+  ],
+  "transition_indoor_starts_to_outdoor_starts": {
+    "clear_height_ratio": 3.3333,
+    "navigable_area_ratio": 4.8615,
+    "sky_exposure": [
+      0.0,
+      1.0
+    ]
+  },
+  "underwater_sectors": [
+    15
+  ],
+  "unknown_sprites": []
+}

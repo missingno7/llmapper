@@ -7,9 +7,12 @@ from .composition import (
     insert_fragment, transform_fragment,
 )
 from .build_ir import BuildDiagnostic, BuildIR, BuildIRError, validate_build_ir
-from .construction import (
-    ConstructionError, LevelBuilder, SectorAllocation, new_level, portal_profiles,
+from .construction import ConstructionError, LevelBuilder, SectorAllocation, new_level, portal_profiles
+from .geometry_audit import (
+    AuthoredGeometryError, audit_geometry, audit_markdown, audit_svg,
+    construction_preflight, validate_authored_geometry, validate_authored_level,
 )
+from .planar_layout import CompiledLayout, PlanarLayout, PlanarLayoutError
 from .conversion import ConversionError, GAME_PROFILES, convert_build_ir, convert_shade, native_scale
 from .design import DesignUnderstandingError, design_fingerprint
 from .doom import DoomError, parse_wad, read_wad
@@ -24,8 +27,13 @@ from .blood_types import classify as classify_blood_type
 from .contents import explain_mechanisms, inventory_map, multiplayer_layout
 from .sight import SightError, line_of_sight, spawn_sight_report
 from .exposure import ExposureError, route_exposure_report, spawn_neighborhood_report
-from .morphology import MorphologyError, analyze_morphology
-from .understanding import understand_map
+from .patterns import PatternError, inspect_pattern, load_catalog, mine_directory, query_catalog
+from .placement import (
+    PlacementError, mine_attachments, observe_sprite_attachment, validate_attachments, validate_use_poses,
+)
+from .progression import (
+    ProgressionError, analyze_progression, classify_mechanisms, completion_witness,
+)
 from .player_space import (
     PlayerSpaceError, PLAYER_PROFILES, compare_transition, inspect_connection,
     inspect_space, player_profile, present_space,
@@ -56,7 +64,14 @@ __all__ = [
     "BehaviorClosureResult",
     "CompositionError",
     "CompositionResult",
-    "ConstructionError",
+    "AuthoredGeometryError",
+    "CompiledLayout",
+    "PlanarLayout",
+    "PlanarLayoutError",
+    "audit_geometry",
+    "construction_preflight",
+    "validate_authored_geometry",
+    "validate_authored_level",
     "ConversionError",
     "DoomConversionError",
     "DoomError",
@@ -83,6 +98,9 @@ __all__ = [
     "SpatialAnalysisError",
     "ExposureError",
     "MorphologyError",
+    "PatternError",
+    "PlacementError",
+    "ProgressionError",
     "WorkspaceError",
     "SectorAllocation",
     "GAME_PROFILES",
@@ -98,6 +116,17 @@ __all__ = [
     "route_exposure_report",
     "analyze_morphology",
     "understand_map",
+    "mine_directory",
+    "query_catalog",
+    "inspect_pattern",
+    "load_catalog",
+    "mine_attachments",
+    "observe_sprite_attachment",
+    "validate_attachments",
+    "validate_use_poses",
+    "analyze_progression",
+    "classify_mechanisms",
+    "completion_witness",
     "blood_to_semantic_level",
     "attach_fragment",
     "append_decision",

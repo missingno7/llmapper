@@ -270,7 +270,18 @@ def route_exposure_report(build: BuildIR, *, include_sp_start: bool = False) -> 
     graph = _traversal(build)
     sky_region = _largest_sky_region(build, graph)
     if not sky_region:
-        raise ExposureError("no sky-parallax sectors to use as a field target")
+        return {
+            "$schema": SCHEMA,
+            "schema_version": SCHEMA_VERSION,
+            "kind": "derived",
+            "model": "shortest at-rest path from each start to the largest sky sector; 2D sight at sector samples",
+            "target_sector": None,
+            "routes": [],
+            "limitations": [
+                "not a player simulation",
+                "this map has no sky-parallax sector, so there is no field target",
+            ],
+        }
     target = max(sky_region, key=lambda sector_id: _area(build, sector_id))
     walls = occluding_segments(build)
     step = ROUTE_SAMPLE_WIDTHS * profile.body_width

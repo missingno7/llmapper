@@ -1,0 +1,234 @@
+{
+  "$schema": "llmapper.sp-progression-v1-build",
+  "acceptance": {
+    "native_validation": true,
+    "object_attachment_violations": 0,
+    "progression_ok": true,
+    "strict_authored_geometry": true
+  },
+  "audit_error_conflicts": 0,
+  "authored": {
+    "diagnostics": [
+      {
+        "code": "unreachable_pickup",
+        "location": "sector[0]",
+        "message": "pickup sector is outside the largest at-rest circulation component (may be gated)",
+        "severity": "warning"
+      },
+      {
+        "code": "unreachable_pickup",
+        "location": "sector[12]",
+        "message": "pickup sector is outside the largest at-rest circulation component (may be gated)",
+        "severity": "warning"
+      }
+    ],
+    "errors": 0,
+    "warnings": 2
+  },
+  "bytes": 4621,
+  "conservation": {
+    "atomic_segments": 80,
+    "conserved": true,
+    "dropped_source_edges": [],
+    "duplicated_source_edges": [],
+    "emitted_directed_edges": 80,
+    "source_directed_edges": 60,
+    "split_count": 20,
+    "unpaired_portal_candidates": [],
+    "walls_owned_once": true
+  },
+  "design_program": [
+    {
+      "intent": "covered start; closed exit visible ahead; open side branch",
+      "phase": "A",
+      "regions": [
+        "start"
+      ]
+    },
+    {
+      "intent": "required lower crypt branch yields the skull key",
+      "phase": "B",
+      "regions": [
+        "crypt_step",
+        "crypt"
+      ]
+    },
+    {
+      "intent": "key opens the archive; wall switch raises the stair gate",
+      "phase": "C",
+      "regions": [
+        "keyed_door",
+        "archive",
+        "stair1",
+        "stair2",
+        "stair3",
+        "stair4"
+      ]
+    },
+    {
+      "intent": "taller upper gallery; different palette; overlook-scale height",
+      "phase": "D",
+      "regions": [
+        "gallery_door",
+        "gallery"
+      ]
+    },
+    {
+      "intent": "gallery switch opens the start-side exit; optional secret",
+      "phase": "E",
+      "regions": [
+        "exit_door",
+        "exit",
+        "secret_door",
+        "secret"
+      ]
+    }
+  ],
+  "deterministic": true,
+  "map": "work\\SP-progression-v1.MAP",
+  "native_validation_errors": 0,
+  "nblood_load": "work/nblood-sp-v1-report.json",
+  "progression": {
+    "attachments": {
+      "$schema": "llmapper.object-placement",
+      "kind": "derived",
+      "ok": true,
+      "schema_version": 1,
+      "switch_count": 4,
+      "violations": []
+    },
+    "full": {
+      "channels": [
+        4,
+        100,
+        101,
+        102
+      ],
+      "exit": true,
+      "final": 15,
+      "keys": [
+        1
+      ],
+      "rest": 3,
+      "witness": [
+        {
+          "kind": "spawn",
+          "reachable": 3,
+          "sector": 0
+        },
+        {
+          "key": 1,
+          "kind": "take-key",
+          "reachable": 3,
+          "sector": 2,
+          "type_id": 100
+        },
+        {
+          "key": 1,
+          "kind": "unlock",
+          "reachable": 9,
+          "sector": 3
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "reachable": 11,
+          "ref": "sprite:1",
+          "tx_id": 100
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "reachable": 13,
+          "ref": "sprite:2",
+          "tx_id": 101
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "reachable": 15,
+          "ref": "sprite:3",
+          "tx_id": 102
+        },
+        {
+          "is_exit": true,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 15,
+          "ref": "sprite:4",
+          "tx_id": 4
+        }
+      ]
+    },
+    "gates": {
+      "attachments_ok": true,
+      "exit_after_intended": true,
+      "exit_without_archive_switch": false,
+      "exit_without_gallery_switch": false,
+      "exit_without_key": false,
+      "exit_without_secret_switch": true,
+      "ok": true,
+      "rest_smaller_than_final": true,
+      "use_poses_ok": true
+    },
+    "use_poses": {
+      "ok": true,
+      "probe_count": 4,
+      "violations": []
+    }
+  },
+  "schema_version": 1,
+  "source_hidden": [
+    "maps/blood/E2M2.MAP",
+    "maps/blood/BB3.MAP"
+  ],
+  "state_graph": {
+    "S0": {
+      "action": "take skull key",
+      "reachable": [
+        "start",
+        "crypt_step",
+        "crypt"
+      ]
+    },
+    "S1": {
+      "action": "unlock keyed door",
+      "reachable": [
+        "start",
+        "crypt_step",
+        "crypt"
+      ]
+    },
+    "S2": {
+      "action": "activate archive switch (channel 100)",
+      "reachable": [
+        "archive",
+        "stair1",
+        "stair2",
+        "stair3",
+        "stair4"
+      ]
+    },
+    "S3": {
+      "action": "activate gallery switch (channel 101)",
+      "reachable": [
+        "gallery"
+      ]
+    },
+    "S4": {
+      "action": "activate exit switch (channel 4)",
+      "reachable": [
+        "exit"
+      ]
+    },
+    "optional": {
+      "action": "activate secret switch (channel 102)",
+      "reachable": [
+        "secret"
+      ]
+    }
+  }
+}

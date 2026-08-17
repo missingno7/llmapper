@@ -29,6 +29,12 @@ level = builder.build()
   IDs and source-compatible defaults;
 - `build()` runs the ordinary MAP structural validator before returning a level.
 
+Irregular scratch maps with holes, partial collinear portals, or embedded
+buildings must go through `PlanarLayout` instead of calling `connect()` on
+unsplit walls. See [authored-geometry.md](authored-geometry.md).
+
+## Named behavior fields
+
 `set_behavior(kind, id, **fields)` exposes named LevelIR fields instead of packed
 bits. Unknown field names fail immediately. This keeps construction readable while
 preserving the engine's exact serialized contract.
@@ -42,6 +48,11 @@ This deliberately rejects visually connected but impractically narrow routes.
 
 Closed doors correctly report `walkable_at_rest: false` and
 `walkable_when_open: true` when their configured motion provides enough space.
+
+## Anchored placement
+
+Ordinary switches, pickups, and torches should go through `PlanarLayout.place_on_wall`
+/ `place_on_floor` rather than guessed XYZ. See [object-placement.md](object-placement.md).
 
 ## First puzzle room
 

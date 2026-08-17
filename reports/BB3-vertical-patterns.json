@@ -1,0 +1,1629 @@
+{
+  "bb3": {
+    "$schema": "llmapper.vertical-bands",
+    "band_count": 15,
+    "bands": [
+      {
+        "delta_from_lowest_player_heights": 0.0,
+        "median_floor_z": 8192,
+        "sector_count": 13
+      },
+      {
+        "delta_from_lowest_player_heights": 5.0909,
+        "median_floor_z": -20480,
+        "sector_count": 1
+      },
+      {
+        "delta_from_lowest_player_heights": 5.8182,
+        "median_floor_z": -24576,
+        "sector_count": 18
+      },
+      {
+        "delta_from_lowest_player_heights": 6.5455,
+        "median_floor_z": -28672,
+        "sector_count": 1
+      },
+      {
+        "delta_from_lowest_player_heights": 7.2727,
+        "median_floor_z": -32768,
+        "sector_count": 1
+      },
+      {
+        "delta_from_lowest_player_heights": 8.0,
+        "median_floor_z": -36864,
+        "sector_count": 1
+      },
+      {
+        "delta_from_lowest_player_heights": 8.7273,
+        "median_floor_z": -40960,
+        "sector_count": 1
+      },
+      {
+        "delta_from_lowest_player_heights": 9.4545,
+        "median_floor_z": -45056,
+        "sector_count": 1
+      },
+      {
+        "delta_from_lowest_player_heights": 10.1818,
+        "median_floor_z": -49152,
+        "sector_count": 1
+      },
+      {
+        "delta_from_lowest_player_heights": 10.9091,
+        "median_floor_z": -53248,
+        "sector_count": 1
+      },
+      {
+        "delta_from_lowest_player_heights": 11.6364,
+        "median_floor_z": -57344,
+        "sector_count": 5
+      },
+      {
+        "delta_from_lowest_player_heights": 12.3636,
+        "median_floor_z": -61440,
+        "sector_count": 1
+      },
+      {
+        "delta_from_lowest_player_heights": 13.0909,
+        "median_floor_z": -65536,
+        "sector_count": 1
+      },
+      {
+        "delta_from_lowest_player_heights": 13.8182,
+        "median_floor_z": -69632,
+        "sector_count": 1
+      },
+      {
+        "delta_from_lowest_player_heights": 14.5455,
+        "median_floor_z": -73728,
+        "sector_count": 1
+      }
+    ],
+    "kind": "derived",
+    "median_walkable_delta_player_heights": 0.7273,
+    "overlooking_xy_overlaps": [],
+    "pickup_elevation_median": 5.8182,
+    "schema_version": 1,
+    "start_elevations": [
+      {
+        "delta_from_lowest_player_heights": 5.8182,
+        "sprite": 3,
+        "type_id": 2
+      },
+      {
+        "delta_from_lowest_player_heights": 5.8182,
+        "sprite": 11,
+        "type_id": 2
+      },
+      {
+        "delta_from_lowest_player_heights": 5.0909,
+        "sprite": 19,
+        "type_id": 2
+      },
+      {
+        "delta_from_lowest_player_heights": 5.8182,
+        "sprite": 21,
+        "type_id": 2
+      },
+      {
+        "delta_from_lowest_player_heights": 5.8182,
+        "sprite": 38,
+        "type_id": 2
+      },
+      {
+        "delta_from_lowest_player_heights": 0.0,
+        "sprite": 47,
+        "type_id": 2
+      },
+      {
+        "delta_from_lowest_player_heights": 5.8182,
+        "sprite": 48,
+        "type_id": 2
+      },
+      {
+        "delta_from_lowest_player_heights": 0.0,
+        "sprite": 49,
+        "type_id": 2
+      }
+    ],
+    "vertical_samples": [
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            0,
+            25
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 9,
+            "floor": 15,
+            "wall_mean": 17
+          },
+          "right": {
+            "ceiling": 43,
+            "floor": 14,
+            "wall_mean": 28
+          },
+          "shade_delta": 11
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 438,
+            "wall_picnum": 497
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 492
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 291.5556,
+          "right_area_player_areas": 234.6667
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            0,
+            25
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 9,
+            "floor": 15,
+            "wall_mean": 17
+          },
+          "right": {
+            "ceiling": 43,
+            "floor": 14,
+            "wall_mean": 28
+          },
+          "shade_delta": 11
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 438,
+            "wall_picnum": 497
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 492
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 291.5556,
+          "right_area_player_areas": 234.6667
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            0,
+            24
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 9,
+            "floor": 15,
+            "wall_mean": 17
+          },
+          "right": {
+            "ceiling": 45,
+            "floor": 14,
+            "wall_mean": 28
+          },
+          "shade_delta": 11
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 438,
+            "wall_picnum": 497
+          },
+          "right": {
+            "ceiling_picnum": 496,
+            "floor_picnum": 491,
+            "wall_picnum": 497
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 291.5556,
+          "right_area_player_areas": 113.7778
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            0,
+            23
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 9,
+            "floor": 15,
+            "wall_mean": 17
+          },
+          "right": {
+            "ceiling": 43,
+            "floor": 14,
+            "wall_mean": 28
+          },
+          "shade_delta": 11
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 438,
+            "wall_picnum": 497
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 291.5556,
+          "right_area_player_areas": 234.6667
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            0,
+            23
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 9,
+            "floor": 15,
+            "wall_mean": 17
+          },
+          "right": {
+            "ceiling": 43,
+            "floor": 14,
+            "wall_mean": 28
+          },
+          "shade_delta": 11
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 438,
+            "wall_picnum": 497
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 291.5556,
+          "right_area_player_areas": 234.6667
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            0,
+            37
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -9.4545,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 9,
+            "floor": 15,
+            "wall_mean": 17
+          },
+          "right": {
+            "ceiling": 44,
+            "floor": 44,
+            "wall_mean": 44
+          },
+          "shade_delta": 27
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 438,
+            "wall_picnum": 497
+          },
+          "right": {
+            "ceiling_picnum": 200,
+            "floor_picnum": 491,
+            "wall_picnum": 492
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 291.5556,
+          "right_area_player_areas": 76.4444
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            1,
+            21
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": 11.6364,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 40,
+            "floor": 21,
+            "wall_mean": 40
+          },
+          "right": {
+            "ceiling": 40,
+            "floor": 17,
+            "wall_mean": 28
+          },
+          "shade_delta": -12
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 492
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 500
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 13.3333,
+          "right_area_player_areas": 815.5556
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            2,
+            21
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": 11.6364,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 40,
+            "floor": 33,
+            "wall_mean": 21
+          },
+          "right": {
+            "ceiling": 40,
+            "floor": 17,
+            "wall_mean": 28
+          },
+          "shade_delta": 7
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 200,
+            "wall_picnum": 492
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 500
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 20.8889,
+          "right_area_player_areas": 815.5556
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            2,
+            21
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": 11.6364,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 40,
+            "floor": 33,
+            "wall_mean": 21
+          },
+          "right": {
+            "ceiling": 40,
+            "floor": 17,
+            "wall_mean": 28
+          },
+          "shade_delta": 7
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 200,
+            "wall_picnum": 492
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 500
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 20.8889,
+          "right_area_player_areas": 815.5556
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            2,
+            21
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": 11.6364,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 40,
+            "floor": 33,
+            "wall_mean": 21
+          },
+          "right": {
+            "ceiling": 40,
+            "floor": 17,
+            "wall_mean": 28
+          },
+          "shade_delta": 7
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 200,
+            "wall_picnum": 492
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 500
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 20.8889,
+          "right_area_player_areas": 815.5556
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            2,
+            21
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": 11.6364,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 40,
+            "floor": 33,
+            "wall_mean": 21
+          },
+          "right": {
+            "ceiling": 40,
+            "floor": 17,
+            "wall_mean": 28
+          },
+          "shade_delta": 7
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 200,
+            "wall_picnum": 492
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 500
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 20.8889,
+          "right_area_player_areas": 815.5556
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            3,
+            4
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -5.8182,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 47,
+            "floor": 34,
+            "wall_mean": 41
+          },
+          "right": {
+            "ceiling": 47,
+            "floor": 34,
+            "wall_mean": 41
+          },
+          "shade_delta": 0
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 496
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 497
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 71.1111,
+          "right_area_player_areas": 42.6667
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            10,
+            21
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": 5.8182,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 44,
+            "floor": 32,
+            "wall_mean": 44
+          },
+          "right": {
+            "ceiling": 40,
+            "floor": 17,
+            "wall_mean": 28
+          },
+          "shade_delta": -16
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 492
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 500
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 7.1111,
+          "right_area_player_areas": 815.5556
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            13,
+            31
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 51,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "right": {
+            "ceiling": 48,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "shade_delta": 0
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 497
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 480.0,
+          "right_area_player_areas": 7.1111
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            21,
+            22
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -5.8182,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 40,
+            "floor": 17,
+            "wall_mean": 28
+          },
+          "right": {
+            "ceiling": 47,
+            "floor": 32,
+            "wall_mean": 34
+          },
+          "shade_delta": 6
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 500
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 500
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 815.5556,
+          "right_area_player_areas": 804.4444
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            21,
+            22
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -5.8182,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 40,
+            "floor": 17,
+            "wall_mean": 28
+          },
+          "right": {
+            "ceiling": 47,
+            "floor": 32,
+            "wall_mean": 34
+          },
+          "shade_delta": 6
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 500
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 500
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 815.5556,
+          "right_area_player_areas": 804.4444
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            21,
+            22
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -5.8182,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 40,
+            "floor": 17,
+            "wall_mean": 28
+          },
+          "right": {
+            "ceiling": 47,
+            "floor": 32,
+            "wall_mean": 34
+          },
+          "shade_delta": 6
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 500
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 500
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 815.5556,
+          "right_area_player_areas": 804.4444
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            26,
+            27
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 48,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "right": {
+            "ceiling": 46,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "shade_delta": 0
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 35.5556,
+          "right_area_player_areas": 7.1111
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            26,
+            35
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": 0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 48,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "right": {
+            "ceiling": 48,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "shade_delta": 0
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 35.5556,
+          "right_area_player_areas": 7.1111
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            27,
+            28
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 46,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "right": {
+            "ceiling": 44,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "shade_delta": 0
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 7.1111,
+          "right_area_player_areas": 7.1111
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            28,
+            30
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 44,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "right": {
+            "ceiling": 42,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "shade_delta": 0
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 7.1111,
+          "right_area_player_areas": 7.1111
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            29,
+            30
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": 0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 40,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "right": {
+            "ceiling": 42,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "shade_delta": 0
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 7.1111,
+          "right_area_player_areas": 7.1111
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            29,
+            37
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 40,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "right": {
+            "ceiling": 44,
+            "floor": 44,
+            "wall_mean": 44
+          },
+          "shade_delta": 0
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          },
+          "right": {
+            "ceiling_picnum": 200,
+            "floor_picnum": 491,
+            "wall_picnum": 492
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 7.1111,
+          "right_area_player_areas": 76.4444
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            31,
+            32
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 48,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "right": {
+            "ceiling": 48,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "shade_delta": 0
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 7.1111,
+          "right_area_player_areas": 7.1111
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            32,
+            33
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 48,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "right": {
+            "ceiling": 48,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "shade_delta": 0
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 7.1111,
+          "right_area_player_areas": 7.1111
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            33,
+            34
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 48,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "right": {
+            "ceiling": 48,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "shade_delta": 0
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 7.1111,
+          "right_area_player_areas": 7.1111
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            34,
+            36
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": -0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 48,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "right": {
+            "ceiling": 48,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "shade_delta": 0
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 7.1111,
+          "right_area_player_areas": 7.1111
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      },
+      {
+        "evidence": [
+          "spatial.traversability.walkable_at_rest"
+        ],
+        "focus": {
+          "sectors": [
+            35,
+            36
+          ],
+          "wall": null
+        },
+        "geometry": {
+          "floor_delta_player_heights": 0.7273,
+          "sky_relationship": "same"
+        },
+        "lighting": {
+          "left": {
+            "ceiling": 48,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "right": {
+            "ceiling": 48,
+            "floor": 42,
+            "wall_mean": 44
+          },
+          "shade_delta": 0
+        },
+        "map": "local",
+        "materials": {
+          "left": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          },
+          "right": {
+            "ceiling_picnum": 491,
+            "floor_picnum": 491,
+            "wall_picnum": 200
+          }
+        },
+        "population": "local",
+        "scale": {
+          "left_area_player_areas": 7.1111,
+          "right_area_player_areas": 7.1111
+        },
+        "subject": "vertical-transition",
+        "visibility": {
+          "sky_relationship": "same"
+        }
+      }
+    ],
+    "walkable_height_changes": 28
+  },
+  "campaign_retrieval": {
+    "$schema": "llmapper.vertical-retrieval",
+    "counterexamples": [
+      {
+        "error": "sector:144 has invalid wall ownership",
+        "map": "E6M7.MAP"
+      }
+    ],
+    "kind": "derived",
+    "occurrences": [
+      {
+        "band_count": 40,
+        "map": "E1M1.MAP",
+        "matching_transitions": 29,
+        "median_matching_delta": 1.2727
+      },
+      {
+        "band_count": 70,
+        "map": "E1M2.MAP",
+        "matching_transitions": 30,
+        "median_matching_delta": 2.7273
+      },
+      {
+        "band_count": 33,
+        "map": "E1M3.MAP",
+        "matching_transitions": 36,
+        "median_matching_delta": 1.0909
+      },
+      {
+        "band_count": 70,
+        "map": "E1M4.MAP",
+        "matching_transitions": 29,
+        "median_matching_delta": 1.6364
+      },
+      {
+        "band_count": 93,
+        "map": "E1M5.MAP",
+        "matching_transitions": 28,
+        "median_matching_delta": 0.5455
+      },
+      {
+        "band_count": 127,
+        "map": "E1M6.MAP",
+        "matching_transitions": 27,
+        "median_matching_delta": 0.7273
+      },
+      {
+        "band_count": 15,
+        "map": "E1M7.MAP",
+        "matching_transitions": 14,
+        "median_matching_delta": 1.4545
+      },
+      {
+        "band_count": 76,
+        "map": "E1M8.MAP",
+        "matching_transitions": 31,
+        "median_matching_delta": 1.4545
+      }
+    ],
+    "population": "blood-campaign",
+    "query": {
+      "delta_max": 3.0,
+      "delta_min": 0.4
+    },
+    "schema_version": 1,
+    "status": "supported"
+  },
+  "population_note": "BB3 is BloodBath vertical morphology only; not an SP progression reference"
+}

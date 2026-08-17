@@ -1,0 +1,88 @@
+{
+  "audit_error_conflicts": 0,
+  "authored": {
+    "diagnostics": [
+      {
+        "code": "unreachable_pickup",
+        "location": "sector[8]",
+        "message": "pickup sector is outside the largest at-rest circulation component (may be gated)",
+        "severity": "warning"
+      },
+      {
+        "code": "unreachable_pickup",
+        "location": "sector[10]",
+        "message": "pickup sector is outside the largest at-rest circulation component (may be gated)",
+        "severity": "warning"
+      },
+      {
+        "code": "unreachable_pickup",
+        "location": "sector[8]",
+        "message": "pickup sector is outside the largest at-rest circulation component (may be gated)",
+        "severity": "warning"
+      }
+    ],
+    "errors": 0,
+    "warnings": 3
+  },
+  "bytes": 4753,
+  "conservation": {
+    "atomic_segments": 92,
+    "conserved": true,
+    "dropped_source_edges": [],
+    "duplicated_source_edges": [],
+    "emitted_directed_edges": 92,
+    "source_directed_edges": 68,
+    "split_count": 24,
+    "unpaired_portal_candidates": [],
+    "walls_owned_once": true
+  },
+  "deterministic": true,
+  "map": "work\\BB6-pattern-reconstruction-v1.MAP",
+  "native_validation_errors": 0,
+  "source_hidden": [
+    "maps/blood/BB6.MAP"
+  ],
+  "traversal": {
+    "component_count": 5,
+    "components": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        11,
+        12
+      ],
+      [
+        7
+      ],
+      [
+        8
+      ],
+      [
+        9
+      ],
+      [
+        10
+      ]
+    ],
+    "dm_starts_in_main": 8,
+    "dm_starts_total": 8,
+    "main_network": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      11,
+      12
+    ],
+    "main_size": 9,
+    "walkable_edges": 8
+  }
+}

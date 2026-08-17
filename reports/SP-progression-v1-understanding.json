@@ -1,0 +1,905 @@
+{
+  "$schema": "llmapper.sp-understanding",
+  "enemies": {
+    "count": 2,
+    "median_height_player_heights": 0.0,
+    "median_wall_distance_player_widths": 3.599,
+    "sit": {
+      "floor_supported": 2
+    },
+    "types": {
+      "201": 2
+    }
+  },
+  "kind": "derived",
+  "limitations": [
+    "destruction, one-shot walls, and undocumented types are not simulated",
+    "opening a motion sector makes all its gated portals walkable",
+    "secret exits (channel 5) are recorded but not required for completion"
+  ],
+  "map": "SP-progression-v1.MAP",
+  "model": "understand sensors + state-dependent progression; not a room detector",
+  "palette": {
+    "ceiling": [
+      {
+        "architectural_role": "structural_fill",
+        "count": 7,
+        "known_facets": true,
+        "picnum": 385,
+        "surface_applicability": "vertical",
+        "visual_material": "brick"
+      },
+      {
+        "architectural_role": "structural_fill",
+        "count": 4,
+        "known_facets": true,
+        "picnum": 416,
+        "surface_applicability": "horizontal_ceiling",
+        "visual_material": "unknown"
+      },
+      {
+        "architectural_role": "unknown",
+        "count": 4,
+        "known_facets": true,
+        "picnum": 104,
+        "surface_applicability": "vertical",
+        "visual_material": "unknown"
+      }
+    ],
+    "floor": [
+      {
+        "architectural_role": "structural_fill",
+        "count": 5,
+        "known_facets": true,
+        "picnum": 2448,
+        "surface_applicability": "horizontal_floor",
+        "visual_material": "organic_earth"
+      },
+      {
+        "architectural_role": "unknown",
+        "count": 4,
+        "known_facets": true,
+        "picnum": 104,
+        "surface_applicability": "vertical",
+        "visual_material": "unknown"
+      },
+      {
+        "architectural_role": "structural_fill",
+        "count": 3,
+        "known_facets": true,
+        "picnum": 270,
+        "surface_applicability": "horizontal_floor",
+        "visual_material": "organic_earth"
+      }
+    ],
+    "median_shade": 9.0,
+    "sector_count": 15,
+    "shade_range": [
+      4.0,
+      26.0
+    ],
+    "wall": [
+      {
+        "architectural_role": "structural_fill",
+        "count": 24,
+        "known_facets": true,
+        "picnum": 5,
+        "surface_applicability": "vertical",
+        "visual_material": "brick"
+      },
+      {
+        "architectural_role": "structural_fill",
+        "count": 16,
+        "known_facets": true,
+        "picnum": 110,
+        "surface_applicability": "vertical",
+        "visual_material": "stone_masonry"
+      },
+      {
+        "architectural_role": "unknown",
+        "count": 16,
+        "known_facets": true,
+        "picnum": 104,
+        "surface_applicability": "vertical",
+        "visual_material": "unknown"
+      }
+    ]
+  },
+  "physical_vs_progress": {
+    "blocked_or_state_dependent_portals": 8,
+    "exit_reachable": true,
+    "final_reachable": 15,
+    "physical_reachable_at_rest": 3
+  },
+  "progression": {
+    "$schema": "llmapper.sp-progression",
+    "chains": [
+      {
+        "channel": 100,
+        "exit": false,
+        "motion_receivers": [
+          9
+        ],
+        "receiver_count": 1,
+        "signature": "tx1|rx1|motion1|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 101,
+        "exit": false,
+        "motion_receivers": [
+          13
+        ],
+        "receiver_count": 1,
+        "signature": "tx1|rx1|motion1|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 102,
+        "exit": false,
+        "motion_receivers": [
+          11
+        ],
+        "receiver_count": 1,
+        "signature": "tx1|rx1|motion1|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      }
+    ],
+    "channels_activated": [
+      4,
+      100,
+      101,
+      102
+    ],
+    "exit_reachable": true,
+    "final_reachable": 15,
+    "keys_collected": [
+      1
+    ],
+    "kind": "derived",
+    "limitations": [
+      "destruction, one-shot walls, and undocumented types are not simulated",
+      "opening a motion sector makes all its gated portals walkable",
+      "secret exits (channel 5) are recorded but not required for completion"
+    ],
+    "locked_sectors": {
+      "3": 1
+    },
+    "model": "keys + RX Z-motion + push motion + TX in reached sectors; not a player simulator",
+    "motion_receivers": {
+      "100": [
+        9
+      ],
+      "101": [
+        13
+      ],
+      "102": [
+        11
+      ]
+    },
+    "pacing": [
+      {
+        "event": null,
+        "label": "spawn",
+        "reachable_count": 3,
+        "space": {
+          "aabb_width_player_widths": 36.0,
+          "clear_height_player_heights": 5.0,
+          "clear_height_range": {
+            "max": 30976.0,
+            "median": 28160.0,
+            "min": 22528.0,
+            "samples": 3
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.8571,
+            "openness": 0.2714,
+            "sky_exposure": 0.0,
+            "vertical_enclosure": 0.6
+          },
+          "footprint_player_areas": 472.0,
+          "opening_width_range": {
+            "max": 3072.0,
+            "median": 3072.0,
+            "min": 2304.0,
+            "samples": 4
+          },
+          "sector_count": 3,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 416,
+              "uses": 2
+            },
+            "dominant_floor_picnum": {
+              "picnum": 270,
+              "uses": 2
+            },
+            "dominant_wall_picnum": {
+              "picnum": 110,
+              "uses": 10
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "key": 1,
+          "kind": "take-key",
+          "sector": 2
+        },
+        "label": "take-key",
+        "reachable_count": 3,
+        "space": {
+          "aabb_width_player_widths": 36.0,
+          "clear_height_player_heights": 5.0,
+          "clear_height_range": {
+            "max": 30976.0,
+            "median": 28160.0,
+            "min": 22528.0,
+            "samples": 3
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.8571,
+            "openness": 0.2714,
+            "sky_exposure": 0.0,
+            "vertical_enclosure": 0.6
+          },
+          "footprint_player_areas": 472.0,
+          "opening_width_range": {
+            "max": 3072.0,
+            "median": 3072.0,
+            "min": 2304.0,
+            "samples": 4
+          },
+          "sector_count": 3,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 416,
+              "uses": 2
+            },
+            "dominant_floor_picnum": {
+              "picnum": 270,
+              "uses": 2
+            },
+            "dominant_wall_picnum": {
+              "picnum": 110,
+              "uses": 10
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "key": 1,
+          "kind": "unlock",
+          "sector": 3
+        },
+        "label": "unlock",
+        "reachable_count": 9,
+        "space": {
+          "aabb_width_player_widths": 36.0,
+          "clear_height_player_heights": 5.5,
+          "clear_height_range": {
+            "max": 47872.0,
+            "median": 30976.0,
+            "min": 0.0,
+            "samples": 9
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.9024,
+            "openness": 0.2761,
+            "sky_exposure": 0.0,
+            "vertical_enclosure": 0.5455
+          },
+          "footprint_player_areas": 696.0,
+          "opening_width_range": {
+            "max": 3072.0,
+            "median": 3072.0,
+            "min": 2304.0,
+            "samples": 10
+          },
+          "sector_count": 9,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 385,
+              "uses": 5
+            },
+            "dominant_floor_picnum": {
+              "picnum": 2448,
+              "uses": 5
+            },
+            "dominant_wall_picnum": {
+              "picnum": 5,
+              "uses": 24
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "ref": "sprite:1",
+          "tx_id": 100
+        },
+        "label": "activate",
+        "reachable_count": 11,
+        "space": {
+          "aabb_width_player_widths": 36.0,
+          "clear_height_player_heights": 5.5,
+          "clear_height_range": {
+            "max": 47872.0,
+            "median": 30976.0,
+            "min": 0.0,
+            "samples": 11
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.9352,
+            "openness": 0.2597,
+            "sky_exposure": 0.0,
+            "vertical_enclosure": 0.5455
+          },
+          "footprint_player_areas": 964.0,
+          "opening_width_range": {
+            "max": 3072.0,
+            "median": 3072.0,
+            "min": 2304.0,
+            "samples": 12
+          },
+          "sector_count": 11,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 385,
+              "uses": 6
+            },
+            "dominant_floor_picnum": {
+              "picnum": 2448,
+              "uses": 5
+            },
+            "dominant_wall_picnum": {
+              "picnum": 5,
+              "uses": 24
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "ref": "sprite:2",
+          "tx_id": 101
+        },
+        "label": "activate",
+        "reachable_count": 13,
+        "space": {
+          "aabb_width_player_widths": 36.0,
+          "clear_height_player_heights": 5.5,
+          "clear_height_range": {
+            "max": 47872.0,
+            "median": 30976.0,
+            "min": 0.0,
+            "samples": 13
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.9773,
+            "openness": 0.2386,
+            "sky_exposure": 0.0,
+            "vertical_enclosure": 0.5455
+          },
+          "footprint_player_areas": 1204.0,
+          "opening_width_range": {
+            "max": 3072.0,
+            "median": 3072.0,
+            "min": 2304.0,
+            "samples": 13
+          },
+          "sector_count": 13,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 385,
+              "uses": 7
+            },
+            "dominant_floor_picnum": {
+              "picnum": 2448,
+              "uses": 5
+            },
+            "dominant_wall_picnum": {
+              "picnum": 5,
+              "uses": 24
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "ref": "sprite:3",
+          "tx_id": 102
+        },
+        "label": "activate",
+        "reachable_count": 15,
+        "space": {
+          "aabb_width_player_widths": 36.0,
+          "clear_height_player_heights": 5.5,
+          "clear_height_range": {
+            "max": 47872.0,
+            "median": 30976.0,
+            "min": 0.0,
+            "samples": 15
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 1.0,
+            "openness": 0.2273,
+            "sky_exposure": 0.0,
+            "vertical_enclosure": 0.5455
+          },
+          "footprint_player_areas": 1336.0,
+          "opening_width_range": {
+            "max": 3072.0,
+            "median": 3072.0,
+            "min": 2304.0,
+            "samples": 14
+          },
+          "sector_count": 15,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 385,
+              "uses": 7
+            },
+            "dominant_floor_picnum": {
+              "picnum": 2448,
+              "uses": 5
+            },
+            "dominant_wall_picnum": {
+              "picnum": 5,
+              "uses": 24
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "is_exit": true,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "ref": "sprite:4",
+          "tx_id": 4
+        },
+        "label": "activate",
+        "reachable_count": 15,
+        "space": {
+          "aabb_width_player_widths": 36.0,
+          "clear_height_player_heights": 5.5,
+          "clear_height_range": {
+            "max": 47872.0,
+            "median": 30976.0,
+            "min": 0.0,
+            "samples": 15
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 1.0,
+            "openness": 0.2273,
+            "sky_exposure": 0.0,
+            "vertical_enclosure": 0.5455
+          },
+          "footprint_player_areas": 1336.0,
+          "opening_width_range": {
+            "max": 3072.0,
+            "median": 3072.0,
+            "min": 2304.0,
+            "samples": 14
+          },
+          "sector_count": 15,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 385,
+              "uses": 7
+            },
+            "dominant_floor_picnum": {
+              "picnum": 2448,
+              "uses": 5
+            },
+            "dominant_wall_picnum": {
+              "picnum": 5,
+              "uses": 24
+            }
+          }
+        }
+      }
+    ],
+    "physical_reachable_at_rest": 3,
+    "push_sectors": [
+      3
+    ],
+    "roles": {
+      "decorative_or_unreached": [],
+      "decorative_or_unreached_count": 1,
+      "method": "re-solve with each activated channel or collected key dropped",
+      "no_progression_effect": [
+        {
+          "exit_without": true,
+          "final_with": 15,
+          "final_without": 15,
+          "role": "no_progression_effect",
+          "tx_id": 4
+        }
+      ],
+      "notes": [
+        "required_for_exit means dropping that channel/key makes the exit unreachable in this model",
+        "optional_space still reaches the exit but with fewer sectors",
+        "destruction and undocumented types remain unmodeled"
+      ],
+      "optional": [
+        {
+          "exit_without": true,
+          "final_with": 15,
+          "final_without": 13,
+          "role": "optional_space",
+          "tx_id": 102
+        }
+      ],
+      "required": [
+        {
+          "exit_without": false,
+          "final_with": 15,
+          "final_without": 9,
+          "role": "required_for_exit",
+          "tx_id": 100
+        },
+        {
+          "exit_without": false,
+          "final_with": 15,
+          "final_without": 13,
+          "role": "required_for_exit",
+          "tx_id": 101
+        },
+        {
+          "exit_without": false,
+          "final_without": 3,
+          "key": 1,
+          "role": "required_key"
+        }
+      ]
+    },
+    "schema_version": 1,
+    "sector_count": 15,
+    "start_sector": 0,
+    "steps": [
+      {
+        "action": "sprite:1",
+        "reachable_count": 11,
+        "tx_id": 100
+      },
+      {
+        "action": "sprite:2",
+        "reachable_count": 13,
+        "tx_id": 101
+      },
+      {
+        "action": "sprite:3",
+        "reachable_count": 15,
+        "tx_id": 102
+      },
+      {
+        "action": "sprite:4",
+        "reachable_count": 15,
+        "tx_id": 4
+      }
+    ],
+    "transmitter_count": 4,
+    "witness": [
+      {
+        "kind": "spawn",
+        "reachable": 3,
+        "sector": 0
+      },
+      {
+        "key": 1,
+        "kind": "take-key",
+        "reachable": 3,
+        "sector": 2,
+        "type_id": 100
+      },
+      {
+        "key": 1,
+        "kind": "unlock",
+        "reachable": 9,
+        "sector": 3
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 2,
+        "reachable": 11,
+        "ref": "sprite:1",
+        "tx_id": 100
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 2,
+        "reachable": 13,
+        "ref": "sprite:2",
+        "tx_id": 101
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 2,
+        "reachable": 15,
+        "ref": "sprite:3",
+        "tx_id": 102
+      },
+      {
+        "is_exit": true,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 15,
+        "ref": "sprite:4",
+        "tx_id": 4
+      }
+    ],
+    "witness_summary": {
+      "$schema": "llmapper.sp-progression",
+      "channels_activated": [
+        4,
+        100,
+        101,
+        102
+      ],
+      "coherent": true,
+      "events": [
+        {
+          "kind": "spawn",
+          "reachable": 3,
+          "sector": 0
+        },
+        {
+          "key": 1,
+          "kind": "take-key",
+          "reachable": 3,
+          "sector": 2,
+          "type_id": 100
+        },
+        {
+          "key": 1,
+          "kind": "unlock",
+          "reachable": 9,
+          "sector": 3
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "reachable": 11,
+          "ref": "sprite:1",
+          "tx_id": 100
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "reachable": 13,
+          "ref": "sprite:2",
+          "tx_id": 101
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "reachable": 15,
+          "ref": "sprite:3",
+          "tx_id": 102
+        },
+        {
+          "is_exit": true,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 15,
+          "ref": "sprite:4",
+          "tx_id": 4
+        }
+      ],
+      "final_reachable": 15,
+      "keys_collected": [
+        1
+      ],
+      "kind": "derived",
+      "physical_reachable_at_rest": 3,
+      "schema_version": 1,
+      "start_sector": 0
+    }
+  },
+  "schema_version": 1,
+  "sensors": {
+    "aabb_player_widths": [
+      36.0,
+      70.0
+    ],
+    "morphology": {
+      "diagonal_length_fraction": 0.0,
+      "orientation_diversity": 0.0556,
+      "orthogonal_length_fraction": 1.0,
+      "rectangular_sector_fraction": 0.6
+    },
+    "parse": {
+      "blocking_walls": 0,
+      "masked_walls": 0,
+      "parallax_ceilings": 0,
+      "sectors": 15,
+      "sprites": 11,
+      "validation_errors": 0,
+      "version": "0x0700",
+      "walls": 80,
+      "xsectors": 4,
+      "xsprites": 4,
+      "xwalls": 0
+    },
+    "pickup_categories": {
+      "health": 1,
+      "key": 1,
+      "weapon": 1
+    },
+    "space": {
+      "covered": {
+        "aabb_width_player_widths": 36.0,
+        "clear_height_player_heights": 5.5,
+        "clear_height_range": {
+          "max": 47872.0,
+          "median": 30976.0,
+          "min": 0.0,
+          "samples": 15
+        },
+        "enclosure": {
+          "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+          "interpretation": null,
+          "lateral_enclosure": 1.0,
+          "openness": 0.2273,
+          "sky_exposure": 0.0,
+          "vertical_enclosure": 0.5455
+        },
+        "footprint_player_areas": 1336.0,
+        "opening_width_range": {
+          "max": 3072.0,
+          "median": 3072.0,
+          "min": 2304.0,
+          "samples": 14
+        },
+        "sector_count": 15,
+        "surfaces": {
+          "basis": "raw native picnum counts; not material-family names",
+          "dominant_ceiling_picnum": {
+            "picnum": 385,
+            "uses": 7
+          },
+          "dominant_floor_picnum": {
+            "picnum": 2448,
+            "uses": 5
+          },
+          "dominant_wall_picnum": {
+            "picnum": 5,
+            "uses": 24
+          }
+        }
+      },
+      "sky": null,
+      "whole": {
+        "aabb_width_player_widths": 36.0,
+        "clear_height_player_heights": 5.5,
+        "clear_height_range": {
+          "max": 47872.0,
+          "median": 30976.0,
+          "min": 0.0,
+          "samples": 15
+        },
+        "enclosure": {
+          "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+          "interpretation": null,
+          "lateral_enclosure": 1.0,
+          "openness": 0.2273,
+          "sky_exposure": 0.0,
+          "vertical_enclosure": 0.5455
+        },
+        "footprint_player_areas": 1336.0,
+        "opening_width_range": {
+          "max": 3072.0,
+          "median": 3072.0,
+          "min": 2304.0,
+          "samples": 14
+        },
+        "sector_count": 15,
+        "surfaces": {
+          "basis": "raw native picnum counts; not material-family names",
+          "dominant_ceiling_picnum": {
+            "picnum": 385,
+            "uses": 7
+          },
+          "dominant_floor_picnum": {
+            "picnum": 2448,
+            "uses": 5
+          },
+          "dominant_wall_picnum": {
+            "picnum": 5,
+            "uses": 24
+          }
+        }
+      }
+    },
+    "spatial": {
+      "blocked_or_state_dependent": 8,
+      "hypothesis_counts": {
+        "material_region": 2,
+        "mechanism_region": 4,
+        "navigation_region": 2,
+        "perceptual_space": 2
+      },
+      "nonportal": [],
+      "reachable": 3,
+      "unreachable": 12,
+      "walkable_at_rest": 6
+    },
+    "starts": {
+      "multiplayer": [],
+      "single_player": [
+        {
+          "angle": 512,
+          "category": "start",
+          "known": true,
+          "picnum": 2528,
+          "ref": "sprite:0",
+          "sector": 0,
+          "status": 0,
+          "type_id": 1,
+          "type_name": "kMarkerSPStart",
+          "x": 6144,
+          "y": 4608,
+          "z": 7168
+        }
+      ]
+    },
+    "underwater_sectors": []
+  },
+  "switches": {
+    "count": 4,
+    "median_wall_height_player_heights": 2.18,
+    "sit": {
+      "wall_flush": 4
+    },
+    "wall_mounted": 4
+  }
+}

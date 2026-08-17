@@ -61,7 +61,13 @@ class SectorAllocation:
 
 
 class LevelBuilder:
-    """Small, deterministic allocator for scratch-built LevelIR geometry and behavior."""
+    """Native-array LevelIR allocator for exact reversed portals and conversion.
+
+    Irregular scratch maps with holes, partial collinear portals, or embedded
+    buildings must go through ``PlanarLayout.compile()``. ``add_sector`` still
+    validates only the new polygon; ``connect`` still requires exact reversed
+    endpoints; ``build`` still runs ``validate_map()`` only.
+    """
 
     def __init__(self, level: LevelIR | None = None):
         self.level = copy.deepcopy(level) if level is not None else new_level()

@@ -1,0 +1,2899 @@
+{
+  "$schema": "llmapper.sp-understanding",
+  "enemies": {
+    "count": 63,
+    "median_height_player_heights": 1.5057,
+    "median_wall_distance_player_widths": 1.4471,
+    "sit": {
+      "free_space": 52,
+      "wall_offset": 11
+    },
+    "types": {
+      "201": 14,
+      "202": 20,
+      "203": 4,
+      "204": 5,
+      "206": 4,
+      "213": 10,
+      "245": 6
+    }
+  },
+  "kind": "derived",
+  "limitations": [
+    "destruction, one-shot walls, and undocumented types are not simulated",
+    "opening a motion sector makes all its gated portals walkable",
+    "secret exits (channel 5) are recorded but not required for completion"
+  ],
+  "map": "E2M2.MAP",
+  "model": "understand sensors + state-dependent progression; not a room detector",
+  "palette": {
+    "ceiling": [
+      {
+        "architectural_role": "sky_sheet",
+        "count": 46,
+        "known_facets": true,
+        "picnum": 2500,
+        "surface_applicability": "sky_parallax",
+        "visual_material": "stone_masonry"
+      },
+      {
+        "architectural_role": "structural_fill",
+        "count": 44,
+        "known_facets": true,
+        "picnum": 67,
+        "surface_applicability": "vertical",
+        "visual_material": "unknown"
+      },
+      {
+        "architectural_role": "placeholder",
+        "count": 29,
+        "known_facets": true,
+        "picnum": 0,
+        "surface_applicability": "none",
+        "visual_material": "unknown"
+      }
+    ],
+    "floor": [
+      {
+        "count": 46,
+        "known_facets": false,
+        "picnum": 438
+      },
+      {
+        "architectural_role": "structural_fill",
+        "count": 35,
+        "known_facets": true,
+        "picnum": 2448,
+        "surface_applicability": "horizontal_floor",
+        "visual_material": "organic_earth"
+      },
+      {
+        "architectural_role": "unknown",
+        "count": 34,
+        "known_facets": true,
+        "picnum": 90,
+        "surface_applicability": "mixed",
+        "visual_material": "unknown"
+      }
+    ],
+    "median_shade": 30.0,
+    "sector_count": 290,
+    "shade_range": [
+      -2.0,
+      53.5
+    ],
+    "wall": [
+      {
+        "architectural_role": "unknown",
+        "count": 362,
+        "known_facets": true,
+        "picnum": 281,
+        "surface_applicability": "mixed",
+        "visual_material": "unknown"
+      },
+      {
+        "architectural_role": "placeholder",
+        "count": 320,
+        "known_facets": true,
+        "picnum": 0,
+        "surface_applicability": "none",
+        "visual_material": "unknown"
+      },
+      {
+        "architectural_role": "structural_fill",
+        "count": 214,
+        "known_facets": true,
+        "picnum": 20,
+        "surface_applicability": "vertical",
+        "visual_material": "unknown"
+      }
+    ]
+  },
+  "physical_vs_progress": {
+    "blocked_or_state_dependent_portals": 177,
+    "exit_reachable": true,
+    "final_reachable": 221,
+    "physical_reachable_at_rest": 204
+  },
+  "progression": {
+    "$schema": "llmapper.sp-progression",
+    "chains": [
+      {
+        "channel": 100,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 11,
+        "signature": "tx2|rx11|motion0|exit0|sprite",
+        "transmitter_count": 2,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 101,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 7,
+        "signature": "tx1|rx7|motion0|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 102,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 12,
+        "signature": "tx1|rx12|motion0|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 103,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 3,
+        "signature": "tx3|rx3|motion0|exit0|sprite+wall",
+        "transmitter_count": 3,
+        "transmitter_kinds": [
+          "sprite",
+          "wall"
+        ]
+      },
+      {
+        "channel": 104,
+        "exit": false,
+        "motion_receivers": [
+          150,
+          151,
+          152,
+          153
+        ],
+        "receiver_count": 4,
+        "signature": "tx1|rx4|motion1|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 106,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx1|rx1|motion0|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 107,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 3,
+        "signature": "tx3|rx3|motion0|exit0|sprite+wall",
+        "transmitter_count": 3,
+        "transmitter_kinds": [
+          "sprite",
+          "wall"
+        ]
+      },
+      {
+        "channel": 108,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 3,
+        "signature": "tx3|rx3|motion0|exit0|sprite+wall",
+        "transmitter_count": 3,
+        "transmitter_kinds": [
+          "sprite",
+          "wall"
+        ]
+      },
+      {
+        "channel": 109,
+        "exit": false,
+        "motion_receivers": [
+          160
+        ],
+        "receiver_count": 1,
+        "signature": "tx1|rx1|motion1|exit0|sector",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sector"
+        ]
+      },
+      {
+        "channel": 110,
+        "exit": false,
+        "motion_receivers": [
+          180
+        ],
+        "receiver_count": 8,
+        "signature": "tx1|rx8|motion1|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 111,
+        "exit": false,
+        "motion_receivers": [
+          174
+        ],
+        "receiver_count": 1,
+        "signature": "tx2|rx1|motion1|exit0|sprite",
+        "transmitter_count": 2,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 112,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx2|rx1|motion0|exit0|wall",
+        "transmitter_count": 2,
+        "transmitter_kinds": [
+          "wall"
+        ]
+      },
+      {
+        "channel": 113,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 3,
+        "signature": "tx3|rx3|motion0|exit0|sprite+wall",
+        "transmitter_count": 3,
+        "transmitter_kinds": [
+          "sprite",
+          "wall"
+        ]
+      },
+      {
+        "channel": 114,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx4|rx1|motion0|exit0|wall",
+        "transmitter_count": 4,
+        "transmitter_kinds": [
+          "wall"
+        ]
+      },
+      {
+        "channel": 115,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 4,
+        "signature": "tx1|rx4|motion0|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 116,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx2|rx1|motion0|exit0|wall",
+        "transmitter_count": 2,
+        "transmitter_kinds": [
+          "wall"
+        ]
+      },
+      {
+        "channel": 117,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 5,
+        "signature": "tx1|rx5|motion0|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 118,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 10,
+        "signature": "tx1|rx10|motion0|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 128,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx1|rx1|motion0|exit0|sector",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sector"
+        ]
+      },
+      {
+        "channel": 129,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 4,
+        "signature": "tx1|rx4|motion0|exit0|sector",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sector"
+        ]
+      },
+      {
+        "channel": 130,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx1|rx1|motion0|exit0|sector",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sector"
+        ]
+      },
+      {
+        "channel": 131,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx1|rx1|motion0|exit0|sector",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sector"
+        ]
+      },
+      {
+        "channel": 132,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx1|rx1|motion0|exit0|sector",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sector"
+        ]
+      },
+      {
+        "channel": 135,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 3,
+        "signature": "tx2|rx3|motion0|exit0|sprite",
+        "transmitter_count": 2,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 137,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx1|rx1|motion0|exit0|sector",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sector"
+        ]
+      },
+      {
+        "channel": 138,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx3|rx1|motion0|exit0|sector+sprite",
+        "transmitter_count": 3,
+        "transmitter_kinds": [
+          "sector",
+          "sprite"
+        ]
+      },
+      {
+        "channel": 139,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx4|rx1|motion0|exit0|wall",
+        "transmitter_count": 4,
+        "transmitter_kinds": [
+          "wall"
+        ]
+      },
+      {
+        "channel": 141,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx1|rx1|motion0|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 142,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx2|rx1|motion0|exit0|sector+sprite",
+        "transmitter_count": 2,
+        "transmitter_kinds": [
+          "sector",
+          "sprite"
+        ]
+      },
+      {
+        "channel": 143,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 4,
+        "signature": "tx1|rx4|motion0|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 144,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx3|rx1|motion0|exit0|wall",
+        "transmitter_count": 3,
+        "transmitter_kinds": [
+          "wall"
+        ]
+      },
+      {
+        "channel": 145,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx2|rx1|motion0|exit0|sprite",
+        "transmitter_count": 2,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 146,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 1,
+        "signature": "tx1|rx1|motion0|exit0|sector",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sector"
+        ]
+      },
+      {
+        "channel": 147,
+        "exit": false,
+        "motion_receivers": [
+          226
+        ],
+        "receiver_count": 1,
+        "signature": "tx3|rx1|motion1|exit0|sprite",
+        "transmitter_count": 3,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 148,
+        "exit": false,
+        "motion_receivers": [
+          227
+        ],
+        "receiver_count": 1,
+        "signature": "tx3|rx1|motion1|exit0|sprite",
+        "transmitter_count": 3,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 149,
+        "exit": false,
+        "motion_receivers": [
+          231
+        ],
+        "receiver_count": 1,
+        "signature": "tx3|rx1|motion1|exit0|sprite",
+        "transmitter_count": 3,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 150,
+        "exit": false,
+        "motion_receivers": [
+          229
+        ],
+        "receiver_count": 1,
+        "signature": "tx3|rx1|motion1|exit0|sprite",
+        "transmitter_count": 3,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 151,
+        "exit": false,
+        "motion_receivers": [
+          238,
+          239,
+          240,
+          241
+        ],
+        "receiver_count": 4,
+        "signature": "tx1|rx4|motion1|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 152,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 2,
+        "signature": "tx2|rx2|motion0|exit0|sprite",
+        "transmitter_count": 2,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 153,
+        "exit": false,
+        "motion_receivers": [
+          276
+        ],
+        "receiver_count": 1,
+        "signature": "tx1|rx1|motion1|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 154,
+        "exit": false,
+        "motion_receivers": [
+          277,
+          278
+        ],
+        "receiver_count": 2,
+        "signature": "tx1|rx2|motion1|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      },
+      {
+        "channel": 155,
+        "exit": false,
+        "motion_receivers": [],
+        "receiver_count": 5,
+        "signature": "tx1|rx5|motion0|exit0|sprite",
+        "transmitter_count": 1,
+        "transmitter_kinds": [
+          "sprite"
+        ]
+      }
+    ],
+    "channels_activated": [
+      2,
+      4,
+      100,
+      101,
+      103,
+      107,
+      108,
+      110,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      129,
+      135,
+      139,
+      144,
+      147,
+      148,
+      149,
+      150,
+      151
+    ],
+    "exit_reachable": true,
+    "final_reachable": 221,
+    "keys_collected": [
+      3
+    ],
+    "kind": "derived",
+    "limitations": [
+      "destruction, one-shot walls, and undocumented types are not simulated",
+      "opening a motion sector makes all its gated portals walkable",
+      "secret exits (channel 5) are recorded but not required for completion"
+    ],
+    "locked_sectors": {
+      "123": 6,
+      "124": 6,
+      "177": 3
+    },
+    "model": "keys + RX Z-motion + push motion + TX in reached sectors; not a player simulator",
+    "motion_receivers": {
+      "104": [
+        150,
+        151,
+        152,
+        153
+      ],
+      "109": [
+        160
+      ],
+      "110": [
+        180
+      ],
+      "111": [
+        174
+      ],
+      "147": [
+        226
+      ],
+      "148": [
+        227
+      ],
+      "149": [
+        231
+      ],
+      "150": [
+        229
+      ],
+      "151": [
+        238,
+        239,
+        240,
+        241
+      ],
+      "153": [
+        276
+      ],
+      "154": [
+        277,
+        278
+      ]
+    },
+    "pacing": [
+      {
+        "event": null,
+        "label": "spawn",
+        "reachable_count": 204,
+        "space": {
+          "aabb_width_player_widths": 157.3333,
+          "clear_height_player_heights": 7.4545,
+          "clear_height_range": {
+            "max": 102400.0,
+            "median": 41984.0,
+            "min": 8192.0,
+            "samples": 204
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.9883,
+            "openness": 0.348,
+            "sky_exposure": 0.2157,
+            "vertical_enclosure": 0.3156
+          },
+          "footprint_player_areas": 8792.2893,
+          "opening_width_range": {
+            "max": 9216.0,
+            "median": 1024.0,
+            "min": 5.0,
+            "samples": 286
+          },
+          "sector_count": 204,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 2500,
+              "uses": 44
+            },
+            "dominant_floor_picnum": {
+              "picnum": 438,
+              "uses": 41
+            },
+            "dominant_wall_picnum": {
+              "picnum": 281,
+              "uses": 298
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "key": 3,
+          "kind": "take-key",
+          "sector": 264
+        },
+        "label": "take-key",
+        "reachable_count": 204,
+        "space": {
+          "aabb_width_player_widths": 157.3333,
+          "clear_height_player_heights": 7.4545,
+          "clear_height_range": {
+            "max": 102400.0,
+            "median": 41984.0,
+            "min": 8192.0,
+            "samples": 204
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.9883,
+            "openness": 0.348,
+            "sky_exposure": 0.2157,
+            "vertical_enclosure": 0.3156
+          },
+          "footprint_player_areas": 8792.2893,
+          "opening_width_range": {
+            "max": 9216.0,
+            "median": 1024.0,
+            "min": 5.0,
+            "samples": 286
+          },
+          "sector_count": 204,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 2500,
+              "uses": 44
+            },
+            "dominant_floor_picnum": {
+              "picnum": 438,
+              "uses": 41
+            },
+            "dominant_wall_picnum": {
+              "picnum": 281,
+              "uses": 298
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "kind": "push-motion",
+          "sector": 194
+        },
+        "label": "push-motion",
+        "reachable_count": 205,
+        "space": {
+          "aabb_width_player_widths": 157.3333,
+          "clear_height_player_heights": 7.2727,
+          "clear_height_range": {
+            "max": 102400.0,
+            "median": 40960.0,
+            "min": 0.0,
+            "samples": 205
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.9883,
+            "openness": 0.3439,
+            "sky_exposure": 0.2146,
+            "vertical_enclosure": 0.324
+          },
+          "footprint_player_areas": 8795.8448,
+          "opening_width_range": {
+            "max": 9216.0,
+            "median": 1024.0,
+            "min": 5.0,
+            "samples": 286
+          },
+          "sector_count": 205,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 2500,
+              "uses": 44
+            },
+            "dominant_floor_picnum": {
+              "picnum": 438,
+              "uses": 41
+            },
+            "dominant_wall_picnum": {
+              "picnum": 281,
+              "uses": 298
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "kind": "push-motion",
+          "sector": 102
+        },
+        "label": "push-motion",
+        "reachable_count": 206,
+        "space": {
+          "aabb_width_player_widths": 157.3333,
+          "clear_height_player_heights": 7.2727,
+          "clear_height_range": {
+            "max": 102400.0,
+            "median": 40960.0,
+            "min": 0.0,
+            "samples": 206
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.9883,
+            "openness": 0.3437,
+            "sky_exposure": 0.2136,
+            "vertical_enclosure": 0.3244
+          },
+          "footprint_player_areas": 8796.2893,
+          "opening_width_range": {
+            "max": 9216.0,
+            "median": 1024.0,
+            "min": 5.0,
+            "samples": 286
+          },
+          "sector_count": 206,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 2500,
+              "uses": 44
+            },
+            "dominant_floor_picnum": {
+              "picnum": 438,
+              "uses": 41
+            },
+            "dominant_wall_picnum": {
+              "picnum": 281,
+              "uses": 298
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 3,
+          "ref": "sprite:150",
+          "tx_id": 110
+        },
+        "label": "activate",
+        "reachable_count": 209,
+        "space": {
+          "aabb_width_player_widths": 157.3333,
+          "clear_height_player_heights": 7.2727,
+          "clear_height_range": {
+            "max": 130048.0,
+            "median": 40960.0,
+            "min": 0.0,
+            "samples": 209
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.9902,
+            "openness": 0.3421,
+            "sky_exposure": 0.2105,
+            "vertical_enclosure": 0.3257
+          },
+          "footprint_player_areas": 8826.7337,
+          "opening_width_range": {
+            "max": 9216.0,
+            "median": 1024.0,
+            "min": 5.0,
+            "samples": 288
+          },
+          "sector_count": 209,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 2500,
+              "uses": 44
+            },
+            "dominant_floor_picnum": {
+              "picnum": 438,
+              "uses": 41
+            },
+            "dominant_wall_picnum": {
+              "picnum": 281,
+              "uses": 301
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "ref": "sprite:349",
+          "tx_id": 147
+        },
+        "label": "activate",
+        "reachable_count": 211,
+        "space": {
+          "aabb_width_player_widths": 157.3333,
+          "clear_height_player_heights": 7.0909,
+          "clear_height_range": {
+            "max": 130048.0,
+            "median": 39936.0,
+            "min": 0.0,
+            "samples": 211
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.9915,
+            "openness": 0.3368,
+            "sky_exposure": 0.2085,
+            "vertical_enclosure": 0.3349
+          },
+          "footprint_player_areas": 8835.6226,
+          "opening_width_range": {
+            "max": 9216.0,
+            "median": 1024.0,
+            "min": 5.0,
+            "samples": 289
+          },
+          "sector_count": 211,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 2500,
+              "uses": 44
+            },
+            "dominant_floor_picnum": {
+              "picnum": 438,
+              "uses": 41
+            },
+            "dominant_wall_picnum": {
+              "picnum": 281,
+              "uses": 301
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "ref": "sprite:352",
+          "tx_id": 148
+        },
+        "label": "activate",
+        "reachable_count": 213,
+        "space": {
+          "aabb_width_player_widths": 157.3333,
+          "clear_height_player_heights": 7.0909,
+          "clear_height_range": {
+            "max": 130048.0,
+            "median": 39936.0,
+            "min": 0.0,
+            "samples": 213
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.9928,
+            "openness": 0.3358,
+            "sky_exposure": 0.2066,
+            "vertical_enclosure": 0.3357
+          },
+          "footprint_player_areas": 8844.5115,
+          "opening_width_range": {
+            "max": 9216.0,
+            "median": 1024.0,
+            "min": 5.0,
+            "samples": 290
+          },
+          "sector_count": 213,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 2500,
+              "uses": 44
+            },
+            "dominant_floor_picnum": {
+              "picnum": 438,
+              "uses": 41
+            },
+            "dominant_wall_picnum": {
+              "picnum": 281,
+              "uses": 302
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "ref": "sprite:354",
+          "tx_id": 150
+        },
+        "label": "activate",
+        "reachable_count": 215,
+        "space": {
+          "aabb_width_player_widths": 157.3333,
+          "clear_height_player_heights": 7.0909,
+          "clear_height_range": {
+            "max": 130048.0,
+            "median": 39936.0,
+            "min": 0.0,
+            "samples": 215
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.9941,
+            "openness": 0.3347,
+            "sky_exposure": 0.2047,
+            "vertical_enclosure": 0.3365
+          },
+          "footprint_player_areas": 8853.4004,
+          "opening_width_range": {
+            "max": 9216.0,
+            "median": 1024.0,
+            "min": 5.0,
+            "samples": 291
+          },
+          "sector_count": 215,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 2500,
+              "uses": 44
+            },
+            "dominant_floor_picnum": {
+              "picnum": 438,
+              "uses": 42
+            },
+            "dominant_wall_picnum": {
+              "picnum": 281,
+              "uses": 303
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "ref": "sprite:355",
+          "tx_id": 149
+        },
+        "label": "activate",
+        "reachable_count": 217,
+        "space": {
+          "aabb_width_player_widths": 157.3333,
+          "clear_height_player_heights": 7.0909,
+          "clear_height_range": {
+            "max": 130048.0,
+            "median": 39936.0,
+            "min": 0.0,
+            "samples": 217
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.9953,
+            "openness": 0.3337,
+            "sky_exposure": 0.2028,
+            "vertical_enclosure": 0.3373
+          },
+          "footprint_player_areas": 8862.2893,
+          "opening_width_range": {
+            "max": 9216.0,
+            "median": 1024.0,
+            "min": 5.0,
+            "samples": 292
+          },
+          "sector_count": 217,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 2500,
+              "uses": 44
+            },
+            "dominant_floor_picnum": {
+              "picnum": 438,
+              "uses": 42
+            },
+            "dominant_wall_picnum": {
+              "picnum": 281,
+              "uses": 304
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "is_exit": true,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "ref": "sprite:368",
+          "tx_id": 4
+        },
+        "label": "activate",
+        "reachable_count": 217,
+        "space": {
+          "aabb_width_player_widths": 157.3333,
+          "clear_height_player_heights": 7.0909,
+          "clear_height_range": {
+            "max": 130048.0,
+            "median": 39936.0,
+            "min": 0.0,
+            "samples": 217
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.9953,
+            "openness": 0.3337,
+            "sky_exposure": 0.2028,
+            "vertical_enclosure": 0.3373
+          },
+          "footprint_player_areas": 8862.2893,
+          "opening_width_range": {
+            "max": 9216.0,
+            "median": 1024.0,
+            "min": 5.0,
+            "samples": 292
+          },
+          "sector_count": 217,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 2500,
+              "uses": 44
+            },
+            "dominant_floor_picnum": {
+              "picnum": 438,
+              "uses": 42
+            },
+            "dominant_wall_picnum": {
+              "picnum": 281,
+              "uses": 304
+            }
+          }
+        }
+      },
+      {
+        "event": {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 4,
+          "ref": "sprite:369",
+          "tx_id": 151
+        },
+        "label": "activate",
+        "reachable_count": 221,
+        "space": {
+          "aabb_width_player_widths": 157.3333,
+          "clear_height_player_heights": 7.0909,
+          "clear_height_range": {
+            "max": 130048.0,
+            "median": 39936.0,
+            "min": 0.0,
+            "samples": 221
+          },
+          "enclosure": {
+            "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+            "interpretation": null,
+            "lateral_enclosure": 0.9962,
+            "openness": 0.3325,
+            "sky_exposure": 0.1991,
+            "vertical_enclosure": 0.3388
+          },
+          "footprint_player_areas": 8863.1782,
+          "opening_width_range": {
+            "max": 9216.0,
+            "median": 1024.0,
+            "min": 5.0,
+            "samples": 292
+          },
+          "sector_count": 221,
+          "surfaces": {
+            "basis": "raw native picnum counts; not material-family names",
+            "dominant_ceiling_picnum": {
+              "picnum": 2500,
+              "uses": 44
+            },
+            "dominant_floor_picnum": {
+              "picnum": 438,
+              "uses": 42
+            },
+            "dominant_wall_picnum": {
+              "picnum": 281,
+              "uses": 304
+            }
+          }
+        }
+      }
+    ],
+    "physical_reachable_at_rest": 204,
+    "push_sectors": [
+      102,
+      123,
+      124,
+      177,
+      194
+    ],
+    "roles": {
+      "decorative_or_unreached": [
+        {
+          "ref": "sprite:1",
+          "role": "never_on_witness",
+          "tx_id": 3
+        },
+        {
+          "ref": "sprite:4",
+          "role": "never_on_witness",
+          "tx_id": 120
+        },
+        {
+          "ref": "sprite:5",
+          "role": "never_on_witness",
+          "tx_id": 121
+        },
+        {
+          "ref": "sprite:6",
+          "role": "never_on_witness",
+          "tx_id": 1
+        },
+        {
+          "ref": "sprite:7",
+          "role": "never_on_witness",
+          "tx_id": 123
+        },
+        {
+          "ref": "sprite:8",
+          "role": "never_on_witness",
+          "tx_id": 124
+        },
+        {
+          "ref": "sprite:9",
+          "role": "never_on_witness",
+          "tx_id": 125
+        },
+        {
+          "ref": "sprite:11",
+          "role": "never_on_witness",
+          "tx_id": 119
+        },
+        {
+          "ref": "sprite:14",
+          "role": "never_on_witness",
+          "tx_id": 133
+        },
+        {
+          "ref": "sprite:16",
+          "role": "never_on_witness",
+          "tx_id": 134
+        },
+        {
+          "ref": "sprite:17",
+          "role": "never_on_witness",
+          "tx_id": 168
+        },
+        {
+          "ref": "sprite:18",
+          "role": "never_on_witness",
+          "tx_id": 166
+        }
+      ],
+      "decorative_or_unreached_count": 61,
+      "method": "re-solve with each activated channel or collected key dropped",
+      "no_progression_effect": [
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 2
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 4
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 100
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 101
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 103
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 107
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 108
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 112
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 113
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 114
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 115
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 116
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 117
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 118
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 129
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 135
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 139
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 221,
+          "role": "no_progression_effect",
+          "tx_id": 144
+        },
+        {
+          "exit_without": true,
+          "final_without": 221,
+          "key": 3,
+          "role": "unused_key"
+        }
+      ],
+      "notes": [
+        "required_for_exit means dropping that channel/key makes the exit unreachable in this model",
+        "optional_space still reaches the exit but with fewer sectors",
+        "destruction and undocumented types remain unmodeled"
+      ],
+      "optional": [
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 218,
+          "role": "optional_space",
+          "tx_id": 110
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 219,
+          "role": "optional_space",
+          "tx_id": 147
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 219,
+          "role": "optional_space",
+          "tx_id": 148
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 219,
+          "role": "optional_space",
+          "tx_id": 149
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 219,
+          "role": "optional_space",
+          "tx_id": 150
+        },
+        {
+          "exit_without": true,
+          "final_with": 221,
+          "final_without": 217,
+          "role": "optional_space",
+          "tx_id": 151
+        }
+      ],
+      "required": []
+    },
+    "schema_version": 1,
+    "sector_count": 290,
+    "start_sector": 17,
+    "steps": [
+      {
+        "action": "sprite:13",
+        "reachable_count": 206,
+        "tx_id": 135
+      },
+      {
+        "action": "sprite:108",
+        "reachable_count": 206,
+        "tx_id": 100
+      },
+      {
+        "action": "sprite:110",
+        "reachable_count": 206,
+        "tx_id": 101
+      },
+      {
+        "action": "sprite:116",
+        "reachable_count": 206,
+        "tx_id": 115
+      },
+      {
+        "action": "sprite:117",
+        "reachable_count": 206,
+        "tx_id": 117
+      },
+      {
+        "action": "sprite:122",
+        "reachable_count": 206,
+        "tx_id": 118
+      },
+      {
+        "action": "sprite:150",
+        "reachable_count": 209,
+        "tx_id": 110
+      },
+      {
+        "action": "sprite:349",
+        "reachable_count": 211,
+        "tx_id": 147
+      },
+      {
+        "action": "sprite:352",
+        "reachable_count": 213,
+        "tx_id": 148
+      },
+      {
+        "action": "sprite:354",
+        "reachable_count": 215,
+        "tx_id": 150
+      },
+      {
+        "action": "sprite:355",
+        "reachable_count": 217,
+        "tx_id": 149
+      },
+      {
+        "action": "sprite:368",
+        "reachable_count": 217,
+        "tx_id": 4
+      },
+      {
+        "action": "sprite:369",
+        "reachable_count": 221,
+        "tx_id": 151
+      },
+      {
+        "action": "wall:10",
+        "reachable_count": 221,
+        "tx_id": 116
+      },
+      {
+        "action": "wall:25",
+        "reachable_count": 221,
+        "tx_id": 139
+      },
+      {
+        "action": "wall:506",
+        "reachable_count": 221,
+        "tx_id": 112
+      },
+      {
+        "action": "wall:727",
+        "reachable_count": 221,
+        "tx_id": 114
+      },
+      {
+        "action": "wall:1050",
+        "reachable_count": 221,
+        "tx_id": 103
+      },
+      {
+        "action": "wall:1058",
+        "reachable_count": 221,
+        "tx_id": 108
+      },
+      {
+        "action": "wall:1066",
+        "reachable_count": 221,
+        "tx_id": 107
+      },
+      {
+        "action": "wall:1138",
+        "reachable_count": 221,
+        "tx_id": 113
+      },
+      {
+        "action": "wall:1990",
+        "reachable_count": 221,
+        "tx_id": 144
+      },
+      {
+        "action": "sector:194",
+        "reachable_count": 221,
+        "tx_id": 129
+      },
+      {
+        "action": "sector:223",
+        "reachable_count": 221,
+        "tx_id": 2
+      }
+    ],
+    "transmitter_count": 96,
+    "witness": [
+      {
+        "kind": "spawn",
+        "reachable": 204,
+        "sector": 17
+      },
+      {
+        "key": 3,
+        "kind": "take-key",
+        "reachable": 204,
+        "sector": 264,
+        "type_id": 102
+      },
+      {
+        "kind": "push-motion",
+        "reachable": 205,
+        "sector": 194
+      },
+      {
+        "kind": "push-motion",
+        "reachable": 206,
+        "sector": 102
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 206,
+        "ref": "sprite:13",
+        "tx_id": 135
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 206,
+        "ref": "sprite:108",
+        "tx_id": 100
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 206,
+        "ref": "sprite:110",
+        "tx_id": 101
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 206,
+        "ref": "sprite:116",
+        "tx_id": 115
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 206,
+        "ref": "sprite:117",
+        "tx_id": 117
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 206,
+        "ref": "sprite:122",
+        "tx_id": 118
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 3,
+        "reachable": 209,
+        "ref": "sprite:150",
+        "tx_id": 110
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 2,
+        "reachable": 211,
+        "ref": "sprite:349",
+        "tx_id": 147
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 2,
+        "reachable": 213,
+        "ref": "sprite:352",
+        "tx_id": 148
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 2,
+        "reachable": 215,
+        "ref": "sprite:354",
+        "tx_id": 150
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 2,
+        "reachable": 217,
+        "ref": "sprite:355",
+        "tx_id": 149
+      },
+      {
+        "is_exit": true,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 217,
+        "ref": "sprite:368",
+        "tx_id": 4
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 4,
+        "reachable": 221,
+        "ref": "sprite:369",
+        "tx_id": 151
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 221,
+        "ref": "wall:10",
+        "tx_id": 116
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 221,
+        "ref": "wall:25",
+        "tx_id": 139
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 221,
+        "ref": "wall:506",
+        "tx_id": 112
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 221,
+        "ref": "wall:727",
+        "tx_id": 114
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 221,
+        "ref": "wall:1050",
+        "tx_id": 103
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 221,
+        "ref": "wall:1058",
+        "tx_id": 108
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 221,
+        "ref": "wall:1066",
+        "tx_id": 107
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 221,
+        "ref": "wall:1138",
+        "tx_id": 113
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 221,
+        "ref": "wall:1990",
+        "tx_id": 144
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 221,
+        "ref": "sector:194",
+        "tx_id": 129
+      },
+      {
+        "is_exit": false,
+        "kind": "activate",
+        "newly_reachable": 0,
+        "reachable": 221,
+        "ref": "sector:223",
+        "tx_id": 2
+      }
+    ],
+    "witness_summary": {
+      "$schema": "llmapper.sp-progression",
+      "channels_activated": [
+        2,
+        4,
+        100,
+        101,
+        103,
+        107,
+        108,
+        110,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        129,
+        135,
+        139,
+        144,
+        147,
+        148,
+        149,
+        150,
+        151
+      ],
+      "coherent": true,
+      "events": [
+        {
+          "kind": "spawn",
+          "reachable": 204,
+          "sector": 17
+        },
+        {
+          "key": 3,
+          "kind": "take-key",
+          "reachable": 204,
+          "sector": 264,
+          "type_id": 102
+        },
+        {
+          "kind": "push-motion",
+          "reachable": 205,
+          "sector": 194
+        },
+        {
+          "kind": "push-motion",
+          "reachable": 206,
+          "sector": 102
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 206,
+          "ref": "sprite:13",
+          "tx_id": 135
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 206,
+          "ref": "sprite:108",
+          "tx_id": 100
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 206,
+          "ref": "sprite:110",
+          "tx_id": 101
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 206,
+          "ref": "sprite:116",
+          "tx_id": 115
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 206,
+          "ref": "sprite:117",
+          "tx_id": 117
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 206,
+          "ref": "sprite:122",
+          "tx_id": 118
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 3,
+          "reachable": 209,
+          "ref": "sprite:150",
+          "tx_id": 110
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "reachable": 211,
+          "ref": "sprite:349",
+          "tx_id": 147
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "reachable": 213,
+          "ref": "sprite:352",
+          "tx_id": 148
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "reachable": 215,
+          "ref": "sprite:354",
+          "tx_id": 150
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "reachable": 217,
+          "ref": "sprite:355",
+          "tx_id": 149
+        },
+        {
+          "is_exit": true,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 217,
+          "ref": "sprite:368",
+          "tx_id": 4
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 4,
+          "reachable": 221,
+          "ref": "sprite:369",
+          "tx_id": 151
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 221,
+          "ref": "wall:10",
+          "tx_id": 116
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 221,
+          "ref": "wall:25",
+          "tx_id": 139
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 221,
+          "ref": "wall:506",
+          "tx_id": 112
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 221,
+          "ref": "wall:727",
+          "tx_id": 114
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 221,
+          "ref": "wall:1050",
+          "tx_id": 103
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 221,
+          "ref": "wall:1058",
+          "tx_id": 108
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 221,
+          "ref": "wall:1066",
+          "tx_id": 107
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 221,
+          "ref": "wall:1138",
+          "tx_id": 113
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 221,
+          "ref": "wall:1990",
+          "tx_id": 144
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 221,
+          "ref": "sector:194",
+          "tx_id": 129
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 221,
+          "ref": "sector:223",
+          "tx_id": 2
+        }
+      ],
+      "final_reachable": 221,
+      "keys_collected": [
+        3
+      ],
+      "kind": "derived",
+      "physical_reachable_at_rest": 204,
+      "schema_version": 1,
+      "start_sector": 17
+    }
+  },
+  "schema_version": 1,
+  "sensors": {
+    "aabb_player_widths": [
+      367.0,
+      373.1667
+    ],
+    "morphology": {
+      "diagonal_length_fraction": 0.0562,
+      "orientation_diversity": 0.9444,
+      "orthogonal_length_fraction": 0.7784,
+      "rectangular_sector_fraction": 0.4931
+    },
+    "parse": {
+      "blocking_walls": 52,
+      "masked_walls": 16,
+      "parallax_ceilings": 46,
+      "sectors": 290,
+      "sprites": 427,
+      "validation_errors": 0,
+      "version": "0x0700",
+      "walls": 2267,
+      "xsectors": 101,
+      "xsprites": 384,
+      "xwalls": 25
+    },
+    "pickup_categories": {
+      "ammo": 43,
+      "armor": 6,
+      "flag": 2,
+      "health": 12,
+      "key": 2,
+      "powerup": 3,
+      "weapon": 10
+    },
+    "space": {
+      "covered": {
+        "aabb_width_player_widths": 367.0,
+        "clear_height_player_heights": 5.8182,
+        "clear_height_range": {
+          "max": 131072.0,
+          "median": 32768.0,
+          "min": 0.0,
+          "samples": 244
+        },
+        "enclosure": {
+          "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+          "interpretation": null,
+          "lateral_enclosure": 0.9128,
+          "openness": 0.2858,
+          "sky_exposure": 0.0,
+          "vertical_enclosure": 0.5156
+        },
+        "footprint_player_areas": 5273.7922,
+        "opening_width_range": {
+          "max": 9216.0,
+          "median": 1024.0,
+          "min": 5.0,
+          "samples": 277
+        },
+        "sector_count": 244,
+        "surfaces": {
+          "basis": "raw native picnum counts; not material-family names",
+          "dominant_ceiling_picnum": {
+            "picnum": 67,
+            "uses": 44
+          },
+          "dominant_floor_picnum": {
+            "picnum": 438,
+            "uses": 46
+          },
+          "dominant_wall_picnum": {
+            "picnum": 0,
+            "uses": 320
+          }
+        }
+      },
+      "sky": {
+        "aabb_width_player_widths": 116.0,
+        "clear_height_player_heights": 13.0909,
+        "clear_height_range": {
+          "max": 102400.0,
+          "median": 73728.0,
+          "min": 13312.0,
+          "samples": 46
+        },
+        "enclosure": {
+          "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+          "interpretation": null,
+          "lateral_enclosure": 0.8148,
+          "openness": 0.5926,
+          "sky_exposure": 1.0,
+          "vertical_enclosure": 0.0
+        },
+        "footprint_player_areas": 4647.2854,
+        "opening_width_range": {
+          "max": 9216.0,
+          "median": 1024.0,
+          "min": 181.019,
+          "samples": 94
+        },
+        "sector_count": 46,
+        "surfaces": {
+          "basis": "raw native picnum counts; not material-family names",
+          "dominant_ceiling_picnum": {
+            "picnum": 2500,
+            "uses": 46
+          },
+          "dominant_floor_picnum": {
+            "picnum": 2448,
+            "uses": 23
+          },
+          "dominant_wall_picnum": {
+            "picnum": 281,
+            "uses": 127
+          }
+        }
+      },
+      "whole": {
+        "aabb_width_player_widths": 367.0,
+        "clear_height_player_heights": 6.5455,
+        "clear_height_range": {
+          "max": 131072.0,
+          "median": 36864.0,
+          "min": 0.0,
+          "samples": 290
+        },
+        "enclosure": {
+          "basis": "parallax/sky fraction, boundary portal width over perimeter, height vs standing stature",
+          "interpretation": null,
+          "lateral_enclosure": 1.0,
+          "openness": 0.3072,
+          "sky_exposure": 0.1586,
+          "vertical_enclosure": 0.3856
+        },
+        "footprint_player_areas": 9921.0776,
+        "opening_width_range": {
+          "max": 9216.0,
+          "median": 1024.0,
+          "min": 5.0,
+          "samples": 335
+        },
+        "sector_count": 290,
+        "surfaces": {
+          "basis": "raw native picnum counts; not material-family names",
+          "dominant_ceiling_picnum": {
+            "picnum": 2500,
+            "uses": 46
+          },
+          "dominant_floor_picnum": {
+            "picnum": 438,
+            "uses": 46
+          },
+          "dominant_wall_picnum": {
+            "picnum": 281,
+            "uses": 362
+          }
+        }
+      }
+    },
+    "spatial": {
+      "blocked_or_state_dependent": 177,
+      "hypothesis_counts": {
+        "material_region": 41,
+        "mechanism_region": 69,
+        "navigation_region": 6,
+        "perceptual_space": 34,
+        "vertical_layer": 32
+      },
+      "nonportal": [
+        {
+          "evidence": [
+            "Blood XSPRITE data_1 1"
+          ],
+          "id": "blood-link:1",
+          "kind": "paired_water_link",
+          "sectors": [
+            "sector:150",
+            "sector:152"
+          ],
+          "state": "link activation conditions are not simulated"
+        },
+        {
+          "evidence": [
+            "Blood XSPRITE data_1 2"
+          ],
+          "id": "blood-link:2",
+          "kind": "paired_water_link",
+          "sectors": [
+            "sector:151",
+            "sector:153"
+          ],
+          "state": "link activation conditions are not simulated"
+        },
+        {
+          "evidence": [
+            "Blood XSPRITE data_1 5"
+          ],
+          "id": "blood-link:5",
+          "kind": "paired_water_link",
+          "sectors": [
+            "sector:166",
+            "sector:169"
+          ],
+          "state": "link activation conditions are not simulated"
+        },
+        {
+          "evidence": [
+            "Blood XSPRITE data_1 6"
+          ],
+          "id": "blood-link:6",
+          "kind": "paired_water_link",
+          "sectors": [
+            "sector:163",
+            "sector:167"
+          ],
+          "state": "link activation conditions are not simulated"
+        },
+        {
+          "evidence": [
+            "Blood XSPRITE data_1 7"
+          ],
+          "id": "blood-link:7",
+          "kind": "paired_room_link",
+          "sectors": [
+            "sector:220",
+            "sector:221"
+          ],
+          "state": "link activation conditions are not simulated"
+        },
+        {
+          "evidence": [
+            "Blood XSPRITE data_1 31"
+          ],
+          "id": "blood-link:31",
+          "kind": "paired_room_link",
+          "sectors": [
+            "sector:138",
+            "sector:150"
+          ],
+          "state": "link activation conditions are not simulated"
+        },
+        {
+          "evidence": [
+            "sector:225",
+            "sprite:350"
+          ],
+          "id": "blood-teleport:225:350",
+          "kind": "teleport_marker",
+          "sectors": [
+            "sector:225",
+            "sector:228"
+          ],
+          "state": "teleport activation conditions are not simulated"
+        },
+        {
+          "evidence": [
+            "sector:228",
+            "sprite:356"
+          ],
+          "id": "blood-teleport:228:356",
+          "kind": "teleport_marker",
+          "sectors": [
+            "sector:228",
+            "sector:225"
+          ],
+          "state": "teleport activation conditions are not simulated"
+        },
+        {
+          "evidence": [
+            "sector:230",
+            "sprite:360"
+          ],
+          "id": "blood-teleport:230:360",
+          "kind": "teleport_marker",
+          "sectors": [
+            "sector:230",
+            "sector:232"
+          ],
+          "state": "teleport activation conditions are not simulated"
+        },
+        {
+          "evidence": [
+            "sector:232",
+            "sprite:361"
+          ],
+          "id": "blood-teleport:232:361",
+          "kind": "teleport_marker",
+          "sectors": [
+            "sector:232",
+            "sector:230"
+          ],
+          "state": "teleport activation conditions are not simulated"
+        }
+      ],
+      "reachable": 212,
+      "unreachable": 78,
+      "walkable_at_rest": 441
+    },
+    "starts": {
+      "multiplayer": [
+        {
+          "angle": 2560,
+          "category": "start",
+          "known": true,
+          "picnum": 2522,
+          "ref": "sprite:239",
+          "sector": 97,
+          "status": 0,
+          "type_id": 2,
+          "type_name": "kMarkerMPStart",
+          "x": -20224,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 0,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 9216,
+          "z": -71680
+        },
+        {
+          "angle": -256,
+          "category": "start",
+          "known": true,
+          "picnum": 2523,
+          "ref": "sprite:288",
+          "sector": 210,
+          "status": 0,
+          "type_id": 2,
+          "type_name": "kMarkerMPStart",
+          "x": -28672,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 1,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 33280,
+          "z": -38912
+        },
+        {
+          "angle": -768,
+          "category": "start",
+          "known": true,
+          "picnum": 2524,
+          "ref": "sprite:289",
+          "sector": 182,
+          "status": 0,
+          "type_id": 2,
+          "type_name": "kMarkerMPStart",
+          "x": -12160,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 2,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 41856,
+          "z": -40960
+        },
+        {
+          "angle": 2048,
+          "category": "start",
+          "known": true,
+          "picnum": 2525,
+          "ref": "sprite:290",
+          "sector": 74,
+          "status": 0,
+          "type_id": 2,
+          "type_name": "kMarkerMPStart",
+          "x": -26752,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 3,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 7296,
+          "z": -71680
+        },
+        {
+          "angle": 2048,
+          "category": "start",
+          "known": true,
+          "picnum": 2526,
+          "ref": "sprite:291",
+          "sector": 62,
+          "status": 0,
+          "type_id": 2,
+          "type_name": "kMarkerMPStart",
+          "x": -4992,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 4,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 26240,
+          "z": -40960
+        },
+        {
+          "angle": 2560,
+          "category": "start",
+          "known": true,
+          "picnum": 2527,
+          "ref": "sprite:292",
+          "sector": 106,
+          "status": 0,
+          "type_id": 2,
+          "type_name": "kMarkerMPStart",
+          "x": -14848,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 5,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 15872,
+          "z": -40960
+        },
+        {
+          "angle": -512,
+          "category": "start",
+          "known": true,
+          "picnum": 2528,
+          "ref": "sprite:308",
+          "sector": 24,
+          "status": 0,
+          "type_id": 2,
+          "type_name": "kMarkerMPStart",
+          "x": 2048,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 6,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 36608,
+          "z": -53248
+        },
+        {
+          "angle": 2048,
+          "category": "start",
+          "known": true,
+          "picnum": 2529,
+          "ref": "sprite:327",
+          "sector": 40,
+          "status": 0,
+          "type_id": 2,
+          "type_name": "kMarkerMPStart",
+          "x": -17920,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 7,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 32256,
+          "z": -38912
+        }
+      ],
+      "single_player": [
+        {
+          "angle": 0,
+          "category": "start",
+          "known": true,
+          "picnum": 2526,
+          "ref": "sprite:12",
+          "sector": 17,
+          "status": 0,
+          "type_id": 1,
+          "type_name": "kMarkerSPStart",
+          "x": -4608,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 4,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 39936,
+          "z": -40960
+        },
+        {
+          "angle": 0,
+          "category": "start",
+          "known": true,
+          "picnum": 2523,
+          "ref": "sprite:28",
+          "sector": 17,
+          "status": 0,
+          "type_id": 1,
+          "type_name": "kMarkerSPStart",
+          "x": -4096,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 1,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 39424,
+          "z": -40960
+        },
+        {
+          "angle": 0,
+          "category": "start",
+          "known": true,
+          "picnum": 2524,
+          "ref": "sprite:29",
+          "sector": 17,
+          "status": 0,
+          "type_id": 1,
+          "type_name": "kMarkerSPStart",
+          "x": -4608,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 2,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 39424,
+          "z": -40960
+        },
+        {
+          "angle": 0,
+          "category": "start",
+          "known": true,
+          "picnum": 2525,
+          "ref": "sprite:30",
+          "sector": 17,
+          "status": 0,
+          "type_id": 1,
+          "type_name": "kMarkerSPStart",
+          "x": -5120,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 3,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 39424,
+          "z": -40960
+        },
+        {
+          "angle": 2048,
+          "category": "start",
+          "known": true,
+          "picnum": 2527,
+          "ref": "sprite:31",
+          "sector": 17,
+          "status": 0,
+          "type_id": 1,
+          "type_name": "kMarkerSPStart",
+          "x": -4096,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 5,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 40448,
+          "z": -40960
+        },
+        {
+          "angle": 2048,
+          "category": "start",
+          "known": true,
+          "picnum": 2528,
+          "ref": "sprite:32",
+          "sector": 17,
+          "status": 0,
+          "type_id": 1,
+          "type_name": "kMarkerSPStart",
+          "x": -4608,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 6,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 40448,
+          "z": -40960
+        },
+        {
+          "angle": 2048,
+          "category": "start",
+          "known": true,
+          "picnum": 2529,
+          "ref": "sprite:33",
+          "sector": 17,
+          "status": 0,
+          "type_id": 1,
+          "type_name": "kMarkerSPStart",
+          "x": -5120,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 7,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 40448,
+          "z": -40960
+        },
+        {
+          "angle": 0,
+          "category": "start",
+          "known": true,
+          "picnum": 2522,
+          "ref": "sprite:34",
+          "sector": 17,
+          "status": 0,
+          "type_id": 1,
+          "type_name": "kMarkerSPStart",
+          "x": -4096,
+          "xsprite": {
+            "busy_time": 0,
+            "command": 0,
+            "command_name": "kCmdOff",
+            "data_1": 0,
+            "data_2": 0,
+            "data_3": 0,
+            "data_4": 0,
+            "rx_id": 0,
+            "state": 0,
+            "triggers": [],
+            "tx_id": 0,
+            "wait_time": 0
+          },
+          "y": 39936,
+          "z": -40960
+        }
+      ]
+    },
+    "underwater_sectors": [
+      152,
+      153,
+      166,
+      167,
+      168,
+      173,
+      174,
+      175,
+      275,
+      276,
+      277,
+      278,
+      279
+    ]
+  },
+  "switches": {
+    "count": 65,
+    "median_wall_height_player_heights": 2.0,
+    "sit": {
+      "ceiling_supported": 2,
+      "floor_supported": 5,
+      "free_space": 36,
+      "wall_flush": 19,
+      "wall_offset": 3
+    },
+    "wall_mounted": 43
+  }
+}
