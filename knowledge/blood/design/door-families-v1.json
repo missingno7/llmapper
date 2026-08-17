@@ -1,0 +1,40 @@
+{
+  "$schema": "llmapper.blood-door-family-catalog",
+  "schema_version": 1,
+  "status": "v1",
+  "population": "blood-campaign",
+  "source_report": "reports/blood-door-families.json",
+  "notes": [
+    "Signatures are DERIVED. Family names in docs are INTERPRETED.",
+    "Do not use this as a prefab table. Query the full report for examples."
+  ],
+  "campaign": {
+    "maps": 43,
+    "motion_sectors": 2027,
+    "family_count": 71
+  },
+  "interaction_counts": {
+    "remote_rx": 1515,
+    "wall_push": 424,
+    "unknown": 69,
+    "touch": 10,
+    "sector_push": 9
+  },
+  "motion_counts": {
+    "z_ceiling": 646,
+    "z_floor": 541,
+    "slide": 396,
+    "rotate": 263,
+    "z_split": 180
+  },
+  "direct_use_closed_z_ceiling_faces": [22, 495, 9, 25, 26, 28],
+  "remote_closed_z_ceiling_faces": [200, 345, 449],
+  "typical_direct_use_width_pw": 2.667,
+  "key_emblem_sprites": {
+    "2540": {"key": 1, "name": "skull", "maps": 15, "wall_aligned": true},
+    "2541": {"key": 2, "name": "eye", "maps": 9, "wall_aligned": true},
+    "2542": {"key": 3, "name": "fire", "maps": 9, "wall_aligned": true},
+    "2543": {"key": 4, "name": "dagger", "maps": 5, "wall_aligned": true},
+    "2545": {"key": 6, "name": "moon", "maps": 9, "wall_aligned": true}
+  }
+}

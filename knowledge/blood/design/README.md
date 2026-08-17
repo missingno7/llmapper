@@ -16,6 +16,14 @@ requires local unsigned mines in `work/` (gitignored). The compiled
 | --- | --- |
 | `compile_catalog.py` | pattern templates + occurrence attach |
 | `catalog-v1.json` | versioned hypotheses with original-map occurrences |
+| `door-families-v1.json` | compact campaign door-family / key-emblem retrieval hints |
+
+Door implementation families and key-signifier co-occurrence live in
+[`reports/blood-door-families.json`](../../../reports/blood-door-families.json)
+and [`reports/blood-key-signifiers.json`](../../../reports/blood-key-signifiers.json).
+They are retrieval, not prefabs.
+
+See [docs/door-affordances.md](../../../docs/door-affordances.md).
 
 SP mechanism compositions from E2M2 (fan-out TX/RX, single motion gates) were
 searched on the 43-map campaign and stored in

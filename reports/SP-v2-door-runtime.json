@@ -1,0 +1,229 @@
+{
+  "$schema": "llmapper.sp-v2-door-runtime",
+  "engine": "NBlood ActionScan via oracle-nblood-action (Use/E)",
+  "fixtures": [
+    {
+      "expect_visible_change": true,
+      "id": "ordinary-crypt",
+      "kind": "ordinary-crypt",
+      "map": "work\\nblood-sp-v2\\ordinary-crypt.MAP",
+      "note": "hallway Use on Wallpush crypt door should open the slab",
+      "player": {
+        "angle": 0,
+        "region": "region:crypt_step",
+        "x": 9600,
+        "y": 3072,
+        "z": 9984
+      },
+      "sectors": 17
+    },
+    {
+      "expect_visible_change": false,
+      "id": "keyed-locked",
+      "kind": "keyed-locked",
+      "map": "work\\nblood-sp-v2\\keyed-locked.MAP",
+      "note": "Use without skull key must not open; HUD lock text may still change the shot",
+      "player": {
+        "angle": 1536,
+        "region": "region:start",
+        "x": 5760,
+        "y": 384,
+        "z": 7168
+      },
+      "sectors": 17
+    },
+    {
+      "expect_visible_change": true,
+      "id": "archive-switch",
+      "kind": "archive-switch",
+      "map": "work\\nblood-sp-v2\\archive-switch.MAP",
+      "note": "wall switch TX 100 should move the remote gallery door if it is in view; may fail if door is off-camera",
+      "player": {
+        "angle": 1024,
+        "region": "region:archive",
+        "x": 3840,
+        "y": -3072,
+        "z": 7168
+      },
+      "sectors": 17
+    }
+  ],
+  "limitations": [
+    "oracle compares screenshots, not XSECTOR.state",
+    "locked Use may show a HUD message without opening",
+    "remote door may be off-camera from the switch pose"
+  ],
+  "note": "NBlood initialized all three posed MAPs (map_initialization markers true) but the action oracle could not focus the isolated window, so Use/screenshot comparison did not run. Static DoorAffordance on the compiled blueprint passed.",
+  "probes": [
+    {
+      "expect_visible_change": true,
+      "id": "ordinary-crypt",
+      "map_initialized": true,
+      "matches_expectation": false,
+      "oracle_status": "fail",
+      "probe": {
+        "$schema": "bloodmap.nblood-action-oracle-report",
+        "action": {
+          "input": "Open",
+          "virtual_key": "E"
+        },
+        "probe": {
+          "after_view": {
+            "files": 0,
+            "unique_sha256": []
+          },
+          "before_view": {
+            "files": 0,
+            "unique_sha256": []
+          },
+          "engine_revision": "r14378-fbc5e1186",
+          "fatal_indicators": [],
+          "identity": {
+            "counts": {
+              "sectors": 17,
+              "sprites": 12,
+              "walls": 94
+            },
+            "filename": "ordinary-crypt.MAP",
+            "sha256": "d16d47e8b3d07555ce521cf2ecf4e527e944a5ea53c61672352ac26a0a1f06b5",
+            "size": 5253
+          },
+          "idle_control_unchanged": false,
+          "idle_control_view": {
+            "files": 0,
+            "unique_sha256": []
+          },
+          "input_control_error": "could not focus the isolated NBlood behavior window",
+          "markers": {
+            "autoexec": true,
+            "game_loop": true,
+            "map_initialization": true
+          },
+          "stable_views": false,
+          "status": "fail",
+          "stayed_alive_for_grace_period": false,
+          "terminated_by_harness": false,
+          "visible_state_changed": false
+        },
+        "schema_version": 1,
+        "status": "fail"
+      },
+      "verdict": "inconclusive",
+      "visible_state_changed": false
+    },
+    {
+      "expect_visible_change": false,
+      "id": "keyed-locked",
+      "map_initialized": true,
+      "matches_expectation": false,
+      "oracle_status": "fail",
+      "probe": {
+        "$schema": "bloodmap.nblood-action-oracle-report",
+        "action": {
+          "input": "Open",
+          "virtual_key": "E"
+        },
+        "probe": {
+          "after_view": {
+            "files": 0,
+            "unique_sha256": []
+          },
+          "before_view": {
+            "files": 0,
+            "unique_sha256": []
+          },
+          "engine_revision": "r14378-fbc5e1186",
+          "fatal_indicators": [],
+          "identity": {
+            "counts": {
+              "sectors": 17,
+              "sprites": 12,
+              "walls": 94
+            },
+            "filename": "keyed-locked.MAP",
+            "sha256": "cea66351577cb808f1f0eb7071768d9613f2c5010b394da8e536dd3816f97597",
+            "size": 5253
+          },
+          "idle_control_unchanged": false,
+          "idle_control_view": {
+            "files": 0,
+            "unique_sha256": []
+          },
+          "input_control_error": "could not focus the isolated NBlood behavior window",
+          "markers": {
+            "autoexec": true,
+            "game_loop": true,
+            "map_initialization": true
+          },
+          "stable_views": false,
+          "status": "fail",
+          "stayed_alive_for_grace_period": false,
+          "terminated_by_harness": false,
+          "visible_state_changed": false
+        },
+        "schema_version": 1,
+        "status": "fail"
+      },
+      "verdict": "inconclusive",
+      "visible_state_changed": false
+    },
+    {
+      "expect_visible_change": true,
+      "id": "archive-switch",
+      "map_initialized": true,
+      "matches_expectation": false,
+      "oracle_status": "fail",
+      "probe": {
+        "$schema": "bloodmap.nblood-action-oracle-report",
+        "action": {
+          "input": "Open",
+          "virtual_key": "E"
+        },
+        "probe": {
+          "after_view": {
+            "files": 0,
+            "unique_sha256": []
+          },
+          "before_view": {
+            "files": 0,
+            "unique_sha256": []
+          },
+          "engine_revision": "r14378-fbc5e1186",
+          "fatal_indicators": [],
+          "identity": {
+            "counts": {
+              "sectors": 17,
+              "sprites": 12,
+              "walls": 94
+            },
+            "filename": "archive-switch.MAP",
+            "sha256": "172bcad8bdcceb9cbfe8793c6f3150a0734e5b5ce82219d84c41f32cb0b8bd00",
+            "size": 5253
+          },
+          "idle_control_unchanged": false,
+          "idle_control_view": {
+            "files": 0,
+            "unique_sha256": []
+          },
+          "input_control_error": "could not focus the isolated NBlood behavior window",
+          "markers": {
+            "autoexec": true,
+            "game_loop": true,
+            "map_initialization": true
+          },
+          "stable_views": false,
+          "status": "fail",
+          "stayed_alive_for_grace_period": false,
+          "terminated_by_harness": false,
+          "visible_state_changed": false
+        },
+        "schema_version": 1,
+        "status": "fail"
+      },
+      "verdict": "inconclusive",
+      "visible_state_changed": false
+    }
+  ],
+  "schema_version": 1,
+  "verdict": "inconclusive"
+}

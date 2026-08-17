@@ -164,6 +164,8 @@ python -m unittest discover -s tests -v
 - [Scratch construction](docs/construction.md)
 - [Object placement and spatial anchors](docs/object-placement.md)
 - [Single-player understanding](docs/single-player-understanding.md)
+- [Native Blood authoring language](docs/native-authoring-language.md)
+- [Door affordances](docs/door-affordances.md)
 - [BB2 deathmatch understanding experiment](reports/BB2-understanding.md)
 - [BB2 semantic roundtrip](reports/BB2-semantic-roundtrip.md)
 - [BB6 pattern-aware understanding](reports/BB6-understanding.md)

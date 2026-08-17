@@ -34,6 +34,7 @@ from .patterns import (
 )
 from .placement import PlacementError, mine_attachments, validate_attachments
 from .progression import ProgressionError, analyze_progression, classify_mechanisms, completion_witness
+from .doors import DoorError, authored_gate_audit, door_affordance_report, gate_audit_markdown, query_door_precedents
 from .player_space import (
     PlayerSpaceError, compare_transition, conversion_player_scale_report,
     focus_observation, inspect_connection, inspect_doom_space, inspect_space,
@@ -834,6 +835,77 @@ def cmd_design_sp_v1(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_design_sp_v2(args: argparse.Namespace) -> int:
+    from experiments.sp_progression_v2 import write_sp_progression_v2
+    compiled = write_sp_progression_v2(map_path=args.output, report_path=args.report)
+    print(
+        f"WROTE {args.output}: SP-v2 {len(compiled.level.sectors)} sectors, "
+        f"{len(compiled.level.walls)} walls, {len(compiled.level.sprites)} sprites"
+    )
+    return 0
+
+
+def cmd_sprite_context_mine(args: argparse.Namespace) -> int:
+    from .assets import mine_sprite_context
+    payload = mine_sprite_context(args.maps, population=args.population)
+    _write_text(args.output, _json(payload))
+    print(f"{args.population}: {payload['family_count']} sprite families, {payload['maps']} maps")
+    return 0
+
+
+def cmd_door_mine(args: argparse.Namespace) -> int:
+    from .doors import mine_directory as mine_doors
+    payload = mine_doors(args.maps, population=args.population)
+    _write_text(args.output, _json(payload))
+    signifiers = payload.get("key_signifiers") or {}
+    if args.signifiers:
+        _write_text(args.signifiers, _json(signifiers))
+    print(
+        f"{args.population}: {payload['occurrence_count']} motion sectors, "
+        f"{payload['family_count']} families, {payload['maps']} maps"
+    )
+    return 0
+
+
+def cmd_door_query(args: argparse.Namespace) -> int:
+    catalog = json.loads(Path(args.catalog).read_text(encoding="utf-8"))
+    hits = query_door_precedents(
+        catalog,
+        direct_use=None if args.direct_use is None else bool(args.direct_use),
+        remote=None if args.remote is None else bool(args.remote),
+        keyed=None if args.keyed is None else bool(args.keyed),
+        key_id=args.key,
+        motion=args.motion,
+        interaction=args.interaction,
+        limit=args.limit,
+    )
+    _write_text(args.output, _json({"count": len(hits), "matches": hits}))
+    for item in hits:
+        print(
+            f"{item.get('map')} sector {item.get('sector_id')} "
+            f"{item.get('family')} key={item.get('key')} faces={item.get('distinct_approach_faces')}"
+        )
+    return 0
+
+
+def cmd_door_audit(args: argparse.Namespace) -> int:
+    if args.blueprint == "sp-v1":
+        from experiments.sp_progression_v1 import make_layout as make
+    elif args.blueprint == "sp-v2":
+        from experiments.sp_progression_v2 import make_layout as make
+    else:
+        raise DoorError(f"unknown blueprint {args.blueprint}")
+    compiled = make().compile()
+    audit = authored_gate_audit(compiled)
+    affordance = door_affordance_report(compiled)
+    payload = {"audit": audit, "affordance": affordance}
+    _write_text(args.json, _json(payload))
+    if args.markdown:
+        _write_text(args.markdown, gate_audit_markdown(audit))
+    print(f"{args.blueprint}: {audit['gate_count']} gates affordance_ok={affordance['ok']}")
+    return 0 if affordance["ok"] or args.blueprint == "sp-v1" else 1
+
+
 def cmd_inspect_space(args: argparse.Namespace) -> int:
     corpus = _load_spatial_corpus(args.corpus)
     sectors = _parse_id_set(args.sectors) if args.sectors else None
@@ -1578,6 +1650,37 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("-o", "--output", default="work/SP-progression-v1.MAP")
     p.add_argument("--report", default="reports/SP-progression-v1-build.json")
     p.set_defaults(func=cmd_design_sp_v1)
+    p = sub.add_parser("design-sp-v2", help="compile the persistent SP progression v2 blueprint")
+    p.add_argument("-o", "--output", default="work/SP-progression-v2.MAP")
+    p.add_argument("--report", default="reports/SP-v2-build.json")
+    p.set_defaults(func=cmd_design_sp_v2)
+    p = sub.add_parser("door-mine", help="mine original-map door/gate implementation families")
+    p.add_argument("--maps", default="maps/blood")
+    p.add_argument("--population", default="blood-campaign", choices=("blood-campaign", "blood-bloodbath"))
+    p.add_argument("-o", "--output", required=True)
+    p.add_argument("--signifiers", help="write key-signifier co-occurrence JSON")
+    p.set_defaults(func=cmd_door_mine)
+    p = sub.add_parser("sprite-context-mine", help="mine sprite sit/mechanism/key neighborhood facets")
+    p.add_argument("--maps", default="maps/blood")
+    p.add_argument("--population", default="blood-campaign", choices=("blood-campaign", "blood-bloodbath"))
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_sprite_context_mine)
+    p = sub.add_parser("door-query", help="retrieve original door precedents from a mined catalog")
+    p.add_argument("catalog")
+    p.add_argument("--direct-use", type=int, choices=(0, 1))
+    p.add_argument("--remote", type=int, choices=(0, 1))
+    p.add_argument("--keyed", type=int, choices=(0, 1))
+    p.add_argument("--key", type=int)
+    p.add_argument("--motion")
+    p.add_argument("--interaction")
+    p.add_argument("--limit", type=int, default=8)
+    p.add_argument("-o", "--output")
+    p.set_defaults(func=cmd_door_query)
+    p = sub.add_parser("door-audit", help="forensic affordance audit of an authored SP blueprint")
+    p.add_argument("--blueprint", default="sp-v1", choices=("sp-v1", "sp-v2"))
+    p.add_argument("--json", required=True)
+    p.add_argument("--markdown")
+    p.set_defaults(func=cmd_door_audit)
     p = sub.add_parser("channels", help="derive the Blood TX/RX graph")
     p.add_argument("map"); p.add_argument("--channel", type=int); p.set_defaults(func=cmd_channels)
     p = sub.add_parser("render", help="render a deterministic top-down SVG")
@@ -1893,7 +1996,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args = build_parser().parse_args(argv)
         return int(args.func(args))
-    except (BloodMapError, CompositionError, ConstructionError, ConversionError, DoomConversionError, DoomError, DukeMapError, E3L11ConversionError, PlayableConversionError, ExposureError, FragmentError, MaterialsError, MorphologyError, ObservationError, OracleError, RecipeError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+    except (BloodMapError, CompositionError, ConstructionError, ConversionError, DoomConversionError, DoomError, DukeMapError, E3L11ConversionError, PlayableConversionError, ExposureError, FragmentError, MaterialsError, MorphologyError, ObservationError, OracleError, RecipeError, DoorError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         print(f"bloodmap: error: {exc}", file=sys.stderr)
         return 2
 

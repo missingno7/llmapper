@@ -254,6 +254,32 @@ class PlanarLayoutTests(unittest.TestCase):
         with self.assertRaisesRegex(PlanarLayoutError, "doorway_too_narrow|authored-geometry"):
             layout.compile()
 
+    def test_connection_face_picnum_paints_both_portal_walls(self):
+        layout = PlanarLayout(name="door-face")
+        layout.add_region("region:a", _rect(0, 0, 8192, 4096), wall_picnum=180)
+        layout.add_region("region:b", _rect(8192, 0, 12288, 4096), wall_picnum=110)
+        layout.add_connection(
+            "connection:ab", "region:a", "region:b",
+            face_picnum=219, face_shade=4,
+        )
+        layout.set_player_start("region:a", x=4096, y=2048, z=0)
+        compiled = layout.compile()
+        painted = []
+        for wall in compiled.level.walls:
+            fields = wall["fields"]
+            if int(fields["next_sector"]) >= 0 and int(fields["picnum"]) == 219:
+                painted.append(fields)
+        self.assertEqual(len(painted), 2)
+        self.assertTrue(all(int(item["shade"]) == 4 for item in painted))
+        solid = [
+            int(wall["fields"]["picnum"])
+            for wall in compiled.level.walls
+            if int(wall["fields"]["next_sector"]) < 0
+        ]
+        self.assertIn(180, solid)
+        self.assertIn(110, solid)
+        self.assertNotIn(219, solid)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,704 @@
+{
+  "$schema": "llmapper.sp-progression-v2-build",
+  "acceptance": {
+    "door_affordance": true,
+    "native_validation": true,
+    "object_attachment_violations": 0,
+    "progression_ok": true,
+    "strict_authored_geometry": true
+  },
+  "audit_error_conflicts": 0,
+  "authored": {
+    "diagnostics": [
+      {
+        "code": "unreachable_pickup",
+        "location": "sector[0]",
+        "message": "pickup sector is outside the largest at-rest circulation component (may be gated)",
+        "severity": "warning"
+      },
+      {
+        "code": "unreachable_pickup",
+        "location": "sector[14]",
+        "message": "pickup sector is outside the largest at-rest circulation component (may be gated)",
+        "severity": "warning"
+      }
+    ],
+    "errors": 0,
+    "warnings": 2
+  },
+  "bytes": 5253,
+  "conservation": {
+    "atomic_segments": 94,
+    "conserved": true,
+    "dropped_source_edges": [],
+    "duplicated_source_edges": [],
+    "emitted_directed_edges": 94,
+    "source_directed_edges": 68,
+    "split_count": 26,
+    "unpaired_portal_candidates": [],
+    "walls_owned_once": true
+  },
+  "design_program": [
+    {
+      "intent": "covered start; closed exit door visible ahead; crypt mouth is a usable door",
+      "phase": "A",
+      "regions": [
+        "start"
+      ]
+    },
+    {
+      "intent": "direct-use crypt door; key in the lower crypt; scenic courtyard visible, not reachable",
+      "phase": "B",
+      "regions": [
+        "crypt_door",
+        "crypt_step",
+        "crypt",
+        "crypt_view"
+      ]
+    },
+    {
+      "intent": "skull-keyed direct-use archive gate with emblem; archive switch raises gallery door",
+      "phase": "C",
+      "regions": [
+        "keyed_door",
+        "archive",
+        "stair1",
+        "stair2",
+        "stair3",
+        "stair4"
+      ]
+    },
+    {
+      "intent": "remote gallery door; taller upper gallery",
+      "phase": "D",
+      "regions": [
+        "gallery_door",
+        "gallery"
+      ]
+    },
+    {
+      "intent": "remote exit door; optional hidden secret panel",
+      "phase": "E",
+      "regions": [
+        "exit_door",
+        "exit",
+        "secret_door",
+        "secret"
+      ]
+    }
+  ],
+  "deterministic": true,
+  "door_choices": {
+    "crypt_door": "direct wall_push Z-ceiling, face 22",
+    "crypt_view": "blocking window, INTENTIONALLY_UNREACHABLE",
+    "exit_door": "remote RX 101, face 345",
+    "gallery_door": "remote RX 100, face 200",
+    "keyed_door": "direct wall_push skull key, face 495, emblem 2540",
+    "secret_door": "remote RX 102, hidden same-as-fill"
+  },
+  "gate_audit": {
+    "$schema": "llmapper.authored-gate-audit",
+    "action_scan_range": 64,
+    "evidence": "NBlood ActionScan: XWALL.trigger_push; portal hit whose next XSECTOR has trigger_wall_push; XSECTOR.trigger_push only if already inside or floor/ceiling hit",
+    "gate_count": 5,
+    "gates": [
+      {
+        "classification": "MANDATORY",
+        "closing_state": {
+          "closed_at_rest": true,
+          "rest_opening": 0
+        },
+        "interaction_trigger": "wall_push",
+        "lock_condition": 0,
+        "movement_behavior": "z_ceiling",
+        "native_implementation": {
+          "family": "t600|z_ceiling|wall_push|norx|nokey|closed",
+          "key": 0,
+          "motion": "z_ceiling",
+          "rx_id": 0,
+          "triggers": [
+            "trigger_push",
+            "trigger_wall_push"
+          ],
+          "tx_id": 0,
+          "type_id": 600
+        },
+        "opening_state": {
+          "on_opening": 19712,
+          "sufficient_open": true
+        },
+        "player_facing": {
+          "activate_from_adjacent": true,
+          "identify_visually": true,
+          "open_enough": true,
+          "requires_intended_key": false,
+          "use_triggers": true
+        },
+        "player_facing_failures": [],
+        "region_id": "region:crypt_door",
+        "sector_id": 2,
+        "semantic_intent": {
+          "classification": "MANDATORY",
+          "interaction": "direct_use",
+          "purpose": "crypt mouth",
+          "realization": "campaign wall_push Z-ceiling, face 22"
+        },
+        "visual_implementation": {
+          "approach_portals": [
+            {
+              "approach_picnum": 22,
+              "neighbor_fill_picnum": 110,
+              "opening": 0,
+              "wall_id": 17,
+              "width_pw": 2.0
+            },
+            {
+              "approach_picnum": 22,
+              "neighbor_fill_picnum": 110,
+              "opening": 0,
+              "wall_id": 19,
+              "width_pw": 2.0
+            }
+          ],
+          "nearby_sprites": [],
+          "region_ceiling_picnum": 22,
+          "region_floor_picnum": 22,
+          "region_wall_picnum": 22,
+          "visually_distinct": true
+        }
+      },
+      {
+        "classification": "MANDATORY",
+        "closing_state": {
+          "closed_at_rest": true,
+          "rest_opening": 0
+        },
+        "interaction_trigger": "wall_push",
+        "lock_condition": 1,
+        "movement_behavior": "z_ceiling",
+        "native_implementation": {
+          "family": "t600|z_ceiling|wall_push|norx|key|closed",
+          "key": 1,
+          "motion": "z_ceiling",
+          "rx_id": 0,
+          "triggers": [
+            "trigger_push",
+            "trigger_wall_push"
+          ],
+          "tx_id": 0,
+          "type_id": 600
+        },
+        "opening_state": {
+          "on_opening": 28160,
+          "sufficient_open": true
+        },
+        "player_facing": {
+          "activate_from_adjacent": true,
+          "identify_visually": true,
+          "open_enough": true,
+          "requires_intended_key": true,
+          "use_triggers": true
+        },
+        "player_facing_failures": [],
+        "region_id": "region:keyed_door",
+        "sector_id": 5,
+        "semantic_intent": {
+          "classification": "MANDATORY",
+          "interaction": "direct_use",
+          "purpose": "skull-keyed archive gate",
+          "realization": "E3M3-style wall_push Z-ceiling, face 495, emblem 2540"
+        },
+        "visual_implementation": {
+          "approach_portals": [
+            {
+              "approach_picnum": 495,
+              "neighbor_fill_picnum": 5,
+              "opening": 0,
+              "wall_id": 32,
+              "width_pw": 2.0
+            },
+            {
+              "approach_picnum": 495,
+              "neighbor_fill_picnum": 180,
+              "opening": 0,
+              "wall_id": 34,
+              "width_pw": 2.0
+            }
+          ],
+          "nearby_sprites": [
+            {
+              "category": "decoration",
+              "cstat": 464,
+              "distance_pw": 2.601,
+              "height_ph": 2.55,
+              "key": 0,
+              "lock_message": 0,
+              "pal": 0,
+              "picnum": 2540,
+              "sprite_id": 6,
+              "tx_id": 0,
+              "type_id": 0,
+              "type_name": "Decoration",
+              "wall_aligned": true,
+              "x_repeat": 32,
+              "y_repeat": 32
+            }
+          ],
+          "region_ceiling_picnum": 495,
+          "region_floor_picnum": 495,
+          "region_wall_picnum": 495,
+          "visually_distinct": true
+        }
+      },
+      {
+        "classification": "MANDATORY",
+        "closing_state": {
+          "closed_at_rest": true,
+          "rest_opening": 0
+        },
+        "interaction_trigger": "remote_rx",
+        "lock_condition": 0,
+        "movement_behavior": "z_ceiling",
+        "native_implementation": {
+          "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+          "key": 0,
+          "motion": "z_ceiling",
+          "rx_id": 100,
+          "triggers": [],
+          "tx_id": 0,
+          "type_id": 600
+        },
+        "opening_state": {
+          "on_opening": 39424,
+          "sufficient_open": true
+        },
+        "player_facing": {
+          "activate_from_adjacent": true,
+          "identify_visually": true,
+          "open_enough": true,
+          "requires_intended_key": false,
+          "use_triggers": true
+        },
+        "player_facing_failures": [],
+        "region_id": "region:gallery_door",
+        "sector_id": 11,
+        "semantic_intent": {
+          "classification": "MANDATORY",
+          "interaction": "remote_switch",
+          "purpose": "remote stair-to-gallery door",
+          "realization": "RX 100, no Push/Wallpush, face 200"
+        },
+        "visual_implementation": {
+          "approach_portals": [
+            {
+              "approach_picnum": 200,
+              "neighbor_fill_picnum": 184,
+              "opening": 0,
+              "wall_id": 62,
+              "width_pw": 2.0
+            },
+            {
+              "approach_picnum": 200,
+              "neighbor_fill_picnum": 5,
+              "opening": 0,
+              "wall_id": 64,
+              "width_pw": 2.0
+            }
+          ],
+          "nearby_sprites": [],
+          "region_ceiling_picnum": 200,
+          "region_floor_picnum": 200,
+          "region_wall_picnum": 200,
+          "visually_distinct": true
+        }
+      },
+      {
+        "classification": "OPTIONAL",
+        "closing_state": {
+          "closed_at_rest": true,
+          "rest_opening": 0
+        },
+        "interaction_trigger": "remote_rx",
+        "lock_condition": 0,
+        "movement_behavior": "z_ceiling",
+        "native_implementation": {
+          "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+          "key": 0,
+          "motion": "z_ceiling",
+          "rx_id": 102,
+          "triggers": [],
+          "tx_id": 0,
+          "type_id": 600
+        },
+        "opening_state": {
+          "on_opening": 33792,
+          "sufficient_open": true
+        },
+        "player_facing": {
+          "activate_from_adjacent": true,
+          "identify_visually": true,
+          "open_enough": true,
+          "requires_intended_key": false,
+          "use_triggers": true
+        },
+        "player_facing_failures": [],
+        "region_id": "region:secret_door",
+        "sector_id": 13,
+        "semantic_intent": {
+          "classification": "OPTIONAL",
+          "hidden": true,
+          "interaction": "remote_switch",
+          "purpose": "hidden secret panel",
+          "realization": "same face as gallery fill; not a visible door"
+        },
+        "visual_implementation": {
+          "approach_portals": [
+            {
+              "approach_picnum": 110,
+              "neighbor_fill_picnum": 110,
+              "opening": 0,
+              "wall_id": 75,
+              "width_pw": 6.0
+            },
+            {
+              "approach_picnum": 184,
+              "neighbor_fill_picnum": 184,
+              "opening": 0,
+              "wall_id": 77,
+              "width_pw": 6.0
+            }
+          ],
+          "nearby_sprites": [],
+          "region_ceiling_picnum": 184,
+          "region_floor_picnum": 184,
+          "region_wall_picnum": 184,
+          "visually_distinct": false
+        }
+      },
+      {
+        "classification": "MANDATORY",
+        "closing_state": {
+          "closed_at_rest": true,
+          "rest_opening": 0
+        },
+        "interaction_trigger": "remote_rx",
+        "lock_condition": 0,
+        "movement_behavior": "z_ceiling",
+        "native_implementation": {
+          "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+          "key": 0,
+          "motion": "z_ceiling",
+          "rx_id": 101,
+          "triggers": [],
+          "tx_id": 0,
+          "type_id": 600
+        },
+        "opening_state": {
+          "on_opening": 33792,
+          "sufficient_open": true
+        },
+        "player_facing": {
+          "activate_from_adjacent": true,
+          "identify_visually": true,
+          "open_enough": true,
+          "requires_intended_key": false,
+          "use_triggers": true
+        },
+        "player_facing_failures": [],
+        "region_id": "region:exit_door",
+        "sector_id": 15,
+        "semantic_intent": {
+          "classification": "MANDATORY",
+          "interaction": "remote_switch",
+          "purpose": "remote exit door",
+          "realization": "RX 101, face 345"
+        },
+        "visual_implementation": {
+          "approach_portals": [
+            {
+              "approach_picnum": 345,
+              "neighbor_fill_picnum": 180,
+              "opening": 0,
+              "wall_id": 84,
+              "width_pw": 2.0
+            },
+            {
+              "approach_picnum": 345,
+              "neighbor_fill_picnum": 181,
+              "opening": 0,
+              "wall_id": 86,
+              "width_pw": 2.0
+            }
+          ],
+          "nearby_sprites": [],
+          "region_ceiling_picnum": 345,
+          "region_floor_picnum": 345,
+          "region_wall_picnum": 345,
+          "visually_distinct": true
+        }
+      }
+    ],
+    "map_name": "SP-progression-v2",
+    "schema_version": 1
+  },
+  "map": "work\\SP-progression-v2.MAP",
+  "native_validation_errors": 0,
+  "parent": "work/SP-progression-v1.MAP",
+  "progression": {
+    "affordance": {
+      "$schema": "llmapper.door-affordance",
+      "gates": [
+        {
+          "classification": "MANDATORY",
+          "failures": [],
+          "interaction": "wall_push",
+          "native": {
+            "family": "t600|z_ceiling|wall_push|norx|nokey|closed",
+            "key": 0,
+            "motion": "z_ceiling",
+            "rx_id": 0,
+            "triggers": [
+              "trigger_push",
+              "trigger_wall_push"
+            ],
+            "tx_id": 0,
+            "type_id": 600
+          },
+          "region_id": "region:crypt_door",
+          "status": "pass",
+          "visual_distinct": true
+        },
+        {
+          "classification": "MANDATORY",
+          "failures": [],
+          "interaction": "wall_push",
+          "native": {
+            "family": "t600|z_ceiling|wall_push|norx|key|closed",
+            "key": 1,
+            "motion": "z_ceiling",
+            "rx_id": 0,
+            "triggers": [
+              "trigger_push",
+              "trigger_wall_push"
+            ],
+            "tx_id": 0,
+            "type_id": 600
+          },
+          "region_id": "region:keyed_door",
+          "status": "pass",
+          "visual_distinct": true
+        },
+        {
+          "classification": "MANDATORY",
+          "failures": [],
+          "interaction": "remote_rx",
+          "native": {
+            "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+            "key": 0,
+            "motion": "z_ceiling",
+            "rx_id": 100,
+            "triggers": [],
+            "tx_id": 0,
+            "type_id": 600
+          },
+          "region_id": "region:gallery_door",
+          "status": "pass",
+          "visual_distinct": true
+        },
+        {
+          "classification": "OPTIONAL",
+          "failures": [],
+          "interaction": "remote_rx",
+          "native": {
+            "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+            "key": 0,
+            "motion": "z_ceiling",
+            "rx_id": 102,
+            "triggers": [],
+            "tx_id": 0,
+            "type_id": 600
+          },
+          "region_id": "region:secret_door",
+          "status": "pass",
+          "visual_distinct": false
+        },
+        {
+          "classification": "MANDATORY",
+          "failures": [],
+          "interaction": "remote_rx",
+          "native": {
+            "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+            "key": 0,
+            "motion": "z_ceiling",
+            "rx_id": 101,
+            "triggers": [],
+            "tx_id": 0,
+            "type_id": 600
+          },
+          "region_id": "region:exit_door",
+          "status": "pass",
+          "visual_distinct": true
+        }
+      ],
+      "ok": true,
+      "schema_version": 1
+    },
+    "attachments": {
+      "$schema": "llmapper.object-placement",
+      "kind": "derived",
+      "ok": true,
+      "schema_version": 1,
+      "switch_count": 4,
+      "violations": []
+    },
+    "full": {
+      "channels": [
+        4,
+        100,
+        101,
+        102
+      ],
+      "exit": true,
+      "final": 16,
+      "keys": [
+        1
+      ],
+      "rest": 2,
+      "witness": [
+        {
+          "kind": "spawn",
+          "reachable": 2,
+          "sector": 0
+        },
+        {
+          "kind": "push-motion",
+          "reachable": 4,
+          "sector": 2
+        },
+        {
+          "key": 1,
+          "kind": "take-key",
+          "reachable": 4,
+          "sector": 3,
+          "type_id": 100
+        },
+        {
+          "key": 1,
+          "kind": "unlock",
+          "reachable": 10,
+          "sector": 5
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "reachable": 12,
+          "ref": "sprite:1",
+          "tx_id": 100
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "reachable": 14,
+          "ref": "sprite:2",
+          "tx_id": 101
+        },
+        {
+          "is_exit": false,
+          "kind": "activate",
+          "newly_reachable": 2,
+          "reachable": 16,
+          "ref": "sprite:3",
+          "tx_id": 102
+        },
+        {
+          "is_exit": true,
+          "kind": "activate",
+          "newly_reachable": 0,
+          "reachable": 16,
+          "ref": "sprite:4",
+          "tx_id": 4
+        }
+      ]
+    },
+    "gates": {
+      "attachments_ok": true,
+      "door_affordance_ok": true,
+      "exit_after_intended": true,
+      "exit_without_archive_switch": false,
+      "exit_without_gallery_switch": false,
+      "exit_without_key": false,
+      "exit_without_secret_switch": true,
+      "ok": true,
+      "rest_smaller_than_final": true,
+      "use_poses_ok": true
+    },
+    "use_poses": {
+      "ok": true,
+      "probe_count": 4,
+      "violations": []
+    }
+  },
+  "schema_version": 1,
+  "source_hidden": [
+    "maps/blood/E2M2.MAP",
+    "maps/blood/BB3.MAP"
+  ],
+  "state_graph": {
+    "S0": {
+      "action": "use crypt mouth door",
+      "reachable": [
+        "start"
+      ]
+    },
+    "S1": {
+      "action": "take skull key",
+      "reachable": [
+        "start",
+        "crypt_step",
+        "crypt"
+      ]
+    },
+    "S2": {
+      "action": "use keyed archive door",
+      "reachable": [
+        "start",
+        "crypt_step",
+        "crypt"
+      ]
+    },
+    "S3": {
+      "action": "activate archive switch (channel 100)",
+      "reachable": [
+        "archive",
+        "stair1",
+        "stair2",
+        "stair3",
+        "stair4"
+      ]
+    },
+    "S4": {
+      "action": "activate gallery switch (channel 101)",
+      "reachable": [
+        "gallery"
+      ]
+    },
+    "S5": {
+      "action": "activate exit switch (channel 4)",
+      "reachable": [
+        "exit"
+      ]
+    },
+    "optional": {
+      "action": "activate secret switch (channel 102)",
+      "reachable": [
+        "secret"
+      ]
+    },
+    "scenic": {
+      "note": "crypt_view is INTENTIONALLY_UNREACHABLE",
+      "reachable": []
+    }
+  }
+}

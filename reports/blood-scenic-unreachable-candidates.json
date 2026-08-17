@@ -1,0 +1,1137 @@
+{
+  "$schema": "llmapper.scenic-candidates",
+  "maps": [
+    {
+      "map": "E1M1.MAP",
+      "rest_reachable": 93,
+      "adjacent_unreachable": 26,
+      "no_gameplay_objects": 24,
+      "with_gameplay_objects": 2,
+      "examples_no_gameplay": [
+        {
+          "sector_id": 6,
+          "floor_picnum": 361,
+          "ceiling_picnum": 3678,
+          "type_id": 600,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 100,
+              "wall_id": 40,
+              "picnum": 421,
+              "opening": 0,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 1,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        },
+        {
+          "sector_id": 17,
+          "floor_picnum": 361,
+          "ceiling_picnum": 3678,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 18,
+              "wall_id": 125,
+              "picnum": 421,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 18,
+              "wall_id": 126,
+              "picnum": 421,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 18,
+              "wall_id": 127,
+              "picnum": 421,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 18,
+              "wall_id": 128,
+              "picnum": 421,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 18,
+              "wall_id": 129,
+              "picnum": 421,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 18,
+              "wall_id": 130,
+              "picnum": 421,
+              "opening": 32768,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 2,
+          "gameplay_sprites": 0,
+          "has_xsector": false
+        },
+        {
+          "sector_id": 19,
+          "floor_picnum": 361,
+          "ceiling_picnum": 3678,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 18,
+              "wall_id": 160,
+              "picnum": 329,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 18,
+              "wall_id": 161,
+              "picnum": 329,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 18,
+              "wall_id": 162,
+              "picnum": 329,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 18,
+              "wall_id": 163,
+              "picnum": 329,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 18,
+              "wall_id": 164,
+              "picnum": 329,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 18,
+              "wall_id": 165,
+              "picnum": 329,
+              "opening": 32768,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 2,
+          "gameplay_sprites": 0,
+          "has_xsector": false
+        },
+        {
+          "sector_id": 24,
+          "floor_picnum": 253,
+          "ceiling_picnum": 253,
+          "type_id": 600,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 59,
+              "wall_id": 190,
+              "picnum": 253,
+              "opening": 0,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 0,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        },
+        {
+          "sector_id": 25,
+          "floor_picnum": 253,
+          "ceiling_picnum": 253,
+          "type_id": 600,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 59,
+              "wall_id": 192,
+              "picnum": 253,
+              "opening": 0,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 0,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        },
+        {
+          "sector_id": 26,
+          "floor_picnum": 270,
+          "ceiling_picnum": 253,
+          "type_id": 617,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 150,
+              "wall_id": 196,
+              "picnum": 89,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 197,
+              "picnum": 89,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 198,
+              "picnum": 89,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 199,
+              "picnum": 89,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 200,
+              "picnum": 70,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 201,
+              "picnum": 70,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 202,
+              "picnum": 70,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 203,
+              "picnum": 89,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 204,
+              "picnum": 89,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 205,
+              "picnum": 89,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 206,
+              "picnum": 89,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 207,
+              "picnum": 89,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 208,
+              "picnum": 89,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 209,
+              "picnum": 70,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 210,
+              "picnum": 70,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 211,
+              "picnum": 89,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 212,
+              "picnum": 70,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 213,
+              "picnum": 70,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 214,
+              "picnum": 89,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 150,
+              "wall_id": 215,
+              "picnum": 89,
+              "opening": 0,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 1,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        }
+      ],
+      "examples_with_gameplay": [
+        {
+          "sector_id": 82,
+          "floor_picnum": 290,
+          "ceiling_picnum": 255,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 85,
+              "wall_id": 671,
+              "picnum": 421,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 85,
+              "wall_id": 672,
+              "picnum": 421,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 85,
+              "wall_id": 673,
+              "picnum": 421,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 85,
+              "wall_id": 674,
+              "picnum": 421,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 85,
+              "wall_id": 675,
+              "picnum": 421,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 85,
+              "wall_id": 676,
+              "picnum": 421,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 85,
+              "wall_id": 677,
+              "picnum": 421,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 85,
+              "wall_id": 678,
+              "picnum": 421,
+              "opening": 32768,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 20,
+          "gameplay_sprites": 7,
+          "has_xsector": true
+        },
+        {
+          "sector_id": 144,
+          "floor_picnum": 270,
+          "ceiling_picnum": 253,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 0,
+              "wall_id": 1387,
+              "picnum": 110,
+              "opening": -1024,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 1,
+          "gameplay_sprites": 1,
+          "has_xsector": true
+        }
+      ]
+    },
+    {
+      "map": "E1M3.MAP",
+      "rest_reachable": 243,
+      "adjacent_unreachable": 39,
+      "no_gameplay_objects": 37,
+      "with_gameplay_objects": 2,
+      "examples_no_gameplay": [
+        {
+          "sector_id": 0,
+          "floor_picnum": 362,
+          "ceiling_picnum": 3678,
+          "type_id": 618,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 289,
+              "wall_id": 1,
+              "picnum": 2453,
+              "opening": 0,
+              "blocking": true
+            }
+          ],
+          "sprite_count": 0,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        },
+        {
+          "sector_id": 1,
+          "floor_picnum": 362,
+          "ceiling_picnum": 3678,
+          "type_id": 618,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 284,
+              "wall_id": 5,
+              "picnum": 2453,
+              "opening": 0,
+              "blocking": true
+            }
+          ],
+          "sprite_count": 0,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        },
+        {
+          "sector_id": 96,
+          "floor_picnum": 373,
+          "ceiling_picnum": 3678,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 289,
+              "wall_id": 615,
+              "picnum": 2453,
+              "opening": 45056,
+              "blocking": true
+            },
+            {
+              "neighbor": 289,
+              "wall_id": 616,
+              "picnum": 2453,
+              "opening": 45056,
+              "blocking": true
+            },
+            {
+              "neighbor": 289,
+              "wall_id": 624,
+              "picnum": 2453,
+              "opening": 45056,
+              "blocking": true
+            }
+          ],
+          "sprite_count": 11,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        },
+        {
+          "sector_id": 98,
+          "floor_picnum": 373,
+          "ceiling_picnum": 3678,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 284,
+              "wall_id": 629,
+              "picnum": 2453,
+              "opening": 45056,
+              "blocking": true
+            },
+            {
+              "neighbor": 284,
+              "wall_id": 630,
+              "picnum": 2453,
+              "opening": 45056,
+              "blocking": true
+            },
+            {
+              "neighbor": 284,
+              "wall_id": 638,
+              "picnum": 2453,
+              "opening": 45056,
+              "blocking": true
+            }
+          ],
+          "sprite_count": 10,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        },
+        {
+          "sector_id": 100,
+          "floor_picnum": 491,
+          "ceiling_picnum": 20,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 67,
+              "wall_id": 646,
+              "picnum": 200,
+              "opening": 8192,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 0,
+          "gameplay_sprites": 0,
+          "has_xsector": false
+        },
+        {
+          "sector_id": 102,
+          "floor_picnum": 491,
+          "ceiling_picnum": 20,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 66,
+              "wall_id": 654,
+              "picnum": 200,
+              "opening": 8192,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 0,
+          "gameplay_sprites": 0,
+          "has_xsector": false
+        }
+      ],
+      "examples_with_gameplay": [
+        {
+          "sector_id": 116,
+          "floor_picnum": 491,
+          "ceiling_picnum": 255,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 320,
+              "wall_id": 725,
+              "picnum": 200,
+              "opening": 8192,
+              "blocking": true
+            }
+          ],
+          "sprite_count": 1,
+          "gameplay_sprites": 1,
+          "has_xsector": false
+        },
+        {
+          "sector_id": 121,
+          "floor_picnum": 20,
+          "ceiling_picnum": 20,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 125,
+              "wall_id": 748,
+              "picnum": 255,
+              "opening": 16384,
+              "blocking": true
+            }
+          ],
+          "sprite_count": 22,
+          "gameplay_sprites": 1,
+          "has_xsector": true
+        }
+      ]
+    },
+    {
+      "map": "E2M2.MAP",
+      "rest_reachable": 204,
+      "adjacent_unreachable": 23,
+      "no_gameplay_objects": 23,
+      "with_gameplay_objects": 0,
+      "examples_no_gameplay": [
+        {
+          "sector_id": 28,
+          "floor_picnum": 90,
+          "ceiling_picnum": 379,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 30,
+              "wall_id": 283,
+              "picnum": 89,
+              "opening": 46080,
+              "blocking": false
+            },
+            {
+              "neighbor": 18,
+              "wall_id": 284,
+              "picnum": 160,
+              "opening": 53248,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 0,
+          "gameplay_sprites": 0,
+          "has_xsector": false
+        },
+        {
+          "sector_id": 29,
+          "floor_picnum": 90,
+          "ceiling_picnum": 379,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 30,
+              "wall_id": 286,
+              "picnum": 89,
+              "opening": 46080,
+              "blocking": false
+            },
+            {
+              "neighbor": 18,
+              "wall_id": 288,
+              "picnum": 160,
+              "opening": 53248,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 0,
+          "gameplay_sprites": 0,
+          "has_xsector": false
+        },
+        {
+          "sector_id": 102,
+          "floor_picnum": 195,
+          "ceiling_picnum": 67,
+          "type_id": 617,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 82,
+              "wall_id": 865,
+              "picnum": 20,
+              "opening": 13312,
+              "blocking": true
+            },
+            {
+              "neighbor": 82,
+              "wall_id": 866,
+              "picnum": 20,
+              "opening": 13312,
+              "blocking": true
+            },
+            {
+              "neighbor": 82,
+              "wall_id": 867,
+              "picnum": 20,
+              "opening": 13312,
+              "blocking": true
+            },
+            {
+              "neighbor": 82,
+              "wall_id": 868,
+              "picnum": 20,
+              "opening": 13312,
+              "blocking": true
+            }
+          ],
+          "sprite_count": 1,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        },
+        {
+          "sector_id": 122,
+          "floor_picnum": 997,
+          "ceiling_picnum": 67,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 120,
+              "wall_id": 1030,
+              "picnum": 174,
+              "opening": 33792,
+              "blocking": false
+            },
+            {
+              "neighbor": 120,
+              "wall_id": 1031,
+              "picnum": 174,
+              "opening": 33792,
+              "blocking": false
+            },
+            {
+              "neighbor": 120,
+              "wall_id": 1032,
+              "picnum": 174,
+              "opening": 33792,
+              "blocking": false
+            },
+            {
+              "neighbor": 120,
+              "wall_id": 1033,
+              "picnum": 174,
+              "opening": 33792,
+              "blocking": false
+            },
+            {
+              "neighbor": 120,
+              "wall_id": 1034,
+              "picnum": 174,
+              "opening": 33792,
+              "blocking": false
+            },
+            {
+              "neighbor": 120,
+              "wall_id": 1035,
+              "picnum": 174,
+              "opening": 33792,
+              "blocking": false
+            },
+            {
+              "neighbor": 120,
+              "wall_id": 1036,
+              "picnum": 174,
+              "opening": 33792,
+              "blocking": false
+            },
+            {
+              "neighbor": 120,
+              "wall_id": 1037,
+              "picnum": 174,
+              "opening": 33792,
+              "blocking": false
+            },
+            {
+              "neighbor": 120,
+              "wall_id": 1038,
+              "picnum": 174,
+              "opening": 33792,
+              "blocking": false
+            },
+            {
+              "neighbor": 120,
+              "wall_id": 1039,
+              "picnum": 174,
+              "opening": 33792,
+              "blocking": false
+            },
+            {
+              "neighbor": 120,
+              "wall_id": 1040,
+              "picnum": 174,
+              "opening": 33792,
+              "blocking": false
+            },
+            {
+              "neighbor": 120,
+              "wall_id": 1041,
+              "picnum": 174,
+              "opening": 33792,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 0,
+          "gameplay_sprites": 0,
+          "has_xsector": false
+        },
+        {
+          "sector_id": 123,
+          "floor_picnum": 174,
+          "ceiling_picnum": 2500,
+          "type_id": 617,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 107,
+              "wall_id": 1042,
+              "picnum": 281,
+              "opening": 19456,
+              "blocking": true
+            },
+            {
+              "neighbor": 107,
+              "wall_id": 1043,
+              "picnum": 281,
+              "opening": 19456,
+              "blocking": true
+            },
+            {
+              "neighbor": 107,
+              "wall_id": 1044,
+              "picnum": 281,
+              "opening": 19456,
+              "blocking": true
+            },
+            {
+              "neighbor": 107,
+              "wall_id": 1045,
+              "picnum": 281,
+              "opening": 19456,
+              "blocking": true
+            }
+          ],
+          "sprite_count": 1,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        },
+        {
+          "sector_id": 124,
+          "floor_picnum": 174,
+          "ceiling_picnum": 2500,
+          "type_id": 617,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 107,
+              "wall_id": 1046,
+              "picnum": 281,
+              "opening": 19456,
+              "blocking": true
+            },
+            {
+              "neighbor": 107,
+              "wall_id": 1047,
+              "picnum": 281,
+              "opening": 19456,
+              "blocking": true
+            },
+            {
+              "neighbor": 107,
+              "wall_id": 1048,
+              "picnum": 281,
+              "opening": 19456,
+              "blocking": true
+            },
+            {
+              "neighbor": 107,
+              "wall_id": 1049,
+              "picnum": 281,
+              "opening": 19456,
+              "blocking": true
+            }
+          ],
+          "sprite_count": 1,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        }
+      ],
+      "examples_with_gameplay": []
+    },
+    {
+      "map": "E3M3.MAP",
+      "rest_reachable": 95,
+      "adjacent_unreachable": 8,
+      "no_gameplay_objects": 7,
+      "with_gameplay_objects": 1,
+      "examples_no_gameplay": [
+        {
+          "sector_id": 0,
+          "floor_picnum": 491,
+          "ceiling_picnum": 491,
+          "type_id": 615,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 10,
+              "wall_id": 12,
+              "picnum": 255,
+              "opening": 37888,
+              "blocking": false
+            },
+            {
+              "neighbor": 9,
+              "wall_id": 13,
+              "picnum": 255,
+              "opening": 41984,
+              "blocking": false
+            },
+            {
+              "neighbor": 8,
+              "wall_id": 14,
+              "picnum": 255,
+              "opening": 37888,
+              "blocking": false
+            },
+            {
+              "neighbor": 7,
+              "wall_id": 15,
+              "picnum": 255,
+              "opening": 41984,
+              "blocking": false
+            },
+            {
+              "neighbor": 6,
+              "wall_id": 16,
+              "picnum": 491,
+              "opening": 37888,
+              "blocking": false
+            },
+            {
+              "neighbor": 5,
+              "wall_id": 17,
+              "picnum": 491,
+              "opening": 41984,
+              "blocking": false
+            },
+            {
+              "neighbor": 4,
+              "wall_id": 18,
+              "picnum": 491,
+              "opening": 37888,
+              "blocking": false
+            },
+            {
+              "neighbor": 3,
+              "wall_id": 19,
+              "picnum": 491,
+              "opening": 41984,
+              "blocking": false
+            },
+            {
+              "neighbor": 2,
+              "wall_id": 20,
+              "picnum": 491,
+              "opening": 37888,
+              "blocking": false
+            },
+            {
+              "neighbor": 1,
+              "wall_id": 21,
+              "picnum": 0,
+              "opening": 41984,
+              "blocking": false
+            },
+            {
+              "neighbor": 12,
+              "wall_id": 22,
+              "picnum": 0,
+              "opening": 37888,
+              "blocking": false
+            },
+            {
+              "neighbor": 11,
+              "wall_id": 23,
+              "picnum": 0,
+              "opening": 41984,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 0,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        },
+        {
+          "sector_id": 157,
+          "floor_picnum": 1120,
+          "ceiling_picnum": 255,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 120,
+              "wall_id": 1238,
+              "picnum": 1120,
+              "opening": 8192,
+              "blocking": true
+            }
+          ],
+          "sprite_count": 0,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        },
+        {
+          "sector_id": 257,
+          "floor_picnum": 568,
+          "ceiling_picnum": 491,
+          "type_id": 600,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 148,
+              "wall_id": 1742,
+              "picnum": 255,
+              "opening": 0,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 1,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        },
+        {
+          "sector_id": 270,
+          "floor_picnum": 568,
+          "ceiling_picnum": 255,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 271,
+              "wall_id": 1888,
+              "picnum": 255,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 271,
+              "wall_id": 1889,
+              "picnum": 255,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 271,
+              "wall_id": 1890,
+              "picnum": 255,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 271,
+              "wall_id": 1891,
+              "picnum": 255,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 271,
+              "wall_id": 1892,
+              "picnum": 255,
+              "opening": 32768,
+              "blocking": false
+            },
+            {
+              "neighbor": 271,
+              "wall_id": 1893,
+              "picnum": 255,
+              "opening": 32768,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 0,
+          "gameplay_sprites": 0,
+          "has_xsector": false
+        },
+        {
+          "sector_id": 275,
+          "floor_picnum": 379,
+          "ceiling_picnum": 379,
+          "type_id": 617,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 262,
+              "wall_id": 1934,
+              "picnum": 488,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 262,
+              "wall_id": 1935,
+              "picnum": 488,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 262,
+              "wall_id": 1936,
+              "picnum": 488,
+              "opening": 0,
+              "blocking": false
+            },
+            {
+              "neighbor": 262,
+              "wall_id": 1937,
+              "picnum": 488,
+              "opening": 0,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 2,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        },
+        {
+          "sector_id": 279,
+          "floor_picnum": 568,
+          "ceiling_picnum": 255,
+          "type_id": 600,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 278,
+              "wall_id": 1966,
+              "picnum": 255,
+              "opening": 0,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 1,
+          "gameplay_sprites": 0,
+          "has_xsector": true
+        }
+      ],
+      "examples_with_gameplay": [
+        {
+          "sector_id": 265,
+          "floor_picnum": 568,
+          "ceiling_picnum": 255,
+          "type_id": 0,
+          "visible_from_rest_via_portal": [
+            {
+              "neighbor": 261,
+              "wall_id": 1863,
+              "picnum": 487,
+              "opening": 0,
+              "blocking": false
+            }
+          ],
+          "sprite_count": 13,
+          "gameplay_sprites": 7,
+          "has_xsector": false
+        }
+      ]
+    }
+  ]
+}

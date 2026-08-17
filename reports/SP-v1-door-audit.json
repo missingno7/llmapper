@@ -1,0 +1,339 @@
+{
+  "affordance": {
+    "$schema": "llmapper.door-affordance",
+    "gates": [
+      {
+        "classification": "UNKNOWN",
+        "failures": [
+          "closed Z-door used from the hallway requires XSECTOR.trigger_wall_push; trigger_push alone does not fire ActionScan on the portal wall",
+          "approach portal picnum matches neighboring fill; closed gate is not visually a door",
+          "keyed gate has no nearby non-key sprite and no distinct face tile"
+        ],
+        "interaction": "sector_push",
+        "native": {
+          "family": "t600|z_ceiling|sector_push|norx|key|closed",
+          "key": 1,
+          "motion": "z_ceiling",
+          "rx_id": 0,
+          "triggers": [
+            "trigger_push"
+          ],
+          "tx_id": 0,
+          "type_id": 600
+        },
+        "region_id": "region:keyed_door",
+        "status": "fail",
+        "visual_distinct": false
+      },
+      {
+        "classification": "UNKNOWN",
+        "failures": [
+          "approach portal picnum matches neighboring fill; closed gate is not visually a door"
+        ],
+        "interaction": "remote_rx",
+        "native": {
+          "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+          "key": 0,
+          "motion": "z_ceiling",
+          "rx_id": 100,
+          "triggers": [],
+          "tx_id": 0,
+          "type_id": 600
+        },
+        "region_id": "region:gallery_door",
+        "status": "fail",
+        "visual_distinct": false
+      },
+      {
+        "classification": "UNKNOWN",
+        "failures": [
+          "approach portal picnum matches neighboring fill; closed gate is not visually a door"
+        ],
+        "interaction": "remote_rx",
+        "native": {
+          "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+          "key": 0,
+          "motion": "z_ceiling",
+          "rx_id": 102,
+          "triggers": [],
+          "tx_id": 0,
+          "type_id": 600
+        },
+        "region_id": "region:secret_door",
+        "status": "fail",
+        "visual_distinct": false
+      },
+      {
+        "classification": "UNKNOWN",
+        "failures": [
+          "approach portal picnum matches neighboring fill; closed gate is not visually a door"
+        ],
+        "interaction": "remote_rx",
+        "native": {
+          "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+          "key": 0,
+          "motion": "z_ceiling",
+          "rx_id": 101,
+          "triggers": [],
+          "tx_id": 0,
+          "type_id": 600
+        },
+        "region_id": "region:exit_door",
+        "status": "fail",
+        "visual_distinct": false
+      }
+    ],
+    "ok": false,
+    "schema_version": 1
+  },
+  "audit": {
+    "$schema": "llmapper.authored-gate-audit",
+    "action_scan_range": 64,
+    "evidence": "NBlood ActionScan: XWALL.trigger_push; portal hit whose next XSECTOR has trigger_wall_push; XSECTOR.trigger_push only if already inside or floor/ceiling hit",
+    "gate_count": 4,
+    "gates": [
+      {
+        "classification": "UNKNOWN",
+        "closing_state": {
+          "closed_at_rest": true,
+          "rest_opening": 0
+        },
+        "interaction_trigger": "sector_push",
+        "lock_condition": 1,
+        "movement_behavior": "z_ceiling",
+        "native_implementation": {
+          "family": "t600|z_ceiling|sector_push|norx|key|closed",
+          "key": 1,
+          "motion": "z_ceiling",
+          "rx_id": 0,
+          "triggers": [
+            "trigger_push"
+          ],
+          "tx_id": 0,
+          "type_id": 600
+        },
+        "opening_state": {
+          "on_opening": 28160,
+          "sufficient_open": true
+        },
+        "player_facing": {
+          "activate_from_adjacent": false,
+          "identify_visually": false,
+          "open_enough": true,
+          "requires_intended_key": true,
+          "use_triggers": false
+        },
+        "player_facing_failures": [
+          "closed Z-door used from the hallway requires XSECTOR.trigger_wall_push; trigger_push alone does not fire ActionScan on the portal wall",
+          "approach portal picnum matches neighboring fill; closed gate is not visually a door",
+          "keyed gate has no nearby non-key sprite and no distinct face tile"
+        ],
+        "region_id": "region:keyed_door",
+        "sector_id": 3,
+        "semantic_intent": {},
+        "visual_implementation": {
+          "approach_portals": [
+            {
+              "approach_picnum": 5,
+              "neighbor_fill_picnum": 5,
+              "opening": 0,
+              "wall_id": 20,
+              "width_pw": 8.0
+            },
+            {
+              "approach_picnum": 180,
+              "neighbor_fill_picnum": 180,
+              "opening": 0,
+              "wall_id": 22,
+              "width_pw": 8.0
+            }
+          ],
+          "nearby_sprites": [],
+          "region_ceiling_picnum": 104,
+          "region_floor_picnum": 104,
+          "region_wall_picnum": 104,
+          "visually_distinct": false
+        }
+      },
+      {
+        "classification": "UNKNOWN",
+        "closing_state": {
+          "closed_at_rest": true,
+          "rest_opening": 0
+        },
+        "interaction_trigger": "remote_rx",
+        "lock_condition": 0,
+        "movement_behavior": "z_ceiling",
+        "native_implementation": {
+          "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+          "key": 0,
+          "motion": "z_ceiling",
+          "rx_id": 100,
+          "triggers": [],
+          "tx_id": 0,
+          "type_id": 600
+        },
+        "opening_state": {
+          "on_opening": 39424,
+          "sufficient_open": true
+        },
+        "player_facing": {
+          "activate_from_adjacent": true,
+          "identify_visually": false,
+          "open_enough": true,
+          "requires_intended_key": false,
+          "use_triggers": true
+        },
+        "player_facing_failures": [
+          "approach portal picnum matches neighboring fill; closed gate is not visually a door"
+        ],
+        "region_id": "region:gallery_door",
+        "sector_id": 9,
+        "semantic_intent": {},
+        "visual_implementation": {
+          "approach_portals": [
+            {
+              "approach_picnum": 184,
+              "neighbor_fill_picnum": 184,
+              "opening": 0,
+              "wall_id": 48,
+              "width_pw": 8.0
+            },
+            {
+              "approach_picnum": 5,
+              "neighbor_fill_picnum": 5,
+              "opening": 0,
+              "wall_id": 50,
+              "width_pw": 8.0
+            }
+          ],
+          "nearby_sprites": [],
+          "region_ceiling_picnum": 104,
+          "region_floor_picnum": 104,
+          "region_wall_picnum": 104,
+          "visually_distinct": false
+        }
+      },
+      {
+        "classification": "UNKNOWN",
+        "closing_state": {
+          "closed_at_rest": true,
+          "rest_opening": 0
+        },
+        "interaction_trigger": "remote_rx",
+        "lock_condition": 0,
+        "movement_behavior": "z_ceiling",
+        "native_implementation": {
+          "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+          "key": 0,
+          "motion": "z_ceiling",
+          "rx_id": 102,
+          "triggers": [],
+          "tx_id": 0,
+          "type_id": 600
+        },
+        "opening_state": {
+          "on_opening": 33792,
+          "sufficient_open": true
+        },
+        "player_facing": {
+          "activate_from_adjacent": true,
+          "identify_visually": false,
+          "open_enough": true,
+          "requires_intended_key": false,
+          "use_triggers": true
+        },
+        "player_facing_failures": [
+          "approach portal picnum matches neighboring fill; closed gate is not visually a door"
+        ],
+        "region_id": "region:secret_door",
+        "sector_id": 11,
+        "semantic_intent": {},
+        "visual_implementation": {
+          "approach_portals": [
+            {
+              "approach_picnum": 110,
+              "neighbor_fill_picnum": 110,
+              "opening": 0,
+              "wall_id": 61,
+              "width_pw": 6.0
+            },
+            {
+              "approach_picnum": 184,
+              "neighbor_fill_picnum": 184,
+              "opening": 0,
+              "wall_id": 63,
+              "width_pw": 6.0
+            }
+          ],
+          "nearby_sprites": [],
+          "region_ceiling_picnum": 104,
+          "region_floor_picnum": 104,
+          "region_wall_picnum": 104,
+          "visually_distinct": false
+        }
+      },
+      {
+        "classification": "UNKNOWN",
+        "closing_state": {
+          "closed_at_rest": true,
+          "rest_opening": 0
+        },
+        "interaction_trigger": "remote_rx",
+        "lock_condition": 0,
+        "movement_behavior": "z_ceiling",
+        "native_implementation": {
+          "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+          "key": 0,
+          "motion": "z_ceiling",
+          "rx_id": 101,
+          "triggers": [],
+          "tx_id": 0,
+          "type_id": 600
+        },
+        "opening_state": {
+          "on_opening": 33792,
+          "sufficient_open": true
+        },
+        "player_facing": {
+          "activate_from_adjacent": true,
+          "identify_visually": false,
+          "open_enough": true,
+          "requires_intended_key": false,
+          "use_triggers": true
+        },
+        "player_facing_failures": [
+          "approach portal picnum matches neighboring fill; closed gate is not visually a door"
+        ],
+        "region_id": "region:exit_door",
+        "sector_id": 13,
+        "semantic_intent": {},
+        "visual_implementation": {
+          "approach_portals": [
+            {
+              "approach_picnum": 180,
+              "neighbor_fill_picnum": 180,
+              "opening": 0,
+              "wall_id": 70,
+              "width_pw": 8.0
+            },
+            {
+              "approach_picnum": 181,
+              "neighbor_fill_picnum": 181,
+              "opening": 0,
+              "wall_id": 72,
+              "width_pw": 8.0
+            }
+          ],
+          "nearby_sprites": [],
+          "region_ceiling_picnum": 104,
+          "region_floor_picnum": 104,
+          "region_wall_picnum": 104,
+          "visually_distinct": false
+        }
+      }
+    ],
+    "map_name": "SP-progression-v1",
+    "schema_version": 1
+  }
+}

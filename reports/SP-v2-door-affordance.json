@@ -1,0 +1,98 @@
+{
+  "$schema": "llmapper.door-affordance",
+  "gates": [
+    {
+      "classification": "MANDATORY",
+      "failures": [],
+      "interaction": "wall_push",
+      "native": {
+        "family": "t600|z_ceiling|wall_push|norx|nokey|closed",
+        "key": 0,
+        "motion": "z_ceiling",
+        "rx_id": 0,
+        "triggers": [
+          "trigger_push",
+          "trigger_wall_push"
+        ],
+        "tx_id": 0,
+        "type_id": 600
+      },
+      "region_id": "region:crypt_door",
+      "status": "pass",
+      "visual_distinct": true
+    },
+    {
+      "classification": "MANDATORY",
+      "failures": [],
+      "interaction": "wall_push",
+      "native": {
+        "family": "t600|z_ceiling|wall_push|norx|key|closed",
+        "key": 1,
+        "motion": "z_ceiling",
+        "rx_id": 0,
+        "triggers": [
+          "trigger_push",
+          "trigger_wall_push"
+        ],
+        "tx_id": 0,
+        "type_id": 600
+      },
+      "region_id": "region:keyed_door",
+      "status": "pass",
+      "visual_distinct": true
+    },
+    {
+      "classification": "MANDATORY",
+      "failures": [],
+      "interaction": "remote_rx",
+      "native": {
+        "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+        "key": 0,
+        "motion": "z_ceiling",
+        "rx_id": 100,
+        "triggers": [],
+        "tx_id": 0,
+        "type_id": 600
+      },
+      "region_id": "region:gallery_door",
+      "status": "pass",
+      "visual_distinct": true
+    },
+    {
+      "classification": "OPTIONAL",
+      "failures": [],
+      "interaction": "remote_rx",
+      "native": {
+        "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+        "key": 0,
+        "motion": "z_ceiling",
+        "rx_id": 102,
+        "triggers": [],
+        "tx_id": 0,
+        "type_id": 600
+      },
+      "region_id": "region:secret_door",
+      "status": "pass",
+      "visual_distinct": false
+    },
+    {
+      "classification": "MANDATORY",
+      "failures": [],
+      "interaction": "remote_rx",
+      "native": {
+        "family": "t600|z_ceiling|remote_rx|rx|nokey|closed",
+        "key": 0,
+        "motion": "z_ceiling",
+        "rx_id": 101,
+        "triggers": [],
+        "tx_id": 0,
+        "type_id": 600
+      },
+      "region_id": "region:exit_door",
+      "status": "pass",
+      "visual_distinct": true
+    }
+  ],
+  "ok": true,
+  "schema_version": 1
+}

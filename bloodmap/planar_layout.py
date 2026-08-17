@@ -46,7 +46,7 @@ from .planar_geom import (
 SCHEMA = "llmapper.planar-layout"
 SCHEMA_VERSION = 1
 
-PORTAL_ROLES = {"portal", "doorway"}
+PORTAL_ROLES = {"portal", "doorway", "window"}
 PARTITION_ROLES = {
     "solid_boundary", "thin_partition", "masked_partition", "breakable_partition",
 }
@@ -58,6 +58,16 @@ class PlanarLayoutError(AuthoredGeometryError):
 
 def _empty(schema) -> dict[str, int]:
     return {str(item[0]): 0 for item in schema}
+
+
+def _connection_has_face(connection: ConnectionSpec) -> bool:
+    return any(
+        value is not None
+        for value in (
+            connection.face_picnum, connection.face_over_picnum, connection.face_shade,
+            connection.face_cstat, connection.face_x_repeat, connection.face_y_repeat,
+        )
+    )
 
 
 def _cycle(points: Sequence[Point]) -> tuple[Point, ...]:
@@ -85,6 +95,7 @@ class RegionSpec:
     declared_zero_exit: bool = False
     stack_pair: str | None = None
     sector_behavior: dict[str, int] = field(default_factory=dict)
+    intent: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
@@ -100,6 +111,12 @@ class ConnectionSpec:
     gated: bool = False
     wall_behavior: dict[str, int] = field(default_factory=dict)
     attach_policy: str = "single_atomic"
+    face_picnum: int | None = None
+    face_over_picnum: int | None = None
+    face_shade: int | None = None
+    face_cstat: int | None = None
+    face_x_repeat: int | None = None
+    face_y_repeat: int | None = None
 
 
 @dataclass
@@ -485,6 +502,7 @@ class PlanarLayout:
                     "parallax_ceiling": region.parallax_ceiling,
                     "type": region.type,
                     "role": region.role,
+                    "intent": dict(region.intent),
                 }
                 for region in self.regions.values()
             ],
@@ -496,6 +514,7 @@ class PlanarLayout:
                     "role": item.role,
                     "interval": None if item.a1 is None else [list(item.a1), list(item.a2 or item.a1)],
                     "gated": item.gated,
+                    "face_picnum": item.face_picnum,
                 }
                 for item in self.connections.values()
             ],
@@ -568,6 +587,35 @@ class PlanarLayout:
             for atomic_id in atomic_ids:
                 wall_id = wall_from_atomic[atomic_id]
                 builder.set_behavior("wall", wall_id, **connection.wall_behavior)
+        for connection in self.connections.values():
+            if not _connection_has_face(connection):
+                continue
+            realized = [
+                item for item in connection_report
+                if item["connection_id"] == connection.connection_id and item["status"] == "realized"
+            ]
+            painted: set[int] = set()
+            for item in realized:
+                for atomic_id in item.get("atomic_ids", []):
+                    wall_id = wall_from_atomic[atomic_id]
+                    painted.add(wall_id)
+                    nxt = int(builder.level.walls[wall_id]["fields"].get("next_wall") or -1)
+                    if nxt >= 0:
+                        painted.add(nxt)
+            for wall_id in painted:
+                fields = builder.level.walls[wall_id]["fields"]
+                if connection.face_picnum is not None:
+                    fields["picnum"] = int(connection.face_picnum)
+                if connection.face_over_picnum is not None:
+                    fields["over_picnum"] = int(connection.face_over_picnum)
+                if connection.face_shade is not None:
+                    fields["shade"] = int(connection.face_shade)
+                if connection.face_cstat is not None:
+                    fields["cstat"] = int(connection.face_cstat)
+                if connection.face_x_repeat is not None:
+                    fields["x_repeat"] = int(connection.face_x_repeat)
+                if connection.face_y_repeat is not None:
+                    fields["y_repeat"] = int(connection.face_y_repeat)
         for placement in self.placements:
             region = self.regions[placement.region_id]
             sector_id = allocations[placement.region_id].sector_id

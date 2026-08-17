@@ -66,7 +66,16 @@ logic into SP design; import the step size and the low/high split.
 python -m bloodmap design-sp-v1 \
   -o work/SP-progression-v1.MAP \
   --report reports/SP-progression-v1-build.json
+python -m bloodmap design-sp-v2 \
+  -o work/SP-progression-v2.MAP \
+  --report reports/SP-v2-build.json
+python -m bloodmap door-mine --maps maps/blood -o reports/blood-door-families.json \
+  --signifiers reports/blood-key-signifiers.json
 ```
+
+Door Use from a hallway requires XSECTOR `trigger_wall_push` (NBlood ActionScan).
+See [door-affordances.md](door-affordances.md) and
+[native-authoring-language.md](native-authoring-language.md).
 
 See [object-placement.md](object-placement.md) for anchors.
 See [E2M2 understanding](../reports/E2M2-understanding.md) for the first
