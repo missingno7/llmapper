@@ -34,6 +34,8 @@ Useful switches are `-bot_telemetry`, `-bot_trajectory`, `-bot_demo`,
 For a human-debugging run, add `-bot_visible` to watch the bot in the normal
 NBlood window. This automatically uses realtime pacing; the accelerated,
 headless behavior remains the default for `-bot`.
+The initial coffin escape can take several realtime seconds, so repeated jump
+attempts during that opening sequence are expected.
 
 To inspect a recorded run, start NBlood from the Blood data directory and pass
 the demo file to the normal playback path:
@@ -46,6 +48,8 @@ nblood.exe -usecwd -nosetup -playback llmapper-bot.dem -playback_speed 4
 `-playback_speed` accepts values from 1 through 8. The default is normal
 speed; higher values process more recorded frames per display tick. Playback
 uses the ordinary visible NBlood renderer, and Escape can be used to stop it.
+Bot demos containing an external map path register that map automatically
+during playback.
 
 The playtest knowledge model is observation-bounded: it records only the
 current sector, geometrically visible portal openings and objects passing
