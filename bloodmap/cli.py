@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 from .analysis import channel_graph, corpus_statistics, geometry_view, render_svg, validate_map
+from .sector_map import render_sector_map
 from .build_ir import BuildIR
 from .composition import (
     CompositionError, attach_fragment, connect_portals, connect_with_pathway, insert_fragment,
@@ -455,6 +456,26 @@ def cmd_render(args: argparse.Namespace) -> int:
     svg = render_svg(read_map(args.map), labels=not args.no_labels, selected=selected)
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     Path(args.output).write_text(svg, encoding="utf-8", newline="\n")
+    return 0
+
+
+def _parse_int_csv(value: str) -> tuple[int, ...]:
+    try:
+        return tuple(int(item.strip()) for item in value.split(",") if item.strip())
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError("expected comma-separated integers") from exc
+
+
+def cmd_sector_map(args: argparse.Namespace) -> int:
+    svg = render_sector_map(
+        read_map(args.map),
+        highlight_sectors=args.highlight_sectors,
+        highlight_walls=args.highlight_walls,
+        trajectory=args.trajectory,
+    )
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.output).write_text(svg, encoding="utf-8", newline="\n")
+    print(f"WROTE {args.output}: numbered sector map")
     return 0
 
 
@@ -1686,6 +1707,13 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("render", help="render a deterministic top-down SVG")
     p.add_argument("map"); p.add_argument("-o", "--output", required=True); p.add_argument("--no-labels", action="store_true")
     p.add_argument("--sector", type=int); p.add_argument("--wall", type=int); p.add_argument("--sprite", type=int); p.set_defaults(func=cmd_render)
+    p = sub.add_parser("sector-map", help="render authoritative Build geometry with every sector index")
+    p.add_argument("map")
+    p.add_argument("-o", "--output", required=True)
+    p.add_argument("--highlight-sectors", type=_parse_int_csv, default=(), metavar="N[,N...]")
+    p.add_argument("--highlight-wall", "--highlight-walls", dest="highlight_walls", type=_parse_int_csv, default=(), metavar="N[,N...]")
+    p.add_argument("--trajectory", help="optional bot trajectory NDJSON to draw over the map")
+    p.set_defaults(func=cmd_sector_map)
     p = sub.add_parser("stats", help="generate corpus geometry/gameplay statistics")
     p.add_argument("directory"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_stats)
     p = sub.add_parser("materials-mine", help="build a deterministic texture evidence catalog from maps and optional ART")
