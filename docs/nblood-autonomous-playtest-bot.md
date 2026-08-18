@@ -29,7 +29,23 @@ failure, completion, and summary records. The trajectory file contains
 demo format and can be replayed in a visible run.
 
 Useful switches are `-bot_telemetry`, `-bot_trajectory`, `-bot_demo`,
-`-bot_timeout`, `-bot_stall`, and `-bot_realtime`.
+`-bot_timeout`, `-bot_stall`, `-bot_realtime`, and `-bot_visible`.
+
+For a human-debugging run, add `-bot_visible` to watch the bot in the normal
+NBlood window. This automatically uses realtime pacing; the accelerated,
+headless behavior remains the default for `-bot`.
+
+To inspect a recorded run, start NBlood from the Blood data directory and pass
+the demo file to the normal playback path:
+
+```text
+nblood.exe -usecwd -nosetup -playback llmapper-bot.dem
+nblood.exe -usecwd -nosetup -playback llmapper-bot.dem -playback_speed 4
+```
+
+`-playback_speed` accepts values from 1 through 8. The default is normal
+speed; higher values process more recorded frames per display tick. Playback
+uses the ordinary visible NBlood renderer, and Escape can be used to stop it.
 
 The playtest knowledge model is observation-bounded: it records only the
 current sector, geometrically visible portal openings and objects passing
