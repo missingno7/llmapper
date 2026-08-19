@@ -174,6 +174,38 @@ Wall coordinates are part of the topology signature: a mesh that ignores
 where the walls are cannot notice that a passage appeared when a mechanism
 slid them apart.
 
+### Player width
+
+A cell exists only where the player's whole clip radius clears the sector's
+walls. Demanding less lets the bot plan routes between bars it can never fit
+past, which is a failure mode that looks like a stuck bot rather than a bad
+plan. The relaxed passes below that exist to keep a *visited* sector
+represented at all, so they say nothing about whether a body fits; a sector
+is judged to admit the player only from the margin-respecting passes, plus a
+fine sweep for sectors the 256-unit grid is simply too coarse for.
+
+Width is structural, headroom is not. A sector too narrow for the body is
+scenery — a wall with a seam in it — and a frontier into one is reported as
+`boundary_too_narrow` and never pursued. A sector that is merely *short* is a
+shut door, and belongs to current state, not to structure.
+
+A sector too thin to hold a standable square but wide enough for the body — a
+step, a ledge, a door track — gets a transit cell at each of its doorways so
+routes can pass through, reported as `nav_sector_transit_only`.
+
+## Moving geometry
+
+`XSECTOR.state` does not say which way a sector is travelling. `SetSectorState`
+runs only when the travel *finishes*, so throughout the motion `state` still
+names where the sector came from. Read the direction from the sign of the
+sector's live entry in `gBusy` instead — the same value the engine steps.
+Getting this backwards inverts every verdict about moving geometry: opening
+doors look like closing ones and are waited out instead of walked through,
+and closing doors look safe to enter.
+
+Travel time comes from the same records: `12 * busyTime` ticks to cross, and
+`12 * waitTime` ticks of hold before an auto-closing door reverses.
+
 ## Regression maps
 
 `reference/blood/AGTST1.map` and `AGTST2.map` are the fast exploration gate
@@ -182,6 +214,13 @@ concave starting sector whose door is around a corner, a distraction alcove
 of tiny sectors, a crouch-height door that closes behind the player, a key,
 a keyed door requiring a deliberate return across the level, and a vertically
 awkward exit switch. Both complete deterministically.
+
+`AGTST5.map` adds a breakable wall in front of a key and a row of columns
+whose gaps are too narrow to walk between; it completes. `AGTST4.map` is a
+shorter, enemy-free E1M1 and is not yet completed — it ends with the bot
+correctly reporting that the only work it has left is a door it has no key
+for, the key being behind a rotating arc door whose swept footprint the mesh
+does not yet plan around.
 
 ```text
 bash tools/botcorpus.sh
