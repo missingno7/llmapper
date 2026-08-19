@@ -245,6 +245,14 @@ So the layers are kept apart:
 * **height is not traversal**, and progress is measured in distance rather
   than in squares of distance.
 
+Sprites get the same treatment. Whether the player can operate one is read
+off its XSPRITE rather than guessed from its status list and type number, so
+a decoration a mapper wired to a channel is a mechanism; a wall-aligned
+sprite is clipped as the line the engine clips it as, not as a post at its
+centre; a floor-aligned one is a surface rather than a barrier; and a
+doorway a solid sprite stands in reports as blocked, and as blocked *and
+actionable* when that sprite can be pushed.
+
 `tools/bot_invariants.py` checks these against a run's telemetry and runs as
 part of `botcorpus.sh`. It is not a quality measure: a run may fail its
 objective and satisfy every invariant. A violation means the bot has
@@ -268,8 +276,16 @@ whose gaps are too narrow to walk between. `AGTST4.map` is a shorter,
 enemy-free E1M1 with four keys, only one of which is needed; it exercises a
 rotating arc door that seals a room until it is operated, and completes by
 opening that door once, collecting the key it reveals, returning, unlocking
-the door that key opens and throwing the lever behind it. All four
+the door that key opens and throwing the lever behind it. `AGTST7.map` bars
+its only doorway with a pushable sprite panel: the bot must recognise a
+sprite as an obstacle and as a mechanism at the same time. All five
 complete.
+
+`AGTST6.map` is not yet passed. It needs the bot to walk a bridge made of
+floor-aligned sprites across a damaging pit, which means treating a sprite
+surface as a floor in the navigation mesh -- the mesh currently reads the
+sector floor, which is far below. The bot reaches 25 of its 35 sectors and
+then falls in.
 
 ```text
 bash tools/botcorpus.sh
