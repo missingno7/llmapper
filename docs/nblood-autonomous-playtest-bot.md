@@ -195,3 +195,27 @@ python tools/bot_map_render.py reference/blood/AGTST2.map \
 
 Production behaviour contains no map, sector or wall identities. The IDs in
 these notes are evidence from runs, not inputs to the bot.
+
+## Watching a run
+
+`-bot_visible` draws a short status readout in the top-left corner:
+
+```text
+T 1:23  sect 48  depth 12  seen 27      clock, where it is, how deep, how much seen
+RETURN_TO_UNEXPLORED_BRANCH             what it is doing and why
+obj t4 id446 ->s47 d1830 6s             objective: type, id, destination, distance, age
+todo 4  asleep 9  keys 2  hp 100        unresolved work, dormant work, keys, health
+no progress 7s                          only when nothing has advanced for a while
+```
+
+The clock is simulated seconds and is the same value as `game_time` in the
+telemetry, so a moment seen on screen can be looked up directly:
+
+```text
+python tools/bot_narrative.py work/botlab/<tag>/telemetry.ndjson        --from-time 5 --to-time 8 --all
+```
+
+`--all` shows every event in the window rather than just the decision story,
+which is usually what is wanted when a specific few seconds looked wrong.
+The objective `type` values are 1 pickup, 2 key, 3 interaction, 4 frontier,
+5 investigate, 6 expose.

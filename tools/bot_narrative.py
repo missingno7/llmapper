@@ -22,6 +22,11 @@ def main():
     parser.add_argument("telemetry")
     parser.add_argument("--events", default="")
     parser.add_argument("--from-time", type=int, default=0)
+    parser.add_argument("--to-time", type=int, default=10**9,
+                        help="upper bound in simulated seconds, matching the "
+                             "clock shown on screen during a visible run")
+    parser.add_argument("--all", action="store_true",
+                        help="show every event in the window, not just the story")
     parser.add_argument("--collapse", action="store_true",
                         help="hide immediate repeats of the same event+detail")
     args = parser.parse_args()
@@ -37,7 +42,10 @@ def main():
         if row.get("type") == "summary":
             print("--- SUMMARY", json.dumps(row))
             continue
-        if event not in wanted or row.get("game_time", 0) < args.from_time:
+        moment = row.get("game_time", 0)
+        if moment < args.from_time or moment > args.to_time:
+            continue
+        if not args.all and event not in wanted:
             continue
         detail = str(row.get("detail") or "")
         signature = (event, detail)
