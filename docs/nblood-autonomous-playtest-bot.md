@@ -99,3 +99,99 @@ The artifacts are `reference/blood/llmapper-bot-iter27.ndjson` (65,210 bytes),
 demo playback path was also launched successfully with the generated demo.
 The next blocker is movement/frontier selection around the vertical lift and
 its small dead-end branches, not the first door-use alignment.
+
+## Exploration model
+
+The bot follows one branch into new territory and remembers what it passes.
+All unresolved work lives in a single ledger of *opportunities*: frontiers
+into unentered space, locked continuations, known mechanisms, pickups, and
+local space that has been entered but not yet observed. Selection is one
+ranked choice per committed mission, not a per-tick re-evaluation of every
+affordance, and each choice carries a reason that appears in telemetry:
+
+```text
+CONTINUE_FORWARD              keep pushing the branch the bot is on
+RETURN_FOR_KEY_DOOR           a held key just made a known door actionable
+RETURN_TO_UNEXPLORED_BRANCH   this branch ended; go back to unresolved work
+SOLVE_BLOCKING_OBSTACLE       the way forward is blocked; work the obstacle
+REOPEN_ROUTE_TO_OBJECTIVE     the route to that work passes a shut connection
+CONSUME_OPENED_ROUTE          go through what was just deliberately opened
+EXPOSE_UNSEEN_LOCAL_SPACE     look at reachable space never observed
+COLLECT_ON_THE_WAY            pick up something underfoot
+RETRY_DORMANT_OPPORTUNITY     nothing is live; re-arm the oldest dormant work
+```
+
+Ordering is depth-first: a deeper pending frontier continues the branch
+already being followed, and popping to the next-deepest is a natural
+backtrack rather than a random hop. Nothing is ever permanently retired.
+Work that fails goes *dormant* with a growing cooldown and is re-armed
+later; a key acquisition clears the dormancy of every door that wanted it.
+
+Entering a sector is not the same as having explored it. A Build sector can
+be large and concave, and a door or switch can sit around a corner inside a
+room the bot has already stood in, so the bot tracks which standable cells it
+has actually seen and treats unseen reachable space as real unresolved work.
+
+## Dynamic topology
+
+"Blocked right now" is not "there is no route here". Blood builds doors out
+of moving sector and wall geometry, so a closed door can be geometrically
+indistinguishable from a wall. The bot separates three things:
+
+* **structural knowledge** — a boundary exists here, and what mechanism, if
+  any, is attached to it. This survives the mechanism opening and closing.
+* **current state** — whether the player can pass *now*. Navigation uses
+  only this.
+* **affordance** — whether a legitimate action could change that state, read
+  from Blood's own records (`XWALL.triggerPush`, `XSECTOR.Push`/`Wallpush`,
+  `XSPRITE.Push`, key locks). `ActionScanPreview` remains the authority on
+  whether the current pose can actually operate it.
+
+A boundary that is blocked *and* has no known affordance from this side is
+recorded once as `boundary_inert` and left alone. A boundary that is blocked
+but has a mechanism is progression work. Reachability follows shut
+connections the bot knows how to reopen, at extra cost, so work behind an
+auto-closing door does not vanish from the ledger the moment it shuts; when a
+route is gated that way the mission becomes reopening the gate.
+
+## Navigation mesh
+
+Sectors are discretised into a uniform grid rather than triangulated. Build
+sectors routinely contain inner wall loops, and per-loop ear clipping
+silently fragments exactly those rooms — an early run produced seven
+disconnected walk areas across ten physically connected sectors. Grid
+adjacency is also an O(1) lookup instead of an O(cells^2) edge search.
+
+Cells sit at the grid centre where the player can stand there. A sector whose
+walkable band is narrower than the grid — a 512-unit corridor leaves barely
+more than the player's own clip diameter — is rebuilt with the most open
+point sampled inside each square, reported as
+`nav_sector_too_tight_for_grid`. Links are confirmed with the engine's own
+ray test, because a wall lying exactly between two cell centres puts the
+midpoint on the wall, where `inside()` is ambiguous.
+
+Wall coordinates are part of the topology signature: a mesh that ignores
+where the walls are cannot notice that a passage appeared when a mechanism
+slid them apart.
+
+## Regression maps
+
+`reference/blood/AGTST1.map` and `AGTST2.map` are the fast exploration gate
+and should be run before the campaign corpus. They isolate, in order: a
+concave starting sector whose door is around a corner, a distraction alcove
+of tiny sectors, a crouch-height door that closes behind the player, a key,
+a keyed door requiring a deliberate return across the level, and a vertically
+awkward exit switch. Both complete deterministically.
+
+```text
+bash tools/botcorpus.sh
+bash tools/botrun.sh reference/blood/AGTST2.map mytag -bot_timeout 180
+python tools/bot_scorecard.py work/botlab/mytag/telemetry.ndjson \
+                              work/botlab/mytag/trajectory.ndjson
+python tools/bot_narrative.py work/botlab/mytag/telemetry.ndjson --collapse
+python tools/bot_map_render.py reference/blood/AGTST2.map \
+       work/botlab/mytag/trajectory.ndjson --output run.svg --zoom
+```
+
+Production behaviour contains no map, sector or wall identities. The IDs in
+these notes are evidence from runs, not inputs to the bot.
