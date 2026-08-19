@@ -206,6 +206,54 @@ and closing doors look safe to enter.
 Travel time comes from the same records: `12 * busyTime` ticks to cross, and
 `12 * waitTime` ticks of hold before an auto-closing door reverses.
 
+## What the bot is allowed to conclude
+
+An executor failure must not become world knowledge unless the world caused
+it. Most of the bot's worst behaviour has come from breaking that rule: it
+would fail to move for a reason that had nothing to do with the level --
+combat holding the camera, a mechanism mid-travel, a controller deliberately
+standing still, a crossing filed against the wrong wall -- and then remember
+the route as impossible. Later runs showed it walking through boundaries it
+had already written off.
+
+So the layers are kept apart:
+
+* **who is driving.** Navigation owns yaw and locomotion during ordinary
+  travel. Combat says whether it is worth stopping for: an immediate threat,
+  a melee engagement or critical health takes the controls, anything else is
+  opportunistic and fires only when the route already points near the target.
+  Ownership is resolved once, where the input is composed.
+* **not moving is not failing.** Every decision records whether it commanded
+  translation. A stall with no such request, or one while any controller
+  other than navigation holds the camera, is a `stationary_hold`, and the
+  objective is left alone.
+* **one owner per fact.** Activation state lives in the interaction ledger.
+  A second copy in the door record, never written on the path that resolves
+  a Use, reported accepted activations as `INTERACTION_VALID_BUT_NO_RESPONSE`.
+* **one activation, one transaction.** A world delta is emitted per
+  activation, not per observation, so a burst of shots at one wall cannot
+  keep refreshing the semantic-progress clock over a real stall.
+* **an answered mechanism is done.** A reversible mechanism is not pressed
+  again on the evidence that its own boundary is still shut -- one whose
+  effect is elsewhere never makes its own wall passable, and re-pressing it
+  closes the way it just opened.
+* **dormant means dormant.** Suppressed work records what the bot knew when
+  it gave up, and comes back early only when that has changed. Running out
+  of other ideas is not new evidence.
+* **crossings name the boundary crossed.** Derived from the two sectors, not
+  from what the route was aiming at.
+* **height is not traversal**, and progress is measured in distance rather
+  than in squares of distance.
+
+`tools/bot_invariants.py` checks these against a run's telemetry and runs as
+part of `botcorpus.sh`. It is not a quality measure: a run may fail its
+objective and satisfy every invariant. A violation means the bot has
+corrupted its own model of the level, whatever the outcome says.
+
+```text
+python tools/bot_invariants.py work/botlab/mytag/telemetry.ndjson        --map reference/blood/AGTST4.map
+```
+
 ## Regression maps
 
 `reference/blood/AGTST1.map` and `AGTST2.map` are the fast exploration gate
@@ -216,11 +264,12 @@ a keyed door requiring a deliberate return across the level, and a vertically
 awkward exit switch. Both complete deterministically.
 
 `AGTST5.map` adds a breakable wall in front of a key and a row of columns
-whose gaps are too narrow to walk between; it completes. `AGTST4.map` is a
-shorter, enemy-free E1M1 and is not yet completed — it ends with the bot
-correctly reporting that the only work it has left is a door it has no key
-for, the key being behind a rotating arc door whose swept footprint the mesh
-does not yet plan around.
+whose gaps are too narrow to walk between. `AGTST4.map` is a shorter,
+enemy-free E1M1 with four keys, only one of which is needed; it exercises a
+rotating arc door that seals a room until it is operated, and completes by
+opening that door once, collecting the key it reveals, returning, unlocking
+the door that key opens and throwing the lever behind it. All four
+complete.
 
 ```text
 bash tools/botcorpus.sh

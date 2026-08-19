@@ -20,4 +20,10 @@ for MAP in AGTST1 AGTST2 E1M1 E3M1 E3M3 E4M1; do
   python tools/bot_scorecard.py "work/botlab/$TAG-$MAP/telemetry.ndjson" \
                                 "work/botlab/$TAG-$MAP/trajectory.ndjson" --brief \
     --output "work/botlab/$TAG-$MAP/scorecard.json"
+  # The scorecard says how the run went; the invariants say whether the bot's
+  # own account of it can be trusted.  A run may fail its objective and still
+  # be honest, but a violation here means the world model is corrupted.
+  MAPARG=""
+  [ -f "$SRC" ] && MAPARG="--map $SRC"
+  python tools/bot_invariants.py "work/botlab/$TAG-$MAP/telemetry.ndjson"                                  $MAPARG --quiet || true
 done
