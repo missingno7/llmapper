@@ -41,6 +41,10 @@ python -m bloodmap design-search work/blood.design-index.json \
   --motif repeated-bays --limit 5
 python -m bloodmap analyze-space maps/blood/E1M1.MAP --sectors 12,13 \
   -o work/E1M1.spatial.json
+python -m bloodmap decompile maps/blood/E1M1.MAP \
+  -o work/E1M1.level-source.json --python work/E1M1.level-source.py
+python -m bloodmap compile-source work/E1M1.level-source.json \
+  -o work/E1M1.rebuilt.MAP
 python -m bloodmap inspect-space maps/blood/E1M1.MAP --sectors 12 \
   --corpus work/blood.spatial-corpus.json
 python -m bloodmap compare-space maps/blood/E1M1.MAP --from 12 --to 18

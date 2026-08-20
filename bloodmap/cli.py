@@ -73,6 +73,7 @@ from .materials import (
     write_review_packet,
 )
 from .art import read_art_directory, read_palette
+from .decompiler import DecompilerError, LevelSource, decompile_level, emit_python_source
 
 
 def _json(value: Any) -> str:
@@ -305,6 +306,31 @@ def cmd_roundtrip_all(args: argparse.Namespace) -> int:
 
 def cmd_dump_build_ir(args: argparse.Namespace) -> int:
     _write_text(args.output, _json(_read_build_ir(args.map).to_dict()))
+    return 0
+
+
+def cmd_decompile(args: argparse.Namespace) -> int:
+    path = Path(args.map)
+    level_source = decompile_level(read_map(path).to_level_ir(), source_name=path.name)
+    _write_text(args.output, _json(level_source.to_dict()))
+    if args.python:
+        _write_text(args.python, emit_python_source(level_source))
+    return 0
+
+
+def cmd_compile_source(args: argparse.Namespace) -> int:
+    source = LevelSource.from_dict(json.loads(Path(args.source).read_text(encoding="utf-8")))
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
+    write_map(source.to_level_ir().to_disk_map(), args.output)
+    reparsed = read_map(args.output)
+    diagnostics = validate_map(reparsed)
+    errors = [item for item in diagnostics if item.severity == "error"]
+    if errors:
+        raise DecompilerError(f"compiled level source failed validation: {errors[0].message}")
+    print(
+        f"WROTE {args.output}: {len(reparsed.sectors)} sectors, "
+        f"{len(reparsed.walls)} walls, {len(reparsed.sprites)} sprites"
+    )
     return 0
 
 
@@ -1538,6 +1564,15 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_convert_doom)
     p = sub.add_parser("dump", help="write canonical Level IR JSON")
     p.add_argument("map"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_dump)
+    p = sub.add_parser("decompile", help="write exact LevelIR plus a reviewable hierarchical level source")
+    p.add_argument("map")
+    p.add_argument("-o", "--output", required=True, help="write the canonical level-source JSON")
+    p.add_argument("--python", help="also write executable hierarchical Python source")
+    p.set_defaults(func=cmd_decompile)
+    p = sub.add_parser("compile-source", help="rebuild a Blood MAP from authoritative level-source truth")
+    p.add_argument("source", help="level-source JSON produced by decompile")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_compile_source)
     p = sub.add_parser("dump-build", help="write game-neutral BuildIR JSON for Blood or Duke3D")
     p.add_argument("map"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_dump_build_ir)
     p = sub.add_parser("build-build", help="build a native MAP from game-neutral BuildIR JSON")
@@ -2024,7 +2059,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         args = build_parser().parse_args(argv)
         return int(args.func(args))
-    except (BloodMapError, CompositionError, ConstructionError, ConversionError, DoomConversionError, DoomError, DukeMapError, E3L11ConversionError, PlayableConversionError, ExposureError, FragmentError, MaterialsError, MorphologyError, ObservationError, OracleError, RecipeError, DoorError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
+    except (BloodMapError, CompositionError, ConstructionError, ConversionError, DecompilerError, DoomConversionError, DoomError, DukeMapError, E3L11ConversionError, PlayableConversionError, ExposureError, FragmentError, MaterialsError, MorphologyError, ObservationError, OracleError, RecipeError, DoorError, OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         print(f"bloodmap: error: {exc}", file=sys.stderr)
         return 2
 

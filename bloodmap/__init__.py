@@ -55,6 +55,7 @@ from .model import DiskMap, LevelIR
 from .sector_map import render_sector_map
 from .oracle import run_eduke32_oracle
 from .recipe import RecipeError, RecipeResult, build_composition_recipe
+from .decompiler import DecompilerError, LevelSource, decompile_level, emit_python_source
 
 __all__ = [
     "AttachmentResult",
@@ -80,12 +81,14 @@ __all__ = [
     "ExperienceProbeError",
     "DestinationMap",
     "DesignedLevel",
+    "DecompilerError",
     "DiskMap",
     "DukeDiskMap",
     "DukeMapError",
     "FragmentError",
     "IndexMap",
     "LevelIR",
+    "LevelSource",
     "LevelBuilder",
     "LevelFragment",
     "ObservationError",
@@ -143,6 +146,8 @@ __all__ = [
     "convert_doom_to_blood",
     "convert_shade",
     "design_fingerprint",
+    "decompile_level",
+    "emit_python_source",
     "encode_duke_map",
     "extract_fragment",
     "extract_behavior_closed_fragment",

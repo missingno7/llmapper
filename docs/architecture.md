@@ -19,6 +19,7 @@ BuildIR -> Design Understanding sensors -> fingerprints / corpus retrieval
         -> multi-view spatial analysis -> overlapping hypotheses / context
 
 Blood DiskMap <-> LevelIR -> fragments / composition / construction
+                         \-> LevelSource exact truth + reviewable hierarchy / Python
 Doom DiskMap  -> Blood LevelIR (one-way lowering)
 ```
 
@@ -124,6 +125,11 @@ the mature Blood semantics: extended records, TX/RX channels, dependency closure
 room fragments, allocation, portal attachment, pathways, stairs, and scratch
 construction. Existing Blood workflows therefore retain their stronger domain
 model while neutral operations move to `BuildIR`.
+
+`bloodmap.decompiler` embeds that complete contract in a `LevelSource` and adds a
+separate, reviewable geometry-first hierarchy. The hierarchy cites existing
+spatial/player/material evidence and never becomes compilation authority. See
+[level-decompiler.md](level-decompiler.md).
 
 ## Validation boundaries
 
