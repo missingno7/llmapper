@@ -193,6 +193,56 @@ A sector too thin to hold a standable square but wide enough for the body — a
 step, a ledge, a door track — gets a transit cell at each of its doorways so
 routes can pass through, reported as `nav_sector_transit_only`.
 
+## What Caleb can do
+
+Every physical capability the bot plans against is asked of the engine, in
+`llmapper/bot/player_capability.h`, and nothing there is fitted to a
+recording or rounded to a convenient number. The body comes from
+`GetSpriteExtents` and `clipdist`, the same values MoveDude feeds to
+`ClipMove`; the jump apex, the flight time and the harmless drop height are
+Blood's own impulse, gravity and landing-damage arithmetic replayed forward;
+the pitchfork's reach is `gVectorData[kVectorTine].maxDist`; the pitch limits
+and the full-throttle input are the constants `ProcessInput` and
+`ctrlGetInput` actually clamp to. Anything that is bot *policy* -- how much
+margin to leave, how much damage is acceptable, how close to stand -- lives
+in `bot.cpp` and is written as a margin on top of one of those facts.
+
+The same header carries a one-frame simulator of the player's motion:
+`ProcessInput`'s acceleration, then `actProcessSprites`' air drag, then
+`MoveDude`'s move, gravity, landing and ground drag, in that order and with
+the engine's own constants. It leaves out only clipping.
+
+The claim that it is exact is checked rather than asserted. Every frame the
+bot steps the simulator from the state it saw last frame with the input it
+actually sent, and compares against what the engine did; a run ends with a
+`motion_model_audit` line saying how it went. Frames the model does not claim
+-- the engine clipped, `pushmove_old` shoved the body out of geometry, the
+sprite's extents changed mid-animation, the player is in water -- are counted
+separately, so `diverged` means the arithmetic is wrong and nothing else. It
+is zero on all seven regression maps. That check is what found the air drag:
+`actAirDrag(pSprite, 128)` runs on every dude every frame, takes a
+five-hundredth of all three velocity components, and leaving it out made
+every predicted arc land long.
+
+## Jumping a gap
+
+A hole with something across it is a crossing. The bot looks from a ledge it
+will not step off for a lip standing clear of the pit, square-on to both
+edges, with the line between them over the hole; the landing may be higher by
+less than the jump reaches or lower by less than a jump would climb back,
+because one pillar in a row is rarely the height of the next.
+
+Blood scales input authority and drag by height off the floor, and both only
+cut out well above where a jump reaches -- about three quarters of the ground
+control is still there at the apex. A jump is therefore steerable after it is
+taken, and the question at the lip is not whether full throttle lands right,
+but whether *any* input does: over a pillar a thousand units deep, full
+throttle sails clean over. The bot runs the simulator across the range of
+forward inputs and keeps the one landing nearest the middle of the ledge.
+The launch, the mid-air trim, and the decision to carry a landing's momentum
+straight into the next jump all ask that same question, so there is one
+answer to it and no separate rule for chaining.
+
 ## Moving geometry
 
 `XSECTOR.state` does not say which way a sector is travelling. `SetSectorState`
@@ -281,11 +331,12 @@ its only doorway with a pushable sprite panel: the bot must recognise a
 sprite as an obstacle and as a mechanism at the same time. All five
 complete.
 
-`AGTST6.map` is not yet passed. It needs the bot to walk a bridge made of
-floor-aligned sprites across a damaging pit, which means treating a sprite
-surface as a floor in the navigation mesh -- the mesh currently reads the
-sector floor, which is far below. The bot reaches 25 of its 35 sectors and
-then falls in.
+`AGTST6.map` puts a bridge of floor-aligned sprites across a damaging pit,
+behind a screen of solid sprites too tall to jump: the bot has to route
+around the solid ones and read the sprite surface as the floor it stands on.
+`AGTST3.map` is a run of pillars over a pit that can only be crossed by
+jumping, with a recovery route back up for a bot that falls in. All seven
+complete.
 
 ```text
 bash tools/botcorpus.sh

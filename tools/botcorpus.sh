@@ -3,16 +3,16 @@
 #
 # The AGTST maps are the fast exploration gate: they isolate concave rooms,
 # occluded interactions, crouch traversal, auto-closing doors, breakable
-# walls, gaps too narrow for the body, pushable sprite barricades and the
-# key/locked-door return from the size of the campaign maps.  All of them
-# complete, so any result other than COMPLETED is a regression.  Run them
-# before the campaign corpus.
+# walls, gaps too narrow for the body, solid and pushable sprites, a sprite
+# bridge over a damage pit, and a run of pillars that has to be jumped, from
+# the size of the campaign maps.  All of them complete, so any result other
+# than COMPLETED is a regression.  Run them before the campaign corpus.
 set -u
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TAG="${1:-corpus}"
 TIMEOUT="${2:-420}"
 cd "$ROOT"
-for MAP in AGTST1 AGTST2 AGTST4 AGTST5 AGTST7 E1M1 E3M1 E3M3 E4M1; do
+for MAP in AGTST1 AGTST2 AGTST3 AGTST4 AGTST5 AGTST6 AGTST7 E1M1 E3M1 E3M3 E4M1; do
   case "$MAP" in
     AGTST*) SRC="reference/blood/$MAP.map"; T=180 ;;
     *)      SRC="$MAP";                     T="$TIMEOUT" ;;
