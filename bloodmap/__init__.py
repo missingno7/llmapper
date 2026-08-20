@@ -52,6 +52,7 @@ from .fragment import (
     apply_fragment_in_place, extract_behavior_closed_fragment, extract_fragment,
 )
 from .model import DiskMap, LevelIR
+from .sector_map import render_sector_map
 from .oracle import run_eduke32_oracle
 from .recipe import RecipeError, RecipeResult, build_composition_recipe
 
@@ -168,6 +169,7 @@ __all__ = [
     "read_map",
     "read_duke_map",
     "read_wad",
+    "render_sector_map",
     "run_eduke32_oracle",
     "spatial_selection_context",
     "solve_progression",

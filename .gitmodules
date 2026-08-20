@@ -1,0 +1,3 @@
+[submodule "NBlood"]
+	path = NBlood
+	url = git@github.com:missingno7/NBlood.git
