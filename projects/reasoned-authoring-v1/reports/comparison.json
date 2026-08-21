@@ -1,0 +1,3175 @@
+{
+  "$schema": "llmapper.authoring-comparison",
+  "iterations": [
+    {
+      "art_differentiation": {
+        "near_identical_pairs": [
+          {
+            "assemblies": [
+              "assembly:arrival",
+              "assembly:courtyard"
+            ],
+            "evidence": [
+              "intent:assembly:arrival",
+              "intent:assembly:courtyard"
+            ],
+            "rule": "shared floor/ceiling/wall tile vocabulary >= 0.60 of the union",
+            "surface_vocabulary_overlap": 1.0
+          },
+          {
+            "assemblies": [
+              "assembly:arrival",
+              "assembly:gallery"
+            ],
+            "evidence": [
+              "intent:assembly:arrival",
+              "intent:assembly:gallery"
+            ],
+            "rule": "shared floor/ceiling/wall tile vocabulary >= 0.60 of the union",
+            "surface_vocabulary_overlap": 1.0
+          },
+          {
+            "assemblies": [
+              "assembly:courtyard",
+              "assembly:gallery"
+            ],
+            "evidence": [
+              "intent:assembly:courtyard",
+              "intent:assembly:gallery"
+            ],
+            "rule": "shared floor/ceiling/wall tile vocabulary >= 0.60 of the union",
+            "surface_vocabulary_overlap": 1.0
+          }
+        ],
+        "unresolved_assets": 0
+      },
+      "authored_vs_observed_hierarchy": {
+        "discrepancies": [
+          {
+            "id": "discrepancy:assembly:001.space:001:collapsed",
+            "kind": "authored_assemblies_share_one_perceptual_space"
+          }
+        ],
+        "per_assembly": [
+          {
+            "assembly_id": "assembly:arrival",
+            "derived_space_count": 1,
+            "dominant_space_share": 1.0,
+            "singletons": 0
+          },
+          {
+            "assembly_id": "assembly:courtyard",
+            "derived_space_count": 1,
+            "dominant_space_share": 1.0,
+            "singletons": 0
+          },
+          {
+            "assembly_id": "assembly:chapel",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.973,
+            "singletons": 2
+          },
+          {
+            "assembly_id": "assembly:crypt",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9615,
+            "singletons": 1
+          },
+          {
+            "assembly_id": "assembly:ossuary",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.8889,
+            "singletons": 2
+          },
+          {
+            "assembly_id": "assembly:gallery",
+            "derived_space_count": 1,
+            "dominant_space_share": 1.0,
+            "singletons": 0
+          },
+          {
+            "assembly_id": "assembly:exit",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9375,
+            "singletons": 2
+          }
+        ]
+      },
+      "corpus_scale": {
+        "findings": [
+          {
+            "id": "scale:assembly:001.space:005:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:007:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:009:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "shape:orthogonal-length-fraction",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:diagonal-length-fraction",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:orientation-5deg-bins-occupied",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:orientation-diversity",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:chamfer-fraction",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:segmented-arc-chain-count",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:rectangular-sector-fraction",
+            "kind": "shape_outside_corpus_mass"
+          }
+        ],
+        "shape_signature": {
+          "chamfer_fraction": 0.0,
+          "convex_sector_fraction": 1.0,
+          "diagonal_length_fraction": 0.0,
+          "median_outer_vertex_count": 4.0,
+          "orientation_5deg_bins_occupied": 2.0,
+          "orientation_diversity": 0.0556,
+          "orthogonal_length_fraction": 1.0,
+          "rectangular_sector_fraction": 0.7667,
+          "segmented_arc_chain_count": 0.0
+        },
+        "spaces_below_corpus_for_their_size": [
+          "assembly:001/space:002",
+          "assembly:001/space:004",
+          "assembly:001/space:005",
+          "assembly:001/space:006",
+          "assembly:001/space:007",
+          "assembly:001/space:008",
+          "assembly:001/space:009"
+        ]
+      },
+      "counts": {
+        "connections": 33,
+        "regions": 30,
+        "sectors": 30,
+        "sprites": 5,
+        "walls": 157
+      },
+      "declared_changes": [
+        "initial blockout: hierarchy, containment, connectivity, scale, spine"
+      ],
+      "decorative_distribution": {
+        "largest_share_in_one_space": 0.4,
+        "per_space": {
+          "assembly:001/space:001": 1,
+          "assembly:001/space:002": 0,
+          "assembly:001/space:003": 1,
+          "assembly:001/space:004": 0,
+          "assembly:001/space:005": 2,
+          "assembly:001/space:006": 0,
+          "assembly:001/space:007": 0,
+          "assembly:001/space:008": 0,
+          "assembly:001/space:009": 1
+        },
+        "total_space_sprites": 5
+      },
+      "derived_space_count": 9,
+      "hard_validation": {
+        "by_gate": {
+          "authored_geometry_valid": "pass",
+          "deterministic_emission": "pass",
+          "exit_reachable": "pass",
+          "geometry_conservation": "pass",
+          "intended_adjacency_realized": "pass",
+          "native_structure_valid": "pass",
+          "nblood_load_smoke": "pass",
+          "no_unintended_overlaps": "pass",
+          "no_unresolved_boundary_contacts": "pass",
+          "object_attachment_valid": "pass",
+          "player_relative_clearance": "pass",
+          "player_start_valid": "pass",
+          "portals_realized": "pass",
+          "required_reachability": "pass"
+        },
+        "failed": [],
+        "skipped": []
+      },
+      "iteration_id": "v0",
+      "major_space_scale": [
+        {
+          "footprint_player_areas": 1624.0,
+          "id": "assembly:001/space:001",
+          "median_clear_height_player_heights": 4.0
+        },
+        {
+          "footprint_player_areas": 288.0,
+          "id": "assembly:001/space:003",
+          "median_clear_height_player_heights": 7.0
+        },
+        {
+          "footprint_player_areas": 200.0,
+          "id": "assembly:001/space:005",
+          "median_clear_height_player_heights": 3.0
+        },
+        {
+          "footprint_player_areas": 120.0,
+          "id": "assembly:001/space:009",
+          "median_clear_height_player_heights": 4.0
+        },
+        {
+          "footprint_player_areas": 64.0,
+          "id": "assembly:001/space:007",
+          "median_clear_height_player_heights": 2.0
+        }
+      ],
+      "mandatory_reachability": {
+        "detail": "28/28 mandatory regions reachable",
+        "gate_id": "required_reachability",
+        "mandatory_regions": [
+          "region:chapel_door",
+          "region:chapel_nave",
+          "region:courtyard",
+          "region:crypt_gate",
+          "region:crypt_hall",
+          "region:crypt_key_niche",
+          "region:crypt_stair_1",
+          "region:crypt_stair_2",
+          "region:crypt_stair_3",
+          "region:crypt_stair_4",
+          "region:crypt_stair_5",
+          "region:crypt_stair_6",
+          "region:exit_door",
+          "region:exit_hall",
+          "region:gallery",
+          "region:gallery_stair_1",
+          "region:gallery_stair_2",
+          "region:gallery_stair_3",
+          "region:gallery_stair_4",
+          "region:gallery_stair_5",
+          "region:garden_bed",
+          "region:gate_tunnel",
+          "region:ledge",
+          "region:loop_stair_1",
+          "region:loop_stair_2",
+          "region:loop_stair_3",
+          "region:loop_stair_4",
+          "region:loop_stair_5"
+        ],
+        "status": "pass",
+        "unreachable_regions": []
+      },
+      "map_sha256": "3cb18a04458b6a7fc90b9e8c0f12c4f0109a6be9a59c69d65fe1831a7b29f848",
+      "nblood_load": "pass",
+      "oversized_decorations": [],
+      "parent": null,
+      "review": {
+        "$schema": "llmapper.authoring-review",
+        "accepted_strengths": [
+          "Every structural gate passes and the MAP loads in NBlood revision rlocal-agtst10.",
+          "The courtyard genuinely contains the chapel and the garden bed as carved holes, so containment lives in the geometry rather than only in the naming.",
+          "The gate tunnel's constrained-to-open release measures 63.5x area and about 14 player heights, and the rendered frame confirms the chapel door is framed at the end of the tunnel.",
+          "The crypt's rendered frame already has the low vaulted character the E6M3 precedent described.",
+          "Route, hub branching, and the two-descent loop all check out and need no change."
+        ],
+        "claims": [
+          {
+            "claim": "The upper gallery does not exist as a separate place; it is absorbed into the courtyard.",
+            "evidence": [
+              "discrepancy:assembly:001.space:001:collapsed",
+              "decompiled:assembly:001/space:001",
+              "intent:assembly:gallery",
+              "intent:assembly:courtyard"
+            ],
+            "reasoning": "The independent decompilation put all 11 gallery-assembly sectors plus the courtyard plus the arrival into one derived perceptual space of 15 sectors. The gallery's dominant-space share is 1.0 into that shared space, so nothing about the compiled result separates it. The floor rises 15360 units, which the authored intent treated as sufficient, but the perceptual grouping only breaks on a floor delta above 4096 across a portal or a shade delta above 12, and the stair delivers neither: every step is 3072 and every sector is shade 16. Height alone did not buy an identity.",
+            "status": "supported"
+          },
+          {
+            "claim": "The arrival approach also fails to read as its own place, despite a 63x area ratio at the gate.",
+            "evidence": [
+              "probe:reveal_contrast",
+              "discrepancy:assembly:001.space:001:collapsed",
+              "decompiled:assembly:001/space:001",
+              "view:gate_approach"
+            ],
+            "reasoning": "probe:reveal_contrast measures exactly the release the brief asked for: area ratio 63.5 and a clear-height gain of 78848 units, about 14 player heights. The rendered gate approach confirms the framing is good, with the chapel door visible at the end of a genuinely tight tunnel. Yet both sectors land in the same derived space, because the tunnel and the courtyard sit at the same floor Z and the same shade. The transition is a release without being a threshold: measured contrast and perceived boundary are different things, and only the first was authored.",
+            "status": "supported"
+          },
+          {
+            "claim": "The crypt reads as one room at the bottom of a stair rather than as a crypt.",
+            "evidence": [
+              "decompiled:assembly:001/space:005",
+              "view:crypt_hall",
+              "intent:assembly:crypt"
+            ],
+            "reasoning": "The independently derived space:005 groups the six crypt stair steps with the crypt hall and its single niche: six of its eight sectors are circulation, and the rendered frame from inside the crypt is dominated by the stair receding away. The E2M6 step rise was applied faithfully, but faithfulness to a stair precedent without comparable investment in the destination makes the destination subordinate. This finding does NOT come from the packet's transition-dominated rule, which no longer fires here; see the uncertainties for why I changed that rule and kept the finding anyway.",
+            "status": "supported"
+          },
+          {
+            "claim": "The chapel is an empty box, not a composed interior.",
+            "evidence": [
+              "view:chapel_interior",
+              "art:assembly:001/space:003",
+              "intent:assembly:chapel"
+            ],
+            "reasoning": "The rendered interior is one flat-floored, flat-ceilinged 288 player-area rectangle with a single switch sprite on an otherwise blank wall. The brief asked for one large space with internal children and details; the courtyard got the garden bed, the chapel got nothing. The brick courses read well and give real scale, so the material is not the problem here, the geometry is.",
+            "status": "supported"
+          },
+          {
+            "claim": "The courtyard's enclosing walls give the player no sense of scale.",
+            "evidence": [
+              "view:courtyard_center",
+              "view:courtyard_from_stair",
+              "art:blood:tile:2490",
+              "intent:assembly:courtyard"
+            ],
+            "reasoning": "Tile 2490 is corpus-backed for exteriors (1764 wall placements, and it is E2M6 sector:208's dominant exterior wall) but it is a smooth veined marble with no courses, joints, or repeating features. At 16 player heights tall it renders as an undifferentiated rock face, and the frame taken from the middle of the courtyard is a wall of featureless grey. Compare view:chapel_interior, where tile 5's brick courses make an interior a quarter the height read as clearly larger. Corpus usage justified the choice; the rendered frame shows corpus usage was not sufficient.",
+            "status": "supported"
+          },
+          {
+            "claim": "Three intended identities are finished identically.",
+            "evidence": [
+              "view:chapel_interior",
+              "view:gallery",
+              "art:assembly:001/space:003",
+              "intent:assembly:chapel",
+              "intent:assembly:gallery",
+              "intent:assembly:exit"
+            ],
+            "reasoning": "The chapel, the gallery, and the exit chamber all resolve to the same dominant floor/ceiling/wall triple 294/416/5, and the two rendered frames are nearly interchangeable. This is expected of a blockout and is deliberately deferred to the visual iteration, but it is recorded now so the later change is driven by evidence and not by taste. It was only named at all because I added a dominant-surface comparison after the whole-assembly vocabulary overlap failed to catch it.",
+            "status": "supported"
+          },
+          {
+            "claim": "The start-to-exit spine, the hub branching, and the loop are structurally sound.",
+            "evidence": [
+              "probe:route_start_to_exit",
+              "probe:courtyard_choices",
+              "probe:gallery_choices",
+              "probe:tunnel_choices",
+              "gate:exit_reachable"
+            ],
+            "reasoning": "A 10-step route exists from start to exit. The courtyard offers 6 onward choices and the gallery 3, of which two are independent descents back to the courtyard, so the loop is real as a graph. The gate tunnel offers 2, making it correctly the narrowest decision point. None of this needs changing in iteration 1.",
+            "status": "supported"
+          },
+          {
+            "claim": "probe:reach_crypt failing is my probe declaration being wrong, not the level.",
+            "evidence": [
+              "probe:reach_crypt",
+              "probe:route_start_to_exit",
+              "gate:required_reachability"
+            ],
+            "reasoning": "I opened only connection:courtyard_cryptgate. A Blood Z-door blocks both of its portals while closed, so the crypt-gate sector's inner portal to crypt_stair_1 stays shut too. The required_reachability gate, which opens every authored connection, reaches all 28 mandatory regions, and probe:route_start_to_exit finds a full route through the crypt gate. The probe declaration needs fixing, not the geometry.",
+            "status": "contradicted"
+          },
+          {
+            "claim": "probe:ossuary_optional reporting fail is the intended answer, not a defect.",
+            "evidence": [
+              "probe:ossuary_optional",
+              "gate:required_reachability"
+            ],
+            "reasoning": "The probe asks whether the ossuary is reachable while its panel stays shut. Fail means no, which is what optional-behind-a-gate should mean. The question was worded so that the desirable answer looks like a failure, which is a reporting trap; it is reworded in iteration 1.",
+            "status": "contradicted"
+          }
+        ],
+        "iteration_id": "v0",
+        "next_actions": [
+          {
+            "action": "Iteration 1: build real thresholds where the hierarchy is supposed to change. Add a covered gatehouse between the tunnel and the courtyard, and a low dark arch at each of the gallery's two openings, each darker than its neighbours by more than the grouping tolerance. This is deliberately architectural rather than a shade tweak: a gatehouse and two arches are things a monastery has, and their darkness follows from being covered.",
+            "evidence": [
+              "discrepancy:assembly:001.space:001:collapsed",
+              "decompiled:assembly:001/space:001",
+              "probe:reveal_contrast"
+            ],
+            "expected_effect": "arrival, courtyard, and gallery stop sharing one derived perceptual space; the collapsed discrepancy for space:001 disappears and the derived space count rises, with the new spaces corresponding to authored assemblies rather than to stairs."
+          },
+          {
+            "action": "Iteration 1: cut circulation and add destination. Reduce the gallery ascent and its loop descent from five steps each to three, lower the gallery to about two player heights, shorten the crypt stair to four steps, and give the crypt a hall plus a reliquary and a cistern chamber.",
+            "evidence": [
+              "decompiled:assembly:001/space:005",
+              "view:crypt_hall"
+            ],
+            "expected_effect": "stair sectors drop from 16 to 10 while room sectors rise from 10 to 15; the crypt's derived space stops being mostly stair and becomes a hall with parts."
+          },
+          {
+            "action": "Iteration 1: give the chapel internal children - two flanking side aisles and a raised, brighter apse at the east end holding the crypt-gate switch.",
+            "evidence": [
+              "view:chapel_interior",
+              "intent:assembly:chapel"
+            ],
+            "expected_effect": "the chapel becomes a composed interior with parts; the brief's large-space-with-children requirement is met by the chapel as well as by the courtyard, and the switch stops floating on a blank wall."
+          },
+          {
+            "action": "Iteration 1: move the open exterior stairs from the gallery assembly into the courtyard assembly in the declared intent, and fix probe:reach_crypt to open both crypt-gate connections and reword probe:ossuary_optional.",
+            "evidence": [
+              "discrepancy:assembly:001.space:001:collapsed",
+              "probe:reach_crypt",
+              "probe:ossuary_optional"
+            ],
+            "expected_effect": "the declared hierarchy matches what an open exterior stair actually is, so the comparison stops reporting a disagreement the evidence was right about; the probe section stops reporting declaration bugs as level defects."
+          },
+          {
+            "action": "Iteration 2 (deferred): replace the courtyard's scaleless exterior wall with a coursed tile, give each assembly its own dominant surface triple, and attach decoration to architectural roles.",
+            "evidence": [
+              "view:courtyard_center",
+              "view:gallery",
+              "art:blood:tile:2490"
+            ],
+            "expected_effect": "the identical-dominant-surface pairs drop and the courtyard's rendered frame acquires scale cues."
+          }
+        ],
+        "problems": [
+          "gallery, courtyard, and arrival collapse into one derived perceptual space",
+          "the crypt is one room at the end of a six-sector stair",
+          "the chapel nave is a single empty rectangle with no internal children",
+          "16 of 30 sectors are stair steps; the level is three rooms and a lot of walking",
+          "the courtyard exterior wall tile has no scale cues at 16 player heights",
+          "chapel, gallery, and exit share one dominant surface triple",
+          "5 of 9 derived spaces contain no sprites at all; 5 sprites in a 30-sector level"
+        ],
+        "reviewer": "claude-opus-5 acting as the pilot's design reviewer",
+        "schema_version": 1,
+        "status": "external reviewer conclusions; the deterministic package neither produced nor validated the reasoning, only the evidence references",
+        "uncertainties": [
+          "Iteration 0 corrected the critic twice, in both cases because a rule disagreed with a rendered frame or with sector composition. First, the transition-dominated rule counted sectors, so it called a 1008 player-area courtyard circulation because six tiny stair steps outnumbered it; it now weighs floor area and ignores spaces made entirely of circulation. Second, the perceptual-singleton rule counted closed Z-doors, which can never group with anything and so made every gated room look fragmented; it now counts only non-circulation singletons. Both v0 and v1 are reported under the corrected rules, so their discrepancy lists are comparable, but the pre-correction v0 output is not preserved and must not be compared against them.",
+          "The perceptual-space rule (floor delta <= 4096 and shade delta <= 12 across a portal) is the decompiler's approximation of what reads as one place. It is not a renderer and not a person. Designing against it risks fitting the approximation rather than the experience, so every change it motivates is cross-checked against a rendered frame.",
+          "Tile 2490's mined annotation says stone_masonry, which agrees with the corpus but not with the rendered image at this scale. The mismatch between corpus role and rendered appearance is unresolved and is recorded in the precedent packet's rejected candidates.",
+          "The sky (tile 2500 with parallax) renders very dark. Whether that is the tile, the ceiling shade, or the sky header fields is not established, and no claim is made about it.",
+          "Nothing in this iteration measures combat, pacing, enemy placement, or how any of this plays, and no claim is made about them."
+        ]
+      },
+      "route_structure": {
+        "probe:courtyard_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 6,
+            "viable_exits": [
+              {
+                "edge": "portal:7",
+                "sector": "sector:1",
+                "status": "open"
+              },
+              {
+                "edge": "portal:31",
+                "sector": "sector:3",
+                "status": "open"
+              },
+              {
+                "edge": "portal:26",
+                "sector": "sector:4",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:17",
+                "sector": "sector:6",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:12",
+                "sector": "sector:17",
+                "status": "open"
+              },
+              {
+                "edge": "portal:14",
+                "sector": "sector:27",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:crypt_contrast": {
+          "measurements": {
+            "area_ratio": 0.126,
+            "clear_height_delta": -77824,
+            "dest_area": 18874368.0,
+            "dest_clear_height": 12288,
+            "floor_delta": 12288,
+            "source_area": 149815296.0,
+            "source_clear_height": 90112
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 3,
+            "viable_exits": [
+              {
+                "edge": "portal:115",
+                "sector": "sector:21",
+                "status": "open"
+              },
+              {
+                "edge": "portal:123",
+                "sector": "sector:23",
+                "status": "open"
+              },
+              {
+                "edge": "portal:120",
+                "sector": "sector:28",
+                "status": "open_via_world_state"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_contrast": {
+          "measurements": {
+            "area_ratio": 0.3858,
+            "clear_height_delta": -56320,
+            "dest_area": 57802752.0,
+            "dest_clear_height": 33792,
+            "floor_delta": -15360,
+            "source_area": 149815296.0,
+            "source_clear_height": 90112
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:ossuary_optional": {
+          "measurements": {},
+          "route_length": 0,
+          "status": "fail"
+        },
+        "probe:reach_chapel": {
+          "measurements": {},
+          "route_length": 5,
+          "status": "pass"
+        },
+        "probe:reach_crypt": {
+          "measurements": {},
+          "route_length": 0,
+          "status": "fail"
+        },
+        "probe:reveal_contrast": {
+          "measurements": {
+            "area_ratio": 63.5,
+            "clear_height_delta": 78848,
+            "dest_area": 149815296.0,
+            "dest_clear_height": 90112,
+            "floor_delta": 0,
+            "source_area": 2359296.0,
+            "source_clear_height": 11264
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:revisit_after_crypt_gate": {
+          "measurements": {
+            "newly_reachable_count": 1,
+            "newly_reachable_sectors": [
+              "sector:6"
+            ],
+            "reachable_after_count": 18,
+            "reachable_before_count": 17,
+            "still_unreachable_count": 12
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:route_start_to_exit": {
+          "measurements": {},
+          "route_length": 11,
+          "status": "pass"
+        },
+        "probe:route_through_hierarchy": {
+          "measurements": {
+            "first_visible_step": 3,
+            "route_fraction": 0.75,
+            "total_steps": 4,
+            "visible_at_steps": [
+              3,
+              4
+            ]
+          },
+          "route_length": 5,
+          "status": "pass"
+        },
+        "probe:tunnel_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 2,
+            "viable_exits": [
+              {
+                "edge": "portal:2",
+                "sector": "sector:0",
+                "status": "open"
+              },
+              {
+                "edge": "portal:7",
+                "sector": "sector:2",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        }
+      },
+      "singleton_spaces": {
+        "count": 7,
+        "ids": [
+          "assembly:001/space:002",
+          "assembly:001/space:003",
+          "assembly:001/space:004",
+          "assembly:001/space:006",
+          "assembly:001/space:007",
+          "assembly:001/space:008",
+          "assembly:001/space:009"
+        ]
+      },
+      "transition_evidence": [
+        {
+          "any_surface_change": false,
+          "evidence": [
+            "transition:transition:reveal",
+            "source:sector:1",
+            "source:sector:2"
+          ],
+          "from": "sector:1",
+          "material_change": {
+            "ceiling_tile_changed": false,
+            "clear_height_delta": 78848,
+            "floor_shade_delta": 0,
+            "floor_tile_changed": false
+          },
+          "to": "sector:2",
+          "transition_id": "transition:reveal"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:descent",
+            "source:sector:2",
+            "source:sector:13"
+          ],
+          "from": "sector:2",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": -77824,
+            "floor_shade_delta": 28,
+            "floor_tile_changed": true
+          },
+          "to": "sector:13",
+          "transition_id": "transition:descent"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:ascent",
+            "source:sector:2",
+            "source:sector:22"
+          ],
+          "from": "sector:2",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": -56320,
+            "floor_shade_delta": 4,
+            "floor_tile_changed": true
+          },
+          "to": "sector:22",
+          "transition_id": "transition:ascent"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:chapel_entry",
+            "source:sector:2",
+            "source:sector:5"
+          ],
+          "from": "sector:2",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": -50688,
+            "floor_shade_delta": 4,
+            "floor_tile_changed": true
+          },
+          "to": "sector:5",
+          "transition_id": "transition:chapel_entry"
+        }
+      ],
+      "views_captured": [
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_start.png",
+          "image_sha256": "df5de299bc98e8581159e3e5d5a357c0fcd0eba6f57a4b573e1b400c139aa24b",
+          "status": "pass",
+          "viewpoint_id": "view:start"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_gate_approach.png",
+          "image_sha256": "2ede1d12737f4bbb770ce02af988e6e78b1a16ff464f5c59af3dc97ef5eaf78e",
+          "status": "pass",
+          "viewpoint_id": "view:gate_approach"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_courtyard_center.png",
+          "image_sha256": "8dddf78f6a8dec8ceae8b9714003e59273069c574f9dd995f2604dbaead414f0",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_center"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_chapel_interior.png",
+          "image_sha256": "77d6dafe21add42910cdb73f10e45a1df4af7041cdbab06a94ba488f7036f659",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_interior"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_crypt_hall.png",
+          "image_sha256": "7c6d8e4c480935f600e8bd0397b632059015faf9d08161a7d55e5eb3a4d21319",
+          "status": "pass",
+          "viewpoint_id": "view:crypt_hall"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_gallery.png",
+          "image_sha256": "841d186b0fdcea0b1d64b28b1fad5c72f347584e008c91328e93199cdf999f84",
+          "status": "pass",
+          "viewpoint_id": "view:gallery"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_courtyard_from_stair.png",
+          "image_sha256": "6313236d9b4d172a8ce4217eb776b16dd0523ebb1f85bf6d8efdb079ef149e5b",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_from_stair"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_chapel_reverse.png",
+          "image_sha256": "932d9a8122be95a4bc9947ba9fddb4e83789abb7fbd600e86b92362515bc0a27",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_reverse"
+        }
+      ],
+      "visually_empty_spaces": [
+        "assembly:001/space:002",
+        "assembly:001/space:004",
+        "assembly:001/space:006",
+        "assembly:001/space:007",
+        "assembly:001/space:008"
+      ]
+    },
+    {
+      "art_differentiation": {
+        "near_identical_pairs": [],
+        "unresolved_assets": 0
+      },
+      "authored_vs_observed_hierarchy": {
+        "discrepancies": [],
+        "per_assembly": [
+          {
+            "assembly_id": "assembly:arrival",
+            "derived_space_count": 1,
+            "dominant_space_share": 1.0,
+            "singletons": 0
+          },
+          {
+            "assembly_id": "assembly:courtyard",
+            "derived_space_count": 1,
+            "dominant_space_share": 1.0,
+            "singletons": 0
+          },
+          {
+            "assembly_id": "assembly:chapel",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9677,
+            "singletons": 1
+          },
+          {
+            "assembly_id": "assembly:crypt",
+            "derived_space_count": 3,
+            "dominant_space_share": 0.8765,
+            "singletons": 1
+          },
+          {
+            "assembly_id": "assembly:ossuary",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9091,
+            "singletons": 2
+          },
+          {
+            "assembly_id": "assembly:gallery",
+            "derived_space_count": 3,
+            "dominant_space_share": 0.9245,
+            "singletons": 3
+          },
+          {
+            "assembly_id": "assembly:exit",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9375,
+            "singletons": 2
+          }
+        ]
+      },
+      "corpus_scale": {
+        "findings": [
+          {
+            "id": "scale:assembly:001.space:001:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:006:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:007:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:009:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:014:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "shape:orthogonal-length-fraction",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:diagonal-length-fraction",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:orientation-5deg-bins-occupied",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:orientation-diversity",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:chamfer-fraction",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:segmented-arc-chain-count",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:rectangular-sector-fraction",
+            "kind": "shape_outside_corpus_mass"
+          }
+        ],
+        "shape_signature": {
+          "chamfer_fraction": 0.0,
+          "convex_sector_fraction": 1.0,
+          "diagonal_length_fraction": 0.0,
+          "median_outer_vertex_count": 4.0,
+          "orientation_5deg_bins_occupied": 2.0,
+          "orientation_diversity": 0.0556,
+          "orthogonal_length_fraction": 1.0,
+          "rectangular_sector_fraction": 0.7419,
+          "segmented_arc_chain_count": 0.0
+        },
+        "spaces_below_corpus_for_their_size": [
+          "assembly:001/space:001",
+          "assembly:001/space:003",
+          "assembly:001/space:005",
+          "assembly:001/space:006",
+          "assembly:001/space:007",
+          "assembly:001/space:008",
+          "assembly:001/space:009",
+          "assembly:001/space:010",
+          "assembly:001/space:012",
+          "assembly:001/space:013",
+          "assembly:001/space:014"
+        ]
+      },
+      "counts": {
+        "connections": 34,
+        "regions": 31,
+        "sectors": 31,
+        "sprites": 5,
+        "walls": 167
+      },
+      "declared_changes": [
+        "added a covered gatehouse and two gallery arches as real thresholds, each darker than its neighbours, to answer the collapsed perceptual space",
+        "cut stair sectors from 16 to 10 and raised room sectors from 10 to 15",
+        "lowered the gallery from about 2.7 to about 2.0 player heights",
+        "gave the chapel two side aisles and a raised, brighter apse holding the switch",
+        "gave the crypt a larger hall plus a reliquary and a cistern chamber",
+        "declared the open exterior stairs as courtyard circulation instead of gallery",
+        "fixed probe:reach_crypt to open both sides of the crypt gate and reworded the ossuary probe so its intended answer is not phrased as a failure",
+        "surface treatment deliberately unchanged; that is iteration 2"
+      ],
+      "decorative_distribution": {
+        "largest_share_in_one_space": 0.4,
+        "per_space": {
+          "assembly:001/space:001": 1,
+          "assembly:001/space:002": 0,
+          "assembly:001/space:003": 0,
+          "assembly:001/space:004": 1,
+          "assembly:001/space:005": 0,
+          "assembly:001/space:006": 0,
+          "assembly:001/space:007": 2,
+          "assembly:001/space:008": 0,
+          "assembly:001/space:009": 0,
+          "assembly:001/space:010": 0,
+          "assembly:001/space:011": 0,
+          "assembly:001/space:012": 0,
+          "assembly:001/space:013": 0,
+          "assembly:001/space:014": 1
+        },
+        "total_space_sprites": 5
+      },
+      "derived_space_count": 14,
+      "hard_validation": {
+        "by_gate": {
+          "authored_geometry_valid": "pass",
+          "deterministic_emission": "pass",
+          "exit_reachable": "pass",
+          "geometry_conservation": "pass",
+          "intended_adjacency_realized": "pass",
+          "native_structure_valid": "pass",
+          "nblood_load_smoke": "pass",
+          "no_unintended_overlaps": "pass",
+          "no_unresolved_boundary_contacts": "pass",
+          "object_attachment_valid": "pass",
+          "player_relative_clearance": "pass",
+          "player_start_valid": "pass",
+          "portals_realized": "pass",
+          "required_reachability": "pass"
+        },
+        "failed": [],
+        "skipped": []
+      },
+      "iteration_id": "v1",
+      "major_space_scale": [
+        {
+          "footprint_player_areas": 1120.0,
+          "id": "assembly:001/space:002",
+          "median_clear_height_player_heights": 4.0
+        },
+        {
+          "footprint_player_areas": 392.0,
+          "id": "assembly:001/space:011",
+          "median_clear_height_player_heights": 6.0
+        },
+        {
+          "footprint_player_areas": 284.0,
+          "id": "assembly:001/space:007",
+          "median_clear_height_player_heights": 2.1818
+        },
+        {
+          "footprint_player_areas": 240.0,
+          "id": "assembly:001/space:004",
+          "median_clear_height_player_heights": 5.6364
+        },
+        {
+          "footprint_player_areas": 120.0,
+          "id": "assembly:001/space:014",
+          "median_clear_height_player_heights": 4.0
+        }
+      ],
+      "mandatory_reachability": {
+        "detail": "29/29 mandatory regions reachable",
+        "gate_id": "required_reachability",
+        "mandatory_regions": [
+          "region:chapel_aisle_north",
+          "region:chapel_aisle_south",
+          "region:chapel_apse",
+          "region:chapel_door",
+          "region:chapel_nave",
+          "region:courtyard",
+          "region:crypt_cistern",
+          "region:crypt_gate",
+          "region:crypt_hall",
+          "region:crypt_reliquary",
+          "region:crypt_stair_1",
+          "region:crypt_stair_2",
+          "region:crypt_stair_3",
+          "region:crypt_stair_4",
+          "region:exit_door",
+          "region:exit_hall",
+          "region:gallery",
+          "region:gallery_arch",
+          "region:gallery_stair_1",
+          "region:gallery_stair_2",
+          "region:gallery_stair_3",
+          "region:garden_bed",
+          "region:gate_tunnel",
+          "region:gatehouse",
+          "region:ledge",
+          "region:loop_arch",
+          "region:loop_stair_1",
+          "region:loop_stair_2",
+          "region:loop_stair_3"
+        ],
+        "status": "pass",
+        "unreachable_regions": []
+      },
+      "map_sha256": "12128af3e0f8b96a7a8f6de9c7621b6faa55b07ec4c87279c99ca839e3914f12",
+      "nblood_load": "pass",
+      "oversized_decorations": [],
+      "parent": "v0",
+      "review": {
+        "$schema": "llmapper.authoring-review",
+        "accepted_strengths": [
+          "All structural gates pass and the level still loads in NBlood revision rlocal-agtst10.",
+          "Zero hierarchy discrepancies, down from one, with the specific one that was targeted resolved.",
+          "Derived spaces rose from 9 to 14, and each new space corresponds to an authored intention rather than to a stair.",
+          "The gallery is first met at 88 percent of the start-to-exit route, which is the late arrival the brief wanted.",
+          "The gatehouse release still measures 42x area and about 13 player heights.",
+          "The ossuary is correctly unreachable while its panel is shut."
+        ],
+        "claims": [
+          {
+            "claim": "The threshold intervention did what it was predicted to do: arrival, courtyard, and gallery are now three separate places.",
+            "evidence": [
+              "intent:assembly:arrival",
+              "intent:assembly:courtyard",
+              "intent:assembly:gallery",
+              "view:gatehouse",
+              "view:gallery_arch"
+            ],
+            "reasoning": "v0 had one derived perceptual space holding all three assemblies, and its collapse discrepancy was the only finding of that iteration. v1 raises no hierarchy discrepancies at all. Arrival and courtyard each hold their own derived space at a dominant share of 1.0, and the gallery holds 0.92 of its floor area in a space of its own with an arch at either end. The gatehouse and the arches were what changed, and the shade step across them is what the grouping actually reads, so the causal chain is clear rather than inferred.",
+            "status": "supported"
+          },
+          {
+            "claim": "The chapel became a composed interior instead of a box.",
+            "evidence": [
+              "probe:chapel_choices",
+              "view:chapel_interior",
+              "intent:assembly:chapel"
+            ],
+            "reasoning": "The nave now offers four onward choices where v0's offered one, and the rendered frame shows the raised apse recessed at the end of the nave with the aisles' lower ceilings framing it. The switch is now on the apse's back wall instead of floating on a blank rectangle.",
+            "status": "supported"
+          },
+          {
+            "claim": "The crypt became a hall with parts.",
+            "evidence": [
+              "probe:crypt_choices",
+              "probe:revisit_after_crypt_gate",
+              "intent:assembly:crypt"
+            ],
+            "reasoning": "The crypt hall now offers three onward choices, and opening the apse switch adds eight sectors where v0's equivalent added one. Stair sectors across the level fell from 16 to 10 while room sectors rose from 10 to 15.",
+            "status": "supported"
+          },
+          {
+            "claim": "Every ceiling in the level renders as a black void.",
+            "evidence": [
+              "view:chapel_interior",
+              "view:gallery_arch",
+              "view:gallery",
+              "art:blood:tile:416"
+            ],
+            "reasoning": "Tile 416 is a very dark tile, and at the shades I used there is nothing left to see: in three separate frames the ceiling is a flat black band with no readable surface. Nothing in the packet flagged this, because the packet only knew the tile was corpus-backed for ceilings. Only the images showed it.",
+            "status": "supported"
+          },
+          {
+            "claim": "The chapel, the gallery, and the exit are still finished identically.",
+            "evidence": [
+              "view:chapel_interior",
+              "view:gallery",
+              "intent:assembly:chapel",
+              "intent:assembly:gallery",
+              "intent:assembly:exit"
+            ],
+            "reasoning": "All three still resolve to the dominant triple 294/416/5, and the gallery frame and the chapel frame are near-interchangeable apart from the apse. This was deferred from v0 on purpose and is now the whole subject of iteration 2.",
+            "status": "supported"
+          },
+          {
+            "claim": "The courtyard wall still gives no sense of scale.",
+            "evidence": [
+              "view:gatehouse",
+              "view:courtyard_center",
+              "art:blood:tile:2490"
+            ],
+            "reasoning": "Unchanged from v0 by design, and unchanged in the frames: tile 2490 at 16 player heights is a smooth grey ridge with nothing for the eye to measure against.",
+            "status": "supported"
+          },
+          {
+            "claim": "The level is undecorated.",
+            "evidence": [
+              "art:assembly:001/space:011",
+              "intent:assembly:gallery"
+            ],
+            "reasoning": "Five sprites across 31 sectors, and ten of the fourteen derived spaces contain nothing at all. Four of those five sprites are gameplay controls.",
+            "status": "supported"
+          }
+        ],
+        "iteration_id": "v1",
+        "next_actions": [
+          {
+            "action": "Iteration 2: choose ceilings by what they look like as well as by corpus count, and give every assembly its own dominant floor/ceiling/wall triple. Replace the courtyard wall with a coursed masonry whose joints carry scale.",
+            "evidence": [
+              "view:chapel_interior",
+              "view:gallery",
+              "art:blood:tile:2490",
+              "art:blood:tile:416"
+            ],
+            "expected_effect": "the identical-dominant-surface pairs drop to the crypt/ossuary pair, which is intentional, and the courtyard frame acquires visible stone courses."
+          },
+          {
+            "action": "Iteration 2: attach decoration to architectural roles at densities anchored to the precedent packet - torches flanking the chapel door, lamps hung over the nave, grilles and chains in the crypt, vines on the derelict gallery, planting in the garden bed.",
+            "evidence": [
+              "art:assembly:001/space:011",
+              "intent:assembly:gallery"
+            ],
+            "expected_effect": "empty derived spaces fall well below ten and no single space holds most of the decoration."
+          },
+          {
+            "action": "Iteration 2: change nothing about geometry or shading, so that any movement in the hierarchy evidence would prove the critic is reading something other than what was changed.",
+            "evidence": [
+              "intent:assembly:gallery"
+            ],
+            "expected_effect": "derived space count and discrepancy count stay at 14 and 0."
+          }
+        ],
+        "problems": [
+          "every ceiling renders as a black void",
+          "chapel, gallery, and exit share one dominant surface triple",
+          "courtyard wall tile has no scale cues",
+          "five sprites in 31 sectors; ten of fourteen derived spaces are empty"
+        ],
+        "reviewer": "claude-opus-5 acting as the pilot's design reviewer",
+        "schema_version": 1,
+        "status": "external reviewer conclusions; the deterministic package neither produced nor validated the reasoning, only the evidence references",
+        "uncertainties": [
+          "The dominant-space share rule was changed during this iteration from sector count to floor area, after it flagged the gallery as fragmented for being one 392 player-area room between two 16 player-area arches. This is the third rule corrected for the same reason: counting sectors treats a stair step and a courtyard as equal units. Both v0 and v1 are reported under the corrected rules.",
+          "The perceptual boundary the gatehouse and the arches create is a shade step, which is what the decompiler's grouping actually reads. Whether a player experiences it as a threshold is not established by anything here; the rendered frames are consistent with it but do not prove it.",
+          "Nothing in this iteration measures combat, pacing, enemy placement, or how the level plays."
+        ]
+      },
+      "route_structure": {
+        "probe:arch_contrast": {
+          "measurements": {
+            "area_ratio": 24.5,
+            "clear_height_delta": 22528,
+            "dest_area": 57802752.0,
+            "dest_clear_height": 33792,
+            "floor_delta": 0,
+            "source_area": 2359296.0,
+            "source_clear_height": 11264
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:chapel_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 4,
+            "viable_exits": [
+              {
+                "edge": "portal:43",
+                "sector": "sector:5",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:46",
+                "sector": "sector:7",
+                "status": "open"
+              },
+              {
+                "edge": "portal:50",
+                "sector": "sector:8",
+                "status": "open"
+              },
+              {
+                "edge": "portal:48",
+                "sector": "sector:9",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:courtyard_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 6,
+            "viable_exits": [
+              {
+                "edge": "portal:11",
+                "sector": "sector:2",
+                "status": "open"
+              },
+              {
+                "edge": "portal:37",
+                "sector": "sector:4",
+                "status": "open"
+              },
+              {
+                "edge": "portal:32",
+                "sector": "sector:5",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:23",
+                "sector": "sector:10",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:18",
+                "sector": "sector:20",
+                "status": "open"
+              },
+              {
+                "edge": "portal:20",
+                "sector": "sector:28",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:crypt_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 3,
+            "viable_exits": [
+              {
+                "edge": "portal:84",
+                "sector": "sector:14",
+                "status": "open"
+              },
+              {
+                "edge": "portal:96",
+                "sector": "sector:16",
+                "status": "open"
+              },
+              {
+                "edge": "portal:93",
+                "sector": "sector:17",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:crypt_contrast": {
+          "measurements": {
+            "area_ratio": 0.1969,
+            "clear_height_delta": -77824,
+            "dest_area": 29491200.0,
+            "dest_clear_height": 12288,
+            "floor_delta": 12288,
+            "source_area": 149815296.0,
+            "source_clear_height": 90112
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 3,
+            "viable_exits": [
+              {
+                "edge": "portal:129",
+                "sector": "sector:23",
+                "status": "open"
+              },
+              {
+                "edge": "portal:137",
+                "sector": "sector:25",
+                "status": "open"
+              },
+              {
+                "edge": "portal:134",
+                "sector": "sector:29",
+                "status": "open_via_world_state"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_contrast": {
+          "measurements": {
+            "area_ratio": 0.3858,
+            "clear_height_delta": -56320,
+            "dest_area": 57802752.0,
+            "dest_clear_height": 33792,
+            "floor_delta": -11520,
+            "source_area": 149815296.0,
+            "source_clear_height": 90112
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_seen_late": {
+          "measurements": {
+            "first_visible_step": 7,
+            "route_fraction": 0.875,
+            "total_steps": 8,
+            "visible_at_steps": [
+              7,
+              8
+            ]
+          },
+          "route_length": 9,
+          "status": "pass"
+        },
+        "probe:gatehouse_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 2,
+            "viable_exits": [
+              {
+                "edge": "portal:7",
+                "sector": "sector:1",
+                "status": "open"
+              },
+              {
+                "edge": "portal:11",
+                "sector": "sector:3",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:ossuary_reachable_while_shut": {
+          "measurements": {},
+          "route_length": 0,
+          "status": "fail"
+        },
+        "probe:reach_apse": {
+          "measurements": {},
+          "route_length": 7,
+          "status": "pass"
+        },
+        "probe:reach_chapel": {
+          "measurements": {},
+          "route_length": 6,
+          "status": "pass"
+        },
+        "probe:reach_crypt": {
+          "measurements": {},
+          "route_length": 10,
+          "status": "pass"
+        },
+        "probe:reveal_contrast": {
+          "measurements": {
+            "area_ratio": 42.3333,
+            "clear_height_delta": 73216,
+            "dest_area": 149815296.0,
+            "dest_clear_height": 90112,
+            "floor_delta": 0,
+            "source_area": 3538944.0,
+            "source_clear_height": 16896
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:revisit_after_crypt_gate": {
+          "measurements": {
+            "newly_reachable_count": 8,
+            "newly_reachable_sectors": [
+              "sector:10",
+              "sector:11",
+              "sector:12",
+              "sector:13",
+              "sector:14",
+              "sector:15",
+              "sector:16",
+              "sector:17"
+            ],
+            "reachable_after_count": 27,
+            "reachable_before_count": 19,
+            "still_unreachable_count": 4
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:route_start_to_exit": {
+          "measurements": {},
+          "route_length": 11,
+          "status": "pass"
+        }
+      },
+      "singleton_spaces": {
+        "count": 9,
+        "ids": [
+          "assembly:001/space:003",
+          "assembly:001/space:005",
+          "assembly:001/space:008",
+          "assembly:001/space:009",
+          "assembly:001/space:010",
+          "assembly:001/space:011",
+          "assembly:001/space:012",
+          "assembly:001/space:013",
+          "assembly:001/space:014"
+        ]
+      },
+      "transition_evidence": [
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:reveal",
+            "source:sector:2",
+            "source:sector:3"
+          ],
+          "from": "sector:2",
+          "material_change": {
+            "ceiling_tile_changed": false,
+            "clear_height_delta": 73216,
+            "floor_shade_delta": -16,
+            "floor_tile_changed": false
+          },
+          "to": "sector:3",
+          "transition_id": "transition:reveal"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:descent",
+            "source:sector:3",
+            "source:sector:15"
+          ],
+          "from": "sector:3",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": -77824,
+            "floor_shade_delta": 16,
+            "floor_tile_changed": true
+          },
+          "to": "sector:15",
+          "transition_id": "transition:descent"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:ascent",
+            "source:sector:23",
+            "source:sector:24"
+          ],
+          "from": "sector:23",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": 22528,
+            "floor_shade_delta": -30,
+            "floor_tile_changed": true
+          },
+          "to": "sector:24",
+          "transition_id": "transition:ascent"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:chapel_entry",
+            "source:sector:3",
+            "source:sector:6"
+          ],
+          "from": "sector:3",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": -50688,
+            "floor_shade_delta": 4,
+            "floor_tile_changed": true
+          },
+          "to": "sector:6",
+          "transition_id": "transition:chapel_entry"
+        }
+      ],
+      "views_captured": [
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v1\\views\\view_start.png",
+          "image_sha256": "9542210ea36f3cdf63276a1c69ad01dfecbac0b58e449911ce6361069a3a6a40",
+          "status": "pass",
+          "viewpoint_id": "view:start"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v1\\views\\view_gate_approach.png",
+          "image_sha256": "450137183a20a2e1a7a1d45f5c8f1d64884f9f2a864244725852568794be446d",
+          "status": "pass",
+          "viewpoint_id": "view:gate_approach"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v1\\views\\view_gatehouse.png",
+          "image_sha256": "9be37b08349a447062c7f2e341faece40a148caaafcd8f546543b4250ebfd9f5",
+          "status": "pass",
+          "viewpoint_id": "view:gatehouse"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v1\\views\\view_courtyard_center.png",
+          "image_sha256": "140c57f38e4aeeceb9d63df8bf4509d520156cd34f7d9d3430046cb8bb6258fd",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_center"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v1\\views\\view_chapel_interior.png",
+          "image_sha256": "9d98b601cfa5352f256be94487a4260bc5928bed466e25b1c153a30ba09e509e",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_interior"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v1\\views\\view_chapel_apse.png",
+          "image_sha256": "34e84c814b7cbf61478e75a2bbb99ea259af718e464a8118c0d9443a2e3973aa",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_apse"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v1\\views\\view_crypt_hall.png",
+          "image_sha256": "dd23829ebd6ff55708202663610d2294cdc1f9bec06bc2b11797f127461687ff",
+          "status": "pass",
+          "viewpoint_id": "view:crypt_hall"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v1\\views\\view_gallery_arch.png",
+          "image_sha256": "f6ef2e1704ec03e8fda865000d6aa3afcad96e6e4cfb28ea534a369a4b413114",
+          "status": "pass",
+          "viewpoint_id": "view:gallery_arch"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v1\\views\\view_gallery.png",
+          "image_sha256": "18adb60f212742f936650330482fc985be7ecd9bfa34ae42802640b641f38807",
+          "status": "pass",
+          "viewpoint_id": "view:gallery"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v1\\views\\view_courtyard_from_stair.png",
+          "image_sha256": "8cf8e3cc8fbd4f4ef6d43f500fe9a9067cb9037dab77d1c6fdbb096182db1ae7",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_from_stair"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v1\\views\\view_chapel_reverse.png",
+          "image_sha256": "d697a5a8b02b2268fafb162ba5832c175019456570f8b63e7591ce9f93c45446",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_reverse"
+        }
+      ],
+      "visually_empty_spaces": [
+        "assembly:001/space:002",
+        "assembly:001/space:003",
+        "assembly:001/space:005",
+        "assembly:001/space:006",
+        "assembly:001/space:008",
+        "assembly:001/space:009",
+        "assembly:001/space:010",
+        "assembly:001/space:011",
+        "assembly:001/space:012",
+        "assembly:001/space:013"
+      ]
+    },
+    {
+      "art_differentiation": {
+        "near_identical_pairs": [],
+        "unresolved_assets": 0
+      },
+      "authored_vs_observed_hierarchy": {
+        "discrepancies": [],
+        "per_assembly": [
+          {
+            "assembly_id": "assembly:arrival",
+            "derived_space_count": 1,
+            "dominant_space_share": 1.0,
+            "singletons": 0
+          },
+          {
+            "assembly_id": "assembly:courtyard",
+            "derived_space_count": 1,
+            "dominant_space_share": 1.0,
+            "singletons": 0
+          },
+          {
+            "assembly_id": "assembly:chapel",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9677,
+            "singletons": 1
+          },
+          {
+            "assembly_id": "assembly:crypt",
+            "derived_space_count": 3,
+            "dominant_space_share": 0.8765,
+            "singletons": 1
+          },
+          {
+            "assembly_id": "assembly:ossuary",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9091,
+            "singletons": 2
+          },
+          {
+            "assembly_id": "assembly:gallery",
+            "derived_space_count": 3,
+            "dominant_space_share": 0.9245,
+            "singletons": 3
+          },
+          {
+            "assembly_id": "assembly:exit",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9375,
+            "singletons": 2
+          }
+        ]
+      },
+      "corpus_scale": {
+        "findings": [
+          {
+            "id": "scale:assembly:001.space:001:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:006:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:007:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:009:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:014:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "shape:orthogonal-length-fraction",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:diagonal-length-fraction",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:orientation-5deg-bins-occupied",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:orientation-diversity",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:chamfer-fraction",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:segmented-arc-chain-count",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:rectangular-sector-fraction",
+            "kind": "shape_outside_corpus_mass"
+          }
+        ],
+        "shape_signature": {
+          "chamfer_fraction": 0.0,
+          "convex_sector_fraction": 1.0,
+          "diagonal_length_fraction": 0.0,
+          "median_outer_vertex_count": 4.0,
+          "orientation_5deg_bins_occupied": 2.0,
+          "orientation_diversity": 0.0556,
+          "orthogonal_length_fraction": 1.0,
+          "rectangular_sector_fraction": 0.7419,
+          "segmented_arc_chain_count": 0.0
+        },
+        "spaces_below_corpus_for_their_size": [
+          "assembly:001/space:001",
+          "assembly:001/space:003",
+          "assembly:001/space:005",
+          "assembly:001/space:006",
+          "assembly:001/space:007",
+          "assembly:001/space:008",
+          "assembly:001/space:009",
+          "assembly:001/space:010",
+          "assembly:001/space:012",
+          "assembly:001/space:013",
+          "assembly:001/space:014"
+        ]
+      },
+      "counts": {
+        "connections": 34,
+        "regions": 31,
+        "sectors": 31,
+        "sprites": 56,
+        "walls": 167
+      },
+      "declared_changes": [
+        "one dominant floor/ceiling/wall triple per assembly, each tile chosen from both mined corpus usage and its rendered appearance",
+        "ceilings picked for what they look like: 454 coffered over the nave, 4 light stone over the apse, 285 vault over the approach, 455 moss over the derelict gallery",
+        "courtyard wall changed from smooth marble 2490 to coursed rubble 110 so the wall carries a unit of scale",
+        "51 decoration sprites attached to architectural roles at precedent-anchored density",
+        "geometry and shading deliberately unchanged from v1 so any hierarchy movement would prove the critic was reading something other than what changed"
+      ],
+      "decorative_distribution": {
+        "largest_share_in_one_space": 0.2143,
+        "per_space": {
+          "assembly:001/space:001": 6,
+          "assembly:001/space:002": 10,
+          "assembly:001/space:003": 0,
+          "assembly:001/space:004": 12,
+          "assembly:001/space:005": 0,
+          "assembly:001/space:006": 0,
+          "assembly:001/space:007": 11,
+          "assembly:001/space:008": 0,
+          "assembly:001/space:009": 2,
+          "assembly:001/space:010": 1,
+          "assembly:001/space:011": 10,
+          "assembly:001/space:012": 0,
+          "assembly:001/space:013": 0,
+          "assembly:001/space:014": 4
+        },
+        "total_space_sprites": 56
+      },
+      "derived_space_count": 14,
+      "hard_validation": {
+        "by_gate": {
+          "authored_geometry_valid": "pass",
+          "deterministic_emission": "pass",
+          "exit_reachable": "pass",
+          "geometry_conservation": "pass",
+          "intended_adjacency_realized": "pass",
+          "native_structure_valid": "pass",
+          "nblood_load_smoke": "pass",
+          "no_unintended_overlaps": "pass",
+          "no_unresolved_boundary_contacts": "pass",
+          "object_attachment_valid": "pass",
+          "player_relative_clearance": "pass",
+          "player_start_valid": "pass",
+          "portals_realized": "pass",
+          "required_reachability": "pass"
+        },
+        "failed": [],
+        "skipped": []
+      },
+      "iteration_id": "v2",
+      "major_space_scale": [
+        {
+          "footprint_player_areas": 1120.0,
+          "id": "assembly:001/space:002",
+          "median_clear_height_player_heights": 4.0
+        },
+        {
+          "footprint_player_areas": 392.0,
+          "id": "assembly:001/space:011",
+          "median_clear_height_player_heights": 6.0
+        },
+        {
+          "footprint_player_areas": 284.0,
+          "id": "assembly:001/space:007",
+          "median_clear_height_player_heights": 2.1818
+        },
+        {
+          "footprint_player_areas": 240.0,
+          "id": "assembly:001/space:004",
+          "median_clear_height_player_heights": 5.6364
+        },
+        {
+          "footprint_player_areas": 120.0,
+          "id": "assembly:001/space:014",
+          "median_clear_height_player_heights": 4.0
+        }
+      ],
+      "mandatory_reachability": {
+        "detail": "29/29 mandatory regions reachable",
+        "gate_id": "required_reachability",
+        "mandatory_regions": [
+          "region:chapel_aisle_north",
+          "region:chapel_aisle_south",
+          "region:chapel_apse",
+          "region:chapel_door",
+          "region:chapel_nave",
+          "region:courtyard",
+          "region:crypt_cistern",
+          "region:crypt_gate",
+          "region:crypt_hall",
+          "region:crypt_reliquary",
+          "region:crypt_stair_1",
+          "region:crypt_stair_2",
+          "region:crypt_stair_3",
+          "region:crypt_stair_4",
+          "region:exit_door",
+          "region:exit_hall",
+          "region:gallery",
+          "region:gallery_arch",
+          "region:gallery_stair_1",
+          "region:gallery_stair_2",
+          "region:gallery_stair_3",
+          "region:garden_bed",
+          "region:gate_tunnel",
+          "region:gatehouse",
+          "region:ledge",
+          "region:loop_arch",
+          "region:loop_stair_1",
+          "region:loop_stair_2",
+          "region:loop_stair_3"
+        ],
+        "status": "pass",
+        "unreachable_regions": []
+      },
+      "map_sha256": "f4acda306f3d08abaf9d21db6def3390b119c4511016994d70646d210a5cfde7",
+      "nblood_load": "pass",
+      "oversized_decorations": [
+        "sprite-scale:6",
+        "sprite-scale:8",
+        "sprite-scale:9",
+        "sprite-scale:28",
+        "sprite-scale:30",
+        "sprite-scale:31",
+        "sprite-scale:32",
+        "sprite-scale:33",
+        "sprite-scale:34",
+        "sprite-scale:37",
+        "sprite-scale:38",
+        "sprite-scale:39",
+        "sprite-scale:41",
+        "sprite-scale:42",
+        "sprite-scale:43",
+        "sprite-scale:44",
+        "sprite-scale:45",
+        "sprite-scale:46"
+      ],
+      "parent": "v1",
+      "review": {
+        "$schema": "llmapper.authoring-review",
+        "accepted_strengths": [
+          "All structural gates pass and the level loads in NBlood revision rlocal-agtst10.",
+          "Each assembly now has its own material identity, confirmed in the rendered frames.",
+          "The courtyard wall carries scale, and the chapel door reads as a landmark.",
+          "Decoration is attached to architectural roles and spread across eight spaces.",
+          "The hierarchy result from iteration 1 held perfectly under a pure material change."
+        ],
+        "claims": [
+          {
+            "claim": "The material revision achieved what it was for: each assembly now reads as its own place.",
+            "evidence": [
+              "view:gatehouse",
+              "view:gallery",
+              "view:chapel_interior",
+              "intent:assembly:gallery",
+              "intent:assembly:chapel"
+            ],
+            "reasoning": "The near-identical surface vocabulary pairs went from three to zero and the identical dominant-surface pairs from four to one, and the one that remains is the crypt and its ossuary, which should match. The frames confirm it: the gallery's dark red brick, mossed ceiling and diamond floor are unmistakably not the chapel's grey brick, coffered ceiling and green chequer.",
+            "status": "supported"
+          },
+          {
+            "claim": "The courtyard wall change fixed the scale problem it was aimed at.",
+            "evidence": [
+              "view:gatehouse",
+              "art:blood:tile:110"
+            ],
+            "reasoning": "Tile 110's courses are individually visible in the frame, so the courtyard wall now has a repeating unit the eye can measure the space against. The same frame also shows the two torches flanking the chapel door doing what a landmark is supposed to do: the composition now has a centre. Tile 2490, the v1 wall, no longer appears anywhere in the level, which is why this claim cites its replacement.",
+            "status": "supported"
+          },
+          {
+            "claim": "Decoration is distributed rather than concentrated.",
+            "evidence": [
+              "art:assembly:001/space:011",
+              "art:assembly:001/space:004"
+            ],
+            "reasoning": "Sprites went from 5 to 56, empty derived spaces from ten to six, and the largest share held by any one space from 0.40 to 0.21. Of the six spaces still empty, four are the insides of closed Z-doors and one is the deliberately bare crypt stair; only the loop arch is a genuine omission, since its twin got an emblem and it did not.",
+            "status": "supported"
+          },
+          {
+            "claim": "Geometry and shading were held constant and the hierarchy evidence did not move, which isolates the cause of every change above.",
+            "evidence": [
+              "intent:assembly:gallery",
+              "gate:deterministic_emission"
+            ],
+            "reasoning": "Sector, wall, region and connection counts are identical to v1, derived spaces stayed at 14 and discrepancies at 0, exactly as predicted before compiling. So every difference in the ART and render sections is attributable to tiles and sprites alone.",
+            "status": "supported"
+          },
+          {
+            "claim": "The level is far more rectangular than any original Blood map.",
+            "evidence": [
+              "shape:orthogonal-length-fraction",
+              "shape:diagonal-length-fraction",
+              "shape:orientation-5deg-bins-occupied",
+              "shape:chamfer-fraction",
+              "shape:rectangular-sector-fraction"
+            ],
+            "reasoning": "The project owner said the map is still pretty much rectangular, and against 42 campaign maps that is exact: the candidate is 100 percent orthogonal wall length where the corpus median is 0.72, has zero diagonal length where the corpus median is 0.089, occupies 2 of 36 orientation bins where the corpus median is 36, has no chamfered corners where the corpus median is 0.073, and is 0.74 rectangular sectors where the corpus median is 0.35. Every one of these is at the 0th or 100th percentile. I built a grid and never measured that I had.",
+            "status": "supported"
+          },
+          {
+            "claim": "Most of the level's ceilings are far lower than original maps use for rooms of the same footprint.",
+            "evidence": [
+              "scale:assembly:001.space:007:low-ceiling",
+              "scale:assembly:001.space:009:low-ceiling",
+              "scale:assembly:001.space:014:low-ceiling",
+              "scale:assembly:001.space:001:low-ceiling",
+              "scale:assembly:001.space:006:low-ceiling"
+            ],
+            "reasoning": "The project owner said ceilings are too low in places, and matched against corpus sectors of comparable footprint that is true almost everywhere except the courtyard. The crypt hall sits at the 2.5 percentile, its chambers at 0.9, the exit hall at 4.5, the approach at 3.9. I chose heights as round multiples of the player's height because they sounded reasonable, without ever asking what original maps do at that footprint. The courtyard, which I did size against the E2M6 precedent, lands at the 59th percentile - the one space I checked against real evidence is the one that is right.",
+            "status": "supported"
+          },
+          {
+            "claim": "The oversized chapel lamp is a scale error the packet could not see.",
+            "evidence": [
+              "view:chapel_interior",
+              "art:blood:tile:1701"
+            ],
+            "reasoning": "The hanging censer fills the middle of the chapel frame. Its repeats are the campaign-modal values, which give about 4 player heights of sprite in a 7 player-height nave; original maps hang it in taller spaces. No gate, probe, or ART measure looks at sprite world size against the room it is in, so nothing but the image caught it.",
+            "status": "supported"
+          },
+          {
+            "claim": "The critic is only as good as the dimensions it has, and it was missing two of them.",
+            "evidence": [
+              "shape:orthogonal-length-fraction",
+              "scale:assembly:001.space:007:low-ceiling"
+            ],
+            "reasoning": "Three iterations passed every hard gate with zero discrepancies while the level was a pure axis-aligned grid with rooms in the bottom decile of the corpus for height. The packet was not wrong about what it measured; it simply had no shape dimension and no corpus-relative scale dimension. Both are now in it, mined from 42 campaign maps, which is why this iteration reports twelve findings where the previous one reported none.",
+            "status": "supported"
+          }
+        ],
+        "iteration_id": "v2",
+        "next_actions": [
+          {
+            "action": "Iteration 3: raise ceilings to corpus-typical heights for each space's footprint, keeping the crypt chambers deliberately low because the E6M3 precedent supports it at their size, and keeping the arches lower than what they open onto.",
+            "evidence": [
+              "scale:assembly:001.space:007:low-ceiling",
+              "scale:assembly:001.space:009:low-ceiling",
+              "scale:assembly:001.space:014:low-ceiling"
+            ],
+            "expected_effect": "no space below the 10th percentile of corpus height for its footprint except ones I can defend from a precedent, and the low-ceiling findings drop from five to at most one."
+          },
+          {
+            "action": "Iteration 3: break the grid. Chamfer the courtyard and chapel-mass corners, make the apse a polygonal chancel, splay the gatehouse, cut the crypt hall's corners, angle the gallery's far end, and make the garden bed octagonal.",
+            "evidence": [
+              "shape:orthogonal-length-fraction",
+              "shape:diagonal-length-fraction",
+              "shape:chamfer-fraction",
+              "shape:rectangular-sector-fraction"
+            ],
+            "expected_effect": "orthogonal length fraction and rectangular sector fraction fall inside the corpus central mass, and diagonal fraction, orientation bins and chamfer fraction rise off zero."
+          },
+          {
+            "action": "Iteration 3: scale the hanging lamps to the rooms they hang in, and give the loop arch the emblem its twin has.",
+            "evidence": [
+              "view:chapel_interior",
+              "art:blood:tile:1701"
+            ],
+            "expected_effect": "the censer stops filling the chapel frame, and every non-door space holds something."
+          }
+        ],
+        "problems": [
+          "100 percent orthogonal walls, zero diagonals, zero chamfers, zero arcs, 0.74 rectangular sectors",
+          "five spaces below the 5th percentile of corpus height for their footprint",
+          "the hanging censer is roughly four player heights tall in a seven player-height nave",
+          "the loop arch is the one genuinely undecorated non-door space"
+        ],
+        "reviewer": "claude-opus-5 as reviewer, with a direct correction from the project owner",
+        "schema_version": 1,
+        "status": "external reviewer conclusions; the deterministic package neither produced nor validated the reasoning, only the evidence references",
+        "uncertainties": [
+          "A corpus percentile says a number is unusual for 42 Blood maps. It does not say a number is wrong. The crypt chambers are deliberately kept in the lower tail because the E6M3 precedent measures real crypts there; the difference is that this is now an argued exception rather than an unexamined default.",
+          "The shape metrics are whole-level aggregates, so a level that is half organic and half deliberately rectilinear would read as average. They locate a problem; they do not locate where it is.",
+          "Nothing here measures sprite world size against its room, which is why the censer got through. That gap is being fixed by hand in iteration 3 rather than by a new rule, and it remains a known hole in the packet.",
+          "Nothing in this pilot measures combat, pacing, enemy placement, or how the level plays."
+        ]
+      },
+      "route_structure": {
+        "probe:arch_contrast": {
+          "measurements": {
+            "area_ratio": 24.5,
+            "clear_height_delta": 22528,
+            "dest_area": 57802752.0,
+            "dest_clear_height": 33792,
+            "floor_delta": 0,
+            "source_area": 2359296.0,
+            "source_clear_height": 11264
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:chapel_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 4,
+            "viable_exits": [
+              {
+                "edge": "portal:43",
+                "sector": "sector:5",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:46",
+                "sector": "sector:7",
+                "status": "open"
+              },
+              {
+                "edge": "portal:50",
+                "sector": "sector:8",
+                "status": "open"
+              },
+              {
+                "edge": "portal:48",
+                "sector": "sector:9",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:courtyard_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 6,
+            "viable_exits": [
+              {
+                "edge": "portal:11",
+                "sector": "sector:2",
+                "status": "open"
+              },
+              {
+                "edge": "portal:37",
+                "sector": "sector:4",
+                "status": "open"
+              },
+              {
+                "edge": "portal:32",
+                "sector": "sector:5",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:23",
+                "sector": "sector:10",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:18",
+                "sector": "sector:20",
+                "status": "open"
+              },
+              {
+                "edge": "portal:20",
+                "sector": "sector:28",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:crypt_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 3,
+            "viable_exits": [
+              {
+                "edge": "portal:84",
+                "sector": "sector:14",
+                "status": "open"
+              },
+              {
+                "edge": "portal:96",
+                "sector": "sector:16",
+                "status": "open"
+              },
+              {
+                "edge": "portal:93",
+                "sector": "sector:17",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:crypt_contrast": {
+          "measurements": {
+            "area_ratio": 0.1969,
+            "clear_height_delta": -77824,
+            "dest_area": 29491200.0,
+            "dest_clear_height": 12288,
+            "floor_delta": 12288,
+            "source_area": 149815296.0,
+            "source_clear_height": 90112
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 3,
+            "viable_exits": [
+              {
+                "edge": "portal:129",
+                "sector": "sector:23",
+                "status": "open"
+              },
+              {
+                "edge": "portal:137",
+                "sector": "sector:25",
+                "status": "open"
+              },
+              {
+                "edge": "portal:134",
+                "sector": "sector:29",
+                "status": "open_via_world_state"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_contrast": {
+          "measurements": {
+            "area_ratio": 0.3858,
+            "clear_height_delta": -56320,
+            "dest_area": 57802752.0,
+            "dest_clear_height": 33792,
+            "floor_delta": -11520,
+            "source_area": 149815296.0,
+            "source_clear_height": 90112
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_seen_late": {
+          "measurements": {
+            "first_visible_step": 7,
+            "route_fraction": 0.875,
+            "total_steps": 8,
+            "visible_at_steps": [
+              7,
+              8
+            ]
+          },
+          "route_length": 9,
+          "status": "pass"
+        },
+        "probe:gatehouse_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 2,
+            "viable_exits": [
+              {
+                "edge": "portal:7",
+                "sector": "sector:1",
+                "status": "open"
+              },
+              {
+                "edge": "portal:11",
+                "sector": "sector:3",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:ossuary_reachable_while_shut": {
+          "measurements": {},
+          "route_length": 0,
+          "status": "fail"
+        },
+        "probe:reach_apse": {
+          "measurements": {},
+          "route_length": 7,
+          "status": "pass"
+        },
+        "probe:reach_chapel": {
+          "measurements": {},
+          "route_length": 6,
+          "status": "pass"
+        },
+        "probe:reach_crypt": {
+          "measurements": {},
+          "route_length": 10,
+          "status": "pass"
+        },
+        "probe:reveal_contrast": {
+          "measurements": {
+            "area_ratio": 42.3333,
+            "clear_height_delta": 73216,
+            "dest_area": 149815296.0,
+            "dest_clear_height": 90112,
+            "floor_delta": 0,
+            "source_area": 3538944.0,
+            "source_clear_height": 16896
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:revisit_after_crypt_gate": {
+          "measurements": {
+            "newly_reachable_count": 8,
+            "newly_reachable_sectors": [
+              "sector:10",
+              "sector:11",
+              "sector:12",
+              "sector:13",
+              "sector:14",
+              "sector:15",
+              "sector:16",
+              "sector:17"
+            ],
+            "reachable_after_count": 27,
+            "reachable_before_count": 19,
+            "still_unreachable_count": 4
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:route_start_to_exit": {
+          "measurements": {},
+          "route_length": 11,
+          "status": "pass"
+        }
+      },
+      "singleton_spaces": {
+        "count": 9,
+        "ids": [
+          "assembly:001/space:003",
+          "assembly:001/space:005",
+          "assembly:001/space:008",
+          "assembly:001/space:009",
+          "assembly:001/space:010",
+          "assembly:001/space:011",
+          "assembly:001/space:012",
+          "assembly:001/space:013",
+          "assembly:001/space:014"
+        ]
+      },
+      "transition_evidence": [
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:reveal",
+            "source:sector:2",
+            "source:sector:3"
+          ],
+          "from": "sector:2",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": 73216,
+            "floor_shade_delta": -16,
+            "floor_tile_changed": true
+          },
+          "to": "sector:3",
+          "transition_id": "transition:reveal"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:descent",
+            "source:sector:3",
+            "source:sector:15"
+          ],
+          "from": "sector:3",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": -77824,
+            "floor_shade_delta": 16,
+            "floor_tile_changed": true
+          },
+          "to": "sector:15",
+          "transition_id": "transition:descent"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:ascent",
+            "source:sector:23",
+            "source:sector:24"
+          ],
+          "from": "sector:23",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": 22528,
+            "floor_shade_delta": -30,
+            "floor_tile_changed": true
+          },
+          "to": "sector:24",
+          "transition_id": "transition:ascent"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:chapel_entry",
+            "source:sector:3",
+            "source:sector:6"
+          ],
+          "from": "sector:3",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": -50688,
+            "floor_shade_delta": 4,
+            "floor_tile_changed": true
+          },
+          "to": "sector:6",
+          "transition_id": "transition:chapel_entry"
+        }
+      ],
+      "views_captured": [
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v2\\views\\view_start.png",
+          "image_sha256": "f8bc77189d93a7436ec9edc3098ae8fd9f28f9eae6490b97088d9f04856dcbcd",
+          "status": "pass",
+          "viewpoint_id": "view:start"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v2\\views\\view_gate_approach.png",
+          "image_sha256": "2971900b93e211d9ac2951dacf965027adf887a393be048dcafd0b5a9ac031a6",
+          "status": "pass",
+          "viewpoint_id": "view:gate_approach"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v2\\views\\view_gatehouse.png",
+          "image_sha256": "6cc227306d9d7be3aa2020e626da6101cdf1420f771551aa3d8cd7396abec5cc",
+          "status": "pass",
+          "viewpoint_id": "view:gatehouse"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v2\\views\\view_courtyard_center.png",
+          "image_sha256": "48f7d283e0a5ce8360394167815b37d03568dc06d9e2665c8b97953302f033df",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_center"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v2\\views\\view_chapel_interior.png",
+          "image_sha256": "9fe45a757b09e647d307a16a60a0704f8d22d0867ace883de1a0d6b2237a27a7",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_interior"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v2\\views\\view_chapel_apse.png",
+          "image_sha256": "426e08cbf1f2c2df88084fda86b9340a75691fa8edf3d3b76310d3dc75329a24",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_apse"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v2\\views\\view_crypt_hall.png",
+          "image_sha256": "a6721fe2182402a40b0ba90e57e0d694b94c7d3616a7e7610739f21175afed41",
+          "status": "pass",
+          "viewpoint_id": "view:crypt_hall"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v2\\views\\view_gallery_arch.png",
+          "image_sha256": "62bcaae085ede4cc2c9a5d7c62aadaa936965997e13f00c06b93e8f1d742ec42",
+          "status": "pass",
+          "viewpoint_id": "view:gallery_arch"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v2\\views\\view_gallery.png",
+          "image_sha256": "30bfd66e8304a85a9af7ac93a435c9ed5d07665e765dcd054f47d7643306e897",
+          "status": "pass",
+          "viewpoint_id": "view:gallery"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v2\\views\\view_courtyard_from_stair.png",
+          "image_sha256": "c3af7a1d29c5a64c86d8d2a89b7dffacd6f2f5d87d8b7aea4ad3b1bfab8b7781",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_from_stair"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v2\\views\\view_chapel_reverse.png",
+          "image_sha256": "92b206b36caae61a991f0c82248e2464375b89c2cee241d29d46c92c08606e75",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_reverse"
+        }
+      ],
+      "visually_empty_spaces": [
+        "assembly:001/space:003",
+        "assembly:001/space:005",
+        "assembly:001/space:006",
+        "assembly:001/space:008",
+        "assembly:001/space:012",
+        "assembly:001/space:013"
+      ]
+    },
+    {
+      "art_differentiation": {
+        "near_identical_pairs": [],
+        "unresolved_assets": 0
+      },
+      "authored_vs_observed_hierarchy": {
+        "discrepancies": [],
+        "per_assembly": [
+          {
+            "assembly_id": "assembly:arrival",
+            "derived_space_count": 1,
+            "dominant_space_share": 1.0,
+            "singletons": 0
+          },
+          {
+            "assembly_id": "assembly:courtyard",
+            "derived_space_count": 1,
+            "dominant_space_share": 1.0,
+            "singletons": 0
+          },
+          {
+            "assembly_id": "assembly:chapel",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9602,
+            "singletons": 1
+          },
+          {
+            "assembly_id": "assembly:crypt",
+            "derived_space_count": 3,
+            "dominant_space_share": 0.8693,
+            "singletons": 1
+          },
+          {
+            "assembly_id": "assembly:ossuary",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9048,
+            "singletons": 2
+          },
+          {
+            "assembly_id": "assembly:gallery",
+            "derived_space_count": 3,
+            "dominant_space_share": 0.9319,
+            "singletons": 3
+          },
+          {
+            "assembly_id": "assembly:exit",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9355,
+            "singletons": 2
+          }
+        ]
+      },
+      "corpus_scale": {
+        "findings": [
+          {
+            "id": "scale:assembly:001.space:006:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:007:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:009:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "shape:orientation-5deg-bins-occupied",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:orientation-diversity",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:rectangular-sector-fraction",
+            "kind": "shape_outside_corpus_mass"
+          }
+        ],
+        "shape_signature": {
+          "chamfer_fraction": 0.3053,
+          "convex_sector_fraction": 1.0,
+          "diagonal_length_fraction": 0.1171,
+          "median_outer_vertex_count": 4.0,
+          "orientation_5deg_bins_occupied": 6.0,
+          "orientation_diversity": 0.1667,
+          "orthogonal_length_fraction": 0.8378,
+          "rectangular_sector_fraction": 0.5484,
+          "segmented_arc_chain_count": 9.0
+        },
+        "spaces_below_corpus_for_their_size": [
+          "assembly:001/space:003",
+          "assembly:001/space:005",
+          "assembly:001/space:006",
+          "assembly:001/space:007",
+          "assembly:001/space:008",
+          "assembly:001/space:009",
+          "assembly:001/space:010",
+          "assembly:001/space:012",
+          "assembly:001/space:013"
+        ]
+      },
+      "counts": {
+        "connections": 38,
+        "regions": 31,
+        "sectors": 31,
+        "sprites": 60,
+        "walls": 208
+      },
+      "declared_changes": [
+        "ceilings set from corpus percentiles for each space's footprint rather than from round multiples of player height: nave 7->10, aisles 4->6, apse 6->8, gallery 6->12, exit 4->8, ledge 4->6, gatehouse 3->5, crypt hall 2.18->5, arches 2->4",
+        "crypt cells deliberately kept near 3 player heights on the E6M3 precedent, as an argued exception rather than an unexamined default",
+        "chamfers and shallower non-45-degree facets on the courtyard, chapel mass, crypt hall, gallery, exit hall, ledge and crypt cells; the gatehouse splayed at 37 degrees; the apse made an eight-sided radial chancel; the garden bed made an octagonal planter",
+        "sprite repeats derived from each tile's pixel size and a stated target height in player heights, instead of copied from the campaign mode",
+        "the loop arch given the emblem its twin already had"
+      ],
+      "decorative_distribution": {
+        "largest_share_in_one_space": 0.2167,
+        "per_space": {
+          "assembly:001/space:001": 5,
+          "assembly:001/space:002": 10,
+          "assembly:001/space:003": 0,
+          "assembly:001/space:004": 13,
+          "assembly:001/space:005": 0,
+          "assembly:001/space:006": 0,
+          "assembly:001/space:007": 12,
+          "assembly:001/space:008": 0,
+          "assembly:001/space:009": 2,
+          "assembly:001/space:010": 1,
+          "assembly:001/space:011": 11,
+          "assembly:001/space:012": 1,
+          "assembly:001/space:013": 0,
+          "assembly:001/space:014": 5
+        },
+        "total_space_sprites": 60
+      },
+      "derived_space_count": 14,
+      "hard_validation": {
+        "by_gate": {
+          "authored_geometry_valid": "pass",
+          "deterministic_emission": "pass",
+          "exit_reachable": "pass",
+          "geometry_conservation": "pass",
+          "intended_adjacency_realized": "pass",
+          "native_structure_valid": "pass",
+          "nblood_load_smoke": "pass",
+          "no_unintended_overlaps": "pass",
+          "no_unresolved_boundary_contacts": "pass",
+          "object_attachment_valid": "pass",
+          "player_relative_clearance": "pass",
+          "player_start_valid": "pass",
+          "portals_realized": "pass",
+          "required_reachability": "pass"
+        },
+        "failed": [],
+        "skipped": []
+      },
+      "iteration_id": "v3",
+      "major_space_scale": [
+        {
+          "footprint_player_areas": 1101.5,
+          "id": "assembly:001/space:002",
+          "median_clear_height_player_heights": 5.0
+        },
+        {
+          "footprint_player_areas": 438.0,
+          "id": "assembly:001/space:011",
+          "median_clear_height_player_heights": 12.0
+        },
+        {
+          "footprint_player_areas": 266.0,
+          "id": "assembly:001/space:007",
+          "median_clear_height_player_heights": 3.3636
+        },
+        {
+          "footprint_player_areas": 193.0,
+          "id": "assembly:001/space:004",
+          "median_clear_height_player_heights": 8.0
+        },
+        {
+          "footprint_player_areas": 116.0,
+          "id": "assembly:001/space:014",
+          "median_clear_height_player_heights": 8.0
+        }
+      ],
+      "mandatory_reachability": {
+        "detail": "29/29 mandatory regions reachable",
+        "gate_id": "required_reachability",
+        "mandatory_regions": [
+          "region:chapel_aisle_north",
+          "region:chapel_aisle_south",
+          "region:chapel_apse",
+          "region:chapel_door",
+          "region:chapel_nave",
+          "region:courtyard",
+          "region:crypt_cistern",
+          "region:crypt_gate",
+          "region:crypt_hall",
+          "region:crypt_reliquary",
+          "region:crypt_stair_1",
+          "region:crypt_stair_2",
+          "region:crypt_stair_3",
+          "region:crypt_stair_4",
+          "region:exit_door",
+          "region:exit_hall",
+          "region:gallery",
+          "region:gallery_arch",
+          "region:gallery_stair_1",
+          "region:gallery_stair_2",
+          "region:gallery_stair_3",
+          "region:garden_bed",
+          "region:gate_tunnel",
+          "region:gatehouse",
+          "region:ledge",
+          "region:loop_arch",
+          "region:loop_stair_1",
+          "region:loop_stair_2",
+          "region:loop_stair_3"
+        ],
+        "status": "pass",
+        "unreachable_regions": []
+      },
+      "map_sha256": "6eba6d63f5a1654345d20890a7d83e1d5caec5870fe810dce2f98258d4fbdbbd",
+      "nblood_load": "pass",
+      "oversized_decorations": [],
+      "parent": "v2",
+      "review": {
+        "$schema": "llmapper.authoring-review",
+        "accepted_strengths": [
+          "All structural gates pass and the level loads in NBlood revision rlocal-agtst10.",
+          "Every viewpoint captured; the chancel, the cut chapel mass and the vaulted crypt all read in the frames.",
+          "Zero oversized decorations, down from 18.",
+          "Low-ceiling findings down from five to three, and the three are argued.",
+          "Diagonal wall length now above the corpus median where it was zero two iterations ago.",
+          "Fourteen derived spaces and zero hierarchy discrepancies held across a large geometry change."
+        ],
+        "claims": [
+          {
+            "claim": "The corpus-set ceiling heights fixed the scale problem where it mattered.",
+            "evidence": [
+              "scale:assembly:001/space:011",
+              "scale:assembly:001/space:004",
+              "scale:assembly:001/space:014",
+              "view:chapel_interior",
+              "view:crypt_hall"
+            ],
+            "reasoning": "The gallery moved from the 19th percentile of corpus sectors of its footprint to the 57th, the chapel from 11.5 to 35.5, the exit hall from 4.5 to 41. Low-ceiling findings fell from five to three. The two rendered frames show the difference: the chapel is now a hall with a readable vault instead of a low box, and the crypt is a vaulted room rather than a black slot. Setting heights from what original maps do at each footprint was the whole change.",
+            "status": "supported"
+          },
+          {
+            "claim": "The three remaining low spaces are argued rather than accidental.",
+            "evidence": [
+              "scale:assembly:001.space:007:low-ceiling",
+              "scale:assembly:001.space:009:low-ceiling",
+              "scale:assembly:001.space:006:low-ceiling"
+            ],
+            "reasoning": "space:009 is the crypt cells at 3 player heights, which is the top of the range the E6M3 precedent measures for real crypt cells of 25 to 35 player areas. space:007 is the crypt hall at 4.49, deliberately below the corpus median because a crypt that is as tall as a nave is not a crypt. space:006 is the crypt stair, which is circulation. I am declining to raise these and stating why, which is different from not having noticed.",
+            "status": "supported"
+          },
+          {
+            "claim": "The level is no longer a grid, but it is still far less varied in orientation than any original map.",
+            "evidence": [
+              "shape:orthogonal_length_fraction",
+              "shape:diagonal_length_fraction",
+              "shape:orientation-5deg-bins-occupied",
+              "shape:rectangular-sector-fraction",
+              "view:gatehouse",
+              "view:chapel_interior"
+            ],
+            "reasoning": "Orthogonal wall length fell from 1.0 at the 100th percentile to 0.838 at the 88th, and diagonal length rose from 0.0 at the 0th to 0.117 at the 71st, which is above the corpus median. The frames confirm it: the chapel mass now shows cut corners from the courtyard and the chancel reads as a faceted radial recess. But orientation_5deg_bins_occupied is 6 against a corpus minimum of 15, still the 0th percentile, and rectangular_sector_fraction is 0.548 against a corpus maximum of 0.533. Chamfering corners reaches four orientations, and adding shallow facets reached six; original maps reach thirty-six because they contain genuinely curved, segmented-arc geometry that I am not authoring.",
+            "status": "supported"
+          },
+          {
+            "claim": "The sprite-scale rule caught a whole class of error the packet had been blind to.",
+            "evidence": [
+              "view:chapel_interior",
+              "view:crypt_hall"
+            ],
+            "reasoning": "v2 shipped 18 decorations taller than three quarters of the space they stood in, four of them at over 250 percent, clipping through floor and ceiling. v3 ships zero. Deriving each repeat from the tile's pixel height and a stated target in player heights, instead of copying the campaign mode, is what did it. The campaign mode was not wrong; it was the mode for the rooms original maps put those sprites in, not for mine.",
+            "status": "supported"
+          },
+          {
+            "claim": "The hierarchy result from iterations 1 and 2 survived a substantial geometry rewrite.",
+            "evidence": [
+              "probe:route_start_to_exit",
+              "probe:gallery_choices",
+              "probe:crypt_choices",
+              "gate:required_reachability",
+              "gate:exit_reachable"
+            ],
+            "reasoning": "Fourteen derived spaces and zero discrepancies, unchanged, while 39 walls were added and nine outlines reshaped. All structural gates pass and the level still loads in NBlood. The shade structure that carries the thresholds was deliberately untouched, which is why the perceptual result held.",
+            "status": "supported"
+          },
+          {
+            "claim": "The rectangular-sector fraction cannot fall much further without changing what the level is made of.",
+            "evidence": [
+              "shape:rectangular-sector-fraction"
+            ],
+            "reasoning": "Fourteen of the level's 31 sectors are stair steps and door sectors, which are rectangles in original maps too. Every room outline is already non-rectangular. Getting this metric to the corpus median would mean either fewer stairs or non-rectangular stair steps, and I do not think either is a design improvement. This is a case where I think the metric is pointing at the composition of the level rather than at a fault, but I am not confident enough to dismiss it.",
+            "status": "uncertain"
+          }
+        ],
+        "iteration_id": "v3",
+        "next_actions": [
+          {
+            "action": "Stop here for this pilot. The remaining shape gap needs segmented-arc authoring - genuinely curved walls built from many small angle steps - which PlanarLayout can express but nothing in the loop helps an author compose. That is the next bottleneck, not another pass of chamfering.",
+            "evidence": [
+              "shape:chamfer-fraction",
+              "shape:orientation-5deg-bins-occupied"
+            ],
+            "expected_effect": "further chamfering would push chamfer_fraction further above the corpus while leaving orientation variety at the 0th percentile, which is fitting the metric rather than the brief."
+          }
+        ],
+        "problems": [
+          "orientation variety is 6 bins against a corpus minimum of 15",
+          "rectangular sector fraction 0.548 against a corpus maximum of 0.533",
+          "chamfer fraction 0.31 is now above the corpus maximum, because every cut corner is a chamfer",
+          "the sky renders very dark and no claim about why has been established"
+        ],
+        "reviewer": "claude-opus-5 acting as the pilot's design reviewer",
+        "schema_version": 1,
+        "status": "external reviewer conclusions; the deterministic package neither produced nor validated the reasoning, only the evidence references",
+        "uncertainties": [
+          "The shape metrics are whole-level aggregates. They told me the level was a grid, which was true and worth knowing, but they cannot say which room needs work, and chasing them produced one metric above the corpus (chamfer fraction) while another stayed at the floor.",
+          "A corpus percentile is a statement about 42 Blood maps, not about quality. Three spaces are deliberately left in the lower tail on precedent grounds.",
+          "The sprite-scale rule fires above 75 percent of a space's clear height. The v2 chapel censer sat at 58 percent and still dominated its frame, so the threshold catches the egregious cases and not the merely poor ones; the censer was fixed from the image, not from the rule.",
+          "Nothing in this pilot measures combat, pacing, enemy placement, sound, or how the level plays. No claim is made about any of them."
+        ]
+      },
+      "route_structure": {
+        "probe:arch_contrast": {
+          "measurements": {
+            "area_ratio": 27.375,
+            "clear_height_delta": 45056,
+            "dest_area": 64585728.0,
+            "dest_clear_height": 67584,
+            "floor_delta": 0,
+            "source_area": 2359296.0,
+            "source_clear_height": 22528
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:chapel_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 4,
+            "viable_exits": [
+              {
+                "edge": "portal:60",
+                "sector": "sector:5",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:63",
+                "sector": "sector:7",
+                "status": "open"
+              },
+              {
+                "edge": "portal:67",
+                "sector": "sector:8",
+                "status": "open"
+              },
+              {
+                "edge": "portal:65",
+                "sector": "sector:9",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:courtyard_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 6,
+            "viable_exits": [
+              {
+                "edge": "portal:13",
+                "sector": "sector:2",
+                "status": "open"
+              },
+              {
+                "edge": "portal:50",
+                "sector": "sector:4",
+                "status": "open"
+              },
+              {
+                "edge": "portal:34",
+                "sector": "sector:5",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:26",
+                "sector": "sector:10",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:21",
+                "sector": "sector:20",
+                "status": "open"
+              },
+              {
+                "edge": "portal:23",
+                "sector": "sector:28",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:crypt_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 3,
+            "viable_exits": [
+              {
+                "edge": "portal:111",
+                "sector": "sector:14",
+                "status": "open"
+              },
+              {
+                "edge": "portal:124",
+                "sector": "sector:16",
+                "status": "open"
+              },
+              {
+                "edge": "portal:121",
+                "sector": "sector:17",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:crypt_contrast": {
+          "measurements": {
+            "area_ratio": 0.189,
+            "clear_height_delta": -61952,
+            "dest_area": 28016640.0,
+            "dest_clear_height": 28160,
+            "floor_delta": 12288,
+            "source_area": 148267008.0,
+            "source_clear_height": 90112
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 3,
+            "viable_exits": [
+              {
+                "edge": "portal:163",
+                "sector": "sector:23",
+                "status": "open"
+              },
+              {
+                "edge": "portal:175",
+                "sector": "sector:25",
+                "status": "open"
+              },
+              {
+                "edge": "portal:169",
+                "sector": "sector:29",
+                "status": "open_via_world_state"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_contrast": {
+          "measurements": {
+            "area_ratio": 0.4356,
+            "clear_height_delta": -22528,
+            "dest_area": 64585728.0,
+            "dest_clear_height": 67584,
+            "floor_delta": -11520,
+            "source_area": 148267008.0,
+            "source_clear_height": 90112
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_seen_late": {
+          "measurements": {
+            "first_visible_step": 7,
+            "route_fraction": 0.875,
+            "total_steps": 8,
+            "visible_at_steps": [
+              7,
+              8
+            ]
+          },
+          "route_length": 9,
+          "status": "pass"
+        },
+        "probe:gatehouse_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 2,
+            "viable_exits": [
+              {
+                "edge": "portal:9",
+                "sector": "sector:1",
+                "status": "open"
+              },
+              {
+                "edge": "portal:13",
+                "sector": "sector:3",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:ossuary_reachable_while_shut": {
+          "measurements": {},
+          "route_length": 0,
+          "status": "fail"
+        },
+        "probe:reach_apse": {
+          "measurements": {},
+          "route_length": 7,
+          "status": "pass"
+        },
+        "probe:reach_chapel": {
+          "measurements": {},
+          "route_length": 6,
+          "status": "pass"
+        },
+        "probe:reach_crypt": {
+          "measurements": {},
+          "route_length": 10,
+          "status": "pass"
+        },
+        "probe:reveal_contrast": {
+          "measurements": {
+            "area_ratio": 35.9107,
+            "clear_height_delta": 61952,
+            "dest_area": 148267008.0,
+            "dest_clear_height": 90112,
+            "floor_delta": 0,
+            "source_area": 4128768.0,
+            "source_clear_height": 28160
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:revisit_after_crypt_gate": {
+          "measurements": {
+            "newly_reachable_count": 8,
+            "newly_reachable_sectors": [
+              "sector:10",
+              "sector:11",
+              "sector:12",
+              "sector:13",
+              "sector:14",
+              "sector:15",
+              "sector:16",
+              "sector:17"
+            ],
+            "reachable_after_count": 27,
+            "reachable_before_count": 19,
+            "still_unreachable_count": 4
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:route_start_to_exit": {
+          "measurements": {},
+          "route_length": 11,
+          "status": "pass"
+        }
+      },
+      "singleton_spaces": {
+        "count": 9,
+        "ids": [
+          "assembly:001/space:003",
+          "assembly:001/space:005",
+          "assembly:001/space:008",
+          "assembly:001/space:009",
+          "assembly:001/space:010",
+          "assembly:001/space:011",
+          "assembly:001/space:012",
+          "assembly:001/space:013",
+          "assembly:001/space:014"
+        ]
+      },
+      "transition_evidence": [
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:reveal",
+            "source:sector:2",
+            "source:sector:3"
+          ],
+          "from": "sector:2",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": 61952,
+            "floor_shade_delta": -16,
+            "floor_tile_changed": true
+          },
+          "to": "sector:3",
+          "transition_id": "transition:reveal"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:descent",
+            "source:sector:3",
+            "source:sector:15"
+          ],
+          "from": "sector:3",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": -61952,
+            "floor_shade_delta": 16,
+            "floor_tile_changed": true
+          },
+          "to": "sector:15",
+          "transition_id": "transition:descent"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:ascent",
+            "source:sector:23",
+            "source:sector:24"
+          ],
+          "from": "sector:23",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": 45056,
+            "floor_shade_delta": -30,
+            "floor_tile_changed": true
+          },
+          "to": "sector:24",
+          "transition_id": "transition:ascent"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:chapel_entry",
+            "source:sector:3",
+            "source:sector:6"
+          ],
+          "from": "sector:3",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": -33792,
+            "floor_shade_delta": 4,
+            "floor_tile_changed": true
+          },
+          "to": "sector:6",
+          "transition_id": "transition:chapel_entry"
+        }
+      ],
+      "views_captured": [
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_start.png",
+          "image_sha256": "9409aa0aad2364813d0d015b1c133b9bfd730c29519d97576cc5df51581209e9",
+          "status": "pass",
+          "viewpoint_id": "view:start"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_gate_approach.png",
+          "image_sha256": "6464513fb975baf3571c132bd79b406fa488eab65188be342c46233a7b375b50",
+          "status": "pass",
+          "viewpoint_id": "view:gate_approach"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_gatehouse.png",
+          "image_sha256": "691e178f9ed3efac68c7a8b56cc40a4db72fe2c75141a90fa8f879e780bee809",
+          "status": "pass",
+          "viewpoint_id": "view:gatehouse"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_courtyard_center.png",
+          "image_sha256": "a0cb01aaf29786fe5b260dbdb20205317fa41bf8722d07b20f45e274be80bc7c",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_center"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_courtyard_corner.png",
+          "image_sha256": "286c3166ae0b2b2859a600885159def7f94bc0dd418699ddb18176e8f1e00e33",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_corner"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_chapel_interior.png",
+          "image_sha256": "8eaa3b42e95a570a66285d02c4b368fe15db8c9a4fedb67726414369260eb634",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_interior"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_chapel_apse.png",
+          "image_sha256": "62f978e93407b2f815a056a59455611706a8f6781e9b42dc148025767cc9a5b2",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_apse"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_crypt_hall.png",
+          "image_sha256": "01117be7e145a7275bb5f8ac880a4f0bdfafb9668a16199045e06e905cc79300",
+          "status": "pass",
+          "viewpoint_id": "view:crypt_hall"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_gallery_arch.png",
+          "image_sha256": "9e6d90e09f5fc0b8bb36e5d39e530f42b38e3de0d17f1e373f6e39b3e93e911c",
+          "status": "pass",
+          "viewpoint_id": "view:gallery_arch"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_gallery.png",
+          "image_sha256": "54b275ec25f26ce3263dd332983543590ea05184e989004052beb3776eb28506",
+          "status": "pass",
+          "viewpoint_id": "view:gallery"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_courtyard_from_stair.png",
+          "image_sha256": "fa97d8d99b9e69b647281e33ce5db3b4499a76e30244b38e2fe46041bff295e2",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_from_stair"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_chapel_reverse.png",
+          "image_sha256": "80c3cd9bd85f8d7ad0e52842fd66817d6f629c868fa5cdb17ac76f1887434636",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_reverse"
+        }
+      ],
+      "visually_empty_spaces": [
+        "assembly:001/space:003",
+        "assembly:001/space:005",
+        "assembly:001/space:006",
+        "assembly:001/space:008",
+        "assembly:001/space:013"
+      ]
+    }
+  ],
+  "reading_guide": [
+    "no dimension here is a quality score and none of them may be summed",
+    "a lower singleton count or a higher sprite count is not automatically better",
+    "a skipped gate is not a passing gate"
+  ],
+  "schema_version": 1
+}

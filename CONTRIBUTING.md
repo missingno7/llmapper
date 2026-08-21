@@ -70,6 +70,16 @@ in `docs/reference-oracles.md`; it is not evidence for untested gameplay systems
 Do not normalize values in lossless paths, rely on compiler bitfield layout, retain
 the complete input blob, or silently discard references.
 
+Changes to the reasoned authoring loop must keep three properties. Authored
+labels stay out of every observation section of the iteration packet; a skipped
+evaluator is never reported as a pass; and every evidence reference a packet or a
+review emits must resolve inside that packet. New hierarchy, scale, or shape
+rules must state the rule that produced each finding, and must be cross-checked
+against a rendered frame before being trusted -- three rules in the first pilot
+counted sectors where they should have weighed floor area, and each was caught
+that way. Corpus-relative measures report percentiles against a named mined
+corpus and never against universal constants.
+
 ## Commit hygiene
 
 - Keep proprietary maps and original-map SVG renderings out of commits.

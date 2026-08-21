@@ -8,6 +8,7 @@ import shutil
 import subprocess
 import tempfile
 import time
+from copy import deepcopy
 from pathlib import Path
 from typing import Any
 
@@ -535,21 +536,53 @@ def _window_for_process(process: subprocess.Popen[Any], timeout: float = 5.0) ->
     raise OracleError(f"NBlood process {process.pid} did not create a controllable window")
 
 
-def _press_key(window: int, virtual_key: int) -> None:
+def _focus_window(window: int, attempts: int = 5) -> None:
+    """Take the foreground, working around Windows' foreground lock.
+
+    ``SetForegroundWindow`` is refused whenever another process owns the
+    foreground lock, which happens routinely when the harness runs from an
+    active terminal.  Tapping a modifier releases the lock for this thread, and
+    attaching to the foreground thread's input queue makes the request legal.
+    Neither trick changes what a successful focus means, only how often it works.
+    """
     user32 = ctypes.WinDLL("user32", use_last_error=True)
+    kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
     user32.GetForegroundWindow.restype = ctypes.c_void_p
     target = ctypes.c_void_p(window)
-    user32.ShowWindow(target, 9)  # SW_RESTORE
-    user32.SetWindowPos(target, ctypes.c_void_p(-1), 0, 0, 0, 0, 0x0003)
-    user32.SetWindowPos(target, ctypes.c_void_p(-2), 0, 0, 0, 0, 0x0003)
-    user32.BringWindowToTop(target)
-    if not user32.SetForegroundWindow(target):
-        raise OracleError("could not focus the isolated NBlood behavior window")
-    deadline = time.monotonic() + 1.0
-    while time.monotonic() < deadline and int(user32.GetForegroundWindow() or 0) != window:
-        time.sleep(0.01)
-    if int(user32.GetForegroundWindow() or 0) != window:
-        raise OracleError("Windows did not make the NBlood behavior window foreground")
+    for attempt in range(attempts):
+        user32.ShowWindow(target, 9)  # SW_RESTORE
+        user32.SetWindowPos(target, ctypes.c_void_p(-1), 0, 0, 0, 0, 0x0003)
+        user32.SetWindowPos(target, ctypes.c_void_p(-2), 0, 0, 0, 0, 0x0003)
+        user32.BringWindowToTop(target)
+        # A synthetic ALT press releases this thread's foreground lock.
+        user32.keybd_event(0x12, user32.MapVirtualKeyW(0x12, 0), 0, 0)
+        user32.keybd_event(0x12, user32.MapVirtualKeyW(0x12, 0), 2, 0)
+        foreground = ctypes.c_void_p(user32.GetForegroundWindow())
+        owner = ctypes.c_ulong()
+        foreground_thread = user32.GetWindowThreadProcessId(foreground, ctypes.byref(owner))
+        our_thread = kernel32.GetCurrentThreadId()
+        attached = bool(
+            foreground_thread and foreground_thread != our_thread
+            and user32.AttachThreadInput(our_thread, foreground_thread, True)
+        )
+        try:
+            user32.SetForegroundWindow(target)
+            user32.SetActiveWindow(target)
+        finally:
+            if attached:
+                user32.AttachThreadInput(our_thread, foreground_thread, False)
+        deadline = time.monotonic() + 1.0
+        while time.monotonic() < deadline and int(user32.GetForegroundWindow() or 0) != window:
+            time.sleep(0.01)
+        if int(user32.GetForegroundWindow() or 0) == window:
+            return
+        time.sleep(0.2 * (attempt + 1))
+    raise OracleError("Windows did not make the NBlood window foreground")
+
+
+def _press_key(window: int, virtual_key: int) -> None:
+    user32 = ctypes.WinDLL("user32", use_last_error=True)
+    _focus_window(window)
     time.sleep(0.2)
     scan_code = user32.MapVirtualKeyW(virtual_key, 0)
     user32.keybd_event(virtual_key, scan_code, 0, 0)
@@ -573,7 +606,8 @@ def _wait_for_map_initialization(
     raise OracleError(f"NBlood did not initialize the behavior MAP within {timeout:g} seconds")
 
 
-def _capture_hashes(work_dir: Path, window: int, timeout: float = 3.0) -> dict[str, Any]:
+def _capture_screenshots(work_dir: Path, window: int, timeout: float = 3.0) -> list[Path]:
+    """Press the bound screenshot key once and return the files it produced."""
     screenshot_dir = work_dir / "screenshots"
     before = {item.name for item in screenshot_dir.glob("blud*.png")} if screenshot_dir.exists() else set()
     _press_key(window, 0x7A)  # F11, bound to NBlood's screenshot command.
@@ -593,6 +627,11 @@ def _capture_hashes(work_dir: Path, window: int, timeout: float = 3.0) -> dict[s
         time.sleep(0.05)
     if not created:
         raise OracleError("NBlood did not produce a screenshot for the controlled key")
+    return created
+
+
+def _capture_hashes(work_dir: Path, window: int, timeout: float = 3.0) -> dict[str, Any]:
+    created = _capture_screenshots(work_dir, window, timeout)
     hashes = sorted({hashlib.sha256(item.read_bytes()).hexdigest() for item in created})
     return {"files": len(created), "unique_sha256": hashes}
 
@@ -724,6 +763,166 @@ def run_nblood_action_oracle(
     if work_dir is not None:
         return execute(Path(work_dir).resolve())
     with tempfile.TemporaryDirectory(prefix="bloodmap-nblood-action-") as directory:
+        return execute(Path(directory))
+
+
+def _probe_viewpoint_map(
+    map_path: Path, *, nblood: Path, game_dir: Path,
+    startup_timeout: float, settle_seconds: float, work_dir: Path, image_path: Path,
+) -> dict[str, Any]:
+    """Load one pose-variant MAP and preserve exactly one deterministic view."""
+    identity = _map_identity(map_path)
+    work_dir.mkdir(parents=True, exist_ok=True)
+    screenshot_dir = work_dir / "screenshots"
+    if screenshot_dir.exists():
+        shutil.rmtree(screenshot_dir)
+    for name in ("nblood.log", "stdout.txt", "stderr.txt"):
+        candidate = work_dir / name
+        if candidate.exists():
+            candidate.unlink()
+    shutil.copy2(map_path, work_dir / "oracle.MAP")
+    (work_dir / "oracle.cfg").write_text(_CONFIG, encoding="utf-8", newline="\n")
+    # The behavior autoexec is reused verbatim: it disables view bob (needed for a
+    # repeatable frame) and binds the screenshot command.
+    (work_dir / "autoexec.cfg").write_text(_BEHAVIOR_AUTOEXEC, encoding="utf-8", newline="\n")
+    command = [
+        str(nblood), "-usecwd", "-game_dir", str(game_dir),
+        "-cfg", "oracle.cfg", "-map", "oracle.MAP",
+        "-noautoload", "-quick", "-nosetup",
+    ]
+    stdout_path, stderr_path = work_dir / "stdout.txt", work_dir / "stderr.txt"
+    capture_error: str | None = None
+    captured: dict[str, Any] = {"files": 0, "image": None, "image_sha256": None}
+    stayed_alive = False
+    with stdout_path.open("wb") as stdout, stderr_path.open("wb") as stderr:
+        process = subprocess.Popen(
+            command, cwd=work_dir, stdout=stdout, stderr=stderr,
+            **_interactive_process_options(),
+        )
+        try:
+            _wait_for_map_initialization(process, work_dir / "nblood.log", startup_timeout)
+            time.sleep(settle_seconds)
+            window = _window_for_process(process)
+            # SetForegroundWindow loses races against whatever else is on the
+            # interactive desktop.  A focus failure says nothing about the MAP,
+            # so retry a bounded number of times before reporting it.
+            files: list[Path] = []
+            last: OracleError | None = None
+            for attempt in range(4):
+                try:
+                    files = _capture_screenshots(work_dir, window)
+                    break
+                except OracleError as exc:
+                    last = exc
+                    time.sleep(0.5 * (attempt + 1))
+            if not files:
+                raise last or OracleError("no screenshot was produced for this viewpoint")
+            image_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(files[0], image_path)
+            captured = {
+                "files": len(files),
+                "image": str(image_path),
+                "image_sha256": hashlib.sha256(image_path.read_bytes()).hexdigest(),
+            }
+            stayed_alive = process.poll() is None
+        except (OSError, OracleError) as exc:
+            capture_error = str(exc)
+        finally:
+            if process.poll() is None:
+                process.kill()
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait(timeout=5)
+
+    log = (work_dir / "nblood.log").read_text(encoding="utf-8", errors="replace") \
+        if (work_dir / "nblood.log").exists() else ""
+    stderr_text = stderr_path.read_text(encoding="utf-8", errors="replace")
+    assessment = assess_nblood_output(log, stderr_text, stayed_alive)
+    if capture_error or captured["image"] is None:
+        assessment["status"] = "fail"
+    assessment.update(
+        identity=identity,
+        capture_error=capture_error,
+        capture=captured,
+        terminated_by_harness=stayed_alive,
+    )
+    return assessment
+
+
+def run_nblood_viewpoint_capture(
+    requests: list[dict[str, Any]],
+    *,
+    nblood: str | Path,
+    game_dir: str | Path,
+    image_dir: str | Path,
+    startup_timeout: float = 20.0,
+    settle_seconds: float = 2.5,
+    work_dir: str | Path | None = None,
+) -> dict[str, Any]:
+    """Capture one preserved PNG per declared viewpoint pose.
+
+    Each request supplies ``viewpoint_id``, a prepared pose-variant ``map`` path,
+    and the ``resolved`` viewpoint record whose sector/XYZ/angle are recorded next
+    to the image so a later reader can tell what the camera was actually shown.
+    """
+    if os.name != "nt":
+        raise OracleError("the NBlood viewpoint capture currently requires Windows")
+    nblood_path = Path(nblood).resolve()
+    game_path = Path(game_dir).resolve()
+    images = Path(image_dir).resolve()
+    if not nblood_path.is_file():
+        raise OracleError(f"NBlood executable does not exist: {nblood_path}")
+    if not game_path.is_dir():
+        raise OracleError(f"NBlood game-data directory does not exist: {game_path}")
+    if not requests:
+        raise OracleError("viewpoint capture requires at least one request")
+    if not 1.0 <= startup_timeout <= 120.0:
+        raise OracleError("startup_timeout must be between 1 and 120")
+    if not 0.5 <= settle_seconds <= 30.0:
+        raise OracleError("settle_seconds must be between 0.5 and 30")
+
+    def execute(root: Path) -> dict[str, Any]:
+        views: list[dict[str, Any]] = []
+        for index, request in enumerate(requests):
+            viewpoint_id = str(request["viewpoint_id"])
+            variant = Path(request["map"]).resolve()
+            if not variant.is_file():
+                raise OracleError(f"viewpoint variant MAP does not exist: {variant}")
+            safe = "".join(ch if ch.isalnum() or ch in "-_" else "_" for ch in viewpoint_id)
+            probe = _probe_viewpoint_map(
+                variant, nblood=nblood_path, game_dir=game_path,
+                startup_timeout=startup_timeout, settle_seconds=settle_seconds,
+                work_dir=root / f"{index:02d}-{safe}", image_path=images / f"{safe}.png",
+            )
+            views.append({
+                "viewpoint_id": viewpoint_id,
+                "resolved": deepcopy(request.get("resolved", {})),
+                "variant_map_sha256": probe["identity"].get("sha256"),
+                "status": probe["status"],
+                "image": probe["capture"]["image"],
+                "image_sha256": probe["capture"]["image_sha256"],
+                "engine_revision": probe["engine_revision"],
+                "probe": probe,
+            })
+        revisions = sorted({item["engine_revision"] for item in views if item["engine_revision"]})
+        return {
+            "$schema": "llmapper.nblood-viewpoint-capture",
+            "schema_version": 1,
+            "status": "pass" if all(item["status"] == "pass" for item in views) else "fail",
+            "engine_revisions": revisions,
+            "image_dir": str(images),
+            "views": views,
+            "limitations": [
+                "an image hash proves stability, never visual quality",
+                "one frame per pose; no motion, no lighting animation, no player behavior",
+            ],
+        }
+
+    if work_dir is not None:
+        return execute(Path(work_dir).resolve())
+    with tempfile.TemporaryDirectory(prefix="bloodmap-nblood-views-") as directory:
         return execute(Path(directory))
 
 

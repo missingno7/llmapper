@@ -57,6 +57,18 @@ python -m bloodmap probe-route maps/blood/E1M1.MAP \
 python -m bloodmap project-init projects/crypt --name "Monastery crypt"
 ```
 
+An authored candidate can be compiled, gated, independently decompiled, probed,
+and rendered as one evidence packet, then revised from that evidence:
+
+```text
+python -m experiments.monastery_pilot v0 v1 v2 v3 --comparison
+python -m experiments.monastery_pilot v3 --nblood reference/blood/nblood.exe --game-dir reference/blood
+```
+
+See [the reasoned authoring loop](docs/authoring-loop.md) and the four-iteration
+[cliffside monastery pilot](projects/reasoned-authoring-v1/reports/comparison.md).
+
+
 Cross-game conversion requires an explicit fidelity policy:
 
 ```text
@@ -155,6 +167,8 @@ python -m unittest discover -s tests -v
 ## Documentation
 
 - [Architecture and invariants](docs/architecture.md)
+- [Reasoned authoring loop](docs/authoring-loop.md)
+- [Cliffside monastery authoring pilot](projects/reasoned-authoring-v1/reports/comparison.md)
 - [Design Understanding and grounded retrieval](docs/architecture.md#design-understanding)
 - [Multi-view spatial understanding](docs/spatial-understanding.md)
 - [Experience Atlas and persistent level projects](docs/experience-atlas.md)

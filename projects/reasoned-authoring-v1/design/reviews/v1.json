@@ -1,0 +1,126 @@
+{
+  "reviewer": "claude-opus-5 acting as the pilot's design reviewer",
+  "iteration_id": "v1",
+  "claims": [
+    {
+      "claim": "The threshold intervention did what it was predicted to do: arrival, courtyard, and gallery are now three separate places.",
+      "status": "supported",
+      "evidence": [
+        "intent:assembly:arrival",
+        "intent:assembly:courtyard",
+        "intent:assembly:gallery",
+        "view:gatehouse",
+        "view:gallery_arch"
+      ],
+      "reasoning": "v0 had one derived perceptual space holding all three assemblies, and its collapse discrepancy was the only finding of that iteration. v1 raises no hierarchy discrepancies at all. Arrival and courtyard each hold their own derived space at a dominant share of 1.0, and the gallery holds 0.92 of its floor area in a space of its own with an arch at either end. The gatehouse and the arches were what changed, and the shade step across them is what the grouping actually reads, so the causal chain is clear rather than inferred."
+    },
+    {
+      "claim": "The chapel became a composed interior instead of a box.",
+      "status": "supported",
+      "evidence": [
+        "probe:chapel_choices",
+        "view:chapel_interior",
+        "intent:assembly:chapel"
+      ],
+      "reasoning": "The nave now offers four onward choices where v0's offered one, and the rendered frame shows the raised apse recessed at the end of the nave with the aisles' lower ceilings framing it. The switch is now on the apse's back wall instead of floating on a blank rectangle."
+    },
+    {
+      "claim": "The crypt became a hall with parts.",
+      "status": "supported",
+      "evidence": [
+        "probe:crypt_choices",
+        "probe:revisit_after_crypt_gate",
+        "intent:assembly:crypt"
+      ],
+      "reasoning": "The crypt hall now offers three onward choices, and opening the apse switch adds eight sectors where v0's equivalent added one. Stair sectors across the level fell from 16 to 10 while room sectors rose from 10 to 15."
+    },
+    {
+      "claim": "Every ceiling in the level renders as a black void.",
+      "status": "supported",
+      "evidence": [
+        "view:chapel_interior",
+        "view:gallery_arch",
+        "view:gallery",
+        "art:blood:tile:416"
+      ],
+      "reasoning": "Tile 416 is a very dark tile, and at the shades I used there is nothing left to see: in three separate frames the ceiling is a flat black band with no readable surface. Nothing in the packet flagged this, because the packet only knew the tile was corpus-backed for ceilings. Only the images showed it."
+    },
+    {
+      "claim": "The chapel, the gallery, and the exit are still finished identically.",
+      "status": "supported",
+      "evidence": [
+        "view:chapel_interior",
+        "view:gallery",
+        "intent:assembly:chapel",
+        "intent:assembly:gallery",
+        "intent:assembly:exit"
+      ],
+      "reasoning": "All three still resolve to the dominant triple 294/416/5, and the gallery frame and the chapel frame are near-interchangeable apart from the apse. This was deferred from v0 on purpose and is now the whole subject of iteration 2."
+    },
+    {
+      "claim": "The courtyard wall still gives no sense of scale.",
+      "status": "supported",
+      "evidence": [
+        "view:gatehouse",
+        "view:courtyard_center",
+        "art:blood:tile:2490"
+      ],
+      "reasoning": "Unchanged from v0 by design, and unchanged in the frames: tile 2490 at 16 player heights is a smooth grey ridge with nothing for the eye to measure against."
+    },
+    {
+      "claim": "The level is undecorated.",
+      "status": "supported",
+      "evidence": [
+        "art:assembly:001/space:011",
+        "intent:assembly:gallery"
+      ],
+      "reasoning": "Five sprites across 31 sectors, and ten of the fourteen derived spaces contain nothing at all. Four of those five sprites are gameplay controls."
+    }
+  ],
+  "accepted_strengths": [
+    "All structural gates pass and the level still loads in NBlood revision rlocal-agtst10.",
+    "Zero hierarchy discrepancies, down from one, with the specific one that was targeted resolved.",
+    "Derived spaces rose from 9 to 14, and each new space corresponds to an authored intention rather than to a stair.",
+    "The gallery is first met at 88 percent of the start-to-exit route, which is the late arrival the brief wanted.",
+    "The gatehouse release still measures 42x area and about 13 player heights.",
+    "The ossuary is correctly unreachable while its panel is shut."
+  ],
+  "problems": [
+    "every ceiling renders as a black void",
+    "chapel, gallery, and exit share one dominant surface triple",
+    "courtyard wall tile has no scale cues",
+    "five sprites in 31 sectors; ten of fourteen derived spaces are empty"
+  ],
+  "next_actions": [
+    {
+      "action": "Iteration 2: choose ceilings by what they look like as well as by corpus count, and give every assembly its own dominant floor/ceiling/wall triple. Replace the courtyard wall with a coursed masonry whose joints carry scale.",
+      "expected_effect": "the identical-dominant-surface pairs drop to the crypt/ossuary pair, which is intentional, and the courtyard frame acquires visible stone courses.",
+      "evidence": [
+        "view:chapel_interior",
+        "view:gallery",
+        "art:blood:tile:2490",
+        "art:blood:tile:416"
+      ]
+    },
+    {
+      "action": "Iteration 2: attach decoration to architectural roles at densities anchored to the precedent packet - torches flanking the chapel door, lamps hung over the nave, grilles and chains in the crypt, vines on the derelict gallery, planting in the garden bed.",
+      "expected_effect": "empty derived spaces fall well below ten and no single space holds most of the decoration.",
+      "evidence": [
+        "art:assembly:001/space:011",
+        "intent:assembly:gallery"
+      ]
+    },
+    {
+      "action": "Iteration 2: change nothing about geometry or shading, so that any movement in the hierarchy evidence would prove the critic is reading something other than what was changed.",
+      "expected_effect": "derived space count and discrepancy count stay at 14 and 0.",
+      "evidence": [
+        "intent:assembly:gallery"
+      ]
+    }
+  ],
+  "uncertainties": [
+    "The dominant-space share rule was changed during this iteration from sector count to floor area, after it flagged the gallery as fragmented for being one 392 player-area room between two 16 player-area arches. This is the third rule corrected for the same reason: counting sectors treats a stair step and a courtyard as equal units. Both v0 and v1 are reported under the corrected rules.",
+    "The perceptual boundary the gatehouse and the arches create is a shade step, which is what the decompiler's grouping actually reads. Whether a player experiences it as a threshold is not established by anything here; the rendered frames are consistent with it but do not prove it.",
+    "Nothing in this iteration measures combat, pacing, enemy placement, or how the level plays."
+  ]
+}

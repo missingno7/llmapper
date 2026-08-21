@@ -1,0 +1,10 @@
+{
+  "$schema": "bloodmap.level-project",
+  "authoring_model": "brief -> recipe/operations -> MAP -> validation/probes",
+  "boundaries": [
+    "derived observations never overwrite MAP truth",
+    "LLM is an external client, not a core dependency"
+  ],
+  "name": "Reasoned authoring v1: cliffside monastery",
+  "schema_version": 1
+}

@@ -56,8 +56,39 @@ from .sector_map import render_sector_map
 from .oracle import run_eduke32_oracle
 from .recipe import RecipeError, RecipeResult, build_composition_recipe
 from .decompiler import DecompilerError, LevelSource, decompile_level, emit_python_source
+from .viewpoints import (
+    ViewpointError, ViewpointSpec, apply_viewpoint, prepare_viewpoints, resolve_viewpoint,
+    viewpoint_manifest, viewpoint_variant_diff,
+)
+from .authoring_loop import (
+    AuthoredAssembly, AuthoredIntent, AuthoredTransition, AuthoringIteration,
+    AuthoringLoopError, Candidate, NextAction, ProbeRequest, ReasoningReview, ReviewClaim,
+    attach_review, compare_iterations, evaluate_candidate, record_review, resolve_evidence,
+)
 
 __all__ = [
+    "AuthoredAssembly",
+    "AuthoredIntent",
+    "AuthoredTransition",
+    "AuthoringIteration",
+    "AuthoringLoopError",
+    "Candidate",
+    "NextAction",
+    "ProbeRequest",
+    "ReasoningReview",
+    "ReviewClaim",
+    "ViewpointError",
+    "ViewpointSpec",
+    "apply_viewpoint",
+    "attach_review",
+    "compare_iterations",
+    "evaluate_candidate",
+    "prepare_viewpoints",
+    "record_review",
+    "resolve_evidence",
+    "resolve_viewpoint",
+    "viewpoint_manifest",
+    "viewpoint_variant_diff",
     "AttachmentResult",
     "BloodMapError",
     "BuildDiagnostic",

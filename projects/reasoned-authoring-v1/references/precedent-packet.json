@@ -1,0 +1,632 @@
+{
+  "$schema": "llmapper.precedent-packet",
+  "admissibility": "Only original Blood maps are evidence here. Generated candidates may never be cited as evidence for original Blood design patterns.",
+  "derivation_tool": "tools/mine_precedents.py plus tools/precedent_detail.py plus inspection",
+  "precedents": [
+    {
+      "abstract_lesson": "Model the courtyard as ONE region with holes for each mass. Containment then exists in the geometry itself instead of only in the author's naming.",
+      "new_implementation": "PlanarLayout.carve_hole for the chapel shell and the garden bed, so the courtyard region literally surrounds both.",
+      "observation": [
+        {
+          "native": {
+            "ceiling_parallax": true,
+            "ceiling_picnum": 2500,
+            "ceiling_shade": -15,
+            "ceiling_z": -155648,
+            "floor_picnum": 2448,
+            "floor_shade": 9,
+            "floor_z": 1124352,
+            "wall_count": 80,
+            "wall_loop_count": 5
+          },
+          "player_relative": {
+            "clear_height_player_heights": 227.27,
+            "footprint_player_areas": 6220.0
+          },
+          "source_ref": "E2M6.MAP#sector:208",
+          "sprite_count": 8,
+          "sprite_picnums": [
+            1470,
+            2497,
+            2521
+          ],
+          "wall_tile_histogram": {
+            "2473": 38,
+            "2490": 42
+          },
+          "walls": "E2M6.MAP#wall:1582..1661"
+        }
+      ],
+      "precedent_id": "precedent:open-parent-containing-structure",
+      "question": "How does an original map build a large exterior space that contains buildings?",
+      "relationship_consulted": "one exterior sector whose wall loops carve the building masses out of it, rather than several exterior sectors placed around separate buildings",
+      "reuse_policy": "principles only; no coordinates, vertices, or fragments were copied",
+      "source": {
+        "game": "blood",
+        "map": "E2M6.MAP",
+        "path": "maps\\blood\\E2M6.MAP",
+        "sha256": "14d46acbd2c7eb9c0d3e0b1b65ab98c32d43aa4641e5a42d3de60f85cdb8d7f3"
+      }
+    },
+    {
+      "abstract_lesson": "Release comes from the ratio, not from making the opening ornate. A gate barely wider than the player, opening onto a far larger space, is enough.",
+      "new_implementation": "a 2-unit-wide, 2-player-height gate tunnel opening onto the courtyard",
+      "observation": [
+        {
+          "native": {
+            "ceiling_parallax": true,
+            "ceiling_picnum": 2500,
+            "ceiling_shade": -15,
+            "ceiling_z": -155648,
+            "floor_picnum": 2448,
+            "floor_shade": 9,
+            "floor_z": -48128,
+            "wall_count": 4,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 19.09,
+            "footprint_player_areas": 4.28
+          },
+          "source_ref": "E2M6.MAP#sector:40",
+          "sprite_count": 0,
+          "sprite_picnums": [],
+          "wall_tile_histogram": {
+            "2473": 4
+          },
+          "walls": "E2M6.MAP#wall:301..304"
+        },
+        {
+          "native": {
+            "ceiling_parallax": true,
+            "ceiling_picnum": 2500,
+            "ceiling_shade": -15,
+            "ceiling_z": -155648,
+            "floor_picnum": 2448,
+            "floor_shade": 9,
+            "floor_z": 1124352,
+            "wall_count": 80,
+            "wall_loop_count": 5
+          },
+          "player_relative": {
+            "clear_height_player_heights": 227.27,
+            "footprint_player_areas": 6220.0
+          },
+          "source_ref": "E2M6.MAP#sector:208",
+          "sprite_count": 8,
+          "sprite_picnums": [
+            1470,
+            2497,
+            2521
+          ],
+          "wall_tile_histogram": {
+            "2473": 38,
+            "2490": 42
+          },
+          "walls": "E2M6.MAP#wall:1582..1661"
+        }
+      ],
+      "precedent_id": "precedent:release-opening",
+      "question": "How wide is the constrained side of an opening that produces strong spatial release?",
+      "relationship_consulted": "a 1.33 player-width opening from a 4.3 player-area pocket into a 6220 player-area exterior",
+      "reuse_policy": "principles only; no coordinates, vertices, or fragments were copied",
+      "source": {
+        "game": "blood",
+        "map": "E2M6.MAP",
+        "path": "maps\\blood\\E2M6.MAP",
+        "sha256": "14d46acbd2c7eb9c0d3e0b1b65ab98c32d43aa4641e5a42d3de60f85cdb8d7f3"
+      }
+    },
+    {
+      "abstract_lesson": "A stair is a shade gradient as much as a geometry ramp: the run gets brighter toward its destination, which reads as a light source ahead.",
+      "new_implementation": "crypt and gallery stairs use a fixed per-step rise and a monotonic shade ramp",
+      "observation": [
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 21,
+            "ceiling_shade": 33,
+            "ceiling_z": -83968,
+            "floor_picnum": 110,
+            "floor_shade": 37,
+            "floor_z": -55296,
+            "wall_count": 4,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 5.09,
+            "footprint_player_areas": 2.03
+          },
+          "source_ref": "E2M6.MAP#sector:52",
+          "sprite_count": 0,
+          "sprite_picnums": [],
+          "wall_tile_histogram": {
+            "109": 2,
+            "68": 2
+          },
+          "walls": "E2M6.MAP#wall:352..355"
+        },
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 21,
+            "ceiling_shade": 33,
+            "ceiling_z": -86016,
+            "floor_picnum": 110,
+            "floor_shade": 37,
+            "floor_z": -57344,
+            "wall_count": 4,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 5.09,
+            "footprint_player_areas": 2.04
+          },
+          "source_ref": "E2M6.MAP#sector:53",
+          "sprite_count": 0,
+          "sprite_picnums": [],
+          "wall_tile_histogram": {
+            "109": 2,
+            "67": 1,
+            "68": 1
+          },
+          "walls": "E2M6.MAP#wall:356..359"
+        },
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 21,
+            "ceiling_shade": 33,
+            "ceiling_z": -88064,
+            "floor_picnum": 110,
+            "floor_shade": 37,
+            "floor_z": -59392,
+            "wall_count": 4,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 5.09,
+            "footprint_player_areas": 2.04
+          },
+          "source_ref": "E2M6.MAP#sector:54",
+          "sprite_count": 0,
+          "sprite_picnums": [],
+          "wall_tile_histogram": {
+            "109": 2,
+            "68": 2
+          },
+          "walls": "E2M6.MAP#wall:360..363"
+        },
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 21,
+            "ceiling_shade": 33,
+            "ceiling_z": -90112,
+            "floor_picnum": 110,
+            "floor_shade": 37,
+            "floor_z": -61440,
+            "wall_count": 4,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 5.09,
+            "footprint_player_areas": 2.03
+          },
+          "source_ref": "E2M6.MAP#sector:55",
+          "sprite_count": 0,
+          "sprite_picnums": [],
+          "wall_tile_histogram": {
+            "109": 2,
+            "67": 1,
+            "68": 1
+          },
+          "walls": "E2M6.MAP#wall:364..367"
+        },
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 21,
+            "ceiling_shade": 31,
+            "ceiling_z": -92160,
+            "floor_picnum": 110,
+            "floor_shade": 37,
+            "floor_z": -63488,
+            "wall_count": 4,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 5.09,
+            "footprint_player_areas": 2.03
+          },
+          "source_ref": "E2M6.MAP#sector:56",
+          "sprite_count": 0,
+          "sprite_picnums": [],
+          "wall_tile_histogram": {
+            "109": 2,
+            "68": 2
+          },
+          "walls": "E2M6.MAP#wall:368..371"
+        },
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 21,
+            "ceiling_shade": 31,
+            "ceiling_z": -94208,
+            "floor_picnum": 110,
+            "floor_shade": 34,
+            "floor_z": -65536,
+            "wall_count": 4,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 5.09,
+            "footprint_player_areas": 2.04
+          },
+          "source_ref": "E2M6.MAP#sector:57",
+          "sprite_count": 0,
+          "sprite_picnums": [],
+          "wall_tile_histogram": {
+            "109": 2,
+            "68": 2
+          },
+          "walls": "E2M6.MAP#wall:372..375"
+        },
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 21,
+            "ceiling_shade": 29,
+            "ceiling_z": -96256,
+            "floor_picnum": 110,
+            "floor_shade": 32,
+            "floor_z": -67584,
+            "wall_count": 4,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 5.09,
+            "footprint_player_areas": 2.04
+          },
+          "source_ref": "E2M6.MAP#sector:58",
+          "sprite_count": 0,
+          "sprite_picnums": [],
+          "wall_tile_histogram": {
+            "109": 2,
+            "68": 2
+          },
+          "walls": "E2M6.MAP#wall:376..379"
+        },
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 21,
+            "ceiling_shade": 27,
+            "ceiling_z": -98304,
+            "floor_picnum": 110,
+            "floor_shade": 29,
+            "floor_z": -69632,
+            "wall_count": 4,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 5.09,
+            "footprint_player_areas": 2.04
+          },
+          "source_ref": "E2M6.MAP#sector:59",
+          "sprite_count": 0,
+          "sprite_picnums": [],
+          "wall_tile_histogram": {
+            "109": 2,
+            "68": 2
+          },
+          "walls": "E2M6.MAP#wall:380..383"
+        },
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 21,
+            "ceiling_shade": 25,
+            "ceiling_z": -100352,
+            "floor_picnum": 110,
+            "floor_shade": 27,
+            "floor_z": -71680,
+            "wall_count": 4,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 5.09,
+            "footprint_player_areas": 1.99
+          },
+          "source_ref": "E2M6.MAP#sector:60",
+          "sprite_count": 0,
+          "sprite_picnums": [],
+          "wall_tile_histogram": {
+            "109": 2,
+            "68": 2
+          },
+          "walls": "E2M6.MAP#wall:384..387"
+        },
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 21,
+            "ceiling_shade": 23,
+            "ceiling_z": -102400,
+            "floor_picnum": 110,
+            "floor_shade": 25,
+            "floor_z": -73728,
+            "wall_count": 4,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 5.09,
+            "footprint_player_areas": 1.96
+          },
+          "source_ref": "E2M6.MAP#sector:61",
+          "sprite_count": 0,
+          "sprite_picnums": [],
+          "wall_tile_histogram": {
+            "109": 2,
+            "68": 2
+          },
+          "walls": "E2M6.MAP#wall:388..391"
+        },
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 21,
+            "ceiling_shade": 21,
+            "ceiling_z": -104448,
+            "floor_picnum": 110,
+            "floor_shade": 21,
+            "floor_z": -75776,
+            "wall_count": 4,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 5.09,
+            "footprint_player_areas": 2.02
+          },
+          "source_ref": "E2M6.MAP#sector:62",
+          "sprite_count": 0,
+          "sprite_picnums": [],
+          "wall_tile_histogram": {
+            "109": 2,
+            "68": 2
+          },
+          "walls": "E2M6.MAP#wall:392..395"
+        },
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 21,
+            "ceiling_shade": 17,
+            "ceiling_z": -106496,
+            "floor_picnum": 110,
+            "floor_shade": 15,
+            "floor_z": -77824,
+            "wall_count": 4,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 5.09,
+            "footprint_player_areas": 2.04
+          },
+          "source_ref": "E2M6.MAP#sector:63",
+          "sprite_count": 0,
+          "sprite_picnums": [],
+          "wall_tile_histogram": {
+            "109": 2,
+            "68": 2
+          },
+          "walls": "E2M6.MAP#wall:396..399"
+        }
+      ],
+      "precedent_id": "precedent:stair-run",
+      "question": "What step rise, step size, and lighting does an original stair run use?",
+      "relationship_consulted": "twelve identical 2.0 player-area steps, each rising exactly 2048 units, with the floor shade ramping 37 down to 15 along the run",
+      "reuse_policy": "principles only; no coordinates, vertices, or fragments were copied",
+      "source": {
+        "game": "blood",
+        "map": "E2M6.MAP",
+        "path": "maps\\blood\\E2M6.MAP",
+        "sha256": "14d46acbd2c7eb9c0d3e0b1b65ab98c32d43aa4641e5a42d3de60f85cdb8d7f3"
+      }
+    },
+    {
+      "abstract_lesson": "A crypt is defined by being low, small, dark, and MONOMATERIAL. Material variety would destroy the effect that scale and shade create.",
+      "new_implementation": "crypt hall and niches use tile 1097 on all three surfaces at high shade",
+      "observation": [
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 1097,
+            "ceiling_shade": 52,
+            "ceiling_z": -71680,
+            "floor_picnum": 1097,
+            "floor_shade": 52,
+            "floor_z": -63488,
+            "wall_count": 7,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 1.45,
+            "footprint_player_areas": 33.78
+          },
+          "source_ref": "E6M3.MAP#sector:68",
+          "sprite_count": 0,
+          "sprite_picnums": [],
+          "wall_tile_histogram": {
+            "1097": 7
+          },
+          "walls": "E6M3.MAP#wall:405..411"
+        },
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 1097,
+            "ceiling_shade": 56,
+            "ceiling_z": -53248,
+            "floor_picnum": 1097,
+            "floor_shade": 56,
+            "floor_z": -36864,
+            "wall_count": 6,
+            "wall_loop_count": 1
+          },
+          "player_relative": {
+            "clear_height_player_heights": 2.91,
+            "footprint_player_areas": 25.78
+          },
+          "source_ref": "E6M3.MAP#sector:75",
+          "sprite_count": 2,
+          "sprite_picnums": [
+            2521,
+            2548
+          ],
+          "wall_tile_histogram": {
+            "1097": 5,
+            "194": 1
+          },
+          "walls": "E6M3.MAP#wall:445..450"
+        }
+      ],
+      "precedent_id": "precedent:dark-low-interior",
+      "question": "What scale, shade, and material does a crypt-like interior actually use?",
+      "relationship_consulted": "1.45 to 2.91 player heights clear, 25 to 34 player areas, shade 52 to 56, and the same tile (1097) on floor, ceiling, and walls",
+      "reuse_policy": "principles only; no coordinates, vertices, or fragments were copied",
+      "source": {
+        "game": "blood",
+        "map": "E6M3.MAP",
+        "path": "maps\\blood\\E6M3.MAP",
+        "sha256": "c3ee4fe55e10795ec9cce2f3c5b7ff0aa466a602e32c4647481169da7200651a"
+      }
+    },
+    {
+      "abstract_lesson": "A rich room is one dominant fill tile, one secondary, and one rare trim, not a different tile per surface. Variety comes from geometry and decoration.",
+      "new_implementation": "each pilot assembly gets one fill tile, one secondary, and one accent",
+      "observation": [
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 16,
+            "ceiling_shade": 42,
+            "ceiling_z": -53248,
+            "floor_picnum": 361,
+            "floor_shade": 34,
+            "floor_z": 12288,
+            "wall_count": 166,
+            "wall_loop_count": 13
+          },
+          "player_relative": {
+            "clear_height_player_heights": 11.64,
+            "footprint_player_areas": 1124.75
+          },
+          "source_ref": "E4M4.MAP#sector:48",
+          "sprite_count": 15,
+          "sprite_picnums": [
+            1925,
+            1948,
+            2519,
+            2521
+          ],
+          "wall_tile_histogram": {
+            "16": 19,
+            "327": 114,
+            "480": 33
+          },
+          "walls": "E4M4.MAP#wall:415..580"
+        }
+      ],
+      "precedent_id": "precedent:carved-room-vocabulary",
+      "question": "How many wall tiles does a large, heavily carved interior actually use?",
+      "relationship_consulted": "1124 player areas, 13 wall loops, and only three wall tiles in a 114 / 33 / 19 dominant-secondary-trim distribution",
+      "reuse_policy": "principles only; no coordinates, vertices, or fragments were copied",
+      "source": {
+        "game": "blood",
+        "map": "E4M4.MAP",
+        "path": "maps\\blood\\E4M4.MAP",
+        "sha256": "4a8094243ab347e9ab34e6d72432077b19ffe5698e69b44ab21b698aadf45e12"
+      }
+    },
+    {
+      "abstract_lesson": "Roughly 4 sprites per 100 player areas in an interior focal room; the exterior precedent (E2M6 sector:208) runs 0.13 per 100. Outdoor space is sparse on purpose.",
+      "new_implementation": "interiors are decorated an order of magnitude more densely than the courtyard",
+      "observation": [
+        {
+          "native": {
+            "ceiling_parallax": false,
+            "ceiling_picnum": 120,
+            "ceiling_shade": 16,
+            "ceiling_z": -36864,
+            "floor_picnum": 120,
+            "floor_shade": 16,
+            "floor_z": -4096,
+            "wall_count": 132,
+            "wall_loop_count": 3
+          },
+          "player_relative": {
+            "clear_height_player_heights": 5.82,
+            "footprint_player_areas": 950.16
+          },
+          "source_ref": "E1M6.MAP#sector:391",
+          "sprite_count": 39,
+          "sprite_picnums": [
+            519,
+            558,
+            559,
+            809,
+            812,
+            816,
+            817,
+            1170,
+            1470,
+            2169,
+            2820,
+            2825
+          ],
+          "wall_tile_histogram": {
+            "121": 41,
+            "123": 80,
+            "124": 3,
+            "125": 3,
+            "126": 3,
+            "200": 1,
+            "556": 1
+          },
+          "walls": "E1M6.MAP#wall:3871..4002"
+        }
+      ],
+      "precedent_id": "precedent:decorated-large-room",
+      "question": "How densely is a large original room actually decorated?",
+      "relationship_consulted": "950 player areas with 39 sprites and six distinct wall tiles, two of which carry 121 of the 132 walls",
+      "reuse_policy": "principles only; no coordinates, vertices, or fragments were copied",
+      "source": {
+        "game": "blood",
+        "map": "E1M6.MAP",
+        "path": "maps\\blood\\E1M6.MAP",
+        "sha256": "3deeeb399ff38996f4f46dd3626ad311c18e62eaaefad37e29f7da0934dd2676"
+      }
+    }
+  ],
+  "rejected_candidates": [
+    {
+      "candidate": "E1M6.MAP sector:439 to sector:391",
+      "consequence": "release-opening evidence was taken from E2M6 instead, after inspection",
+      "why_rejected": "the automatic release-opening detector ranked it first, but sector:439 has 0.1 player areas and zero clear height: it is a degenerate closed sector, not a designed approach pocket"
+    },
+    {
+      "candidate": "E1M6.MAP sector:244",
+      "consequence": "decoration density evidence was taken from E1M6 sector:391 instead",
+      "why_rejected": "ranked highly as a decorated room but has tile 0 on every surface, no portals, and 63 stacked type-20 sprites: an authoring scratch sector, not a composed room"
+    },
+    {
+      "candidate": "blood:tile:449 interpreted as stone_masonry",
+      "consequence": "tile 449 is unused by the pilot and the disagreement is an open uncertainty",
+      "why_rejected": "the mined annotation says stone_masonry, but the rendered tile is gnarled root or bark; the interpreted facet disagrees with the image"
+    }
+  ],
+  "schema_version": 1,
+  "scope": "bounded pilot packet for projects/reasoned-authoring-v1; not a corpus atlas"
+}

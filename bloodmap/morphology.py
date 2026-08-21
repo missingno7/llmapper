@@ -271,3 +271,75 @@ def analyze_morphology(build: BuildIR) -> dict[str, Any]:
             "segmented-arc chains are consecutive shallow same-sign turns, not true curves",
         ],
     }
+
+
+SHAPE_KEYS = (
+    "orthogonal_length_fraction",
+    "diagonal_length_fraction",
+    "orientation_5deg_bins_occupied",
+    "orientation_diversity",
+    "chamfer_fraction",
+    "segmented_arc_chain_count",
+    "rectangular_sector_fraction",
+    "convex_sector_fraction",
+    "median_outer_vertex_count",
+)
+
+
+def shape_signature(build: BuildIR) -> dict[str, float]:
+    """One comparable shape vector per map, drawn from analyze_morphology."""
+    report = analyze_morphology(build)
+    walls, corners, sectors = report["walls"], report["corners"], report["sectors"]
+    vertices = sectors.get("outer_vertex_counts") or {}
+    return {
+        "orthogonal_length_fraction": float(walls["orthogonal_length_fraction"]),
+        "diagonal_length_fraction": float(walls["diagonal_length_fraction"]),
+        "orientation_5deg_bins_occupied": float(walls["orientation_5deg_bins_occupied"]),
+        "orientation_diversity": float(walls["orientation_diversity"]),
+        "chamfer_fraction": float(corners.get("chamfer_fraction") or 0.0),
+        "segmented_arc_chain_count": float(corners["segmented_arc_chain_count"]),
+        "rectangular_sector_fraction": float(sectors["rectangular_fraction"]),
+        "convex_sector_fraction": float(sectors["convex_fraction"]),
+        "median_outer_vertex_count": float(vertices.get("median") or 0.0),
+    }
+
+
+def mine_shape_corpus(maps: list[tuple[str, BuildIR]]) -> dict[str, Any]:
+    """Distribution of whole-map shape signatures, for corpus-relative comparison.
+
+    This is the shape counterpart of ``player_space.mine_build_spatial_corpus``:
+    it says what proportion of a real map's wall length is axis-aligned, how many
+    orientations it uses, and how often its sectors are plain rectangles.  It
+    assigns no labels and sets no targets; a candidate outside the corpus mass is
+    unusual for this corpus, which is a question, not a verdict.
+    """
+    if not maps:
+        raise MorphologyError("shape corpus is empty")
+    samples: dict[str, list[float]] = {key: [] for key in SHAPE_KEYS}
+    used: list[str] = []
+    skipped: list[dict[str, str]] = []
+    for name, build in maps:
+        try:
+            signature = shape_signature(build)
+        except (MorphologyError, ValueError, KeyError) as exc:
+            skipped.append({"map": name, "error": f"{type(exc).__name__}: {exc}"})
+            continue
+        used.append(name)
+        for key in SHAPE_KEYS:
+            samples[key].append(signature[key])
+    if not used:
+        raise MorphologyError("shape corpus has no maps the morphology sensor can analyze")
+    return {
+        "$schema": "llmapper.shape-corpus",
+        "schema_version": SCHEMA_VERSION,
+        "maps": used,
+        "skipped": skipped,
+        "samples": {key: values for key, values in samples.items()},
+        "summaries": {key: _summary(values) for key, values in samples.items()},
+        "notes": [
+            "Percentiles are computed against these maps, not universal constants.",
+            "Being outside the corpus mass is a question about the candidate, not a defect.",
+            "Shape here is wall orientation and loop rectangularity only; it says nothing "
+            "about whether a shape is good.",
+        ],
+    }

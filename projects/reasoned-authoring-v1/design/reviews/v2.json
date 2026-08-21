@@ -1,0 +1,135 @@
+{
+  "reviewer": "claude-opus-5 as reviewer, with a direct correction from the project owner",
+  "iteration_id": "v2",
+  "claims": [
+    {
+      "claim": "The material revision achieved what it was for: each assembly now reads as its own place.",
+      "status": "supported",
+      "evidence": [
+        "view:gatehouse",
+        "view:gallery",
+        "view:chapel_interior",
+        "intent:assembly:gallery",
+        "intent:assembly:chapel"
+      ],
+      "reasoning": "The near-identical surface vocabulary pairs went from three to zero and the identical dominant-surface pairs from four to one, and the one that remains is the crypt and its ossuary, which should match. The frames confirm it: the gallery's dark red brick, mossed ceiling and diamond floor are unmistakably not the chapel's grey brick, coffered ceiling and green chequer."
+    },
+    {
+      "claim": "The courtyard wall change fixed the scale problem it was aimed at.",
+      "status": "supported",
+      "evidence": [
+        "view:gatehouse",
+        "art:blood:tile:110"
+      ],
+      "reasoning": "Tile 110's courses are individually visible in the frame, so the courtyard wall now has a repeating unit the eye can measure the space against. The same frame also shows the two torches flanking the chapel door doing what a landmark is supposed to do: the composition now has a centre. Tile 2490, the v1 wall, no longer appears anywhere in the level, which is why this claim cites its replacement."
+    },
+    {
+      "claim": "Decoration is distributed rather than concentrated.",
+      "status": "supported",
+      "evidence": [
+        "art:assembly:001/space:011",
+        "art:assembly:001/space:004"
+      ],
+      "reasoning": "Sprites went from 5 to 56, empty derived spaces from ten to six, and the largest share held by any one space from 0.40 to 0.21. Of the six spaces still empty, four are the insides of closed Z-doors and one is the deliberately bare crypt stair; only the loop arch is a genuine omission, since its twin got an emblem and it did not."
+    },
+    {
+      "claim": "Geometry and shading were held constant and the hierarchy evidence did not move, which isolates the cause of every change above.",
+      "status": "supported",
+      "evidence": [
+        "intent:assembly:gallery",
+        "gate:deterministic_emission"
+      ],
+      "reasoning": "Sector, wall, region and connection counts are identical to v1, derived spaces stayed at 14 and discrepancies at 0, exactly as predicted before compiling. So every difference in the ART and render sections is attributable to tiles and sprites alone."
+    },
+    {
+      "claim": "The level is far more rectangular than any original Blood map.",
+      "status": "supported",
+      "evidence": [
+        "shape:orthogonal-length-fraction",
+        "shape:diagonal-length-fraction",
+        "shape:orientation-5deg-bins-occupied",
+        "shape:chamfer-fraction",
+        "shape:rectangular-sector-fraction"
+      ],
+      "reasoning": "The project owner said the map is still pretty much rectangular, and against 42 campaign maps that is exact: the candidate is 100 percent orthogonal wall length where the corpus median is 0.72, has zero diagonal length where the corpus median is 0.089, occupies 2 of 36 orientation bins where the corpus median is 36, has no chamfered corners where the corpus median is 0.073, and is 0.74 rectangular sectors where the corpus median is 0.35. Every one of these is at the 0th or 100th percentile. I built a grid and never measured that I had."
+    },
+    {
+      "claim": "Most of the level's ceilings are far lower than original maps use for rooms of the same footprint.",
+      "status": "supported",
+      "evidence": [
+        "scale:assembly:001.space:007:low-ceiling",
+        "scale:assembly:001.space:009:low-ceiling",
+        "scale:assembly:001.space:014:low-ceiling",
+        "scale:assembly:001.space:001:low-ceiling",
+        "scale:assembly:001.space:006:low-ceiling"
+      ],
+      "reasoning": "The project owner said ceilings are too low in places, and matched against corpus sectors of comparable footprint that is true almost everywhere except the courtyard. The crypt hall sits at the 2.5 percentile, its chambers at 0.9, the exit hall at 4.5, the approach at 3.9. I chose heights as round multiples of the player's height because they sounded reasonable, without ever asking what original maps do at that footprint. The courtyard, which I did size against the E2M6 precedent, lands at the 59th percentile - the one space I checked against real evidence is the one that is right."
+    },
+    {
+      "claim": "The oversized chapel lamp is a scale error the packet could not see.",
+      "status": "supported",
+      "evidence": [
+        "view:chapel_interior",
+        "art:blood:tile:1701"
+      ],
+      "reasoning": "The hanging censer fills the middle of the chapel frame. Its repeats are the campaign-modal values, which give about 4 player heights of sprite in a 7 player-height nave; original maps hang it in taller spaces. No gate, probe, or ART measure looks at sprite world size against the room it is in, so nothing but the image caught it."
+    },
+    {
+      "claim": "The critic is only as good as the dimensions it has, and it was missing two of them.",
+      "status": "supported",
+      "evidence": [
+        "shape:orthogonal-length-fraction",
+        "scale:assembly:001.space:007:low-ceiling"
+      ],
+      "reasoning": "Three iterations passed every hard gate with zero discrepancies while the level was a pure axis-aligned grid with rooms in the bottom decile of the corpus for height. The packet was not wrong about what it measured; it simply had no shape dimension and no corpus-relative scale dimension. Both are now in it, mined from 42 campaign maps, which is why this iteration reports twelve findings where the previous one reported none."
+    }
+  ],
+  "accepted_strengths": [
+    "All structural gates pass and the level loads in NBlood revision rlocal-agtst10.",
+    "Each assembly now has its own material identity, confirmed in the rendered frames.",
+    "The courtyard wall carries scale, and the chapel door reads as a landmark.",
+    "Decoration is attached to architectural roles and spread across eight spaces.",
+    "The hierarchy result from iteration 1 held perfectly under a pure material change."
+  ],
+  "problems": [
+    "100 percent orthogonal walls, zero diagonals, zero chamfers, zero arcs, 0.74 rectangular sectors",
+    "five spaces below the 5th percentile of corpus height for their footprint",
+    "the hanging censer is roughly four player heights tall in a seven player-height nave",
+    "the loop arch is the one genuinely undecorated non-door space"
+  ],
+  "next_actions": [
+    {
+      "action": "Iteration 3: raise ceilings to corpus-typical heights for each space's footprint, keeping the crypt chambers deliberately low because the E6M3 precedent supports it at their size, and keeping the arches lower than what they open onto.",
+      "expected_effect": "no space below the 10th percentile of corpus height for its footprint except ones I can defend from a precedent, and the low-ceiling findings drop from five to at most one.",
+      "evidence": [
+        "scale:assembly:001.space:007:low-ceiling",
+        "scale:assembly:001.space:009:low-ceiling",
+        "scale:assembly:001.space:014:low-ceiling"
+      ]
+    },
+    {
+      "action": "Iteration 3: break the grid. Chamfer the courtyard and chapel-mass corners, make the apse a polygonal chancel, splay the gatehouse, cut the crypt hall's corners, angle the gallery's far end, and make the garden bed octagonal.",
+      "expected_effect": "orthogonal length fraction and rectangular sector fraction fall inside the corpus central mass, and diagonal fraction, orientation bins and chamfer fraction rise off zero.",
+      "evidence": [
+        "shape:orthogonal-length-fraction",
+        "shape:diagonal-length-fraction",
+        "shape:chamfer-fraction",
+        "shape:rectangular-sector-fraction"
+      ]
+    },
+    {
+      "action": "Iteration 3: scale the hanging lamps to the rooms they hang in, and give the loop arch the emblem its twin has.",
+      "expected_effect": "the censer stops filling the chapel frame, and every non-door space holds something.",
+      "evidence": [
+        "view:chapel_interior",
+        "art:blood:tile:1701"
+      ]
+    }
+  ],
+  "uncertainties": [
+    "A corpus percentile says a number is unusual for 42 Blood maps. It does not say a number is wrong. The crypt chambers are deliberately kept in the lower tail because the E6M3 precedent measures real crypts there; the difference is that this is now an argued exception rather than an unexamined default.",
+    "The shape metrics are whole-level aggregates, so a level that is half organic and half deliberately rectilinear would read as average. They locate a problem; they do not locate where it is.",
+    "Nothing here measures sprite world size against its room, which is why the censer got through. That gap is being fixed by hand in iteration 3 rather than by a new rule, and it remains a known hole in the packet.",
+    "Nothing in this pilot measures combat, pacing, enemy placement, or how the level plays."
+  ]
+}

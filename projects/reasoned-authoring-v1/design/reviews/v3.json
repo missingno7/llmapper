@@ -1,0 +1,100 @@
+{
+  "reviewer": "claude-opus-5 acting as the pilot's design reviewer",
+  "iteration_id": "v3",
+  "claims": [
+    {
+      "claim": "The corpus-set ceiling heights fixed the scale problem where it mattered.",
+      "status": "supported",
+      "evidence": [
+        "scale:assembly:001/space:011",
+        "scale:assembly:001/space:004",
+        "scale:assembly:001/space:014",
+        "view:chapel_interior",
+        "view:crypt_hall"
+      ],
+      "reasoning": "The gallery moved from the 19th percentile of corpus sectors of its footprint to the 57th, the chapel from 11.5 to 35.5, the exit hall from 4.5 to 41. Low-ceiling findings fell from five to three. The two rendered frames show the difference: the chapel is now a hall with a readable vault instead of a low box, and the crypt is a vaulted room rather than a black slot. Setting heights from what original maps do at each footprint was the whole change."
+    },
+    {
+      "claim": "The three remaining low spaces are argued rather than accidental.",
+      "status": "supported",
+      "evidence": [
+        "scale:assembly:001.space:007:low-ceiling",
+        "scale:assembly:001.space:009:low-ceiling",
+        "scale:assembly:001.space:006:low-ceiling"
+      ],
+      "reasoning": "space:009 is the crypt cells at 3 player heights, which is the top of the range the E6M3 precedent measures for real crypt cells of 25 to 35 player areas. space:007 is the crypt hall at 4.49, deliberately below the corpus median because a crypt that is as tall as a nave is not a crypt. space:006 is the crypt stair, which is circulation. I am declining to raise these and stating why, which is different from not having noticed."
+    },
+    {
+      "claim": "The level is no longer a grid, but it is still far less varied in orientation than any original map.",
+      "status": "supported",
+      "evidence": [
+        "shape:orthogonal_length_fraction",
+        "shape:diagonal_length_fraction",
+        "shape:orientation-5deg-bins-occupied",
+        "shape:rectangular-sector-fraction",
+        "view:gatehouse",
+        "view:chapel_interior"
+      ],
+      "reasoning": "Orthogonal wall length fell from 1.0 at the 100th percentile to 0.838 at the 88th, and diagonal length rose from 0.0 at the 0th to 0.117 at the 71st, which is above the corpus median. The frames confirm it: the chapel mass now shows cut corners from the courtyard and the chancel reads as a faceted radial recess. But orientation_5deg_bins_occupied is 6 against a corpus minimum of 15, still the 0th percentile, and rectangular_sector_fraction is 0.548 against a corpus maximum of 0.533. Chamfering corners reaches four orientations, and adding shallow facets reached six; original maps reach thirty-six because they contain genuinely curved, segmented-arc geometry that I am not authoring."
+    },
+    {
+      "claim": "The sprite-scale rule caught a whole class of error the packet had been blind to.",
+      "status": "supported",
+      "evidence": [
+        "view:chapel_interior",
+        "view:crypt_hall"
+      ],
+      "reasoning": "v2 shipped 18 decorations taller than three quarters of the space they stood in, four of them at over 250 percent, clipping through floor and ceiling. v3 ships zero. Deriving each repeat from the tile's pixel height and a stated target in player heights, instead of copying the campaign mode, is what did it. The campaign mode was not wrong; it was the mode for the rooms original maps put those sprites in, not for mine."
+    },
+    {
+      "claim": "The hierarchy result from iterations 1 and 2 survived a substantial geometry rewrite.",
+      "status": "supported",
+      "evidence": [
+        "probe:route_start_to_exit",
+        "probe:gallery_choices",
+        "probe:crypt_choices",
+        "gate:required_reachability",
+        "gate:exit_reachable"
+      ],
+      "reasoning": "Fourteen derived spaces and zero discrepancies, unchanged, while 39 walls were added and nine outlines reshaped. All structural gates pass and the level still loads in NBlood. The shade structure that carries the thresholds was deliberately untouched, which is why the perceptual result held."
+    },
+    {
+      "claim": "The rectangular-sector fraction cannot fall much further without changing what the level is made of.",
+      "status": "uncertain",
+      "evidence": [
+        "shape:rectangular-sector-fraction"
+      ],
+      "reasoning": "Fourteen of the level's 31 sectors are stair steps and door sectors, which are rectangles in original maps too. Every room outline is already non-rectangular. Getting this metric to the corpus median would mean either fewer stairs or non-rectangular stair steps, and I do not think either is a design improvement. This is a case where I think the metric is pointing at the composition of the level rather than at a fault, but I am not confident enough to dismiss it."
+    }
+  ],
+  "accepted_strengths": [
+    "All structural gates pass and the level loads in NBlood revision rlocal-agtst10.",
+    "Every viewpoint captured; the chancel, the cut chapel mass and the vaulted crypt all read in the frames.",
+    "Zero oversized decorations, down from 18.",
+    "Low-ceiling findings down from five to three, and the three are argued.",
+    "Diagonal wall length now above the corpus median where it was zero two iterations ago.",
+    "Fourteen derived spaces and zero hierarchy discrepancies held across a large geometry change."
+  ],
+  "problems": [
+    "orientation variety is 6 bins against a corpus minimum of 15",
+    "rectangular sector fraction 0.548 against a corpus maximum of 0.533",
+    "chamfer fraction 0.31 is now above the corpus maximum, because every cut corner is a chamfer",
+    "the sky renders very dark and no claim about why has been established"
+  ],
+  "next_actions": [
+    {
+      "action": "Stop here for this pilot. The remaining shape gap needs segmented-arc authoring - genuinely curved walls built from many small angle steps - which PlanarLayout can express but nothing in the loop helps an author compose. That is the next bottleneck, not another pass of chamfering.",
+      "expected_effect": "further chamfering would push chamfer_fraction further above the corpus while leaving orientation variety at the 0th percentile, which is fitting the metric rather than the brief.",
+      "evidence": [
+        "shape:chamfer-fraction",
+        "shape:orientation-5deg-bins-occupied"
+      ]
+    }
+  ],
+  "uncertainties": [
+    "The shape metrics are whole-level aggregates. They told me the level was a grid, which was true and worth knowing, but they cannot say which room needs work, and chasing them produced one metric above the corpus (chamfer fraction) while another stayed at the floor.",
+    "A corpus percentile is a statement about 42 Blood maps, not about quality. Three spaces are deliberately left in the lower tail on precedent grounds.",
+    "The sprite-scale rule fires above 75 percent of a space's clear height. The v2 chapel censer sat at 58 percent and still dominated its frame, so the threshold catches the egregious cases and not the merely poor ones; the censer was fixed from the image, not from the rule.",
+    "Nothing in this pilot measures combat, pacing, enemy placement, sound, or how the level plays. No claim is made about any of them."
+  ]
+}

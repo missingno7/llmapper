@@ -1,0 +1,171 @@
+{
+  "reviewer": "claude-opus-5 acting as the pilot's design reviewer",
+  "iteration_id": "v0",
+  "claims": [
+    {
+      "claim": "The upper gallery does not exist as a separate place; it is absorbed into the courtyard.",
+      "status": "supported",
+      "evidence": [
+        "discrepancy:assembly:001.space:001:collapsed",
+        "decompiled:assembly:001/space:001",
+        "intent:assembly:gallery",
+        "intent:assembly:courtyard"
+      ],
+      "reasoning": "The independent decompilation put all 11 gallery-assembly sectors plus the courtyard plus the arrival into one derived perceptual space of 15 sectors. The gallery's dominant-space share is 1.0 into that shared space, so nothing about the compiled result separates it. The floor rises 15360 units, which the authored intent treated as sufficient, but the perceptual grouping only breaks on a floor delta above 4096 across a portal or a shade delta above 12, and the stair delivers neither: every step is 3072 and every sector is shade 16. Height alone did not buy an identity."
+    },
+    {
+      "claim": "The arrival approach also fails to read as its own place, despite a 63x area ratio at the gate.",
+      "status": "supported",
+      "evidence": [
+        "probe:reveal_contrast",
+        "discrepancy:assembly:001.space:001:collapsed",
+        "decompiled:assembly:001/space:001",
+        "view:gate_approach"
+      ],
+      "reasoning": "probe:reveal_contrast measures exactly the release the brief asked for: area ratio 63.5 and a clear-height gain of 78848 units, about 14 player heights. The rendered gate approach confirms the framing is good, with the chapel door visible at the end of a genuinely tight tunnel. Yet both sectors land in the same derived space, because the tunnel and the courtyard sit at the same floor Z and the same shade. The transition is a release without being a threshold: measured contrast and perceived boundary are different things, and only the first was authored."
+    },
+    {
+      "claim": "The crypt reads as one room at the bottom of a stair rather than as a crypt.",
+      "status": "supported",
+      "evidence": [
+        "decompiled:assembly:001/space:005",
+        "view:crypt_hall",
+        "intent:assembly:crypt"
+      ],
+      "reasoning": "The independently derived space:005 groups the six crypt stair steps with the crypt hall and its single niche: six of its eight sectors are circulation, and the rendered frame from inside the crypt is dominated by the stair receding away. The E2M6 step rise was applied faithfully, but faithfulness to a stair precedent without comparable investment in the destination makes the destination subordinate. This finding does NOT come from the packet's transition-dominated rule, which no longer fires here; see the uncertainties for why I changed that rule and kept the finding anyway."
+    },
+    {
+      "claim": "The chapel is an empty box, not a composed interior.",
+      "status": "supported",
+      "evidence": [
+        "view:chapel_interior",
+        "art:assembly:001/space:003",
+        "intent:assembly:chapel"
+      ],
+      "reasoning": "The rendered interior is one flat-floored, flat-ceilinged 288 player-area rectangle with a single switch sprite on an otherwise blank wall. The brief asked for one large space with internal children and details; the courtyard got the garden bed, the chapel got nothing. The brick courses read well and give real scale, so the material is not the problem here, the geometry is."
+    },
+    {
+      "claim": "The courtyard's enclosing walls give the player no sense of scale.",
+      "status": "supported",
+      "evidence": [
+        "view:courtyard_center",
+        "view:courtyard_from_stair",
+        "art:blood:tile:2490",
+        "intent:assembly:courtyard"
+      ],
+      "reasoning": "Tile 2490 is corpus-backed for exteriors (1764 wall placements, and it is E2M6 sector:208's dominant exterior wall) but it is a smooth veined marble with no courses, joints, or repeating features. At 16 player heights tall it renders as an undifferentiated rock face, and the frame taken from the middle of the courtyard is a wall of featureless grey. Compare view:chapel_interior, where tile 5's brick courses make an interior a quarter the height read as clearly larger. Corpus usage justified the choice; the rendered frame shows corpus usage was not sufficient."
+    },
+    {
+      "claim": "Three intended identities are finished identically.",
+      "status": "supported",
+      "evidence": [
+        "view:chapel_interior",
+        "view:gallery",
+        "art:assembly:001/space:003",
+        "intent:assembly:chapel",
+        "intent:assembly:gallery",
+        "intent:assembly:exit"
+      ],
+      "reasoning": "The chapel, the gallery, and the exit chamber all resolve to the same dominant floor/ceiling/wall triple 294/416/5, and the two rendered frames are nearly interchangeable. This is expected of a blockout and is deliberately deferred to the visual iteration, but it is recorded now so the later change is driven by evidence and not by taste. It was only named at all because I added a dominant-surface comparison after the whole-assembly vocabulary overlap failed to catch it."
+    },
+    {
+      "claim": "The start-to-exit spine, the hub branching, and the loop are structurally sound.",
+      "status": "supported",
+      "evidence": [
+        "probe:route_start_to_exit",
+        "probe:courtyard_choices",
+        "probe:gallery_choices",
+        "probe:tunnel_choices",
+        "gate:exit_reachable"
+      ],
+      "reasoning": "A 10-step route exists from start to exit. The courtyard offers 6 onward choices and the gallery 3, of which two are independent descents back to the courtyard, so the loop is real as a graph. The gate tunnel offers 2, making it correctly the narrowest decision point. None of this needs changing in iteration 1."
+    },
+    {
+      "claim": "probe:reach_crypt failing is my probe declaration being wrong, not the level.",
+      "status": "contradicted",
+      "evidence": [
+        "probe:reach_crypt",
+        "probe:route_start_to_exit",
+        "gate:required_reachability"
+      ],
+      "reasoning": "I opened only connection:courtyard_cryptgate. A Blood Z-door blocks both of its portals while closed, so the crypt-gate sector's inner portal to crypt_stair_1 stays shut too. The required_reachability gate, which opens every authored connection, reaches all 28 mandatory regions, and probe:route_start_to_exit finds a full route through the crypt gate. The probe declaration needs fixing, not the geometry."
+    },
+    {
+      "claim": "probe:ossuary_optional reporting fail is the intended answer, not a defect.",
+      "status": "contradicted",
+      "evidence": [
+        "probe:ossuary_optional",
+        "gate:required_reachability"
+      ],
+      "reasoning": "The probe asks whether the ossuary is reachable while its panel stays shut. Fail means no, which is what optional-behind-a-gate should mean. The question was worded so that the desirable answer looks like a failure, which is a reporting trap; it is reworded in iteration 1."
+    }
+  ],
+  "accepted_strengths": [
+    "Every structural gate passes and the MAP loads in NBlood revision rlocal-agtst10.",
+    "The courtyard genuinely contains the chapel and the garden bed as carved holes, so containment lives in the geometry rather than only in the naming.",
+    "The gate tunnel's constrained-to-open release measures 63.5x area and about 14 player heights, and the rendered frame confirms the chapel door is framed at the end of the tunnel.",
+    "The crypt's rendered frame already has the low vaulted character the E6M3 precedent described.",
+    "Route, hub branching, and the two-descent loop all check out and need no change."
+  ],
+  "problems": [
+    "gallery, courtyard, and arrival collapse into one derived perceptual space",
+    "the crypt is one room at the end of a six-sector stair",
+    "the chapel nave is a single empty rectangle with no internal children",
+    "16 of 30 sectors are stair steps; the level is three rooms and a lot of walking",
+    "the courtyard exterior wall tile has no scale cues at 16 player heights",
+    "chapel, gallery, and exit share one dominant surface triple",
+    "5 of 9 derived spaces contain no sprites at all; 5 sprites in a 30-sector level"
+  ],
+  "next_actions": [
+    {
+      "action": "Iteration 1: build real thresholds where the hierarchy is supposed to change. Add a covered gatehouse between the tunnel and the courtyard, and a low dark arch at each of the gallery's two openings, each darker than its neighbours by more than the grouping tolerance. This is deliberately architectural rather than a shade tweak: a gatehouse and two arches are things a monastery has, and their darkness follows from being covered.",
+      "expected_effect": "arrival, courtyard, and gallery stop sharing one derived perceptual space; the collapsed discrepancy for space:001 disappears and the derived space count rises, with the new spaces corresponding to authored assemblies rather than to stairs.",
+      "evidence": [
+        "discrepancy:assembly:001.space:001:collapsed",
+        "decompiled:assembly:001/space:001",
+        "probe:reveal_contrast"
+      ]
+    },
+    {
+      "action": "Iteration 1: cut circulation and add destination. Reduce the gallery ascent and its loop descent from five steps each to three, lower the gallery to about two player heights, shorten the crypt stair to four steps, and give the crypt a hall plus a reliquary and a cistern chamber.",
+      "expected_effect": "stair sectors drop from 16 to 10 while room sectors rise from 10 to 15; the crypt's derived space stops being mostly stair and becomes a hall with parts.",
+      "evidence": [
+        "decompiled:assembly:001/space:005",
+        "view:crypt_hall"
+      ]
+    },
+    {
+      "action": "Iteration 1: give the chapel internal children - two flanking side aisles and a raised, brighter apse at the east end holding the crypt-gate switch.",
+      "expected_effect": "the chapel becomes a composed interior with parts; the brief's large-space-with-children requirement is met by the chapel as well as by the courtyard, and the switch stops floating on a blank wall.",
+      "evidence": [
+        "view:chapel_interior",
+        "intent:assembly:chapel"
+      ]
+    },
+    {
+      "action": "Iteration 1: move the open exterior stairs from the gallery assembly into the courtyard assembly in the declared intent, and fix probe:reach_crypt to open both crypt-gate connections and reword probe:ossuary_optional.",
+      "expected_effect": "the declared hierarchy matches what an open exterior stair actually is, so the comparison stops reporting a disagreement the evidence was right about; the probe section stops reporting declaration bugs as level defects.",
+      "evidence": [
+        "discrepancy:assembly:001.space:001:collapsed",
+        "probe:reach_crypt",
+        "probe:ossuary_optional"
+      ]
+    },
+    {
+      "action": "Iteration 2 (deferred): replace the courtyard's scaleless exterior wall with a coursed tile, give each assembly its own dominant surface triple, and attach decoration to architectural roles.",
+      "expected_effect": "the identical-dominant-surface pairs drop and the courtyard's rendered frame acquires scale cues.",
+      "evidence": [
+        "view:courtyard_center",
+        "view:gallery",
+        "art:blood:tile:2490"
+      ]
+    }
+  ],
+  "uncertainties": [
+    "Iteration 0 corrected the critic twice, in both cases because a rule disagreed with a rendered frame or with sector composition. First, the transition-dominated rule counted sectors, so it called a 1008 player-area courtyard circulation because six tiny stair steps outnumbered it; it now weighs floor area and ignores spaces made entirely of circulation. Second, the perceptual-singleton rule counted closed Z-doors, which can never group with anything and so made every gated room look fragmented; it now counts only non-circulation singletons. Both v0 and v1 are reported under the corrected rules, so their discrepancy lists are comparable, but the pre-correction v0 output is not preserved and must not be compared against them.",
+    "The perceptual-space rule (floor delta <= 4096 and shade delta <= 12 across a portal) is the decompiler's approximation of what reads as one place. It is not a renderer and not a person. Designing against it risks fitting the approximation rather than the experience, so every change it motivates is cross-checked against a rendered frame.",
+    "Tile 2490's mined annotation says stone_masonry, which agrees with the corpus but not with the rendered image at this scale. The mismatch between corpus role and rendered appearance is unresolved and is recorded in the precedent packet's rejected candidates.",
+    "The sky (tile 2500 with parallax) renders very dark. Whether that is the tile, the ceiling shade, or the sky header fields is not established, and no claim is made about it.",
+    "Nothing in this iteration measures combat, pacing, enemy placement, or how any of this plays, and no claim is made about them."
+  ]
+}
