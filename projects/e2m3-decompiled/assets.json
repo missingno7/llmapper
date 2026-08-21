@@ -1,0 +1,2589 @@
+{
+ "$schema": "llmapper.level-asset-roles",
+ "of": "E2M3.MAP",
+ "model": "local roles for this level's dominant tiles; exact ids stay authoritative",
+ "aliases": [
+  {
+   "asset": "blood:tile:0",
+   "local_alias": "MAIN_WALL_3",
+   "local_role": "wall",
+   "interpretation_status": "local_role_only",
+   "note": "the role this tile holds in this level, not a claim about the tile",
+   "counts": {
+    "wall": 132,
+    "sprite": 22
+   },
+   "verified_usage": {
+    "ceiling": 17,
+    "floor": 11,
+    "sprite": 22,
+    "wall": 132,
+    "wall_overlay": 2629
+   }
+  },
+  {
+   "asset": "blood:tile:20",
+   "local_alias": "MAIN_CEILING_3",
+   "local_role": "ceiling",
+   "interpretation_status": "local_role_only",
+   "note": "the role this tile holds in this level, not a claim about the tile",
+   "counts": {
+    "ceiling": 24
+   },
+   "verified_usage": {
+    "ceiling": 24,
+    "floor": 12,
+    "wall": 64
+   }
+  },
+  {
+   "asset": "blood:tile:253",
+   "local_alias": "MAIN_FLOOR_2",
+   "local_role": "floor",
+   "interpretation_status": "local_role_only",
+   "note": "the role this tile holds in this level, not a claim about the tile",
+   "counts": {
+    "floor": 20
+   },
+   "verified_usage": {
+    "floor": 20
+   }
+  },
+  {
+   "asset": "blood:tile:309",
+   "local_alias": "MAIN_WALL_2",
+   "local_role": "wall",
+   "interpretation_status": "local_role_only",
+   "note": "the role this tile holds in this level, not a claim about the tile",
+   "counts": {
+    "wall": 185
+   },
+   "verified_usage": {
+    "ceiling": 1,
+    "wall": 185
+   }
+  },
+  {
+   "asset": "blood:tile:329",
+   "local_alias": "MAIN_CEILING_2",
+   "local_role": "ceiling",
+   "interpretation_status": "local_role_only",
+   "note": "the role this tile holds in this level, not a claim about the tile",
+   "counts": {
+    "ceiling": 77
+   },
+   "verified_usage": {
+    "ceiling": 77,
+    "floor": 8,
+    "wall": 123
+   }
+  },
+  {
+   "asset": "blood:tile:365",
+   "local_alias": "MAIN_FLOOR_3",
+   "local_role": "floor",
+   "interpretation_status": "local_role_only",
+   "note": "the role this tile holds in this level, not a claim about the tile",
+   "counts": {
+    "floor": 18
+   },
+   "verified_usage": {
+    "ceiling": 8,
+    "floor": 18,
+    "wall": 108
+   }
+  },
+  {
+   "asset": "blood:tile:2448",
+   "local_alias": "MAIN_FLOOR",
+   "local_role": "floor",
+   "interpretation_status": "local_role_only",
+   "note": "the role this tile holds in this level, not a claim about the tile",
+   "counts": {
+    "floor": 190
+   },
+   "verified_usage": {
+    "floor": 190,
+    "wall": 12
+   }
+  },
+  {
+   "asset": "blood:tile:2499",
+   "local_alias": "MAIN_WALL",
+   "local_role": "wall",
+   "interpretation_status": "local_role_only",
+   "note": "the role this tile holds in this level, not a claim about the tile",
+   "counts": {
+    "wall": 926
+   },
+   "verified_usage": {
+    "ceiling": 6,
+    "wall": 926
+   }
+  },
+  {
+   "asset": "blood:tile:2500",
+   "local_alias": "MAIN_CEILING",
+   "local_role": "ceiling",
+   "interpretation_status": "local_role_only",
+   "note": "the role this tile holds in this level, not a claim about the tile",
+   "counts": {
+    "ceiling": 123
+   },
+   "verified_usage": {
+    "ceiling": 123
+   }
+  },
+  {
+   "asset": "blood:tile:2520",
+   "local_alias": "MAIN_SPRITE_2",
+   "local_role": "sprite",
+   "interpretation_status": "local_role_only",
+   "note": "the role this tile holds in this level, not a claim about the tile",
+   "counts": {
+    "sprite": 23
+   },
+   "verified_usage": {
+    "sprite": 23
+   }
+  },
+  {
+   "asset": "blood:tile:2825",
+   "local_alias": "MAIN_SPRITE",
+   "local_role": "sprite",
+   "interpretation_status": "local_role_only",
+   "note": "the role this tile holds in this level, not a claim about the tile",
+   "counts": {
+    "sprite": 39
+   },
+   "verified_usage": {
+    "sprite": 39
+   }
+  }
+ ],
+ "full_catalog": [
+  {
+   "id": "blood:tile:0",
+   "native": {
+    "game": "blood",
+    "tile_id": 0
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 17,
+    "floor": 11,
+    "sprite": 22,
+    "wall": 132,
+    "wall_overlay": 2629
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:5",
+   "native": {
+    "game": "blood",
+    "tile_id": 5
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 9,
+    "floor": 8,
+    "wall": 73
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:6",
+   "native": {
+    "game": "blood",
+    "tile_id": 6
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "floor": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:16",
+   "native": {
+    "game": "blood",
+    "tile_id": 16
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 5
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:20",
+   "native": {
+    "game": "blood",
+    "tile_id": 20
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 24,
+    "floor": 12,
+    "wall": 64
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:21",
+   "native": {
+    "game": "blood",
+    "tile_id": 21
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 12,
+    "floor": 12,
+    "wall": 54
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:22",
+   "native": {
+    "game": "blood",
+    "tile_id": 22
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:25",
+   "native": {
+    "game": "blood",
+    "tile_id": 25
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 5
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:27",
+   "native": {
+    "game": "blood",
+    "tile_id": 27
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 3
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:28",
+   "native": {
+    "game": "blood",
+    "tile_id": 28
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 34
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:29",
+   "native": {
+    "game": "blood",
+    "tile_id": 29
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 4
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:34",
+   "native": {
+    "game": "blood",
+    "tile_id": 34
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "floor": 8,
+    "sprite": 5,
+    "wall": 31
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:39",
+   "native": {
+    "game": "blood",
+    "tile_id": 39
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:49",
+   "native": {
+    "game": "blood",
+    "tile_id": 49
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 6
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:56",
+   "native": {
+    "game": "blood",
+    "tile_id": 56
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:67",
+   "native": {
+    "game": "blood",
+    "tile_id": 67
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 14,
+    "floor": 4,
+    "wall": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:68",
+   "native": {
+    "game": "blood",
+    "tile_id": 68
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 6,
+    "sprite": 2,
+    "wall": 13
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:88",
+   "native": {
+    "game": "blood",
+    "tile_id": 88
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 20
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:91",
+   "native": {
+    "game": "blood",
+    "tile_id": 91
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 47
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:110",
+   "native": {
+    "game": "blood",
+    "tile_id": 110
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 2,
+    "floor": 8,
+    "wall": 40
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:115",
+   "native": {
+    "game": "blood",
+    "tile_id": 115
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 8
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:120",
+   "native": {
+    "game": "blood",
+    "tile_id": 120
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "floor": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:140",
+   "native": {
+    "game": "blood",
+    "tile_id": 140
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 3
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:144",
+   "native": {
+    "game": "blood",
+    "tile_id": 144
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 3
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:148",
+   "native": {
+    "game": "blood",
+    "tile_id": 148
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 4
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:153",
+   "native": {
+    "game": "blood",
+    "tile_id": 153
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 38
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:157",
+   "native": {
+    "game": "blood",
+    "tile_id": 157
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:170",
+   "native": {
+    "game": "blood",
+    "tile_id": 170
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 13
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:178",
+   "native": {
+    "game": "blood",
+    "tile_id": 178
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 28
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:181",
+   "native": {
+    "game": "blood",
+    "tile_id": 181
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 34
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:185",
+   "native": {
+    "game": "blood",
+    "tile_id": 185
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:195",
+   "native": {
+    "game": "blood",
+    "tile_id": 195
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 24
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:200",
+   "native": {
+    "game": "blood",
+    "tile_id": 200
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 48
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:219",
+   "native": {
+    "game": "blood",
+    "tile_id": 219
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:253",
+   "native": {
+    "game": "blood",
+    "tile_id": 253
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "floor": 20
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:259",
+   "native": {
+    "game": "blood",
+    "tile_id": 259
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:266",
+   "native": {
+    "game": "blood",
+    "tile_id": 266
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall_overlay": 4
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:272",
+   "native": {
+    "game": "blood",
+    "tile_id": 272
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 1,
+    "floor": 1,
+    "wall": 52
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:281",
+   "native": {
+    "game": "blood",
+    "tile_id": 281
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "floor": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:296",
+   "native": {
+    "game": "blood",
+    "tile_id": 296
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:297",
+   "native": {
+    "game": "blood",
+    "tile_id": 297
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "floor": 9,
+    "wall": 21
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:306",
+   "native": {
+    "game": "blood",
+    "tile_id": 306
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 5
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:309",
+   "native": {
+    "game": "blood",
+    "tile_id": 309
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 1,
+    "wall": 185
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:313",
+   "native": {
+    "game": "blood",
+    "tile_id": 313
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:314",
+   "native": {
+    "game": "blood",
+    "tile_id": 314
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:316",
+   "native": {
+    "game": "blood",
+    "tile_id": 316
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:317",
+   "native": {
+    "game": "blood",
+    "tile_id": 317
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:318",
+   "native": {
+    "game": "blood",
+    "tile_id": 318
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:319",
+   "native": {
+    "game": "blood",
+    "tile_id": 319
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall_overlay": 175
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:329",
+   "native": {
+    "game": "blood",
+    "tile_id": 329
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 77,
+    "floor": 8,
+    "wall": 123
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:334",
+   "native": {
+    "game": "blood",
+    "tile_id": 334
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:355",
+   "native": {
+    "game": "blood",
+    "tile_id": 355
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 1,
+    "floor": 1,
+    "wall": 58
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:365",
+   "native": {
+    "game": "blood",
+    "tile_id": 365
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 8,
+    "floor": 18,
+    "wall": 108
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:369",
+   "native": {
+    "game": "blood",
+    "tile_id": 369
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 8,
+    "wall": 45
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:372",
+   "native": {
+    "game": "blood",
+    "tile_id": 372
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 2,
+    "wall": 11
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:376",
+   "native": {
+    "game": "blood",
+    "tile_id": 376
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "floor": 1,
+    "wall": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:394",
+   "native": {
+    "game": "blood",
+    "tile_id": 394
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 14
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:401",
+   "native": {
+    "game": "blood",
+    "tile_id": 401
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1,
+    "wall": 38
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:403",
+   "native": {
+    "game": "blood",
+    "tile_id": 403
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "floor": 1,
+    "wall": 4
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:414",
+   "native": {
+    "game": "blood",
+    "tile_id": 414
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 11
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:417",
+   "native": {
+    "game": "blood",
+    "tile_id": 417
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 1,
+    "wall": 14
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:436",
+   "native": {
+    "game": "blood",
+    "tile_id": 436
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 4
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:449",
+   "native": {
+    "game": "blood",
+    "tile_id": 449
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 4
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:450",
+   "native": {
+    "game": "blood",
+    "tile_id": 450
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 32
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:456",
+   "native": {
+    "game": "blood",
+    "tile_id": 456
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:469",
+   "native": {
+    "game": "blood",
+    "tile_id": 469
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:504",
+   "native": {
+    "game": "blood",
+    "tile_id": 504
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 1,
+    "floor": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:519",
+   "native": {
+    "game": "blood",
+    "tile_id": 519
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:524",
+   "native": {
+    "game": "blood",
+    "tile_id": 524
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:525",
+   "native": {
+    "game": "blood",
+    "tile_id": 525
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:526",
+   "native": {
+    "game": "blood",
+    "tile_id": 526
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:539",
+   "native": {
+    "game": "blood",
+    "tile_id": 539
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:540",
+   "native": {
+    "game": "blood",
+    "tile_id": 540
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:547",
+   "native": {
+    "game": "blood",
+    "tile_id": 547
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 8
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:548",
+   "native": {
+    "game": "blood",
+    "tile_id": 548
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 7
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:558",
+   "native": {
+    "game": "blood",
+    "tile_id": 558
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:559",
+   "native": {
+    "game": "blood",
+    "tile_id": 559
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:560",
+   "native": {
+    "game": "blood",
+    "tile_id": 560
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:589",
+   "native": {
+    "game": "blood",
+    "tile_id": 589
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:604",
+   "native": {
+    "game": "blood",
+    "tile_id": 604
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 3
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:610",
+   "native": {
+    "game": "blood",
+    "tile_id": 610
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:617",
+   "native": {
+    "game": "blood",
+    "tile_id": 617
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:618",
+   "native": {
+    "game": "blood",
+    "tile_id": 618
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 3
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:619",
+   "native": {
+    "game": "blood",
+    "tile_id": 619
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 3
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:625",
+   "native": {
+    "game": "blood",
+    "tile_id": 625
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:641",
+   "native": {
+    "game": "blood",
+    "tile_id": 641
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 3
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:658",
+   "native": {
+    "game": "blood",
+    "tile_id": 658
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:680",
+   "native": {
+    "game": "blood",
+    "tile_id": 680
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:684",
+   "native": {
+    "game": "blood",
+    "tile_id": 684
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:713",
+   "native": {
+    "game": "blood",
+    "tile_id": 713
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:753",
+   "native": {
+    "game": "blood",
+    "tile_id": 753
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 5
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:768",
+   "native": {
+    "game": "blood",
+    "tile_id": 768
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:795",
+   "native": {
+    "game": "blood",
+    "tile_id": 795
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 8
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:801",
+   "native": {
+    "game": "blood",
+    "tile_id": 801
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 4
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:802",
+   "native": {
+    "game": "blood",
+    "tile_id": 802
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:809",
+   "native": {
+    "game": "blood",
+    "tile_id": 809
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 5
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:810",
+   "native": {
+    "game": "blood",
+    "tile_id": 810
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 6
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:811",
+   "native": {
+    "game": "blood",
+    "tile_id": 811
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:812",
+   "native": {
+    "game": "blood",
+    "tile_id": 812
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 6
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:813",
+   "native": {
+    "game": "blood",
+    "tile_id": 813
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:816",
+   "native": {
+    "game": "blood",
+    "tile_id": 816
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 4
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:817",
+   "native": {
+    "game": "blood",
+    "tile_id": 817
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:827",
+   "native": {
+    "game": "blood",
+    "tile_id": 827
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:829",
+   "native": {
+    "game": "blood",
+    "tile_id": 829
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:896",
+   "native": {
+    "game": "blood",
+    "tile_id": 896
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:907",
+   "native": {
+    "game": "blood",
+    "tile_id": 907
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:908",
+   "native": {
+    "game": "blood",
+    "tile_id": 908
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 10
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:915",
+   "native": {
+    "game": "blood",
+    "tile_id": 915
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:929",
+   "native": {
+    "game": "blood",
+    "tile_id": 929
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:957",
+   "native": {
+    "game": "blood",
+    "tile_id": 957
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:958",
+   "native": {
+    "game": "blood",
+    "tile_id": 958
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:959",
+   "native": {
+    "game": "blood",
+    "tile_id": 959
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1008",
+   "native": {
+    "game": "blood",
+    "tile_id": 1008
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "floor": 1,
+    "wall": 9
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1044",
+   "native": {
+    "game": "blood",
+    "tile_id": 1044
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 10
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1046",
+   "native": {
+    "game": "blood",
+    "tile_id": 1046
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 7
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1050",
+   "native": {
+    "game": "blood",
+    "tile_id": 1050
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1070",
+   "native": {
+    "game": "blood",
+    "tile_id": 1070
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 4
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1074",
+   "native": {
+    "game": "blood",
+    "tile_id": 1074
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 6
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1076",
+   "native": {
+    "game": "blood",
+    "tile_id": 1076
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1127",
+   "native": {
+    "game": "blood",
+    "tile_id": 1127
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 3
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1170",
+   "native": {
+    "game": "blood",
+    "tile_id": 1170
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 12
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1370",
+   "native": {
+    "game": "blood",
+    "tile_id": 1370
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 10
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1470",
+   "native": {
+    "game": "blood",
+    "tile_id": 1470
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 8
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1570",
+   "native": {
+    "game": "blood",
+    "tile_id": 1570
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1708",
+   "native": {
+    "game": "blood",
+    "tile_id": 1708
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1710",
+   "native": {
+    "game": "blood",
+    "tile_id": 1710
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1711",
+   "native": {
+    "game": "blood",
+    "tile_id": 1711
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1712",
+   "native": {
+    "game": "blood",
+    "tile_id": 1712
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1713",
+   "native": {
+    "game": "blood",
+    "tile_id": 1713
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1714",
+   "native": {
+    "game": "blood",
+    "tile_id": 1714
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1715",
+   "native": {
+    "game": "blood",
+    "tile_id": 1715
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1716",
+   "native": {
+    "game": "blood",
+    "tile_id": 1716
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1745",
+   "native": {
+    "game": "blood",
+    "tile_id": 1745
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 4
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1870",
+   "native": {
+    "game": "blood",
+    "tile_id": 1870
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 3
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1920",
+   "native": {
+    "game": "blood",
+    "tile_id": 1920
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 6
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:1925",
+   "native": {
+    "game": "blood",
+    "tile_id": 1925
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 3
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2101",
+   "native": {
+    "game": "blood",
+    "tile_id": 2101
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2115",
+   "native": {
+    "game": "blood",
+    "tile_id": 2115
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2169",
+   "native": {
+    "game": "blood",
+    "tile_id": 2169
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 11
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2331",
+   "native": {
+    "game": "blood",
+    "tile_id": 2331
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 3
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2332",
+   "native": {
+    "game": "blood",
+    "tile_id": 2332
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 3
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2433",
+   "native": {
+    "game": "blood",
+    "tile_id": 2433
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2448",
+   "native": {
+    "game": "blood",
+    "tile_id": 2448
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "floor": 190,
+    "wall": 12
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2449",
+   "native": {
+    "game": "blood",
+    "tile_id": 2449
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2450",
+   "native": {
+    "game": "blood",
+    "tile_id": 2450
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2451",
+   "native": {
+    "game": "blood",
+    "tile_id": 2451
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2452",
+   "native": {
+    "game": "blood",
+    "tile_id": 2452
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 4
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2455",
+   "native": {
+    "game": "blood",
+    "tile_id": 2455
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 80
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2473",
+   "native": {
+    "game": "blood",
+    "tile_id": 2473
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "floor": 6,
+    "wall": 17
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2474",
+   "native": {
+    "game": "blood",
+    "tile_id": 2474
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 115
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2490",
+   "native": {
+    "game": "blood",
+    "tile_id": 2490
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 13,
+    "floor": 3,
+    "sprite": 2,
+    "wall": 34
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2491",
+   "native": {
+    "game": "blood",
+    "tile_id": 2491
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "floor": 1,
+    "wall": 50
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2492",
+   "native": {
+    "game": "blood",
+    "tile_id": 2492
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "wall": 99
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2493",
+   "native": {
+    "game": "blood",
+    "tile_id": 2493
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 16
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2496",
+   "native": {
+    "game": "blood",
+    "tile_id": 2496
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "floor": 10
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2497",
+   "native": {
+    "game": "blood",
+    "tile_id": 2497
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 6
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2498",
+   "native": {
+    "game": "blood",
+    "tile_id": 2498
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2499",
+   "native": {
+    "game": "blood",
+    "tile_id": 2499
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 6,
+    "wall": 926
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2500",
+   "native": {
+    "game": "blood",
+    "tile_id": 2500
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 123
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2519",
+   "native": {
+    "game": "blood",
+    "tile_id": 2519
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2520",
+   "native": {
+    "game": "blood",
+    "tile_id": 2520
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 23
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2521",
+   "native": {
+    "game": "blood",
+    "tile_id": 2521
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 18
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2522",
+   "native": {
+    "game": "blood",
+    "tile_id": 2522
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2523",
+   "native": {
+    "game": "blood",
+    "tile_id": 2523
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2524",
+   "native": {
+    "game": "blood",
+    "tile_id": 2524
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2525",
+   "native": {
+    "game": "blood",
+    "tile_id": 2525
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2526",
+   "native": {
+    "game": "blood",
+    "tile_id": 2526
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2527",
+   "native": {
+    "game": "blood",
+    "tile_id": 2527
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2528",
+   "native": {
+    "game": "blood",
+    "tile_id": 2528
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2529",
+   "native": {
+    "game": "blood",
+    "tile_id": 2529
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2540",
+   "native": {
+    "game": "blood",
+    "tile_id": 2540
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2545",
+   "native": {
+    "game": "blood",
+    "tile_id": 2545
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 4
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2557",
+   "native": {
+    "game": "blood",
+    "tile_id": 2557
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2586",
+   "native": {
+    "game": "blood",
+    "tile_id": 2586
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 3
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2628",
+   "native": {
+    "game": "blood",
+    "tile_id": 2628
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2820",
+   "native": {
+    "game": "blood",
+    "tile_id": 2820
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 15
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2825",
+   "native": {
+    "game": "blood",
+    "tile_id": 2825
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 39
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:2915",
+   "native": {
+    "game": "blood",
+    "tile_id": 2915
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "ceiling": 2,
+    "floor": 2
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:3054",
+   "native": {
+    "game": "blood",
+    "tile_id": 3054
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 10
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:3540",
+   "native": {
+    "game": "blood",
+    "tile_id": 3540
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:3566",
+   "native": {
+    "game": "blood",
+    "tile_id": 3566
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:3793",
+   "native": {
+    "game": "blood",
+    "tile_id": 3793
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 1
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  },
+  {
+   "id": "blood:tile:3997",
+   "native": {
+    "game": "blood",
+    "tile_id": 3997
+   },
+   "local_alias": null,
+   "verified_usage": {
+    "sprite": 13
+   },
+   "interpreted_meaning": null,
+   "interpretation_status": "unreviewed"
+  }
+ ]
+}

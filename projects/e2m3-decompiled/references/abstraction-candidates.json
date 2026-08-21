@@ -1,0 +1,937 @@
+{
+ "$schema": "llmapper.abstraction-candidates",
+ "schema_version": 1,
+ "corpus": {
+  "directory": "maps\\blood",
+  "pattern": "E?M*.MAP",
+  "maps_analysed": 42,
+  "maps_skipped": [
+   {
+    "map": "E6M7",
+    "reason": "sector:144 has invalid wall ownership"
+   }
+  ],
+  "fit_episodes": [
+   "E1",
+   "E2",
+   "E3"
+  ],
+  "held_out_episodes": [
+   "E4",
+   "E6"
+  ]
+ },
+ "per_map": [
+  {
+   "map": "E1M1",
+   "sectors": 155,
+   "stepped_run": 20,
+   "landing": 0,
+   "recess": 15,
+   "overlook": 35,
+   "embedded_shell": 18,
+   "pit": 4,
+   "arc_chains": 27
+  },
+  {
+   "map": "E1M2",
+   "sectors": 313,
+   "stepped_run": 46,
+   "landing": 1,
+   "recess": 26,
+   "overlook": 71,
+   "embedded_shell": 60,
+   "pit": 4,
+   "arc_chains": 15
+  },
+  {
+   "map": "E1M3",
+   "sectors": 329,
+   "stepped_run": 4,
+   "landing": 0,
+   "recess": 19,
+   "overlook": 105,
+   "embedded_shell": 23,
+   "pit": 4,
+   "arc_chains": 5
+  },
+  {
+   "map": "E1M4",
+   "sectors": 398,
+   "stepped_run": 18,
+   "landing": 0,
+   "recess": 37,
+   "overlook": 132,
+   "embedded_shell": 60,
+   "pit": 10,
+   "arc_chains": 44
+  },
+  {
+   "map": "E1M5",
+   "sectors": 429,
+   "stepped_run": 50,
+   "landing": 0,
+   "recess": 25,
+   "overlook": 87,
+   "embedded_shell": 52,
+   "pit": 3,
+   "arc_chains": 29
+  },
+  {
+   "map": "E1M6",
+   "sectors": 526,
+   "stepped_run": 126,
+   "landing": 3,
+   "recess": 23,
+   "overlook": 95,
+   "embedded_shell": 45,
+   "pit": 3,
+   "arc_chains": 58
+  },
+  {
+   "map": "E1M7",
+   "sectors": 53,
+   "stepped_run": 10,
+   "landing": 1,
+   "recess": 1,
+   "overlook": 23,
+   "embedded_shell": 9,
+   "pit": 2,
+   "arc_chains": 11
+  },
+  {
+   "map": "E1M8",
+   "sectors": 433,
+   "stepped_run": 10,
+   "landing": 0,
+   "recess": 23,
+   "overlook": 87,
+   "embedded_shell": 6,
+   "pit": 8,
+   "arc_chains": 24
+  },
+  {
+   "map": "E2M1",
+   "sectors": 249,
+   "stepped_run": 17,
+   "landing": 0,
+   "recess": 16,
+   "overlook": 93,
+   "embedded_shell": 37,
+   "pit": 6,
+   "arc_chains": 12
+  },
+  {
+   "map": "E2M2",
+   "sectors": 290,
+   "stepped_run": 38,
+   "landing": 0,
+   "recess": 16,
+   "overlook": 71,
+   "embedded_shell": 46,
+   "pit": 3,
+   "arc_chains": 17
+  },
+  {
+   "map": "E2M3",
+   "sectors": 340,
+   "stepped_run": 9,
+   "landing": 0,
+   "recess": 14,
+   "overlook": 58,
+   "embedded_shell": 56,
+   "pit": 0,
+   "arc_chains": 46
+  },
+  {
+   "map": "E2M4",
+   "sectors": 632,
+   "stepped_run": 90,
+   "landing": 2,
+   "recess": 26,
+   "overlook": 167,
+   "embedded_shell": 56,
+   "pit": 6,
+   "arc_chains": 136
+  },
+  {
+   "map": "E2M5",
+   "sectors": 788,
+   "stepped_run": 84,
+   "landing": 1,
+   "recess": 37,
+   "overlook": 190,
+   "embedded_shell": 52,
+   "pit": 3,
+   "arc_chains": 130
+  },
+  {
+   "map": "E2M6",
+   "sectors": 237,
+   "stepped_run": 34,
+   "landing": 0,
+   "recess": 20,
+   "overlook": 57,
+   "embedded_shell": 25,
+   "pit": 6,
+   "arc_chains": 26
+  },
+  {
+   "map": "E2M7",
+   "sectors": 449,
+   "stepped_run": 12,
+   "landing": 0,
+   "recess": 13,
+   "overlook": 89,
+   "embedded_shell": 25,
+   "pit": 10,
+   "arc_chains": 31
+  },
+  {
+   "map": "E2M8",
+   "sectors": 59,
+   "stepped_run": 5,
+   "landing": 0,
+   "recess": 1,
+   "overlook": 4,
+   "embedded_shell": 0,
+   "pit": 0,
+   "arc_chains": 12
+  },
+  {
+   "map": "E2M9",
+   "sectors": 166,
+   "stepped_run": 4,
+   "landing": 0,
+   "recess": 23,
+   "overlook": 52,
+   "embedded_shell": 50,
+   "pit": 0,
+   "arc_chains": 12
+  },
+  {
+   "map": "E3M1",
+   "sectors": 382,
+   "stepped_run": 98,
+   "landing": 0,
+   "recess": 21,
+   "overlook": 58,
+   "embedded_shell": 21,
+   "pit": 3,
+   "arc_chains": 44
+  },
+  {
+   "map": "E3M2",
+   "sectors": 567,
+   "stepped_run": 33,
+   "landing": 0,
+   "recess": 41,
+   "overlook": 138,
+   "embedded_shell": 91,
+   "pit": 4,
+   "arc_chains": 33
+  },
+  {
+   "map": "E3M3",
+   "sectors": 309,
+   "stepped_run": 14,
+   "landing": 0,
+   "recess": 9,
+   "overlook": 37,
+   "embedded_shell": 19,
+   "pit": 4,
+   "arc_chains": 41
+  },
+  {
+   "map": "E3M4",
+   "sectors": 434,
+   "stepped_run": 12,
+   "landing": 0,
+   "recess": 49,
+   "overlook": 122,
+   "embedded_shell": 62,
+   "pit": 1,
+   "arc_chains": 43
+  },
+  {
+   "map": "E3M5",
+   "sectors": 341,
+   "stepped_run": 9,
+   "landing": 0,
+   "recess": 24,
+   "overlook": 86,
+   "embedded_shell": 59,
+   "pit": 3,
+   "arc_chains": 28
+  },
+  {
+   "map": "E3M6",
+   "sectors": 533,
+   "stepped_run": 33,
+   "landing": 1,
+   "recess": 19,
+   "overlook": 182,
+   "embedded_shell": 28,
+   "pit": 7,
+   "arc_chains": 37
+  },
+  {
+   "map": "E3M7",
+   "sectors": 142,
+   "stepped_run": 29,
+   "landing": 0,
+   "recess": 5,
+   "overlook": 32,
+   "embedded_shell": 10,
+   "pit": 1,
+   "arc_chains": 3
+  },
+  {
+   "map": "E3M8",
+   "sectors": 631,
+   "stepped_run": 84,
+   "landing": 1,
+   "recess": 20,
+   "overlook": 45,
+   "embedded_shell": 60,
+   "pit": 0,
+   "arc_chains": 56
+  },
+  {
+   "map": "E4M1",
+   "sectors": 215,
+   "stepped_run": 43,
+   "landing": 0,
+   "recess": 8,
+   "overlook": 55,
+   "embedded_shell": 26,
+   "pit": 5,
+   "arc_chains": 34
+  },
+  {
+   "map": "E4M2",
+   "sectors": 291,
+   "stepped_run": 73,
+   "landing": 1,
+   "recess": 13,
+   "overlook": 45,
+   "embedded_shell": 62,
+   "pit": 2,
+   "arc_chains": 26
+  },
+  {
+   "map": "E4M3",
+   "sectors": 471,
+   "stepped_run": 64,
+   "landing": 1,
+   "recess": 27,
+   "overlook": 127,
+   "embedded_shell": 63,
+   "pit": 12,
+   "arc_chains": 41
+  },
+  {
+   "map": "E4M4",
+   "sectors": 258,
+   "stepped_run": 7,
+   "landing": 0,
+   "recess": 25,
+   "overlook": 41,
+   "embedded_shell": 47,
+   "pit": 2,
+   "arc_chains": 70
+  },
+  {
+   "map": "E4M5",
+   "sectors": 252,
+   "stepped_run": 41,
+   "landing": 1,
+   "recess": 17,
+   "overlook": 79,
+   "embedded_shell": 30,
+   "pit": 1,
+   "arc_chains": 32
+  },
+  {
+   "map": "E4M6",
+   "sectors": 519,
+   "stepped_run": 131,
+   "landing": 5,
+   "recess": 19,
+   "overlook": 149,
+   "embedded_shell": 43,
+   "pit": 9,
+   "arc_chains": 39
+  },
+  {
+   "map": "E4M7",
+   "sectors": 147,
+   "stepped_run": 20,
+   "landing": 0,
+   "recess": 7,
+   "overlook": 37,
+   "embedded_shell": 25,
+   "pit": 1,
+   "arc_chains": 14
+  },
+  {
+   "map": "E4M8",
+   "sectors": 80,
+   "stepped_run": 0,
+   "landing": 0,
+   "recess": 5,
+   "overlook": 5,
+   "embedded_shell": 14,
+   "pit": 0,
+   "arc_chains": 40
+  },
+  {
+   "map": "E4M9",
+   "sectors": 228,
+   "stepped_run": 8,
+   "landing": 0,
+   "recess": 23,
+   "overlook": 51,
+   "embedded_shell": 33,
+   "pit": 0,
+   "arc_chains": 2
+  },
+  {
+   "map": "E6M1",
+   "sectors": 123,
+   "stepped_run": 0,
+   "landing": 0,
+   "recess": 10,
+   "overlook": 55,
+   "embedded_shell": 32,
+   "pit": 1,
+   "arc_chains": 0
+  },
+  {
+   "map": "E6M2",
+   "sectors": 271,
+   "stepped_run": 38,
+   "landing": 1,
+   "recess": 31,
+   "overlook": 60,
+   "embedded_shell": 38,
+   "pit": 2,
+   "arc_chains": 7
+  },
+  {
+   "map": "E6M3",
+   "sectors": 240,
+   "stepped_run": 0,
+   "landing": 0,
+   "recess": 7,
+   "overlook": 91,
+   "embedded_shell": 27,
+   "pit": 0,
+   "arc_chains": 5
+  },
+  {
+   "map": "E6M4",
+   "sectors": 373,
+   "stepped_run": 31,
+   "landing": 0,
+   "recess": 28,
+   "overlook": 84,
+   "embedded_shell": 20,
+   "pit": 6,
+   "arc_chains": 43
+  },
+  {
+   "map": "E6M5",
+   "sectors": 340,
+   "stepped_run": 15,
+   "landing": 0,
+   "recess": 18,
+   "overlook": 85,
+   "embedded_shell": 20,
+   "pit": 8,
+   "arc_chains": 41
+  },
+  {
+   "map": "E6M6",
+   "sectors": 372,
+   "stepped_run": 20,
+   "landing": 0,
+   "recess": 16,
+   "overlook": 117,
+   "embedded_shell": 29,
+   "pit": 2,
+   "arc_chains": 124
+  },
+  {
+   "map": "E6M8",
+   "sectors": 85,
+   "stepped_run": 0,
+   "landing": 0,
+   "recess": 7,
+   "overlook": 24,
+   "embedded_shell": 2,
+   "pit": 0,
+   "arc_chains": 10
+  },
+  {
+   "map": "E6M9",
+   "sectors": 157,
+   "stepped_run": 3,
+   "landing": 0,
+   "recess": 8,
+   "overlook": 48,
+   "embedded_shell": 1,
+   "pit": 0,
+   "arc_chains": 25
+  }
+ ],
+ "candidates": [
+  {
+   "candidate": "staircase",
+   "derived_from": "structures.stepped_run",
+   "occurrences": 186,
+   "maps_with_at_least_one": 38,
+   "fitted_step_rise_vocabulary": [
+    2048,
+    3072,
+    4096
+   ],
+   "fit_rise_coverage": 0.9951,
+   "parameters": {
+    "essential": {
+     "rises": {
+      "n": 186,
+      "p10": 3.0,
+      "median": 5.0,
+      "p90": 13.0,
+      "min": 3.0,
+      "max": 26.0
+     },
+     "total_rise": {
+      "n": 186,
+      "p10": 10240.0,
+      "median": 18432.0,
+      "p90": 40960.0,
+      "min": 5120.0,
+      "max": 106496.0
+     },
+     "width_player_widths": {
+      "n": 186,
+      "p10": 2.6667,
+      "median": 4.3066,
+      "p90": 7.2359,
+      "min": 1.3333,
+      "max": 20.0
+     }
+    },
+    "expressive": {
+     "step_rise_histogram": {
+      "256": 1,
+      "1024": 3,
+      "2048": 282,
+      "3072": 70,
+      "4096": 462
+     }
+    },
+    "residual_not_exposed": {
+     "relative_width_stdev": {
+      "n": 186,
+      "p10": 0.0,
+      "median": 0.0551,
+      "p90": 0.2684,
+      "min": 0.0,
+      "max": 0.8081
+     },
+     "uniform_rise_fraction": 0.8548
+    }
+   },
+   "fit": {
+    "examples": 127,
+    "exact_constant_rise": 111,
+    "exact_fraction": 0.874,
+    "mixed_but_in_vocabulary": 12,
+    "residual": [
+     {
+      "map": "E1M6",
+      "rise_sequence": [
+       1024,
+       2048,
+       2048,
+       2048,
+       2048,
+       2048
+      ]
+     },
+     {
+      "map": "E2M3",
+      "rise_sequence": [
+       4096,
+       3072,
+       1024
+      ]
+     },
+     {
+      "map": "E2M5",
+      "rise_sequence": [
+       4096,
+       4096,
+       4096,
+       4096,
+       1024
+      ]
+     },
+     {
+      "map": "E3M1",
+      "rise_sequence": [
+       2048,
+       2048,
+       2048,
+       2048,
+       2048,
+       2048,
+       2048,
+       2048,
+       2048,
+       2048,
+       2048,
+       2048,
+       2048,
+       2048,
+       2048,
+       2048,
+       2048,
+       256
+      ]
+     }
+    ]
+   },
+   "held_out": {
+    "examples": 59,
+    "exact_constant_rise": 48,
+    "exact_fraction": 0.8136,
+    "mixed_but_in_vocabulary": 9,
+    "residual": [
+     {
+      "map": "E4M3",
+      "rise_sequence": [
+       1024,
+       2048,
+       2048
+      ]
+     },
+     {
+      "map": "E4M6",
+      "rise_sequence": [
+       1024,
+       4096,
+       4096,
+       4096,
+       4096
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "candidate": "recess",
+   "derived_from": "structures.recess",
+   "occurrences": 792,
+   "maps_with_at_least_one": 42,
+   "fit": {
+    "examples": 523,
+    "floor_flush_fraction": 0.7189,
+    "lower_ceiling_fraction": 0.3461,
+    "area_fraction_of_host": {
+     "n": 523,
+     "p10": 0.0058,
+     "median": 0.0521,
+     "p90": 0.1902,
+     "min": 0.0,
+     "max": 0.25
+    },
+    "opening_width_player_widths": {
+     "n": 523,
+     "p10": 0.5221,
+     "median": 2.6667,
+     "p90": 7.3352,
+     "min": 0.1307,
+     "max": 21.3333
+    },
+    "footprint_player_areas": {
+     "n": 523,
+     "p10": 0.3889,
+     "median": 3.5562,
+     "p90": 27.5174,
+     "min": 0.0208,
+     "max": 213.3333
+    }
+   },
+   "held_out": {
+    "examples": 269,
+    "floor_flush_fraction": 0.777,
+    "lower_ceiling_fraction": 0.3011,
+    "area_fraction_of_host": {
+     "n": 269,
+     "p10": 0.0055,
+     "median": 0.0582,
+     "p90": 0.1892,
+     "min": 0.0003,
+     "max": 0.25
+    },
+    "opening_width_player_widths": {
+     "n": 269,
+     "p10": 0.5682,
+     "median": 2.6667,
+     "p90": 8.0,
+     "min": 0.1224,
+     "max": 24.0
+    },
+    "footprint_player_areas": {
+     "n": 269,
+     "p10": 0.3333,
+     "median": 5.3333,
+     "p90": 24.8889,
+     "min": 0.1111,
+     "max": 219.1667
+    }
+   }
+  },
+  {
+   "candidate": "arc",
+   "derived_from": "morphology segmented-arc chains",
+   "occurrences": 1473,
+   "maps_with_at_least_one": 41,
+   "chains_per_map": {
+    "n": 42,
+    "p10": 5.0,
+    "median": 30.0,
+    "p90": 58.0,
+    "min": 0.0,
+    "max": 136.0
+   },
+   "fit": {
+    "examples": 920,
+    "segments_per_chain": {
+     "n": 920,
+     "p10": 5.0,
+     "median": 7.0,
+     "p90": 10.0,
+     "min": 5.0,
+     "max": 25.0
+    },
+    "turn_per_segment_deg": {
+     "n": 920,
+     "p10": 13.286,
+     "median": 28.829,
+     "p90": 45.0,
+     "min": 8.291,
+     "max": 45.42
+    },
+    "segment_length_player_widths": {
+     "n": 920,
+     "p10": 0.476,
+     "median": 1.012,
+     "p90": 4.552,
+     "min": 0.065,
+     "max": 40.617
+    },
+    "sweep_deg": {
+     "n": 920,
+     "p10": 82.1,
+     "median": 167.15,
+     "p90": 301.6,
+     "min": 35.8,
+     "max": 450.0
+    },
+    "turn_relative_stdev": {
+     "n": 920,
+     "p10": 0.0,
+     "median": 0.0159,
+     "p90": 0.3211,
+     "min": 0.0,
+     "max": 0.6487
+    }
+   },
+   "held_out": {
+    "examples": 553,
+    "segments_per_chain": {
+     "n": 553,
+     "p10": 5.0,
+     "median": 8.0,
+     "p90": 11.0,
+     "min": 5.0,
+     "max": 25.0
+    },
+    "turn_per_segment_deg": {
+     "n": 553,
+     "p10": 16.364,
+     "median": 22.5,
+     "p90": 45.0,
+     "min": 9.165,
+     "max": 46.193
+    },
+    "segment_length_player_widths": {
+     "n": 553,
+     "p10": 0.395,
+     "median": 0.816,
+     "p90": 3.13,
+     "min": 0.09,
+     "max": 19.771
+    },
+    "sweep_deg": {
+     "n": 553,
+     "p10": 92.9,
+     "median": 167.8,
+     "p90": 274.4,
+     "min": 60.5,
+     "max": 360.0
+    },
+    "turn_relative_stdev": {
+     "n": 553,
+     "p10": 0.0,
+     "median": 0.023,
+     "p90": 0.3023,
+     "min": 0.0,
+     "max": 0.8319
+    }
+   }
+  },
+  {
+   "candidate": "embedded_shell",
+   "derived_from": "structures.embedded_shell",
+   "occurrences": 989,
+   "maps_with_at_least_one": 41,
+   "fit": {
+    "examples": 660,
+    "rectangular_fraction": 0.4439,
+    "occupies_host": {
+     "n": 660,
+     "p10": 0.0069,
+     "median": 0.1296,
+     "p90": 0.6,
+     "min": 0.0,
+     "max": 0.9855
+    },
+    "contained_sectors": {
+     "n": 660,
+     "p10": 1.0,
+     "median": 1.0,
+     "p90": 4.0,
+     "min": 1.0,
+     "max": 18.0
+    },
+    "hole_vertices": {
+     "n": 660,
+     "p10": 4.0,
+     "median": 5.5,
+     "p90": 18.0,
+     "min": 3.0,
+     "max": 92.0
+    }
+   },
+   "held_out": {
+    "examples": 329,
+    "rectangular_fraction": 0.4772,
+    "occupies_host": {
+     "n": 329,
+     "p10": 0.0071,
+     "median": 0.2937,
+     "p90": 0.5863,
+     "min": 0.0003,
+     "max": 0.8485
+    },
+    "contained_sectors": {
+     "n": 329,
+     "p10": 1.0,
+     "median": 1.0,
+     "p90": 5.0,
+     "min": 1.0,
+     "max": 20.0
+    },
+    "hole_vertices": {
+     "n": 329,
+     "p10": 4.0,
+     "median": 5.0,
+     "p90": 16.0,
+     "min": 3.0,
+     "max": 53.0
+    }
+   }
+  },
+  {
+   "candidate": "landing",
+   "derived_from": "structures.landing",
+   "occurrences": 19,
+   "maps_with_at_least_one": 12,
+   "stair_sized": {
+    "definition": "under 10 player areas of floor",
+    "count": 5,
+    "maps": [
+     "E2M5",
+     "E4M6"
+    ],
+    "examples": [
+     {
+      "map": "E2M5",
+      "player_areas": 0.33,
+      "open_portals": 2
+     },
+     {
+      "map": "E4M6",
+      "player_areas": 3.56,
+      "open_portals": 4
+     },
+     {
+      "map": "E4M6",
+      "player_areas": 4.89,
+      "open_portals": 7
+     },
+     {
+      "map": "E4M6",
+      "player_areas": 4.44,
+      "open_portals": 7
+     },
+     {
+      "map": "E4M6",
+      "player_areas": 4.0,
+      "open_portals": 5
+     }
+    ]
+   },
+   "room_sized": 14
+  },
+  {
+   "candidate": "overlook",
+   "derived_from": "structures.overlook",
+   "occurrences": 4764,
+   "maps_with_at_least_one": 42,
+   "measure_player_heights": {
+    "n": 4764,
+    "p10": 1.0909,
+    "median": 2.9091,
+    "p90": 10.1818,
+    "min": 0.7727,
+    "max": 235.8182
+   }
+  },
+  {
+   "candidate": "pit",
+   "derived_from": "structures.pit",
+   "occurrences": 146,
+   "maps_with_at_least_one": 33,
+   "measure_player_heights": {
+    "n": 146,
+    "p10": 1.0909,
+    "median": 2.9091,
+    "p90": 23.2727,
+    "min": 0.9091,
+    "max": 213.4545
+   }
+  }
+ ],
+ "reading_guide": [
+  "occurrence counts describe how often a shape appears, never how good it is",
+  "a held-out figure that matches its fit figure is the only reason to promote",
+  "residual entries record what the abstraction does not reproduce; that is the point"
+ ]
+}

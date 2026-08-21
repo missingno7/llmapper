@@ -43,6 +43,29 @@ This gate proves that both files reach NBlood's initialized game loop and remain
 healthy for the configured grace period. It does not by itself prove gameplay
 equivalence.
 
+Changes to `bloodmap.levelprog`, `bloodmap.vocabulary`, or the emitters that
+produce level programs must hold three properties, each of which has a test:
+
+1. **locality** -- `room.summary()` answers everything about that room, and
+   changing one room changes only that room in the compiled MAP;
+2. **exact frames** -- a parent's frame moves its children without altering a
+   single number in any child's local outline;
+3. **traceable inheritance** -- every resolved style value names the node that
+   set it, and a value with no answer anywhere is refused by field name.
+
+A new constructor in the authoring vocabulary needs cross-map evidence in
+`projects/e2m3-decompiled/references/abstraction-candidates.json`: occurrence
+counts across the corpus, a fit/held-out split by episode, and the residual it
+deliberately does not reproduce. A justified rejection is a valid outcome and
+belongs in `CORPUS_SUPPORT` with its reason. Historical jitter never becomes a
+parameter, and expressiveness is added by composition rather than by another
+argument.
+
+Geometry the model cannot express goes to `Room.raw` with a note, or to
+`NATIVE_ESCAPES` when decompiling. Do not repair an original's geometry to make
+it compile: 0.95% of campaign sectors have outlines the authoring compiler
+refuses, and silently fixing them would invent evidence about what was drawn.
+
 Duke writer and cross-game geometry changes should run the corresponding EDuke32
 baseline/candidate smoke. Cross-game changes must also update or reproduce the
 fidelity report and must never equate native tags solely because their numbers

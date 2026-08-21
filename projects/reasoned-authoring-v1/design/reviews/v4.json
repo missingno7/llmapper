@@ -1,0 +1,126 @@
+{
+ "reviewer": "llmapper authoring agent, structure-layer iteration",
+ "iteration_id": "v4",
+ "claims": [
+  {
+   "claim": "The level had no vertical looking relationship anywhere, and now it has three.",
+   "status": "supported",
+   "evidence": [
+    "structure:structure:stepped_run:001",
+    "decompiled:assembly:001/space:002",
+    "decompiled:assembly:001/space:003",
+    "view:planter",
+    "view:chancel_stair",
+    "view:chapel_apse"
+   ],
+   "reasoning": "v3's structure recovery returned zero overlooks and zero pits across a level spanning three storeys: every height change in it was a stair you walk up, and nothing was ever seen from another height. All 42 campaign maps contain overlooks. v4 raises the garden bed 6144 above the courtyard, raises the chancel 6144 above the nave beside a direct opening, and adds a raised tomb block in the crypt hall, which takes the count 0 -> 3. The planter and chancel frames both show the change: the planter now stands over the courtyard floor and the chancel reads as a platform rather than a kerb."
+  },
+  {
+   "claim": "Writing the stairs as staircase() calls removed the class of mistake that cost this pilot the most time.",
+   "status": "supported",
+   "evidence": [
+    "source:module",
+    "gate:authored_geometry_valid",
+    "gate:geometry_conservation",
+    "structure:structure:stepped_run:002",
+    "structure:structure:stepped_run:004"
+   ],
+   "reasoning": "v0 to v3 wrote four stairs as four copies of a loop that tracked its own previous edge, and getting that edge's winding backwards is what produced most of the pilot's compile failures and every 'sprite position is outside its sector' error. The constructor derives both sides of every shared edge and both flank anchors from one directed anchor, so the winding cannot be stated wrongly. Four loops of nine lines each became four calls, and the detector recovers each run with the rises, rise height and width the call asked for."
+  },
+  {
+   "claim": "The gallery ascent was using a stair rise with no corpus support at all.",
+   "status": "supported",
+   "evidence": [
+    "structure:structure:stepped_run:003",
+    "structure:structure:stepped_run:004"
+   ],
+   "reasoning": "The corpus uses 4096, 3072 and 2048 for 1277 of its 1283 measured stair rises, and 4096 more than twice as often as any other. v3's ascent and return stairs used 3840, a number that appears nowhere. It is now 4096, which is also exactly the player's step. The crypt keeps 3072, which the corpus does use."
+  },
+  {
+   "claim": "The level's own geometry reproduces the corpus false positive that made me reject a landing parameter.",
+   "status": "supported",
+   "evidence": [
+    "structure:structure:landing:001",
+    "decompiled:assembly:001/space:002"
+   ],
+   "reasoning": "The detector calls the courtyard a landing, because the ascent and return stairs both attach to it. It is 1053 player areas. That is the same failure that makes 14 of the corpus's 19 landings ordinary rooms, and seeing it happen here on geometry I wrote is better confirmation than the corpus count was that landing must not be a staircase parameter."
+  },
+  {
+   "claim": "Three of the level's spaces that I called side rooms are measured as niches, and three new ones are the first real niches in it.",
+   "status": "uncertain",
+   "evidence": [
+    "structure:structure:recess:001",
+    "structure:structure:recess:002",
+    "structure:structure:recess:004",
+    "structure:structure:recess:005",
+    "structure:structure:recess:006"
+   ],
+   "reasoning": "The two chapel aisles sit at a depth ratio of exactly 0.25, the detector's ceiling, against a corpus median of 0.055 and a p90 of 0.19. So they are at the very top of what reads as a recess and the bottom of what reads as a room, and the measurement cannot tell me which they are. The three new niches land at 0.014 to 0.026, inside the corpus range. I am leaving the aisles alone this iteration because I do not have evidence that says which way to move them, and moving them on taste is exactly what this loop exists to avoid."
+  },
+  {
+   "claim": "The crypt is unreadable in the renderer, and no rule in the packet saw it.",
+   "status": "supported",
+   "evidence": [
+    "view:crypt_hall",
+    "art:blood:tile:1097"
+   ],
+   "reasoning": "The crypt frame shows floor, walls and ceiling as one continuous triangular pattern with no visible edges between them, because CRYPT_TILES sets tile 1097 on all three surfaces. The identical_room_treatments rule compares dominant triples between assemblies, so a single assembly whose three surfaces are the same tile passes it every time. I added a rule for it and it puts v4 at the 97.7th percentile of the corpus: 14 of 38 sectors, against a corpus median of 8.5 percent."
+  },
+  {
+   "claim": "The sky renders black, and neither the configuration nor the ceiling height explains it.",
+   "status": "contradicted",
+   "evidence": [
+    "view:courtyard_corner",
+    "view:planter",
+    "scale:assembly:001/space:002"
+   ],
+   "reasoning": "I expected the courtyard's parallax ceiling to be misconfigured or too high. It is configured identically to all 123 of E2M3's sky sectors (tile 2500, shade 0, pal 0, stat 1, panning 0), and a rendered experiment at 16, 12 and 8 player heights of ceiling produced three frames that are the same black. A captured frame from E2M3's own outdoor ground shows the sky rendering correctly, with clouds and a moon, from a place with an open drop in front of the camera. The hypothesis is refuted: in a fully enclosed courtyard with walls many player heights tall you only ever see the darkest top band of the sky texture, whatever the ceiling is set to. What the level lacks is not ceiling height, it is an opening."
+  },
+  {
+   "claim": "Shape got slightly worse, and that was expected.",
+   "status": "supported",
+   "evidence": [
+    "shape:orientation-5deg-bins-occupied",
+    "shape:rectangular-sector-fraction"
+   ],
+   "reasoning": "Orientation bins went 6 -> 5 and rectangular sector fraction 0.548 -> 0.632, because everything v4 added - treads, niches, the tomb block - is rectangular. This iteration was about structure and deliberately left shape alone; recording the regression is the point of keeping the dimensions separate."
+  }
+ ],
+ "accepted_strengths": [
+  "All fourteen hard gates pass and the level loads in NBlood revision rlocal-agtst10.",
+  "All fourteen declared viewpoints captured, including the three new ones.",
+  "Zero authored-versus-derived hierarchy discrepancies held across a substantial geometry change.",
+  "Zero oversized decorations held from v3.",
+  "The chancel stair, the tomb block and the raised planter each read in a frame."
+ ],
+ "problems": [
+  "the crypt uses one tile on floor, ceiling and walls in 11 sectors and is unreadable in the frame",
+  "single-surface sectors are 36.8 percent of the level against a corpus median of 8.5",
+  "the sky is black in every outdoor frame and the level has no opening to look out of",
+  "a level briefed as a cliffside monastery has no cliff: the courtyard is a closed box",
+  "orientation variety fell to 5 of 36 bins and chamfer fraction is still above the corpus maximum",
+  "the courtyard floor is one tile across 1053 player areas and reads as a flat wash"
+ ],
+ "next_actions": [
+  {
+   "action": "Give the crypt distinct floor, wall and ceiling tiles instead of tile 1097 everywhere, and check the frame again.",
+   "expected_effect": "single-surface fraction falls from 0.368 toward the corpus median of 0.085 and the crypt's geometry becomes visible in the rendered frame.",
+   "evidence": ["view:crypt_hall", "art:blood:tile:1097"]
+  },
+  {
+   "action": "Open the arrival ledge onto a chasm with a see-through parapet, so the level has the cliff its brief names and one place to look out of.",
+   "expected_effect": "the sky becomes visible in at least one frame, and the level gains a long-range vertical relationship instead of only short ones.",
+   "evidence": ["view:courtyard_corner", "view:start"]
+  },
+  {
+   "action": "Replace chamfered corners with segmented arcs at the corpus parameters: seven to eight segments, twenty to thirty degrees per segment, segments about one player width.",
+   "expected_effect": "orientation bins rise from 5 toward the corpus minimum of 15 while chamfer fraction falls back inside the corpus range.",
+   "evidence": ["shape:orientation-5deg-bins-occupied", "shape:chamfer-fraction"]
+  }
+ ],
+ "uncertainties": [
+  "The overlook count is 3 against a corpus median of 113 per map, but a corpus map has 340 sectors to this one's 38 and the detector collapses several portals between the same two sectors into one. I am treating the change as categorical (none to some) rather than as a count to chase.",
+  "The recess measurement cannot separate a small room from a large niche, and the chapel aisles sit exactly on that line.",
+  "Whether the black sky is a defect a player would notice or simply what a walled courtyard at night looks like is not something any measurement here answers."
+ ]
+}

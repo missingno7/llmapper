@@ -54,6 +54,13 @@ class ViewpointSpec:
     z: int
     angle: int
     note: str = ""
+    #: Engine ``Aim_Up`` taps applied before the frame is taken; negative aims
+    #: down.  A camera locked to level pitch cannot review a ceiling or a sky,
+    #: which is how this pilot shipped four iterations without once looking at
+    #: the upper half of any of its spaces.  Pitch is not part of the MAP: it is
+    #: a capture control, so it never changes the variant and never appears in
+    #: the variant diff.
+    pitch: int = 0
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -61,6 +68,7 @@ class ViewpointSpec:
             "purpose": self.purpose,
             "region_id": self.region_id,
             "pose": {"x": int(self.x), "y": int(self.y), "z": int(self.z), "angle": int(self.angle)},
+            "pitch": int(self.pitch),
             "note": self.note,
         }
 
@@ -262,6 +270,7 @@ def viewpoints_from_records(records: Iterable[dict[str, Any]]) -> list[Viewpoint
             purpose=str(record["purpose"]),
             region_id=str(record["region_id"]),
             x=int(pose["x"]), y=int(pose["y"]), z=int(pose["z"]), angle=int(pose["angle"]),
+            pitch=int(record.get("pitch", 0)),
             note=str(record.get("note", "")),
         ))
     return result

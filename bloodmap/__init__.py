@@ -65,6 +65,17 @@ from .authoring_loop import (
     AuthoringLoopError, Candidate, NextAction, ProbeRequest, ReasoningReview, ReviewClaim,
     attach_review, compare_iterations, evaluate_candidate, record_review, resolve_evidence,
 )
+from .morphology import MorphologyError, analyze_morphology
+from .understanding import understand_map
+from .structures import StructureError, detect_structures, structure_index
+from .vocabulary import (
+    Anchor, Decoration, VocabularyError, arc_points, arc_through, outline, recess,
+    sprite_repeats, staircase, vocabulary_manifest,
+)
+from .levelprog import (
+    Assembly, Frame, LevelProgram, LevelProgramError, Room, Style,
+    ceiling_detail, floor_detail, native_detail, wall_detail,
+)
 
 __all__ = [
     "AuthoredAssembly",
@@ -177,6 +188,29 @@ __all__ = [
     "convert_doom_to_blood",
     "convert_shade",
     "design_fingerprint",
+    "Anchor",
+    "Assembly",
+    "Decoration",
+    "Frame",
+    "LevelProgram",
+    "LevelProgramError",
+    "Room",
+    "Style",
+    "StructureError",
+    "VocabularyError",
+    "arc_points",
+    "arc_through",
+    "ceiling_detail",
+    "detect_structures",
+    "floor_detail",
+    "native_detail",
+    "outline",
+    "recess",
+    "sprite_repeats",
+    "staircase",
+    "structure_index",
+    "vocabulary_manifest",
+    "wall_detail",
     "decompile_level",
     "emit_python_source",
     "encode_duke_map",

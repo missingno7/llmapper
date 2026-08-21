@@ -673,6 +673,10 @@ def mine_build_spatial_corpus(maps: list[tuple[str, BuildIR]]) -> dict[str, Any]
     game = maps[0][1].source_game
     profile = player_profile(game)
     widths, heights, areas, steps, elongations, aabb_widths, trav_widths = [], [], [], [], [], [], []
+    # Sky-lit sectors are a separate population.  A courtyard compared against
+    # every sector of its footprint is being compared mostly against interiors,
+    # and the two are not built to the same heights.
+    sky_heights: list[float] = []
     features: list[dict[str, Any]] = []
     skipped: list[dict[str, str]] = []
     used = 0
@@ -695,12 +699,16 @@ def mine_build_spatial_corpus(maps: list[tuple[str, BuildIR]]) -> dict[str, Any]
                 trav_widths.append(edge["width"] / profile.body_width)
         for sector in analysis["views"]["geometry"]["sectors"]:
             heights.append(sector["clear_height"] / profile.standing_height)
+            sector_id = int(str(sector["ref"]).split(":", 1)[1])
+            parallax = bool(int(build.sectors[sector_id]["fields"]["ceiling_stat"]) & 1)
+            if parallax:
+                sky_heights.append(sector["clear_height"] / profile.standing_height)
             w, d = _aabb(sector["bounds"])
             aabb_widths.append(w / profile.body_width)
             areas.append(sector["area"] / (profile.body_width ** 2))
             elongations.append(max(w, d) / max(1.0, min(w, d)))
             features.append({
-                "map": name, "sector": sector["ref"],
+                "map": name, "sector": sector["ref"], "sky": parallax,
                 "elongation": round(max(w, d) / max(1.0, min(w, d)), 4),
                 "area_player": round(sector["area"] / (profile.body_width ** 2), 4),
                 "height_player": round(sector["clear_height"] / profile.standing_height, 4),
@@ -718,10 +726,12 @@ def mine_build_spatial_corpus(maps: list[tuple[str, BuildIR]]) -> dict[str, Any]
         "opening_width_player_widths": widths,
         "traversable_opening_width_player_widths": trav_widths,
         "clear_height_player_heights": heights,
+        "sky_clear_height_player_heights": sky_heights,
         "footprint_player_areas": areas,
         "step_player_heights": steps,
         "aabb_width_player_widths": aabb_widths,
         "summaries": {
+            "sky_clear_height_player_heights": _summary(sky_heights),
             "opening_width_player_widths": _summary(widths),
             "traversable_opening_width_player_widths": _summary(trav_widths),
             "clear_height_player_heights": _summary(heights),

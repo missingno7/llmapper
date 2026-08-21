@@ -1,0 +1,90 @@
+{
+ "reviewer": "llmapper authoring agent, curvature and surface iteration",
+ "iteration_id": "v5",
+ "claims": [
+  {
+   "claim": "The black sky was a compiler bug, not a level defect, and it had been wrong in every outdoor level this project ever generated.",
+   "status": "supported",
+   "evidence": [
+    "view:courtyard_corner",
+    "view:courtyard_sky",
+    "source:module"
+   ],
+   "reasoning": "Four iterations recorded 'the sky renders very dark' as an unexplained unknown, and v4 tested the two obvious hypotheses and refuted both: the courtyard's ceiling is configured identically to all 123 of E2M3's sky sectors, and rendering it at 16, 12 and 8 player heights produced three identical black frames. Captured against E2M3 under matched conditions the difference showed up in the MAP header instead. All 38 campaign maps that contain a parallax sector declare a sixteen-panel sky; bloodmap.construction.new_level hardcoded bits=0 with one offset, which maps the whole 360 degrees onto a single 64-pixel column of the sky tile, and in Blood's night sky that column is the dark edge. PlanarLayout now emits the corpus panorama whenever a region declares a parallax ceiling. The recaptured courtyard frames show moving cloud where they were flat black."
+  },
+  {
+   "claim": "Arcs at the mined corpus parameters closed the orientation gap the previous pilot named as its bottleneck.",
+   "status": "supported",
+   "evidence": [
+    "shape:orientation-5deg-bins-occupied",
+    "shape:segmented-arc-chain-count",
+    "shape:chamfer-fraction",
+    "shape:diagonal-length-fraction"
+   ],
+   "reasoning": "v3 ended at 6 of 36 orientation bins and v4 fell to 5, both at the 0th percentile, while chamfer fraction sat above the corpus maximum because every cut corner was a 45-degree chamfer. Replacing eight of them with segmented arcs at the mined parameters - 5 to 8 segments, 15 to 30 degrees a segment, chords near one player width - takes orientation bins to 17, above the corpus minimum of 15, and segmented-arc chains from 9 to 15, inside the corpus central mass at the 31st percentile. Chamfer fraction falls from 0.263 to 0.185, back inside the corpus range. This is the one metric the previous pilot stopped on, and it moved because a constructor existed for it rather than because I chamfered harder."
+  },
+  {
+   "claim": "Tile 1097 is a cell finish and the crypt hall was twenty times too big for it.",
+   "status": "supported",
+   "evidence": [
+    "view:crypt_hall",
+    "view:crypt_vault",
+    "art:blood:tile:1097"
+   ],
+   "reasoning": "The finding is sharper than 'do not use one tile everywhere'. 26 of the corpus's 31 tile-1097 sectors do put it on all three surfaces, so the treatment itself is corpus-faithful - but at a median of 8 player areas and 2.91 player heights. The crypt hall is 174 player areas at 5 player heights. The hall, its stair and the tomb block now take E6M3's own crypt treatments and tile 1097 stays on the reliquary, which at 32 player areas is inside the range the corpus actually uses it in. Single-surface sectors fall from 36.8 percent of the level to 7.9, which is the corpus median of 8.5."
+  },
+  {
+   "claim": "The loop had never once looked at a ceiling, and now it can.",
+   "status": "supported",
+   "evidence": [
+    "view:nave_vault",
+    "view:crypt_vault",
+    "view:gallery_vault",
+    "view:courtyard_sky"
+   ],
+   "reasoning": "Every captured frame in five iterations was taken at level pitch, so the upper half of every space was outside the evidence - including through a whole iteration that was about ceiling heights. Viewpoints can now declare a pitch, applied as engine Aim_Up taps. The first attempt drove F9 and F10, which in Blood are Quick_Load and the quit prompt, and killed the process mid-capture; the engine's own key table binds Aim_Up to Home and Aim_Down to End, and Aim holds the pitch where Look recentres it. Captures also run with -nodudes now, because a frame taken with monsters spawned shows a pain flash or a cultist instead of the room."
+  },
+  {
+   "claim": "The chapel aisles are still ambiguous and I am still not moving them.",
+   "status": "uncertain",
+   "evidence": [
+    "structure:structure:recess:001",
+    "structure:structure:recess:002"
+   ],
+   "reasoning": "They sit at a depth ratio of 0.25, exactly the detector's ceiling, against a corpus median of 0.055. That is the top of what reads as a niche and the bottom of what reads as a room, and no measurement in the packet separates the two. Two iterations have now declined to move them for the same reason, which is the honest answer rather than a stalled one."
+  },
+  {
+   "claim": "Rectangular sector fraction did not improve and cannot be improved by arcs.",
+   "status": "supported",
+   "evidence": [
+    "shape:rectangular-sector-fraction",
+    "shape:convex-sector-fraction"
+   ],
+   "reasoning": "It stays at 0.632 and the 100th percentile, because the arcs went on the large outlines and the count is dominated by stair treads, door volumes and niches, which are rectangular in original maps too. The metric is a whole-level aggregate over sectors, so a level whose big rooms are curved and whose small parts are boxes scores the same as a pure grid. That is a limitation of the measurement, not a remaining defect, and chasing it would mean curving stair treads."
+  }
+ ],
+ "accepted_strengths": [
+  "All fourteen hard gates pass and the level loads in NBlood revision rlocal-agtst10.",
+  "Every declared viewpoint captured, including the four that look up.",
+  "Zero authored-versus-derived hierarchy discrepancies held across a large geometry change.",
+  "Orientation variety above the corpus minimum for the first time in the pilot.",
+  "Single-surface treatment at the corpus median, down from the 97.7th percentile.",
+  "The sky fix applies to every level the project generates, not only this one."
+ ],
+ "problems": [
+  "rectangular sector fraction is still at the corpus maximum, and the metric cannot distinguish a curved level with boxy parts from a grid",
+  "the chapel aisles remain unclassifiable by any rule in the packet",
+  "the level still has only three vertical looking relationships against a corpus median of 113 per map, on a tenth of the sector count"
+ ],
+ "next_actions": [
+  {
+   "action": "Stop the visual and shape track here. The remaining shape gap is a measurement limit rather than a level defect, and the representation work is the bottleneck now.",
+   "expected_effect": "further shape work would move an aggregate that cannot see the difference it is being asked to measure.",
+   "evidence": ["shape:rectangular-sector-fraction", "shape:orientation-5deg-bins-occupied"]
+  }
+ ],
+ "uncertainties": [
+  "Whether an arc of five segments at 30 degrees reads as curved to a player, or merely measures as curved, is not something any rule here answers.",
+  "The sky fix is verified by comparing frames before and after against an original captured the same way; no claim is made that the sky now looks correct, only that it renders the panorama the corpus declares."
+ ]
+}

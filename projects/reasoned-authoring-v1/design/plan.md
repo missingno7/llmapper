@@ -41,12 +41,16 @@ Without local game data the same command still runs; engine gates report
 
 ## Stopping condition
 
-Stopped at v3 because the remaining gap needs segmented-arc authoring — curved
-walls built from many small angle steps — which `PlanarLayout` can express but
-nothing in the loop helps compose, and no precedent in the packet describes how
-originals build one. More chamfering would push chamfer fraction further past the
-corpus maximum while leaving orientation variety at the floor. That is fitting
-the measurement, not the brief.
+Stopped at v5. v3 stopped because segmented-arc authoring had no constructor;
+mining 1473 arc chains from 41 campaign maps produced one, and v5 spent it,
+which took the metric v3 named as its bottleneck from the 0th percentile to
+above the corpus minimum.
+
+What is left on the shape axis is a limit of the measurement rather than of the
+level: rectangular sector fraction stays at the corpus maximum because it counts
+sectors, and a level whose large rooms are curved and whose stair treads and door
+volumes are boxes scores the same as a grid. Moving it would mean curving stair
+treads. The bottleneck is no longer visual.
 
 See [`../reports/comparison.md`](../reports/comparison.md) for the full
 cross-iteration evidence and the accounting of what is verified, derived,

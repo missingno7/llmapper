@@ -283,3 +283,41 @@ class PlanarLayoutTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SkyPanoramaTests(unittest.TestCase):
+    """Every campaign map with a parallax sector declares a 16-panel sky."""
+
+    U = 384
+    PH = 0x1600
+    SURFACE = dict(wall_picnum=180, floor_picnum=292, ceiling_picnum=2500)
+
+    def _layout(self, *, parallax: bool, **kwargs):
+        layout = PlanarLayout(name="sky-fixture", visibility=800, **kwargs)
+        u = self.U
+        layout.add_region(
+            "region:yard",
+            [(0, 0), (10 * u, 0), (10 * u, 10 * u), (0, 10 * u)],
+            role="exterior", floor_z=8192, ceiling_z=8192 - 12 * self.PH,
+            parallax_ceiling=parallax, declared_zero_exit=True, **self.SURFACE,
+        )
+        layout.set_player_start("region:yard", x=5 * u, y=5 * u, z=8192)
+        return layout
+
+    def test_a_parallax_region_compiles_the_corpus_sky_panorama(self):
+        level = self._layout(parallax=True).compile().level
+
+        self.assertEqual(level.sky["bits"], 4)
+        self.assertEqual(level.sky["offsets"], list(range(16)))
+
+    def test_a_level_with_no_sky_keeps_a_single_panel(self):
+        level = self._layout(parallax=False).compile().level
+
+        self.assertEqual(level.sky["bits"], 0)
+        self.assertEqual(level.sky["offsets"], [0])
+
+    def test_an_explicit_sky_bits_declaration_wins(self):
+        level = self._layout(parallax=True, sky_bits=3).compile().level
+
+        self.assertEqual(level.sky["bits"], 3)
+        self.assertEqual(level.sky["offsets"], list(range(8)))

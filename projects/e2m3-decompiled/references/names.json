@@ -1,0 +1,38 @@
+{
+ "assembly:001/space:011": {
+  "name": "arrival_yard",
+  "basis": "holds the only player start; 478 player areas; every sector sky-lit; 42 sprites; the outdoor tile set (wall 2499, floor 2448, ceiling 2500)"
+ },
+ "assembly:001/space:028": {
+  "name": "main_open_ground",
+  "basis": "largest space at 873 player areas; 9 of 15 sectors sky-lit; outdoor tile set; the only space touching both a second exterior and the big interior"
+ },
+ "assembly:001/space:063": {
+  "name": "far_open_ground",
+  "basis": "820 player areas, 16 of 16 sectors sky-lit, outdoor tile set, but connected only to two small spaces -- a separate outdoor lobe"
+ },
+ "assembly:001/space:037": {
+  "name": "large_interior",
+  "basis": "475 player areas with no sky at all; its own tile set (wall 153/181, floor 253/21, ceiling 20/67); 27 sectors, 54 sprites -- the densest space in the map; contains a stepped run, a recess and three shells"
+ },
+ "assembly:001/space:027": {
+  "name": "shell_court",
+  "basis": "430 player areas, 4 sky sectors, three embedded shells and one recess; a third tile set again (wall 309/355, floor 2490/355)"
+ },
+ "assembly:001/space:033": {
+  "name": "second_interior",
+  "basis": "258 player areas, no sky, 7.3 player heights, wall 309/5 over floor 365/6"
+ },
+ "assembly:001/space:050": {
+  "name": "outdoor_junction",
+  "basis": "248 player areas, 11 of 11 sectors sky-lit, and the only space adjacent to three other major spaces"
+ },
+ "assembly:001/space:044": {
+  "name": "sprite_dense_interior",
+  "basis": "233 player areas, no sky, 40 sprites, and a tile set (365/372) it shares with nothing else; what it is for is not measured here"
+ },
+ "assembly:001": {
+  "name": "main_complex",
+  "basis": "the single navigation component holding 327 of the level's 340 sectors"
+ }
+}

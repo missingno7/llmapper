@@ -31,8 +31,9 @@ REPORT_DIR = PROJECT / "reports"
 DEFAULT_CATALOG = Path("work/blood.material-knowledge-v2.json")
 DEFAULT_SPATIAL_CORPUS = Path("work/blood.spatial-corpus.json")
 DEFAULT_SHAPE_CORPUS = Path("work/blood.shape-corpus.json")
+DEFAULT_SURFACE_CORPUS = Path("work/blood.surface-corpus.json")
 DEFAULT_ART = Path("reference/blood")
-ITERATIONS = ("v0", "v1", "v2", "v3")
+ITERATIONS = ("v0", "v1", "v2", "v3", "v4", "v5")
 
 
 def load_candidate(iteration: str) -> Candidate:
@@ -68,6 +69,7 @@ def run_iteration(iteration: str, args: argparse.Namespace) -> AuthoringIteratio
     catalog = Path(args.catalog) if args.catalog else DEFAULT_CATALOG
     spatial = Path(args.spatial_corpus) if args.spatial_corpus else DEFAULT_SPATIAL_CORPUS
     shape = Path(args.shape_corpus) if args.shape_corpus else DEFAULT_SHAPE_CORPUS
+    surface = Path(args.surface_corpus) if args.surface_corpus else DEFAULT_SURFACE_CORPUS
     art_dir = Path(args.art_dir) if args.art_dir else DEFAULT_ART
     packet = evaluate_candidate(
         candidate,
@@ -76,6 +78,7 @@ def run_iteration(iteration: str, args: argparse.Namespace) -> AuthoringIteratio
         art_directory=art_dir if art_dir.is_dir() else None,
         spatial_corpus_path=spatial if spatial.is_file() else None,
         shape_corpus_path=shape if shape.is_file() else None,
+        surface_corpus_path=surface if surface.is_file() else None,
         engine=engine_config(args),
         view_dir=out / "views",
         work_dir=Path("work") / f"monastery-{iteration}",
@@ -196,6 +199,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--catalog", help="mined material knowledge JSON")
     parser.add_argument("--spatial-corpus", help="mined player-relative spatial corpus JSON")
     parser.add_argument("--shape-corpus", help="mined shape corpus JSON")
+    parser.add_argument("--surface-corpus", help="mined single-surface treatment corpus JSON")
     parser.add_argument("--art-dir", help="local Blood ART directory, for sprite world size")
     parser.add_argument("--grace-seconds", type=float, default=5.0)
     parser.add_argument("--startup-timeout", type=float, default=25.0)

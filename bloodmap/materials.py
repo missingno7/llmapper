@@ -1875,3 +1875,70 @@ def select_authoring_kit(
             "basis": "highest-usage annotated asset matching imported facets",
         }
     return kit
+
+
+SURFACE_TREATMENT_SCHEMA = "llmapper.surface-treatment-corpus"
+
+
+def sector_surface_triple(level: Any, sector_id: int) -> tuple[int, int, int]:
+    """This sector's floor tile, ceiling tile, and the tile most of its walls use."""
+    fields = level.sectors[sector_id]["fields"]
+    first, count = int(fields["wall_ptr"]), int(fields["wall_count"])
+    walls: Counter[int] = Counter(
+        int(level.walls[wall_id]["fields"]["picnum"])
+        for wall_id in range(first, first + count)
+    )
+    dominant = min(walls.items(), key=lambda item: (-item[1], item[0]))[0] if walls else -1
+    return (int(fields["floor_picnum"]), int(fields["ceiling_picnum"]), dominant)
+
+
+def single_surface_sectors(level: Any) -> list[dict[str, int]]:
+    """Sectors whose floor, ceiling, and dominant wall are all the same tile.
+
+    A space finished this way loses its edges: in a rendered frame the floor,
+    the walls, and the ceiling become one continuous pattern and the geometry
+    stops being readable.  Originals do it, but sparingly and usually to small
+    sectors, so the useful measure is the fraction rather than the presence.
+    """
+    result = []
+    for sector_id in range(len(level.sectors)):
+        floor, ceiling, wall = sector_surface_triple(level, sector_id)
+        if floor == ceiling == wall:
+            result.append({"sector": sector_id, "tile": floor})
+    return result
+
+
+def mine_surface_treatment_corpus(levels: list[tuple[str, Any]]) -> dict[str, Any]:
+    """Per-map fraction of sectors finished with a single tile on every surface."""
+    if not levels:
+        raise MaterialsError("surface treatment corpus is empty")
+    rows = []
+    for name, level in levels:
+        total = len(level.sectors)
+        if not total:
+            continue
+        single = single_surface_sectors(level)
+        rows.append({
+            "map": name,
+            "sectors": total,
+            "single_surface_sectors": len(single),
+            "fraction": round(len(single) / total, 4),
+        })
+    fractions = sorted(row["fraction"] for row in rows)
+    return {
+        "$schema": SURFACE_TREATMENT_SCHEMA,
+        "schema_version": 1,
+        "maps": len(rows),
+        "per_map": rows,
+        "fraction_samples": fractions,
+        "summary": {
+            "median": fractions[len(fractions) // 2] if fractions else None,
+            "p90": fractions[len(fractions) * 9 // 10] if fractions else None,
+            "max": fractions[-1] if fractions else None,
+            "min": fractions[0] if fractions else None,
+        },
+        "limitations": [
+            "the dominant wall tile is a count over the sector's own walls, not wall area",
+            "a high fraction is unusual for this corpus, never wrong by itself",
+        ],
+    }

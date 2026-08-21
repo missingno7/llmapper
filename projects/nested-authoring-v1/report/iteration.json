@@ -1,0 +1,1747 @@
+{
+ "$schema": "llmapper.authoring-iteration",
+ "schema_version": 1,
+ "identity": {
+  "iteration_id": "nested-v1",
+  "module": "experiments/nested_authoring.py",
+  "parent_iteration": null,
+  "declared_changes": [
+   "authored entirely in bloodmap.levelprog: no absolute coordinate outside the yard's own outline, no sector or wall index anywhere"
+  ],
+  "map_path": "work/nested-authoring.MAP",
+  "map_sha256": "cd402d5bf91b988fcb2a40d727ca0f97583e6ef8b67e95a5209f20bea57238fe",
+  "map_bytes": 5099,
+  "counts": {
+   "sectors": 17,
+   "walls": 90,
+   "sprites": 29,
+   "regions": 17,
+   "connections": 16
+  },
+  "deterministic_compile": true,
+  "counting_note": "object counts describe size, never quality"
+ },
+ "authored_intent": {
+  "brief": "a walled ground containing a manor whose lobby stair rises to an upper gallery, with a cellar beneath the west wing",
+  "start_region": "region:nested/grounds/yard",
+  "exit_region": "region:nested/manor/upper_gallery",
+  "assemblies": [
+   {
+    "assembly_id": "assembly:grounds",
+    "name": "grounds",
+    "role": "exterior_parent",
+    "intent": "the large walled exterior the manor stands in",
+    "regions": [
+     "region:nested/grounds/yard",
+     "region:nested/grounds/porch"
+    ],
+    "parent_assembly": null,
+    "optional": false,
+    "mandatory": true,
+    "material_vocabulary": {},
+    "landmarks": [],
+    "status": "authored declaration; not evidence about the compiled result"
+   },
+   {
+    "assembly_id": "assembly:manor",
+    "name": "manor",
+    "role": "embedded_building",
+    "intent": "the building inside the grounds: lobby, west wing, upper gallery",
+    "regions": [
+     "region:nested/manor/lobby",
+     "region:nested/manor/west_wing",
+     "region:nested/manor/upper_gallery"
+    ],
+    "parent_assembly": "assembly:grounds",
+    "optional": false,
+    "mandatory": true,
+    "material_vocabulary": {},
+    "landmarks": [],
+    "status": "authored declaration; not evidence about the compiled result"
+   },
+   {
+    "assembly_id": "assembly:undercroft",
+    "name": "undercroft",
+    "role": "lower_interior",
+    "intent": "the cellar under the west wing",
+    "regions": [
+     "region:nested/undercroft/cellar"
+    ],
+    "parent_assembly": null,
+    "optional": false,
+    "mandatory": true,
+    "material_vocabulary": {},
+    "landmarks": [],
+    "status": "authored declaration; not evidence about the compiled result"
+   }
+  ],
+  "transitions": [
+   {
+    "transition_id": "transition:porch",
+    "name": "yard into the manor",
+    "from_region": "region:nested/grounds/porch",
+    "to_region": "region:nested/manor/lobby",
+    "kind": "constrained_to_open",
+    "intent": "a low porch releasing into a nine player-height hall",
+    "connection_id": "connection:porch_lobby",
+    "expectation": {
+     "area_ratio_at_least": 6
+    },
+    "status": "authored declaration; not evidence about the compiled result"
+   }
+  ],
+  "progression": [
+   {
+    "step": 1,
+    "action": "cross the yard and enter through the porch"
+   },
+   {
+    "step": 2,
+    "action": "climb the lobby stair to the upper gallery"
+   },
+   {
+    "step": 3,
+    "action": "take the wing stair down into the cellar"
+   }
+  ],
+  "landmarks": [],
+  "optional_regions": [],
+  "loops": [],
+  "material_vocabulary": {},
+  "authority": "intent only. Every field here is what the author meant, and is deliberately excluded from the observation sections."
+ },
+ "hard_gates": [
+  {
+   "gate_id": "native_structure_valid",
+   "status": "pass",
+   "detail": "native Blood validation reports no errors"
+  },
+  {
+   "gate_id": "authored_geometry_valid",
+   "status": "pass",
+   "detail": "0 authored error(s), 0 warning(s)",
+   "errors": 0,
+   "warnings": 0
+  },
+  {
+   "gate_id": "no_unintended_overlaps",
+   "status": "pass",
+   "detail": "no unintended XY footprint overlap",
+   "failures": []
+  },
+  {
+   "gate_id": "no_unresolved_boundary_contacts",
+   "status": "pass",
+   "detail": "no T-junctions, partial collinear overlaps, or proper crossings",
+   "failures": []
+  },
+  {
+   "gate_id": "intended_adjacency_realized",
+   "status": "pass",
+   "detail": "every intended adjacency became a portal and no portal is unintended",
+   "failures": []
+  },
+  {
+   "gate_id": "geometry_conservation",
+   "status": "pass",
+   "detail": "72 source edges -> 90 emitted; split 18",
+   "conservation": {
+    "source_directed_edges": 72,
+    "emitted_directed_edges": 90,
+    "dropped_source_edges": [],
+    "duplicated_source_edges": [],
+    "unpaired_portal_candidates": [],
+    "split_count": 18,
+    "atomic_segments": 90,
+    "walls_owned_once": true,
+    "conserved": true
+   }
+  },
+  {
+   "gate_id": "portals_realized",
+   "status": "pass",
+   "detail": "16 authored connections realized",
+   "unrealized": [],
+   "narrower_than_declared": []
+  },
+  {
+   "gate_id": "player_start_valid",
+   "status": "pass",
+   "detail": "start sector:3 of 17",
+   "player_start": {
+    "x": -5837,
+    "y": 3072,
+    "z": 8192,
+    "angle": 0,
+    "sector": 3
+   }
+  },
+  {
+   "gate_id": "player_relative_clearance",
+   "status": "pass",
+   "detail": "start clear height 73216 = 13.0 player heights",
+   "player_heights": 13.0
+  },
+  {
+   "gate_id": "required_reachability",
+   "status": "pass",
+   "detail": "6/6 mandatory regions reachable",
+   "mandatory_regions": [
+    "region:nested/grounds/porch",
+    "region:nested/grounds/yard",
+    "region:nested/manor/lobby",
+    "region:nested/manor/upper_gallery",
+    "region:nested/manor/west_wing",
+    "region:nested/undercroft/cellar"
+   ],
+   "unreachable_regions": []
+  },
+  {
+   "gate_id": "exit_reachable",
+   "status": "pass",
+   "detail": "an exit is reachable under the declared progression",
+   "witness": [
+    {
+     "kind": "spawn",
+     "sector": 3,
+     "reachable": 17
+    },
+    {
+     "kind": "activate",
+     "ref": "sprite:25",
+     "tx_id": 4,
+     "is_exit": true,
+     "newly_reachable": 0,
+     "reachable": 17
+    }
+   ],
+   "reachable_at_rest": 17,
+   "final_reachable": 17
+  },
+  {
+   "gate_id": "object_attachment_valid",
+   "status": "pass",
+   "detail": "sprite attachments and use poses are consistent",
+   "attachment_violations": [],
+   "use_pose_violations": []
+  },
+  {
+   "gate_id": "deterministic_emission",
+   "status": "pass",
+   "detail": "two independent compiles produced identical bytes",
+   "map_sha256": "cd402d5bf91b988fcb2a40d727ca0f97583e6ef8b67e95a5209f20bea57238fe",
+   "bytes": 5099
+  },
+  {
+   "gate_id": "nblood_load_smoke",
+   "status": "pass",
+   "detail": "NBlood load smoke pass; revisions=['rlocal-agtst10']",
+   "report": {
+    "$schema": "bloodmap.nblood-oracle-report",
+    "schema_version": 1,
+    "status": "pass",
+    "engine_revisions": [
+     "rlocal-agtst10"
+    ],
+    "probes": {
+     "candidate": {
+      "status": "pass",
+      "stayed_alive_for_grace_period": true,
+      "markers": {
+       "autoexec": true,
+       "game_loop": true,
+       "map_initialization": true
+      },
+      "fatal_indicators": [],
+      "engine_revision": "rlocal-agtst10",
+      "identity": {
+       "filename": "nested-v1.MAP",
+       "sha256": "cd402d5bf91b988fcb2a40d727ca0f97583e6ef8b67e95a5209f20bea57238fe",
+       "size": 5099,
+       "counts": {
+        "sectors": 17,
+        "walls": 90,
+        "sprites": 29
+       }
+      },
+      "grace_seconds": 14.0,
+      "terminated_by_harness": true,
+      "early_exit_code": null
+     }
+    }
+   }
+  }
+ ],
+ "independent_hierarchy": {
+  "derived_structures": [
+   {
+    "id": "structure:stepped_run:001",
+    "kind": "stepped_run",
+    "parent": "assembly:001",
+    "sectors": [
+     11,
+     12,
+     13,
+     14
+    ],
+    "parameters": {
+     "rises": 4,
+     "treads": 4,
+     "total_rise": 12288,
+     "total_run": 3552.0,
+     "width": 1536.0,
+     "clear_height": 33792
+    },
+    "residual": {
+     "step_rise": {
+      "mean": 3072,
+      "stdev": 0.0,
+      "min": 3072,
+      "max": 3072
+     },
+     "step_run": {
+      "mean": 888.0,
+      "stdev": 540.4,
+      "min": 576.0,
+      "max": 1824.0
+     },
+     "portal_width": {
+      "mean": 1536.0,
+      "stdev": 0.0,
+      "min": 1536.0,
+      "max": 1536.0
+     },
+     "uniform_rise": true,
+     "uniform_width": true,
+     "trimmed_terminals": [
+      1
+     ]
+    },
+    "attaches_to_spaces": [
+     "assembly:001/space:001"
+    ]
+   },
+   {
+    "id": "structure:stepped_run:002",
+    "kind": "stepped_run",
+    "parent": "assembly:001",
+    "sectors": [
+     7,
+     8,
+     9,
+     10
+    ],
+    "parameters": {
+     "rises": 4,
+     "treads": 4,
+     "total_rise": 16384,
+     "total_run": 5376.0,
+     "width": 2304.0,
+     "clear_height": 50688
+    },
+    "residual": {
+     "step_rise": {
+      "mean": 4096,
+      "stdev": 0.0,
+      "min": 4096,
+      "max": 4096
+     },
+     "step_run": {
+      "mean": 1344.0,
+      "stdev": 997.66,
+      "min": 768.0,
+      "max": 3072.0
+     },
+     "portal_width": {
+      "mean": 2304.0,
+      "stdev": 0.0,
+      "min": 2304.0,
+      "max": 2304.0
+     },
+     "uniform_rise": true,
+     "uniform_width": true,
+     "trimmed_terminals": [
+      0
+     ]
+    },
+    "attaches_to_spaces": [
+     "assembly:001/space:001"
+    ]
+   },
+   {
+    "id": "structure:recess:001",
+    "kind": "recess",
+    "parent": "assembly:001",
+    "sectors": [
+     6
+    ],
+    "parameters": {
+     "area": 663552.0,
+     "depth_ratio": 0.0268,
+     "opening_width": 1152.0,
+     "floor_delta": 0,
+     "ceiling_delta": 22528,
+     "clear_height": 28160
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:001"
+    ]
+   },
+   {
+    "id": "structure:recess:002",
+    "kind": "recess",
+    "parent": "assembly:001",
+    "sectors": [
+     15
+    ],
+    "parameters": {
+     "area": 552960.0,
+     "depth_ratio": 0.0521,
+     "opening_width": 960.0,
+     "floor_delta": 0,
+     "ceiling_delta": 39424,
+     "clear_height": 22528
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:001"
+    ]
+   },
+   {
+    "id": "structure:recess:003",
+    "kind": "recess",
+    "parent": "assembly:001",
+    "sectors": [
+     16
+    ],
+    "parameters": {
+     "area": 442368.0,
+     "depth_ratio": 0.03,
+     "opening_width": 768.0,
+     "floor_delta": 0,
+     "ceiling_delta": 11264,
+     "clear_height": 16896
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:001"
+    ]
+   },
+   {
+    "id": "structure:embedded_shell:001",
+    "kind": "embedded_shell",
+    "parent": "assembly:001",
+    "sectors": [
+     0,
+     1,
+     2,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16
+    ],
+    "parameters": {
+     "footprint": 265420800.0,
+     "contained_sectors": 16,
+     "host_area": 194641920.0,
+     "occupies_host": 0.5769
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:001"
+    ]
+   }
+  ],
+  "structure_relations": {
+   "counts": {
+    "overlook": 0,
+    "pit": 0
+   },
+   "largest_drops": []
+  },
+  "structure_recovery": {
+   "model": "derived architectural structures between the perceptual space and the individual sector; geometry only, never authored labels",
+   "coverage": {
+    "sectors": 17,
+    "sectors_in_a_structure": 16,
+    "by_kind": {
+     "stepped_run": 8,
+     "landing": 0,
+     "recess": 3,
+     "overlook": 0,
+     "embedded_shell": 16,
+     "pit": 0
+    }
+   },
+   "limitations": [
+    "detection is static: transient door and lift motion is ignored",
+    "a stepped run is a measured climb, not a claim that the designer drew a staircase",
+    "a recess is a small dead end; whether it reads as an alcove is not measured here",
+    "residual records how far the original is from its own parameters, not whether that matters"
+   ]
+  },
+  "derived_assemblies": [
+   {
+    "id": "assembly:001",
+    "sectors": 17,
+    "geometry": {
+     "bounds": {
+      "min_x": -7680,
+      "min_y": -6912,
+      "max_x": 15360,
+      "max_y": 13056
+     },
+     "area_native_squared": 269144064.0,
+     "aabb_native": {
+      "width": 23040,
+      "depth": 19968
+     },
+     "player_relative": {
+      "footprint_player_areas": 1825.25,
+      "aabb_player_widths": [
+       60.0,
+       52.0
+      ],
+      "median_clear_height_player_heights": 6.0
+     },
+     "floor_z_range": [
+      -8192,
+      20480
+     ],
+     "ceiling_z_range": [
+      -70144,
+      3584
+     ],
+     "wall_loop_count": 18
+    }
+   }
+  ],
+  "derived_spaces": [
+   {
+    "id": "assembly:001/space:001",
+    "parent": "assembly:001",
+    "sectors": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16
+    ],
+    "sprites": 29,
+    "player_relative": {
+     "footprint_player_areas": 1825.25,
+     "aabb_player_widths": [
+      60.0,
+      52.0
+     ],
+     "median_clear_height_player_heights": 6.0
+    },
+    "floor_z_range": [
+     -8192,
+     20480
+    ],
+    "spatial_candidate": "perceptual_space:0"
+   }
+  ],
+  "counts": {
+   "assemblies": 1,
+   "spaces": 1,
+   "singleton_spaces": 0,
+   "detail_groups": 1,
+   "cross_space_connections": 0,
+   "vertical_overlap_relations": 0,
+   "structures": 6
+  },
+  "singleton_space_ids": [],
+  "major_connections": [],
+  "vertical_overlaps": [],
+  "material_continuity_candidates": [
+   {
+    "id": "material_region:0",
+    "sectors": [
+     0,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "evidence": {
+     "material_continuity": "shared raw tile ratio >= 0.25 and shade delta <= 8",
+     "sectors_considered": 6
+    }
+   },
+   {
+    "id": "material_region:1",
+    "sectors": [
+     1,
+     11,
+     12,
+     13,
+     14
+    ],
+    "evidence": {
+     "material_continuity": "shared raw tile ratio >= 0.25 and shade delta <= 8",
+     "sectors_considered": 5
+    }
+   },
+   {
+    "id": "material_region:2",
+    "sectors": [
+     2,
+     15
+    ],
+    "evidence": {
+     "material_continuity": "shared raw tile ratio >= 0.25 and shade delta <= 8",
+     "sectors_considered": 2
+    }
+   },
+   {
+    "id": "material_region:5",
+    "sectors": [
+     5,
+     16
+    ],
+    "evidence": {
+     "material_continuity": "shared raw tile ratio >= 0.25 and shade delta <= 8",
+     "sectors_considered": 2
+    }
+   }
+  ],
+  "detail_group_distribution": [
+   {
+    "id": "assembly:001/space:001/details",
+    "parent": "assembly:001/space:001",
+    "sprites": 29
+   }
+  ],
+  "basis": "bloodmap.decompiler.decompile_level over the compiled candidate only",
+  "limitations": [
+   "names are neutral until semantic review",
+   "navigation connectivity is a static at-rest approximation",
+   "perceptual grouping uses portal/material continuity rather than renderer visibility",
+   "mechanism and experience decomposition are intentionally out of scope",
+   "structures are derived from geometry and overlap the spaces they belong to"
+  ]
+ },
+ "hierarchy_comparison": {
+  "model": "authored grouping is a declaration; derived grouping comes only from decompile_level over the compiled MAP",
+  "assemblies": [
+   {
+    "assembly_id": "assembly:grounds",
+    "authored_name": "grounds",
+    "authored_role": "exterior_parent",
+    "authored_regions": [
+     "region:nested/grounds/yard",
+     "region:nested/grounds/porch"
+    ],
+    "sectors": [
+     3,
+     4
+    ],
+    "derived_assemblies": [
+     "assembly:001"
+    ],
+    "derived_spaces": [
+     {
+      "id": "assembly:001/space:001",
+      "shared_sectors": 2,
+      "space_sector_count": 17
+     }
+    ],
+    "derived_space_count": 1,
+    "singleton_space_ids": [],
+    "room_singleton_space_ids": [],
+    "dominant_space": "assembly:001/space:001",
+    "dominant_space_share": 1.0,
+    "dominant_space_share_basis": "floor area",
+    "dominant_space_sector_share": 1.0
+   },
+   {
+    "assembly_id": "assembly:manor",
+    "authored_name": "manor",
+    "authored_role": "embedded_building",
+    "authored_regions": [
+     "region:nested/manor/lobby",
+     "region:nested/manor/west_wing",
+     "region:nested/manor/upper_gallery"
+    ],
+    "sectors": [
+     0,
+     1,
+     2
+    ],
+    "derived_assemblies": [
+     "assembly:001"
+    ],
+    "derived_spaces": [
+     {
+      "id": "assembly:001/space:001",
+      "shared_sectors": 3,
+      "space_sector_count": 17
+     }
+    ],
+    "derived_space_count": 1,
+    "singleton_space_ids": [],
+    "room_singleton_space_ids": [],
+    "dominant_space": "assembly:001/space:001",
+    "dominant_space_share": 1.0,
+    "dominant_space_share_basis": "floor area",
+    "dominant_space_sector_share": 1.0
+   },
+   {
+    "assembly_id": "assembly:undercroft",
+    "authored_name": "undercroft",
+    "authored_role": "lower_interior",
+    "authored_regions": [
+     "region:nested/undercroft/cellar"
+    ],
+    "sectors": [
+     5
+    ],
+    "derived_assemblies": [
+     "assembly:001"
+    ],
+    "derived_spaces": [
+     {
+      "id": "assembly:001/space:001",
+      "shared_sectors": 1,
+      "space_sector_count": 17
+     }
+    ],
+    "derived_space_count": 1,
+    "singleton_space_ids": [],
+    "room_singleton_space_ids": [],
+    "dominant_space": "assembly:001/space:001",
+    "dominant_space_share": 1.0,
+    "dominant_space_share_basis": "floor area",
+    "dominant_space_sector_share": 1.0
+   }
+  ],
+  "discrepancies": [
+   {
+    "id": "discrepancy:assembly:001.space:001:collapsed",
+    "kind": "authored_assemblies_share_one_perceptual_space",
+    "description": "authored assemblies ['assembly:grounds', 'assembly:manor', 'assembly:undercroft'] were grouped into the single derived space assembly:001/space:001, so their intended identities are not perceptually separated",
+    "rule": "one derived space contains sectors from more than one authored assembly",
+    "evidence": [
+     "decompiled:assembly:001/space:001",
+     "intent:assembly:grounds",
+     "intent:assembly:manor",
+     "intent:assembly:undercroft"
+    ],
+    "status": "derived observation; not a verdict on design quality",
+    "authored_assemblies": [
+     "assembly:grounds",
+     "assembly:manor",
+     "assembly:undercroft"
+    ]
+   },
+   {
+    "id": "discrepancy:assembly:manor:containment",
+    "kind": "embedded_structure_merged_into_host",
+    "description": "authored embedded structure 'manor' shares derived space(s) ['assembly:001/space:001'] with its host 'grounds', so it does not read as a distinct interior",
+    "rule": "an authored child assembly shares a derived perceptual space with its parent",
+    "evidence": [
+     "intent:assembly:manor",
+     "intent:assembly:grounds",
+     "decompiled:assembly:001/space:001"
+    ],
+    "status": "derived observation; not a verdict on design quality"
+   }
+  ],
+  "unmatched_regions": [
+   "region:recess:cellar_niche",
+   "region:recess:gallery_niche",
+   "region:recess:lobby_niche",
+   "region:stairs:cellar:step_01",
+   "region:stairs:cellar:step_02",
+   "region:stairs:cellar:step_03",
+   "region:stairs:cellar:step_04",
+   "region:stairs:grand:step_01",
+   "region:stairs:grand:step_02",
+   "region:stairs:grand:step_03",
+   "region:stairs:grand:step_04"
+  ]
+ },
+ "design_probes": [
+  {
+   "probe_id": "probe:reach_gallery",
+   "relevance": "the nesting claim depends on the stair actually connecting",
+   "declared": {
+    "probe_type": "access",
+    "start_region": null,
+    "target_region": "region:nested/manor/upper_gallery",
+    "source_region": null,
+    "destination_region": null,
+    "opened_connections": [],
+    "alt_opened_connections": []
+   },
+   "probe": {
+    "$schema": "llmapper.design-probe",
+    "schema_version": 1,
+    "probe_type": "access",
+    "question": "can the upper gallery be reached from the yard?",
+    "player_state": {
+     "sector": 3,
+     "x": 0,
+     "y": 0,
+     "z": 0,
+     "angle": 0,
+     "keys": []
+    },
+    "world_state": {
+     "opened_portals": [],
+     "activated_mechanisms": [],
+     "destroyed_barriers": [],
+     "enabled_routes": [],
+     "notes": "portals declared open by the authored probe request"
+    },
+    "player_knowledge": {
+     "seen_sectors": [],
+     "known_landmarks": [],
+     "known_locked_routes": [],
+     "visited_areas": [],
+     "known_objectives": []
+    },
+    "parameters": {
+     "target_sector": 2
+    }
+   },
+   "result": {
+    "$schema": "llmapper.probe-result",
+    "schema_version": 1,
+    "probe_type": "access",
+    "status": "pass",
+    "fidelity_level": "L0",
+    "question": "can the upper gallery be reached from the yard?",
+    "answer": "sector:2 is reachable from sector:3",
+    "evidence": [
+     {
+      "claim": "Path found with 7 steps from sector:3 to sector:2",
+      "source": "static_exact",
+      "confidence": "high"
+     }
+    ],
+    "route": [
+     "sector:3",
+     "sector:4",
+     "sector:0",
+     "sector:7",
+     "sector:8",
+     "sector:9",
+     "sector:10",
+     "sector:2"
+    ],
+    "limitations": [
+     "L0 graph reasoning only; does not simulate player movement, slopes, or combat",
+     "Does not infer key ownership, switch order, or dynamic mechanism behavior"
+    ]
+   }
+  },
+  {
+   "probe_id": "probe:reach_cellar",
+   "relevance": "the second stair is the second half of the nesting test",
+   "declared": {
+    "probe_type": "access",
+    "start_region": null,
+    "target_region": "region:nested/undercroft/cellar",
+    "source_region": null,
+    "destination_region": null,
+    "opened_connections": [],
+    "alt_opened_connections": []
+   },
+   "probe": {
+    "$schema": "llmapper.design-probe",
+    "schema_version": 1,
+    "probe_type": "access",
+    "question": "can the cellar be reached?",
+    "player_state": {
+     "sector": 3,
+     "x": 0,
+     "y": 0,
+     "z": 0,
+     "angle": 0,
+     "keys": []
+    },
+    "world_state": {
+     "opened_portals": [],
+     "activated_mechanisms": [],
+     "destroyed_barriers": [],
+     "enabled_routes": [],
+     "notes": "portals declared open by the authored probe request"
+    },
+    "player_knowledge": {
+     "seen_sectors": [],
+     "known_landmarks": [],
+     "known_locked_routes": [],
+     "visited_areas": [],
+     "known_objectives": []
+    },
+    "parameters": {
+     "target_sector": 5
+    }
+   },
+   "result": {
+    "$schema": "llmapper.probe-result",
+    "schema_version": 1,
+    "probe_type": "access",
+    "status": "pass",
+    "fidelity_level": "L0",
+    "question": "can the cellar be reached?",
+    "answer": "sector:5 is reachable from sector:3",
+    "evidence": [
+     {
+      "claim": "Path found with 8 steps from sector:3 to sector:5",
+      "source": "static_exact",
+      "confidence": "high"
+     }
+    ],
+    "route": [
+     "sector:3",
+     "sector:4",
+     "sector:0",
+     "sector:1",
+     "sector:11",
+     "sector:12",
+     "sector:13",
+     "sector:14",
+     "sector:5"
+    ],
+    "limitations": [
+     "L0 graph reasoning only; does not simulate player movement, slopes, or combat",
+     "Does not infer key ownership, switch order, or dynamic mechanism behavior"
+    ]
+   }
+  },
+  {
+   "probe_id": "probe:porch_contrast",
+   "relevance": "one composed constrained-to-open transition",
+   "declared": {
+    "probe_type": "transition",
+    "start_region": null,
+    "target_region": null,
+    "source_region": "region:nested/grounds/porch",
+    "destination_region": "region:nested/manor/lobby",
+    "opened_connections": [],
+    "alt_opened_connections": []
+   },
+   "probe": {
+    "$schema": "llmapper.design-probe",
+    "schema_version": 1,
+    "probe_type": "transition",
+    "question": "does the porch to lobby step read as a release?",
+    "player_state": {
+     "sector": 3,
+     "x": 0,
+     "y": 0,
+     "z": 0,
+     "angle": 0,
+     "keys": []
+    },
+    "world_state": {
+     "opened_portals": [],
+     "activated_mechanisms": [],
+     "destroyed_barriers": [],
+     "enabled_routes": [],
+     "notes": "portals declared open by the authored probe request"
+    },
+    "player_knowledge": {
+     "seen_sectors": [],
+     "known_landmarks": [],
+     "known_locked_routes": [],
+     "visited_areas": [],
+     "known_objectives": []
+    },
+    "parameters": {
+     "source_sector": 4,
+     "destination_sector": 0
+    }
+   },
+   "result": {
+    "$schema": "llmapper.probe-result",
+    "schema_version": 1,
+    "probe_type": "transition",
+    "status": "pass",
+    "fidelity_level": "L1",
+    "question": "does the porch to lobby step read as a release?",
+    "evidence": [
+     {
+      "claim": "Strong spatial expansion: area ratio 9.3333, height delta 28160",
+      "source": "static_exact",
+      "confidence": "high"
+     }
+    ],
+    "measurements": {
+     "area_ratio": 9.3333,
+     "clear_height_delta": 28160,
+     "floor_delta": 0,
+     "source_area": 2654208.0,
+     "dest_area": 24772608.0,
+     "source_clear_height": 22528,
+     "dest_clear_height": 50688
+    },
+    "state_changes": [
+     {
+      "type": "spatial_expansion",
+      "area_ratio": 9.3333,
+      "height_delta": 28160
+     }
+    ],
+    "limitations": [
+     "Measurements are based on sector geometry, not renderer views",
+     "Area ratio uses polygon area, not perceived spatial extent"
+    ]
+   }
+  }
+ ],
+ "art_evidence": {
+  "surface_treatment": {
+   "single_surface_sectors": [],
+   "fraction": 0.0,
+   "corpus_percentile": null,
+   "corpus": null,
+   "corpus_maps": null,
+   "reading": "no corpus",
+   "rule": "floor tile, ceiling tile and dominant wall tile are all the same"
+  },
+  "catalog": null,
+  "catalog_status": "absent",
+  "nodes": [
+   {
+    "node": "assembly:001",
+    "kind": "assembly",
+    "sectors": 17,
+    "dominant": {
+     "floor": [
+      {
+       "tile": 294,
+       "count": 11
+      },
+      {
+       "tile": 44,
+       "count": 2
+      },
+      {
+       "tile": 568,
+       "count": 2
+      }
+     ],
+     "ceiling": [
+      {
+       "tile": 454,
+       "count": 7
+      },
+      {
+       "tile": 285,
+       "count": 5
+      },
+      {
+       "tile": 67,
+       "count": 2
+      }
+     ],
+     "wall": [
+      {
+       "tile": 5,
+       "count": 32
+      },
+      {
+       "tile": 80,
+       "count": 22
+      },
+      {
+       "tile": 110,
+       "count": 14
+      }
+     ],
+     "wall_overlay": [
+      {
+       "tile": 0,
+       "count": 90
+      }
+     ],
+     "sprite": [
+      {
+       "tile": 2542,
+       "count": 16
+      },
+      {
+       "tile": 1701,
+       "count": 5
+      },
+      {
+       "tile": 506,
+       "count": 3
+      }
+     ]
+    },
+    "distinct_tile_counts": {
+     "floor": 4,
+     "ceiling": 5,
+     "wall": 5
+    },
+    "sprite_count": 29,
+    "shade_range": {
+     "min": 0,
+     "max": 34
+    },
+    "repetition": {
+     "floor": 0.6471,
+     "ceiling": 0.4118,
+     "wall": 0.3556
+    }
+   },
+   {
+    "node": "assembly:001/space:001",
+    "kind": "space",
+    "sectors": 17,
+    "dominant": {
+     "floor": [
+      {
+       "tile": 294,
+       "count": 11
+      },
+      {
+       "tile": 44,
+       "count": 2
+      },
+      {
+       "tile": 568,
+       "count": 2
+      }
+     ],
+     "ceiling": [
+      {
+       "tile": 454,
+       "count": 7
+      },
+      {
+       "tile": 285,
+       "count": 5
+      },
+      {
+       "tile": 67,
+       "count": 2
+      }
+     ],
+     "wall": [
+      {
+       "tile": 5,
+       "count": 32
+      },
+      {
+       "tile": 80,
+       "count": 22
+      },
+      {
+       "tile": 110,
+       "count": 14
+      }
+     ],
+     "wall_overlay": [
+      {
+       "tile": 0,
+       "count": 90
+      }
+     ],
+     "sprite": [
+      {
+       "tile": 2542,
+       "count": 16
+      },
+      {
+       "tile": 1701,
+       "count": 5
+      },
+      {
+       "tile": 506,
+       "count": 3
+      }
+     ]
+    },
+    "distinct_tile_counts": {
+     "floor": 4,
+     "ceiling": 5,
+     "wall": 5
+    },
+    "sprite_count": 29,
+    "shade_range": {
+     "min": 0,
+     "max": 34
+    },
+    "repetition": {
+     "floor": 0.6471,
+     "ceiling": 0.4118,
+     "wall": 0.3556
+    }
+   }
+  ],
+  "assets": [
+   {
+    "asset": "blood:tile:0",
+    "knowledge": "unknown",
+    "note": "no mined material knowledge was supplied for this tile"
+   },
+   {
+    "asset": "blood:tile:5",
+    "knowledge": "unknown",
+    "note": "no mined material knowledge was supplied for this tile"
+   },
+   {
+    "asset": "blood:tile:44",
+    "knowledge": "unknown",
+    "note": "no mined material knowledge was supplied for this tile"
+   },
+   {
+    "asset": "blood:tile:67",
+    "knowledge": "unknown",
+    "note": "no mined material knowledge was supplied for this tile"
+   },
+   {
+    "asset": "blood:tile:80",
+    "knowledge": "unknown",
+    "note": "no mined material knowledge was supplied for this tile"
+   },
+   {
+    "asset": "blood:tile:110",
+    "knowledge": "unknown",
+    "note": "no mined material knowledge was supplied for this tile"
+   },
+   {
+    "asset": "blood:tile:285",
+    "knowledge": "unknown",
+    "note": "no mined material knowledge was supplied for this tile"
+   },
+   {
+    "asset": "blood:tile:294",
+    "knowledge": "unknown",
+    "note": "no mined material knowledge was supplied for this tile"
+   },
+   {
+    "asset": "blood:tile:454",
+    "knowledge": "unknown",
+    "note": "no mined material knowledge was supplied for this tile"
+   },
+   {
+    "asset": "blood:tile:506",
+    "knowledge": "unknown",
+    "note": "no mined material knowledge was supplied for this tile"
+   },
+   {
+    "asset": "blood:tile:568",
+    "knowledge": "unknown",
+    "note": "no mined material knowledge was supplied for this tile"
+   },
+   {
+    "asset": "blood:tile:1701",
+    "knowledge": "unknown",
+    "note": "no mined material knowledge was supplied for this tile"
+   },
+   {
+    "asset": "blood:tile:2542",
+    "knowledge": "unknown",
+    "note": "no mined material knowledge was supplied for this tile"
+   }
+  ],
+  "unresolved_assets": [
+   "blood:tile:0",
+   "blood:tile:5",
+   "blood:tile:44",
+   "blood:tile:67",
+   "blood:tile:80",
+   "blood:tile:110",
+   "blood:tile:285",
+   "blood:tile:294",
+   "blood:tile:454",
+   "blood:tile:506",
+   "blood:tile:568",
+   "blood:tile:1701",
+   "blood:tile:2542"
+  ],
+  "visually_empty_spaces": [],
+  "decorative_distribution": {
+   "total_space_sprites": 29,
+   "largest_share_in_one_space": 1.0,
+   "per_space": {
+    "assembly:001/space:001": 29
+   }
+  },
+  "near_identical_treatments": [
+   {
+    "assemblies": [
+     "assembly:grounds",
+     "assembly:manor"
+    ],
+    "surface_vocabulary_overlap": 1.0,
+    "evidence": [
+     "intent:assembly:grounds",
+     "intent:assembly:manor"
+    ],
+    "rule": "shared floor/ceiling/wall tile vocabulary >= 0.60 of the union"
+   },
+   {
+    "assemblies": [
+     "assembly:grounds",
+     "assembly:undercroft"
+    ],
+    "surface_vocabulary_overlap": 1.0,
+    "evidence": [
+     "intent:assembly:grounds",
+     "intent:assembly:undercroft"
+    ],
+    "rule": "shared floor/ceiling/wall tile vocabulary >= 0.60 of the union"
+   },
+   {
+    "assemblies": [
+     "assembly:manor",
+     "assembly:undercroft"
+    ],
+    "surface_vocabulary_overlap": 1.0,
+    "evidence": [
+     "intent:assembly:manor",
+     "intent:assembly:undercroft"
+    ],
+    "rule": "shared floor/ceiling/wall tile vocabulary >= 0.60 of the union"
+   }
+  ],
+  "identical_room_treatments": [],
+  "assembly_dominant_surfaces": {
+   "assembly:grounds": {
+    "floor": 2448,
+    "ceiling": 454,
+    "wall": 110
+   },
+   "assembly:manor": {
+    "floor": 294,
+    "ceiling": 285,
+    "wall": 5
+   },
+   "assembly:undercroft": {
+    "floor": 568,
+    "ceiling": 67,
+    "wall": 194
+   }
+  },
+  "transition_material_evidence": [
+   {
+    "transition_id": "transition:porch",
+    "from": "sector:4",
+    "to": "sector:0",
+    "material_change": {
+     "floor_tile_changed": true,
+     "ceiling_tile_changed": false,
+     "floor_shade_delta": -2,
+     "clear_height_delta": 28160
+    },
+    "any_surface_change": true,
+    "evidence": [
+     "transition:transition:porch",
+     "source:sector:4",
+     "source:sector:0"
+    ]
+   }
+  ],
+  "limitations": [
+   "tile identity is exact; tile meaning is either mined-and-interpreted or unknown",
+   "surface vocabulary overlap is a raw tile-set measure, not a perceived-similarity model",
+   "no claim is made here about how a surface actually looks in the renderer"
+  ],
+  "sprite_scale": {
+   "status": "unavailable",
+   "note": "no local ART directory was supplied, so sprite world size cannot be measured",
+   "sprites": [],
+   "findings": []
+  }
+ },
+ "corpus_scale": {
+  "profile": "player-profile:blood",
+  "spatial_corpus": null,
+  "spaces": [
+   {
+    "node": "assembly:001/space:001",
+    "regions": [
+     "region:nested/manor/lobby",
+     "region:nested/manor/west_wing",
+     "region:nested/manor/upper_gallery",
+     "region:nested/grounds/yard",
+     "region:nested/grounds/porch",
+     "region:nested/undercroft/cellar",
+     "region:recess:lobby_niche",
+     "region:stairs:grand:step_01",
+     "region:stairs:grand:step_02",
+     "region:stairs:grand:step_03",
+     "region:stairs:grand:step_04",
+     "region:stairs:cellar:step_01",
+     "region:stairs:cellar:step_02",
+     "region:stairs:cellar:step_03",
+     "region:stairs:cellar:step_04",
+     "region:recess:gallery_niche",
+     "region:recess:cellar_niche"
+    ],
+    "footprint_player_areas": 1825.25,
+    "clear_height_player_heights_area_weighted": 11.53,
+    "clear_height_player_heights_sector_median": 6.0,
+    "footprint_corpus_percentile": null,
+    "height_corpus_percentile": null,
+    "height_percentile_vs_same_size_corpus_sectors": null,
+    "size_matched_sample_count": 0,
+    "reading": "no corpus",
+    "sky_lit_sectors": 1,
+    "height_percentile_vs_corpus_sky_sectors": null
+   }
+  ],
+  "shape": {
+   "status": "no shape corpus supplied",
+   "signature": null
+  },
+  "findings": [],
+  "limitations": [
+   "a percentile says how unusual a number is for this corpus, never whether it is good",
+   "size matching uses footprint alone; it does not know what a corpus sector was for",
+   "shape is measured for the whole level, so one deliberately plain wing moves it"
+  ]
+ },
+ "render": {
+  "manifest": {
+   "$schema": "llmapper.viewpoint-manifest",
+   "schema_version": 1,
+   "candidate_map_sha256": "cd402d5bf91b988fcb2a40d727ca0f97583e6ef8b67e95a5209f20bea57238fe",
+   "player_start_marker_sprites": [],
+   "viewpoints": [
+    {
+     "viewpoint_id": "view:yard",
+     "purpose": "player_start",
+     "region_id": "region:nested/grounds/yard",
+     "pose": {
+      "x": -6144,
+      "y": 3072,
+      "z": 7168,
+      "angle": 0
+     },
+     "pitch": 0,
+     "note": "open ground west of the manor, facing it",
+     "sector": "sector:3",
+     "sector_id": 3,
+     "sector_floor_z": 8192,
+     "sector_ceiling_z": -65024,
+     "variant_is_pose_only": true
+    },
+    {
+     "viewpoint_id": "view:lobby",
+     "purpose": "assembly_center",
+     "region_id": "region:nested/manor/lobby",
+     "pose": {
+      "x": 2688,
+      "y": 2304,
+      "z": 7168,
+      "angle": 512
+     },
+     "pitch": 0,
+     "note": "the lobby, facing the stair",
+     "sector": "sector:0",
+     "sector_id": 0,
+     "sector_floor_z": 8192,
+     "sector_ceiling_z": -42496,
+     "variant_is_pose_only": true
+    },
+    {
+     "viewpoint_id": "view:gallery",
+     "purpose": "assembly_center",
+     "region_id": "region:nested/manor/upper_gallery",
+     "pose": {
+      "x": 10752,
+      "y": 2304,
+      "z": -9216,
+      "angle": 1536
+     },
+     "pitch": 0,
+     "note": "the upper gallery, looking back down the stair",
+     "sector": "sector:2",
+     "sector_id": 2,
+     "sector_floor_z": -8192,
+     "sector_ceiling_z": -70144,
+     "variant_is_pose_only": true
+    }
+   ],
+   "limitations": [
+    "a viewpoint states where the camera was placed, not what a player would do",
+    "image evidence requires the external engine; this manifest alone proves nothing visual"
+   ]
+  },
+  "captures": {
+   "$schema": "llmapper.nblood-viewpoint-capture",
+   "schema_version": 1,
+   "status": "pass",
+   "engine_revisions": [
+    "rlocal-agtst10"
+   ],
+   "image_dir": "D:\\Games\\DOS\\llmapper\\projects\\nested-authoring-v1\\report\\views",
+   "views": [
+    {
+     "viewpoint_id": "view:yard",
+     "pitch_taps": 0,
+     "resolved": {
+      "viewpoint_id": "view:yard",
+      "purpose": "player_start",
+      "region_id": "region:nested/grounds/yard",
+      "pose": {
+       "x": -6144,
+       "y": 3072,
+       "z": 7168,
+       "angle": 0
+      },
+      "pitch": 0,
+      "note": "open ground west of the manor, facing it",
+      "sector": "sector:3",
+      "sector_id": 3,
+      "sector_floor_z": 8192,
+      "sector_ceiling_z": -65024
+     },
+     "variant_map_sha256": "7b0960ff1d451012ab0cff7afad0a82d2f52b49a3635fcc7318f7f6988bf9c90",
+     "status": "pass",
+     "image": "D:\\Games\\DOS\\llmapper\\projects\\nested-authoring-v1\\report\\views\\view_yard.png",
+     "image_sha256": "8bca84a34f46af424ee41b2795ed2801ad3f1d982e0e53b83fdab3409389727b",
+     "engine_revision": "rlocal-agtst10",
+     "probe": {
+      "status": "pass",
+      "stayed_alive_for_grace_period": true,
+      "markers": {
+       "autoexec": true,
+       "game_loop": true,
+       "map_initialization": true
+      },
+      "fatal_indicators": [],
+      "engine_revision": "rlocal-agtst10",
+      "identity": {
+       "filename": "view_yard.MAP",
+       "sha256": "7b0960ff1d451012ab0cff7afad0a82d2f52b49a3635fcc7318f7f6988bf9c90",
+       "size": 5099,
+       "counts": {
+        "sectors": 17,
+        "walls": 90,
+        "sprites": 29
+       }
+      },
+      "capture_error": null,
+      "capture": {
+       "files": 1,
+       "image": "D:\\Games\\DOS\\llmapper\\projects\\nested-authoring-v1\\report\\views\\view_yard.png",
+       "image_sha256": "8bca84a34f46af424ee41b2795ed2801ad3f1d982e0e53b83fdab3409389727b"
+      },
+      "terminated_by_harness": true
+     }
+    },
+    {
+     "viewpoint_id": "view:lobby",
+     "pitch_taps": 0,
+     "resolved": {
+      "viewpoint_id": "view:lobby",
+      "purpose": "assembly_center",
+      "region_id": "region:nested/manor/lobby",
+      "pose": {
+       "x": 2688,
+       "y": 2304,
+       "z": 7168,
+       "angle": 512
+      },
+      "pitch": 0,
+      "note": "the lobby, facing the stair",
+      "sector": "sector:0",
+      "sector_id": 0,
+      "sector_floor_z": 8192,
+      "sector_ceiling_z": -42496
+     },
+     "variant_map_sha256": "d0c2dda445c20f2579f2b69b56aee0c56a21877a31036cd2f42ef81ad4e31199",
+     "status": "pass",
+     "image": "D:\\Games\\DOS\\llmapper\\projects\\nested-authoring-v1\\report\\views\\view_lobby.png",
+     "image_sha256": "1cd6f11a4f460eb585970b1e19b951b61fa39d57cb88a803778c422e64c4e6fb",
+     "engine_revision": "rlocal-agtst10",
+     "probe": {
+      "status": "pass",
+      "stayed_alive_for_grace_period": true,
+      "markers": {
+       "autoexec": true,
+       "game_loop": true,
+       "map_initialization": true
+      },
+      "fatal_indicators": [],
+      "engine_revision": "rlocal-agtst10",
+      "identity": {
+       "filename": "view_lobby.MAP",
+       "sha256": "d0c2dda445c20f2579f2b69b56aee0c56a21877a31036cd2f42ef81ad4e31199",
+       "size": 5099,
+       "counts": {
+        "sectors": 17,
+        "walls": 90,
+        "sprites": 29
+       }
+      },
+      "capture_error": null,
+      "capture": {
+       "files": 1,
+       "image": "D:\\Games\\DOS\\llmapper\\projects\\nested-authoring-v1\\report\\views\\view_lobby.png",
+       "image_sha256": "1cd6f11a4f460eb585970b1e19b951b61fa39d57cb88a803778c422e64c4e6fb"
+      },
+      "terminated_by_harness": true
+     }
+    },
+    {
+     "viewpoint_id": "view:gallery",
+     "pitch_taps": 0,
+     "resolved": {
+      "viewpoint_id": "view:gallery",
+      "purpose": "assembly_center",
+      "region_id": "region:nested/manor/upper_gallery",
+      "pose": {
+       "x": 10752,
+       "y": 2304,
+       "z": -9216,
+       "angle": 1536
+      },
+      "pitch": 0,
+      "note": "the upper gallery, looking back down the stair",
+      "sector": "sector:2",
+      "sector_id": 2,
+      "sector_floor_z": -8192,
+      "sector_ceiling_z": -70144
+     },
+     "variant_map_sha256": "c4e4151aece7ac997bd2be1fd005d5c52c6883f62bdf9ace013a52e068686ca5",
+     "status": "pass",
+     "image": "D:\\Games\\DOS\\llmapper\\projects\\nested-authoring-v1\\report\\views\\view_gallery.png",
+     "image_sha256": "cf0dd2f37d76e12d85f10ae2ffaef3ebe1fd3a614079b3b0f3506c1cd3b3c804",
+     "engine_revision": "rlocal-agtst10",
+     "probe": {
+      "status": "pass",
+      "stayed_alive_for_grace_period": true,
+      "markers": {
+       "autoexec": true,
+       "game_loop": true,
+       "map_initialization": true
+      },
+      "fatal_indicators": [],
+      "engine_revision": "rlocal-agtst10",
+      "identity": {
+       "filename": "view_gallery.MAP",
+       "sha256": "c4e4151aece7ac997bd2be1fd005d5c52c6883f62bdf9ace013a52e068686ca5",
+       "size": 5099,
+       "counts": {
+        "sectors": 17,
+        "walls": 90,
+        "sprites": 29
+       }
+      },
+      "capture_error": null,
+      "capture": {
+       "files": 1,
+       "image": "D:\\Games\\DOS\\llmapper\\projects\\nested-authoring-v1\\report\\views\\view_gallery.png",
+       "image_sha256": "cf0dd2f37d76e12d85f10ae2ffaef3ebe1fd3a614079b3b0f3506c1cd3b3c804"
+      },
+      "terminated_by_harness": true
+     }
+    }
+   ],
+   "limitations": [
+    "an image hash proves stability, never visual quality",
+    "one frame per pose; no motion, no lighting animation, no player behavior",
+    "captured with -nodudes: evidence about architecture, never about encounters",
+    "pitch is applied as engine Aim_Up/Aim_Down taps, so it is approximate"
+   ]
+  },
+  "nblood_load": {
+   "gate_id": "nblood_load_smoke",
+   "status": "pass",
+   "detail": "NBlood load smoke pass; revisions=['rlocal-agtst10']",
+   "report": {
+    "$schema": "bloodmap.nblood-oracle-report",
+    "schema_version": 1,
+    "status": "pass",
+    "engine_revisions": [
+     "rlocal-agtst10"
+    ],
+    "probes": {
+     "candidate": {
+      "status": "pass",
+      "stayed_alive_for_grace_period": true,
+      "markers": {
+       "autoexec": true,
+       "game_loop": true,
+       "map_initialization": true
+      },
+      "fatal_indicators": [],
+      "engine_revision": "rlocal-agtst10",
+      "identity": {
+       "filename": "nested-v1.MAP",
+       "sha256": "cd402d5bf91b988fcb2a40d727ca0f97583e6ef8b67e95a5209f20bea57238fe",
+       "size": 5099,
+       "counts": {
+        "sectors": 17,
+        "walls": 90,
+        "sprites": 29
+       }
+      },
+      "grace_seconds": 14.0,
+      "terminated_by_harness": true,
+      "early_exit_code": null
+     }
+    }
+   }
+  },
+  "capture_status": "pass",
+  "variants": [
+   {
+    "viewpoint_id": "view:yard",
+    "map": "work\\authoring-nested-v1\\variants\\view_yard.MAP",
+    "diff": {
+     "player_start_changed": true,
+     "player_start_markers_moved": [],
+     "unexpected_changes": [],
+     "variant_is_pose_only": true
+    }
+   },
+   {
+    "viewpoint_id": "view:lobby",
+    "map": "work\\authoring-nested-v1\\variants\\view_lobby.MAP",
+    "diff": {
+     "player_start_changed": true,
+     "player_start_markers_moved": [],
+     "unexpected_changes": [],
+     "variant_is_pose_only": true
+    }
+   },
+   {
+    "viewpoint_id": "view:gallery",
+    "map": "work\\authoring-nested-v1\\variants\\view_gallery.MAP",
+    "diff": {
+     "player_start_changed": true,
+     "player_start_markers_moved": [],
+     "unexpected_changes": [],
+     "variant_is_pose_only": true
+    }
+   }
+  ]
+ },
+ "review": null
+}

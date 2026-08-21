@@ -269,7 +269,7 @@
         "status": "pass",
         "unreachable_regions": []
       },
-      "map_sha256": "3cb18a04458b6a7fc90b9e8c0f12c4f0109a6be9a59c69d65fe1831a7b29f848",
+      "map_sha256": "385472cc8708f4060344f99e7ee548559170c48536e644d21064d95077a8e9f6",
       "nblood_load": "pass",
       "oversized_decorations": [],
       "parent": null,
@@ -1016,7 +1016,7 @@
         "status": "pass",
         "unreachable_regions": []
       },
-      "map_sha256": "12128af3e0f8b96a7a8f6de9c7621b6faa55b07ec4c87279c99ca839e3914f12",
+      "map_sha256": "0d8bccd359a3c9cedd4a3c3222b31b502b2075aa68f4118015b76c4762b37682",
       "nblood_load": "pass",
       "oversized_decorations": [],
       "parent": "v0",
@@ -1516,7 +1516,7 @@
         },
         {
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v1\\views\\view_courtyard_center.png",
-          "image_sha256": "140c57f38e4aeeceb9d63df8bf4509d520156cd34f7d9d3430046cb8bb6258fd",
+          "image_sha256": "81a8442ae8a165beef2c8981d3c13444d8bcffdeb1739aca0be9cda97de3bdc2",
           "status": "pass",
           "viewpoint_id": "view:courtyard_center"
         },
@@ -1534,7 +1534,7 @@
         },
         {
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v1\\views\\view_crypt_hall.png",
-          "image_sha256": "dd23829ebd6ff55708202663610d2294cdc1f9bec06bc2b11797f127461687ff",
+          "image_sha256": "9ecae6be69fe8633f38b55a98115e3f0b04d971ecf8be2976854e49bcf2c34ee",
           "status": "pass",
           "viewpoint_id": "view:crypt_hall"
         },
@@ -1824,7 +1824,7 @@
         "status": "pass",
         "unreachable_regions": []
       },
-      "map_sha256": "f4acda306f3d08abaf9d21db6def3390b119c4511016994d70646d210a5cfde7",
+      "map_sha256": "b9f390032e0f8bcc77cf6a00008fb63125011e31a6d766226ef2c52179c6587b",
       "nblood_load": "pass",
       "oversized_decorations": [
         "sprite-scale:6",
@@ -2346,7 +2346,7 @@
         },
         {
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v2\\views\\view_gatehouse.png",
-          "image_sha256": "6cc227306d9d7be3aa2020e626da6101cdf1420f771551aa3d8cd7396abec5cc",
+          "image_sha256": "e561a5495effba76d7b388a33b369c8cafcc6725c9422f6233ecb83221be9933",
           "status": "pass",
           "viewpoint_id": "view:gatehouse"
         },
@@ -2370,7 +2370,7 @@
         },
         {
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v2\\views\\view_crypt_hall.png",
-          "image_sha256": "a6721fe2182402a40b0ba90e57e0d694b94c7d3616a7e7610739f21175afed41",
+          "image_sha256": "8f4d716908404b08e0a4aa839c02370bcbd6b4571ed17db16b07bc11fc9c228e",
           "status": "pass",
           "viewpoint_id": "view:crypt_hall"
         },
@@ -2382,7 +2382,7 @@
         },
         {
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v2\\views\\view_gallery.png",
-          "image_sha256": "30bfd66e8304a85a9af7ac93a435c9ed5d07665e765dcd054f47d7643306e897",
+          "image_sha256": "3e7f1d0bb31af33881e7ea732c2111d5dd3cf6ce92dedd02c3d292004150467e",
           "status": "pass",
           "viewpoint_id": "view:gallery"
         },
@@ -2630,7 +2630,7 @@
         "status": "pass",
         "unreachable_regions": []
       },
-      "map_sha256": "6eba6d63f5a1654345d20890a7d83e1d5caec5870fe810dce2f98258d4fbdbbd",
+      "map_sha256": "94bade7ac361e2362c81a4377429f3396b0699f4b767eefd265ce461b0f5d6f1",
       "nblood_load": "pass",
       "oversized_decorations": [],
       "parent": "v2",
@@ -3086,31 +3086,31 @@
       "views_captured": [
         {
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_start.png",
-          "image_sha256": "9409aa0aad2364813d0d015b1c133b9bfd730c29519d97576cc5df51581209e9",
+          "image_sha256": "21f34cde638ff3b75e0894473ca13e31b4fe5377fd5d07f968e83dc189c8c7dd",
           "status": "pass",
           "viewpoint_id": "view:start"
         },
         {
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_gate_approach.png",
-          "image_sha256": "6464513fb975baf3571c132bd79b406fa488eab65188be342c46233a7b375b50",
+          "image_sha256": "dccef7e0ef630e9ffd31bede3e9559a0bf64791b2f9467594c829b683fb68317",
           "status": "pass",
           "viewpoint_id": "view:gate_approach"
         },
         {
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_gatehouse.png",
-          "image_sha256": "691e178f9ed3efac68c7a8b56cc40a4db72fe2c75141a90fa8f879e780bee809",
+          "image_sha256": "ee4fe8ce46002fbb80485747c7654b17e9e024fee173479b0a4378020d725ee6",
           "status": "pass",
           "viewpoint_id": "view:gatehouse"
         },
         {
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_courtyard_center.png",
-          "image_sha256": "a0cb01aaf29786fe5b260dbdb20205317fa41bf8722d07b20f45e274be80bc7c",
+          "image_sha256": "d7a03f43cd63c64eab12cd7bd6e952b13389caf41a4f18a7da9c53ad9a27e59a",
           "status": "pass",
           "viewpoint_id": "view:courtyard_center"
         },
         {
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_courtyard_corner.png",
-          "image_sha256": "286c3166ae0b2b2859a600885159def7f94bc0dd418699ddb18176e8f1e00e33",
+          "image_sha256": "cb1e1cfbc4afad0b5addc06463e90fe7b92fb7bc126a1068b22e4d26e9342481",
           "status": "pass",
           "viewpoint_id": "view:courtyard_corner"
         },
@@ -3122,13 +3122,13 @@
         },
         {
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_chapel_apse.png",
-          "image_sha256": "62f978e93407b2f815a056a59455611706a8f6781e9b42dc148025767cc9a5b2",
+          "image_sha256": "026b4980f6019b1cd1424b86699f15f69bba22c1a001e260124d9f6cbb6c5d57",
           "status": "pass",
           "viewpoint_id": "view:chapel_apse"
         },
         {
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v3\\views\\view_crypt_hall.png",
-          "image_sha256": "01117be7e145a7275bb5f8ac880a4f0bdfafb9668a16199045e06e905cc79300",
+          "image_sha256": "af6d0819d5b6c5a9124ed194d14a9401d6623aacc4a0e2d66e02c40fb3b01b20",
           "status": "pass",
           "viewpoint_id": "view:crypt_hall"
         },
@@ -3163,6 +3163,1667 @@
         "assembly:001/space:006",
         "assembly:001/space:008",
         "assembly:001/space:013"
+      ]
+    },
+    {
+      "art_differentiation": {
+        "near_identical_pairs": [],
+        "unresolved_assets": 0
+      },
+      "authored_vs_observed_hierarchy": {
+        "discrepancies": [],
+        "per_assembly": [
+          {
+            "assembly_id": "assembly:arrival",
+            "derived_space_count": 1,
+            "dominant_space_share": 1.0,
+            "singletons": 0
+          },
+          {
+            "assembly_id": "assembly:courtyard",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9564,
+            "singletons": 1
+          },
+          {
+            "assembly_id": "assembly:chapel",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.961,
+            "singletons": 1
+          },
+          {
+            "assembly_id": "assembly:crypt",
+            "derived_space_count": 4,
+            "dominant_space_share": 0.8188,
+            "singletons": 2
+          },
+          {
+            "assembly_id": "assembly:ossuary",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9048,
+            "singletons": 2
+          },
+          {
+            "assembly_id": "assembly:gallery",
+            "derived_space_count": 3,
+            "dominant_space_share": 0.9328,
+            "singletons": 2
+          },
+          {
+            "assembly_id": "assembly:exit",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.937,
+            "singletons": 1
+          }
+        ]
+      },
+      "corpus_scale": {
+        "findings": [
+          {
+            "id": "scale:assembly:001.space:007:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:008:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:011:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "shape:orthogonal-length-fraction",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:orientation-5deg-bins-occupied",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:orientation-diversity",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:rectangular-sector-fraction",
+            "kind": "shape_outside_corpus_mass"
+          }
+        ],
+        "shape_signature": {
+          "chamfer_fraction": 0.2632,
+          "convex_sector_fraction": 0.9737,
+          "diagonal_length_fraction": 0.1074,
+          "median_outer_vertex_count": 4.0,
+          "orientation_5deg_bins_occupied": 5.0,
+          "orientation_diversity": 0.1389,
+          "orthogonal_length_fraction": 0.8556,
+          "rectangular_sector_fraction": 0.6316,
+          "segmented_arc_chain_count": 9.0
+        },
+        "spaces_below_corpus_for_their_size": [
+          "assembly:001/space:004",
+          "assembly:001/space:006",
+          "assembly:001/space:007",
+          "assembly:001/space:008",
+          "assembly:001/space:009",
+          "assembly:001/space:010",
+          "assembly:001/space:011",
+          "assembly:001/space:012",
+          "assembly:001/space:014",
+          "assembly:001/space:015"
+        ]
+      },
+      "counts": {
+        "connections": 49,
+        "regions": 38,
+        "sectors": 38,
+        "sprites": 60,
+        "walls": 250
+      },
+      "declared_changes": [
+        "the garden bed raised 6144 above the courtyard instead of sunk 2048, and the chancel raised 6144 above the nave instead of 2048, so the level finally has one-way vertical relationships; v3 had none anywhere",
+        "a three-tread chancel stair beside a direct 6144 opening, so the chancel is reached without closing the view back down into the nave",
+        "the gallery ascent rise changed from 3840 to 4096, the rise the corpus uses for 771 of its 1283 stair rises",
+        "all four stairs written as bloodmap.vocabulary.staircase calls instead of hand-rolled loops that tracked their own previous edge",
+        "three wall niches written as bloodmap.vocabulary.recess calls, sized on the corpus profile: flush floor, lowered ceiling, a few percent of the host",
+        "a raised tomb block in the crypt hall: a third vertical relationship, and something for the level's second-largest interior to be about"
+      ],
+      "decorative_distribution": {
+        "largest_share_in_one_space": 0.2167,
+        "per_space": {
+          "assembly:001/space:001": 5,
+          "assembly:001/space:002": 5,
+          "assembly:001/space:003": 5,
+          "assembly:001/space:004": 0,
+          "assembly:001/space:005": 13,
+          "assembly:001/space:006": 0,
+          "assembly:001/space:007": 0,
+          "assembly:001/space:008": 12,
+          "assembly:001/space:009": 0,
+          "assembly:001/space:010": 0,
+          "assembly:001/space:011": 2,
+          "assembly:001/space:012": 1,
+          "assembly:001/space:013": 11,
+          "assembly:001/space:014": 1,
+          "assembly:001/space:015": 0,
+          "assembly:001/space:016": 5
+        },
+        "total_space_sprites": 60
+      },
+      "derived_space_count": 16,
+      "hard_validation": {
+        "by_gate": {
+          "authored_geometry_valid": "pass",
+          "deterministic_emission": "pass",
+          "exit_reachable": "pass",
+          "geometry_conservation": "pass",
+          "intended_adjacency_realized": "pass",
+          "native_structure_valid": "pass",
+          "nblood_load_smoke": "pass",
+          "no_unintended_overlaps": "pass",
+          "no_unresolved_boundary_contacts": "pass",
+          "object_attachment_valid": "pass",
+          "player_relative_clearance": "pass",
+          "player_start_valid": "pass",
+          "portals_realized": "pass",
+          "required_reachability": "pass"
+        },
+        "failed": [],
+        "skipped": []
+      },
+      "iteration_id": "v4",
+      "major_space_scale": [
+        {
+          "footprint_player_areas": 1053.5,
+          "id": "assembly:001/space:002",
+          "median_clear_height_player_heights": 5.0
+        },
+        {
+          "footprint_player_areas": 444.0,
+          "id": "assembly:001/space:013",
+          "median_clear_height_player_heights": 12.0
+        },
+        {
+          "footprint_player_areas": 253.0,
+          "id": "assembly:001/space:008",
+          "median_clear_height_player_heights": 3.3636
+        },
+        {
+          "footprint_player_areas": 197.0,
+          "id": "assembly:001/space:005",
+          "median_clear_height_player_heights": 8.0
+        },
+        {
+          "footprint_player_areas": 119.0,
+          "id": "assembly:001/space:016",
+          "median_clear_height_player_heights": 8.0
+        }
+      ],
+      "mandatory_reachability": {
+        "detail": "36/36 mandatory regions reachable",
+        "gate_id": "required_reachability",
+        "mandatory_regions": [
+          "region:chapel_aisle_north",
+          "region:chapel_aisle_south",
+          "region:chapel_apse",
+          "region:chapel_door",
+          "region:chapel_nave",
+          "region:courtyard",
+          "region:crypt_cistern",
+          "region:crypt_gate",
+          "region:crypt_hall",
+          "region:crypt_plinth",
+          "region:crypt_reliquary",
+          "region:exit_door",
+          "region:exit_hall",
+          "region:gallery",
+          "region:gallery_arch",
+          "region:garden_bed",
+          "region:gate_tunnel",
+          "region:gatehouse",
+          "region:ledge",
+          "region:loop_arch",
+          "region:recess:crypt_niche",
+          "region:recess:exit_niche",
+          "region:recess:gallery_niche",
+          "region:stairs:ascent:step_01",
+          "region:stairs:ascent:step_02",
+          "region:stairs:ascent:step_03",
+          "region:stairs:chancel:step_01",
+          "region:stairs:chancel:step_02",
+          "region:stairs:chancel:step_03",
+          "region:stairs:crypt:step_01",
+          "region:stairs:crypt:step_02",
+          "region:stairs:crypt:step_03",
+          "region:stairs:crypt:step_04",
+          "region:stairs:return:step_01",
+          "region:stairs:return:step_02",
+          "region:stairs:return:step_03"
+        ],
+        "status": "pass",
+        "unreachable_regions": []
+      },
+      "map_sha256": "1f358e5d3dd42c6125f0e7c2a44a580cb38462283722184423f1b8f0517d6ca3",
+      "nblood_load": "pass",
+      "oversized_decorations": [],
+      "parent": "v3",
+      "review": {
+        "$schema": "llmapper.authoring-review",
+        "accepted_strengths": [
+          "All fourteen hard gates pass and the level loads in NBlood revision rlocal-agtst10.",
+          "All fourteen declared viewpoints captured, including the three new ones.",
+          "Zero authored-versus-derived hierarchy discrepancies held across a substantial geometry change.",
+          "Zero oversized decorations held from v3.",
+          "The chancel stair, the tomb block and the raised planter each read in a frame."
+        ],
+        "claims": [
+          {
+            "claim": "The level had no vertical looking relationship anywhere, and now it has three.",
+            "evidence": [
+              "structure:structure:stepped_run:001",
+              "decompiled:assembly:001/space:002",
+              "decompiled:assembly:001/space:003",
+              "view:planter",
+              "view:chancel_stair",
+              "view:chapel_apse"
+            ],
+            "reasoning": "v3's structure recovery returned zero overlooks and zero pits across a level spanning three storeys: every height change in it was a stair you walk up, and nothing was ever seen from another height. All 42 campaign maps contain overlooks. v4 raises the garden bed 6144 above the courtyard, raises the chancel 6144 above the nave beside a direct opening, and adds a raised tomb block in the crypt hall, which takes the count 0 -> 3. The planter and chancel frames both show the change: the planter now stands over the courtyard floor and the chancel reads as a platform rather than a kerb.",
+            "status": "supported"
+          },
+          {
+            "claim": "Writing the stairs as staircase() calls removed the class of mistake that cost this pilot the most time.",
+            "evidence": [
+              "source:module",
+              "gate:authored_geometry_valid",
+              "gate:geometry_conservation",
+              "structure:structure:stepped_run:002",
+              "structure:structure:stepped_run:004"
+            ],
+            "reasoning": "v0 to v3 wrote four stairs as four copies of a loop that tracked its own previous edge, and getting that edge's winding backwards is what produced most of the pilot's compile failures and every 'sprite position is outside its sector' error. The constructor derives both sides of every shared edge and both flank anchors from one directed anchor, so the winding cannot be stated wrongly. Four loops of nine lines each became four calls, and the detector recovers each run with the rises, rise height and width the call asked for.",
+            "status": "supported"
+          },
+          {
+            "claim": "The gallery ascent was using a stair rise with no corpus support at all.",
+            "evidence": [
+              "structure:structure:stepped_run:003",
+              "structure:structure:stepped_run:004"
+            ],
+            "reasoning": "The corpus uses 4096, 3072 and 2048 for 1277 of its 1283 measured stair rises, and 4096 more than twice as often as any other. v3's ascent and return stairs used 3840, a number that appears nowhere. It is now 4096, which is also exactly the player's step. The crypt keeps 3072, which the corpus does use.",
+            "status": "supported"
+          },
+          {
+            "claim": "The level's own geometry reproduces the corpus false positive that made me reject a landing parameter.",
+            "evidence": [
+              "structure:structure:landing:001",
+              "decompiled:assembly:001/space:002"
+            ],
+            "reasoning": "The detector calls the courtyard a landing, because the ascent and return stairs both attach to it. It is 1053 player areas. That is the same failure that makes 14 of the corpus's 19 landings ordinary rooms, and seeing it happen here on geometry I wrote is better confirmation than the corpus count was that landing must not be a staircase parameter.",
+            "status": "supported"
+          },
+          {
+            "claim": "Three of the level's spaces that I called side rooms are measured as niches, and three new ones are the first real niches in it.",
+            "evidence": [
+              "structure:structure:recess:001",
+              "structure:structure:recess:002",
+              "structure:structure:recess:004",
+              "structure:structure:recess:005",
+              "structure:structure:recess:006"
+            ],
+            "reasoning": "The two chapel aisles sit at a depth ratio of exactly 0.25, the detector's ceiling, against a corpus median of 0.055 and a p90 of 0.19. So they are at the very top of what reads as a recess and the bottom of what reads as a room, and the measurement cannot tell me which they are. The three new niches land at 0.014 to 0.026, inside the corpus range. I am leaving the aisles alone this iteration because I do not have evidence that says which way to move them, and moving them on taste is exactly what this loop exists to avoid.",
+            "status": "uncertain"
+          },
+          {
+            "claim": "The crypt is unreadable in the renderer, and no rule in the packet saw it.",
+            "evidence": [
+              "view:crypt_hall",
+              "art:blood:tile:1097"
+            ],
+            "reasoning": "The crypt frame shows floor, walls and ceiling as one continuous triangular pattern with no visible edges between them, because CRYPT_TILES sets tile 1097 on all three surfaces. The identical_room_treatments rule compares dominant triples between assemblies, so a single assembly whose three surfaces are the same tile passes it every time. I added a rule for it and it puts v4 at the 97.7th percentile of the corpus: 14 of 38 sectors, against a corpus median of 8.5 percent.",
+            "status": "supported"
+          },
+          {
+            "claim": "The sky renders black, and neither the configuration nor the ceiling height explains it.",
+            "evidence": [
+              "view:courtyard_corner",
+              "view:planter",
+              "scale:assembly:001/space:002"
+            ],
+            "reasoning": "I expected the courtyard's parallax ceiling to be misconfigured or too high. It is configured identically to all 123 of E2M3's sky sectors (tile 2500, shade 0, pal 0, stat 1, panning 0), and a rendered experiment at 16, 12 and 8 player heights of ceiling produced three frames that are the same black. A captured frame from E2M3's own outdoor ground shows the sky rendering correctly, with clouds and a moon, from a place with an open drop in front of the camera. The hypothesis is refuted: in a fully enclosed courtyard with walls many player heights tall you only ever see the darkest top band of the sky texture, whatever the ceiling is set to. What the level lacks is not ceiling height, it is an opening.",
+            "status": "contradicted"
+          },
+          {
+            "claim": "Shape got slightly worse, and that was expected.",
+            "evidence": [
+              "shape:orientation-5deg-bins-occupied",
+              "shape:rectangular-sector-fraction"
+            ],
+            "reasoning": "Orientation bins went 6 -> 5 and rectangular sector fraction 0.548 -> 0.632, because everything v4 added - treads, niches, the tomb block - is rectangular. This iteration was about structure and deliberately left shape alone; recording the regression is the point of keeping the dimensions separate.",
+            "status": "supported"
+          }
+        ],
+        "iteration_id": "v4",
+        "next_actions": [
+          {
+            "action": "Give the crypt distinct floor, wall and ceiling tiles instead of tile 1097 everywhere, and check the frame again.",
+            "evidence": [
+              "view:crypt_hall",
+              "art:blood:tile:1097"
+            ],
+            "expected_effect": "single-surface fraction falls from 0.368 toward the corpus median of 0.085 and the crypt's geometry becomes visible in the rendered frame."
+          },
+          {
+            "action": "Open the arrival ledge onto a chasm with a see-through parapet, so the level has the cliff its brief names and one place to look out of.",
+            "evidence": [
+              "view:courtyard_corner",
+              "view:start"
+            ],
+            "expected_effect": "the sky becomes visible in at least one frame, and the level gains a long-range vertical relationship instead of only short ones."
+          },
+          {
+            "action": "Replace chamfered corners with segmented arcs at the corpus parameters: seven to eight segments, twenty to thirty degrees per segment, segments about one player width.",
+            "evidence": [
+              "shape:orientation-5deg-bins-occupied",
+              "shape:chamfer-fraction"
+            ],
+            "expected_effect": "orientation bins rise from 5 toward the corpus minimum of 15 while chamfer fraction falls back inside the corpus range."
+          }
+        ],
+        "problems": [
+          "the crypt uses one tile on floor, ceiling and walls in 11 sectors and is unreadable in the frame",
+          "single-surface sectors are 36.8 percent of the level against a corpus median of 8.5",
+          "the sky is black in every outdoor frame and the level has no opening to look out of",
+          "a level briefed as a cliffside monastery has no cliff: the courtyard is a closed box",
+          "orientation variety fell to 5 of 36 bins and chamfer fraction is still above the corpus maximum",
+          "the courtyard floor is one tile across 1053 player areas and reads as a flat wash"
+        ],
+        "reviewer": "llmapper authoring agent, structure-layer iteration",
+        "schema_version": 1,
+        "status": "external reviewer conclusions; the deterministic package neither produced nor validated the reasoning, only the evidence references",
+        "uncertainties": [
+          "The overlook count is 3 against a corpus median of 113 per map, but a corpus map has 340 sectors to this one's 38 and the detector collapses several portals between the same two sectors into one. I am treating the change as categorical (none to some) rather than as a count to chase.",
+          "The recess measurement cannot separate a small room from a large niche, and the chapel aisles sit exactly on that line.",
+          "Whether the black sky is a defect a player would notice or simply what a walled courtyard at night looks like is not something any measurement here answers."
+        ]
+      },
+      "route_structure": {
+        "probe:arch_contrast": {
+          "measurements": {
+            "area_ratio": 27.375,
+            "clear_height_delta": 45056,
+            "dest_area": 64585728.0,
+            "dest_clear_height": 67584,
+            "floor_delta": 0,
+            "source_area": 2359296.0,
+            "source_clear_height": 22528
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:chapel_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 5,
+            "viable_exits": [
+              {
+                "edge": "portal:60",
+                "sector": "sector:5",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:63",
+                "sector": "sector:7",
+                "status": "open"
+              },
+              {
+                "edge": "portal:68",
+                "sector": "sector:8",
+                "status": "open"
+              },
+              {
+                "edge": "portal:66",
+                "sector": "sector:9",
+                "status": "open"
+              },
+              {
+                "edge": "portal:65",
+                "sector": "sector:10",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:courtyard_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 6,
+            "viable_exits": [
+              {
+                "edge": "portal:13",
+                "sector": "sector:2",
+                "status": "open"
+              },
+              {
+                "edge": "portal:50",
+                "sector": "sector:4",
+                "status": "open"
+              },
+              {
+                "edge": "portal:34",
+                "sector": "sector:5",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:26",
+                "sector": "sector:13",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:21",
+                "sector": "sector:24",
+                "status": "open"
+              },
+              {
+                "edge": "portal:23",
+                "sector": "sector:32",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:crypt_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 5,
+            "viable_exits": [
+              {
+                "edge": "portal:126",
+                "sector": "sector:17",
+                "status": "open"
+              },
+              {
+                "edge": "portal:147",
+                "sector": "sector:19",
+                "status": "open"
+              },
+              {
+                "edge": "portal:142",
+                "sector": "sector:20",
+                "status": "open"
+              },
+              {
+                "edge": "portal:139",
+                "sector": "sector:21",
+                "status": "open"
+              },
+              {
+                "edge": "portal:137",
+                "sector": "sector:35",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:crypt_contrast": {
+          "measurements": {
+            "area_ratio": 0.173,
+            "clear_height_delta": -61952,
+            "dest_area": 25657344.0,
+            "dest_clear_height": 28160,
+            "floor_delta": 12288,
+            "source_area": 148267008.0,
+            "source_clear_height": 90112
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 4,
+            "viable_exits": [
+              {
+                "edge": "portal:189",
+                "sector": "sector:27",
+                "status": "open"
+              },
+              {
+                "edge": "portal:201",
+                "sector": "sector:29",
+                "status": "open"
+              },
+              {
+                "edge": "portal:195",
+                "sector": "sector:33",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:203",
+                "sector": "sector:36",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_contrast": {
+          "measurements": {
+            "area_ratio": 0.4356,
+            "clear_height_delta": -22528,
+            "dest_area": 64585728.0,
+            "dest_clear_height": 67584,
+            "floor_delta": -12288,
+            "source_area": 148267008.0,
+            "source_clear_height": 90112
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_seen_late": {
+          "measurements": {
+            "first_visible_step": 7,
+            "route_fraction": 0.875,
+            "total_steps": 8,
+            "visible_at_steps": [
+              7,
+              8
+            ]
+          },
+          "route_length": 9,
+          "status": "pass"
+        },
+        "probe:gatehouse_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 2,
+            "viable_exits": [
+              {
+                "edge": "portal:9",
+                "sector": "sector:1",
+                "status": "open"
+              },
+              {
+                "edge": "portal:13",
+                "sector": "sector:3",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:ossuary_reachable_while_shut": {
+          "measurements": {},
+          "route_length": 0,
+          "status": "fail"
+        },
+        "probe:reach_apse": {
+          "measurements": {},
+          "route_length": 7,
+          "status": "pass"
+        },
+        "probe:reach_chapel": {
+          "measurements": {},
+          "route_length": 6,
+          "status": "pass"
+        },
+        "probe:reach_crypt": {
+          "measurements": {},
+          "route_length": 10,
+          "status": "pass"
+        },
+        "probe:reveal_contrast": {
+          "measurements": {
+            "area_ratio": 35.9107,
+            "clear_height_delta": 61952,
+            "dest_area": 148267008.0,
+            "dest_clear_height": 90112,
+            "floor_delta": 0,
+            "source_area": 4128768.0,
+            "source_clear_height": 28160
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:revisit_after_crypt_gate": {
+          "measurements": {
+            "newly_reachable_count": 10,
+            "newly_reachable_sectors": [
+              "sector:13",
+              "sector:14",
+              "sector:15",
+              "sector:16",
+              "sector:17",
+              "sector:18",
+              "sector:19",
+              "sector:20",
+              "sector:21",
+              "sector:35"
+            ],
+            "reachable_after_count": 33,
+            "reachable_before_count": 23,
+            "still_unreachable_count": 5
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:route_start_to_exit": {
+          "measurements": {},
+          "route_length": 11,
+          "status": "pass"
+        }
+      },
+      "singleton_spaces": {
+        "count": 9,
+        "ids": [
+          "assembly:001/space:003",
+          "assembly:001/space:004",
+          "assembly:001/space:006",
+          "assembly:001/space:009",
+          "assembly:001/space:010",
+          "assembly:001/space:011",
+          "assembly:001/space:012",
+          "assembly:001/space:014",
+          "assembly:001/space:015"
+        ]
+      },
+      "transition_evidence": [
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:reveal",
+            "source:sector:2",
+            "source:sector:3"
+          ],
+          "from": "sector:2",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": 61952,
+            "floor_shade_delta": -16,
+            "floor_tile_changed": true
+          },
+          "to": "sector:3",
+          "transition_id": "transition:reveal"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:descent",
+            "source:sector:3",
+            "source:sector:18"
+          ],
+          "from": "sector:3",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": -61952,
+            "floor_shade_delta": 16,
+            "floor_tile_changed": true
+          },
+          "to": "sector:18",
+          "transition_id": "transition:descent"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:ascent",
+            "source:sector:27",
+            "source:sector:28"
+          ],
+          "from": "sector:27",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": 45056,
+            "floor_shade_delta": -30,
+            "floor_tile_changed": true
+          },
+          "to": "sector:28",
+          "transition_id": "transition:ascent"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:chapel_entry",
+            "source:sector:3",
+            "source:sector:6"
+          ],
+          "from": "sector:3",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": -33792,
+            "floor_shade_delta": 4,
+            "floor_tile_changed": true
+          },
+          "to": "sector:6",
+          "transition_id": "transition:chapel_entry"
+        }
+      ],
+      "views_captured": [
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v4\\views\\view_start.png",
+          "image_sha256": "a9eb3ad9a781fd4c8e3789bb627e7d4a6b76571ddef64851d2b8f5fc6751fdf7",
+          "status": "pass",
+          "viewpoint_id": "view:start"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v4\\views\\view_gate_approach.png",
+          "image_sha256": "67de03c4c9a4901eaccf68ede6e76a4c08c5b5789899b4611a0c51a01e728dad",
+          "status": "pass",
+          "viewpoint_id": "view:gate_approach"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v4\\views\\view_gatehouse.png",
+          "image_sha256": "017ef3254ba1d06f3e9b6ad42b20860f273f793aa89190b040d76598e14da1dd",
+          "status": "pass",
+          "viewpoint_id": "view:gatehouse"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v4\\views\\view_courtyard_center.png",
+          "image_sha256": "d7a03f43cd63c64eab12cd7bd6e952b13389caf41a4f18a7da9c53ad9a27e59a",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_center"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v4\\views\\view_courtyard_corner.png",
+          "image_sha256": "282e5d0e4178719e72be3e1ba5567a484d87dfd0cbde1c0b8cca9fa131db2fb4",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_corner"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v4\\views\\view_chapel_interior.png",
+          "image_sha256": "9e4d1d781f10d898b4684d6b6aa55471aedf1101d5c9b08b37388717a0dc3721",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_interior"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v4\\views\\view_chapel_apse.png",
+          "image_sha256": "b9ba5503f01dfa2bd3792ce0cb3477cd5599a44a350aa7274b32288cb5b36645",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_apse"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v4\\views\\view_chancel_stair.png",
+          "image_sha256": "035e7228964cd00fed3f0426a7ae9c7a0044445d79db9a1fb5b305392a7ad353",
+          "status": "pass",
+          "viewpoint_id": "view:chancel_stair"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v4\\views\\view_planter.png",
+          "image_sha256": "51e1ccaab857923af22901afdb2ece3e3dde43a0484f8ee3cb41481d46ad557c",
+          "status": "pass",
+          "viewpoint_id": "view:planter"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v4\\views\\view_crypt_hall.png",
+          "image_sha256": "ab28716a43d3d40f989519d5d4e0e12d289fb824772c253c969cbe5f5c982297",
+          "status": "pass",
+          "viewpoint_id": "view:crypt_hall"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v4\\views\\view_gallery_arch.png",
+          "image_sha256": "242aab43809103ee8aef66395ffd137203284bcc60224f959c6b01fb28efdd93",
+          "status": "pass",
+          "viewpoint_id": "view:gallery_arch"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v4\\views\\view_gallery.png",
+          "image_sha256": "9788346848a626d1e30ca6aff957510162493497bd1bca3009cd3e1fb0f2830c",
+          "status": "pass",
+          "viewpoint_id": "view:gallery"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v4\\views\\view_courtyard_from_stair.png",
+          "image_sha256": "227322a3a5b4a41edc4b393ca7ee9273fe65dfed16ceb79a0b1f23d1ad4b1ff1",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_from_stair"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v4\\views\\view_chapel_reverse.png",
+          "image_sha256": "80c3cd9bd85f8d7ad0e52842fd66817d6f629c868fa5cdb17ac76f1887434636",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_reverse"
+        }
+      ],
+      "visually_empty_spaces": [
+        "assembly:001/space:004",
+        "assembly:001/space:006",
+        "assembly:001/space:007",
+        "assembly:001/space:009",
+        "assembly:001/space:010",
+        "assembly:001/space:015"
+      ]
+    },
+    {
+      "art_differentiation": {
+        "near_identical_pairs": [],
+        "unresolved_assets": 0
+      },
+      "authored_vs_observed_hierarchy": {
+        "discrepancies": [],
+        "per_assembly": [
+          {
+            "assembly_id": "assembly:arrival",
+            "derived_space_count": 1,
+            "dominant_space_share": 1.0,
+            "singletons": 0
+          },
+          {
+            "assembly_id": "assembly:courtyard",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9663,
+            "singletons": 1
+          },
+          {
+            "assembly_id": "assembly:chapel",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9601,
+            "singletons": 1
+          },
+          {
+            "assembly_id": "assembly:crypt",
+            "derived_space_count": 4,
+            "dominant_space_share": 0.821,
+            "singletons": 2
+          },
+          {
+            "assembly_id": "assembly:ossuary",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.9048,
+            "singletons": 2
+          },
+          {
+            "assembly_id": "assembly:gallery",
+            "derived_space_count": 3,
+            "dominant_space_share": 0.9333,
+            "singletons": 2
+          },
+          {
+            "assembly_id": "assembly:exit",
+            "derived_space_count": 2,
+            "dominant_space_share": 0.937,
+            "singletons": 1
+          }
+        ]
+      },
+      "corpus_scale": {
+        "findings": [
+          {
+            "id": "scale:assembly:001.space:007:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:008:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "scale:assembly:001.space:011:low-ceiling",
+            "kind": "space_much_lower_than_corpus_for_its_size"
+          },
+          {
+            "id": "shape:orientation-5deg-bins-occupied",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:orientation-diversity",
+            "kind": "shape_outside_corpus_mass"
+          },
+          {
+            "id": "shape:rectangular-sector-fraction",
+            "kind": "shape_outside_corpus_mass"
+          }
+        ],
+        "shape_signature": {
+          "chamfer_fraction": 0.1849,
+          "convex_sector_fraction": 0.9737,
+          "diagonal_length_fraction": 0.0898,
+          "median_outer_vertex_count": 4.0,
+          "orientation_5deg_bins_occupied": 17.0,
+          "orientation_diversity": 0.4722,
+          "orthogonal_length_fraction": 0.8264,
+          "rectangular_sector_fraction": 0.6316,
+          "segmented_arc_chain_count": 15.0
+        },
+        "spaces_below_corpus_for_their_size": [
+          "assembly:001/space:004",
+          "assembly:001/space:006",
+          "assembly:001/space:007",
+          "assembly:001/space:008",
+          "assembly:001/space:009",
+          "assembly:001/space:010",
+          "assembly:001/space:011",
+          "assembly:001/space:012",
+          "assembly:001/space:014",
+          "assembly:001/space:015"
+        ]
+      },
+      "counts": {
+        "connections": 57,
+        "regions": 38,
+        "sectors": 38,
+        "sprites": 60,
+        "walls": 295
+      },
+      "declared_changes": [
+        "the crypt stops being one tile: the hall, its stair and the tomb block take E6M3's crypt treatments, tile 1097 stays only on the reliquary where the corpus supports it, and the two larger chambers take a third set",
+        "segmented arcs at the mined corpus parameters replace chamfers on the planter, the chancel, two courtyard corners, two crypt-hall corners and two gallery corners",
+        "the planter's eight hand-written connection edges are generated from its own outline, so its sixteen segments cannot drift out of step with its connections",
+        "four viewpoints declare an upward pitch, so the level's ceilings and its sky are looked at for the first time in five iterations",
+        "the sky panorama itself was a compiler fix rather than a source change: PlanarLayout now emits the sixteen-panel sky every campaign map with a parallax sector declares, instead of the single panel new_level hardcoded"
+      ],
+      "decorative_distribution": {
+        "largest_share_in_one_space": 0.2167,
+        "per_space": {
+          "assembly:001/space:001": 5,
+          "assembly:001/space:002": 5,
+          "assembly:001/space:003": 5,
+          "assembly:001/space:004": 0,
+          "assembly:001/space:005": 13,
+          "assembly:001/space:006": 0,
+          "assembly:001/space:007": 0,
+          "assembly:001/space:008": 12,
+          "assembly:001/space:009": 0,
+          "assembly:001/space:010": 0,
+          "assembly:001/space:011": 2,
+          "assembly:001/space:012": 1,
+          "assembly:001/space:013": 11,
+          "assembly:001/space:014": 1,
+          "assembly:001/space:015": 0,
+          "assembly:001/space:016": 5
+        },
+        "total_space_sprites": 60
+      },
+      "derived_space_count": 16,
+      "hard_validation": {
+        "by_gate": {
+          "authored_geometry_valid": "pass",
+          "deterministic_emission": "pass",
+          "exit_reachable": "pass",
+          "geometry_conservation": "pass",
+          "intended_adjacency_realized": "pass",
+          "native_structure_valid": "pass",
+          "nblood_load_smoke": "pass",
+          "no_unintended_overlaps": "pass",
+          "no_unresolved_boundary_contacts": "pass",
+          "object_attachment_valid": "pass",
+          "player_relative_clearance": "pass",
+          "player_start_valid": "pass",
+          "portals_realized": "pass",
+          "required_reachability": "pass"
+        },
+        "failed": [],
+        "skipped": []
+      },
+      "iteration_id": "v5",
+      "major_space_scale": [
+        {
+          "footprint_player_areas": 1074.0026,
+          "id": "assembly:001/space:002",
+          "median_clear_height_player_heights": 5.0
+        },
+        {
+          "footprint_player_areas": 447.811,
+          "id": "assembly:001/space:013",
+          "median_clear_height_player_heights": 12.0
+        },
+        {
+          "footprint_player_areas": 256.811,
+          "id": "assembly:001/space:008",
+          "median_clear_height_player_heights": 3.3636
+        },
+        {
+          "footprint_player_areas": 192.6197,
+          "id": "assembly:001/space:005",
+          "median_clear_height_player_heights": 8.0
+        },
+        {
+          "footprint_player_areas": 119.0,
+          "id": "assembly:001/space:016",
+          "median_clear_height_player_heights": 8.0
+        }
+      ],
+      "mandatory_reachability": {
+        "detail": "36/36 mandatory regions reachable",
+        "gate_id": "required_reachability",
+        "mandatory_regions": [
+          "region:chapel_aisle_north",
+          "region:chapel_aisle_south",
+          "region:chapel_apse",
+          "region:chapel_door",
+          "region:chapel_nave",
+          "region:courtyard",
+          "region:crypt_cistern",
+          "region:crypt_gate",
+          "region:crypt_hall",
+          "region:crypt_plinth",
+          "region:crypt_reliquary",
+          "region:exit_door",
+          "region:exit_hall",
+          "region:gallery",
+          "region:gallery_arch",
+          "region:garden_bed",
+          "region:gate_tunnel",
+          "region:gatehouse",
+          "region:ledge",
+          "region:loop_arch",
+          "region:recess:crypt_niche",
+          "region:recess:exit_niche",
+          "region:recess:gallery_niche",
+          "region:stairs:ascent:step_01",
+          "region:stairs:ascent:step_02",
+          "region:stairs:ascent:step_03",
+          "region:stairs:chancel:step_01",
+          "region:stairs:chancel:step_02",
+          "region:stairs:chancel:step_03",
+          "region:stairs:crypt:step_01",
+          "region:stairs:crypt:step_02",
+          "region:stairs:crypt:step_03",
+          "region:stairs:crypt:step_04",
+          "region:stairs:return:step_01",
+          "region:stairs:return:step_02",
+          "region:stairs:return:step_03"
+        ],
+        "status": "pass",
+        "unreachable_regions": []
+      },
+      "map_sha256": "8fb5288e73833498ed487636f8446b69967dc328b968d6ef396101b254b1eee9",
+      "nblood_load": "pass",
+      "oversized_decorations": [],
+      "parent": "v4",
+      "review": {
+        "$schema": "llmapper.authoring-review",
+        "accepted_strengths": [
+          "All fourteen hard gates pass and the level loads in NBlood revision rlocal-agtst10.",
+          "Every declared viewpoint captured, including the four that look up.",
+          "Zero authored-versus-derived hierarchy discrepancies held across a large geometry change.",
+          "Orientation variety above the corpus minimum for the first time in the pilot.",
+          "Single-surface treatment at the corpus median, down from the 97.7th percentile.",
+          "The sky fix applies to every level the project generates, not only this one."
+        ],
+        "claims": [
+          {
+            "claim": "The black sky was a compiler bug, not a level defect, and it had been wrong in every outdoor level this project ever generated.",
+            "evidence": [
+              "view:courtyard_corner",
+              "view:courtyard_sky",
+              "source:module"
+            ],
+            "reasoning": "Four iterations recorded 'the sky renders very dark' as an unexplained unknown, and v4 tested the two obvious hypotheses and refuted both: the courtyard's ceiling is configured identically to all 123 of E2M3's sky sectors, and rendering it at 16, 12 and 8 player heights produced three identical black frames. Captured against E2M3 under matched conditions the difference showed up in the MAP header instead. All 38 campaign maps that contain a parallax sector declare a sixteen-panel sky; bloodmap.construction.new_level hardcoded bits=0 with one offset, which maps the whole 360 degrees onto a single 64-pixel column of the sky tile, and in Blood's night sky that column is the dark edge. PlanarLayout now emits the corpus panorama whenever a region declares a parallax ceiling. The recaptured courtyard frames show moving cloud where they were flat black.",
+            "status": "supported"
+          },
+          {
+            "claim": "Arcs at the mined corpus parameters closed the orientation gap the previous pilot named as its bottleneck.",
+            "evidence": [
+              "shape:orientation-5deg-bins-occupied",
+              "shape:segmented-arc-chain-count",
+              "shape:chamfer-fraction",
+              "shape:diagonal-length-fraction"
+            ],
+            "reasoning": "v3 ended at 6 of 36 orientation bins and v4 fell to 5, both at the 0th percentile, while chamfer fraction sat above the corpus maximum because every cut corner was a 45-degree chamfer. Replacing eight of them with segmented arcs at the mined parameters - 5 to 8 segments, 15 to 30 degrees a segment, chords near one player width - takes orientation bins to 17, above the corpus minimum of 15, and segmented-arc chains from 9 to 15, inside the corpus central mass at the 31st percentile. Chamfer fraction falls from 0.263 to 0.185, back inside the corpus range. This is the one metric the previous pilot stopped on, and it moved because a constructor existed for it rather than because I chamfered harder.",
+            "status": "supported"
+          },
+          {
+            "claim": "Tile 1097 is a cell finish and the crypt hall was twenty times too big for it.",
+            "evidence": [
+              "view:crypt_hall",
+              "view:crypt_vault",
+              "art:blood:tile:1097"
+            ],
+            "reasoning": "The finding is sharper than 'do not use one tile everywhere'. 26 of the corpus's 31 tile-1097 sectors do put it on all three surfaces, so the treatment itself is corpus-faithful - but at a median of 8 player areas and 2.91 player heights. The crypt hall is 174 player areas at 5 player heights. The hall, its stair and the tomb block now take E6M3's own crypt treatments and tile 1097 stays on the reliquary, which at 32 player areas is inside the range the corpus actually uses it in. Single-surface sectors fall from 36.8 percent of the level to 7.9, which is the corpus median of 8.5.",
+            "status": "supported"
+          },
+          {
+            "claim": "The loop had never once looked at a ceiling, and now it can.",
+            "evidence": [
+              "view:nave_vault",
+              "view:crypt_vault",
+              "view:gallery_vault",
+              "view:courtyard_sky"
+            ],
+            "reasoning": "Every captured frame in five iterations was taken at level pitch, so the upper half of every space was outside the evidence - including through a whole iteration that was about ceiling heights. Viewpoints can now declare a pitch, applied as engine Aim_Up taps. The first attempt drove F9 and F10, which in Blood are Quick_Load and the quit prompt, and killed the process mid-capture; the engine's own key table binds Aim_Up to Home and Aim_Down to End, and Aim holds the pitch where Look recentres it. Captures also run with -nodudes now, because a frame taken with monsters spawned shows a pain flash or a cultist instead of the room.",
+            "status": "supported"
+          },
+          {
+            "claim": "The chapel aisles are still ambiguous and I am still not moving them.",
+            "evidence": [
+              "structure:structure:recess:001",
+              "structure:structure:recess:002"
+            ],
+            "reasoning": "They sit at a depth ratio of 0.25, exactly the detector's ceiling, against a corpus median of 0.055. That is the top of what reads as a niche and the bottom of what reads as a room, and no measurement in the packet separates the two. Two iterations have now declined to move them for the same reason, which is the honest answer rather than a stalled one.",
+            "status": "uncertain"
+          },
+          {
+            "claim": "Rectangular sector fraction did not improve and cannot be improved by arcs.",
+            "evidence": [
+              "shape:rectangular-sector-fraction",
+              "shape:convex-sector-fraction"
+            ],
+            "reasoning": "It stays at 0.632 and the 100th percentile, because the arcs went on the large outlines and the count is dominated by stair treads, door volumes and niches, which are rectangular in original maps too. The metric is a whole-level aggregate over sectors, so a level whose big rooms are curved and whose small parts are boxes scores the same as a pure grid. That is a limitation of the measurement, not a remaining defect, and chasing it would mean curving stair treads.",
+            "status": "supported"
+          }
+        ],
+        "iteration_id": "v5",
+        "next_actions": [
+          {
+            "action": "Stop the visual and shape track here. The remaining shape gap is a measurement limit rather than a level defect, and the representation work is the bottleneck now.",
+            "evidence": [
+              "shape:rectangular-sector-fraction",
+              "shape:orientation-5deg-bins-occupied"
+            ],
+            "expected_effect": "further shape work would move an aggregate that cannot see the difference it is being asked to measure."
+          }
+        ],
+        "problems": [
+          "rectangular sector fraction is still at the corpus maximum, and the metric cannot distinguish a curved level with boxy parts from a grid",
+          "the chapel aisles remain unclassifiable by any rule in the packet",
+          "the level still has only three vertical looking relationships against a corpus median of 113 per map, on a tenth of the sector count"
+        ],
+        "reviewer": "llmapper authoring agent, curvature and surface iteration",
+        "schema_version": 1,
+        "status": "external reviewer conclusions; the deterministic package neither produced nor validated the reasoning, only the evidence references",
+        "uncertainties": [
+          "Whether an arc of five segments at 30 degrees reads as curved to a player, or merely measures as curved, is not something any rule here answers.",
+          "The sky fix is verified by comparing frames before and after against an original captured the same way; no claim is made that the sky now looks correct, only that it renders the panorama the corpus declares."
+        ]
+      },
+      "route_structure": {
+        "probe:arch_contrast": {
+          "measurements": {
+            "area_ratio": 27.6132,
+            "clear_height_delta": 45056,
+            "dest_area": 65147677.0,
+            "dest_clear_height": 67584,
+            "floor_delta": 0,
+            "source_area": 2359296.0,
+            "source_clear_height": 22528
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:chapel_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 5,
+            "viable_exits": [
+              {
+                "edge": "portal:86",
+                "sector": "sector:5",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:89",
+                "sector": "sector:7",
+                "status": "open"
+              },
+              {
+                "edge": "portal:94",
+                "sector": "sector:8",
+                "status": "open"
+              },
+              {
+                "edge": "portal:92",
+                "sector": "sector:9",
+                "status": "open"
+              },
+              {
+                "edge": "portal:91",
+                "sector": "sector:10",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:courtyard_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 6,
+            "viable_exits": [
+              {
+                "edge": "portal:13",
+                "sector": "sector:2",
+                "status": "open"
+              },
+              {
+                "edge": "portal:68",
+                "sector": "sector:4",
+                "status": "open"
+              },
+              {
+                "edge": "portal:44",
+                "sector": "sector:5",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:31",
+                "sector": "sector:13",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:26",
+                "sector": "sector:24",
+                "status": "open"
+              },
+              {
+                "edge": "portal:28",
+                "sector": "sector:32",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:crypt_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 5,
+            "viable_exits": [
+              {
+                "edge": "portal:155",
+                "sector": "sector:17",
+                "status": "open"
+              },
+              {
+                "edge": "portal:184",
+                "sector": "sector:19",
+                "status": "open"
+              },
+              {
+                "edge": "portal:179",
+                "sector": "sector:20",
+                "status": "open"
+              },
+              {
+                "edge": "portal:172",
+                "sector": "sector:21",
+                "status": "open"
+              },
+              {
+                "edge": "portal:170",
+                "sector": "sector:35",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:crypt_contrast": {
+          "measurements": {
+            "area_ratio": 0.1733,
+            "clear_height_delta": -61952,
+            "dest_area": 26219293.0,
+            "dest_clear_height": 28160,
+            "floor_delta": 12288,
+            "source_area": 151290244.0,
+            "source_clear_height": 90112
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 4,
+            "viable_exits": [
+              {
+                "edge": "portal:226",
+                "sector": "sector:27",
+                "status": "open"
+              },
+              {
+                "edge": "portal:246",
+                "sector": "sector:29",
+                "status": "open"
+              },
+              {
+                "edge": "portal:236",
+                "sector": "sector:33",
+                "status": "open_via_world_state"
+              },
+              {
+                "edge": "portal:248",
+                "sector": "sector:36",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_contrast": {
+          "measurements": {
+            "area_ratio": 0.4306,
+            "clear_height_delta": -22528,
+            "dest_area": 65147677.0,
+            "dest_clear_height": 67584,
+            "floor_delta": -12288,
+            "source_area": 151290244.0,
+            "source_clear_height": 90112
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:gallery_seen_late": {
+          "measurements": {
+            "first_visible_step": 7,
+            "route_fraction": 0.875,
+            "total_steps": 8,
+            "visible_at_steps": [
+              7,
+              8
+            ]
+          },
+          "route_length": 9,
+          "status": "pass"
+        },
+        "probe:gatehouse_choices": {
+          "measurements": {
+            "blocked_exit_count": 0,
+            "blocked_exits": [],
+            "dead_end_depth": 0,
+            "viable_exit_count": 2,
+            "viable_exits": [
+              {
+                "edge": "portal:9",
+                "sector": "sector:1",
+                "status": "open"
+              },
+              {
+                "edge": "portal:13",
+                "sector": "sector:3",
+                "status": "open"
+              }
+            ]
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:ossuary_reachable_while_shut": {
+          "measurements": {},
+          "route_length": 0,
+          "status": "fail"
+        },
+        "probe:reach_apse": {
+          "measurements": {},
+          "route_length": 7,
+          "status": "pass"
+        },
+        "probe:reach_chapel": {
+          "measurements": {},
+          "route_length": 6,
+          "status": "pass"
+        },
+        "probe:reach_crypt": {
+          "measurements": {},
+          "route_length": 10,
+          "status": "pass"
+        },
+        "probe:reveal_contrast": {
+          "measurements": {
+            "area_ratio": 36.643,
+            "clear_height_delta": 61952,
+            "dest_area": 151290244.0,
+            "dest_clear_height": 90112,
+            "floor_delta": 0,
+            "source_area": 4128768.0,
+            "source_clear_height": 28160
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:revisit_after_crypt_gate": {
+          "measurements": {
+            "newly_reachable_count": 10,
+            "newly_reachable_sectors": [
+              "sector:13",
+              "sector:14",
+              "sector:15",
+              "sector:16",
+              "sector:17",
+              "sector:18",
+              "sector:19",
+              "sector:20",
+              "sector:21",
+              "sector:35"
+            ],
+            "reachable_after_count": 33,
+            "reachable_before_count": 23,
+            "still_unreachable_count": 5
+          },
+          "route_length": 0,
+          "status": "pass"
+        },
+        "probe:route_start_to_exit": {
+          "measurements": {},
+          "route_length": 11,
+          "status": "pass"
+        }
+      },
+      "singleton_spaces": {
+        "count": 9,
+        "ids": [
+          "assembly:001/space:003",
+          "assembly:001/space:004",
+          "assembly:001/space:006",
+          "assembly:001/space:009",
+          "assembly:001/space:010",
+          "assembly:001/space:011",
+          "assembly:001/space:012",
+          "assembly:001/space:014",
+          "assembly:001/space:015"
+        ]
+      },
+      "transition_evidence": [
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:reveal",
+            "source:sector:2",
+            "source:sector:3"
+          ],
+          "from": "sector:2",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": 61952,
+            "floor_shade_delta": -16,
+            "floor_tile_changed": true
+          },
+          "to": "sector:3",
+          "transition_id": "transition:reveal"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:descent",
+            "source:sector:3",
+            "source:sector:18"
+          ],
+          "from": "sector:3",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": -61952,
+            "floor_shade_delta": 16,
+            "floor_tile_changed": true
+          },
+          "to": "sector:18",
+          "transition_id": "transition:descent"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:ascent",
+            "source:sector:27",
+            "source:sector:28"
+          ],
+          "from": "sector:27",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": 45056,
+            "floor_shade_delta": -30,
+            "floor_tile_changed": true
+          },
+          "to": "sector:28",
+          "transition_id": "transition:ascent"
+        },
+        {
+          "any_surface_change": true,
+          "evidence": [
+            "transition:transition:chapel_entry",
+            "source:sector:3",
+            "source:sector:6"
+          ],
+          "from": "sector:3",
+          "material_change": {
+            "ceiling_tile_changed": true,
+            "clear_height_delta": -33792,
+            "floor_shade_delta": 4,
+            "floor_tile_changed": true
+          },
+          "to": "sector:6",
+          "transition_id": "transition:chapel_entry"
+        }
+      ],
+      "views_captured": [
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_start.png",
+          "image_sha256": "9409aa0aad2364813d0d015b1c133b9bfd730c29519d97576cc5df51581209e9",
+          "status": "pass",
+          "viewpoint_id": "view:start"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_gate_approach.png",
+          "image_sha256": "6464513fb975baf3571c132bd79b406fa488eab65188be342c46233a7b375b50",
+          "status": "pass",
+          "viewpoint_id": "view:gate_approach"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_gatehouse.png",
+          "image_sha256": "53587e93897218b0199690c191728a267bac6947da68816af0eff3e0dedc5245",
+          "status": "pass",
+          "viewpoint_id": "view:gatehouse"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_courtyard_center.png",
+          "image_sha256": "a0cb01aaf29786fe5b260dbdb20205317fa41bf8722d07b20f45e274be80bc7c",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_center"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_courtyard_sky.png",
+          "image_sha256": "b89550ec3535aa73c2a6e962b7fc5fcc8fbddb3e4d153fb79a8d3af865271a7b",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_sky"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_nave_vault.png",
+          "image_sha256": "24f2338bd8d53ad62c69b77136b71b566269c0fa21d9ec6334d6fefe7feebf4b",
+          "status": "pass",
+          "viewpoint_id": "view:nave_vault"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_crypt_vault.png",
+          "image_sha256": "4346a3cfb4b52de30a7567e9b067c04558655d2f06a702b7ae7ff79b8f7f4474",
+          "status": "pass",
+          "viewpoint_id": "view:crypt_vault"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_gallery_vault.png",
+          "image_sha256": "7c7c4a7ef7dd027784f44b7d9356fc3f45e6a60d0db4332e3252816d886128d9",
+          "status": "pass",
+          "viewpoint_id": "view:gallery_vault"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_courtyard_corner.png",
+          "image_sha256": "58faed8b69a63b95ac0459e93da1d85e4bf7da91607fefb78294028ffb432109",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_corner"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_chapel_interior.png",
+          "image_sha256": "bd2b1e772675fa964b609c50a916fbf83eacc9d8ba6e444f0d119b732cf857af",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_interior"
+        },
+        {
+          "image": null,
+          "image_sha256": null,
+          "status": "fail",
+          "viewpoint_id": "view:chapel_apse"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_chancel_stair.png",
+          "image_sha256": "4c966bd108bbabdfe063d4dd331aad82563fd398d80972cdeae4e3c6c011a003",
+          "status": "pass",
+          "viewpoint_id": "view:chancel_stair"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_planter.png",
+          "image_sha256": "5389dd9e412c5764d1af14d1e3329fb759936d460bc24802dce87d28cde362ee",
+          "status": "pass",
+          "viewpoint_id": "view:planter"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_crypt_hall.png",
+          "image_sha256": "dc5cb43159ad85ef93910f294fc1e7a21a0878610ff915ebb927a2b22263fb65",
+          "status": "pass",
+          "viewpoint_id": "view:crypt_hall"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_gallery_arch.png",
+          "image_sha256": "774d35d72beb50815028a0c03a721bbcd9b717b279c00df09c1117090fbf3080",
+          "status": "pass",
+          "viewpoint_id": "view:gallery_arch"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_gallery.png",
+          "image_sha256": "9788346848a626d1e30ca6aff957510162493497bd1bca3009cd3e1fb0f2830c",
+          "status": "pass",
+          "viewpoint_id": "view:gallery"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_courtyard_from_stair.png",
+          "image_sha256": "227322a3a5b4a41edc4b393ca7ee9273fe65dfed16ceb79a0b1f23d1ad4b1ff1",
+          "status": "pass",
+          "viewpoint_id": "view:courtyard_from_stair"
+        },
+        {
+          "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v5\\views\\view_chapel_reverse.png",
+          "image_sha256": "80c3cd9bd85f8d7ad0e52842fd66817d6f629c868fa5cdb17ac76f1887434636",
+          "status": "pass",
+          "viewpoint_id": "view:chapel_reverse"
+        }
+      ],
+      "visually_empty_spaces": [
+        "assembly:001/space:004",
+        "assembly:001/space:006",
+        "assembly:001/space:007",
+        "assembly:001/space:009",
+        "assembly:001/space:010",
+        "assembly:001/space:015"
       ]
     }
   ],

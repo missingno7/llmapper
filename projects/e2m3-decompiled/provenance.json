@@ -1,0 +1,20 @@
+{
+ "$schema": "llmapper.decompiled-project",
+ "schema_version": 1,
+ "of": "E2M3.MAP",
+ "source_crc32": "e6b88ca6",
+ "format": "Blood MAP",
+ "counts": {
+  "sectors": 340,
+  "walls": 2808,
+  "sprites": 454
+ },
+ "authority": "exact_level_ir; regenerate it rather than reading anything here as truth",
+ "regenerate_exact_truth": "python -m bloodmap decompile maps/blood/E2M3.MAP -o projects/e2m3-decompiled/exact-level-source.json",
+ "regenerate_this_project": "python -m tools.decompile_project maps/blood/E2M3.MAP -o projects/e2m3-decompiled",
+ "derived_not_verified": [
+  "hierarchy grouping",
+  "structure recovery",
+  "local asset aliases"
+ ]
+}

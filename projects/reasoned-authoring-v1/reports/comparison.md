@@ -1,4 +1,4 @@
-# Cliffside monastery: four evidence-driven iterations
+# Cliffside monastery: six evidence-driven iterations
 
 The machine-readable version is `comparison.json`. Each iteration's full packet
 is `v*/iteration.json`, its readable digest `v*/summary.md`, its rendered frames
@@ -10,53 +10,51 @@ MAP. None of it comes from the authored labels.
 
 ## Dimensions, not a score
 
-| | v0 | v1 | v2 | v3 |
-| --- | --- | --- | --- | --- |
-| **hard validation** | 0 failed | 0 failed | 0 failed | 0 failed |
-| NBlood load smoke | pass | pass | pass | pass |
-| views captured / passing | 8 / 8 | 11 / 11 | 11 / 11 | 12 / 12 |
-| **authored vs observed hierarchy** | 1 discrepancy | 0 | 0 | 0 |
-| derived spaces | 9 | 14 | 14 | 14 |
-| arrival dominant space share | shared blob | 1.00 | 1.00 | 1.00 |
-| courtyard dominant space share | shared blob | 1.00 | 1.00 | 1.00 |
-| gallery dominant space share | 1.00 *into the shared blob* | 0.925 own | 0.925 own | 0.932 own |
-| **mandatory reachability** | 28/28 | 29/29 | 29/29 | 29/29 |
-| **route structure** | 10 steps start→exit | 10 | 10 | 10 |
-| courtyard onward choices | 6 | 6 | 6 | 6 |
-| chapel onward choices | 1 † | 4 | 4 | 4 |
-| crypt onward choices | 2 † | 3 | 3 | 3 |
-| gallery first adjacent along route | — | 88% | 88% | 88% |
-| **transition evidence** | reveal 63.5× area, +14 PH | 42.3×, +13 PH | 42.3×, +13 PH | 35.9×, +11 PH |
-| **major-space scale** (corpus percentile for its footprint) | | | | |
-| courtyard | 59 | 59 | 59 | 59 |
-| gallery | 19 | 19 | 19 | **57** |
-| chapel | 11.5 | 11.5 | 11.5 | **35.5** |
-| exit hall | 4.5 | 4.5 | 4.5 | **41** |
-| crypt hall | 2.5 | 2.5 | 2.5 | **8.4** |
-| low-ceiling findings | 5 | 5 | 5 | **3 (argued)** |
-| **shape vs 42 campaign maps** | | | | |
-| orthogonal wall length | 1.00 (p100) | 1.00 | 1.00 | **0.838 (p88)** |
-| diagonal wall length | 0.00 (p0) | 0.00 | 0.00 | **0.117 (p71)** |
-| rectangular sector fraction | 0.767 (p100) | 0.742 | 0.742 | **0.548 (p100)** |
-| orientation bins occupied | 2 (p0) | 2 | 2 | **6 (p0)** |
-| **ART / material differentiation** | 3 identical room pairs | 0 | 0 | 0 |
-| **decorative distribution** | 5 sprites, 0.40 in one space | 5, 0.40 | 56, 0.21 | 60, 0.22 |
-| visually empty derived spaces | 5 | 10 | 6 | 5 |
-| oversized decorations | 0 | 0 | **18** | **0** |
-| **remaining unknowns** | see each review | | | |
+| | v0 | v1 | v2 | v3 | v4 | v5 |
+| --- | --- | --- | --- | --- | --- | --- |
+| **hard validation** | 0 failed | 0 failed | 0 failed | 0 failed | 0 failed | 0 failed |
+| NBlood load smoke | pass | pass | pass | pass | pass | pass |
+| views captured / passing | 8 / 8 | 11 / 11 | 11 / 11 | 12 / 12 | 14 / 14 | 18 / 18 |
+| views that look up | 0 | 0 | 0 | 0 | 0 | **4** |
+| **authored vs observed hierarchy** | 1 discrepancy | 0 | 0 | 0 | 0 | 0 |
+| derived spaces | 9 | 14 | 14 | 14 | 16 | 16 |
+| derived structures | 8 | 9 | 9 | 11 | 14 | 15 |
+| **vertical relationships** (overlooks) | 0 | 0 | 0 | 0 | **3** | 3 |
+| **material** | | | | | | |
+| identical room-treatment pairs | 4 | 2 | 1 | 1 | 1 | **0** |
+| single-surface sectors | 0.433 (p97.7) | 0.387 | 0.387 | 0.387 | 0.368 | **0.079 (p41.9)** |
+| oversized decorations | 0 | 0 | **18** | 0 | 0 | 0 |
+| visually empty derived spaces | 5 | 10 | 6 | 5 | 6 | 6 |
+| sprites | 5 | 5 | 56 | 60 | 60 | 60 |
+| **shape vs 42 campaign maps** | | | | | | |
+| orientation bins occupied | 2 (p0) | 2 | 2 | 6 (p0) | 5 (p0) | **17 (p4.8)** |
+| segmented-arc chains | 0 | 0 | 0 | 9 | 9 | **15 (p31)** |
+| chamfer fraction | 0.000 | 0.000 | 0.000 | 0.305 (p100) | 0.263 | **0.185 (p97.6)** |
+| diagonal wall length | 0.000 | 0.000 | 0.000 | 0.117 | 0.107 | 0.090 |
+| rectangular sector fraction | 0.767 (p100) | 0.742 | 0.742 | 0.548 | 0.632 | 0.632 (p100) |
+| **progression** | | | | | | |
+| mandatory regions reachable | 28/28 | 29/29 | 29/29 | 29/29 | 36/36 | 36/36 |
+| route steps, start to exit | 10 | 10 | 10 | 10 | 10 | 10 |
+| gallery first adjacent along route | — | 88% | 88% | 88% | 88% | 88% |
+| **major-space scale** (percentile among corpus sectors of its footprint) | | | | | | |
+| courtyard | 59 | 59 | 59 | 59 | 59.3 | 59.4 |
+| gallery | 19 | 19 | 19 | **57** | 56.5 | 56.3 |
+| chapel | 11.5 | 11.5 | 11.5 | **35.5** | 35.5 | 35.4 |
+| exit hall | 4.5 | 4.5 | 4.5 | **41** | 39.7 | 39.7 |
+| crypt hall | 2.5 | 2.5 | 2.5 | **8.5** | 8.2 | 8.6 |
 
-Sector counts went 30 → 31 → 31 → 31 and wall counts 157 → 167 → 167 → 208.
+Sector counts went 30, 31, 31, 31, 38, 38 and wall counts 157, 167, 167, 208,
+250, 295.
 Object count is not on this table as a quality signal; it is here so the shape
 and scale rows can be read against the size that produced them.
 
-† v0 declared no chapel or crypt escape probe; those two cells were measured
-retrospectively by running the v1 probe declarations against the preserved v0
-source, and are not in `v0/iteration.json`. Every other cell comes from its own
-iteration's packet.
+Mandatory reachability rises from 29/29 to 36/36 at v4 because v4 declares seven
+more mandatory regions, not because anything became reachable that was not. The
+crypt-hall scale percentile stays near 8 on purpose: a crypt as tall as a nave is
+not a crypt, and that exception is argued in `../design/reviews/v3.json`.
 
-The v3 reveal ratio drops from 42.3× to 35.9× because the gatehouse itself grew
-when it was splayed and its ceiling raised — the constrained side got larger, so
-the ratio fell while the transition stayed the strongest in the level.
+Every cell comes from its own iteration's packet, and all six were re-run
+together under the current rules after the sky fix, so the rows are comparable.
 
 ## Which source change caused which observed change
 
@@ -151,6 +149,31 @@ shade-step thresholds are experienced as thresholds by a player. Whether tile
 449's mined `stone_masonry` role or its root-like rendered appearance is right.
 Anything about combat, pacing, enemy placement, sound, or how the level plays —
 nothing in this pilot measures any of it.
+
+**v3 -> v4 (structure, driven by the recovered structure layer).** The
+decompiler gained an architectural-structure layer after E2M3 was taken apart,
+and the first thing it said about v3 was that the level contained no overlook
+and no pit anywhere, across three storeys. Every height change in it was a stair
+you walk up; nothing was ever seen from another height, and all 42 campaign maps
+have overlooks. v4 raised the planter and the chancel out of step range and put a
+tomb block in the crypt hall: 0 -> 3. All four stairs became
+`vocabulary.staircase` calls, and the ascent rise moved from 3840 -- a value the
+corpus never uses -- to 4096, which it uses for 771 of its 1283 stair rises. The
+level's own courtyard was then flagged as a "landing" by the detector, at 1053
+player areas, reproducing on purpose-built geometry the same false positive that
+made 14 of the corpus's 19 landings ordinary rooms.
+
+**v4 -> v5 (curvature and surface, plus one compiler bug).** Three findings from
+v4's frames. The crypt used tile 1097 on floor, walls and ceiling in eleven
+sectors and was unreadable; the corpus does use that tile that way, but at a
+median of 8 player areas against our hall's 174, so it is a cell finish stretched
+over a hall. Segmented arcs at the mined parameters replaced eight chamfers,
+taking orientation bins from 5 to 17 -- above the corpus minimum of 15, and the
+metric v3 stopped on. And the black sky, an unexplained unknown since v2, turned
+out not to be the level at all: `new_level` hardcoded a one-panel sky where all
+38 campaign maps with a parallax sector declare sixteen, so 360 degrees of
+horizon were being mapped onto a single dark 64-pixel column of the sky tile.
+That fix applies to every level this project generates.
 
 ## The next bottleneck
 

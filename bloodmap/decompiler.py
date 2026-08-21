@@ -22,6 +22,7 @@ from typing import Any, Iterable
 from .model import LevelIR
 from .player_space import player_profile
 from .spatial import analyze_spatial
+from .structures import detect_structures
 
 
 SCHEMA = "llmapper.level-source"
@@ -381,6 +382,57 @@ def decompile_level(level: LevelIR, *, source_name: str | None = None) -> LevelS
             },
         })
 
+    # Architectural structures: the layer between a perceptual space and one
+    # sector.  Only the kinds that survived cross-corpus testing as things an
+    # author draws become nodes.  Overlooks and pits are consequences of two
+    # height decisions rather than drawn objects, so they stay relations; a node
+    # per overlook would add a hundred entries to a campaign map and answer
+    # nothing.
+    structure_document = detect_structures(level, spatial=spatial)
+    sector_to_assembly = {
+        value: f"assembly:{number:03d}"
+        for number, values in enumerate(assemblies, 1) for value in values
+    }
+    structure_nodes = {"stepped_run", "landing", "recess", "embedded_shell"}
+    for item in structure_document["structures"]:
+        owners = sorted({sector_to_assembly[value] for value in item["sectors"]})
+        spaces = sorted({sector_to_space[value] for value in item["sectors"]})
+        if item["kind"] not in structure_nodes:
+            relations.append({
+                "kind": item["kind"], "from": item["id"],
+                "to": sorted({sector_to_space[value] for value in item["sectors"]}),
+                "toward": sorted({sector_to_space[value] for value in item["attaches_to"]}),
+                "source": item["id"], "evidence": deepcopy(item["parameters"]),
+            })
+            continue
+        refs = _owned_refs(level, item["sectors"])
+        nodes.append(_node(
+            item["id"], "structure", item["id"].split(":", 2)[-1], owners[0], refs,
+            _geometry_summary(
+                item["sectors"], geometry,
+                body_width=profile.body_width, standing_height=profile.standing_height,
+            ),
+            _asset_counts(level, refs),
+            basis=[item["evidence"]["basis"]] + (
+                [] if len(owners) == 1 else [f"spans navigation assemblies {owners}"]
+            ),
+        ))
+        nodes[-1]["structure"] = {
+            "kind": item["kind"],
+            "parameters": deepcopy(item["parameters"]),
+            "residual": deepcopy(item["residual"]),
+            "attaches_to_spaces": sorted({
+                sector_to_space[value] for value in item["attaches_to"]
+            }),
+        }
+        for space_id in spaces:
+            relations.append({
+                "kind": "part_of", "from": item["id"], "to": space_id,
+                "source": item["id"],
+                "evidence": {"kind": item["kind"], "sectors": list(item["sectors"])},
+            })
+        by_id[owners[0]]["children"].append(item["id"])
+
     alternatives = [_compact_candidate(item) for item in spatial["hypotheses"]]
     for item in alternatives:
         if item["kind"] == "vertical_layer":
@@ -419,11 +471,17 @@ def decompile_level(level: LevelIR, *, source_name: str | None = None) -> LevelS
             "nodes": nodes,
             "relations": relations,
             "alternative_candidates": alternatives,
+            "structure_recovery": {
+                "model": structure_document["model"],
+                "coverage": structure_document["coverage"],
+                "limitations": structure_document["limitations"],
+            },
             "limitations": [
                 "names are neutral until semantic review",
                 "navigation connectivity is a static at-rest approximation",
                 "perceptual grouping uses portal/material continuity rather than renderer visibility",
                 "mechanism and experience decomposition are intentionally out of scope",
+                "structures are derived from geometry and overlap the spaces they belong to",
             ],
         },
         assets=assets,

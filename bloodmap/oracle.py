@@ -56,6 +56,17 @@ bind "F11" "screenshot"
 echo BLOODMAP_ORACLE_BOOTSTRAPPED
 """
 
+# A camera that can only look straight ahead cannot review a ceiling, a sky, or
+# anything a player would look up at, so a viewpoint may ask for a pitch.
+#
+# These are the engine's own defaults rather than a rebinding: NBlood's Blood
+# key table (source/blood/src/_functio.h, keydefaults) binds Aim_Up to Home and
+# Aim_Down to End, and Aim_* holds the pitch where Look_* on PgUp/PgDn recentres
+# it, which is what a still frame needs.  Do not reach for the function keys
+# here: in Blood F9 is Quick_Load and F10 opens the quit prompt, so driving them
+# instead of an aim control kills the process in the middle of the capture.
+PITCH_KEYS = {"up": 0x24, "down": 0x23}  # VK_HOME, VK_END
+
 _EDUKE_CONFIG = """[Misc]
 Executions = 1
 Locale = "en"
@@ -769,6 +780,7 @@ def run_nblood_action_oracle(
 def _probe_viewpoint_map(
     map_path: Path, *, nblood: Path, game_dir: Path,
     startup_timeout: float, settle_seconds: float, work_dir: Path, image_path: Path,
+    pitch_taps: int = 0,
 ) -> dict[str, Any]:
     """Load one pose-variant MAP and preserve exactly one deterministic view."""
     identity = _map_identity(map_path)
@@ -785,10 +797,14 @@ def _probe_viewpoint_map(
     # The behavior autoexec is reused verbatim: it disables view bob (needed for a
     # repeatable frame) and binds the screenshot command.
     (work_dir / "autoexec.cfg").write_text(_BEHAVIOR_AUTOEXEC, encoding="utf-8", newline="\n")
+    # -nodudes: a viewpoint frame is evidence about architecture.  With monsters
+    # spawned the camera takes damage while it settles, so the frame comes back
+    # as a red pain flash, a cultist filling the shot, or a death screen -- and
+    # on an original campaign map it is usually all three.
     command = [
         str(nblood), "-usecwd", "-game_dir", str(game_dir),
         "-cfg", "oracle.cfg", "-map", "oracle.MAP",
-        "-noautoload", "-quick", "-nosetup",
+        "-noautoload", "-quick", "-nosetup", "-nodudes",
     ]
     stdout_path, stderr_path = work_dir / "stdout.txt", work_dir / "stderr.txt"
     capture_error: str | None = None
@@ -806,6 +822,12 @@ def _probe_viewpoint_map(
             # SetForegroundWindow loses races against whatever else is on the
             # interactive desktop.  A focus failure says nothing about the MAP,
             # so retry a bounded number of times before reporting it.
+            if pitch_taps:
+                key = PITCH_KEYS["up" if pitch_taps > 0 else "down"]
+                for _ in range(min(abs(int(pitch_taps)), 64)):
+                    _press_key(window, key)
+                    time.sleep(0.02)
+                time.sleep(0.4)
             files: list[Path] = []
             last: OracleError | None = None
             for attempt in range(4):
@@ -895,9 +917,11 @@ def run_nblood_viewpoint_capture(
                 variant, nblood=nblood_path, game_dir=game_path,
                 startup_timeout=startup_timeout, settle_seconds=settle_seconds,
                 work_dir=root / f"{index:02d}-{safe}", image_path=images / f"{safe}.png",
+                pitch_taps=int(request.get("pitch_taps") or 0),
             )
             views.append({
                 "viewpoint_id": viewpoint_id,
+                "pitch_taps": int(request.get("pitch_taps") or 0),
                 "resolved": deepcopy(request.get("resolved", {})),
                 "variant_map_sha256": probe["identity"].get("sha256"),
                 "status": probe["status"],
@@ -917,6 +941,8 @@ def run_nblood_viewpoint_capture(
             "limitations": [
                 "an image hash proves stability, never visual quality",
                 "one frame per pose; no motion, no lighting animation, no player behavior",
+                "captured with -nodudes: evidence about architecture, never about encounters",
+                "pitch is applied as engine Aim_Up/Aim_Down taps, so it is approximate",
             ],
         }
 

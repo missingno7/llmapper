@@ -1103,6 +1103,73 @@
       ],
       "status": "measured"
     },
+    "surface_treatment": {
+      "corpus": {
+        "max": 0.6433,
+        "median": 0.0853,
+        "min": 0.0042,
+        "p90": 0.15
+      },
+      "corpus_maps": 43,
+      "corpus_percentile": 97.7,
+      "fraction": 0.4333,
+      "reading": "above the corpus ninetieth percentile",
+      "rule": "floor tile, ceiling tile and dominant wall tile are all the same",
+      "single_surface_sectors": [
+        {
+          "sector": 4,
+          "tile": 22
+        },
+        {
+          "sector": 6,
+          "tile": 200
+        },
+        {
+          "sector": 7,
+          "tile": 1097
+        },
+        {
+          "sector": 8,
+          "tile": 1097
+        },
+        {
+          "sector": 9,
+          "tile": 1097
+        },
+        {
+          "sector": 10,
+          "tile": 1097
+        },
+        {
+          "sector": 11,
+          "tile": 1097
+        },
+        {
+          "sector": 12,
+          "tile": 1097
+        },
+        {
+          "sector": 13,
+          "tile": 1097
+        },
+        {
+          "sector": 14,
+          "tile": 1097
+        },
+        {
+          "sector": 15,
+          "tile": 1097
+        },
+        {
+          "sector": 16,
+          "tile": 1097
+        },
+        {
+          "sector": 28,
+          "tile": 495
+        }
+      ]
+    },
     "transition_material_evidence": [
       {
         "any_surface_change": false,
@@ -1723,6 +1790,7 @@
         "footprint_corpus_percentile": 99.7,
         "footprint_player_areas": 1624.0,
         "height_corpus_percentile": 87.9,
+        "height_percentile_vs_corpus_sky_sectors": 56.8,
         "height_percentile_vs_same_size_corpus_sectors": 54.8,
         "node": "assembly:001/space:001",
         "reading": "inside the corpus central mass",
@@ -1743,7 +1811,8 @@
           "region:loop_stair_4",
           "region:loop_stair_5"
         ],
-        "size_matched_sample_count": 73
+        "size_matched_sample_count": 73,
+        "sky_lit_sectors": 2
       },
       {
         "clear_height_player_heights_area_weighted": 0.0,
@@ -1751,13 +1820,15 @@
         "footprint_corpus_percentile": 51.9,
         "footprint_player_areas": 8.0,
         "height_corpus_percentile": 4.0,
+        "height_percentile_vs_corpus_sky_sectors": null,
         "height_percentile_vs_same_size_corpus_sectors": 1.5,
         "node": "assembly:001/space:002",
         "reading": "below the corpus tenth percentile",
         "regions": [
           "region:chapel_door"
         ],
-        "size_matched_sample_count": 4296
+        "size_matched_sample_count": 4296,
+        "sky_lit_sectors": 0
       },
       {
         "clear_height_player_heights_area_weighted": 7.0,
@@ -1765,13 +1836,15 @@
         "footprint_corpus_percentile": 97.4,
         "footprint_player_areas": 288.0,
         "height_corpus_percentile": 60.8,
+        "height_percentile_vs_corpus_sky_sectors": null,
         "height_percentile_vs_same_size_corpus_sectors": 25.0,
         "node": "assembly:001/space:003",
         "reading": "inside the corpus central mass",
         "regions": [
           "region:chapel_nave"
         ],
-        "size_matched_sample_count": 639
+        "size_matched_sample_count": 639,
+        "sky_lit_sectors": 0
       },
       {
         "clear_height_player_heights_area_weighted": 0.0,
@@ -1779,13 +1852,15 @@
         "footprint_corpus_percentile": 51.9,
         "footprint_player_areas": 8.0,
         "height_corpus_percentile": 4.0,
+        "height_percentile_vs_corpus_sky_sectors": null,
         "height_percentile_vs_same_size_corpus_sectors": 1.5,
         "node": "assembly:001/space:004",
         "reading": "below the corpus tenth percentile",
         "regions": [
           "region:crypt_gate"
         ],
-        "size_matched_sample_count": 4296
+        "size_matched_sample_count": 4296,
+        "sky_lit_sectors": 0
       },
       {
         "clear_height_player_heights_area_weighted": 2.36,
@@ -1793,6 +1868,7 @@
         "footprint_corpus_percentile": 95.9,
         "footprint_player_areas": 200.0,
         "height_corpus_percentile": 7.3,
+        "height_percentile_vs_corpus_sky_sectors": null,
         "height_percentile_vs_same_size_corpus_sectors": 2.0,
         "node": "assembly:001/space:005",
         "reading": "below the corpus tenth percentile",
@@ -1806,7 +1882,8 @@
           "region:crypt_hall",
           "region:crypt_key_niche"
         ],
-        "size_matched_sample_count": 976
+        "size_matched_sample_count": 976,
+        "sky_lit_sectors": 0
       },
       {
         "clear_height_player_heights_area_weighted": 0.0,
@@ -1814,13 +1891,15 @@
         "footprint_corpus_percentile": 51.9,
         "footprint_player_areas": 8.0,
         "height_corpus_percentile": 4.0,
+        "height_percentile_vs_corpus_sky_sectors": null,
         "height_percentile_vs_same_size_corpus_sectors": 1.5,
         "node": "assembly:001/space:006",
         "reading": "below the corpus tenth percentile",
         "regions": [
           "region:crypt_secret_door"
         ],
-        "size_matched_sample_count": 4296
+        "size_matched_sample_count": 4296,
+        "sky_lit_sectors": 0
       },
       {
         "clear_height_player_heights_area_weighted": 2.0,
@@ -1828,13 +1907,15 @@
         "footprint_corpus_percentile": 86.8,
         "footprint_player_areas": 64.0,
         "height_corpus_percentile": 6.6,
+        "height_percentile_vs_corpus_sky_sectors": null,
         "height_percentile_vs_same_size_corpus_sectors": 0.8,
         "node": "assembly:001/space:007",
         "reading": "below the corpus tenth percentile",
         "regions": [
           "region:crypt_secret_niche"
         ],
-        "size_matched_sample_count": 2166
+        "size_matched_sample_count": 2166,
+        "sky_lit_sectors": 0
       },
       {
         "clear_height_player_heights_area_weighted": 0.0,
@@ -1842,13 +1923,15 @@
         "footprint_corpus_percentile": 51.9,
         "footprint_player_areas": 8.0,
         "height_corpus_percentile": 4.0,
+        "height_percentile_vs_corpus_sky_sectors": null,
         "height_percentile_vs_same_size_corpus_sectors": 1.5,
         "node": "assembly:001/space:008",
         "reading": "below the corpus tenth percentile",
         "regions": [
           "region:exit_door"
         ],
-        "size_matched_sample_count": 4296
+        "size_matched_sample_count": 4296,
+        "sky_lit_sectors": 0
       },
       {
         "clear_height_player_heights_area_weighted": 4.0,
@@ -1856,13 +1939,15 @@
         "footprint_corpus_percentile": 92.8,
         "footprint_player_areas": 120.0,
         "height_corpus_percentile": 17.2,
+        "height_percentile_vs_corpus_sky_sectors": null,
         "height_percentile_vs_same_size_corpus_sectors": 4.5,
         "node": "assembly:001/space:009",
         "reading": "below the corpus tenth percentile",
         "regions": [
           "region:exit_hall"
         ],
-        "size_matched_sample_count": 1430
+        "size_matched_sample_count": 1430,
+        "sky_lit_sectors": 0
       }
     ],
     "spatial_corpus": {
@@ -1898,6 +1983,12 @@
           "median": 2.6667,
           "min": 0.013,
           "samples": 28423
+        },
+        "sky_clear_height_player_heights": {
+          "max": 227.2727,
+          "median": 11.6364,
+          "min": 0.0,
+          "samples": 1740
         },
         "step_player_heights": {
           "max": 235.8182,
@@ -3470,10 +3561,10 @@
       "use_pose_violations": []
     },
     {
-      "bytes": 7141,
+      "bytes": 7171,
       "detail": "two independent compiles produced identical bytes",
       "gate_id": "deterministic_emission",
-      "map_sha256": "3cb18a04458b6a7fc90b9e8c0f12c4f0109a6be9a59c69d65fe1831a7b29f848",
+      "map_sha256": "385472cc8708f4060344f99e7ee548559170c48536e644d21064d95077a8e9f6",
       "status": "pass"
     },
     {
@@ -3497,8 +3588,8 @@
                 "walls": 157
               },
               "filename": "v0.MAP",
-              "sha256": "3cb18a04458b6a7fc90b9e8c0f12c4f0109a6be9a59c69d65fe1831a7b29f848",
-              "size": 7141
+              "sha256": "385472cc8708f4060344f99e7ee548559170c48536e644d21064d95077a8e9f6",
+              "size": 7171
             },
             "markers": {
               "autoexec": true,
@@ -3835,9 +3926,9 @@
     ],
     "deterministic_compile": true,
     "iteration_id": "v0",
-    "map_bytes": 7141,
+    "map_bytes": 7171,
     "map_path": "projects\\reasoned-authoring-v1\\level\\candidate-v0.MAP",
-    "map_sha256": "3cb18a04458b6a7fc90b9e8c0f12c4f0109a6be9a59c69d65fe1831a7b29f848",
+    "map_sha256": "385472cc8708f4060344f99e7ee548559170c48536e644d21064d95077a8e9f6",
     "module": "projects/reasoned-authoring-v1/level/candidate_v0.py",
     "parent_iteration": null
   },
@@ -3849,6 +3940,7 @@
       "detail_groups": 4,
       "singleton_spaces": 7,
       "spaces": 9,
+      "structures": 8,
       "vertical_overlap_relations": 0
     },
     "derived_assemblies": [
@@ -4099,6 +4191,250 @@
         "sprites": 1
       }
     ],
+    "derived_structures": [
+      {
+        "attaches_to_spaces": [
+          "assembly:001/space:005"
+        ],
+        "id": "structure:stepped_run:001",
+        "kind": "stepped_run",
+        "parameters": {
+          "clear_height": 16896,
+          "rises": 5,
+          "total_rise": 10240,
+          "total_run": 3840.0,
+          "treads": 6,
+          "width": 1536.0
+        },
+        "parent": "assembly:001",
+        "residual": {
+          "portal_width": {
+            "max": 1536.0,
+            "mean": 1536.0,
+            "min": 1536.0,
+            "stdev": 0.0
+          },
+          "step_rise": {
+            "max": 2048,
+            "mean": 2048,
+            "min": 2048,
+            "stdev": 0.0
+          },
+          "step_run": {
+            "max": 768.0,
+            "mean": 768.0,
+            "min": 768.0,
+            "stdev": 0.0
+          },
+          "trimmed_terminals": [],
+          "uniform_rise": true,
+          "uniform_width": true
+        },
+        "sectors": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "attaches_to_spaces": [
+          "assembly:001/space:001"
+        ],
+        "id": "structure:stepped_run:002",
+        "kind": "stepped_run",
+        "parameters": {
+          "clear_height": 22528,
+          "rises": 6,
+          "total_rise": 17408,
+          "total_run": 17514.1,
+          "treads": 6,
+          "width": 1792.0
+        },
+        "parent": "assembly:001",
+        "residual": {
+          "portal_width": {
+            "max": 3072.0,
+            "mean": 1792.0,
+            "min": 1536.0,
+            "stdev": 572.43
+          },
+          "step_rise": {
+            "max": 3072,
+            "mean": 2901.33,
+            "min": 2048,
+            "stdev": 381.62
+          },
+          "step_run": {
+            "max": 8448.0,
+            "mean": 3047.29,
+            "min": 768.0,
+            "stdev": 3259.87
+          },
+          "trimmed_terminals": [
+            3
+          ],
+          "uniform_rise": false,
+          "uniform_width": false
+        },
+        "sectors": [
+          2,
+          17,
+          18,
+          19,
+          20,
+          21
+        ]
+      },
+      {
+        "attaches_to_spaces": [
+          "assembly:001/space:001"
+        ],
+        "id": "structure:stepped_run:003",
+        "kind": "stepped_run",
+        "parameters": {
+          "clear_height": 22528,
+          "rises": 5,
+          "total_rise": 15360,
+          "total_run": 7680.0,
+          "treads": 5,
+          "width": 1536.0
+        },
+        "parent": "assembly:001",
+        "residual": {
+          "portal_width": {
+            "max": 1536.0,
+            "mean": 1536.0,
+            "min": 1536.0,
+            "stdev": 0.0
+          },
+          "step_rise": {
+            "max": 3072,
+            "mean": 3072,
+            "min": 3072,
+            "stdev": 0.0
+          },
+          "step_run": {
+            "max": 5538.13,
+            "mean": 1722.03,
+            "min": 768.0,
+            "stdev": 1908.05
+          },
+          "trimmed_terminals": [
+            22
+          ],
+          "uniform_rise": true,
+          "uniform_width": true
+        },
+        "sectors": [
+          23,
+          24,
+          25,
+          26,
+          27
+        ]
+      },
+      {
+        "attaches_to_spaces": [
+          "assembly:001/space:001"
+        ],
+        "id": "structure:landing:001",
+        "kind": "landing",
+        "parameters": {
+          "area": 57802752.0,
+          "clear_height": 33792,
+          "joins_runs": [
+            "structure:stepped_run:002",
+            "structure:stepped_run:003"
+          ],
+          "open_portals": 2
+        },
+        "parent": "assembly:001",
+        "residual": {},
+        "sectors": [
+          22
+        ]
+      },
+      {
+        "attaches_to_spaces": [
+          "assembly:001/space:001"
+        ],
+        "id": "structure:recess:001",
+        "kind": "recess",
+        "parameters": {
+          "area": 8257536.0,
+          "ceiling_delta": 0,
+          "clear_height": 92160,
+          "depth_ratio": 0.0551,
+          "floor_delta": 2048,
+          "opening_width": 3072.0
+        },
+        "parent": "assembly:001",
+        "residual": {},
+        "sectors": [
+          3
+        ]
+      },
+      {
+        "attaches_to_spaces": [
+          "assembly:001/space:005"
+        ],
+        "id": "structure:recess:002",
+        "kind": "recess",
+        "parameters": {
+          "area": 3538944.0,
+          "ceiling_delta": 1024,
+          "clear_height": 11264,
+          "depth_ratio": 0.1875,
+          "floor_delta": 0,
+          "opening_width": 1536.0
+        },
+        "parent": "assembly:001",
+        "residual": {},
+        "sectors": [
+          14
+        ]
+      },
+      {
+        "attaches_to_spaces": [
+          "assembly:001/space:001"
+        ],
+        "id": "structure:embedded_shell:001",
+        "kind": "embedded_shell",
+        "parameters": {
+          "contained_sectors": 2,
+          "footprint": 64880640.0,
+          "host_area": 149815296.0,
+          "occupies_host": 0.3022
+        },
+        "parent": "assembly:001",
+        "residual": {},
+        "sectors": [
+          4,
+          5
+        ]
+      },
+      {
+        "attaches_to_spaces": [
+          "assembly:001/space:001"
+        ],
+        "id": "structure:embedded_shell:002",
+        "kind": "embedded_shell",
+        "parameters": {
+          "contained_sectors": 1,
+          "footprint": 8257536.0,
+          "host_area": 149815296.0,
+          "occupies_host": 0.0522
+        },
+        "parent": "assembly:001",
+        "residual": {},
+        "sectors": [
+          3
+        ]
+      }
+    ],
     "detail_group_distribution": [
       {
         "id": "assembly:001/space:001/details",
@@ -4125,7 +4461,8 @@
       "names are neutral until semantic review",
       "navigation connectivity is a static at-rest approximation",
       "perceptual grouping uses portal/material continuity rather than renderer visibility",
-      "mechanism and experience decomposition are intentionally out of scope"
+      "mechanism and experience decomposition are intentionally out of scope",
+      "structures are derived from geometry and overlap the spaces they belong to"
     ],
     "major_connections": [
       {
@@ -4269,6 +4606,34 @@
       "assembly:001/space:008",
       "assembly:001/space:009"
     ],
+    "structure_recovery": {
+      "coverage": {
+        "by_kind": {
+          "embedded_shell": 3,
+          "landing": 1,
+          "overlook": 0,
+          "pit": 0,
+          "recess": 2,
+          "stepped_run": 17
+        },
+        "sectors": 30,
+        "sectors_in_a_structure": 22
+      },
+      "limitations": [
+        "detection is static: transient door and lift motion is ignored",
+        "a stepped run is a measured climb, not a claim that the designer drew a staircase",
+        "a recess is a small dead end; whether it reads as an alcove is not measured here",
+        "residual records how far the original is from its own parameters, not whether that matters"
+      ],
+      "model": "derived architectural structures between the perceptual space and the individual sector; geometry only, never authored labels"
+    },
+    "structure_relations": {
+      "counts": {
+        "overlook": 0,
+        "pit": 0
+      },
+      "largest_drops": []
+    },
     "vertical_overlaps": []
   },
   "render": {
@@ -4281,7 +4646,9 @@
       "image_dir": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views",
       "limitations": [
         "an image hash proves stability, never visual quality",
-        "one frame per pose; no motion, no lighting animation, no player behavior"
+        "one frame per pose; no motion, no lighting animation, no player behavior",
+        "captured with -nodudes: evidence about architecture, never about encounters",
+        "pitch is applied as engine Aim_Up/Aim_Down taps, so it is approximate"
       ],
       "schema_version": 1,
       "status": "pass",
@@ -4290,6 +4657,7 @@
           "engine_revision": "rlocal-agtst10",
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_start.png",
           "image_sha256": "df5de299bc98e8581159e3e5d5a357c0fcd0eba6f57a4b573e1b400c139aa24b",
+          "pitch_taps": 0,
           "probe": {
             "capture": {
               "files": 1,
@@ -4306,8 +4674,8 @@
                 "walls": 157
               },
               "filename": "view_start.MAP",
-              "sha256": "3cb18a04458b6a7fc90b9e8c0f12c4f0109a6be9a59c69d65fe1831a7b29f848",
-              "size": 7141
+              "sha256": "385472cc8708f4060344f99e7ee548559170c48536e644d21064d95077a8e9f6",
+              "size": 7171
             },
             "markers": {
               "autoexec": true,
@@ -4320,6 +4688,7 @@
           },
           "resolved": {
             "note": "the arrival pose the player actually spawns in",
+            "pitch": 0,
             "pose": {
               "angle": 0,
               "x": -768,
@@ -4335,13 +4704,14 @@
             "viewpoint_id": "view:start"
           },
           "status": "pass",
-          "variant_map_sha256": "3cb18a04458b6a7fc90b9e8c0f12c4f0109a6be9a59c69d65fe1831a7b29f848",
+          "variant_map_sha256": "385472cc8708f4060344f99e7ee548559170c48536e644d21064d95077a8e9f6",
           "viewpoint_id": "view:start"
         },
         {
           "engine_revision": "rlocal-agtst10",
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_gate_approach.png",
           "image_sha256": "2ede1d12737f4bbb770ce02af988e6e78b1a16ff464f5c59af3dc97ef5eaf78e",
+          "pitch_taps": 0,
           "probe": {
             "capture": {
               "files": 1,
@@ -4358,8 +4728,8 @@
                 "walls": 157
               },
               "filename": "view_gate_approach.MAP",
-              "sha256": "9030e5913c5aa3008ba71daba500245d9271d87691135b27620d18fbefee8ba6",
-              "size": 7141
+              "sha256": "b683126b30cb8e27c9b7bc29a89bc8d4f49a79518d2b4641c63c242e73a1f44a",
+              "size": 7171
             },
             "markers": {
               "autoexec": true,
@@ -4372,6 +4742,7 @@
           },
           "resolved": {
             "note": "inside the constrained tunnel, facing the courtyard",
+            "pitch": 0,
             "pose": {
               "angle": 0,
               "x": 1920,
@@ -4387,13 +4758,14 @@
             "viewpoint_id": "view:gate_approach"
           },
           "status": "pass",
-          "variant_map_sha256": "9030e5913c5aa3008ba71daba500245d9271d87691135b27620d18fbefee8ba6",
+          "variant_map_sha256": "b683126b30cb8e27c9b7bc29a89bc8d4f49a79518d2b4641c63c242e73a1f44a",
           "viewpoint_id": "view:gate_approach"
         },
         {
           "engine_revision": "rlocal-agtst10",
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_courtyard_center.png",
           "image_sha256": "8dddf78f6a8dec8ceae8b9714003e59273069c574f9dd995f2604dbaead414f0",
+          "pitch_taps": 0,
           "probe": {
             "capture": {
               "files": 1,
@@ -4410,8 +4782,8 @@
                 "walls": 157
               },
               "filename": "view_courtyard_center.MAP",
-              "sha256": "6bdcd1e917454762f3f05632eefeebf87a8ab54c9fd40b3ed63c0b16b61b191d",
-              "size": 7141
+              "sha256": "3a72d287c473d8f95f71b737143cc7facf3e303ba24132de63f4d8e0e4e15a55",
+              "size": 7171
             },
             "markers": {
               "autoexec": true,
@@ -4424,6 +4796,7 @@
           },
           "resolved": {
             "note": "standing in the west courtyard, facing the chapel mass",
+            "pitch": 0,
             "pose": {
               "angle": 0,
               "x": 6528,
@@ -4439,13 +4812,14 @@
             "viewpoint_id": "view:courtyard_center"
           },
           "status": "pass",
-          "variant_map_sha256": "6bdcd1e917454762f3f05632eefeebf87a8ab54c9fd40b3ed63c0b16b61b191d",
+          "variant_map_sha256": "3a72d287c473d8f95f71b737143cc7facf3e303ba24132de63f4d8e0e4e15a55",
           "viewpoint_id": "view:courtyard_center"
         },
         {
           "engine_revision": "rlocal-agtst10",
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_chapel_interior.png",
           "image_sha256": "77d6dafe21add42910cdb73f10e45a1df4af7041cdbab06a94ba488f7036f659",
+          "pitch_taps": 0,
           "probe": {
             "capture": {
               "files": 1,
@@ -4462,8 +4836,8 @@
                 "walls": 157
               },
               "filename": "view_chapel_interior.MAP",
-              "sha256": "73463093e0d42a3ab8fbbc9fc4f07cfecf6728ef1c5af5e332fc4755bdac1ae4",
-              "size": 7141
+              "sha256": "e7a72fdf868c3875289b649778de6793f7460e892bba14abe1da46d8d3065bc8",
+              "size": 7171
             },
             "markers": {
               "autoexec": true,
@@ -4476,6 +4850,7 @@
           },
           "resolved": {
             "note": "just inside the chapel, facing the switch wall",
+            "pitch": 0,
             "pose": {
               "angle": 0,
               "x": 11520,
@@ -4491,13 +4866,14 @@
             "viewpoint_id": "view:chapel_interior"
           },
           "status": "pass",
-          "variant_map_sha256": "73463093e0d42a3ab8fbbc9fc4f07cfecf6728ef1c5af5e332fc4755bdac1ae4",
+          "variant_map_sha256": "e7a72fdf868c3875289b649778de6793f7460e892bba14abe1da46d8d3065bc8",
           "viewpoint_id": "view:chapel_interior"
         },
         {
           "engine_revision": "rlocal-agtst10",
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_crypt_hall.png",
           "image_sha256": "7c6d8e4c480935f600e8bd0397b632059015faf9d08161a7d55e5eb3a4d21319",
+          "pitch_taps": 0,
           "probe": {
             "capture": {
               "files": 1,
@@ -4514,8 +4890,8 @@
                 "walls": 157
               },
               "filename": "view_crypt_hall.MAP",
-              "sha256": "875c9c9ce7c334ac9c48b933c0d36131f0cfa5b0cb4ff919fd7ec322b69c5378",
-              "size": 7141
+              "sha256": "7aebd3d5b1b5474548875f97e172759349f2f3521ebf4158dedcca79b4f3f421",
+              "size": 7171
             },
             "markers": {
               "autoexec": true,
@@ -4528,6 +4904,7 @@
           },
           "resolved": {
             "note": "the crypt hall, facing the reliquary niche",
+            "pitch": 0,
             "pose": {
               "angle": 1536,
               "x": 12288,
@@ -4543,13 +4920,14 @@
             "viewpoint_id": "view:crypt_hall"
           },
           "status": "pass",
-          "variant_map_sha256": "875c9c9ce7c334ac9c48b933c0d36131f0cfa5b0cb4ff919fd7ec322b69c5378",
+          "variant_map_sha256": "7aebd3d5b1b5474548875f97e172759349f2f3521ebf4158dedcca79b4f3f421",
           "viewpoint_id": "view:crypt_hall"
         },
         {
           "engine_revision": "rlocal-agtst10",
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_gallery.png",
           "image_sha256": "841d186b0fdcea0b1d64b28b1fad5c72f347584e008c91328e93199cdf999f84",
+          "pitch_taps": 0,
           "probe": {
             "capture": {
               "files": 1,
@@ -4566,8 +4944,8 @@
                 "walls": 157
               },
               "filename": "view_gallery.MAP",
-              "sha256": "8e92c5bee44b47337e3a158bff52f6e0cd3b39f0468b7e8f79f78aed398fe794",
-              "size": 7141
+              "sha256": "18d0826d0de3493a74ab42aacdada35d4a9db2ef5f8c931fa94ad96f0a1663f7",
+              "size": 7171
             },
             "markers": {
               "autoexec": true,
@@ -4580,6 +4958,7 @@
           },
           "resolved": {
             "note": "the upper gallery, facing back down the stair",
+            "pitch": 0,
             "pose": {
               "angle": 1024,
               "x": 26112,
@@ -4595,13 +4974,14 @@
             "viewpoint_id": "view:gallery"
           },
           "status": "pass",
-          "variant_map_sha256": "8e92c5bee44b47337e3a158bff52f6e0cd3b39f0468b7e8f79f78aed398fe794",
+          "variant_map_sha256": "18d0826d0de3493a74ab42aacdada35d4a9db2ef5f8c931fa94ad96f0a1663f7",
           "viewpoint_id": "view:gallery"
         },
         {
           "engine_revision": "rlocal-agtst10",
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_courtyard_from_stair.png",
           "image_sha256": "6313236d9b4d172a8ce4217eb776b16dd0523ebb1f85bf6d8efdb079ef149e5b",
+          "pitch_taps": 0,
           "probe": {
             "capture": {
               "files": 1,
@@ -4618,8 +4998,8 @@
                 "walls": 157
               },
               "filename": "view_courtyard_from_stair.MAP",
-              "sha256": "29bc3322d0e9b4e5585e452b334f141b5850a02072bf6a43756a278cba661000",
-              "size": 7141
+              "sha256": "353388442218ced88b3e9084a306511ef26a0dd729a72b8c304adf726f2828dc",
+              "size": 7171
             },
             "markers": {
               "autoexec": true,
@@ -4632,6 +5012,7 @@
           },
           "resolved": {
             "note": "mid-ascent, showing the courtyard below and behind",
+            "pitch": 0,
             "pose": {
               "angle": 1024,
               "x": 21888,
@@ -4647,13 +5028,14 @@
             "viewpoint_id": "view:courtyard_from_stair"
           },
           "status": "pass",
-          "variant_map_sha256": "29bc3322d0e9b4e5585e452b334f141b5850a02072bf6a43756a278cba661000",
+          "variant_map_sha256": "353388442218ced88b3e9084a306511ef26a0dd729a72b8c304adf726f2828dc",
           "viewpoint_id": "view:courtyard_from_stair"
         },
         {
           "engine_revision": "rlocal-agtst10",
           "image": "D:\\Games\\DOS\\llmapper\\projects\\reasoned-authoring-v1\\reports\\v0\\views\\view_chapel_reverse.png",
           "image_sha256": "932d9a8122be95a4bc9947ba9fddb4e83789abb7fbd600e86b92362515bc0a27",
+          "pitch_taps": 0,
           "probe": {
             "capture": {
               "files": 1,
@@ -4670,8 +5052,8 @@
                 "walls": 157
               },
               "filename": "view_chapel_reverse.MAP",
-              "sha256": "67d52e0154f880c5d175789433fb10fc00e85841cdff736358150e124be4ccb7",
-              "size": 7141
+              "sha256": "a05a27b51be8f10f082aa4aa1886519e12e612a501ca633aed5d01ecc1c17c48",
+              "size": 7171
             },
             "markers": {
               "autoexec": true,
@@ -4684,6 +5066,7 @@
           },
           "resolved": {
             "note": "east of the chapel, looking back across the courtyard",
+            "pitch": 0,
             "pose": {
               "angle": 1024,
               "x": 17664,
@@ -4699,14 +5082,14 @@
             "viewpoint_id": "view:chapel_reverse"
           },
           "status": "pass",
-          "variant_map_sha256": "67d52e0154f880c5d175789433fb10fc00e85841cdff736358150e124be4ccb7",
+          "variant_map_sha256": "a05a27b51be8f10f082aa4aa1886519e12e612a501ca633aed5d01ecc1c17c48",
           "viewpoint_id": "view:chapel_reverse"
         }
       ]
     },
     "manifest": {
       "$schema": "llmapper.viewpoint-manifest",
-      "candidate_map_sha256": "3cb18a04458b6a7fc90b9e8c0f12c4f0109a6be9a59c69d65fe1831a7b29f848",
+      "candidate_map_sha256": "385472cc8708f4060344f99e7ee548559170c48536e644d21064d95077a8e9f6",
       "limitations": [
         "a viewpoint states where the camera was placed, not what a player would do",
         "image evidence requires the external engine; this manifest alone proves nothing visual"
@@ -4718,6 +5101,7 @@
       "viewpoints": [
         {
           "note": "the arrival pose the player actually spawns in",
+          "pitch": 0,
           "pose": {
             "angle": 0,
             "x": -768,
@@ -4735,6 +5119,7 @@
         },
         {
           "note": "inside the constrained tunnel, facing the courtyard",
+          "pitch": 0,
           "pose": {
             "angle": 0,
             "x": 1920,
@@ -4752,6 +5137,7 @@
         },
         {
           "note": "standing in the west courtyard, facing the chapel mass",
+          "pitch": 0,
           "pose": {
             "angle": 0,
             "x": 6528,
@@ -4769,6 +5155,7 @@
         },
         {
           "note": "just inside the chapel, facing the switch wall",
+          "pitch": 0,
           "pose": {
             "angle": 0,
             "x": 11520,
@@ -4786,6 +5173,7 @@
         },
         {
           "note": "the crypt hall, facing the reliquary niche",
+          "pitch": 0,
           "pose": {
             "angle": 1536,
             "x": 12288,
@@ -4803,6 +5191,7 @@
         },
         {
           "note": "the upper gallery, facing back down the stair",
+          "pitch": 0,
           "pose": {
             "angle": 1024,
             "x": 26112,
@@ -4820,6 +5209,7 @@
         },
         {
           "note": "mid-ascent, showing the courtyard below and behind",
+          "pitch": 0,
           "pose": {
             "angle": 1024,
             "x": 21888,
@@ -4837,6 +5227,7 @@
         },
         {
           "note": "east of the chapel, looking back across the courtyard",
+          "pitch": 0,
           "pose": {
             "angle": 1024,
             "x": 17664,
@@ -4875,8 +5266,8 @@
                 "walls": 157
               },
               "filename": "v0.MAP",
-              "sha256": "3cb18a04458b6a7fc90b9e8c0f12c4f0109a6be9a59c69d65fe1831a7b29f848",
-              "size": 7141
+              "sha256": "385472cc8708f4060344f99e7ee548559170c48536e644d21064d95077a8e9f6",
+              "size": 7171
             },
             "markers": {
               "autoexec": true,

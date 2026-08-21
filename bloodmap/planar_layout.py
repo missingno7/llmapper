@@ -238,9 +238,19 @@ class CompiledLayout:
 class PlanarLayout:
     """Replayable source representation above LevelIR."""
 
-    def __init__(self, *, visibility: int = 800, name: str = ""):
+    #: Every one of the 38 campaign maps that contains a parallax sector declares
+    #: a 16-panel sky (``bits=4``, offsets 0..15); not one uses a single panel.
+    #: ``new_level`` starts at ``bits=0``, which maps the whole 360 degrees onto
+    #: one 64-pixel column of the sky tile -- in Blood's night sky that column is
+    #: the dark edge, which is why every outdoor level this project generated
+    #: rendered a black sky while its configuration matched the originals field
+    #: for field.
+    CORPUS_SKY_BITS = 4
+
+    def __init__(self, *, visibility: int = 800, name: str = "", sky_bits: int | None = None):
         self.name = name
         self.visibility = int(visibility)
+        self.sky_bits = None if sky_bits is None else int(sky_bits)
         self.regions: dict[str, RegionSpec] = {}
         self.connections: dict[str, ConnectionSpec] = {}
         self.partitions: dict[str, PartitionSpec] = {}
@@ -796,6 +806,13 @@ class PlanarLayout:
 
     def _collect_split_points(self, edges: list[SourceEdge]) -> dict[str, set[Point]]:
         points: dict[str, set[Point]] = {edge.edge_id: {edge.a, edge.b} for edge in edges}
+        # A pair the author declared as stacked or overlapping is allowed to
+        # cross.  Build has no XY exclusivity rule and original maps rely on
+        # that; refusing here would mean no decompiled original could ever be
+        # recompiled, while an *undeclared* crossing stays an error.
+        declared = {
+            frozenset((left, right)) for left, right, _kind in self.special_pairs
+        }
         for left in edges:
             for right in edges:
                 if left.edge_id >= right.edge_id:
@@ -804,6 +821,8 @@ class PlanarLayout:
                 if classified is None:
                     continue
                 kind = classified["kind"]
+                if frozenset((left.region_id, right.region_id)) in declared:
+                    continue
                 if kind == "proper_crossing":
                     if left.region_id == right.region_id:
                         continue
@@ -1019,6 +1038,13 @@ class PlanarLayout:
         self, atomics: list[AtomicEdge], pairs: list[tuple[AtomicEdge, AtomicEdge]],
     ) -> tuple[LevelIR, dict[str, SectorAllocation], dict[str, int]]:
         ir = new_level(visibility=self.visibility)
+        # A sky panorama is only meaningful when something actually shows it.
+        bits = self.sky_bits
+        if bits is None:
+            bits = self.CORPUS_SKY_BITS if any(
+                region.parallax_ceiling for region in self.regions.values()
+            ) else 0
+        ir.sky = {"bits": int(bits), "offsets": list(range(1 << int(bits)))}
         by_region: dict[str, list[AtomicEdge]] = defaultdict(list)
         for edge in atomics:
             by_region[edge.region_id].append(edge)

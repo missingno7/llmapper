@@ -54,6 +54,7 @@ SCHEMA_VERSION = 1
 EVIDENCE_NAMESPACES = (
     "gate", "decompiled", "probe", "view", "authored", "intent",
     "source", "art", "discrepancy", "transition", "scale", "shape", "sprite-scale",
+    "structure",
 )
 
 
@@ -483,7 +484,36 @@ def summarize_derived_hierarchy(source) -> dict[str, Any]:
     connects = [item for item in relations if item["kind"] == "connects"]
     overlaps = [item for item in relations if item["kind"] in {"overlaps", "embedded_in"}]
     candidates = source.hierarchy["alternative_candidates"]
+    structures = [item for item in nodes if item["kind"] == "structure"]
+    # An overlook or a pit is a relation rather than a drawn object, so the
+    # decompiler files it as one; the packet reports the count and the extremes
+    # instead of a hundred near-identical entries.
+    relational = [item for item in relations if item["kind"] in {"overlook", "pit"}]
     return {
+        "derived_structures": [{
+            "id": item["id"],
+            "kind": item["structure"]["kind"],
+            "parent": item["parent"],
+            "sectors": item["sources"]["sectors"],
+            "parameters": item["structure"]["parameters"],
+            "residual": item["structure"]["residual"],
+            "attaches_to_spaces": item["structure"]["attaches_to_spaces"],
+        } for item in structures],
+        "structure_relations": {
+            "counts": {
+                kind: sum(1 for item in relational if item["kind"] == kind)
+                for kind in ("overlook", "pit")
+            },
+            "largest_drops": sorted(
+                ({
+                    "id": item["from"], "kind": item["kind"], "spaces": item["to"],
+                    "toward": item["toward"],
+                    "measure": item["evidence"].get("drop") or item["evidence"].get("depth"),
+                } for item in relational),
+                key=lambda row: -(row["measure"] or 0),
+            )[:8],
+        },
+        "structure_recovery": source.hierarchy["structure_recovery"],
         "derived_assemblies": [{
             "id": item["id"], "sectors": len(item["sources"]["sectors"]),
             "geometry": item["geometry"],
@@ -501,6 +531,7 @@ def summarize_derived_hierarchy(source) -> dict[str, Any]:
             "singleton_spaces": len(singletons), "detail_groups": len(details),
             "cross_space_connections": len(connects),
             "vertical_overlap_relations": len(overlaps),
+            "structures": len(structures),
         },
         "singleton_space_ids": [item["id"] for item in singletons],
         "major_connections": [{
@@ -983,6 +1014,7 @@ def art_evidence(
     comparison: dict[str, Any],
     *,
     catalog_path: str | Path | None = None,
+    surface_corpus: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Material and decoration evidence per derived node, with honest unknowns."""
     catalog = _load_catalog(catalog_path)
@@ -1121,9 +1153,28 @@ def art_evidence(
             "evidence": [f"transition:{transition.transition_id}", f"source:sector:{left}", f"source:sector:{right}"],
         })
 
+    # A sector finished with one tile on floor, ceiling and walls loses its own
+    # edges in the renderer.  Originals do it, sparingly; the useful measure is
+    # the fraction of the level built that way, against the corpus.
+    from .materials import single_surface_sectors
+
+    single = single_surface_sectors(level)
+    fraction = round(len(single) / max(1, len(level.sectors)), 4)
+    samples = list((surface_corpus or {}).get("fraction_samples") or [])
+    surface_treatment = {
+        "single_surface_sectors": single,
+        "fraction": fraction,
+        "corpus_percentile": _percentile(fraction, samples),
+        "corpus": (surface_corpus or {}).get("summary"),
+        "corpus_maps": (surface_corpus or {}).get("maps"),
+        "reading": _band(_percentile(fraction, samples)) if samples else "no corpus",
+        "rule": "floor tile, ceiling tile and dominant wall tile are all the same",
+    }
+
     known = [_asset_note(catalog, tile) for tile in sorted(tiles_seen)]
     unknown = [item["asset"] for item in known if item["knowledge"] == "unknown"]
     return {
+        "surface_treatment": surface_treatment,
         "catalog": None if catalog is None else str(catalog_path),
         "catalog_status": "absent" if catalog is None else "loaded",
         "nodes": records,
@@ -1194,9 +1245,15 @@ def corpus_scale_evidence(
     paired: list[tuple[float, float]] = []
     all_heights: list[float] = []
     all_areas: list[float] = []
+    # Sky-lit sectors are their own population: the corpus median clear height
+    # is 11.6 player heights under a sky and 5.8 over the whole corpus, so a
+    # courtyard measured against every sector of its footprint is mostly being
+    # measured against interiors.
+    sky_heights: list[float] = []
     if spatial_corpus:
         all_areas = [float(v) for v in spatial_corpus.get("footprint_player_areas", [])]
         all_heights = [float(v) for v in spatial_corpus.get("clear_height_player_heights", [])]
+        sky_heights = [float(v) for v in spatial_corpus.get("sky_clear_height_player_heights", [])]
         if len(all_areas) == len(all_heights):
             paired = list(zip(all_areas, all_heights))
 
@@ -1231,6 +1288,10 @@ def corpus_scale_evidence(
         plain_median = sorted(heights)[len(heights) // 2] if heights else None
         matched = size_matched(footprint)
         matched_percentile = _percentile(median_height, matched)
+        sky_members = [
+            value for value in members
+            if int(level.sectors[value]["fields"]["ceiling_stat"]) & 1
+        ]
         row = {
             "node": node["id"],
             "regions": [sector_to_region.get(value) for value in members],
@@ -1242,6 +1303,10 @@ def corpus_scale_evidence(
             "height_percentile_vs_same_size_corpus_sectors": matched_percentile,
             "size_matched_sample_count": len(matched),
             "reading": _band(matched_percentile),
+            "sky_lit_sectors": len(sky_members),
+            "height_percentile_vs_corpus_sky_sectors": (
+                _percentile(median_height, sky_heights) if sky_members and sky_heights else None
+            ),
         }
         rows.append(row)
         if matched_percentile is not None and matched_percentile <= 10 and footprint >= 20:
@@ -1386,6 +1451,7 @@ def evaluate_candidate(
     art_directory: str | Path | None = None,
     spatial_corpus_path: str | Path | None = None,
     shape_corpus_path: str | Path | None = None,
+    surface_corpus_path: str | Path | None = None,
     engine: dict[str, Any] | None = None,
     view_dir: str | Path | None = None,
     work_dir: str | Path | None = None,
@@ -1429,7 +1495,10 @@ def evaluate_candidate(
 
     build = level.to_disk_map().to_build_ir()
     probes = run_requested_probes(candidate, compiled, build)
-    art = art_evidence(candidate, compiled, source, comparison, catalog_path=catalog_path)
+    art = art_evidence(
+        candidate, compiled, source, comparison, catalog_path=catalog_path,
+        surface_corpus=_load_catalog(surface_corpus_path),
+    )
     art["sprite_scale"] = sprite_scale_evidence(compiled, art_directory=art_directory)
     scale = corpus_scale_evidence(
         compiled, source,
@@ -1541,6 +1610,7 @@ def _render_section(
         requests.append({
             "viewpoint_id": identifier, "map": str(variant_path), "resolved": item["resolved"],
             "variant_diff": item["diff"],
+            "pitch_taps": int(item["resolved"].get("pitch") or 0),
         })
     images = Path(view_dir) if view_dir is not None else root / "views"
     try:
@@ -1591,6 +1661,10 @@ def resolve_evidence(packet: AuthoringIteration, ref: str) -> dict[str, Any]:
         for item in document["independent_hierarchy"]["detail_group_distribution"]:
             if names(item["id"]):
                 return {"ref": ref, "kind": "derived_detail_group", "object": item}
+    elif namespace == "structure":
+        for item in document["independent_hierarchy"]["derived_structures"]:
+            if names(item["id"]):
+                return {"ref": ref, "kind": "derived_structure", "object": item}
     elif namespace == "probe":
         for item in document["design_probes"]:
             if names(item["probe_id"]):
@@ -1650,6 +1724,12 @@ def resolve_evidence(packet: AuthoringIteration, ref: str) -> dict[str, Any]:
             if item["id"] == ref:
                 return {"ref": ref, "kind": "hierarchy_discrepancy", "object": item}
     elif namespace == "source":
+        if rest == "module":
+            return {"ref": ref, "kind": "authored_module", "object": {
+                "module": packet.identity["module"],
+                "iteration_id": packet.identity["iteration_id"],
+                "map_sha256": packet.identity["map_sha256"],
+            }}
         kind, _, number = rest.partition(":")
         if kind in {"sector", "wall", "sprite"} and number.isdigit():
             limit = int(packet.identity["counts"][f"{kind}s"])

@@ -65,8 +65,21 @@ python -m experiments.monastery_pilot v0 v1 v2 v3 --comparison
 python -m experiments.monastery_pilot v3 --nblood reference/blood/nblood.exe --game-dir reference/blood
 ```
 
-See [the reasoned authoring loop](docs/authoring-loop.md) and the four-iteration
+See [the reasoned authoring loop](docs/authoring-loop.md) and the six-iteration
 [cliffside monastery pilot](projects/reasoned-authoring-v1/reports/comparison.md).
+
+A level can also be written and read as a tree of named parts, each owning its
+own geometry in its own coordinates, its own surfaces, its structures and its
+details:
+
+```text
+python -m experiments.nested_authoring --tree
+python -m experiments.nested_authoring --room lobby
+python -m tools.emit_level_program maps/blood/E2M3.MAP --art-dir reference/blood     --names projects/e2m3-decompiled/references/names.json -o work/E2M3.py
+```
+
+See [level programs](docs/level-programs.md) and
+[E2M3 decompiled](projects/e2m3-decompiled/README.md).
 
 
 Cross-game conversion requires an explicit fidelity policy:
@@ -168,6 +181,7 @@ python -m unittest discover -s tests -v
 
 - [Architecture and invariants](docs/architecture.md)
 - [Reasoned authoring loop](docs/authoring-loop.md)
+- [Level programs: hierarchical, editable level source](docs/level-programs.md)
 - [Cliffside monastery authoring pilot](projects/reasoned-authoring-v1/reports/comparison.md)
 - [Design Understanding and grounded retrieval](docs/architecture.md#design-understanding)
 - [Multi-view spatial understanding](docs/spatial-understanding.md)

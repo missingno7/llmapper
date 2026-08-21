@@ -1,7 +1,7 @@
 # Iteration v2
 
 - source: `projects/reasoned-authoring-v1/level/candidate_v2.py`
-- MAP sha256: `f4acda306f3d08abaf9d21db6def3390b119c4511016994d70646d210a5cfde7`
+- MAP sha256: `b9f390032e0f8bcc77cf6a00008fb63125011e31a6d766226ef2c52179c6587b`
 - counts: {'sectors': 31, 'walls': 167, 'sprites': 56, 'regions': 31, 'connections': 34}
 - deterministic compile: True
 
