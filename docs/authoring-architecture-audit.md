@@ -137,13 +137,13 @@ assemblies with their own frames:
 
 | | before | after |
 | --- | --- | --- |
-| `build_main_complex` | 138 lines, 123 calls | 39 lines, 23 calls |
-| sectors in the largest four areas | -- | 287 of 340 |
+| `build_main_complex` | 138 lines, 123 calls | 41 lines, 25 calls |
+| sectors in the largest four areas | -- | 270 of 340 |
 | what a zone states about itself | -- | elevation, sky fraction, dominant surfaces, centre |
 
 Co-visibility is what made the four principal areas cohere: without it the same
 code at the same thresholds breaks the level into 26 fragments whose largest
-four cover 202 sectors, and only eight of the 23 groups come out the same either
+four cover 202 sectors, and only eight of the 25 groups come out the same either
 way. The evidence is in
 [area-evidence.md](../projects/e2m3-decompiled/references/area-evidence.md), and
 the observation path that supplies it is
@@ -151,7 +151,7 @@ the observation path that supplies it is
 
 ## The remaining limitation
 
-Zones are called `zone_01` through `zone_23` and nothing here proposes better.
+Zones are called `zone_01` through `zone_25` and nothing here proposes better.
 Naming them is interpretation, and interpretation goes in
 `references/names.json` with a confidence on each -- which today holds eight
 reviewed names for a level with 136 spaces. The grouping is now good enough that

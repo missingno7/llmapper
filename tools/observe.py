@@ -192,8 +192,8 @@ def main(argv: list[str] | None = None) -> int:
                         help="reuse the exact cameras from an earlier packet.json")
     parser.add_argument("--screenshot", action="append", default=[],
                         help="view ids to render a frame for; repeatable")
-    parser.add_argument("--width", type=int, default=320)
-    parser.add_argument("--height", type=int, default=200)
+    parser.add_argument("--width", type=int, default=640)
+    parser.add_argument("--height", type=int, default=480)
     parser.add_argument("--brightness", type=int, default=0)
     args = parser.parse_args(argv)
 

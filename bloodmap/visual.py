@@ -106,8 +106,8 @@ class ObservationRequest:
     output_dir: str
     resource_dir: str = "reference/blood"
     viewpoints: tuple[Viewpoint, ...] = ()
-    width: int = 320
-    height: int = 200
+    width: int = 640
+    height: int = 480
     screenshots: bool = False
     brightness: int = 0
     rff: str | None = None

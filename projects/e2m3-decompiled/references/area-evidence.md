@@ -34,43 +34,44 @@ difference is whether a visual observation packet was supplied.
 | | areas | top five areas, by sector count | sectors in the top four |
 | --- | --- | --- | --- |
 | geometry and materials only | 26 | 94, 41, 39, 28, 19 | 202 of 340 |
-| with co-visibility | 23 | 98, 81, 69, 39, 15 | **287 of 340** |
+| with co-visibility | 25 | 98, 81, 72, 19, 17 | **270 of 340** |
 
-Eight of the groups are identical either way. Thirty-three differ. Of the 100
-merges the visual run made, 79 cite visibility and 28 of those cite *mutual*
-visibility — a representative view of each shows the other.
+Eight of the groups are identical either way. The rest differ. Of the 98 merges
+the visual run made, 78 cite visibility and 29 of those cite *mutual* visibility --
+a representative view of each shows the other.
 
 The difference is not that the visual run found more merges. It is that without
 visibility the level breaks into a long tail of medium fragments, and with it
-four principal areas absorb 85 more sectors and become distinguishable from each
-other:
+three principal areas absorb most of the level and become distinguishable from
+each other:
 
 | seed | sectors | median floor z | sky | dominant surfaces | centre (PW) |
 | --- | --- | --- | --- | --- | --- |
-| `space:003` | 98 | 8192 | 38% | 2492, 34, 91 | 110.9, 65.6 |
+| `space:005` | 98 | 8192 | 71% | 2499, 2448, 2474 | 97.2, 35.1 |
 | `space:037` | 81 | -11264 | 18% | 20, 153, 28 | 141.7, 89.6 |
-| `space:011` | 69 | 8192 | 74% | 2448, 2499, 2474 | 97.1, 18.5 |
-| `space:010` | 39 | -4096 | 36% | 2499, 2448, 329 | 94.8, 66.4 |
+| `space:013` | 72 | 8192 | 44% | 329, 2499, 2448 | 119.0, 49.4 |
+| `space:010` | 19 | -24576 | 0% | 2499, 2448, 329 | 93.3, 71.0 |
 
-Read down the columns and they separate cleanly: `space:011` is the outdoors —
-ground level, three quarters sky-lit. `space:003` is ground level too but mostly
-enclosed, and shares almost no surface vocabulary with `space:037`, which sits
-nineteen thousand units higher and is built out of a different tile family
-entirely.
+Read down the columns and they separate. `space:005` is the outdoors -- ground level,
+71% sky-lit. `space:013` is ground level too but only 44% sky-lit and built from a
+different surface family. `space:037` sits nineteen thousand units higher, is almost
+entirely enclosed, and shares no dominant tile with either.
 
 ## What is deliberately not here
 
-**No names.** Every area is identified by the space it was seeded on. Naming
-`space:011` "the courtyard" would be interpretation printed as measurement, and
+**No names.** Every area is identified by the space it was seeded on. Calling
+`space:005` "the courtyard" would be interpretation printed as measurement, and
 `references/names.json` is where interpretation goes, with a confidence on each.
 
 **No claim that this is the grouping.** The document keeps a second run at a
-lower threshold and a larger size cap (20 areas instead of 23), and the eight
-strongest merges the primary run refused, with their scores and reasons. The
-strongest refusal is `space:010` + `space:011` at 0.487 — one-way visibility,
-both enclosed, 43% surface overlap, 7.3 player widths of opening between them.
-That is a defensible merge that the threshold declined, and a reader who
-disagrees can see exactly what they would be agreeing with.
+lower threshold and a larger size cap, and the eight strongest merges the primary
+run refused, with their scores and reasons. The strongest refusal is
+`space:005` + `space:013` at 0.632 — one is visible from a representative view
+of the other; both are open to the sky; median floors within 0.0 player
+heights; dominant surfaces overlap 25%; openings between them total 12.2
+player widths. That is a defensible merge that the threshold
+declined, and a reader who disagrees can see exactly what they would be
+agreeing with.
 
 **No revisiting.** Greedy agglomeration never reconsiders an early merge. A
 different order would give a different answer and the code does not pretend
@@ -78,23 +79,21 @@ otherwise.
 
 ## The effect on the source
 
-`build_main_complex` went from 138 lines listing 123 space builders to **39
-lines listing 23 zone builders**, each of which is its own function carrying its
+`build_main_complex` went from 138 lines listing 123 space builders to **41
+lines listing 25 zone builders**, each of which is its own function carrying its
 measured character in its docstring:
 
 ```python
-def build_main_complex_zone_03(area) -> object:
-    """zone_03: 17 spaces, 69 sectors.
+def build_main_complex_zone_01(area) -> object:
+    """zone_01: 25 spaces, 98 sectors.
 
     Grouped from measurement rather than from a name: median floor z
-    8192, 74% of its sectors open to the sky, dominant surfaces [2448, 2499, 2474],
-    centred at [97.1, 18.5] player widths. Seeded on assembly:001/space:011.
+    8192, 71% of its sectors open to the sky, dominant surfaces [2499, 2448, 2474],
+    centred at [97.2, 35.1] player widths. Seeded on assembly:001/space:005.
 
     Origin is the corner of this zone, so outlines below are local to it.
     """
-    zone = area.assembly('zone_03', frame=Frame(0, 0), style=Style(parallax_ceiling=True))
-    build_far_open_ground(zone)
-    build_arrival_yard(zone)
+    zone = area.assembly('zone_01', frame=Frame(0, 0), style=Style(parallax_ceiling=True))
     ...
 ```
 

@@ -8,17 +8,17 @@ structured observation -> design decision -> Python edit -> changed observation
 
 ## The observation
 
-Twenty-one poses planned from the hierarchy, rendered in 5 ms after a 25 ms
+Twenty-one poses planned from the hierarchy, rendered in 8 ms after a 25 ms
 process start. From the lobby entry pose — 1.2 player widths inside the widest
 opening, facing the room centre:
 
 | source node | % of frame | depth (PW) |
 | --- | --- | --- |
-| `nested/manor/lobby` | 82.1 | 4.2 – 14.1 |
-| `nested/manor/lobby/recess:lobby_niche` | 6.4 | 7.4 – 10.5 |
-| `nested/grounds/porch` | 5.3 | 7.4 – 14.1 |
-| `nested/manor/lobby/stairs:grand` | **3.8** | 13.2 – 21.0 |
-| `nested/manor/upper_gallery` | **2.6** | 21.0 – 32.9 |
+| `nested/manor/lobby` | 84.0 | 4.2 – 14.1 |
+| `nested/manor/lobby/stairs:grand` | **5.5** | 13.2 – 21.0 |
+| `nested/manor/lobby/recess:lobby_niche` | 3.9 | 7.4 – 10.5 |
+| `nested/manor/upper_gallery` | **3.7** | 21.0 – 32.9 |
+| `nested/grounds/porch` | 3.2 | 7.4 – 14.1 |
 
 Nothing was occluded; the stair simply is not much of the picture.
 
@@ -45,24 +45,25 @@ geometry and an edit that moves geometry moves the camera too:
 
 | source node | before | after |
 | --- | --- | --- |
-| `nested/manor/lobby` | 82.1% | 79.2% |
-| `nested/manor/lobby/stairs:grand` | 3.8% | **5.6%** |
-| `nested/manor/upper_gallery` | 2.6% | **3.7%** |
-| `nested/manor/lobby/recess:lobby_niche` | 6.4% | 6.4% |
-| `nested/grounds/porch` | 5.3% | 5.3% |
+| `nested/manor/lobby` | 84.0% | 79.6% |
+| `nested/manor/lobby/stairs:grand` | 5.5% | **8.1%** |
+| `nested/manor/upper_gallery` | 3.7% | **5.5%** |
+| `nested/manor/lobby/recess:lobby_niche` | 3.9% | 3.9% |
+| `nested/grounds/porch` | 3.2% | 3.2% |
 
-The stair gained 48% of its screen area and the gallery 45%. The two nodes that
+The stair gained 49% of its screen area and the gallery 48%. The two nodes that
 have nothing to do with the change are identical to four decimal places, which
 is the other half of the result: the edit is local, and the observation says so.
+A whole separate view, the porch approach, is unchanged in every value.
 
-From the foot of the stair the gallery went 13.4% → 19.9%.
+From the foot of the stair the gallery went 15.0% → 22.3%.
 
 All fourteen hard gates still pass, and the detector still recovers the same
 structures.
 
 ## What it did not fix
 
-5.6% is still not much. The entry pose is 13 to 21 player widths from the stair
+8.1% is still not much. The entry pose is 13 to 21 player widths from the stair
 and a nine-wide opening at that distance is a small thing on screen no matter
 how wide it is. The honest reading is that the lobby is deep enough that the
 stair reads as a distant feature, and widening it does not change that — moving

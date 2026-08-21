@@ -67,11 +67,12 @@ TORCH, SCONCE, EMBLEM, LAMP, GRILLE = 506, 2542, 2540, 1701, 1044
 # gallery it arrives in has to be.  One number, because they are one decision.
 #
 # It was six player widths until a visual observation said the arrival read did
-# not work: from the lobby entry pose the grand stair covered 3.8 per cent of
-# the frame and the gallery above it 2.6, against 82.1 for the lobby's own
+# not work: from the lobby entry pose the grand stair covered 5.5 per cent of
+# the frame and the gallery above it 3.7, against 84.0 for the lobby's own
 # walls and floor.  The stair is the reason the lobby exists and walking in did
 # not show it.  Nine widths is the same declaration with a bigger number; the
-# gallery follows it because it reads it.
+# gallery follows it because it reads it.  At the same pinned pose that moved
+# the stair to 8.1 and the gallery to 5.5.
 STAIR_WIDTH = 9 * U
 
 

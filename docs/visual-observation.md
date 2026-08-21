@@ -94,27 +94,47 @@ with `USE_POLYMOST=0 USE_OPENGL=0`: no SDL, no GL, no audio, no GUI, no message
 loop. It reads Blood MAPs directly and takes its palette and shade tables from
 `BLOOD.RFF`.
 
-Two details cost an afternoon and are worth writing down. Bit `0x10` of an RFF
-directory entry is set on nearly every resource and does **not** mean encrypted;
-decrypting on it scrambles the first 256 bytes of every PLU, which is shade
-level 0, so only the brightest surfaces in a frame come out wrong. And Blood
-stores its palettes as eight-bit RGB while the Build engine wants the six-bit
-VGA form it shifts back up in `setbrightness`, which is why the editor shifts
-in `gSetDacRange`.
+Frames default to 640×480. The engine treats 320×200 and 640×400 as Mode 13h and
+leaves the pixels non-square; every other size gets the aspect correction, and a
+4:3 size gets it without also being too coarse to read a room from. Anything up
+to 7680×4320 works.
+
+Getting the colours right took two facts about Blood's own data, and one wrong
+turn worth recording because the wrong version looked plausible.
+
+**Bit `0x10` of an RFF directory entry means the first 256 bytes of the payload
+are encrypted** with `byte ^= index >> 1`. The data settles it: decrypted,
+`NORMAL.PLU` shade level 0 is the identity map in all 256 positions, which is
+what shade 0 has to be, and `BLOOD.PAL` becomes byte-for-byte the palette the
+game displays. Undecrypted it is neither.
+
+**Blood stores eight-bit colour**, and the engine's ordinary path builds its
+display palette by shifting a six-bit VGA palette up two bits — so feeding it
+Blood's palette either overflows every channel or, if you shift down first,
+quantises away the low two bits of every colour. `setbrightness_replace` is the
+engine's own hook for a port whose palette is already eight-bit, and what it
+writes is used verbatim.
+
+The wrong turn: the first version decrypted correctly but fed the eight-bit
+palette through the six-bit path, which overflowed, and the brightest surfaces
+came out as magenta speckle. Removing the decryption *and* adding a `>> 2`
+cancelled the two errors well enough to look like a plausible dark Blood frame —
+it was neither the right palette nor full colour depth. Both are now checked
+against what NBlood displays: all 256 entries match exactly.
 
 ## Measured cost
 
-E2M3, 340 sectors, 163 planned views at 320×200:
+E2M3, 340 sectors, 163 planned views at 640×480:
 
 | | ms |
 | --- | --- |
 | engine init | 25 |
 | ART load | 2 |
 | map load | 0 |
-| all 163 views | 30 |
+| all 163 views | 55 |
 
-About 0.18 ms a view once the map is up, and roughly 60 ms of fixed cost for the
-process. There is no reason to keep a server alive.
+About a third of a millisecond a view once the map is up, and roughly 35 ms of
+fixed cost for the process. There is no reason to keep a server alive.
 
 ## Poses
 
@@ -143,16 +163,16 @@ View: nested_manor_lobby__entry -- room_entry
   camera: sector 0, angle 0, horiz 100
   of: nested/manor/lobby
   visible:
-    nested/manor/lobby: dominant, 79.2% of frame at 4.18-14.14 PW
-    nested/manor/lobby/recess:lobby_niche: present, 6.4% of frame at 7.38-10.47 PW
-    nested/grounds/porch: present, 5.3% of frame at 7.38-14.05 PW
-    nested/manor/lobby/stairs:grand: present, 5.6% of frame at 13.15-21.01 PW
-    nested/manor/upper_gallery: present, 3.7% of frame at 21.01-32.94 PW
+    nested/manor/lobby: dominant, 79.6% of frame at 4.18-14.14 PW
+    nested/manor/lobby/stairs:grand: present, 8.1% of frame at 13.15-21.01 PW
+    nested/manor/upper_gallery: present, 5.5% of frame at 21.01-32.94 PW
+    nested/manor/lobby/recess:lobby_niche: present, 3.9% of frame at 7.38-10.47 PW
+    nested/grounds/porch: present, 3.2% of frame at 7.38-14.05 PW
   dominant surfaces: tile 5 (48%), tile 294 (31%), tile 454 (8%)
 ```
 
 "dominant", "prominent", "present", "a trace" are read straight off the frame
-fraction and say only what was measured. There is no score. Whether 5.6% is
+fraction and say only what was measured. There is no score. Whether 8.1% is
 enough for a staircase is a question about the brief, and the brief is not
 something this code has seen.
 

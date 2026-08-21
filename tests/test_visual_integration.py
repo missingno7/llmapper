@@ -32,6 +32,9 @@ PH = 0x1600
 ROOT = Path(__file__).resolve().parent.parent
 RESOURCE_DIR = ROOT / "reference" / "blood"
 E2M3 = ROOT / "maps" / "blood" / "E2M3.MAP"
+BLOOD_RFF = RESOURCE_DIR / "BLOOD.RFF"
+#: The palette NBlood displays, shipped loose alongside the archive.
+REFERENCE_PAL = RESOURCE_DIR / "xmapedit" / "palettes" / "import" / "BLOOD.PAL"
 
 HAVE_BINARY = default_binary().exists()
 HAVE_ART = (RESOURCE_DIR / "tiles000.art").exists()
@@ -182,6 +185,61 @@ class ObserverTests(unittest.TestCase):
         self.assertIn("editor renderer", joined)
 
 
+def _png_chunks(path: Path):
+    import struct
+
+    data = path.read_bytes()
+    offset = 8
+    while offset < len(data):
+        length, = struct.unpack(">I", data[offset:offset + 4])
+        yield data[offset + 4:offset + 8], data[offset + 8:offset + 8 + length]
+        offset += 12 + length
+
+
+def _rff_resource(archive: Path, kind: bytes, name: bytes) -> bytes:
+    """Read one resource, directory decryption and payload decryption included."""
+    import struct
+
+    data = bytearray(archive.read_bytes())
+    version, = struct.unpack_from("<H", data, 4)
+    directory, count = struct.unpack_from("<II", data, 8)
+    key = (directory + (version & 0xFF) * directory) & 0xFFFF
+    for index in range(count * 48):
+        data[directory + index] ^= (key >> 1) & 0xFF
+        key = (key + 1) & 0xFFFF
+    for index in range(count):
+        entry = data[directory + index * 48: directory + (index + 1) * 48]
+        if bytes(entry[33:36]) != kind or not bytes(entry[36:44]).startswith(name):
+            continue
+        offset, size = struct.unpack_from("<II", entry, 16)
+        payload = bytearray(data[offset:offset + size])
+        if entry[32] & 0x10:
+            for k in range(min(256, size)):
+                payload[k] ^= (k >> 1) & 0xFF
+        return bytes(payload)
+    raise AssertionError(f"{kind!r}/{name!r} is not in {archive}")
+
+
+@unittest.skipUnless(BLOOD_RFF.exists(), "BLOOD.RFF is absent")
+class ResourceEncryptionTests(unittest.TestCase):
+    """Why bit 0x10 means encrypted, checked against the data rather than asserted.
+
+    This is the fact the observer's colour depends on, and it is worth a test
+    because the wrong reading of it produces a frame that still looks like
+    Blood.
+    """
+
+    def test_shade_zero_of_the_normal_plu_is_the_identity_map(self):
+        plu = _rff_resource(BLOOD_RFF, b"PLU", b"NORMAL")
+        self.assertEqual(len(plu), 64 * 256)
+        self.assertEqual(plu[:256], bytes(range(256)))
+
+    @unittest.skipUnless(REFERENCE_PAL.exists(), "the reference palette is absent")
+    def test_the_decrypted_palette_is_the_one_the_game_displays(self):
+        self.assertEqual(_rff_resource(BLOOD_RFF, b"PAL", b"BLOOD"),
+                         REFERENCE_PAL.read_bytes())
+
+
 @unittest.skipUnless(HAVE_BINARY, "xmapedit-observe is not built")
 @unittest.skipUnless(E2M3.exists() and HAVE_ART, "E2M3.MAP or Blood ART is absent")
 class OriginalMapTests(unittest.TestCase):
@@ -199,6 +257,40 @@ class OriginalMapTests(unittest.TestCase):
             view = manifest.view("start")
             self.assertEqual(view["status"], "ok")
             self.assertGreater(view["frame"]["painted"], 0)
+
+    @unittest.skipUnless(REFERENCE_PAL.exists(), "the reference palette is absent")
+    def test_a_rendered_frame_uses_the_palette_the_game_displays(self):
+        """Full eight-bit Blood colour, not the engine's six-bit VGA copy."""
+        with tempfile.TemporaryDirectory() as tmp:
+            request = ObservationRequest(
+                map_path=str(E2M3), output_dir=str(Path(tmp) / "out"),
+                resource_dir=str(RESOURCE_DIR),
+                viewpoints=(Viewpoint("start", 55455, 40619, -11264,
+                                      angle=1025, sector=310),),
+            ).with_screenshots(["start"])
+            manifest = run_observation(request)
+            frame = Path(request.output_dir) / manifest.view("start")["screenshot"]
+            palette = next(payload for tag, payload in _png_chunks(frame) if tag == b"PLTE")
+            self.assertEqual(palette, REFERENCE_PAL.read_bytes())
+
+    def test_frames_default_to_a_size_worth_looking_at(self):
+        """320x200 is Mode 13h to this engine, and too coarse to read a room."""
+        import struct
+
+        with tempfile.TemporaryDirectory() as tmp:
+            request = ObservationRequest(
+                map_path=str(E2M3), output_dir=str(Path(tmp) / "out"),
+                resource_dir=str(RESOURCE_DIR),
+                viewpoints=(Viewpoint("start", 55455, 40619, -11264,
+                                      angle=1025, sector=310),),
+            ).with_screenshots(["start"])
+            self.assertEqual((request.width, request.height), (640, 480))
+            manifest = run_observation(request)
+            frame = Path(request.output_dir) / manifest.view("start")["screenshot"]
+            header = next(payload for tag, payload in _png_chunks(frame) if tag == b"IHDR")
+            width, height = struct.unpack(">II", header[:8])
+            self.assertEqual((width, height), (640, 480))
+            self.assertEqual(manifest.view("start")["frame"]["pixels"], 640 * 480)
 
 
 if __name__ == "__main__":
