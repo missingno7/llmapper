@@ -1,3 +1,6 @@
 [submodule "NBlood"]
 	path = NBlood
 	url = git@github.com:missingno7/NBlood.git
+[submodule "xmapedit"]
+	path = xmapedit
+	url = git@github.com:missingno7/xmapedit.git
