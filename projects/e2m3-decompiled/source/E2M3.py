@@ -42,130 +42,91 @@ def build_main_complex(parent) -> object:
         frame=Frame(27136, -5888),
         style=Style(ceiling_picnum=2500, ceiling_shade=0, floor_picnum=2448, floor_shade=0, wall_picnum=2499, wall_shade=31),
     )
-    build_main_open_ground(area)
-    build_far_open_ground(area)
-    build_assembly_001_space_083(area)
-    build_assembly_001_space_006(area)
-    build_arrival_yard(area)
-    build_large_interior(area)
-    build_shell_court(area)
-    build_second_interior(area)
-    build_outdoor_junction(area)
-    build_sprite_dense_interior(area)
-    build_assembly_001_space_105(area)
-    build_assembly_001_space_041(area)
-    build_assembly_001_space_099(area)
-    build_assembly_001_space_097(area)
-    build_assembly_001_space_107(area)
-    build_assembly_001_space_111(area)
-    build_assembly_001_space_110(area)
-    build_assembly_001_space_039(area)
-    build_assembly_001_space_062(area)
-    build_assembly_001_space_022(area)
-    build_assembly_001_space_084(area)
-    build_assembly_001_space_031(area)
-    build_assembly_001_space_021(area)
-    build_assembly_001_space_010(area)
-    build_assembly_001_space_018(area)
-    build_assembly_001_space_064(area)
-    build_assembly_001_space_046(area)
-    build_assembly_001_space_012(area)
-    build_assembly_001_space_102(area)
-    build_assembly_001_space_117(area)
-    build_assembly_001_space_057(area)
-    build_assembly_001_space_059(area)
-    build_assembly_001_space_095(area)
-    build_assembly_001_space_091(area)
-    build_assembly_001_space_090(area)
-    build_assembly_001_space_092(area)
-    build_assembly_001_space_075(area)
-    build_assembly_001_space_100(area)
-    build_assembly_001_space_047(area)
-    build_assembly_001_space_054(area)
-    build_assembly_001_space_020(area)
-    build_assembly_001_space_121(area)
-    build_assembly_001_space_034(area)
-    build_assembly_001_space_045(area)
-    build_assembly_001_space_101(area)
-    build_assembly_001_space_087(area)
-    build_assembly_001_space_088(area)
-    build_assembly_001_space_013(area)
-    build_assembly_001_space_069(area)
-    build_assembly_001_space_035(area)
-    build_assembly_001_space_036(area)
-    build_assembly_001_space_068(area)
-    build_assembly_001_space_093(area)
-    build_assembly_001_space_118(area)
-    build_assembly_001_space_051(area)
-    build_assembly_001_space_109(area)
-    build_assembly_001_space_026(area)
-    build_assembly_001_space_103(area)
-    build_assembly_001_space_122(area)
-    build_assembly_001_space_040(area)
-    build_assembly_001_space_038(area)
-    build_assembly_001_space_053(area)
-    build_assembly_001_space_094(area)
-    build_assembly_001_space_120(area)
-    build_assembly_001_space_096(area)
-    build_assembly_001_space_055(area)
-    build_assembly_001_space_048(area)
-    build_assembly_001_space_049(area)
-    build_assembly_001_space_104(area)
-    build_assembly_001_space_001(area)
-    build_assembly_001_space_002(area)
-    build_assembly_001_space_003(area)
-    build_assembly_001_space_019(area)
-    build_assembly_001_space_056(area)
-    build_assembly_001_space_061(area)
-    build_assembly_001_space_089(area)
-    build_assembly_001_space_058(area)
-    build_assembly_001_space_060(area)
-    build_assembly_001_space_108(area)
-    build_assembly_001_space_052(area)
-    build_assembly_001_space_106(area)
-    build_assembly_001_space_004(area)
-    build_assembly_001_space_113(area)
-    build_assembly_001_space_029(area)
-    build_assembly_001_space_030(area)
-    build_assembly_001_space_071(area)
-    build_assembly_001_space_112(area)
-    build_assembly_001_space_070(area)
-    build_assembly_001_space_023(area)
-    build_assembly_001_space_042(area)
-    build_assembly_001_space_067(area)
-    build_assembly_001_space_066(area)
-    build_assembly_001_space_032(area)
-    build_assembly_001_space_098(area)
-    build_assembly_001_space_005(area)
-    build_assembly_001_space_123(area)
-    build_assembly_001_space_043(area)
-    build_assembly_001_space_065(area)
-    build_assembly_001_space_119(area)
-    build_assembly_001_space_072(area)
-    build_assembly_001_space_074(area)
-    build_assembly_001_space_073(area)
-    build_assembly_001_space_024(area)
-    build_assembly_001_space_025(area)
-    build_assembly_001_space_085(area)
-    build_assembly_001_space_086(area)
-    build_assembly_001_space_007(area)
-    build_assembly_001_space_008(area)
-    build_assembly_001_space_009(area)
-    build_assembly_001_space_014(area)
-    build_assembly_001_space_015(area)
-    build_assembly_001_space_016(area)
-    build_assembly_001_space_017(area)
-    build_assembly_001_space_114(area)
-    build_assembly_001_space_115(area)
-    build_assembly_001_space_116(area)
-    build_assembly_001_space_076(area)
-    build_assembly_001_space_077(area)
-    build_assembly_001_space_078(area)
-    build_assembly_001_space_079(area)
-    build_assembly_001_space_080(area)
-    build_assembly_001_space_081(area)
-    build_assembly_001_space_082(area)
+    for build in (
+        build_main_complex_zone_01,
+        build_main_complex_zone_02,
+        build_main_complex_zone_03,
+        build_main_complex_zone_04,
+        build_main_complex_zone_05,
+        build_main_complex_zone_06,
+        build_main_complex_zone_07,
+        build_main_complex_zone_08,
+        build_main_complex_zone_09,
+        build_main_complex_zone_10,
+        build_main_complex_zone_11,
+        build_main_complex_zone_12,
+        build_main_complex_zone_13,
+        build_main_complex_zone_14,
+        build_main_complex_zone_15,
+        build_main_complex_zone_16,
+        build_main_complex_zone_17,
+        build_main_complex_zone_18,
+        build_main_complex_zone_19,
+        build_main_complex_zone_20,
+        build_main_complex_zone_21,
+        build_main_complex_zone_22,
+        build_main_complex_zone_23,
+    ):
+        build(area)
     return area
+
+
+def build_main_complex_zone_01(area) -> object:
+    """zone_01: 42 spaces, 98 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    8192, 38% of its sectors open to the sky, dominant surfaces [2492, 34, 91],
+    centred at [110.9, 65.6] player widths. Seeded on assembly:001/space:003.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_01', frame=Frame(3328, 13312),
+        style=Style(wall_shade=14),
+    )
+    build_main_open_ground(zone)
+    build_assembly_001_space_006(zone)
+    build_shell_court(zone)
+    build_assembly_001_space_041(zone)
+    build_assembly_001_space_099(zone)
+    build_assembly_001_space_039(zone)
+    build_assembly_001_space_022(zone)
+    build_assembly_001_space_021(zone)
+    build_assembly_001_space_046(zone)
+    build_assembly_001_space_091(zone)
+    build_assembly_001_space_090(zone)
+    build_assembly_001_space_092(zone)
+    build_assembly_001_space_075(zone)
+    build_assembly_001_space_047(zone)
+    build_assembly_001_space_045(zone)
+    build_assembly_001_space_013(zone)
+    build_assembly_001_space_068(zone)
+    build_assembly_001_space_118(zone)
+    build_assembly_001_space_109(zone)
+    build_assembly_001_space_026(zone)
+    build_assembly_001_space_040(zone)
+    build_assembly_001_space_055(zone)
+    build_assembly_001_space_003(zone)
+    build_assembly_001_space_019(zone)
+    build_assembly_001_space_004(zone)
+    build_assembly_001_space_113(zone)
+    build_assembly_001_space_029(zone)
+    build_assembly_001_space_030(zone)
+    build_assembly_001_space_023(zone)
+    build_assembly_001_space_098(zone)
+    build_assembly_001_space_024(zone)
+    build_assembly_001_space_025(zone)
+    build_assembly_001_space_007(zone)
+    build_assembly_001_space_008(zone)
+    build_assembly_001_space_009(zone)
+    build_assembly_001_space_014(zone)
+    build_assembly_001_space_015(zone)
+    build_assembly_001_space_016(zone)
+    build_assembly_001_space_017(zone)
+    build_assembly_001_space_114(zone)
+    build_assembly_001_space_115(zone)
+    build_assembly_001_space_116(zone)
+    return zone
 
 
 def build_main_open_ground(area) -> object:
@@ -176,7 +137,7 @@ def build_main_open_ground(area) -> object:
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'main_open_ground', frame=Frame(15360, 13312),
+        'main_open_ground', frame=Frame(12032, 0),
         style=Style(floor_shade=11, parallax_ceiling=True, wall_shade=36),
         note='873 player areas, 15 sectors',
     )
@@ -342,236 +303,14 @@ def build_main_open_ground(area) -> object:
     return space
 
 
-def build_far_open_ground(area) -> object:
-    """far_open_ground: 820 player areas, 16 sectors.
-
-    Named from measurement: 820 player areas, 16 of 16 sectors sky-lit, outdoor tile set, but connected only to two small spaces -- a separate outdoor lobe
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'far_open_ground', frame=Frame(0, 0),
-        style=Style(floor_shade=30, parallax_ceiling=True, wall_picnum=2474),
-        note='820 player areas, 16 sectors',
-    )
-    s145 = space.room(
-        'sector_145',
-        [(6656, 6400), (7168, 6400), (7168, 9728), (6656, 9728), (6656, 7680)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=73728, floor_z=16384, wall_picnum=401),
-        note='native sector 145',
-    )
-    s146 = space.room(
-        'sector_146',
-        [(7168, 6400), (10240, 6400), (10240, 9728), (7168, 9728)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=77824, floor_picnum=2496, floor_z=20480),
-        note='native sector 146',
-    )
-    s147 = space.room(
-        'sector_147',
-        [(10240, 6400), (10752, 6400), (10752, 7680), (10752, 9728), (10240, 9728)],
-        faces={'north': 0, 'east': 2, 'south': 3, 'west': 4},
-        role='gameplay',
-        style=Style(clear_height=73728, floor_z=16384, wall_picnum=401),
-        note='native sector 147',
-    )
-    s148 = space.room(
-        'sector_148',
-        [(11008, 4864), (11008, 4992), (11008, 6400), (10752, 6400), (10240, 6400), (7168, 6400), (6656, 6400), (6400, 6400), (6400, 4992), (6400, 4864), (6656, 4864), (6656, 6144), (10752, 6144), (10752, 4864)],
-        faces={'east': 1, 'south': 4, 'west': 7, 'north': 9},
-        role='gameplay',
-        style=Style(clear_height=69632, floor_shade=29, floor_z=12288),
-        note='native sector 148',
-    )
-    s149 = space.room(
-        'sector_149',
-        [(1024, 4864), (1024, 9728), (0, 9728), (0, 4864)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=77824, floor_shade=20, floor_z=20480),
-        note='native sector 149',
-    )
-    s150 = space.room(
-        'sector_150',
-        [(1024, 1536), (1024, 4864), (0, 4864), (0, 1536)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=77824, floor_z=20480, wall_shade=39),
-        note='native sector 150',
-    )
-    s151 = space.room(
-        'sector_151',
-        [(1024, 4864), (1024, 1536), (5120, 1536), (5120, 4864)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=77824, floor_z=20480, wall_shade=38),
-        note='native sector 151',
-    )
-    s151.decorate(
-        native_detail('sprite_102', 547, x_repeat=64, y_repeat=64, type=417, cstat=385, shade=31),  # native sprite 102  ~7.2 player heights
-        native_detail('sprite_103', 547, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=31),  # native sprite 103  ~7.2 player heights
-        native_detail('sprite_104', 547, x_repeat=64, y_repeat=64, type=0, cstat=129, shade=31),  # native sprite 104  ~7.2 player heights
-        native_detail('sprite_105', 547, x_repeat=64, y_repeat=64, type=0, cstat=129, shade=31),  # native sprite 105  ~7.2 player heights
-    )
-    s152 = space.room(
-        'sector_152',
-        [(15872, 9728), (15872, 4864), (16896, 4864), (16896, 9728)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=77824, floor_shade=20, floor_z=20480),
-        note='native sector 152',
-    )
-    s153 = space.room(
-        'sector_153',
-        [(15872, 4864), (15872, 1536), (16896, 1536), (16896, 4864)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=77824, floor_z=20480, wall_picnum=2499),
-        note='native sector 153',
-    )
-    s154 = space.room(
-        'sector_154',
-        [(15872, 1536), (15872, 4864), (12288, 4864), (12288, 1536)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=77824, floor_z=20480, wall_shade=39),
-        note='native sector 154',
-    )
-    s154.decorate(
-        native_detail('sprite_106', 547, x_repeat=64, y_repeat=64, type=417, cstat=385, shade=31),  # native sprite 106  ~7.2 player heights
-        native_detail('sprite_107', 547, x_repeat=64, y_repeat=64, type=417, cstat=385, shade=31),  # native sprite 107  ~7.2 player heights
-        native_detail('sprite_108', 547, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=31),  # native sprite 108  ~7.2 player heights
-        native_detail('sprite_109', 547, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=31),  # native sprite 109  ~7.2 player heights
-    )
-    s155 = space.room(
-        'sector_155',
-        [(11008, 4992), (11776, 4992), (11776, 7680), (10752, 7680), (10752, 6400), (11008, 6400)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=77824, floor_shade=29, floor_z=20480),
-        note='native sector 155',
-    )
-    s155.decorate(
-        native_detail('sprite_100', 540, x_repeat=64, y_repeat=64, type=417, cstat=385, shade=31),  # native sprite 100  ~7.4 player heights
-    )
-    s156 = space.room(
-        'sector_156',
-        [(11776, 4992), (12288, 4992), (12288, 4864), (15872, 4864), (15872, 9728), (10752, 9728), (10752, 7680), (11776, 7680)],
-        faces={'north': 2, 'east': 3, 'south': 4, 'west': 5},
-        role='gameplay',
-        style=Style(clear_height=77824, floor_shade=20, floor_z=20480),
-        note='native sector 156',
-    )
-    s157 = space.room(
-        'sector_157',
-        [(11776, 4864), (11776, 4096), (11776, 1024), (15872, 1024), (15872, 0), (16896, 0), (16896, 1536), (15872, 1536), (12288, 1536), (12288, 4864), (12288, 4992), (11776, 4992), (11008, 4992), (11008, 4864)],
-        faces={'north': 4, 'east': 5, 'south': 11, 'west': 12},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192, wall_picnum=401),
-        note='native sector 157',
-    )
-    s157.decorate(
-        native_detail('sprite_111', 140, x_repeat=40, y_repeat=34, type=0, cstat=208, shade=-10),  # native sprite 111  ~1.5 player heights
-        native_detail('sprite_112', 768, x_repeat=64, y_repeat=40, type=0, cstat=723, shade=63),  # native sprite 112  ~1.3 player heights
-    )
-    s158 = space.room(
-        'sector_158',
-        [(5632, 4992), (6400, 4992), (6400, 6400), (6656, 6400), (6656, 7680), (5632, 7680)],
-        faces={'north': 0, 'east': 3, 'south': 4, 'west': 5},
-        role='gameplay',
-        style=Style(clear_height=77824, floor_shade=32, floor_z=20480),
-        note='native sector 158',
-    )
-    s158.decorate(
-        native_detail('sprite_101', 540, x_repeat=64, y_repeat=64, type=417, cstat=385, shade=32),  # native sprite 101  ~7.4 player heights
-    )
-    s159 = space.room(
-        'sector_159',
-        [(5120, 4864), (5120, 4992), (5632, 4992), (5632, 7680), (6656, 7680), (6656, 9728), (1024, 9728), (1024, 4864)],
-        faces={'east': 4, 'south': 5, 'west': 6, 'north': 7},
-        role='gameplay',
-        style=Style(clear_height=77824, floor_shade=20, floor_z=20480),
-        note='native sector 159',
-    )
-    s160 = space.room(
-        'sector_160',
-        [(5632, 4096), (5632, 4864), (6400, 4864), (6400, 4992), (5632, 4992), (5120, 4992), (5120, 4864), (5120, 1536), (1024, 1536), (0, 1536), (0, 0), (1536, 0), (1536, 1024), (5632, 1024)],
-        faces={'east': 2, 'south': 3, 'west': 9, 'north': 10},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192, wall_picnum=401),
-        note='native sector 160',
-    )
-    s160.decorate(
-        native_detail('sprite_113', 401, x_repeat=64, y_repeat=64, type=0, cstat=208, shade=39),  # native sprite 113  ~11.6 player heights
-        native_detail('sprite_114', 140, x_repeat=40, y_repeat=32, type=0, cstat=208, shade=7),  # native sprite 114  ~1.5 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_083(area) -> object:
-    """assembly_001_space_083: 540 player areas, 3 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_083', frame=Frame(3584, 26112),
-        style=Style(parallax_ceiling=True, wall_shade=14),
-        note='540 player areas, 3 sectors',
-    )
-    s189 = space.room(
-        'sector_189',
-        [(8704, 7808), (7424, 7808), (7168, 6912), (7680, 6400), (7680, 5632), (8704, 5632)],
-        faces={'south': 0, 'north': 4, 'east': 5},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192, wall_shade=0),
-        note='native sector 189',
-    )
-    s193 = space.room(
-        'sector_193',
-        [(2816, 7808), (1536, 7808), (1536, 5632), (2560, 5632), (2560, 6400), (3072, 6912)],
-        faces={'south': 0, 'west': 1, 'north': 2},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192, wall_shade=0),
-        note='native sector 193',
-    )
-    s272 = space.room(
-        'sector_272',
-        [(7424, 9728), (7424, 9216), (7424, 8448), (7424, 7808), (8704, 7808), (8704, 8064), (8960, 8064), (8960, 4608), (7424, 3328), (2816, 3328), (1280, 4608), (1280, 8064), (1536, 8064), (1536, 7808), (2816, 7808), (2816, 8448), (2816, 9216), (2816, 9728), (2368, 9920), (1664, 10624), (1536, 11008), (1536, 12672), (1536, 13312), (1536, 14080), (1536, 14592), (0, 14592), (0, 6400), (0, 1920), (0, 1280), (0, 768), (0, 256), (256, 0), (768, 0), (1280, 0), (1920, 0), (3712, 0), (4608, 0), (5632, 0), (6528, 0), (8704, 0), (9344, 0), (9984, 0), (10240, 256), (10240, 896), (10240, 2112), (10240, 6400), (10240, 14592), (8704, 14592), (8704, 12928), (8704, 11008), (8576, 10624), (7808, 9856), (7552, 9728)],
-        faces={'south': 24, 'west': 25, 'north': 38, 'east': 45},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192),
-        note='native sector 272',
-    )
-    s272.decorate(
-        native_detail('sprite_079', 317, x_repeat=64, y_repeat=64, type=417, cstat=464, shade=9),  # native sprite 79  ~2.9 player heights
-        native_detail('sprite_119', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=16),  # native sprite 119  ~3.0 player heights
-        native_detail('sprite_120', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=16),  # native sprite 120  ~3.0 player heights
-        native_detail('sprite_179', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 179  ~3.6 player heights
-        native_detail('sprite_180', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 180  ~3.4 player heights
-        native_detail('sprite_188', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=16),  # native sprite 188  ~3.0 player heights
-        native_detail('sprite_189', 1470, x_repeat=40, y_repeat=40, type=206, cstat=384, shade=0),  # native sprite 189  ~3.3 player heights
-        native_detail('sprite_190', 1470, x_repeat=40, y_repeat=40, type=206, cstat=384, shade=-8),  # native sprite 190  ~3.3 player heights
-        native_detail('sprite_191', 1470, x_repeat=40, y_repeat=40, type=206, cstat=384, shade=-8),  # native sprite 191  ~3.3 player heights
-        native_detail('sprite_192', 1470, x_repeat=40, y_repeat=40, type=206, cstat=384, shade=-8),  # native sprite 192  ~3.3 player heights
-        native_detail('sprite_380', 2493, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=-8),  # native sprite 380  ~3.5 player heights
-        native_detail('sprite_381', 2493, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=-8),  # native sprite 381  ~3.5 player heights
-        native_detail('sprite_416', 548, x_repeat=24, y_repeat=24, type=73, cstat=128, shade=-8),  # native sprite 416  ~1.1 player heights
-        native_detail('sprite_417', 816, x_repeat=48, y_repeat=48, type=76, cstat=128, shade=-8),  # native sprite 417  ~0.7 player heights
-    )
-    return space
-
-
 def build_assembly_001_space_006(area) -> object:
     """assembly_001_space_006: 521 player areas, 6 sectors.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_006', frame=Frame(3584, 36352),
-        style=Style(parallax_ceiling=True, wall_shade=14),
+        'assembly_001_space_006', frame=Frame(256, 23040),
+        style=Style(parallax_ceiling=True),
         note='521 player areas, 6 sectors',
     )
     s005 = space.room(
@@ -661,159 +400,1307 @@ def build_assembly_001_space_006(area) -> object:
     return space
 
 
-def build_arrival_yard(area) -> object:
-    """arrival_yard: 478 player areas, 10 sectors.
+def build_shell_court(area) -> object:
+    """shell_court: 430 player areas, 4 sectors, contains recess.
 
-    Named from measurement: holds the only player start; 478 player areas; every sector sky-lit; 42 sprites; the outdoor tile set (wall 2499, floor 2448, ceiling 2500)
+    Named from measurement: 430 player areas, 4 sky sectors, three embedded shells and one recess; a third tile set again (wall 309/355, floor 2490/355)
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'arrival_yard', frame=Frame(3584, 15616),
-        style=Style(parallax_ceiling=True, wall_shade=32),
-        note='478 player areas, 10 sectors',
+        'shell_court', frame=Frame(14592, 4864),
+        style=Style(floor_picnum=2490, parallax_ceiling=True, wall_picnum=309, wall_shade=-21),
+        note='430 player areas, 4 sectors, contains recess',
     )
-    s017 = space.room(
-        'sector_017',
-        [(7936, 8704), (7936, 9984), (7424, 9984), (7424, 8832), (7808, 8832)],
-        faces={'east': 0, 'south': 1, 'west': 2},
+    s050 = space.room(
+        'sector_050',
+        [(2048, 5120), (2048, 4608), (2560, 4096), (3072, 4352), (3840, 4096), (3328, 4864), (3584, 5632), (4352, 6144), (4608, 6656), (4096, 7680), (3264, 8384), (2432, 8256), (2304, 7808), (2048, 7552), (1536, 7680), (1280, 6400), (1536, 5632)],
         role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192, wall_shade=12),
-        note='native sector 17',
+        style=Style(clear_height=70656, floor_picnum=2915, floor_shade=14, floor_z=13312, wall_picnum=355, wall_shade=31),
+        note='native sector 50',
     )
-    s017.decorate(
-        native_detail('sprite_386', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 386  ~2.2 player heights
+    s050.carve([(2784, 4960), (2976, 4800), (3008, 4608), (2880, 4544), (2752, 4576), (2720, 4864)])  # a native inner loop of this sector
+    s050.decorate(
+        native_detail('sprite_021', 2332, x_repeat=64, y_repeat=64, type=9, cstat=128, shade=-8),  # native sprite 21  ~0.6 player heights
+        native_detail('sprite_438', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 438  ~2.2 player heights
     )
-    s019 = space.room(
-        'sector_019',
-        [(7936, 8448), (7808, 8320), (7424, 8320), (7424, 7296), (7936, 7296)],
-        faces={'west': 2, 'north': 3, 'east': 4},
+    s051 = space.room(
+        'sector_051',
+        [(2752, 4576), (2880, 4544), (3008, 4608), (2976, 4800), (2784, 4960), (2720, 4864)],
+        role='detail',
+        style=Style(clear_height=69632, floor_z=12288, wall_picnum=355, wall_shade=21),
+        note='part of structure:recess:002',
+    )
+    s074 = space.room(
+        'sector_074',
+        [(2432, 11264), (2432, 9600), (3200, 9600), (3200, 11264)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
         role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192, wall_shade=12),
-        note='native sector 19',
+        style=Style(clear_height=69632, floor_picnum=355, floor_shade=18, floor_z=12288),
+        note='native sector 74',
     )
-    s019.decorate(
-        native_detail('sprite_407', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 407  ~2.2 player heights
+    s074.decorate(
+        native_detail('sprite_016', 2490, x_repeat=81, y_repeat=24, type=0, cstat=417, shade=-3),  # native sprite 16  ~2.2 player heights
+        native_detail('sprite_018', 34, x_repeat=162, y_repeat=4, type=0, cstat=465, shade=19),  # native sprite 18  ~0.2 player heights
     )
-    s020 = space.room(
-        'sector_020',
-        [(7936, 6784), (8832, 6784), (8832, 7296), (7936, 7296)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
+    s075 = space.room(
+        'sector_075',
+        [(3200, 11264), (3200, 9600), (2432, 9600), (2432, 11264), (2304, 11264), (2176, 11264), (0, 11264), (0, 0), (5632, 0), (5632, 11264), (3456, 11264), (3328, 11264)],
+        faces={'south': 5, 'west': 6, 'north': 7, 'east': 8},
         role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192, wall_picnum=2491, wall_shade=1),
-        note='native sector 20',
+        style=Style(clear_height=69632, floor_z=12288),
+        note='native sector 75',
     )
-    s020.decorate(
-        native_detail('sprite_385', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 385  ~2.2 player heights
-    )
-    s021 = space.room(
-        'sector_021',
-        [(8960, 8704), (8960, 9088), (8960, 9472), (8960, 9856), (8832, 9984), (7936, 9984), (7936, 8704), (7936, 8448), (7936, 7296), (8832, 7296), (8832, 8576)],
-        faces={'east': 0, 'south': 4, 'west': 5, 'north': 8},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192, wall_shade=11),
-        note='native sector 21',
-    )
-    s284 = space.room(
-        'sector_284',
-        [(7424, 3840), (7424, 5248), (7424, 6784), (5760, 6784), (5504, 6912), (5504, 7168), (5760, 7296), (7424, 7296), (7424, 8320), (4608, 8320), (4608, 5632), (6272, 5632), (6400, 5504), (6400, 2304), (6272, 2048), (6016, 2048), (5888, 2304), (5888, 5120), (4224, 5120), (4224, 4096), (4480, 4096), (4608, 3840), (4608, 1024), (6912, 1024), (7168, 768), (7168, 0), (7680, 0), (7936, 0), (8448, 0), (8704, 0), (10048, 0), (10304, 256), (10304, 384), (10304, 1088), (10304, 1280), (10240, 1280), (10240, 1920), (10240, 2176), (7552, 2176), (7424, 2304)],
-        faces={'south': 8, 'west': 18, 'north': 29, 'east': 32},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192, wall_shade=31),
-        note='native sector 284',
-    )
-    s284.decorate(
-        native_detail('sprite_117', 618, x_repeat=40, y_repeat=40, type=60, cstat=384, shade=-8),  # native sprite 117  ~1.0 player heights
-        native_detail('sprite_164', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 164  ~3.0 player heights
-        native_detail('sprite_165', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 165  ~3.0 player heights
-        native_detail('sprite_171', 1470, x_repeat=40, y_repeat=40, type=206, cstat=384, shade=-8),  # native sprite 171  ~3.3 player heights
-        native_detail('sprite_172', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 172  ~3.4 player heights
-        native_detail('sprite_173', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 173  ~3.6 player heights
-        native_detail('sprite_174', 2169, x_repeat=40, y_repeat=40, type=109, cstat=128, shade=-8),  # native sprite 174  ~1.3 player heights
-        native_detail('sprite_175', 2169, x_repeat=40, y_repeat=40, type=109, cstat=128, shade=-8),  # native sprite 175  ~1.3 player heights
-        native_detail('sprite_316', 618, x_repeat=40, y_repeat=40, type=60, cstat=384, shade=-8),  # native sprite 316  ~1.0 player heights
-        native_detail('sprite_317', 618, x_repeat=40, y_repeat=40, type=60, cstat=384, shade=-8),  # native sprite 317  ~1.0 player heights
-        native_detail('sprite_390', 619, x_repeat=48, y_repeat=48, type=67, cstat=128, shade=-8),  # native sprite 390  ~0.4 player heights
-    )
-    s285 = space.room(
-        'sector_285',
-        [(7424, 5248), (7424, 3840), (7552, 4096), (7808, 4096), (7936, 3840), (7936, 2688), (9728, 2688), (9728, 6144), (8960, 6144), (8832, 6272), (8832, 6784), (7936, 6784), (7936, 5248), (7808, 4992), (7552, 4992)],
-        faces={'west': 0, 'north': 5, 'east': 6, 'south': 10},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192),
-        note='native sector 285',
-    )
-    s285.decorate(
-        native_detail('sprite_166', 2820, x_repeat=40, y_repeat=40, type=201, cstat=384, shade=-8),  # native sprite 166  ~3.0 player heights
-        native_detail('sprite_167', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 167  ~3.0 player heights
-        native_detail('sprite_168', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 168  ~3.0 player heights
-        native_detail('sprite_169', 2820, x_repeat=40, y_repeat=40, type=201, cstat=384, shade=-8),  # native sprite 169  ~3.0 player heights
-    )
-    s286 = space.room(
-        'sector_286',
-        [(4096, 3072), (3200, 3072), (3072, 2944), (1280, 2944), (1024, 3072), (1024, 3328), (1280, 3456), (2688, 3456), (2688, 6912), (1408, 6912), (1408, 4992), (1280, 4736), (1024, 4736), (896, 4992), (896, 6912), (0, 6912), (0, 1280), (0, 384), (0, 256), (256, 0), (1536, 0), (1792, 0), (2304, 0), (2560, 0), (3072, 0), (3072, 768), (3328, 1024), (3456, 1024), (3648, 1024), (4096, 1024), (4096, 1472), (4096, 1792), (4096, 2048)],
-        faces={'south': 8, 'west': 15, 'north': 19, 'east': 32},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192, wall_shade=1),
-        note='native sector 286',
-    )
-    s286.decorate(
-        native_detail('sprite_078', 2529, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 78  ~4.4 player heights
-        native_detail('sprite_148', 2522, x_repeat=64, y_repeat=64, type=2, cstat=128, shade=-8),  # native sprite 148  ~4.4 player heights
-        native_detail('sprite_158', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 158  ~3.4 player heights
-        native_detail('sprite_159', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 159  ~3.4 player heights
-        native_detail('sprite_163', 809, x_repeat=48, y_repeat=48, type=63, cstat=384, shade=-8),  # native sprite 163  ~0.8 player heights
-        native_detail('sprite_313', 812, x_repeat=48, y_repeat=48, type=68, cstat=128, shade=-8),  # native sprite 313  ~0.9 player heights
-        native_detail('sprite_314', 559, x_repeat=48, y_repeat=48, type=41, cstat=128, shade=-8),  # native sprite 314  ~0.5 player heights
-        native_detail('sprite_375', 2493, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=-8),  # native sprite 375  ~3.5 player heights
-        native_detail('sprite_440', 2522, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 440  ~4.4 player heights
-        native_detail('sprite_441', 2523, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 441  ~4.4 player heights
-        native_detail('sprite_442', 2524, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 442  ~4.4 player heights
-        native_detail('sprite_443', 2525, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 443  ~4.4 player heights
-        native_detail('sprite_444', 2526, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 444  ~4.4 player heights
-        native_detail('sprite_445', 2527, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 445  ~4.4 player heights
-        native_detail('sprite_446', 2528, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 446  ~4.4 player heights
-    )
-    s287 = space.room(
-        'sector_287',
-        [(3200, 3072), (4096, 3072), (4096, 3840), (4224, 4096), (4224, 5120), (3200, 5120)],
-        faces={'north': 0, 'east': 3, 'south': 4, 'west': 5},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192),
-        note='native sector 287',
-    )
-    s287.decorate(
-        native_detail('sprite_160', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 160  ~3.4 player heights
-    )
-    s288 = space.room(
-        'sector_288',
-        [(2176, 9984), (2432, 8832), (7424, 8832), (7424, 9984), (6528, 9984), (5632, 9984), (4608, 9984), (3712, 9984)],
-        faces={'north': 1, 'east': 2, 'south': 7},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192, wall_shade=28),
-        note='native sector 288',
-    )
-    s288.decorate(
-        native_detail('sprite_177', 812, x_repeat=48, y_repeat=48, type=68, cstat=128, shade=-8),  # native sprite 177  ~0.9 player heights
-        native_detail('sprite_178', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 178  ~3.6 player heights
-        native_detail('sprite_436', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 436  ~2.2 player heights
-    )
-    s289 = space.room(
-        'sector_289',
-        [(2432, 8832), (2176, 9984), (1408, 9984), (1152, 9728), (1152, 8832), (1152, 8704), (896, 8448), (256, 8448), (0, 8192), (0, 7424), (1024, 7424), (3072, 7424), (3200, 7296), (3200, 5632), (4096, 5632), (4096, 8320), (2432, 8320), (2176, 8448), (2176, 8704)],
-        faces={'south': 1, 'west': 8, 'north': 13, 'east': 14},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192, wall_shade=12),
-        note='native sector 289',
-    )
-    s289.decorate(
-        native_detail('sprite_176', 816, x_repeat=48, y_repeat=48, type=76, cstat=128, shade=-8),  # native sprite 176  ~0.7 player heights
-        native_detail('sprite_181', 2586, x_repeat=64, y_repeat=64, type=141, cstat=128, shade=-8),  # native sprite 181  ~1.6 player heights
-        native_detail('sprite_182', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 182  ~3.0 player heights
-        native_detail('sprite_183', 2820, x_repeat=40, y_repeat=40, type=201, cstat=384, shade=-8),  # native sprite 183  ~3.0 player heights
-        native_detail('sprite_184', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 184  ~3.0 player heights
+    s075.carve([(1280, 6400), (1536, 7680), (2048, 7552), (2304, 7808), (2432, 8256), (3264, 8384), (4096, 7680), (4608, 6656), (4352, 6144), (3584, 5632), (3328, 4864), (3840, 4096), (3072, 4352), (2560, 4096), (2048, 4608), (2048, 5120), (1536, 5632)])  # a native inner loop of this sector
+    s075.decorate(
+        native_detail('sprite_017', 34, x_repeat=162, y_repeat=4, type=0, cstat=465, shade=19),  # native sprite 17  ~0.2 player heights
+        native_detail('sprite_019', 34, x_repeat=48, y_repeat=4, type=0, cstat=465, shade=6),  # native sprite 19  ~0.2 player heights
     )
     return space
+
+
+def build_assembly_001_space_041(area) -> object:
+    """assembly_001_space_041: 190 player areas, 2 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_041', frame=Frame(11520, 18176),
+        style=Style(floor_shade=13, parallax_ceiling=True, wall_shade=36),
+        note='190 player areas, 2 sectors',
+    )
+    s086 = space.room(
+        'sector_086',
+        [(1792, 8192), (1280, 8192), (512, 8192), (0, 8192), (0, 1536), (768, 0), (2048, 1280), (2048, 1472), (2112, 1536), (2304, 1536), (2304, 7680)],
+        faces={'south': 1, 'west': 3, 'east': 9},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192),
+        note='native sector 86',
+    )
+    s086.decorate(
+        native_detail('sprite_389', 316, x_repeat=64, y_repeat=64, type=417, cstat=464, shade=19),  # native sprite 389  ~2.9 player heights
+    )
+    s095 = space.room(
+        'sector_095',
+        [(2304, 7680), (2304, 1536), (4096, 1536), (4096, 7680), (3328, 7680)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 4},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_shade=18, floor_z=8192, wall_shade=6),
+        note='native sector 95',
+    )
+    return space
+
+
+def build_assembly_001_space_099(area) -> object:
+    """assembly_001_space_099: 150 player areas, 2 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_099', frame=Frame(15616, 19712),
+        style=Style(floor_shade=12, parallax_ceiling=True, wall_picnum=2474, wall_shade=17),
+        note='150 player areas, 2 sectors',
+    )
+    s225 = space.room(
+        'sector_225',
+        [(5632, 0), (5632, 5120), (5376, 5376), (2304, 5376), (2304, 6144), (1280, 6144), (0, 6144), (0, 0), (3584, 0), (4608, 0)],
+        faces={'east': 0, 'south': 5, 'west': 6, 'north': 7},
+        role='gameplay',
+        style=Style(clear_height=58368, floor_z=1024),
+        note='native sector 225',
+    )
+    s225.carve([(5376, 4608), (5376, 768), (1024, 768), (1024, 4608)])  # a native inner loop of this sector
+    s225.decorate(
+        native_detail('sprite_030', 2493, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=-128),  # native sprite 30  ~3.5 player heights
+        native_detail('sprite_094', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 94  ~3.0 player heights
+        native_detail('sprite_142', 2820, x_repeat=40, y_repeat=40, type=201, cstat=384, shade=-8),  # native sprite 142  ~3.0 player heights
+        native_detail('sprite_244', 2497, x_repeat=64, y_repeat=64, type=416, cstat=401, shade=13),  # native sprite 244  ~1.5 player heights
+        native_detail('sprite_359', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 359  ~3.0 player heights
+        native_detail('sprite_421', 2497, x_repeat=64, y_repeat=64, type=416, cstat=401, shade=13),  # native sprite 421  ~1.5 player heights
+        native_detail('sprite_422', 2497, x_repeat=64, y_repeat=64, type=416, cstat=401, shade=13),  # native sprite 422  ~1.5 player heights
+    )
+    s226 = space.room(
+        'sector_226',
+        [(5376, 4608), (1024, 4608), (1024, 768), (5376, 768)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(clear_height=55296, floor_picnum=21, floor_shade=0, floor_z=-2048),
+        note='native sector 226',
+    )
+    s226.carve([(3840, 4352), (4608, 3584), (4608, 1792), (4416, 1600), (4512, 1504), (4128, 1120), (4032, 1216), (3840, 1024), (2048, 1024), (1280, 1792), (1280, 3584), (2048, 4352)])  # a native inner loop of this sector
+    s226.decorate(
+        native_detail('sprite_095', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 95  ~3.0 player heights
+        native_detail('sprite_096', 2820, x_repeat=40, y_repeat=40, type=201, cstat=384, shade=-8),  # native sprite 96  ~3.0 player heights
+        native_detail('sprite_220', 1046, x_repeat=40, y_repeat=40, type=20, cstat=464, shade=-8),  # native sprite 220  ~0.9 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_039(area) -> object:
+    """assembly_001_space_039: 67 player areas, 5 sectors, contains stepped_run.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_039', frame=Frame(16896, 20736),
+        style=Style(floor_shade=6, parallax_ceiling=True, wall_shade=1),
+        note='67 player areas, 5 sectors, contains stepped_run',
+    )
+    s081 = space.room(
+        'sector_081',
+        [(2560, 0), (2752, 192), (3136, 576), (3328, 768), (3328, 2560), (2560, 3328), (768, 3328), (0, 2560), (0, 768), (768, 0)],
+        faces={'east': 3, 'south': 5, 'west': 7, 'north': 9},
+        role='stair',
+        style=Style(clear_height=44032, floor_z=-13312),
+        note='part of structure:stepped_run:001',
+    )
+    s081.carve([(1344, 3200), (1344, 3296), (1408, 3296), (1408, 3200), (2496, 3200), (3200, 2496), (3200, 832), (2496, 128), (832, 128), (128, 832), (128, 2496), (832, 3200)])  # a native inner loop of this sector
+    s227 = space.room(
+        'sector_227',
+        [(1408, 3200), (1408, 3072), (1408, 2624), (1344, 2624), (1344, 3072), (1344, 3200), (832, 3200), (128, 2496), (128, 832), (832, 128), (2496, 128), (3200, 832), (3200, 2496), (2496, 3200)],
+        faces={'west': 7, 'north': 9, 'east': 11, 'south': 13},
+        role='stair',
+        style=Style(clear_height=47104, floor_picnum=2490, floor_shade=0, floor_z=-10240, wall_picnum=272, wall_shade=21),
+        note='part of structure:stepped_run:001',
+    )
+    s227.carve([(768, 1152), (768, 2048), (1664, 2432), (2560, 2048), (2560, 1152), (1664, 896)])  # a native inner loop of this sector
+    s227.decorate(
+        native_detail('sprite_271', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 271  ~2.2 player heights
+        native_detail('sprite_433', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 433  ~2.2 player heights
+    )
+    s228 = space.room(
+        'sector_228',
+        [(768, 1152), (1664, 896), (2560, 1152), (2560, 2048), (1664, 2432), (768, 2048)],
+        faces={'east': 2, 'west': 5},
+        role='stair',
+        style=Style(clear_height=48128, floor_picnum=2915, floor_shade=13, floor_z=-9216, wall_picnum=272, wall_shade=21),
+        note='part of structure:stepped_run:001',
+    )
+    s228.decorate(
+        native_detail('sprite_031', 2332, x_repeat=64, y_repeat=64, type=9, cstat=128, shade=-8),  # native sprite 31  ~0.6 player heights
+        native_detail('sprite_214', 3997, x_repeat=64, y_repeat=64, type=3, cstat=32896, shade=0),  # native sprite 214  (tile not in ART)
+        native_detail('sprite_215', 3997, x_repeat=64, y_repeat=64, type=4, cstat=32896, shade=0),  # native sprite 215  (tile not in ART)
+    )
+    s229 = space.room(
+        'sector_229',
+        [(1408, 3072), (1344, 3072), (1344, 2624), (1408, 2624)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(clear_height=39936, floor_picnum=272, floor_shade=0, floor_z=-17408, wall_picnum=2474, wall_shade=27),
+        note='native sector 229',
+    )
+    s230 = space.room(
+        'sector_230',
+        [(1408, 3200), (1408, 3296), (1344, 3296), (1344, 3200), (1344, 3072), (1408, 3072)],
+        faces={'south': 1, 'west': 3, 'north': 4, 'east': 5},
+        role='stair',
+        style=Style(clear_height=39936, floor_z=-17408),
+        note='part of structure:stepped_run:001',
+    )
+    return space
+
+
+def build_assembly_001_space_022(area) -> object:
+    """assembly_001_space_022: 64 player areas, 4 sectors, contains recess.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_022', frame=Frame(3712, 26880),
+        style=Style(ceiling_picnum=67, ceiling_shade=24, floor_picnum=110, floor_shade=20, wall_picnum=91, wall_shade=0),
+        note='64 player areas, 4 sectors, contains recess',
+    )
+    s042 = space.room(
+        'sector_042',
+        [(192, 2560), (441, 2415), (639, 2409), (825, 2477), (972, 2609), (1061, 2787), (1076, 2984), (1018, 3174), (832, 3392), (640, 3136), (384, 2816)],
+        role='detail',
+        style=Style(clear_height=32768, floor_shade=4, floor_z=8192, wall_picnum=5),
+        note='part of structure:recess:001',
+    )
+    s042.decorate(
+        native_detail('sprite_004', 560, x_repeat=64, y_repeat=64, type=30, cstat=385, shade=-128),  # native sprite 4  ~2.7 player heights
+    )
+    s043 = space.room(
+        'sector_043',
+        [(2176, 0), (2176, 2176), (1152, 2176), (1152, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(ceiling_picnum=504, ceiling_shade=0, clear_height=32768, floor_z=8192, wall_picnum=5),
+        note='native sector 43',
+    )
+    s043.decorate(
+        native_detail('sprite_009', 2331, x_repeat=64, y_repeat=64, type=12, cstat=128, shade=-8),  # native sprite 9  ~0.6 player heights
+        native_detail('sprite_304', 526, x_repeat=48, y_repeat=48, type=46, cstat=128, shade=-8),  # native sprite 304  ~0.7 player heights
+        native_detail('sprite_405', 1370, x_repeat=48, y_repeat=48, type=204, cstat=384, shade=-8),  # native sprite 405  ~3.4 player heights
+    )
+    s328 = space.room(
+        'sector_328',
+        [(1280, 3200), (2048, 3200), (2048, 3520), (1280, 3520)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(clear_height=31744, floor_picnum=34, floor_shade=31, floor_z=7168, wall_picnum=34, wall_shade=41),
+        note='native sector 328',
+    )
+    s328.decorate(
+        native_detail('sprite_012', 34, x_repeat=19, y_repeat=48, type=0, cstat=489, shade=10),  # native sprite 12  ~2.2 player heights
+        native_detail('sprite_125', 812, x_repeat=48, y_repeat=48, type=68, cstat=128, shade=-8),  # native sprite 125  ~0.9 player heights
+        native_detail('sprite_126', 589, x_repeat=48, y_repeat=48, type=62, cstat=384, shade=-8),  # native sprite 126  ~0.9 player heights
+        native_detail('sprite_424', 34, x_repeat=20, y_repeat=56, type=0, cstat=481, shade=10),  # native sprite 424  ~2.5 player heights
+    )
+    s329 = space.room(
+        'sector_329',
+        [(2048, 3200), (1280, 3200), (1216, 3200), (1216, 3584), (1024, 3584), (832, 3392), (1018, 3174), (1076, 2984), (1061, 2787), (972, 2609), (825, 2477), (639, 2409), (441, 2415), (192, 2560), (0, 2304), (0, 2048), (0, 1280), (0, 1024), (672, 352), (864, 160), (1024, 0), (1152, 0), (1152, 2176), (2176, 2176), (2176, 0), (2304, 0), (2464, 160), (2656, 352), (3328, 1024), (3328, 1280), (3328, 2048), (3328, 2304), (2304, 3584), (2112, 3584), (2112, 3200)],
+        faces={'south': 3, 'west': 15, 'north': 20, 'east': 29},
+        role='gameplay',
+        style=Style(clear_height=32768, floor_z=8192),
+        note='native sector 329',
+    )
+    s329.carve([(2112, 3200), (2112, 2816), (2048, 2816), (2048, 3200)])  # a native inner loop of this sector
+    s329.carve([(1280, 3200), (1280, 2816), (1216, 2816), (1216, 3200)])  # a native inner loop of this sector
+    s329.decorate(
+        native_detail('sprite_011', 3997, x_repeat=64, y_repeat=64, type=5, cstat=32896, shade=0),  # native sprite 11  (tile not in ART)
+        native_detail('sprite_013', 68, x_repeat=48, y_repeat=16, type=0, cstat=401, shade=1),  # native sprite 13  ~0.2 player heights
+        native_detail('sprite_127', 827, x_repeat=40, y_repeat=40, type=115, cstat=128, shade=-16),  # native sprite 127  ~1.0 player heights
+        native_detail('sprite_152', 2527, x_repeat=64, y_repeat=64, type=2, cstat=128, shade=-8),  # native sprite 152  ~4.4 player heights
+        native_detail('sprite_305', 801, x_repeat=48, y_repeat=48, type=79, cstat=128, shade=-8),  # native sprite 305  ~1.2 player heights
+        native_detail('sprite_306', 801, x_repeat=48, y_repeat=48, type=79, cstat=128, shade=-8),  # native sprite 306  ~1.2 player heights
+        native_detail('sprite_307', 2169, x_repeat=40, y_repeat=40, type=109, cstat=128, shade=-8),  # native sprite 307  ~1.3 player heights
+        native_detail('sprite_308', 2169, x_repeat=40, y_repeat=40, type=109, cstat=128, shade=-8),  # native sprite 308  ~1.3 player heights
+        native_detail('sprite_449', 753, x_repeat=64, y_repeat=64, type=145, cstat=384, shade=-8),  # native sprite 449  ~2.9 player heights
+        native_detail('sprite_450', 1070, x_repeat=40, y_repeat=40, type=20, cstat=464, shade=-8),  # native sprite 450  ~0.9 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_021(area) -> object:
+    """assembly_001_space_021: 58 player areas, 6 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_021', frame=Frame(10624, 5504),
+        style=Style(floor_shade=22, parallax_ceiling=True),
+        note='58 player areas, 6 sectors',
+    )
+    s037 = space.room(
+        'sector_037',
+        [(256, 6656), (176, 6404), (181, 6143), (270, 5897), (435, 5694), (656, 5556), (911, 5497), (1171, 5524), (1408, 5632), (1408, 5888), (1408, 6272), (1024, 6656), (640, 6656)],
+        faces={'east': 9, 'south': 11},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_shade=1, floor_z=8192, wall_shade=12),
+        note='native sector 37',
+    )
+    s037.decorate(
+        native_detail('sprite_007', 2493, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=-128),  # native sprite 7  ~3.5 player heights
+    )
+    s038 = space.room(
+        'sector_038',
+        [(1408, 5632), (1171, 5524), (911, 5497), (656, 5556), (435, 5694), (270, 5897), (181, 6143), (176, 6404), (256, 6656), (0, 6656), (0, 6272), (0, 5888), (0, 5504), (128, 5376), (243, 5217), (395, 5096), (574, 5019), (768, 4993), (963, 5019), (1142, 5097), (1293, 5219), (1408, 5376)],
+        faces={'south': 8, 'west': 9, 'east': 21},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_shade=9, floor_z=8192, wall_shade=12),
+        note='native sector 38',
+    )
+    s039 = space.room(
+        'sector_039',
+        [(128, 4864), (212, 4658), (359, 4494), (552, 4388), (770, 4352), (987, 4389), (1179, 4497), (1325, 4662), (1408, 4864), (1408, 5376), (1293, 5219), (1142, 5097), (963, 5019), (768, 4993), (574, 5019), (395, 5096), (243, 5217), (128, 5376)],
+        faces={'east': 8, 'west': 17},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_shade=16, floor_z=8192, wall_shade=38),
+        note='native sector 39',
+    )
+    s039.decorate(
+        native_detail('sprite_144', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=8),  # native sprite 144  ~3.0 player heights
+        native_detail('sprite_302', 1046, x_repeat=32, y_repeat=32, type=20, cstat=464, shade=-8),  # native sprite 302  ~0.7 player heights
+    )
+    s281 = space.room(
+        'sector_281',
+        [(1408, 896), (128, 896), (128, 0), (256, 0), (1280, 0), (1408, 0)],
+        faces={'south': 0, 'west': 1, 'north': 3, 'east': 5},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192, wall_shade=38),
+        note='native sector 281',
+    )
+    s282 = space.room(
+        'sector_282',
+        [(128, 3456), (1408, 3456), (1408, 4864), (1325, 4662), (1179, 4497), (987, 4389), (770, 4352), (552, 4388), (359, 4494), (212, 4658), (128, 4864)],
+        faces={'north': 0, 'east': 1, 'west': 10},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192),
+        note='native sector 282',
+    )
+    s282.decorate(
+        native_detail('sprite_196', 2820, x_repeat=40, y_repeat=40, type=201, cstat=384, shade=-8),  # native sprite 196  ~3.0 player heights
+    )
+    s283 = space.room(
+        'sector_283',
+        [(1408, 3456), (128, 3456), (128, 896), (1408, 896), (1408, 1408), (1408, 1920), (1408, 2432), (1408, 2944)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192, wall_shade=37),
+        note='native sector 283',
+    )
+    s283.decorate(
+        native_detail('sprite_197', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 197  ~3.6 player heights
+        native_detail('sprite_198', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 198  ~3.6 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_046(area) -> object:
+    """assembly_001_space_046: 36 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_046', frame=Frame(23296, 3072),
+        style=Style(ceiling_picnum=329, ceiling_shade=34, floor_picnum=21, floor_shade=19, wall_picnum=21, wall_shade=19),
+        note='36 player areas, 1 sector',
+    )
+    s096 = space.room(
+        'sector_096',
+        [(512, 512), (1024, 512), (1228, 373), (1409, 209), (1536, 0), (1536, 512), (1536, 1024), (1536, 3840), (0, 3840), (0, 1024), (0, 512), (0, 0), (123, 205), (303, 370)],
+        faces={'east': 6, 'south': 7, 'west': 8},
+        role='gameplay',
+        style=Style(clear_height=55296, floor_z=-2048),
+        note='native sector 96',
+    )
+    return space
+
+
+def build_assembly_001_space_091(area) -> object:
+    """assembly_001_space_091: 24 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_091', frame=Frame(21248, 21504),
+        style=Style(ceiling_picnum=67, ceiling_shade=36, floor_shade=31, wall_picnum=2474, wall_shade=24),
+        note='24 player areas, 1 sector',
+    )
+    s207 = space.room(
+        'sector_207',
+        [(1024, 1792), (1024, 4224), (768, 4352), (384, 4352), (384, 4096), (128, 4096), (128, 4352), (0, 4352), (0, 3328), (256, 3072), (256, 0), (1024, 0), (1024, 768)],
+        faces={'east': 0, 'south': 2, 'west': 7, 'north': 10},
+        role='gameplay',
+        style=Style(clear_height=47104, floor_z=-7168),
+        note='native sector 207',
+    )
+    return space
+
+
+def build_assembly_001_space_090(area) -> object:
+    """assembly_001_space_090: 18 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_090', frame=Frame(17920, 24832),
+        style=Style(floor_shade=14, parallax_ceiling=True, wall_picnum=2474, wall_shade=24),
+        note='18 player areas, 1 sector',
+    )
+    s206 = space.room(
+        'sector_206',
+        [(3328, 0), (3328, 1024), (2048, 1024), (0, 1024), (0, 256), (3072, 256)],
+        faces={'east': 0, 'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(clear_height=50176, floor_z=-7168),
+        note='native sector 206',
+    )
+    return space
+
+
+def build_assembly_001_space_092(area) -> object:
+    """assembly_001_space_092: 17 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_092', frame=Frame(21248, 19712),
+        style=Style(ceiling_picnum=67, ceiling_shade=36, floor_shade=31, wall_shade=38),
+        note='17 player areas, 1 sector',
+    )
+    s208 = space.room(
+        'sector_208',
+        [(1024, 128), (1024, 1792), (256, 1792), (256, 4864), (0, 5120), (0, 0), (128, 0), (128, 256), (384, 256), (384, 0), (768, 0)],
+        faces={'east': 0, 'west': 4, 'north': 9},
+        role='gameplay',
+        style=Style(clear_height=55296, floor_z=1024),
+        note='native sector 208',
+    )
+    return space
+
+
+def build_assembly_001_space_075(area) -> object:
+    """assembly_001_space_075: 17 player areas, 4 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_075', frame=Frame(0, 30976),
+        style=Style(ceiling_picnum=21, ceiling_shade=18, floor_picnum=110, floor_shade=25, wall_picnum=178, wall_shade=23),
+        note='17 player areas, 4 sectors',
+    )
+    s178 = space.room(
+        'sector_178',
+        [(1024, 1792), (0, 1792), (0, 1152), (0, 1024), (0, 512), (118, 588), (256, 616), (393, 588), (510, 510), (588, 393), (616, 256), (588, 118), (512, 0), (768, 0), (1024, 0), (1024, 1536)],
+        faces={'south': 0, 'west': 1, 'north': 12, 'east': 14},
+        role='gameplay',
+        style=Style(clear_height=41984, floor_z=8192, wall_picnum=329),
+        note='native sector 178',
+    )
+    s178.decorate(
+        native_detail('sprite_057', 1708, x_repeat=32, y_repeat=32, type=417, cstat=464, shade=-1),  # native sprite 57  ~1.5 player heights
+        native_detail('sprite_058', 1711, x_repeat=40, y_repeat=40, type=417, cstat=464, shade=-8),  # native sprite 58  ~2.7 player heights
+        native_detail('sprite_059', 1712, x_repeat=40, y_repeat=40, type=417, cstat=464, shade=-11),  # native sprite 59  ~1.8 player heights
+        native_detail('sprite_060', 1714, x_repeat=32, y_repeat=56, type=417, cstat=464, shade=1),  # native sprite 60  ~1.7 player heights
+        native_detail('sprite_062', 915, x_repeat=24, y_repeat=40, type=0, cstat=979, shade=-1),  # native sprite 62  ~2.5 player heights
+        native_detail('sprite_097', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 97  ~3.6 player heights
+        native_detail('sprite_310', 812, x_repeat=48, y_repeat=48, type=68, cstat=128, shade=-8),  # native sprite 310  ~0.9 player heights
+        native_detail('sprite_350', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 350  ~3.6 player heights
+    )
+    s179 = space.room(
+        'sector_179',
+        [(0, 1856), (1024, 1856), (1024, 2560), (0, 2560)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(clear_height=41984, floor_shade=37, floor_z=8192, wall_shade=38),
+        note='native sector 179',
+    )
+    s179.decorate(
+        native_detail('sprite_145', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 145  ~3.6 player heights
+        native_detail('sprite_312', 519, x_repeat=48, y_repeat=48, type=107, cstat=128, shade=-8),  # native sprite 312  ~1.0 player heights
+    )
+    s180 = space.room(
+        'sector_180',
+        [(1024, 1856), (0, 1856), (0, 1792), (1024, 1792)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(ceiling_picnum=67, ceiling_shade=34, clear_height=22528, floor_shade=31, floor_z=8192),
+        note='native sector 180',
+    )
+    s180.decorate(
+        native_detail('sprite_278', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 278  ~2.2 player heights
+    )
+    s308 = space.room(
+        'sector_308',
+        [(1024, 1536), (1024, 0), (1152, 0), (1152, 1536)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(ceiling_picnum=20, ceiling_shade=30, clear_height=34816, floor_picnum=2448, floor_shade=18, floor_z=8192, wall_picnum=20, wall_shade=30),
+        note='native sector 308',
+    )
+    return space
+
+
+def build_assembly_001_space_047(area) -> object:
+    """assembly_001_space_047: 15 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_047', frame=Frame(23296, 2048),
+        style=Style(ceiling_picnum=329, ceiling_shade=9, floor_picnum=21, floor_shade=19, wall_picnum=110, wall_shade=35),
+        note='15 player areas, 1 sector',
+    )
+    s097 = space.room(
+        'sector_097',
+        [(0, 0), (448, 0), (960, 0), (1408, 0), (1536, 0), (1536, 512), (1536, 1024), (1409, 1233), (1228, 1397), (1024, 1536), (512, 1536), (303, 1394), (123, 1229), (0, 1024), (0, 512)],
+        faces={'north': 1, 'east': 4, 'south': 9, 'west': 13},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192),
+        note='native sector 97',
+    )
+    s097.decorate(
+        native_detail('sprite_036', 641, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=-128),  # native sprite 36  ~5.8 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_045(area) -> object:
+    """assembly_001_space_045: 12 player areas, 3 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_045', frame=Frame(11520, 26368),
+        style=Style(ceiling_picnum=329, ceiling_shade=37, floor_shade=25),
+        note='12 player areas, 3 sectors',
+    )
+    s092 = space.room(
+        'sector_092',
+        [(512, 0), (512, 1024), (0, 1024), (0, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=32768, floor_z=8192),
+        note='native sector 92',
+    )
+    s093 = space.room(
+        'sector_093',
+        [(1280, 0), (1280, 1024), (512, 1024), (512, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=32768, floor_z=8192),
+        note='native sector 93',
+    )
+    s094 = space.room(
+        'sector_094',
+        [(1280, 1024), (1280, 0), (1792, 0), (1792, 1024)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=32768, floor_shade=24, floor_z=8192),
+        note='native sector 94',
+    )
+    return space
+
+
+def build_assembly_001_space_013(area) -> object:
+    """assembly_001_space_013: 11 player areas, 7 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_013', frame=Frame(9216, 11008),
+        style=Style(ceiling_picnum=329, ceiling_shade=24, floor_shade=16, wall_picnum=200, wall_shade=1),
+        note='11 player areas, 7 sectors',
+    )
+    s022 = space.room(
+        'sector_022',
+        [(256, 384), (0, 384), (0, 0), (256, 0)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(clear_height=26624, floor_z=8192, wall_picnum=2491),
+        note='native sector 22',
+    )
+    s023 = space.room(
+        'sector_023',
+        [(0, 768), (256, 768), (256, 1152), (0, 1152)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(clear_height=26624, floor_shade=20, floor_z=8192, wall_picnum=2491),
+        note='native sector 23',
+    )
+    s023.decorate(
+        native_detail('sprite_301', 1046, x_repeat=32, y_repeat=32, type=20, cstat=464, shade=-8),  # native sprite 301  ~0.7 player heights
+        native_detail('sprite_404', 2540, x_repeat=24, y_repeat=24, type=0, cstat=464, shade=-8),  # native sprite 404  ~1.0 player heights
+    )
+    s024 = space.room(
+        'sector_024',
+        [(256, 768), (0, 768), (0, 384), (256, 384)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(clear_height=26624, floor_shade=20, floor_z=8192, wall_picnum=2491),
+        note='native sector 24',
+    )
+    s025 = space.room(
+        'sector_025',
+        [(1408, 384), (1152, 384), (1152, 0), (1408, 0)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(ceiling_shade=29, clear_height=26624, floor_z=8192, wall_picnum=2499, wall_shade=12),
+        note='native sector 25',
+    )
+    s026 = space.room(
+        'sector_026',
+        [(1152, 768), (1408, 768), (1408, 1152), (1152, 1152)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(ceiling_shade=29, clear_height=26624, floor_shade=21, floor_z=8192, wall_picnum=2499, wall_shade=12),
+        note='native sector 26',
+    )
+    s027 = space.room(
+        'sector_027',
+        [(1408, 768), (1152, 768), (1152, 384), (1408, 384)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(ceiling_shade=29, clear_height=26624, floor_shade=19, floor_z=8192, wall_picnum=2499, wall_shade=12),
+        note='native sector 27',
+    )
+    s028 = space.room(
+        'sector_028',
+        [(512, 0), (512, 64), (768, 64), (768, 0), (1152, 0), (1152, 384), (1152, 768), (1152, 1152), (768, 1152), (768, 1088), (512, 1088), (512, 1152), (256, 1152), (256, 768), (256, 384), (256, 0)],
+        faces={'north': 3, 'east': 4, 'south': 7, 'west': 12},
+        role='gameplay',
+        style=Style(ceiling_picnum=21, ceiling_shade=33, clear_height=32768, floor_shade=25, floor_z=8192, wall_shade=28),
+        note='native sector 28',
+    )
+    s028.carve([(640, 768), (704, 704), (640, 640), (576, 704)])  # a native inner loop of this sector
+    s028.carve([(640, 512), (704, 448), (640, 384), (576, 448)])  # a native inner loop of this sector
+    s028.carve([(640, 256), (704, 192), (640, 128), (576, 192)])  # a native inner loop of this sector
+    s028.carve([(640, 1024), (704, 960), (640, 896), (576, 960)])  # a native inner loop of this sector
+    return space
+
+
+def build_assembly_001_space_068(area) -> object:
+    """assembly_001_space_068: 9 player areas, 3 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_068', frame=Frame(12288, 17664),
+        style=Style(ceiling_picnum=329, ceiling_shade=38, floor_shade=24, wall_shade=20),
+        note='9 player areas, 3 sectors',
+    )
+    s165 = space.room(
+        'sector_165',
+        [(128, 384), (384, 640), (1152, 1408), (1408, 1664), (1280, 1792), (0, 512)],
+        role='gameplay',
+        style=Style(clear_height=32768, floor_z=8192),
+        note='native sector 165',
+    )
+    s166 = space.room(
+        'sector_166',
+        [(384, 128), (640, 384), (1408, 1152), (1664, 1408), (1408, 1664), (1152, 1408), (384, 640), (128, 384)],
+        role='gameplay',
+        style=Style(ceiling_picnum=67, clear_height=31744, floor_z=8192),
+        note='native sector 166',
+    )
+    s166.decorate(
+        native_detail('sprite_195', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 195  ~2.2 player heights
+    )
+    s167 = space.room(
+        'sector_167',
+        [(1664, 1408), (1408, 1152), (640, 384), (384, 128), (512, 0), (1792, 1280)],
+        role='gameplay',
+        style=Style(clear_height=32768, floor_z=8192, wall_shade=2),
+        note='native sector 167',
+    )
+    return space
+
+
+def build_assembly_001_space_118(area) -> object:
+    """assembly_001_space_118: 7 player areas, 3 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_118', frame=Frame(1792, 25472),
+        style=Style(ceiling_picnum=329, ceiling_shade=42, floor_shade=37, wall_shade=42),
+        note='7 player areas, 3 sectors',
+    )
+    s305 = space.room(
+        'sector_305',
+        [(512, 640), (0, 640), (0, 0), (128, 128), (384, 128), (512, 0)],
+        faces={'south': 0, 'west': 1, 'east': 5},
+        role='gameplay',
+        style=Style(clear_height=32768, floor_z=8192),
+        note='native sector 305',
+    )
+    s306 = space.room(
+        'sector_306',
+        [(512, 1408), (0, 1408), (0, 640), (512, 640)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(clear_height=32768, floor_z=8192),
+        note='native sector 306',
+    )
+    s307 = space.room(
+        'sector_307',
+        [(0, 1408), (512, 1408), (512, 2176), (256, 1920), (0, 1920)],
+        faces={'north': 0, 'east': 1, 'west': 4},
+        role='gameplay',
+        style=Style(clear_height=32768, floor_z=8192),
+        note='native sector 307',
+    )
+    return space
+
+
+def build_assembly_001_space_109(area) -> object:
+    """assembly_001_space_109: 6 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_109', frame=Frame(8448, 25728),
+        style=Style(ceiling_picnum=329, ceiling_shade=42, floor_shade=34, wall_shade=42),
+        note='6 player areas, 1 sector',
+    )
+    s270 = space.room(
+        'sector_270',
+        [(0, 1920), (0, 0), (128, 128), (384, 128), (512, 0), (512, 1664), (256, 1664)],
+        faces={'west': 0, 'east': 4},
+        role='gameplay',
+        style=Style(clear_height=32768, floor_z=8192),
+        note='native sector 270',
+    )
+    return space
+
+
+def build_assembly_001_space_026(area) -> object:
+    """assembly_001_space_026: 5 player areas, 3 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_026', frame=Frame(12032, 6912),
+        style=Style(ceiling_picnum=329, ceiling_shade=37, floor_shade=22, wall_shade=37),
+        note='5 player areas, 3 sectors',
+    )
+    s047 = space.room(
+        'sector_047',
+        [(512, 512), (0, 512), (0, 0), (512, 0)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(clear_height=27648, floor_z=8192, wall_picnum=21, wall_shade=38),
+        note='native sector 47',
+    )
+    s048 = space.room(
+        'sector_048',
+        [(0, 1024), (512, 1024), (512, 1536), (0, 1536)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(clear_height=27648, floor_z=8192),
+        note='native sector 48',
+    )
+    s049 = space.room(
+        'sector_049',
+        [(512, 1024), (0, 1024), (0, 512), (512, 512)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(clear_height=27648, floor_z=8192, wall_picnum=21, wall_shade=38),
+        note='native sector 49',
+    )
+    return space
+
+
+def build_assembly_001_space_040(area) -> object:
+    """assembly_001_space_040: 5 player areas, 3 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_040', frame=Frame(23296, 1536),
+        style=Style(ceiling_picnum=329, ceiling_shade=53, floor_picnum=21, floor_shade=29, wall_picnum=110, wall_shade=41),
+        note='5 player areas, 3 sectors',
+    )
+    s082 = space.room(
+        'sector_082',
+        [(448, 0), (448, 512), (0, 512), (0, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=28672, floor_z=8192),
+        note='native sector 82',
+    )
+    s083 = space.room(
+        'sector_083',
+        [(960, 0), (960, 512), (448, 512), (448, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=28672, floor_z=8192),
+        note='native sector 83',
+    )
+    s084 = space.room(
+        'sector_084',
+        [(960, 512), (960, 0), (1408, 0), (1408, 512)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=28672, floor_z=8192),
+        note='native sector 84',
+    )
+    return space
+
+
+def build_assembly_001_space_055(area) -> object:
+    """assembly_001_space_055: 2 player areas, 1 sector, contains recess.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_055', frame=Frame(0, 30976),
+        style=Style(ceiling_picnum=21, floor_picnum=110, floor_shade=18, wall_picnum=178, wall_shade=23),
+        note='2 player areas, 1 sector, contains recess',
+    )
+    s114 = space.room(
+        'sector_114',
+        [(512, 0), (588, 118), (616, 256), (588, 393), (510, 510), (393, 588), (256, 616), (118, 588), (0, 512), (0, 0)],
+        faces={'west': 8, 'north': 9},
+        role='detail',
+        style=Style(clear_height=41984, floor_z=8192),
+        note='part of structure:recess:004',
+    )
+    s114.decorate(
+        native_detail('sprite_056', 641, x_repeat=64, y_repeat=64, type=0, cstat=129, shade=-128),  # native sprite 56  ~5.8 player heights
+        native_detail('sprite_061', 1715, x_repeat=40, y_repeat=40, type=416, cstat=978, shade=0),  # native sprite 61  ~0.8 player heights
+        native_detail('sprite_311', 816, x_repeat=48, y_repeat=48, type=76, cstat=128, shade=-8),  # native sprite 311  ~0.7 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_003(area) -> object:
+    """assembly_001_space_003: 2 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_003', frame=Frame(4864, 26624),
+        style=Style(ceiling_picnum=68, ceiling_shade=41, floor_picnum=2496, floor_shade=20, wall_picnum=2492, wall_shade=0),
+        note='2 player areas, 1 sector',
+    )
+    s002 = space.room(
+        'sector_002',
+        [(1024, 256), (0, 256), (0, 0), (1024, 0)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(clear_height=28672, floor_z=8192),
+        note='native sector 2',
+    )
+    return space
+
+
+def build_assembly_001_space_019(area) -> object:
+    """assembly_001_space_019: 2 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_019', frame=Frame(10880, 5248),
+        style=Style(ceiling_picnum=68, ceiling_shade=42, floor_picnum=67, floor_shade=31, wall_picnum=21, wall_shade=31),
+        note='2 player areas, 1 sector',
+    )
+    s034 = space.room(
+        'sector_034',
+        [(1024, 256), (0, 256), (0, 0), (1024, 0)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(clear_height=57344, floor_z=4096),
+        note='native sector 34',
+    )
+    return space
+
+
+def build_assembly_001_space_004(area) -> object:
+    """assembly_001_space_004: 1 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_004', frame=Frame(7040, 28160),
+        style=Style(ceiling_picnum=20, ceiling_shade=42, floor_picnum=20, floor_shade=33, wall_picnum=195, wall_shade=33),
+        note='1 player areas, 1 sector',
+    )
+    s003 = space.room(
+        'sector_003',
+        [(0, 768), (0, 0), (256, 0), (256, 768)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=16384, floor_z=0),
+        note='native sector 3',
+    )
+    s003.carve([(128, 672), (192, 608), (128, 544), (64, 608)])  # a native inner loop of this sector
+    s003.carve([(192, 160), (128, 96), (64, 160), (128, 224)])  # a native inner loop of this sector
+    s003.carve([(128, 448), (192, 384), (128, 320), (64, 384)])  # a native inner loop of this sector
+    return space
+
+
+def build_assembly_001_space_113(area) -> object:
+    """assembly_001_space_113: 1 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_113', frame=Frame(3456, 28160),
+        style=Style(ceiling_picnum=20, ceiling_shade=42, floor_picnum=20, floor_shade=33, wall_picnum=195, wall_shade=33),
+        note='1 player areas, 1 sector',
+    )
+    s292 = space.room(
+        'sector_292',
+        [(0, 768), (0, 0), (256, 0), (256, 768)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=16384, floor_z=0),
+        note='native sector 292',
+    )
+    s292.carve([(128, 672), (192, 608), (128, 544), (64, 608)])  # a native inner loop of this sector
+    s292.carve([(192, 160), (128, 96), (64, 160), (128, 224)])  # a native inner loop of this sector
+    s292.carve([(128, 448), (192, 384), (128, 320), (64, 384)])  # a native inner loop of this sector
+    return space
+
+
+def build_assembly_001_space_029(area) -> object:
+    """assembly_001_space_029: 1 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_029', frame=Frame(16768, 16128),
+        style=Style(floor_picnum=34, floor_shade=11, parallax_ceiling=True, wall_picnum=297),
+        note='1 player areas, 1 sector',
+    )
+    s054 = space.room(
+        'sector_054',
+        [(0, 0), (128, 0), (128, 512), (128, 1024), (0, 1024), (0, 512)],
+        faces={'north': 0, 'east': 1, 'south': 3, 'west': 4},
+        role='gameplay',
+        style=Style(clear_height=50176, floor_z=-7168),
+        note='native sector 54',
+    )
+    return space
+
+
+def build_assembly_001_space_030(area) -> object:
+    """assembly_001_space_030: 1 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_030', frame=Frame(17920, 16128),
+        style=Style(floor_picnum=34, floor_shade=11, parallax_ceiling=True, wall_picnum=272, wall_shade=18),
+        note='1 player areas, 1 sector',
+    )
+    s056 = space.room(
+        'sector_056',
+        [(0, 0), (128, 0), (128, 512), (128, 1024), (0, 1024), (0, 512)],
+        faces={'north': 0, 'east': 1, 'south': 3, 'west': 4},
+        role='gameplay',
+        style=Style(clear_height=50176, floor_z=-7168),
+        note='native sector 56',
+    )
+    return space
+
+
+def build_assembly_001_space_023(area) -> object:
+    """assembly_001_space_023: 1 player areas, 2 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_023', frame=Frame(4928, 30080),
+        style=Style(ceiling_picnum=67, ceiling_shade=24, floor_picnum=34, floor_shade=38, wall_picnum=5, wall_shade=11),
+        note='1 player areas, 2 sectors',
+    )
+    s044 = space.room(
+        'sector_044',
+        [(832, 384), (832, 320), (832, 0), (896, 0), (896, 384)],
+        faces={'west': 1, 'north': 2, 'east': 3, 'south': 4},
+        role='gameplay',
+        style=Style(clear_height=15360, floor_z=-9216, wall_shade=21),
+        note='native sector 44',
+    )
+    s327 = space.room(
+        'sector_327',
+        [(0, 384), (0, 0), (64, 0), (64, 320), (832, 320), (832, 384), (704, 384), (192, 384), (64, 384)],
+        faces={'west': 0, 'north': 1, 'east': 4, 'south': 6},
+        role='gameplay',
+        style=Style(clear_height=15360, floor_z=-9216, wall_picnum=91),
+        note='native sector 327',
+    )
+    return space
+
+
+def build_assembly_001_space_098(area) -> object:
+    """assembly_001_space_098: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_098', frame=Frame(19648, 20832),
+        style=Style(floor_picnum=20, parallax_ceiling=True, wall_picnum=2474, wall_shade=3),
+        note='0 player areas, 1 sector',
+    )
+    s224 = space.room(
+        'sector_224',
+        [(96, 0), (480, 384), (384, 480), (0, 96)],
+        role='gameplay',
+        style=Style(clear_height=37888, floor_z=-19456),
+        note='native sector 224',
+    )
+    return space
+
+
+def build_assembly_001_space_024(area) -> object:
+    """assembly_001_space_024: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_024', frame=Frame(4928, 29696),
+        style=Style(ceiling_picnum=67, ceiling_shade=24, floor_picnum=34, floor_shade=50, wall_picnum=34, wall_shade=35),
+        note='0 player areas, 1 sector',
+    )
+    s045 = space.room(
+        'sector_045',
+        [(64, 0), (64, 384), (0, 384), (0, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=16384, floor_z=-8192),
+        note='native sector 45',
+    )
+    s045.decorate(
+        native_detail('sprite_010', 3997, x_repeat=64, y_repeat=64, type=5, cstat=32896, shade=0),  # native sprite 10  (tile not in ART)
+        native_detail('sprite_379', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 379  ~2.2 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_025(area) -> object:
+    """assembly_001_space_025: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_025', frame=Frame(5760, 29696),
+        style=Style(ceiling_picnum=67, ceiling_shade=24, floor_picnum=34, floor_shade=38, wall_picnum=34, wall_shade=35),
+        note='0 player areas, 1 sector',
+    )
+    s046 = space.room(
+        'sector_046',
+        [(64, 0), (64, 384), (0, 384), (0, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=16384, floor_z=-8192),
+        note='native sector 46',
+    )
+    return space
+
+
+def build_assembly_001_space_007(area) -> object:
+    """assembly_001_space_007: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_007', frame=Frame(7104, 28256),
+        style=Style(ceiling_picnum=0, ceiling_shade=39, floor_shade=17, wall_picnum=2492, wall_shade=0),
+        note='0 player areas, 1 sector',
+    )
+    s006 = space.room(
+        'sector_006',
+        [(64, 0), (128, 64), (64, 128), (0, 64)],
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=0),
+        note='native sector 6',
+    )
+    return space
+
+
+def build_assembly_001_space_008(area) -> object:
+    """assembly_001_space_008: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_008', frame=Frame(7104, 28480),
+        style=Style(ceiling_picnum=0, ceiling_shade=39, floor_shade=17, wall_picnum=2492, wall_shade=0),
+        note='0 player areas, 1 sector',
+    )
+    s007 = space.room(
+        'sector_007',
+        [(64, 0), (128, 64), (64, 128), (0, 64)],
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=0),
+        note='native sector 7',
+    )
+    s007.decorate(
+        native_detail('sprite_291', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 291  ~2.2 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_009(area) -> object:
+    """assembly_001_space_009: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_009', frame=Frame(7104, 28704),
+        style=Style(ceiling_picnum=0, ceiling_shade=39, floor_shade=17, wall_picnum=2492, wall_shade=0),
+        note='0 player areas, 1 sector',
+    )
+    s008 = space.room(
+        'sector_008',
+        [(64, 0), (128, 64), (64, 128), (0, 64)],
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=0),
+        note='native sector 8',
+    )
+    return space
+
+
+def build_assembly_001_space_014(area) -> object:
+    """assembly_001_space_014: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_014', frame=Frame(9792, 11904),
+        style=Style(ceiling_picnum=369, ceiling_shade=49, floor_picnum=2496, floor_shade=18, wall_picnum=21, wall_shade=15),
+        note='0 player areas, 1 sector',
+    )
+    s029 = space.room(
+        'sector_029',
+        [(128, 64), (64, 128), (0, 64), (64, 0)],
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=8192),
+        note='native sector 29',
+    )
+    return space
+
+
+def build_assembly_001_space_015(area) -> object:
+    """assembly_001_space_015: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_015', frame=Frame(9792, 11136),
+        style=Style(ceiling_picnum=369, ceiling_shade=49, floor_picnum=2496, floor_shade=18, wall_picnum=369, wall_shade=15),
+        note='0 player areas, 1 sector',
+    )
+    s030 = space.room(
+        'sector_030',
+        [(64, 0), (128, 64), (64, 128), (0, 64)],
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=8192),
+        note='native sector 30',
+    )
+    return space
+
+
+def build_assembly_001_space_016(area) -> object:
+    """assembly_001_space_016: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_016', frame=Frame(9792, 11392),
+        style=Style(ceiling_picnum=369, ceiling_shade=49, floor_picnum=2496, floor_shade=18, wall_picnum=369, wall_shade=15),
+        note='0 player areas, 1 sector',
+    )
+    s031 = space.room(
+        'sector_031',
+        [(64, 0), (128, 64), (64, 128), (0, 64)],
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=8192),
+        note='native sector 31',
+    )
+    s031.decorate(
+        native_detail('sprite_401', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 401  ~2.2 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_017(area) -> object:
+    """assembly_001_space_017: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_017', frame=Frame(9792, 11648),
+        style=Style(ceiling_picnum=369, ceiling_shade=49, floor_picnum=2496, floor_shade=18, wall_picnum=369, wall_shade=15),
+        note='0 player areas, 1 sector',
+    )
+    s032 = space.room(
+        'sector_032',
+        [(64, 0), (128, 64), (64, 128), (0, 64)],
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=8192),
+        note='native sector 32',
+    )
+    return space
+
+
+def build_assembly_001_space_114(area) -> object:
+    """assembly_001_space_114: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_114', frame=Frame(3520, 28256),
+        style=Style(ceiling_picnum=0, ceiling_shade=39, floor_shade=17, wall_picnum=2492, wall_shade=0),
+        note='0 player areas, 1 sector',
+    )
+    s293 = space.room(
+        'sector_293',
+        [(64, 0), (128, 64), (64, 128), (0, 64)],
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=0),
+        note='native sector 293',
+    )
+    return space
+
+
+def build_assembly_001_space_115(area) -> object:
+    """assembly_001_space_115: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_115', frame=Frame(3520, 28480),
+        style=Style(ceiling_picnum=0, ceiling_shade=39, floor_shade=17, wall_picnum=2492, wall_shade=0),
+        note='0 player areas, 1 sector',
+    )
+    s294 = space.room(
+        'sector_294',
+        [(64, 0), (128, 64), (64, 128), (0, 64)],
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=0),
+        note='native sector 294',
+    )
+    s294.decorate(
+        native_detail('sprite_392', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 392  ~2.2 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_116(area) -> object:
+    """assembly_001_space_116: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_116', frame=Frame(3520, 28704),
+        style=Style(ceiling_picnum=0, ceiling_shade=39, floor_shade=17, wall_picnum=2492, wall_shade=0),
+        note='0 player areas, 1 sector',
+    )
+    s295 = space.room(
+        'sector_295',
+        [(64, 0), (128, 64), (64, 128), (0, 64)],
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=0),
+        note='native sector 295',
+    )
+    return space
+
+
+def build_main_complex_zone_02(area) -> object:
+    """zone_02: 25 spaces, 81 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    -11264, 18% of its sectors open to the sky, dominant surfaces [20, 153, 28],
+    centred at [141.7, 89.6] player widths. Seeded on assembly:001/space:037.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_02', frame=Frame(18688, 20224),
+        style=Style(ceiling_picnum=20, floor_picnum=253, floor_shade=29, wall_shade=25),
+    )
+    build_large_interior(zone)
+    build_outdoor_junction(zone)
+    build_sprite_dense_interior(zone)
+    build_assembly_001_space_097(zone)
+    build_assembly_001_space_064(zone)
+    build_assembly_001_space_121(zone)
+    build_assembly_001_space_087(zone)
+    build_assembly_001_space_088(zone)
+    build_assembly_001_space_093(zone)
+    build_assembly_001_space_051(zone)
+    build_assembly_001_space_103(zone)
+    build_assembly_001_space_038(zone)
+    build_assembly_001_space_094(zone)
+    build_assembly_001_space_120(zone)
+    build_assembly_001_space_048(zone)
+    build_assembly_001_space_049(zone)
+    build_assembly_001_space_104(zone)
+    build_assembly_001_space_089(zone)
+    build_assembly_001_space_071(zone)
+    build_assembly_001_space_067(zone)
+    build_assembly_001_space_123(zone)
+    build_assembly_001_space_065(zone)
+    build_assembly_001_space_072(zone)
+    build_assembly_001_space_074(zone)
+    build_assembly_001_space_073(zone)
+    return zone
 
 
 def build_large_interior(area) -> object:
@@ -824,8 +1711,8 @@ def build_large_interior(area) -> object:
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'large_interior', frame=Frame(25856, 20224),
-        style=Style(ceiling_picnum=20, ceiling_shade=38, floor_picnum=253, floor_shade=29, wall_picnum=153, wall_shade=32),
+        'large_interior', frame=Frame(7168, 0),
+        style=Style(ceiling_shade=38, wall_picnum=153, wall_shade=32),
         note='475 player areas, 27 sectors, contains recess, stepped_run',
     )
     s079 = space.room(
@@ -1135,178 +2022,6 @@ def build_large_interior(area) -> object:
     return space
 
 
-def build_shell_court(area) -> object:
-    """shell_court: 430 player areas, 4 sectors, contains recess.
-
-    Named from measurement: 430 player areas, 4 sky sectors, three embedded shells and one recess; a third tile set again (wall 309/355, floor 2490/355)
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'shell_court', frame=Frame(17920, 18176),
-        style=Style(floor_picnum=2490, parallax_ceiling=True, wall_picnum=309, wall_shade=-21),
-        note='430 player areas, 4 sectors, contains recess',
-    )
-    s050 = space.room(
-        'sector_050',
-        [(2048, 5120), (2048, 4608), (2560, 4096), (3072, 4352), (3840, 4096), (3328, 4864), (3584, 5632), (4352, 6144), (4608, 6656), (4096, 7680), (3264, 8384), (2432, 8256), (2304, 7808), (2048, 7552), (1536, 7680), (1280, 6400), (1536, 5632)],
-        role='gameplay',
-        style=Style(clear_height=70656, floor_picnum=2915, floor_shade=14, floor_z=13312, wall_picnum=355, wall_shade=31),
-        note='native sector 50',
-    )
-    s050.carve([(2784, 4960), (2976, 4800), (3008, 4608), (2880, 4544), (2752, 4576), (2720, 4864)])  # a native inner loop of this sector
-    s050.decorate(
-        native_detail('sprite_021', 2332, x_repeat=64, y_repeat=64, type=9, cstat=128, shade=-8),  # native sprite 21  ~0.6 player heights
-        native_detail('sprite_438', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 438  ~2.2 player heights
-    )
-    s051 = space.room(
-        'sector_051',
-        [(2752, 4576), (2880, 4544), (3008, 4608), (2976, 4800), (2784, 4960), (2720, 4864)],
-        role='detail',
-        style=Style(clear_height=69632, floor_z=12288, wall_picnum=355, wall_shade=21),
-        note='part of structure:recess:002',
-    )
-    s074 = space.room(
-        'sector_074',
-        [(2432, 11264), (2432, 9600), (3200, 9600), (3200, 11264)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=69632, floor_picnum=355, floor_shade=18, floor_z=12288),
-        note='native sector 74',
-    )
-    s074.decorate(
-        native_detail('sprite_016', 2490, x_repeat=81, y_repeat=24, type=0, cstat=417, shade=-3),  # native sprite 16  ~2.2 player heights
-        native_detail('sprite_018', 34, x_repeat=162, y_repeat=4, type=0, cstat=465, shade=19),  # native sprite 18  ~0.2 player heights
-    )
-    s075 = space.room(
-        'sector_075',
-        [(3200, 11264), (3200, 9600), (2432, 9600), (2432, 11264), (2304, 11264), (2176, 11264), (0, 11264), (0, 0), (5632, 0), (5632, 11264), (3456, 11264), (3328, 11264)],
-        faces={'south': 5, 'west': 6, 'north': 7, 'east': 8},
-        role='gameplay',
-        style=Style(clear_height=69632, floor_z=12288),
-        note='native sector 75',
-    )
-    s075.carve([(1280, 6400), (1536, 7680), (2048, 7552), (2304, 7808), (2432, 8256), (3264, 8384), (4096, 7680), (4608, 6656), (4352, 6144), (3584, 5632), (3328, 4864), (3840, 4096), (3072, 4352), (2560, 4096), (2048, 4608), (2048, 5120), (1536, 5632)])  # a native inner loop of this sector
-    s075.decorate(
-        native_detail('sprite_017', 34, x_repeat=162, y_repeat=4, type=0, cstat=465, shade=19),  # native sprite 17  ~0.2 player heights
-        native_detail('sprite_019', 34, x_repeat=48, y_repeat=4, type=0, cstat=465, shade=6),  # native sprite 19  ~0.2 player heights
-    )
-    return space
-
-
-def build_second_interior(area) -> object:
-    """second_interior: 258 player areas, 9 sectors.
-
-    Named from measurement: 258 player areas, no sky, 7.3 player heights, wall 309/5 over floor 365/6
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'second_interior', frame=Frame(32512, 17152),
-        style=Style(ceiling_picnum=2490, ceiling_shade=6, floor_picnum=365, floor_shade=12, wall_picnum=309, wall_shade=-21),
-        note='258 player areas, 9 sectors',
-    )
-    s059 = space.room(
-        'sector_059',
-        [(4, 5120), (370, 5119), (583, 5219), (731, 5403), (783, 5633), (730, 5863), (581, 6046), (366, 6144), (4, 6144)],
-        faces={'south': 7, 'west': 8},
-        role='gameplay',
-        style=Style(clear_height=40960, floor_z=-14336, wall_shade=11),
-        note='native sector 59',
-    )
-    s059.decorate(
-        native_detail('sprite_020', 795, x_repeat=64, y_repeat=64, type=0, cstat=208, shade=-128),  # native sprite 20  ~1.5 player heights
-    )
-    s060 = space.room(
-        'sector_060',
-        [(4, 6144), (366, 6144), (581, 6046), (730, 5863), (783, 5633), (731, 5403), (583, 5219), (370, 5119), (4, 5120), (4, 4608), (574, 4642), (959, 4854), (1220, 5205), (1312, 5635), (1217, 6064), (955, 6413), (568, 6623), (4, 6656)],
-        faces={'west': 8},
-        role='gameplay',
-        style=Style(ceiling_shade=17, clear_height=40960, floor_shade=23, floor_z=-14336, wall_shade=11),
-        note='native sector 60',
-    )
-    s061 = space.room(
-        'sector_061',
-        [(5636, 5120), (5273, 5119), (5058, 5217), (4909, 5400), (4856, 5630), (4908, 5860), (5056, 6044), (5252, 6144), (5636, 6144), (5636, 6656), (4976, 6586), (4632, 6364), (4404, 6029), (4324, 5628), (4406, 5228), (4637, 4894), (4982, 4675), (5636, 4608)],
-        faces={'east': 8},
-        role='gameplay',
-        style=Style(ceiling_shade=17, clear_height=40960, floor_shade=23, floor_z=-14336, wall_shade=33),
-        note='native sector 61',
-    )
-    s062 = space.room(
-        'sector_062',
-        [(5636, 6144), (5252, 6144), (5056, 6044), (4908, 5860), (4856, 5630), (4909, 5400), (5058, 5217), (5273, 5119), (5636, 5120)],
-        faces={'south': 0, 'east': 8},
-        role='gameplay',
-        style=Style(clear_height=40960, floor_z=-14336, wall_shade=33),
-        note='native sector 62',
-    )
-    s062.decorate(
-        native_detail('sprite_025', 795, x_repeat=64, y_repeat=64, type=0, cstat=208, shade=-128),  # native sprite 25  ~1.5 player heights
-    )
-    s063 = space.room(
-        'sector_063',
-        [(5636, 1024), (5275, 1025), (5065, 1126), (4921, 1307), (4869, 1534), (4920, 1761), (5063, 1943), (5271, 2045), (5636, 2048), (5636, 2560), (5086, 2503), (4726, 2286), (4484, 1945), (4399, 1532), (4486, 1121), (4730, 781), (5092, 566), (5636, 512)],
-        faces={'east': 8},
-        role='gameplay',
-        style=Style(ceiling_shade=17, clear_height=40960, floor_shade=23, floor_z=-14336),
-        note='native sector 63',
-    )
-    s064 = space.room(
-        'sector_064',
-        [(5636, 2048), (5271, 2045), (5063, 1943), (4920, 1761), (4869, 1534), (4921, 1307), (5065, 1126), (5275, 1025), (5636, 1024)],
-        faces={'east': 8},
-        role='gameplay',
-        style=Style(clear_height=40960, floor_z=-14336),
-        note='native sector 64',
-    )
-    s064.decorate(
-        native_detail('sprite_024', 795, x_repeat=64, y_repeat=64, type=0, cstat=208, shade=-128),  # native sprite 24  ~1.5 player heights
-    )
-    s076 = space.room(
-        'sector_076',
-        [(3332, 8192), (2308, 8192), (2180, 8192), (1540, 8192), (0, 8192), (4, 6656), (568, 6623), (955, 6413), (1217, 6064), (1312, 5635), (1220, 5205), (959, 4854), (574, 4642), (4, 4608), (4, 0), (5636, 0), (5636, 512), (5092, 566), (4730, 781), (4486, 1121), (4399, 1532), (4484, 1945), (4726, 2286), (5086, 2503), (5636, 2560), (5636, 4608), (4982, 4675), (4637, 4894), (4406, 5228), (4324, 5628), (4404, 6029), (4632, 6364), (4976, 6586), (5636, 6656), (5632, 8192), (3460, 8192)],
-        faces={'north': 14, 'east': 24, 'south': 34},
-        role='gameplay',
-        style=Style(ceiling_shade=30, clear_height=40960, floor_shade=32, floor_z=-14336),
-        note='native sector 76',
-    )
-    s076.carve([(1284, 3328), (1540, 4608), (2052, 4480), (2308, 4736), (2436, 5184), (3268, 5312), (4100, 4608), (4612, 3584), (4356, 3072), (3588, 2560), (3332, 1792), (3844, 1024), (3076, 1280), (2564, 1024), (2052, 1536), (2052, 2048), (1540, 2560)])  # a native inner loop of this sector
-    s076.decorate(
-        native_detail('sprite_023', 795, x_repeat=64, y_repeat=64, type=0, cstat=208, shade=7),  # native sprite 23  ~1.5 player heights
-        native_detail('sprite_396', 1570, x_repeat=48, y_repeat=48, type=217, cstat=384, shade=-8),  # native sprite 396  ~3.3 player heights
-        native_detail('sprite_397', 1570, x_repeat=48, y_repeat=48, type=217, cstat=384, shade=-8),  # native sprite 397  ~3.3 player heights
-        native_detail('sprite_398', 1870, x_repeat=32, y_repeat=32, type=218, cstat=384, shade=-8),  # native sprite 398  ~1.0 player heights
-        native_detail('sprite_399', 1870, x_repeat=32, y_repeat=32, type=218, cstat=384, shade=-8),  # native sprite 399  ~1.0 player heights
-        native_detail('sprite_400', 1870, x_repeat=32, y_repeat=32, type=218, cstat=384, shade=-8),  # native sprite 400  ~1.0 player heights
-        native_detail('sprite_451', 753, x_repeat=64, y_repeat=64, type=146, cstat=384, shade=-8),  # native sprite 451  ~2.9 player heights
-    )
-    s077 = space.room(
-        'sector_077',
-        [(2308, 8320), (3332, 8320), (3332, 8960), (2308, 8960)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(ceiling_picnum=110, ceiling_shade=44, clear_height=16384, floor_picnum=253, floor_shade=41, floor_z=-14336, wall_picnum=5, wall_shade=37),
-        note='native sector 77',
-    )
-    s077.decorate(
-        native_detail('sprite_027', 2433, x_repeat=40, y_repeat=40, type=110, cstat=128, shade=-23),  # native sprite 27  ~0.8 player heights
-        native_detail('sprite_028', 1076, x_repeat=32, y_repeat=32, type=20, cstat=464, shade=-8),  # native sprite 28  ~0.7 player heights
-    )
-    s078 = space.room(
-        'sector_078',
-        [(3332, 8320), (2308, 8320), (2308, 8192), (3332, 8192)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(ceiling_picnum=309, ceiling_shade=44, clear_height=16384, floor_picnum=6, floor_shade=40, floor_z=-14336, wall_picnum=5, wall_shade=37),
-        note='native sector 78',
-    )
-    s078.decorate(
-        native_detail('sprite_447', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 447  ~2.2 player heights
-    )
-    return space
-
-
 def build_outdoor_junction(area) -> object:
     """outdoor_junction: 248 player areas, 11 sectors.
 
@@ -1315,8 +2030,8 @@ def build_outdoor_junction(area) -> object:
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'outdoor_junction', frame=Frame(18688, 39424),
-        style=Style(floor_shade=15, parallax_ceiling=True, wall_shade=25),
+        'outdoor_junction', frame=Frame(0, 19200),
+        style=Style(ceiling_picnum=2500, floor_picnum=2448, floor_shade=15, parallax_ceiling=True),
         note='248 player areas, 11 sectors',
     )
     s102 = space.room(
@@ -1445,7 +2160,7 @@ def build_sprite_dense_interior(area) -> object:
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'sprite_dense_interior', frame=Frame(20224, 39936),
+        'sprite_dense_interior', frame=Frame(1536, 19712),
         style=Style(ceiling_picnum=365, ceiling_shade=45, floor_picnum=297, floor_shade=43, wall_picnum=365, wall_shade=39),
         note='233 player areas, 9 sectors',
     )
@@ -1566,125 +2281,14 @@ def build_sprite_dense_interior(area) -> object:
     return space
 
 
-def build_assembly_001_space_105(area) -> object:
-    """assembly_001_space_105: 204 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_105', frame=Frame(0, 9728),
-        style=Style(floor_shade=15, parallax_ceiling=True, wall_shade=12),
-        note='204 player areas, 1 sector',
-    )
-    s260 = space.room(
-        'sector_260',
-        [(16896, 0), (16896, 128), (16896, 1664), (16768, 1664), (16768, 1792), (15872, 1792), (12288, 1792), (12032, 1792), (11520, 1792), (11264, 1792), (10240, 1792), (7424, 1792), (6144, 1792), (5888, 1792), (5376, 1792), (5120, 1792), (1024, 1792), (512, 1792), (0, 1280), (0, 0), (1024, 0), (6656, 0), (7168, 0), (10240, 0), (10752, 0), (15872, 0)],
-        faces={'east': 1, 'south': 15, 'west': 18, 'north': 20},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192),
-        note='native sector 260',
-    )
-    s260.decorate(
-        native_detail('sprite_156', 1070, x_repeat=32, y_repeat=32, type=20, cstat=464, shade=4),  # native sprite 156  ~0.7 player heights
-        native_detail('sprite_241', 259, x_repeat=88, y_repeat=112, type=0, cstat=385, shade=34),  # native sprite 241  ~7.6 player heights
-        native_detail('sprite_294', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 294  ~8.0 player heights
-        native_detail('sprite_295', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 295  ~8.0 player heights
-        native_detail('sprite_296', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 296  ~8.0 player heights
-        native_detail('sprite_297', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 297  ~8.0 player heights
-        native_detail('sprite_298', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 298  ~8.0 player heights
-        native_detail('sprite_299', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 299  ~8.0 player heights
-        native_detail('sprite_300', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 300  ~8.0 player heights
-        native_detail('sprite_409', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 409  ~8.0 player heights
-        native_detail('sprite_434', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 434  ~2.2 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_041(area) -> object:
-    """assembly_001_space_041: 190 player areas, 2 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_041', frame=Frame(14848, 31488),
-        style=Style(floor_shade=13, parallax_ceiling=True, wall_shade=36),
-        note='190 player areas, 2 sectors',
-    )
-    s086 = space.room(
-        'sector_086',
-        [(1792, 8192), (1280, 8192), (512, 8192), (0, 8192), (0, 1536), (768, 0), (2048, 1280), (2048, 1472), (2112, 1536), (2304, 1536), (2304, 7680)],
-        faces={'south': 1, 'west': 3, 'east': 9},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192),
-        note='native sector 86',
-    )
-    s086.decorate(
-        native_detail('sprite_389', 316, x_repeat=64, y_repeat=64, type=417, cstat=464, shade=19),  # native sprite 389  ~2.9 player heights
-    )
-    s095 = space.room(
-        'sector_095',
-        [(2304, 7680), (2304, 1536), (4096, 1536), (4096, 7680), (3328, 7680)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 4},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_shade=18, floor_z=8192, wall_shade=6),
-        note='native sector 95',
-    )
-    return space
-
-
-def build_assembly_001_space_099(area) -> object:
-    """assembly_001_space_099: 150 player areas, 2 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_099', frame=Frame(18944, 33024),
-        style=Style(floor_shade=12, parallax_ceiling=True, wall_picnum=2474, wall_shade=17),
-        note='150 player areas, 2 sectors',
-    )
-    s225 = space.room(
-        'sector_225',
-        [(5632, 0), (5632, 5120), (5376, 5376), (2304, 5376), (2304, 6144), (1280, 6144), (0, 6144), (0, 0), (3584, 0), (4608, 0)],
-        faces={'east': 0, 'south': 5, 'west': 6, 'north': 7},
-        role='gameplay',
-        style=Style(clear_height=58368, floor_z=1024),
-        note='native sector 225',
-    )
-    s225.carve([(5376, 4608), (5376, 768), (1024, 768), (1024, 4608)])  # a native inner loop of this sector
-    s225.decorate(
-        native_detail('sprite_030', 2493, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=-128),  # native sprite 30  ~3.5 player heights
-        native_detail('sprite_094', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 94  ~3.0 player heights
-        native_detail('sprite_142', 2820, x_repeat=40, y_repeat=40, type=201, cstat=384, shade=-8),  # native sprite 142  ~3.0 player heights
-        native_detail('sprite_244', 2497, x_repeat=64, y_repeat=64, type=416, cstat=401, shade=13),  # native sprite 244  ~1.5 player heights
-        native_detail('sprite_359', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 359  ~3.0 player heights
-        native_detail('sprite_421', 2497, x_repeat=64, y_repeat=64, type=416, cstat=401, shade=13),  # native sprite 421  ~1.5 player heights
-        native_detail('sprite_422', 2497, x_repeat=64, y_repeat=64, type=416, cstat=401, shade=13),  # native sprite 422  ~1.5 player heights
-    )
-    s226 = space.room(
-        'sector_226',
-        [(5376, 4608), (1024, 4608), (1024, 768), (5376, 768)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(clear_height=55296, floor_picnum=21, floor_shade=0, floor_z=-2048),
-        note='native sector 226',
-    )
-    s226.carve([(3840, 4352), (4608, 3584), (4608, 1792), (4416, 1600), (4512, 1504), (4128, 1120), (4032, 1216), (3840, 1024), (2048, 1024), (1280, 1792), (1280, 3584), (2048, 4352)])  # a native inner loop of this sector
-    s226.decorate(
-        native_detail('sprite_095', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 95  ~3.0 player heights
-        native_detail('sprite_096', 2820, x_repeat=40, y_repeat=40, type=201, cstat=384, shade=-8),  # native sprite 96  ~3.0 player heights
-        native_detail('sprite_220', 1046, x_repeat=40, y_repeat=40, type=20, cstat=464, shade=-8),  # native sprite 220  ~0.9 player heights
-    )
-    return space
-
-
 def build_assembly_001_space_097(area) -> object:
     """assembly_001_space_097: 146 player areas, 3 sectors, contains recess.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_097', frame=Frame(27904, 48128),
-        style=Style(floor_shade=13, parallax_ceiling=True, wall_shade=25),
+        'assembly_001_space_097', frame=Frame(9216, 27904),
+        style=Style(ceiling_picnum=2500, floor_picnum=2448, floor_shade=13, parallax_ceiling=True),
         note='146 player areas, 3 sectors, contains recess',
     )
     s221 = space.room(
@@ -1714,6 +2318,973 @@ def build_assembly_001_space_097(area) -> object:
     return space
 
 
+def build_assembly_001_space_064(area) -> object:
+    """assembly_001_space_064: 38 player areas, 4 sectors, contains recess.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_064', frame=Frame(1536, 25472),
+        style=Style(ceiling_picnum=21, ceiling_shade=27, floor_picnum=2448, floor_shade=31, wall_picnum=88, wall_shade=30),
+        note='38 player areas, 4 sectors, contains recess',
+    )
+    s161 = space.room(
+        'sector_161',
+        [(2944, 128), (3072, 384), (1920, 384), (1792, 0), (2176, 0), (2688, 128)],
+        faces={'south': 1, 'north': 3},
+        role='detail',
+        style=Style(ceiling_picnum=5, ceiling_shade=32, clear_height=24576, floor_picnum=5, floor_shade=32, floor_z=-8192, wall_picnum=5, wall_shade=32),
+        note='part of structure:recess:006',
+    )
+    s161.decorate(
+        native_detail('sprite_136', 2101, x_repeat=64, y_repeat=64, type=0, cstat=128, shade=-128),  # native sprite 136  ~1.7 player heights
+        native_detail('sprite_264', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 264  ~2.2 player heights
+    )
+    s322 = space.room(
+        'sector_322',
+        [(6656, 896), (6400, 896), (6400, 384), (6656, 384)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='detail',
+        style=Style(clear_height=48128, floor_z=-6144, wall_picnum=2499, wall_shade=25),
+        note='part of structure:recess:013',
+    )
+    s323 = space.room(
+        'sector_323',
+        [(512, 896), (256, 896), (256, 384), (512, 384)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='detail',
+        style=Style(clear_height=48128, floor_z=-6144),
+        note='part of structure:recess:014',
+    )
+    s324 = space.room(
+        'sector_324',
+        [(256, 384), (256, 896), (512, 896), (512, 384), (1920, 384), (3072, 384), (6400, 384), (6400, 896), (6656, 896), (6656, 384), (6912, 384), (6912, 1152), (0, 1152), (0, 384)],
+        faces={'north': 5, 'east': 10, 'south': 11, 'west': 12},
+        role='gameplay',
+        style=Style(ceiling_shade=20, clear_height=49152, floor_z=-6144),
+        note='native sector 324',
+    )
+    s324.decorate(
+        native_detail('sprite_283', 908, x_repeat=4, y_repeat=64, type=459, cstat=128, shade=-8),  # native sprite 283  ~3.6 player heights
+        native_detail('sprite_284', 908, x_repeat=4, y_repeat=64, type=459, cstat=128, shade=-8),  # native sprite 284  ~3.6 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_121(area) -> object:
+    """assembly_001_space_121: 13 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_121', frame=Frame(14190, 25728),
+        style=Style(ceiling_picnum=2500, floor_picnum=2448, floor_shade=18, parallax_ceiling=True),
+        note='13 player areas, 1 sector',
+    )
+    s312 = space.room(
+        'sector_312',
+        [(234, 276), (370, 32), (818, 0), (1170, 288), (1362, 672), (1010, 1792), (498, 1856), (18, 1536), (0, 1248)],
+        role='gameplay',
+        style=Style(clear_height=51200, floor_z=-6144),
+        note='native sector 312',
+    )
+    s312.decorate(
+        native_detail('sprite_382', 3793, x_repeat=40, y_repeat=40, type=416, cstat=385, shade=10),  # native sprite 382  ~3.0 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_087(area) -> object:
+    """assembly_001_space_087: 11 player areas, 1 sector, contains recess.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_087', frame=Frame(8192, 1792),
+        style=Style(ceiling_picnum=329, ceiling_shade=27, floor_picnum=21, floor_shade=9, wall_picnum=25, wall_shade=38),
+        note='11 player areas, 1 sector, contains recess',
+    )
+    s202 = space.room(
+        'sector_202',
+        [(1280, 1536), (0, 1280), (0, 256), (1280, 0)],
+        faces={'west': 1, 'east': 3},
+        role='detail',
+        style=Style(clear_height=32768, floor_z=-24576),
+        note='part of structure:recess:009',
+    )
+    s202.decorate(
+        native_detail('sprite_081', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 81  ~3.0 player heights
+        native_detail('sprite_347', 801, x_repeat=48, y_repeat=48, type=79, cstat=128, shade=-8),  # native sprite 347  ~1.2 player heights
+        native_detail('sprite_348', 801, x_repeat=48, y_repeat=48, type=79, cstat=128, shade=-8),  # native sprite 348  ~1.2 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_088(area) -> object:
+    """assembly_001_space_088: 11 player areas, 1 sector, contains recess.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_088', frame=Frame(8192, 5888),
+        style=Style(ceiling_picnum=329, ceiling_shade=27, floor_picnum=21, floor_shade=9, wall_picnum=110, wall_shade=41),
+        note='11 player areas, 1 sector, contains recess',
+    )
+    s203 = space.room(
+        'sector_203',
+        [(1280, 1536), (0, 1280), (0, 256), (1280, 0)],
+        faces={'west': 1, 'east': 3},
+        role='detail',
+        style=Style(clear_height=32768, floor_z=-24576),
+        note='part of structure:recess:010',
+    )
+    s203.decorate(
+        native_detail('sprite_080', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 80  ~3.0 player heights
+        native_detail('sprite_346', 809, x_repeat=48, y_repeat=48, type=63, cstat=384, shade=-8),  # native sprite 346  ~0.8 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_093(area) -> object:
+    """assembly_001_space_093: 7 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_093', frame=Frame(9344, 19200),
+        style=Style(ceiling_picnum=306, ceiling_shade=23, floor_picnum=34, floor_shade=3, wall_picnum=170, wall_shade=20),
+        note='7 player areas, 1 sector',
+    )
+    s209 = space.room(
+        'sector_209',
+        [(1664, 0), (1664, 1280), (0, 1280), (0, 896), (1280, 896), (1280, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 5},
+        role='gameplay',
+        style=Style(clear_height=37888, floor_z=-17408),
+        note='native sector 209',
+    )
+    s209.decorate(
+        native_detail('sprite_246', 802, x_repeat=40, y_repeat=40, type=416, cstat=385, shade=0),  # native sprite 246  ~0.7 player heights
+        native_detail('sprite_250', 604, x_repeat=40, y_repeat=40, type=416, cstat=385, shade=-8),  # native sprite 250  ~0.6 player heights
+        native_detail('sprite_340', 524, x_repeat=48, y_repeat=48, type=43, cstat=128, shade=-8),  # native sprite 340  ~0.7 player heights
+        native_detail('sprite_341', 816, x_repeat=48, y_repeat=48, type=76, cstat=128, shade=-8),  # native sprite 341  ~0.7 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_051(area) -> object:
+    """assembly_001_space_051: 6 player areas, 4 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_051', frame=Frame(6912, 18944),
+        style=Style(ceiling_picnum=5, ceiling_shade=32, floor_picnum=5, floor_shade=32, wall_picnum=5, wall_shade=32),
+        note='6 player areas, 4 sectors',
+    )
+    s107 = space.room(
+        'sector_107',
+        [(1280, 256), (1024, 256), (512, 512), (256, 512), (256, 0), (1152, 0)],
+        faces={'south': 2, 'west': 3, 'north': 4},
+        role='gameplay',
+        style=Style(clear_height=3072, floor_z=-11264),
+        note='native sector 107',
+    )
+    s107.decorate(
+        native_detail('sprite_052', 2101, x_repeat=64, y_repeat=64, type=0, cstat=129, shade=-128),  # native sprite 52  ~1.7 player heights
+    )
+    s108 = space.room(
+        'sector_108',
+        [(1024, 896), (1024, 256), (1280, 256), (1280, 896)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=30720, floor_z=-11264),
+        note='native sector 108',
+    )
+    s109 = space.room(
+        'sector_109',
+        [(512, 512), (512, 896), (0, 896), (256, 512)],
+        faces={'east': 0, 'south': 1, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=32768, floor_z=-11264),
+        note='native sector 109',
+    )
+    s109.decorate(
+        native_detail('sprite_269', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 269  ~2.2 player heights
+    )
+    s110 = space.room(
+        'sector_110',
+        [(1024, 896), (512, 896), (512, 512), (1024, 256)],
+        faces={'south': 0, 'west': 1, 'east': 3},
+        role='gameplay',
+        style=Style(clear_height=35840, floor_z=-11264),
+        note='native sector 110',
+    )
+    s110.decorate(
+        native_detail('sprite_053', 2115, x_repeat=40, y_repeat=64, type=0, cstat=129, shade=-32),  # native sprite 53  ~5.8 player heights
+        native_detail('sprite_272', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 272  ~2.2 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_103(area) -> object:
+    """assembly_001_space_103: 5 player areas, 3 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_103', frame=Frame(10240, 27392),
+        style=Style(ceiling_picnum=2499, ceiling_shade=54, floor_picnum=2473, floor_shade=0),
+        note='5 player areas, 3 sectors',
+    )
+    s237 = space.room(
+        'sector_237',
+        [(1152, 512), (1152, 0), (1536, 0), (1536, 512)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=45056, floor_z=-2048),
+        note='native sector 237',
+    )
+    s238 = space.room(
+        'sector_238',
+        [(384, 512), (384, 0), (1152, 0), (1152, 512)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=45056, floor_z=-2048),
+        note='native sector 238',
+    )
+    s238.decorate(
+        native_detail('sprite_293', 1044, x_repeat=48, y_repeat=88, type=0, cstat=413, shade=24),  # native sprite 293  ~8.0 player heights
+    )
+    s239 = space.room(
+        'sector_239',
+        [(384, 0), (384, 512), (0, 512), (0, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=45056, floor_z=-2048),
+        note='native sector 239',
+    )
+    return space
+
+
+def build_assembly_001_space_038(area) -> object:
+    """assembly_001_space_038: 4 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_038', frame=Frame(7424, 6144),
+        style=Style(ceiling_picnum=329, ceiling_shade=32, floor_picnum=329, floor_shade=8, wall_picnum=329, wall_shade=27),
+        note='4 player areas, 1 sector',
+    )
+    s080 = space.room(
+        'sector_080',
+        [(0, 0), (512, 0), (512, 1024), (0, 1024)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(clear_height=20480, floor_z=-28672),
+        note='native sector 80',
+    )
+    return space
+
+
+def build_assembly_001_space_094(area) -> object:
+    """assembly_001_space_094: 3 player areas, 2 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_094', frame=Frame(10496, 21760),
+        style=Style(floor_picnum=20, floor_shade=0, wall_picnum=20, wall_shade=0),
+        note='3 player areas, 2 sectors',
+    )
+    s213 = space.room(
+        'sector_213',
+        [(1792, 128), (0, 128), (0, 0), (1152, 0), (1792, 0)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 4},
+        role='gameplay',
+        style=Style(clear_height=18432, floor_z=-17408),
+        note='native sector 213',
+    )
+    s213.decorate(
+        native_detail('sprite_207', 144, x_repeat=56, y_repeat=72, type=416, cstat=401, shade=35),  # native sprite 207  ~3.3 player heights
+        native_detail('sprite_208', 144, x_repeat=56, y_repeat=72, type=416, cstat=401, shade=35),  # native sprite 208  ~3.3 player heights
+    )
+    s214 = space.room(
+        'sector_214',
+        [(0, 128), (1792, 128), (1792, 256), (0, 256)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(clear_height=18432, floor_z=-17408),
+        note='native sector 214',
+    )
+    return space
+
+
+def build_assembly_001_space_120(area) -> object:
+    """assembly_001_space_120: 2 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_120', frame=Frame(13824, 25920),
+        style=Style(ceiling_picnum=16, ceiling_shade=45, floor_picnum=329, floor_shade=39, wall_picnum=329, wall_shade=45),
+        note='2 player areas, 1 sector',
+    )
+    s311 = space.room(
+        'sector_311',
+        [(256, 0), (600, 84), (366, 1056), (0, 960)],
+        role='gameplay',
+        style=Style(clear_height=23552, floor_z=-7168),
+        note='native sector 311',
+    )
+    s311.decorate(
+        native_detail('sprite_273', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 273  ~2.2 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_048(area) -> object:
+    """assembly_001_space_048: 2 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_048', frame=Frame(5888, 24064),
+        style=Style(ceiling_picnum=365, ceiling_shade=45, floor_picnum=365, floor_shade=31, wall_picnum=365, wall_shade=39),
+        note='2 player areas, 1 sector',
+    )
+    s098 = space.room(
+        'sector_098',
+        [(0, 1280), (0, 0), (256, 0), (256, 1280)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=36864, floor_z=-20480),
+        note='native sector 98',
+    )
+    return space
+
+
+def build_assembly_001_space_049(area) -> object:
+    """assembly_001_space_049: 2 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_049', frame=Frame(5888, 21760),
+        style=Style(ceiling_picnum=365, ceiling_shade=45, floor_picnum=365, floor_shade=34, wall_picnum=365, wall_shade=39),
+        note='2 player areas, 1 sector',
+    )
+    s101 = space.room(
+        'sector_101',
+        [(256, 1280), (0, 1280), (0, 0), (256, 0)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(clear_height=36864, floor_z=-20480),
+        note='native sector 101',
+    )
+    return space
+
+
+def build_assembly_001_space_104(area) -> object:
+    """assembly_001_space_104: 2 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_104', frame=Frame(11648, 21504),
+        style=Style(ceiling_picnum=306, ceiling_shade=23, floor_picnum=120, floor_shade=15, wall_picnum=153, wall_shade=0),
+        note='2 player areas, 1 sector',
+    )
+    s240 = space.room(
+        'sector_240',
+        [(0, 256), (0, 0), (1152, 0), (1152, 256), (640, 256)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 4},
+        role='gameplay',
+        style=Style(clear_height=38912, floor_z=-16384),
+        note='native sector 240',
+    )
+    s240.decorate(
+        native_detail('sprite_245', 604, x_repeat=40, y_repeat=40, type=416, cstat=385, shade=-8),  # native sprite 245  ~0.6 player heights
+        native_detail('sprite_249', 604, x_repeat=40, y_repeat=40, type=416, cstat=385, shade=-8),  # native sprite 249  ~0.6 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_089(area) -> object:
+    """assembly_001_space_089: 2 player areas, 2 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_089', frame=Frame(6912, 15360),
+        style=Style(ceiling_shade=40, floor_picnum=20, floor_shade=22, wall_picnum=20, wall_shade=22),
+        note='2 player areas, 2 sectors',
+    )
+    s204 = space.room(
+        'sector_204',
+        [(128, 1024), (128, 0), (256, 0), (256, 1024)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=16384, floor_z=-30720),
+        note='native sector 204',
+    )
+    s205 = space.room(
+        'sector_205',
+        [(128, 0), (128, 1024), (0, 1024), (0, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=16384, floor_z=-30720),
+        note='native sector 205',
+    )
+    s205.decorate(
+        native_detail('sprite_206', 144, x_repeat=64, y_repeat=64, type=416, cstat=401, shade=24),  # native sprite 206  ~2.9 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_071(area) -> object:
+    """assembly_001_space_071: 1 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_071', frame=Frame(12928, 15424),
+        style=Style(ceiling_picnum=110, ceiling_shade=41, floor_picnum=110, floor_shade=41, wall_picnum=110, wall_shade=41),
+        note='1 player areas, 1 sector',
+    )
+    s174 = space.room(
+        'sector_174',
+        [(0, 768), (0, 512), (0, 256), (0, 0), (256, 192), (192, 576)],
+        faces={'west': 0},
+        role='gameplay',
+        style=Style(clear_height=19456, floor_z=-27648),
+        note='native sector 174',
+    )
+    return space
+
+
+def build_assembly_001_space_067(area) -> object:
+    """assembly_001_space_067: 1 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_067', frame=Frame(3712, 25344),
+        style=Style(ceiling_picnum=5, ceiling_shade=32, floor_picnum=5, floor_shade=32, wall_picnum=5, wall_shade=32),
+        note='1 player areas, 1 sector',
+    )
+    s164 = space.room(
+        'sector_164',
+        [(512, 0), (512, 256), (0, 128), (0, 0)],
+        faces={'east': 0, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=0),
+        note='native sector 164',
+    )
+    return space
+
+
+def build_assembly_001_space_123(area) -> object:
+    """assembly_001_space_123: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_123', frame=Frame(8896, 22016),
+        style=Style(ceiling_shade=33, floor_picnum=20, floor_shade=21, wall_picnum=28, wall_shade=23),
+        note='0 player areas, 1 sector',
+    )
+    s326 = space.room(
+        'sector_326',
+        [(64, 0), (64, 1024), (0, 1024), (0, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=19456, floor_z=-35840),
+        note='native sector 326',
+    )
+    s326.decorate(
+        native_detail('sprite_279', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 279  ~2.2 player heights
+        native_detail('sprite_418', 3997, x_repeat=64, y_repeat=64, type=5, cstat=32896, shade=0),  # native sprite 418  (tile not in ART)
+    )
+    return space
+
+
+def build_assembly_001_space_065(area) -> object:
+    """assembly_001_space_065: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_065', frame=Frame(3328, 25344),
+        style=Style(ceiling_picnum=5, ceiling_shade=32, floor_picnum=5, floor_shade=32, wall_picnum=5, wall_shade=47),
+        note='0 player areas, 1 sector',
+    )
+    s162 = space.room(
+        'sector_162',
+        [(384, 0), (384, 128), (0, 128), (0, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=0),
+        note='native sector 162',
+    )
+    return space
+
+
+def build_assembly_001_space_072(area) -> object:
+    """assembly_001_space_072: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_072', frame=Frame(12800, 15872),
+        style=Style(ceiling_shade=41, floor_picnum=20, floor_shade=41, wall_picnum=449, wall_shade=41),
+        note='0 player areas, 1 sector',
+    )
+    s175 = space.room(
+        'sector_175',
+        [(0, 0), (128, 64), (128, 320), (0, 320)],
+        faces={'east': 1, 'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=-27648),
+        note='native sector 175',
+    )
+    return space
+
+
+def build_assembly_001_space_074(area) -> object:
+    """assembly_001_space_074: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_074', frame=Frame(12800, 15424),
+        style=Style(ceiling_shade=41, floor_picnum=20, floor_shade=41, wall_picnum=449, wall_shade=41),
+        note='0 player areas, 1 sector',
+    )
+    s177 = space.room(
+        'sector_177',
+        [(128, 256), (0, 256), (0, 0), (128, 0)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=-28672),
+        note='native sector 177',
+    )
+    return space
+
+
+def build_assembly_001_space_073(area) -> object:
+    """assembly_001_space_073: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_073', frame=Frame(12800, 15680),
+        style=Style(ceiling_shade=41, floor_picnum=20, floor_shade=41, wall_picnum=110, wall_shade=41),
+        note='0 player areas, 1 sector',
+    )
+    s176 = space.room(
+        'sector_176',
+        [(0, 192), (0, 0), (128, 0), (128, 256)],
+        faces={'west': 0, 'north': 1, 'east': 2},
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=-26624),
+        note='native sector 176',
+    )
+    return space
+
+
+def build_main_complex_zone_03(area) -> object:
+    """zone_03: 17 spaces, 69 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    8192, 74% of its sectors open to the sky, dominant surfaces [2448, 2499, 2474],
+    centred at [97.1, 18.5] player widths. Seeded on assembly:001/space:011.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_03', frame=Frame(0, 0),
+        style=Style(parallax_ceiling=True),
+    )
+    build_far_open_ground(zone)
+    build_arrival_yard(zone)
+    build_assembly_001_space_105(zone)
+    build_assembly_001_space_107(zone)
+    build_assembly_001_space_062(zone)
+    build_assembly_001_space_012(zone)
+    build_assembly_001_space_057(zone)
+    build_assembly_001_space_059(zone)
+    build_assembly_001_space_054(zone)
+    build_assembly_001_space_020(zone)
+    build_assembly_001_space_122(zone)
+    build_assembly_001_space_053(zone)
+    build_assembly_001_space_056(zone)
+    build_assembly_001_space_061(zone)
+    build_assembly_001_space_058(zone)
+    build_assembly_001_space_060(zone)
+    build_assembly_001_space_070(zone)
+    return zone
+
+
+def build_far_open_ground(area) -> object:
+    """far_open_ground: 820 player areas, 16 sectors.
+
+    Named from measurement: 820 player areas, 16 of 16 sectors sky-lit, outdoor tile set, but connected only to two small spaces -- a separate outdoor lobe
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'far_open_ground', frame=Frame(0, 0),
+        style=Style(floor_shade=30, wall_picnum=2474),
+        note='820 player areas, 16 sectors',
+    )
+    s145 = space.room(
+        'sector_145',
+        [(6656, 6400), (7168, 6400), (7168, 9728), (6656, 9728), (6656, 7680)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(clear_height=73728, floor_z=16384, wall_picnum=401),
+        note='native sector 145',
+    )
+    s146 = space.room(
+        'sector_146',
+        [(7168, 6400), (10240, 6400), (10240, 9728), (7168, 9728)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(clear_height=77824, floor_picnum=2496, floor_z=20480),
+        note='native sector 146',
+    )
+    s147 = space.room(
+        'sector_147',
+        [(10240, 6400), (10752, 6400), (10752, 7680), (10752, 9728), (10240, 9728)],
+        faces={'north': 0, 'east': 2, 'south': 3, 'west': 4},
+        role='gameplay',
+        style=Style(clear_height=73728, floor_z=16384, wall_picnum=401),
+        note='native sector 147',
+    )
+    s148 = space.room(
+        'sector_148',
+        [(11008, 4864), (11008, 4992), (11008, 6400), (10752, 6400), (10240, 6400), (7168, 6400), (6656, 6400), (6400, 6400), (6400, 4992), (6400, 4864), (6656, 4864), (6656, 6144), (10752, 6144), (10752, 4864)],
+        faces={'east': 1, 'south': 4, 'west': 7, 'north': 9},
+        role='gameplay',
+        style=Style(clear_height=69632, floor_shade=29, floor_z=12288),
+        note='native sector 148',
+    )
+    s149 = space.room(
+        'sector_149',
+        [(1024, 4864), (1024, 9728), (0, 9728), (0, 4864)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=77824, floor_shade=20, floor_z=20480),
+        note='native sector 149',
+    )
+    s150 = space.room(
+        'sector_150',
+        [(1024, 1536), (1024, 4864), (0, 4864), (0, 1536)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=77824, floor_z=20480, wall_shade=39),
+        note='native sector 150',
+    )
+    s151 = space.room(
+        'sector_151',
+        [(1024, 4864), (1024, 1536), (5120, 1536), (5120, 4864)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=77824, floor_z=20480, wall_shade=38),
+        note='native sector 151',
+    )
+    s151.decorate(
+        native_detail('sprite_102', 547, x_repeat=64, y_repeat=64, type=417, cstat=385, shade=31),  # native sprite 102  ~7.2 player heights
+        native_detail('sprite_103', 547, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=31),  # native sprite 103  ~7.2 player heights
+        native_detail('sprite_104', 547, x_repeat=64, y_repeat=64, type=0, cstat=129, shade=31),  # native sprite 104  ~7.2 player heights
+        native_detail('sprite_105', 547, x_repeat=64, y_repeat=64, type=0, cstat=129, shade=31),  # native sprite 105  ~7.2 player heights
+    )
+    s152 = space.room(
+        'sector_152',
+        [(15872, 9728), (15872, 4864), (16896, 4864), (16896, 9728)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=77824, floor_shade=20, floor_z=20480),
+        note='native sector 152',
+    )
+    s153 = space.room(
+        'sector_153',
+        [(15872, 4864), (15872, 1536), (16896, 1536), (16896, 4864)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=77824, floor_z=20480, wall_picnum=2499),
+        note='native sector 153',
+    )
+    s154 = space.room(
+        'sector_154',
+        [(15872, 1536), (15872, 4864), (12288, 4864), (12288, 1536)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=77824, floor_z=20480, wall_shade=39),
+        note='native sector 154',
+    )
+    s154.decorate(
+        native_detail('sprite_106', 547, x_repeat=64, y_repeat=64, type=417, cstat=385, shade=31),  # native sprite 106  ~7.2 player heights
+        native_detail('sprite_107', 547, x_repeat=64, y_repeat=64, type=417, cstat=385, shade=31),  # native sprite 107  ~7.2 player heights
+        native_detail('sprite_108', 547, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=31),  # native sprite 108  ~7.2 player heights
+        native_detail('sprite_109', 547, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=31),  # native sprite 109  ~7.2 player heights
+    )
+    s155 = space.room(
+        'sector_155',
+        [(11008, 4992), (11776, 4992), (11776, 7680), (10752, 7680), (10752, 6400), (11008, 6400)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(clear_height=77824, floor_shade=29, floor_z=20480),
+        note='native sector 155',
+    )
+    s155.decorate(
+        native_detail('sprite_100', 540, x_repeat=64, y_repeat=64, type=417, cstat=385, shade=31),  # native sprite 100  ~7.4 player heights
+    )
+    s156 = space.room(
+        'sector_156',
+        [(11776, 4992), (12288, 4992), (12288, 4864), (15872, 4864), (15872, 9728), (10752, 9728), (10752, 7680), (11776, 7680)],
+        faces={'north': 2, 'east': 3, 'south': 4, 'west': 5},
+        role='gameplay',
+        style=Style(clear_height=77824, floor_shade=20, floor_z=20480),
+        note='native sector 156',
+    )
+    s157 = space.room(
+        'sector_157',
+        [(11776, 4864), (11776, 4096), (11776, 1024), (15872, 1024), (15872, 0), (16896, 0), (16896, 1536), (15872, 1536), (12288, 1536), (12288, 4864), (12288, 4992), (11776, 4992), (11008, 4992), (11008, 4864)],
+        faces={'north': 4, 'east': 5, 'south': 11, 'west': 12},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192, wall_picnum=401),
+        note='native sector 157',
+    )
+    s157.decorate(
+        native_detail('sprite_111', 140, x_repeat=40, y_repeat=34, type=0, cstat=208, shade=-10),  # native sprite 111  ~1.5 player heights
+        native_detail('sprite_112', 768, x_repeat=64, y_repeat=40, type=0, cstat=723, shade=63),  # native sprite 112  ~1.3 player heights
+    )
+    s158 = space.room(
+        'sector_158',
+        [(5632, 4992), (6400, 4992), (6400, 6400), (6656, 6400), (6656, 7680), (5632, 7680)],
+        faces={'north': 0, 'east': 3, 'south': 4, 'west': 5},
+        role='gameplay',
+        style=Style(clear_height=77824, floor_shade=32, floor_z=20480),
+        note='native sector 158',
+    )
+    s158.decorate(
+        native_detail('sprite_101', 540, x_repeat=64, y_repeat=64, type=417, cstat=385, shade=32),  # native sprite 101  ~7.4 player heights
+    )
+    s159 = space.room(
+        'sector_159',
+        [(5120, 4864), (5120, 4992), (5632, 4992), (5632, 7680), (6656, 7680), (6656, 9728), (1024, 9728), (1024, 4864)],
+        faces={'east': 4, 'south': 5, 'west': 6, 'north': 7},
+        role='gameplay',
+        style=Style(clear_height=77824, floor_shade=20, floor_z=20480),
+        note='native sector 159',
+    )
+    s160 = space.room(
+        'sector_160',
+        [(5632, 4096), (5632, 4864), (6400, 4864), (6400, 4992), (5632, 4992), (5120, 4992), (5120, 4864), (5120, 1536), (1024, 1536), (0, 1536), (0, 0), (1536, 0), (1536, 1024), (5632, 1024)],
+        faces={'east': 2, 'south': 3, 'west': 9, 'north': 10},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192, wall_picnum=401),
+        note='native sector 160',
+    )
+    s160.decorate(
+        native_detail('sprite_113', 401, x_repeat=64, y_repeat=64, type=0, cstat=208, shade=39),  # native sprite 113  ~11.6 player heights
+        native_detail('sprite_114', 140, x_repeat=40, y_repeat=32, type=0, cstat=208, shade=7),  # native sprite 114  ~1.5 player heights
+    )
+    return space
+
+
+def build_arrival_yard(area) -> object:
+    """arrival_yard: 478 player areas, 10 sectors.
+
+    Named from measurement: holds the only player start; 478 player areas; every sector sky-lit; 42 sprites; the outdoor tile set (wall 2499, floor 2448, ceiling 2500)
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'arrival_yard', frame=Frame(3584, 15616),
+        style=Style(wall_shade=32),
+        note='478 player areas, 10 sectors',
+    )
+    s017 = space.room(
+        'sector_017',
+        [(7936, 8704), (7936, 9984), (7424, 9984), (7424, 8832), (7808, 8832)],
+        faces={'east': 0, 'south': 1, 'west': 2},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192, wall_shade=12),
+        note='native sector 17',
+    )
+    s017.decorate(
+        native_detail('sprite_386', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 386  ~2.2 player heights
+    )
+    s019 = space.room(
+        'sector_019',
+        [(7936, 8448), (7808, 8320), (7424, 8320), (7424, 7296), (7936, 7296)],
+        faces={'west': 2, 'north': 3, 'east': 4},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192, wall_shade=12),
+        note='native sector 19',
+    )
+    s019.decorate(
+        native_detail('sprite_407', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 407  ~2.2 player heights
+    )
+    s020 = space.room(
+        'sector_020',
+        [(7936, 6784), (8832, 6784), (8832, 7296), (7936, 7296)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192, wall_picnum=2491, wall_shade=1),
+        note='native sector 20',
+    )
+    s020.decorate(
+        native_detail('sprite_385', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 385  ~2.2 player heights
+    )
+    s021 = space.room(
+        'sector_021',
+        [(8960, 8704), (8960, 9088), (8960, 9472), (8960, 9856), (8832, 9984), (7936, 9984), (7936, 8704), (7936, 8448), (7936, 7296), (8832, 7296), (8832, 8576)],
+        faces={'east': 0, 'south': 4, 'west': 5, 'north': 8},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192, wall_shade=11),
+        note='native sector 21',
+    )
+    s284 = space.room(
+        'sector_284',
+        [(7424, 3840), (7424, 5248), (7424, 6784), (5760, 6784), (5504, 6912), (5504, 7168), (5760, 7296), (7424, 7296), (7424, 8320), (4608, 8320), (4608, 5632), (6272, 5632), (6400, 5504), (6400, 2304), (6272, 2048), (6016, 2048), (5888, 2304), (5888, 5120), (4224, 5120), (4224, 4096), (4480, 4096), (4608, 3840), (4608, 1024), (6912, 1024), (7168, 768), (7168, 0), (7680, 0), (7936, 0), (8448, 0), (8704, 0), (10048, 0), (10304, 256), (10304, 384), (10304, 1088), (10304, 1280), (10240, 1280), (10240, 1920), (10240, 2176), (7552, 2176), (7424, 2304)],
+        faces={'south': 8, 'west': 18, 'north': 29, 'east': 32},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192, wall_shade=31),
+        note='native sector 284',
+    )
+    s284.decorate(
+        native_detail('sprite_117', 618, x_repeat=40, y_repeat=40, type=60, cstat=384, shade=-8),  # native sprite 117  ~1.0 player heights
+        native_detail('sprite_164', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 164  ~3.0 player heights
+        native_detail('sprite_165', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 165  ~3.0 player heights
+        native_detail('sprite_171', 1470, x_repeat=40, y_repeat=40, type=206, cstat=384, shade=-8),  # native sprite 171  ~3.3 player heights
+        native_detail('sprite_172', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 172  ~3.4 player heights
+        native_detail('sprite_173', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 173  ~3.6 player heights
+        native_detail('sprite_174', 2169, x_repeat=40, y_repeat=40, type=109, cstat=128, shade=-8),  # native sprite 174  ~1.3 player heights
+        native_detail('sprite_175', 2169, x_repeat=40, y_repeat=40, type=109, cstat=128, shade=-8),  # native sprite 175  ~1.3 player heights
+        native_detail('sprite_316', 618, x_repeat=40, y_repeat=40, type=60, cstat=384, shade=-8),  # native sprite 316  ~1.0 player heights
+        native_detail('sprite_317', 618, x_repeat=40, y_repeat=40, type=60, cstat=384, shade=-8),  # native sprite 317  ~1.0 player heights
+        native_detail('sprite_390', 619, x_repeat=48, y_repeat=48, type=67, cstat=128, shade=-8),  # native sprite 390  ~0.4 player heights
+    )
+    s285 = space.room(
+        'sector_285',
+        [(7424, 5248), (7424, 3840), (7552, 4096), (7808, 4096), (7936, 3840), (7936, 2688), (9728, 2688), (9728, 6144), (8960, 6144), (8832, 6272), (8832, 6784), (7936, 6784), (7936, 5248), (7808, 4992), (7552, 4992)],
+        faces={'west': 0, 'north': 5, 'east': 6, 'south': 10},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192),
+        note='native sector 285',
+    )
+    s285.decorate(
+        native_detail('sprite_166', 2820, x_repeat=40, y_repeat=40, type=201, cstat=384, shade=-8),  # native sprite 166  ~3.0 player heights
+        native_detail('sprite_167', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 167  ~3.0 player heights
+        native_detail('sprite_168', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 168  ~3.0 player heights
+        native_detail('sprite_169', 2820, x_repeat=40, y_repeat=40, type=201, cstat=384, shade=-8),  # native sprite 169  ~3.0 player heights
+    )
+    s286 = space.room(
+        'sector_286',
+        [(4096, 3072), (3200, 3072), (3072, 2944), (1280, 2944), (1024, 3072), (1024, 3328), (1280, 3456), (2688, 3456), (2688, 6912), (1408, 6912), (1408, 4992), (1280, 4736), (1024, 4736), (896, 4992), (896, 6912), (0, 6912), (0, 1280), (0, 384), (0, 256), (256, 0), (1536, 0), (1792, 0), (2304, 0), (2560, 0), (3072, 0), (3072, 768), (3328, 1024), (3456, 1024), (3648, 1024), (4096, 1024), (4096, 1472), (4096, 1792), (4096, 2048)],
+        faces={'south': 8, 'west': 15, 'north': 19, 'east': 32},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192, wall_shade=1),
+        note='native sector 286',
+    )
+    s286.decorate(
+        native_detail('sprite_078', 2529, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 78  ~4.4 player heights
+        native_detail('sprite_148', 2522, x_repeat=64, y_repeat=64, type=2, cstat=128, shade=-8),  # native sprite 148  ~4.4 player heights
+        native_detail('sprite_158', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 158  ~3.4 player heights
+        native_detail('sprite_159', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 159  ~3.4 player heights
+        native_detail('sprite_163', 809, x_repeat=48, y_repeat=48, type=63, cstat=384, shade=-8),  # native sprite 163  ~0.8 player heights
+        native_detail('sprite_313', 812, x_repeat=48, y_repeat=48, type=68, cstat=128, shade=-8),  # native sprite 313  ~0.9 player heights
+        native_detail('sprite_314', 559, x_repeat=48, y_repeat=48, type=41, cstat=128, shade=-8),  # native sprite 314  ~0.5 player heights
+        native_detail('sprite_375', 2493, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=-8),  # native sprite 375  ~3.5 player heights
+        native_detail('sprite_440', 2522, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 440  ~4.4 player heights
+        native_detail('sprite_441', 2523, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 441  ~4.4 player heights
+        native_detail('sprite_442', 2524, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 442  ~4.4 player heights
+        native_detail('sprite_443', 2525, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 443  ~4.4 player heights
+        native_detail('sprite_444', 2526, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 444  ~4.4 player heights
+        native_detail('sprite_445', 2527, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 445  ~4.4 player heights
+        native_detail('sprite_446', 2528, x_repeat=64, y_repeat=64, type=1, cstat=128, shade=-8),  # native sprite 446  ~4.4 player heights
+    )
+    s287 = space.room(
+        'sector_287',
+        [(3200, 3072), (4096, 3072), (4096, 3840), (4224, 4096), (4224, 5120), (3200, 5120)],
+        faces={'north': 0, 'east': 3, 'south': 4, 'west': 5},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192),
+        note='native sector 287',
+    )
+    s287.decorate(
+        native_detail('sprite_160', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 160  ~3.4 player heights
+    )
+    s288 = space.room(
+        'sector_288',
+        [(2176, 9984), (2432, 8832), (7424, 8832), (7424, 9984), (6528, 9984), (5632, 9984), (4608, 9984), (3712, 9984)],
+        faces={'north': 1, 'east': 2, 'south': 7},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192, wall_shade=28),
+        note='native sector 288',
+    )
+    s288.decorate(
+        native_detail('sprite_177', 812, x_repeat=48, y_repeat=48, type=68, cstat=128, shade=-8),  # native sprite 177  ~0.9 player heights
+        native_detail('sprite_178', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 178  ~3.6 player heights
+        native_detail('sprite_436', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 436  ~2.2 player heights
+    )
+    s289 = space.room(
+        'sector_289',
+        [(2432, 8832), (2176, 9984), (1408, 9984), (1152, 9728), (1152, 8832), (1152, 8704), (896, 8448), (256, 8448), (0, 8192), (0, 7424), (1024, 7424), (3072, 7424), (3200, 7296), (3200, 5632), (4096, 5632), (4096, 8320), (2432, 8320), (2176, 8448), (2176, 8704)],
+        faces={'south': 1, 'west': 8, 'north': 13, 'east': 14},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192, wall_shade=12),
+        note='native sector 289',
+    )
+    s289.decorate(
+        native_detail('sprite_176', 816, x_repeat=48, y_repeat=48, type=76, cstat=128, shade=-8),  # native sprite 176  ~0.7 player heights
+        native_detail('sprite_181', 2586, x_repeat=64, y_repeat=64, type=141, cstat=128, shade=-8),  # native sprite 181  ~1.6 player heights
+        native_detail('sprite_182', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 182  ~3.0 player heights
+        native_detail('sprite_183', 2820, x_repeat=40, y_repeat=40, type=201, cstat=384, shade=-8),  # native sprite 183  ~3.0 player heights
+        native_detail('sprite_184', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 184  ~3.0 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_105(area) -> object:
+    """assembly_001_space_105: 204 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_105', frame=Frame(0, 9728),
+        style=Style(floor_shade=15, wall_shade=12),
+        note='204 player areas, 1 sector',
+    )
+    s260 = space.room(
+        'sector_260',
+        [(16896, 0), (16896, 128), (16896, 1664), (16768, 1664), (16768, 1792), (15872, 1792), (12288, 1792), (12032, 1792), (11520, 1792), (11264, 1792), (10240, 1792), (7424, 1792), (6144, 1792), (5888, 1792), (5376, 1792), (5120, 1792), (1024, 1792), (512, 1792), (0, 1280), (0, 0), (1024, 0), (6656, 0), (7168, 0), (10240, 0), (10752, 0), (15872, 0)],
+        faces={'east': 1, 'south': 15, 'west': 18, 'north': 20},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192),
+        note='native sector 260',
+    )
+    s260.decorate(
+        native_detail('sprite_156', 1070, x_repeat=32, y_repeat=32, type=20, cstat=464, shade=4),  # native sprite 156  ~0.7 player heights
+        native_detail('sprite_241', 259, x_repeat=88, y_repeat=112, type=0, cstat=385, shade=34),  # native sprite 241  ~7.6 player heights
+        native_detail('sprite_294', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 294  ~8.0 player heights
+        native_detail('sprite_295', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 295  ~8.0 player heights
+        native_detail('sprite_296', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 296  ~8.0 player heights
+        native_detail('sprite_297', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 297  ~8.0 player heights
+        native_detail('sprite_298', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 298  ~8.0 player heights
+        native_detail('sprite_299', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 299  ~8.0 player heights
+        native_detail('sprite_300', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 300  ~8.0 player heights
+        native_detail('sprite_409', 1044, x_repeat=64, y_repeat=88, type=0, cstat=477, shade=39),  # native sprite 409  ~8.0 player heights
+        native_detail('sprite_434', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 434  ~2.2 player heights
+    )
+    return space
+
+
 def build_assembly_001_space_107(area) -> object:
     """assembly_001_space_107: 119 player areas, 5 sectors.
 
@@ -1721,7 +3292,7 @@ def build_assembly_001_space_107(area) -> object:
     """
     space = area.assembly(
         'assembly_001_space_107', frame=Frame(17408, 9856),
-        style=Style(floor_shade=12, parallax_ceiling=True, wall_picnum=2492, wall_shade=24),
+        style=Style(floor_shade=12, wall_picnum=2492, wall_shade=24),
         note='119 player areas, 5 sectors',
     )
     s262 = space.room(
@@ -1771,174 +3342,6 @@ def build_assembly_001_space_107(area) -> object:
     return space
 
 
-def build_assembly_001_space_111(area) -> object:
-    """assembly_001_space_111: 87 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_111', frame=Frame(32516, 14080),
-        style=Style(ceiling_picnum=2490, ceiling_shade=30, floor_picnum=365, floor_shade=39, wall_picnum=365, wall_shade=42),
-        note='87 player areas, 1 sector',
-    )
-    s290 = space.room(
-        'sector_290',
-        [(1532, 1024), (1532, 1536), (2044, 1792), (3580, 1792), (4092, 1536), (4092, 1024), (4092, 512), (4092, 0), (5632, 0), (5632, 1536), (5632, 3072), (0, 3072), (0, 1536), (0, 0), (1532, 0), (1532, 512)],
-        faces={'north': 7, 'east': 8, 'south': 10, 'west': 11},
-        role='gameplay',
-        style=Style(clear_height=24576, floor_z=-30720),
-        note='native sector 290',
-    )
-    s290.decorate(
-        native_detail('sprite_115', 829, x_repeat=40, y_repeat=40, type=117, cstat=128, shade=-8),  # native sprite 115  ~0.9 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_110(area) -> object:
-    """assembly_001_space_110: 84 player areas, 7 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_110', frame=Frame(6400, 32512),
-        style=Style(ceiling_picnum=329, ceiling_shade=35, floor_shade=37, wall_shade=35),
-        note='84 player areas, 7 sectors',
-    )
-    s271 = space.room(
-        'sector_271',
-        [(4096, 1536), (4096, 2048), (4096, 2816), (4096, 3328), (512, 3328), (512, 2816), (512, 2048), (512, 1536), (768, 768), (896, 640), (1152, 384), (1280, 256), (1792, 0), (2816, 0), (3328, 256), (3456, 384), (3712, 640), (3840, 768)],
-        faces={'east': 1, 'south': 3, 'west': 5, 'north': 12},
-        role='gameplay',
-        style=Style(ceiling_picnum=16, ceiling_shade=42, clear_height=59392, floor_z=8192, wall_shade=37),
-        note='native sector 271',
-    )
-    s271.decorate(
-        native_detail('sprite_063', 1713, x_repeat=40, y_repeat=40, type=417, cstat=448, shade=-12),  # native sprite 63  ~2.7 player heights
-        native_detail('sprite_064', 2449, x_repeat=48, y_repeat=48, type=0, cstat=480, shade=4),  # native sprite 64  ~2.2 player heights
-        native_detail('sprite_065', 680, x_repeat=32, y_repeat=32, type=416, cstat=448, shade=0),  # native sprite 65  ~0.5 player heights
-        native_detail('sprite_066', 929, x_repeat=40, y_repeat=40, type=0, cstat=466, shade=-11),  # native sprite 66  ~1.5 player heights
-        native_detail('sprite_118', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-4),  # native sprite 118  ~3.0 player heights
-        native_detail('sprite_332', 809, x_repeat=48, y_repeat=48, type=63, cstat=384, shade=-8),  # native sprite 332  ~0.8 player heights
-        native_detail('sprite_351', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 351  ~3.4 player heights
-        native_detail('sprite_352', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 352  ~3.4 player heights
-        native_detail('sprite_353', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 353  ~3.4 player heights
-    )
-    s299 = space.room(
-        'sector_299',
-        [(4096, 2816), (4608, 2816), (4608, 3328), (4096, 3328)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192),
-        note='native sector 299',
-    )
-    s300 = space.room(
-        'sector_300',
-        [(4096, 2048), (4608, 2048), (4608, 2816), (4096, 2816)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192),
-        note='native sector 300',
-    )
-    s301 = space.room(
-        'sector_301',
-        [(4608, 2048), (4096, 2048), (4096, 1536), (4224, 1664), (4544, 1600), (4608, 1408)],
-        faces={'south': 0, 'west': 1, 'east': 5},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192),
-        note='native sector 301',
-    )
-    s302 = space.room(
-        'sector_302',
-        [(512, 2048), (0, 2048), (0, 1408), (64, 1536), (384, 1664), (512, 1536)],
-        faces={'south': 0, 'west': 1, 'east': 5},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192),
-        note='native sector 302',
-    )
-    s303 = space.room(
-        'sector_303',
-        [(512, 2816), (0, 2816), (0, 2048), (512, 2048)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192),
-        note='native sector 303',
-    )
-    s304 = space.room(
-        'sector_304',
-        [(0, 2816), (512, 2816), (512, 3328), (0, 3328)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192),
-        note='native sector 304',
-    )
-    return space
-
-
-def build_assembly_001_space_039(area) -> object:
-    """assembly_001_space_039: 67 player areas, 5 sectors, contains stepped_run.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_039', frame=Frame(20224, 34048),
-        style=Style(floor_shade=6, parallax_ceiling=True, wall_shade=1),
-        note='67 player areas, 5 sectors, contains stepped_run',
-    )
-    s081 = space.room(
-        'sector_081',
-        [(2560, 0), (2752, 192), (3136, 576), (3328, 768), (3328, 2560), (2560, 3328), (768, 3328), (0, 2560), (0, 768), (768, 0)],
-        faces={'east': 3, 'south': 5, 'west': 7, 'north': 9},
-        role='stair',
-        style=Style(clear_height=44032, floor_z=-13312),
-        note='part of structure:stepped_run:001',
-    )
-    s081.carve([(1344, 3200), (1344, 3296), (1408, 3296), (1408, 3200), (2496, 3200), (3200, 2496), (3200, 832), (2496, 128), (832, 128), (128, 832), (128, 2496), (832, 3200)])  # a native inner loop of this sector
-    s227 = space.room(
-        'sector_227',
-        [(1408, 3200), (1408, 3072), (1408, 2624), (1344, 2624), (1344, 3072), (1344, 3200), (832, 3200), (128, 2496), (128, 832), (832, 128), (2496, 128), (3200, 832), (3200, 2496), (2496, 3200)],
-        faces={'west': 7, 'north': 9, 'east': 11, 'south': 13},
-        role='stair',
-        style=Style(clear_height=47104, floor_picnum=2490, floor_shade=0, floor_z=-10240, wall_picnum=272, wall_shade=21),
-        note='part of structure:stepped_run:001',
-    )
-    s227.carve([(768, 1152), (768, 2048), (1664, 2432), (2560, 2048), (2560, 1152), (1664, 896)])  # a native inner loop of this sector
-    s227.decorate(
-        native_detail('sprite_271', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 271  ~2.2 player heights
-        native_detail('sprite_433', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 433  ~2.2 player heights
-    )
-    s228 = space.room(
-        'sector_228',
-        [(768, 1152), (1664, 896), (2560, 1152), (2560, 2048), (1664, 2432), (768, 2048)],
-        faces={'east': 2, 'west': 5},
-        role='stair',
-        style=Style(clear_height=48128, floor_picnum=2915, floor_shade=13, floor_z=-9216, wall_picnum=272, wall_shade=21),
-        note='part of structure:stepped_run:001',
-    )
-    s228.decorate(
-        native_detail('sprite_031', 2332, x_repeat=64, y_repeat=64, type=9, cstat=128, shade=-8),  # native sprite 31  ~0.6 player heights
-        native_detail('sprite_214', 3997, x_repeat=64, y_repeat=64, type=3, cstat=32896, shade=0),  # native sprite 214  (tile not in ART)
-        native_detail('sprite_215', 3997, x_repeat=64, y_repeat=64, type=4, cstat=32896, shade=0),  # native sprite 215  (tile not in ART)
-    )
-    s229 = space.room(
-        'sector_229',
-        [(1408, 3072), (1344, 3072), (1344, 2624), (1408, 2624)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(clear_height=39936, floor_picnum=272, floor_shade=0, floor_z=-17408, wall_picnum=2474, wall_shade=27),
-        note='native sector 229',
-    )
-    s230 = space.room(
-        'sector_230',
-        [(1408, 3200), (1408, 3296), (1344, 3296), (1344, 3200), (1344, 3072), (1408, 3072)],
-        faces={'south': 1, 'west': 3, 'north': 4, 'east': 5},
-        role='stair',
-        style=Style(clear_height=39936, floor_z=-17408),
-        note='part of structure:stepped_run:001',
-    )
-    return space
-
-
 def build_assembly_001_space_062(area) -> object:
     """assembly_001_space_062: 67 player areas, 3 sectors, contains recess.
 
@@ -1978,493 +3381,6 @@ def build_assembly_001_space_062(area) -> object:
     return space
 
 
-def build_assembly_001_space_022(area) -> object:
-    """assembly_001_space_022: 64 player areas, 4 sectors, contains recess.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_022', frame=Frame(7040, 40192),
-        style=Style(ceiling_picnum=67, ceiling_shade=24, floor_picnum=110, floor_shade=20, wall_picnum=91, wall_shade=0),
-        note='64 player areas, 4 sectors, contains recess',
-    )
-    s042 = space.room(
-        'sector_042',
-        [(192, 2560), (441, 2415), (639, 2409), (825, 2477), (972, 2609), (1061, 2787), (1076, 2984), (1018, 3174), (832, 3392), (640, 3136), (384, 2816)],
-        role='detail',
-        style=Style(clear_height=32768, floor_shade=4, floor_z=8192, wall_picnum=5),
-        note='part of structure:recess:001',
-    )
-    s042.decorate(
-        native_detail('sprite_004', 560, x_repeat=64, y_repeat=64, type=30, cstat=385, shade=-128),  # native sprite 4  ~2.7 player heights
-    )
-    s043 = space.room(
-        'sector_043',
-        [(2176, 0), (2176, 2176), (1152, 2176), (1152, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(ceiling_picnum=504, ceiling_shade=0, clear_height=32768, floor_z=8192, wall_picnum=5),
-        note='native sector 43',
-    )
-    s043.decorate(
-        native_detail('sprite_009', 2331, x_repeat=64, y_repeat=64, type=12, cstat=128, shade=-8),  # native sprite 9  ~0.6 player heights
-        native_detail('sprite_304', 526, x_repeat=48, y_repeat=48, type=46, cstat=128, shade=-8),  # native sprite 304  ~0.7 player heights
-        native_detail('sprite_405', 1370, x_repeat=48, y_repeat=48, type=204, cstat=384, shade=-8),  # native sprite 405  ~3.4 player heights
-    )
-    s328 = space.room(
-        'sector_328',
-        [(1280, 3200), (2048, 3200), (2048, 3520), (1280, 3520)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=31744, floor_picnum=34, floor_shade=31, floor_z=7168, wall_picnum=34, wall_shade=41),
-        note='native sector 328',
-    )
-    s328.decorate(
-        native_detail('sprite_012', 34, x_repeat=19, y_repeat=48, type=0, cstat=489, shade=10),  # native sprite 12  ~2.2 player heights
-        native_detail('sprite_125', 812, x_repeat=48, y_repeat=48, type=68, cstat=128, shade=-8),  # native sprite 125  ~0.9 player heights
-        native_detail('sprite_126', 589, x_repeat=48, y_repeat=48, type=62, cstat=384, shade=-8),  # native sprite 126  ~0.9 player heights
-        native_detail('sprite_424', 34, x_repeat=20, y_repeat=56, type=0, cstat=481, shade=10),  # native sprite 424  ~2.5 player heights
-    )
-    s329 = space.room(
-        'sector_329',
-        [(2048, 3200), (1280, 3200), (1216, 3200), (1216, 3584), (1024, 3584), (832, 3392), (1018, 3174), (1076, 2984), (1061, 2787), (972, 2609), (825, 2477), (639, 2409), (441, 2415), (192, 2560), (0, 2304), (0, 2048), (0, 1280), (0, 1024), (672, 352), (864, 160), (1024, 0), (1152, 0), (1152, 2176), (2176, 2176), (2176, 0), (2304, 0), (2464, 160), (2656, 352), (3328, 1024), (3328, 1280), (3328, 2048), (3328, 2304), (2304, 3584), (2112, 3584), (2112, 3200)],
-        faces={'south': 3, 'west': 15, 'north': 20, 'east': 29},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192),
-        note='native sector 329',
-    )
-    s329.carve([(2112, 3200), (2112, 2816), (2048, 2816), (2048, 3200)])  # a native inner loop of this sector
-    s329.carve([(1280, 3200), (1280, 2816), (1216, 2816), (1216, 3200)])  # a native inner loop of this sector
-    s329.decorate(
-        native_detail('sprite_011', 3997, x_repeat=64, y_repeat=64, type=5, cstat=32896, shade=0),  # native sprite 11  (tile not in ART)
-        native_detail('sprite_013', 68, x_repeat=48, y_repeat=16, type=0, cstat=401, shade=1),  # native sprite 13  ~0.2 player heights
-        native_detail('sprite_127', 827, x_repeat=40, y_repeat=40, type=115, cstat=128, shade=-16),  # native sprite 127  ~1.0 player heights
-        native_detail('sprite_152', 2527, x_repeat=64, y_repeat=64, type=2, cstat=128, shade=-8),  # native sprite 152  ~4.4 player heights
-        native_detail('sprite_305', 801, x_repeat=48, y_repeat=48, type=79, cstat=128, shade=-8),  # native sprite 305  ~1.2 player heights
-        native_detail('sprite_306', 801, x_repeat=48, y_repeat=48, type=79, cstat=128, shade=-8),  # native sprite 306  ~1.2 player heights
-        native_detail('sprite_307', 2169, x_repeat=40, y_repeat=40, type=109, cstat=128, shade=-8),  # native sprite 307  ~1.3 player heights
-        native_detail('sprite_308', 2169, x_repeat=40, y_repeat=40, type=109, cstat=128, shade=-8),  # native sprite 308  ~1.3 player heights
-        native_detail('sprite_449', 753, x_repeat=64, y_repeat=64, type=145, cstat=384, shade=-8),  # native sprite 449  ~2.9 player heights
-        native_detail('sprite_450', 1070, x_repeat=40, y_repeat=40, type=20, cstat=464, shade=-8),  # native sprite 450  ~0.9 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_084(area) -> object:
-    """assembly_001_space_084: 60 player areas, 9 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_084', frame=Frame(5120, 29696),
-        style=Style(parallax_ceiling=True, wall_shade=17),
-        note='60 player areas, 9 sectors',
-    )
-    s190 = space.room(
-        'sector_190',
-        [(5920, 1856), (6784, 960), (7168, 1280), (7168, 2048), (6144, 2048)],
-        faces={'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=57344, floor_z=0, wall_picnum=2455),
-        note='native sector 190',
-    )
-    s191 = space.room(
-        'sector_191',
-        [(6272, 512), (5408, 1472), (4864, 1024), (5632, 0)],
-        role='gameplay',
-        style=Style(clear_height=49152, floor_z=-8192, wall_picnum=2455, wall_shade=30),
-        note='native sector 191',
-    )
-    s192 = space.room(
-        'sector_192',
-        [(5408, 1472), (6272, 512), (6784, 960), (5920, 1856)],
-        role='gameplay',
-        style=Style(clear_height=53248, floor_z=-4096, wall_picnum=2455),
-        note='native sector 192',
-    )
-    s192.decorate(
-        native_detail('sprite_187', 2820, x_repeat=40, y_repeat=40, type=201, cstat=384, shade=-8),  # native sprite 187  ~3.0 player heights
-    )
-    s194 = space.room(
-        'sector_194',
-        [(1760, 1472), (960, 448), (1536, 0), (2304, 1024)],
-        role='gameplay',
-        style=Style(clear_height=49152, floor_z=-8192, wall_shade=12),
-        note='native sector 194',
-    )
-    s195 = space.room(
-        'sector_195',
-        [(1280, 1856), (448, 896), (960, 448), (1760, 1472)],
-        role='gameplay',
-        style=Style(clear_height=53248, floor_z=-4096),
-        note='native sector 195',
-    )
-    s196 = space.room(
-        'sector_196',
-        [(448, 896), (1280, 1856), (1024, 2048), (0, 2048), (0, 1280)],
-        faces={'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=57344, floor_z=0),
-        note='native sector 196',
-    )
-    s197 = space.room(
-        'sector_197',
-        [(2624, 0), (2624, 1024), (2304, 1024), (1536, 0)],
-        faces={'east': 0, 'south': 1, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=45056, floor_z=-12288),
-        note='native sector 197',
-    )
-    s198 = space.room(
-        'sector_198',
-        [(4544, 1024), (4544, 0), (5632, 0), (4864, 1024)],
-        faces={'west': 0, 'north': 1, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=45056, floor_z=-12288),
-        note='native sector 198',
-    )
-    s199 = space.room(
-        'sector_199',
-        [(2624, 0), (4544, 0), (4544, 1024), (4352, 1024), (2816, 1024), (2624, 1024)],
-        faces={'north': 0, 'east': 1, 'south': 3, 'west': 5},
-        role='gameplay',
-        style=Style(clear_height=40960, floor_z=-16384, wall_shade=0),
-        note='native sector 199',
-    )
-    s199.decorate(
-        native_detail('sprite_185', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 185  ~3.0 player heights
-        native_detail('sprite_186', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 186  ~3.0 player heights
-        native_detail('sprite_377', 2497, x_repeat=47, y_repeat=64, type=416, cstat=915, shade=-8),  # native sprite 377  ~1.5 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_031(area) -> object:
-    """assembly_001_space_031: 59 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_031', frame=Frame(33796, 18176),
-        style=Style(ceiling_picnum=2915, ceiling_shade=14, floor_picnum=365, wall_picnum=355),
-        note='59 player areas, 1 sector',
-    )
-    s057 = space.room(
-        'sector_057',
-        [(768, 1024), (768, 512), (1280, 0), (1792, 256), (2560, 0), (2048, 768), (2304, 1536), (3072, 2048), (3328, 2560), (2816, 3584), (1984, 4288), (1152, 4160), (1024, 3712), (768, 3456), (256, 3584), (0, 2304), (256, 1536)],
-        role='gameplay',
-        style=Style(clear_height=43008, floor_z=-14336),
-        note='native sector 57',
-    )
-    s057.carve([(1504, 864), (1696, 704), (1728, 512), (1600, 448), (1472, 480), (1440, 768)])  # a native inner loop of this sector
-    s057.decorate(
-        native_detail('sprite_022', 2331, x_repeat=64, y_repeat=64, type=10, cstat=128, shade=-8),  # native sprite 22  ~0.6 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_021(area) -> object:
-    """assembly_001_space_021: 58 player areas, 6 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_021', frame=Frame(13952, 18816),
-        style=Style(floor_shade=22, parallax_ceiling=True, wall_shade=14),
-        note='58 player areas, 6 sectors',
-    )
-    s037 = space.room(
-        'sector_037',
-        [(256, 6656), (176, 6404), (181, 6143), (270, 5897), (435, 5694), (656, 5556), (911, 5497), (1171, 5524), (1408, 5632), (1408, 5888), (1408, 6272), (1024, 6656), (640, 6656)],
-        faces={'east': 9, 'south': 11},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_shade=1, floor_z=8192, wall_shade=12),
-        note='native sector 37',
-    )
-    s037.decorate(
-        native_detail('sprite_007', 2493, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=-128),  # native sprite 7  ~3.5 player heights
-    )
-    s038 = space.room(
-        'sector_038',
-        [(1408, 5632), (1171, 5524), (911, 5497), (656, 5556), (435, 5694), (270, 5897), (181, 6143), (176, 6404), (256, 6656), (0, 6656), (0, 6272), (0, 5888), (0, 5504), (128, 5376), (243, 5217), (395, 5096), (574, 5019), (768, 4993), (963, 5019), (1142, 5097), (1293, 5219), (1408, 5376)],
-        faces={'south': 8, 'west': 9, 'east': 21},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_shade=9, floor_z=8192, wall_shade=12),
-        note='native sector 38',
-    )
-    s039 = space.room(
-        'sector_039',
-        [(128, 4864), (212, 4658), (359, 4494), (552, 4388), (770, 4352), (987, 4389), (1179, 4497), (1325, 4662), (1408, 4864), (1408, 5376), (1293, 5219), (1142, 5097), (963, 5019), (768, 4993), (574, 5019), (395, 5096), (243, 5217), (128, 5376)],
-        faces={'east': 8, 'west': 17},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_shade=16, floor_z=8192, wall_shade=38),
-        note='native sector 39',
-    )
-    s039.decorate(
-        native_detail('sprite_144', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=8),  # native sprite 144  ~3.0 player heights
-        native_detail('sprite_302', 1046, x_repeat=32, y_repeat=32, type=20, cstat=464, shade=-8),  # native sprite 302  ~0.7 player heights
-    )
-    s281 = space.room(
-        'sector_281',
-        [(1408, 896), (128, 896), (128, 0), (256, 0), (1280, 0), (1408, 0)],
-        faces={'south': 0, 'west': 1, 'north': 3, 'east': 5},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192, wall_shade=38),
-        note='native sector 281',
-    )
-    s282 = space.room(
-        'sector_282',
-        [(128, 3456), (1408, 3456), (1408, 4864), (1325, 4662), (1179, 4497), (987, 4389), (770, 4352), (552, 4388), (359, 4494), (212, 4658), (128, 4864)],
-        faces={'north': 0, 'east': 1, 'west': 10},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192),
-        note='native sector 282',
-    )
-    s282.decorate(
-        native_detail('sprite_196', 2820, x_repeat=40, y_repeat=40, type=201, cstat=384, shade=-8),  # native sprite 196  ~3.0 player heights
-    )
-    s283 = space.room(
-        'sector_283',
-        [(1408, 3456), (128, 3456), (128, 896), (1408, 896), (1408, 1408), (1408, 1920), (1408, 2432), (1408, 2944)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192, wall_shade=37),
-        note='native sector 283',
-    )
-    s283.decorate(
-        native_detail('sprite_197', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 197  ~3.6 player heights
-        native_detail('sprite_198', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 198  ~3.6 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_010(area) -> object:
-    """assembly_001_space_010: 50 player areas, 10 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_010', frame=Frame(6400, 30720),
-        style=Style(ceiling_picnum=329, ceiling_shade=37, floor_shade=36, wall_picnum=329, wall_shade=37),
-        note='50 player areas, 10 sectors',
-    )
-    s009 = space.room(
-        'sector_009',
-        [(1152, 1920), (1024, 2048), (768, 2304), (640, 2432), (0, 1792), (0, 1024), (1024, 256), (1120, 256), (1440, 256), (1536, 256)],
-        faces={'west': 4, 'north': 7},
-        role='gameplay',
-        style=Style(ceiling_picnum=16, ceiling_shade=43, clear_height=24576, floor_picnum=2496, floor_z=-24576),
-        note='native sector 9',
-    )
-    s009.decorate(
-        native_detail('sprite_099', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 99  ~3.0 player heights
-        native_detail('sprite_154', 2529, x_repeat=64, y_repeat=64, type=2, cstat=128, shade=-8),  # native sprite 154  ~4.4 player heights
-    )
-    s010 = space.room(
-        'sector_010',
-        [(3968, 2432), (3840, 2304), (3584, 2048), (3456, 1920), (3072, 256), (3168, 256), (3488, 256), (3584, 256), (4608, 1024), (4608, 1792)],
-        faces={'north': 5, 'east': 8},
-        role='gameplay',
-        style=Style(ceiling_picnum=16, ceiling_shade=43, clear_height=24576, floor_picnum=2496, floor_z=-24576),
-        note='native sector 10',
-    )
-    s010.decorate(
-        native_detail('sprite_098', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 98  ~3.0 player heights
-        native_detail('sprite_330', 2169, x_repeat=40, y_repeat=40, type=109, cstat=128, shade=-8),  # native sprite 330  ~1.3 player heights
-        native_detail('sprite_331', 2169, x_repeat=40, y_repeat=40, type=109, cstat=128, shade=-8),  # native sprite 331  ~1.3 player heights
-    )
-    s011 = space.room(
-        'sector_011',
-        [(3584, 2048), (3456, 2176), (3328, 2048), (3456, 1920)],
-        role='gameplay',
-        style=Style(clear_height=20480, floor_z=-26624, wall_shade=-5),
-        note='native sector 11',
-    )
-    s012 = space.room(
-        'sector_012',
-        [(3712, 2432), (3840, 2304), (3968, 2432), (3840, 2560)],
-        role='gameplay',
-        style=Style(clear_height=20480, floor_z=-26624, wall_shade=-5),
-        note='native sector 12',
-    )
-    s013 = space.room(
-        'sector_013',
-        [(3840, 2304), (3712, 2432), (3456, 2176), (3584, 2048)],
-        role='gameplay',
-        style=Style(clear_height=20480, floor_z=-26624, wall_shade=-5),
-        note='native sector 13',
-    )
-    s014 = space.room(
-        'sector_014',
-        [(768, 2304), (896, 2432), (768, 2560), (640, 2432)],
-        role='gameplay',
-        style=Style(clear_height=20480, floor_z=-26624, wall_shade=-5),
-        note='native sector 14',
-    )
-    s015 = space.room(
-        'sector_015',
-        [(1024, 2048), (1152, 2176), (896, 2432), (768, 2304)],
-        role='gameplay',
-        style=Style(clear_height=20480, floor_z=-26624, wall_picnum=2499, wall_shade=28),
-        note='native sector 15',
-    )
-    s016 = space.room(
-        'sector_016',
-        [(1152, 2176), (1024, 2048), (1152, 1920), (1280, 2048)],
-        role='gameplay',
-        style=Style(clear_height=20480, floor_z=-26624, wall_picnum=2499, wall_shade=28),
-        note='native sector 16',
-    )
-    s140 = space.room(
-        'sector_140',
-        [(1536, 256), (3072, 256), (3456, 1920), (2816, 1536), (1792, 1536), (1152, 1920)],
-        faces={'north': 0},
-        role='gameplay',
-        style=Style(ceiling_picnum=16, ceiling_shade=43, clear_height=24576, floor_picnum=2496, floor_shade=12, floor_z=-24576, wall_shade=39),
-        note='native sector 140',
-    )
-    s140.decorate(
-        native_detail('sprite_309', 525, x_repeat=48, y_repeat=48, type=70, cstat=128, shade=-8),  # native sprite 309  ~1.2 player heights
-    )
-    s141 = space.room(
-        'sector_141',
-        [(3072, 256), (1536, 256), (1536, 0), (3072, 0)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(clear_height=28672, floor_shade=0, floor_z=-20480, wall_picnum=2448, wall_shade=17),
-        note='native sector 141',
-    )
-    return space
-
-
-def build_assembly_001_space_018(area) -> object:
-    """assembly_001_space_018: 45 player areas, 4 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_018', frame=Frame(13824, 13568),
-        style=Style(ceiling_picnum=21, ceiling_shade=41, floor_picnum=376, floor_shade=38, wall_picnum=21, wall_shade=40),
-        note='45 player areas, 4 sectors',
-    )
-    s033 = space.room(
-        'sector_033',
-        [(1408, 4992), (384, 4992), (128, 4992), (128, 3968), (128, 3584), (320, 3584), (768, 3584), (1536, 3584), (1536, 4352), (1536, 4992)],
-        faces={'south': 0, 'west': 2, 'north': 6, 'east': 7},
-        role='gameplay',
-        style=Style(clear_height=30720, floor_z=-26624, wall_shade=38),
-        note='native sector 33',
-    )
-    s033.decorate(
-        native_detail('sprite_170', 1470, x_repeat=40, y_repeat=40, type=206, cstat=384, shade=-8),  # native sprite 170  ~3.3 player heights
-        native_detail('sprite_261', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 261  ~2.2 player heights
-    )
-    s035 = space.room(
-        'sector_035',
-        [(0, 4992), (0, 4736), (0, 4224), (0, 3968), (128, 3968), (128, 4992)],
-        faces={'west': 1, 'north': 3, 'east': 4, 'south': 5},
-        role='gameplay',
-        style=Style(ceiling_shade=44, clear_height=20480, floor_picnum=20, floor_shade=19, floor_z=-29696, wall_shade=31),
-        note='native sector 35',
-    )
-    s267 = space.room(
-        'sector_267',
-        [(768, 3584), (320, 3584), (320, 3328), (1536, 3328), (1536, 3584)],
-        faces={'west': 1, 'north': 2, 'east': 3, 'south': 4},
-        role='gameplay',
-        style=Style(ceiling_picnum=68, ceiling_shade=48, clear_height=23552, floor_picnum=67, floor_shade=15, floor_z=-25600, wall_picnum=115, wall_shade=38),
-        note='native sector 267',
-    )
-    s268 = space.room(
-        'sector_268',
-        [(1280, 0), (1280, 1024), (1280, 1536), (1536, 2048), (1536, 3200), (1536, 3328), (320, 3328), (256, 3328), (256, 3136), (256, 2432), (256, 2048), (0, 1536), (0, 384), (43, 247), (128, 128), (247, 43), (384, 0)],
-        faces={'east': 3, 'south': 5, 'west': 11, 'north': 16},
-        role='gameplay',
-        style=Style(ceiling_picnum=329, ceiling_shade=46, clear_height=26624, floor_picnum=2448, floor_shade=40, floor_z=-25600, wall_picnum=329),
-        note='native sector 268',
-    )
-    s268.decorate(
-        native_detail('sprite_315', 896, x_repeat=40, y_repeat=40, type=113, cstat=128, shade=-8),  # native sprite 315  ~1.2 player heights
-        native_detail('sprite_412', 548, x_repeat=24, y_repeat=24, type=73, cstat=128, shade=-8),  # native sprite 412  ~1.1 player heights
-        native_detail('sprite_413', 548, x_repeat=24, y_repeat=24, type=73, cstat=128, shade=-8),  # native sprite 413  ~1.1 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_064(area) -> object:
-    """assembly_001_space_064: 38 player areas, 4 sectors, contains recess.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_064', frame=Frame(20224, 45696),
-        style=Style(ceiling_picnum=21, ceiling_shade=27, floor_shade=31, wall_picnum=88, wall_shade=30),
-        note='38 player areas, 4 sectors, contains recess',
-    )
-    s161 = space.room(
-        'sector_161',
-        [(2944, 128), (3072, 384), (1920, 384), (1792, 0), (2176, 0), (2688, 128)],
-        faces={'south': 1, 'north': 3},
-        role='detail',
-        style=Style(ceiling_picnum=5, ceiling_shade=32, clear_height=24576, floor_picnum=5, floor_shade=32, floor_z=-8192, wall_picnum=5, wall_shade=32),
-        note='part of structure:recess:006',
-    )
-    s161.decorate(
-        native_detail('sprite_136', 2101, x_repeat=64, y_repeat=64, type=0, cstat=128, shade=-128),  # native sprite 136  ~1.7 player heights
-        native_detail('sprite_264', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 264  ~2.2 player heights
-    )
-    s322 = space.room(
-        'sector_322',
-        [(6656, 896), (6400, 896), (6400, 384), (6656, 384)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='detail',
-        style=Style(clear_height=48128, floor_z=-6144, wall_picnum=2499, wall_shade=25),
-        note='part of structure:recess:013',
-    )
-    s323 = space.room(
-        'sector_323',
-        [(512, 896), (256, 896), (256, 384), (512, 384)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='detail',
-        style=Style(clear_height=48128, floor_z=-6144),
-        note='part of structure:recess:014',
-    )
-    s324 = space.room(
-        'sector_324',
-        [(256, 384), (256, 896), (512, 896), (512, 384), (1920, 384), (3072, 384), (6400, 384), (6400, 896), (6656, 896), (6656, 384), (6912, 384), (6912, 1152), (0, 1152), (0, 384)],
-        faces={'north': 5, 'east': 10, 'south': 11, 'west': 12},
-        role='gameplay',
-        style=Style(ceiling_shade=20, clear_height=49152, floor_z=-6144),
-        note='native sector 324',
-    )
-    s324.decorate(
-        native_detail('sprite_283', 908, x_repeat=4, y_repeat=64, type=459, cstat=128, shade=-8),  # native sprite 283  ~3.6 player heights
-        native_detail('sprite_284', 908, x_repeat=4, y_repeat=64, type=459, cstat=128, shade=-8),  # native sprite 284  ~3.6 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_046(area) -> object:
-    """assembly_001_space_046: 36 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_046', frame=Frame(26624, 16384),
-        style=Style(ceiling_picnum=329, ceiling_shade=34, floor_picnum=21, floor_shade=19, wall_picnum=21, wall_shade=19),
-        note='36 player areas, 1 sector',
-    )
-    s096 = space.room(
-        'sector_096',
-        [(512, 512), (1024, 512), (1228, 373), (1409, 209), (1536, 0), (1536, 512), (1536, 1024), (1536, 3840), (0, 3840), (0, 1024), (0, 512), (0, 0), (123, 205), (303, 370)],
-        faces={'east': 6, 'south': 7, 'west': 8},
-        role='gameplay',
-        style=Style(clear_height=55296, floor_z=-2048),
-        note='native sector 96',
-    )
-    return space
-
-
 def build_assembly_001_space_012(area) -> object:
     """assembly_001_space_012: 31 player areas, 2 sectors.
 
@@ -2472,7 +3388,7 @@ def build_assembly_001_space_012(area) -> object:
     """
     space = area.assembly(
         'assembly_001_space_012', frame=Frame(6784, 17664),
-        style=Style(parallax_ceiling=True, wall_picnum=2455, wall_shade=23),
+        style=Style(wall_picnum=2455, wall_shade=23),
         note='31 player areas, 2 sectors',
     )
     s018 = space.room(
@@ -2497,55 +3413,6 @@ def build_assembly_001_space_012(area) -> object:
     return space
 
 
-def build_assembly_001_space_102(area) -> object:
-    """assembly_001_space_102: 31 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_102', frame=Frame(34816, 29952),
-        style=Style(ceiling_picnum=2490, floor_picnum=365, floor_shade=18, wall_picnum=365, wall_shade=21),
-        note='31 player areas, 1 sector',
-    )
-    s233 = space.room(
-        'sector_233',
-        [(896, 2560), (1216, 2560), (1216, 2944), (1216, 3072), (704, 3072), (0, 2368), (0, 704), (704, 0), (2368, 0), (3072, 704), (3072, 2368), (2368, 3072), (1280, 3072), (1280, 2944), (1280, 2560), (2176, 2560), (2560, 2176), (2560, 896), (2176, 512), (896, 512), (512, 896), (512, 2176)],
-        faces={'west': 5, 'north': 7, 'east': 9, 'south': 11},
-        role='gameplay',
-        style=Style(clear_height=17408, floor_z=-39936),
-        note='native sector 233',
-    )
-    s233.decorate(
-        native_detail('sprite_068', 519, x_repeat=48, y_repeat=48, type=107, cstat=128, shade=-8),  # native sprite 68  ~1.0 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_117(area) -> object:
-    """assembly_001_space_117: 29 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_117', frame=Frame(4864, 29440),
-        style=Style(floor_shade=-6, parallax_ceiling=True, wall_shade=17),
-        note='29 player areas, 1 sector',
-    )
-    s296 = space.room(
-        'sector_296',
-        [(7680, 1280), (7680, 4736), (7424, 4736), (7424, 4480), (7424, 2304), (7424, 1536), (7040, 1216), (6528, 768), (5888, 256), (4800, 256), (2880, 256), (1792, 256), (1216, 704), (704, 1152), (256, 1536), (256, 2304), (256, 4480), (256, 4736), (0, 4736), (0, 1280), (1536, 0), (6144, 0)],
-        faces={'east': 0, 'south': 1, 'west': 18, 'north': 20},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=-24576),
-        note='native sector 296',
-    )
-    s296.decorate(
-        native_detail('sprite_333', 619, x_repeat=48, y_repeat=48, type=67, cstat=128, shade=-8),  # native sprite 333  ~0.4 player heights
-        native_detail('sprite_415', 813, x_repeat=48, y_repeat=48, type=69, cstat=128, shade=-8),  # native sprite 415  ~0.4 player heights
-    )
-    return space
-
-
 def build_assembly_001_space_057(area) -> object:
     """assembly_001_space_057: 28 player areas, 7 sectors.
 
@@ -2553,7 +3420,7 @@ def build_assembly_001_space_057(area) -> object:
     """
     space = area.assembly(
         'assembly_001_space_057', frame=Frame(10752, 11776),
-        style=Style(floor_shade=13, parallax_ceiling=True),
+        style=Style(floor_shade=13),
         note='28 player areas, 7 sectors',
     )
     s118 = space.room(
@@ -2635,7 +3502,7 @@ def build_assembly_001_space_059(area) -> object:
     """
     space = area.assembly(
         'assembly_001_space_059', frame=Frame(4608, 11776),
-        style=Style(floor_shade=13, parallax_ceiling=True),
+        style=Style(floor_shade=13),
         note='28 player areas, 7 sectors',
     )
     s127 = space.room(
@@ -2708,225 +3575,6 @@ def build_assembly_001_space_059(area) -> object:
     return space
 
 
-def build_assembly_001_space_095(area) -> object:
-    """assembly_001_space_095: 26 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_095', frame=Frame(14176, 26336),
-        style=Style(floor_shade=18, parallax_ceiling=True, wall_shade=33),
-        note='26 player areas, 1 sector',
-    )
-    s215 = space.room(
-        'sector_215',
-        [(0, 1856), (0, 704), (0, 256), (256, 0), (1280, 0), (1536, 256), (1536, 2304), (1280, 2560), (256, 2560), (0, 2304)],
-        faces={'west': 0, 'north': 3, 'east': 5, 'south': 7},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192),
-        note='native sector 215',
-    )
-    s215.decorate(
-        native_detail('sprite_391', 2628, x_repeat=64, y_repeat=64, type=140, cstat=128, shade=-8),  # native sprite 391  ~1.3 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_091(area) -> object:
-    """assembly_001_space_091: 24 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_091', frame=Frame(24576, 34816),
-        style=Style(ceiling_picnum=67, ceiling_shade=36, floor_shade=31, wall_picnum=2474, wall_shade=24),
-        note='24 player areas, 1 sector',
-    )
-    s207 = space.room(
-        'sector_207',
-        [(1024, 1792), (1024, 4224), (768, 4352), (384, 4352), (384, 4096), (128, 4096), (128, 4352), (0, 4352), (0, 3328), (256, 3072), (256, 0), (1024, 0), (1024, 768)],
-        faces={'east': 0, 'south': 2, 'west': 7, 'north': 10},
-        role='gameplay',
-        style=Style(clear_height=47104, floor_z=-7168),
-        note='native sector 207',
-    )
-    return space
-
-
-def build_assembly_001_space_090(area) -> object:
-    """assembly_001_space_090: 18 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_090', frame=Frame(21248, 38144),
-        style=Style(floor_shade=14, parallax_ceiling=True, wall_picnum=2474, wall_shade=24),
-        note='18 player areas, 1 sector',
-    )
-    s206 = space.room(
-        'sector_206',
-        [(3328, 0), (3328, 1024), (2048, 1024), (0, 1024), (0, 256), (3072, 256)],
-        faces={'east': 0, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=50176, floor_z=-7168),
-        note='native sector 206',
-    )
-    return space
-
-
-def build_assembly_001_space_092(area) -> object:
-    """assembly_001_space_092: 17 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_092', frame=Frame(24576, 33024),
-        style=Style(ceiling_picnum=67, ceiling_shade=36, floor_shade=31, wall_shade=38),
-        note='17 player areas, 1 sector',
-    )
-    s208 = space.room(
-        'sector_208',
-        [(1024, 128), (1024, 1792), (256, 1792), (256, 4864), (0, 5120), (0, 0), (128, 0), (128, 256), (384, 256), (384, 0), (768, 0)],
-        faces={'east': 0, 'west': 4, 'north': 9},
-        role='gameplay',
-        style=Style(clear_height=55296, floor_z=1024),
-        note='native sector 208',
-    )
-    return space
-
-
-def build_assembly_001_space_075(area) -> object:
-    """assembly_001_space_075: 17 player areas, 4 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_075', frame=Frame(3328, 44288),
-        style=Style(ceiling_picnum=21, ceiling_shade=18, floor_picnum=110, floor_shade=25, wall_picnum=178, wall_shade=23),
-        note='17 player areas, 4 sectors',
-    )
-    s178 = space.room(
-        'sector_178',
-        [(1024, 1792), (0, 1792), (0, 1152), (0, 1024), (0, 512), (118, 588), (256, 616), (393, 588), (510, 510), (588, 393), (616, 256), (588, 118), (512, 0), (768, 0), (1024, 0), (1024, 1536)],
-        faces={'south': 0, 'west': 1, 'north': 12, 'east': 14},
-        role='gameplay',
-        style=Style(clear_height=41984, floor_z=8192, wall_picnum=329),
-        note='native sector 178',
-    )
-    s178.decorate(
-        native_detail('sprite_057', 1708, x_repeat=32, y_repeat=32, type=417, cstat=464, shade=-1),  # native sprite 57  ~1.5 player heights
-        native_detail('sprite_058', 1711, x_repeat=40, y_repeat=40, type=417, cstat=464, shade=-8),  # native sprite 58  ~2.7 player heights
-        native_detail('sprite_059', 1712, x_repeat=40, y_repeat=40, type=417, cstat=464, shade=-11),  # native sprite 59  ~1.8 player heights
-        native_detail('sprite_060', 1714, x_repeat=32, y_repeat=56, type=417, cstat=464, shade=1),  # native sprite 60  ~1.7 player heights
-        native_detail('sprite_062', 915, x_repeat=24, y_repeat=40, type=0, cstat=979, shade=-1),  # native sprite 62  ~2.5 player heights
-        native_detail('sprite_097', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 97  ~3.6 player heights
-        native_detail('sprite_310', 812, x_repeat=48, y_repeat=48, type=68, cstat=128, shade=-8),  # native sprite 310  ~0.9 player heights
-        native_detail('sprite_350', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 350  ~3.6 player heights
-    )
-    s179 = space.room(
-        'sector_179',
-        [(0, 1856), (1024, 1856), (1024, 2560), (0, 2560)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=41984, floor_shade=37, floor_z=8192, wall_shade=38),
-        note='native sector 179',
-    )
-    s179.decorate(
-        native_detail('sprite_145', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 145  ~3.6 player heights
-        native_detail('sprite_312', 519, x_repeat=48, y_repeat=48, type=107, cstat=128, shade=-8),  # native sprite 312  ~1.0 player heights
-    )
-    s180 = space.room(
-        'sector_180',
-        [(1024, 1856), (0, 1856), (0, 1792), (1024, 1792)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(ceiling_picnum=67, ceiling_shade=34, clear_height=22528, floor_shade=31, floor_z=8192),
-        note='native sector 180',
-    )
-    s180.decorate(
-        native_detail('sprite_278', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 278  ~2.2 player heights
-    )
-    s308 = space.room(
-        'sector_308',
-        [(1024, 1536), (1024, 0), (1152, 0), (1152, 1536)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(ceiling_picnum=20, ceiling_shade=30, clear_height=34816, floor_picnum=2448, floor_shade=18, floor_z=8192, wall_picnum=20, wall_shade=30),
-        note='native sector 308',
-    )
-    return space
-
-
-def build_assembly_001_space_100(area) -> object:
-    """assembly_001_space_100: 15 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_100', frame=Frame(35456, 30720),
-        style=Style(ceiling_picnum=2915, floor_picnum=365, wall_picnum=272, wall_shade=21),
-        note='15 player areas, 1 sector',
-    )
-    s231 = space.room(
-        'sector_231',
-        [(0, 256), (896, 0), (1792, 256), (1792, 1152), (896, 1536), (0, 1152)],
-        faces={'east': 2, 'west': 5},
-        role='gameplay',
-        style=Style(clear_height=30720, floor_z=-27648),
-        note='native sector 231',
-    )
-    s231.decorate(
-        native_detail('sprite_213', 2331, x_repeat=64, y_repeat=64, type=10, cstat=128, shade=-8),  # native sprite 213  ~0.6 player heights
-        native_detail('sprite_216', 2557, x_repeat=32, y_repeat=32, type=105, cstat=128, shade=-8),  # native sprite 216  ~1.5 player heights
-        native_detail('sprite_217', 3997, x_repeat=64, y_repeat=64, type=3, cstat=32896, shade=0),  # native sprite 217  (tile not in ART)
-        native_detail('sprite_218', 3997, x_repeat=64, y_repeat=64, type=4, cstat=32896, shade=0),  # native sprite 218  (tile not in ART)
-        native_detail('sprite_219', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 219  ~2.9 player heights
-        native_detail('sprite_222', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 222  ~2.9 player heights
-        native_detail('sprite_223', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 223  ~2.9 player heights
-        native_detail('sprite_224', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 224  ~2.9 player heights
-        native_detail('sprite_225', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 225  ~2.9 player heights
-        native_detail('sprite_226', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 226  ~2.9 player heights
-        native_detail('sprite_227', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 227  ~2.9 player heights
-        native_detail('sprite_228', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 228  ~2.9 player heights
-        native_detail('sprite_229', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 229  ~2.9 player heights
-        native_detail('sprite_230', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 230  ~2.9 player heights
-        native_detail('sprite_231', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 231  ~2.9 player heights
-        native_detail('sprite_232', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 232  ~2.9 player heights
-        native_detail('sprite_233', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 233  ~2.9 player heights
-        native_detail('sprite_234', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 234  ~2.9 player heights
-        native_detail('sprite_235', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 235  ~2.9 player heights
-        native_detail('sprite_238', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 238  ~2.9 player heights
-        native_detail('sprite_239', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 239  ~2.9 player heights
-        native_detail('sprite_240', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 240  ~2.9 player heights
-        native_detail('sprite_266', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 266  ~2.2 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_047(area) -> object:
-    """assembly_001_space_047: 15 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_047', frame=Frame(26624, 15360),
-        style=Style(ceiling_picnum=329, ceiling_shade=9, floor_picnum=21, floor_shade=19, wall_picnum=110, wall_shade=35),
-        note='15 player areas, 1 sector',
-    )
-    s097 = space.room(
-        'sector_097',
-        [(0, 0), (448, 0), (960, 0), (1408, 0), (1536, 0), (1536, 512), (1536, 1024), (1409, 1233), (1228, 1397), (1024, 1536), (512, 1536), (303, 1394), (123, 1229), (0, 1024), (0, 512)],
-        faces={'north': 1, 'east': 4, 'south': 9, 'west': 13},
-        role='gameplay',
-        style=Style(clear_height=65536, floor_z=8192),
-        note='native sector 97',
-    )
-    s097.decorate(
-        native_detail('sprite_036', 641, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=-128),  # native sprite 36  ~5.8 player heights
-    )
-    return space
-
-
 def build_assembly_001_space_054(area) -> object:
     """assembly_001_space_054: 15 player areas, 1 sector.
 
@@ -2934,7 +3582,7 @@ def build_assembly_001_space_054(area) -> object:
     """
     space = area.assembly(
         'assembly_001_space_054', frame=Frame(13312, 18304),
-        style=Style(parallax_ceiling=True, wall_shade=14),
+        style=Style(wall_shade=14),
         note='15 player areas, 1 sector',
     )
     s113 = space.room(
@@ -2963,7 +3611,7 @@ def build_assembly_001_space_020(area) -> object:
     """
     space = area.assembly(
         'assembly_001_space_020', frame=Frame(11008, 17792),
-        style=Style(parallax_ceiling=True, wall_picnum=2455, wall_shade=23),
+        style=Style(wall_picnum=2455, wall_shade=23),
         note='14 player areas, 1 sector',
     )
     s036 = space.room(
@@ -2976,574 +3624,6 @@ def build_assembly_001_space_020(area) -> object:
     )
     s036.decorate(
         native_detail('sprite_376', 2498, x_repeat=64, y_repeat=64, type=416, cstat=915, shade=10),  # native sprite 376  ~1.5 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_121(area) -> object:
-    """assembly_001_space_121: 13 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_121', frame=Frame(32878, 45952),
-        style=Style(floor_shade=18, parallax_ceiling=True, wall_shade=25),
-        note='13 player areas, 1 sector',
-    )
-    s312 = space.room(
-        'sector_312',
-        [(234, 276), (370, 32), (818, 0), (1170, 288), (1362, 672), (1010, 1792), (498, 1856), (18, 1536), (0, 1248)],
-        role='gameplay',
-        style=Style(clear_height=51200, floor_z=-6144),
-        note='native sector 312',
-    )
-    s312.decorate(
-        native_detail('sprite_382', 3793, x_repeat=40, y_repeat=40, type=416, cstat=385, shade=10),  # native sprite 382  ~3.0 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_034(area) -> object:
-    """assembly_001_space_034: 12 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_034', frame=Frame(34048, 14080),
-        style=Style(ceiling_picnum=2490, ceiling_shade=30, floor_picnum=365, floor_shade=41, wall_picnum=309, wall_shade=33),
-        note='12 player areas, 1 sector',
-    )
-    s065 = space.room(
-        'sector_065',
-        [(2560, 0), (2560, 512), (2048, 768), (512, 768), (0, 512), (0, 0)],
-        faces={'east': 0, 'south': 2, 'west': 4, 'north': 5},
-        role='gameplay',
-        style=Style(clear_height=8192, floor_z=-47104),
-        note='native sector 65',
-    )
-    return space
-
-
-def build_assembly_001_space_045(area) -> object:
-    """assembly_001_space_045: 12 player areas, 3 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_045', frame=Frame(14848, 39680),
-        style=Style(ceiling_picnum=329, ceiling_shade=37, floor_shade=25, wall_shade=14),
-        note='12 player areas, 3 sectors',
-    )
-    s092 = space.room(
-        'sector_092',
-        [(512, 0), (512, 1024), (0, 1024), (0, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192),
-        note='native sector 92',
-    )
-    s093 = space.room(
-        'sector_093',
-        [(1280, 0), (1280, 1024), (512, 1024), (512, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192),
-        note='native sector 93',
-    )
-    s094 = space.room(
-        'sector_094',
-        [(1280, 1024), (1280, 0), (1792, 0), (1792, 1024)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_shade=24, floor_z=8192),
-        note='native sector 94',
-    )
-    return space
-
-
-def build_assembly_001_space_101(area) -> object:
-    """assembly_001_space_101: 12 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_101', frame=Frame(35328, 30464),
-        style=Style(ceiling_picnum=2490, floor_picnum=365, floor_shade=27, wall_picnum=365, wall_shade=21),
-        note='12 player areas, 1 sector',
-    )
-    s232 = space.room(
-        'sector_232',
-        [(384, 2048), (0, 1664), (0, 384), (384, 0), (1664, 0), (2048, 384), (2048, 1664), (1664, 2048), (768, 2048), (768, 1984), (704, 1984), (704, 2048)],
-        faces={'west': 1, 'north': 3, 'east': 5, 'south': 7},
-        role='gameplay',
-        style=Style(clear_height=29696, floor_z=-27648),
-        note='native sector 232',
-    )
-    s232.carve([(128, 512), (128, 1408), (1024, 1792), (1920, 1408), (1920, 512), (1024, 256)])  # a native inner loop of this sector
-    s232.decorate(
-        native_detail('sprite_236', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 236  ~2.9 player heights
-        native_detail('sprite_237', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 237  ~2.9 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_087(area) -> object:
-    """assembly_001_space_087: 11 player areas, 1 sector, contains recess.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_087', frame=Frame(26880, 22016),
-        style=Style(ceiling_picnum=329, ceiling_shade=27, floor_picnum=21, floor_shade=9, wall_picnum=25, wall_shade=38),
-        note='11 player areas, 1 sector, contains recess',
-    )
-    s202 = space.room(
-        'sector_202',
-        [(1280, 1536), (0, 1280), (0, 256), (1280, 0)],
-        faces={'west': 1, 'east': 3},
-        role='detail',
-        style=Style(clear_height=32768, floor_z=-24576),
-        note='part of structure:recess:009',
-    )
-    s202.decorate(
-        native_detail('sprite_081', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 81  ~3.0 player heights
-        native_detail('sprite_347', 801, x_repeat=48, y_repeat=48, type=79, cstat=128, shade=-8),  # native sprite 347  ~1.2 player heights
-        native_detail('sprite_348', 801, x_repeat=48, y_repeat=48, type=79, cstat=128, shade=-8),  # native sprite 348  ~1.2 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_088(area) -> object:
-    """assembly_001_space_088: 11 player areas, 1 sector, contains recess.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_088', frame=Frame(26880, 26112),
-        style=Style(ceiling_picnum=329, ceiling_shade=27, floor_picnum=21, floor_shade=9, wall_picnum=110, wall_shade=41),
-        note='11 player areas, 1 sector, contains recess',
-    )
-    s203 = space.room(
-        'sector_203',
-        [(1280, 1536), (0, 1280), (0, 256), (1280, 0)],
-        faces={'west': 1, 'east': 3},
-        role='detail',
-        style=Style(clear_height=32768, floor_z=-24576),
-        note='part of structure:recess:010',
-    )
-    s203.decorate(
-        native_detail('sprite_080', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 80  ~3.0 player heights
-        native_detail('sprite_346', 809, x_repeat=48, y_repeat=48, type=63, cstat=384, shade=-8),  # native sprite 346  ~0.8 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_013(area) -> object:
-    """assembly_001_space_013: 11 player areas, 7 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_013', frame=Frame(12544, 24320),
-        style=Style(ceiling_picnum=329, ceiling_shade=24, floor_shade=16, wall_picnum=200, wall_shade=1),
-        note='11 player areas, 7 sectors',
-    )
-    s022 = space.room(
-        'sector_022',
-        [(256, 384), (0, 384), (0, 0), (256, 0)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(clear_height=26624, floor_z=8192, wall_picnum=2491),
-        note='native sector 22',
-    )
-    s023 = space.room(
-        'sector_023',
-        [(0, 768), (256, 768), (256, 1152), (0, 1152)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=26624, floor_shade=20, floor_z=8192, wall_picnum=2491),
-        note='native sector 23',
-    )
-    s023.decorate(
-        native_detail('sprite_301', 1046, x_repeat=32, y_repeat=32, type=20, cstat=464, shade=-8),  # native sprite 301  ~0.7 player heights
-        native_detail('sprite_404', 2540, x_repeat=24, y_repeat=24, type=0, cstat=464, shade=-8),  # native sprite 404  ~1.0 player heights
-    )
-    s024 = space.room(
-        'sector_024',
-        [(256, 768), (0, 768), (0, 384), (256, 384)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(clear_height=26624, floor_shade=20, floor_z=8192, wall_picnum=2491),
-        note='native sector 24',
-    )
-    s025 = space.room(
-        'sector_025',
-        [(1408, 384), (1152, 384), (1152, 0), (1408, 0)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(ceiling_shade=29, clear_height=26624, floor_z=8192, wall_picnum=2499, wall_shade=12),
-        note='native sector 25',
-    )
-    s026 = space.room(
-        'sector_026',
-        [(1152, 768), (1408, 768), (1408, 1152), (1152, 1152)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(ceiling_shade=29, clear_height=26624, floor_shade=21, floor_z=8192, wall_picnum=2499, wall_shade=12),
-        note='native sector 26',
-    )
-    s027 = space.room(
-        'sector_027',
-        [(1408, 768), (1152, 768), (1152, 384), (1408, 384)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(ceiling_shade=29, clear_height=26624, floor_shade=19, floor_z=8192, wall_picnum=2499, wall_shade=12),
-        note='native sector 27',
-    )
-    s028 = space.room(
-        'sector_028',
-        [(512, 0), (512, 64), (768, 64), (768, 0), (1152, 0), (1152, 384), (1152, 768), (1152, 1152), (768, 1152), (768, 1088), (512, 1088), (512, 1152), (256, 1152), (256, 768), (256, 384), (256, 0)],
-        faces={'north': 3, 'east': 4, 'south': 7, 'west': 12},
-        role='gameplay',
-        style=Style(ceiling_picnum=21, ceiling_shade=33, clear_height=32768, floor_shade=25, floor_z=8192, wall_shade=28),
-        note='native sector 28',
-    )
-    s028.carve([(640, 768), (704, 704), (640, 640), (576, 704)])  # a native inner loop of this sector
-    s028.carve([(640, 512), (704, 448), (640, 384), (576, 448)])  # a native inner loop of this sector
-    s028.carve([(640, 256), (704, 192), (640, 128), (576, 192)])  # a native inner loop of this sector
-    s028.carve([(640, 1024), (704, 960), (640, 896), (576, 960)])  # a native inner loop of this sector
-    return space
-
-
-def build_assembly_001_space_069(area) -> object:
-    """assembly_001_space_069: 10 player areas, 3 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_069', frame=Frame(7296, 25600),
-        style=Style(ceiling_picnum=329, ceiling_shade=33, floor_shade=18),
-        note='10 player areas, 3 sectors',
-    )
-    s169 = space.room(
-        'sector_169',
-        [(896, 0), (896, 512), (0, 512), (0, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=33792, floor_z=8192),
-        note='native sector 169',
-    )
-    s170 = space.room(
-        'sector_170',
-        [(1920, 0), (1920, 512), (896, 512), (896, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=33792, floor_z=8192),
-        note='native sector 170',
-    )
-    s171 = space.room(
-        'sector_171',
-        [(1920, 512), (1920, 0), (2816, 0), (2816, 512)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=33792, floor_z=8192),
-        note='native sector 171',
-    )
-    return space
-
-
-def build_assembly_001_space_035(area) -> object:
-    """assembly_001_space_035: 9 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_035', frame=Frame(34048, 14592),
-        style=Style(ceiling_picnum=2490, ceiling_shade=30, floor_picnum=365, floor_shade=41, wall_picnum=309, wall_shade=33),
-        note='9 player areas, 1 sector',
-    )
-    s066 = space.room(
-        'sector_066',
-        [(2560, 0), (2560, 512), (2048, 768), (512, 768), (0, 512), (0, 0), (512, 256), (2048, 256)],
-        faces={'east': 0, 'south': 2, 'west': 4},
-        role='gameplay',
-        style=Style(clear_height=13312, floor_z=-41984),
-        note='native sector 66',
-    )
-    return space
-
-
-def build_assembly_001_space_036(area) -> object:
-    """assembly_001_space_036: 9 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_036', frame=Frame(34048, 15104),
-        style=Style(ceiling_picnum=2490, ceiling_shade=30, floor_picnum=365, floor_shade=41, wall_picnum=309, wall_shade=33),
-        note='9 player areas, 1 sector',
-    )
-    s067 = space.room(
-        'sector_067',
-        [(2560, 0), (2560, 512), (2048, 768), (512, 768), (0, 512), (0, 0), (512, 256), (2048, 256)],
-        faces={'east': 0, 'south': 2, 'west': 4},
-        role='gameplay',
-        style=Style(clear_height=18432, floor_z=-36864),
-        note='native sector 67',
-    )
-    return space
-
-
-def build_assembly_001_space_068(area) -> object:
-    """assembly_001_space_068: 9 player areas, 3 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_068', frame=Frame(15616, 30976),
-        style=Style(ceiling_picnum=329, ceiling_shade=38, floor_shade=24, wall_shade=20),
-        note='9 player areas, 3 sectors',
-    )
-    s165 = space.room(
-        'sector_165',
-        [(128, 384), (384, 640), (1152, 1408), (1408, 1664), (1280, 1792), (0, 512)],
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192),
-        note='native sector 165',
-    )
-    s166 = space.room(
-        'sector_166',
-        [(384, 128), (640, 384), (1408, 1152), (1664, 1408), (1408, 1664), (1152, 1408), (384, 640), (128, 384)],
-        role='gameplay',
-        style=Style(ceiling_picnum=67, clear_height=31744, floor_z=8192),
-        note='native sector 166',
-    )
-    s166.decorate(
-        native_detail('sprite_195', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 195  ~2.2 player heights
-    )
-    s167 = space.room(
-        'sector_167',
-        [(1664, 1408), (1408, 1152), (640, 384), (384, 128), (512, 0), (1792, 1280)],
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192, wall_shade=2),
-        note='native sector 167',
-    )
-    return space
-
-
-def build_assembly_001_space_093(area) -> object:
-    """assembly_001_space_093: 7 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_093', frame=Frame(28032, 39424),
-        style=Style(ceiling_picnum=306, ceiling_shade=23, floor_picnum=34, floor_shade=3, wall_picnum=170, wall_shade=20),
-        note='7 player areas, 1 sector',
-    )
-    s209 = space.room(
-        'sector_209',
-        [(1664, 0), (1664, 1280), (0, 1280), (0, 896), (1280, 896), (1280, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 5},
-        role='gameplay',
-        style=Style(clear_height=37888, floor_z=-17408),
-        note='native sector 209',
-    )
-    s209.decorate(
-        native_detail('sprite_246', 802, x_repeat=40, y_repeat=40, type=416, cstat=385, shade=0),  # native sprite 246  ~0.7 player heights
-        native_detail('sprite_250', 604, x_repeat=40, y_repeat=40, type=416, cstat=385, shade=-8),  # native sprite 250  ~0.6 player heights
-        native_detail('sprite_340', 524, x_repeat=48, y_repeat=48, type=43, cstat=128, shade=-8),  # native sprite 340  ~0.7 player heights
-        native_detail('sprite_341', 816, x_repeat=48, y_repeat=48, type=76, cstat=128, shade=-8),  # native sprite 341  ~0.7 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_118(area) -> object:
-    """assembly_001_space_118: 7 player areas, 3 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_118', frame=Frame(5120, 38784),
-        style=Style(ceiling_picnum=329, ceiling_shade=42, floor_shade=37, wall_shade=42),
-        note='7 player areas, 3 sectors',
-    )
-    s305 = space.room(
-        'sector_305',
-        [(512, 640), (0, 640), (0, 0), (128, 128), (384, 128), (512, 0)],
-        faces={'south': 0, 'west': 1, 'east': 5},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192),
-        note='native sector 305',
-    )
-    s306 = space.room(
-        'sector_306',
-        [(512, 1408), (0, 1408), (0, 640), (512, 640)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192),
-        note='native sector 306',
-    )
-    s307 = space.room(
-        'sector_307',
-        [(0, 1408), (512, 1408), (512, 2176), (256, 1920), (0, 1920)],
-        faces={'north': 0, 'east': 1, 'west': 4},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192),
-        note='native sector 307',
-    )
-    return space
-
-
-def build_assembly_001_space_051(area) -> object:
-    """assembly_001_space_051: 6 player areas, 4 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_051', frame=Frame(25600, 39168),
-        style=Style(ceiling_picnum=5, ceiling_shade=32, floor_picnum=5, floor_shade=32, wall_picnum=5, wall_shade=32),
-        note='6 player areas, 4 sectors',
-    )
-    s107 = space.room(
-        'sector_107',
-        [(1280, 256), (1024, 256), (512, 512), (256, 512), (256, 0), (1152, 0)],
-        faces={'south': 2, 'west': 3, 'north': 4},
-        role='gameplay',
-        style=Style(clear_height=3072, floor_z=-11264),
-        note='native sector 107',
-    )
-    s107.decorate(
-        native_detail('sprite_052', 2101, x_repeat=64, y_repeat=64, type=0, cstat=129, shade=-128),  # native sprite 52  ~1.7 player heights
-    )
-    s108 = space.room(
-        'sector_108',
-        [(1024, 896), (1024, 256), (1280, 256), (1280, 896)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=30720, floor_z=-11264),
-        note='native sector 108',
-    )
-    s109 = space.room(
-        'sector_109',
-        [(512, 512), (512, 896), (0, 896), (256, 512)],
-        faces={'east': 0, 'south': 1, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=-11264),
-        note='native sector 109',
-    )
-    s109.decorate(
-        native_detail('sprite_269', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 269  ~2.2 player heights
-    )
-    s110 = space.room(
-        'sector_110',
-        [(1024, 896), (512, 896), (512, 512), (1024, 256)],
-        faces={'south': 0, 'west': 1, 'east': 3},
-        role='gameplay',
-        style=Style(clear_height=35840, floor_z=-11264),
-        note='native sector 110',
-    )
-    s110.decorate(
-        native_detail('sprite_053', 2115, x_repeat=40, y_repeat=64, type=0, cstat=129, shade=-32),  # native sprite 53  ~5.8 player heights
-        native_detail('sprite_272', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 272  ~2.2 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_109(area) -> object:
-    """assembly_001_space_109: 6 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_109', frame=Frame(11776, 39040),
-        style=Style(ceiling_picnum=329, ceiling_shade=42, floor_shade=34, wall_shade=42),
-        note='6 player areas, 1 sector',
-    )
-    s270 = space.room(
-        'sector_270',
-        [(0, 1920), (0, 0), (128, 128), (384, 128), (512, 0), (512, 1664), (256, 1664)],
-        faces={'west': 0, 'east': 4},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=8192),
-        note='native sector 270',
-    )
-    return space
-
-
-def build_assembly_001_space_026(area) -> object:
-    """assembly_001_space_026: 5 player areas, 3 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_026', frame=Frame(15360, 20224),
-        style=Style(ceiling_picnum=329, ceiling_shade=37, floor_shade=22, wall_shade=37),
-        note='5 player areas, 3 sectors',
-    )
-    s047 = space.room(
-        'sector_047',
-        [(512, 512), (0, 512), (0, 0), (512, 0)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(clear_height=27648, floor_z=8192, wall_picnum=21, wall_shade=38),
-        note='native sector 47',
-    )
-    s048 = space.room(
-        'sector_048',
-        [(0, 1024), (512, 1024), (512, 1536), (0, 1536)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=27648, floor_z=8192),
-        note='native sector 48',
-    )
-    s049 = space.room(
-        'sector_049',
-        [(512, 1024), (0, 1024), (0, 512), (512, 512)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(clear_height=27648, floor_z=8192, wall_picnum=21, wall_shade=38),
-        note='native sector 49',
-    )
-    return space
-
-
-def build_assembly_001_space_103(area) -> object:
-    """assembly_001_space_103: 5 player areas, 3 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_103', frame=Frame(28928, 47616),
-        style=Style(ceiling_picnum=2499, ceiling_shade=54, floor_picnum=2473, wall_shade=25),
-        note='5 player areas, 3 sectors',
-    )
-    s237 = space.room(
-        'sector_237',
-        [(1152, 512), (1152, 0), (1536, 0), (1536, 512)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=45056, floor_z=-2048),
-        note='native sector 237',
-    )
-    s238 = space.room(
-        'sector_238',
-        [(384, 512), (384, 0), (1152, 0), (1152, 512)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=45056, floor_z=-2048),
-        note='native sector 238',
-    )
-    s238.decorate(
-        native_detail('sprite_293', 1044, x_repeat=48, y_repeat=88, type=0, cstat=413, shade=24),  # native sprite 293  ~8.0 player heights
-    )
-    s239 = space.room(
-        'sector_239',
-        [(384, 0), (384, 512), (0, 512), (0, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=45056, floor_z=-2048),
-        note='native sector 239',
     )
     return space
 
@@ -3573,64 +3653,6 @@ def build_assembly_001_space_122(area) -> object:
     return space
 
 
-def build_assembly_001_space_040(area) -> object:
-    """assembly_001_space_040: 5 player areas, 3 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_040', frame=Frame(26624, 14848),
-        style=Style(ceiling_picnum=329, ceiling_shade=53, floor_picnum=21, floor_shade=29, wall_picnum=110, wall_shade=41),
-        note='5 player areas, 3 sectors',
-    )
-    s082 = space.room(
-        'sector_082',
-        [(448, 0), (448, 512), (0, 512), (0, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=28672, floor_z=8192),
-        note='native sector 82',
-    )
-    s083 = space.room(
-        'sector_083',
-        [(960, 0), (960, 512), (448, 512), (448, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=28672, floor_z=8192),
-        note='native sector 83',
-    )
-    s084 = space.room(
-        'sector_084',
-        [(960, 512), (960, 0), (1408, 0), (1408, 512)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=28672, floor_z=8192),
-        note='native sector 84',
-    )
-    return space
-
-
-def build_assembly_001_space_038(area) -> object:
-    """assembly_001_space_038: 4 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_038', frame=Frame(26112, 26368),
-        style=Style(ceiling_picnum=329, ceiling_shade=32, floor_picnum=329, floor_shade=8, wall_picnum=329, wall_shade=27),
-        note='4 player areas, 1 sector',
-    )
-    s080 = space.room(
-        'sector_080',
-        [(0, 0), (512, 0), (512, 1024), (0, 1024)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=20480, floor_z=-28672),
-        note='native sector 80',
-    )
-    return space
-
-
 def build_assembly_001_space_053(area) -> object:
     """assembly_001_space_053: 3 player areas, 1 sector.
 
@@ -3638,7 +3660,7 @@ def build_assembly_001_space_053(area) -> object:
     """
     space = area.assembly(
         'assembly_001_space_053', frame=Frame(3584, 22528),
-        style=Style(parallax_ceiling=True, wall_picnum=2491, wall_shade=19),
+        style=Style(wall_picnum=2491, wall_shade=19),
         note='3 player areas, 1 sector',
     )
     s112 = space.room(
@@ -3651,269 +3673,6 @@ def build_assembly_001_space_053(area) -> object:
     )
     s112.decorate(
         native_detail('sprite_406', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 406  ~2.2 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_094(area) -> object:
-    """assembly_001_space_094: 3 player areas, 2 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_094', frame=Frame(29184, 41984),
-        style=Style(ceiling_picnum=20, floor_picnum=20, wall_picnum=20, wall_shade=0),
-        note='3 player areas, 2 sectors',
-    )
-    s213 = space.room(
-        'sector_213',
-        [(1792, 128), (0, 128), (0, 0), (1152, 0), (1792, 0)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 4},
-        role='gameplay',
-        style=Style(clear_height=18432, floor_z=-17408),
-        note='native sector 213',
-    )
-    s213.decorate(
-        native_detail('sprite_207', 144, x_repeat=56, y_repeat=72, type=416, cstat=401, shade=35),  # native sprite 207  ~3.3 player heights
-        native_detail('sprite_208', 144, x_repeat=56, y_repeat=72, type=416, cstat=401, shade=35),  # native sprite 208  ~3.3 player heights
-    )
-    s214 = space.room(
-        'sector_214',
-        [(0, 128), (1792, 128), (1792, 256), (0, 256)],
-        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=18432, floor_z=-17408),
-        note='native sector 214',
-    )
-    return space
-
-
-def build_assembly_001_space_120(area) -> object:
-    """assembly_001_space_120: 2 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_120', frame=Frame(32512, 46144),
-        style=Style(ceiling_picnum=16, ceiling_shade=45, floor_picnum=329, floor_shade=39, wall_picnum=329, wall_shade=45),
-        note='2 player areas, 1 sector',
-    )
-    s311 = space.room(
-        'sector_311',
-        [(256, 0), (600, 84), (366, 1056), (0, 960)],
-        role='gameplay',
-        style=Style(clear_height=23552, floor_z=-7168),
-        note='native sector 311',
-    )
-    s311.decorate(
-        native_detail('sprite_273', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 273  ~2.2 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_096(area) -> object:
-    """assembly_001_space_096: 2 player areas, 3 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_096', frame=Frame(13824, 26624),
-        style=Style(ceiling_picnum=2499, ceiling_shade=43, floor_shade=33, wall_shade=42),
-        note='2 player areas, 3 sectors',
-    )
-    s216 = space.room(
-        'sector_216',
-        [(128, 448), (128, 1536), (0, 1600), (0, 384)],
-        faces={'east': 0, 'west': 2},
-        role='gameplay',
-        style=Style(clear_height=24576, floor_z=8192),
-        note='native sector 216',
-    )
-    # sector 217 is in NATIVE_ESCAPES: self-intersection (partial_collinear_overlap)
-    s218 = space.room(
-        'sector_218',
-        [(320, 1536), (320, 448), (352, 416), (352, 1568)],
-        faces={'west': 0, 'east': 2},
-        role='gameplay',
-        style=Style(clear_height=24576, floor_z=8192),
-        note='native sector 218',
-    )
-    return space
-
-
-def build_assembly_001_space_055(area) -> object:
-    """assembly_001_space_055: 2 player areas, 1 sector, contains recess.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_055', frame=Frame(3328, 44288),
-        style=Style(ceiling_picnum=21, floor_picnum=110, floor_shade=18, wall_picnum=178, wall_shade=23),
-        note='2 player areas, 1 sector, contains recess',
-    )
-    s114 = space.room(
-        'sector_114',
-        [(512, 0), (588, 118), (616, 256), (588, 393), (510, 510), (393, 588), (256, 616), (118, 588), (0, 512), (0, 0)],
-        faces={'west': 8, 'north': 9},
-        role='detail',
-        style=Style(clear_height=41984, floor_z=8192),
-        note='part of structure:recess:004',
-    )
-    s114.decorate(
-        native_detail('sprite_056', 641, x_repeat=64, y_repeat=64, type=0, cstat=129, shade=-128),  # native sprite 56  ~5.8 player heights
-        native_detail('sprite_061', 1715, x_repeat=40, y_repeat=40, type=416, cstat=978, shade=0),  # native sprite 61  ~0.8 player heights
-        native_detail('sprite_311', 816, x_repeat=48, y_repeat=48, type=76, cstat=128, shade=-8),  # native sprite 311  ~0.7 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_048(area) -> object:
-    """assembly_001_space_048: 2 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_048', frame=Frame(24576, 44288),
-        style=Style(ceiling_picnum=365, ceiling_shade=45, floor_picnum=365, floor_shade=31, wall_picnum=365, wall_shade=39),
-        note='2 player areas, 1 sector',
-    )
-    s098 = space.room(
-        'sector_098',
-        [(0, 1280), (0, 0), (256, 0), (256, 1280)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=36864, floor_z=-20480),
-        note='native sector 98',
-    )
-    return space
-
-
-def build_assembly_001_space_049(area) -> object:
-    """assembly_001_space_049: 2 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_049', frame=Frame(24576, 41984),
-        style=Style(ceiling_picnum=365, ceiling_shade=45, floor_picnum=365, floor_shade=34, wall_picnum=365, wall_shade=39),
-        note='2 player areas, 1 sector',
-    )
-    s101 = space.room(
-        'sector_101',
-        [(256, 1280), (0, 1280), (0, 0), (256, 0)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(clear_height=36864, floor_z=-20480),
-        note='native sector 101',
-    )
-    return space
-
-
-def build_assembly_001_space_104(area) -> object:
-    """assembly_001_space_104: 2 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_104', frame=Frame(30336, 41728),
-        style=Style(ceiling_picnum=306, ceiling_shade=23, floor_picnum=120, floor_shade=15, wall_picnum=153, wall_shade=0),
-        note='2 player areas, 1 sector',
-    )
-    s240 = space.room(
-        'sector_240',
-        [(0, 256), (0, 0), (1152, 0), (1152, 256), (640, 256)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 4},
-        role='gameplay',
-        style=Style(clear_height=38912, floor_z=-16384),
-        note='native sector 240',
-    )
-    s240.decorate(
-        native_detail('sprite_245', 604, x_repeat=40, y_repeat=40, type=416, cstat=385, shade=-8),  # native sprite 245  ~0.6 player heights
-        native_detail('sprite_249', 604, x_repeat=40, y_repeat=40, type=416, cstat=385, shade=-8),  # native sprite 249  ~0.6 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_001(area) -> object:
-    """assembly_001_space_001: 2 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_001', frame=Frame(7936, 38912),
-        style=Style(parallax_ceiling=True, wall_picnum=2492, wall_shade=0),
-        note='2 player areas, 1 sector',
-    )
-    s000 = space.room(
-        'sector_000',
-        [(0, 1024), (0, 0), (256, 0), (256, 128), (256, 1024)],
-        faces={'west': 0, 'north': 1, 'east': 3, 'south': 4},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=-24576),
-        note='native sector 0',
-    )
-    return space
-
-
-def build_assembly_001_space_002(area) -> object:
-    """assembly_001_space_002: 2 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_002', frame=Frame(9216, 38912),
-        style=Style(parallax_ceiling=True, wall_picnum=2492, wall_shade=0),
-        note='2 player areas, 1 sector',
-    )
-    s001 = space.room(
-        'sector_001',
-        [(0, 1024), (0, 128), (0, 0), (256, 0), (256, 1024)],
-        faces={'west': 0, 'north': 2, 'east': 3, 'south': 4},
-        role='gameplay',
-        style=Style(clear_height=32768, floor_z=-24576),
-        note='native sector 1',
-    )
-    return space
-
-
-def build_assembly_001_space_003(area) -> object:
-    """assembly_001_space_003: 2 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_003', frame=Frame(8192, 39936),
-        style=Style(ceiling_picnum=68, ceiling_shade=41, floor_picnum=2496, floor_shade=20, wall_picnum=2492, wall_shade=0),
-        note='2 player areas, 1 sector',
-    )
-    s002 = space.room(
-        'sector_002',
-        [(1024, 256), (0, 256), (0, 0), (1024, 0)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(clear_height=28672, floor_z=8192),
-        note='native sector 2',
-    )
-    return space
-
-
-def build_assembly_001_space_019(area) -> object:
-    """assembly_001_space_019: 2 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_019', frame=Frame(14208, 18560),
-        style=Style(ceiling_picnum=68, ceiling_shade=42, floor_picnum=67, floor_shade=31, wall_picnum=21),
-        note='2 player areas, 1 sector',
-    )
-    s034 = space.room(
-        'sector_034',
-        [(1024, 256), (0, 256), (0, 0), (1024, 0)],
-        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
-        role='gameplay',
-        style=Style(clear_height=57344, floor_z=4096),
-        note='native sector 34',
     )
     return space
 
@@ -3988,38 +3747,6 @@ def build_assembly_001_space_061(area) -> object:
         role='gameplay',
         style=Style(clear_height=26624, floor_z=8192, wall_shade=32),
         note='native sector 139',
-    )
-    return space
-
-
-def build_assembly_001_space_089(area) -> object:
-    """assembly_001_space_089: 2 player areas, 2 sectors.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_089', frame=Frame(25600, 35584),
-        style=Style(ceiling_picnum=20, ceiling_shade=40, floor_picnum=20, floor_shade=22, wall_picnum=20, wall_shade=22),
-        note='2 player areas, 2 sectors',
-    )
-    s204 = space.room(
-        'sector_204',
-        [(128, 1024), (128, 0), (256, 0), (256, 1024)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=16384, floor_z=-30720),
-        note='native sector 204',
-    )
-    s205 = space.room(
-        'sector_205',
-        [(128, 0), (128, 1024), (0, 1024), (0, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=16384, floor_z=-30720),
-        note='native sector 205',
-    )
-    s205.decorate(
-        native_detail('sprite_206', 144, x_repeat=64, y_repeat=64, type=416, cstat=401, shade=24),  # native sprite 206  ~2.9 player heights
     )
     return space
 
@@ -4114,207 +3841,6 @@ def build_assembly_001_space_060(area) -> object:
     return space
 
 
-def build_assembly_001_space_108(area) -> object:
-    """assembly_001_space_108: 2 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_108', frame=Frame(15104, 13568),
-        style=Style(ceiling_picnum=329, ceiling_shade=46, floor_picnum=329, floor_shade=19, wall_picnum=329, wall_shade=26),
-        note='2 player areas, 1 sector',
-    )
-    s269 = space.room(
-        'sector_269',
-        [(256, 1024), (192, 960), (64, 960), (0, 1024), (0, 0), (64, 64), (192, 64), (256, 0)],
-        faces={'west': 3, 'east': 7},
-        role='gameplay',
-        style=Style(clear_height=17408, floor_z=-30720),
-        note='native sector 269',
-    )
-    return space
-
-
-def build_assembly_001_space_052(area) -> object:
-    """assembly_001_space_052: 1 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_052', frame=Frame(3200, 22528),
-        style=Style(ceiling_picnum=329, ceiling_shade=43, floor_picnum=329, floor_shade=-6, wall_picnum=329, wall_shade=23),
-        note='1 player areas, 1 sector',
-    )
-    s111 = space.room(
-        'sector_111',
-        [(384, 0), (384, 512), (0, 512), (0, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=10240, floor_z=-1024),
-        note='native sector 111',
-    )
-    s111.decorate(
-        native_detail('sprite_116', 809, x_repeat=48, y_repeat=48, type=63, cstat=384, shade=21),  # native sprite 116  ~0.8 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_106(area) -> object:
-    """assembly_001_space_106: 1 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_106', frame=Frame(7680, 23936),
-        style=Style(ceiling_picnum=329, ceiling_shade=18, floor_picnum=329, floor_shade=18, wall_picnum=329, wall_shade=18),
-        note='1 player areas, 1 sector',
-    )
-    s261 = space.room(
-        'sector_261',
-        [(512, 0), (512, 384), (0, 384), (0, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=12288, floor_z=-34816),
-        note='native sector 261',
-    )
-    s261.decorate(
-        native_detail('sprite_349', 829, x_repeat=40, y_repeat=40, type=117, cstat=128, shade=-8),  # native sprite 349  ~0.9 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_004(area) -> object:
-    """assembly_001_space_004: 1 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_004', frame=Frame(10368, 41472),
-        style=Style(ceiling_picnum=20, ceiling_shade=42, floor_picnum=20, floor_shade=33, wall_picnum=195, wall_shade=33),
-        note='1 player areas, 1 sector',
-    )
-    s003 = space.room(
-        'sector_003',
-        [(0, 768), (0, 0), (256, 0), (256, 768)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=16384, floor_z=0),
-        note='native sector 3',
-    )
-    s003.carve([(128, 672), (192, 608), (128, 544), (64, 608)])  # a native inner loop of this sector
-    s003.carve([(192, 160), (128, 96), (64, 160), (128, 224)])  # a native inner loop of this sector
-    s003.carve([(128, 448), (192, 384), (128, 320), (64, 384)])  # a native inner loop of this sector
-    return space
-
-
-def build_assembly_001_space_113(area) -> object:
-    """assembly_001_space_113: 1 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_113', frame=Frame(6784, 41472),
-        style=Style(ceiling_picnum=20, ceiling_shade=42, floor_picnum=20, floor_shade=33, wall_picnum=195, wall_shade=33),
-        note='1 player areas, 1 sector',
-    )
-    s292 = space.room(
-        'sector_292',
-        [(0, 768), (0, 0), (256, 0), (256, 768)],
-        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
-        role='gameplay',
-        style=Style(clear_height=16384, floor_z=0),
-        note='native sector 292',
-    )
-    s292.carve([(128, 672), (192, 608), (128, 544), (64, 608)])  # a native inner loop of this sector
-    s292.carve([(192, 160), (128, 96), (64, 160), (128, 224)])  # a native inner loop of this sector
-    s292.carve([(128, 448), (192, 384), (128, 320), (64, 384)])  # a native inner loop of this sector
-    return space
-
-
-def build_assembly_001_space_029(area) -> object:
-    """assembly_001_space_029: 1 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_029', frame=Frame(20096, 29440),
-        style=Style(floor_picnum=34, floor_shade=11, parallax_ceiling=True, wall_picnum=297, wall_shade=14),
-        note='1 player areas, 1 sector',
-    )
-    s054 = space.room(
-        'sector_054',
-        [(0, 0), (128, 0), (128, 512), (128, 1024), (0, 1024), (0, 512)],
-        faces={'north': 0, 'east': 1, 'south': 3, 'west': 4},
-        role='gameplay',
-        style=Style(clear_height=50176, floor_z=-7168),
-        note='native sector 54',
-    )
-    return space
-
-
-def build_assembly_001_space_030(area) -> object:
-    """assembly_001_space_030: 1 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_030', frame=Frame(21248, 29440),
-        style=Style(floor_picnum=34, floor_shade=11, parallax_ceiling=True, wall_picnum=272, wall_shade=18),
-        note='1 player areas, 1 sector',
-    )
-    s056 = space.room(
-        'sector_056',
-        [(0, 0), (128, 0), (128, 512), (128, 1024), (0, 1024), (0, 512)],
-        faces={'north': 0, 'east': 1, 'south': 3, 'west': 4},
-        role='gameplay',
-        style=Style(clear_height=50176, floor_z=-7168),
-        note='native sector 56',
-    )
-    return space
-
-
-def build_assembly_001_space_071(area) -> object:
-    """assembly_001_space_071: 1 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_071', frame=Frame(31616, 35648),
-        style=Style(ceiling_picnum=110, ceiling_shade=41, floor_picnum=110, floor_shade=41, wall_picnum=110, wall_shade=41),
-        note='1 player areas, 1 sector',
-    )
-    s174 = space.room(
-        'sector_174',
-        [(0, 768), (0, 512), (0, 256), (0, 0), (256, 192), (192, 576)],
-        faces={'west': 0},
-        role='gameplay',
-        style=Style(clear_height=19456, floor_z=-27648),
-        note='native sector 174',
-    )
-    return space
-
-
-def build_assembly_001_space_112(area) -> object:
-    """assembly_001_space_112: 1 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_112', frame=Frame(13888, 16000),
-        style=Style(ceiling_picnum=329, ceiling_shade=46, floor_picnum=329, floor_shade=20, wall_shade=43),
-        note='1 player areas, 1 sector',
-    )
-    s291 = space.room(
-        'sector_291',
-        [(192, 704), (128, 640), (64, 640), (0, 704), (0, 0), (64, 64), (128, 64), (192, 0)],
-        faces={'west': 3, 'east': 7},
-        role='gameplay',
-        style=Style(clear_height=15360, floor_z=-30720),
-        note='native sector 291',
-    )
-    return space
-
-
 def build_assembly_001_space_070(area) -> object:
     """assembly_001_space_070: 1 player areas, 1 sector, contains recess.
 
@@ -4336,360 +3862,465 @@ def build_assembly_001_space_070(area) -> object:
     return space
 
 
-def build_assembly_001_space_023(area) -> object:
-    """assembly_001_space_023: 1 player areas, 2 sectors.
+def build_main_complex_zone_04(area) -> object:
+    """zone_04: 10 spaces, 39 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    -4096, 36% of its sectors open to the sky, dominant surfaces [2499, 2448, 329],
+    centred at [94.8, 66.4] player widths. Seeded on assembly:001/space:010.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_04', frame=Frame(3584, 25600),
+        style=Style(ceiling_picnum=329, wall_shade=37),
+    )
+    build_assembly_001_space_083(zone)
+    build_assembly_001_space_110(zone)
+    build_assembly_001_space_084(zone)
+    build_assembly_001_space_010(zone)
+    build_assembly_001_space_117(zone)
+    build_assembly_001_space_095(zone)
+    build_assembly_001_space_069(zone)
+    build_assembly_001_space_096(zone)
+    build_assembly_001_space_085(zone)
+    build_assembly_001_space_086(zone)
+    return zone
+
+
+def build_assembly_001_space_083(area) -> object:
+    """assembly_001_space_083: 540 player areas, 3 sectors.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_023', frame=Frame(8256, 43392),
-        style=Style(ceiling_picnum=67, ceiling_shade=24, floor_picnum=34, floor_shade=38, wall_picnum=5, wall_shade=11),
-        note='1 player areas, 2 sectors',
+        'assembly_001_space_083', frame=Frame(0, 512),
+        style=Style(ceiling_picnum=2500, parallax_ceiling=True, wall_shade=14),
+        note='540 player areas, 3 sectors',
     )
-    s044 = space.room(
-        'sector_044',
-        [(832, 384), (832, 320), (832, 0), (896, 0), (896, 384)],
-        faces={'west': 1, 'north': 2, 'east': 3, 'south': 4},
+    s189 = space.room(
+        'sector_189',
+        [(8704, 7808), (7424, 7808), (7168, 6912), (7680, 6400), (7680, 5632), (8704, 5632)],
+        faces={'south': 0, 'north': 4, 'east': 5},
         role='gameplay',
-        style=Style(clear_height=15360, floor_z=-9216, wall_shade=21),
-        note='native sector 44',
+        style=Style(clear_height=65536, floor_z=8192, wall_shade=0),
+        note='native sector 189',
     )
-    s327 = space.room(
-        'sector_327',
-        [(0, 384), (0, 0), (64, 0), (64, 320), (832, 320), (832, 384), (704, 384), (192, 384), (64, 384)],
-        faces={'west': 0, 'north': 1, 'east': 4, 'south': 6},
+    s193 = space.room(
+        'sector_193',
+        [(2816, 7808), (1536, 7808), (1536, 5632), (2560, 5632), (2560, 6400), (3072, 6912)],
+        faces={'south': 0, 'west': 1, 'north': 2},
         role='gameplay',
-        style=Style(clear_height=15360, floor_z=-9216, wall_picnum=91),
-        note='native sector 327',
+        style=Style(clear_height=65536, floor_z=8192, wall_shade=0),
+        note='native sector 193',
+    )
+    s272 = space.room(
+        'sector_272',
+        [(7424, 9728), (7424, 9216), (7424, 8448), (7424, 7808), (8704, 7808), (8704, 8064), (8960, 8064), (8960, 4608), (7424, 3328), (2816, 3328), (1280, 4608), (1280, 8064), (1536, 8064), (1536, 7808), (2816, 7808), (2816, 8448), (2816, 9216), (2816, 9728), (2368, 9920), (1664, 10624), (1536, 11008), (1536, 12672), (1536, 13312), (1536, 14080), (1536, 14592), (0, 14592), (0, 6400), (0, 1920), (0, 1280), (0, 768), (0, 256), (256, 0), (768, 0), (1280, 0), (1920, 0), (3712, 0), (4608, 0), (5632, 0), (6528, 0), (8704, 0), (9344, 0), (9984, 0), (10240, 256), (10240, 896), (10240, 2112), (10240, 6400), (10240, 14592), (8704, 14592), (8704, 12928), (8704, 11008), (8576, 10624), (7808, 9856), (7552, 9728)],
+        faces={'south': 24, 'west': 25, 'north': 38, 'east': 45},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192),
+        note='native sector 272',
+    )
+    s272.decorate(
+        native_detail('sprite_079', 317, x_repeat=64, y_repeat=64, type=417, cstat=464, shade=9),  # native sprite 79  ~2.9 player heights
+        native_detail('sprite_119', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=16),  # native sprite 119  ~3.0 player heights
+        native_detail('sprite_120', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=16),  # native sprite 120  ~3.0 player heights
+        native_detail('sprite_179', 1170, x_repeat=40, y_repeat=40, type=203, cstat=384, shade=-8),  # native sprite 179  ~3.6 player heights
+        native_detail('sprite_180', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 180  ~3.4 player heights
+        native_detail('sprite_188', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=16),  # native sprite 188  ~3.0 player heights
+        native_detail('sprite_189', 1470, x_repeat=40, y_repeat=40, type=206, cstat=384, shade=0),  # native sprite 189  ~3.3 player heights
+        native_detail('sprite_190', 1470, x_repeat=40, y_repeat=40, type=206, cstat=384, shade=-8),  # native sprite 190  ~3.3 player heights
+        native_detail('sprite_191', 1470, x_repeat=40, y_repeat=40, type=206, cstat=384, shade=-8),  # native sprite 191  ~3.3 player heights
+        native_detail('sprite_192', 1470, x_repeat=40, y_repeat=40, type=206, cstat=384, shade=-8),  # native sprite 192  ~3.3 player heights
+        native_detail('sprite_380', 2493, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=-8),  # native sprite 380  ~3.5 player heights
+        native_detail('sprite_381', 2493, x_repeat=64, y_repeat=64, type=0, cstat=385, shade=-8),  # native sprite 381  ~3.5 player heights
+        native_detail('sprite_416', 548, x_repeat=24, y_repeat=24, type=73, cstat=128, shade=-8),  # native sprite 416  ~1.1 player heights
+        native_detail('sprite_417', 816, x_repeat=48, y_repeat=48, type=76, cstat=128, shade=-8),  # native sprite 417  ~0.7 player heights
     )
     return space
 
 
-def build_assembly_001_space_042(area) -> object:
-    """assembly_001_space_042: 1 player areas, 1 sector.
+def build_assembly_001_space_110(area) -> object:
+    """assembly_001_space_110: 84 player areas, 7 sectors.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_042', frame=Frame(14464, 42688),
-        style=Style(floor_shade=18, parallax_ceiling=True, wall_picnum=2490, wall_shade=24),
-        note='1 player areas, 1 sector',
+        'assembly_001_space_110', frame=Frame(2816, 6912),
+        style=Style(ceiling_shade=35, floor_shade=37, wall_shade=35),
+        note='84 player areas, 7 sectors',
     )
-    s087 = space.room(
-        'sector_087',
-        [(64, 0), (832, 768), (768, 832), (0, 64)],
+    s271 = space.room(
+        'sector_271',
+        [(4096, 1536), (4096, 2048), (4096, 2816), (4096, 3328), (512, 3328), (512, 2816), (512, 2048), (512, 1536), (768, 768), (896, 640), (1152, 384), (1280, 256), (1792, 0), (2816, 0), (3328, 256), (3456, 384), (3712, 640), (3840, 768)],
+        faces={'east': 1, 'south': 3, 'west': 5, 'north': 12},
         role='gameplay',
-        style=Style(clear_height=32768, floor_z=-24576),
-        note='native sector 87',
+        style=Style(ceiling_picnum=16, ceiling_shade=42, clear_height=59392, floor_z=8192, wall_shade=37),
+        note='native sector 271',
     )
-    s087.decorate(
-        native_detail('sprite_419', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 419  ~2.2 player heights
+    s271.decorate(
+        native_detail('sprite_063', 1713, x_repeat=40, y_repeat=40, type=417, cstat=448, shade=-12),  # native sprite 63  ~2.7 player heights
+        native_detail('sprite_064', 2449, x_repeat=48, y_repeat=48, type=0, cstat=480, shade=4),  # native sprite 64  ~2.2 player heights
+        native_detail('sprite_065', 680, x_repeat=32, y_repeat=32, type=416, cstat=448, shade=0),  # native sprite 65  ~0.5 player heights
+        native_detail('sprite_066', 929, x_repeat=40, y_repeat=40, type=0, cstat=466, shade=-11),  # native sprite 66  ~1.5 player heights
+        native_detail('sprite_118', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-4),  # native sprite 118  ~3.0 player heights
+        native_detail('sprite_332', 809, x_repeat=48, y_repeat=48, type=63, cstat=384, shade=-8),  # native sprite 332  ~0.8 player heights
+        native_detail('sprite_351', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 351  ~3.4 player heights
+        native_detail('sprite_352', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 352  ~3.4 player heights
+        native_detail('sprite_353', 3054, x_repeat=40, y_repeat=40, type=205, cstat=384, shade=-8),  # native sprite 353  ~3.4 player heights
     )
-    return space
-
-
-def build_assembly_001_space_067(area) -> object:
-    """assembly_001_space_067: 1 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_067', frame=Frame(22400, 45568),
-        style=Style(ceiling_picnum=5, ceiling_shade=32, floor_picnum=5, floor_shade=32, wall_picnum=5, wall_shade=32),
-        note='1 player areas, 1 sector',
-    )
-    s164 = space.room(
-        'sector_164',
-        [(512, 0), (512, 256), (0, 128), (0, 0)],
-        faces={'east': 0, 'west': 2, 'north': 3},
+    s299 = space.room(
+        'sector_299',
+        [(4096, 2816), (4608, 2816), (4608, 3328), (4096, 3328)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
         role='gameplay',
-        style=Style(clear_height=0, floor_z=0),
-        note='native sector 164',
+        style=Style(clear_height=32768, floor_z=8192),
+        note='native sector 299',
     )
-    return space
-
-
-def build_assembly_001_space_066(area) -> object:
-    """assembly_001_space_066: 1 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_066', frame=Frame(22912, 45568),
-        style=Style(ceiling_picnum=5, ceiling_shade=32, floor_picnum=5, floor_shade=32, wall_picnum=5, wall_shade=32),
-        note='1 player areas, 1 sector',
-    )
-    s163 = space.room(
-        'sector_163',
-        [(0, 256), (0, 0), (384, 0), (256, 256)],
-        faces={'west': 0, 'north': 1, 'south': 3},
+    s300 = space.room(
+        'sector_300',
+        [(4096, 2048), (4608, 2048), (4608, 2816), (4096, 2816)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
         role='gameplay',
-        style=Style(clear_height=0, floor_z=-34816),
-        note='native sector 163',
+        style=Style(clear_height=32768, floor_z=8192),
+        note='native sector 300',
     )
-    return space
-
-
-def build_assembly_001_space_032(area) -> object:
-    """assembly_001_space_032: 1 player areas, 1 sector, contains recess.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_032', frame=Frame(35236, 18624),
-        style=Style(ceiling_picnum=355, ceiling_shade=14, floor_picnum=365, floor_shade=32, wall_picnum=355, wall_shade=21),
-        note='1 player areas, 1 sector, contains recess',
-    )
-    s058 = space.room(
-        'sector_058',
-        [(32, 32), (160, 0), (288, 64), (256, 256), (64, 416), (0, 320)],
-        role='detail',
-        style=Style(clear_height=40960, floor_z=-15360),
-        note='part of structure:recess:003',
-    )
-    return space
-
-
-def build_assembly_001_space_098(area) -> object:
-    """assembly_001_space_098: 0 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_098', frame=Frame(22976, 34144),
-        style=Style(floor_picnum=20, parallax_ceiling=True, wall_picnum=2474, wall_shade=3),
-        note='0 player areas, 1 sector',
-    )
-    s224 = space.room(
-        'sector_224',
-        [(96, 0), (480, 384), (384, 480), (0, 96)],
+    s301 = space.room(
+        'sector_301',
+        [(4608, 2048), (4096, 2048), (4096, 1536), (4224, 1664), (4544, 1600), (4608, 1408)],
+        faces={'south': 0, 'west': 1, 'east': 5},
         role='gameplay',
-        style=Style(clear_height=37888, floor_z=-19456),
-        note='native sector 224',
+        style=Style(clear_height=32768, floor_z=8192),
+        note='native sector 301',
     )
-    return space
-
-
-def build_assembly_001_space_005(area) -> object:
-    """assembly_001_space_005: 0 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_005', frame=Frame(8192, 37888),
-        style=Style(floor_shade=9, parallax_ceiling=True, wall_shade=26),
-        note='0 player areas, 1 sector',
-    )
-    s004 = space.room(
-        'sector_004',
-        [(64, 0), (64, 1024), (0, 1024), (0, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+    s302 = space.room(
+        'sector_302',
+        [(512, 2048), (0, 2048), (0, 1408), (64, 1536), (384, 1664), (512, 1536)],
+        faces={'south': 0, 'west': 1, 'east': 5},
         role='gameplay',
-        style=Style(clear_height=36864, floor_z=-20480),
-        note='native sector 4',
+        style=Style(clear_height=32768, floor_z=8192),
+        note='native sector 302',
     )
-    s004.decorate(
-        native_detail('sprite_290', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 290  ~2.2 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_123(area) -> object:
-    """assembly_001_space_123: 0 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_123', frame=Frame(27584, 42240),
-        style=Style(ceiling_picnum=20, ceiling_shade=33, floor_picnum=20, floor_shade=21, wall_picnum=28, wall_shade=23),
-        note='0 player areas, 1 sector',
-    )
-    s326 = space.room(
-        'sector_326',
-        [(64, 0), (64, 1024), (0, 1024), (0, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=19456, floor_z=-35840),
-        note='native sector 326',
-    )
-    s326.decorate(
-        native_detail('sprite_279', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 279  ~2.2 player heights
-        native_detail('sprite_418', 3997, x_repeat=64, y_repeat=64, type=5, cstat=32896, shade=0),  # native sprite 418  (tile not in ART)
-    )
-    return space
-
-
-def build_assembly_001_space_043(area) -> object:
-    """assembly_001_space_043: 0 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_043', frame=Frame(4608, 44288),
-        style=Style(floor_picnum=67, parallax_ceiling=True, wall_shade=14),
-        note='0 player areas, 1 sector',
-    )
-    s088 = space.room(
-        'sector_088',
-        [(768, 0), (768, 64), (0, 64), (0, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=41984, floor_z=-15360),
-        note='native sector 88',
-    )
-    s088.decorate(
-        native_detail('sprite_277', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 277  ~2.2 player heights
-    )
-    return space
-
-
-def build_assembly_001_space_065(area) -> object:
-    """assembly_001_space_065: 0 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_065', frame=Frame(22016, 45568),
-        style=Style(ceiling_picnum=5, ceiling_shade=32, floor_picnum=5, floor_shade=32, wall_picnum=5, wall_shade=47),
-        note='0 player areas, 1 sector',
-    )
-    s162 = space.room(
-        'sector_162',
-        [(384, 0), (384, 128), (0, 128), (0, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=0, floor_z=0),
-        note='native sector 162',
-    )
-    return space
-
-
-def build_assembly_001_space_119(area) -> object:
-    """assembly_001_space_119: 0 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_119', frame=Frame(4608, 45760),
-        style=Style(floor_picnum=67, parallax_ceiling=True, wall_shade=14),
-        note='0 player areas, 1 sector',
-    )
-    s309 = space.room(
-        'sector_309',
-        [(768, 0), (768, 64), (0, 64), (0, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
-        role='gameplay',
-        style=Style(clear_height=41984, floor_z=-15360),
-        note='native sector 309',
-    )
-    return space
-
-
-def build_assembly_001_space_072(area) -> object:
-    """assembly_001_space_072: 0 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_072', frame=Frame(31488, 36096),
-        style=Style(ceiling_picnum=20, ceiling_shade=41, floor_picnum=20, floor_shade=41, wall_picnum=449, wall_shade=41),
-        note='0 player areas, 1 sector',
-    )
-    s175 = space.room(
-        'sector_175',
-        [(0, 0), (128, 64), (128, 320), (0, 320)],
-        faces={'east': 1, 'south': 2, 'west': 3},
-        role='gameplay',
-        style=Style(clear_height=0, floor_z=-27648),
-        note='native sector 175',
-    )
-    return space
-
-
-def build_assembly_001_space_074(area) -> object:
-    """assembly_001_space_074: 0 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_074', frame=Frame(31488, 35648),
-        style=Style(ceiling_picnum=20, ceiling_shade=41, floor_picnum=20, floor_shade=41, wall_picnum=449, wall_shade=41),
-        note='0 player areas, 1 sector',
-    )
-    s177 = space.room(
-        'sector_177',
-        [(128, 256), (0, 256), (0, 0), (128, 0)],
+    s303 = space.room(
+        'sector_303',
+        [(512, 2816), (0, 2816), (0, 2048), (512, 2048)],
         faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
         role='gameplay',
-        style=Style(clear_height=0, floor_z=-28672),
-        note='native sector 177',
+        style=Style(clear_height=32768, floor_z=8192),
+        note='native sector 303',
     )
-    return space
-
-
-def build_assembly_001_space_073(area) -> object:
-    """assembly_001_space_073: 0 player areas, 1 sector.
-
-    Origin is this space's own corner; every outline below is local to it.
-    """
-    space = area.assembly(
-        'assembly_001_space_073', frame=Frame(31488, 35904),
-        style=Style(ceiling_picnum=20, ceiling_shade=41, floor_picnum=20, floor_shade=41, wall_picnum=110, wall_shade=41),
-        note='0 player areas, 1 sector',
-    )
-    s176 = space.room(
-        'sector_176',
-        [(0, 192), (0, 0), (128, 0), (128, 256)],
-        faces={'west': 0, 'north': 1, 'east': 2},
+    s304 = space.room(
+        'sector_304',
+        [(0, 2816), (512, 2816), (512, 3328), (0, 3328)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
         role='gameplay',
-        style=Style(clear_height=0, floor_z=-26624),
-        note='native sector 176',
+        style=Style(clear_height=32768, floor_z=8192),
+        note='native sector 304',
     )
     return space
 
 
-def build_assembly_001_space_024(area) -> object:
-    """assembly_001_space_024: 0 player areas, 1 sector.
+def build_assembly_001_space_084(area) -> object:
+    """assembly_001_space_084: 60 player areas, 9 sectors.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_024', frame=Frame(8256, 43008),
-        style=Style(ceiling_picnum=67, ceiling_shade=24, floor_picnum=34, floor_shade=50, wall_picnum=34, wall_shade=35),
-        note='0 player areas, 1 sector',
+        'assembly_001_space_084', frame=Frame(1536, 4096),
+        style=Style(ceiling_picnum=2500, parallax_ceiling=True, wall_shade=17),
+        note='60 player areas, 9 sectors',
     )
-    s045 = space.room(
-        'sector_045',
-        [(64, 0), (64, 384), (0, 384), (0, 0)],
+    s190 = space.room(
+        'sector_190',
+        [(5920, 1856), (6784, 960), (7168, 1280), (7168, 2048), (6144, 2048)],
+        faces={'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=57344, floor_z=0, wall_picnum=2455),
+        note='native sector 190',
+    )
+    s191 = space.room(
+        'sector_191',
+        [(6272, 512), (5408, 1472), (4864, 1024), (5632, 0)],
+        role='gameplay',
+        style=Style(clear_height=49152, floor_z=-8192, wall_picnum=2455, wall_shade=30),
+        note='native sector 191',
+    )
+    s192 = space.room(
+        'sector_192',
+        [(5408, 1472), (6272, 512), (6784, 960), (5920, 1856)],
+        role='gameplay',
+        style=Style(clear_height=53248, floor_z=-4096, wall_picnum=2455),
+        note='native sector 192',
+    )
+    s192.decorate(
+        native_detail('sprite_187', 2820, x_repeat=40, y_repeat=40, type=201, cstat=384, shade=-8),  # native sprite 187  ~3.0 player heights
+    )
+    s194 = space.room(
+        'sector_194',
+        [(1760, 1472), (960, 448), (1536, 0), (2304, 1024)],
+        role='gameplay',
+        style=Style(clear_height=49152, floor_z=-8192, wall_shade=12),
+        note='native sector 194',
+    )
+    s195 = space.room(
+        'sector_195',
+        [(1280, 1856), (448, 896), (960, 448), (1760, 1472)],
+        role='gameplay',
+        style=Style(clear_height=53248, floor_z=-4096),
+        note='native sector 195',
+    )
+    s196 = space.room(
+        'sector_196',
+        [(448, 896), (1280, 1856), (1024, 2048), (0, 2048), (0, 1280)],
+        faces={'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(clear_height=57344, floor_z=0),
+        note='native sector 196',
+    )
+    s197 = space.room(
+        'sector_197',
+        [(2624, 0), (2624, 1024), (2304, 1024), (1536, 0)],
+        faces={'east': 0, 'south': 1, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=45056, floor_z=-12288),
+        note='native sector 197',
+    )
+    s198 = space.room(
+        'sector_198',
+        [(4544, 1024), (4544, 0), (5632, 0), (4864, 1024)],
+        faces={'west': 0, 'north': 1, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=45056, floor_z=-12288),
+        note='native sector 198',
+    )
+    s199 = space.room(
+        'sector_199',
+        [(2624, 0), (4544, 0), (4544, 1024), (4352, 1024), (2816, 1024), (2624, 1024)],
+        faces={'north': 0, 'east': 1, 'south': 3, 'west': 5},
+        role='gameplay',
+        style=Style(clear_height=40960, floor_z=-16384, wall_shade=0),
+        note='native sector 199',
+    )
+    s199.decorate(
+        native_detail('sprite_185', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 185  ~3.0 player heights
+        native_detail('sprite_186', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 186  ~3.0 player heights
+        native_detail('sprite_377', 2497, x_repeat=47, y_repeat=64, type=416, cstat=915, shade=-8),  # native sprite 377  ~1.5 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_010(area) -> object:
+    """assembly_001_space_010: 50 player areas, 10 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_010', frame=Frame(2816, 5120),
+        style=Style(ceiling_shade=37, floor_shade=36, wall_picnum=329),
+        note='50 player areas, 10 sectors',
+    )
+    s009 = space.room(
+        'sector_009',
+        [(1152, 1920), (1024, 2048), (768, 2304), (640, 2432), (0, 1792), (0, 1024), (1024, 256), (1120, 256), (1440, 256), (1536, 256)],
+        faces={'west': 4, 'north': 7},
+        role='gameplay',
+        style=Style(ceiling_picnum=16, ceiling_shade=43, clear_height=24576, floor_picnum=2496, floor_z=-24576),
+        note='native sector 9',
+    )
+    s009.decorate(
+        native_detail('sprite_099', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 99  ~3.0 player heights
+        native_detail('sprite_154', 2529, x_repeat=64, y_repeat=64, type=2, cstat=128, shade=-8),  # native sprite 154  ~4.4 player heights
+    )
+    s010 = space.room(
+        'sector_010',
+        [(3968, 2432), (3840, 2304), (3584, 2048), (3456, 1920), (3072, 256), (3168, 256), (3488, 256), (3584, 256), (4608, 1024), (4608, 1792)],
+        faces={'north': 5, 'east': 8},
+        role='gameplay',
+        style=Style(ceiling_picnum=16, ceiling_shade=43, clear_height=24576, floor_picnum=2496, floor_z=-24576),
+        note='native sector 10',
+    )
+    s010.decorate(
+        native_detail('sprite_098', 2825, x_repeat=40, y_repeat=40, type=202, cstat=384, shade=-8),  # native sprite 98  ~3.0 player heights
+        native_detail('sprite_330', 2169, x_repeat=40, y_repeat=40, type=109, cstat=128, shade=-8),  # native sprite 330  ~1.3 player heights
+        native_detail('sprite_331', 2169, x_repeat=40, y_repeat=40, type=109, cstat=128, shade=-8),  # native sprite 331  ~1.3 player heights
+    )
+    s011 = space.room(
+        'sector_011',
+        [(3584, 2048), (3456, 2176), (3328, 2048), (3456, 1920)],
+        role='gameplay',
+        style=Style(clear_height=20480, floor_z=-26624, wall_shade=-5),
+        note='native sector 11',
+    )
+    s012 = space.room(
+        'sector_012',
+        [(3712, 2432), (3840, 2304), (3968, 2432), (3840, 2560)],
+        role='gameplay',
+        style=Style(clear_height=20480, floor_z=-26624, wall_shade=-5),
+        note='native sector 12',
+    )
+    s013 = space.room(
+        'sector_013',
+        [(3840, 2304), (3712, 2432), (3456, 2176), (3584, 2048)],
+        role='gameplay',
+        style=Style(clear_height=20480, floor_z=-26624, wall_shade=-5),
+        note='native sector 13',
+    )
+    s014 = space.room(
+        'sector_014',
+        [(768, 2304), (896, 2432), (768, 2560), (640, 2432)],
+        role='gameplay',
+        style=Style(clear_height=20480, floor_z=-26624, wall_shade=-5),
+        note='native sector 14',
+    )
+    s015 = space.room(
+        'sector_015',
+        [(1024, 2048), (1152, 2176), (896, 2432), (768, 2304)],
+        role='gameplay',
+        style=Style(clear_height=20480, floor_z=-26624, wall_picnum=2499, wall_shade=28),
+        note='native sector 15',
+    )
+    s016 = space.room(
+        'sector_016',
+        [(1152, 2176), (1024, 2048), (1152, 1920), (1280, 2048)],
+        role='gameplay',
+        style=Style(clear_height=20480, floor_z=-26624, wall_picnum=2499, wall_shade=28),
+        note='native sector 16',
+    )
+    s140 = space.room(
+        'sector_140',
+        [(1536, 256), (3072, 256), (3456, 1920), (2816, 1536), (1792, 1536), (1152, 1920)],
+        faces={'north': 0},
+        role='gameplay',
+        style=Style(ceiling_picnum=16, ceiling_shade=43, clear_height=24576, floor_picnum=2496, floor_shade=12, floor_z=-24576, wall_shade=39),
+        note='native sector 140',
+    )
+    s140.decorate(
+        native_detail('sprite_309', 525, x_repeat=48, y_repeat=48, type=70, cstat=128, shade=-8),  # native sprite 309  ~1.2 player heights
+    )
+    s141 = space.room(
+        'sector_141',
+        [(3072, 256), (1536, 256), (1536, 0), (3072, 0)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(clear_height=28672, floor_shade=0, floor_z=-20480, wall_picnum=2448, wall_shade=17),
+        note='native sector 141',
+    )
+    return space
+
+
+def build_assembly_001_space_117(area) -> object:
+    """assembly_001_space_117: 29 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_117', frame=Frame(1280, 3840),
+        style=Style(ceiling_picnum=2500, floor_shade=-6, parallax_ceiling=True, wall_shade=17),
+        note='29 player areas, 1 sector',
+    )
+    s296 = space.room(
+        'sector_296',
+        [(7680, 1280), (7680, 4736), (7424, 4736), (7424, 4480), (7424, 2304), (7424, 1536), (7040, 1216), (6528, 768), (5888, 256), (4800, 256), (2880, 256), (1792, 256), (1216, 704), (704, 1152), (256, 1536), (256, 2304), (256, 4480), (256, 4736), (0, 4736), (0, 1280), (1536, 0), (6144, 0)],
+        faces={'east': 0, 'south': 1, 'west': 18, 'north': 20},
+        role='gameplay',
+        style=Style(clear_height=32768, floor_z=-24576),
+        note='native sector 296',
+    )
+    s296.decorate(
+        native_detail('sprite_333', 619, x_repeat=48, y_repeat=48, type=67, cstat=128, shade=-8),  # native sprite 333  ~0.4 player heights
+        native_detail('sprite_415', 813, x_repeat=48, y_repeat=48, type=69, cstat=128, shade=-8),  # native sprite 415  ~0.4 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_095(area) -> object:
+    """assembly_001_space_095: 26 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_095', frame=Frame(10592, 736),
+        style=Style(ceiling_picnum=2500, floor_shade=18, parallax_ceiling=True, wall_shade=33),
+        note='26 player areas, 1 sector',
+    )
+    s215 = space.room(
+        'sector_215',
+        [(0, 1856), (0, 704), (0, 256), (256, 0), (1280, 0), (1536, 256), (1536, 2304), (1280, 2560), (256, 2560), (0, 2304)],
+        faces={'west': 0, 'north': 3, 'east': 5, 'south': 7},
+        role='gameplay',
+        style=Style(clear_height=65536, floor_z=8192),
+        note='native sector 215',
+    )
+    s215.decorate(
+        native_detail('sprite_391', 2628, x_repeat=64, y_repeat=64, type=140, cstat=128, shade=-8),  # native sprite 391  ~1.3 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_069(area) -> object:
+    """assembly_001_space_069: 10 player areas, 3 sectors.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_069', frame=Frame(3712, 0),
+        style=Style(ceiling_shade=33, floor_shade=18, wall_shade=31),
+        note='10 player areas, 3 sectors',
+    )
+    s169 = space.room(
+        'sector_169',
+        [(896, 0), (896, 512), (0, 512), (0, 0)],
         faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
         role='gameplay',
-        style=Style(clear_height=16384, floor_z=-8192),
-        note='native sector 45',
+        style=Style(clear_height=33792, floor_z=8192),
+        note='native sector 169',
     )
-    s045.decorate(
-        native_detail('sprite_010', 3997, x_repeat=64, y_repeat=64, type=5, cstat=32896, shade=0),  # native sprite 10  (tile not in ART)
-        native_detail('sprite_379', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 379  ~2.2 player heights
+    s170 = space.room(
+        'sector_170',
+        [(1920, 0), (1920, 512), (896, 512), (896, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=33792, floor_z=8192),
+        note='native sector 170',
+    )
+    s171 = space.room(
+        'sector_171',
+        [(1920, 512), (1920, 0), (2816, 0), (2816, 512)],
+        faces={'west': 0, 'north': 1, 'east': 2, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=33792, floor_z=8192),
+        note='native sector 171',
     )
     return space
 
 
-def build_assembly_001_space_025(area) -> object:
-    """assembly_001_space_025: 0 player areas, 1 sector.
+def build_assembly_001_space_096(area) -> object:
+    """assembly_001_space_096: 2 player areas, 3 sectors.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_025', frame=Frame(9088, 43008),
-        style=Style(ceiling_picnum=67, ceiling_shade=24, floor_picnum=34, floor_shade=38, wall_picnum=34, wall_shade=35),
-        note='0 player areas, 1 sector',
+        'assembly_001_space_096', frame=Frame(10240, 1024),
+        style=Style(ceiling_picnum=2499, ceiling_shade=43, floor_shade=33, wall_shade=42),
+        note='2 player areas, 3 sectors',
     )
-    s046 = space.room(
-        'sector_046',
-        [(64, 0), (64, 384), (0, 384), (0, 0)],
-        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+    s216 = space.room(
+        'sector_216',
+        [(128, 448), (128, 1536), (0, 1600), (0, 384)],
+        faces={'east': 0, 'west': 2},
         role='gameplay',
-        style=Style(clear_height=16384, floor_z=-8192),
-        note='native sector 46',
+        style=Style(clear_height=24576, floor_z=8192),
+        note='native sector 216',
+    )
+    # sector 217 is in NATIVE_ESCAPES: self-intersection (partial_collinear_overlap)
+    s218 = space.room(
+        'sector_218',
+        [(320, 1536), (320, 448), (352, 416), (352, 1568)],
+        faces={'west': 0, 'east': 2},
+        role='gameplay',
+        style=Style(clear_height=24576, floor_z=8192),
+        note='native sector 218',
     )
     return space
 
@@ -4700,8 +4331,8 @@ def build_assembly_001_space_085(area) -> object:
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_085', frame=Frame(7520, 30912),
-        style=Style(ceiling_picnum=329, ceiling_shade=48, floor_picnum=329, floor_shade=48, wall_picnum=329, wall_shade=48),
+        'assembly_001_space_085', frame=Frame(3936, 5312),
+        style=Style(ceiling_shade=48, floor_picnum=329, floor_shade=48, wall_picnum=329, wall_shade=48),
         note='0 player areas, 1 sector',
     )
     s200 = space.room(
@@ -4724,8 +4355,8 @@ def build_assembly_001_space_086(area) -> object:
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_086', frame=Frame(9568, 30912),
-        style=Style(ceiling_picnum=329, ceiling_shade=48, floor_picnum=329, floor_shade=48, wall_picnum=329, wall_shade=48),
+        'assembly_001_space_086', frame=Frame(5984, 5312),
+        style=Style(ceiling_shade=48, floor_picnum=329, floor_shade=48, wall_picnum=329, wall_shade=48),
         note='0 player areas, 1 sector',
     )
     s201 = space.room(
@@ -4742,213 +4373,787 @@ def build_assembly_001_space_086(area) -> object:
     return space
 
 
-def build_assembly_001_space_007(area) -> object:
-    """assembly_001_space_007: 0 player areas, 1 sector.
+def build_main_complex_zone_05(area) -> object:
+    """zone_05: 7 spaces, 15 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    -14336, 0% of its sectors open to the sky, dominant surfaces [365, 309, 355],
+    centred at [163.5, 36.8] player widths. Seeded on assembly:001/space:031.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_05', frame=Frame(32512, 14080),
+        style=Style(ceiling_picnum=2490, ceiling_shade=30, floor_picnum=365, floor_shade=41, wall_picnum=309, wall_shade=-21),
+    )
+    build_second_interior(zone)
+    build_assembly_001_space_111(zone)
+    build_assembly_001_space_031(zone)
+    build_assembly_001_space_034(zone)
+    build_assembly_001_space_035(zone)
+    build_assembly_001_space_036(zone)
+    build_assembly_001_space_032(zone)
+    return zone
+
+
+def build_second_interior(area) -> object:
+    """second_interior: 258 player areas, 9 sectors.
+
+    Named from measurement: 258 player areas, no sky, 7.3 player heights, wall 309/5 over floor 365/6
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_007', frame=Frame(10432, 41568),
-        style=Style(ceiling_picnum=0, ceiling_shade=39, floor_shade=17, wall_picnum=2492, wall_shade=0),
-        note='0 player areas, 1 sector',
+        'second_interior', frame=Frame(0, 3072),
+        style=Style(ceiling_shade=6, floor_shade=12),
+        note='258 player areas, 9 sectors',
     )
-    s006 = space.room(
-        'sector_006',
-        [(64, 0), (128, 64), (64, 128), (0, 64)],
+    s059 = space.room(
+        'sector_059',
+        [(4, 5120), (370, 5119), (583, 5219), (731, 5403), (783, 5633), (730, 5863), (581, 6046), (366, 6144), (4, 6144)],
+        faces={'south': 7, 'west': 8},
         role='gameplay',
-        style=Style(clear_height=0, floor_z=0),
-        note='native sector 6',
+        style=Style(clear_height=40960, floor_z=-14336, wall_shade=11),
+        note='native sector 59',
+    )
+    s059.decorate(
+        native_detail('sprite_020', 795, x_repeat=64, y_repeat=64, type=0, cstat=208, shade=-128),  # native sprite 20  ~1.5 player heights
+    )
+    s060 = space.room(
+        'sector_060',
+        [(4, 6144), (366, 6144), (581, 6046), (730, 5863), (783, 5633), (731, 5403), (583, 5219), (370, 5119), (4, 5120), (4, 4608), (574, 4642), (959, 4854), (1220, 5205), (1312, 5635), (1217, 6064), (955, 6413), (568, 6623), (4, 6656)],
+        faces={'west': 8},
+        role='gameplay',
+        style=Style(ceiling_shade=17, clear_height=40960, floor_shade=23, floor_z=-14336, wall_shade=11),
+        note='native sector 60',
+    )
+    s061 = space.room(
+        'sector_061',
+        [(5636, 5120), (5273, 5119), (5058, 5217), (4909, 5400), (4856, 5630), (4908, 5860), (5056, 6044), (5252, 6144), (5636, 6144), (5636, 6656), (4976, 6586), (4632, 6364), (4404, 6029), (4324, 5628), (4406, 5228), (4637, 4894), (4982, 4675), (5636, 4608)],
+        faces={'east': 8},
+        role='gameplay',
+        style=Style(ceiling_shade=17, clear_height=40960, floor_shade=23, floor_z=-14336, wall_shade=33),
+        note='native sector 61',
+    )
+    s062 = space.room(
+        'sector_062',
+        [(5636, 6144), (5252, 6144), (5056, 6044), (4908, 5860), (4856, 5630), (4909, 5400), (5058, 5217), (5273, 5119), (5636, 5120)],
+        faces={'south': 0, 'east': 8},
+        role='gameplay',
+        style=Style(clear_height=40960, floor_z=-14336, wall_shade=33),
+        note='native sector 62',
+    )
+    s062.decorate(
+        native_detail('sprite_025', 795, x_repeat=64, y_repeat=64, type=0, cstat=208, shade=-128),  # native sprite 25  ~1.5 player heights
+    )
+    s063 = space.room(
+        'sector_063',
+        [(5636, 1024), (5275, 1025), (5065, 1126), (4921, 1307), (4869, 1534), (4920, 1761), (5063, 1943), (5271, 2045), (5636, 2048), (5636, 2560), (5086, 2503), (4726, 2286), (4484, 1945), (4399, 1532), (4486, 1121), (4730, 781), (5092, 566), (5636, 512)],
+        faces={'east': 8},
+        role='gameplay',
+        style=Style(ceiling_shade=17, clear_height=40960, floor_shade=23, floor_z=-14336),
+        note='native sector 63',
+    )
+    s064 = space.room(
+        'sector_064',
+        [(5636, 2048), (5271, 2045), (5063, 1943), (4920, 1761), (4869, 1534), (4921, 1307), (5065, 1126), (5275, 1025), (5636, 1024)],
+        faces={'east': 8},
+        role='gameplay',
+        style=Style(clear_height=40960, floor_z=-14336),
+        note='native sector 64',
+    )
+    s064.decorate(
+        native_detail('sprite_024', 795, x_repeat=64, y_repeat=64, type=0, cstat=208, shade=-128),  # native sprite 24  ~1.5 player heights
+    )
+    s076 = space.room(
+        'sector_076',
+        [(3332, 8192), (2308, 8192), (2180, 8192), (1540, 8192), (0, 8192), (4, 6656), (568, 6623), (955, 6413), (1217, 6064), (1312, 5635), (1220, 5205), (959, 4854), (574, 4642), (4, 4608), (4, 0), (5636, 0), (5636, 512), (5092, 566), (4730, 781), (4486, 1121), (4399, 1532), (4484, 1945), (4726, 2286), (5086, 2503), (5636, 2560), (5636, 4608), (4982, 4675), (4637, 4894), (4406, 5228), (4324, 5628), (4404, 6029), (4632, 6364), (4976, 6586), (5636, 6656), (5632, 8192), (3460, 8192)],
+        faces={'north': 14, 'east': 24, 'south': 34},
+        role='gameplay',
+        style=Style(ceiling_shade=30, clear_height=40960, floor_shade=32, floor_z=-14336),
+        note='native sector 76',
+    )
+    s076.carve([(1284, 3328), (1540, 4608), (2052, 4480), (2308, 4736), (2436, 5184), (3268, 5312), (4100, 4608), (4612, 3584), (4356, 3072), (3588, 2560), (3332, 1792), (3844, 1024), (3076, 1280), (2564, 1024), (2052, 1536), (2052, 2048), (1540, 2560)])  # a native inner loop of this sector
+    s076.decorate(
+        native_detail('sprite_023', 795, x_repeat=64, y_repeat=64, type=0, cstat=208, shade=7),  # native sprite 23  ~1.5 player heights
+        native_detail('sprite_396', 1570, x_repeat=48, y_repeat=48, type=217, cstat=384, shade=-8),  # native sprite 396  ~3.3 player heights
+        native_detail('sprite_397', 1570, x_repeat=48, y_repeat=48, type=217, cstat=384, shade=-8),  # native sprite 397  ~3.3 player heights
+        native_detail('sprite_398', 1870, x_repeat=32, y_repeat=32, type=218, cstat=384, shade=-8),  # native sprite 398  ~1.0 player heights
+        native_detail('sprite_399', 1870, x_repeat=32, y_repeat=32, type=218, cstat=384, shade=-8),  # native sprite 399  ~1.0 player heights
+        native_detail('sprite_400', 1870, x_repeat=32, y_repeat=32, type=218, cstat=384, shade=-8),  # native sprite 400  ~1.0 player heights
+        native_detail('sprite_451', 753, x_repeat=64, y_repeat=64, type=146, cstat=384, shade=-8),  # native sprite 451  ~2.9 player heights
+    )
+    s077 = space.room(
+        'sector_077',
+        [(2308, 8320), (3332, 8320), (3332, 8960), (2308, 8960)],
+        faces={'north': 0, 'east': 1, 'south': 2, 'west': 3},
+        role='gameplay',
+        style=Style(ceiling_picnum=110, ceiling_shade=44, clear_height=16384, floor_picnum=253, floor_shade=41, floor_z=-14336, wall_picnum=5, wall_shade=37),
+        note='native sector 77',
+    )
+    s077.decorate(
+        native_detail('sprite_027', 2433, x_repeat=40, y_repeat=40, type=110, cstat=128, shade=-23),  # native sprite 27  ~0.8 player heights
+        native_detail('sprite_028', 1076, x_repeat=32, y_repeat=32, type=20, cstat=464, shade=-8),  # native sprite 28  ~0.7 player heights
+    )
+    s078 = space.room(
+        'sector_078',
+        [(3332, 8320), (2308, 8320), (2308, 8192), (3332, 8192)],
+        faces={'south': 0, 'west': 1, 'north': 2, 'east': 3},
+        role='gameplay',
+        style=Style(ceiling_picnum=309, ceiling_shade=44, clear_height=16384, floor_picnum=6, floor_shade=40, floor_z=-14336, wall_picnum=5, wall_shade=37),
+        note='native sector 78',
+    )
+    s078.decorate(
+        native_detail('sprite_447', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 447  ~2.2 player heights
     )
     return space
 
 
-def build_assembly_001_space_008(area) -> object:
-    """assembly_001_space_008: 0 player areas, 1 sector.
+def build_assembly_001_space_111(area) -> object:
+    """assembly_001_space_111: 87 player areas, 1 sector.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_008', frame=Frame(10432, 41792),
-        style=Style(ceiling_picnum=0, ceiling_shade=39, floor_shade=17, wall_picnum=2492, wall_shade=0),
-        note='0 player areas, 1 sector',
+        'assembly_001_space_111', frame=Frame(4, 0),
+        style=Style(floor_shade=39, wall_picnum=365, wall_shade=42),
+        note='87 player areas, 1 sector',
     )
-    s007 = space.room(
-        'sector_007',
-        [(64, 0), (128, 64), (64, 128), (0, 64)],
+    s290 = space.room(
+        'sector_290',
+        [(1532, 1024), (1532, 1536), (2044, 1792), (3580, 1792), (4092, 1536), (4092, 1024), (4092, 512), (4092, 0), (5632, 0), (5632, 1536), (5632, 3072), (0, 3072), (0, 1536), (0, 0), (1532, 0), (1532, 512)],
+        faces={'north': 7, 'east': 8, 'south': 10, 'west': 11},
         role='gameplay',
-        style=Style(clear_height=0, floor_z=0),
-        note='native sector 7',
+        style=Style(clear_height=24576, floor_z=-30720),
+        note='native sector 290',
     )
-    s007.decorate(
-        native_detail('sprite_291', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 291  ~2.2 player heights
+    s290.decorate(
+        native_detail('sprite_115', 829, x_repeat=40, y_repeat=40, type=117, cstat=128, shade=-8),  # native sprite 115  ~0.9 player heights
     )
     return space
 
 
-def build_assembly_001_space_009(area) -> object:
-    """assembly_001_space_009: 0 player areas, 1 sector.
+def build_assembly_001_space_031(area) -> object:
+    """assembly_001_space_031: 59 player areas, 1 sector.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_009', frame=Frame(10432, 42016),
-        style=Style(ceiling_picnum=0, ceiling_shade=39, floor_shade=17, wall_picnum=2492, wall_shade=0),
-        note='0 player areas, 1 sector',
+        'assembly_001_space_031', frame=Frame(1284, 4096),
+        style=Style(ceiling_picnum=2915, ceiling_shade=14, floor_shade=0, wall_picnum=355, wall_shade=31),
+        note='59 player areas, 1 sector',
     )
-    s008 = space.room(
-        'sector_008',
-        [(64, 0), (128, 64), (64, 128), (0, 64)],
+    s057 = space.room(
+        'sector_057',
+        [(768, 1024), (768, 512), (1280, 0), (1792, 256), (2560, 0), (2048, 768), (2304, 1536), (3072, 2048), (3328, 2560), (2816, 3584), (1984, 4288), (1152, 4160), (1024, 3712), (768, 3456), (256, 3584), (0, 2304), (256, 1536)],
         role='gameplay',
-        style=Style(clear_height=0, floor_z=0),
-        note='native sector 8',
+        style=Style(clear_height=43008, floor_z=-14336),
+        note='native sector 57',
+    )
+    s057.carve([(1504, 864), (1696, 704), (1728, 512), (1600, 448), (1472, 480), (1440, 768)])  # a native inner loop of this sector
+    s057.decorate(
+        native_detail('sprite_022', 2331, x_repeat=64, y_repeat=64, type=10, cstat=128, shade=-8),  # native sprite 22  ~0.6 player heights
     )
     return space
 
 
-def build_assembly_001_space_014(area) -> object:
-    """assembly_001_space_014: 0 player areas, 1 sector.
+def build_assembly_001_space_034(area) -> object:
+    """assembly_001_space_034: 12 player areas, 1 sector.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_014', frame=Frame(13120, 25216),
-        style=Style(ceiling_picnum=369, ceiling_shade=49, floor_picnum=2496, floor_shade=18, wall_picnum=21, wall_shade=15),
-        note='0 player areas, 1 sector',
+        'assembly_001_space_034', frame=Frame(1536, 0),
+        style=Style(wall_shade=33),
+        note='12 player areas, 1 sector',
     )
-    s029 = space.room(
-        'sector_029',
-        [(128, 64), (64, 128), (0, 64), (64, 0)],
+    s065 = space.room(
+        'sector_065',
+        [(2560, 0), (2560, 512), (2048, 768), (512, 768), (0, 512), (0, 0)],
+        faces={'east': 0, 'south': 2, 'west': 4, 'north': 5},
         role='gameplay',
-        style=Style(clear_height=0, floor_z=8192),
-        note='native sector 29',
+        style=Style(clear_height=8192, floor_z=-47104),
+        note='native sector 65',
     )
     return space
 
 
-def build_assembly_001_space_015(area) -> object:
-    """assembly_001_space_015: 0 player areas, 1 sector.
+def build_assembly_001_space_035(area) -> object:
+    """assembly_001_space_035: 9 player areas, 1 sector.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_015', frame=Frame(13120, 24448),
-        style=Style(ceiling_picnum=369, ceiling_shade=49, floor_picnum=2496, floor_shade=18, wall_picnum=369, wall_shade=15),
-        note='0 player areas, 1 sector',
+        'assembly_001_space_035', frame=Frame(1536, 512),
+        style=Style(wall_shade=33),
+        note='9 player areas, 1 sector',
     )
-    s030 = space.room(
-        'sector_030',
-        [(64, 0), (128, 64), (64, 128), (0, 64)],
+    s066 = space.room(
+        'sector_066',
+        [(2560, 0), (2560, 512), (2048, 768), (512, 768), (0, 512), (0, 0), (512, 256), (2048, 256)],
+        faces={'east': 0, 'south': 2, 'west': 4},
         role='gameplay',
-        style=Style(clear_height=0, floor_z=8192),
-        note='native sector 30',
+        style=Style(clear_height=13312, floor_z=-41984),
+        note='native sector 66',
     )
     return space
 
 
-def build_assembly_001_space_016(area) -> object:
-    """assembly_001_space_016: 0 player areas, 1 sector.
+def build_assembly_001_space_036(area) -> object:
+    """assembly_001_space_036: 9 player areas, 1 sector.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_016', frame=Frame(13120, 24704),
-        style=Style(ceiling_picnum=369, ceiling_shade=49, floor_picnum=2496, floor_shade=18, wall_picnum=369, wall_shade=15),
-        note='0 player areas, 1 sector',
+        'assembly_001_space_036', frame=Frame(1536, 1024),
+        style=Style(wall_shade=33),
+        note='9 player areas, 1 sector',
     )
-    s031 = space.room(
-        'sector_031',
-        [(64, 0), (128, 64), (64, 128), (0, 64)],
+    s067 = space.room(
+        'sector_067',
+        [(2560, 0), (2560, 512), (2048, 768), (512, 768), (0, 512), (0, 0), (512, 256), (2048, 256)],
+        faces={'east': 0, 'south': 2, 'west': 4},
         role='gameplay',
-        style=Style(clear_height=0, floor_z=8192),
-        note='native sector 31',
-    )
-    s031.decorate(
-        native_detail('sprite_401', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 401  ~2.2 player heights
+        style=Style(clear_height=18432, floor_z=-36864),
+        note='native sector 67',
     )
     return space
 
 
-def build_assembly_001_space_017(area) -> object:
-    """assembly_001_space_017: 0 player areas, 1 sector.
+def build_assembly_001_space_032(area) -> object:
+    """assembly_001_space_032: 1 player areas, 1 sector, contains recess.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_017', frame=Frame(13120, 24960),
-        style=Style(ceiling_picnum=369, ceiling_shade=49, floor_picnum=2496, floor_shade=18, wall_picnum=369, wall_shade=15),
-        note='0 player areas, 1 sector',
+        'assembly_001_space_032', frame=Frame(2724, 4544),
+        style=Style(ceiling_picnum=355, ceiling_shade=14, floor_shade=32, wall_picnum=355, wall_shade=21),
+        note='1 player areas, 1 sector, contains recess',
     )
-    s032 = space.room(
-        'sector_032',
-        [(64, 0), (128, 64), (64, 128), (0, 64)],
-        role='gameplay',
-        style=Style(clear_height=0, floor_z=8192),
-        note='native sector 32',
+    s058 = space.room(
+        'sector_058',
+        [(32, 32), (160, 0), (288, 64), (256, 256), (64, 416), (0, 320)],
+        role='detail',
+        style=Style(clear_height=40960, floor_z=-15360),
+        note='part of structure:recess:003',
     )
     return space
 
 
-def build_assembly_001_space_114(area) -> object:
-    """assembly_001_space_114: 0 player areas, 1 sector.
+def build_main_complex_zone_06(area) -> object:
+    """zone_06: 3 spaces, 6 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    -26624, 0% of its sectors open to the sky, dominant surfaces [329, 21, 67],
+    centred at [108.4, 27.4] player widths. Seeded on assembly:001/space:018.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_06', frame=Frame(13824, 13568),
+        style=Style(ceiling_picnum=329, ceiling_shade=46, floor_picnum=329, floor_shade=19, wall_picnum=329, wall_shade=40),
+    )
+    build_assembly_001_space_018(zone)
+    build_assembly_001_space_108(zone)
+    build_assembly_001_space_112(zone)
+    return zone
+
+
+def build_assembly_001_space_018(area) -> object:
+    """assembly_001_space_018: 45 player areas, 4 sectors.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_114', frame=Frame(6848, 41568),
-        style=Style(ceiling_picnum=0, ceiling_shade=39, floor_shade=17, wall_picnum=2492, wall_shade=0),
-        note='0 player areas, 1 sector',
+        'assembly_001_space_018', frame=Frame(0, 0),
+        style=Style(ceiling_picnum=21, ceiling_shade=41, floor_picnum=376, floor_shade=38, wall_picnum=21),
+        note='45 player areas, 4 sectors',
     )
-    s293 = space.room(
-        'sector_293',
-        [(64, 0), (128, 64), (64, 128), (0, 64)],
+    s033 = space.room(
+        'sector_033',
+        [(1408, 4992), (384, 4992), (128, 4992), (128, 3968), (128, 3584), (320, 3584), (768, 3584), (1536, 3584), (1536, 4352), (1536, 4992)],
+        faces={'south': 0, 'west': 2, 'north': 6, 'east': 7},
         role='gameplay',
-        style=Style(clear_height=0, floor_z=0),
-        note='native sector 293',
+        style=Style(clear_height=30720, floor_z=-26624, wall_shade=38),
+        note='native sector 33',
+    )
+    s033.decorate(
+        native_detail('sprite_170', 1470, x_repeat=40, y_repeat=40, type=206, cstat=384, shade=-8),  # native sprite 170  ~3.3 player heights
+        native_detail('sprite_261', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 261  ~2.2 player heights
+    )
+    s035 = space.room(
+        'sector_035',
+        [(0, 4992), (0, 4736), (0, 4224), (0, 3968), (128, 3968), (128, 4992)],
+        faces={'west': 1, 'north': 3, 'east': 4, 'south': 5},
+        role='gameplay',
+        style=Style(ceiling_shade=44, clear_height=20480, floor_picnum=20, floor_shade=19, floor_z=-29696, wall_shade=31),
+        note='native sector 35',
+    )
+    s267 = space.room(
+        'sector_267',
+        [(768, 3584), (320, 3584), (320, 3328), (1536, 3328), (1536, 3584)],
+        faces={'west': 1, 'north': 2, 'east': 3, 'south': 4},
+        role='gameplay',
+        style=Style(ceiling_picnum=68, ceiling_shade=48, clear_height=23552, floor_picnum=67, floor_shade=15, floor_z=-25600, wall_picnum=115, wall_shade=38),
+        note='native sector 267',
+    )
+    s268 = space.room(
+        'sector_268',
+        [(1280, 0), (1280, 1024), (1280, 1536), (1536, 2048), (1536, 3200), (1536, 3328), (320, 3328), (256, 3328), (256, 3136), (256, 2432), (256, 2048), (0, 1536), (0, 384), (43, 247), (128, 128), (247, 43), (384, 0)],
+        faces={'east': 3, 'south': 5, 'west': 11, 'north': 16},
+        role='gameplay',
+        style=Style(ceiling_picnum=329, ceiling_shade=46, clear_height=26624, floor_picnum=2448, floor_shade=40, floor_z=-25600, wall_picnum=329),
+        note='native sector 268',
+    )
+    s268.decorate(
+        native_detail('sprite_315', 896, x_repeat=40, y_repeat=40, type=113, cstat=128, shade=-8),  # native sprite 315  ~1.2 player heights
+        native_detail('sprite_412', 548, x_repeat=24, y_repeat=24, type=73, cstat=128, shade=-8),  # native sprite 412  ~1.1 player heights
+        native_detail('sprite_413', 548, x_repeat=24, y_repeat=24, type=73, cstat=128, shade=-8),  # native sprite 413  ~1.1 player heights
     )
     return space
 
 
-def build_assembly_001_space_115(area) -> object:
-    """assembly_001_space_115: 0 player areas, 1 sector.
+def build_assembly_001_space_108(area) -> object:
+    """assembly_001_space_108: 2 player areas, 1 sector.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_115', frame=Frame(6848, 41792),
-        style=Style(ceiling_picnum=0, ceiling_shade=39, floor_shade=17, wall_picnum=2492, wall_shade=0),
-        note='0 player areas, 1 sector',
+        'assembly_001_space_108', frame=Frame(1280, 0),
+        style=Style(wall_shade=26),
+        note='2 player areas, 1 sector',
     )
-    s294 = space.room(
-        'sector_294',
-        [(64, 0), (128, 64), (64, 128), (0, 64)],
+    s269 = space.room(
+        'sector_269',
+        [(256, 1024), (192, 960), (64, 960), (0, 1024), (0, 0), (64, 64), (192, 64), (256, 0)],
+        faces={'west': 3, 'east': 7},
         role='gameplay',
-        style=Style(clear_height=0, floor_z=0),
-        note='native sector 294',
-    )
-    s294.decorate(
-        native_detail('sprite_392', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 392  ~2.2 player heights
+        style=Style(clear_height=17408, floor_z=-30720),
+        note='native sector 269',
     )
     return space
 
 
-def build_assembly_001_space_116(area) -> object:
-    """assembly_001_space_116: 0 player areas, 1 sector.
+def build_assembly_001_space_112(area) -> object:
+    """assembly_001_space_112: 1 player areas, 1 sector.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_116', frame=Frame(6848, 42016),
-        style=Style(ceiling_picnum=0, ceiling_shade=39, floor_shade=17, wall_picnum=2492, wall_shade=0),
-        note='0 player areas, 1 sector',
+        'assembly_001_space_112', frame=Frame(64, 2432),
+        style=Style(floor_shade=20, wall_picnum=2499, wall_shade=43),
+        note='1 player areas, 1 sector',
     )
-    s295 = space.room(
-        'sector_295',
-        [(64, 0), (128, 64), (64, 128), (0, 64)],
+    s291 = space.room(
+        'sector_291',
+        [(192, 704), (128, 640), (64, 640), (0, 704), (0, 0), (64, 64), (128, 64), (192, 0)],
+        faces={'west': 3, 'east': 7},
         role='gameplay',
-        style=Style(clear_height=0, floor_z=0),
-        note='native sector 295',
+        style=Style(clear_height=15360, floor_z=-30720),
+        note='native sector 291',
     )
     return space
+
+
+def build_main_complex_zone_07(area) -> object:
+    """zone_07: 3 spaces, 3 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    -27648, 0% of its sectors open to the sky, dominant surfaces [272, 365],
+    centred at [165.2, 67.1] player widths. Seeded on assembly:001/space:100.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_07', frame=Frame(34816, 29952),
+        style=Style(ceiling_picnum=2490, floor_picnum=365, floor_shade=18, wall_picnum=365, wall_shade=21),
+    )
+    build_assembly_001_space_102(zone)
+    build_assembly_001_space_100(zone)
+    build_assembly_001_space_101(zone)
+    return zone
+
+
+def build_assembly_001_space_102(area) -> object:
+    """assembly_001_space_102: 31 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_102', frame=Frame(0, 0),
+        note='31 player areas, 1 sector',
+    )
+    s233 = space.room(
+        'sector_233',
+        [(896, 2560), (1216, 2560), (1216, 2944), (1216, 3072), (704, 3072), (0, 2368), (0, 704), (704, 0), (2368, 0), (3072, 704), (3072, 2368), (2368, 3072), (1280, 3072), (1280, 2944), (1280, 2560), (2176, 2560), (2560, 2176), (2560, 896), (2176, 512), (896, 512), (512, 896), (512, 2176)],
+        faces={'west': 5, 'north': 7, 'east': 9, 'south': 11},
+        role='gameplay',
+        style=Style(clear_height=17408, floor_z=-39936),
+        note='native sector 233',
+    )
+    s233.decorate(
+        native_detail('sprite_068', 519, x_repeat=48, y_repeat=48, type=107, cstat=128, shade=-8),  # native sprite 68  ~1.0 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_100(area) -> object:
+    """assembly_001_space_100: 15 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_100', frame=Frame(640, 768),
+        style=Style(ceiling_picnum=2915, floor_shade=0, wall_picnum=272),
+        note='15 player areas, 1 sector',
+    )
+    s231 = space.room(
+        'sector_231',
+        [(0, 256), (896, 0), (1792, 256), (1792, 1152), (896, 1536), (0, 1152)],
+        faces={'east': 2, 'west': 5},
+        role='gameplay',
+        style=Style(clear_height=30720, floor_z=-27648),
+        note='native sector 231',
+    )
+    s231.decorate(
+        native_detail('sprite_213', 2331, x_repeat=64, y_repeat=64, type=10, cstat=128, shade=-8),  # native sprite 213  ~0.6 player heights
+        native_detail('sprite_216', 2557, x_repeat=32, y_repeat=32, type=105, cstat=128, shade=-8),  # native sprite 216  ~1.5 player heights
+        native_detail('sprite_217', 3997, x_repeat=64, y_repeat=64, type=3, cstat=32896, shade=0),  # native sprite 217  (tile not in ART)
+        native_detail('sprite_218', 3997, x_repeat=64, y_repeat=64, type=4, cstat=32896, shade=0),  # native sprite 218  (tile not in ART)
+        native_detail('sprite_219', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 219  ~2.9 player heights
+        native_detail('sprite_222', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 222  ~2.9 player heights
+        native_detail('sprite_223', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 223  ~2.9 player heights
+        native_detail('sprite_224', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 224  ~2.9 player heights
+        native_detail('sprite_225', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 225  ~2.9 player heights
+        native_detail('sprite_226', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 226  ~2.9 player heights
+        native_detail('sprite_227', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 227  ~2.9 player heights
+        native_detail('sprite_228', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 228  ~2.9 player heights
+        native_detail('sprite_229', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 229  ~2.9 player heights
+        native_detail('sprite_230', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 230  ~2.9 player heights
+        native_detail('sprite_231', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 231  ~2.9 player heights
+        native_detail('sprite_232', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 232  ~2.9 player heights
+        native_detail('sprite_233', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 233  ~2.9 player heights
+        native_detail('sprite_234', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 234  ~2.9 player heights
+        native_detail('sprite_235', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 235  ~2.9 player heights
+        native_detail('sprite_238', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 238  ~2.9 player heights
+        native_detail('sprite_239', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 239  ~2.9 player heights
+        native_detail('sprite_240', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 240  ~2.9 player heights
+        native_detail('sprite_266', 2521, x_repeat=64, y_repeat=64, type=710, cstat=32896, shade=-128),  # native sprite 266  ~2.2 player heights
+    )
+    return space
+
+
+def build_assembly_001_space_101(area) -> object:
+    """assembly_001_space_101: 12 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_101', frame=Frame(512, 512),
+        style=Style(floor_shade=27),
+        note='12 player areas, 1 sector',
+    )
+    s232 = space.room(
+        'sector_232',
+        [(384, 2048), (0, 1664), (0, 384), (384, 0), (1664, 0), (2048, 384), (2048, 1664), (1664, 2048), (768, 2048), (768, 1984), (704, 1984), (704, 2048)],
+        faces={'west': 1, 'north': 3, 'east': 5, 'south': 7},
+        role='gameplay',
+        style=Style(clear_height=29696, floor_z=-27648),
+        note='native sector 232',
+    )
+    s232.carve([(128, 512), (128, 1408), (1024, 1792), (1920, 1408), (1920, 512), (1024, 256)])  # a native inner loop of this sector
+    s232.decorate(
+        native_detail('sprite_236', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 236  ~2.9 player heights
+        native_detail('sprite_237', 0, x_repeat=64, y_repeat=64, type=707, cstat=32896, shade=0),  # native sprite 237  ~2.9 player heights
+    )
+    return space
+
+
+def build_main_complex_zone_08(area) -> object:
+    """zone_08: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    -24576, 100% of its sectors open to the sky, dominant surfaces [2492, 2448, 2455],
+    centred at [91.7, 87.1] player widths. Seeded on assembly:001/space:001.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_08', frame=Frame(7936, 38912),
+        style=Style(parallax_ceiling=True, wall_picnum=2492, wall_shade=0),
+    )
+    build_assembly_001_space_001(zone)
+    return zone
+
+
+def build_assembly_001_space_001(area) -> object:
+    """assembly_001_space_001: 2 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_001', frame=Frame(0, 0),
+        note='2 player areas, 1 sector',
+    )
+    s000 = space.room(
+        'sector_000',
+        [(0, 1024), (0, 0), (256, 0), (256, 128), (256, 1024)],
+        faces={'west': 0, 'north': 1, 'east': 3, 'south': 4},
+        role='gameplay',
+        style=Style(clear_height=32768, floor_z=-24576),
+        note='native sector 0',
+    )
+    return space
+
+
+def build_main_complex_zone_09(area) -> object:
+    """zone_09: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    -24576, 100% of its sectors open to the sky, dominant surfaces [2492, 2448, 2455],
+    centred at [94.9, 87.1] player widths. Seeded on assembly:001/space:002.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_09', frame=Frame(9216, 38912),
+        style=Style(parallax_ceiling=True, wall_picnum=2492, wall_shade=0),
+    )
+    build_assembly_001_space_002(zone)
+    return zone
+
+
+def build_assembly_001_space_002(area) -> object:
+    """assembly_001_space_002: 2 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_002', frame=Frame(0, 0),
+        note='2 player areas, 1 sector',
+    )
+    s001 = space.room(
+        'sector_001',
+        [(0, 1024), (0, 128), (0, 0), (256, 0), (256, 1024)],
+        faces={'west': 0, 'north': 2, 'east': 3, 'south': 4},
+        role='gameplay',
+        style=Style(clear_height=32768, floor_z=-24576),
+        note='native sector 1',
+    )
+    return space
+
+
+def build_main_complex_zone_10(area) -> object:
+    """zone_10: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    -20480, 100% of its sectors open to the sky, dominant surfaces [2499, 2448],
+    centred at [92.1, 84.7] player widths. Seeded on assembly:001/space:005.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_10', frame=Frame(8192, 37888),
+        style=Style(floor_shade=9, parallax_ceiling=True, wall_shade=26),
+    )
+    build_assembly_001_space_005(zone)
+    return zone
+
+
+def build_assembly_001_space_005(area) -> object:
+    """assembly_001_space_005: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_005', frame=Frame(0, 0),
+        note='0 player areas, 1 sector',
+    )
+    s004 = space.room(
+        'sector_004',
+        [(64, 0), (64, 1024), (0, 1024), (0, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=36864, floor_z=-20480),
+        note='native sector 4',
+    )
+    s004.decorate(
+        native_detail('sprite_290', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 290  ~2.2 player heights
+    )
+    return space
+
+
+def build_main_complex_zone_11(area) -> object:
+    """zone_11: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    -24576, 100% of its sectors open to the sky, dominant surfaces [2490, 2448],
+    centred at [109.4, 96.9] player widths. Seeded on assembly:001/space:042.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_11', frame=Frame(14464, 42688),
+        style=Style(floor_shade=18, parallax_ceiling=True, wall_picnum=2490, wall_shade=24),
+    )
+    build_assembly_001_space_042(zone)
+    return zone
+
+
+def build_assembly_001_space_042(area) -> object:
+    """assembly_001_space_042: 1 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_042', frame=Frame(0, 0),
+        note='1 player areas, 1 sector',
+    )
+    s087 = space.room(
+        'sector_087',
+        [(64, 0), (832, 768), (768, 832), (0, 64)],
+        role='gameplay',
+        style=Style(clear_height=32768, floor_z=-24576),
+        note='native sector 87',
+    )
+    s087.decorate(
+        native_detail('sprite_419', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 419  ~2.2 player heights
+    )
+    return space
+
+
+def build_main_complex_zone_12(area) -> object:
+    """zone_12: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    -15360, 100% of its sectors open to the sky, dominant surfaces [2499, 67],
+    centred at [83.7, 100.1] player widths. Seeded on assembly:001/space:043.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_12', frame=Frame(4608, 44288),
+        style=Style(floor_picnum=67, parallax_ceiling=True, wall_shade=14),
+    )
+    build_assembly_001_space_043(zone)
+    return zone
+
+
+def build_assembly_001_space_043(area) -> object:
+    """assembly_001_space_043: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_043', frame=Frame(0, 0),
+        note='0 player areas, 1 sector',
+    )
+    s088 = space.room(
+        'sector_088',
+        [(768, 0), (768, 64), (0, 64), (0, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=41984, floor_z=-15360),
+        note='native sector 88',
+    )
+    s088.decorate(
+        native_detail('sprite_277', 2520, x_repeat=64, y_repeat=64, type=709, cstat=32896, shade=-128),  # native sprite 277  ~2.2 player heights
+    )
+    return space
+
+
+def build_main_complex_zone_13(area) -> object:
+    """zone_13: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    -1024, 0% of its sectors open to the sky, dominant surfaces [329, 2491],
+    centred at [79.5, 44.0] player widths. Seeded on assembly:001/space:052.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_13', frame=Frame(3200, 22528),
+        style=Style(ceiling_picnum=329, ceiling_shade=43, floor_picnum=329, floor_shade=-6, wall_picnum=329, wall_shade=23),
+    )
+    build_assembly_001_space_052(zone)
+    return zone
+
+
+def build_assembly_001_space_052(area) -> object:
+    """assembly_001_space_052: 1 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_052', frame=Frame(0, 0),
+        note='1 player areas, 1 sector',
+    )
+    s111 = space.room(
+        'sector_111',
+        [(384, 0), (384, 512), (0, 512), (0, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=10240, floor_z=-1024),
+        note='native sector 111',
+    )
+    s111.decorate(
+        native_detail('sprite_116', 809, x_repeat=48, y_repeat=48, type=63, cstat=384, shade=21),  # native sprite 116  ~0.8 player heights
+    )
+    return space
+
+
+def build_main_complex_zone_14(area) -> object:
+    """zone_14: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    -34816, 0% of its sectors open to the sky, dominant surfaces [5],
+    centred at [130.8, 103.7] player widths. Seeded on assembly:001/space:066.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_14', frame=Frame(22912, 45568),
+        style=Style(ceiling_picnum=5, ceiling_shade=32, floor_picnum=5, floor_shade=32, wall_picnum=5, wall_shade=32),
+    )
+    build_assembly_001_space_066(zone)
+    return zone
+
+
+def build_assembly_001_space_066(area) -> object:
+    """assembly_001_space_066: 1 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_066', frame=Frame(0, 0),
+        note='1 player areas, 1 sector',
+    )
+    s163 = space.room(
+        'sector_163',
+        [(0, 256), (0, 0), (384, 0), (256, 256)],
+        faces={'west': 0, 'north': 1, 'south': 3},
+        role='gameplay',
+        style=Style(clear_height=0, floor_z=-34816),
+        note='native sector 163',
+    )
+    return space
+
+
+def build_main_complex_zone_15(area) -> object:
+    """zone_15: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    8192, 0% of its sectors open to the sky, dominant surfaces [369, 2448],
+    centred at [84.3, 15.0] player widths. Seeded on assembly:001/space:076.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_15', frame=Frame(5216, 11616),
+        style=Style(ceiling_picnum=369, ceiling_shade=49, floor_shade=20, wall_picnum=369, wall_shade=40),
+    )
+    build_assembly_001_space_076(zone)
+    return zone
 
 
 def build_assembly_001_space_076(area) -> object:
@@ -4957,8 +5162,7 @@ def build_assembly_001_space_076(area) -> object:
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_076', frame=Frame(5216, 11616),
-        style=Style(ceiling_picnum=369, ceiling_shade=49, floor_shade=20, wall_picnum=369, wall_shade=40),
+        'assembly_001_space_076', frame=Frame(0, 0),
         note='0 player areas, 1 sector',
     )
     s181 = space.room(
@@ -4972,14 +5176,30 @@ def build_assembly_001_space_076(area) -> object:
     return space
 
 
+def build_main_complex_zone_16(area) -> object:
+    """zone_16: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    8192, 0% of its sectors open to the sky, dominant surfaces [369, 2448],
+    centred at [85.0, 15.0] player widths. Seeded on assembly:001/space:077.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_16', frame=Frame(5472, 11616),
+        style=Style(ceiling_picnum=329, ceiling_shade=46, floor_shade=20, wall_picnum=369, wall_shade=40),
+    )
+    build_assembly_001_space_077(zone)
+    return zone
+
+
 def build_assembly_001_space_077(area) -> object:
     """assembly_001_space_077: 0 player areas, 1 sector.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_077', frame=Frame(5472, 11616),
-        style=Style(ceiling_picnum=329, ceiling_shade=46, floor_shade=20, wall_picnum=369, wall_shade=40),
+        'assembly_001_space_077', frame=Frame(0, 0),
         note='0 player areas, 1 sector',
     )
     s182 = space.room(
@@ -4997,14 +5217,30 @@ def build_assembly_001_space_077(area) -> object:
     return space
 
 
+def build_main_complex_zone_17(area) -> object:
+    """zone_17: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    8192, 0% of its sectors open to the sky, dominant surfaces [369, 2448],
+    centred at [85.7, 15.0] player widths. Seeded on assembly:001/space:078.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_17', frame=Frame(5728, 11616),
+        style=Style(ceiling_picnum=329, ceiling_shade=46, floor_shade=20, wall_picnum=369, wall_shade=40),
+    )
+    build_assembly_001_space_078(zone)
+    return zone
+
+
 def build_assembly_001_space_078(area) -> object:
     """assembly_001_space_078: 0 player areas, 1 sector.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_078', frame=Frame(5728, 11616),
-        style=Style(ceiling_picnum=329, ceiling_shade=46, floor_shade=20, wall_picnum=369, wall_shade=40),
+        'assembly_001_space_078', frame=Frame(0, 0),
         note='0 player areas, 1 sector',
     )
     s183 = space.room(
@@ -5018,14 +5254,30 @@ def build_assembly_001_space_078(area) -> object:
     return space
 
 
+def build_main_complex_zone_18(area) -> object:
+    """zone_18: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    8192, 0% of its sectors open to the sky, dominant surfaces [369, 2448],
+    centred at [86.3, 15.0] player widths. Seeded on assembly:001/space:079.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_18', frame=Frame(5984, 11616),
+        style=Style(ceiling_picnum=369, ceiling_shade=54, floor_shade=20, wall_picnum=369, wall_shade=40),
+    )
+    build_assembly_001_space_079(zone)
+    return zone
+
+
 def build_assembly_001_space_079(area) -> object:
     """assembly_001_space_079: 0 player areas, 1 sector.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_079', frame=Frame(5984, 11616),
-        style=Style(ceiling_picnum=369, ceiling_shade=54, floor_shade=20, wall_picnum=369, wall_shade=40),
+        'assembly_001_space_079', frame=Frame(0, 0),
         note='0 player areas, 1 sector',
     )
     s184 = space.room(
@@ -5039,14 +5291,30 @@ def build_assembly_001_space_079(area) -> object:
     return space
 
 
+def build_main_complex_zone_19(area) -> object:
+    """zone_19: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    8192, 0% of its sectors open to the sky, dominant surfaces [369, 2448],
+    centred at [100.3, 15.0] player widths. Seeded on assembly:001/space:080.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_19', frame=Frame(11360, 11616),
+        style=Style(ceiling_picnum=369, ceiling_shade=40, floor_shade=20, wall_picnum=369, wall_shade=40),
+    )
+    build_assembly_001_space_080(zone)
+    return zone
+
+
 def build_assembly_001_space_080(area) -> object:
     """assembly_001_space_080: 0 player areas, 1 sector.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_080', frame=Frame(11360, 11616),
-        style=Style(ceiling_picnum=369, ceiling_shade=40, floor_shade=20, wall_picnum=369, wall_shade=40),
+        'assembly_001_space_080', frame=Frame(0, 0),
         note='0 player areas, 1 sector',
     )
     s185 = space.room(
@@ -5060,14 +5328,30 @@ def build_assembly_001_space_080(area) -> object:
     return space
 
 
+def build_main_complex_zone_20(area) -> object:
+    """zone_20: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    8192, 0% of its sectors open to the sky, dominant surfaces [369, 2448],
+    centred at [101.0, 15.0] player widths. Seeded on assembly:001/space:081.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_20', frame=Frame(11616, 11616),
+        style=Style(ceiling_picnum=329, ceiling_shade=46, floor_shade=20, wall_picnum=369, wall_shade=40),
+    )
+    build_assembly_001_space_081(zone)
+    return zone
+
+
 def build_assembly_001_space_081(area) -> object:
     """assembly_001_space_081: 0 player areas, 1 sector.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_081', frame=Frame(11616, 11616),
-        style=Style(ceiling_picnum=329, ceiling_shade=46, floor_shade=20, wall_picnum=369, wall_shade=40),
+        'assembly_001_space_081', frame=Frame(0, 0),
         note='0 player areas, 1 sector',
     )
     s186 = space.room(
@@ -5084,14 +5368,30 @@ def build_assembly_001_space_081(area) -> object:
     return space
 
 
+def build_main_complex_zone_21(area) -> object:
+    """zone_21: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    8192, 0% of its sectors open to the sky, dominant surfaces [369, 2448],
+    centred at [101.7, 15.0] player widths. Seeded on assembly:001/space:082.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_21', frame=Frame(11872, 11616),
+        style=Style(ceiling_picnum=329, ceiling_shade=46, floor_shade=20, wall_picnum=369, wall_shade=40),
+    )
+    build_assembly_001_space_082(zone)
+    return zone
+
+
 def build_assembly_001_space_082(area) -> object:
     """assembly_001_space_082: 0 player areas, 1 sector.
 
     Origin is this space's own corner; every outline below is local to it.
     """
     space = area.assembly(
-        'assembly_001_space_082', frame=Frame(11872, 11616),
-        style=Style(ceiling_picnum=329, ceiling_shade=46, floor_shade=20, wall_picnum=369, wall_shade=40),
+        'assembly_001_space_082', frame=Frame(0, 0),
         note='0 player areas, 1 sector',
     )
     s187 = space.room(
@@ -5101,6 +5401,83 @@ def build_assembly_001_space_082(area) -> object:
         role='gameplay',
         style=Style(clear_height=0, floor_z=8192),
         note='native sector 187',
+    )
+    return space
+
+
+def build_main_complex_zone_22(area) -> object:
+    """zone_22: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    -34816, 0% of its sectors open to the sky, dominant surfaces [329, 2491],
+    centred at [91.3, 47.5] player widths. Seeded on assembly:001/space:106.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_22', frame=Frame(7680, 23936),
+        style=Style(ceiling_picnum=329, ceiling_shade=18, floor_picnum=329, floor_shade=18, wall_picnum=329, wall_shade=18),
+    )
+    build_assembly_001_space_106(zone)
+    return zone
+
+
+def build_assembly_001_space_106(area) -> object:
+    """assembly_001_space_106: 1 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_106', frame=Frame(0, 0),
+        note='1 player areas, 1 sector',
+    )
+    s261 = space.room(
+        'sector_261',
+        [(512, 0), (512, 384), (0, 384), (0, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=12288, floor_z=-34816),
+        note='native sector 261',
+    )
+    s261.decorate(
+        native_detail('sprite_349', 829, x_repeat=40, y_repeat=40, type=117, cstat=128, shade=-8),  # native sprite 349  ~0.9 player heights
+    )
+    return space
+
+
+def build_main_complex_zone_23(area) -> object:
+    """zone_23: 1 spaces, 1 sectors.
+
+    Grouped from measurement rather than from a name: median floor z
+    -15360, 100% of its sectors open to the sky, dominant surfaces [2499, 67],
+    centred at [83.7, 103.9] player widths. Seeded on assembly:001/space:119.
+
+    Origin is the corner of this zone, so outlines below are local to it.
+    """
+    zone = area.assembly(
+        'zone_23', frame=Frame(4608, 45760),
+        style=Style(floor_picnum=67, parallax_ceiling=True, wall_shade=14),
+    )
+    build_assembly_001_space_119(zone)
+    return zone
+
+
+def build_assembly_001_space_119(area) -> object:
+    """assembly_001_space_119: 0 player areas, 1 sector.
+
+    Origin is this space's own corner; every outline below is local to it.
+    """
+    space = area.assembly(
+        'assembly_001_space_119', frame=Frame(0, 0),
+        note='0 player areas, 1 sector',
+    )
+    s309 = space.room(
+        'sector_309',
+        [(768, 0), (768, 64), (0, 64), (0, 0)],
+        faces={'east': 0, 'south': 1, 'west': 2, 'north': 3},
+        role='gameplay',
+        style=Style(clear_height=41984, floor_z=-15360),
+        note='native sector 309',
     )
     return space
 

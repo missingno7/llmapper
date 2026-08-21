@@ -81,6 +81,22 @@ python -m tools.emit_level_program maps/blood/E2M3.MAP --art-dir reference/blood
 See [level programs](docs/level-programs.md) and
 [E2M3 decompiled](projects/e2m3-decompiled/README.md).
 
+A source node can ask what it actually looks like. The XMapEdit fork builds a
+small headless observer that renders a pose and reports what the renderer
+painted, joined back to the node that owns it:
+
+```text
+mingw32-make -C xmapedit/src_blood/observe
+python -m tools.observe program experiments.nested_authoring -o work/obs --structures
+python -m tools.observe decompiled maps/blood/E2M3.MAP \
+  --hierarchy projects/e2m3-decompiled/hierarchy.json -o work/obs-e2m3
+```
+
+The product is JSON; a frame is written only where one is asked for. NBlood
+stays the runtime oracle -- does it load, does the switch fire, is it playable --
+and is no longer driven with injected keys to photograph a room. See
+[structured visual observation](docs/visual-observation.md).
+
 
 Cross-game conversion requires an explicit fidelity policy:
 
@@ -182,6 +198,7 @@ python -m unittest discover -s tests -v
 - [Architecture and invariants](docs/architecture.md)
 - [Reasoned authoring loop](docs/authoring-loop.md)
 - [Level programs: hierarchical, editable level source](docs/level-programs.md)
+- [Structured visual observation through XMapEdit](docs/visual-observation.md)
 - [Cliffside monastery authoring pilot](projects/reasoned-authoring-v1/reports/comparison.md)
 - [Design Understanding and grounded retrieval](docs/architecture.md#design-understanding)
 - [Multi-view spatial understanding](docs/spatial-understanding.md)

@@ -45,6 +45,7 @@ from .state_model import PlayerState, WorldState
 from .viewpoints import (
     ViewpointSpec,
     prepare_viewpoints,
+    resolve_viewpoint,
     viewpoint_manifest,
 )
 
@@ -193,6 +194,11 @@ class Candidate:
     parent: str | None = None
     declared_changes: tuple[str, ...] = ()
     mandatory_regions: tuple[str, ...] = ()
+    #: The hierarchical source, when the candidate has one.  Supplied only so a
+    #: visual observation can name what it saw in the author's own terms; a flat
+    #: PlanarLayout candidate leaves it None and the join falls back to the
+    #: derived hierarchy, which is coarser and says so.
+    program: Any = None
 
 
 # ---------------------------------------------------------------------------
@@ -1512,6 +1518,14 @@ def evaluate_candidate(
     )
     if render.get("nblood_load"):
         gates.append(render["nblood_load"])
+    # Structured observation is not part of the render section because it does
+    # not need the game at all: the editor renderer is driven directly from the
+    # written MAP, so a run with no NBlood environment still gets it.
+    render["observation"] = _observation_section(
+        candidate, compiled, map_path=map_path, work_dir=work_dir,
+        blocked_by=failures, observer=(engine or {}).get("observer"),
+        resource_dir=(engine or {}).get("game_dir"),
+    )
 
     return AuthoringIteration(
         identity=identity,
@@ -1524,6 +1538,120 @@ def evaluate_candidate(
         corpus_scale=scale,
         render=render,
     )
+
+
+def _observation_section(
+    candidate: Candidate,
+    compiled: CompiledLayout,
+    *,
+    map_path: str | Path | None,
+    work_dir: str | Path | None,
+    blocked_by: list[str],
+    observer: str | Path | None = None,
+    resource_dir: str | Path | None = None,
+) -> dict[str, Any]:
+    """What the editor renderer actually painted, per declared viewpoint.
+
+    This is the replacement for driving the game with injected keys to take a
+    picture of a room.  It needs no window, no focus and no timing, so it runs
+    on every evaluation that has a written MAP, whether or not a game is
+    available.  NBlood keeps the jobs only it can do: does the map initialise,
+    does the mechanism fire, is it playable.
+    """
+    from .visual import (
+        ObservationError, ObservationRequest, SourceMap, Viewpoint,
+        compact_summary, default_binary, join_view,
+    )
+
+    section: dict[str, Any] = {
+        "$schema": "llmapper.candidate-observation", "schema_version": 1,
+    }
+    if blocked_by:
+        section["status"] = "skipped"
+        section["note"] = f"structural gates failed first: {blocked_by}"
+        return section
+    if not candidate.viewpoints:
+        section["status"] = "skipped"
+        section["note"] = "no viewpoints declared"
+        return section
+    binary = Path(observer) if observer else default_binary()
+    if not binary.exists():
+        section["status"] = "unavailable"
+        section["note"] = (
+            f"{binary} is not built; run mingw32-make -C xmapedit/src_blood/observe"
+        )
+        return section
+
+    level = compiled.level
+    allocations = _allocations(compiled)
+    resolved = [
+        resolve_viewpoint(level, spec, allocations=allocations)
+        for spec in candidate.viewpoints
+    ]
+    views = tuple(
+        Viewpoint(
+            view_id=str(item["viewpoint_id"]).replace("view:", ""),
+            x=int(item["pose"]["x"]), y=int(item["pose"]["y"]), z=int(item["pose"]["z"]),
+            angle=int(item["pose"].get("angle", 0)), sector=int(item["sector_id"]),
+            purpose=str(item.get("purpose", "")), note=str(item.get("note", "")),
+            # A viewpoint that declares a pitch asked to look up or down.  The
+            # renderer takes that as a number.  Driving an aim key to get the
+            # same effect is what this replaces: one tap of NBlood Aim_Up is
+            # about twelve units of Build horizon.
+            horiz=100 + int(item.get("pitch") or 0) * 12,
+        )
+        for item in resolved
+    )
+    root = Path(work_dir) if work_dir is not None else Path("work") / f"authoring-{candidate.iteration_id}"
+    if map_path is None:
+        # The observer reads a file; that it needs one is not a reason to skip.
+        root.mkdir(parents=True, exist_ok=True)
+        map_path = root / f"{candidate.iteration_id}.MAP"
+        write_map(level.to_disk_map(), map_path)
+    request = ObservationRequest(
+        map_path=str(map_path), output_dir=str(root / "observation"),
+        resource_dir=str(resource_dir) if resource_dir else "reference/blood",
+        viewpoints=views,
+    )
+    try:
+        from .visual import run_observation
+
+        manifest = run_observation(request, binary=binary)
+    except ObservationError as exc:
+        section["status"] = "unavailable"
+        section["note"] = str(exc)
+        return section
+
+    program = candidate.program
+    source_map = (
+        SourceMap.from_level_program(program, compiled) if program is not None
+        else SourceMap.from_hierarchy(
+            decompile_level(level, source_name="observed").hierarchy, level)
+    )
+    records: list[dict[str, Any]] = []
+    for view in manifest.views:
+        join = join_view(view, source_map, level=level)
+        records.append({
+            "viewpoint_id": "view:" + str(view.get("id")),
+            "status": view.get("status"),
+            "reason": view.get("reason", ""),
+            "camera": view.get("camera", {}),
+            "frame": view.get("frame", {}),
+            "visible": join.get("visible", []),
+            "occluded": join.get("occluded", []),
+            "summary": compact_summary(view, join),
+        })
+    section["status"] = "captured"
+    section["renderer"] = manifest.data.get("renderer", {})
+    # Wall-clock timings are deliberately not carried into the packet: an
+    # evidence packet has to be byte-identical between two evaluations of the
+    # same source, and how long a render took is not evidence about the level.
+    # tools/observe.py keeps them.
+    section["view_count"] = len(records)
+    section["views"] = records
+    section["invalid_poses"] = [r["viewpoint_id"] for r in records if r["status"] != "ok"]
+    section["limitations"] = manifest.limitations
+    return section
 
 
 def _render_section(
@@ -1670,6 +1798,10 @@ def resolve_evidence(packet: AuthoringIteration, ref: str) -> dict[str, Any]:
             if names(item["probe_id"]):
                 return {"ref": ref, "kind": "design_probe", "object": item}
     elif namespace == "view":
+        observed = (document["render"].get("observation") or {}).get("views", [])
+        for item in observed:
+            if names(item["viewpoint_id"]):
+                return {"ref": ref, "kind": "observed_view", "object": item}
         captures = (document["render"].get("captures") or {}).get("views", [])
         for item in captures:
             if names(item["viewpoint_id"]):

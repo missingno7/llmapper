@@ -63,6 +63,17 @@ CELLAR_WALL, CELLAR_FLOOR, CELLAR_CEILING = 194, 568, 67
 
 TORCH, SCONCE, EMBLEM, LAMP, GRILLE = 506, 2542, 2540, 1701, 1044
 
+# How much of the lobby's east face the stair takes, and therefore how deep the
+# gallery it arrives in has to be.  One number, because they are one decision.
+#
+# It was six player widths until a visual observation said the arrival read did
+# not work: from the lobby entry pose the grand stair covered 3.8 per cent of
+# the frame and the gallery above it 2.6, against 82.1 for the lobby's own
+# walls and floor.  The stair is the reason the lobby exists and walking in did
+# not show it.  Nine widths is the same declaration with a bigger number; the
+# gallery follows it because it reads it.
+STAIR_WIDTH = 9 * U
+
 
 def build_lobby(manor: Assembly) -> Room:
     """The manor's entrance hall: 14 by 12 player widths, with a wall niche.
@@ -110,8 +121,9 @@ def build_west_wing(manor: Assembly, lobby: Room) -> Room:
 
 def build_upper_gallery(manor: Assembly, lobby: Room, rise: int) -> Room:
     """The floor above, reached by the lobby stair; its own elevation and light."""
-    gallery = manor.rect_room("upper_gallery", size=(12 * U, 6 * U), note="upper gallery")
-    gallery.place_against("west", lobby.face("east", at=0.5, width=6 * U))
+    gallery = manor.rect_room("upper_gallery", size=(12 * U, STAIR_WIDTH),
+                              note="upper gallery")
+    gallery.place_against("west", lobby.face("east", at=0.5, width=STAIR_WIDTH))
     # The stair eats the first eight player widths of the gap it crosses.
     gallery.frame = Frame(gallery.frame.dx + 8 * U, gallery.frame.dy, -rise)
     gallery.surfaces(
@@ -167,7 +179,7 @@ def build_manor(level: LevelProgram, *, rise: int) -> Assembly:
     gallery = build_upper_gallery(manor, lobby, rise)
 
     stairs = lobby.staircase(
-        "stairs:grand", "east", at=0.5, width=6 * U,
+        "stairs:grand", "east", at=0.5, width=STAIR_WIDTH,
         total_rise=-rise, step_rise=-4096, tread=2 * U,
         arrive_at=gallery.region_id, shade_ramp=(18, 10),
     )
@@ -346,6 +358,7 @@ def candidate() -> Candidate:
         iteration_id="nested-v1",
         module="experiments/nested_authoring.py",
         factory=_layout,
+        program=build_level(),
         intent=intent(),
         probes=(
             ProbeRequest("probe:reach_gallery", "access",

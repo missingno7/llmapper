@@ -66,6 +66,31 @@ Geometry the model cannot express goes to `Room.raw` with a note, or to
 it compile: 0.95% of campaign sectors have outlines the authoring compiler
 refuses, and silently fixing them would invent evidence about what was drawn.
 
+Changes to `bloodmap.visual`, `bloodmap.viewplan`, or the XMapEdit observer must
+hold the role split:
+
+1. **the renderer is asked only what it alone knows** -- which native objects it
+   painted, where on screen, and how much survived occlusion. Distance, size,
+   naming and player-relative measurement stay in llmapper, where they already
+   exist and can be checked against the map file;
+2. **JSON is the product** -- a frame is an optional artefact for one named view,
+   never the evidence itself, and never produced for every candidate pose;
+3. **no key, no window, no timing** -- a camera pose is a number in a request.
+   Adding an input-injection path back into the observation route is the thing
+   this replaced;
+4. **a pose is refused, never nudged** -- the planner drops what geometry rules
+   out and the observer reports `invalid_pose` with its reason, because a
+   silently moved camera answers a question nobody asked;
+5. **no score** -- keep the evidence decomposed. `visual_quality = 0.81` is
+   exactly the shape this must not take.
+
+Evidence packets stay byte-deterministic, so wall-clock timings belong in tool
+output rather than in an `AuthoringIteration`.
+
+NBlood keeps the questions only a running game answers: does the MAP initialise,
+does the mechanism fire, is it playable. It is no longer the way to look at a
+room. See [structured visual observation](docs/visual-observation.md).
+
 Duke writer and cross-game geometry changes should run the corresponding EDuke32
 baseline/candidate smoke. Cross-game changes must also update or reproduce the
 fidelity report and must never equate native tags solely because their numbers

@@ -132,9 +132,17 @@ def _modal(values: list[int]) -> int | None:
 
 class ProgramEmitter:
     def __init__(self, path: pathlib.Path, *, art_dir: str | None = None,
-                 names: dict[str, dict[str, str]] | None = None) -> None:
+                 names: dict[str, dict[str, str]] | None = None,
+                 areas_document: dict[str, Any] | None = None) -> None:
         self.path = path
         self.names = dict(names or {})
+        # assembly id -> the proposed zones inside it.  Without this the middle
+        # of the tree is a flat list of every space in the assembly, which on
+        # E2M3 is 123 calls in one function.
+        self.zones: dict[str, list[dict[str, Any]]] = {}
+        for item in (areas_document or {}).get("assemblies", []):
+            if item.get("grouped") and item.get("primary"):
+                self.zones[item["assembly"]] = item["primary"]["areas"]
         self.art_sizes: dict[int, tuple[int, int]] = {}
         if art_dir:
             from bloodmap.vocabulary import art_sizes_from_directory
@@ -420,18 +428,107 @@ class ProgramEmitter:
         lines.append("        style=Style(%s),"
                      % ", ".join("%s=%r" % item for item in sorted(style.items())))
         lines.append("    )")
-        calls: list[str] = []
-        for space in area["spaces"]:
-            calls.append(self._space_builder_name(space))
-        for call in calls:
-            lines.append("    %s(area)" % call)
-        lines.append("    return area")
-        # Each space is its own function, appended after the area that calls it,
-        # so "modify the staircase room" is one function to open rather than a
-        # four-thousand-line area to scroll.
-        for space in area["spaces"]:
-            self._emit_space(lines, space, origin, style)
+        zones = self._zones_for(area)
+        if zones:
+            # The middle of the tree.  Without it this function is one call per
+            # space -- 123 of them on E2M3 -- and a reader who wants one wing of
+            # the level has to read all of it.
+            lines.append("    for build in (")
+            for zone in zones:
+                lines.append("        %s," % zone["builder"])
+            lines.append("    ):")
+            lines.append("        build(area)")
+            lines.append("    return area")
+            for zone in zones:
+                self._emit_zone(lines, zone, origin, style)
+        else:
+            for space in area["spaces"]:
+                lines.append("    %s(area)" % self._space_builder_name(space))
+            lines.append("    return area")
+            # Each space is its own function, appended after the area that calls
+            # it, so "modify the staircase room" is one function to open rather
+            # than a four-thousand-line area to scroll.
+            for space in area["spaces"]:
+                self._emit_space(lines, space, origin, style)
         return name
+
+    def _zones_for(self, area: dict[str, Any]) -> list[dict[str, Any]]:
+        """Group an assembly spaces into the proposed zones, in a stable order."""
+        proposal = self.zones.get(area["node"]["id"])
+        if not proposal or len(proposal) >= len(area["spaces"]):
+            return []
+        by_id = {space["id"]: space for space in area["spaces"]}
+        assigned: set[str] = set()
+        zones: list[dict[str, Any]] = []
+        label_base = _identifier(self._area_label(area))
+        for index, group in enumerate(proposal, start=1):
+            members = [by_id[space_id] for space_id in group["spaces"] if space_id in by_id]
+            if not members:
+                continue
+            assigned.update(space["id"] for space in members)
+            members.sort(
+                key=lambda item: -item["geometry"]["player_relative"]["footprint_player_areas"]
+            )
+            label = "zone_%02d" % index
+            zones.append({
+                "label": label,
+                "builder": "build_%s_%s" % (label_base, label),
+                "spaces": members,
+                "facts": group,
+            })
+        leftovers = [space for space in area["spaces"] if space["id"] not in assigned]
+        if leftovers:
+            zones.append({
+                "label": "zone_unsorted",
+                "builder": "build_%s_zone_unsorted" % label_base,
+                "spaces": leftovers,
+                "facts": None,
+            })
+        return zones
+
+    def _area_label(self, area: dict[str, Any]) -> str:
+        node = area["node"]
+        naming = self.names.get(node["id"]) or {}
+        return naming.get("name") or ("area_%s" % node["id"].split(":")[1])
+
+    def _emit_zone(self, lines: list[str], zone: dict[str, Any],
+                   area_origin: tuple[int, int], area_style: dict[str, int]) -> None:
+        sectors = [s for space in zone["spaces"] for s in space["sources"]["sectors"]]
+        origin = _bounds([point for s in sectors for point in self.outlines[s]])[:2]
+        local_origin = (origin[0] - area_origin[0], origin[1] - area_origin[1])
+        facts = zone["facts"]
+        lines.append("")
+        lines.append("")
+        lines.append("def %s(area) -> object:" % zone["builder"])
+        lines.append('    """%s: %d spaces, %d sectors.'
+                     % (zone["label"], len(zone["spaces"]), len(sectors)))
+        lines.append("")
+        if facts:
+            lines.append("    Grouped from measurement rather than from a name: median floor z")
+            lines.append("    %d, %.0f%% of its sectors open to the sky, dominant surfaces %s,"
+                         % (facts["median_floor_z"], 100 * facts["sky_fraction"],
+                            facts["dominant_tiles"][:3]))
+            lines.append("    centred at %s player widths. Seeded on %s."
+                         % (facts["centroid_player_widths"], facts["seed"]))
+        else:
+            lines.append("    The spaces no proposed group claimed. They are here so the level")
+            lines.append("    is complete, not because they belong together.")
+        lines.append("")
+        lines.append("    Origin is the corner of this zone, so outlines below are local to it.")
+        lines.append('    """')
+        style = self._style_for(sectors)
+        overrides = {k: v for k, v in style.items() if area_style.get(k) != v}
+        lines.append("    zone = area.assembly(")
+        lines.append("        %r, frame=Frame(%d, %d)," % (zone["label"], *local_origin))
+        if overrides:
+            lines.append("        style=Style(%s),"
+                         % ", ".join("%s=%r" % item for item in sorted(overrides.items())))
+        lines.append("    )")
+        for space in zone["spaces"]:
+            lines.append("    %s(zone)" % self._space_builder_name(space))
+        lines.append("    return zone")
+        for space in zone["spaces"]:
+            self._emit_space(lines, space, origin, style)
 
     def _space_builder_name(self, space: dict[str, Any]) -> str:
         """A unique function name per space.
@@ -559,11 +656,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("-o", "--output", required=True)
     parser.add_argument("--art-dir", help="Blood ART directory, for real sprite sizes")
     parser.add_argument("--names", help="JSON of node id -> {name, basis} interpretations")
+    parser.add_argument("--areas", help="an llmapper.area-proposals document, for the middle layer")
     parser.add_argument("--escape-until-compiles", action="store_true",
                         help="escape sectors the authoring compiler refuses, and report them")
     args = parser.parse_args(argv)
     names = json.loads(pathlib.Path(args.names).read_text(encoding="utf-8")) if args.names else None
-    emitter = ProgramEmitter(pathlib.Path(args.map), art_dir=args.art_dir, names=names)
+    areas_document = (
+        json.loads(pathlib.Path(args.areas).read_text(encoding="utf-8")) if args.areas else None
+    )
+    emitter = ProgramEmitter(pathlib.Path(args.map), art_dir=args.art_dir, names=names,
+                             areas_document=areas_document)
     history: list[dict[str, Any]] = []
     if args.escape_until_compiles:
         history = emitter.escape_until_it_compiles()

@@ -122,16 +122,38 @@ E2M3's emitted program builds 339 of its 340 rooms and lowers to 339 regions and
 which is the honest coverage figure: the tree and the lowering are complete, the
 round trip is not.
 
+## The middle of the hierarchy
+
+This section used to say the middle layer was missing: `decompile_level` defines
+an assembly as a connected component of the portal graph, a normal level is one
+component, and 327 of E2M3's 340 sectors landed in a single assembly, so the
+layer between "the level" and "one perceptual space" was a list of 123 calls.
+
+It is now a grouping. `tools/propose_areas.py` combines position, elevation
+band, material family, sky exposure, opening width and one thing geometry cannot
+supply -- whether two spaces are actually seen together -- and
+`tools/emit_level_program.py --areas` turns the proposal into real nested
+assemblies with their own frames:
+
+| | before | after |
+| --- | --- | --- |
+| `build_main_complex` | 138 lines, 123 calls | 39 lines, 23 calls |
+| sectors in the largest four areas | -- | 287 of 340 |
+| what a zone states about itself | -- | elevation, sky fraction, dominant surfaces, centre |
+
+Co-visibility is what made the four principal areas cohere: without it the same
+code at the same thresholds breaks the level into 26 fragments whose largest
+four cover 202 sectors, and only eight of the 23 groups come out the same either
+way. The evidence is in
+[area-evidence.md](../projects/e2m3-decompiled/references/area-evidence.md), and
+the observation path that supplies it is
+[structured visual observation](visual-observation.md).
+
 ## The remaining limitation
 
-The middle of the hierarchy is not a design grouping. `decompile_level` defines
-an assembly as a connected component of the portal graph, and a normal level is
-one component: 327 of E2M3's 340 sectors land in a single assembly. Splitting
-each space into its own builder recovered locality at the room level, but the
-layer between "the level" and "one perceptual space" is still a list of 123
-calls rather than a handful of areas.
-
-Areas are a *spatial* grouping — position, elevation band, material family,
-sight — and connectivity does not produce them. That is the next thing worth
-building, and it is what would let an agent open one wing of a level rather than
-one room of it.
+Zones are called `zone_01` through `zone_23` and nothing here proposes better.
+Naming them is interpretation, and interpretation goes in
+`references/names.json` with a confidence on each -- which today holds eight
+reviewed names for a level with 136 spaces. The grouping is now good enough that
+naming a zone would be a *reviewable* act rather than a guess, and that review
+has not been done.

@@ -1,0 +1,4625 @@
+{
+ "$schema": "llmapper.area-proposals",
+ "schema_version": 1,
+ "of": "E2M3.MAP",
+ "hierarchy": "projects/e2m3-decompiled/hierarchy.json",
+ "packet": "work/obs-e2m3/packet.json",
+ "weights": {
+  "mutual_covisibility": 2.0,
+  "one_way_covisibility": 1.0,
+  "same_sky_class": 1.5,
+  "same_elevation_band": 1.5,
+  "shared_materials": 1.5,
+  "proximity": 1.0,
+  "wide_opening": 1.0
+ },
+ "assemblies": [
+  {
+   "assembly": "assembly:001",
+   "spaces": 123,
+   "grouped": true,
+   "primary": {
+    "target": 10,
+    "floor_score": 0.35,
+    "size_cap": 0.3,
+    "areas": [
+     {
+      "seed": "assembly:001/space:003",
+      "spaces": [
+       "assembly:001/space:003",
+       "assembly:001/space:004",
+       "assembly:001/space:006",
+       "assembly:001/space:007",
+       "assembly:001/space:008",
+       "assembly:001/space:009",
+       "assembly:001/space:013",
+       "assembly:001/space:014",
+       "assembly:001/space:015",
+       "assembly:001/space:016",
+       "assembly:001/space:017",
+       "assembly:001/space:019",
+       "assembly:001/space:021",
+       "assembly:001/space:022",
+       "assembly:001/space:023",
+       "assembly:001/space:024",
+       "assembly:001/space:025",
+       "assembly:001/space:026",
+       "assembly:001/space:027",
+       "assembly:001/space:028",
+       "assembly:001/space:029",
+       "assembly:001/space:030",
+       "assembly:001/space:039",
+       "assembly:001/space:040",
+       "assembly:001/space:041",
+       "assembly:001/space:045",
+       "assembly:001/space:046",
+       "assembly:001/space:047",
+       "assembly:001/space:055",
+       "assembly:001/space:068",
+       "assembly:001/space:075",
+       "assembly:001/space:090",
+       "assembly:001/space:091",
+       "assembly:001/space:092",
+       "assembly:001/space:098",
+       "assembly:001/space:099",
+       "assembly:001/space:109",
+       "assembly:001/space:113",
+       "assembly:001/space:114",
+       "assembly:001/space:115",
+       "assembly:001/space:116",
+       "assembly:001/space:118"
+      ],
+      "sectors": [
+       2,
+       3,
+       5,
+       6,
+       7,
+       8,
+       22,
+       23,
+       24,
+       25,
+       26,
+       27,
+       28,
+       29,
+       30,
+       31,
+       32,
+       34,
+       37,
+       38,
+       39,
+       42,
+       43,
+       44,
+       45,
+       46,
+       47,
+       48,
+       49,
+       50,
+       51,
+       52,
+       53,
+       54,
+       55,
+       56,
+       68,
+       69,
+       70,
+       71,
+       72,
+       73,
+       74,
+       75,
+       81,
+       82,
+       83,
+       84,
+       85,
+       86,
+       89,
+       91,
+       92,
+       93,
+       94,
+       95,
+       96,
+       97,
+       114,
+       165,
+       166,
+       167,
+       178,
+       179,
+       180,
+       206,
+       207,
+       208,
+       224,
+       225,
+       226,
+       227,
+       228,
+       229,
+       230,
+       270,
+       275,
+       276,
+       277,
+       278,
+       279,
+       280,
+       281,
+       282,
+       283,
+       292,
+       293,
+       294,
+       295,
+       297,
+       298,
+       305,
+       306,
+       307,
+       308,
+       327,
+       328,
+       329
+      ],
+      "sector_count": 98,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.378,
+      "dominant_tiles": [
+       2492,
+       34,
+       91,
+       5,
+       2496
+      ],
+      "centroid_player_widths": [
+       110.9,
+       65.6
+      ]
+     },
+     {
+      "seed": "assembly:001/space:037",
+      "spaces": [
+       "assembly:001/space:037",
+       "assembly:001/space:038",
+       "assembly:001/space:044",
+       "assembly:001/space:048",
+       "assembly:001/space:049",
+       "assembly:001/space:050",
+       "assembly:001/space:051",
+       "assembly:001/space:064",
+       "assembly:001/space:065",
+       "assembly:001/space:067",
+       "assembly:001/space:071",
+       "assembly:001/space:072",
+       "assembly:001/space:073",
+       "assembly:001/space:074",
+       "assembly:001/space:087",
+       "assembly:001/space:088",
+       "assembly:001/space:089",
+       "assembly:001/space:093",
+       "assembly:001/space:094",
+       "assembly:001/space:097",
+       "assembly:001/space:103",
+       "assembly:001/space:104",
+       "assembly:001/space:120",
+       "assembly:001/space:121",
+       "assembly:001/space:123"
+      ],
+      "sectors": [
+       79,
+       80,
+       90,
+       98,
+       99,
+       100,
+       101,
+       102,
+       103,
+       104,
+       105,
+       106,
+       107,
+       108,
+       109,
+       110,
+       161,
+       162,
+       164,
+       174,
+       175,
+       176,
+       177,
+       202,
+       203,
+       204,
+       205,
+       209,
+       210,
+       211,
+       212,
+       213,
+       214,
+       219,
+       220,
+       221,
+       222,
+       223,
+       234,
+       235,
+       236,
+       237,
+       238,
+       239,
+       240,
+       241,
+       242,
+       243,
+       244,
+       245,
+       246,
+       247,
+       248,
+       249,
+       250,
+       251,
+       252,
+       253,
+       254,
+       255,
+       256,
+       257,
+       258,
+       259,
+       273,
+       274,
+       310,
+       311,
+       312,
+       313,
+       315,
+       316,
+       317,
+       318,
+       319,
+       320,
+       321,
+       322,
+       323,
+       324,
+       326
+      ],
+      "sector_count": 81,
+      "median_floor_z": -11264,
+      "sky_fraction": 0.185,
+      "dominant_tiles": [
+       20,
+       153,
+       28,
+       253,
+       181
+      ],
+      "centroid_player_widths": [
+       141.7,
+       89.6
+      ]
+     },
+     {
+      "seed": "assembly:001/space:011",
+      "spaces": [
+       "assembly:001/space:011",
+       "assembly:001/space:012",
+       "assembly:001/space:020",
+       "assembly:001/space:053",
+       "assembly:001/space:054",
+       "assembly:001/space:056",
+       "assembly:001/space:057",
+       "assembly:001/space:058",
+       "assembly:001/space:059",
+       "assembly:001/space:060",
+       "assembly:001/space:061",
+       "assembly:001/space:062",
+       "assembly:001/space:063",
+       "assembly:001/space:070",
+       "assembly:001/space:105",
+       "assembly:001/space:107",
+       "assembly:001/space:122"
+      ],
+      "sectors": [
+       17,
+       18,
+       19,
+       20,
+       21,
+       36,
+       112,
+       113,
+       115,
+       116,
+       117,
+       118,
+       119,
+       120,
+       121,
+       122,
+       123,
+       124,
+       125,
+       126,
+       127,
+       128,
+       129,
+       130,
+       131,
+       132,
+       133,
+       134,
+       135,
+       136,
+       137,
+       138,
+       139,
+       142,
+       143,
+       144,
+       145,
+       146,
+       147,
+       148,
+       149,
+       150,
+       151,
+       152,
+       153,
+       154,
+       155,
+       156,
+       157,
+       158,
+       159,
+       160,
+       168,
+       172,
+       173,
+       188,
+       260,
+       262,
+       263,
+       264,
+       265,
+       266,
+       284,
+       285,
+       286,
+       287,
+       288,
+       289,
+       325
+      ],
+      "sector_count": 69,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.739,
+      "dominant_tiles": [
+       2448,
+       2499,
+       2474,
+       2491,
+       2455
+      ],
+      "centroid_player_widths": [
+       97.1,
+       18.5
+      ]
+     },
+     {
+      "seed": "assembly:001/space:010",
+      "spaces": [
+       "assembly:001/space:010",
+       "assembly:001/space:069",
+       "assembly:001/space:083",
+       "assembly:001/space:084",
+       "assembly:001/space:085",
+       "assembly:001/space:086",
+       "assembly:001/space:095",
+       "assembly:001/space:096",
+       "assembly:001/space:110",
+       "assembly:001/space:117"
+      ],
+      "sectors": [
+       9,
+       10,
+       11,
+       12,
+       13,
+       14,
+       15,
+       16,
+       140,
+       141,
+       169,
+       170,
+       171,
+       189,
+       190,
+       191,
+       192,
+       193,
+       194,
+       195,
+       196,
+       197,
+       198,
+       199,
+       200,
+       201,
+       215,
+       216,
+       217,
+       218,
+       271,
+       272,
+       296,
+       299,
+       300,
+       301,
+       302,
+       303,
+       304
+      ],
+      "sector_count": 39,
+      "median_floor_z": -4096,
+      "sky_fraction": 0.359,
+      "dominant_tiles": [
+       2499,
+       2448,
+       329,
+       2496,
+       2455
+      ],
+      "centroid_player_widths": [
+       94.8,
+       66.4
+      ]
+     },
+     {
+      "seed": "assembly:001/space:031",
+      "spaces": [
+       "assembly:001/space:031",
+       "assembly:001/space:032",
+       "assembly:001/space:033",
+       "assembly:001/space:034",
+       "assembly:001/space:035",
+       "assembly:001/space:036",
+       "assembly:001/space:111"
+      ],
+      "sectors": [
+       57,
+       58,
+       59,
+       60,
+       61,
+       62,
+       63,
+       64,
+       65,
+       66,
+       67,
+       76,
+       77,
+       78,
+       290
+      ],
+      "sector_count": 15,
+      "median_floor_z": -14336,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       365,
+       309,
+       355,
+       5,
+       34
+      ],
+      "centroid_player_widths": [
+       163.5,
+       36.8
+      ]
+     },
+     {
+      "seed": "assembly:001/space:018",
+      "spaces": [
+       "assembly:001/space:018",
+       "assembly:001/space:108",
+       "assembly:001/space:112"
+      ],
+      "sectors": [
+       33,
+       35,
+       267,
+       268,
+       269,
+       291
+      ],
+      "sector_count": 6,
+      "median_floor_z": -26624,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       329,
+       21,
+       67,
+       115,
+       376
+      ],
+      "centroid_player_widths": [
+       108.4,
+       27.4
+      ]
+     },
+     {
+      "seed": "assembly:001/space:100",
+      "spaces": [
+       "assembly:001/space:100",
+       "assembly:001/space:101",
+       "assembly:001/space:102"
+      ],
+      "sectors": [
+       231,
+       232,
+       233
+      ],
+      "sector_count": 3,
+      "median_floor_z": -27648,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       272,
+       365
+      ],
+      "centroid_player_widths": [
+       165.2,
+       67.1
+      ]
+     },
+     {
+      "seed": "assembly:001/space:001",
+      "spaces": [
+       "assembly:001/space:001"
+      ],
+      "sectors": [
+       0
+      ],
+      "sector_count": 1,
+      "median_floor_z": -24576,
+      "sky_fraction": 1.0,
+      "dominant_tiles": [
+       2492,
+       2448,
+       2455
+      ],
+      "centroid_player_widths": [
+       91.7,
+       87.1
+      ]
+     },
+     {
+      "seed": "assembly:001/space:002",
+      "spaces": [
+       "assembly:001/space:002"
+      ],
+      "sectors": [
+       1
+      ],
+      "sector_count": 1,
+      "median_floor_z": -24576,
+      "sky_fraction": 1.0,
+      "dominant_tiles": [
+       2492,
+       2448,
+       2455
+      ],
+      "centroid_player_widths": [
+       94.9,
+       87.1
+      ]
+     },
+     {
+      "seed": "assembly:001/space:005",
+      "spaces": [
+       "assembly:001/space:005"
+      ],
+      "sectors": [
+       4
+      ],
+      "sector_count": 1,
+      "median_floor_z": -20480,
+      "sky_fraction": 1.0,
+      "dominant_tiles": [
+       2499,
+       2448
+      ],
+      "centroid_player_widths": [
+       92.1,
+       84.7
+      ]
+     },
+     {
+      "seed": "assembly:001/space:042",
+      "spaces": [
+       "assembly:001/space:042"
+      ],
+      "sectors": [
+       87
+      ],
+      "sector_count": 1,
+      "median_floor_z": -24576,
+      "sky_fraction": 1.0,
+      "dominant_tiles": [
+       2490,
+       2448
+      ],
+      "centroid_player_widths": [
+       109.4,
+       96.9
+      ]
+     },
+     {
+      "seed": "assembly:001/space:043",
+      "spaces": [
+       "assembly:001/space:043"
+      ],
+      "sectors": [
+       88
+      ],
+      "sector_count": 1,
+      "median_floor_z": -15360,
+      "sky_fraction": 1.0,
+      "dominant_tiles": [
+       2499,
+       67
+      ],
+      "centroid_player_widths": [
+       83.7,
+       100.1
+      ]
+     },
+     {
+      "seed": "assembly:001/space:052",
+      "spaces": [
+       "assembly:001/space:052"
+      ],
+      "sectors": [
+       111
+      ],
+      "sector_count": 1,
+      "median_floor_z": -1024,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       329,
+       2491
+      ],
+      "centroid_player_widths": [
+       79.5,
+       44.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:066",
+      "spaces": [
+       "assembly:001/space:066"
+      ],
+      "sectors": [
+       163
+      ],
+      "sector_count": 1,
+      "median_floor_z": -34816,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       5
+      ],
+      "centroid_player_widths": [
+       130.8,
+       103.7
+      ]
+     },
+     {
+      "seed": "assembly:001/space:076",
+      "spaces": [
+       "assembly:001/space:076"
+      ],
+      "sectors": [
+       181
+      ],
+      "sector_count": 1,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       369,
+       2448
+      ],
+      "centroid_player_widths": [
+       84.3,
+       15.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:077",
+      "spaces": [
+       "assembly:001/space:077"
+      ],
+      "sectors": [
+       182
+      ],
+      "sector_count": 1,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       369,
+       2448
+      ],
+      "centroid_player_widths": [
+       85.0,
+       15.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:078",
+      "spaces": [
+       "assembly:001/space:078"
+      ],
+      "sectors": [
+       183
+      ],
+      "sector_count": 1,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       369,
+       2448
+      ],
+      "centroid_player_widths": [
+       85.7,
+       15.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:079",
+      "spaces": [
+       "assembly:001/space:079"
+      ],
+      "sectors": [
+       184
+      ],
+      "sector_count": 1,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       369,
+       2448
+      ],
+      "centroid_player_widths": [
+       86.3,
+       15.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:080",
+      "spaces": [
+       "assembly:001/space:080"
+      ],
+      "sectors": [
+       185
+      ],
+      "sector_count": 1,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       369,
+       2448
+      ],
+      "centroid_player_widths": [
+       100.3,
+       15.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:081",
+      "spaces": [
+       "assembly:001/space:081"
+      ],
+      "sectors": [
+       186
+      ],
+      "sector_count": 1,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       369,
+       2448
+      ],
+      "centroid_player_widths": [
+       101.0,
+       15.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:082",
+      "spaces": [
+       "assembly:001/space:082"
+      ],
+      "sectors": [
+       187
+      ],
+      "sector_count": 1,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       369,
+       2448
+      ],
+      "centroid_player_widths": [
+       101.7,
+       15.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:106",
+      "spaces": [
+       "assembly:001/space:106"
+      ],
+      "sectors": [
+       261
+      ],
+      "sector_count": 1,
+      "median_floor_z": -34816,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       329,
+       2491
+      ],
+      "centroid_player_widths": [
+       91.3,
+       47.5
+      ]
+     },
+     {
+      "seed": "assembly:001/space:119",
+      "spaces": [
+       "assembly:001/space:119"
+      ],
+      "sectors": [
+       309
+      ],
+      "sector_count": 1,
+      "median_floor_z": -15360,
+      "sky_fraction": 1.0,
+      "dominant_tiles": [
+       2499,
+       67
+      ],
+      "centroid_player_widths": [
+       83.7,
+       103.9
+      ]
+     }
+    ],
+    "merges": [
+     {
+      "into": "assembly:001/space:036",
+      "absorbed": "assembly:001/space:111",
+      "score": 0.996,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.1 player heights",
+       "dominant surfaces overlap 100%",
+       "centres 0.6 player widths apart",
+       "openings between them total 9.6 player widths"
+      ],
+      "sectors_after": 2
+     },
+     {
+      "into": "assembly:001/space:100",
+      "absorbed": "assembly:001/space:101",
+      "score": 0.995,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 100%",
+       "centres 0.7 player widths apart",
+       "openings between them total 14.6 player widths"
+      ],
+      "sectors_after": 2
+     },
+     {
+      "into": "assembly:001/space:035",
+      "absorbed": "assembly:001/space:036",
+      "score": 0.992,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 2.0 player heights",
+       "dominant surfaces overlap 100%",
+       "centres 1.0 player widths apart",
+       "openings between them total 9.6 player widths"
+      ],
+      "sectors_after": 3
+     },
+     {
+      "into": "assembly:001/space:040",
+      "absorbed": "assembly:001/space:047",
+      "score": 0.927,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 75%",
+       "centres 2.7 player widths apart",
+       "openings between them total 3.7 player widths"
+      ],
+      "sectors_after": 4
+     },
+     {
+      "into": "assembly:001/space:090",
+      "absorbed": "assembly:001/space:099",
+      "score": 0.87,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 60%",
+       "centres 8.1 player widths apart",
+       "openings between them total 10.9 player widths"
+      ],
+      "sectors_after": 3
+     },
+     {
+      "into": "assembly:001/space:034",
+      "absorbed": "assembly:001/space:035",
+      "score": 0.868,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.8 player heights",
+       "dominant surfaces overlap 100%",
+       "centres 1.9 player widths apart",
+       "openings between them total 9.6 player widths"
+      ],
+      "sectors_after": 4
+     },
+     {
+      "into": "assembly:001/space:055",
+      "absorbed": "assembly:001/space:075",
+      "score": 0.842,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 40%",
+       "centres 2.7 player widths apart",
+       "openings between them total 2.9 player widths"
+      ],
+      "sectors_after": 5
+     },
+     {
+      "into": "assembly:001/space:031",
+      "absorbed": "assembly:001/space:032",
+      "score": 0.83,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.2 player heights",
+       "dominant surfaces overlap 100%",
+       "centres 2.8 player widths apart",
+       "openings between them total 2.9 player widths"
+      ],
+      "sectors_after": 2
+     },
+     {
+      "into": "assembly:001/space:100",
+      "absorbed": "assembly:001/space:102",
+      "score": 0.818,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 100%",
+       "centres 0.7 player widths apart",
+       "openings between them total 18.8 player widths"
+      ],
+      "sectors_after": 3
+     },
+     {
+      "into": "assembly:001/space:040",
+      "absorbed": "assembly:001/space:046",
+      "score": 0.801,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.8 player heights",
+       "dominant surfaces overlap 75%",
+       "centres 5.1 player widths apart",
+       "openings between them total 5.2 player widths"
+      ],
+      "sectors_after": 5
+     },
+     {
+      "into": "assembly:001/space:095",
+      "absorbed": "assembly:001/space:096",
+      "score": 0.78,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 100%",
+       "centres 2.0 player widths apart",
+       "openings between them total 3.0 player widths"
+      ],
+      "sectors_after": 4
+     },
+     {
+      "into": "assembly:001/space:041",
+      "absorbed": "assembly:001/space:090",
+      "score": 0.779,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 1.8 player heights",
+       "dominant surfaces overlap 33%",
+       "centres 14.0 player widths apart",
+       "openings between them total 16.0 player widths"
+      ],
+      "sectors_after": 5
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:022",
+      "score": 0.762,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 14%",
+       "centres 6.5 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 5
+     },
+     {
+      "into": "assembly:001/space:018",
+      "absorbed": "assembly:001/space:108",
+      "score": 0.755,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.9 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 8.0 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 5
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:054",
+      "score": 0.753,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.9 player heights",
+       "dominant surfaces overlap 80%",
+       "centres 12.8 player widths apart",
+       "openings between them total 9.0 player widths"
+      ],
+      "sectors_after": 11
+     },
+     {
+      "into": "assembly:001/space:021",
+      "absorbed": "assembly:001/space:026",
+      "score": 0.742,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 75%",
+       "centres 5.0 player widths apart",
+       "openings between them total 4.0 player widths"
+      ],
+      "sectors_after": 9
+     },
+     {
+      "into": "assembly:001/space:083",
+      "absorbed": "assembly:001/space:084",
+      "score": 0.74,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 75%",
+       "centres 5.3 player widths apart",
+       "openings between them total 5.3 player widths"
+      ],
+      "sectors_after": 12
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:023",
+      "score": 0.722,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 60%",
+       "centres 4.2 player widths apart",
+       "openings between them total 6.0 player widths"
+      ],
+      "sectors_after": 7
+     },
+     {
+      "into": "assembly:001/space:091",
+      "absorbed": "assembly:001/space:092",
+      "score": 0.715,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 43%",
+       "centres 9.1 player widths apart",
+       "openings between them total 10.9 player widths"
+      ],
+      "sectors_after": 2
+     },
+     {
+      "into": "assembly:001/space:006",
+      "absorbed": "assembly:001/space:109",
+      "score": 0.684,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 40%",
+       "centres 4.5 player widths apart",
+       "openings between them total 5.0 player widths"
+      ],
+      "sectors_after": 7
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:094",
+      "score": 0.681,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.3 player heights",
+       "dominant surfaces overlap 40%",
+       "centres 13.0 player widths apart",
+       "openings between them total 7.7 player widths"
+      ],
+      "sectors_after": 29
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:093",
+      "score": 0.68,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.3 player heights",
+       "dominant surfaces overlap 14%",
+       "centres 6.9 player widths apart",
+       "openings between them total 14.3 player widths"
+      ],
+      "sectors_after": 30
+     },
+     {
+      "into": "assembly:001/space:031",
+      "absorbed": "assembly:001/space:033",
+      "score": 0.677,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 7.9 player widths apart",
+       "openings between them total 34.2 player widths"
+      ],
+      "sectors_after": 11
+     },
+     {
+      "into": "assembly:001/space:041",
+      "absorbed": "assembly:001/space:091",
+      "score": 0.675,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 67%",
+       "centres 12.2 player widths apart",
+       "openings between them total 16.0 player widths"
+      ],
+      "sectors_after": 7
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:123",
+      "score": 0.672,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 2.0 player heights",
+       "dominant surfaces overlap 40%",
+       "centres 14.2 player widths apart",
+       "openings between them total 5.7 player widths"
+      ],
+      "sectors_after": 31
+     },
+     {
+      "into": "assembly:001/space:120",
+      "absorbed": "assembly:001/space:121",
+      "score": 0.652,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.2 player heights",
+       "dominant surfaces overlap 33%",
+       "centres 1.8 player widths apart",
+       "openings between them total 2.6 player widths"
+      ],
+      "sectors_after": 2
+     },
+     {
+      "into": "assembly:001/space:065",
+      "absorbed": "assembly:001/space:067",
+      "score": 0.648,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 100%",
+       "centres 1.2 player widths apart",
+       "openings between them total 0.3 player widths"
+      ],
+      "sectors_after": 2
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:104",
+      "score": 0.646,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 14%",
+       "centres 11.5 player widths apart",
+       "openings between them total 5.3 player widths"
+      ],
+      "sectors_after": 32
+     },
+     {
+      "into": "assembly:001/space:021",
+      "absorbed": "assembly:001/space:028",
+      "score": 0.639,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 29%",
+       "openings between them total 4.0 player widths"
+      ],
+      "sectors_after": 24
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:113",
+      "score": 0.638,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 14%",
+       "centres 4.7 player widths apart",
+       "openings between them total 2.0 player widths"
+      ],
+      "sectors_after": 8
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:004",
+      "score": 0.63,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 14%",
+       "centres 5.7 player widths apart",
+       "openings between them total 2.0 player widths"
+      ],
+      "sectors_after": 9
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:012",
+      "score": 0.627,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 80%",
+       "centres 5.9 player widths apart",
+       "openings between them total 46.0 player widths"
+      ],
+      "sectors_after": 13
+     },
+     {
+      "into": "assembly:001/space:060",
+      "absorbed": "assembly:001/space:105",
+      "score": 0.625,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 50%",
+       "centres 9.6 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 4
+     },
+     {
+      "into": "assembly:001/space:058",
+      "absorbed": "assembly:001/space:060",
+      "score": 0.67,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 60%",
+       "centres 13.9 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 8
+     },
+     {
+      "into": "assembly:001/space:010",
+      "absorbed": "assembly:001/space:086",
+      "score": 0.622,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.4 player heights",
+       "dominant surfaces overlap 25%",
+       "centres 4.7 player widths apart",
+       "openings between them total 0.8 player widths"
+      ],
+      "sectors_after": 11
+     },
+     {
+      "into": "assembly:001/space:010",
+      "absorbed": "assembly:001/space:085",
+      "score": 0.623,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.4 player heights",
+       "dominant surfaces overlap 25%",
+       "centres 4.6 player widths apart",
+       "openings between them total 0.8 player widths"
+      ],
+      "sectors_after": 12
+     },
+     {
+      "into": "assembly:001/space:044",
+      "absorbed": "assembly:001/space:048",
+      "score": 0.62,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 20%",
+       "centres 8.4 player widths apart",
+       "openings between them total 7.3 player widths"
+      ],
+      "sectors_after": 10
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:089",
+      "score": 0.619,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.1 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 10.5 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 34
+     },
+     {
+      "into": "assembly:001/space:039",
+      "absorbed": "assembly:001/space:041",
+      "score": 0.603,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 43%",
+       "centres 0.3 player widths apart",
+       "openings between them total 28.6 player widths"
+      ],
+      "sectors_after": 12
+     },
+     {
+      "into": "assembly:001/space:031",
+      "absorbed": "assembly:001/space:034",
+      "score": 0.6,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 40%",
+       "openings between them total 14.7 player widths"
+      ],
+      "sectors_after": 15
+     },
+     {
+      "into": "assembly:001/space:058",
+      "absorbed": "assembly:001/space:059",
+      "score": 0.591,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 40%",
+       "centres 11.9 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 15
+     },
+     {
+      "into": "assembly:001/space:057",
+      "absorbed": "assembly:001/space:058",
+      "score": 0.651,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 40%",
+       "centres 11.7 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 22
+     },
+     {
+      "into": "assembly:001/space:021",
+      "absorbed": "assembly:001/space:027",
+      "score": 0.591,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.7 player heights",
+       "centres 15.7 player widths apart",
+       "openings between them total 87.3 player widths"
+      ],
+      "sectors_after": 28
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:087",
+      "score": 0.588,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "openings between them total 9.5 player widths"
+      ],
+      "sectors_after": 35
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:088",
+      "score": 0.588,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "openings between them total 9.5 player widths"
+      ],
+      "sectors_after": 36
+     },
+     {
+      "into": "assembly:001/space:097",
+      "absorbed": "assembly:001/space:103",
+      "score": 0.583,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.7 player heights",
+       "dominant surfaces overlap 50%",
+       "centres 4.7 player widths apart",
+       "openings between them total 4.0 player widths"
+      ],
+      "sectors_after": 6
+     },
+     {
+      "into": "assembly:001/space:050",
+      "absorbed": "assembly:001/space:097",
+      "score": 0.618,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.7 player heights",
+       "dominant surfaces overlap 50%",
+       "openings between them total 4.0 player widths"
+      ],
+      "sectors_after": 17
+     },
+     {
+      "into": "assembly:001/space:050",
+      "absorbed": "assembly:001/space:120",
+      "score": 0.723,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 33%",
+       "openings between them total 2.6 player widths"
+      ],
+      "sectors_after": 19
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:006",
+      "score": 0.58,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.2 player heights",
+       "centres 9.1 player widths apart",
+       "openings between them total 6.7 player widths"
+      ],
+      "sectors_after": 16
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:045",
+      "score": 0.592,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "centres 15.4 player widths apart",
+       "openings between them total 4.7 player widths"
+      ],
+      "sectors_after": 19
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:055",
+      "score": 0.588,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "openings between them total 4.0 player widths"
+      ],
+      "sectors_after": 24
+     },
+     {
+      "into": "assembly:001/space:071",
+      "absorbed": "assembly:001/space:073",
+      "score": 0.576,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.2 player heights",
+       "dominant surfaces overlap 50%",
+       "centres 0.4 player widths apart",
+       "openings between them total 0.7 player widths"
+      ],
+      "sectors_after": 2
+     },
+     {
+      "into": "assembly:001/space:057",
+      "absorbed": "assembly:001/space:063",
+      "score": 0.574,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 25%",
+       "openings between them total 44.0 player widths"
+      ],
+      "sectors_after": 38
+     },
+     {
+      "into": "assembly:001/space:019",
+      "absorbed": "assembly:001/space:021",
+      "score": 0.571,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.7 player heights",
+       "dominant surfaces overlap 29%",
+       "centres 11.8 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 29
+     },
+     {
+      "into": "assembly:001/space:057",
+      "absorbed": "assembly:001/space:062",
+      "score": 0.564,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 11%",
+       "centres 14.0 player widths apart",
+       "openings between them total 26.7 player widths"
+      ],
+      "sectors_after": 41
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:020",
+      "score": 0.562,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 60%",
+       "centres 10.0 player widths apart",
+       "openings between them total 22.6 player widths"
+      ],
+      "sectors_after": 14
+     },
+     {
+      "into": "assembly:001/space:010",
+      "absorbed": "assembly:001/space:110",
+      "score": 0.562,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 50%",
+       "centres 6.7 player widths apart",
+       "openings between them total 3.8 player widths"
+      ],
+      "sectors_after": 19
+     },
+     {
+      "into": "assembly:001/space:064",
+      "absorbed": "assembly:001/space:065",
+      "score": 0.554,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 1.1 player heights",
+       "dominant surfaces overlap 20%",
+       "centres 2.9 player widths apart",
+       "openings between them total 2.4 player widths"
+      ],
+      "sectors_after": 6
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:038",
+      "score": 0.549,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.7 player heights",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 37
+     },
+     {
+      "into": "assembly:001/space:044",
+      "absorbed": "assembly:001/space:049",
+      "score": 0.545,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 20%",
+       "centres 2.7 player widths apart",
+       "openings between them total 8.0 player widths"
+      ],
+      "sectors_after": 11
+     },
+     {
+      "into": "assembly:001/space:018",
+      "absorbed": "assembly:001/space:112",
+      "score": 0.542,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.7 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 1.6 player widths apart",
+       "openings between them total 1.8 player widths"
+      ],
+      "sectors_after": 6
+     },
+     {
+      "into": "assembly:001/space:071",
+      "absorbed": "assembly:001/space:072",
+      "score": 0.54,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.2 player heights",
+       "dominant surfaces overlap 25%",
+       "centres 0.7 player widths apart",
+       "openings between them total 1.0 player widths"
+      ],
+      "sectors_after": 3
+     },
+     {
+      "into": "assembly:001/space:071",
+      "absorbed": "assembly:001/space:074",
+      "score": 0.626,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.2 player heights",
+       "dominant surfaces overlap 75%",
+       "centres 0.9 player widths apart",
+       "openings between them total 1.0 player widths"
+      ],
+      "sectors_after": 4
+     },
+     {
+      "into": "assembly:001/space:083",
+      "absorbed": "assembly:001/space:117",
+      "score": 0.54,
+      "reasons": [
+       "both are open to the sky",
+       "dominant surfaces overlap 75%",
+       "centres 0.6 player widths apart",
+       "openings between them total 79.5 player widths"
+      ],
+      "sectors_after": 13
+     },
+     {
+      "into": "assembly:001/space:044",
+      "absorbed": "assembly:001/space:051",
+      "score": 0.536,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.5 player heights",
+       "dominant surfaces overlap 20%",
+       "centres 9.2 player widths apart",
+       "openings between them total 3.3 player widths"
+      ],
+      "sectors_after": 15
+     },
+     {
+      "into": "assembly:001/space:050",
+      "absorbed": "assembly:001/space:064",
+      "score": 0.536,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 43%",
+       "centres 9.4 player widths apart",
+       "openings between them total 22.0 player widths"
+      ],
+      "sectors_after": 25
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:053",
+      "score": 0.523,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 60%",
+       "centres 15.3 player widths apart",
+       "openings between them total 5.0 player widths"
+      ],
+      "sectors_after": 15
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:009",
+      "score": 0.507,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 2.8 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 25
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:008",
+      "score": 0.506,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 2.9 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 26
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:007",
+      "score": 0.505,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 3.1 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 27
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:071",
+      "score": 0.499,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.5 player heights",
+       "dominant surfaces overlap 12%",
+       "centres 7.1 player widths apart",
+       "openings between them total 2.0 player widths"
+      ],
+      "sectors_after": 41
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:025",
+      "score": 0.497,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 20%",
+       "centres 2.5 player widths apart",
+       "openings between them total 2.3 player widths"
+      ],
+      "sectors_after": 28
+     },
+     {
+      "into": "assembly:001/space:039",
+      "absorbed": "assembly:001/space:098",
+      "score": 0.497,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 17%",
+       "centres 6.5 player widths apart",
+       "openings between them total 3.5 player widths"
+      ],
+      "sectors_after": 13
+     },
+     {
+      "into": "assembly:001/space:013",
+      "absorbed": "assembly:001/space:016",
+      "score": 0.496,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "centres 0.4 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 8
+     },
+     {
+      "into": "assembly:001/space:013",
+      "absorbed": "assembly:001/space:017",
+      "score": 0.495,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "centres 0.4 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 9
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:118",
+      "score": 0.493,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "centres 12.9 player widths apart",
+       "openings between them total 5.7 player widths"
+      ],
+      "sectors_after": 31
+     },
+     {
+      "into": "assembly:001/space:013",
+      "absorbed": "assembly:001/space:014",
+      "score": 0.491,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "centres 1.0 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 10
+     },
+     {
+      "into": "assembly:001/space:013",
+      "absorbed": "assembly:001/space:015",
+      "score": 0.49,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "centres 1.1 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 11
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:024",
+      "score": 0.489,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 20%",
+       "centres 3.6 player widths apart",
+       "openings between them total 2.3 player widths"
+      ],
+      "sectors_after": 32
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:116",
+      "score": 0.485,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 5.8 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 33
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:115",
+      "score": 0.486,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 5.7 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 34
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:114",
+      "score": 0.486,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 5.7 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 35
+     },
+     {
+      "into": "assembly:001/space:107",
+      "absorbed": "assembly:001/space:122",
+      "score": 0.482,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 40%",
+       "openings between them total 4.0 player widths"
+      ],
+      "sectors_after": 6
+     },
+     {
+      "into": "assembly:001/space:057",
+      "absorbed": "assembly:001/space:107",
+      "score": 0.664,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 43%",
+       "openings between them total 4.0 player widths"
+      ],
+      "sectors_after": 47
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:056",
+      "score": 0.478,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 60%",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 18
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:057",
+      "score": 0.593,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 25%",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 65
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:061",
+      "score": 0.494,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 40%",
+       "centres 14.4 player widths apart",
+       "openings between them total 5.3 player widths"
+      ],
+      "sectors_after": 68
+     },
+     {
+      "into": "assembly:001/space:019",
+      "absorbed": "assembly:001/space:068",
+      "score": 0.462,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 29%",
+       "openings between them total 4.7 player widths"
+      ],
+      "sectors_after": 32
+     },
+     {
+      "into": "assembly:001/space:019",
+      "absorbed": "assembly:001/space:039",
+      "score": 0.574,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 25%",
+       "openings between them total 4.7 player widths"
+      ],
+      "sectors_after": 45
+     },
+     {
+      "into": "assembly:001/space:019",
+      "absorbed": "assembly:001/space:029",
+      "score": 0.473,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 14%",
+       "centres 11.1 player widths apart",
+       "openings between them total 6.0 player widths"
+      ],
+      "sectors_after": 46
+     },
+     {
+      "into": "assembly:001/space:019",
+      "absorbed": "assembly:001/space:030",
+      "score": 0.465,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 12%",
+       "centres 11.7 player widths apart",
+       "openings between them total 6.0 player widths"
+      ],
+      "sectors_after": 47
+     },
+     {
+      "into": "assembly:001/space:019",
+      "absorbed": "assembly:001/space:040",
+      "score": 0.452,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 29%",
+       "openings between them total 3.7 player widths"
+      ],
+      "sectors_after": 52
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:019",
+      "score": 0.588,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "openings between them total 4.7 player widths"
+      ],
+      "sectors_after": 87
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:013",
+      "score": 0.559,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "openings between them total 3.0 player widths"
+      ],
+      "sectors_after": 98
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:070",
+      "score": 0.413,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 29%",
+       "openings between them total 2.3 player widths"
+      ],
+      "sectors_after": 69
+     },
+     {
+      "into": "assembly:001/space:010",
+      "absorbed": "assembly:001/space:083",
+      "score": 0.375,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "dominant surfaces overlap 33%",
+       "centres 5.1 player widths apart",
+       "openings between them total 14.0 player widths"
+      ],
+      "sectors_after": 32
+     },
+     {
+      "into": "assembly:001/space:010",
+      "absorbed": "assembly:001/space:069",
+      "score": 0.482,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 40%",
+       "openings between them total 7.3 player widths"
+      ],
+      "sectors_after": 35
+     },
+     {
+      "into": "assembly:001/space:010",
+      "absorbed": "assembly:001/space:095",
+      "score": 0.458,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 40%",
+       "openings between them total 3.2 player widths"
+      ],
+      "sectors_after": 39
+     },
+     {
+      "into": "assembly:001/space:044",
+      "absorbed": "assembly:001/space:050",
+      "score": 0.354,
+      "reasons": [
+       "median floors within 0.4 player heights",
+       "dominant surfaces overlap 11%",
+       "centres 10.5 player widths apart",
+       "openings between them total 5.7 player widths"
+      ],
+      "sectors_after": 40
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:044",
+      "score": 0.412,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "openings between them total 17.0 player widths"
+      ],
+      "sectors_after": 81
+     }
+    ],
+    "strongest_rejected": [
+     {
+      "left": "assembly:001/space:010",
+      "right": "assembly:001/space:011",
+      "score": 0.487,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 43%",
+       "openings between them total 7.3 player widths"
+      ]
+     },
+     {
+      "left": "assembly:001/space:003",
+      "right": "assembly:001/space:011",
+      "score": 0.441,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "openings between them total 3.0 player widths"
+      ]
+     },
+     {
+      "left": "assembly:001/space:003",
+      "right": "assembly:001/space:010",
+      "score": 0.431,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 11%",
+       "openings between them total 9.3 player widths"
+      ]
+     },
+     {
+      "left": "assembly:001/space:003",
+      "right": "assembly:001/space:018",
+      "score": 0.412,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "openings between them total 5.3 player widths"
+      ]
+     },
+     {
+      "left": "assembly:001/space:003",
+      "right": "assembly:001/space:037",
+      "score": 0.412,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "openings between them total 20.0 player widths"
+      ]
+     },
+     {
+      "left": "assembly:001/space:011",
+      "right": "assembly:001/space:080",
+      "score": 0.308,
+      "reasons": [
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 4.7 player widths apart",
+       "openings between them total 0.7 player widths"
+      ]
+     },
+     {
+      "left": "assembly:001/space:011",
+      "right": "assembly:001/space:081",
+      "score": 0.305,
+      "reasons": [
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 5.2 player widths apart",
+       "openings between them total 0.7 player widths"
+      ]
+     },
+     {
+      "left": "assembly:001/space:011",
+      "right": "assembly:001/space:082",
+      "score": 0.301,
+      "reasons": [
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 5.7 player widths apart",
+       "openings between them total 0.7 player widths"
+      ]
+     }
+    ]
+   },
+   "alternative": {
+    "target": 5,
+    "floor_score": 0.27999999999999997,
+    "size_cap": 0.48,
+    "areas": [
+     {
+      "seed": "assembly:001/space:003",
+      "spaces": [
+       "assembly:001/space:003",
+       "assembly:001/space:004",
+       "assembly:001/space:006",
+       "assembly:001/space:007",
+       "assembly:001/space:008",
+       "assembly:001/space:009",
+       "assembly:001/space:013",
+       "assembly:001/space:014",
+       "assembly:001/space:015",
+       "assembly:001/space:016",
+       "assembly:001/space:017",
+       "assembly:001/space:018",
+       "assembly:001/space:019",
+       "assembly:001/space:021",
+       "assembly:001/space:022",
+       "assembly:001/space:023",
+       "assembly:001/space:024",
+       "assembly:001/space:025",
+       "assembly:001/space:026",
+       "assembly:001/space:027",
+       "assembly:001/space:028",
+       "assembly:001/space:029",
+       "assembly:001/space:030",
+       "assembly:001/space:039",
+       "assembly:001/space:040",
+       "assembly:001/space:041",
+       "assembly:001/space:044",
+       "assembly:001/space:045",
+       "assembly:001/space:046",
+       "assembly:001/space:047",
+       "assembly:001/space:048",
+       "assembly:001/space:049",
+       "assembly:001/space:050",
+       "assembly:001/space:051",
+       "assembly:001/space:055",
+       "assembly:001/space:064",
+       "assembly:001/space:065",
+       "assembly:001/space:066",
+       "assembly:001/space:067",
+       "assembly:001/space:068",
+       "assembly:001/space:075",
+       "assembly:001/space:090",
+       "assembly:001/space:091",
+       "assembly:001/space:092",
+       "assembly:001/space:097",
+       "assembly:001/space:098",
+       "assembly:001/space:099",
+       "assembly:001/space:103",
+       "assembly:001/space:108",
+       "assembly:001/space:109",
+       "assembly:001/space:112",
+       "assembly:001/space:113",
+       "assembly:001/space:114",
+       "assembly:001/space:115",
+       "assembly:001/space:116",
+       "assembly:001/space:118",
+       "assembly:001/space:120",
+       "assembly:001/space:121"
+      ],
+      "sectors": [
+       2,
+       3,
+       5,
+       6,
+       7,
+       8,
+       22,
+       23,
+       24,
+       25,
+       26,
+       27,
+       28,
+       29,
+       30,
+       31,
+       32,
+       33,
+       34,
+       35,
+       37,
+       38,
+       39,
+       42,
+       43,
+       44,
+       45,
+       46,
+       47,
+       48,
+       49,
+       50,
+       51,
+       52,
+       53,
+       54,
+       55,
+       56,
+       68,
+       69,
+       70,
+       71,
+       72,
+       73,
+       74,
+       75,
+       81,
+       82,
+       83,
+       84,
+       85,
+       86,
+       89,
+       90,
+       91,
+       92,
+       93,
+       94,
+       95,
+       96,
+       97,
+       98,
+       99,
+       100,
+       101,
+       102,
+       103,
+       104,
+       105,
+       106,
+       107,
+       108,
+       109,
+       110,
+       114,
+       161,
+       162,
+       163,
+       164,
+       165,
+       166,
+       167,
+       178,
+       179,
+       180,
+       206,
+       207,
+       208,
+       211,
+       219,
+       220,
+       221,
+       222,
+       223,
+       224,
+       225,
+       226,
+       227,
+       228,
+       229,
+       230,
+       237,
+       238,
+       239,
+       258,
+       259,
+       267,
+       268,
+       269,
+       270,
+       275,
+       276,
+       277,
+       278,
+       279,
+       280,
+       281,
+       282,
+       283,
+       291,
+       292,
+       293,
+       294,
+       295,
+       297,
+       298,
+       305,
+       306,
+       307,
+       308,
+       310,
+       311,
+       312,
+       313,
+       317,
+       318,
+       319,
+       320,
+       321,
+       322,
+       323,
+       324,
+       327,
+       328,
+       329
+      ],
+      "sector_count": 145,
+      "median_floor_z": 1024,
+      "sky_fraction": 0.359,
+      "dominant_tiles": [
+       5,
+       2492,
+       34,
+       91,
+       2496
+      ],
+      "centroid_player_widths": [
+       118.0,
+       73.5
+      ]
+     },
+     {
+      "seed": "assembly:001/space:010",
+      "spaces": [
+       "assembly:001/space:010",
+       "assembly:001/space:011",
+       "assembly:001/space:012",
+       "assembly:001/space:020",
+       "assembly:001/space:053",
+       "assembly:001/space:054",
+       "assembly:001/space:056",
+       "assembly:001/space:057",
+       "assembly:001/space:058",
+       "assembly:001/space:059",
+       "assembly:001/space:060",
+       "assembly:001/space:061",
+       "assembly:001/space:062",
+       "assembly:001/space:063",
+       "assembly:001/space:069",
+       "assembly:001/space:070",
+       "assembly:001/space:083",
+       "assembly:001/space:084",
+       "assembly:001/space:085",
+       "assembly:001/space:086",
+       "assembly:001/space:095",
+       "assembly:001/space:096",
+       "assembly:001/space:105",
+       "assembly:001/space:107",
+       "assembly:001/space:110",
+       "assembly:001/space:117",
+       "assembly:001/space:122"
+      ],
+      "sectors": [
+       9,
+       10,
+       11,
+       12,
+       13,
+       14,
+       15,
+       16,
+       17,
+       18,
+       19,
+       20,
+       21,
+       36,
+       112,
+       113,
+       115,
+       116,
+       117,
+       118,
+       119,
+       120,
+       121,
+       122,
+       123,
+       124,
+       125,
+       126,
+       127,
+       128,
+       129,
+       130,
+       131,
+       132,
+       133,
+       134,
+       135,
+       136,
+       137,
+       138,
+       139,
+       140,
+       141,
+       142,
+       143,
+       144,
+       145,
+       146,
+       147,
+       148,
+       149,
+       150,
+       151,
+       152,
+       153,
+       154,
+       155,
+       156,
+       157,
+       158,
+       159,
+       160,
+       168,
+       169,
+       170,
+       171,
+       172,
+       173,
+       188,
+       189,
+       190,
+       191,
+       192,
+       193,
+       194,
+       195,
+       196,
+       197,
+       198,
+       199,
+       200,
+       201,
+       215,
+       216,
+       217,
+       218,
+       260,
+       262,
+       263,
+       264,
+       265,
+       266,
+       271,
+       272,
+       284,
+       285,
+       286,
+       287,
+       288,
+       289,
+       296,
+       299,
+       300,
+       301,
+       302,
+       303,
+       304,
+       325
+      ],
+      "sector_count": 108,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.602,
+      "dominant_tiles": [
+       2499,
+       2448,
+       2455,
+       329,
+       2496
+      ],
+      "centroid_player_widths": [
+       96.3,
+       35.8
+      ]
+     },
+     {
+      "seed": "assembly:001/space:037",
+      "spaces": [
+       "assembly:001/space:037",
+       "assembly:001/space:038",
+       "assembly:001/space:071",
+       "assembly:001/space:072",
+       "assembly:001/space:073",
+       "assembly:001/space:074",
+       "assembly:001/space:087",
+       "assembly:001/space:088",
+       "assembly:001/space:089",
+       "assembly:001/space:093",
+       "assembly:001/space:094",
+       "assembly:001/space:104",
+       "assembly:001/space:123"
+      ],
+      "sectors": [
+       79,
+       80,
+       174,
+       175,
+       176,
+       177,
+       202,
+       203,
+       204,
+       205,
+       209,
+       210,
+       212,
+       213,
+       214,
+       234,
+       235,
+       236,
+       240,
+       241,
+       242,
+       243,
+       244,
+       245,
+       246,
+       247,
+       248,
+       249,
+       250,
+       251,
+       252,
+       253,
+       254,
+       255,
+       256,
+       257,
+       273,
+       274,
+       315,
+       316,
+       326
+      ],
+      "sector_count": 41,
+      "median_floor_z": -25600,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       20,
+       153,
+       28,
+       253,
+       181
+      ],
+      "centroid_player_widths": [
+       146.8,
+       80.3
+      ]
+     },
+     {
+      "seed": "assembly:001/space:031",
+      "spaces": [
+       "assembly:001/space:031",
+       "assembly:001/space:032",
+       "assembly:001/space:033",
+       "assembly:001/space:034",
+       "assembly:001/space:035",
+       "assembly:001/space:036",
+       "assembly:001/space:111"
+      ],
+      "sectors": [
+       57,
+       58,
+       59,
+       60,
+       61,
+       62,
+       63,
+       64,
+       65,
+       66,
+       67,
+       76,
+       77,
+       78,
+       290
+      ],
+      "sector_count": 15,
+      "median_floor_z": -14336,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       365,
+       309,
+       355,
+       5,
+       34
+      ],
+      "centroid_player_widths": [
+       163.5,
+       36.8
+      ]
+     },
+     {
+      "seed": "assembly:001/space:100",
+      "spaces": [
+       "assembly:001/space:100",
+       "assembly:001/space:101",
+       "assembly:001/space:102"
+      ],
+      "sectors": [
+       231,
+       232,
+       233
+      ],
+      "sector_count": 3,
+      "median_floor_z": -27648,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       272,
+       365
+      ],
+      "centroid_player_widths": [
+       165.2,
+       67.1
+      ]
+     },
+     {
+      "seed": "assembly:001/space:001",
+      "spaces": [
+       "assembly:001/space:001"
+      ],
+      "sectors": [
+       0
+      ],
+      "sector_count": 1,
+      "median_floor_z": -24576,
+      "sky_fraction": 1.0,
+      "dominant_tiles": [
+       2492,
+       2448,
+       2455
+      ],
+      "centroid_player_widths": [
+       91.7,
+       87.1
+      ]
+     },
+     {
+      "seed": "assembly:001/space:002",
+      "spaces": [
+       "assembly:001/space:002"
+      ],
+      "sectors": [
+       1
+      ],
+      "sector_count": 1,
+      "median_floor_z": -24576,
+      "sky_fraction": 1.0,
+      "dominant_tiles": [
+       2492,
+       2448,
+       2455
+      ],
+      "centroid_player_widths": [
+       94.9,
+       87.1
+      ]
+     },
+     {
+      "seed": "assembly:001/space:005",
+      "spaces": [
+       "assembly:001/space:005"
+      ],
+      "sectors": [
+       4
+      ],
+      "sector_count": 1,
+      "median_floor_z": -20480,
+      "sky_fraction": 1.0,
+      "dominant_tiles": [
+       2499,
+       2448
+      ],
+      "centroid_player_widths": [
+       92.1,
+       84.7
+      ]
+     },
+     {
+      "seed": "assembly:001/space:042",
+      "spaces": [
+       "assembly:001/space:042"
+      ],
+      "sectors": [
+       87
+      ],
+      "sector_count": 1,
+      "median_floor_z": -24576,
+      "sky_fraction": 1.0,
+      "dominant_tiles": [
+       2490,
+       2448
+      ],
+      "centroid_player_widths": [
+       109.4,
+       96.9
+      ]
+     },
+     {
+      "seed": "assembly:001/space:043",
+      "spaces": [
+       "assembly:001/space:043"
+      ],
+      "sectors": [
+       88
+      ],
+      "sector_count": 1,
+      "median_floor_z": -15360,
+      "sky_fraction": 1.0,
+      "dominant_tiles": [
+       2499,
+       67
+      ],
+      "centroid_player_widths": [
+       83.7,
+       100.1
+      ]
+     },
+     {
+      "seed": "assembly:001/space:052",
+      "spaces": [
+       "assembly:001/space:052"
+      ],
+      "sectors": [
+       111
+      ],
+      "sector_count": 1,
+      "median_floor_z": -1024,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       329,
+       2491
+      ],
+      "centroid_player_widths": [
+       79.5,
+       44.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:076",
+      "spaces": [
+       "assembly:001/space:076"
+      ],
+      "sectors": [
+       181
+      ],
+      "sector_count": 1,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       369,
+       2448
+      ],
+      "centroid_player_widths": [
+       84.3,
+       15.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:077",
+      "spaces": [
+       "assembly:001/space:077"
+      ],
+      "sectors": [
+       182
+      ],
+      "sector_count": 1,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       369,
+       2448
+      ],
+      "centroid_player_widths": [
+       85.0,
+       15.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:078",
+      "spaces": [
+       "assembly:001/space:078"
+      ],
+      "sectors": [
+       183
+      ],
+      "sector_count": 1,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       369,
+       2448
+      ],
+      "centroid_player_widths": [
+       85.7,
+       15.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:079",
+      "spaces": [
+       "assembly:001/space:079"
+      ],
+      "sectors": [
+       184
+      ],
+      "sector_count": 1,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       369,
+       2448
+      ],
+      "centroid_player_widths": [
+       86.3,
+       15.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:080",
+      "spaces": [
+       "assembly:001/space:080"
+      ],
+      "sectors": [
+       185
+      ],
+      "sector_count": 1,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       369,
+       2448
+      ],
+      "centroid_player_widths": [
+       100.3,
+       15.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:081",
+      "spaces": [
+       "assembly:001/space:081"
+      ],
+      "sectors": [
+       186
+      ],
+      "sector_count": 1,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       369,
+       2448
+      ],
+      "centroid_player_widths": [
+       101.0,
+       15.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:082",
+      "spaces": [
+       "assembly:001/space:082"
+      ],
+      "sectors": [
+       187
+      ],
+      "sector_count": 1,
+      "median_floor_z": 8192,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       369,
+       2448
+      ],
+      "centroid_player_widths": [
+       101.7,
+       15.0
+      ]
+     },
+     {
+      "seed": "assembly:001/space:106",
+      "spaces": [
+       "assembly:001/space:106"
+      ],
+      "sectors": [
+       261
+      ],
+      "sector_count": 1,
+      "median_floor_z": -34816,
+      "sky_fraction": 0.0,
+      "dominant_tiles": [
+       329,
+       2491
+      ],
+      "centroid_player_widths": [
+       91.3,
+       47.5
+      ]
+     },
+     {
+      "seed": "assembly:001/space:119",
+      "spaces": [
+       "assembly:001/space:119"
+      ],
+      "sectors": [
+       309
+      ],
+      "sector_count": 1,
+      "median_floor_z": -15360,
+      "sky_fraction": 1.0,
+      "dominant_tiles": [
+       2499,
+       67
+      ],
+      "centroid_player_widths": [
+       83.7,
+       103.9
+      ]
+     }
+    ],
+    "merges": [
+     {
+      "into": "assembly:001/space:036",
+      "absorbed": "assembly:001/space:111",
+      "score": 0.996,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.1 player heights",
+       "dominant surfaces overlap 100%",
+       "centres 0.6 player widths apart",
+       "openings between them total 9.6 player widths"
+      ],
+      "sectors_after": 2
+     },
+     {
+      "into": "assembly:001/space:100",
+      "absorbed": "assembly:001/space:101",
+      "score": 0.995,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 100%",
+       "centres 0.7 player widths apart",
+       "openings between them total 14.6 player widths"
+      ],
+      "sectors_after": 2
+     },
+     {
+      "into": "assembly:001/space:035",
+      "absorbed": "assembly:001/space:036",
+      "score": 0.992,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 2.0 player heights",
+       "dominant surfaces overlap 100%",
+       "centres 1.0 player widths apart",
+       "openings between them total 9.6 player widths"
+      ],
+      "sectors_after": 3
+     },
+     {
+      "into": "assembly:001/space:040",
+      "absorbed": "assembly:001/space:047",
+      "score": 0.927,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 75%",
+       "centres 2.7 player widths apart",
+       "openings between them total 3.7 player widths"
+      ],
+      "sectors_after": 4
+     },
+     {
+      "into": "assembly:001/space:090",
+      "absorbed": "assembly:001/space:099",
+      "score": 0.87,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 60%",
+       "centres 8.1 player widths apart",
+       "openings between them total 10.9 player widths"
+      ],
+      "sectors_after": 3
+     },
+     {
+      "into": "assembly:001/space:034",
+      "absorbed": "assembly:001/space:035",
+      "score": 0.868,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.8 player heights",
+       "dominant surfaces overlap 100%",
+       "centres 1.9 player widths apart",
+       "openings between them total 9.6 player widths"
+      ],
+      "sectors_after": 4
+     },
+     {
+      "into": "assembly:001/space:055",
+      "absorbed": "assembly:001/space:075",
+      "score": 0.842,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 40%",
+       "centres 2.7 player widths apart",
+       "openings between them total 2.9 player widths"
+      ],
+      "sectors_after": 5
+     },
+     {
+      "into": "assembly:001/space:031",
+      "absorbed": "assembly:001/space:032",
+      "score": 0.83,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.2 player heights",
+       "dominant surfaces overlap 100%",
+       "centres 2.8 player widths apart",
+       "openings between them total 2.9 player widths"
+      ],
+      "sectors_after": 2
+     },
+     {
+      "into": "assembly:001/space:100",
+      "absorbed": "assembly:001/space:102",
+      "score": 0.818,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 100%",
+       "centres 0.7 player widths apart",
+       "openings between them total 18.8 player widths"
+      ],
+      "sectors_after": 3
+     },
+     {
+      "into": "assembly:001/space:040",
+      "absorbed": "assembly:001/space:046",
+      "score": 0.801,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.8 player heights",
+       "dominant surfaces overlap 75%",
+       "centres 5.1 player widths apart",
+       "openings between them total 5.2 player widths"
+      ],
+      "sectors_after": 5
+     },
+     {
+      "into": "assembly:001/space:095",
+      "absorbed": "assembly:001/space:096",
+      "score": 0.78,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 100%",
+       "centres 2.0 player widths apart",
+       "openings between them total 3.0 player widths"
+      ],
+      "sectors_after": 4
+     },
+     {
+      "into": "assembly:001/space:041",
+      "absorbed": "assembly:001/space:090",
+      "score": 0.779,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 1.8 player heights",
+       "dominant surfaces overlap 33%",
+       "centres 14.0 player widths apart",
+       "openings between them total 16.0 player widths"
+      ],
+      "sectors_after": 5
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:022",
+      "score": 0.762,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 14%",
+       "centres 6.5 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 5
+     },
+     {
+      "into": "assembly:001/space:018",
+      "absorbed": "assembly:001/space:108",
+      "score": 0.755,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.9 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 8.0 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 5
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:054",
+      "score": 0.753,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.9 player heights",
+       "dominant surfaces overlap 80%",
+       "centres 12.8 player widths apart",
+       "openings between them total 9.0 player widths"
+      ],
+      "sectors_after": 11
+     },
+     {
+      "into": "assembly:001/space:021",
+      "absorbed": "assembly:001/space:026",
+      "score": 0.742,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 75%",
+       "centres 5.0 player widths apart",
+       "openings between them total 4.0 player widths"
+      ],
+      "sectors_after": 9
+     },
+     {
+      "into": "assembly:001/space:083",
+      "absorbed": "assembly:001/space:084",
+      "score": 0.74,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 75%",
+       "centres 5.3 player widths apart",
+       "openings between them total 5.3 player widths"
+      ],
+      "sectors_after": 12
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:023",
+      "score": 0.722,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 60%",
+       "centres 4.2 player widths apart",
+       "openings between them total 6.0 player widths"
+      ],
+      "sectors_after": 7
+     },
+     {
+      "into": "assembly:001/space:091",
+      "absorbed": "assembly:001/space:092",
+      "score": 0.715,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 43%",
+       "centres 9.1 player widths apart",
+       "openings between them total 10.9 player widths"
+      ],
+      "sectors_after": 2
+     },
+     {
+      "into": "assembly:001/space:006",
+      "absorbed": "assembly:001/space:109",
+      "score": 0.684,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 40%",
+       "centres 4.5 player widths apart",
+       "openings between them total 5.0 player widths"
+      ],
+      "sectors_after": 7
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:094",
+      "score": 0.681,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.3 player heights",
+       "dominant surfaces overlap 40%",
+       "centres 13.0 player widths apart",
+       "openings between them total 7.7 player widths"
+      ],
+      "sectors_after": 29
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:093",
+      "score": 0.68,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.3 player heights",
+       "dominant surfaces overlap 14%",
+       "centres 6.9 player widths apart",
+       "openings between them total 14.3 player widths"
+      ],
+      "sectors_after": 30
+     },
+     {
+      "into": "assembly:001/space:031",
+      "absorbed": "assembly:001/space:033",
+      "score": 0.677,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 7.9 player widths apart",
+       "openings between them total 34.2 player widths"
+      ],
+      "sectors_after": 11
+     },
+     {
+      "into": "assembly:001/space:041",
+      "absorbed": "assembly:001/space:091",
+      "score": 0.675,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 67%",
+       "centres 12.2 player widths apart",
+       "openings between them total 16.0 player widths"
+      ],
+      "sectors_after": 7
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:123",
+      "score": 0.672,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 2.0 player heights",
+       "dominant surfaces overlap 40%",
+       "centres 14.2 player widths apart",
+       "openings between them total 5.7 player widths"
+      ],
+      "sectors_after": 31
+     },
+     {
+      "into": "assembly:001/space:120",
+      "absorbed": "assembly:001/space:121",
+      "score": 0.652,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.2 player heights",
+       "dominant surfaces overlap 33%",
+       "centres 1.8 player widths apart",
+       "openings between them total 2.6 player widths"
+      ],
+      "sectors_after": 2
+     },
+     {
+      "into": "assembly:001/space:065",
+      "absorbed": "assembly:001/space:067",
+      "score": 0.648,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 100%",
+       "centres 1.2 player widths apart",
+       "openings between them total 0.3 player widths"
+      ],
+      "sectors_after": 2
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:104",
+      "score": 0.646,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 14%",
+       "centres 11.5 player widths apart",
+       "openings between them total 5.3 player widths"
+      ],
+      "sectors_after": 32
+     },
+     {
+      "into": "assembly:001/space:021",
+      "absorbed": "assembly:001/space:028",
+      "score": 0.639,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 29%",
+       "openings between them total 4.0 player widths"
+      ],
+      "sectors_after": 24
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:113",
+      "score": 0.638,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 14%",
+       "centres 4.7 player widths apart",
+       "openings between them total 2.0 player widths"
+      ],
+      "sectors_after": 8
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:004",
+      "score": 0.63,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 14%",
+       "centres 5.7 player widths apart",
+       "openings between them total 2.0 player widths"
+      ],
+      "sectors_after": 9
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:012",
+      "score": 0.627,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 80%",
+       "centres 5.9 player widths apart",
+       "openings between them total 46.0 player widths"
+      ],
+      "sectors_after": 13
+     },
+     {
+      "into": "assembly:001/space:060",
+      "absorbed": "assembly:001/space:105",
+      "score": 0.625,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 50%",
+       "centres 9.6 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 4
+     },
+     {
+      "into": "assembly:001/space:058",
+      "absorbed": "assembly:001/space:060",
+      "score": 0.67,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 60%",
+       "centres 13.9 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 8
+     },
+     {
+      "into": "assembly:001/space:010",
+      "absorbed": "assembly:001/space:086",
+      "score": 0.622,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.4 player heights",
+       "dominant surfaces overlap 25%",
+       "centres 4.7 player widths apart",
+       "openings between them total 0.8 player widths"
+      ],
+      "sectors_after": 11
+     },
+     {
+      "into": "assembly:001/space:010",
+      "absorbed": "assembly:001/space:085",
+      "score": 0.623,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.4 player heights",
+       "dominant surfaces overlap 25%",
+       "centres 4.6 player widths apart",
+       "openings between them total 0.8 player widths"
+      ],
+      "sectors_after": 12
+     },
+     {
+      "into": "assembly:001/space:044",
+      "absorbed": "assembly:001/space:048",
+      "score": 0.62,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 20%",
+       "centres 8.4 player widths apart",
+       "openings between them total 7.3 player widths"
+      ],
+      "sectors_after": 10
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:089",
+      "score": 0.619,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.1 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 10.5 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 34
+     },
+     {
+      "into": "assembly:001/space:039",
+      "absorbed": "assembly:001/space:041",
+      "score": 0.603,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 43%",
+       "centres 0.3 player widths apart",
+       "openings between them total 28.6 player widths"
+      ],
+      "sectors_after": 12
+     },
+     {
+      "into": "assembly:001/space:031",
+      "absorbed": "assembly:001/space:034",
+      "score": 0.6,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 40%",
+       "openings between them total 14.7 player widths"
+      ],
+      "sectors_after": 15
+     },
+     {
+      "into": "assembly:001/space:058",
+      "absorbed": "assembly:001/space:059",
+      "score": 0.591,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 40%",
+       "centres 11.9 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 15
+     },
+     {
+      "into": "assembly:001/space:057",
+      "absorbed": "assembly:001/space:058",
+      "score": 0.651,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 40%",
+       "centres 11.7 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 22
+     },
+     {
+      "into": "assembly:001/space:021",
+      "absorbed": "assembly:001/space:027",
+      "score": 0.591,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.7 player heights",
+       "centres 15.7 player widths apart",
+       "openings between them total 87.3 player widths"
+      ],
+      "sectors_after": 28
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:087",
+      "score": 0.588,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "openings between them total 9.5 player widths"
+      ],
+      "sectors_after": 35
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:088",
+      "score": 0.588,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "openings between them total 9.5 player widths"
+      ],
+      "sectors_after": 36
+     },
+     {
+      "into": "assembly:001/space:097",
+      "absorbed": "assembly:001/space:103",
+      "score": 0.583,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.7 player heights",
+       "dominant surfaces overlap 50%",
+       "centres 4.7 player widths apart",
+       "openings between them total 4.0 player widths"
+      ],
+      "sectors_after": 6
+     },
+     {
+      "into": "assembly:001/space:050",
+      "absorbed": "assembly:001/space:097",
+      "score": 0.618,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.7 player heights",
+       "dominant surfaces overlap 50%",
+       "openings between them total 4.0 player widths"
+      ],
+      "sectors_after": 17
+     },
+     {
+      "into": "assembly:001/space:050",
+      "absorbed": "assembly:001/space:120",
+      "score": 0.723,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 33%",
+       "openings between them total 2.6 player widths"
+      ],
+      "sectors_after": 19
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:006",
+      "score": 0.58,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.2 player heights",
+       "centres 9.1 player widths apart",
+       "openings between them total 6.7 player widths"
+      ],
+      "sectors_after": 16
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:045",
+      "score": 0.592,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "centres 15.4 player widths apart",
+       "openings between them total 4.7 player widths"
+      ],
+      "sectors_after": 19
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:055",
+      "score": 0.588,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "openings between them total 4.0 player widths"
+      ],
+      "sectors_after": 24
+     },
+     {
+      "into": "assembly:001/space:071",
+      "absorbed": "assembly:001/space:073",
+      "score": 0.576,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.2 player heights",
+       "dominant surfaces overlap 50%",
+       "centres 0.4 player widths apart",
+       "openings between them total 0.7 player widths"
+      ],
+      "sectors_after": 2
+     },
+     {
+      "into": "assembly:001/space:057",
+      "absorbed": "assembly:001/space:063",
+      "score": 0.574,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 25%",
+       "openings between them total 44.0 player widths"
+      ],
+      "sectors_after": 38
+     },
+     {
+      "into": "assembly:001/space:019",
+      "absorbed": "assembly:001/space:021",
+      "score": 0.571,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.7 player heights",
+       "dominant surfaces overlap 29%",
+       "centres 11.8 player widths apart",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 29
+     },
+     {
+      "into": "assembly:001/space:057",
+      "absorbed": "assembly:001/space:062",
+      "score": 0.564,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 11%",
+       "centres 14.0 player widths apart",
+       "openings between them total 26.7 player widths"
+      ],
+      "sectors_after": 41
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:020",
+      "score": 0.562,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 60%",
+       "centres 10.0 player widths apart",
+       "openings between them total 22.6 player widths"
+      ],
+      "sectors_after": 14
+     },
+     {
+      "into": "assembly:001/space:010",
+      "absorbed": "assembly:001/space:110",
+      "score": 0.562,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 50%",
+       "centres 6.7 player widths apart",
+       "openings between them total 3.8 player widths"
+      ],
+      "sectors_after": 19
+     },
+     {
+      "into": "assembly:001/space:064",
+      "absorbed": "assembly:001/space:065",
+      "score": 0.554,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 1.1 player heights",
+       "dominant surfaces overlap 20%",
+       "centres 2.9 player widths apart",
+       "openings between them total 2.4 player widths"
+      ],
+      "sectors_after": 6
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:038",
+      "score": 0.549,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.7 player heights",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 37
+     },
+     {
+      "into": "assembly:001/space:044",
+      "absorbed": "assembly:001/space:049",
+      "score": 0.545,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 20%",
+       "centres 2.7 player widths apart",
+       "openings between them total 8.0 player widths"
+      ],
+      "sectors_after": 11
+     },
+     {
+      "into": "assembly:001/space:018",
+      "absorbed": "assembly:001/space:112",
+      "score": 0.542,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.7 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 1.6 player widths apart",
+       "openings between them total 1.8 player widths"
+      ],
+      "sectors_after": 6
+     },
+     {
+      "into": "assembly:001/space:071",
+      "absorbed": "assembly:001/space:072",
+      "score": 0.54,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.2 player heights",
+       "dominant surfaces overlap 25%",
+       "centres 0.7 player widths apart",
+       "openings between them total 1.0 player widths"
+      ],
+      "sectors_after": 3
+     },
+     {
+      "into": "assembly:001/space:071",
+      "absorbed": "assembly:001/space:074",
+      "score": 0.626,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.2 player heights",
+       "dominant surfaces overlap 75%",
+       "centres 0.9 player widths apart",
+       "openings between them total 1.0 player widths"
+      ],
+      "sectors_after": 4
+     },
+     {
+      "into": "assembly:001/space:083",
+      "absorbed": "assembly:001/space:117",
+      "score": 0.54,
+      "reasons": [
+       "both are open to the sky",
+       "dominant surfaces overlap 75%",
+       "centres 0.6 player widths apart",
+       "openings between them total 79.5 player widths"
+      ],
+      "sectors_after": 13
+     },
+     {
+      "into": "assembly:001/space:044",
+      "absorbed": "assembly:001/space:051",
+      "score": 0.536,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.5 player heights",
+       "dominant surfaces overlap 20%",
+       "centres 9.2 player widths apart",
+       "openings between them total 3.3 player widths"
+      ],
+      "sectors_after": 15
+     },
+     {
+      "into": "assembly:001/space:050",
+      "absorbed": "assembly:001/space:064",
+      "score": 0.536,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 43%",
+       "centres 9.4 player widths apart",
+       "openings between them total 22.0 player widths"
+      ],
+      "sectors_after": 25
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:053",
+      "score": 0.523,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 60%",
+       "centres 15.3 player widths apart",
+       "openings between them total 5.0 player widths"
+      ],
+      "sectors_after": 15
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:009",
+      "score": 0.507,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 2.8 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 25
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:008",
+      "score": 0.506,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 2.9 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 26
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:007",
+      "score": 0.505,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 3.1 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 27
+     },
+     {
+      "into": "assembly:001/space:037",
+      "absorbed": "assembly:001/space:071",
+      "score": 0.499,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.5 player heights",
+       "dominant surfaces overlap 12%",
+       "centres 7.1 player widths apart",
+       "openings between them total 2.0 player widths"
+      ],
+      "sectors_after": 41
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:025",
+      "score": 0.497,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 20%",
+       "centres 2.5 player widths apart",
+       "openings between them total 2.3 player widths"
+      ],
+      "sectors_after": 28
+     },
+     {
+      "into": "assembly:001/space:039",
+      "absorbed": "assembly:001/space:098",
+      "score": 0.497,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 17%",
+       "centres 6.5 player widths apart",
+       "openings between them total 3.5 player widths"
+      ],
+      "sectors_after": 13
+     },
+     {
+      "into": "assembly:001/space:013",
+      "absorbed": "assembly:001/space:016",
+      "score": 0.496,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "centres 0.4 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 8
+     },
+     {
+      "into": "assembly:001/space:013",
+      "absorbed": "assembly:001/space:017",
+      "score": 0.495,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "centres 0.4 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 9
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:118",
+      "score": 0.493,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "centres 12.9 player widths apart",
+       "openings between them total 5.7 player widths"
+      ],
+      "sectors_after": 31
+     },
+     {
+      "into": "assembly:001/space:013",
+      "absorbed": "assembly:001/space:014",
+      "score": 0.491,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "centres 1.0 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 10
+     },
+     {
+      "into": "assembly:001/space:013",
+      "absorbed": "assembly:001/space:015",
+      "score": 0.49,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "centres 1.1 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 11
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:024",
+      "score": 0.489,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 20%",
+       "centres 3.6 player widths apart",
+       "openings between them total 2.3 player widths"
+      ],
+      "sectors_after": 32
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:116",
+      "score": 0.485,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 5.8 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 33
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:115",
+      "score": 0.486,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 5.7 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 34
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:114",
+      "score": 0.486,
+      "reasons": [
+       "both are enclosed",
+       "median floors within 1.5 player heights",
+       "dominant surfaces overlap 17%",
+       "centres 5.7 player widths apart",
+       "openings between them total 0.9 player widths"
+      ],
+      "sectors_after": 35
+     },
+     {
+      "into": "assembly:001/space:107",
+      "absorbed": "assembly:001/space:122",
+      "score": 0.482,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 40%",
+       "openings between them total 4.0 player widths"
+      ],
+      "sectors_after": 6
+     },
+     {
+      "into": "assembly:001/space:057",
+      "absorbed": "assembly:001/space:107",
+      "score": 0.664,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 43%",
+       "openings between them total 4.0 player widths"
+      ],
+      "sectors_after": 47
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:056",
+      "score": 0.478,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 60%",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 18
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:057",
+      "score": 0.593,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 25%",
+       "openings between them total 2.7 player widths"
+      ],
+      "sectors_after": 65
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:061",
+      "score": 0.494,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 40%",
+       "centres 14.4 player widths apart",
+       "openings between them total 5.3 player widths"
+      ],
+      "sectors_after": 68
+     },
+     {
+      "into": "assembly:001/space:019",
+      "absorbed": "assembly:001/space:068",
+      "score": 0.462,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 29%",
+       "openings between them total 4.7 player widths"
+      ],
+      "sectors_after": 32
+     },
+     {
+      "into": "assembly:001/space:019",
+      "absorbed": "assembly:001/space:039",
+      "score": 0.574,
+      "reasons": [
+       "each is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 25%",
+       "openings between them total 4.7 player widths"
+      ],
+      "sectors_after": 45
+     },
+     {
+      "into": "assembly:001/space:019",
+      "absorbed": "assembly:001/space:029",
+      "score": 0.473,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 14%",
+       "centres 11.1 player widths apart",
+       "openings between them total 6.0 player widths"
+      ],
+      "sectors_after": 46
+     },
+     {
+      "into": "assembly:001/space:019",
+      "absorbed": "assembly:001/space:030",
+      "score": 0.465,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "dominant surfaces overlap 12%",
+       "centres 11.7 player widths apart",
+       "openings between them total 6.0 player widths"
+      ],
+      "sectors_after": 47
+     },
+     {
+      "into": "assembly:001/space:019",
+      "absorbed": "assembly:001/space:040",
+      "score": 0.452,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 29%",
+       "openings between them total 3.7 player widths"
+      ],
+      "sectors_after": 52
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:019",
+      "score": 0.588,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "openings between them total 4.7 player widths"
+      ],
+      "sectors_after": 87
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:013",
+      "score": 0.559,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 0.0 player heights",
+       "openings between them total 3.0 player widths"
+      ],
+      "sectors_after": 98
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:050",
+      "score": 0.431,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 11%",
+       "openings between them total 8.0 player widths"
+      ],
+      "sectors_after": 123
+     },
+     {
+      "into": "assembly:001/space:011",
+      "absorbed": "assembly:001/space:070",
+      "score": 0.413,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 29%",
+       "openings between them total 2.3 player widths"
+      ],
+      "sectors_after": 69
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:018",
+      "score": 0.412,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "openings between them total 5.3 player widths"
+      ],
+      "sectors_after": 129
+     },
+     {
+      "into": "assembly:001/space:010",
+      "absorbed": "assembly:001/space:083",
+      "score": 0.375,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "dominant surfaces overlap 33%",
+       "centres 5.1 player widths apart",
+       "openings between them total 14.0 player widths"
+      ],
+      "sectors_after": 32
+     },
+     {
+      "into": "assembly:001/space:010",
+      "absorbed": "assembly:001/space:069",
+      "score": 0.482,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 40%",
+       "openings between them total 7.3 player widths"
+      ],
+      "sectors_after": 35
+     },
+     {
+      "into": "assembly:001/space:010",
+      "absorbed": "assembly:001/space:011",
+      "score": 0.487,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "dominant surfaces overlap 43%",
+       "openings between them total 7.3 player widths"
+      ],
+      "sectors_after": 104
+     },
+     {
+      "into": "assembly:001/space:010",
+      "absorbed": "assembly:001/space:095",
+      "score": 0.634,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are open to the sky",
+       "median floors within 0.0 player heights",
+       "dominant surfaces overlap 40%",
+       "openings between them total 3.2 player widths"
+      ],
+      "sectors_after": 108
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:044",
+      "score": 0.314,
+      "reasons": [
+       "both are enclosed",
+       "dominant surfaces overlap 11%",
+       "openings between them total 5.7 player widths"
+      ],
+      "sectors_after": 144
+     },
+     {
+      "into": "assembly:001/space:003",
+      "absorbed": "assembly:001/space:066",
+      "score": 0.28,
+      "reasons": [
+       "both are enclosed",
+       "dominant surfaces overlap 20%",
+       "openings between them total 2.3 player widths"
+      ],
+      "sectors_after": 145
+     }
+    ],
+    "strongest_rejected": [
+     {
+      "left": "assembly:001/space:003",
+      "right": "assembly:001/space:010",
+      "score": 0.608,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "median floors within 1.3 player heights",
+       "dominant surfaces overlap 11%",
+       "openings between them total 16.8 player widths"
+      ]
+     },
+     {
+      "left": "assembly:001/space:003",
+      "right": "assembly:001/space:037",
+      "score": 0.412,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "both are enclosed",
+       "openings between them total 29.0 player widths"
+      ]
+     },
+     {
+      "left": "assembly:001/space:001",
+      "right": "assembly:001/space:003",
+      "score": 0.261,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "dominant surfaces overlap 14%",
+       "openings between them total 6.0 player widths"
+      ]
+     },
+     {
+      "left": "assembly:001/space:002",
+      "right": "assembly:001/space:003",
+      "score": 0.261,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "dominant surfaces overlap 14%",
+       "openings between them total 6.0 player widths"
+      ]
+     },
+     {
+      "left": "assembly:001/space:010",
+      "right": "assembly:001/space:052",
+      "score": 0.245,
+      "reasons": [
+       "median floors within 1.6 player heights",
+       "dominant surfaces overlap 17%",
+       "openings between them total 1.3 player widths"
+      ]
+     },
+     {
+      "left": "assembly:001/space:003",
+      "right": "assembly:001/space:005",
+      "score": 0.235,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "openings between them total 5.7 player widths"
+      ]
+     },
+     {
+      "left": "assembly:001/space:003",
+      "right": "assembly:001/space:042",
+      "score": 0.235,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "openings between them total 6.1 player widths"
+      ]
+     },
+     {
+      "left": "assembly:001/space:003",
+      "right": "assembly:001/space:043",
+      "score": 0.235,
+      "reasons": [
+       "one is visible from a representative view of the other",
+       "openings between them total 4.3 player widths"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "assembly": "assembly:002",
+   "spaces": 2,
+   "grouped": false,
+   "reason": "already small enough to read as a list"
+  },
+  {
+   "assembly": "assembly:003",
+   "spaces": 1,
+   "grouped": false,
+   "reason": "already small enough to read as a list"
+  },
+  {
+   "assembly": "assembly:004",
+   "spaces": 1,
+   "grouped": false,
+   "reason": "already small enough to read as a list"
+  },
+  {
+   "assembly": "assembly:005",
+   "spaces": 1,
+   "grouped": false,
+   "reason": "already small enough to read as a list"
+  },
+  {
+   "assembly": "assembly:006",
+   "spaces": 1,
+   "grouped": false,
+   "reason": "already small enough to read as a list"
+  },
+  {
+   "assembly": "assembly:007",
+   "spaces": 1,
+   "grouped": false,
+   "reason": "already small enough to read as a list"
+  },
+  {
+   "assembly": "assembly:008",
+   "spaces": 1,
+   "grouped": false,
+   "reason": "already small enough to read as a list"
+  },
+  {
+   "assembly": "assembly:009",
+   "spaces": 1,
+   "grouped": false,
+   "reason": "already small enough to read as a list"
+  },
+  {
+   "assembly": "assembly:010",
+   "spaces": 1,
+   "grouped": false,
+   "reason": "already small enough to read as a list"
+  },
+  {
+   "assembly": "assembly:011",
+   "spaces": 1,
+   "grouped": false,
+   "reason": "already small enough to read as a list"
+  },
+  {
+   "assembly": "assembly:012",
+   "spaces": 1,
+   "grouped": false,
+   "reason": "already small enough to read as a list"
+  },
+  {
+   "assembly": "assembly:013",
+   "spaces": 1,
+   "grouped": false,
+   "reason": "already small enough to read as a list"
+  }
+ ],
+ "limitations": [
+  "a proposal, not a taxonomy: the merges are evidence for a reader to accept or reject",
+  "greedy agglomeration, so an early merge is never revisited",
+  "co-visibility comes from a handful of planned poses per space",
+  "no name is invented here; areas are identified by their seed space"
+ ]
+}

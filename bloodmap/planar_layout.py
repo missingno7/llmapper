@@ -213,6 +213,7 @@ class ConservationReport:
 class CompiledLayout:
     level: LevelIR
     allocations: dict[str, SectorAllocation]
+    placement_sprites: dict[str, int]
     wall_from_atomic: dict[str, int]
     conservation: ConservationReport
     connection_report: list[dict[str, Any]]
@@ -227,6 +228,7 @@ class CompiledLayout:
                 key: {"sector_id": value.sector_id, "wall_ids": list(value.wall_ids)}
                 for key, value in self.allocations.items()
             },
+            "placement_sprites": dict(self.placement_sprites),
             "conservation": self.conservation.to_dict(),
             "connection_report": self.connection_report,
             "declared_specials": [
@@ -626,6 +628,7 @@ class PlanarLayout:
                     fields["x_repeat"] = int(connection.face_x_repeat)
                 if connection.face_y_repeat is not None:
                     fields["y_repeat"] = int(connection.face_y_repeat)
+        placement_sprites: dict[str, int] = {}
         for placement in self.placements:
             region = self.regions[placement.region_id]
             sector_id = allocations[placement.region_id].sector_id
@@ -659,6 +662,7 @@ class PlanarLayout:
                     f"placement {placement.placement_id} in {placement.region_id} "
                     f"at {(placement.x, placement.y, placement.z)}: {exc}"
                 ) from exc
+            placement_sprites[placement.placement_id] = sprite_id
             if placement.behavior:
                 builder.set_behavior("sprite", sprite_id, **placement.behavior)
         start = self.player_start
@@ -727,6 +731,7 @@ class PlanarLayout:
         return CompiledLayout(
             level=builder.level,
             allocations=allocations,
+            placement_sprites=placement_sprites,
             wall_from_atomic=wall_from_atomic,
             conservation=conservation,
             connection_report=connection_report,

@@ -1,132 +1,164 @@
-"""Capture rendered frames from an original map, so visual claims have evidence.
+"""Observe an original map, so claims about the corpus have evidence.
 
-The authoring loop can already look at a generated candidate.  It had no way to
-look at an original, which meant every visual comparison with the corpus was
-being made from memory.  This tool closes that: it places the camera inside
-named sectors of an original MAP and preserves one PNG per pose, using the same
-pose-only variant rule the candidate captures use.
+The authoring loop can look at a generated candidate.  It had no way to look at
+an original, which meant every comparison with the corpus was being made from
+memory.  This closes that.
 
     python -m tools.render_precedent maps/blood/E2M3.MAP \\
-        --sectors 105,41,37,44 --nblood reference/blood/nblood.exe \\
-        --game-dir reference/blood -o work/precedent-views/E2M3
+        --sectors 105,41,37,44 --resource-dir reference/blood \\
+        -o work/precedent-views/E2M3
 
-A captured frame is evidence about how the engine draws that map with the local
-game data.  It is not evidence about design intent, and an image hash of it
-proves stability and nothing else.
+This used to drive NBlood: launch the game, focus its window, inject keys, hope
+a screenshot landed.  The frames it produced were contaminated by the thing
+producing them -- a pain flash, a cultist walking into shot, the automap left
+toggled on -- and none of it was reproducible.  It now goes through the
+XMapEdit observer instead, which takes a pose as a number and answers with what
+the renderer painted.  JSON is the product; a frame is written only for the
+poses asked for with ``--screenshot``.
+
+What comes back is evidence about how the editor renderer draws that map with
+the local game data.  It is not evidence about design intent, and an image hash
+of it proves stability and nothing else.
 """
 
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import pathlib
 from typing import Any
 
-from bloodmap.format import encode_map, read_map, write_map
-from bloodmap.oracle import run_nblood_viewpoint_capture
-from bloodmap.viewpoints import ViewpointSpec, prepare_viewpoints, viewpoint_manifest
+from bloodmap.format import read_map
+from bloodmap.viewplan import angle_toward, eye_z, interior_point
+from bloodmap.visual import (
+    ObservationRequest,
+    SourceMap,
+    Viewpoint,
+    compact_summary,
+    join_view,
+    run_observation,
+)
 from bloodmap.viewpoints import _sector_loops
 
 
-def _pose(level, sector_id: int) -> tuple[int, int, int]:
-    """A point inside the sector, at eye level above its floor."""
-    loops = _sector_loops(level, sector_id)
-    outer = loops[0]
-    x = sum(point[0] for point in outer) / len(outer)
-    y = sum(point[1] for point in outer) / len(outer)
-    from bloodmap.viewpoints import _contains
-
-    candidate = (int(round(x)), int(round(y)))
-    if not _contains(level, sector_id, *candidate):
-        # A concave or holed sector may not contain its own vertex average; fall
-        # back to a point just inside the first edge.
-        ax, ay = outer[0]
-        bx, by = outer[1 % len(outer)]
-        candidate = (int(round((ax + bx) / 2 + (by - ay) * 0.02)),
-                     int(round((ay + by) / 2 - (bx - ax) * 0.02)))
-        if not _contains(level, sector_id, *candidate):
-            raise SystemExit(f"cannot find an interior pose for sector:{sector_id}")
-    fields = level.sectors[sector_id]["fields"]
-    floor_z, ceiling_z = int(fields["floor_z"]), int(fields["ceiling_z"])
-    z = max(ceiling_z, floor_z - 0x1600)
-    return (candidate[0], candidate[1], z)
+def _pose(level, sector_id: int, angle: int | None) -> Viewpoint | None:
+    """A point that is really inside the sector, at eye level above its floor."""
+    point = interior_point(level, sector_id)
+    if point is None:
+        return None
+    z = eye_z(level, sector_id)
+    if z is None:
+        return None
+    if angle is None:
+        # Face the farthest vertex of the sector, which is the longest thing
+        # there is to look at inside it.
+        outer = _sector_loops(level, sector_id)[0]
+        far = max(outer, key=lambda p: (p[0] - point[0]) ** 2 + (p[1] - point[1]) ** 2)
+        angle = angle_toward(point, far)
+    return Viewpoint(
+        view_id="sector_%d" % sector_id, x=point[0], y=point[1], z=z,
+        angle=int(angle) & 2047, sector=sector_id,
+        node="sector:%d" % sector_id, purpose="precedent",
+        note="original %s sector %d" % ("", sector_id),
+    )
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("map")
-    parser.add_argument("--sectors", required=True, help="comma-separated sector ids")
-    parser.add_argument("--angles", default="0", help="comma-separated build angles, cycled")
-    parser.add_argument("--pitch", type=int, default=0,
-                        help="Aim_Up taps before the shot; negative aims down")
-    parser.add_argument("--nblood", required=True)
-    parser.add_argument("--game-dir", required=True)
-    parser.add_argument("-o", "--output", required=True)
-    parser.add_argument("--grace-seconds", type=float, default=14.0)
-    parser.add_argument("--startup-timeout", type=float, default=45.0)
-    parser.add_argument("--settle-seconds", type=float, default=3.0)
+    parser.add_argument("--sectors", required=True,
+                        help="comma-separated sector ids to stand in")
+    parser.add_argument("--angle", type=int, default=None,
+                        help="a fixed Build angle for every pose; omitted means face "
+                             "the farthest corner of each sector")
+    parser.add_argument("--horiz", type=int, default=100,
+                        help="Build horizon: 100 is level, above looks up")
+    parser.add_argument("--resource-dir", default="reference/blood")
+    parser.add_argument("--binary", default=None)
+    parser.add_argument("--screenshot", action="append", default=[],
+                        help="sector ids to write a frame for; repeatable")
+    parser.add_argument("--brightness", type=int, default=0)
+    parser.add_argument("-o", "--out", required=True)
     args = parser.parse_args(argv)
 
-    path = pathlib.Path(args.map)
-    level = read_map(path).to_level_ir()
-    sector_ids = [int(value) for value in args.sectors.split(",") if value.strip()]
-    angles = [int(value) for value in args.angles.split(",") if value.strip()] or [0]
+    map_path = pathlib.Path(args.map)
+    level = read_map(map_path).to_level_ir()
+    out = pathlib.Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
 
-    specs: list[ViewpointSpec] = []
-    allocations: dict[str, int] = {}
-    for index, sector_id in enumerate(sector_ids):
-        x, y, z = _pose(level, sector_id)
-        region = f"sector:{sector_id}"
-        allocations[region] = sector_id
-        specs.append(ViewpointSpec(
-            viewpoint_id=f"view:{path.stem.lower()}_sector_{sector_id}",
-            purpose="assembly_center", region_id=region,
-            x=x, y=y, z=z, angle=angles[index % len(angles)],
-            note=f"original {path.stem} sector {sector_id}",
-        ))
+    wanted = [int(item) for item in args.sectors.split(",") if item.strip()]
+    views: list[Viewpoint] = []
+    refused: list[dict[str, Any]] = []
+    for sector_id in wanted:
+        if not 0 <= sector_id < len(level.sectors):
+            refused.append({"sector": sector_id, "reason": "no such sector in this map"})
+            continue
+        pose = _pose(level, sector_id, args.angle)
+        if pose is None:
+            refused.append({"sector": sector_id,
+                            "reason": "no interior point with standing clearance"})
+            continue
+        views.append(pose if args.horiz == 100 else
+                     Viewpoint(**{**pose.__dict__, "horiz": args.horiz}))
+    if not views:
+        parser.error("no usable pose among the requested sectors")
 
-    payload = encode_map(level.to_disk_map())
-    manifest = viewpoint_manifest(
-        level, specs, allocations=allocations,
-        map_sha256=hashlib.sha256(payload).hexdigest(),
+    shots = {"sector_%s" % item for item in args.screenshot}
+    request = ObservationRequest(
+        map_path=str(map_path), output_dir=str(out / "observation"),
+        resource_dir=args.resource_dir, viewpoints=tuple(views),
+        brightness=args.brightness,
     )
-    out_dir = pathlib.Path(args.output)
-    out_dir.mkdir(parents=True, exist_ok=True)
-    variant_dir = out_dir / "variants"
-    variant_dir.mkdir(parents=True, exist_ok=True)
-    requests = []
-    for item in prepare_viewpoints(level, specs, allocations=allocations):
-        identifier = item["resolved"]["viewpoint_id"]
-        safe = "".join(ch if ch.isalnum() or ch in "-_" else "_" for ch in identifier)
-        variant_path = variant_dir / f"{safe}.MAP"
-        write_map(item["level"].to_disk_map(), variant_path)
-        requests.append({
-            "viewpoint_id": identifier, "map": str(variant_path),
-            "resolved": item["resolved"], "variant_diff": item["diff"],
-            "pitch_taps": args.pitch,
+    if shots:
+        request = request.with_screenshots(shots)
+    manifest = run_observation(request, binary=args.binary)
+
+    # An original has no authored source, so a sector is its own node.  The
+    # names stay native on purpose: inventing one here would be interpretation
+    # presented as measurement.
+    from bloodmap.visual import NodeAllocation
+
+    source_map = SourceMap([
+        NodeAllocation("sector:%d" % int(sector["id"]), ("sector:%d" % int(sector["id"]),),
+                       "space", frozenset({int(sector["id"])}))
+        for sector in level.sectors
+    ])
+
+    records: list[dict[str, Any]] = []
+    summaries: list[str] = []
+    plan = {view.view_id: view for view in views}
+    for view in manifest.views:
+        join = join_view(view, source_map, level=level)
+        records.append({
+            "view_id": view.get("id"), "status": view.get("status"),
+            "reason": view.get("reason", ""), "camera": view.get("camera", {}),
+            "frame": view.get("frame", {}), "screenshot": view.get("screenshot"),
+            "visible": join.get("visible", []),
         })
-    captures = run_nblood_viewpoint_capture(
-        requests, nblood=args.nblood, game_dir=args.game_dir,
-        image_dir=out_dir, startup_timeout=args.startup_timeout,
-        settle_seconds=args.settle_seconds,
-    )
-    document: dict[str, Any] = {
-        "$schema": "llmapper.precedent-views",
-        "of": path.name,
-        "source_crc32": level.metadata.get("source_crc32"),
-        "manifest": manifest,
-        "captures": captures,
-        "limitations": [
-            "a frame shows how this engine and this game data draw the map, not intent",
-            "image hashes prove stability, never visual quality",
+        summaries.append(compact_summary(view, join, viewpoint=plan.get(view.get("id", ""))))
+
+    document = {
+        "$schema": "llmapper.precedent-observation",
+        "schema_version": 1,
+        "of": map_path.name,
+        "source_crc32": "%08x" % read_map(map_path).source_crc32,
+        "renderer": manifest.data.get("renderer", {}),
+        "timing_ms": manifest.timing,
+        "requested_sectors": wanted,
+        "refused": refused,
+        "views": records,
+        "limitations": manifest.limitations + [
+            "a sector is its own node here; an original has no authored source to join to",
         ],
     }
-    (out_dir / "precedent-views.json").write_text(json.dumps(document, indent=1, default=str), encoding="utf-8")
+    (out / "precedent-observation.json").write_text(
+        json.dumps(document, indent=1) + "\n", encoding="utf-8")
+    (out / "summary.txt").write_text("\n\n".join(summaries) + "\n", encoding="utf-8")
     print(json.dumps({
-        "status": captures.get("status"),
-        "views": len(captures.get("views") or []),
-        "image_dir": str(out_dir),
+        "views": len(records),
+        "refused": refused,
+        "frames": [r["screenshot"] for r in records if r["screenshot"]],
+        "out": str(out),
     }, indent=1))
     return 0
 

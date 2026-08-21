@@ -248,13 +248,20 @@ class AuthoringIterationTests(unittest.TestCase):
         for ref, kind in (
             ("gate:native_structure_valid", "hard_gate"),
             ("probe:reach_yard", "design_probe"),
-            ("view:hall", "declared_viewpoint"),
+            # A view resolves to what was observed where the XMapEdit observer
+            # is built, and to the declaration otherwise.  Both are the same
+            # viewpoint; only the amount known about it differs.
+            ("view:hall", ("observed_view", "declared_viewpoint")),
             ("intent:assembly:yard", "authored_assembly"),
             ("transition:transition:reveal", "authored_transition"),
             ("authored:region:yard", "authored_region"),
             ("source:sector:0", "source_sector"),
         ):
-            self.assertEqual(resolve_evidence(packet, ref)["kind"], kind, ref)
+            resolved = resolve_evidence(packet, ref)["kind"]
+            if isinstance(kind, tuple):
+                self.assertIn(resolved, kind, ref)
+            else:
+                self.assertEqual(resolved, kind, ref)
         with self.assertRaises(AuthoringLoopError):
             resolve_evidence(packet, "gate:no_such_gate")
         with self.assertRaises(AuthoringLoopError):

@@ -1,3 +1,30 @@
+"""NBlood as a runtime oracle.
+
+What this module is for, after the visual work moved out of it:
+
+**Keep.**  Questions only the real game can answer.  Does the MAP initialise;
+does the player spawn; does a door actually move; does a switch produce the
+state change it promises; is the mechanism playable; does the level stay up.
+Those are :func:`run_nblood_oracle`, :func:`run_nblood_action_oracle` and
+:func:`run_nblood_behavior_oracle`, and they are unchanged.
+
+**Moved.**  Looking at a room.  Judging composition, visibility, materials or
+how a space is revealed.  Those now go through ``bloodmap.visual`` and the
+XMapEdit observer, which takes a camera pose as a number and answers with what
+the renderer painted.  It needs no window, no focus, no key and no timing, so it
+is reproducible in a way this file never was.
+
+**Deprecated.**  :func:`run_nblood_viewpoint_capture` and the window-focus and
+key-injection helpers underneath it exist only to take a picture of a room, and
+that is the job that moved.  They still work and nothing calls them by default.
+
+The line between the two is not "images versus numbers".  It is *what the
+question needs*: a running game, or a renderer.  A frame from a running game
+carries the game with it -- a pain flash, a monster walking into shot, an
+automap someone left on -- which is exactly why the visual questions are better
+asked of the editor renderer, and exactly why the behavioural ones cannot be.
+"""
+
 from __future__ import annotations
 
 import hashlib
@@ -884,6 +911,18 @@ def run_nblood_viewpoint_capture(
     work_dir: str | Path | None = None,
 ) -> dict[str, Any]:
     """Capture one preserved PNG per declared viewpoint pose.
+
+    .. deprecated::
+       Use ``bloodmap.visual.run_observation`` instead.  This launches the game
+       once per viewpoint, focuses its window, injects a screenshot key and
+       waits for a file to appear; the frame it returns has the running game in
+       it and the whole path is timing-dependent.  The observer renders the same
+       pose from the same MAP with no process to focus and no key to press, and
+       returns what was painted as well as a picture of it.
+
+       Kept because a frame from the actual game is still the only way to
+       photograph a *running* state -- a door mid-travel, a switch after it
+       fires -- which the static observer cannot show.
 
     Each request supplies ``viewpoint_id``, a prepared pose-variant ``map`` path,
     and the ``resolved`` viewpoint record whose sector/XYZ/angle are recorded next
