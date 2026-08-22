@@ -25,6 +25,7 @@ from typing import Any, Sequence
 
 from bloodmap.format import read_map, write_map
 from bloodmap.model import LevelIR
+from bloodmap.reachability import classify_offmap, design_sectors
 from bloodmap.viewplan import (
     plan_connection_views,
     plan_level_views,
@@ -82,12 +83,16 @@ def _children_by_parent(source_map: SourceMap) -> dict[str, list[str]]:
 
 
 def plan_for(level: LevelIR, source_map: SourceMap, *, nodes: Sequence[str] | None,
-             per_node: Sequence[str], structures: bool, limit: int | None) -> list[Viewpoint]:
+             per_node: Sequence[str], structures: bool, limit: int | None,
+             playable: set[int] | None = None) -> list[Viewpoint]:
     children = _children_by_parent(source_map)
     room_kinds = {"room", "space"}
     chosen = list(nodes) if nodes else sorted(
         record.node for record in source_map.allocations.values()
         if record.kind in room_kinds
+        # A pose inside an author's signature renders the inside of a letter.
+        # It is a valid pose and a useless observation.
+        and (playable is None or record.sectors & playable)
     )
     views = plan_level_views(
         level, source_map, nodes=chosen, include=per_node,
@@ -188,6 +193,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--structures", action="store_true",
                         help="also plan foot and head views for vertical runs")
     parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--include-offmap", action="store_true",
+                        help="also observe geometry the player cannot reach")
     parser.add_argument("--replay", default=None,
                         help="reuse the exact cameras from an earlier packet.json")
     parser.add_argument("--screenshot", action="append", default=[],
@@ -199,6 +206,8 @@ def main(argv: list[str] | None = None) -> int:
 
     out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
+    playable: set[int] | None = None
+    offmap_report: dict[str, Any] | None = None
 
     if args.mode == "program":
         module = importlib.import_module(args.target)
@@ -211,11 +220,15 @@ def main(argv: list[str] | None = None) -> int:
         source_map = SourceMap.from_level_program(program, compiled)
     else:
         map_path = Path(args.target)
-        level = read_map(map_path).to_level_ir()
+        disk = read_map(map_path)
+        level = disk.to_level_ir()
         if not args.hierarchy:
             parser.error("decompiled mode needs --hierarchy")
         hierarchy = json.loads(Path(args.hierarchy).read_text(encoding="utf-8"))
         source_map = SourceMap.from_hierarchy(hierarchy, level)
+        if not args.include_offmap:
+            playable = set(design_sectors(disk))
+            offmap_report = classify_offmap(disk)
 
     if args.replay:
         viewpoints = replay_viewpoints(Path(args.replay))
@@ -223,11 +236,14 @@ def main(argv: list[str] | None = None) -> int:
         purposes = tuple(args.purpose) or ("room_center", "room_entry", "toward_child")
         viewpoints = plan_for(
             level, source_map, nodes=args.node or None, per_node=purposes,
-            structures=args.structures, limit=args.limit,
+            structures=args.structures, limit=args.limit, playable=playable,
         )
     if not viewpoints:
         parser.error("the plan produced no valid poses")
 
+    if offmap_report is not None:
+        (out_dir / "offmap.json").write_text(
+            json.dumps(offmap_report, indent=1) + "\n", encoding="utf-8")
     packet = observe(
         level, source_map, map_path, out_dir, viewpoints=viewpoints,
         resource_dir=args.resource_dir, screenshots=args.screenshot,

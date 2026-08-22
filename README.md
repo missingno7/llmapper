@@ -199,6 +199,7 @@ python -m unittest discover -s tests -v
 - [Reasoned authoring loop](docs/authoring-loop.md)
 - [Level programs: hierarchical, editable level source](docs/level-programs.md)
 - [Structured visual observation through XMapEdit](docs/visual-observation.md)
+- [Blood mechanics, and what the campaign does with them](docs/blood-mechanics-and-conventions.md)
 - [Cliffside monastery authoring pilot](projects/reasoned-authoring-v1/reports/comparison.md)
 - [Design Understanding and grounded retrieval](docs/architecture.md#design-understanding)
 - [Multi-view spatial understanding](docs/spatial-understanding.md)

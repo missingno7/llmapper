@@ -44,6 +44,37 @@ PLAYER_HEIGHT = 0x1600
 NAMED_SPACE_PLAYER_AREAS = 20.0
 
 
+#: What to say about geometry the player never reaches, so a reader of the
+#: emitted program is not left to guess why a level has nine letter-shaped rooms.
+OFFMAP_NOTES = {
+    "signature": [
+        "NOT ARCHITECTURE. The player cannot reach any of this. These outlines",
+        "are letters: the author signed the map by drawing a handle in geometry",
+        "off the side of the level. Fifteen of the 43 campaign maps carry the",
+        "same stamp. Kept so the program builds the whole file, and named so",
+        "nobody edits it as a room.",
+    ],
+    "logic_closet": [
+        "NOT A ROOM. The player cannot reach this. It is the level control",
+        "panel: a sector packed with switches wired to the rest of the map by",
+        "channel rather than by geometry. Read it as the trigger wiring.",
+    ],
+    "helper": [
+        "NOT A ROOM. Unreachable geometry that exists to be a link or a warp",
+        "destination for somewhere else.",
+    ],
+    "bare": [
+        "Unreachable, and carrying nothing: no sprite, no XSECTOR. It may be an",
+        "unrecognised signature, scenery, or something left unfinished. This",
+        "does not guess which.",
+    ],
+    "sealed": [
+        "Unreachable by portal, link or teleport, but it does carry content.",
+        "Recorded rather than explained.",
+    ],
+}
+
+
 def _identifier(value: str) -> str:
     return "".join(ch if ch.isalnum() else "_" for ch in value).strip("_").lower()
 
@@ -148,7 +179,21 @@ class ProgramEmitter:
             from bloodmap.vocabulary import art_sizes_from_directory
 
             self.art_sizes = art_sizes_from_directory(art_dir)
-        self.level = read_map(path).to_level_ir()
+        self.disk = read_map(path)
+        self.level = self.disk.to_level_ir()
+        # What the player can never reach, and which of the three kinds it is.
+        # Emitting an author's signature as nine rooms is not decompilation, it
+        # is a reader being misled, so each such sector says what it is instead.
+        from bloodmap.reachability import classify_offmap
+
+        self.offmap: dict[int, str] = {}
+        try:
+            report = classify_offmap(self.disk)
+        except Exception:                       # a map with no usable start
+            report = {"components": []}
+        for component in report.get("components", []):
+            for sector_id in component["sectors"]:
+                self.offmap[int(sector_id)] = component["kind"]
         self.source = decompile_level(self.level, source_name=path.name)
         self.structures = detect_structures(self.level)
         self.nodes = {item["id"]: item for item in self.source.hierarchy["nodes"]}
@@ -405,7 +450,7 @@ class ProgramEmitter:
         node = area["node"]
         number = node["id"].split(":")[1]
         naming = self.names.get(node["id"]) or {}
-        label = _identifier(naming.get("name") or ("area_%s" % number))
+        label = _identifier(self._area_label(area))
         name = "build_%s" % label
         sectors = node["sources"]["sectors"]
         origin = _bounds([point for s in sectors for point in self.outlines[s]])[:2]
@@ -415,6 +460,11 @@ class ProgramEmitter:
         lines.append('    """%s (%s): %d sectors, %.0f player areas, %d spaces.'
                      % (label, node["id"], len(sectors),
                         geometry["footprint_player_areas"], len(area["spaces"])))
+        offmap_kind = self._offmap_kind(sectors)
+        if offmap_kind:
+            lines.append("")
+            for note in OFFMAP_NOTES[offmap_kind]:
+                lines.append("    %s" % note)
         if naming.get("basis"):
             lines.append("")
             lines.append("    Named from measurement: %s" % naming["basis"])
@@ -486,8 +536,19 @@ class ProgramEmitter:
             })
         return zones
 
+    def _offmap_kind(self, sectors: list[int]) -> str | None:
+        """The single off-map kind these sectors all are, if they all are one."""
+        kinds = {self.offmap.get(int(s)) for s in sectors}
+        if len(kinds) == 1:
+            only = kinds.pop()
+            return only if only else None
+        return None
+
     def _area_label(self, area: dict[str, Any]) -> str:
         node = area["node"]
+        kind = self._offmap_kind(node["sources"]["sectors"])
+        if kind:
+            return "offmap_%s_%s" % (kind, node["id"].split(":")[1])
         naming = self.names.get(node["id"]) or {}
         return naming.get("name") or ("area_%s" % node["id"].split(":")[1])
 

@@ -13,6 +13,53 @@
   "proximity": 1.0,
   "wide_opening": 1.0
  },
+ "offmap": {
+  "counts": {
+   "logic_closet": 1,
+   "sealed": 1,
+   "signature": 9
+  },
+  "sectors_by_kind": {
+   "logic_closet": 1,
+   "sealed": 1,
+   "signature": 9
+  },
+  "excluded_spaces": {
+   "assembly:003/space:001": [
+    314
+   ],
+   "assembly:004/space:001": [
+    330
+   ],
+   "assembly:005/space:001": [
+    331
+   ],
+   "assembly:006/space:001": [
+    332
+   ],
+   "assembly:007/space:001": [
+    333
+   ],
+   "assembly:008/space:001": [
+    334
+   ],
+   "assembly:009/space:001": [
+    335
+   ],
+   "assembly:010/space:001": [
+    336
+   ],
+   "assembly:011/space:001": [
+    337
+   ],
+   "assembly:012/space:001": [
+    338
+   ],
+   "assembly:013/space:001": [
+    339
+   ]
+  }
+ },
  "assemblies": [
   {
    "assembly": "assembly:001",
@@ -4569,78 +4616,13 @@
    "spaces": 2,
    "grouped": false,
    "reason": "already small enough to read as a list"
-  },
-  {
-   "assembly": "assembly:003",
-   "spaces": 1,
-   "grouped": false,
-   "reason": "already small enough to read as a list"
-  },
-  {
-   "assembly": "assembly:004",
-   "spaces": 1,
-   "grouped": false,
-   "reason": "already small enough to read as a list"
-  },
-  {
-   "assembly": "assembly:005",
-   "spaces": 1,
-   "grouped": false,
-   "reason": "already small enough to read as a list"
-  },
-  {
-   "assembly": "assembly:006",
-   "spaces": 1,
-   "grouped": false,
-   "reason": "already small enough to read as a list"
-  },
-  {
-   "assembly": "assembly:007",
-   "spaces": 1,
-   "grouped": false,
-   "reason": "already small enough to read as a list"
-  },
-  {
-   "assembly": "assembly:008",
-   "spaces": 1,
-   "grouped": false,
-   "reason": "already small enough to read as a list"
-  },
-  {
-   "assembly": "assembly:009",
-   "spaces": 1,
-   "grouped": false,
-   "reason": "already small enough to read as a list"
-  },
-  {
-   "assembly": "assembly:010",
-   "spaces": 1,
-   "grouped": false,
-   "reason": "already small enough to read as a list"
-  },
-  {
-   "assembly": "assembly:011",
-   "spaces": 1,
-   "grouped": false,
-   "reason": "already small enough to read as a list"
-  },
-  {
-   "assembly": "assembly:012",
-   "spaces": 1,
-   "grouped": false,
-   "reason": "already small enough to read as a list"
-  },
-  {
-   "assembly": "assembly:013",
-   "spaces": 1,
-   "grouped": false,
-   "reason": "already small enough to read as a list"
   }
  ],
  "limitations": [
   "a proposal, not a taxonomy: the merges are evidence for a reader to accept or reject",
   "greedy agglomeration, so an early merge is never revisited",
   "co-visibility comes from a handful of planned poses per space",
-  "no name is invented here; areas are identified by their seed space"
+  "no name is invented here; areas are identified by their seed space",
+  "geometry the player cannot reach is excluded by default: switch closets and author signatures are not places"
  ]
 }

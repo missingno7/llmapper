@@ -77,6 +77,11 @@ agreeing with.
 different order would give a different answer and the code does not pretend
 otherwise.
 
+**No geometry the player cannot reach.** E2M3's eleven off-map sectors are one
+switch closet, one sealed pocket and nine letters spelling an author's handle.
+They are excluded and the proposal records which spaces it dropped. See
+[Blood mechanics and conventions](../../../docs/blood-mechanics-and-conventions.md).
+
 ## The effect on the source
 
 `build_main_complex` went from 138 lines listing 123 space builders to **41

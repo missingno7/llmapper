@@ -35,6 +35,7 @@ from typing import Any, Iterable, Mapping, Sequence
 from bloodmap.format import read_map
 from bloodmap.model import LevelIR
 from bloodmap.player_space import player_profile
+from bloodmap.reachability import analyze_reachability, classify_offmap
 
 SCHEMA = "llmapper.area-proposals"
 SCHEMA_VERSION = 1
@@ -114,7 +115,8 @@ def _jaccard(left: Iterable[int], right: Iterable[int]) -> float:
 
 class AreaProposer:
     def __init__(self, level: LevelIR, hierarchy: Mapping[str, Any],
-                 packet: Mapping[str, Any] | None, *, profile: str = "blood") -> None:
+                 packet: Mapping[str, Any] | None, *, profile: str = "blood",
+                 playable: Iterable[int] | None = None) -> None:
         self.level = level
         self.profile = profile
         self.unit = player_profile(profile).body_width
@@ -122,10 +124,25 @@ class AreaProposer:
         self.facts = _sector_facts(level, profile)
         self.graph = _portal_graph(level)
         self.nodes = {node["id"]: node for node in hierarchy.get("nodes", [])}
-        self.spaces = {
-            node_id: node for node_id, node in self.nodes.items()
-            if node.get("kind") == "space" and node.get("sectors")
-        }
+        # An area is a place a player goes.  A switch closet and an author's
+        # signature are neither, and grouping them with the rooms they sit
+        # beside is how a proposal ends up with a "zone" made of letters.
+        self.playable = None if playable is None else set(playable)
+        self.excluded: dict[str, list[int]] = {}
+        self.spaces = {}
+        for node_id, node in self.nodes.items():
+            if node.get("kind") != "space" or not node.get("sectors"):
+                continue
+            sectors = [int(s) for s in node["sectors"]]
+            if self.playable is not None:
+                kept = [s for s in sectors if s in self.playable]
+                if not kept:
+                    self.excluded[node_id] = sectors
+                    continue
+                if len(kept) != len(sectors):
+                    node = dict(node)
+                    node["sectors"] = kept
+            self.spaces[node_id] = node
         self.covisible = self._covisibility(packet)
 
     def _covisibility(self, packet: Mapping[str, Any] | None) -> dict[tuple[str, str], dict[str, int]]:
@@ -327,15 +344,23 @@ def main(argv: list[str] | None = None) -> int:
                         help="how many areas to aim for inside the largest assembly")
     parser.add_argument("--floor-score", type=float, default=0.35)
     parser.add_argument("--size-cap", type=float, default=0.30)
+    parser.add_argument("--include-offmap", action="store_true",
+                        help="group the switch closets and signatures too, which is "
+                             "almost never what you want")
     args = parser.parse_args(argv)
 
-    level = read_map(args.map).to_level_ir()
+    disk = read_map(args.map)
+    level = disk.to_level_ir()
     hierarchy = json.loads(Path(args.hierarchy).read_text(encoding="utf-8"))
     packet = None
     if args.packet:
         packet = json.loads(Path(args.packet).read_text(encoding="utf-8"))
 
-    proposer = AreaProposer(level, hierarchy, packet)
+    offmap = None if args.include_offmap else classify_offmap(disk)
+    playable = None
+    if offmap is not None:
+        playable = set(analyze_reachability(disk).reached)
+    proposer = AreaProposer(level, hierarchy, packet, playable=playable)
     by_assembly: dict[str, list[str]] = defaultdict(list)
     for space_id, node in proposer.spaces.items():
         by_assembly[str(node.get("parent"))].append(space_id)
@@ -372,6 +397,11 @@ def main(argv: list[str] | None = None) -> int:
         "hierarchy": str(args.hierarchy).replace("\\", "/"),
         "packet": str(args.packet).replace("\\", "/") if args.packet else None,
         "weights": WEIGHTS,
+        "offmap": None if offmap is None else {
+            "counts": offmap["counts"],
+            "sectors_by_kind": offmap["sectors_by_kind"],
+            "excluded_spaces": {k: v for k, v in sorted(proposer.excluded.items())},
+        },
         "assemblies": assemblies,
         "limitations": [
             "a proposal, not a taxonomy: the merges are evidence for a reader to accept or reject",
@@ -379,6 +409,8 @@ def main(argv: list[str] | None = None) -> int:
             "co-visibility comes from a handful of planned poses per space"
             if packet else "no visual packet was supplied, so co-visibility contributed nothing",
             "no name is invented here; areas are identified by their seed space",
+            "geometry the player cannot reach is excluded by default: switch "
+            "closets and author signatures are not places",
         ],
     }
     out = Path(args.out)

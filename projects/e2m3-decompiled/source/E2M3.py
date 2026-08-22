@@ -5579,13 +5579,17 @@ def build_assembly_002_space_002(area) -> object:
     )
     return space
 
-def build_area_003(parent) -> object:
-    """area_003 (assembly:003): 1 sectors, 37 player areas, 1 spaces.
+def build_offmap_logic_closet_003(parent) -> object:
+    """offmap_logic_closet_003 (assembly:003): 1 sectors, 37 player areas, 1 spaces.
+
+    NOT A ROOM. The player cannot reach this. It is the level control
+    panel: a sector packed with switches wired to the rest of the map by
+    channel rather than by geometry. Read it as the trigger wiring.
 
     Origin is this area's own corner, so every outline below is local to it.
     """
     area = parent.assembly(
-        'area_003',
+        'offmap_logic_closet_003',
         frame=Frame(27136, 20480),
         style=Style(ceiling_picnum=0, ceiling_shade=0, floor_picnum=0, floor_shade=0, wall_picnum=0, wall_shade=0),
     )
@@ -5622,13 +5626,16 @@ def build_assembly_003_space_001(area) -> object:
     )
     return space
 
-def build_area_013(parent) -> object:
-    """area_013 (assembly:013): 1 sectors, 28 player areas, 1 spaces.
+def build_offmap_sealed_013(parent) -> object:
+    """offmap_sealed_013 (assembly:013): 1 sectors, 28 player areas, 1 spaces.
+
+    Unreachable by portal, link or teleport, but it does carry content.
+    Recorded rather than explained.
 
     Origin is this area's own corner, so every outline below is local to it.
     """
     area = parent.assembly(
-        'area_013',
+        'offmap_sealed_013',
         frame=Frame(21504, 23552),
         style=Style(ceiling_picnum=0, ceiling_shade=0, floor_picnum=0, floor_shade=0, wall_picnum=0, wall_shade=0),
     )
@@ -5659,13 +5666,19 @@ def build_assembly_013_space_001(area) -> object:
     )
     return space
 
-def build_area_007(parent) -> object:
-    """area_007 (assembly:007): 1 sectors, 5 player areas, 1 spaces.
+def build_offmap_signature_007(parent) -> object:
+    """offmap_signature_007 (assembly:007): 1 sectors, 5 player areas, 1 spaces.
+
+    NOT ARCHITECTURE. The player cannot reach any of this. These outlines
+    are letters: the author signed the map by drawing a handle in geometry
+    off the side of the level. Fifteen of the 43 campaign maps carry the
+    same stamp. Kept so the program builds the whole file, and named so
+    nobody edits it as a room.
 
     Origin is this area's own corner, so every outline below is local to it.
     """
     area = parent.assembly(
-        'area_007',
+        'offmap_signature_007',
         frame=Frame(3840, 50112),
         style=Style(ceiling_picnum=0, ceiling_shade=0, floor_picnum=0, floor_shade=0, wall_picnum=0, wall_shade=0),
     )
@@ -5692,13 +5705,19 @@ def build_assembly_007_space_001(area) -> object:
     )
     return space
 
-def build_area_006(parent) -> object:
-    """area_006 (assembly:006): 1 sectors, 4 player areas, 1 spaces.
+def build_offmap_signature_006(parent) -> object:
+    """offmap_signature_006 (assembly:006): 1 sectors, 4 player areas, 1 spaces.
+
+    NOT ARCHITECTURE. The player cannot reach any of this. These outlines
+    are letters: the author signed the map by drawing a handle in geometry
+    off the side of the level. Fifteen of the 43 campaign maps carry the
+    same stamp. Kept so the program builds the whole file, and named so
+    nobody edits it as a room.
 
     Origin is this area's own corner, so every outline below is local to it.
     """
     area = parent.assembly(
-        'area_006',
+        'offmap_signature_006',
         frame=Frame(2816, 50112),
         style=Style(ceiling_picnum=0, ceiling_shade=0, floor_picnum=0, floor_shade=0, wall_picnum=0, wall_shade=0),
     )
@@ -5725,13 +5744,19 @@ def build_assembly_006_space_001(area) -> object:
     s332.carve([(448, 256), (320, 448), (448, 768), (576, 448)])  # a native inner loop of this sector
     return space
 
-def build_area_008(parent) -> object:
-    """area_008 (assembly:008): 1 sectors, 4 player areas, 1 spaces.
+def build_offmap_signature_008(parent) -> object:
+    """offmap_signature_008 (assembly:008): 1 sectors, 4 player areas, 1 spaces.
+
+    NOT ARCHITECTURE. The player cannot reach any of this. These outlines
+    are letters: the author signed the map by drawing a handle in geometry
+    off the side of the level. Fifteen of the 43 campaign maps carry the
+    same stamp. Kept so the program builds the whole file, and named so
+    nobody edits it as a room.
 
     Origin is this area's own corner, so every outline below is local to it.
     """
     area = parent.assembly(
-        'area_008',
+        'offmap_signature_008',
         frame=Frame(4800, 50112),
         style=Style(ceiling_picnum=0, ceiling_shade=0, floor_picnum=0, floor_shade=0, wall_picnum=0, wall_shade=0),
     )
@@ -5759,13 +5784,19 @@ def build_assembly_008_space_001(area) -> object:
     s334.carve([(576, 384), (448, 256), (320, 384)])  # a native inner loop of this sector
     return space
 
-def build_area_011(parent) -> object:
-    """area_011 (assembly:011): 1 sectors, 4 player areas, 1 spaces.
+def build_offmap_signature_011(parent) -> object:
+    """offmap_signature_011 (assembly:011): 1 sectors, 4 player areas, 1 spaces.
+
+    NOT ARCHITECTURE. The player cannot reach any of this. These outlines
+    are letters: the author signed the map by drawing a handle in geometry
+    off the side of the level. Fifteen of the 43 campaign maps carry the
+    same stamp. Kept so the program builds the whole file, and named so
+    nobody edits it as a room.
 
     Origin is this area's own corner, so every outline below is local to it.
     """
     area = parent.assembly(
-        'area_011',
+        'offmap_signature_011',
         frame=Frame(7296, 50112),
         style=Style(ceiling_picnum=0, ceiling_shade=0, floor_picnum=0, floor_shade=0, wall_picnum=0, wall_shade=0),
     )
@@ -5793,13 +5824,19 @@ def build_assembly_011_space_001(area) -> object:
     s337.carve([(576, 384), (448, 256), (320, 384)])  # a native inner loop of this sector
     return space
 
-def build_area_004(parent) -> object:
-    """area_004 (assembly:004): 1 sectors, 4 player areas, 1 spaces.
+def build_offmap_signature_004(parent) -> object:
+    """offmap_signature_004 (assembly:004): 1 sectors, 4 player areas, 1 spaces.
+
+    NOT ARCHITECTURE. The player cannot reach any of this. These outlines
+    are letters: the author signed the map by drawing a handle in geometry
+    off the side of the level. Fifteen of the 43 campaign maps carry the
+    same stamp. Kept so the program builds the whole file, and named so
+    nobody edits it as a room.
 
     Origin is this area's own corner, so every outline below is local to it.
     """
     area = parent.assembly(
-        'area_004',
+        'offmap_signature_004',
         frame=Frame(960, 50048),
         style=Style(ceiling_picnum=0, ceiling_shade=0, floor_picnum=0, floor_shade=0, wall_picnum=0, wall_shade=0),
     )
@@ -5826,13 +5863,19 @@ def build_assembly_004_space_001(area) -> object:
     )
     return space
 
-def build_area_009(parent) -> object:
-    """area_009 (assembly:009): 1 sectors, 4 player areas, 1 spaces.
+def build_offmap_signature_009(parent) -> object:
+    """offmap_signature_009 (assembly:009): 1 sectors, 4 player areas, 1 spaces.
+
+    NOT ARCHITECTURE. The player cannot reach any of this. These outlines
+    are letters: the author signed the map by drawing a handle in geometry
+    off the side of the level. Fifteen of the 43 campaign maps carry the
+    same stamp. Kept so the program builds the whole file, and named so
+    nobody edits it as a room.
 
     Origin is this area's own corner, so every outline below is local to it.
     """
     area = parent.assembly(
-        'area_009',
+        'offmap_signature_009',
         frame=Frame(5696, 50112),
         style=Style(ceiling_picnum=0, ceiling_shade=0, floor_picnum=0, floor_shade=0, wall_picnum=0, wall_shade=0),
     )
@@ -5859,13 +5902,19 @@ def build_assembly_009_space_001(area) -> object:
     s335.carve([(384, 704), (320, 640), (256, 704), (320, 768)])  # a native inner loop of this sector
     return space
 
-def build_area_010(parent) -> object:
-    """area_010 (assembly:010): 1 sectors, 3 player areas, 1 spaces.
+def build_offmap_signature_010(parent) -> object:
+    """offmap_signature_010 (assembly:010): 1 sectors, 3 player areas, 1 spaces.
+
+    NOT ARCHITECTURE. The player cannot reach any of this. These outlines
+    are letters: the author signed the map by drawing a handle in geometry
+    off the side of the level. Fifteen of the 43 campaign maps carry the
+    same stamp. Kept so the program builds the whole file, and named so
+    nobody edits it as a room.
 
     Origin is this area's own corner, so every outline below is local to it.
     """
     area = parent.assembly(
-        'area_010',
+        'offmap_signature_010',
         frame=Frame(6592, 50112),
         style=Style(ceiling_picnum=0, ceiling_shade=0, floor_picnum=0, floor_shade=0, wall_picnum=0, wall_shade=0),
     )
@@ -5892,13 +5941,19 @@ def build_assembly_010_space_001(area) -> object:
     )
     return space
 
-def build_area_005(parent) -> object:
-    """area_005 (assembly:005): 1 sectors, 3 player areas, 1 spaces.
+def build_offmap_signature_005(parent) -> object:
+    """offmap_signature_005 (assembly:005): 1 sectors, 3 player areas, 1 spaces.
+
+    NOT ARCHITECTURE. The player cannot reach any of this. These outlines
+    are letters: the author signed the map by drawing a handle in geometry
+    off the side of the level. Fifteen of the 43 campaign maps carry the
+    same stamp. Kept so the program builds the whole file, and named so
+    nobody edits it as a room.
 
     Origin is this area's own corner, so every outline below is local to it.
     """
     area = parent.assembly(
-        'area_005',
+        'offmap_signature_005',
         frame=Frame(2048, 50048),
         style=Style(ceiling_picnum=0, ceiling_shade=0, floor_picnum=0, floor_shade=0, wall_picnum=0, wall_shade=0),
     )
@@ -5925,13 +5980,19 @@ def build_assembly_005_space_001(area) -> object:
     )
     return space
 
-def build_area_012(parent) -> object:
-    """area_012 (assembly:012): 1 sectors, 3 player areas, 1 spaces.
+def build_offmap_signature_012(parent) -> object:
+    """offmap_signature_012 (assembly:012): 1 sectors, 3 player areas, 1 spaces.
+
+    NOT ARCHITECTURE. The player cannot reach any of this. These outlines
+    are letters: the author signed the map by drawing a handle in geometry
+    off the side of the level. Fifteen of the 43 campaign maps carry the
+    same stamp. Kept so the program builds the whole file, and named so
+    nobody edits it as a room.
 
     Origin is this area's own corner, so every outline below is local to it.
     """
     area = parent.assembly(
-        'area_012',
+        'offmap_signature_012',
         frame=Frame(8256, 50048),
         style=Style(ceiling_picnum=0, ceiling_shade=0, floor_picnum=0, floor_shade=0, wall_picnum=0, wall_shade=0),
     )
@@ -5977,17 +6038,17 @@ def build_level() -> LevelProgram:
     )
     build_main_complex(level)
     build_area_002(level)
-    build_area_003(level)
-    build_area_013(level)
-    build_area_007(level)
-    build_area_006(level)
-    build_area_008(level)
-    build_area_011(level)
-    build_area_004(level)
-    build_area_009(level)
-    build_area_010(level)
-    build_area_005(level)
-    build_area_012(level)
+    build_offmap_logic_closet_003(level)
+    build_offmap_sealed_013(level)
+    build_offmap_signature_007(level)
+    build_offmap_signature_006(level)
+    build_offmap_signature_008(level)
+    build_offmap_signature_011(level)
+    build_offmap_signature_004(level)
+    build_offmap_signature_009(level)
+    build_offmap_signature_010(level)
+    build_offmap_signature_005(level)
+    build_offmap_signature_012(level)
     # Sectors the original overlaps in XY on purpose.  Build allows it;
     # the authoring compiler requires it to be said out loud.
     rooms = {room.node_id: room for room in level.rooms()}
