@@ -1,0 +1,885 @@
+{
+ "$schema": "llmapper.wall-sprite-overlap",
+ "schema_version": 1,
+ "note": "Derived: every rectangle, overlap and pitch. A wall sprite is a rectangle on a plane, and two collide when their spans intersect in BOTH axes -- so stacking is legal.",
+ "maps": [
+  {
+   "map": "city-skeleton",
+   "sprites": 367,
+   "wall_sprites": 203,
+   "planes": 34,
+   "clashing_pairs": 0,
+   "sprites_involved": 0,
+   "clash_rate_per_100_wall_sprites": 0.0,
+   "fully_hidden": 0,
+   "worst": []
+  },
+  {
+   "map": "E1M1",
+   "sprites": 559,
+   "wall_sprites": 148,
+   "planes": 73,
+   "clashing_pairs": 10,
+   "sprites_involved": 17,
+   "clash_rate_per_100_wall_sprites": 6.76,
+   "fully_hidden": 3,
+   "worst": [
+    {
+     "a": 110,
+     "b": 274,
+     "tiles": [
+      651,
+      651
+     ],
+     "sectors": [
+      61,
+      61
+     ],
+     "covered_share": 1.0,
+     "overlap_units2": 16777215
+    },
+    {
+     "a": 111,
+     "b": 273,
+     "tiles": [
+      147,
+      147
+     ],
+     "sectors": [
+      61,
+      61
+     ],
+     "covered_share": 1.0,
+     "overlap_units2": 16777215
+    },
+    {
+     "a": 482,
+     "b": 500,
+     "tiles": [
+      0,
+      658
+     ],
+     "sectors": [
+      87,
+      87
+     ],
+     "covered_share": 0.987,
+     "overlap_units2": 6896640
+    },
+    {
+     "a": 196,
+     "b": 431,
+     "tiles": [
+      789,
+      0
+     ],
+     "sectors": [
+      44,
+      44
+     ],
+     "covered_share": 0.523,
+     "overlap_units2": 1334560
+    },
+    {
+     "a": 423,
+     "b": 486,
+     "tiles": [
+      0,
+      633
+     ],
+     "sectors": [
+      122,
+      122
+     ],
+     "covered_share": 0.483,
+     "overlap_units2": 8110080
+    },
+    {
+     "a": 197,
+     "b": 431,
+     "tiles": [
+      790,
+      0
+     ],
+     "sectors": [
+      44,
+      44
+     ],
+     "covered_share": 0.48,
+     "overlap_units2": 1401440
+    },
+    {
+     "a": 478,
+     "b": 529,
+     "tiles": [
+      0,
+      485
+     ],
+     "sectors": [
+      85,
+      86
+     ],
+     "covered_share": 0.074,
+     "overlap_units2": 225420
+    },
+    {
+     "a": 69,
+     "b": 149,
+     "tiles": [
+      1067,
+      1067
+     ],
+     "sectors": [
+      36,
+      36
+     ],
+     "covered_share": 0.045,
+     "overlap_units2": 1789952
+    },
+    {
+     "a": 263,
+     "b": 478,
+     "tiles": [
+      1719,
+      0
+     ],
+     "sectors": [
+      86,
+      85
+     ],
+     "covered_share": 0.042,
+     "overlap_units2": 155520
+    },
+    {
+     "a": 69,
+     "b": 148,
+     "tiles": [
+      1067,
+      1067
+     ],
+     "sectors": [
+      36,
+      36
+     ],
+     "covered_share": 0.024,
+     "overlap_units2": 972800
+    }
+   ]
+  },
+  {
+   "map": "E2M1",
+   "sprites": 507,
+   "wall_sprites": 65,
+   "planes": 48,
+   "clashing_pairs": 0,
+   "sprites_involved": 0,
+   "clash_rate_per_100_wall_sprites": 0.0,
+   "fully_hidden": 0,
+   "worst": []
+  },
+  {
+   "map": "E3M1",
+   "sprites": 807,
+   "wall_sprites": 60,
+   "planes": 43,
+   "clashing_pairs": 2,
+   "sprites_involved": 4,
+   "clash_rate_per_100_wall_sprites": 3.33,
+   "fully_hidden": 0,
+   "worst": [
+    {
+     "a": 614,
+     "b": 747,
+     "tiles": [
+      1127,
+      658
+     ],
+     "sectors": [
+      263,
+      263
+     ],
+     "covered_share": 0.945,
+     "overlap_units2": 4227072
+    },
+    {
+     "a": 364,
+     "b": 367,
+     "tiles": [
+      269,
+      776
+     ],
+     "sectors": [
+      239,
+      239
+     ],
+     "covered_share": 0.596,
+     "overlap_units2": 19320832
+    }
+   ]
+  },
+  {
+   "map": "E3M2",
+   "sprites": 906,
+   "wall_sprites": 207,
+   "planes": 76,
+   "clashing_pairs": 16,
+   "sprites_involved": 26,
+   "clash_rate_per_100_wall_sprites": 7.73,
+   "fully_hidden": 3,
+   "worst": [
+    {
+     "a": 341,
+     "b": 342,
+     "tiles": [
+      1349,
+      1349
+     ],
+     "sectors": [
+      300,
+      300
+     ],
+     "covered_share": 1.0,
+     "overlap_units2": 174689280
+    },
+    {
+     "a": 424,
+     "b": 425,
+     "tiles": [
+      823,
+      823
+     ],
+     "sectors": [
+      400,
+      400
+     ],
+     "covered_share": 1.0,
+     "overlap_units2": 6029312
+    },
+    {
+     "a": 413,
+     "b": 567,
+     "tiles": [
+      710,
+      0
+     ],
+     "sectors": [
+      420,
+      420
+     ],
+     "covered_share": 0.965,
+     "overlap_units2": 16188416
+    },
+    {
+     "a": 375,
+     "b": 410,
+     "tiles": [
+      933,
+      1127
+     ],
+     "sectors": [
+      380,
+      380
+     ],
+     "covered_share": 0.714,
+     "overlap_units2": 3624960
+    },
+    {
+     "a": 375,
+     "b": 610,
+     "tiles": [
+      933,
+      0
+     ],
+     "sectors": [
+      380,
+      380
+     ],
+     "covered_share": 0.61,
+     "overlap_units2": 3094867
+    },
+    {
+     "a": 768,
+     "b": 770,
+     "tiles": [
+      1165,
+      0
+     ],
+     "sectors": [
+      408,
+      408
+     ],
+     "covered_share": 0.413,
+     "overlap_units2": 5304320
+    },
+    {
+     "a": 768,
+     "b": 769,
+     "tiles": [
+      1165,
+      0
+     ],
+     "sectors": [
+      408,
+      408
+     ],
+     "covered_share": 0.198,
+     "overlap_units2": 2537472
+    },
+    {
+     "a": 102,
+     "b": 225,
+     "tiles": [
+      1127,
+      614
+     ],
+     "sectors": [
+      238,
+      238
+     ],
+     "covered_share": 0.146,
+     "overlap_units2": 1842176
+    },
+    {
+     "a": 410,
+     "b": 610,
+     "tiles": [
+      1127,
+      0
+     ],
+     "sectors": [
+      380,
+      380
+     ],
+     "covered_share": 0.141,
+     "overlap_units2": 2364486
+    },
+    {
+     "a": 433,
+     "b": 434,
+     "tiles": [
+      742,
+      744
+     ],
+     "sectors": [
+      447,
+      447
+     ],
+     "covered_share": 0.128,
+     "overlap_units2": 602112
+    },
+    {
+     "a": 140,
+     "b": 141,
+     "tiles": [
+      68,
+      68
+     ],
+     "sectors": [
+      84,
+      84
+     ],
+     "covered_share": 0.083,
+     "overlap_units2": 98304
+    },
+    {
+     "a": 149,
+     "b": 150,
+     "tiles": [
+      68,
+      68
+     ],
+     "sectors": [
+      86,
+      86
+     ],
+     "covered_share": 0.083,
+     "overlap_units2": 98304
+    }
+   ]
+  },
+  {
+   "map": "E4M9",
+   "sprites": 405,
+   "wall_sprites": 70,
+   "planes": 45,
+   "clashing_pairs": 2,
+   "sprites_involved": 4,
+   "clash_rate_per_100_wall_sprites": 2.86,
+   "fully_hidden": 0,
+   "worst": [
+    {
+     "a": 105,
+     "b": 106,
+     "tiles": [
+      1165,
+      0
+     ],
+     "sectors": [
+      97,
+      97
+     ],
+     "covered_share": 0.857,
+     "overlap_units2": 11010048
+    },
+    {
+     "a": 86,
+     "b": 87,
+     "tiles": [
+      742,
+      744
+     ],
+     "sectors": [
+      94,
+      94
+     ],
+     "covered_share": 0.143,
+     "overlap_units2": 917504
+    }
+   ]
+  },
+  {
+   "map": "E6M1",
+   "sprites": 499,
+   "wall_sprites": 65,
+   "planes": 32,
+   "clashing_pairs": 1,
+   "sprites_involved": 2,
+   "clash_rate_per_100_wall_sprites": 1.54,
+   "fully_hidden": 1,
+   "worst": [
+    {
+     "a": 157,
+     "b": 162,
+     "tiles": [
+      1165,
+      0
+     ],
+     "sectors": [
+      79,
+      79
+     ],
+     "covered_share": 1.0,
+     "overlap_units2": 4194304
+    }
+   ]
+  },
+  {
+   "map": "DWE3M1",
+   "sprites": 1690,
+   "wall_sprites": 297,
+   "planes": 100,
+   "clashing_pairs": 20,
+   "sprites_involved": 27,
+   "clash_rate_per_100_wall_sprites": 6.73,
+   "fully_hidden": 4,
+   "worst": [
+    {
+     "a": 679,
+     "b": 1611,
+     "tiles": [
+      1165,
+      0
+     ],
+     "sectors": [
+      245,
+      245
+     ],
+     "covered_share": 1.0,
+     "overlap_units2": 6553600
+    },
+    {
+     "a": 990,
+     "b": 1612,
+     "tiles": [
+      1165,
+      0
+     ],
+     "sectors": [
+      317,
+      317
+     ],
+     "covered_share": 1.0,
+     "overlap_units2": 6553600
+    },
+    {
+     "a": 1090,
+     "b": 1093,
+     "tiles": [
+      929,
+      713
+     ],
+     "sectors": [
+      493,
+      493
+     ],
+     "covered_share": 0.958,
+     "overlap_units2": 23065600
+    },
+    {
+     "a": 1093,
+     "b": 1094,
+     "tiles": [
+      713,
+      929
+     ],
+     "sectors": [
+      493,
+      493
+     ],
+     "covered_share": 0.958,
+     "overlap_units2": 23065600
+    },
+    {
+     "a": 989,
+     "b": 995,
+     "tiles": [
+      1166,
+      915
+     ],
+     "sectors": [
+      364,
+      364
+     ],
+     "covered_share": 0.911,
+     "overlap_units2": 5972992
+    },
+    {
+     "a": 1090,
+     "b": 1094,
+     "tiles": [
+      929,
+      929
+     ],
+     "sectors": [
+      493,
+      493
+     ],
+     "covered_share": 0.809,
+     "overlap_units2": 19474432
+    },
+    {
+     "a": 993,
+     "b": 999,
+     "tiles": [
+      929,
+      713
+     ],
+     "sectors": [
+      327,
+      327
+     ],
+     "covered_share": 0.78,
+     "overlap_units2": 20657280
+    },
+    {
+     "a": 474,
+     "b": 475,
+     "tiles": [
+      929,
+      915
+     ],
+     "sectors": [
+      548,
+      548
+     ],
+     "covered_share": 0.602,
+     "overlap_units2": 13572832
+    },
+    {
+     "a": 995,
+     "b": 996,
+     "tiles": [
+      915,
+      929
+     ],
+     "sectors": [
+      364,
+      364
+     ],
+     "covered_share": 0.517,
+     "overlap_units2": 13703680
+    },
+    {
+     "a": 921,
+     "b": 999,
+     "tiles": [
+      51,
+      713
+     ],
+     "sectors": [
+      327,
+      327
+     ],
+     "covered_share": 0.499,
+     "overlap_units2": 4934656
+    },
+    {
+     "a": 448,
+     "b": 450,
+     "tiles": [
+      1060,
+      948
+     ],
+     "sectors": [
+      125,
+      125
+     ],
+     "covered_share": 0.481,
+     "overlap_units2": 7602176
+    },
+    {
+     "a": 449,
+     "b": 450,
+     "tiles": [
+      1060,
+      948
+     ],
+     "sectors": [
+      125,
+      125
+     ],
+     "covered_share": 0.481,
+     "overlap_units2": 7602176
+    }
+   ]
+  },
+  {
+   "map": "DWE3M10",
+   "sprites": 1038,
+   "wall_sprites": 225,
+   "planes": 76,
+   "clashing_pairs": 18,
+   "sprites_involved": 32,
+   "clash_rate_per_100_wall_sprites": 8.0,
+   "fully_hidden": 0,
+   "worst": [
+    {
+     "a": 140,
+     "b": 141,
+     "tiles": [
+      1064,
+      1044
+     ],
+     "sectors": [
+      48,
+      48
+     ],
+     "covered_share": 0.5,
+     "overlap_units2": 16777216
+    },
+    {
+     "a": 747,
+     "b": 750,
+     "tiles": [
+      713,
+      731
+     ],
+     "sectors": [
+      361,
+      361
+     ],
+     "covered_share": 0.356,
+     "overlap_units2": 7471104
+    },
+    {
+     "a": 788,
+     "b": 801,
+     "tiles": [
+      677,
+      1667
+     ],
+     "sectors": [
+      413,
+      413
+     ],
+     "covered_share": 0.258,
+     "overlap_units2": 1081344
+    },
+    {
+     "a": 789,
+     "b": 801,
+     "tiles": [
+      677,
+      1667
+     ],
+     "sectors": [
+      413,
+      413
+     ],
+     "covered_share": 0.258,
+     "overlap_units2": 1081344
+    },
+    {
+     "a": 790,
+     "b": 801,
+     "tiles": [
+      677,
+      1667
+     ],
+     "sectors": [
+      413,
+      413
+     ],
+     "covered_share": 0.258,
+     "overlap_units2": 1081344
+    },
+    {
+     "a": 791,
+     "b": 800,
+     "tiles": [
+      677,
+      1667
+     ],
+     "sectors": [
+      413,
+      413
+     ],
+     "covered_share": 0.258,
+     "overlap_units2": 1081344
+    },
+    {
+     "a": 792,
+     "b": 800,
+     "tiles": [
+      677,
+      1667
+     ],
+     "sectors": [
+      413,
+      413
+     ],
+     "covered_share": 0.258,
+     "overlap_units2": 1081344
+    },
+    {
+     "a": 793,
+     "b": 800,
+     "tiles": [
+      677,
+      1667
+     ],
+     "sectors": [
+      413,
+      413
+     ],
+     "covered_share": 0.258,
+     "overlap_units2": 1081344
+    },
+    {
+     "a": 934,
+     "b": 942,
+     "tiles": [
+      743,
+      743
+     ],
+     "sectors": [
+      263,
+      263
+     ],
+     "covered_share": 0.258,
+     "overlap_units2": 2162928
+    },
+    {
+     "a": 676,
+     "b": 684,
+     "tiles": [
+      68,
+      1086
+     ],
+     "sectors": [
+      286,
+      291
+     ],
+     "covered_share": 0.234,
+     "overlap_units2": 983040
+    },
+    {
+     "a": 677,
+     "b": 685,
+     "tiles": [
+      68,
+      1086
+     ],
+     "sectors": [
+      451,
+      451
+     ],
+     "covered_share": 0.234,
+     "overlap_units2": 983040
+    },
+    {
+     "a": 682,
+     "b": 686,
+     "tiles": [
+      68,
+      1086
+     ],
+     "sectors": [
+      287,
+      289
+     ],
+     "covered_share": 0.234,
+     "overlap_units2": 983040
+    }
+   ]
+  }
+ ],
+ "vertical_text": {
+  "maps_with_columns": {
+   "BB6": 32,
+   "DWE1M7": 2,
+   "DWE2M2": 46,
+   "DWE2M3": 4,
+   "DWE3M1": 16,
+   "DWE3M10": 6,
+   "DWE3M4": 18,
+   "DWE3M9": 1,
+   "E1M4": 2,
+   "E4M4": 4,
+   "TEDE1M4": 1
+  },
+  "columns": 132,
+  "gaps": 215,
+  "pitch_drawn_heights": {
+   "median": 1.247,
+   "q1": 1.198,
+   "q3": 1.662,
+   "min": 0.913,
+   "max": 4.0
+  },
+  "sizes": [
+   [
+    56,
+    57
+   ],
+   [
+    80,
+    25
+   ],
+   [
+    48,
+    18
+   ],
+   [
+    255,
+    6
+   ],
+   [
+    144,
+    6
+   ],
+   [
+    24,
+    4
+   ],
+   [
+    64,
+    4
+   ],
+   [
+    32,
+    4
+   ]
+  ]
+ }
+}

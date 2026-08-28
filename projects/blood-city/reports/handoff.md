@@ -5,7 +5,7 @@ actually wrong with it, and what to do next.
 
 ## Where it stands
 
-**215 sectors / 1,378 walls / 339 sprites.** 11/11 conformance rows, 16/16
+**215 sectors / 1,378 walls / 367 sprites.** 11/11 conformance rows, 16/16
 L1 contract rows, 3/3 tree properties, 50 rule diagnostics with no errors.
 Wall budget is 7,000, so there is room for roughly four more districts'
 worth of content.
@@ -133,6 +133,30 @@ Use it for any change that is meant to move structure and not geometry.
 Every step of the tree overhaul passed it with zero differences, and it
 caught three inheritance faults on the way -- see iteration 25 in
 `refinement-log.md`.
+
+## A wall is a 2D surface
+
+`level/wallplane.py` treats a wall as the plane it is: every wall sprite
+reserves the rectangle it actually draws (tile width x `x_repeat` along,
+`sprite_extent` down), and nothing may be hung over it. Two things stacked
+at different heights are legal -- that is the point -- so a caption sits
+under its painting.
+
+```bash
+python tools/mine_wall_sprites.py projects/blood-city/level/city-skeleton.MAP
+python tools/mine_wall_sprites.py --corpus     # the rate to stay under
+```
+
+Gravesend was at **18.86 clashing pairs per 100 wall sprites with 26 fully
+hidden**, against a campaign 0.0-8.0 and 0-4. It is now **0 and 0** with more
+on the walls than before (203 against 175). The audit runs inside the build.
+
+Use `wallplane.sprite` and `wallplane.text` rather than `place_on_wall` or
+`lettering.write_on_wall` directly. `text` takes a scalar or a sequence for
+`size`, `palette` and `shade` -- a sequence pads with its last value, so
+`size=(112, 72)` is a drop capital -- and `vertical=True` writes downward at
+the campaign's own 1.247 pitch. `wallplane.composition` stacks blocks:
+`venue_detail.COMPOSITIONS` is the table of the four Gravesend has.
 
 ## Composing, not placing
 

@@ -1729,3 +1729,113 @@ conformance, 16/16 contract rows, 50 rule diagnostics, no errors.
 * `fixtures.close_front` still shutters no front, and the open-to-closed
   ratio is still unmined.
 * Slopes remain at 3 sloped sectors of 215 against a campaign 21.7%.
+
+
+## Iteration 26 — a wall is a 2D surface
+
+Owner: "when you are putting wall sprites they should not occupy same
+physical space, they can be next to each other or on the top of each other,
+but not on the same place.  Some sprites are wider, taller, etc, so this
+should be handled... For example st gallows is place where we have these
+overlapping wall sprites."
+
+### What it was
+
+`props.MIN_WALL_PROP_SPACING = 384`: one constant reserving a fixed run of
+the supporting **line** around every anchor. One dimension, no knowledge of
+the size of the thing being hung, and no z at all -- so a 128-wide decal and
+a 2,048-wide hanging reserved the same 384, two signs stacked at different
+heights read as a conflict, and a hanging dropped straight over a word read
+as fine. It also only ran from `props.mount_on_wall`; signs went through
+`lettering.write_on_wall` and neither reserved nor respected anything.
+
+### Measured, ours against the campaign
+
+`tools/mine_wall_sprites.py` projects every wall-aligned sprite onto its own
+plane as a rectangle -- along the wall by tile width, `x_repeat` and the ART
+x offset, up and down by `placement.sprite_extent` -- and intersects.
+
+| | pairs per 100 wall sprites | fully hidden |
+|---|---|---|
+| Gravesend, before | **18.86** | **26** |
+| E1M1 / E3M2 / DWE3M1 / DWE3M10 | 6.7 - 8.0 | 0 - 4 |
+| E2M1 / E6M1 / E4M9 / E3M1 | 0.0 - 3.3 | 0 - 1 |
+| **Gravesend, after** | **0.00** | **0** |
+
+Where they were: **11 in St Gallow's nave** -- exactly where the owner
+looked. The nave has one solid wall, `signage` wrote ST GALLOWS across it at
+a fixed height, and `venue_detail` then hung tile 847, a 2,048 x 32,768
+tapestry, over the top of it. Every letter 100% covered. Ten more in the
+arcade's unit_c, four in the sewer's east annex behind tile 54.
+
+### `wallplane.py`
+
+Occupancy per plane, rebuilt from the layout on every call because a cache
+that disagreed with it would put a sprite through a sprite while reporting
+success. `find_slot` tries the asked-for spot, then slides along the wall
+keeping the height, then walks up and down -- stacking is legal, and a sign
+at eye level should stay at eye level before it moves up.
+
+Three things it had to learn, each found by re-measuring rather than by eye:
+
+* **A height the room clamps is not the height reserved.** `resolve_anchor`
+  pulls a wall sprite 256 units inside the room and `compile` pulls a tall
+  one inside its own extents. The first vertical word put all four of its
+  letters at one z against the ceiling because the reservation was honoured
+  by moving the sprites.
+* **Letters are not centred on their own z.** The alphabet carries an ART y
+  offset, so a symmetric box under-reserves the bottom -- by exactly the 144
+  units at which the arcade's sign and its caption came to touch.
+* **Pitch is centre to centre.** Reserving the sum of every advance
+  over-reserves by nearly half a letter, which is what refused CRYPT on a
+  wall that had room for it.
+
+### Compositions
+
+`composition()` stacks blocks down one plane, each reserving its own
+rectangle, so a caption lands under its painting instead of through it.
+Four are built:
+
+* **St Gallow's nave** -- the hanging with ST GALLOWS as its caption. The
+  loose `signage` row for the nave is gone: two passes writing the same word
+  on the room's one solid wall is how it came to be written behind the
+  tapestry in the first place.
+* **The Aldermack foyer** -- a painting, THE ALDERMACK with a **drop capital
+  and a coloured initial** (`size=(112, 72)`, `palette=("warning", "sign")`),
+  and BOX OFFICE under it at size 48. Three blocks, three heights, three
+  sizes. Its street fascia stays a separate sign, which is what a theatre
+  has.
+* **The pawn shop** -- LOANS written **downward**, five letters at size 80,
+  at the campaign's own vertical pitch.
+* **Arcade unit_c** -- two lines at two heights and two sizes with no
+  painting: the plain case the one-dimensional spacing could not express,
+  because it read any two words on one wall as a conflict.
+
+Vertical text is attested rather than invented: `--corpus` finds **132
+letter columns across 11 maps** and 215 gaps between their letters, median
+pitch **1.247 drawn heights** against `lettering.PITCH`'s 1.45 sideways.
+Recorded in `knowledge/blood/design/wall-sprites-v1.json`.
+
+A sequence passed for `size`, `palette` or `shade` **pads with its last
+value**, because a drop capital is the common case; `cycle()` opts into
+repetition. Cycling by default turned THE ALDERMACK into a 112/72/72
+sawtooth.
+
+### Build
+
+**215 sectors / 1,378 walls / 367 sprites** -- 203 of them wall sprites,
+against 175 before, with zero overlap where there were 33 clashing pairs.
+More on the walls and none of it hidden. 11/11 conformance, 16/16 contract
+rows, 3/3 tree properties, byte-identical rebuild. The audit runs inside the
+build and lands in `reports/build-manifest.json`, so it cannot regress
+quietly.
+
+### Not done
+
+* `wallplane` is project-local; filed as grammar requests #16 and #17.
+* 14 pieces of generic grime now find no room and are skipped. That is the
+  correct trade and it is not free: some rooms are barer than they were.
+* A composition is a vertical stack. Two things side by side at the same
+  height -- a pair of paintings flanking a door -- would need a row block.
+* `props.safe_wall_fraction` is kept for `runs.py`, which still spaces its
+  elements in one dimension.

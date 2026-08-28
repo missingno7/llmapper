@@ -1164,6 +1164,21 @@ def main() -> int:
                                                  compiled.level.to_disk_map()))
 
     disk = compiled.level.to_disk_map()
+    # Wall sprites, as rectangles on the surfaces they hang from.  This was
+    # 18.86 clashing pairs per 100 against a campaign 0.0-8.0, with 26
+    # sprites entirely hidden behind another where no campaign map has more
+    # than 4 -- St Gallow's sign was written straight through its hanging.
+    # `wallplane` reserves the rectangle each sprite actually draws, so the
+    # number is a standing check rather than a one-off fix.
+    import tools.mine_wall_sprites as _walls
+    _wall_report = _walls.survey(disk, _walls._art())
+    print(f"wall sprites: {_wall_report['wall_sprites']} on "
+          f"{_wall_report['planes']} planes, "
+          f"{_wall_report['clashing_pairs']} clashing pairs "
+          f"({_wall_report['clash_rate_per_100_wall_sprites']} per 100), "
+          f"{_wall_report['fully_hidden']} fully hidden")
+    ctx["manifest"]["wall_sprites"] = {
+        k: v for k, v in _wall_report.items() if k != "worst"}
     _after = apertures.report(disk)
     print("apertures after:", _after)
     ctx["manifest"]["apertures"] = _after

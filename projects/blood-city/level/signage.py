@@ -25,6 +25,7 @@ from bloodmap.lettering import (LetteringError, SIZES, drawn_width,
                                 text_width, write_on_wall)
 
 import props
+import wallplane
 
 #: (sign id, room key, face, text, palette, height in player heights).
 #: Height 1.4 puts a fascia just above a doorway; 0.9 is eye level.
@@ -37,7 +38,11 @@ SIGNS = [
     ("backstage", "theatre:aldermack_backstage", "north", "STAGE DOOR",
      "stencil", 1.2),
     # --- the church -------------------------------------------------------
-    ("parish", "church:nave", "south", "ST GALLOWS", "faded", 1.5),
+    # The nave's name is written by `venue_detail.COMPOSITIONS` instead --
+    # under the hanging it belongs to, rather than as a loose word competing
+    # with it for the room's ONE solid wall.  Two passes writing the same
+    # word on the same wall is how it came to be written behind a 2,048 x
+    # 32,768 tapestry in the first place.
     ("crypt", "church:crypt_stair", "east", "CRYPT", "dim", 1.2),
     # --- the works and its station ---------------------------------------
     ("station", "station:cellar", "north", "PUMP HOUSE", "stencil", 1.2),
@@ -85,7 +90,8 @@ def _span(rect, face: str) -> float:
 
 def write(layout, rooms: dict) -> dict:
     """Write every sign whose room exists and whose wall is long enough."""
-    report = {"written": 0, "letters": 0, "too_long": [], "missing": []}
+    report = {"written": 0, "letters": 0, "too_long": [], "missing": [],
+              "no_room": []}
     for sign_id, key, face, text, palette, height in SIGNS:
         room = rooms.get(key)
         if room is None:
@@ -105,13 +111,17 @@ def write(layout, rooms: dict) -> dict:
             report["too_long"].append((sign_id, text))
             continue
         a1, a2 = props.face_segment(rect, face, inset=SIGN_INSET)
-        try:
-            ids = write_on_wall(layout, f"sign:{sign_id}", room.region_id,
-                                a1=a1, a2=a2, text=text,
-                                height_player_heights=height,
-                                size=size, palette=palette)
-        except LetteringError:
-            report["too_long"].append((sign_id, text))
+        # Through `wallplane`, not `write_on_wall`: the word is reserved as
+        # one rectangle and moved -- along the wall first, then up or down --
+        # until it covers nothing.  St Gallow's sign used to be written at a
+        # fixed height straight through a 2,048 x 32,768 hanging, every
+        # letter of it 100% covered.
+        ids = wallplane.text(layout, f"sign:{sign_id}", room.region_id,
+                             a1, a2, words=text,
+                             height_player_heights=height,
+                             size=size, palette=palette)
+        if not ids:
+            report["no_room"].append((sign_id, text))
             continue
         report["written"] += 1
         report["letters"] += len(ids)
@@ -128,13 +138,11 @@ def write(layout, rooms: dict) -> dict:
         if size is None:
             report["too_long"].append((sign_id, text))
             continue
-        try:
-            ids = write_on_wall(layout, f"sign:{sign_id}", region_id,
-                                a1=a1, a2=a2, text=text,
-                                height_player_heights=height,
-                                size=size, palette=palette)
-        except LetteringError:
-            report["too_long"].append((sign_id, text))
+        ids = wallplane.text(layout, f"sign:{sign_id}", region_id, a1, a2,
+                             words=text, height_player_heights=height,
+                             size=size, palette=palette)
+        if not ids:
+            report["no_room"].append((sign_id, text))
             continue
         report["written"] += 1
         report["letters"] += len(ids)

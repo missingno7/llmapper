@@ -45,7 +45,7 @@
       "budget": {
         "sectors": 215,
         "walls": 1378,
-        "sprites": 339
+        "sprites": 367
       },
       "street": {
         "sectors": 24,
@@ -524,7 +524,7 @@
           "street_sectors": 16,
           "sectors": 181,
           "walls": 1194,
-          "sprites": 245
+          "sprites": 281
         },
         {
           "zone": 1,
@@ -595,7 +595,7 @@
           "note": "not reachable from any street",
           "sectors": 26,
           "walls": 144,
-          "sprites": 92
+          "sprites": 84
         }
       ],
       "mechanisms": {
@@ -729,7 +729,7 @@
       "SKELETON": {
         "sectors": 215,
         "walls": 1378,
-        "sprites": 339
+        "sprites": 367
       }
     }
   }

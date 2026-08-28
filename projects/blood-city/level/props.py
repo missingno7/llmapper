@@ -256,31 +256,64 @@ def face_segment(rect, face: str, *, inset: int = 256):
 def mount_on_wall(layout, placement_id: str, room, face: str,
                   tile: int = FLAME, *, t: float = 0.5,
                   emits_light: bool | None = None,
-                  light_intensity: float | None = None, **overrides) -> str:
+                  light_intensity: float | None = None,
+                  required: bool = False, **overrides):
     """Hang a prop on one face of a rectangular room, at its own height.
+
+    Returns None when the wall has no free rectangle this size -- a full
+    wall is a legitimate answer for decoration, and the alternative is
+    hanging the prop through whatever is already there.  Pass
+    `required=True` for something that must appear.
 
     A flame is also an authored lighting source unless the caller explicitly
     says otherwise.  This keeps the visual prop and the LightBomb source in one
     declaration instead of rediscovering light from tile ids in a finishing
     pass.
     """
+    import wallplane
+
     a1, a2 = face_segment(room_rect(room), face)
     region_id = getattr(room, "region_id", None) or room.id
     if emits_light is None:
         emits_light = tile == FLAME
-    t = safe_wall_fraction(layout, region_id, a1, a2, t)
-    return layout.place_on_wall(
-        placement_id, region_id, a1=a1, a2=a2, t=t,
+    spec = fields(tile, **overrides)
+    # A wall is a 2D surface, and this asks it for a free rectangle the size
+    # of the thing being hung -- along AND down, so a prop may stack above or
+    # below another one but may not cover it.  What this replaced reserved a
+    # flat 384 units of the supporting LINE around every existing anchor,
+    # which is the same reservation for a 128-wide decal and a 2,048-wide
+    # hanging, and no reservation at all in z.
+    got = wallplane.sprite(
+        layout, placement_id, region_id, a1, a2,
+        tile=tile, x_repeat=spec["x_repeat"], y_repeat=spec["y_repeat"],
+        cstat=spec["cstat"], t=t,
         height_player_heights=height_of(tile),
         offset_player_widths=0.10,
-        emits_light=emits_light,
-        light_intensity=light_intensity,
-        **fields(tile, **overrides))
+        emits_light=emits_light, light_intensity=light_intensity,
+        shade=spec["shade"], status=spec.get("status", 0),
+        **{k: v for k, v in spec.items()
+           if k not in ("type", "picnum", "cstat", "x_repeat", "y_repeat",
+                        "shade", "status")})
+    if got is None and required:
+        raise WallFull(
+            f"{placement_id}: no free rectangle on {face} of "
+            f"{region_id} for tile {tile}")
+    return got
+
+
+class WallFull(ValueError):
+    """This wall has no free rectangle the size of the thing being hung."""
 
 
 def safe_wall_fraction(layout, region_id: str, a1, a2, preferred: float,
                        *, spacing: float = MIN_WALL_PROP_SPACING) -> float:
-    """Choose a non-overlapping anchor on a wall segment when one is available.
+    """One-dimensional anchor spacing.  Superseded by `wallplane`.
+
+    Kept because `runs.py` and a couple of direct callers still reach for
+    it, and because it documents what was wrong: it reserves a fixed run of
+    the supporting LINE and knows nothing about how wide or tall the sprite
+    is, nor about z at all.  Prefer `wallplane.find_slot`, which reserves
+    the rectangle the sprite actually draws.
 
     Wall-aligned sprites are coplanar by design.  If two placements overlap on
     one wall, Build's painter order can make them swap in front of each other as

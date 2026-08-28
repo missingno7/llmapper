@@ -5,7 +5,7 @@ violation rates. Requires `bloodmap.rules_blood` to be imported: the
 registry is populated by that import's side effect, so a bare
 `evaluate` returns silence rather than a clean map.
 
-- **note** `floor-aligned-sprite-rests-on-a-surface` -- a flat sprite is a plate and lies on a floor or a ceiling -- flat tile 795 floats 8211 from the nearest surface (sprite[147])
+- **note** `floor-aligned-sprite-rests-on-a-surface` -- a flat sprite is a plate and lies on a floor or a ceiling -- flat tile 795 floats 8211 from the nearest surface (sprite[142])
 - **note** `glass-is-breakable` -- a pane of glass should be a wall the player can shoot out -- glass that cannot be broken (wall[23])
 - **note** `glass-is-breakable` -- a pane of glass should be a wall the player can shoot out -- glass that cannot be broken (wall[269])
 - **note** `glass-is-breakable` -- a pane of glass should be a wall the player can shoot out -- glass that cannot be broken (wall[324])
@@ -46,12 +46,10 @@ registry is populated by that import's side effect, so a bare
 - **note** `opening-clears-a-standing-body` -- a way through is at least one standing body tall -- 0.97 standing humans of clear opening between sectors 214 and 142 (wall 1376)
 - **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 4/64 on tile 908 (sprite[12])
 - **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 4/64 on tile 908 (sprite[13])
-- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 40/32 on tile 965 (sprite[285])
-- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 40/32 on tile 823 (sprite[286])
-- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 96/80 on tile 793 (sprite[288])
-- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 40/32 on tile 965 (sprite[291])
-- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 40/32 on tile 965 (sprite[294])
-- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 72/48 on tile 794 (sprite[323])
-- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 72/48 on tile 794 (sprite[324])
-- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 72/48 on tile 794 (sprite[334])
+- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 40/32 on tile 965 (sprite[326])
+- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 40/32 on tile 823 (sprite[327])
+- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 40/32 on tile 965 (sprite[331])
+- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 40/32 on tile 965 (sprite[333])
+- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 72/48 on tile 794 (sprite[356])
+- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 72/48 on tile 794 (sprite[357])
 - **warning** `wall-between-rooms-is-not-paper` -- the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 64 and 51 (wall 494)

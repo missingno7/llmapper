@@ -378,3 +378,67 @@ fixed.
 Suggested predicate (`projects/blood-city/level/apertures.py::seam` is the
 working version): no lintel, and the leaf is at least as tall as the
 facade on both sides -- that is a shared edge, not an opening.
+
+
+## #16 — nothing in the grammar knows a wall sprite is a rectangle
+
+`bloodmap.placement` has both halves of the measurement and never puts them
+together: `sprite_width(tile_width, x_repeat)` gives the drawn width in map
+units and `sprite_extent(tile_height, y_repeat, cstat, y_offset)` gives the
+reach above and below. What is missing is the surface they describe --
+nothing asks whether the rectangle a sprite draws is free before drawing it
+there.
+
+The consequence is measurable. `tools/mine_wall_sprites.py` projects every
+wall-aligned sprite onto its own supporting line and intersects:
+
+| | clashing pairs per 100 wall sprites | fully hidden |
+|---|---|---|
+| Gravesend, before | **18.86** | **26** |
+| E1M1 / E3M2 / DWE3M1 / DWE3M10 | 6.7 - 8.0 | 0 - 4 |
+| E2M1 / E6M1 / E4M9 / E3M1 | 0.0 - 3.3 | 0 - 1 |
+
+Every letter of St Gallow's sign sat behind a 2,048 x 32,768 hanging.
+
+`projects/blood-city/level/wallplane.py` is the working version: occupancy
+per plane, `find_slot` (slide along, then stack), `sprite`, `text` and
+`composition`. What would close it is that model in `bloodmap.placement`,
+with `place_on_wall` taking a `reserve=True` that refuses rather than
+covering. Three details it must not lose:
+
+* **Both axes, or stacking breaks.** Two things on one wall at different
+  heights are legal and common; only an intersection in *both* axes is a
+  collision.
+* **The plane is the supporting line, not the wall id.** A sign inset 0.12
+  body widths and a prop inset 0.10 are on the same surface; two regions
+  that compile into one sector share it too.
+* **The room clamps.** `resolve_anchor` pulls a wall sprite 256 units inside
+  the room and `planar_layout.compile` pulls a tall one inside its extents,
+  so a height that gets clamped is not the height that was reserved. Four
+  letters of a vertical word stacked at one z against the ceiling before
+  `find_slot` learned to reject a clamped candidate.
+
+## #17 — `lettering` writes one line, one size, one colour, one direction
+
+`write_on_wall` centres a word at a `t` and a height and writes left to
+right at a single `size` and `palette`. The campaign does more than that,
+and so does any real sign:
+
+* **Downward.** 132 letter columns across 11 maps -- BB6, DWE2M2, DWE3M4,
+  DWE3M1, E1M4, E4M4 and others -- at a median pitch of **1.247 drawn
+  heights** over 215 gaps (q1 1.198, q3 1.662). `PITCH` is the sideways
+  number and has no counterpart, so a vertical sign cannot be written.
+* **Per letter.** A drop capital is `size=(112, 72)`; a coloured initial is
+  `palette=("warning", "sign")`. Both are one parameter each, and neither is
+  reachable.
+* **As a block.** A caption belongs under its painting, which means the
+  writer has to know the extent of what it is writing before it writes it.
+
+`wallplane.text` and `wallplane.composition` are the working versions. The
+per-letter rule worth carrying over: a sequence **pads with its last value**
+(a drop capital is the common case) and cycling is opt-in, because cycling
+by default turned THE ALDERMACK into a 112/72/72/112/72/72 sawtooth.
+
+Also still open from #12: `PITCH` is a module constant, so the Death Wish
+convention cannot be expressed. Both requests want the same fix -- pitch as
+a parameter.
