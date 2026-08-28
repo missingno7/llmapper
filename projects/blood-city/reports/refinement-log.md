@@ -1202,3 +1202,47 @@ Ordered by measured gap rather than by taste:
    shade.
 5. **Duke conversion**: 26% of sector effectors handled, and the unhandled
    majority is lighting and destruction, not motion.
+
+## Iteration 22 — the tool-adoption audit, and a pitched roof
+
+Owner: the Blood grammar should be a general thing usable across projects —
+check whether we are really using the tools available.
+
+We were not. Of 31 authoring-relevant `bloodmap` modules the city used
+**13**, and four of the unused ones had been **reimplemented here**:
+
+* `doorswitch.py` against `bloodmap.switches` — and the reimplementation
+  omitted `trigger_push` and `trigger_on`, which 230 and 316 of the
+  campaign's 356 tile-1070 levers respectively set. **Our five door levers
+  could not be pushed.** It had also rediscovered the 0.79 mount height
+  from `switches-v1.json` that `pressed_switch` already returns.
+* `keysign.py` against `bloodmap.keys`, whose `sign_the_locks` finds every
+  keyed region *and its approach wall* automatically and reports what it
+  could not sign; this project hand-specified a literal wall segment.
+* `props.py`'s wet gating against `bloodmap.furniture.wet_only()` — the
+  hand-listed set missed tile 546.
+* `materials.py` against `bloodmap.surfaces`.
+
+Knowledge was worse: of the 20 files in `knowledge/blood/design/`, the city
+loaded **one**. `keys-v1` and `switches-v1` were read by hand and
+transcribed, when the modules that consume them already existed.
+
+`bloodmap.switches` and `bloodmap.furniture` are adopted; the levers now
+carry `trigger_push`, `trigger_on` and `kCmdToggle` and are pressable.
+
+**And a gap the audit surfaced:** `bloodmap.slope` was sitting unused while
+Gravesend had **0 sloped surfaces in 182 sectors against a campaign median
+of 21.7%**. The module's own guidance is that a sloped ceiling "costs
+nothing but headroom", which is exactly what a nave has spare — so St
+Gallow's has a pitched roof now, at the campaign's median rise of 1.29
+player heights. One sloped sector is not 21.7%, but it proves the path.
+
+The rule this suggests, written into the handoff: before writing a helper
+in `projects/blood-city/level/`, grep `bloodmap/` for the noun. Four of
+this project's modules would not exist under that rule.
+
+`reports/handoff.md` written: state, disciplines, recurring traps, and the
+eight next steps ordered by measured gap.
+
+Build: 182 sectors / 1,210 walls / 297 sprites. 11/11 conformance, 16/16
+contract rows.

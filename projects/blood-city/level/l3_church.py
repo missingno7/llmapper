@@ -24,6 +24,7 @@ from __future__ import annotations
 
 from bloodmap.doors import xsector_direct_use, z_motion_endpoints
 from bloodmap.levelprog import Frame, RECT_FACES, Style
+from bloodmap.slope import SlopeSpec
 
 import setpieces
 from materials import FACADES, INTERIORS, MASONRY
@@ -45,6 +46,9 @@ DOOR_D = PORCH_D = 256
 DOOR_H = 31744
 
 CHANCEL_RISE = 2048        # the chancel stands over the nave, one low step
+#: How much taller the nave gets across its span. 1.29 player heights is
+#: the campaign's median slope rise; 21,878 units.
+PITCH = 21878
 
 #: (name, x0, y0, x1, y1, material, clear height, note)
 #:
@@ -140,8 +144,17 @@ def build(city, street, ground, gates):
         # The chancel and its apse stand a step over the nave: the one
         # height difference in a church that means something.
         rise = CHANCEL_RISE if name in ("chancel", "apse") else 0
+        # A church has a pitched roof.  Gravesend had 0 sloped surfaces in
+        # 182 sectors against a campaign median of 21.7%, and
+        # `bloodmap.slope` was sitting unused the whole time -- a sloped
+        # ceiling "costs nothing but headroom", which is exactly what a
+        # nave has spare.  Campaign rise median is 1.29 player heights.
+        rk = None
+        if name == "nave":
+            rk = {"ceiling_slope": SlopeSpec(
+                hinge=((x0, y1), (x0, y0)), rise_z=-PITCH)}   # the west edge, in the outline's own winding
         make(name, x0, y0, x1, y1, key, clear - rise, note,
-             floor_z=GRADE - rise)
+             floor_z=GRADE - rise, rk=rk)
     for small, sf, big, bf in JOINS:
         parish.connect(rooms[small].face(sf), rooms[big].face(bf),
                        connection_id=f"connection:church_{small}_{big}")

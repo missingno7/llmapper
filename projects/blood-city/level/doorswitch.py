@@ -80,13 +80,22 @@ def lever_segment(face: str, x0: int, y0: int, x1: int, y1: int,
 
 def place(layout, placement_id: str, street_region_id: str, segment,
           channel: int) -> str:
-    """One lever, wired to a channel."""
+    """One lever, wired to a channel.
+
+    Delegates to `bloodmap.switches.pressed_switch`, which is the general
+    grammar for this and was sitting unused while this module reinvented
+    it -- worse.  The hand-rolled version omitted `trigger_push` and
+    `trigger_on`, which 230 and 316 of the campaign's 356 tile-1070 levers
+    respectively set: our levers could not be pushed.  It also had to
+    rediscover the 0.79 mount height from `switches-v1.json` that
+    `pressed_switch` already returns.
+    """
+    from bloodmap.switches import pressed_switch
+
+    spec = dict(pressed_switch(tile=LEVER_TILE, tx_id=int(channel)))
+    height = spec.pop("height_player_heights", LEVER_HEIGHT)
     a1, a2 = segment
     return layout.place_on_wall(
         placement_id, street_region_id, a1=a1, a2=a2, t=0.5,
-        height_player_heights=LEVER_HEIGHT,
-        offset_player_widths=0.06,
-        type=LEVER_TYPE, picnum=LEVER_TILE, cstat=LEVER_CSTAT,
-        shade=LEVER_SHADE, x_repeat=LEVER_REPEAT, y_repeat=LEVER_REPEAT,
-        status=0, behavior={"tx_id": int(channel), "command": LEVER_COMMAND,
-                            "state": 0})
+        height_player_heights=height, offset_player_widths=0.06,
+        status=0, **spec)
