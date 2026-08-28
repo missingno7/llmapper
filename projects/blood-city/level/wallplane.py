@@ -38,12 +38,22 @@ pixels -- and their rectangles intersect in *both* axes.  Stacking is
 legal, which is the whole point: a caption under a painting is two
 rectangles on one plane that do not overlap.
 
-**Vertical text is attested.**  132 letter columns across 11 maps (BB6,
-DWE2M2, DWE3M4, DWE3M1, E1M4, E4M4 among them) and 215 gaps between their
-letters, at a median centre-to-centre pitch of **1.247 drawn heights**
-against `lettering.PITCH`'s 1.45 across.  `VERTICAL_PITCH` is that
-measurement, and `knowledge/blood/design/wall-sprites-v1.json` is where it
-comes from.
+**Two different things put letters above each other**, and telling them
+apart is most of the measurement.  A word written DOWNWARD -- 11 of them in
+the corpus, ABALCO and CABALO and FINANCE and HOTEL and FRIES, all of them
+hanging shop signs in the Death Wish maps -- sets its letters nearly
+touching, at a median **1.095** drawn heights.  A sign of several LINES --
+117 of those -- leaves **1.455** between them.  Counting both together, as
+the first version of this did, reports 132 columns where there are 11 and a
+pitch that belongs to neither.  `VERTICAL_PITCH` and `LINE_PITCH` are the
+two numbers, and `knowledge/blood/design/wall-sprites-v1.json` is where they
+come from.
+
+**A text style is a parametric prefab**, the same shape as
+`fixtures.Family`: `TextStyle` pins the size, the palette and the shade and
+frees the words, carries its provenance, and steps down its own size ladder
+when the wall is short rather than failing. `STYLES` is the corpus's own
+table of them.
 
 **Per-letter palette and size.**  `text()` takes a scalar or a sequence for
 `palette`, `size` and `shade`.  A sequence **pads with its last value**, so
@@ -60,7 +70,7 @@ from dataclasses import dataclass, field
 from bloodmap.art import read_art_directory
 from bloodmap.lettering import (
     LETTER_CSTAT, LETTER_HEIGHT, LETTER_SHADE, LETTER_WIDTH, PALETTES, PITCH,
-    tile_for,
+    SIZES, tile_for,
 )
 from bloodmap.placement import (
     PLAYER_HEIGHT, PLAYER_WIDTH, inward_normal, sprite_extent,
@@ -76,18 +86,28 @@ XFLIP = 0x04
 #: hundreds away.  Matches `tools/mine_wall_sprites.py`.
 PLANE_TOLERANCE = 24.0
 
-#: Centre-to-centre spacing for letters stacked downward, as a multiple of a
-#: letter's drawn height.  `tools/mine_wall_sprites.py --corpus` finds 132
-#: columns across 11 maps and 215 gaps between their letters: median
-#: **1.247**, q1 1.198, q3 1.662, max 4.00.  Sideways is `lettering.PITCH`
-#: at 1.45, which had no counterpart, so writing downward was not
-#: expressible at all.
-VERTICAL_PITCH = 1.25
+#: Centre-to-centre spacing for letters written DOWNWARD, as a multiple of a
+#: letter's drawn height: median **1.095**, q1 1.004, q3 1.198, over 45 gaps
+#: in the corpus's 11 genuine columns (ABALCO, CABALO, FINANCE, HOTEL,
+#: FRIES).  Letters in a column nearly touch, which is why the first version
+#: of this number -- 1.25 -- was wrong: it was measured over letters that
+#: shared a point, and most of those are not columns at all but the second
+#: and third LINES of ordinary horizontal signs.  That population is
+#: `LINE_PITCH`, and it is a different number for a different thing.
+VERTICAL_PITCH = 1.095
 
 #: The share of a rectangle that may be covered before a placement is
 #: refused.  Not zero: a couple of units of touching edge is not the fault
 #: being fixed, and refusing it would make every dense composition fail.
 OVERLAP_FLOOR = 0.02
+
+#: What the campaign leaves between two stacked lines of one sign, as a
+#: multiple of a letter's drawn height: median **1.455**, q1 1.247, q3
+#: 1.662, over 163 gaps in 117 multi-line signs.  The gap BELOW a line is
+#: therefore about 0.455 of its own height -- which is what `LINE_GAP`
+#: approximates in player heights for a 64-repeat letter (2,816 z units).
+LINE_PITCH = 1.455
+LINE_GAP = round((LINE_PITCH - 1.0) * (64 * 4 * 11) / 16960, 3)
 
 #: How the search moves when the asked-for spot is taken.  Along the wall
 #: first -- a sign at eye level should stay at eye level -- then up and
@@ -506,7 +526,7 @@ def text_extent(words: str, size, *, vertical: bool = False) -> tuple[float, int
 
 
 def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
-         size=64, palette="default", shade=LETTER_SHADE,
+         style=None, size=64, palette="default", shade=LETTER_SHADE,
          t: float = 0.5, height_player_heights: float = 1.2,
          offset_player_widths: float = 0.12, vertical: bool = False,
          required: bool = False):
@@ -526,21 +546,50 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
     that will not fit anywhere returns None rather than being written over
     something.
     """
-    letters = [c for c in words if not c.isspace() or True]
     if not words.strip():
         raise WallPlaneError(f"{sign_id}: nothing to write")
-    wide, tall = text_extent(words, size, vertical=vertical)
-    _run, above, below = text_box(words, size, vertical=vertical)
-    slot = find_slot(layout, region_id, a1, a2, width=wide,
-                     above=above, below=below, t=t,
-                     height_player_heights=height_player_heights,
-                     offset_player_widths=offset_player_widths)
+    _u, span = _unit_and_offset(a1, a2)
+
+    # A style walks its OWN size ladder against the real wall, not against
+    # the wall's length alone.  Length is only one of the two constraints:
+    # a column is limited by the room's height and by what is already
+    # hanging there, and neither is visible to `TextStyle.fit`.  Trying the
+    # ladder here is what lets LOANS step from 136 down to a size the pawn
+    # shop's 1.45 player heights of clear wall will take.
+    if style is not None:
+        chosen = STYLE_TABLE(style)
+        attempts = [chosen.at(step) for step in chosen.steps()]
+    else:
+        attempts = [None]
+
+    slot = tried = None
+    for trial in attempts:
+        if trial is not None:
+            size, palette = trial.sizes(), trial.palettes()
+            shade, vertical = trial.shade, trial.vertical
+        wide, tall = text_extent(words, size, vertical=vertical)
+        if not vertical and wide > span:
+            continue
+        _run, above, below = text_box(words, size, vertical=vertical)
+        slot = find_slot(layout, region_id, a1, a2, width=wide,
+                         above=above, below=below, t=t,
+                         height_player_heights=height_player_heights,
+                         offset_player_widths=offset_player_widths)
+        tried = trial
+        if slot is not None:
+            break
     if slot is None:
         if required:
             raise WallPlaneError(
-                f"{sign_id}: no free {wide:.0f} x {tall} rectangle on this "
-                f"wall for {words!r}")
+                f"{sign_id}: no free rectangle on {span:.0f} units of wall "
+                f"for {words!r}"
+                + (f" at any step of the {chosen.name} style {chosen.steps()}"
+                   if style is not None else ""))
         return None
+    if tried is not None:
+        size, palette = tried.sizes(), tried.palettes()
+        shade, vertical = tried.shade, tried.vertical
+        wide, tall = text_extent(words, size, vertical=vertical)
     got_t, got_h = slot
 
     _unit, length = _unit_and_offset(a1, a2)
@@ -595,6 +644,170 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
 
 
 # ---------------------------------------------------------------------------
+# text styles: the same parametric prefab shape as a fixture family
+# ---------------------------------------------------------------------------
+
+@dataclass(frozen=True)
+class TextStyle:
+    """A look that is pinned, and words that are free.
+
+    Exactly `fixtures.Family`, one layer up: a family pins a fixture's rise,
+    tile and depth and varies its length; a style pins a word's size,
+    palette and shade and varies the word.  Both carry their provenance, and
+    both clamp rather than fail when what they are handed is out of range.
+
+    `ladder` is the one interpreted part.  A style's own size is measured;
+    the sizes it may step down through when a wall is short are
+    `lettering.SIZES` below it -- the campaign's own size ladder -- on the
+    reasoning that keeping a look and losing a size is better than losing
+    the sign.  Say `ladder=()` to refuse instead.
+    """
+    name: str
+    size: int
+    palette: object = "default"
+    shade: int = 0
+    vertical: bool = False
+    #: (size, palette) for the first letter: a drop capital, a coloured
+    #: initial, or both.  `None` writes the word uniformly.
+    initial: tuple | None = None
+    source: str = ""
+    ladder: tuple = ()
+
+    def steps(self) -> tuple:
+        """The sizes this style will accept, its own first.
+
+        `lettering.SIZES` is the campaign's ladder and does not contain
+        every size the campaign writes at -- `label` is 32 and `fascia` is
+        120, neither of which is in it -- so a style's own measured size
+        leads, and the ladder is what it may fall back to.
+        """
+        if self.ladder:
+            return tuple(sorted(set(self.ladder), reverse=True))
+        below = [size for size in SIZES if size < self.size]
+        return tuple(sorted({self.size, *below}, reverse=True))
+
+    def at(self, size: int) -> "TextStyle":
+        return TextStyle(self.name, int(size), self.palette, self.shade,
+                         self.vertical, self.initial, self.source, self.ladder)
+
+    def sizes(self):
+        """The per-letter size sequence, with the initial applied."""
+        if self.initial is None:
+            return self.size
+        head = self.initial[0]
+        # A multiplier under 8 scales the style's size; anything larger is a
+        # size.  255 is the largest repeat Build stores in a byte.
+        scaled = int(round(self.size * head)) if head < 8 else int(head)
+        return (max(1, min(255, scaled)), self.size)
+
+    def palettes(self):
+        if self.initial is None or len(self.initial) < 2:
+            return self.palette
+        return (self.initial[1], self.palette)
+
+    def cost(self, words: str) -> dict:
+        """Declared before anything is written, like a fixture run's."""
+        return {"style": self.name,
+                "sprites": sum(1 for c in words if tile_for(c) is not None),
+                "source": self.source}
+
+    def fit(self, words: str, span: float) -> "TextStyle | None":
+        """The largest step of this style that fits in `span` units of wall.
+
+        A vertical style is not limited by the wall's length, so it fits at
+        its own size or not at all -- the room's height decides, and
+        `find_slot` is what knows that.
+        """
+        if self.vertical:
+            return self
+        for size in self.steps():
+            trial = self.at(size)
+            wide, _tall = text_extent(words, trial.sizes(),
+                                      vertical=trial.vertical)
+            if wide <= span:
+                return trial
+        return None
+
+
+#: **The campaign's own text styles**, from `tools/mine_wall_sprites.py
+#: --corpus` over 393 words in the corpus.  Derived: every size, palette,
+#: shade and count.  Interpreted: the names, and the ladders.
+#:
+#: Grouping needed two fixes before these numbers meant anything.  Letters
+#: above each other are two different things -- a word written downward, and
+#: the second line of an ordinary sign -- and counting them together said
+#: there were 132 columns when there are 11.  And a long sign crosses
+#: whatever sector boundaries its wall crosses, so keying on the sector (as
+#: `lettering.read_sign` does) returns LIQUO, LOERS and WTID where DWE3M10
+#: has words.
+STYLES = {
+    "plain": TextStyle(
+        "plain", 64, "default", 0,
+        source="84 words, the corpus's commonest look: MEN, WOMEN"),
+    "notice": TextStyle(
+        "notice", 64, "default", -8,
+        source="12 words: LOADING, TRANSITION"),
+    "label": TextStyle(
+        "label", 32, "default", -8,
+        source="8 words, the small one: BOAT, HOTEL, CONTROL, GATE"),
+    "fascia": TextStyle(
+        "fascia", 120, "sign", 0,
+        source="10 words at 120/pal 4: WELCOME"),
+    "announce": TextStyle(
+        "announce", 120, 10, 0,
+        source="8 words at 120/pal 10: PLEASE PROCEED"),
+    "banner": TextStyle(
+        "banner", 184, "rust", -50,
+        source="32 words, Death Wish's big lettering"),
+    "department": TextStyle(
+        "department", 48, "cold", -128,
+        source="6 words at 48/pal 11 lit: MEDLAB, ARSENAL, OPERATIONS"),
+    "works": TextStyle(
+        "works", 80, "cold", -128,
+        source="7 words at 80/pal 11 lit: POWER PLANT"),
+    "breach": TextStyle(
+        "breach", 56, "cold", -70,
+        source="6 words at 56/pal 11: WALL BREACH, CONTROL ROOM"),
+    # The two vertical looks, from all 11 columns in the corpus.
+    "column": TextStyle(
+        "column", 255, 2, 0, vertical=True, ladder=(255, 184, 136),
+        source="ABALCO, CABALO, HOTEL -- hanging shop signs at repeat 255"),
+    "column_small": TextStyle(
+        "column_small", 136, "sign", -30, vertical=True, ladder=(136, 96, 64),
+        source="FRIES in DWE3M4 and DWE3M10, twice each"),
+}
+
+
+def STYLE_TABLE(name_or_style) -> TextStyle:
+    """A `TextStyle`, from one or from the name of one."""
+    if isinstance(name_or_style, TextStyle):
+        return name_or_style
+    if name_or_style not in STYLES:
+        raise WallPlaneError(
+            f"no text style named {name_or_style!r}; known: "
+            f"{', '.join(sorted(STYLES))}")
+    return STYLES[name_or_style]
+
+
+def style(name_or_style, **overrides) -> TextStyle:
+    """A named style, optionally varied.
+
+    ``style("banner", initial=(1.6, "warning"))`` is the banner look with a
+    drop capital half again as big in a different colour -- the parametric
+    part.  A style is frozen, so this returns a new one.
+    """
+    base = STYLE_TABLE(name_or_style)
+    if not overrides:
+        return base
+    fields = {"name": base.name, "size": base.size, "palette": base.palette,
+              "shade": base.shade, "vertical": base.vertical,
+              "initial": base.initial, "source": base.source,
+              "ladder": base.ladder}
+    fields.update(overrides)
+    return TextStyle(**fields)
+
+
+# ---------------------------------------------------------------------------
 # compositions
 # ---------------------------------------------------------------------------
 
@@ -615,8 +828,13 @@ class Block:
     x_repeat: int = 64
     y_repeat: int = 64
     cstat: int = 16
-    gap: float = 0.06          # player heights left under this block
+    gap: float = LINE_GAP      # player heights left under this block
     vertical: bool = False
+    #: A named `TextStyle`, carried through so `text` can walk its own size
+    #: ladder against the real wall.  Resolving it here instead -- which the
+    #: first version did -- throws the ladder away and a caption that needed
+    #: one step down is simply dropped.
+    style: object = None
 
 
 def painting(tile: int, *, x_repeat: int = 64, y_repeat: int = 64,
@@ -625,10 +843,16 @@ def painting(tile: int, *, x_repeat: int = 64, y_repeat: int = 64,
                  cstat=cstat, shade=shade, gap=gap)
 
 
-def caption(words: str, *, size=48, palette="default", shade=LETTER_SHADE,
-            gap: float = 0.06, vertical: bool = False) -> Block:
+def caption(words: str, *, style=None, size=48, palette="default",
+            shade=LETTER_SHADE, gap: float = LINE_GAP,
+            vertical: bool = False) -> Block:
+    """One line of a composition.  `style` supersedes the loose parameters."""
+    if style is not None:
+        chosen = STYLE_TABLE(style)
+        size, palette = chosen.sizes(), chosen.palettes()
+        shade, vertical = chosen.shade, chosen.vertical
     return Block("text", words=words, size=size, palette=palette,
-                 shade=shade, gap=gap, vertical=vertical)
+                 shade=shade, gap=gap, vertical=vertical, style=style)
 
 
 def composition(layout, group_id: str, region_id: str, a1, a2, *,
@@ -668,8 +892,8 @@ def composition(layout, group_id: str, region_id: str, a1, a2, *,
                                            vertical=block.vertical)
             centre = cursor - above / PLAYER_HEIGHT
             got = text(layout, f"{group_id}_{index}", region_id, a1, a2,
-                       words=block.words, size=block.size,
-                       palette=block.palette,
+                       words=block.words, style=block.style,
+                       size=block.size, palette=block.palette,
                        shade=block.shade if block.shade is not None
                        else LETTER_SHADE,
                        t=t, height_player_heights=centre,

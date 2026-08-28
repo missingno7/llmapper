@@ -1839,3 +1839,117 @@ quietly.
   height -- a pair of paintings flanking a door -- would need a row block.
 * `props.safe_wall_fraction` is kept for `runs.py`, which still spaces its
   elements in one dimension.
+
+
+## Iteration 27 — a text style is a parametric prefab
+
+Owner: "we can have more flexible texts with text style, etc. it is also
+basically sort of parametric prefab already."
+
+Right, and it makes the previous pass's loose keyword arguments look like
+what they were. `fixtures.Family` pins a fixture's rise, tile and depth and
+frees its length. `wallplane.TextStyle` is the same object one layer up: it
+pins size, palette and shade, frees the words, carries its provenance, and
+steps down its own size ladder when the wall is short rather than failing.
+
+### A correction, and two numbers instead of one
+
+Last iteration reported "132 letter columns across 11 maps" and a vertical
+pitch of 1.25. **Both were wrong**, and re-measuring is what found it. Two
+different things put letters above each other:
+
+* a word written **downward** -- **11** of them in the whole corpus, in six
+  maps: ABALCO, CABALO, FINANCE, HOTEL, FRIES, all hanging shop signs in the
+  Death Wish maps. Letters nearly touch: median **1.095** drawn heights
+  (q1 1.004, q3 1.198, n=45).
+* a sign of several **lines** -- **117** stacks, whose letters merely share
+  an x. Line spacing median **1.455** (q1 1.247, q3 1.662, n=163).
+
+Counting them together said 132 columns where there are 11, at a pitch
+belonging to neither population. `VERTICAL_PITCH` is now 1.095 and
+`LINE_PITCH` 1.455, and `LINE_GAP` -- the space a composition leaves under a
+line -- derives from the second rather than being a number I chose.
+
+The discriminator is in `tools/mine_wall_sprites.py::stacks`: whether each
+letter has a horizontal neighbour within two drawn widths at its own z.
+
+### And a third fix, to the grouping itself
+
+`lettering.read_sign` keys on the sector. A long sign painted along a wall
+crosses whatever sector boundaries that wall crosses, so DWE3M10 came back
+as `LIQUO`, `LOERS`, `WTID` -- which grammar request #12 recorded as a
+mystery. It is not a mystery: keying on the **plane and the height**, then
+splitting runs where the gap exceeds two letter widths, returns MEN, WOMEN,
+LOADING, WELCOME, PLEASE PROCEED, POWER PLANT, CARGO BAY, MEDLAB, ARSENAL,
+OPERATIONS, WALL BREACH, CONTROL ROOM. 393 words, of which 382 across and 11
+down.
+
+### The styles
+
+Only with the grouping fixed does a joint distribution mean anything.
+Derived: every size, palette, shade and count. Interpreted: the names, and
+the ladders.
+
+| style | size / palette / shade | words | the campaign's own |
+|---|---|---|---|
+| `plain` | 64 / 0 / 0 | 84 | MEN, WOMEN |
+| `banner` | 184 / 12 / -50 | 32 | Death Wish's big lettering |
+| `notice` | 64 / 0 / -8 | 12 | LOADING |
+| `fascia` | 120 / 4 / 0 | 10 | WELCOME |
+| `announce` | 120 / 10 / 0 | 8 | PLEASE PROCEED |
+| `label` | 32 / 0 / -8 | 8 | BOAT, HOTEL, CONTROL, GATE |
+| `works` | 80 / 11 / -128 | 7 | POWER PLANT |
+| `department` | 48 / 11 / -128 | 6 | MEDLAB, ARSENAL, OPERATIONS |
+| `breach` | 56 / 11 / -70 | 6 | WALL BREACH, CONTROL ROOM |
+| `column` | 255 / 2 / 0, down | 3 | ABALCO, CABALO, HOTEL |
+| `column_small` | 136 / 4 / -30, down | 4 | FRIES |
+
+`signage.SIGNS`'s fifth column was a bare palette and its size was whatever
+`fit_size` could get on the wall -- half authored, half accident. It names a
+style now, and `fit_size` is deleted. The pump house wears the look DWE puts
+on POWER PLANT; the arcade's service door wears MEDLAB's; the sewer wears
+WALL BREACH's.
+
+### The ladder has to be tried against the wall, not its length
+
+`TextStyle.fit` knows the wall's length. It does not know the room's height,
+or what is already hanging there -- so a style that fits by length can still
+fail. `text()` therefore walks the style's own steps and takes the first
+that both fits and finds a free rectangle. That is what lets LOANS step from
+136 down to 64 for the pawn shop's 1.45 player heights of clear wall, and
+ST GALLOWS from 120 down to 72 for the nave.
+
+Two things this exposed, both silent before:
+
+* **A `Block` must carry its style, not resolve it.** Resolving in
+  `caption()` threw the ladder away, and three captions that needed one step
+  down were simply dropped.
+* **`lettering.SIZES` is not every size the campaign writes at.** `label` is
+  32 and `fascia` is 120, neither of which is in it, so a style's own
+  measured size leads its ladder and `SIZES` is only the fallback.
+
+### The result
+
+Every sign and caption in Gravesend now wears an attested combination:
+
+```
+nave      847 hanging   +  ST GALLOWS   fascia stepped to 72
+foyer     793           +  THE ALDERMACK fascia with a 1.4x initial in warning
+                        +  BOX OFFICE   label
+pawn      PAWN fascia   +  LOANS        column_small, downward, stepped to 64
+unit_c    GOODS plain   +  IRONMONGER banner  +  BOUGHT AND SOLD label
+cellar    PUMP HOUSE    works (80 / pal 11 / shade -128)
+```
+
+**215 sectors / 1,378 walls / 366 sprites**, 202 of them wall sprites, still
+**0 clashing pairs and 0 fully hidden**. 11/11 conformance, 16/16 contract
+rows, 3/3 tree properties, byte-identical rebuild.
+
+### Not done
+
+* A style pins one look; it cannot yet say "this word in this palette, the
+  next in that" beyond the initial. `Cycle` reaches the letters, a style
+  does not.
+* The ladder is interpreted, not measured: no evidence says the campaign
+  writes the same look at several sizes to fit a wall.
+* Still project-local; grammar requests #16 and #17 carry it.

@@ -187,52 +187,226 @@ CORPUS = ("E1M1", "E2M1", "E3M1", "E3M2", "E4M9", "E6M1", "DWE3M1", "DWE3M10")
 FIRST_LETTER, LAST_LETTER = 3808, 3833
 
 
-def vertical_text(paths) -> dict:
-    """How the campaign stacks letters downward, where it does.
+def _along(sprite, unit):
+    return sprite.x * unit[0] + sprite.y * unit[1]
 
-    Text does not have to run across a wall.  Grouping every letter sprite
-    by the point it hangs at -- same x, same y, same angle -- finds the
-    columns, and the gaps between them give the pitch as a multiple of a
-    letter's own drawn height.  `lettering.PITCH` is the sideways number
-    (1.45) and had no counterpart, so writing downward was not expressible.
+
+def _unit(angle):
+    radians = (int(angle) - 512) * math.pi / 1024.0
+    return (math.cos(radians), math.sin(radians))
+
+
+def stacks(m):
+    """Letters sharing one point on a wall, split by what they actually are.
+
+    Two different things put letters above each other and they were counted
+    as one: a word written DOWNWARD, and a sign of several LINES whose
+    letters happen to share an x.  The first version of this measured 132
+    "columns" of which only 11 were columns; the rest were the second and
+    third lines of ordinary horizontal signs.
+
+    The discriminator is whether each letter has a horizontal neighbour
+    within two drawn widths at its own z.  If every letter does, the stack
+    is a set of lines; if none does, it is a column.
     """
+    letters = [sp for sp in m.sprites
+               if FIRST_LETTER <= sp.picnum <= LAST_LETTER]
+    points = collections.defaultdict(list)
+    for sprite in letters:
+        points[(sprite.x, sprite.y, sprite.angle)].append(sprite)
+    columns, lines = [], []
+    for (x, y, angle), group in points.items():
+        if len(group) < 2:
+            continue
+        group.sort(key=lambda sp: sp.z)
+        unit = _unit(angle)
+        here = x * unit[0] + y * unit[1]
+        neighbourly = 0
+        for sprite in group:
+            reach = 2.0 * sprite.x_repeat * 8 / 4.0
+            if any(other.angle == angle and other.z == sprite.z
+                   and 0 < abs(_along(other, unit) - here) <= reach
+                   for other in letters):
+                neighbourly += 1
+        if neighbourly == len(group):
+            lines.append(group)
+        elif neighbourly == 0:
+            columns.append(group)
+    return columns, lines
+
+
+def _pitches(groups):
+    out = []
+    for group in groups:
+        drawn = (int(group[0].y_repeat) << 2) * 11
+        if not drawn:
+            continue
+        heights = sorted(sprite.z for sprite in group)
+        out += [(b - a) / drawn for a, b in zip(heights, heights[1:]) if b > a]
+    return sorted(out)
+
+
+def _spread(values) -> dict:
+    if not values:
+        return {"n": 0}
     import statistics
-    columns = collections.Counter()
-    pitches = []
-    sizes = collections.Counter()
+    return {"n": len(values),
+            "median": round(statistics.median(values), 3),
+            "q1": round(values[len(values) // 4], 3),
+            "q3": round(values[3 * len(values) // 4], 3),
+            "min": round(values[0], 3), "max": round(values[-1], 3)}
+
+
+def text_geometry(paths) -> dict:
+    """How far apart letters go downward, for the two reasons they do.
+
+    Both numbers are spacing as a multiple of a letter's own drawn height,
+    and `lettering.PITCH` (1.45) is the sideways one that had no counterpart.
+    """
+    column_maps, line_maps = collections.Counter(), collections.Counter()
+    column_pitch, line_pitch = [], []
+    examples = []
     for path in paths:
         try:
             m = read_map(path)
         except Exception:
             continue
-        stacks = collections.defaultdict(list)
-        for sprite in m.sprites:
-            if FIRST_LETTER <= sprite.picnum <= LAST_LETTER:
-                stacks[(sprite.x, sprite.y, sprite.angle)].append(sprite)
-        for group in stacks.values():
-            if len(group) < 2:
-                continue
-            columns[pathlib.Path(path).stem] += 1
-            drawn = (int(group[0].y_repeat) << 2) * 11
-            sizes[int(group[0].y_repeat)] += 1
-            heights = sorted(sprite.z for sprite in group)
-            for lower, upper in zip(heights, heights[1:]):
-                if upper > lower and drawn:
-                    pitches.append((upper - lower) / drawn)
-    pitches.sort()
-    if not pitches:
-        return {"columns": 0}
+        columns, lines = stacks(m)
+        if columns:
+            column_maps[pathlib.Path(path).stem] += len(columns)
+            from bloodmap.lettering import letter_from
+            for group in columns:
+                word = "".join(letter_from(sp.picnum) or "" for sp in group)
+                if len(word) > 2:
+                    examples.append(f"{pathlib.Path(path).stem}:{word}")
+        if lines:
+            line_maps[pathlib.Path(path).stem] += len(lines)
+        column_pitch += _pitches(columns)
+        line_pitch += _pitches(lines)
     return {
-        "maps_with_columns": dict(columns),
-        "columns": sum(columns.values()),
-        "gaps": len(pitches),
-        "pitch_drawn_heights": {
-            "median": round(statistics.median(pitches), 3),
-            "q1": round(pitches[len(pitches) // 4], 3),
-            "q3": round(pitches[3 * len(pitches) // 4], 3),
-            "min": round(pitches[0], 3), "max": round(pitches[-1], 3),
+        "columns": {"count": sum(column_maps.values()),
+                    "maps": dict(column_maps),
+                    "examples": examples[:8],
+                    "letter_pitch_drawn_heights": _spread(sorted(column_pitch))},
+        "lines": {"stacks": sum(line_maps.values()),
+                  "maps": dict(line_maps),
+                  "line_pitch_drawn_heights": _spread(sorted(line_pitch))},
+    }
+
+
+FIRST_LETTER, LAST_LETTER = 3808, 3833
+
+
+def _words(m):
+    """Every word written in letters, and how it is drawn.
+
+    A column is one word.  Everything else groups by (sector, z, angle),
+    which is `read_sign`'s rule and is right once the columns are taken
+    out: a sign of several lines is several words at several heights, not
+    one garbled one.
+    """
+    from bloodmap.lettering import letter_from
+    columns, _lines = stacks(m)
+    claimed = {id(sprite) for group in columns for sprite in group}
+    rows = collections.defaultdict(list)
+    for sprite in m.sprites:
+        if not (FIRST_LETTER <= sprite.picnum <= LAST_LETTER):
+            continue
+        if id(sprite) in claimed:
+            continue
+        # NOT keyed on the sector.  A long sign painted along a wall crosses
+        # whatever sector boundaries the wall crosses, and `read_sign` keys
+        # on the sector -- which is why it returns LIQUO, LOERS and WTID for
+        # DWE3M10 instead of the words that are actually written there
+        # (grammar request #12).  The plane and the height are what a line
+        # of text shares.
+        unit = _unit(sprite.angle)
+        offset = -sprite.x * unit[1] + sprite.y * unit[0]
+        rows[(round(unit[0], 3), round(unit[1], 3), round(offset / 24.0),
+              sprite.z)].append(sprite)
+
+    groups = [("down", group) for group in columns]
+    for key, group in rows.items():
+        unit = (key[0], key[1])
+        group.sort(key=lambda sprite: _along(sprite, unit))
+        # Two words on one line are two words: split where the gap between
+        # neighbours exceeds a couple of letter widths.
+        run = [group[0]]
+        for previous, sprite in zip(group, group[1:]):
+            reach = 2.2 * previous.x_repeat * 8 / 4.0
+            if _along(sprite, unit) - _along(previous, unit) > reach:
+                groups.append(("across", run))
+                run = []
+            run.append(sprite)
+        if run:
+            groups.append(("across", run))
+
+    out = []
+    for direction, group in groups:
+        out.append({
+            "word": "".join(letter_from(sp.picnum) or "" for sp in group),
+            "direction": direction,
+            "letters": len(group),
+            "sizes": sorted({int(sp.y_repeat) for sp in group}),
+            "palettes": sorted({int(sp.pal) for sp in group}),
+            "shades": sorted({int(sp.shade) for sp in group}),
+            "square": all(sp.x_repeat == sp.y_repeat for sp in group),
+        })
+    return out
+
+
+def text_styles(paths) -> dict:
+    """The (size, palette, shade) combinations the campaign actually writes.
+
+    A text style is a parametric prefab exactly as a fixture family is: the
+    look is pinned and the words are free.  So the question is which looks
+    recur, and the answer is a joint distribution rather than the marginal
+    palette table `lettering.PALETTES` already carries.
+    """
+    combos = collections.Counter()
+    examples = collections.defaultdict(list)
+    directions = collections.Counter()
+    mixed_size = mixed_palette = 0
+    lengths = []
+    total = 0
+    for path in paths:
+        try:
+            m = read_map(path)
+        except Exception:
+            continue
+        for row in _words(m):
+            if not row["word"]:
+                continue
+            total += 1
+            directions[row["direction"]] += 1
+            lengths.append(row["letters"])
+            if len(row["sizes"]) > 1:
+                mixed_size += 1
+            if len(row["palettes"]) > 1:
+                mixed_palette += 1
+            key = (row["sizes"][0], row["palettes"][0], row["shades"][0],
+                   row["direction"])
+            combos[key] += 1
+            if len(examples[key]) < 4 and len(row["word"]) > 2:
+                examples[key].append(row["word"])
+    lengths.sort()
+    return {
+        "words": total,
+        "directions": dict(directions),
+        "words_with_more_than_one_size": mixed_size,
+        "words_with_more_than_one_palette": mixed_palette,
+        "letters_per_word": {
+            "median": lengths[len(lengths) // 2] if lengths else 0,
+            "q1": lengths[len(lengths) // 4] if lengths else 0,
+            "q3": lengths[3 * len(lengths) // 4] if lengths else 0,
+            "max": lengths[-1] if lengths else 0,
         },
-        "sizes": sizes.most_common(8),
+        "styles": [
+            {"size": size, "palette": palette, "shade": shade,
+             "direction": direction, "words": count,
+             "examples": examples[(size, palette, shade, direction)]}
+            for (size, palette, shade, direction), count in combos.most_common(24)
+        ],
     }
 
 
@@ -250,8 +424,10 @@ def main(argv=None) -> int:
     if args.corpus:
         targets += [f"maps/blood/{name}.MAP" for name in CORPUS]
     rows = [survey(path, art) for path in targets]
-    columns = (vertical_text(sorted(pathlib.Path("maps/blood").glob("*.MAP")))
-               if args.corpus else {})
+    geometry = (text_geometry(sorted(pathlib.Path("maps/blood").glob("*.MAP")))
+                if args.corpus else {})
+    styles = (text_styles(sorted(pathlib.Path("maps/blood").glob("*.MAP")))
+              if args.corpus else {})
     for row in rows:
         print(f"{row['map']:12s} wall sprites {row['wall_sprites']:4d}  "
               f"clashing pairs {row['clashing_pairs']:4d}  "
@@ -266,7 +442,8 @@ def main(argv=None) -> int:
                                  "two collide when their spans intersect in "
                                  "BOTH axes -- so stacking is legal."),
                         "maps": rows,
-                        "vertical_text": columns}, indent=1),
+                        "text_geometry": geometry,
+                        "text_styles": styles}, indent=1),
             encoding="utf-8")
         print(f"wrote {args.output}")
     return 0

@@ -7,11 +7,12 @@
   "light_pools": 9,
   "market_furniture": 7,
   "venue_details": {
-    "wall_details": 13,
+    "wall_details": 12,
     "light_sources": 2,
     "compositions": 4,
     "composed_sprites": 55,
     "skipped": [
+      "theatre:saloon_main:no_room",
       "mall:unit_c:no_room",
       "church:nave:no_room",
       "church:nave:no_room",
@@ -93,8 +94,8 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 367,
-    "wall_sprites": 203,
+    "sprites": 366,
+    "wall_sprites": 202,
     "planes": 34,
     "clashing_pairs": 0,
     "sprites_involved": 0,

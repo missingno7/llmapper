@@ -442,3 +442,31 @@ by default turned THE ALDERMACK into a 112/72/72/112/72/72 sawtooth.
 Also still open from #12: `PITCH` is a module constant, so the Death Wish
 convention cannot be expressed. Both requests want the same fix -- pitch as
 a parameter.
+
+
+## #17a — `read_sign` keys on the sector, and that is the whole garble
+
+Recorded against #12 as "letters are being dropped or split across groups,
+most likely because signs of more than one line share an angle and are
+grouped by exact z." Half right, and the other half is simpler: a sign
+painted along a wall crosses whatever sector boundaries the wall crosses,
+and `read_sign` groups by `(sector, z, angle)`.
+
+Group by the **supporting plane** and the height instead -- and split runs
+where the gap between neighbours exceeds about two letter widths -- and
+DWE3M10's `LIQUO`, `LOERS`, `WTID` become words. Across the corpus it turns
+483 fragments into 393 words: MEN, WOMEN, LOADING, WELCOME, PLEASE PROCEED,
+POWER PLANT, CARGO BAY, MEDLAB, ARSENAL, OPERATIONS, WALL BREACH, CONTROL
+ROOM.
+
+A second rule the same function needs: letters above each other are two
+different things. `tools/mine_wall_sprites.py::stacks` separates a word
+written downward (11 in the corpus) from the second line of an ordinary sign
+(117) by asking whether each letter has a horizontal neighbour within two
+drawn widths at its own z. Without it, `read_sign` returns a column's
+letters as separate one-letter words and the mined pitch belongs to neither
+population.
+
+This matters beyond tidiness: the module's own acceptance test is that it
+should say STORAGE and not EGAROTS, and it currently passes that test while
+returning fragments for every multi-sector sign in the corpus.

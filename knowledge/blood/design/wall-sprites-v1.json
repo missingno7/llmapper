@@ -5,8 +5,8 @@
  "maps": [
   {
    "map": "city-skeleton",
-   "sprites": 367,
-   "wall_sprites": 203,
+   "sprites": 366,
+   "wall_sprites": 202,
    "planes": 34,
    "clashing_pairs": 0,
    "sprites_involved": 0,
@@ -824,62 +824,354 @@
    ]
   }
  ],
- "vertical_text": {
-  "maps_with_columns": {
-   "BB6": 32,
-   "DWE1M7": 2,
-   "DWE2M2": 46,
-   "DWE2M3": 4,
-   "DWE3M1": 16,
-   "DWE3M10": 6,
-   "DWE3M4": 18,
-   "DWE3M9": 1,
-   "E1M4": 2,
-   "E4M4": 4,
-   "TEDE1M4": 1
+ "text_geometry": {
+  "columns": {
+   "count": 11,
+   "maps": {
+    "DWE1M7": 2,
+    "DWE2M2": 1,
+    "DWE3M10": 3,
+    "DWE3M4": 3,
+    "DWE3M9": 1,
+    "TEDE1M4": 1
+   },
+   "examples": [
+    "DWE1M7:FINANCE",
+    "DWE1M7:HOTEL",
+    "DWE2M2:ABALCO",
+    "DWE3M10:HOTEL",
+    "DWE3M10:FRIES",
+    "DWE3M10:FRIES",
+    "DWE3M4:HOTEL",
+    "DWE3M4:FRIES"
+   ],
+   "letter_pitch_drawn_heights": {
+    "n": 45,
+    "median": 1.095,
+    "q1": 1.004,
+    "q3": 1.198,
+    "min": 0.913,
+    "max": 3.377
+   }
   },
-  "columns": 132,
-  "gaps": 215,
-  "pitch_drawn_heights": {
-   "median": 1.247,
-   "q1": 1.198,
-   "q3": 1.662,
-   "min": 0.913,
-   "max": 4.0
+  "lines": {
+   "stacks": 117,
+   "maps": {
+    "BB6": 32,
+    "DWE2M2": 45,
+    "DWE2M3": 4,
+    "DWE3M1": 16,
+    "DWE3M10": 3,
+    "DWE3M4": 15,
+    "E1M4": 2
+   },
+   "line_pitch_drawn_heights": {
+    "n": 163,
+    "median": 1.455,
+    "q1": 1.247,
+    "q3": 1.662,
+    "min": 1.164,
+    "max": 3.325
+   }
+  }
+ },
+ "text_styles": {
+  "words": 393,
+  "directions": {
+   "across": 382,
+   "down": 11
   },
-  "sizes": [
-   [
-    56,
-    57
-   ],
-   [
-    80,
-    25
-   ],
-   [
-    48,
-    18
-   ],
-   [
-    255,
-    6
-   ],
-   [
-    144,
-    6
-   ],
-   [
-    24,
-    4
-   ],
-   [
-    64,
-    4
-   ],
-   [
-    32,
-    4
-   ]
+  "words_with_more_than_one_size": 6,
+  "words_with_more_than_one_palette": 5,
+  "letters_per_word": {
+   "median": 2,
+   "q1": 1,
+   "q3": 5,
+   "max": 17
+  },
+  "styles": [
+   {
+    "size": 64,
+    "palette": 0,
+    "shade": 0,
+    "direction": "across",
+    "words": 84,
+    "examples": [
+     "MEN",
+     "WOMEN"
+    ]
+   },
+   {
+    "size": 184,
+    "palette": 12,
+    "shade": -50,
+    "direction": "across",
+    "words": 32,
+    "examples": []
+   },
+   {
+    "size": 48,
+    "palette": 0,
+    "shade": 0,
+    "direction": "across",
+    "words": 15,
+    "examples": [
+     "UKE"
+    ]
+   },
+   {
+    "size": 64,
+    "palette": 0,
+    "shade": -8,
+    "direction": "across",
+    "words": 12,
+    "examples": [
+     "LOADING",
+     "RANSM",
+     "ITION"
+    ]
+   },
+   {
+    "size": 120,
+    "palette": 4,
+    "shade": 0,
+    "direction": "across",
+    "words": 10,
+    "examples": [
+     "WELCOME",
+     "EMONSTROMO",
+     "WELCOME",
+     "EMONSTROMO"
+    ]
+   },
+   {
+    "size": 120,
+    "palette": 10,
+    "shade": 0,
+    "direction": "across",
+    "words": 8,
+    "examples": [
+     "PLEASEPROCEED",
+     "OOPERATONS",
+     "PLEASEPROCEED",
+     "OOPERATONS"
+    ]
+   },
+   {
+    "size": 32,
+    "palette": 0,
+    "shade": -8,
+    "direction": "across",
+    "words": 8,
+    "examples": [
+     "BOAT",
+     "HOTEL",
+     "CONTROL",
+     "GATE"
+    ]
+   },
+   {
+    "size": 80,
+    "palette": 11,
+    "shade": -128,
+    "direction": "across",
+    "words": 7,
+    "examples": [
+     "POWER",
+     "PLANT",
+     "POWER",
+     "PLANT"
+    ]
+   },
+   {
+    "size": 24,
+    "palette": 4,
+    "shade": 0,
+    "direction": "across",
+    "words": 7,
+    "examples": [
+     "CARGO",
+     "BAY",
+     "SHIP",
+     "BAY"
+    ]
+   },
+   {
+    "size": 48,
+    "palette": 11,
+    "shade": -128,
+    "direction": "across",
+    "words": 6,
+    "examples": [
+     "MEDLAB",
+     "ARSENAL",
+     "OPERATIONS",
+     "OPERATIONS"
+    ]
+   },
+   {
+    "size": 48,
+    "palette": 12,
+    "shade": -128,
+    "direction": "across",
+    "words": 6,
+    "examples": [
+     "OPERATIONS",
+     "OPERATIONS",
+     "MEDLAB",
+     "MEDLAB"
+    ]
+   },
+   {
+    "size": 56,
+    "palette": 11,
+    "shade": -70,
+    "direction": "across",
+    "words": 6,
+    "examples": [
+     "WALL",
+     "BREACH",
+     "CONTROL",
+     "ROOM"
+    ]
+   },
+   {
+    "size": 56,
+    "palette": 11,
+    "shade": -50,
+    "direction": "across",
+    "words": 6,
+    "examples": [
+     "SKEE",
+     "SKEE",
+     "SKEE",
+     "FREE"
+    ]
+   },
+   {
+    "size": 96,
+    "palette": 4,
+    "shade": -8,
+    "direction": "across",
+    "words": 6,
+    "examples": [
+     "WHOA",
+     "THIS",
+     "LIAKE",
+     "OTAYLLDEHEPOLE"
+    ]
+   },
+   {
+    "size": 64,
+    "palette": 4,
+    "shade": -9,
+    "direction": "across",
+    "words": 5,
+    "examples": []
+   },
+   {
+    "size": 32,
+    "palette": 11,
+    "shade": -128,
+    "direction": "across",
+    "words": 4,
+    "examples": [
+     "GUNS",
+     "ROCKET",
+     "GUNS",
+     "ROCKET"
+    ]
+   },
+   {
+    "size": 128,
+    "palette": 12,
+    "shade": -128,
+    "direction": "across",
+    "words": 4,
+    "examples": [
+     "RED",
+     "RED",
+     "RED",
+     "RED"
+    ]
+   },
+   {
+    "size": 128,
+    "palette": 11,
+    "shade": -128,
+    "direction": "across",
+    "words": 4,
+    "examples": [
+     "BLUE",
+     "BLUE",
+     "BLUE",
+     "BLUE"
+    ]
+   },
+   {
+    "size": 144,
+    "palette": 14,
+    "shade": -10,
+    "direction": "across",
+    "words": 4,
+    "examples": [
+     "BURGERS",
+     "EVERYTHING",
+     "BURGERS",
+     "EVERYTHING"
+    ]
+   },
+   {
+    "size": 56,
+    "palette": 9,
+    "shade": -70,
+    "direction": "across",
+    "words": 4,
+    "examples": [
+     "LAUNCH",
+     "BAY",
+     "LAUNCH",
+     "BAY"
+    ]
+   },
+   {
+    "size": 64,
+    "palette": 4,
+    "shade": -8,
+    "direction": "across",
+    "words": 4,
+    "examples": []
+   },
+   {
+    "size": 88,
+    "palette": 0,
+    "shade": -8,
+    "direction": "across",
+    "words": 4,
+    "examples": [
+     "ORA"
+    ]
+   },
+   {
+    "size": 80,
+    "palette": 12,
+    "shade": -128,
+    "direction": "across",
+    "words": 3,
+    "examples": [
+     "LOCKS",
+     "PLANT",
+     "POWER"
+    ]
+   },
+   {
+    "size": 255,
+    "palette": 4,
+    "shade": -30,
+    "direction": "across",
+    "words": 3,
+    "examples": []
+   }
   ]
  }
 }

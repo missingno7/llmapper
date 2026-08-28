@@ -152,10 +152,21 @@ hidden**, against a campaign 0.0-8.0 and 0-4. It is now **0 and 0** with more
 on the walls than before (203 against 175). The audit runs inside the build.
 
 Use `wallplane.sprite` and `wallplane.text` rather than `place_on_wall` or
-`lettering.write_on_wall` directly. `text` takes a scalar or a sequence for
-`size`, `palette` and `shade` -- a sequence pads with its last value, so
-`size=(112, 72)` is a drop capital -- and `vertical=True` writes downward at
-the campaign's own 1.247 pitch. `wallplane.composition` stacks blocks:
+`lettering.write_on_wall` directly.
+
+**Name a style rather than a size and a palette.** `wallplane.TextStyle` is
+`fixtures.Family` one layer up: it pins size, palette and shade, frees the
+words, and steps down its own ladder when the wall is short.
+`wallplane.STYLES` is the corpus's table of them -- `works` is what DWE puts
+on POWER PLANT, `department` is MEDLAB, `breach` is WALL BREACH -- and
+`wallplane.style("fascia", initial=(1.4, "warning"))` varies one. For raw
+control, `text` still takes `size`, `palette` and `shade` as a scalar or a
+sequence; a sequence pads with its last value, so `size=(112, 72)` is a drop
+capital, and `cycle()` opts into repetition.
+
+`vertical=True` writes downward at the corpus's own **1.095** letter pitch
+(11 columns: ABALCO, HOTEL, FRIES); stacked LINES sit **1.455** apart, which
+is what `LINE_GAP` comes from. `wallplane.composition` stacks blocks;
 `venue_detail.COMPOSITIONS` is the table of the four Gravesend has.
 
 ## Composing, not placing

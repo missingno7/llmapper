@@ -16,6 +16,7 @@ from __future__ import annotations
 from typing import Any
 
 import props
+import wallplane
 
 
 # (context, room key, preferred face, fraction along face, tile)
@@ -68,7 +69,7 @@ COMPOSITIONS = (
     # tapestry and 0.17 of lettering leave room to breathe.
     ("church", "nave", "south", 0.50, 3.10, "nave_hanging", (
         ("painting", 847, {"gap": 0.12}),
-        ("caption", "ST GALLOWS", {"size": 64, "palette": "faded"}),
+        ("caption", "ST GALLOWS", {"style": "fascia"}),
     )),
     # A drop capital and a coloured initial: a sequence pads with its last
     # value, so `(112, 72)` is one big letter and the rest small, and
@@ -78,21 +79,21 @@ COMPOSITIONS = (
     ("theatre", "aldermack_foyer", "north", 0.32, 2.20, "aldermack_board", (
         ("painting", 793, {}),
         ("caption", "THE ALDERMACK",
-         {"size": (112, 72), "palette": ("warning", "sign")}),
-        ("caption", "BOX OFFICE", {"size": 48, "palette": "dim"}),
+         {"style": wallplane.style("fascia", initial=(1.4, "warning"))}),
+        ("caption", "BOX OFFICE", {"style": "label"}),
     )),
     # Vertical: the campaign stacks letters downward in 11 of its maps, at a
     # median pitch of 1.25 drawn heights. Four letters at 80 is 0.99 player
     # heights, which is what the pawn shop's 1.45 of clear wall will take.
     ("theatre", "pawn_shop", "east", 0.50, 1.38, "pawn_column", (
-        ("caption", "LOANS", {"size": 80, "palette": "rust", "vertical": True}),
+        ("caption", "LOANS", {"style": "column_small"}),
     )),
     # Two lines at two heights and two sizes, no painting: the plain case the
     # old one-dimensional spacing could not express at all, because it read
     # any two words on one wall as a conflict.
     ("mall", "unit_c", "north", 0.30, 1.55, "unit_c_board", (
-        ("caption", "GOODS", {"size": 64, "palette": "sign"}),
-        ("caption", "BOUGHT AND SOLD", {"size": 40, "palette": "dim"}),
+        ("caption", "GOODS", {"style": "plain"}),
+        ("caption", "BOUGHT AND SOLD", {"style": "label"}),
     )),
 )
 
