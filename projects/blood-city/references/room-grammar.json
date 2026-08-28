@@ -1,0 +1,2995 @@
+{
+  "$schema": "llmapper.room-grammar",
+  "schema_version": 1,
+  "per_map": [
+    {
+      "map": "E6M1",
+      "totals": {
+        "sectors": 123,
+        "walls": 875,
+        "sprites": 499
+      },
+      "walkable_spaces": [
+        {
+          "sectors": 3,
+          "area": 911998976,
+          "sample": [
+            14,
+            21,
+            25
+          ]
+        },
+        {
+          "sectors": 30,
+          "area": 576569664,
+          "sample": [
+            0,
+            1,
+            5,
+            7,
+            8,
+            9,
+            10,
+            16
+          ]
+        },
+        {
+          "sectors": 14,
+          "area": 226689024,
+          "sample": [
+            6,
+            28,
+            29,
+            89,
+            90,
+            91,
+            98,
+            99
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 176160768,
+          "sample": [
+            37
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 86507520,
+          "sample": [
+            23
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 83886080,
+          "sample": [
+            24
+          ]
+        },
+        {
+          "sectors": 9,
+          "area": 82247680,
+          "sample": [
+            11,
+            46,
+            47,
+            73,
+            78,
+            79,
+            113,
+            114
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 75497472,
+          "sample": [
+            18
+          ]
+        }
+      ],
+      "repeated_chamber_classes": [
+        {
+          "count": 10,
+          "sample_sectors": [
+            33,
+            34,
+            58,
+            78,
+            81,
+            82,
+            83,
+            85
+          ],
+          "area": 262144,
+          "aspect": 1.0
+        },
+        {
+          "count": 7,
+          "sample_sectors": [
+            89,
+            90,
+            110,
+            112,
+            114,
+            115,
+            121
+          ],
+          "area": 131072,
+          "aspect": 8.0
+        },
+        {
+          "count": 5,
+          "sample_sectors": [
+            11,
+            38,
+            39,
+            88,
+            93
+          ],
+          "area": 1048576,
+          "aspect": 1.0
+        },
+        {
+          "count": 4,
+          "sample_sectors": [
+            51,
+            74,
+            76,
+            120
+          ],
+          "area": 65536,
+          "aspect": 16.0
+        },
+        {
+          "count": 4,
+          "sample_sectors": [
+            60,
+            80,
+            94,
+            101
+          ],
+          "area": 524288,
+          "aspect": 2.0
+        },
+        {
+          "count": 3,
+          "sample_sectors": [
+            59,
+            95,
+            100
+          ],
+          "area": 1048576,
+          "aspect": 1.0
+        },
+        {
+          "count": 3,
+          "sample_sectors": [
+            66,
+            67,
+            68
+          ],
+          "area": 524288,
+          "aspect": 8.0
+        }
+      ],
+      "corridors": {
+        "count": 24,
+        "width": {
+          "n": 24,
+          "min": 256.0,
+          "median": 1024.0,
+          "p90": 2048.0,
+          "max": 6144.0
+        },
+        "ids": [
+          2,
+          3,
+          4,
+          5,
+          8,
+          13,
+          26,
+          27,
+          30,
+          31,
+          32,
+          40,
+          50,
+          52,
+          55,
+          57
+        ]
+      },
+      "concourse_rhythm": {
+        "openings": 17,
+        "opening_width": {
+          "n": 17,
+          "min": 1024,
+          "median": 7680,
+          "p90": 11264,
+          "max": 17408
+        },
+        "nearest_spacing": {
+          "n": 15,
+          "min": 3114,
+          "median": 5998,
+          "p90": 9188,
+          "max": 12130
+        },
+        "opening_walls": [
+          118,
+          119,
+          120,
+          129,
+          130,
+          131,
+          139,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          71,
+          72
+        ]
+      },
+      "water": {
+        "underwater_sectors": 0,
+        "underwater_ids": [],
+        "shallow_depth_sectors": 0,
+        "walk_step_census_z": {
+          "n": 45,
+          "min": 2048.0,
+          "median": 8192.0,
+          "p90": 8192.0,
+          "max": 8192.0
+        },
+        "ledge_over_channel_pairs": 19
+      },
+      "light": {
+        "floor_shade": {
+          "n": 123,
+          "min": 0.0,
+          "median": 32.0,
+          "p90": 44.0,
+          "max": 63.0
+        },
+        "animated_shade_sectors": 59,
+        "animated_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          11,
+          12,
+          30,
+          31,
+          32,
+          33,
+          34,
+          43,
+          44
+        ]
+      },
+      "sprites": {
+        "alignment": {
+          "wall": 65,
+          "floor": 40,
+          "face": 394
+        },
+        "picnums_top15": [
+          [
+            2290,
+            65
+          ],
+          [
+            908,
+            49
+          ],
+          [
+            2521,
+            27
+          ],
+          [
+            0,
+            23
+          ],
+          [
+            2169,
+            22
+          ],
+          [
+            2825,
+            18
+          ],
+          [
+            816,
+            16
+          ],
+          [
+            2519,
+            12
+          ],
+          [
+            2520,
+            11
+          ],
+          [
+            810,
+            11
+          ],
+          [
+            812,
+            11
+          ],
+          [
+            3997,
+            10
+          ],
+          [
+            1078,
+            10
+          ],
+          [
+            73,
+            9
+          ],
+          [
+            817,
+            8
+          ]
+        ],
+        "dudes": {
+          "kDudeCultistShotgun": 18,
+          "kDudeZombieButcher": 8,
+          "kDudeZombieAxeNormal": 7,
+          "kDudeZombieAxeLaying": 6,
+          "kDudeHand": 5,
+          "kDudeCultistTommyProne": 5,
+          "kDudeInnocent": 5,
+          "kDudeCultistTNT": 3,
+          "kDudeCultistShotgunProne": 2,
+          "kDudeCultistTommy": 2
+        }
+      },
+      "stacks": [
+        {
+          "family": "link",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": true,
+          "upper_sector": 119,
+          "lower_sector": 118
+        }
+      ],
+      "channels": {
+        "user_channels": 79,
+        "reserved_uses": 16
+      }
+    },
+    {
+      "map": "E3M4",
+      "totals": {
+        "sectors": 434,
+        "walls": 3309,
+        "sprites": 685
+      },
+      "walkable_spaces": [
+        {
+          "sectors": 60,
+          "area": 709544152,
+          "sample": [
+            28,
+            29,
+            31,
+            49,
+            50,
+            51,
+            52,
+            54
+          ]
+        },
+        {
+          "sectors": 119,
+          "area": 548438130,
+          "sample": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 281935872,
+          "sample": [
+            40
+          ]
+        },
+        {
+          "sectors": 84,
+          "area": 189300736,
+          "sample": [
+            35,
+            57,
+            101,
+            103,
+            104,
+            166,
+            167,
+            168
+          ]
+        },
+        {
+          "sectors": 4,
+          "area": 185794560,
+          "sample": [
+            37,
+            126,
+            127,
+            399
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 93913088,
+          "sample": [
+            39
+          ]
+        },
+        {
+          "sectors": 8,
+          "area": 75759616,
+          "sample": [
+            25,
+            27,
+            244,
+            245,
+            246,
+            247,
+            248,
+            249
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 22020096,
+          "sample": [
+            196
+          ]
+        }
+      ],
+      "repeated_chamber_classes": [
+        {
+          "count": 24,
+          "sample_sectors": [
+            42,
+            63,
+            65,
+            67,
+            70,
+            72,
+            74,
+            76
+          ],
+          "area": 1179648,
+          "aspect": 1.12
+        },
+        {
+          "count": 23,
+          "sample_sectors": [
+            41,
+            64,
+            66,
+            68,
+            69,
+            71,
+            73,
+            75
+          ],
+          "area": 393216,
+          "aspect": 2.67
+        },
+        {
+          "count": 17,
+          "sample_sectors": [
+            46,
+            187,
+            188,
+            199,
+            220,
+            221,
+            224,
+            225
+          ],
+          "area": 524288,
+          "aspect": 2.0
+        },
+        {
+          "count": 15,
+          "sample_sectors": [
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "area": 786432,
+          "aspect": 3.0
+        },
+        {
+          "count": 11,
+          "sample_sectors": [
+            15,
+            16,
+            36,
+            38,
+            55,
+            59,
+            60,
+            262
+          ],
+          "area": 262144,
+          "aspect": 4.0
+        },
+        {
+          "count": 11,
+          "sample_sectors": [
+            54,
+            186,
+            189,
+            219,
+            275,
+            414,
+            415,
+            417
+          ],
+          "area": 1048576,
+          "aspect": 1.0
+        },
+        {
+          "count": 9,
+          "sample_sectors": [
+            104,
+            255,
+            256,
+            260,
+            261,
+            302,
+            303,
+            360
+          ],
+          "area": 131072,
+          "aspect": 8.0
+        },
+        {
+          "count": 9,
+          "sample_sectors": [
+            172,
+            174,
+            327,
+            328,
+            329,
+            330,
+            331,
+            332
+          ],
+          "area": 1179648,
+          "aspect": 2.0
+        },
+        {
+          "count": 8,
+          "sample_sectors": [
+            166,
+            167,
+            169,
+            171,
+            238,
+            239,
+            241,
+            243
+          ],
+          "area": 131072,
+          "aspect": 32.0
+        },
+        {
+          "count": 8,
+          "sample_sectors": [
+            168,
+            170,
+            233,
+            235,
+            240,
+            242,
+            298,
+            300
+          ],
+          "area": 262144,
+          "aspect": 16.0
+        },
+        {
+          "count": 6,
+          "sample_sectors": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            216
+          ],
+          "area": 1048576,
+          "aspect": 4.0
+        },
+        {
+          "count": 6,
+          "sample_sectors": [
+            61,
+            62,
+            77,
+            78,
+            118,
+            119
+          ],
+          "area": 3211264,
+          "aspect": 1.14
+        }
+      ],
+      "corridors": {
+        "count": 74,
+        "width": {
+          "n": 74,
+          "min": 128.0,
+          "median": 512.0,
+          "p90": 1024.0,
+          "max": 3072.0
+        },
+        "ids": [
+          1,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          17,
+          18,
+          32
+        ]
+      },
+      "concourse_rhythm": {
+        "openings": 79,
+        "opening_width": {
+          "n": 79,
+          "min": 512,
+          "median": 1024,
+          "p90": 3584,
+          "max": 6144
+        },
+        "nearest_spacing": {
+          "n": 77,
+          "min": 64,
+          "median": 1024,
+          "p90": 2936,
+          "max": 14844
+        },
+        "opening_walls": [
+          3020,
+          1084,
+          1086,
+          1093,
+          1094,
+          1095,
+          1096,
+          1102,
+          1103,
+          1104,
+          1115,
+          1116,
+          1117,
+          1122,
+          1123,
+          1124,
+          1125,
+          1138,
+          373,
+          158,
+          159,
+          160,
+          162,
+          163,
+          164,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          1247,
+          344,
+          346
+        ]
+      },
+      "water": {
+        "underwater_sectors": 0,
+        "underwater_ids": [],
+        "shallow_depth_sectors": 0,
+        "walk_step_census_z": {
+          "n": 393,
+          "min": 1024.0,
+          "median": 7168.0,
+          "p90": 8192.0,
+          "max": 8192.0
+        },
+        "ledge_over_channel_pairs": 70
+      },
+      "light": {
+        "floor_shade": {
+          "n": 434,
+          "min": -10.0,
+          "median": 34.0,
+          "p90": 45.0,
+          "max": 63.0
+        },
+        "animated_shade_sectors": 80,
+        "animated_ids": [
+          4,
+          5,
+          8,
+          9,
+          44,
+          45,
+          46,
+          47,
+          61,
+          62,
+          77,
+          78,
+          108,
+          156,
+          157,
+          158
+        ]
+      },
+      "sprites": {
+        "alignment": {
+          "face": 514,
+          "floor": 15,
+          "wall": 156
+        },
+        "picnums_top15": [
+          [
+            3997,
+            91
+          ],
+          [
+            2520,
+            59
+          ],
+          [
+            1078,
+            28
+          ],
+          [
+            2521,
+            22
+          ],
+          [
+            2825,
+            20
+          ],
+          [
+            2077,
+            19
+          ],
+          [
+            938,
+            15
+          ],
+          [
+            3798,
+            15
+          ],
+          [
+            1209,
+            14
+          ],
+          [
+            963,
+            11
+          ],
+          [
+            2820,
+            11
+          ],
+          [
+            2169,
+            11
+          ],
+          [
+            962,
+            10
+          ],
+          [
+            1167,
+            10
+          ],
+          [
+            742,
+            10
+          ]
+        ],
+        "dudes": {
+          "kDudeCultistShotgun": 20,
+          "kDudeInnocent": 15,
+          "kDudeCultistTommy": 11,
+          "kDudeZombieAxeLaying": 10,
+          "kDudeGargoyleStatueFlesh": 8,
+          "kDudeHellHound": 8,
+          "kDudePhantasm": 6,
+          "kDudeZombieButcher": 5,
+          "kDudeHand": 4,
+          "kDudeSpiderBrown": 3
+        }
+      },
+      "stacks": [],
+      "channels": {
+        "user_channels": 96,
+        "reserved_uses": 15
+      }
+    },
+    {
+      "map": "E3M3",
+      "totals": {
+        "sectors": 309,
+        "walls": 2227,
+        "sprites": 519
+      },
+      "walkable_spaces": [
+        {
+          "sectors": 42,
+          "area": 157483008,
+          "sample": [
+            74,
+            75,
+            76,
+            77,
+            110,
+            111,
+            112,
+            113
+          ]
+        },
+        {
+          "sectors": 34,
+          "area": 147324928,
+          "sample": [
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            203,
+            204
+          ]
+        },
+        {
+          "sectors": 11,
+          "area": 110755840,
+          "sample": [
+            15,
+            18,
+            25,
+            26,
+            27,
+            28,
+            31,
+            33
+          ]
+        },
+        {
+          "sectors": 33,
+          "area": 102203392,
+          "sample": [
+            63,
+            64,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73
+          ]
+        },
+        {
+          "sectors": 5,
+          "area": 78805504,
+          "sample": [
+            16,
+            17,
+            255,
+            259,
+            260
+          ]
+        },
+        {
+          "sectors": 32,
+          "area": 72810496,
+          "sample": [
+            134,
+            137,
+            138,
+            139,
+            140,
+            141,
+            142,
+            143
+          ]
+        },
+        {
+          "sectors": 15,
+          "area": 67879340,
+          "sample": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "sectors": 26,
+          "area": 67158016,
+          "sample": [
+            34,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ]
+        }
+      ],
+      "repeated_chamber_classes": [
+        {
+          "count": 30,
+          "sample_sectors": [
+            42,
+            46,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55
+          ],
+          "area": 1048576,
+          "aspect": 4.0
+        },
+        {
+          "count": 9,
+          "sample_sectors": [
+            23,
+            44,
+            64,
+            185,
+            191,
+            197,
+            205,
+            266
+          ],
+          "area": 2097152,
+          "aspect": 2.0
+        },
+        {
+          "count": 8,
+          "sample_sectors": [
+            1,
+            2,
+            4,
+            5,
+            7,
+            8,
+            10,
+            11
+          ],
+          "area": 1035614,
+          "aspect": 1.14
+        },
+        {
+          "count": 8,
+          "sample_sectors": [
+            134,
+            137,
+            221,
+            225,
+            227,
+            231,
+            235,
+            237
+          ],
+          "area": 4194304,
+          "aspect": 4.0
+        },
+        {
+          "count": 5,
+          "sample_sectors": [
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "area": 1048576,
+          "aspect": 4.5
+        },
+        {
+          "count": 5,
+          "sample_sectors": [
+            75,
+            76,
+            77,
+            78,
+            79
+          ],
+          "area": 2097152,
+          "aspect": 2.67
+        },
+        {
+          "count": 4,
+          "sample_sectors": [
+            3,
+            6,
+            9,
+            12
+          ],
+          "area": 943974,
+          "aspect": 1.32
+        },
+        {
+          "count": 4,
+          "sample_sectors": [
+            85,
+            179,
+            217,
+            243
+          ],
+          "area": 1179648,
+          "aspect": 5.0
+        },
+        {
+          "count": 4,
+          "sample_sectors": [
+            146,
+            147,
+            151,
+            153
+          ],
+          "area": 1966080,
+          "aspect": 8.0
+        },
+        {
+          "count": 4,
+          "sample_sectors": [
+            163,
+            164,
+            165,
+            166
+          ],
+          "area": 1835008,
+          "aspect": 3.5
+        },
+        {
+          "count": 4,
+          "sample_sectors": [
+            192,
+            194,
+            206,
+            208
+          ],
+          "area": 5505024,
+          "aspect": 21.0
+        },
+        {
+          "count": 4,
+          "sample_sectors": [
+            249,
+            279,
+            287,
+            290
+          ],
+          "area": 262144,
+          "aspect": 4.0
+        }
+      ],
+      "corridors": {
+        "count": 123,
+        "width": {
+          "n": 123,
+          "min": 256.0,
+          "median": 512.0,
+          "p90": 1024.0,
+          "max": 2048.0
+        },
+        "ids": [
+          30,
+          34,
+          36,
+          37,
+          38,
+          39,
+          40,
+          42,
+          43,
+          45,
+          46,
+          50,
+          51,
+          52,
+          53,
+          54
+        ]
+      },
+      "concourse_rhythm": {
+        "openings": 14,
+        "opening_width": {
+          "n": 14,
+          "min": 384,
+          "median": 1024.0,
+          "p90": 2048,
+          "max": 4096
+        },
+        "nearest_spacing": {
+          "n": 13,
+          "min": 704,
+          "median": 1408,
+          "p90": 15036,
+          "max": 16234
+        },
+        "opening_walls": [
+          1021,
+          1921,
+          1924,
+          1925,
+          1926,
+          1927,
+          1929,
+          1130,
+          1220,
+          889,
+          920,
+          922,
+          975,
+          985
+        ]
+      },
+      "water": {
+        "underwater_sectors": 90,
+        "underwater_ids": [
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          78
+        ],
+        "shallow_depth_sectors": 26,
+        "walk_step_census_z": {
+          "n": 157,
+          "min": 1024.0,
+          "median": 4096.0,
+          "p90": 5120.0,
+          "max": 8192.0
+        },
+        "ledge_over_channel_pairs": 62
+      },
+      "light": {
+        "floor_shade": {
+          "n": 309,
+          "min": 0.0,
+          "median": 34.0,
+          "p90": 42.0,
+          "max": 52.0
+        },
+        "animated_shade_sectors": 175,
+        "animated_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          34
+        ]
+      },
+      "sprites": {
+        "alignment": {
+          "face": 421,
+          "wall": 42,
+          "floor": 56
+        },
+        "picnums_top15": [
+          [
+            2521,
+            41
+          ],
+          [
+            2332,
+            37
+          ],
+          [
+            2331,
+            37
+          ],
+          [
+            515,
+            23
+          ],
+          [
+            668,
+            22
+          ],
+          [
+            2520,
+            19
+          ],
+          [
+            191,
+            18
+          ],
+          [
+            1870,
+            17
+          ],
+          [
+            795,
+            15
+          ],
+          [
+            908,
+            14
+          ],
+          [
+            1370,
+            13
+          ],
+          [
+            660,
+            12
+          ],
+          [
+            2169,
+            12
+          ],
+          [
+            1209,
+            12
+          ],
+          [
+            3997,
+            10
+          ]
+        ],
+        "dudes": {
+          "kDudeBoneEel": 17,
+          "kDudeZombieButcher": 13,
+          "kDudeZombieAxeLaying": 12,
+          "kDudeRat": 9,
+          "kDudeCultistShotgun": 9,
+          "kDudeCultistTommy": 8,
+          "kDudeGillBeast": 7,
+          "kDudeZombieAxeNormal": 5,
+          "kDudeHellHound": 4,
+          "kDudeHand": 3
+        }
+      },
+      "stacks": [
+        {
+          "family": "stack",
+          "paired": true,
+          "congruent": false,
+          "overlaps_in_plan": true,
+          "upper_sector": 15,
+          "lower_sector": 16
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": false,
+          "overlaps_in_plan": false,
+          "upper_sector": 34,
+          "lower_sector": 63
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 51,
+          "lower_sector": 65
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 52,
+          "lower_sector": 66
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 53,
+          "lower_sector": 67
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 54,
+          "lower_sector": 68
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 55,
+          "lower_sector": 69
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 56,
+          "lower_sector": 70
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 57,
+          "lower_sector": 71
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 58,
+          "lower_sector": 72
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 59,
+          "lower_sector": 73
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 44,
+          "lower_sector": 64
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": false,
+          "overlaps_in_plan": false,
+          "upper_sector": 174,
+          "lower_sector": 176
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": false,
+          "overlaps_in_plan": false,
+          "upper_sector": 114,
+          "lower_sector": 116
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 113,
+          "lower_sector": 115
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 112,
+          "lower_sector": 109
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 111,
+          "lower_sector": 108
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 110,
+          "lower_sector": 107
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 77,
+          "lower_sector": 79
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 76,
+          "lower_sector": 78
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 195,
+          "lower_sector": 183
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 224,
+          "lower_sector": 234
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 196,
+          "lower_sector": 184
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 204,
+          "lower_sector": 190
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 203,
+          "lower_sector": 189
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 197,
+          "lower_sector": 185
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 205,
+          "lower_sector": 191
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 223,
+          "lower_sector": 233
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 222,
+          "lower_sector": 232
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 221,
+          "lower_sector": 231
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 228,
+          "lower_sector": 238
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 229,
+          "lower_sector": 239
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 230,
+          "lower_sector": 240
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 225,
+          "lower_sector": 235
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 226,
+          "lower_sector": 236
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 227,
+          "lower_sector": 237
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 247,
+          "lower_sector": 177
+        }
+      ],
+      "channels": {
+        "user_channels": 23,
+        "reserved_uses": 9
+      }
+    },
+    {
+      "map": "E4M9",
+      "totals": {
+        "sectors": 228,
+        "walls": 1557,
+        "sprites": 405
+      },
+      "walkable_spaces": [
+        {
+          "sectors": 45,
+          "area": 1808861184,
+          "sample": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            20,
+            70,
+            71
+          ]
+        },
+        {
+          "sectors": 40,
+          "area": 410419200,
+          "sample": [
+            33,
+            34,
+            35,
+            36,
+            37,
+            41,
+            42,
+            43
+          ]
+        },
+        {
+          "sectors": 22,
+          "area": 144113664,
+          "sample": [
+            81,
+            82,
+            86,
+            87,
+            99,
+            100,
+            102,
+            103
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 28311552,
+          "sample": [
+            189
+          ]
+        },
+        {
+          "sectors": 7,
+          "area": 24379392,
+          "sample": [
+            26,
+            27,
+            28,
+            32,
+            76,
+            198,
+            200
+          ]
+        },
+        {
+          "sectors": 4,
+          "area": 24248320,
+          "sample": [
+            21,
+            212,
+            213,
+            227
+          ]
+        },
+        {
+          "sectors": 2,
+          "area": 18874368,
+          "sample": [
+            89,
+            90
+          ]
+        },
+        {
+          "sectors": 7,
+          "area": 17301504,
+          "sample": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            18,
+            19
+          ]
+        }
+      ],
+      "repeated_chamber_classes": [
+        {
+          "count": 11,
+          "sample_sectors": [
+            8,
+            34,
+            35,
+            37,
+            42,
+            43,
+            44,
+            115
+          ],
+          "area": 786432,
+          "aspect": 3.0
+        },
+        {
+          "count": 7,
+          "sample_sectors": [
+            7,
+            46,
+            48,
+            51,
+            59,
+            155,
+            195
+          ],
+          "area": 262144,
+          "aspect": 4.0
+        },
+        {
+          "count": 7,
+          "sample_sectors": [
+            22,
+            23,
+            24,
+            25,
+            30,
+            74,
+            193
+          ],
+          "area": 1048576,
+          "aspect": 1.0
+        },
+        {
+          "count": 6,
+          "sample_sectors": [
+            2,
+            5,
+            98,
+            127,
+            159,
+            216
+          ],
+          "area": 327680,
+          "aspect": 5.0
+        },
+        {
+          "count": 4,
+          "sample_sectors": [
+            72,
+            73,
+            77,
+            184
+          ],
+          "area": 2097152,
+          "aspect": 2.0
+        },
+        {
+          "count": 4,
+          "sample_sectors": [
+            109,
+            111,
+            112,
+            113
+          ],
+          "area": 196608,
+          "aspect": 12.0
+        },
+        {
+          "count": 3,
+          "sample_sectors": [
+            6,
+            197,
+            213
+          ],
+          "area": 589824,
+          "aspect": 1.0
+        },
+        {
+          "count": 3,
+          "sample_sectors": [
+            60,
+            83,
+            208
+          ],
+          "area": 131072,
+          "aspect": 2.0
+        },
+        {
+          "count": 3,
+          "sample_sectors": [
+            68,
+            69,
+            135
+          ],
+          "area": 1048576,
+          "aspect": 4.0
+        },
+        {
+          "count": 3,
+          "sample_sectors": [
+            203,
+            204,
+            210
+          ],
+          "area": 1572864,
+          "aspect": 6.0
+        }
+      ],
+      "corridors": {
+        "count": 54,
+        "width": {
+          "n": 54,
+          "min": 256.0,
+          "median": 512.0,
+          "p90": 3072.0,
+          "max": 6144.0
+        },
+        "ids": [
+          2,
+          3,
+          4,
+          5,
+          8,
+          9,
+          20,
+          33,
+          34,
+          35,
+          37,
+          42,
+          43,
+          44,
+          49,
+          52
+        ]
+      },
+      "concourse_rhythm": {
+        "openings": 39,
+        "opening_width": {
+          "n": 39,
+          "min": 512,
+          "median": 1536,
+          "p90": 4096,
+          "max": 6144
+        },
+        "nearest_spacing": {
+          "n": 38,
+          "min": 256,
+          "median": 1840.0,
+          "p90": 7059,
+          "max": 12389
+        },
+        "opening_walls": [
+          0,
+          1,
+          2,
+          3,
+          870,
+          871,
+          909,
+          911,
+          926,
+          936,
+          977,
+          986,
+          1084,
+          1097,
+          488,
+          496,
+          534,
+          535,
+          536,
+          592,
+          593,
+          594,
+          595,
+          596,
+          597,
+          598,
+          599,
+          619,
+          656,
+          660,
+          665,
+          680,
+          681,
+          682,
+          683,
+          684,
+          685,
+          686,
+          777
+        ]
+      },
+      "water": {
+        "underwater_sectors": 1,
+        "underwater_ids": [
+          117
+        ],
+        "shallow_depth_sectors": 0,
+        "walk_step_census_z": {
+          "n": 124,
+          "min": 1024.0,
+          "median": 6144.0,
+          "p90": 8192.0,
+          "max": 8192.0
+        },
+        "ledge_over_channel_pairs": 26
+      },
+      "light": {
+        "floor_shade": {
+          "n": 228,
+          "min": 0.0,
+          "median": 25.0,
+          "p90": 42.0,
+          "max": 48.0
+        },
+        "animated_shade_sectors": 31,
+        "animated_ids": [
+          50,
+          52,
+          57,
+          58,
+          59,
+          60,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146
+        ]
+      },
+      "sprites": {
+        "alignment": {
+          "face": 292,
+          "floor": 43,
+          "wall": 70
+        },
+        "picnums_top15": [
+          [
+            1170,
+            42
+          ],
+          [
+            1167,
+            18
+          ],
+          [
+            1980,
+            17
+          ],
+          [
+            1370,
+            16
+          ],
+          [
+            0,
+            14
+          ],
+          [
+            73,
+            14
+          ],
+          [
+            2521,
+            12
+          ],
+          [
+            2520,
+            10
+          ],
+          [
+            3798,
+            10
+          ],
+          [
+            1270,
+            10
+          ],
+          [
+            908,
+            7
+          ],
+          [
+            2825,
+            7
+          ],
+          [
+            2332,
+            6
+          ],
+          [
+            2331,
+            6
+          ],
+          [
+            648,
+            6
+          ]
+        ],
+        "dudes": {
+          "kDudeZombieAxeNormal": 41,
+          "kDudeHand": 17,
+          "kDudeZombieButcher": 16,
+          "kDudeInnocent": 10,
+          "kDudeHellHound": 10,
+          "kDudeCultistShotgun": 7,
+          "kDudeGargoyleStone": 3,
+          "kDudeCultistTommy": 3,
+          "kDudeGillBeast": 3,
+          "kDudePhantasm": 2
+        }
+      },
+      "stacks": [
+        {
+          "family": "stack",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 213,
+          "lower_sector": 197
+        },
+        {
+          "family": "stack",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 74,
+          "lower_sector": 30
+        },
+        {
+          "family": "stack",
+          "paired": true,
+          "congruent": false,
+          "overlaps_in_plan": true,
+          "upper_sector": 96,
+          "lower_sector": 95
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 89,
+          "lower_sector": 117
+        },
+        {
+          "family": "stack",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": true,
+          "upper_sector": 178,
+          "lower_sector": 179
+        },
+        {
+          "family": "stack",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 212,
+          "lower_sector": 198
+        }
+      ],
+      "channels": {
+        "user_channels": 25,
+        "reserved_uses": 9
+      }
+    },
+    {
+      "map": "E1M1",
+      "totals": {
+        "sectors": 155,
+        "walls": 1498,
+        "sprites": 559
+      },
+      "walkable_spaces": [
+        {
+          "sectors": 58,
+          "area": 754169642,
+          "sample": [
+            5,
+            11,
+            24,
+            39,
+            40,
+            41,
+            42,
+            44
+          ]
+        },
+        {
+          "sectors": 20,
+          "area": 124495691,
+          "sample": [
+            4,
+            13,
+            17,
+            18,
+            19,
+            20,
+            21,
+            32
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 123731968,
+          "sample": [
+            138
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 44040192,
+          "sample": [
+            112
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 32505856,
+          "sample": [
+            31
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 31457280,
+          "sample": [
+            136
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 19660800,
+          "sample": [
+            153
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 16105472,
+          "sample": [
+            111
+          ]
+        }
+      ],
+      "repeated_chamber_classes": [
+        {
+          "count": 5,
+          "sample_sectors": [
+            22,
+            23,
+            60,
+            95,
+            97
+          ],
+          "area": 262144,
+          "aspect": 4.0
+        },
+        {
+          "count": 4,
+          "sample_sectors": [
+            29,
+            50,
+            51,
+            81
+          ],
+          "area": 131072,
+          "aspect": 8.0
+        },
+        {
+          "count": 4,
+          "sample_sectors": [
+            33,
+            34,
+            46,
+            49
+          ],
+          "area": 2097152,
+          "aspect": 8.0
+        },
+        {
+          "count": 3,
+          "sample_sectors": [
+            6,
+            52,
+            53
+          ],
+          "area": 786432,
+          "aspect": 3.0
+        },
+        {
+          "count": 3,
+          "sample_sectors": [
+            9,
+            20,
+            21
+          ],
+          "area": 2097152,
+          "aspect": 2.0
+        }
+      ],
+      "corridors": {
+        "count": 37,
+        "width": {
+          "n": 37,
+          "min": 128.0,
+          "median": 512.0,
+          "p90": 2048.0,
+          "max": 3840.0
+        },
+        "ids": [
+          1,
+          2,
+          3,
+          6,
+          24,
+          25,
+          32,
+          33,
+          34,
+          36,
+          39,
+          40,
+          41,
+          43,
+          44,
+          45
+        ]
+      },
+      "concourse_rhythm": {
+        "openings": 52,
+        "opening_width": {
+          "n": 52,
+          "min": 384,
+          "median": 1024.0,
+          "p90": 3072,
+          "max": 4096
+        },
+        "nearest_spacing": {
+          "n": 51,
+          "min": 128,
+          "median": 1619,
+          "p90": 5096,
+          "max": 12731
+        },
+        "opening_walls": [
+          1244,
+          1254,
+          38,
+          294,
+          342,
+          354,
+          410,
+          412,
+          418,
+          420,
+          462,
+          464,
+          465,
+          467,
+          477,
+          505,
+          507,
+          509,
+          592,
+          602,
+          668,
+          679,
+          680,
+          681,
+          692,
+          696,
+          698,
+          699,
+          700,
+          730,
+          731,
+          742,
+          784,
+          786,
+          789,
+          792,
+          1041,
+          1042,
+          1066,
+          1069
+        ]
+      },
+      "water": {
+        "underwater_sectors": 0,
+        "underwater_ids": [],
+        "shallow_depth_sectors": 0,
+        "walk_step_census_z": {
+          "n": 142,
+          "min": 1024.0,
+          "median": 4096.0,
+          "p90": 8192.0,
+          "max": 8192.0
+        },
+        "ledge_over_channel_pairs": 33
+      },
+      "light": {
+        "floor_shade": {
+          "n": 155,
+          "min": -128.0,
+          "median": 30.0,
+          "p90": 42.0,
+          "max": 50.0
+        },
+        "animated_shade_sectors": 50,
+        "animated_ids": [
+          0,
+          1,
+          2,
+          3,
+          9,
+          27,
+          28,
+          30,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45
+        ]
+      },
+      "sprites": {
+        "alignment": {
+          "face": 364,
+          "wall": 148,
+          "floor": 47
+        },
+        "picnums_top15": [
+          [
+            0,
+            114
+          ],
+          [
+            3997,
+            26
+          ],
+          [
+            2521,
+            23
+          ],
+          [
+            2519,
+            18
+          ],
+          [
+            2520,
+            17
+          ],
+          [
+            1745,
+            17
+          ],
+          [
+            908,
+            15
+          ],
+          [
+            2825,
+            12
+          ],
+          [
+            3054,
+            9
+          ],
+          [
+            589,
+            8
+          ],
+          [
+            802,
+            8
+          ],
+          [
+            816,
+            7
+          ],
+          [
+            1067,
+            7
+          ],
+          [
+            2290,
+            7
+          ],
+          [
+            1904,
+            7
+          ]
+        ],
+        "dudes": {
+          "kDudeRat": 17,
+          "kDudeCultistShotgun": 12,
+          "kDudeZombieAxeBuried": 9,
+          "kDudeZombieAxeNormal": 7,
+          "kDudeBat": 1
+        }
+      },
+      "stacks": [
+        {
+          "family": "stack",
+          "paired": true,
+          "congruent": true,
+          "overlaps_in_plan": false,
+          "upper_sector": 28,
+          "lower_sector": 30
+        },
+        {
+          "family": "stack",
+          "paired": true,
+          "congruent": false,
+          "overlaps_in_plan": true,
+          "upper_sector": 90,
+          "lower_sector": 65
+        }
+      ],
+      "channels": {
+        "user_channels": 73,
+        "reserved_uses": 20
+      }
+    },
+    {
+      "map": "E1M5",
+      "totals": {
+        "sectors": 429,
+        "walls": 3627,
+        "sprites": 683
+      },
+      "walkable_spaces": [
+        {
+          "sectors": 182,
+          "area": 1051318775,
+          "sample": [
+            4,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 184336384,
+          "sample": [
+            392
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 96546816,
+          "sample": [
+            393
+          ]
+        },
+        {
+          "sectors": 12,
+          "area": 89169920,
+          "sample": [
+            246,
+            247,
+            248,
+            249,
+            250,
+            251,
+            252,
+            253
+          ]
+        },
+        {
+          "sectors": 12,
+          "area": 70085266,
+          "sample": [
+            0,
+            1,
+            10,
+            11,
+            12,
+            88,
+            138,
+            279
+          ]
+        },
+        {
+          "sectors": 1,
+          "area": 66625536,
+          "sample": [
+            409
+          ]
+        },
+        {
+          "sectors": 21,
+          "area": 65561908,
+          "sample": [
+            72,
+            73,
+            74,
+            98,
+            99,
+            191,
+            192,
+            193
+          ]
+        },
+        {
+          "sectors": 2,
+          "area": 56754176,
+          "sample": [
+            407,
+            408
+          ]
+        }
+      ],
+      "repeated_chamber_classes": [
+        {
+          "count": 19,
+          "sample_sectors": [
+            21,
+            22,
+            25,
+            26,
+            28,
+            29,
+            30,
+            63
+          ],
+          "area": 524288,
+          "aspect": 2.0
+        },
+        {
+          "count": 16,
+          "sample_sectors": [
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            213,
+            214
+          ],
+          "area": 147456,
+          "aspect": 1.33
+        },
+        {
+          "count": 13,
+          "sample_sectors": [
+            69,
+            143,
+            144,
+            380,
+            385,
+            390,
+            395,
+            399
+          ],
+          "area": 262144,
+          "aspect": 1.0
+        },
+        {
+          "count": 12,
+          "sample_sectors": [
+            31,
+            32,
+            40,
+            41,
+            42,
+            43,
+            206,
+            207
+          ],
+          "area": 131072,
+          "aspect": 2.0
+        },
+        {
+          "count": 11,
+          "sample_sectors": [
+            234,
+            235,
+            236,
+            242,
+            243,
+            244,
+            365,
+            366
+          ],
+          "area": 131072,
+          "aspect": 8.0
+        },
+        {
+          "count": 7,
+          "sample_sectors": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            67,
+            126
+          ],
+          "area": 2097152,
+          "aspect": 2.0
+        },
+        {
+          "count": 7,
+          "sample_sectors": [
+            24,
+            163,
+            401,
+            403,
+            405,
+            423,
+            426
+          ],
+          "area": 1048576,
+          "aspect": 1.0
+        },
+        {
+          "count": 7,
+          "sample_sectors": [
+            350,
+            351,
+            352,
+            353,
+            377,
+            378,
+            379
+          ],
+          "area": 65536,
+          "aspect": 1.0
+        },
+        {
+          "count": 6,
+          "sample_sectors": [
+            47,
+            48,
+            49,
+            50,
+            55,
+            56
+          ],
+          "area": 81920,
+          "aspect": 1.25
+        },
+        {
+          "count": 6,
+          "sample_sectors": [
+            75,
+            76,
+            77,
+            84,
+            85,
+            86
+          ],
+          "area": 163840,
+          "aspect": 10.0
+        },
+        {
+          "count": 6,
+          "sample_sectors": [
+            78,
+            79,
+            80,
+            81,
+            82,
+            83
+          ],
+          "area": 229376,
+          "aspect": 6.0
+        },
+        {
+          "count": 6,
+          "sample_sectors": [
+            105,
+            106,
+            301,
+            302,
+            348,
+            349
+          ],
+          "area": 196608,
+          "aspect": 3.0
+        }
+      ],
+      "corridors": {
+        "count": 74,
+        "width": {
+          "n": 74,
+          "min": 128.0,
+          "median": 512.0,
+          "p90": 2048.0,
+          "max": 4096.0
+        },
+        "ids": [
+          44,
+          45,
+          46,
+          58,
+          62,
+          91,
+          92,
+          93,
+          94,
+          97,
+          98,
+          99,
+          100,
+          101,
+          104,
+          111
+        ]
+      },
+      "concourse_rhythm": {
+        "openings": 106,
+        "opening_width": {
+          "n": 106,
+          "min": 384,
+          "median": 1024.0,
+          "p90": 2560,
+          "max": 7168
+        },
+        "nearest_spacing": {
+          "n": 104,
+          "min": 64,
+          "median": 1888.0,
+          "p90": 6964,
+          "max": 15413
+        },
+        "opening_walls": [
+          210,
+          232,
+          427,
+          440,
+          637,
+          638,
+          639,
+          640,
+          641,
+          642,
+          643,
+          644,
+          645,
+          646,
+          647,
+          650,
+          656,
+          657,
+          658,
+          659,
+          660,
+          666,
+          669,
+          670,
+          671,
+          672,
+          673,
+          674,
+          675,
+          798,
+          956,
+          1053,
+          1055,
+          1160,
+          1162,
+          1164,
+          1174,
+          1176,
+          1178,
+          1240
+        ]
+      },
+      "water": {
+        "underwater_sectors": 14,
+        "underwater_ids": [
+          320,
+          321,
+          322,
+          323,
+          324,
+          325,
+          326,
+          329,
+          330,
+          331,
+          337,
+          338
+        ],
+        "shallow_depth_sectors": 1,
+        "walk_step_census_z": {
+          "n": 325,
+          "min": 1024.0,
+          "median": 4096.0,
+          "p90": 8192.0,
+          "max": 8192.0
+        },
+        "ledge_over_channel_pairs": 115
+      },
+      "light": {
+        "floor_shade": {
+          "n": 429,
+          "min": -118.0,
+          "median": 27.0,
+          "p90": 45.0,
+          "max": 63.0
+        },
+        "animated_shade_sectors": 191,
+        "animated_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          39,
+          46
+        ]
+      },
+      "sprites": {
+        "alignment": {
+          "wall": 116,
+          "face": 556,
+          "floor": 11
+        },
+        "picnums_top15": [
+          [
+            2520,
+            51
+          ],
+          [
+            938,
+            48
+          ],
+          [
+            2825,
+            45
+          ],
+          [
+            2519,
+            42
+          ],
+          [
+            2820,
+            33
+          ],
+          [
+            3997,
+            31
+          ],
+          [
+            1070,
+            30
+          ],
+          [
+            2521,
+            28
+          ],
+          [
+            1170,
+            26
+          ],
+          [
+            2101,
+            16
+          ],
+          [
+            226,
+            16
+          ],
+          [
+            1870,
+            14
+          ],
+          [
+            2169,
+            12
+          ],
+          [
+            249,
+            11
+          ],
+          [
+            580,
+            9
+          ]
+        ],
+        "dudes": {
+          "kDudeCultistShotgun": 45,
+          "kDudeCultistTommy": 33,
+          "kDudeZombieAxeNormal": 26,
+          "kDudeBoneEel": 14,
+          "kDudeGargoyleStatueFlesh": 8,
+          "kDudeGargoyleFlesh": 7,
+          "kDudeZombieAxeBuried": 6,
+          "kDudeRat": 6
+        }
+      },
+      "stacks": [
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": false,
+          "overlaps_in_plan": false,
+          "upper_sector": 72,
+          "lower_sector": 320
+        },
+        {
+          "family": "water",
+          "paired": true,
+          "congruent": false,
+          "overlaps_in_plan": false,
+          "upper_sector": 341,
+          "lower_sector": 340
+        }
+      ],
+      "channels": {
+        "user_channels": 68,
+        "reserved_uses": 20
+      }
+    }
+  ]
+}

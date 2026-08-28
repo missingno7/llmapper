@@ -1,0 +1,196 @@
+{
+ "candidate": "projects/blood-city/level/blood-city-current.MAP",
+ "score": 2.093,
+ "blandness": 0.083,
+ "campaign_scores": {
+  "E6M7": 0.592,
+  "E3M6": 0.609,
+  "E6M4": 0.678,
+  "E6M5": 0.732,
+  "E2M1": 0.75,
+  "E2M4": 0.761,
+  "E4M5": 0.814,
+  "E3M8": 0.819,
+  "E4M2": 0.821,
+  "E4M6": 0.85,
+  "E6M2": 0.871,
+  "E3M2": 0.879,
+  "E2M6": 0.911,
+  "E1M3": 0.92,
+  "E3M4": 0.943,
+  "E6M3": 0.945,
+  "E1M5": 0.955,
+  "E4M4": 0.961,
+  "E1M2": 0.98,
+  "E3M1": 0.985,
+  "E2M2": 1.0,
+  "E4M3": 1.0,
+  "E2M5": 1.065,
+  "E2M3": 1.102,
+  "E6M6": 1.119,
+  "E3M5": 1.131,
+  "E3M3": 1.179,
+  "E1M6": 1.19,
+  "E4M7": 1.215,
+  "E1M8": 1.24,
+  "E2M7": 1.256,
+  "E4M1": 1.328,
+  "E4M9": 1.408,
+  "E1M4": 1.459,
+  "E1M1": 1.558,
+  "E3M7": 1.667,
+  "E6M9": 2.078,
+  "E6M8": 2.082,
+  "E4M8": 2.338,
+  "E2M9": 2.51,
+  "E6M1": 2.598,
+  "E2M8": 3.422,
+  "E1M7": 4.292
+ },
+ "deviations": [
+  {
+   "feature": "shape.height_iqr_ratio",
+   "level": 9.6,
+   "campaign_median": 2.0,
+   "iqrs": 15.2
+  },
+  {
+   "feature": "geometry.coincident_solid_pairs",
+   "level": 2.0,
+   "campaign_median": 0.0,
+   "iqrs": 4.0
+  },
+  {
+   "feature": "topology.dead_end_fraction",
+   "level": 0.333,
+   "campaign_median": 0.159,
+   "iqrs": 2.451
+  },
+  {
+   "feature": "population.pickups_per_dude",
+   "level": 0.0,
+   "campaign_median": 0.9,
+   "iqrs": 2.093
+  },
+  {
+   "feature": "shape.median_height",
+   "level": 20480.0,
+   "campaign_median": 33280.0,
+   "iqrs": 1.786
+  },
+  {
+   "feature": "topology.mean_degree",
+   "level": 2.09,
+   "campaign_median": 2.74,
+   "iqrs": 1.667
+  },
+  {
+   "feature": "progression.declared_secrets",
+   "level": 0.0,
+   "campaign_median": 5.0,
+   "iqrs": 1.667
+  },
+  {
+   "feature": "shape.sky_fraction",
+   "level": 0.378,
+   "campaign_median": 0.121,
+   "iqrs": 1.539
+  },
+  {
+   "feature": "topology.loops_per_100_sectors",
+   "level": 6.7,
+   "campaign_median": 37.7,
+   "iqrs": 1.512
+  },
+  {
+   "feature": "mechanisms.moving_per_100_sectors",
+   "level": 2.2,
+   "campaign_median": 14.1,
+   "iqrs": 1.451
+  },
+  {
+   "feature": "population.pickups_per_100_sectors",
+   "level": 0.0,
+   "campaign_median": 29.3,
+   "iqrs": 1.308
+  },
+  {
+   "feature": "progression.secret_marks",
+   "level": 0.0,
+   "campaign_median": 5.0,
+   "iqrs": 1.25
+  },
+  {
+   "feature": "population.dudes_per_100_sectors",
+   "level": 13.3,
+   "campaign_median": 32.5,
+   "iqrs": 1.178
+  },
+  {
+   "feature": "materials.ceiling_patch_share",
+   "level": 0.933,
+   "campaign_median": 0.779,
+   "iqrs": 1.055
+  },
+  {
+   "feature": "population.weapons_per_100_sectors",
+   "level": 0.0,
+   "campaign_median": 20.0,
+   "iqrs": 1.0
+  },
+  {
+   "feature": "scale.off_map_fraction",
+   "level": 0.0,
+   "campaign_median": 0.028,
+   "iqrs": 0.651
+  },
+  {
+   "feature": "materials.floor_patch_share",
+   "level": 0.867,
+   "campaign_median": 0.76,
+   "iqrs": 0.645
+  },
+  {
+   "feature": "population.occupied_sector_fraction",
+   "level": 0.111,
+   "campaign_median": 0.136,
+   "iqrs": 0.625
+  },
+  {
+   "feature": "materials.dominant_wall_share",
+   "level": 0.434,
+   "campaign_median": 0.301,
+   "iqrs": 0.526
+  },
+  {
+   "feature": "materials.dominant_floor_share",
+   "level": 0.444,
+   "campaign_median": 0.352,
+   "iqrs": 0.383
+  },
+  {
+   "feature": "shape.area_iqr_ratio",
+   "level": 7.25,
+   "campaign_median": 9.0,
+   "iqrs": 0.285
+  },
+  {
+   "feature": "shape.walls_per_sector",
+   "level": 7.3,
+   "campaign_median": 7.8,
+   "iqrs": 0.278
+  },
+  {
+   "feature": "topology.components",
+   "level": 1.0,
+   "campaign_median": 1.0,
+   "iqrs": 0.0
+  },
+  {
+   "feature": "water.wormholes",
+   "level": 0.0,
+   "campaign_median": 0.0,
+   "iqrs": 0.0
+  }
+ ]
+}

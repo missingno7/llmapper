@@ -1,0 +1,27 @@
+{
+  "$schema": "bloodmap.level-project",
+  "authoring_model": "brief -> recipe/operations -> MAP -> validation/probes",
+  "boundaries": [
+    "derived observations never overwrite MAP truth",
+    "LLM is an external client, not a core dependency",
+    "structure norms come from E3M1 + DWE3M1 + DukCity1-4; art norms from the Blood two only (tile identity does not transfer between games)",
+    "no global coordinate literals in the level program; districts are named assemblies, blocks are stamped prefabs, streets absorb layout residual"
+  ],
+  "name": "Blood City: a Blood answer to DukCity",
+  "phases": [
+    "0 city-norms mining",
+    "1 urban plan (flex streets + massing holes)",
+    "2 massing and skyline",
+    "3 facades (per-district wall budget)",
+    "4 interiors (mined enterable share, landmarks first)",
+    "5 mechanics and circuit",
+    "6 population, decoration, lighting"
+  ],
+  "budget": {
+    "sectors_target": [400, 650],
+    "walls_cap": 7000,
+    "walls_reserve_note": "engine limit 8192; DukCity3 sits at 8185 -- the cap keeps ~1200 walls of iteration headroom",
+    "sprites_limit": 4096
+  },
+  "schema_version": 1
+}

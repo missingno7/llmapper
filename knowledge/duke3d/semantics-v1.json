@@ -1,0 +1,3497 @@
+{
+ "$schema": "llmapper.duke-semantics",
+ "schema_version": 1,
+ "sources": {
+  "tiles": "reference/duke3d/DEFS.CON (shipped with the game)",
+  "tags": "reference/eduke32/source/duke3d/src/game.h (ST_*, SE_*)"
+ },
+ "note": "Everything here is transcribed from Duke's own files. Nothing is inferred from map statistics.",
+ "tile_count": 740,
+ "tiles_with_art": 582,
+ "tiles_by_name": {
+  "SECTOREFFECTOR": 1,
+  "ACTIVATOR": 2,
+  "TOUCHPLATE": 3,
+  "ACTIVATORLOCKED": 4,
+  "MUSICANDSFX": 5,
+  "LOCATORS": 6,
+  "CYCLER": 7,
+  "MASTERSWITCH": 8,
+  "RESPAWN": 9,
+  "GPSPEED": 10,
+  "ARROW": 20,
+  "FIRSTGUNSPRITE": 21,
+  "CHAINGUNSPRITE": 22,
+  "RPGSPRITE": 23,
+  "FREEZESPRITE": 24,
+  "SHRINKERSPRITE": 25,
+  "HEAVYHBOMB": 26,
+  "TRIPBOMBSPRITE": 27,
+  "SHOTGUNSPRITE": 28,
+  "DEVISTATORSPRITE": 29,
+  "HEALTHBOX": 30,
+  "AMMOBOX": 31,
+  "GROWSPRITEICON": 32,
+  "INVENTORYBOX": 33,
+  "FREEZEAMMO": 37,
+  "AMMO": 40,
+  "BATTERYAMMO": 41,
+  "DEVISTATORAMMO": 42,
+  "RPGAMMO": 44,
+  "GROWAMMO": 45,
+  "CRYSTALAMMO": 46,
+  "HBOMBAMMO": 47,
+  "AMMOLOTS": 48,
+  "SHOTGUNAMMO": 49,
+  "COLA": 51,
+  "SIXPAK": 52,
+  "FIRSTAID": 53,
+  "SHIELD": 54,
+  "STEROIDS": 55,
+  "AIRTANK": 56,
+  "JETPACK": 57,
+  "HEATSENSOR": 59,
+  "ACCESSCARD": 60,
+  "BOOTS": 61,
+  "MIRRORBROKE": 70,
+  "CLOUDYOCEAN": 78,
+  "CLOUDYSKIES": 79,
+  "MOONSKY1": 80,
+  "MOONSKY2": 81,
+  "MOONSKY3": 82,
+  "MOONSKY4": 83,
+  "BIGORBIT1": 84,
+  "BIGORBIT2": 85,
+  "BIGORBIT3": 86,
+  "BIGORBIT4": 87,
+  "BIGORBIT5": 88,
+  "LA": 89,
+  "REDSKY1": 98,
+  "REDSKY2": 99,
+  "ATOMICHEALTH": 100,
+  "TECHLIGHT2": 120,
+  "TECHLIGHTBUST2": 121,
+  "TECHLIGHT4": 122,
+  "TECHLIGHTBUST4": 123,
+  "WALLLIGHT4": 124,
+  "WALLLIGHTBUST4": 125,
+  "ACCESSSWITCH": 130,
+  "SLOTDOOR": 132,
+  "LIGHTSWITCH": 134,
+  "SPACEDOORSWITCH": 136,
+  "SPACELIGHTSWITCH": 138,
+  "FRANKENSTINESWITCH": 140,
+  "NUKEBUTTON": 142,
+  "MULTISWITCH": 146,
+  "DOORTILE5": 150,
+  "DOORTILE6": 151,
+  "DOORTILE1": 152,
+  "DOORTILE2": 153,
+  "DOORTILE3": 154,
+  "DOORTILE4": 155,
+  "DOORTILE7": 156,
+  "DOORTILE8": 157,
+  "DOORTILE9": 158,
+  "DOORTILE10": 159,
+  "DOORSHOCK": 160,
+  "DIPSWITCH": 162,
+  "DIPSWITCH2": 164,
+  "TECHSWITCH": 166,
+  "DIPSWITCH3": 168,
+  "ACCESSSWITCH2": 170,
+  "REFLECTWATERTILE": 180,
+  "FLOORSLIME": 200,
+  "BIGFORCE": 230,
+  "EPISODE": 247,
+  "MASKWALL9": 255,
+  "W_LIGHT": 260,
+  "SCREENBREAK1": 263,
+  "SCREENBREAK2": 264,
+  "SCREENBREAK3": 265,
+  "SCREENBREAK4": 266,
+  "SCREENBREAK5": 267,
+  "SCREENBREAK6": 268,
+  "SCREENBREAK7": 269,
+  "SCREENBREAK8": 270,
+  "SCREENBREAK9": 271,
+  "SCREENBREAK10": 272,
+  "SCREENBREAK11": 273,
+  "SCREENBREAK12": 274,
+  "SCREENBREAK13": 275,
+  "MASKWALL1": 285,
+  "W_TECHWALL1": 293,
+  "W_TECHWALL2": 297,
+  "W_TECHWALL15": 299,
+  "W_TECHWALL3": 301,
+  "W_TECHWALL4": 305,
+  "W_TECHWALL10": 306,
+  "W_TECHWALL16": 307,
+  "WATERTILE2": 336,
+  "BPANNEL1": 341,
+  "PANNEL1": 342,
+  "PANNEL2": 343,
+  "WATERTILE": 344,
+  "STATIC": 351,
+  "W_SCREENBREAK": 357,
+  "W_HITTECHWALL3": 360,
+  "W_HITTECHWALL4": 361,
+  "W_HITTECHWALL2": 362,
+  "W_HITTECHWALL1": 363,
+  "MASKWALL10": 387,
+  "MASKWALL11": 391,
+  "DOORTILE22": 395,
+  "FANSPRITE": 407,
+  "FANSPRITEBROKE": 411,
+  "FANSHADOW": 412,
+  "FANSHADOWBROKE": 416,
+  "DOORTILE18": 447,
+  "DOORTILE19": 448,
+  "DOORTILE20": 449,
+  "SATELLITE": 489,
+  "VIEWSCREEN2": 499,
+  "VIEWSCREENBROKE": 501,
+  "VIEWSCREEN": 502,
+  "GLASS": 503,
+  "GLASS2": 504,
+  "STAINGLASS1": 510,
+  "MASKWALL5": 514,
+  "SATELITE": 516,
+  "FUELPOD": 517,
+  "SLIMEPIPE": 538,
+  "CRACK1": 546,
+  "CRACK2": 547,
+  "CRACK3": 548,
+  "CRACK4": 549,
+  "FOOTPRINTS": 550,
+  "DOMELITE": 551,
+  "CAMERAPOLE": 554,
+  "CHAIR1": 556,
+  "CHAIR2": 557,
+  "BROKENCHAIR": 559,
+  "MIRROR": 560,
+  "WATERFOUNTAIN": 563,
+  "WATERFOUNTAINBROKE": 567,
+  "FEMMAG1": 568,
+  "TOILET": 569,
+  "STALL": 571,
+  "STALLBROKE": 573,
+  "FEMMAG2": 577,
+  "REACTOR2": 578,
+  "REACTOR2BURNT": 579,
+  "REACTOR2SPARK": 580,
+  "GRATE1": 595,
+  "BGRATE1": 596,
+  "SOLARPANNEL": 602,
+  "NAKED1": 603,
+  "ANTENNA": 607,
+  "MASKWALL12": 609,
+  "TOILETBROKE": 615,
+  "PIPE2": 616,
+  "PIPE1B": 617,
+  "PIPE3": 618,
+  "PIPE1": 619,
+  "CAMERA1": 621,
+  "BRICK": 626,
+  "SPLINTERWOOD": 630,
+  "PIPE2B": 633,
+  "BOLT1": 634,
+  "W_NUMBERS": 640,
+  "WATERDRIP": 660,
+  "WATERBUBBLE": 661,
+  "WATERBUBBLEMAKER": 662,
+  "W_FORCEFIELD": 663,
+  "VACUUM": 669,
+  "FOOTPRINTS2": 672,
+  "FOOTPRINTS3": 673,
+  "FOOTPRINTS4": 674,
+  "EGG": 675,
+  "SCALE": 678,
+  "CHAIR3": 680,
+  "CAMERALIGHT": 685,
+  "MOVIECAMERA": 686,
+  "IVUNIT": 689,
+  "POT1": 694,
+  "POT2": 695,
+  "POT3": 697,
+  "PIPE3B": 700,
+  "WALLLIGHT3": 701,
+  "WALLLIGHTBUST3": 702,
+  "WALLLIGHT1": 703,
+  "WALLLIGHTBUST1": 704,
+  "WALLLIGHT2": 705,
+  "WALLLIGHTBUST2": 706,
+  "LIGHTSWITCH2": 712,
+  "WAITTOBESEATED": 716,
+  "DOORTILE14": 717,
+  "STATUE": 753,
+  "MIKE": 762,
+  "VASE": 765,
+  "SUSHIPLATE1": 768,
+  "SUSHIPLATE2": 769,
+  "SUSHIPLATE3": 774,
+  "SUSHIPLATE4": 779,
+  "DOORTILE16": 781,
+  "SUSHIPLATE5": 792,
+  "OJ": 806,
+  "MASKWALL13": 830,
+  "HURTRAIL": 859,
+  "POWERSWITCH1": 860,
+  "LOCKSWITCH1": 862,
+  "POWERSWITCH2": 864,
+  "ATM": 867,
+  "STATUEFLASH": 869,
+  "ATMBROKE": 888,
+  "BIGHOLE2": 893,
+  "STRIPEBALL": 901,
+  "QUEBALL": 902,
+  "POCKET": 903,
+  "WOODENHORSE": 904,
+  "TREE1": 908,
+  "TREE2": 910,
+  "CACTUS": 911,
+  "MASKWALL2": 913,
+  "MASKWALL3": 914,
+  "MASKWALL4": 915,
+  "FIREEXT": 916,
+  "TOILETWATER": 921,
+  "NEON1": 925,
+  "NEON2": 926,
+  "CACTUSBROKE": 939,
+  "BOUNCEMINE": 940,
+  "BROKEFIREHYDRENT": 950,
+  "BOX": 951,
+  "BULLETHOLE": 952,
+  "BOTTLE1": 954,
+  "BOTTLE2": 955,
+  "BOTTLE3": 956,
+  "BOTTLE4": 957,
+  "FEMPIC5": 963,
+  "FEMPIC6": 964,
+  "FEMPIC7": 965,
+  "HYDROPLANT": 969,
+  "OCEANSPRITE1": 971,
+  "OCEANSPRITE2": 972,
+  "OCEANSPRITE3": 973,
+  "OCEANSPRITE4": 974,
+  "OCEANSPRITE5": 975,
+  "GENERICPOLE": 977,
+  "CONE": 978,
+  "HANGLIGHT": 979,
+  "HYDRENT": 981,
+  "MASKWALL14": 988,
+  "TIRE": 990,
+  "PIPE5": 994,
+  "PIPE6": 995,
+  "PIPE4": 996,
+  "PIPE4B": 997,
+  "BROKEHYDROPLANT": 1003,
+  "PIPE5B": 1005,
+  "NEON3": 1007,
+  "NEON4": 1008,
+  "NEON5": 1009,
+  "BOTTLE5": 1012,
+  "BOTTLE6": 1013,
+  "BOTTLE8": 1014,
+  "SPOTLITE": 1020,
+  "HANGOOZ": 1022,
+  "MASKWALL15": 1024,
+  "BOTTLE7": 1025,
+  "HORSEONSIDE": 1026,
+  "GLASSPIECES": 1031,
+  "HORSELITE": 1034,
+  "DONUTS": 1045,
+  "NEON6": 1046,
+  "MASKWALL6": 1059,
+  "CLOCK": 1060,
+  "RUBBERCAN": 1062,
+  "BROKENCLOCK": 1067,
+  "PLUG": 1069,
+  "OOZFILTER": 1079,
+  "FLOORPLASMA": 1082,
+  "REACTOR": 1088,
+  "REACTORSPARK": 1092,
+  "REACTORBURNT": 1096,
+  "DOORTILE15": 1102,
+  "HANDSWITCH": 1111,
+  "CIRCLEPANNEL": 1113,
+  "CIRCLEPANNELBROKE": 1114,
+  "PULLSWITCH": 1122,
+  "MASKWALL8": 1124,
+  "BIGHOLE": 1141,
+  "ALIENSWITCH": 1142,
+  "DOORTILE21": 1144,
+  "HANDPRINTSWITCH": 1155,
+  "BOTTLE10": 1157,
+  "BOTTLE11": 1158,
+  "BOTTLE12": 1159,
+  "BOTTLE13": 1160,
+  "BOTTLE14": 1161,
+  "BOTTLE15": 1162,
+  "BOTTLE16": 1163,
+  "BOTTLE17": 1164,
+  "BOTTLE18": 1165,
+  "BOTTLE19": 1166,
+  "DOORTILE17": 1169,
+  "MASKWALL7": 1174,
+  "JAILBARBREAK": 1175,
+  "DOORTILE11": 1178,
+  "DOORTILE12": 1179,
+  "VENDMACHINE": 1212,
+  "VENDMACHINEBROKE": 1214,
+  "COLAMACHINE": 1215,
+  "COLAMACHINEBROKE": 1217,
+  "CRANEPOLE": 1221,
+  "CRANE": 1222,
+  "BARBROKE": 1225,
+  "BLOODPOOL": 1226,
+  "NUKEBARREL": 1227,
+  "NUKEBARRELDENTED": 1228,
+  "NUKEBARRELLEAKED": 1229,
+  "CANWITHSOMETHING": 1232,
+  "MONEY": 1233,
+  "BANNER": 1236,
+  "EXPLODINGBARREL": 1238,
+  "EXPLODINGBARREL2": 1239,
+  "FIREBARREL": 1240,
+  "SEENINE": 1247,
+  "SEENINEDEAD": 1248,
+  "STEAM": 1250,
+  "CEILINGSTEAM": 1255,
+  "PIPE6B": 1260,
+  "TRANSPORTERBEAM": 1261,
+  "RAT": 1267,
+  "TRASH": 1272,
+  "FEMPIC1": 1280,
+  "FEMPIC2": 1289,
+  "BLANKSCREEN": 1293,
+  "PODFEM1": 1294,
+  "FEMPIC3": 1298,
+  "FEMPIC4": 1306,
+  "FEM1": 1312,
+  "FEM2": 1317,
+  "FEM3": 1321,
+  "FEM5": 1323,
+  "BLOODYPOLE": 1324,
+  "FEM4": 1325,
+  "FEM6": 1334,
+  "FEM6PAD": 1335,
+  "FEM8": 1336,
+  "HELECOPT": 1346,
+  "FETUSJIB": 1347,
+  "HOLODUKE": 1348,
+  "SPACEMARINE": 1353,
+  "INDY": 1355,
+  "FETUS": 1358,
+  "FETUSBROKE": 1359,
+  "MONK": 1352,
+  "LUKE": 1354,
+  "COOLEXPLOSION1": 1360,
+  "WATERSPLASH2": 1380,
+  "FIREVASE": 1390,
+  "SCRATCH": 1393,
+  "FEM7": 1395,
+  "APLAYERTOP": 1400,
+  "APLAYER": 1405,
+  "PLAYERONWATER": 1420,
+  "DUKELYINGDEAD": 1518,
+  "DUKETORSO": 1520,
+  "DUKEGUN": 1528,
+  "DUKELEG": 1536,
+  "SHARK": 1550,
+  "BLOOD": 1620,
+  "FIRELASER": 1625,
+  "TRANSPORTERSTAR": 1630,
+  "SPIT": 1636,
+  "LOOGIE": 1637,
+  "FIST": 1640,
+  "FREEZEBLAST": 1641,
+  "DEVISTATORBLAST": 1642,
+  "SHRINKSPARK": 1646,
+  "TONGUE": 1647,
+  "MORTER": 1650,
+  "SHRINKEREXPLOSION": 1656,
+  "RADIUSEXPLOSION": 1670,
+  "FORCERIPPLE": 1671,
+  "LIZTROOP": 1680,
+  "LIZTROOPRUNNING": 1681,
+  "LIZTROOPSTAYPUT": 1682,
+  "LIZTOP": 1705,
+  "LIZTROOPSHOOT": 1715,
+  "LIZTROOPJETPACK": 1725,
+  "LIZTROOPDSPRITE": 1734,
+  "LIZTROOPONTOILET": 1741,
+  "LIZTROOPJUSTSIT": 1742,
+  "LIZTROOPDUCKING": 1744,
+  "HEADJIB1": 1768,
+  "ARMJIB1": 1772,
+  "LEGJIB1": 1776,
+  "CANNONBALL": 1817,
+  "OCTABRAIN": 1820,
+  "OCTABRAINSTAYPUT": 1821,
+  "OCTATOP": 1845,
+  "OCTADEADSPRITE": 1855,
+  "INNERJAW": 1860,
+  "DRONE": 1880,
+  "EXPLOSION2": 1890,
+  "COMMANDER": 1920,
+  "COMMANDERSTAYPUT": 1921,
+  "RECON": 1960,
+  "TANK": 1975,
+  "PIGCOP": 2000,
+  "PIGCOPSTAYPUT": 2001,
+  "PIGCOPDIVE": 2045,
+  "PIGCOPDEADSPRITE": 2060,
+  "PIGTOP": 2061,
+  "LIZMAN": 2120,
+  "LIZMANSTAYPUT": 2121,
+  "LIZMANSPITTING": 2150,
+  "LIZMANFEEDING": 2160,
+  "LIZMANJUMP": 2165,
+  "LIZMANDEADSPRITE": 2185,
+  "FECES": 2200,
+  "LIZMANHEAD1": 2201,
+  "LIZMANARM1": 2205,
+  "LIZMANLEG1": 2209,
+  "EXPLOSION2BOT": 2219,
+  "USERWEAPON": 2235,
+  "HEADERBAR": 2242,
+  "JIBS1": 2245,
+  "JIBS2": 2250,
+  "JIBS3": 2255,
+  "JIBS4": 2260,
+  "JIBS5": 2265,
+  "BURNING": 2270,
+  "FIRE": 2271,
+  "JIBS6": 2286,
+  "BLOODSPLAT1": 2296,
+  "BLOODSPLAT3": 2297,
+  "BLOODSPLAT2": 2298,
+  "BLOODSPLAT4": 2299,
+  "OOZ": 2300,
+  "OOZ2": 2309,
+  "WALLBLOOD1": 2301,
+  "WALLBLOOD2": 2302,
+  "WALLBLOOD3": 2303,
+  "WALLBLOOD4": 2304,
+  "WALLBLOOD5": 2305,
+  "WALLBLOOD6": 2306,
+  "WALLBLOOD7": 2307,
+  "WALLBLOOD8": 2308,
+  "BURNING2": 2310,
+  "FIRE2": 2311,
+  "CRACKKNUCKLES": 2324,
+  "SMALLSMOKE": 2329,
+  "SMALLSMOKEMAKER": 2330,
+  "FLOORFLAME": 2333,
+  "ROTATEGUN": 2360,
+  "GREENSLIME": 2370,
+  "WATERDRIPSPLASH": 2380,
+  "SCRAP6": 2390,
+  "SCRAP1": 2400,
+  "SCRAP2": 2404,
+  "SCRAP3": 2408,
+  "SCRAP4": 2412,
+  "SCRAP5": 2416,
+  "ORGANTIC": 2420,
+  "BETAVERSION": 2440,
+  "PLAYERISHERE": 2442,
+  "PLAYERWASHERE": 2443,
+  "SELECTDIR": 2444,
+  "F1HELP": 2445,
+  "NOTCHON": 2446,
+  "NOTCHOFF": 2447,
+  "GROWSPARK": 2448,
+  "DUKEICON": 2452,
+  "BADGUYICON": 2453,
+  "FOODICON": 2454,
+  "GETICON": 2455,
+  "MENUSCREEN": 2456,
+  "MENUBAR": 2457,
+  "KILLSICON": 2458,
+  "FIRSTAID_ICON": 2460,
+  "HEAT_ICON": 2461,
+  "BOTTOMSTATUSBAR": 2462,
+  "BOOT_ICON": 2463,
+  "FRAGBAR": 2465,
+  "JETPACK_ICON": 2467,
+  "AIRTANK_ICON": 2468,
+  "STEROIDS_ICON": 2469,
+  "HOLODUKE_ICON": 2470,
+  "ACCESS_ICON": 2471,
+  "DIGITALNUM": 2472,
+  "DUKECAR": 2491,
+  "CAMCORNER": 2482,
+  "CAMLIGHT": 2484,
+  "LOGO": 2485,
+  "TITLE": 2486,
+  "NUKEWARNINGICON": 2487,
+  "MOUSECURSOR": 2488,
+  "SLIDEBAR": 2489,
+  "DREALMS": 2492,
+  "BETASCREEN": 2493,
+  "WINDOWBORDER1": 2494,
+  "TEXTBOX": 2495,
+  "WINDOWBORDER2": 2496,
+  "DUKENUKEM": 2497,
+  "THREEDEE": 2498,
+  "INGAMEDUKETHREEDEE": 2499,
+  "TENSCREEN": 2500,
+  "PLUTOPAKSPRITE": 2501,
+  "DEVISTATOR": 2510,
+  "KNEE": 2521,
+  "CROSSHAIR": 2523,
+  "FIRSTGUN": 2524,
+  "FIRSTGUNRELOAD": 2528,
+  "FALLINGCLIP": 2530,
+  "CLIPINHAND": 2531,
+  "HAND": 2532,
+  "SHELL": 2533,
+  "SHOTGUNSHELL": 2535,
+  "CHAINGUN": 2536,
+  "RPGGUN": 2544,
+  "RPGMUZZLEFLASH": 2545,
+  "FREEZE": 2548,
+  "CATLITE": 2552,
+  "SHRINKER": 2556,
+  "HANDHOLDINGLASER": 2563,
+  "TRIPBOMB": 2566,
+  "LASERLINE": 2567,
+  "HANDHOLDINGACCESS": 2568,
+  "HANDREMOTE": 2570,
+  "HANDTHROW": 2573,
+  "TIP": 2576,
+  "GLAIR": 2578,
+  "SCUBAMASK": 2581,
+  "SPACEMASK": 2584,
+  "FORCESPHERE": 2590,
+  "SHOTSPARK1": 2595,
+  "RPG": 2605,
+  "LASERSITE": 2612,
+  "SHOTGUN": 2613,
+  "BOSS1": 2630,
+  "BOSS1STAYPUT": 2631,
+  "BOSS1SHOOT": 2660,
+  "BOSS1LOB": 2670,
+  "BOSSTOP": 2696,
+  "BOSS2": 2710,
+  "BOSS3": 2760,
+  "SPINNINGNUKEICON": 2813,
+  "BIGFNTCURSOR": 2820,
+  "SMALLFNTCURSOR": 2821,
+  "STARTALPHANUM": 2822,
+  "ENDALPHANUM": 2915,
+  "BIGALPHANUM": 2940,
+  "BIGPERIOD": 3002,
+  "BIGCOMMA": 3003,
+  "BIGX": 3004,
+  "BIGQ": 3005,
+  "BIGSEMI": 3006,
+  "BIGCOLIN": 3007,
+  "THREEBYFIVE": 3010,
+  "BIGAPPOS": 3022,
+  "BLANK": 3026,
+  "MINIFONT": 3072,
+  "BUTTON1": 3164,
+  "GLASS3": 3187,
+  "RESPAWNMARKERRED": 3190,
+  "RESPAWNMARKERYELLOW": 3200,
+  "RESPAWNMARKERGREEN": 3210,
+  "BONUSSCREEN": 3240,
+  "VIEWBORDER": 3250,
+  "VICTORY1": 3260,
+  "ORDERING": 3270,
+  "TEXTSTORY": 3280,
+  "LOADSCREEN": 3281,
+  "BORNTOBEWILDSCREEN": 3370,
+  "BLIMP": 3400,
+  "FEM9": 3450,
+  "FOOTPRINT": 3701,
+  "POOP": 4094,
+  "FRAMEEFFECT1": 4095,
+  "PANNEL3": 4099,
+  "SCREENBREAK14": 4120,
+  "SCREENBREAK15": 4123,
+  "SCREENBREAK19": 4125,
+  "SCREENBREAK16": 4127,
+  "SCREENBREAK17": 4128,
+  "SCREENBREAK18": 4129,
+  "W_TECHWALL11": 4130,
+  "W_TECHWALL12": 4131,
+  "W_TECHWALL13": 4132,
+  "W_TECHWALL14": 4133,
+  "W_TECHWALL5": 4134,
+  "W_TECHWALL6": 4136,
+  "W_TECHWALL7": 4138,
+  "W_TECHWALL8": 4140,
+  "W_TECHWALL9": 4142,
+  "BPANNEL3": 4100,
+  "W_HITTECHWALL16": 4144,
+  "W_HITTECHWALL10": 4145,
+  "W_HITTECHWALL15": 4147,
+  "W_MILKSHELF": 4181,
+  "W_MILKSHELFBROKE": 4203,
+  "PURPLELAVA": 4240,
+  "LAVABUBBLE": 4340,
+  "DUKECUTOUT": 4352,
+  "TARGET": 4359,
+  "GUNPOWDERBARREL": 4360,
+  "DUCK": 4361,
+  "HATRACK": 4367,
+  "DESKLAMP": 4370,
+  "COFFEEMACHINE": 4372,
+  "CUPS": 4373,
+  "GAVALS": 4374,
+  "GAVALS2": 4375,
+  "POLICELIGHTPOLE": 4377,
+  "FLOORBASKET": 4388,
+  "PUKE": 4389,
+  "DOORTILE23": 4391,
+  "TOPSECRET": 4396,
+  "SPEAKER": 4397,
+  "TEDDYBEAR": 4400,
+  "ROBOTDOG": 4402,
+  "ROBOTPIRATE": 4404,
+  "ROBOTMOUSE": 4407,
+  "MAIL": 4410,
+  "MAILBAG": 4413,
+  "HOTMEAT": 4427,
+  "COFFEEMUG": 4438,
+  "DONUTS2": 4440,
+  "TRIPODCAMERA": 4444,
+  "METER": 4453,
+  "DESKPHONE": 4454,
+  "GUMBALLMACHINE": 4458,
+  "GUMBALLMACHINEBROKE": 4459,
+  "PAPER": 4460,
+  "MACE": 4464,
+  "GENERICPOLE2": 4465,
+  "XXXSTACY": 4470,
+  "WETFLOOR": 4495,
+  "BROOM": 4496,
+  "MOP": 4497,
+  "LETTER": 4502,
+  "PIRATE1A": 4510,
+  "PIRATE4A": 4511,
+  "PIRATE2A": 4512,
+  "PIRATE5A": 4513,
+  "PIRATE3A": 4514,
+  "PIRATE6A": 4515,
+  "PIRATEHALF": 4516,
+  "CHESTOFGOLD": 4520,
+  "SIDEBOLT1": 4525,
+  "FOODOBJECT1": 4530,
+  "FOODOBJECT2": 4531,
+  "FOODOBJECT3": 4532,
+  "FOODOBJECT4": 4533,
+  "FOODOBJECT5": 4534,
+  "FOODOBJECT6": 4535,
+  "FOODOBJECT7": 4536,
+  "FOODOBJECT8": 4537,
+  "FOODOBJECT9": 4538,
+  "FOODOBJECT10": 4539,
+  "FOODOBJECT11": 4540,
+  "FOODOBJECT12": 4541,
+  "FOODOBJECT13": 4542,
+  "FOODOBJECT14": 4543,
+  "FOODOBJECT15": 4544,
+  "FOODOBJECT16": 4545,
+  "FOODOBJECT17": 4546,
+  "FOODOBJECT18": 4547,
+  "FOODOBJECT19": 4548,
+  "FOODOBJECT20": 4549,
+  "HEADLAMP": 4550,
+  "TAMPON": 4557,
+  "SKINNEDCHICKEN": 4554,
+  "FEATHEREDCHICKEN": 4555,
+  "ROBOTDOG2": 4560,
+  "JOLLYMEAL": 4569,
+  "DUKEBURGER": 4570,
+  "SHOPPINGCART": 4576,
+  "CANWITHSOMETHING2": 4580,
+  "CANWITHSOMETHING3": 4581,
+  "CANWITHSOMETHING4": 4582,
+  "SNAKEP": 4590,
+  "DOLPHIN1": 4591,
+  "DOLPHIN2": 4592,
+  "NEWBEAST": 4610,
+  "NEWBEASTSTAYPUT": 4611,
+  "NEWBEASTJUMP": 4690,
+  "NEWBEASTHANG": 4670,
+  "NEWBEASTHANGDEAD": 4671,
+  "BOSS4": 4740,
+  "BOSS4STAYPUT": 4741,
+  "FEM10": 4864,
+  "TOUGHGAL": 4866,
+  "MAN": 4871,
+  "MAN2": 4872,
+  "WOMAN": 4874,
+  "PLEASEWAIT": 4887,
+  "NATURALLIGHTNING": 4890,
+  "WEATHERWARN": 4893,
+  "DUKETAG": 4900,
+  "SIGN1": 4909,
+  "SIGN2": 4912,
+  "JURYGUY": 4943,
+  "RESERVEDSLOT1": 6132,
+  "RESERVEDSLOT2": 6133,
+  "RESERVEDSLOT3": 6134,
+  "RESERVEDSLOT4": 6135,
+  "RESERVEDSLOT5": 6136,
+  "RESERVEDSLOT6": 6132,
+  "RESERVEDSLOT7": 6133,
+  "RESERVEDSLOT8": 6134,
+  "RESERVEDSLOT9": 6135,
+  "RESERVEDSLOT10": 6136,
+  "RESERVEDSLOT11": 6137,
+  "RESERVEDSLOT12": 6138,
+  "RESERVEDSLOT13": 6139,
+  "RESERVEDSLOT14": 6140,
+  "RESERVEDSLOT15": 6141,
+  "RESERVEDSLOT16": 6142,
+  "RESERVEDSLOT17": 6143
+ },
+ "tiles_by_number": {
+  "1": [
+   "SECTOREFFECTOR"
+  ],
+  "2": [
+   "ACTIVATOR"
+  ],
+  "3": [
+   "TOUCHPLATE"
+  ],
+  "4": [
+   "ACTIVATORLOCKED"
+  ],
+  "5": [
+   "MUSICANDSFX"
+  ],
+  "6": [
+   "LOCATORS"
+  ],
+  "7": [
+   "CYCLER"
+  ],
+  "8": [
+   "MASTERSWITCH"
+  ],
+  "9": [
+   "RESPAWN"
+  ],
+  "10": [
+   "GPSPEED"
+  ],
+  "20": [
+   "ARROW"
+  ],
+  "21": [
+   "FIRSTGUNSPRITE"
+  ],
+  "22": [
+   "CHAINGUNSPRITE"
+  ],
+  "23": [
+   "RPGSPRITE"
+  ],
+  "24": [
+   "FREEZESPRITE"
+  ],
+  "25": [
+   "SHRINKERSPRITE"
+  ],
+  "26": [
+   "HEAVYHBOMB"
+  ],
+  "27": [
+   "TRIPBOMBSPRITE"
+  ],
+  "28": [
+   "SHOTGUNSPRITE"
+  ],
+  "29": [
+   "DEVISTATORSPRITE"
+  ],
+  "30": [
+   "HEALTHBOX"
+  ],
+  "31": [
+   "AMMOBOX"
+  ],
+  "32": [
+   "GROWSPRITEICON"
+  ],
+  "33": [
+   "INVENTORYBOX"
+  ],
+  "37": [
+   "FREEZEAMMO"
+  ],
+  "40": [
+   "AMMO"
+  ],
+  "41": [
+   "BATTERYAMMO"
+  ],
+  "42": [
+   "DEVISTATORAMMO"
+  ],
+  "44": [
+   "RPGAMMO"
+  ],
+  "45": [
+   "GROWAMMO"
+  ],
+  "46": [
+   "CRYSTALAMMO"
+  ],
+  "47": [
+   "HBOMBAMMO"
+  ],
+  "49": [
+   "SHOTGUNAMMO"
+  ],
+  "51": [
+   "COLA"
+  ],
+  "52": [
+   "SIXPAK"
+  ],
+  "53": [
+   "FIRSTAID"
+  ],
+  "54": [
+   "SHIELD"
+  ],
+  "55": [
+   "STEROIDS"
+  ],
+  "56": [
+   "AIRTANK"
+  ],
+  "57": [
+   "JETPACK"
+  ],
+  "59": [
+   "HEATSENSOR"
+  ],
+  "60": [
+   "ACCESSCARD"
+  ],
+  "61": [
+   "BOOTS"
+  ],
+  "70": [
+   "MIRRORBROKE"
+  ],
+  "78": [
+   "CLOUDYOCEAN"
+  ],
+  "79": [
+   "CLOUDYSKIES"
+  ],
+  "80": [
+   "MOONSKY1"
+  ],
+  "81": [
+   "MOONSKY2"
+  ],
+  "82": [
+   "MOONSKY3"
+  ],
+  "83": [
+   "MOONSKY4"
+  ],
+  "84": [
+   "BIGORBIT1"
+  ],
+  "85": [
+   "BIGORBIT2"
+  ],
+  "86": [
+   "BIGORBIT3"
+  ],
+  "87": [
+   "BIGORBIT4"
+  ],
+  "88": [
+   "BIGORBIT5"
+  ],
+  "89": [
+   "LA"
+  ],
+  "98": [
+   "REDSKY1"
+  ],
+  "99": [
+   "REDSKY2"
+  ],
+  "100": [
+   "ATOMICHEALTH"
+  ],
+  "120": [
+   "TECHLIGHT2"
+  ],
+  "121": [
+   "TECHLIGHTBUST2"
+  ],
+  "122": [
+   "TECHLIGHT4"
+  ],
+  "123": [
+   "TECHLIGHTBUST4"
+  ],
+  "124": [
+   "WALLLIGHT4"
+  ],
+  "125": [
+   "WALLLIGHTBUST4"
+  ],
+  "130": [
+   "ACCESSSWITCH"
+  ],
+  "132": [
+   "SLOTDOOR"
+  ],
+  "134": [
+   "LIGHTSWITCH"
+  ],
+  "136": [
+   "SPACEDOORSWITCH"
+  ],
+  "138": [
+   "SPACELIGHTSWITCH"
+  ],
+  "140": [
+   "FRANKENSTINESWITCH"
+  ],
+  "142": [
+   "NUKEBUTTON"
+  ],
+  "146": [
+   "MULTISWITCH"
+  ],
+  "150": [
+   "DOORTILE5"
+  ],
+  "151": [
+   "DOORTILE6"
+  ],
+  "152": [
+   "DOORTILE1"
+  ],
+  "153": [
+   "DOORTILE2"
+  ],
+  "154": [
+   "DOORTILE3"
+  ],
+  "155": [
+   "DOORTILE4"
+  ],
+  "156": [
+   "DOORTILE7"
+  ],
+  "157": [
+   "DOORTILE8"
+  ],
+  "158": [
+   "DOORTILE9"
+  ],
+  "159": [
+   "DOORTILE10"
+  ],
+  "160": [
+   "DOORSHOCK"
+  ],
+  "162": [
+   "DIPSWITCH"
+  ],
+  "164": [
+   "DIPSWITCH2"
+  ],
+  "166": [
+   "TECHSWITCH"
+  ],
+  "168": [
+   "DIPSWITCH3"
+  ],
+  "170": [
+   "ACCESSSWITCH2"
+  ],
+  "200": [
+   "FLOORSLIME"
+  ],
+  "230": [
+   "BIGFORCE"
+  ],
+  "247": [
+   "EPISODE"
+  ],
+  "255": [
+   "MASKWALL9"
+  ],
+  "260": [
+   "W_LIGHT"
+  ],
+  "263": [
+   "SCREENBREAK1"
+  ],
+  "264": [
+   "SCREENBREAK2"
+  ],
+  "265": [
+   "SCREENBREAK3"
+  ],
+  "266": [
+   "SCREENBREAK4"
+  ],
+  "267": [
+   "SCREENBREAK5"
+  ],
+  "268": [
+   "SCREENBREAK6"
+  ],
+  "269": [
+   "SCREENBREAK7"
+  ],
+  "270": [
+   "SCREENBREAK8"
+  ],
+  "271": [
+   "SCREENBREAK9"
+  ],
+  "272": [
+   "SCREENBREAK10"
+  ],
+  "273": [
+   "SCREENBREAK11"
+  ],
+  "274": [
+   "SCREENBREAK12"
+  ],
+  "275": [
+   "SCREENBREAK13"
+  ],
+  "285": [
+   "MASKWALL1"
+  ],
+  "293": [
+   "W_TECHWALL1"
+  ],
+  "297": [
+   "W_TECHWALL2"
+  ],
+  "299": [
+   "W_TECHWALL15"
+  ],
+  "301": [
+   "W_TECHWALL3"
+  ],
+  "305": [
+   "W_TECHWALL4"
+  ],
+  "306": [
+   "W_TECHWALL10"
+  ],
+  "307": [
+   "W_TECHWALL16"
+  ],
+  "336": [
+   "WATERTILE2"
+  ],
+  "341": [
+   "BPANNEL1"
+  ],
+  "342": [
+   "PANNEL1"
+  ],
+  "343": [
+   "PANNEL2"
+  ],
+  "344": [
+   "WATERTILE"
+  ],
+  "351": [
+   "STATIC"
+  ],
+  "357": [
+   "W_SCREENBREAK"
+  ],
+  "360": [
+   "W_HITTECHWALL3"
+  ],
+  "361": [
+   "W_HITTECHWALL4"
+  ],
+  "362": [
+   "W_HITTECHWALL2"
+  ],
+  "363": [
+   "W_HITTECHWALL1"
+  ],
+  "387": [
+   "MASKWALL10"
+  ],
+  "391": [
+   "MASKWALL11"
+  ],
+  "395": [
+   "DOORTILE22"
+  ],
+  "407": [
+   "FANSPRITE"
+  ],
+  "411": [
+   "FANSPRITEBROKE"
+  ],
+  "412": [
+   "FANSHADOW"
+  ],
+  "447": [
+   "DOORTILE18"
+  ],
+  "448": [
+   "DOORTILE19"
+  ],
+  "449": [
+   "DOORTILE20"
+  ],
+  "489": [
+   "SATELLITE"
+  ],
+  "499": [
+   "VIEWSCREEN2"
+  ],
+  "501": [
+   "VIEWSCREENBROKE"
+  ],
+  "502": [
+   "VIEWSCREEN"
+  ],
+  "503": [
+   "GLASS"
+  ],
+  "504": [
+   "GLASS2"
+  ],
+  "510": [
+   "STAINGLASS1"
+  ],
+  "514": [
+   "MASKWALL5"
+  ],
+  "516": [
+   "SATELITE"
+  ],
+  "517": [
+   "FUELPOD"
+  ],
+  "538": [
+   "SLIMEPIPE"
+  ],
+  "546": [
+   "CRACK1"
+  ],
+  "547": [
+   "CRACK2"
+  ],
+  "548": [
+   "CRACK3"
+  ],
+  "549": [
+   "CRACK4"
+  ],
+  "550": [
+   "FOOTPRINTS"
+  ],
+  "551": [
+   "DOMELITE"
+  ],
+  "554": [
+   "CAMERAPOLE"
+  ],
+  "556": [
+   "CHAIR1"
+  ],
+  "557": [
+   "CHAIR2"
+  ],
+  "559": [
+   "BROKENCHAIR"
+  ],
+  "560": [
+   "MIRROR"
+  ],
+  "563": [
+   "WATERFOUNTAIN"
+  ],
+  "567": [
+   "WATERFOUNTAINBROKE"
+  ],
+  "568": [
+   "FEMMAG1"
+  ],
+  "569": [
+   "TOILET"
+  ],
+  "571": [
+   "STALL"
+  ],
+  "573": [
+   "STALLBROKE"
+  ],
+  "577": [
+   "FEMMAG2"
+  ],
+  "578": [
+   "REACTOR2"
+  ],
+  "579": [
+   "REACTOR2BURNT"
+  ],
+  "580": [
+   "REACTOR2SPARK"
+  ],
+  "595": [
+   "GRATE1"
+  ],
+  "596": [
+   "BGRATE1"
+  ],
+  "602": [
+   "SOLARPANNEL"
+  ],
+  "603": [
+   "NAKED1"
+  ],
+  "607": [
+   "ANTENNA"
+  ],
+  "609": [
+   "MASKWALL12"
+  ],
+  "615": [
+   "TOILETBROKE"
+  ],
+  "616": [
+   "PIPE2"
+  ],
+  "617": [
+   "PIPE1B"
+  ],
+  "618": [
+   "PIPE3"
+  ],
+  "619": [
+   "PIPE1"
+  ],
+  "621": [
+   "CAMERA1"
+  ],
+  "626": [
+   "BRICK"
+  ],
+  "630": [
+   "SPLINTERWOOD"
+  ],
+  "633": [
+   "PIPE2B"
+  ],
+  "634": [
+   "BOLT1"
+  ],
+  "640": [
+   "W_NUMBERS"
+  ],
+  "660": [
+   "WATERDRIP"
+  ],
+  "661": [
+   "WATERBUBBLE"
+  ],
+  "662": [
+   "WATERBUBBLEMAKER"
+  ],
+  "663": [
+   "W_FORCEFIELD"
+  ],
+  "669": [
+   "VACUUM"
+  ],
+  "672": [
+   "FOOTPRINTS2"
+  ],
+  "673": [
+   "FOOTPRINTS3"
+  ],
+  "674": [
+   "FOOTPRINTS4"
+  ],
+  "675": [
+   "EGG"
+  ],
+  "678": [
+   "SCALE"
+  ],
+  "680": [
+   "CHAIR3"
+  ],
+  "685": [
+   "CAMERALIGHT"
+  ],
+  "686": [
+   "MOVIECAMERA"
+  ],
+  "689": [
+   "IVUNIT"
+  ],
+  "694": [
+   "POT1"
+  ],
+  "695": [
+   "POT2"
+  ],
+  "697": [
+   "POT3"
+  ],
+  "700": [
+   "PIPE3B"
+  ],
+  "701": [
+   "WALLLIGHT3"
+  ],
+  "702": [
+   "WALLLIGHTBUST3"
+  ],
+  "703": [
+   "WALLLIGHT1"
+  ],
+  "704": [
+   "WALLLIGHTBUST1"
+  ],
+  "705": [
+   "WALLLIGHT2"
+  ],
+  "706": [
+   "WALLLIGHTBUST2"
+  ],
+  "712": [
+   "LIGHTSWITCH2"
+  ],
+  "716": [
+   "WAITTOBESEATED"
+  ],
+  "717": [
+   "DOORTILE14"
+  ],
+  "753": [
+   "STATUE"
+  ],
+  "762": [
+   "MIKE"
+  ],
+  "765": [
+   "VASE"
+  ],
+  "768": [
+   "SUSHIPLATE1"
+  ],
+  "769": [
+   "SUSHIPLATE2"
+  ],
+  "774": [
+   "SUSHIPLATE3"
+  ],
+  "779": [
+   "SUSHIPLATE4"
+  ],
+  "781": [
+   "DOORTILE16"
+  ],
+  "792": [
+   "SUSHIPLATE5"
+  ],
+  "806": [
+   "OJ"
+  ],
+  "830": [
+   "MASKWALL13"
+  ],
+  "859": [
+   "HURTRAIL"
+  ],
+  "860": [
+   "POWERSWITCH1"
+  ],
+  "862": [
+   "LOCKSWITCH1"
+  ],
+  "864": [
+   "POWERSWITCH2"
+  ],
+  "867": [
+   "ATM"
+  ],
+  "869": [
+   "STATUEFLASH"
+  ],
+  "888": [
+   "ATMBROKE"
+  ],
+  "893": [
+   "BIGHOLE2"
+  ],
+  "901": [
+   "STRIPEBALL"
+  ],
+  "902": [
+   "QUEBALL"
+  ],
+  "903": [
+   "POCKET"
+  ],
+  "904": [
+   "WOODENHORSE"
+  ],
+  "908": [
+   "TREE1"
+  ],
+  "910": [
+   "TREE2"
+  ],
+  "911": [
+   "CACTUS"
+  ],
+  "913": [
+   "MASKWALL2"
+  ],
+  "914": [
+   "MASKWALL3"
+  ],
+  "915": [
+   "MASKWALL4"
+  ],
+  "916": [
+   "FIREEXT"
+  ],
+  "921": [
+   "TOILETWATER"
+  ],
+  "925": [
+   "NEON1"
+  ],
+  "926": [
+   "NEON2"
+  ],
+  "939": [
+   "CACTUSBROKE"
+  ],
+  "940": [
+   "BOUNCEMINE"
+  ],
+  "950": [
+   "BROKEFIREHYDRENT"
+  ],
+  "951": [
+   "BOX"
+  ],
+  "952": [
+   "BULLETHOLE"
+  ],
+  "954": [
+   "BOTTLE1"
+  ],
+  "955": [
+   "BOTTLE2"
+  ],
+  "956": [
+   "BOTTLE3"
+  ],
+  "957": [
+   "BOTTLE4"
+  ],
+  "963": [
+   "FEMPIC5"
+  ],
+  "964": [
+   "FEMPIC6"
+  ],
+  "965": [
+   "FEMPIC7"
+  ],
+  "969": [
+   "HYDROPLANT"
+  ],
+  "971": [
+   "OCEANSPRITE1"
+  ],
+  "972": [
+   "OCEANSPRITE2"
+  ],
+  "973": [
+   "OCEANSPRITE3"
+  ],
+  "974": [
+   "OCEANSPRITE4"
+  ],
+  "975": [
+   "OCEANSPRITE5"
+  ],
+  "977": [
+   "GENERICPOLE"
+  ],
+  "978": [
+   "CONE"
+  ],
+  "979": [
+   "HANGLIGHT"
+  ],
+  "981": [
+   "HYDRENT"
+  ],
+  "988": [
+   "MASKWALL14"
+  ],
+  "990": [
+   "TIRE"
+  ],
+  "994": [
+   "PIPE5"
+  ],
+  "995": [
+   "PIPE6"
+  ],
+  "996": [
+   "PIPE4"
+  ],
+  "997": [
+   "PIPE4B"
+  ],
+  "1003": [
+   "BROKEHYDROPLANT"
+  ],
+  "1005": [
+   "PIPE5B"
+  ],
+  "1007": [
+   "NEON3"
+  ],
+  "1008": [
+   "NEON4"
+  ],
+  "1009": [
+   "NEON5"
+  ],
+  "1012": [
+   "BOTTLE5"
+  ],
+  "1013": [
+   "BOTTLE6"
+  ],
+  "1014": [
+   "BOTTLE8"
+  ],
+  "1020": [
+   "SPOTLITE"
+  ],
+  "1022": [
+   "HANGOOZ"
+  ],
+  "1024": [
+   "MASKWALL15"
+  ],
+  "1025": [
+   "BOTTLE7"
+  ],
+  "1026": [
+   "HORSEONSIDE"
+  ],
+  "1031": [
+   "GLASSPIECES"
+  ],
+  "1034": [
+   "HORSELITE"
+  ],
+  "1045": [
+   "DONUTS"
+  ],
+  "1046": [
+   "NEON6"
+  ],
+  "1059": [
+   "MASKWALL6"
+  ],
+  "1060": [
+   "CLOCK"
+  ],
+  "1062": [
+   "RUBBERCAN"
+  ],
+  "1067": [
+   "BROKENCLOCK"
+  ],
+  "1069": [
+   "PLUG"
+  ],
+  "1079": [
+   "OOZFILTER"
+  ],
+  "1082": [
+   "FLOORPLASMA"
+  ],
+  "1088": [
+   "REACTOR"
+  ],
+  "1092": [
+   "REACTORSPARK"
+  ],
+  "1096": [
+   "REACTORBURNT"
+  ],
+  "1102": [
+   "DOORTILE15"
+  ],
+  "1111": [
+   "HANDSWITCH"
+  ],
+  "1113": [
+   "CIRCLEPANNEL"
+  ],
+  "1114": [
+   "CIRCLEPANNELBROKE"
+  ],
+  "1122": [
+   "PULLSWITCH"
+  ],
+  "1124": [
+   "MASKWALL8"
+  ],
+  "1141": [
+   "BIGHOLE"
+  ],
+  "1142": [
+   "ALIENSWITCH"
+  ],
+  "1144": [
+   "DOORTILE21"
+  ],
+  "1155": [
+   "HANDPRINTSWITCH"
+  ],
+  "1157": [
+   "BOTTLE10"
+  ],
+  "1158": [
+   "BOTTLE11"
+  ],
+  "1159": [
+   "BOTTLE12"
+  ],
+  "1160": [
+   "BOTTLE13"
+  ],
+  "1161": [
+   "BOTTLE14"
+  ],
+  "1162": [
+   "BOTTLE15"
+  ],
+  "1163": [
+   "BOTTLE16"
+  ],
+  "1164": [
+   "BOTTLE17"
+  ],
+  "1165": [
+   "BOTTLE18"
+  ],
+  "1166": [
+   "BOTTLE19"
+  ],
+  "1169": [
+   "DOORTILE17"
+  ],
+  "1174": [
+   "MASKWALL7"
+  ],
+  "1175": [
+   "JAILBARBREAK"
+  ],
+  "1178": [
+   "DOORTILE11"
+  ],
+  "1179": [
+   "DOORTILE12"
+  ],
+  "1212": [
+   "VENDMACHINE"
+  ],
+  "1214": [
+   "VENDMACHINEBROKE"
+  ],
+  "1215": [
+   "COLAMACHINE"
+  ],
+  "1217": [
+   "COLAMACHINEBROKE"
+  ],
+  "1221": [
+   "CRANEPOLE"
+  ],
+  "1222": [
+   "CRANE"
+  ],
+  "1225": [
+   "BARBROKE"
+  ],
+  "1226": [
+   "BLOODPOOL"
+  ],
+  "1227": [
+   "NUKEBARREL"
+  ],
+  "1228": [
+   "NUKEBARRELDENTED"
+  ],
+  "1229": [
+   "NUKEBARRELLEAKED"
+  ],
+  "1232": [
+   "CANWITHSOMETHING"
+  ],
+  "1233": [
+   "MONEY"
+  ],
+  "1236": [
+   "BANNER"
+  ],
+  "1238": [
+   "EXPLODINGBARREL"
+  ],
+  "1239": [
+   "EXPLODINGBARREL2"
+  ],
+  "1240": [
+   "FIREBARREL"
+  ],
+  "1247": [
+   "SEENINE"
+  ],
+  "1248": [
+   "SEENINEDEAD"
+  ],
+  "1250": [
+   "STEAM"
+  ],
+  "1255": [
+   "CEILINGSTEAM"
+  ],
+  "1260": [
+   "PIPE6B"
+  ],
+  "1261": [
+   "TRANSPORTERBEAM"
+  ],
+  "1267": [
+   "RAT"
+  ],
+  "1272": [
+   "TRASH"
+  ],
+  "1280": [
+   "FEMPIC1"
+  ],
+  "1289": [
+   "FEMPIC2"
+  ],
+  "1293": [
+   "BLANKSCREEN"
+  ],
+  "1294": [
+   "PODFEM1"
+  ],
+  "1298": [
+   "FEMPIC3"
+  ],
+  "1306": [
+   "FEMPIC4"
+  ],
+  "1312": [
+   "FEM1"
+  ],
+  "1317": [
+   "FEM2"
+  ],
+  "1321": [
+   "FEM3"
+  ],
+  "1323": [
+   "FEM5"
+  ],
+  "1324": [
+   "BLOODYPOLE"
+  ],
+  "1325": [
+   "FEM4"
+  ],
+  "1334": [
+   "FEM6"
+  ],
+  "1335": [
+   "FEM6PAD"
+  ],
+  "1336": [
+   "FEM8"
+  ],
+  "1346": [
+   "HELECOPT"
+  ],
+  "1347": [
+   "FETUSJIB"
+  ],
+  "1348": [
+   "HOLODUKE"
+  ],
+  "1352": [
+   "MONK"
+  ],
+  "1353": [
+   "SPACEMARINE"
+  ],
+  "1354": [
+   "LUKE"
+  ],
+  "1355": [
+   "INDY"
+  ],
+  "1358": [
+   "FETUS"
+  ],
+  "1359": [
+   "FETUSBROKE"
+  ],
+  "1360": [
+   "COOLEXPLOSION1"
+  ],
+  "1380": [
+   "WATERSPLASH2"
+  ],
+  "1390": [
+   "FIREVASE"
+  ],
+  "1393": [
+   "SCRATCH"
+  ],
+  "1395": [
+   "FEM7"
+  ],
+  "1400": [
+   "APLAYERTOP"
+  ],
+  "1405": [
+   "APLAYER"
+  ],
+  "1420": [
+   "PLAYERONWATER"
+  ],
+  "1518": [
+   "DUKELYINGDEAD"
+  ],
+  "1520": [
+   "DUKETORSO"
+  ],
+  "1528": [
+   "DUKEGUN"
+  ],
+  "1536": [
+   "DUKELEG"
+  ],
+  "1550": [
+   "SHARK"
+  ],
+  "1620": [
+   "BLOOD"
+  ],
+  "1625": [
+   "FIRELASER"
+  ],
+  "1630": [
+   "TRANSPORTERSTAR"
+  ],
+  "1636": [
+   "SPIT"
+  ],
+  "1637": [
+   "LOOGIE"
+  ],
+  "1640": [
+   "FIST"
+  ],
+  "1641": [
+   "FREEZEBLAST"
+  ],
+  "1642": [
+   "DEVISTATORBLAST"
+  ],
+  "1646": [
+   "SHRINKSPARK"
+  ],
+  "1647": [
+   "TONGUE"
+  ],
+  "1650": [
+   "MORTER"
+  ],
+  "1656": [
+   "SHRINKEREXPLOSION"
+  ],
+  "1671": [
+   "FORCERIPPLE"
+  ],
+  "1680": [
+   "LIZTROOP"
+  ],
+  "1681": [
+   "LIZTROOPRUNNING"
+  ],
+  "1682": [
+   "LIZTROOPSTAYPUT"
+  ],
+  "1705": [
+   "LIZTOP"
+  ],
+  "1715": [
+   "LIZTROOPSHOOT"
+  ],
+  "1725": [
+   "LIZTROOPJETPACK"
+  ],
+  "1734": [
+   "LIZTROOPDSPRITE"
+  ],
+  "1741": [
+   "LIZTROOPONTOILET"
+  ],
+  "1742": [
+   "LIZTROOPJUSTSIT"
+  ],
+  "1744": [
+   "LIZTROOPDUCKING"
+  ],
+  "1768": [
+   "HEADJIB1"
+  ],
+  "1772": [
+   "ARMJIB1"
+  ],
+  "1776": [
+   "LEGJIB1"
+  ],
+  "1817": [
+   "CANNONBALL"
+  ],
+  "1820": [
+   "OCTABRAIN"
+  ],
+  "1821": [
+   "OCTABRAINSTAYPUT"
+  ],
+  "1845": [
+   "OCTATOP"
+  ],
+  "1855": [
+   "OCTADEADSPRITE"
+  ],
+  "1880": [
+   "DRONE"
+  ],
+  "1890": [
+   "EXPLOSION2"
+  ],
+  "1920": [
+   "COMMANDER"
+  ],
+  "1921": [
+   "COMMANDERSTAYPUT"
+  ],
+  "1960": [
+   "RECON"
+  ],
+  "1975": [
+   "TANK"
+  ],
+  "2000": [
+   "PIGCOP"
+  ],
+  "2001": [
+   "PIGCOPSTAYPUT"
+  ],
+  "2045": [
+   "PIGCOPDIVE"
+  ],
+  "2060": [
+   "PIGCOPDEADSPRITE"
+  ],
+  "2061": [
+   "PIGTOP"
+  ],
+  "2120": [
+   "LIZMAN"
+  ],
+  "2121": [
+   "LIZMANSTAYPUT"
+  ],
+  "2150": [
+   "LIZMANSPITTING"
+  ],
+  "2160": [
+   "LIZMANFEEDING"
+  ],
+  "2165": [
+   "LIZMANJUMP"
+  ],
+  "2185": [
+   "LIZMANDEADSPRITE"
+  ],
+  "2200": [
+   "FECES"
+  ],
+  "2201": [
+   "LIZMANHEAD1"
+  ],
+  "2205": [
+   "LIZMANARM1"
+  ],
+  "2209": [
+   "LIZMANLEG1"
+  ],
+  "2219": [
+   "EXPLOSION2BOT"
+  ],
+  "2235": [
+   "USERWEAPON"
+  ],
+  "2245": [
+   "JIBS1"
+  ],
+  "2250": [
+   "JIBS2"
+  ],
+  "2255": [
+   "JIBS3"
+  ],
+  "2260": [
+   "JIBS4"
+  ],
+  "2265": [
+   "JIBS5"
+  ],
+  "2270": [
+   "BURNING"
+  ],
+  "2271": [
+   "FIRE"
+  ],
+  "2286": [
+   "JIBS6"
+  ],
+  "2296": [
+   "BLOODSPLAT1"
+  ],
+  "2297": [
+   "BLOODSPLAT3"
+  ],
+  "2298": [
+   "BLOODSPLAT2"
+  ],
+  "2299": [
+   "BLOODSPLAT4"
+  ],
+  "2300": [
+   "OOZ"
+  ],
+  "2301": [
+   "WALLBLOOD1"
+  ],
+  "2302": [
+   "WALLBLOOD2"
+  ],
+  "2303": [
+   "WALLBLOOD3"
+  ],
+  "2304": [
+   "WALLBLOOD4"
+  ],
+  "2305": [
+   "WALLBLOOD5"
+  ],
+  "2306": [
+   "WALLBLOOD6"
+  ],
+  "2307": [
+   "WALLBLOOD7"
+  ],
+  "2308": [
+   "WALLBLOOD8"
+  ],
+  "2309": [
+   "OOZ2"
+  ],
+  "2310": [
+   "BURNING2"
+  ],
+  "2311": [
+   "FIRE2"
+  ],
+  "2324": [
+   "CRACKKNUCKLES"
+  ],
+  "2329": [
+   "SMALLSMOKE"
+  ],
+  "2330": [
+   "SMALLSMOKEMAKER"
+  ],
+  "2333": [
+   "FLOORFLAME"
+  ],
+  "2360": [
+   "ROTATEGUN"
+  ],
+  "2370": [
+   "GREENSLIME"
+  ],
+  "2380": [
+   "WATERDRIPSPLASH"
+  ],
+  "2390": [
+   "SCRAP6"
+  ],
+  "2400": [
+   "SCRAP1"
+  ],
+  "2404": [
+   "SCRAP2"
+  ],
+  "2408": [
+   "SCRAP3"
+  ],
+  "2412": [
+   "SCRAP4"
+  ],
+  "2416": [
+   "SCRAP5"
+  ],
+  "2420": [
+   "ORGANTIC"
+  ],
+  "2440": [
+   "BETAVERSION"
+  ],
+  "2444": [
+   "SELECTDIR"
+  ],
+  "2445": [
+   "F1HELP"
+  ],
+  "2446": [
+   "NOTCHON"
+  ],
+  "2447": [
+   "NOTCHOFF"
+  ],
+  "2448": [
+   "GROWSPARK"
+  ],
+  "2452": [
+   "DUKEICON"
+  ],
+  "2453": [
+   "BADGUYICON"
+  ],
+  "2454": [
+   "FOODICON"
+  ],
+  "2455": [
+   "GETICON"
+  ],
+  "2456": [
+   "MENUSCREEN"
+  ],
+  "2457": [
+   "MENUBAR"
+  ],
+  "2458": [
+   "KILLSICON"
+  ],
+  "2460": [
+   "FIRSTAID_ICON"
+  ],
+  "2461": [
+   "HEAT_ICON"
+  ],
+  "2462": [
+   "BOTTOMSTATUSBAR"
+  ],
+  "2463": [
+   "BOOT_ICON"
+  ],
+  "2465": [
+   "FRAGBAR"
+  ],
+  "2467": [
+   "JETPACK_ICON"
+  ],
+  "2468": [
+   "AIRTANK_ICON"
+  ],
+  "2469": [
+   "STEROIDS_ICON"
+  ],
+  "2470": [
+   "HOLODUKE_ICON"
+  ],
+  "2471": [
+   "ACCESS_ICON"
+  ],
+  "2472": [
+   "DIGITALNUM"
+  ],
+  "2482": [
+   "CAMCORNER"
+  ],
+  "2484": [
+   "CAMLIGHT"
+  ],
+  "2485": [
+   "LOGO"
+  ],
+  "2486": [
+   "TITLE"
+  ],
+  "2487": [
+   "NUKEWARNINGICON"
+  ],
+  "2489": [
+   "SLIDEBAR"
+  ],
+  "2491": [
+   "DUKECAR"
+  ],
+  "2492": [
+   "DREALMS"
+  ],
+  "2493": [
+   "BETASCREEN"
+  ],
+  "2494": [
+   "WINDOWBORDER1"
+  ],
+  "2495": [
+   "TEXTBOX"
+  ],
+  "2496": [
+   "WINDOWBORDER2"
+  ],
+  "2497": [
+   "DUKENUKEM"
+  ],
+  "2498": [
+   "THREEDEE"
+  ],
+  "2499": [
+   "INGAMEDUKETHREEDEE"
+  ],
+  "2500": [
+   "TENSCREEN"
+  ],
+  "2510": [
+   "DEVISTATOR"
+  ],
+  "2521": [
+   "KNEE"
+  ],
+  "2523": [
+   "CROSSHAIR"
+  ],
+  "2524": [
+   "FIRSTGUN"
+  ],
+  "2528": [
+   "FIRSTGUNRELOAD"
+  ],
+  "2530": [
+   "FALLINGCLIP"
+  ],
+  "2531": [
+   "CLIPINHAND"
+  ],
+  "2532": [
+   "HAND"
+  ],
+  "2533": [
+   "SHELL"
+  ],
+  "2535": [
+   "SHOTGUNSHELL"
+  ],
+  "2536": [
+   "CHAINGUN"
+  ],
+  "2544": [
+   "RPGGUN"
+  ],
+  "2545": [
+   "RPGMUZZLEFLASH"
+  ],
+  "2548": [
+   "FREEZE"
+  ],
+  "2552": [
+   "CATLITE"
+  ],
+  "2556": [
+   "SHRINKER"
+  ],
+  "2563": [
+   "HANDHOLDINGLASER"
+  ],
+  "2566": [
+   "TRIPBOMB"
+  ],
+  "2567": [
+   "LASERLINE"
+  ],
+  "2568": [
+   "HANDHOLDINGACCESS"
+  ],
+  "2570": [
+   "HANDREMOTE"
+  ],
+  "2573": [
+   "HANDTHROW"
+  ],
+  "2576": [
+   "TIP"
+  ],
+  "2581": [
+   "SCUBAMASK"
+  ],
+  "2590": [
+   "FORCESPHERE"
+  ],
+  "2595": [
+   "SHOTSPARK1"
+  ],
+  "2605": [
+   "RPG"
+  ],
+  "2612": [
+   "LASERSITE"
+  ],
+  "2613": [
+   "SHOTGUN"
+  ],
+  "2630": [
+   "BOSS1"
+  ],
+  "2631": [
+   "BOSS1STAYPUT"
+  ],
+  "2660": [
+   "BOSS1SHOOT"
+  ],
+  "2670": [
+   "BOSS1LOB"
+  ],
+  "2710": [
+   "BOSS2"
+  ],
+  "2760": [
+   "BOSS3"
+  ],
+  "2813": [
+   "SPINNINGNUKEICON"
+  ],
+  "2820": [
+   "BIGFNTCURSOR"
+  ],
+  "2821": [
+   "SMALLFNTCURSOR"
+  ],
+  "2822": [
+   "STARTALPHANUM"
+  ],
+  "2915": [
+   "ENDALPHANUM"
+  ],
+  "2940": [
+   "BIGALPHANUM"
+  ],
+  "3002": [
+   "BIGPERIOD"
+  ],
+  "3003": [
+   "BIGCOMMA"
+  ],
+  "3004": [
+   "BIGX"
+  ],
+  "3005": [
+   "BIGQ"
+  ],
+  "3006": [
+   "BIGSEMI"
+  ],
+  "3007": [
+   "BIGCOLIN"
+  ],
+  "3010": [
+   "THREEBYFIVE"
+  ],
+  "3022": [
+   "BIGAPPOS"
+  ],
+  "3026": [
+   "BLANK"
+  ],
+  "3072": [
+   "MINIFONT"
+  ],
+  "3164": [
+   "BUTTON1"
+  ],
+  "3190": [
+   "RESPAWNMARKERRED"
+  ],
+  "3200": [
+   "RESPAWNMARKERYELLOW"
+  ],
+  "3210": [
+   "RESPAWNMARKERGREEN"
+  ],
+  "3240": [
+   "BONUSSCREEN"
+  ],
+  "3250": [
+   "VIEWBORDER"
+  ],
+  "3260": [
+   "VICTORY1"
+  ],
+  "3270": [
+   "ORDERING"
+  ],
+  "3280": [
+   "TEXTSTORY"
+  ],
+  "3281": [
+   "LOADSCREEN"
+  ],
+  "3370": [
+   "BORNTOBEWILDSCREEN"
+  ],
+  "3400": [
+   "BLIMP"
+  ],
+  "3450": [
+   "FEM9"
+  ]
+ },
+ "named_but_no_art": {
+  "48": [
+   "AMMOLOTS"
+  ],
+  "180": [
+   "REFLECTWATERTILE"
+  ],
+  "416": [
+   "FANSHADOWBROKE"
+  ],
+  "1670": [
+   "RADIUSEXPLOSION"
+  ],
+  "1860": [
+   "INNERJAW"
+  ],
+  "2242": [
+   "HEADERBAR"
+  ],
+  "2442": [
+   "PLAYERISHERE"
+  ],
+  "2443": [
+   "PLAYERWASHERE"
+  ],
+  "2488": [
+   "MOUSECURSOR"
+  ],
+  "2501": [
+   "PLUTOPAKSPRITE"
+  ],
+  "2578": [
+   "GLAIR"
+  ],
+  "2584": [
+   "SPACEMASK"
+  ],
+  "2696": [
+   "BOSSTOP"
+  ],
+  "3187": [
+   "GLASS3"
+  ],
+  "3701": [
+   "FOOTPRINT"
+  ],
+  "4094": [
+   "POOP"
+  ],
+  "4095": [
+   "FRAMEEFFECT1"
+  ],
+  "4099": [
+   "PANNEL3"
+  ],
+  "4100": [
+   "BPANNEL3"
+  ],
+  "4120": [
+   "SCREENBREAK14"
+  ],
+  "4123": [
+   "SCREENBREAK15"
+  ],
+  "4125": [
+   "SCREENBREAK19"
+  ],
+  "4127": [
+   "SCREENBREAK16"
+  ],
+  "4128": [
+   "SCREENBREAK17"
+  ],
+  "4129": [
+   "SCREENBREAK18"
+  ],
+  "4130": [
+   "W_TECHWALL11"
+  ],
+  "4131": [
+   "W_TECHWALL12"
+  ],
+  "4132": [
+   "W_TECHWALL13"
+  ],
+  "4133": [
+   "W_TECHWALL14"
+  ],
+  "4134": [
+   "W_TECHWALL5"
+  ],
+  "4136": [
+   "W_TECHWALL6"
+  ],
+  "4138": [
+   "W_TECHWALL7"
+  ],
+  "4140": [
+   "W_TECHWALL8"
+  ],
+  "4142": [
+   "W_TECHWALL9"
+  ],
+  "4144": [
+   "W_HITTECHWALL16"
+  ],
+  "4145": [
+   "W_HITTECHWALL10"
+  ],
+  "4147": [
+   "W_HITTECHWALL15"
+  ],
+  "4181": [
+   "W_MILKSHELF"
+  ],
+  "4203": [
+   "W_MILKSHELFBROKE"
+  ],
+  "4240": [
+   "PURPLELAVA"
+  ],
+  "4340": [
+   "LAVABUBBLE"
+  ],
+  "4352": [
+   "DUKECUTOUT"
+  ],
+  "4359": [
+   "TARGET"
+  ],
+  "4360": [
+   "GUNPOWDERBARREL"
+  ],
+  "4361": [
+   "DUCK"
+  ],
+  "4367": [
+   "HATRACK"
+  ],
+  "4370": [
+   "DESKLAMP"
+  ],
+  "4372": [
+   "COFFEEMACHINE"
+  ],
+  "4373": [
+   "CUPS"
+  ],
+  "4374": [
+   "GAVALS"
+  ],
+  "4375": [
+   "GAVALS2"
+  ],
+  "4377": [
+   "POLICELIGHTPOLE"
+  ],
+  "4388": [
+   "FLOORBASKET"
+  ],
+  "4389": [
+   "PUKE"
+  ],
+  "4391": [
+   "DOORTILE23"
+  ],
+  "4396": [
+   "TOPSECRET"
+  ],
+  "4397": [
+   "SPEAKER"
+  ],
+  "4400": [
+   "TEDDYBEAR"
+  ],
+  "4402": [
+   "ROBOTDOG"
+  ],
+  "4404": [
+   "ROBOTPIRATE"
+  ],
+  "4407": [
+   "ROBOTMOUSE"
+  ],
+  "4410": [
+   "MAIL"
+  ],
+  "4413": [
+   "MAILBAG"
+  ],
+  "4427": [
+   "HOTMEAT"
+  ],
+  "4438": [
+   "COFFEEMUG"
+  ],
+  "4440": [
+   "DONUTS2"
+  ],
+  "4444": [
+   "TRIPODCAMERA"
+  ],
+  "4453": [
+   "METER"
+  ],
+  "4454": [
+   "DESKPHONE"
+  ],
+  "4458": [
+   "GUMBALLMACHINE"
+  ],
+  "4459": [
+   "GUMBALLMACHINEBROKE"
+  ],
+  "4460": [
+   "PAPER"
+  ],
+  "4464": [
+   "MACE"
+  ],
+  "4465": [
+   "GENERICPOLE2"
+  ],
+  "4470": [
+   "XXXSTACY"
+  ],
+  "4495": [
+   "WETFLOOR"
+  ],
+  "4496": [
+   "BROOM"
+  ],
+  "4497": [
+   "MOP"
+  ],
+  "4502": [
+   "LETTER"
+  ],
+  "4510": [
+   "PIRATE1A"
+  ],
+  "4511": [
+   "PIRATE4A"
+  ],
+  "4512": [
+   "PIRATE2A"
+  ],
+  "4513": [
+   "PIRATE5A"
+  ],
+  "4514": [
+   "PIRATE3A"
+  ],
+  "4515": [
+   "PIRATE6A"
+  ],
+  "4516": [
+   "PIRATEHALF"
+  ],
+  "4520": [
+   "CHESTOFGOLD"
+  ],
+  "4525": [
+   "SIDEBOLT1"
+  ],
+  "4530": [
+   "FOODOBJECT1"
+  ],
+  "4531": [
+   "FOODOBJECT2"
+  ],
+  "4532": [
+   "FOODOBJECT3"
+  ],
+  "4533": [
+   "FOODOBJECT4"
+  ],
+  "4534": [
+   "FOODOBJECT5"
+  ],
+  "4535": [
+   "FOODOBJECT6"
+  ],
+  "4536": [
+   "FOODOBJECT7"
+  ],
+  "4537": [
+   "FOODOBJECT8"
+  ],
+  "4538": [
+   "FOODOBJECT9"
+  ],
+  "4539": [
+   "FOODOBJECT10"
+  ],
+  "4540": [
+   "FOODOBJECT11"
+  ],
+  "4541": [
+   "FOODOBJECT12"
+  ],
+  "4542": [
+   "FOODOBJECT13"
+  ],
+  "4543": [
+   "FOODOBJECT14"
+  ],
+  "4544": [
+   "FOODOBJECT15"
+  ],
+  "4545": [
+   "FOODOBJECT16"
+  ],
+  "4546": [
+   "FOODOBJECT17"
+  ],
+  "4547": [
+   "FOODOBJECT18"
+  ],
+  "4548": [
+   "FOODOBJECT19"
+  ],
+  "4549": [
+   "FOODOBJECT20"
+  ],
+  "4550": [
+   "HEADLAMP"
+  ],
+  "4554": [
+   "SKINNEDCHICKEN"
+  ],
+  "4555": [
+   "FEATHEREDCHICKEN"
+  ],
+  "4557": [
+   "TAMPON"
+  ],
+  "4560": [
+   "ROBOTDOG2"
+  ],
+  "4569": [
+   "JOLLYMEAL"
+  ],
+  "4570": [
+   "DUKEBURGER"
+  ],
+  "4576": [
+   "SHOPPINGCART"
+  ],
+  "4580": [
+   "CANWITHSOMETHING2"
+  ],
+  "4581": [
+   "CANWITHSOMETHING3"
+  ],
+  "4582": [
+   "CANWITHSOMETHING4"
+  ],
+  "4590": [
+   "SNAKEP"
+  ],
+  "4591": [
+   "DOLPHIN1"
+  ],
+  "4592": [
+   "DOLPHIN2"
+  ],
+  "4610": [
+   "NEWBEAST"
+  ],
+  "4611": [
+   "NEWBEASTSTAYPUT"
+  ],
+  "4670": [
+   "NEWBEASTHANG"
+  ],
+  "4671": [
+   "NEWBEASTHANGDEAD"
+  ],
+  "4690": [
+   "NEWBEASTJUMP"
+  ],
+  "4740": [
+   "BOSS4"
+  ],
+  "4741": [
+   "BOSS4STAYPUT"
+  ],
+  "4864": [
+   "FEM10"
+  ],
+  "4866": [
+   "TOUGHGAL"
+  ],
+  "4871": [
+   "MAN"
+  ],
+  "4872": [
+   "MAN2"
+  ],
+  "4874": [
+   "WOMAN"
+  ],
+  "4887": [
+   "PLEASEWAIT"
+  ],
+  "4890": [
+   "NATURALLIGHTNING"
+  ],
+  "4893": [
+   "WEATHERWARN"
+  ],
+  "4900": [
+   "DUKETAG"
+  ],
+  "4909": [
+   "SIGN1"
+  ],
+  "4912": [
+   "SIGN2"
+  ],
+  "4943": [
+   "JURYGUY"
+  ],
+  "6132": [
+   "RESERVEDSLOT1",
+   "RESERVEDSLOT6"
+  ],
+  "6133": [
+   "RESERVEDSLOT2",
+   "RESERVEDSLOT7"
+  ],
+  "6134": [
+   "RESERVEDSLOT3",
+   "RESERVEDSLOT8"
+  ],
+  "6135": [
+   "RESERVEDSLOT4",
+   "RESERVEDSLOT9"
+  ],
+  "6136": [
+   "RESERVEDSLOT5",
+   "RESERVEDSLOT10"
+  ],
+  "6137": [
+   "RESERVEDSLOT11"
+  ],
+  "6138": [
+   "RESERVEDSLOT12"
+  ],
+  "6139": [
+   "RESERVEDSLOT13"
+  ],
+  "6140": [
+   "RESERVEDSLOT14"
+  ],
+  "6141": [
+   "RESERVEDSLOT15"
+  ],
+  "6142": [
+   "RESERVEDSLOT16"
+  ],
+  "6143": [
+   "RESERVEDSLOT17"
+  ]
+ },
+ "non_tile_constants": {
+  "KNEE_WEAPON": 0,
+  "PISTOL_WEAPON": 1,
+  "SHOTGUN_WEAPON": 2,
+  "CHAINGUN_WEAPON": 3,
+  "RPG_WEAPON": 4,
+  "HANDBOMB_WEAPON": 5,
+  "SHRINKER_WEAPON": 6,
+  "DEVISTATOR_WEAPON": 7,
+  "TRIPBOMB_WEAPON": 8,
+  "FREEZE_WEAPON": 9,
+  "HANDREMOTE_WEAPON": 10,
+  "GROW_WEAPON": 11,
+  "faceplayer": 1,
+  "geth": 2,
+  "getv": 4,
+  "randomangle": 8,
+  "faceplayerslow": 16,
+  "spin": 32,
+  "faceplayersmart": 64,
+  "fleeenemy": 128,
+  "jumptoplayer": 257,
+  "seekplayer": 512,
+  "furthestdir": 1024,
+  "dodgebullet": 4096,
+  "NO": 0,
+  "YES": 1,
+  "notenemy": 0,
+  "enemy": 1,
+  "enemystayput": 2,
+  "pstanding": 1,
+  "pwalking": 2,
+  "prunning": 4,
+  "pducking": 8,
+  "pfalling": 16,
+  "pjumping": 32,
+  "phigher": 64,
+  "pwalkingback": 128,
+  "prunningback": 256,
+  "pkicking": 512,
+  "pshrunk": 1024,
+  "pjetpack": 2048,
+  "ponsteroids": 4096,
+  "ponground": 8192,
+  "palive": 16384,
+  "pdead": 32768,
+  "pfacing": 65536,
+  "GET_STEROIDS": 0,
+  "GET_SHIELD": 1,
+  "GET_SCUBA": 2,
+  "GET_HOLODUKE": 3,
+  "GET_JETPACK": 4,
+  "GET_ACCESS": 6,
+  "GET_HEATS": 7,
+  "GET_FIRSTAID": 9,
+  "GET_BOOTS": 10,
+  "KICK_HIT": 0,
+  "PISTOL_RICOCHET": 1,
+  "PISTOL_BODYHIT": 2,
+  "PISTOL_FIRE": 3,
+  "EJECT_CLIP": 4,
+  "INSERT_CLIP": 5,
+  "CHAINGUN_FIRE": 6,
+  "RPG_SHOOT": 7,
+  "POOLBALLHIT": 8,
+  "RPG_EXPLODE": 9,
+  "CAT_FIRE": 10,
+  "SHRINKER_FIRE": 11,
+  "ACTOR_SHRINKING": 12,
+  "PIPEBOMB_BOUNCE": 13,
+  "PIPEBOMB_EXPLODE": 14,
+  "LASERTRIP_ONWALL": 15,
+  "LASERTRIP_ARMING": 16,
+  "LASERTRIP_EXPLODE": 17,
+  "VENT_BUST": 18,
+  "GLASS_BREAKING": 19,
+  "GLASS_HEAVYBREAK": 20,
+  "SHORT_CIRCUIT": 21,
+  "ITEM_SPLASH": 22,
+  "DUKE_BREATHING": 23,
+  "DUKE_EXHALING": 24,
+  "DUKE_GASP": 25,
+  "SLIM_RECOG": 26,
+  "DUKE_URINATE": 28,
+  "ENDSEQVOL3SND2": 29,
+  "ENDSEQVOL3SND3": 30,
+  "DUKE_PASSWIND": 32,
+  "DUKE_CRACK": 33,
+  "SLIM_ATTACK": 34,
+  "SOMETHINGHITFORCE": 35,
+  "DUKE_DRINKING": 36,
+  "DUKE_KILLED1": 37,
+  "DUKE_GRUNT": 38,
+  "DUKE_HARTBEAT": 39,
+  "DUKE_ONWATER": 40,
+  "DUKE_DEAD": 41,
+  "DUKE_LAND": 42,
+  "DUKE_WALKINDUCTS": 43,
+  "DUKE_GLAD": 44,
+  "DUKE_YES": 45,
+  "DUKE_HEHE": 46,
+  "DUKE_SHUCKS": 47,
+  "DUKE_UNDERWATER": 48,
+  "DUKE_JETPACK_ON": 49,
+  "DUKE_JETPACK_IDLE": 50,
+  "DUKE_JETPACK_OFF": 51,
+  "LIZTROOP_GROWL": 52,
+  "LIZTROOP_TALK1": 53,
+  "LIZTROOP_TALK2": 54,
+  "LIZTROOP_TALK3": 55,
+  "DUKETALKTOBOSS": 56,
+  "LIZCAPT_GROWL": 57,
+  "LIZCAPT_TALK1": 58,
+  "LIZCAPT_TALK2": 59,
+  "LIZCAPT_TALK3": 60,
+  "LIZARD_BEG": 61,
+  "LIZARD_PAIN": 62,
+  "LIZARD_DEATH": 63,
+  "LIZARD_SPIT": 64,
+  "DRONE1_HISSRATTLE": 65,
+  "DRONE1_HISSSCREECH": 66,
+  "DUKE_TIP2": 67,
+  "FLESH_BURNING": 68,
+  "SQUISHED": 69,
+  "TELEPORTER": 70,
+  "ELEVATOR_ON": 71,
+  "DUKE_KILLED3": 72,
+  "ELEVATOR_OFF": 73,
+  "DOOR_OPERATE1": 74,
+  "SUBWAY": 75,
+  "SWITCH_ON": 76,
+  "FAN": 77,
+  "DUKE_GETWEAPON3": 78,
+  "FLUSH_TOILET": 79,
+  "HOVER_CRAFT": 80,
+  "EARTHQUAKE": 81,
+  "INTRUDER_ALERT": 82,
+  "END_OF_LEVEL_WARN": 83,
+  "ENGINE_OPERATING": 84,
+  "REACTOR_ON": 85,
+  "COMPUTER_AMBIENCE": 86,
+  "GEARS_GRINDING": 87,
+  "BUBBLE_AMBIENCE": 88,
+  "MACHINE_AMBIENCE": 89,
+  "SEWER_AMBIENCE": 90,
+  "WIND_AMBIENCE": 91,
+  "SOMETHING_DRIPPING": 92,
+  "STEAM_HISSING": 93,
+  "THEATER_BREATH": 94,
+  "BAR_MUSIC": 95,
+  "BOS1_ROAM": 96,
+  "BOS1_RECOG": 97,
+  "BOS1_ATTACK1": 98,
+  "BOS1_PAIN": 99,
+  "BOS1_DYING": 100,
+  "BOS2_ROAM": 101,
+  "BOS2_RECOG": 102,
+  "BOS2_ATTACK": 103,
+  "BOS2_PAIN": 104,
+  "BOS2_DYING": 105,
+  "GETATOMICHEALTH": 106,
+  "DUKE_GETWEAPON2": 107,
+  "BOS3_DYING": 108,
+  "SHOTGUN_FIRE": 109,
+  "PRED_ROAM": 110,
+  "PRED_RECOG": 111,
+  "PRED_ATTACK": 112,
+  "PRED_PAIN": 113,
+  "PRED_DYING": 114,
+  "CAPT_ROAM": 115,
+  "CAPT_ATTACK": 116,
+  "CAPT_RECOG": 117,
+  "CAPT_PAIN": 118,
+  "CAPT_DYING": 119,
+  "PIG_ROAM": 120,
+  "PIG_RECOG": 121,
+  "PIG_ATTACK": 122,
+  "PIG_PAIN": 123,
+  "PIG_DYING": 124,
+  "RECO_ROAM": 125,
+  "RECO_RECOG": 126,
+  "RECO_ATTACK": 127,
+  "RECO_PAIN": 128,
+  "RECO_DYING": 129,
+  "DRON_ROAM": 130,
+  "DRON_RECOG": 131,
+  "DRON_ATTACK1": 132,
+  "DRON_PAIN": 133,
+  "DRON_DYING": 134,
+  "COMM_ROAM": 135,
+  "COMM_RECOG": 136,
+  "COMM_ATTACK": 137,
+  "COMM_PAIN": 138,
+  "COMM_DYING": 139,
+  "OCTA_ROAM": 140,
+  "OCTA_RECOG": 141,
+  "OCTA_ATTACK1": 142,
+  "OCTA_PAIN": 143,
+  "OCTA_DYING": 144,
+  "TURR_ROAM": 145,
+  "TURR_RECOG": 146,
+  "TURR_ATTACK": 147,
+  "DUMPSTER_MOVE": 148,
+  "SLIM_DYING": 149,
+  "BOS3_ROAM": 150,
+  "BOS3_RECOG": 151,
+  "BOS3_ATTACK1": 152,
+  "BOS3_PAIN": 153,
+  "BOS1_ATTACK2": 154,
+  "COMM_SPIN": 155,
+  "BOS1_WALK": 156,
+  "DRON_ATTACK2": 157,
+  "THUD": 158,
+  "OCTA_ATTACK2": 159,
+  "WIERDSHOT_FLY": 160,
+  "TURR_PAIN": 161,
+  "TURR_DYING": 162,
+  "SLIM_ROAM": 163,
+  "LADY_SCREAM": 164,
+  "DOOR_OPERATE2": 165,
+  "DOOR_OPERATE3": 166,
+  "DOOR_OPERATE4": 167,
+  "BORNTOBEWILDSND": 168,
+  "SHOTGUN_COCK": 169,
+  "GENERIC_AMBIENCE1": 170,
+  "GENERIC_AMBIENCE2": 171,
+  "GENERIC_AMBIENCE3": 172,
+  "GENERIC_AMBIENCE4": 173,
+  "GENERIC_AMBIENCE5": 174,
+  "GENERIC_AMBIENCE6": 175,
+  "BOS3_ATTACK2": 176,
+  "GENERIC_AMBIENCE17": 177,
+  "GENERIC_AMBIENCE18": 178,
+  "GENERIC_AMBIENCE19": 179,
+  "GENERIC_AMBIENCE20": 180,
+  "GENERIC_AMBIENCE21": 181,
+  "GENERIC_AMBIENCE22": 182,
+  "SECRETLEVELSND": 183,
+  "GENERIC_AMBIENCE8": 184,
+  "GENERIC_AMBIENCE9": 185,
+  "GENERIC_AMBIENCE10": 186,
+  "GENERIC_AMBIENCE11": 187,
+  "GENERIC_AMBIENCE12": 188,
+  "GENERIC_AMBIENCE13": 189,
+  "GENERIC_AMBIENCE14": 190,
+  "GENERIC_AMBIENCE15": 192,
+  "GENERIC_AMBIENCE16": 193,
+  "FIRE_CRACKLE": 194,
+  "BONUS_SPEECH1": 195,
+  "BONUS_SPEECH2": 196,
+  "BONUS_SPEECH3": 197,
+  "PIG_CAPTURE_DUKE": 198,
+  "BONUS_SPEECH4": 199,
+  "DUKE_LAND_HURT": 200,
+  "DUKE_HIT_STRIPPER1": 201,
+  "DUKE_TIP1": 202,
+  "DUKE_KILLED2": 203,
+  "PRED_ROAM2": 204,
+  "PIG_ROAM2": 205,
+  "DUKE_GETWEAPON1": 206,
+  "DUKE_SEARCH2": 207,
+  "DUKE_CRACK2": 208,
+  "DUKE_SEARCH": 209,
+  "DUKE_GET": 210,
+  "DUKE_LONGTERM_PAIN": 211,
+  "MONITOR_ACTIVE": 212,
+  "NITEVISION_ONOFF": 213,
+  "DUKE_HIT_STRIPPER2": 214,
+  "DUKE_CRACK_FIRST": 215,
+  "DUKE_USEMEDKIT": 216,
+  "DUKE_TAKEPILLS": 217,
+  "DUKE_PISSRELIEF": 218,
+  "SELECT_WEAPON": 219,
+  "WATER_GURGLE": 220,
+  "DUKE_GETWEAPON4": 221,
+  "JIBBED_ACTOR1": 222,
+  "JIBBED_ACTOR2": 223,
+  "JIBBED_ACTOR3": 224,
+  "JIBBED_ACTOR4": 225,
+  "JIBBED_ACTOR5": 226,
+  "JIBBED_ACTOR6": 227,
+  "JIBBED_ACTOR7": 228,
+  "DUKE_GOTHEALTHATLOW": 229,
+  "BOSSTALKTODUKE": 230,
+  "WAR_AMBIENCE1": 231,
+  "WAR_AMBIENCE2": 232,
+  "WAR_AMBIENCE3": 233,
+  "WAR_AMBIENCE4": 234,
+  "WAR_AMBIENCE5": 235,
+  "WAR_AMBIENCE6": 236,
+  "WAR_AMBIENCE7": 237,
+  "WAR_AMBIENCE8": 238,
+  "WAR_AMBIENCE9": 239,
+  "WAR_AMBIENCE10": 240,
+  "ALIEN_TALK1": 241,
+  "ALIEN_TALK2": 242,
+  "EXITMENUSOUND": 243,
+  "FLY_BY": 244,
+  "DUKE_SCREAM": 245,
+  "SHRINKER_HIT": 246,
+  "RATTY": 247,
+  "INTO_MENU": 248,
+  "BONUSMUSIC": 249,
+  "DUKE_BOOBY": 250,
+  "DUKE_TALKTOBOSSFALL": 251,
+  "DUKE_LOOKINTOMIRROR": 252,
+  "PIG_ROAM3": 253,
+  "KILLME": 254,
+  "DRON_JETSND": 255,
+  "SPACE_DOOR1": 256,
+  "SPACE_DOOR2": 257,
+  "SPACE_DOOR3": 258,
+  "SPACE_DOOR4": 259,
+  "SPACE_DOOR5": 260,
+  "ALIEN_ELEVATOR1": 261,
+  "VAULT_DOOR": 262,
+  "JIBBED_ACTOR13": 263,
+  "DUKE_GETWEAPON6": 264,
+  "JIBBED_ACTOR8": 265,
+  "JIBBED_ACTOR9": 266,
+  "JIBBED_ACTOR10": 267,
+  "JIBBED_ACTOR11": 268,
+  "JIBBED_ACTOR12": 269,
+  "DUKE_KILLED4": 270,
+  "DUKE_KILLED5": 271,
+  "ALIEN_SWITCH1": 272,
+  "DUKE_STEPONFECES": 273,
+  "DUKE_LONGTERM_PAIN2": 274,
+  "DUKE_LONGTERM_PAIN3": 275,
+  "DUKE_LONGTERM_PAIN4": 276,
+  "COMPANB2": 277,
+  "KTIT": 278,
+  "HELICOP_IDLE": 279,
+  "STEPNIT": 280,
+  "SPACE_AMBIENCE1": 281,
+  "SPACE_AMBIENCE2": 282,
+  "SLIM_HATCH": 283,
+  "RIPHEADNECK": 284,
+  "FOUNDJONES": 285,
+  "ALIEN_DOOR1": 286,
+  "ALIEN_DOOR2": 287,
+  "ENDSEQVOL3SND4": 288,
+  "ENDSEQVOL3SND5": 289,
+  "ENDSEQVOL3SND6": 290,
+  "ENDSEQVOL3SND7": 291,
+  "ENDSEQVOL3SND8": 292,
+  "ENDSEQVOL3SND9": 293,
+  "WHIPYOURASS": 294,
+  "ENDSEQVOL2SND1": 295,
+  "ENDSEQVOL2SND2": 296,
+  "ENDSEQVOL2SND3": 297,
+  "ENDSEQVOL2SND4": 298,
+  "ENDSEQVOL2SND5": 299,
+  "ENDSEQVOL2SND6": 300,
+  "ENDSEQVOL2SND7": 301,
+  "GENERIC_AMBIENCE23": 302,
+  "SOMETHINGFROZE": 303,
+  "DUKE_LONGTERM_PAIN5": 304,
+  "DUKE_LONGTERM_PAIN6": 305,
+  "DUKE_LONGTERM_PAIN7": 306,
+  "DUKE_LONGTERM_PAIN8": 307,
+  "WIND_REPEAT": 308,
+  "MYENEMY_ROAM": 309,
+  "MYENEMY_HURT": 310,
+  "MYENEMY_DEAD": 311,
+  "MYENEMY_SHOOT": 312,
+  "STORE_MUSIC": 313,
+  "STORE_MUSIC_BROKE": 314,
+  "ACTOR_GROWING": 315,
+  "NEWBEAST_ROAM": 316,
+  "NEWBEAST_RECOG": 317,
+  "NEWBEAST_ATTACK": 318,
+  "NEWBEAST_PAIN": 319,
+  "NEWBEAST_DYING": 320,
+  "NEWBEAST_SPIT": 321,
+  "VOL4_1": 322,
+  "SUPERMARKET": 323,
+  "MOUSEANNOY": 324,
+  "BOOKEM": 325,
+  "SUPERMARKETCRY": 326,
+  "DESTRUCT": 327,
+  "EATFOOD": 328,
+  "MAKEMYDAY": 329,
+  "WITNESSSTAND": 330,
+  "VACATIONSPEECH": 331,
+  "YIPPEE1": 332,
+  "YOHOO1": 333,
+  "YOHOO2": 334,
+  "DOLPHINSND": 335,
+  "TOUGHGALSND1": 336,
+  "TOUGHGALSND2": 337,
+  "TOUGHGALSND3": 338,
+  "TOUGHGALSND4": 339,
+  "TANK_ROAM": 340,
+  "BOS4_ROAM": 341,
+  "BOS4_RECOG": 342,
+  "BOS4_ATTACK": 343,
+  "BOS4_PAIN": 344,
+  "BOS4_DYING": 345,
+  "NEWBEAST_ATTACKMISS": 346,
+  "VOL4_2": 347,
+  "COOKINGDEEPFRIER": 348,
+  "WHINING_DOG": 349,
+  "DEAD_DOG": 350,
+  "LIGHTNING_SLAP": 351,
+  "THUNDER": 352,
+  "HAPPYMOUSESND1": 353,
+  "HAPPYMOUSESND2": 354,
+  "HAPPYMOUSESND3": 355,
+  "HAPPYMOUSESND4": 356,
+  "ALARM": 357,
+  "RAIN": 358,
+  "DTAG_GREENRUN": 359,
+  "DTAG_BROWNRUN": 360,
+  "DTAG_GREENSCORE": 361,
+  "DTAG_BROWNSCORE": 362,
+  "INTRO4_1": 363,
+  "INTRO4_2": 364,
+  "INTRO4_3": 365,
+  "INTRO4_4": 366,
+  "INTRO4_5": 367,
+  "INTRO4_6": 368,
+  "SCREECH": 369,
+  "BOSS4_DEADSPEECH": 370,
+  "BOSS4_FIRSTSEE": 371,
+  "PARTY_SPEECH": 372,
+  "POSTAL_SPEECH": 373,
+  "TGSPEECH": 374,
+  "DOGROOMSPEECH": 375,
+  "SMACKED": 376,
+  "MDEVSPEECH": 377,
+  "AREA51SPEECH": 378,
+  "JEEPSOUND": 379,
+  "BIGDOORSLAM": 380,
+  "BOS4_LAY": 381,
+  "WAVESOUND": 382,
+  "ILLBEBACK": 383,
+  "VOL4ENDSND1": 384,
+  "VOL4ENDSND2": 385,
+  "EXPANDERHIT": 386,
+  "SNAKESPEECH": 387,
+  "EXPANDERSHOOT": 388,
+  "GETBACKTOWORK": 389,
+  "JIBBED_ACTOR14": 390,
+  "JIBBED_ACTOR15": 391,
+  "INTRO4_B": 392,
+  "BIGBANG": 393,
+  "HORNSND": 394,
+  "BELLSND": 395,
+  "GOAWAY": 396,
+  "JOKE": 397
+ },
+ "control_sprites": {
+  "SECTOREFFECTOR": 1,
+  "ACTIVATOR": 2,
+  "TOUCHPLATE": 3,
+  "ACTIVATORLOCKED": 4,
+  "MUSICANDSFX": 5,
+  "LOCATORS": 6,
+  "CYCLER": 7,
+  "MASTERSWITCH": 8,
+  "RESPAWN": 9,
+  "GPSPEED": 10
+ },
+ "sector_tags": {
+  "0": "no effect",
+  "1": "above water",
+  "2": "underwater",
+  "3": "st 3",
+  "9": "sliding st door",
+  "15": "warp elevator",
+  "16": "platform down",
+  "17": "platform up",
+  "18": "elevator down",
+  "19": "elevator up",
+  "20": "ceiling door",
+  "21": "floor door",
+  "22": "splitting door",
+  "23": "swinging door",
+  "25": "sliding door",
+  "26": "splitting st door",
+  "27": "stretch bridge",
+  "28": "drop floor",
+  "29": "teeth door",
+  "30": "rotate rise bridge",
+  "31": "two way train"
+ },
+ "sector_effectors": {
+  "0": "rotating sector",
+  "1": "pivot",
+  "2": "earthquake",
+  "3": "random lights after shot out",
+  "4": "random lights",
+  "5": "se 5",
+  "6": "subway",
+  "7": "teleport",
+  "8": "up open door lights",
+  "9": "down open door lights",
+  "10": "door auto close",
+  "11": "swinging door",
+  "12": "light switch",
+  "13": "explosive",
+  "14": "subway car",
+  "15": "sliding door",
+  "16": "reactor",
+  "17": "warp elevator",
+  "18": "incremental sector rise fall",
+  "19": "explosion lowers ceiling",
+  "20": "stretch bridge",
+  "21": "drop floor",
+  "22": "teeth door",
+  "23": "one way teleport",
+  "24": "conveyor",
+  "25": "piston",
+  "26": "escalator",
+  "27": "demo cam",
+  "28": "lightning",
+  "29": "waves",
+  "30": "two way train",
+  "31": "floor rise fall",
+  "32": "ceiling rise fall",
+  "33": "quake debris",
+  "34": "conveyor2",
+  "35": "se 35",
+  "36": "proj shooter",
+  "49": "point light",
+  "50": "spot light",
+  "130": "se 130",
+  "131": "se 131"
+ }
+}

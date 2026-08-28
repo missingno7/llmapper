@@ -1,0 +1,368 @@
+{
+  "$schema": "llmapper.sewer-anatomy",
+  "schema_version": 1,
+  "scope": {
+    "sources": [
+      "DukCity1",
+      "DukCity2",
+      "DukCity3",
+      "DukCity4"
+    ],
+    "method": "What a DukCity sewer actually is, before Blood City digs one.\n\nPhase 0 counted below-grade sectors (75-125 per DukCity map); this pass\nmeasures their anatomy: how many surface entries per unit of street, what\nform an entry takes (walk-down, drop, water dive), whether the network loops\nlike the street grid above it or runs its own line, how deep it sits, how wet\nit is, and what role it plays in the route (keycard evidence for required\npassage, entry count for shortcut loops, Duke secret tags for secrets).\n\n    python -m tools.mine_sewers -o projects/blood-city/references/sewer-mining.json\n\nStructure only -- dressing for Blood City's sewer comes from the Blood-side\nwater and underground norms already in knowledge/blood/design/.\n",
+    "thresholds": {
+      "min_sewer_sectors": 3,
+      "below_grade": "floor deeper than one standing height",
+      "z_per_xy": 16
+    }
+  },
+  "per_map": [
+    {
+      "map": "DukCity1",
+      "street_grade_z": 7168.0,
+      "street_frontage_units": 748953,
+      "below_grade_sectors_total": 22,
+      "networks": [
+        {
+          "sectors": 17,
+          "sector_ids": [
+            210,
+            211,
+            212,
+            213,
+            214,
+            215,
+            216,
+            217,
+            218,
+            219,
+            220,
+            221,
+            222,
+            223,
+            224,
+            225
+          ],
+          "area": 54427648,
+          "depth_standing_heights": {
+            "median": 1.05,
+            "min": 1.05,
+            "max": 1.05
+          },
+          "wet_area_share": 0.0,
+          "under_street_area_share": 0.0,
+          "loops_cycle_rank": 16,
+          "entries": [],
+          "entry_count": 0,
+          "entry_forms": [],
+          "secret_sectors": 0,
+          "keycards_inside": [],
+          "transit_effectors": 0,
+          "role_reading": "dead_end_pocket"
+        }
+      ],
+      "entries_per_10240_frontage": 0.0
+    },
+    {
+      "map": "DukCity2",
+      "street_grade_z": 7168,
+      "street_frontage_units": 791808,
+      "below_grade_sectors_total": 101,
+      "networks": [
+        {
+          "sectors": 89,
+          "sector_ids": [
+            11,
+            105,
+            106,
+            107,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122
+          ],
+          "area": 524505088,
+          "depth_standing_heights": {
+            "median": 2.63,
+            "min": 1.05,
+            "max": 3.37
+          },
+          "wet_area_share": 0.01,
+          "under_street_area_share": 0.0,
+          "loops_cycle_rank": 52,
+          "entries": [
+            {
+              "from_sector": 195,
+              "into_sector": 193,
+              "form": "drop",
+              "descent_z": 31744,
+              "vestibule": 0
+            }
+          ],
+          "entry_count": 1,
+          "entry_forms": [
+            "drop"
+          ],
+          "secret_sectors": 1,
+          "keycards_inside": [
+            1235
+          ],
+          "transit_effectors": 0,
+          "role_reading": "required_passage"
+        },
+        {
+          "sectors": 8,
+          "sector_ids": [
+            323,
+            324,
+            325,
+            326,
+            327,
+            328,
+            329,
+            334
+          ],
+          "area": 32505856,
+          "depth_standing_heights": {
+            "median": 4.63,
+            "min": 2.32,
+            "max": 4.74
+          },
+          "wet_area_share": 0.0,
+          "under_street_area_share": 0.0,
+          "loops_cycle_rank": 0,
+          "entries": [
+            {
+              "from_sector": 318,
+              "into_sector": 323,
+              "form": "elevator",
+              "descent_z": 46080,
+              "vestibule": 0
+            }
+          ],
+          "entry_count": 1,
+          "entry_forms": [
+            "elevator"
+          ],
+          "secret_sectors": 1,
+          "keycards_inside": [],
+          "transit_effectors": 0,
+          "role_reading": "secret"
+        }
+      ],
+      "entries_per_10240_frontage": 0.03
+    },
+    {
+      "map": "DukCity3",
+      "street_grade_z": 7168,
+      "street_frontage_units": 736342,
+      "below_grade_sectors_total": 127,
+      "networks": [
+        {
+          "sectors": 69,
+          "sector_ids": [
+            622,
+            623,
+            624,
+            625,
+            626,
+            627,
+            628,
+            629,
+            630,
+            631,
+            632,
+            633,
+            634,
+            635,
+            636,
+            637
+          ],
+          "area": 834973606,
+          "depth_standing_heights": {
+            "median": 2.84,
+            "min": 2.42,
+            "max": 3.79
+          },
+          "wet_area_share": 0.0,
+          "under_street_area_share": 0.0,
+          "loops_cycle_rank": 24,
+          "entries": [
+            {
+              "from_sector": 621,
+              "into_sector": 623,
+              "form": "elevator",
+              "descent_z": 30720,
+              "vestibule": 1
+            },
+            {
+              "from_sector": 756,
+              "into_sector": 697,
+              "form": "elevator",
+              "descent_z": 29696,
+              "vestibule": 0
+            }
+          ],
+          "entry_count": 2,
+          "entry_forms": [
+            "elevator",
+            "elevator"
+          ],
+          "secret_sectors": 1,
+          "keycards_inside": [
+            178
+          ],
+          "transit_effectors": 4,
+          "role_reading": "transit_ring"
+        },
+        {
+          "sectors": 27,
+          "sector_ids": [
+            537,
+            538,
+            539,
+            540,
+            541,
+            542,
+            546,
+            547,
+            548,
+            549,
+            550,
+            551,
+            552,
+            553,
+            554,
+            555
+          ],
+          "area": 13564928,
+          "depth_standing_heights": {
+            "median": 5.16,
+            "min": 3.68,
+            "max": 5.26
+          },
+          "wet_area_share": 0.0,
+          "under_street_area_share": 0.0,
+          "loops_cycle_rank": 20,
+          "entries": [],
+          "entry_count": 0,
+          "entry_forms": [],
+          "secret_sectors": 0,
+          "keycards_inside": [],
+          "transit_effectors": 0,
+          "role_reading": "dead_end_pocket"
+        },
+        {
+          "sectors": 13,
+          "sector_ids": [
+            321,
+            322,
+            323,
+            324,
+            325,
+            326,
+            327,
+            328,
+            329,
+            330,
+            331,
+            544,
+            545
+          ],
+          "area": 10543104,
+          "depth_standing_heights": {
+            "median": 3.47,
+            "min": 3.26,
+            "max": 3.47
+          },
+          "wet_area_share": 0.0,
+          "under_street_area_share": 0.0,
+          "loops_cycle_rank": 0,
+          "entries": [
+            {
+              "from_sector": 159,
+              "into_sector": 321,
+              "form": "elevator",
+              "descent_z": 34816,
+              "vestibule": 0
+            }
+          ],
+          "entry_count": 1,
+          "entry_forms": [
+            "elevator"
+          ],
+          "secret_sectors": 0,
+          "keycards_inside": [
+            1047
+          ],
+          "transit_effectors": 0,
+          "role_reading": "required_passage"
+        }
+      ],
+      "entries_per_10240_frontage": 0.04
+    },
+    {
+      "map": "DukCity4",
+      "street_grade_z": 7168.0,
+      "street_frontage_units": 567758,
+      "below_grade_sectors_total": 78,
+      "networks": [
+        {
+          "sectors": 64,
+          "sector_ids": [
+            375,
+            376,
+            377,
+            378,
+            379,
+            382,
+            383,
+            384,
+            398,
+            400,
+            401,
+            402,
+            403,
+            404,
+            405,
+            406
+          ],
+          "area": 96862208,
+          "depth_standing_heights": {
+            "median": 4.11,
+            "min": 2.53,
+            "max": 5.47
+          },
+          "wet_area_share": 0.02,
+          "under_street_area_share": 0.0,
+          "loops_cycle_rank": 7,
+          "entries": [
+            {
+              "from_sector": 346,
+              "into_sector": 375,
+              "form": "elevator",
+              "descent_z": 40960,
+              "vestibule": 0
+            }
+          ],
+          "entry_count": 1,
+          "entry_forms": [
+            "elevator"
+          ],
+          "secret_sectors": 1,
+          "keycards_inside": [],
+          "transit_effectors": 0,
+          "role_reading": "secret"
+        }
+      ],
+      "entries_per_10240_frontage": 0.02
+    }
+  ]
+}

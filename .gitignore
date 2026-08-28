@@ -15,3 +15,11 @@ reports/*.svg
 # Local game data and upstream source checkouts used as development oracles.
 # This tree may contain commercial assets and is never part of the repository.
 reference/
+
+# Render frames and observation dumps from the visual loops. They are
+# regenerable from the sources, they are large (135M for blood-city alone),
+# and the reference frames among them are renders of commercial maps, which
+# this repository does not redistribute.
+projects/*/reports/looks/
+projects/*/reports/pilot-views/
+projects/*/references/plots/

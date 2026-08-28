@@ -1,0 +1,102 @@
+{
+ "theatre_row": {
+  "sectors": 1,
+  "walls": 14
+ },
+ "old_crossing": {
+  "sectors": 1,
+  "walls": 22
+ },
+ "foundry_ward": {
+  "sectors": 1,
+  "walls": 27
+ },
+ "market_slip": {
+  "sectors": 1,
+  "walls": 17
+ },
+ "cemetery": {
+  "sectors": 2,
+  "walls": 20
+ },
+ "sewer": {
+  "sectors": 5,
+  "walls": 32
+ },
+ "works_stair": {
+  "sectors": 3,
+  "walls": 17
+ },
+ "yard_grate_mouth": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "yard_grate_mouth_below": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "cellar_pit_mouth": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "cellar_pit_mouth_below": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "canteen": {
+  "sectors": 5,
+  "walls": 32
+ },
+ "railyard_scene": {
+  "sectors": 1,
+  "walls": 10
+ },
+ "yard_dock": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "region:flight_upper:step_01": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "region:flight_upper:step_02": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "region:flight_upper:step_03": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "region:flight_upper:step_04": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "region:flight_upper:step_05": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "region:flight_upper:step_06": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "region:flight_upper:step_07": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "region:flight_upper:step_08": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "region:flight_lower:step_01": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "region:flight_lower:step_02": {
+  "sectors": 1,
+  "walls": 4
+ },
+ "region:flight_lower:step_03": {
+  "sectors": 1,
+  "walls": 4
+ }
+}

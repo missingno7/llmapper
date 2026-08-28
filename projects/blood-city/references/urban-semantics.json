@@ -1,0 +1,863 @@
+{
+  "$schema": "llmapper.urban-semantics",
+  "schema_version": 1,
+  "per_map": [
+    {
+      "map": "TEDE1M2",
+      "label_counts": {
+        "interior_upper": 372,
+        "scene": 337,
+        "interior_ground": 241,
+        "street": 58,
+        "arcade": 5,
+        "underground": 1
+      },
+      "grade_z": 36864.0,
+      "arcade_sectors": [
+        458,
+        641,
+        642,
+        904,
+        1006
+      ],
+      "network_with_arcades": {
+        "sectors": 63,
+        "doorways_from_network": 50
+      },
+      "buildings": {
+        "ground_components_substantial": 25,
+        "solid_fronting_masses": 1,
+        "entered_from_street": 10,
+        "enterable_share_per_building": 0.385,
+        "storey_mix": {
+          "single_storey": 21,
+          "multi_storey": 4
+        },
+        "detail": [
+          {
+            "building": 0,
+            "interior_sectors": 128,
+            "ground": 70,
+            "upper": 58,
+            "doorways": 0,
+            "area": 253681046
+          },
+          {
+            "building": 17,
+            "interior_sectors": 48,
+            "ground": 48,
+            "upper": 0,
+            "doorways": 3,
+            "area": 223084495
+          },
+          {
+            "building": 48,
+            "interior_sectors": 16,
+            "ground": 15,
+            "upper": 1,
+            "doorways": 1,
+            "area": 73793464
+          },
+          {
+            "building": 23,
+            "interior_sectors": 10,
+            "ground": 9,
+            "upper": 1,
+            "doorways": 3,
+            "area": 34411680
+          },
+          {
+            "building": 22,
+            "interior_sectors": 7,
+            "ground": 7,
+            "upper": 0,
+            "doorways": 5,
+            "area": 4653056
+          },
+          {
+            "building": 13,
+            "interior_sectors": 6,
+            "ground": 6,
+            "upper": 0,
+            "doorways": 4,
+            "area": 25403392
+          },
+          {
+            "building": 49,
+            "interior_sectors": 6,
+            "ground": 4,
+            "upper": 2,
+            "doorways": 0,
+            "area": 41345024
+          },
+          {
+            "building": 39,
+            "interior_sectors": 5,
+            "ground": 5,
+            "upper": 0,
+            "doorways": 4,
+            "area": 28807168
+          },
+          {
+            "building": 2,
+            "interior_sectors": 4,
+            "ground": 4,
+            "upper": 0,
+            "doorways": 0,
+            "area": 1667072
+          },
+          {
+            "building": 24,
+            "interior_sectors": 4,
+            "ground": 4,
+            "upper": 0,
+            "doorways": 2,
+            "area": 4554240
+          },
+          {
+            "building": 4,
+            "interior_sectors": 2,
+            "ground": 2,
+            "upper": 0,
+            "doorways": 0,
+            "area": 1204224
+          },
+          {
+            "building": 12,
+            "interior_sectors": 2,
+            "ground": 2,
+            "upper": 0,
+            "doorways": 5,
+            "area": 10772480
+          },
+          {
+            "building": 14,
+            "interior_sectors": 2,
+            "ground": 2,
+            "upper": 0,
+            "doorways": 3,
+            "area": 6942720
+          },
+          {
+            "building": 36,
+            "interior_sectors": 2,
+            "ground": 2,
+            "upper": 0,
+            "doorways": 0,
+            "area": 2752512
+          },
+          {
+            "building": 3,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 1204224
+          },
+          {
+            "building": 10,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 1,
+            "area": 3231744
+          },
+          {
+            "building": 18,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 7290880
+          },
+          {
+            "building": 27,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 7274496
+          },
+          {
+            "building": 29,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 1048576
+          },
+          {
+            "building": 30,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 1048576
+          }
+        ]
+      },
+      "thresholds": {
+        "storey_split_z": 16960,
+        "arcade_mouth_span": 2048,
+        "arcade_depth_hops": 3
+      }
+    },
+    {
+      "map": "E3M2",
+      "label_counts": {
+        "interior_upper": 348,
+        "interior_ground": 125,
+        "scene": 34,
+        "roof": 27,
+        "arcade": 15,
+        "courtyard": 14,
+        "street": 4
+      },
+      "grade_z": 8192.0,
+      "arcade_sectors": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "network_with_arcades": {
+        "sectors": 19,
+        "doorways_from_network": 2
+      },
+      "buildings": {
+        "ground_components_substantial": 8,
+        "solid_fronting_masses": 3,
+        "entered_from_street": 0,
+        "enterable_share_per_building": 0.0,
+        "storey_mix": {
+          "single_storey": 3,
+          "multi_storey": 5
+        },
+        "detail": [
+          {
+            "building": 4,
+            "interior_sectors": 112,
+            "ground": 48,
+            "upper": 64,
+            "doorways": 0,
+            "area": 633832036
+          },
+          {
+            "building": 1,
+            "interior_sectors": 72,
+            "ground": 32,
+            "upper": 40,
+            "doorways": 0,
+            "area": 271988736
+          },
+          {
+            "building": 3,
+            "interior_sectors": 49,
+            "ground": 1,
+            "upper": 48,
+            "doorways": 0,
+            "area": 265178747
+          },
+          {
+            "building": 2,
+            "interior_sectors": 25,
+            "ground": 23,
+            "upper": 2,
+            "doorways": 0,
+            "area": 53149696
+          },
+          {
+            "building": 0,
+            "interior_sectors": 11,
+            "ground": 7,
+            "upper": 4,
+            "doorways": 0,
+            "area": 13328384
+          },
+          {
+            "building": 7,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 12582912
+          },
+          {
+            "building": 8,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 3932160
+          },
+          {
+            "building": 18,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 6291456
+          }
+        ]
+      },
+      "thresholds": {
+        "storey_split_z": 16960,
+        "arcade_mouth_span": 2048,
+        "arcade_depth_hops": 3
+      }
+    },
+    {
+      "map": "E3M1",
+      "label_counts": {
+        "interior_upper": 218,
+        "interior_ground": 119,
+        "street": 20,
+        "scene": 14,
+        "roof": 11
+      },
+      "grade_z": 8192.0,
+      "arcade_sectors": [],
+      "network_with_arcades": {
+        "sectors": 20,
+        "doorways_from_network": 28
+      },
+      "buildings": {
+        "ground_components_substantial": 15,
+        "solid_fronting_masses": 0,
+        "entered_from_street": 6,
+        "enterable_share_per_building": 0.4,
+        "storey_mix": {
+          "single_storey": 8,
+          "multi_storey": 7
+        },
+        "detail": [
+          {
+            "building": 2,
+            "interior_sectors": 77,
+            "ground": 12,
+            "upper": 65,
+            "doorways": 3,
+            "area": 162369608
+          },
+          {
+            "building": 12,
+            "interior_sectors": 56,
+            "ground": 36,
+            "upper": 20,
+            "doorways": 2,
+            "area": 56523775
+          },
+          {
+            "building": 9,
+            "interior_sectors": 33,
+            "ground": 7,
+            "upper": 26,
+            "doorways": 2,
+            "area": 52697472
+          },
+          {
+            "building": 10,
+            "interior_sectors": 16,
+            "ground": 16,
+            "upper": 0,
+            "doorways": 0,
+            "area": 7733248
+          },
+          {
+            "building": 3,
+            "interior_sectors": 11,
+            "ground": 10,
+            "upper": 1,
+            "doorways": 1,
+            "area": 19980288
+          },
+          {
+            "building": 5,
+            "interior_sectors": 10,
+            "ground": 8,
+            "upper": 2,
+            "doorways": 2,
+            "area": 13901824
+          },
+          {
+            "building": 4,
+            "interior_sectors": 8,
+            "ground": 5,
+            "upper": 3,
+            "doorways": 0,
+            "area": 11403264
+          },
+          {
+            "building": 7,
+            "interior_sectors": 3,
+            "ground": 1,
+            "upper": 2,
+            "doorways": 0,
+            "area": 2326528
+          },
+          {
+            "building": 11,
+            "interior_sectors": 2,
+            "ground": 2,
+            "upper": 0,
+            "doorways": 9,
+            "area": 15161344
+          },
+          {
+            "building": 0,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 2621440
+          },
+          {
+            "building": 1,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 2621440
+          },
+          {
+            "building": 8,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 1712128
+          },
+          {
+            "building": 18,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 3211264
+          },
+          {
+            "building": 21,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 75497472
+          },
+          {
+            "building": 22,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 16777216
+          }
+        ]
+      },
+      "thresholds": {
+        "storey_split_z": 16960,
+        "arcade_mouth_span": 2048,
+        "arcade_depth_hops": 3
+      }
+    },
+    {
+      "map": "E1M4",
+      "label_counts": {
+        "interior_ground": 159,
+        "interior_upper": 111,
+        "scene": 88,
+        "courtyard": 29,
+        "underground": 7,
+        "roof": 3,
+        "street": 1
+      },
+      "grade_z": 40960,
+      "arcade_sectors": [],
+      "network_with_arcades": {
+        "sectors": 1,
+        "doorways_from_network": 11
+      },
+      "buildings": {
+        "ground_components_substantial": 25,
+        "solid_fronting_masses": 0,
+        "entered_from_street": 2,
+        "enterable_share_per_building": 0.08,
+        "storey_mix": {
+          "single_storey": 19,
+          "multi_storey": 6
+        },
+        "detail": [
+          {
+            "building": 2,
+            "interior_sectors": 18,
+            "ground": 16,
+            "upper": 2,
+            "doorways": 0,
+            "area": 138913316
+          },
+          {
+            "building": 12,
+            "interior_sectors": 12,
+            "ground": 8,
+            "upper": 4,
+            "doorways": 0,
+            "area": 13606912
+          },
+          {
+            "building": 22,
+            "interior_sectors": 11,
+            "ground": 7,
+            "upper": 4,
+            "doorways": 0,
+            "area": 740589568
+          },
+          {
+            "building": 23,
+            "interior_sectors": 11,
+            "ground": 9,
+            "upper": 2,
+            "doorways": 0,
+            "area": 36993024
+          },
+          {
+            "building": 32,
+            "interior_sectors": 11,
+            "ground": 11,
+            "upper": 0,
+            "doorways": 0,
+            "area": 89096192
+          },
+          {
+            "building": 9,
+            "interior_sectors": 9,
+            "ground": 9,
+            "upper": 0,
+            "doorways": 0,
+            "area": 1966080
+          },
+          {
+            "building": 38,
+            "interior_sectors": 9,
+            "ground": 9,
+            "upper": 0,
+            "doorways": 8,
+            "area": 66982271
+          },
+          {
+            "building": 40,
+            "interior_sectors": 9,
+            "ground": 9,
+            "upper": 0,
+            "doorways": 1,
+            "area": 18743296
+          },
+          {
+            "building": 21,
+            "interior_sectors": 7,
+            "ground": 4,
+            "upper": 3,
+            "doorways": 0,
+            "area": 23298048
+          },
+          {
+            "building": 24,
+            "interior_sectors": 7,
+            "ground": 7,
+            "upper": 0,
+            "doorways": 0,
+            "area": 18743296
+          },
+          {
+            "building": 31,
+            "interior_sectors": 7,
+            "ground": 7,
+            "upper": 0,
+            "doorways": 0,
+            "area": 56012800
+          },
+          {
+            "building": 5,
+            "interior_sectors": 6,
+            "ground": 6,
+            "upper": 0,
+            "doorways": 0,
+            "area": 17235968
+          },
+          {
+            "building": 26,
+            "interior_sectors": 6,
+            "ground": 5,
+            "upper": 1,
+            "doorways": 0,
+            "area": 13041664
+          },
+          {
+            "building": 28,
+            "interior_sectors": 5,
+            "ground": 5,
+            "upper": 0,
+            "doorways": 0,
+            "area": 16777216
+          },
+          {
+            "building": 7,
+            "interior_sectors": 4,
+            "ground": 4,
+            "upper": 0,
+            "doorways": 0,
+            "area": 2293760
+          },
+          {
+            "building": 8,
+            "interior_sectors": 4,
+            "ground": 4,
+            "upper": 0,
+            "doorways": 0,
+            "area": 8294760
+          },
+          {
+            "building": 15,
+            "interior_sectors": 4,
+            "ground": 4,
+            "upper": 0,
+            "doorways": 0,
+            "area": 22020096
+          },
+          {
+            "building": 37,
+            "interior_sectors": 3,
+            "ground": 3,
+            "upper": 0,
+            "doorways": 0,
+            "area": 1048576
+          },
+          {
+            "building": 18,
+            "interior_sectors": 2,
+            "ground": 2,
+            "upper": 0,
+            "doorways": 0,
+            "area": 3014656
+          },
+          {
+            "building": 41,
+            "interior_sectors": 2,
+            "ground": 2,
+            "upper": 0,
+            "doorways": 0,
+            "area": 8388608
+          }
+        ]
+      },
+      "thresholds": {
+        "storey_split_z": 16960,
+        "arcade_mouth_span": 2048,
+        "arcade_depth_hops": 3
+      }
+    },
+    {
+      "map": "DWE3M10",
+      "label_counts": {
+        "interior_ground": 257,
+        "scene": 99,
+        "street": 59,
+        "courtyard": 38,
+        "underground": 28,
+        "interior_upper": 17
+      },
+      "grade_z": -8192,
+      "arcade_sectors": [],
+      "network_with_arcades": {
+        "sectors": 59,
+        "doorways_from_network": 53
+      },
+      "buildings": {
+        "ground_components_substantial": 52,
+        "solid_fronting_masses": 0,
+        "entered_from_street": 7,
+        "enterable_share_per_building": 0.135,
+        "storey_mix": {
+          "single_storey": 50,
+          "multi_storey": 2
+        },
+        "detail": [
+          {
+            "building": 44,
+            "interior_sectors": 31,
+            "ground": 31,
+            "upper": 0,
+            "doorways": 2,
+            "area": 14729216
+          },
+          {
+            "building": 32,
+            "interior_sectors": 16,
+            "ground": 16,
+            "upper": 0,
+            "doorways": 5,
+            "area": 70647808
+          },
+          {
+            "building": 22,
+            "interior_sectors": 15,
+            "ground": 15,
+            "upper": 0,
+            "doorways": 5,
+            "area": 83230720
+          },
+          {
+            "building": 5,
+            "interior_sectors": 13,
+            "ground": 13,
+            "upper": 0,
+            "doorways": 0,
+            "area": 22740992
+          },
+          {
+            "building": 60,
+            "interior_sectors": 10,
+            "ground": 8,
+            "upper": 2,
+            "doorways": 0,
+            "area": 49643520
+          },
+          {
+            "building": 0,
+            "interior_sectors": 9,
+            "ground": 9,
+            "upper": 0,
+            "doorways": 0,
+            "area": 51249152
+          },
+          {
+            "building": 7,
+            "interior_sectors": 9,
+            "ground": 9,
+            "upper": 0,
+            "doorways": 0,
+            "area": 18087936
+          },
+          {
+            "building": 9,
+            "interior_sectors": 8,
+            "ground": 8,
+            "upper": 0,
+            "doorways": 0,
+            "area": 11878400
+          },
+          {
+            "building": 16,
+            "interior_sectors": 8,
+            "ground": 8,
+            "upper": 0,
+            "doorways": 3,
+            "area": 1572864
+          },
+          {
+            "building": 42,
+            "interior_sectors": 8,
+            "ground": 8,
+            "upper": 0,
+            "doorways": 1,
+            "area": 32505856
+          },
+          {
+            "building": 14,
+            "interior_sectors": 5,
+            "ground": 5,
+            "upper": 0,
+            "doorways": 3,
+            "area": 15466496
+          },
+          {
+            "building": 15,
+            "interior_sectors": 5,
+            "ground": 5,
+            "upper": 0,
+            "doorways": 3,
+            "area": 15466496
+          },
+          {
+            "building": 56,
+            "interior_sectors": 5,
+            "ground": 5,
+            "upper": 0,
+            "doorways": 0,
+            "area": 49283072
+          },
+          {
+            "building": 8,
+            "interior_sectors": 4,
+            "ground": 4,
+            "upper": 0,
+            "doorways": 0,
+            "area": 1376256
+          },
+          {
+            "building": 17,
+            "interior_sectors": 4,
+            "ground": 4,
+            "upper": 0,
+            "doorways": 0,
+            "area": 6225920
+          },
+          {
+            "building": 57,
+            "interior_sectors": 4,
+            "ground": 2,
+            "upper": 2,
+            "doorways": 0,
+            "area": 7151616
+          },
+          {
+            "building": 39,
+            "interior_sectors": 3,
+            "ground": 3,
+            "upper": 0,
+            "doorways": 0,
+            "area": 1572864
+          },
+          {
+            "building": 21,
+            "interior_sectors": 2,
+            "ground": 2,
+            "upper": 0,
+            "doorways": 0,
+            "area": 6291456
+          },
+          {
+            "building": 23,
+            "interior_sectors": 2,
+            "ground": 2,
+            "upper": 0,
+            "doorways": 0,
+            "area": 7471104
+          },
+          {
+            "building": 2,
+            "interior_sectors": 1,
+            "ground": 1,
+            "upper": 0,
+            "doorways": 0,
+            "area": 56623104
+          }
+        ]
+      },
+      "thresholds": {
+        "storey_split_z": 16960,
+        "arcade_mouth_span": 2048,
+        "arcade_depth_hops": 3
+      }
+    }
+  ]
+}
