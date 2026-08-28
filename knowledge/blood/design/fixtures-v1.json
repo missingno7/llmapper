@@ -6,7 +6,8 @@
   "DWE3M1",
   "DWE3M10",
   "E6M1",
-  "E4M9"
+  "E4M9",
+  "E1M4"
  ],
  "maps": [
   {
@@ -1098,6 +1099,342 @@
     ]
    ],
    "letters": 0
+  },
+  {
+   "map": "E1M4",
+   "sectors": 398,
+   "sprites": 1091,
+   "fixtures": 156,
+   "goods_per_fixture": {
+    "mean": 0.301,
+    "median": 0.0,
+    "max": 11,
+    "bare": 130
+   },
+   "families": [
+    {
+     "rise": 16384,
+     "tile": 452,
+     "count": 9,
+     "widths": [
+      512,
+      1024
+     ],
+     "depths": [
+      512,
+      1024,
+      2304
+     ],
+     "free_dimension": "depth",
+     "sectors": [
+      72,
+      86,
+      143,
+      147,
+      148,
+      154,
+      176,
+      180,
+      181
+     ]
+    },
+    {
+     "rise": 4096,
+     "tile": 438,
+     "count": 9,
+     "widths": [
+      2048,
+      3584
+     ],
+     "depths": [
+      1792,
+      2048,
+      3584
+     ],
+     "free_dimension": "depth",
+     "sectors": [
+      163,
+      322,
+      323,
+      324,
+      325,
+      326,
+      327,
+      328,
+      329
+     ]
+    },
+    {
+     "rise": 4096,
+     "tile": 287,
+     "count": 6,
+     "widths": [
+      768,
+      1024,
+      2048
+     ],
+     "depths": [
+      256,
+      1024
+     ],
+     "free_dimension": "width",
+     "sectors": [
+      186,
+      187,
+      188,
+      189,
+      348,
+      350
+     ]
+    },
+    {
+     "rise": 11264,
+     "tile": 41,
+     "count": 6,
+     "widths": [
+      512
+     ],
+     "depths": [
+      512
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      238,
+      239,
+      241,
+      242,
+      243,
+      244
+     ]
+    },
+    {
+     "rise": 8192,
+     "tile": 452,
+     "count": 5,
+     "widths": [
+      512
+     ],
+     "depths": [
+      512,
+      1024
+     ],
+     "free_dimension": "depth",
+     "sectors": [
+      74,
+      88,
+      177,
+      178,
+      179
+     ]
+    },
+    {
+     "rise": 24576,
+     "tile": 41,
+     "count": 5,
+     "widths": [
+      256,
+      512
+     ],
+     "depths": [
+      256,
+      512
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      90,
+      91,
+      92,
+      93,
+      94
+     ]
+    },
+    {
+     "rise": 8192,
+     "tile": 34,
+     "count": 4,
+     "widths": [
+      128,
+      512,
+      1536
+     ],
+     "depths": [
+      512
+     ],
+     "free_dimension": "width",
+     "sectors": [
+      49,
+      63,
+      230,
+      383
+     ]
+    },
+    {
+     "rise": 1024,
+     "tile": 20,
+     "count": 4,
+     "widths": [
+      256,
+      1472,
+      2304
+     ],
+     "depths": [
+      256,
+      1280,
+      1472,
+      2560
+     ],
+     "free_dimension": "depth",
+     "sectors": [
+      119,
+      120,
+      286,
+      287
+     ]
+    },
+    {
+     "rise": 8192,
+     "tile": 20,
+     "count": 4,
+     "widths": [
+      1152,
+      1280,
+      1792
+     ],
+     "depths": [
+      128,
+      256
+     ],
+     "free_dimension": "width",
+     "sectors": [
+      169,
+      317,
+      318,
+      319
+     ]
+    },
+    {
+     "rise": 32768,
+     "tile": 67,
+     "count": 3,
+     "widths": [
+      256,
+      1024,
+      1536
+     ],
+     "depths": [
+      256,
+      1024,
+      2560
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      44,
+      71,
+      75
+     ]
+    },
+    {
+     "rise": 4096,
+     "tile": 67,
+     "count": 3,
+     "widths": [
+      384,
+      1152,
+      2048
+     ],
+     "depths": [
+      1024
+     ],
+     "free_dimension": "width",
+     "sectors": [
+      81,
+      84,
+      209
+     ]
+    }
+   ],
+   "masked_wall_overlays": [
+    [
+     466,
+     8
+    ],
+    [
+     463,
+     6
+    ],
+    [
+     266,
+     2
+    ]
+   ],
+   "shutter_sprites": 2,
+   "top_props": [
+    [
+     0,
+     24
+    ],
+    [
+     795,
+     15
+    ],
+    [
+     2101,
+     11
+    ],
+    [
+     754,
+     11
+    ],
+    [
+     68,
+     10
+    ],
+    [
+     256,
+     9
+    ],
+    [
+     3566,
+     8
+    ],
+    [
+     332,
+     8
+    ],
+    [
+     660,
+     8
+    ],
+    [
+     213,
+     8
+    ],
+    [
+     640,
+     7
+    ],
+    [
+     3812,
+     7
+    ],
+    [
+     608,
+     6
+    ],
+    [
+     77,
+     6
+    ],
+    [
+     641,
+     5
+    ],
+    [
+     3821,
+     5
+    ]
+   ],
+   "letters": 50
   }
  ],
  "attested_in_both_death_wish": [

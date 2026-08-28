@@ -1953,3 +1953,127 @@ rows, 3/3 tree properties, byte-identical rebuild.
 * The ladder is interpreted, not measured: no evidence says the campaign
   writes the same look at several sizes to fit a wall.
 * Still project-local; grammar requests #16 and #17 carry it.
+
+
+## Iteration 28 — three detail sources, mined then built
+
+### 1. Per-letter colour, and E1M4's kit
+
+**The mining had to be fixed twice before it meant anything**, and both
+fixes changed the answer. Letters that share a point are either a word
+written downward or the lines of one sign; and a sign clustered along the
+wall alone interleaves two stacked lines whose x ranges overlap, so DWE1M7's
+FINANCE and GRUDGE came back as `FGIRNUADNGCEE` with an alternating palette
+that is two uniform signs. With lines split by single linkage on z:
+
+* **160 signs, 151 uniform, 9 mixed -- 5.6%.** Not the "three of six" E1M4
+  suggests; E1M4 is unusually colourful, which is what Dark Carnival is.
+* Mixed signs sit exactly where the identity carries them: E1M4 x2,
+  DWE1M9 x2 (SPOOKY, WORLD), DWE2M2 x2, DWE3M4, DWE3M10 (ICE), TEDE1M4.
+* **One regular cycle in the whole corpus**: E1M4's FORTUNES, `[4, 3, 12, 11]`
+  at period 4 over eight letters.
+* **Two of the nine mark whole words**: DWE2M2 paints ACTIVE, REMOVED and
+  OPEN in three palettes with each word uniform.
+* E1M4 tracks ROTTEN CANDY at **2.0 drawn widths** against the corpus's
+  uniform median of 1.333, and jitters its letters **0.73 letter heights**.
+  Uniform signs have a jitter q3 of exactly 0.0.
+
+Built: `TextStyle` gains `tracking` and `jitter`, `PerWord` joins `Cycle`,
+and three styles carry the measurements -- `carnival` (ROTTEN CANDY),
+`fortune` (the one cycle), `spooky`. Gravesend's shooting gallery gets
+`carnival` and the Aldermack's marquee `fortune`; the church does not get
+one.
+
+E1M4's reusable geometry is three families, all already parametric in the
+map: **booth** (rise 16384, tile 452, x9), **stage** (rise 4096, tile 438,
+x9), **stanchion** (rise 11264, tile 41, x6). `mine_fixtures` now reads
+E1M4 as a fifth source.
+
+### 2. Glasses on the bar -- except the corpus says candles, and rarely
+
+`tools/mine_surface_items.py` finds every sprite standing inside a raised
+sector's footprint at about its floor, over ten maps. The answer is not the
+one the question implies:
+
+* **56 of 1,198 surfaces carry anything at all -- 4.7%.** The same answer
+  `mine_fixtures` gave for goods: the fixture is the detail.
+* The item is **tile 2101, a candle** -- 27 of the corpus's 78 surface
+  items, 301 uses across 45 maps. E1M5 stands 16, one per surface; E1M4's
+  carnival booths carry up to **6**.
+* Neighbour spacing median around **400 units**.
+
+`surface.py` is the horizontal counterpart of `wallplane`: given a fixture
+room and a length it stands items at the mined rhythm, refuses two in the
+same place, declares its cost in sprites, and is deterministic in the room's
+own path. `CARRY_SHARE` is 0.047, so nothing is dressed by default; a bar's
+own counter passes `every=True` because a bar with nothing on it is the
+thing being fixed.
+
+**The items land in the tree, not on the layout.** They are `native_detail`
+declarations on the counter module that carries them, so
+`citytree.py zoom saloon --depth 4` reaches them:
+
+```
+- main  [7r] +4 on it
+    + fittings  [6r] +4 on it        bar fittings (templates.bar)
+        + main_bar  [4r] +4 on it    counter run: DWE3M10 rise-3072/tile-345
+            - main_bar_0  [1r] +1 on it
+```
+
+Range-tested 256 to 16,384 units and 1 to 12 asked: no row overlaps, and a
+count is capped by the item's own width rather than by the gap alone -- the
+first version put four 416-wide candles on 1,556 units of counter and then
+rejected two of them.
+
+### 3. E3M3, the campaign's own sewer
+
+The register was already right -- `materials.SEWER` is E3M3's wall 492,
+floor 568, ceiling 255, water 1120. What was missing is what is built from
+it.
+
+* **The mouth.** Tile 194 is the circular tunnel lining and E3M3 uses it in
+  one place: **29 of its 1,128 two-sided walls, 2.6%**, with a median length
+  of **201 units** against 1,024 for the rest and ceiling steps of 65,536 to
+  98,304 above them. Short, with a band over it. `line_mouths` is that
+  predicate; it lines **12** of Gravesend's sewer openings and leaves 84 as
+  too long and 68 as having no band.
+* **The ledge.** rise 4096 on tile 568, depth 512, at 2048 x7 and 2304 x3.
+  Added as a fixture family; **4 runs, 11 modules** now carry the player
+  along the two 24-plan-unit legs.
+* **The register**, with E3M3's own heights: drips 54 at 1.21 on the wall,
+  moss 793 at 0.97 (against the corpus median of 2.72 -- E3M3 wins in its
+  own tunnels), grates 191 at 1.99 and 795 at 1.93 floor-aligned overhead,
+  bubbles/kelp/reeds at the waterline, debris 515. The ring's runs use it:
+  **12 runs and 29 beats**, up from 8 and 14.
+
+### Two general faults found on the way, both silent
+
+* **`wallplane` did not know where the openings were.** It knew about other
+  sprites and not about portals, so a run sliding along a wall to find room
+  slid onto the annex mouth and the compiler caught it as a wall sprite with
+  nothing behind it. `portal_spans` reserves the connection spans on the
+  same axis.
+* **`props.solid_faces` is all-or-nothing**, and `detail_runs` gated on it:
+  a 6,144-unit annex mouth wrote off a 24,576-unit wall, which is why the
+  two longest and most repetitive stretches in the city carried no detail at
+  all. A run already models partial occupancy; it uses
+  `occupied_from_layout` now and only skips a face that is entirely an
+  opening.
+
+### Build
+
+**226 sectors / 1,466 walls / 389 sprites**, 201 of them wall sprites with
+**0 clashing pairs and 0 fully hidden**. 11/11 conformance, 16/16 contract
+rows, 3/3 tree properties, byte-identical rebuild. 228 nodes at depth 6.
+
+### Not done
+
+* E1M4's marquee lighting and ride staging beyond the three families: the
+  families are in, the lighting idiom is not mined.
+* `surface` runs on the bar only. The 4.7% automatic path exists and is
+  wired to nothing else, so the rest of the city's counters stay bare --
+  which is the campaign's rate, but it is untested at city scale.
+* Ledge modules are gapped 256 rather than continuous, because a run cannot
+  declare portals between its own modules (grammar request #14).
+* `runs.SEWER_ELEMENTS` survives unused now that `sewerkit.TUNNEL` replaced
+  it at the only call site.

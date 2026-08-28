@@ -665,6 +665,10 @@ def build():
     })
     city.connect(grate_lower.face("east"), sewer_net["e_leg"].face("west"),
                  connection_id="connection:grate_shaft_ring")
+    # The towpath, from E3M3's own ledge family.  The two long legs are 24
+    # plan units of bare tunnel each and the ring's most repetitive stretch.
+    print("sewer towpaths:", l3_sewer.ledges(
+        sewer, sewer_net, grade=SEWER_FLOOR, host_clear=SEWER_CLEAR))
 
     # Cellar pit: solid, the stair's last leg; jump-out depth.
     pit_xy = (int(landing_x0 - 1024 + 1024), int(top_y0 - LOWER_STEPS * LOWER_TREAD - 3072 + 1024))
@@ -1152,6 +1156,17 @@ def main() -> int:
     print("lighting flicker:", flicker_lit_sectors(
         compiled.level, tiles={LAMP_TILE, 506, 640, 1701}))
     print("lighting lightbomb:", compiled.lighting_report)
+
+    # The sewer's mouths.  Tile 194 is E3M3's circular tunnel lining and it
+    # uses it in exactly one place: the short opening where one channel
+    # meets another, 29 walls of 1,128, with a band of wall above.
+    import sewerkit
+    _sewer_sectors = {
+        int(alloc.sector_id) for region_id, alloc in compiled.allocations.items()
+        if region_id.startswith("region:gravesend/sewer/")}
+    _mouths = sewerkit.line_mouths(compiled.level, _sewer_sectors)
+    print("sewer mouths:", _mouths)
+    ctx["manifest"]["sewer_mouths"] = _mouths
 
     # Openings, against the grammar's own audit.  `frame_z_doors` above
     # builds the reveals; this is the other half -- reading the finished map

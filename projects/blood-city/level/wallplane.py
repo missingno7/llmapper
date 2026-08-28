@@ -63,6 +63,7 @@ coloured initial; wrap it in `cycle()` for a repeating pattern.
 
 from __future__ import annotations
 
+import hashlib
 import math
 import pathlib
 from dataclasses import dataclass, field
@@ -295,6 +296,41 @@ def occupancy(layout) -> dict:
 # asking the wall for room
 # ---------------------------------------------------------------------------
 
+def portal_spans(layout, region_id: str, a1, a2) -> list:
+    """The stretches of this wall an OPENING owns, in `along` coordinates.
+
+    A wall sprite hung over a doorway has nothing behind it, and the
+    compiler refuses it -- correctly.  The occupancy model knew about other
+    sprites and not about portals, so a run sliding along a wall to find
+    room could slide straight onto the annex mouth.  A connection's anchor
+    lies on the wall line itself and the sprite plane is parallel to it, so
+    the two project onto the same axis and can be compared directly.
+    """
+    unit, _length = _unit_and_offset(a1, a2)
+    line_a = a1[0] * unit[0] + a1[1] * unit[1]
+    line_b = a2[0] * unit[0] + a2[1] * unit[1]
+    lo_line, hi_line = min(line_a, line_b), max(line_a, line_b)
+    normal = (-unit[1], unit[0])
+    offset = a1[0] * normal[0] + a1[1] * normal[1]
+    out = []
+    for connection in getattr(layout, "connections", {}).values():
+        if region_id not in (connection.region_a, connection.region_b):
+            continue
+        if connection.a1 is None or connection.a2 is None:
+            continue
+        here = connection.a1[0] * normal[0] + connection.a1[1] * normal[1]
+        there = connection.a2[0] * normal[0] + connection.a2[1] * normal[1]
+        if abs(here - offset) > 2 or abs(there - offset) > 2:
+            continue                     # a different wall of this room
+        first = connection.a1[0] * unit[0] + connection.a1[1] * unit[1]
+        second = connection.a2[0] * unit[0] + connection.a2[1] * unit[1]
+        low, high = min(first, second), max(first, second)
+        if high < lo_line or low > hi_line:
+            continue
+        out.append((low, high))
+    return out
+
+
 def find_slot(layout, region_id: str, a1, a2, *, width: float, above: int,
               below: int, t: float = 0.5, height_player_heights: float = 0.65,
               offset_player_widths: float = 0.10,
@@ -311,6 +347,7 @@ def find_slot(layout, region_id: str, a1, a2, *, width: float, above: int,
     if width > length:
         return None
     planes = occupancy(layout)
+    blocked = portal_spans(layout, region_id, a1, a2)
     half = width / 2.0
 
     clear = abs(int(region.floor_z) - int(region.ceiling_z))
@@ -328,9 +365,12 @@ def find_slot(layout, region_id: str, a1, a2, *, width: float, above: int,
         raw = int(round(int(region.floor_z) - candidate_h * PLAYER_HEIGHT))
         if z != raw:
             return None
+        along = point[0] * unit[0] + point[1] * unit[1]
+        if any(along - half < high and low < along + half
+               for low, high in blocked):
+            return None                  # nothing behind it
         if plane is None:
             return z
-        along = point[0] * unit[0] + point[1] * unit[1]
         rect = Rect(along - half, along + half, z - above, z + below)
         return z if plane.free(rect) else None
 
@@ -421,9 +461,48 @@ def cycle(values) -> Cycle:
     return Cycle(values)
 
 
-def _per_letter(value, index, default):
+class PerWord(tuple):
+    """A palette per WORD rather than per letter: ``PerWord((4, 0, 11))``.
+
+    The other thing the campaign does with colour, and the one that reads as
+    meaning rather than as decoration: DWE2M2 paints ACTIVE, REMOVED and
+    OPEN in three palettes with each word uniform, and LAUNCH LAUNCH in two.
+    Two of the corpus's nine mixed signs are this form.
+    """
+
+
+def per_word(values) -> PerWord:
+    return PerWord(values)
+
+
+def _roll(seed: str, n: int) -> int:
+    """A stable index, the same contract as `runs` and `fixtures`."""
+    digest = hashlib.sha256(seed.encode("utf-8")).digest()
+    return int.from_bytes(digest[:4], "big") % max(1, n)
+
+
+def _word_index(words: str) -> list:
+    """Which whitespace-separated word each character belongs to."""
+    out, index, started = [], 0, False
+    for character in words:
+        if character.isspace():
+            if started:
+                index += 1
+                started = False
+            out.append(index)
+            continue
+        started = True
+        out.append(index)
+    return out
+
+
+def _per_letter(value, index, default, words: str | None = None):
     if value is None:
         return default
+    if isinstance(value, PerWord):
+        if words is None:
+            return value[0]
+        return value[_word_index(words)[index] % len(value)]
     if isinstance(value, Cycle):
         return value[index % len(value)]
     if isinstance(value, (list, tuple)):
@@ -445,7 +524,7 @@ def letter_size(size: int) -> tuple[float, int]:
     return (size * LETTER_WIDTH / 4.0, (int(size) << 2) * LETTER_HEIGHT)
 
 
-def _advances(words: str, size, *, vertical: bool):
+def _advances(words: str, size, *, vertical: bool, tracking: float | None = None):
     """Per-letter (drawn size, advance to the next letter).
 
     Pitch is centre to centre, so a word's own extent is the advances of all
@@ -453,7 +532,8 @@ def _advances(words: str, size, *, vertical: bool):
     every advance, which over-reserves by nearly half a letter and is what
     made ST GALLOW'S crypt sign report "no room" on a wall it fitted.
     """
-    pitch = VERTICAL_PITCH if vertical else PITCH
+    pitch = (VERTICAL_PITCH if vertical else PITCH) if tracking is None \
+        else float(tracking)
     out = []
     for index in range(len(words)):
         width, height = letter_size(_per_letter(size, index, 64))
@@ -462,7 +542,8 @@ def _advances(words: str, size, *, vertical: bool):
     return out
 
 
-def text_box(words: str, size, *, vertical: bool = False):
+def text_box(words: str, size, *, vertical: bool = False,
+             tracking: float | None = None, jitter: float = 0.0):
     """(along, above, below) for a word, from the letter tiles themselves.
 
     A letter is not centred on its own z: the alphabet carries an ART y
@@ -482,7 +563,14 @@ def text_box(words: str, size, *, vertical: bool = False):
             continue
         above = max(above, got[2])
         below = max(below, got[3])
-    run, across = text_extent(words, size, vertical=vertical)
+    run, across = text_extent(words, size, vertical=vertical,
+                              tracking=tracking)
+    if jitter:
+        # A jittered sign occupies the band its letters wander over, not the
+        # band one letter occupies.
+        swing = int(round(jitter * max(1, across if vertical else across)))
+        above += swing // 2
+        below += swing - swing // 2
     if not vertical:
         return float(run), above, below
     # A vertical stack's extent ALREADY runs from the top of the first letter
@@ -512,9 +600,10 @@ def _end_letters(words: str, size):
     return found[0], found[-1]
 
 
-def text_extent(words: str, size, *, vertical: bool = False) -> tuple[float, int]:
+def text_extent(words: str, size, *, vertical: bool = False,
+                tracking: float | None = None) -> tuple[float, int]:
     """The (along, down) box a word occupies, before it is placed."""
-    steps = _advances(words, size, vertical=vertical)
+    steps = _advances(words, size, vertical=vertical, tracking=tracking)
     if not steps:
         return (0.0, 0)
     run = sum(advance for _drawn, advance in steps[:-1]) + steps[-1][0]
@@ -556,6 +645,7 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
     # hanging there, and neither is visible to `TextStyle.fit`.  Trying the
     # ladder here is what lets LOANS step from 136 down to a size the pawn
     # shop's 1.45 player heights of clear wall will take.
+    tracking, jitter = None, 0.0
     if style is not None:
         chosen = STYLE_TABLE(style)
         attempts = [chosen.at(step) for step in chosen.steps()]
@@ -567,10 +657,13 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
         if trial is not None:
             size, palette = trial.sizes(), trial.palettes()
             shade, vertical = trial.shade, trial.vertical
-        wide, tall = text_extent(words, size, vertical=vertical)
+            tracking, jitter = trial.tracking, trial.jitter
+        wide, tall = text_extent(words, size, vertical=vertical,
+                                 tracking=tracking)
         if not vertical and wide > span:
             continue
-        _run, above, below = text_box(words, size, vertical=vertical)
+        _run, above, below = text_box(words, size, vertical=vertical,
+                                      tracking=tracking, jitter=jitter)
         slot = find_slot(layout, region_id, a1, a2, width=wide,
                          above=above, below=below, t=t,
                          height_player_heights=height_player_heights,
@@ -589,12 +682,14 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
     if tried is not None:
         size, palette = tried.sizes(), tried.palettes()
         shade, vertical = tried.shade, tried.vertical
-        wide, tall = text_extent(words, size, vertical=vertical)
+        tracking, jitter = tried.tracking, tried.jitter
+        wide, tall = text_extent(words, size, vertical=vertical,
+                                 tracking=tracking)
     got_t, got_h = slot
 
     _unit, length = _unit_and_offset(a1, a2)
     out = []
-    steps = _advances(words, size, vertical=vertical)
+    steps = _advances(words, size, vertical=vertical, tracking=tracking)
     if vertical:
         # Top of the word, then down: the first letter is highest, which is
         # how every campaign stack reads.  The cursor tracks each letter's
@@ -613,8 +708,8 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
                 height_player_heights=cursor,
                 offset_player_widths=offset_player_widths,
                 type=0, picnum=picnum, cstat=LETTER_CSTAT,
-                shade=int(_per_letter(shade, index, LETTER_SHADE)),
-                pal=_palette(_per_letter(palette, index, "default")),
+                shade=int(_per_letter(shade, index, LETTER_SHADE, words)),
+                pal=_palette(_per_letter(palette, index, "default", words)),
                 x_repeat=int(this_size), y_repeat=int(this_size))
             out.append(placement_id)
             cursor -= (advance - drawn / 2.0) / PLAYER_HEIGHT
@@ -630,14 +725,23 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
         if picnum is None:
             continue
         placement_id = f"{sign_id}_{index:02d}"
+        # Jitter is deterministic in the sign's own identity, like every
+        # other choice in this project: the same sign rebuilds identically
+        # and two signs wander differently.
+        wobble = 0.0
+        if jitter:
+            _w, letter_h = letter_size(this_size)
+            swing = jitter * letter_h
+            wobble = (_roll(f"{sign_id}:jitter:{index}", 201) - 100) / 100.0
+            wobble = wobble * swing / 2.0 / PLAYER_HEIGHT
         layout.place_on_wall(
             placement_id, region_id, a1=a1, a2=a2,
             t=got_t + centre / length,
-            height_player_heights=got_h,
+            height_player_heights=got_h + wobble,
             offset_player_widths=offset_player_widths,
             type=0, picnum=picnum, cstat=LETTER_CSTAT,
-            shade=int(_per_letter(shade, index, LETTER_SHADE)),
-            pal=_palette(_per_letter(palette, index, "default")),
+            shade=int(_per_letter(shade, index, LETTER_SHADE, words)),
+            pal=_palette(_per_letter(palette, index, "default", words)),
             x_repeat=int(this_size), y_repeat=int(this_size))
         out.append(placement_id)
     return out
@@ -672,6 +776,16 @@ class TextStyle:
     initial: tuple | None = None
     source: str = ""
     ladder: tuple = ()
+    #: Centre-to-centre letter spacing in drawn widths.  `None` takes
+    #: `lettering.PITCH` (1.45).  The corpus's uniform signs sit at a median
+    #: 1.333 and its mixed ones at 1.004, and E1M4 tracks ROTTEN CANDY at
+    #: 2.0 -- wide tracking is part of what makes a carnival sign one.
+    tracking: float | None = None
+    #: How far a letter may wander in z from the line, in drawn heights,
+    #: chosen deterministically per letter.  0 for every ordinary sign: the
+    #: corpus's uniform signs have a q3 of exactly 0.0.  E1M4's ROTTEN CANDY
+    #: spreads 0.73 across its eleven letters.
+    jitter: float = 0.0
 
     def steps(self) -> tuple:
         """The sizes this style will accept, its own first.
@@ -688,7 +802,8 @@ class TextStyle:
 
     def at(self, size: int) -> "TextStyle":
         return TextStyle(self.name, int(size), self.palette, self.shade,
-                         self.vertical, self.initial, self.source, self.ladder)
+                         self.vertical, self.initial, self.source, self.ladder,
+                         self.tracking, self.jitter)
 
     def sizes(self):
         """The per-letter size sequence, with the initial applied."""
@@ -723,7 +838,8 @@ class TextStyle:
         for size in self.steps():
             trial = self.at(size)
             wide, _tall = text_extent(words, trial.sizes(),
-                                      vertical=trial.vertical)
+                                      vertical=trial.vertical,
+                                      tracking=trial.tracking)
             if wide <= span:
                 return trial
         return None
@@ -768,6 +884,21 @@ STYLES = {
     "breach": TextStyle(
         "breach", 56, "cold", -70,
         source="6 words at 56/pal 11: WALL BREACH, CONTROL ROOM"),
+    # **The mixed forms.**  Only 9 of the corpus's 160 signs mix palettes at
+    # all -- 5.6% -- and they are concentrated where the identity carries
+    # them: E1M4 (Dark Carnival), DWE1M9 (SPOOKY WORLD), DWE3M4 and DWE3M10
+    # (ICE), DWE2M2, TEDE1M4.  A church does not get one.
+    "carnival": TextStyle(
+        "carnival", 64, cycle((4, 11, 0, 13)), -8, tracking=2.0, jitter=0.73,
+        source=("E1M4 ROTTEN CANDY: 11 letters, palettes 4/11/0/13, tracked "
+                "2.0 drawn widths and jittered 0.73 heights")),
+    "fortune": TextStyle(
+        "fortune", 64, cycle((4, 3, 12, 11)), -8, tracking=1.5,
+        source=("E1M4 FORTUNES: the corpus's ONE regular cycle, period 4 "
+                "over 8 letters")),
+    "spooky": TextStyle(
+        "spooky", 64, (4, 8, 5, 2, 11, 4), -8, tracking=1.0,
+        source="DWE1M9 SPOOKY and WORLD: irregular, five palettes, no cycle"),
     # The two vertical looks, from all 11 columns in the corpus.
     "column": TextStyle(
         "column", 255, 2, 0, vertical=True, ladder=(255, 184, 136),
@@ -802,7 +933,8 @@ def style(name_or_style, **overrides) -> TextStyle:
     fields = {"name": base.name, "size": base.size, "palette": base.palette,
               "shade": base.shade, "vertical": base.vertical,
               "initial": base.initial, "source": base.source,
-              "ladder": base.ladder}
+              "ladder": base.ladder, "tracking": base.tracking,
+              "jitter": base.jitter}
     fields.update(overrides)
     return TextStyle(**fields)
 

@@ -1173,5 +1173,81 @@
     "examples": []
    }
   ]
+ },
+ "sign_composition": {
+  "signs": 160,
+  "uniform": 151,
+  "mixed": 9,
+  "mixed_share": 0.056,
+  "mixed_by_map": {
+   "DWE1M9": 2,
+   "DWE2M2": 2,
+   "DWE3M10": 1,
+   "DWE3M4": 1,
+   "E1M4": 2,
+   "TEDE1M4": 1
+  },
+  "mixed_marking_whole_words": 2,
+  "cycle_period": {
+   "none": 8,
+   "4": 1
+  },
+  "distinct_palettes_when_mixed": {
+   "2": 2,
+   "3": 3,
+   "4": 2,
+   "5": 2
+  },
+  "tracking_drawn_widths": {
+   "uniform": {
+    "n": 150,
+    "median": 1.333,
+    "q1": 1.143,
+    "q3": 1.6,
+    "min": 0.323,
+    "max": 3.227
+   },
+   "mixed": {
+    "n": 9,
+    "median": 1.004,
+    "q1": 0.91,
+    "q3": 1.506,
+    "min": 0.889,
+    "max": 2.2
+   }
+  },
+  "z_jitter_letter_heights": {
+   "uniform": {
+    "n": 151,
+    "median": 0.0,
+    "q1": 0.0,
+    "q3": 0.0,
+    "min": 0.0,
+    "max": 1.825
+   },
+   "mixed": {
+    "n": 9,
+    "median": 0.0,
+    "q1": 0.0,
+    "q3": 0.548,
+    "min": 0.0,
+    "max": 2.182
+   }
+  },
+  "examples": {
+   "cycled": [
+    "E1M4:FORTUNES [4, 3, 12, 11, 4, 3, 12, 11] period 4"
+   ],
+   "irregular": [
+    "DWE1M9:SPOOKY [4, 8, 5, 2, 11, 4]",
+    "DWE1M9:WORLD [2, 11, 8, 4, 5]",
+    "DWE2M2:LAUNCHLAUNCH [4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0]",
+    "DWE2M2:ACTIVEREMOVEDOPEN [4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 11, 11, 11, 11]",
+    "DWE3M10:ICE [12, 5, 11]",
+    "DWE3M4:ICE [12, 5, 11]",
+    "E1M4:ROTTENCANDY [4, 11, 0, 13, 4, 0, 4, 11, 4, 13, 0]",
+    "TEDE1M4:CBORLIAN [0, 7, 0, 7, 0, 0, 0, 0]"
+   ]
+  }
  }
 }

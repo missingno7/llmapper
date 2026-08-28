@@ -23,9 +23,9 @@
   "lighting": {
     "lights": 24,
     "rays_cast": 446582,
-    "surfaces_lit": 589,
-    "surfaces_protected": 137,
-    "walls_lit": 519,
+    "surfaces_lit": 631,
+    "surfaces_protected": 148,
+    "walls_lit": 550,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
@@ -92,11 +92,18 @@
       "light:lamp_8": 0.5
     }
   },
+  "sewer_mouths": {
+    "lined": 12,
+    "too_long": 84,
+    "no_band": 68,
+    "outside": 0,
+    "tile": 194
+  },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 366,
-    "wall_sprites": 202,
-    "planes": 34,
+    "sprites": 389,
+    "wall_sprites": 201,
+    "planes": 35,
     "clashing_pairs": 0,
     "sprites_involved": 0,
     "clash_rate_per_100_wall_sprites": 0.0,
@@ -111,14 +118,14 @@
     }
   },
   "rules": {
-    "total": 48,
+    "total": 53,
     "by_severity": {
-      "note": 47,
+      "note": 52,
       "warning": 1
     },
     "by_code": {
-      "note:sprite-drawn-square": 8,
-      "note:floor-aligned-sprite-rests-on-a-surface": 1,
+      "note:sprite-drawn-square": 12,
+      "note:floor-aligned-sprite-rests-on-a-surface": 2,
       "note:glass-is-breakable": 12,
       "note:opening-clears-a-standing-body": 26,
       "warning:wall-between-rooms-is-not-paper": 1

@@ -43,9 +43,9 @@
       "map": "SKELETON",
       "game": "blood",
       "budget": {
-        "sectors": 215,
-        "walls": 1378,
-        "sprites": 366
+        "sectors": 226,
+        "walls": 1466,
+        "sprites": 389
       },
       "street": {
         "sectors": 24,
@@ -488,7 +488,7 @@
         "rooftop_sky_sectors": 0,
         "rooftop_area_share_of_street": 0.0,
         "perched_outdoor_sectors": 0,
-        "below_grade_sectors": 42,
+        "below_grade_sectors": 53,
         "below_grade_area": 452198400,
         "stack_pairs": [
           {
@@ -524,7 +524,7 @@
           "street_sectors": 16,
           "sectors": 181,
           "walls": 1194,
-          "sprites": 280
+          "sprites": 284
         },
         {
           "zone": 1,
@@ -593,9 +593,9 @@
         {
           "zone": null,
           "note": "not reachable from any street",
-          "sectors": 26,
-          "walls": 144,
-          "sprites": 84
+          "sectors": 37,
+          "walls": 232,
+          "sprites": 103
         }
       ],
       "mechanisms": {
@@ -727,9 +727,9 @@
     },
     "budgets": {
       "SKELETON": {
-        "sectors": 215,
-        "walls": 1378,
-        "sprites": 366
+        "sectors": 226,
+        "walls": 1466,
+        "sprites": 389
       }
     }
   }

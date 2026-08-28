@@ -261,10 +261,21 @@ def summary(node, *, costs: dict | None = None) -> dict:
     outward = [item.connection_id
                for item in getattr(node, "connections", [])
                if not {item.left.room.path(), item.right.room.path()} <= inside]
+    details = collections.Counter()
+    for room in rooms_under(node):
+        for item in room.details:
+            details[int(item.picnum)] += 1
     out = {
         "path": node.path(),
         "kind": node.__class__.__name__.lower(),
         "note": node.note,
+        # What stands on things, as opposed to what things are.  A candle on
+        # a counter is a `DetailDecl` on the counter's room, so it is in the
+        # tree -- and a summary that did not count them would make the scale
+        # below the fixture invisible from here, which is the whole point of
+        # putting it in the tree.
+        "details": dict(details),
+        "details_total": sum(details.values()),
         "frame": node.frame.to_dict(),
         "contains": dict(kinds),
         "rooms_total": len(rooms_under(node)),
@@ -393,6 +404,9 @@ def zoom(node, *, depth: int = 1, costs: dict | None = None) -> str:
         lines.append(f"    {head['note']}")
     lines.append(f"    contains {head['contains']} | rooms {head['rooms_total']} "
                  f"| roles {head['roles']}")
+    if head["details_total"]:
+        lines.append(f"    carries {head['details_total']} items on its "
+                     f"surfaces: tiles {head['details']}")
     if head["style_own"]:
         lines.append(f"    states {head['style_own']}")
     if head["style_inherited"]:
@@ -409,12 +423,15 @@ def zoom(node, *, depth: int = 1, costs: dict | None = None) -> str:
         for child in current.children:
             mark = "+" if isinstance(child, Assembly) else "-"
             row = f"{prefix}{mark} {child.node_id}"
+            carried = sum(len(room.details) for room in rooms_under(child))
             if costs is not None:
                 spend = cost_of(child, costs)
                 row += (f"  [{len(rooms_under(child))}r {spend['sectors']}s "
                         f"{spend['walls']}w {spend['sprites']}p]")
             else:
                 row += f"  [{len(rooms_under(child))}r]"
+            if carried:
+                row += f" +{carried} on it"
             if child.note:
                 row += f"  {child.note[:52]}"
             lines.append(row)

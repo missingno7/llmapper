@@ -2,8 +2,9 @@
 
 Four maps, chosen because they are what a Blood town actually does with
 small repeated geometry: **DWE3M1** (the richest -- 606 sectors, 1,690
-sprites), **DWE3M10** (the pier, 498/1,038), **E6M1** (the shop) and
-**E4M9** (the mall).
+sprites), **DWE3M10** (the pier, 498/1,038), **E6M1** (the shop),
+**E4M9** (the mall) and **E1M4** (Dark Carnival -- the booths, the ride
+platforms and the stanchion rows a fairground is made of).
 
 A *fixture* here is a small sector standing proud of a bigger neighbour: a
 pedestal, a counter, a shelf, a panel run. What matters is that they come in
@@ -43,7 +44,7 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from bloodmap.format import read_map
 
-SOURCES = ("DWE3M1", "DWE3M10", "E6M1", "E4M9")
+SOURCES = ("DWE3M1", "DWE3M10", "E6M1", "E4M9", "E1M4")
 HOST_AREA = 4_000_000
 SHUTTER_TILES = (1060, 1044)
 

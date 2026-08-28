@@ -1,0 +1,762 @@
+{
+ "$schema": "llmapper.blood-surface-items",
+ "schema_version": 1,
+ "note": "Derived: every count, tile, spacing and density. A surface is a small sector standing proud of a bigger neighbour; an item is a sprite inside its footprint at about its floor.",
+ "sources": [
+  "DWE3M1",
+  "DWE3M10",
+  "E6M1",
+  "E4M9",
+  "E1M4",
+  "E1M1",
+  "E3M2",
+  "E2M1",
+  "E1M5",
+  "E3M1"
+ ],
+ "maps": [
+  {
+   "map": "DWE3M1",
+   "surfaces": 171,
+   "surfaces_carrying_something": 10,
+   "carry_share": 0.058,
+   "items": 13,
+   "items_per_surface": {
+    "n": 171,
+    "median": 0,
+    "q1": 0,
+    "q3": 0,
+    "min": 0,
+    "max": 2
+   },
+   "items_per_plan_unit_of_run": {
+    "n": 10,
+    "median": 0.833,
+    "q1": 0.5,
+    "q3": 2.667,
+    "min": 0.4,
+    "max": 4.0
+   },
+   "gap_units": {
+    "n": 3,
+    "median": 384,
+    "q1": 160,
+    "q3": 3200,
+    "min": 160,
+    "max": 3200
+   },
+   "gap_item_widths": {
+    "n": 3,
+    "median": 1.0,
+    "q1": 0.769,
+    "q3": 22.857,
+    "min": 0.769,
+    "max": 22.857
+   },
+   "height_above_surface": {
+    "n": 13,
+    "median": 0,
+    "q1": 0,
+    "q3": 2048,
+    "min": 0,
+    "max": 4096
+   },
+   "alignment": {
+    "floor": 7,
+    "wall": 2,
+    "face": 4
+   },
+   "top_tiles": [
+    [
+     743,
+     3
+    ],
+    [
+     677,
+     2
+    ],
+    [
+     693,
+     2
+    ],
+    [
+     2082,
+     1
+    ],
+    [
+     2540,
+     1
+    ],
+    [
+     75,
+     1
+    ],
+    [
+     579,
+     1
+    ],
+    [
+     485,
+     1
+    ],
+    [
+     742,
+     1
+    ]
+   ]
+  },
+  {
+   "map": "DWE3M10",
+   "surfaces": 136,
+   "surfaces_carrying_something": 1,
+   "carry_share": 0.007,
+   "items": 3,
+   "items_per_surface": {
+    "n": 136,
+    "median": 0.0,
+    "q1": 0,
+    "q3": 0,
+    "min": 0,
+    "max": 3
+   },
+   "items_per_plan_unit_of_run": {
+    "n": 1,
+    "median": 1.714,
+    "q1": 1.714,
+    "q3": 1.714,
+    "min": 1.714,
+    "max": 1.714
+   },
+   "gap_units": {
+    "n": 2,
+    "median": 448.0,
+    "q1": 256,
+    "q3": 640,
+    "min": 256,
+    "max": 640
+   },
+   "gap_item_widths": {
+    "n": 2,
+    "median": 0.438,
+    "q1": 0.25,
+    "q3": 0.625,
+    "min": 0.25,
+    "max": 0.625
+   },
+   "height_above_surface": {
+    "n": 3,
+    "median": 3072,
+    "q1": 1600,
+    "q3": 5120,
+    "min": 1600,
+    "max": 5120
+   },
+   "alignment": {
+    "wall": 2,
+    "face": 1
+   },
+   "top_tiles": [
+    [
+     713,
+     1
+    ],
+    [
+     2140,
+     1
+    ],
+    [
+     1460,
+     1
+    ]
+   ]
+  },
+  {
+   "map": "E6M1",
+   "surfaces": 43,
+   "surfaces_carrying_something": 0,
+   "carry_share": 0.0,
+   "items": 0,
+   "items_per_surface": {
+    "n": 43,
+    "median": 0,
+    "q1": 0,
+    "q3": 0,
+    "min": 0,
+    "max": 0
+   },
+   "items_per_plan_unit_of_run": {
+    "n": 0
+   },
+   "gap_units": {
+    "n": 0
+   },
+   "gap_item_widths": {
+    "n": 0
+   },
+   "height_above_surface": {
+    "n": 0
+   },
+   "alignment": {},
+   "top_tiles": []
+  },
+  {
+   "map": "E4M9",
+   "surfaces": 62,
+   "surfaces_carrying_something": 1,
+   "carry_share": 0.016,
+   "items": 1,
+   "items_per_surface": {
+    "n": 62,
+    "median": 0.0,
+    "q1": 0,
+    "q3": 0,
+    "min": 0,
+    "max": 1
+   },
+   "items_per_plan_unit_of_run": {
+    "n": 1,
+    "median": 0.667,
+    "q1": 0.667,
+    "q3": 0.667,
+    "min": 0.667,
+    "max": 0.667
+   },
+   "gap_units": {
+    "n": 0
+   },
+   "gap_item_widths": {
+    "n": 0
+   },
+   "height_above_surface": {
+    "n": 1,
+    "median": 0,
+    "q1": 0,
+    "q3": 0,
+    "min": 0,
+    "max": 0
+   },
+   "alignment": {
+    "floor": 1
+   },
+   "top_tiles": [
+    [
+     455,
+     1
+    ]
+   ]
+  },
+  {
+   "map": "E1M4",
+   "surfaces": 156,
+   "surfaces_carrying_something": 9,
+   "carry_share": 0.058,
+   "items": 14,
+   "items_per_surface": {
+    "n": 156,
+    "median": 0.0,
+    "q1": 0,
+    "q3": 0,
+    "min": 0,
+    "max": 6
+   },
+   "items_per_plan_unit_of_run": {
+    "n": 9,
+    "median": 2.0,
+    "q1": 0.8,
+    "q3": 2.0,
+    "min": 0.361,
+    "max": 3.0
+   },
+   "gap_units": {
+    "n": 2,
+    "median": 672.0,
+    "q1": 512,
+    "q3": 832,
+    "min": 512,
+    "max": 832
+   },
+   "gap_item_widths": {
+    "n": 2,
+    "median": 1.836,
+    "q1": 1.399,
+    "q3": 2.273,
+    "min": 1.399,
+    "max": 2.273
+   },
+   "height_above_surface": {
+    "n": 14,
+    "median": 1056.0,
+    "q1": 0,
+    "q3": 2048,
+    "min": 0,
+    "max": 3917
+   },
+   "alignment": {
+    "face": 14
+   },
+   "top_tiles": [
+    [
+     2101,
+     6
+    ],
+    [
+     754,
+     3
+    ],
+    [
+     1743,
+     2
+    ],
+    [
+     584,
+     1
+    ],
+    [
+     3566,
+     1
+    ],
+    [
+     1744,
+     1
+    ]
+   ]
+  },
+  {
+   "map": "E1M1",
+   "surfaces": 62,
+   "surfaces_carrying_something": 9,
+   "carry_share": 0.145,
+   "items": 13,
+   "items_per_surface": {
+    "n": 62,
+    "median": 0.0,
+    "q1": 0,
+    "q3": 0,
+    "min": 0,
+    "max": 3
+   },
+   "items_per_plan_unit_of_run": {
+    "n": 9,
+    "median": 1.067,
+    "q1": 0.5,
+    "q3": 1.778,
+    "min": 0.333,
+    "max": 2.0
+   },
+   "gap_units": {
+    "n": 4,
+    "median": 448.0,
+    "q1": 384,
+    "q3": 512,
+    "min": 256,
+    "max": 512
+   },
+   "gap_item_widths": {
+    "n": 4,
+    "median": 0.5,
+    "q1": 0.5,
+    "q3": 0.667,
+    "min": 0.25,
+    "max": 0.667
+   },
+   "height_above_surface": {
+    "n": 13,
+    "median": 0,
+    "q1": 0,
+    "q3": 0,
+    "min": 0,
+    "max": 2716
+   },
+   "alignment": {
+    "face": 4,
+    "floor": 9
+   },
+   "top_tiles": [
+    [
+     0,
+     6
+    ],
+    [
+     732,
+     2
+    ],
+    [
+     584,
+     1
+    ],
+    [
+     754,
+     1
+    ],
+    [
+     713,
+     1
+    ],
+    [
+     2076,
+     1
+    ],
+    [
+     2056,
+     1
+    ]
+   ]
+  },
+  {
+   "map": "E3M2",
+   "surfaces": 179,
+   "surfaces_carrying_something": 3,
+   "carry_share": 0.017,
+   "items": 7,
+   "items_per_surface": {
+    "n": 179,
+    "median": 0,
+    "q1": 0,
+    "q3": 0,
+    "min": 0,
+    "max": 4
+   },
+   "items_per_plan_unit_of_run": {
+    "n": 3,
+    "median": 3.2,
+    "q1": 2.0,
+    "q3": 8.0,
+    "min": 2.0,
+    "max": 8.0
+   },
+   "gap_units": {
+    "n": 1,
+    "median": 256,
+    "q1": 256,
+    "q3": 256,
+    "min": 256,
+    "max": 256
+   },
+   "gap_item_widths": {
+    "n": 1,
+    "median": 1.333,
+    "q1": 1.333,
+    "q3": 1.333,
+    "min": 1.333,
+    "max": 1.333
+   },
+   "height_above_surface": {
+    "n": 7,
+    "median": 0,
+    "q1": 0,
+    "q3": 0,
+    "min": 0,
+    "max": 4096
+   },
+   "alignment": {
+    "face": 1,
+    "floor": 6
+   },
+   "top_tiles": [
+    [
+     228,
+     4
+    ],
+    [
+     2101,
+     1
+    ],
+    [
+     502,
+     1
+    ],
+    [
+     713,
+     1
+    ]
+   ]
+  },
+  {
+   "map": "E2M1",
+   "surfaces": 91,
+   "surfaces_carrying_something": 4,
+   "carry_share": 0.044,
+   "items": 7,
+   "items_per_surface": {
+    "n": 91,
+    "median": 0,
+    "q1": 0,
+    "q3": 0,
+    "min": 0,
+    "max": 3
+   },
+   "items_per_plan_unit_of_run": {
+    "n": 4,
+    "median": 2.682,
+    "q1": 2.165,
+    "q3": 4.0,
+    "min": 1.6,
+    "max": 4.0
+   },
+   "gap_units": {
+    "n": 3,
+    "median": 64,
+    "q1": 64,
+    "q3": 128,
+    "min": 64,
+    "max": 128
+   },
+   "gap_item_widths": {
+    "n": 3,
+    "median": 0.167,
+    "q1": 0.154,
+    "q3": 0.308,
+    "min": 0.154,
+    "max": 0.308
+   },
+   "height_above_surface": {
+    "n": 7,
+    "median": 0,
+    "q1": 0,
+    "q3": 1215,
+    "min": 0,
+    "max": 1648
+   },
+   "alignment": {
+    "face": 6,
+    "floor": 1
+   },
+   "top_tiles": [
+    [
+     2101,
+     3
+    ],
+    [
+     672,
+     2
+    ],
+    [
+     754,
+     1
+    ],
+    [
+     1413,
+     1
+    ]
+   ]
+  },
+  {
+   "map": "E1M5",
+   "surfaces": 167,
+   "surfaces_carrying_something": 16,
+   "carry_share": 0.096,
+   "items": 16,
+   "items_per_surface": {
+    "n": 167,
+    "median": 0,
+    "q1": 0,
+    "q3": 0,
+    "min": 0,
+    "max": 1
+   },
+   "items_per_plan_unit_of_run": {
+    "n": 16,
+    "median": 2.0,
+    "q1": 2.0,
+    "q3": 2.0,
+    "min": 2.0,
+    "max": 2.0
+   },
+   "gap_units": {
+    "n": 0
+   },
+   "gap_item_widths": {
+    "n": 0
+   },
+   "height_above_surface": {
+    "n": 16,
+    "median": 2048.0,
+    "q1": 2048,
+    "q3": 2048,
+    "min": 2048,
+    "max": 2048
+   },
+   "alignment": {
+    "face": 16
+   },
+   "top_tiles": [
+    [
+     2101,
+     16
+    ]
+   ]
+  },
+  {
+   "map": "E3M1",
+   "surfaces": 131,
+   "surfaces_carrying_something": 3,
+   "carry_share": 0.023,
+   "items": 4,
+   "items_per_surface": {
+    "n": 131,
+    "median": 0,
+    "q1": 0,
+    "q3": 0,
+    "min": 0,
+    "max": 2
+   },
+   "items_per_plan_unit_of_run": {
+    "n": 3,
+    "median": 1.143,
+    "q1": 0.615,
+    "q3": 1.6,
+    "min": 0.615,
+    "max": 1.6
+   },
+   "gap_units": {
+    "n": 1,
+    "median": 384,
+    "q1": 384,
+    "q3": 384,
+    "min": 384,
+    "max": 384
+   },
+   "gap_item_widths": {
+    "n": 1,
+    "median": 0.5,
+    "q1": 0.5,
+    "q3": 0.5,
+    "min": 0.5,
+    "max": 0.5
+   },
+   "height_above_surface": {
+    "n": 4,
+    "median": 96.0,
+    "q1": 0,
+    "q3": 1536,
+    "min": 0,
+    "max": 1536
+   },
+   "alignment": {
+    "face": 3,
+    "floor": 1
+   },
+   "top_tiles": [
+    [
+     2101,
+     1
+    ],
+    [
+     672,
+     1
+    ],
+    [
+     754,
+     1
+    ],
+    [
+     732,
+     1
+    ]
+   ]
+  }
+ ],
+ "corpus": {
+  "surfaces": 1198,
+  "carrying_something": 56,
+  "carry_share": 0.047,
+  "top_tiles": [
+   [
+    2101,
+    27
+   ],
+   [
+    754,
+    6
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    228,
+    4
+   ],
+   [
+    743,
+    3
+   ],
+   [
+    713,
+    3
+   ],
+   [
+    732,
+    3
+   ],
+   [
+    672,
+    3
+   ],
+   [
+    677,
+    2
+   ],
+   [
+    693,
+    2
+   ],
+   [
+    1743,
+    2
+   ],
+   [
+    584,
+    2
+   ],
+   [
+    2082,
+    1
+   ],
+   [
+    2540,
+    1
+   ],
+   [
+    75,
+    1
+   ],
+   [
+    579,
+    1
+   ],
+   [
+    485,
+    1
+   ],
+   [
+    742,
+    1
+   ],
+   [
+    2140,
+    1
+   ],
+   [
+    1460,
+    1
+   ],
+   [
+    455,
+    1
+   ],
+   [
+    3566,
+    1
+   ],
+   [
+    1744,
+    1
+   ],
+   [
+    2076,
+    1
+   ]
+  ]
+ }
+}

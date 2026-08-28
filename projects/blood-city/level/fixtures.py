@@ -84,7 +84,32 @@ PANEL = Family("panel", rise=21504, tile=1666, depth=256,
                widths=(256, 512, 1024, 2048),
                source="DWE3M1 rise-21504/tile-1666 family, 14 occurrences")
 
-FAMILIES = {f.name: f for f in (COUNTER, PEDESTAL, PANEL)}
+#: E1M4's fairground kit.  Dark Carnival is built out of three repeated
+#: small sectors and nothing else: a booth counter, a low ride platform and
+#: a row of stanchions.  All three are already parametric in the map --
+#: rise and tile pinned, length free -- which is why they belong here rather
+#: than in a project module.
+BOOTH = Family("booth", rise=16384, tile=452, depth=512,
+               widths=(512, 1024),
+               source="E1M4 rise-16384/tile-452 family, 9 occurrences")
+
+STAGE = Family("stage", rise=4096, tile=438, depth=2048,
+               widths=(2048, 3584),
+               source="E1M4 rise-4096/tile-438 family, 9 occurrences")
+
+STANCHION = Family("stanchion", rise=11264, tile=41, depth=512,
+                   widths=(512,),
+                   source="E1M4 rise-11264/tile-41 family, 6 occurrences")
+
+#: E3M3's towpath: the ledge that carries the player along the channel.
+#: rise 4096 on tile 568, depth pinned at 512, built at 2048 seven times and
+#: 2304 three times -- length free, like every family here.
+LEDGE = Family("ledge", rise=4096, tile=568, depth=512,
+               widths=(2048, 2304),
+               source="E3M3 rise-4096/tile-568 family, 10 occurrences")
+
+FAMILIES = {f.name: f for f in (COUNTER, PEDESTAL, PANEL,
+                                BOOTH, STAGE, STANCHION, LEDGE)}
 
 #: The share of fixtures that carry any merchandise at all. Measured across
 #: the four sources: 28/171, 11/136, 2/43, 1/62 -- call it one in seven.

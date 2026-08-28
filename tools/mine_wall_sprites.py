@@ -355,6 +355,158 @@ def _words(m):
     return out
 
 
+#: How far apart two letters may sit and still be one sign, in drawn widths.
+#: Six, because E1M4 tracks ROTTEN CANDY at 2.0 and the campaign's ordinary
+#: pitch is 1.45 -- a threshold near the pitch splits a wide-tracked sign
+#: into its letters, which is what made the first version of this report
+#: eleven one-letter words where there is a carnival attraction.
+SIGN_GAP_WIDTHS = 6.0
+
+#: How far apart in z, as a multiple of a letter's drawn height, two letters
+#: have to be before they are on different LINES.  One: below the campaign's
+#: 1.455 line pitch and above E1M4's 0.73 of carnival jitter.
+LINE_SPLIT = 1.0
+
+
+def sign_runs(m, gap_widths: float = SIGN_GAP_WIDTHS):
+    """Letters clustered into signs by the plane they share and their spacing.
+
+    Deliberately NOT keyed on z: E1M4's carnival signs jitter their letters
+    up and down by most of a letter's height, and a grouping that wants one
+    z reads ROTTEN CANDY as eleven separate letters.
+    """
+    letters = [sp for sp in m.sprites
+               if FIRST_LETTER <= sp.picnum <= LAST_LETTER]
+    planes = collections.defaultdict(list)
+    for sprite in letters:
+        unit = _unit(sprite.angle)
+        offset = -sprite.x * unit[1] + sprite.y * unit[0]
+        planes[(round(unit[0], 3), round(unit[1], 3),
+                round(offset / 24.0))].append((sprite, unit))
+    out = []
+    for items in planes.values():
+        unit = items[0][1]
+        # Lines first.  A run clustered along the wall alone interleaves two
+        # stacked lines whose x ranges overlap -- DWE1M7's FINANCE and
+        # GRUDGE come back as FGIRNUADNGCEE, and their two uniform palettes
+        # come back as an alternating "mixed" sign that is nothing of the
+        # kind.  Letters more than LINE_SPLIT of their own height apart in z
+        # are different lines; E1M4's carnival jitter is 0.73 across a whole
+        # sign and the campaign's line pitch is 1.455, so the two separate
+        # cleanly.
+        # Single linkage on z, not bucketing: a bucket boundary cuts through
+        # a jittered sign wherever it happens to fall, which took two
+        # letters out of ROTTEN CANDY and one out of SPOOKY.
+        ordered = sorted((sprite for sprite, _u in items), key=lambda s: s.z)
+        lines, line = [], [ordered[0]]
+        for previous, sprite in zip(ordered, ordered[1:]):
+            drawn = (int(previous.y_repeat) << 2) * 11 or 1
+            if sprite.z - previous.z > LINE_SPLIT * drawn:
+                lines.append(line)
+                line = []
+            line.append(sprite)
+        lines.append(line)
+        for line in lines:
+            line.sort(key=lambda sprite: _along(sprite, unit))
+            run = [line[0]]
+            for previous, sprite in zip(line, line[1:]):
+                width = previous.x_repeat * 8 / 4.0
+                if (_along(sprite, unit) - _along(previous, unit)
+                        > gap_widths * width):
+                    out.append((run, unit))
+                    run = []
+                run.append(sprite)
+            out.append((run, unit))
+    return [(run, unit) for run, unit in out if run]
+
+
+def _cycle_length(values) -> int:
+    """The shortest period this sequence repeats at, or 0 if it does not."""
+    n = len(values)
+    for period in range(1, n // 2 + 1):
+        if n % period:
+            continue
+        if all(values[i] == values[i % period] for i in range(n)):
+            return period
+    return 0
+
+
+def sign_composition(paths) -> dict:
+    """Uniform against mixed, and what the mixing is doing.
+
+    Three questions the owner asked of the per-letter palettes: is the cycle
+    regular, does it alternate, and how often is a sign uniform at all.
+    """
+    from bloodmap.lettering import letter_from
+    import itertools
+    uniform = mixed = per_word = 0
+    by_map = collections.Counter()
+    cycles = collections.Counter()
+    palette_counts = collections.Counter()
+    tracking = collections.defaultdict(list)
+    jitter = collections.defaultdict(list)
+    examples = {"cycled": [], "irregular": []}
+    for path in paths:
+        try:
+            m = read_map(path)
+        except Exception:
+            continue
+        name = pathlib.Path(path).stem
+        for run, unit in sign_runs(m):
+            if len(run) < 3:
+                continue
+            word = "".join(letter_from(sp.picnum) or "" for sp in run)
+            palettes = [int(sp.pal) for sp in run]
+            width = run[0].x_repeat * 8 / 4.0
+            drawn_h = (int(run[0].y_repeat) << 2) * 11
+            alongs = [_along(sp, unit) for sp in run]
+            gaps = [(b - a) / width for a, b in zip(alongs, alongs[1:])
+                    if b > a]
+            spread = ((max(sp.z for sp in run) - min(sp.z for sp in run))
+                      / drawn_h) if drawn_h else 0.0
+            distinct = len(set(palettes))
+            kind = "uniform" if distinct == 1 else "mixed"
+            if distinct == 1:
+                uniform += 1
+            else:
+                mixed += 1
+                period = _cycle_length(palettes)
+                cycles[period] += 1
+                palette_counts[distinct] += 1
+                by_map[name] += 1
+                # Colour can mark a WORD rather than a letter: DWE2M2 paints
+                # ACTIVE, REMOVED and OPEN in three palettes with each word
+                # uniform.  A run of equal palettes as long as a word is that
+                # idiom, not a per-letter one.
+                blocks = [len(list(g)) for _k, g in itertools.groupby(palettes)]
+                if len(blocks) > 1 and min(blocks) >= 3:
+                    per_word += 1
+                row = f"{name}:{word} {palettes}"
+                if period:
+                    examples["cycled"].append(f"{row} period {period}")
+                else:
+                    examples["irregular"].append(row)
+            if gaps:
+                tracking[kind].append(sum(gaps) / len(gaps))
+            jitter[kind].append(spread)
+    return {
+        "signs": uniform + mixed,
+        "uniform": uniform,
+        "mixed": mixed,
+        "mixed_share": round(mixed / max(1, uniform + mixed), 3),
+        "mixed_by_map": dict(by_map),
+        "mixed_marking_whole_words": per_word,
+        "cycle_period": {("none" if k == 0 else k): v
+                         for k, v in sorted(cycles.items())},
+        "distinct_palettes_when_mixed": dict(sorted(palette_counts.items())),
+        "tracking_drawn_widths": {k: _spread(sorted(v))
+                                  for k, v in tracking.items()},
+        "z_jitter_letter_heights": {k: _spread(sorted(v))
+                                    for k, v in jitter.items()},
+        "examples": {k: v[:8] for k, v in examples.items()},
+    }
+
+
 def text_styles(paths) -> dict:
     """The (size, palette, shade) combinations the campaign actually writes.
 

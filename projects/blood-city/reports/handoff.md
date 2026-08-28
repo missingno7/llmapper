@@ -169,6 +169,39 @@ capital, and `cycle()` opts into repetition.
 is what `LINE_GAP` comes from. `wallplane.composition` stacks blocks;
 `venue_detail.COMPOSITIONS` is the table of the four Gravesend has.
 
+## Detail at every scale
+
+Three constructor layers now sit under the templates, each mined from a map
+that does it well and each landing in the tree:
+
+| layer | module | source | what it makes |
+|---|---|---|---|
+| wall | `wallplane.py` | corpus | signs, paintings, compositions |
+| surface | `surface.py` | 10 maps | what stands ON a fixture |
+| sewer | `sewerkit.py` | E3M3 | mouths, towpath, tunnel register |
+
+```bash
+python tools/mine_surface_items.py -o knowledge/blood/design/surface-items-v1.json
+python projects/blood-city/level/citytree.py zoom saloon --depth 4
+```
+
+**`surface.py`** is `wallplane`'s horizontal counterpart: a fixture's top is
+a plane, items stand on it at the mined rhythm, and it refuses two things in
+one place. Items are `native_detail` declarations on the fixture room, so
+`citytree zoom` reaches them and an agent can change them without reading
+the level. `CARRY_SHARE` is **0.047** -- 56 of 1,198 campaign surfaces carry
+anything -- so nothing is dressed unless a caller says `every=True`.
+
+**`sewerkit.py`** carries E3M3's register with its own heights, the ledge
+family, and `line_mouths`: tile 194 goes on a *short* opening with a band
+above it, which is 2.6% of E3M3's two-sided walls, not all of them.
+
+**Text styles** now carry `tracking` and `jitter` as well as size, palette
+and shade. `carnival` is E1M4's ROTTEN CANDY -- 2.0 drawn widths of tracking
+and 0.73 of jitter; `fortune` is the corpus's one regular palette cycle.
+Only 5.6% of campaign signs mix palettes at all, and they sit where the
+identity carries them, so a church does not get one.
+
 ## Composing, not placing
 
 `templates.py` is the layer above `fixtures.py`. A template takes the space

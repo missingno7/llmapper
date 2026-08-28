@@ -275,7 +275,79 @@ RUN_FACES = {
     "ne_corner": ("east", ()),
     "se_corner": ("south", ()),
     "sw_corner": ("west", ()),
+    # The two long legs, 24 plan units each and until now completely bare.
+    # They are the most repetitive stretch in the city, which is exactly
+    # where a rhythm earns its keep.
+    "e_leg": ("east", ()),
+    "w_leg": ("west", ()),
+    # The towpaths on the north and south sides.
+    "n_walk": ("north", ()),
+    "s_walk": ("south", ()),
 }
+
+
+#: The towpath: which leg carries one, and which side it hugs.  E3M3's
+#: ledge is rise 4096 on tile 568 at depth 512, and the two long legs are
+#: the only stretches in Gravesend's ring with room for one -- the north and
+#: south sides already have their walk as a separate sector.
+LEDGES = (("e_leg", "east"), ("w_leg", "west"))
+LEDGE_CLEAR = 1024          # kept either side of a chamber mouth
+
+
+def ledges(sewer, rooms, *, grade: int, host_clear: int) -> dict:
+    """Lay E3M3's towpath along the legs, in the stretches that are free.
+
+    The chambers that open off a leg are in this module's own table, so the
+    free stretches are computable rather than hand-listed: a run stops short
+    of a mouth and picks up again on the far side of it.
+    """
+    import props
+    import sewerkit
+    from materials import SEWER
+
+    report = {"legs": 0, "runs": 0, "modules": 0}
+    openings = {}
+    for cname, cx0, cy0, cx1, cy1, _own, leg, leg_face, _note in CHAMBERS:
+        openings.setdefault((leg, leg_face), []).append(
+            (cy0 * PU, cy1 * PU) if leg_face in ("east", "west")
+            else (cx0 * PU, cx1 * PU))
+
+    for leg, side in LEDGES:
+        room = rooms.get(leg)
+        if room is None:
+            continue
+        report["legs"] += 1
+        x0, y0, x1, y1 = (int(v) for v in props.room_rect(room))
+        depth = 512
+        # A towpath hugs its wall, but a carve whose edge lies exactly on the
+        # host's outline gives the compiler two coincident same-direction
+        # segments and it refuses -- the same rule `templates.shop` learned.
+        # 256 units of channel between the ledge and the wall is what E3M3
+        # leaves anyway.
+        standoff = 256
+        across0, across1 = ((x1 - standoff - depth, x1 - standoff)
+                            if side == "east"
+                            else (x0 + standoff, x0 + standoff + depth))
+        taken = sorted(openings.get((leg, side), []))
+        cursor, stretches = y0 + LEDGE_CLEAR, []
+        for lo, hi in taken:
+            if lo - LEDGE_CLEAR > cursor:
+                stretches.append((cursor, int(lo - LEDGE_CLEAR)))
+            cursor = max(cursor, int(hi + LEDGE_CLEAR))
+        if y1 - LEDGE_CLEAR > cursor:
+            stretches.append((cursor, y1 - LEDGE_CLEAR))
+        for index, (start, end) in enumerate(stretches):
+            if end - start < min(  # not even one module
+                    __import__("fixtures").LEDGE.widths):
+                continue
+            node = sewerkit.ledge_along(
+                room, f"{leg}_towpath_{index}", axis="y",
+                start=start, end=end, across0=across0, across1=across1,
+                material=SEWER, grade=grade, host_clear=host_clear,
+                connector=None)
+            report["runs"] += 1
+            report["modules"] += len(node.children)
+    return report
 
 
 def detail_runs(layout, rooms) -> list:
@@ -295,6 +367,7 @@ def detail_runs(layout, rooms) -> list:
     """
     import props
     import runs as run_layer
+    import sewerkit
 
     attached = {}
     for cname, cx0, cy0, cx1, cy1, own, leg, leg_face, _note in CHAMBERS:
@@ -321,15 +394,21 @@ def detail_runs(layout, rooms) -> list:
         # local plan units, so the two frames have to be reconciled before
         # any fraction is computed.  The offset is the difference between
         # this segment's world rect and its own RING entry.
-        # Every face in RUN_FACES is proven solid below, so the only
-        # occupancy left to honour is whatever the caller declared.
-        solid = props.solid_faces(layout, room.region_id, (x0, y0, x1, y1))
-        if face not in solid:
-            continue
+        # NOT `props.solid_faces`, which is all-or-nothing: it writes off a
+        # face that carries any portal at all, and the east leg's face is
+        # 24,576 units long with a 6,144-unit annex mouth in it.  A run
+        # already models partial occupancy, and `occupied_from_layout` reads
+        # the spans the connections actually take, so the free stretches of
+        # a face with a door in it stay usable.  That gate alone was why the
+        # two 24-plan-unit legs -- the most repetitive stretch in the city --
+        # carried no detail at all.
+        from_layout = run_layer.occupied_from_layout(layout, room, face)
+        if any(lo <= 0.0 and hi >= 1.0 for lo, hi in from_layout):
+            continue                    # the whole face is an opening
         local = next((r for r in RING if r[0] == name), None)
         offset = 0 if local is None else (
             (x0 - local[1] * PU) if horizontal else (y0 - local[2] * PU))
-        occupied = list(extra)
+        occupied = list(extra) + list(from_layout)
         for aface, ax0, ay0, ax1, ay1 in attached.get(name, ()):
             if aface != face:
                 continue
@@ -340,5 +419,5 @@ def detail_runs(layout, rooms) -> list:
         out.append(run_layer.Run(
             name=f"sewer_{name}", room=room, face=face,
             length_plan=length, occupied=tuple(occupied),
-            elements=run_layer.SEWER_ELEMENTS))
+            elements=sewerkit.TUNNEL))
     return out

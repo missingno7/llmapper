@@ -39,9 +39,13 @@ import wallplane
 #: Height 1.4 puts a fascia just above a doorway; 0.9 is eye level.
 SIGNS = [
     # --- Theatre Row: the commercial frontages ---------------------------
-    ("aldermack", "theatre:aldermack_foyer", "south", "ALDERMACK", "fascia", 1.5),
+    # A marquee cycles its colours; E1M4 FORTUNES is the corpus's one
+    # regular cycle and the only place this pattern is attested.
+    ("aldermack", "theatre:aldermack_foyer", "south", "ALDERMACK", "fortune", 1.5),
     ("saloon", "theatre:saloon_main", "east", "WHISKEY", "banner", 1.3),
-    ("parlor", "theatre:parlor_gallery", "east", "SHOOTING", "fascia", 1.3),
+    # A shooting gallery is a fairground attraction, so it gets the
+    # fairground's lettering: E1M4's ROTTEN CANDY tracking and jitter.
+    ("parlor", "theatre:parlor_gallery", "east", "SHOOTING", "carnival", 1.3),
     ("pawn", "theatre:pawn_shop", "west", "PAWN", "fascia", 1.3),
     ("backstage", "theatre:aldermack_backstage", "north", "STAGE DOOR",
      "notice", 1.2),

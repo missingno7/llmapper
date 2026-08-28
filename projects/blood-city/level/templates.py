@@ -244,11 +244,18 @@ def bar(space, *, material, grade: int, host_clear: int, name: str = "fittings",
             f"{space.node_id}: {x1 - x0}x{y1 - y0} is too small for a bar")
     node = citytree.sub(space, name, note="bar fittings (templates.bar)")
 
-    fixtures.run_along(f"{space.node_id}_bar", space, axis="x",
-                       start=x0, end=x1,
-                       across0=y0, across1=y0 + fixtures.COUNTER.depth,
-                       family="counter", material=material, grade=grade,
-                       host_clear=host_clear, connector=connector)
+    bar_run = fixtures.run_along(
+        f"{space.node_id}_bar", space, axis="x", start=x0, end=x1,
+        across0=y0, across1=y0 + fixtures.COUNTER.depth,
+        family="counter", material=material, grade=grade,
+        host_clear=host_clear, connector=connector)
+    # The scale below the fixture: what stands ON the counter.  A bar's own
+    # counter is the deliberate case -- `every=True` -- because a bar with
+    # nothing on it is the thing being fixed; every other surface in the
+    # city goes through `surface.carries` at the campaign's 4.7%.
+    import surface
+    surface.dress_run(bar_run, f"{space.node_id}_candles",
+                      item=surface.CANDLE, every=True)
     # Tables down the far half, spaced so a body fits between them.
     step = (x1 - x0) // max(1, tables)
     for index in range(tables):
