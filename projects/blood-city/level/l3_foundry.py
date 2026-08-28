@@ -82,6 +82,7 @@ def dress(city, ctx) -> dict:
 
     # ---- the works canteen (VP shop, scaled) ------------------------------
     shop = INTERIORS["shop"]
+    import citytree
     canteen = city.assembly(
         "canteen",
         # The campaign's median room is one wall-texture repeat tall
@@ -90,6 +91,8 @@ def dress(city, ctx) -> dict:
                                         clear_height=32768)),
         note="the works canteen: VP shop anatomy behind a z-motion door",
     )
+    citytree.declare_venue(canteen, "works_canteen", "open_front",
+                           built_by="l3_foundry")
     # The canteen used to start at yard_x0 - 512, i.e. half a bay off the
     # 1024 grid, so every opening in its face cut the painted windows.  On
     # the grid, its doors can be whole bays with piers between them.

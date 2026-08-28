@@ -102,17 +102,11 @@ PORTALS = [
 ]
 
 #: Furniture, all of it geometry: (room, x0, y0, x1, y1, rise, note).
-FURNITURE = [
-    # One bench block per row across the middle of the nave, leaving a
-    # 512-unit side aisle against each wall.  Six half-width pews touching
-    # the walls left nowhere to bracket a light: the first wall-mounted
-    # brazier landed inside a pew.
-    ("nave", 28672, 25088, 30208, 25600, 5120, "a pew"),
-    ("nave", 28672, 26112, 30208, 26624, 5120, "a pew"),
-    ("nave", 28672, 27136, 30208, 27648, 5120, "a pew"),
-    ("nave", 28672, 28160, 30208, 28672, 5120, "a pew"),
-    ("narthex", 30976, 29184, 32000, 29696, 4096, "the font"),
-]
+#: The hand table that used to live here is gone: it iterated four pews and
+#: a font into `church_furniture_0` .. `church_furniture_4`.
+#: `templates.chapel_furnishing` and `templates.font` place the same
+#: geometry under their own names.  Four pews ARE a rhythm and keep an
+#: index; the font is not one and does not.
 
 
 def build(city, street, ground, gates):
@@ -124,6 +118,15 @@ def build(city, street, ground, gates):
             floor_z=GRADE, clear_height=65536)),
         note="St Gallow's: nave, chancel, apse, tower, vestry, narthex",
     )
+    import citytree
+    citytree.declare_venue(parish, "church", "church_complex",
+                           built_by="l3_church")
+    # Declared and not built: the tower has a bell chamber in the plan and
+    # nothing in it yet.  A named empty node says that; an absent one says
+    # nothing at all.
+    citytree.plan(parish, "bell_chamber",
+                  "the tower's bell chamber -- church-patterns.md wants the "
+                  "vista silhouette; no geometry yet")
     rooms: dict = {}
 
     def make(name, x0, y0, x1, y1, key, clear, note, *, role="interior",
@@ -207,19 +210,15 @@ def build(city, street, ground, gates):
                     host_clear=49152 - CHANCEL_RISE,
                     note="the altar, from the mined two-tier class")
 
-    for index, (room_name, x0, y0, x1, y1, rise, note) in enumerate(FURNITURE):
-        host = rooms[room_name]
-        hf = host.world_frame()
-        host.carve([(x0 - hf.dx, y0 - hf.dy), (x1 - hf.dx, y0 - hf.dy),
-                    (x1 - hf.dx, y1 - hf.dy), (x0 - hf.dx, y1 - hf.dy)])
-        host_clear = next(r[6] for r in ROOMS if r[0] == room_name)
-        host_rise = CHANCEL_RISE if room_name in ("chancel", "apse") else 0
-        piece = make(f"church_furniture_{index}", x0, y0, x1, y1,
-                     material_of[room_name], host_clear - host_rise - rise,
-                     note, role="detail", floor_z=GRADE - host_rise - rise)
-        for face in ("north", "east", "south", "west"):
-            parish.connect(piece.face(face), host.face("north"),
-                           connection_id=f"connection:church_fur_{index}_{face}")
+    import templates
+    nave_clear = next(r[6] for r in ROOMS if r[0] == "nave")
+    templates.chapel_furnishing(
+        rooms["nave"], material=INTERIORS[material_of["nave"]],
+        grade=GRADE, host_clear=nave_clear, pews=4)
+    templates.font(
+        rooms["narthex"], material=INTERIORS[material_of["narthex"]],
+        grade=GRADE,
+        host_clear=next(r[6] for r in ROOMS if r[0] == "narthex"))
     return rooms
 
 

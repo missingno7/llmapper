@@ -5,8 +5,8 @@ actually wrong with it, and what to do next.
 
 ## Where it stands
 
-**215 sectors / 1,378 walls / 367 sprites.** 11/11 conformance rows, 16/16
-L1 contract rows, 3/3 tree properties, 50 rule diagnostics with no errors.
+**215 sectors / 1,378 walls / 367 sprites.** 13/13 conformance rows, 16/16
+L1 contract rows, 5/5 tree properties, 50 rule diagnostics with no errors.
 Wall budget is 7,000, so there is room for roughly four more districts'
 worth of content.
 
@@ -168,6 +168,30 @@ capital, and `cycle()` opts into repetition.
 (11 columns: ABALCO, HOTEL, FRIES); stacked LINES sit **1.455** apart, which
 is what `LINE_GAP` comes from. `wallplane.composition` stacks blocks;
 `venue_detail.COMPOSITIONS` is the table of the four Gravesend has.
+
+## Every node says what it is for
+
+Names carry intent; notes carry what a name cannot -- the precedent, the
+measurement, the reason.
+
+```bash
+python projects/blood-city/level/citytree.py find stage
+python projects/blood-city/level/citytree.py stats          # to-do list, rhythm faults
+python projects/blood-city/level/citytree.py zoom saloon --cost
+```
+
+* **A template names what it places.** If you are about to write a loop over
+  a table of rectangles, write a template instead: the names come out right
+  as a side effect. `theatre_house`, `shooting_range`, `chapel_furnishing`
+  are the ones that replaced the last two hand loops.
+* **An index means a rhythm.** Numbered siblings must share one note; if
+  they need different notes they are different things. Checked in
+  `conformance.py` and `tree_tests.py`.
+* **Declared-but-unbuilt is legal.** `citytree.plan(parent, id, purpose)`
+  makes a named empty node, listed by `stats` as the city's to-do list.
+  Prefer it to leaving a planned space absent.
+* **Every venue node declares its L1 slot** with `citytree.declare_venue`,
+  and conformance checks plan-to-tree in both directions plus the type.
 
 ## Detail at every scale
 

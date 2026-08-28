@@ -151,12 +151,21 @@ MEMBERSHIP = {
 #: (material key, what it is).  A venue assembly states its own palette, so
 #: a room that keeps it does not have to repeat it and a reader can see
 #: where a value came from.
+#: (material key, what it is, the L1 venue slot it fills, its L1 type).
+#: The last column is what closes the loop: `city_plan.VENUES` declares ten
+#: venues and nothing checked that the tree agreed with it.  `back_of_house`
+#: fills no slot -- it is circulation the plan does not name -- and says so
+#: with `None`.
 VENUES = {
-    "saloon": ("saloon", "the saloon, on Theatre Row"),
-    "parlor": ("parlor", "the shooting parlor, behind a one-bay mouth"),
-    "aldermack": ("theatre", "the Aldermack: the district's landmark"),
-    "pawn_shop": ("shop", "the pawn shop, open on the avenue"),
-    "back_of_house": ("service", "the back-of-house circuit joining the three"),
+    "saloon": ("saloon", "the saloon, on Theatre Row", "saloon", "bar"),
+    "parlor": ("parlor", "the shooting parlor, behind a one-bay mouth",
+               "shooting_parlor", "walk_through"),
+    "aldermack": ("theatre", "the Aldermack: the district's landmark",
+                  "aldermack", "landmark_complex"),
+    "pawn_shop": ("shop", "the pawn shop, open on the avenue",
+                  "pawn_shop", "open_front"),
+    "back_of_house": ("service", "the back-of-house circuit joining the three",
+                      None, None),
 }
 
 
@@ -234,26 +243,13 @@ WINDOWS = [
 #: The saloon's three rows -- a counter and two card tables -- are gone from
 #: this table: they are what every bar has, so they are `templates.bar` with
 #: a length rather than three literal rects.
-FURNITURE = [
-    ("aldermack_auditorium", 20480, 4608, 25600, 6656, STAGE_RISE, STAGE_CLEAR,
-     "the stage, under its proscenium"),
-    # Three raked rows across the house, each an island in the floor so no
-    # two of them share an undeclared edge.
-    ("aldermack_auditorium", 20480, 8192, 25600, 8704, 1024, None,
-     "the front row"),
-    ("aldermack_auditorium", 20480, 9216, 25600, 9728, 2048, None,
-     "the middle row"),
-    ("aldermack_auditorium", 20480, 10240, 25600, 10752, 3072, None,
-     "the back row"),
-    ("aldermack_foyer", 27136, 7168, 30208, 7680, COUNTER_RISE, None,
-     "the box office"),
-    # The range: a firing line you stand behind, and what you shoot at.
-    ("parlor_range", 11776, 8192, 15872, 8704, COUNTER_RISE, None,
-     "the firing line"),
-    ("parlor_range", 12288, 6656, 12800, 7168, TABLE_RISE, None, "a target"),
-    ("parlor_range", 13824, 6656, 14336, 7168, TABLE_RISE, None, "a target"),
-    ("parlor_range", 15360, 6656, 15872, 7168, TABLE_RISE, None, "a target"),
-]
+#: The hand table that used to live here is gone.  It iterated nine
+#: rectangles into `furniture_0` .. `furniture_8`, so the Aldermack's stage,
+#: its three rows of seating and its box office all wore one name and the
+#: meaning lived only in a prose note -- `citytree find stage` returned
+#: `backstage`.  `templates.theatre_house`, `templates.box_office` and
+#: `templates.shooting_range` place the same geometry and name it, because
+#: whoever builds a thing knows what the thing is.
 
 
 def build(district, theatre_st):
@@ -268,7 +264,7 @@ def build(district, theatre_st):
     while city.parent is not None:
         city = city.parent
     venue_nodes = {}
-    for venue_id, (material_key, note) in VENUES.items():
+    for venue_id, (material_key, note, l1_id, l1_type) in VENUES.items():
         venue_nodes[venue_id] = district.assembly(
             venue_id,
             style=Style(**INTERIORS[material_key].style_kwargs(
@@ -276,6 +272,9 @@ def build(district, theatre_st):
                 floor_shade=INTERIOR_FLOOR_SHADE)),
             note=note,
         )
+        if l1_id:
+            citytree.declare_venue(venue_nodes[venue_id], l1_id, l1_type,
+                                   built_by="l3_theatre")
     rooms: dict = {}
 
     def venue_for(name):
@@ -384,15 +383,17 @@ def build(district, theatre_st):
     # Furniture, through the set-piece constructors.  An object that has a
     # mined class is authored through that class: `raised_solid` is the
     # idiom, and the rise defaults come from the class, not from here.
-    for index, (room_name, x0, y0, x1, y1, rise, over, note) in enumerate(FURNITURE):
-        host = rooms[room_name]
-        host_h = ROOM_HEIGHT.get(room_name, ROOM_H)
-        piece = setpieces.raised_solid(
-            host, f"furniture_{index}", host, (x0, y0, x1, y1),
-            INTERIORS[ROOM_MATERIAL[room_name]], grade=GRADE, rise=rise,
-            host_clear=host_h, note=note)
-        if over is not None:
-            piece.surfaces(floor_z=GRADE - rise, clear_height=over)
+    # Each venue's fittings come from a template that knows what it places.
+    templates.theatre_house(
+        rooms["aldermack_auditorium"], material=INTERIORS["theatre"],
+        grade=GRADE, host_clear=ROOM_HEIGHT["aldermack_auditorium"],
+        stage_clear=STAGE_CLEAR, rows=3)
+    templates.box_office(
+        rooms["aldermack_foyer"], material=INTERIORS["theatre"],
+        grade=GRADE, host_clear=ROOM_HEIGHT["aldermack_foyer"])
+    templates.shooting_range(
+        rooms["parlor_range"], material=INTERIORS["parlor"],
+        grade=GRADE, host_clear=ROOM_HEIGHT["parlor_range"], targets=3)
     # The pawn shop, furnished from the kit rather than by hand.  Every
     # dimension that is pinned in the campaign family stays pinned here;
     # only the run length is ours.  This is the first venue to compose

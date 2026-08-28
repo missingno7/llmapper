@@ -101,7 +101,7 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 389,
+    "sprites": 386,
     "wall_sprites": 201,
     "planes": 35,
     "clashing_pairs": 0,

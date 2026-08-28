@@ -214,12 +214,15 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     # The block is a hole in the district's street region, so its inside is
     # void: interiors are placed in it directly, no carving needed.
     shop, common = INTERIORS["shop"], INTERIORS["common"]
+    import citytree
     hall = district.assembly(
         "market_hall",
         style=Style(**common.style_kwargs(floor_z=GRADE,
                                           clear_height=ROOM_HEIGHT,
                                           floor_shade=32)),
         note="market hall: concourse plus two units (E4M9 grammar)")
+    citytree.declare_venue(hall, "market_hall", "retail_row",
+                           built_by="l3_market")
 
     def room(name, x0, y0, x1, y1, material, note, **kw):
         r = hall.room(

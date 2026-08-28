@@ -826,6 +826,28 @@ def build():
     dressing = l3_foundry.dress(district_of["foundry_ward"], ctx)
     dressing["stash"] = stash.region_id
 
+    # ---- L1 venues nobody has built yet, declared as such -----------------
+    #
+    # A named empty node is the honest way to say "this space is planned and
+    # its contents are not made": it is findable, it is legible as a plan,
+    # and `conformance.py` can hold the tree to the plan in both directions.
+    # An ABSENT node says nothing at all, which is how three of the plan's
+    # ten venues went missing without anything noticing.
+    import citytree
+    block_district = {b["id"]: b["district"] for b in data["blocks"]}
+    for slot in data["venues"]:
+        if any(getattr(node, "l1_venue", None) == slot["id"]
+               for node, _d in citytree.walk(city)):
+            continue
+        district = block_district.get(slot["block"])
+        if district not in district_of:
+            continue
+        placeholder = citytree.plan(
+            district_of[district], slot["id"],
+            slot.get("note") or f"L1 {slot['type']} on {slot['block']}")
+        citytree.declare_venue(placeholder, slot["id"], slot["type"],
+                               built_by="(planned)")
+
     # ---- start: the first circuit leg, on the quay ------------------------
     start = data["circuit"][0]["at"]
     mb = DISTRICT_BOUNDS["market_slip"]
@@ -886,7 +908,14 @@ def build_stack_link(layout, spec, park_d, *, see_through):
         )
 
 
+#: The last full build: `(program, compiled)`.  `citytree --cost` needs
+#: the compiled level AFTER the sprite passes, and there is no other
+#: way to get it without running them twice.
+LAST_BUILD = None
+
+
 def main() -> int:
+    global LAST_BUILD
     program, stack_links, gates, ctx, dressing = build()
     layout = program.compile()
     for gate_id, region_a, region_b, a1, a2 in gates:
@@ -1108,6 +1137,9 @@ def main() -> int:
     print("door frames:", len(door_frames["doors"]))
 
     compiled = layout.compile()
+    # Held for `citytree --cost`: later passes mutate this level in
+    # place, so the reference stays current.
+    LAST_BUILD = (program, compiled)
     ctx["manifest"]["lighting"] = dict(compiled.lighting_report)
     # Per-building facade variation (E3M1 runs 13 tiles over its street
     # network; one per district read as one repeated building).

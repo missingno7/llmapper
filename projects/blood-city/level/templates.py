@@ -276,6 +276,196 @@ def bar(space, *, material, grade: int, host_clear: int, name: str = "fittings",
 
 
 # ---------------------------------------------------------------------------
+# venue templates: the builder names what it builds
+# ---------------------------------------------------------------------------
+#
+# These replace the last hand loops below the template layer. Those loops
+# iterated a table of rectangles into `furniture_{index}`, so the Aldermack's
+# stage, its three rows of seating and its box office were `furniture_0`
+# through `furniture_4` -- five different things wearing one name, with the
+# meaning only in a prose note. `citytree find stage` returned `backstage`.
+#
+# The fix is not a naming convention. Whoever places a thing knows what the
+# thing is, so the names fall out of raising the work to a template.
+#
+# Every measurement below is the one the hand table already used; the rises
+# come from `setpieces`' mined classes, and the insets are stated as
+# proportions of the host so the same call furnishes a different-sized room.
+
+#: A stage's own depth, how far it stands off the back wall, and its rise:
+#: one max step, so the player can get up on it.
+STAGE_DEPTH, STAGE_INSET, STAGE_RISE = 2048, 512, 4096
+#: A seating row: how deep, how far apart, and how much each rises over the
+#: one in front. `setpieces.LOW_STEP` is the mined shallow tier.
+ROW_DEPTH, ROW_PITCH, ROW_RAKE = 512, 1024, 1024
+#: How far the fittings of a house stand off its side walls.
+HOUSE_MARGIN = 1024
+#: A counter across the front of a room: depth, and its inset.
+DESK_DEPTH, DESK_INSET = 512, 512
+#: A shooting range: the line you stand behind, and what you shoot at.
+TARGET_SIDE, TARGET_PITCH = 512, 1536
+#: A pew, and the gap between two of them.
+PEW_DEPTH, PEW_PITCH = 512, 1024
+#: The mined rises, restated here only so a reader can see them together.
+PEW_RISE = 5120
+FONT_RISE = 4096
+
+
+def _host_rect(space):
+    import props
+    return tuple(int(v) for v in props.room_rect(space))
+
+
+def theatre_house(space, *, material, grade: int, host_clear: int,
+                  stage_clear: int, rows: int = 3, name: str = "house",
+                  margin: int = HOUSE_MARGIN, connector=None):
+    """The stage under its proscenium, and the raked rows facing it.
+
+    The stage gets a LOWER ceiling than the house, which is what turns the
+    wall between the two into a proscenium arch -- with the house's own
+    ceiling carried over it the auditorium is a hall with a step in it.
+
+    Each row is an island in the floor, so no two share an undeclared edge,
+    and each rises `ROW_RAKE` over the one in front. The rows are a rhythm
+    and share one note; the stage is not and does not.
+    """
+    import citytree
+    import setpieces
+
+    x0, y0, x1, y1 = _host_rect(space)
+    if x1 - x0 < 2 * margin + 1024 or y1 - y0 < STAGE_DEPTH + rows * ROW_PITCH:
+        raise TemplateError(
+            f"{space.node_id}: {x1 - x0}x{y1 - y0} will not hold a stage and "
+            f"{rows} rows")
+    node = citytree.sub(space, name, note="the house: stage and seating")
+
+    setpieces.raised_solid(
+        node, "stage", space,
+        (x0 + margin, y0 + STAGE_INSET,
+         x1 - margin, y0 + STAGE_INSET + STAGE_DEPTH),
+        material, grade=grade, rise=STAGE_RISE,
+        host_clear=host_clear, connector=connector or citytree.owner(space),
+        note="the stage, under its proscenium").surfaces(
+            floor_z=grade - STAGE_RISE, clear_height=stage_clear)
+
+    # Laid from the back of the house forward, so the last row is always
+    # against the rear wall however many there are -- and the rake counts
+    # DOWN from the back, because a raked house lifts the rows furthest from
+    # the stage.  Laying the rise up from the front instead put the tallest
+    # row nearest the stage, which is a grandstand facing the wrong way.
+    seating = citytree.sub(node, "seating", note="raked rows facing the stage")
+    for index in range(rows):
+        back = y1 - STAGE_INSET - index * ROW_PITCH
+        setpieces.raised_solid(
+            seating, f"row_{rows - 1 - index}", space,
+            (x0 + margin, back - ROW_DEPTH, x1 - margin, back),
+            material, grade=grade, rise=(rows - index) * ROW_RAKE,
+            host_clear=host_clear, connector=connector or citytree.owner(space),
+            note="a raked row of seating")
+    return node
+
+
+def box_office(space, *, material, grade: int, host_clear: int,
+               name: str = "box_office", connector=None):
+    """A counter across the front of a foyer. One thing, so one name."""
+    import citytree
+    import setpieces
+
+    x0, y0, x1, y1 = _host_rect(space)
+    return setpieces.raised_solid(
+        space, name, space,
+        (x0 + DESK_INSET, y0 + DESK_INSET,
+         x1 - DESK_INSET, y0 + DESK_INSET + DESK_DEPTH),
+        material, grade=grade, rise=setpieces.COUNTER,
+        host_clear=host_clear, connector=connector or citytree.owner(space),
+        note="the box office")
+
+
+def shooting_range(space, *, material, grade: int, host_clear: int,
+                   targets: int = 3, name: str = "fittings", connector=None):
+    """A firing line you stand behind, and what you shoot at.
+
+    The line is one thing and keeps its own name; the targets are a rhythm
+    and take an index, which is what an index is for.
+    """
+    import citytree
+    import setpieces
+
+    x0, y0, x1, y1 = _host_rect(space)
+    span = x1 - x0 - 2 * DESK_INSET
+    if span < targets * TARGET_PITCH - (TARGET_PITCH - TARGET_SIDE):
+        raise TemplateError(
+            f"{space.node_id}: {span} units will not hold {targets} targets "
+            f"at {TARGET_PITCH}")
+    node = citytree.sub(space, name, note="the range: line and targets")
+
+    setpieces.raised_solid(
+        node, "firing_line", space,
+        (x0 + DESK_INSET, y1 - 1024, x1 - DESK_INSET, y1 - 1024 + DESK_DEPTH),
+        material, grade=grade, rise=setpieces.COUNTER,
+        host_clear=host_clear, connector=connector or citytree.owner(space),
+        note="the firing line")
+
+    butts = citytree.sub(node, "targets", note="what the range shoots at")
+    for index in range(targets):
+        left = x0 + 1024 + index * TARGET_PITCH
+        setpieces.raised_solid(
+            butts, f"target_{index}", space,
+            (left, y0 + DESK_INSET, left + TARGET_SIDE,
+             y0 + DESK_INSET + TARGET_SIDE),
+            material, grade=grade, rise=setpieces.COUNTER,
+            host_clear=host_clear, connector=connector or citytree.owner(space),
+            note="a target")
+    return node
+
+
+def chapel_furnishing(nave, *, material, grade: int, host_clear: int,
+                      pews: int = 4, first: int = 1024,
+                      name: str = "pews", connector=None):
+    """Rows of pews down a nave, leaving an aisle against each wall.
+
+    Six half-width pews touching the walls left nowhere to bracket a light
+    and the first wall-mounted brazier landed inside one, so the block runs
+    down the middle with a 512-unit side aisle either way.
+
+    Pews are a rhythm: identical siblings of one spacing, so they take an
+    index and share a note. That is what an index is for.
+    """
+    import citytree
+    import setpieces
+
+    x0, y0, x1, y1 = _host_rect(nave)
+    if y1 - y0 < first + pews * PEW_PITCH:
+        raise TemplateError(
+            f"{nave.node_id}: {y1 - y0} units of nave will not hold {pews} "
+            f"pews at {PEW_PITCH}")
+    node = citytree.sub(nave, name, note="rows of pews down the nave")
+    for index in range(pews):
+        top = y0 + first + index * PEW_PITCH
+        setpieces.raised_solid(
+            node, f"pew_{index}", nave,
+            (x0 + 512, top, x1 - 512, top + PEW_DEPTH),
+            material, grade=grade, rise=PEW_RISE, host_clear=host_clear,
+            connector=connector or citytree.owner(nave), note="a pew")
+    return node
+
+
+def font(narthex, *, material, grade: int, host_clear: int,
+         name: str = "font", connector=None):
+    """The font, standing in the narthex. One thing, one name."""
+    import citytree
+    import setpieces
+
+    x0, y0, x1, y1 = _host_rect(narthex)
+    return setpieces.raised_solid(
+        narthex, name, narthex,
+        (x0 + 256, y0 + 2048, x0 + 1280, y0 + 2560),
+        material, grade=grade, rise=FONT_RISE, host_clear=host_clear,
+        connector=connector or citytree.owner(narthex),
+        note="the font")
+
+
+# ---------------------------------------------------------------------------
 # the sprite level: what ends up on the shelf
 # ---------------------------------------------------------------------------
 

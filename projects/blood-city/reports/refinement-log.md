@@ -2077,3 +2077,112 @@ rows, 3/3 tree properties, byte-identical rebuild. 228 nodes at depth 6.
   declare portals between its own modules (grammar request #14).
 * `runs.SEWER_ELEMENTS` survives unused now that `sewerkit.TUNNEL` replaced
   it at the only call site.
+
+
+## Iteration 29 — every node declares what it is for
+
+### The anonymous names were the last hand work, not a missing convention
+
+Wherever a template built, the names were already right -- `main_bar`,
+`main_table_0` -- because the thing placing them knows what it places. The
+anonymous ones came from two loops that iterated a table of rectangles into
+`furniture_{index}`: nine in `l3_theatre` and five in `l3_church`. In the
+Aldermack that made `furniture_0` the stage, `furniture_1..3` three rows of
+seating and `furniture_4` the box office. Five different things wearing one
+name, and `citytree find stage` returned `backstage`.
+
+So the fix was to raise the work, not to rename it. Three templates now
+place what those loops placed, and the names fall out:
+
+* `templates.theatre_house` -- the stage under its proscenium and the raked
+  rows facing it. Rows are laid from the back forward so the rear row is
+  always against the rear wall however many there are.
+* `templates.box_office`, `templates.shooting_range` -- a firing line and its
+  targets.
+* `templates.chapel_furnishing`, `templates.font`.
+
+`find` now reaches `stage`, `altar_mensa`, `box_office`, `firing_line`,
+`pew_0..3`, `target_0..2` and `font`.
+
+**Building the template found a real fault in the hand table's meaning.**
+Laying the rake up from the front put the tallest row nearest the stage --
+a grandstand facing the wrong way. The hand table had it right by writing
+three rises out; the template has it right by counting down from the back,
+which is the rule rather than three numbers.
+
+### The index rule, checked rather than remembered
+
+A numbered sibling is honest when siblings are interchangeable instances of
+one rhythm. The test is exactly that: **if one note serves them all, the
+index is correct; if they need different notes, they are different things.**
+`citytree.rhythm_faults` walks the tree for it, `stats` reports it,
+`conformance` has a row and `tree_tests` has a check. 48 indexed nodes, 0
+faults.
+
+### Declared-but-unbuilt is a state now
+
+`citytree.plan(parent, id, purpose)` makes a named node with nothing in it.
+It is legal, it compiles to nothing, and `stats` lists it as the city's own
+to-do list. Three exist:
+
+```
+gravesend/market_slip/ferry_office
+gravesend/old_crossing/st_gallows/bell_chamber
+gravesend/old_crossing/workshop_bar
+```
+
+That is the distinction the city could not express, and the reason the empty
+pawn shop looked the same as a finished room.
+
+### The plan and the tree now check each other
+
+`city_plan.VENUES` declared ten venues and nothing verified the tree agreed.
+It did not: **three had no node at all**, and a fourth -- the chandlery slot
+on market_block_c -- had been superseded by the Gravesend Arcade without L1
+being told. Each venue node declares the slot it fills and what built it
+(`citytree.declare_venue`), and the check runs both ways plus the type:
+
+```
+ok   plan_correspondence  {'l1_venues': 10, 'declared': 10,
+                           'declared_but_unbuilt': ['ferry_office', 'workshop_bar'],
+                           'missing': [], 'unplanned': [], 'wrong_type': []}
+```
+
+L1's chandlery row was rewritten to record the Arcade, because a plan that
+disagrees with what was built is a stale plan, not a finding.
+
+### Cost is truthful in all three budgets
+
+`zoom --cost` reported `0p` on every node while the map carried hundreds of
+sprites: it measured `program.compile()`, and sprites are placed by the
+passes in `main`. It runs the full build now and holds the compiled level.
+Theatre Row: **48 sectors, 336 walls, 105 sprites** -- the Aldermack 50 of
+them. Sprite budget will bind before walls do, and it can be read per venue.
+
+### What changed in the map, and what did not
+
+Walls are **byte-identical as a multiset**. One sector differs, and only in
+the ORDER its carved holes are emitted -- the rows are built back-to-front
+now -- which is not a geometry change. The render confirms it:
+`reports/looks/intent/frames/nave.png`.
+
+**Three sprites are gone, and that is a correction.** They were ambient
+emitters standing inside pew blocks: the old loop registered each pew in the
+church's `rooms` dict, and the ambience pass walks that dict. Church
+ambience goes 7 to 4; the campaign rate is unaffected at city scale.
+
+### Build
+
+**226 sectors / 1,466 walls / 386 sprites.** 13/13 conformance rows, 16/16
+contract rows, **5/5 tree properties**, 201 wall sprites with 0 clashing
+pairs, byte-identical rebuild.
+
+### Not done
+
+* `find` falls back to notes and `find_labelled` says which matched, but the
+  CLI prints paths only -- the source label is available to callers, not on
+  the command line.
+* Run nodes still carry their host's name (`main_bar`, `unit_a_counter`);
+  redundant given the path, harmless, not worth a rename pass.
+* The two unbuilt venues are declared and still unbuilt. That is the point
+  of the state, but it is a to-do list with two entries on it.

@@ -186,8 +186,15 @@ VENUES = [
      "face": "east@avenue", "doorways": 3,
      "note": "church-patterns.md: monastery chapel grammar; tower on the "
              "vista opposite the Aldermack"},
-    {"id": "chandlery", "type": "open_front", "block": "market_block_c",
-     "face": "west@plaza", "doorways": 2},
+    # The chandlery slot became the Gravesend Arcade: the owner asked for a
+    # shopping mall and E4M9's grammar is a retail row, not an open front.
+    # Recording it here rather than leaving L1 and the tree disagreeing --
+    # `conformance.py` checks that every venue declared here has a node and
+    # that its type matches the template that built it, so a plan left
+    # stale now fails a row instead of going unnoticed.
+    {"id": "arcade", "type": "retail_row", "block": "market_block_c",
+     "face": "west@plaza", "doorways": 2,
+     "note": "was 'chandlery/open_front'; E4M9 concourse with six units"},
     {"id": "ferry_office", "type": "open_front", "block": "market_block_a",
      "face": "south@quay", "doorways": 1},
     {"id": "workshop_bar", "type": "bar", "block": "oc_block_a",

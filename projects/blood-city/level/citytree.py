@@ -145,6 +145,55 @@ def _refuse_connect(node):
     return refuse
 
 
+def plan(parent, node_id: str, purpose: str, **kwargs) -> Assembly:
+    """A named space whose contents are not built yet.
+
+    An empty room named for its purpose is better than a built thing named
+    `furniture_1`: it is findable, it is legible as a plan, and it says the
+    difference between deliberately bare and never furnished -- which the
+    city could not express, and is why the empty pawn shop looked the same
+    as a finished room.
+
+    A planned node is legal, compiles to nothing, and is listed by
+    `placeholders` and by `stats` as the city's own to-do list.
+    """
+    node = sub(parent, node_id, note=purpose, **kwargs)
+    node.planned = str(purpose)
+    return node
+
+
+def placeholders(root) -> list:
+    """Every declared-but-unbuilt node, deepest path first."""
+    return sorted(
+        (node for node, _depth in walk(root)
+         if getattr(node, "planned", None) and not rooms_under(node)),
+        key=lambda node: node.path())
+
+
+def declare_venue(node, l1_id: str, l1_type: str, built_by: str = ""):
+    """Say which L1 venue slot this node fills, and what built it.
+
+    `city_plan.VENUES` declares ten venues with types and frontages and
+    nothing checked that the tree agreed. This is the link, stated by the
+    module that builds the venue -- the only place that knows -- and checked
+    in both directions by `conformance.py`.
+    """
+    node.l1_venue = str(l1_id)
+    node.l1_type = str(l1_type)
+    node.built_by = str(built_by)
+    return node
+
+
+def venues(root) -> dict:
+    """L1 venue id -> the node that declares it."""
+    out = {}
+    for node, _depth in walk(root):
+        name = getattr(node, "l1_venue", None)
+        if name:
+            out.setdefault(name, []).append(node)
+    return out
+
+
 def owner(node) -> Assembly:
     """The nearest ancestor that may legally declare a connection."""
     current = node
@@ -222,7 +271,39 @@ def stats(root) -> dict:
             1 for n, _d in nodes
             if isinstance(n, Assembly) and len(n.children) == 1),
         "top_level": len(root.children),
+        # The city's own to-do list, and the rule that keeps an index
+        # honest: numbered siblings are interchangeable instances of one
+        # rhythm, so if they need different notes they are not a rhythm.
+        "planned_but_unbuilt": [node.path() for node in placeholders(root)],
+        "indexed_siblings_with_differing_notes": rhythm_faults(root),
+        "declared_venues": sorted(venues(root)),
     }
+
+
+def rhythm_faults(root) -> list:
+    """Indexed siblings whose notes disagree, which means they are not a rhythm.
+
+    A numbered sibling is right when siblings are interchangeable instances
+    of one rhythm -- four modules of a counter run, three targets, four
+    pews. The check is exactly that: if one note would serve them all, the
+    index is correct; if they need different notes, they are different
+    things and must not share a name.
+    """
+    out = []
+    for node, _depth in walk(root):
+        groups: dict[str, list] = {}
+        for child in node.children:
+            stem, sep, tail = child.node_id.rpartition("_")
+            if sep and tail.isdigit() and stem:
+                groups.setdefault(stem, []).append(child)
+        for stem, members in groups.items():
+            if len(members) < 2:
+                continue
+            notes = {(child.note or "").strip() for child in members}
+            if len(notes) > 1:
+                out.append({"parent": node.path(), "stem": stem,
+                            "notes": sorted(notes)})
+    return out
 
 
 def bounds(node):
@@ -351,12 +432,31 @@ def cost_of(node, costs: dict) -> dict:
 # navigation
 # ---------------------------------------------------------------------------
 
-def find(root, name: str) -> list:
-    """Every node whose id or path mentions `name`, nearest the root first."""
+def find(root, name: str, *, notes: bool = True) -> list:
+    """Every node whose id or path mentions `name`, nearest the root first.
+
+    Falls back to the notes, because meaning that has not been carried into
+    a name yet is still meaning -- but the fallback only runs when the names
+    find nothing, and `find_labelled` says which of the two matched, so a
+    prose-only hit reads as the gap it is.
+    """
     hits = [(depth, node) for node, depth in walk(root)
             if name == node.node_id or name in node.path()]
+    if not hits and notes:
+        hits = [(depth, node) for node, depth in walk(root)
+                if name.lower() in (node.note or "").lower()]
     hits.sort(key=lambda row: (row[0], row[1].path()))
     return [node for _depth, node in hits]
+
+
+def find_labelled(root, name: str) -> list:
+    """`(node, "name")` or `(node, "note")`, so the match's source is visible."""
+    by_name = [node for node, _d in walk(root)
+               if name == node.node_id or name in node.path()]
+    if by_name:
+        return [(node, "name") for node in sorted(by_name, key=lambda n: n.path())]
+    return [(node, "note") for node, _d in walk(root)
+            if name.lower() in (node.note or "").lower()]
 
 
 def one(root, name: str):
@@ -404,6 +504,8 @@ def zoom(node, *, depth: int = 1, costs: dict | None = None) -> str:
         lines.append(f"    {head['note']}")
     lines.append(f"    contains {head['contains']} | rooms {head['rooms_total']} "
                  f"| roles {head['roles']}")
+    if getattr(node, "planned", None) and not rooms_under(node):
+        lines.append(f"    PLANNED, not built: {node.planned}")
     if head["details_total"]:
         lines.append(f"    carries {head['details_total']} items on its "
                      f"surfaces: tiles {head['details']}")
@@ -454,14 +556,15 @@ def _program(with_costs=False):
     means compiling, so they go back in here.
     """
     import build_skeleton
-    program, _stacks, gates, *_rest = build_skeleton.build()
     if not with_costs:
-        return program, None
-    layout = program.compile()
-    for gate_id, region_a, region_b, a1, a2 in gates:
-        layout.add_connection(gate_id, region_a, region_b, a1=a1, a2=a2,
-                              min_width=1024)
-    return program, measure(layout.compile())
+        return build_skeleton.build()[0], None
+    # The FULL build, not just the tree: sprites are placed by the passes in
+    # `main`, so a node measured from `program.compile()` alone reported 0p
+    # on every node while the map carried hundreds -- and no venue could be
+    # budgeted for the one of the three budgets that will bind first.
+    build_skeleton.main()
+    program, compiled = build_skeleton.LAST_BUILD
+    return program, measure(compiled)
 
 
 def main(argv=None) -> int:

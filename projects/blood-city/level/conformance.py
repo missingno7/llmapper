@@ -54,6 +54,44 @@ def main() -> int:
         rows.append({"metric": metric, "declared": declared,
                      "measured": measured, "pass": bool(ok), "note": note})
 
+    # ---- the plan against the tree ---------------------------------------
+    #
+    # `city_plan.VENUES` declares ten venues with types and frontages and
+    # nothing checked that the tree agreed: three of them had no node at
+    # all, one had been superseded by the Arcade, and none of that showed
+    # anywhere.  Intent was traceable INSIDE the tree and not from the plan
+    # into it, which is exactly the step where the planner is supposed to be
+    # visible.  Each venue node now declares the slot it fills, so this
+    # checks both directions and the type as well.
+    import build_skeleton
+    import citytree
+    program = build_skeleton.build()[0]
+    declared = citytree.venues(program)
+    slots = {v["id"]: v for v in data["venues"]}
+    missing = sorted(set(slots) - set(declared))
+    unplanned = sorted(set(declared) - set(slots))
+    doubled = sorted(k for k, v in declared.items() if len(v) > 1)
+    mismatched = sorted(
+        f"{k}: L1 {slots[k]['type']} vs node {getattr(nodes[0], 'l1_type', '?')}"
+        for k, nodes in declared.items()
+        if k in slots and getattr(nodes[0], "l1_type", None) != slots[k]["type"])
+    built = [k for k, nodes in declared.items()
+             if getattr(nodes[0], "built_by", "") != "(planned)"]
+    row("L1 venues with a node", len(slots), len(declared),
+        not missing and not unplanned and not doubled and not mismatched,
+        f"{len(built)} built, {len(declared) - len(built)} declared and not "
+        f"built yet"
+        + (f"; MISSING {missing}" if missing else "")
+        + (f"; UNPLANNED {unplanned}" if unplanned else "")
+        + (f"; DOUBLED {doubled}" if doubled else "")
+        + (f"; TYPE {mismatched}" if mismatched else ""))
+
+    # Indexed siblings are a rhythm or they are a naming fault.
+    faults = citytree.rhythm_faults(program)
+    row("indexed siblings sharing one note", 0, len(faults), not faults,
+        "a numbered sibling is right only when one note serves them all"
+        + (f"; {faults[:2]}" if faults else ""))
+
     # Loops: graph faces + free-standing masses + the church loop.
     free = [b for b in data["blocks"] if b["role"] == "free_standing"]
     nodes = set()

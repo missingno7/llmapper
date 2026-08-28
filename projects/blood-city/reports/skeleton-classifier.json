@@ -45,7 +45,7 @@
       "budget": {
         "sectors": 226,
         "walls": 1466,
-        "sprites": 389
+        "sprites": 386
       },
       "street": {
         "sectors": 24,
@@ -385,7 +385,7 @@
           {
             "wall": 362,
             "street_sector": 48,
-            "into_sector": 62,
+            "into_sector": 67,
             "interior_component": 2,
             "width": 2048,
             "gap_z": 31744,
@@ -395,7 +395,7 @@
           {
             "wall": 397,
             "street_sector": 51,
-            "into_sector": 64,
+            "into_sector": 69,
             "interior_component": 2,
             "width": 768,
             "gap_z": 31744,
@@ -524,7 +524,7 @@
           "street_sectors": 16,
           "sectors": 181,
           "walls": 1194,
-          "sprites": 284
+          "sprites": 281
         },
         {
           "zone": 1,
@@ -729,7 +729,7 @@
       "SKELETON": {
         "sectors": 226,
         "walls": 1466,
-        "sprites": 389
+        "sprites": 386
       }
     }
   }

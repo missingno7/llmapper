@@ -149,11 +149,56 @@ def test_traceable_inheritance(build) -> dict:
     }
 
 
+def test_rhythm(build) -> dict:
+    """An index is only honest when one note serves every sibling that has it.
+
+    Four modules of a counter run, three targets, four pews: interchangeable
+    instances of one rhythm, so they take an index and share a note. A stage,
+    three rows of seating and a box office are not, and used to be
+    `furniture_0` through `furniture_4`.
+    """
+    program = build()[0]
+    faults = citytree.rhythm_faults(program)
+    indexed = sum(1 for node, _d in citytree.walk(program)
+                  if node.node_id.rpartition("_")[2].isdigit()
+                  and node.node_id.rpartition("_")[1])
+    return {"check": "rhythm", "indexed_nodes": indexed,
+            "faults": faults[:4], "ok": not faults}
+
+
+def test_plan_correspondence(build) -> dict:
+    """Every L1 venue has exactly one node, and every venue node an L1 slot."""
+    import city_plan
+
+    program = build()[0]
+    declared = citytree.venues(program)
+    slots = {venue["id"]: venue for venue in city_plan.plan()["venues"]}
+    missing = sorted(set(slots) - set(declared))
+    unplanned = sorted(set(declared) - set(slots))
+    doubled = sorted(name for name, nodes in declared.items() if len(nodes) > 1)
+    wrong_type = sorted(
+        name for name, nodes in declared.items()
+        if name in slots
+        and getattr(nodes[0], "l1_type", None) != slots[name]["type"])
+    planned = [name for name, nodes in declared.items()
+               if getattr(nodes[0], "built_by", "") == "(planned)"]
+    return {
+        "check": "plan_correspondence",
+        "l1_venues": len(slots), "declared": len(declared),
+        "declared_but_unbuilt": sorted(planned),
+        "missing": missing, "unplanned": unplanned,
+        "doubled": doubled, "wrong_type": wrong_type,
+        "ok": not (missing or unplanned or doubled or wrong_type),
+    }
+
+
 def main() -> int:
     import build_skeleton
     rows = [
         test_traceable_inheritance(build_skeleton.build),
         test_exact_frames(build_skeleton.build),
+        test_rhythm(build_skeleton.build),
+        test_plan_correspondence(build_skeleton.build),
         test_locality(build_skeleton.build),
     ]
     width = max(len(row["check"]) for row in rows)

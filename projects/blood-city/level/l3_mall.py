@@ -141,6 +141,8 @@ def build(city, market_st):
             floor_z=GRADE, clear_height=CONCOURSE_H)),
         note="the Gravesend Arcade: E4M9's concourse, E6M1's shopfronts",
     )
+    import citytree
+    citytree.declare_venue(arcade, "arcade", "retail_row", built_by="l3_mall")
     rooms: dict = {}
 
     def make(name, x0, y0, x1, y1, key, clear, note, *, role="interior",
