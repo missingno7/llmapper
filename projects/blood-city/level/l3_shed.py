@@ -12,20 +12,21 @@ free-standing hut, because a free-standing mass in the street would add a
 tenth walk-around loop and the loop census is at its contract ceiling of
 nine.
 
-The descent is real geometry all the way to 40,960 below grade; only the
-last 12,288 is a stack link into the parked network -- 0.72 player heights,
-comfortably under the 1.24-height jump rise, so the player can hop back up
-through the plane and walk out.  That is the difference between a sewer and
-a pit trap.
+The descent is real geometry all the way to the shared stack plane; the last
+20,480 is a stack link into the parked network -- 1.21 player heights, below
+the 1.24-height jump rise.  Crucially, that plane also matches the receiving
+sewer chamber's ceiling, so the link is a continuous threshold rather than a
+low-ceiling box cut into a tall room.
 """
 
 from __future__ import annotations
 
-from bloodmap.doors import xsector_direct_use, z_motion_endpoints
+from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
 
 from materials import FACADES, INTERIORS, MASONRY
-from resolution import GRADE, PU, STREET_SKY
+from resolution import (GRADE, PU, STATION_STACK_LANDING_DEPTH,
+                        STATION_STACK_PLANE, STREET_SKY)
 
 COMPASS = dict(zip(RECT_FACES, range(4)))
 
@@ -50,19 +51,23 @@ DOOR_D, PORCH_D = 512, 512
 # and its reveal -- which makes this number the whole fix.
 DOOR_HEIGHT = 31744
 
-#: Ten risers of one max step: 40,960 below grade, in two flights.
+#: Eight risers of one max step land exactly on the shared station stack plane.
 STEP, TREAD = 4096, 512
-FLIGHT = 10          # one straight run; the works void is long enough
+FLIGHT = 8           # one straight run; the works void is long enough
 STAIR_W = 1024
-CELLAR_FLOOR_Z = GRADE + FLIGHT * STEP                    # 49,152
+CELLAR_FLOOR_Z = STATION_STACK_PLANE
+assert CELLAR_FLOOR_Z == GRADE + FLIGHT * STEP
 
 #: Where the pit sits in the cellar, and therefore where its parked twin
 #: sits in the sewer: under the ring's north walk.
 #: Strictly inside both the cellar above and the foot chamber below
 #: (its parked twin sits at PIT + the 72-unit park offset).
 PIT = (45056, 4608, 46080, 5632)
-CELLAR = (43008, 3584, 46592, 7168)
-PIT_LANDING = 12288          # 0.72 player heights: jumpable back out
+# The eight-riser flight ends at x=47,616; keep the cellar flush with that
+# arrival edge rather than leaving a one-bay unpaired gap after changing the
+# shared ROR plane.
+CELLAR = (44032, 3584, 47616, 7168)
+PIT_LANDING = STATION_STACK_LANDING_DEPTH
 
 
 def build(city, foundry_st, foundry_origin):
@@ -73,11 +78,11 @@ def build(city, foundry_st, foundry_origin):
     service = INTERIORS["service"]
     shed = city.assembly(
         "pump_station",
-        # Lit like a room someone works in, not like the sewer: the first
-        # renders of the hall and cellar came back almost entirely black.
+        # Lit like a room someone works in, not like the sewer.  The source
+        # declarations below now provide that readability; keeping a blanket
+        # manual shade here would prevent LightBomb from deriving falloff.
         style=Style(**service.style_kwargs(floor_z=GRADE,
-                                           clear_height=32768,
-                                           floor_shade=22)),
+                                           clear_height=32768)),
         note="the pumping station: the sewer's road-level entrance",
     )
 
@@ -88,9 +93,11 @@ def build(city, foundry_st, foundry_origin):
             role=role, faces=dict(COMPASS), frame=Frame(int(x0), int(y0)),
             region_kwargs={**service.region_kwargs(), **(rk or {})},
             note=note)
+        # Keep these base surfaces unprotected so declared fixtures own the
+        # illumination.  Use a direct shade only for a deliberate local
+        # art-direction override.
         made.surfaces(**service.style_kwargs(floor_z=floor_z,
-                                             clear_height=clear,
-                                             floor_shade=22, wall_shade=22))
+                                             clear_height=clear))
         return made
 
     # Street -> porch -> door -> hall.
@@ -101,9 +108,8 @@ def build(city, foundry_st, foundry_origin):
                    floor_z=GRADE, clear_height=DOOR_HEIGHT)
     door = room("door", sx1 - PORCH_D - DOOR_D, MOUTH_Y0,
                 sx1 - PORCH_D, MOUTH_Y0 + MOUTH_H, role="doorway", clear=0,
-                rk={"type": 600, "door_face": 390, "inherit_finish": "both",
-                    "sector_behavior": {**z_motion_endpoints(GRADE, GRADE - DOOR_HEIGHT),
-                                        **xsector_direct_use()}},
+                rk={"type": 600, "door_face": 22, "inherit_finish": "both",
+                    "sector_behavior": z_motion_door(GRADE, GRADE - DOOR_HEIGHT)},
                 note="the station door")
     door.surfaces(wall_picnum=MASONRY.wall, floor_z=GRADE, clear_height=0)
     hall = room("hall", sx0 + 512, sy0 + 512, sx1 - PORCH_D - DOOR_D, sy1 - 512,

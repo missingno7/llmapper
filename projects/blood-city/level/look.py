@@ -26,7 +26,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from bloodmap.format import read_map
 from bloodmap.viewplan import angle_toward, eye_z, interior_point
 from bloodmap.visual import ObservationRequest, Viewpoint, run_observation
-from bloodmap.viewpoints import _sector_loops
+from bloodmap.viewpoints import _contains, _sector_loops
 
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
 CURRENT = PROJECT / "level" / "blood-city-current.MAP"
@@ -129,7 +129,12 @@ POSE_SETS = {
         "station_hall": (51.5, 6.6, 50.2, 6.6, LEVEL, "inside the station, facing the stair"),
         "station_stair": (49.5, 6.6, 47.8, 6.6, DOWN, "down the stair run"),
         "station_cellar": (44.5, 5.0, 45.6, 5.0, LEVEL, "the cellar and its pit"),
-        "station_foot": (117.5, 4.6, 118.9, 5.0, LEVEL, "the shaft foot, down in the sewer"),
+        "station_foot": (116.5, 5.0, 115.0, 5.0, LEVEL, "the shaft foot, down in the sewer"),
+    },
+    "lamp_pools": {
+        "yard_lamp": (51.0, 19.0, 50.0, 19.0, LEVEL, "close to the works-yard lamp pool"),
+        "forecourt_lamp": (30.0, 13.0, 31.0, 13.0, LEVEL, "close to the forecourt lamp pool"),
+        "quay_lamp": (36.0, 52.0, 37.0, 52.0, LEVEL, "close to the quay-gate lamp pool"),
     },
     "sewer": {
         "north_walk": (110.0, 6.5, 114.0, 7.5, LEVEL, "the north walk beside its channel"),
@@ -171,20 +176,11 @@ POSE_SETS = {
 
 def sector_at(level, x: int, y: int) -> int | None:
     for sector_id in range(len(level.sectors)):
-        loops = _sector_loops(level, sector_id)
-        if not loops:
-            continue
-        inside = False
-        for loop in loops:
-            count = len(loop)
-            for index in range(count):
-                x1, y1 = loop[index]
-                x2, y2 = loop[(index + 1) % count]
-                if (y1 <= y) != (y2 <= y):
-                    cross = x1 + (y - y1) * (x2 - x1) / (y2 - y1)
-                    if x < cross:
-                        inside = not inside
-        if inside:
+        # `_contains` handles outer loops and carved holes.  The old observer
+        # helper accepted a camera inside a street's carved lamp/building hole
+        # and then handed it to the renderer as the host sector, producing an
+        # invalid frame exactly where close light-pool review is needed.
+        if _contains(level, sector_id, x, y):
             return sector_id
     return None
 

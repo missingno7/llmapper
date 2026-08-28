@@ -9,6 +9,22 @@ actually wrong with it, and what to do next.
 L1 contract rows. Wall budget is 7,000, so there is room for roughly five
 more districts' worth of content.
 
+## Update — shared door and lighting semantics
+
+The current generated artifact is **208 sectors / 1,314 walls / 297 sprites**.
+The extra geometry is intentional: all thirteen type-600 doors now compile
+through `bloodmap.aperture.frame_z_doors`, which inserts reveal frames around
+the moving leaf.  Their `bloodmap.doors.z_motion_door` declarations carry
+`busy_time_a/b=5`, so no door changes state instantly; the five theatre doors
+keep both direct Use and their lever RX channels.  The build manifest records
+`door_frames: 13` and semantic LightBomb sources.
+
+The reusable route and the full authoring-tool map are in
+[`docs/authoring-toolkit.md`](../../../docs/authoring-toolkit.md).  Use it before
+adding project-local helpers.  Shared `bloodmap` changes are appropriate only
+when they are a tested generalisation of a concrete map case; do not edit
+unrelated primitives or the NBlood/xmapedit submodules.
+
 Built: four districts (Theatre Row, Old Crossing, Market Slip, Foundry
 Ward); the Aldermack complex with saloon, shooting parlor and pawn shop;
 St Gallow's with its cemetery and pitched nave; the Gravesend Arcade with
@@ -54,8 +70,9 @@ this project's modules would not exist under that rule.
 
 ## Standing disciplines
 
-- **`bloodmap/` is the parallel grammar agent's tree.** Never patch it.
-  Gaps go to `reports/grammar-requests.md` (#1–#10 so far).
+- **`bloodmap/` is shared grammar.** Consume existing constructors first.
+  Promote a repeated, tested map case into it; otherwise leave a documented
+  `Room.raw` escape and add a concrete `reports/grammar-requests.md` entry.
 - **The NBlood and xmapedit submodules are off-limits.** Never stage their
   pointers.
 - **Never launch NBlood.** Verification goes through the XMapEdit observer
@@ -86,12 +103,12 @@ this project's modules would not exist under that rule.
 
 ## What is planned next, ordered by measured gap
 
-**1. Finish adopting the grammar.** `bloodmap.keys` (replace `keysign.py`;
-`sign_the_locks` + `check` are strictly better), `bloodmap.surfaces`
-(fold into `materials.py`), `bloodmap.aperture` (`pierce` / `framed_door` /
-`snap_leaf` replace every hand-built door+porch chain in five modules), and
-`bloodmap.prefab`'s `alcove_run`, `parapet` and `breakable`. Cheap, and it
-removes four sources of drift.
+**1. Finish adopting the grammar.** `bloodmap.aperture` is now adopted for all
+thirteen Z-doors (`frame_z_doors` plus `z_motion_door`). Next: `bloodmap.keys`
+(replace `keysign.py`; `sign_the_locks` + `check` are strictly better),
+`bloodmap.surfaces` (fold into `materials.py`), and `bloodmap.prefab`'s
+`alcove_run`, `parapet` and `breakable`. This removes the remaining sources of
+project-local drift.
 
 **2. Slopes: 0 → 21.7%.** The nave now has a pitched roof and it is the
 only sloped surface in the city; the campaign median is 21.7% of sectors.

@@ -26,7 +26,8 @@ from __future__ import annotations
 from bloodmap.levelprog import Frame, RECT_FACES, Style
 
 from materials import SEWER, SEWER_WET
-from resolution import PU, SEWER_CHAMBER_CLEAR, SEWER_CLEAR, SEWER_FLOOR
+from resolution import (PU, SEWER_CHAMBER_CLEAR, SEWER_CLEAR, SEWER_FLOOR,
+                        STATION_STACK_PLANE)
 
 COMPASS = dict(zip(RECT_FACES, range(4)))
 
@@ -124,6 +125,11 @@ def expand(city, sewer, existing: dict) -> dict:
                            "sector_behavior": behavior},
             note=note)
         clear = SEWER_CHAMBER_CLEAR if name in chambers else SEWER_CLEAR
+        if name == "station_foot":
+            # Match the lower ROR half exactly.  The prior chamber roof was
+            # 20,480 units higher than the linked mouth, producing a visible
+            # ceiling discontinuity at the entrance.
+            clear = SEWER_FLOOR - STATION_STACK_PLANE
         made.surfaces(**material.style_kwargs(
             floor_z=SEWER_FLOOR + (LEDGE_STEP if wet else 0),
             clear_height=clear + (LEDGE_STEP if wet else 0),
@@ -224,15 +230,103 @@ def populate(layout, rooms, attested, flame_fields,
             continue
         props.mount_on_wall(layout, f"sewer:brazier_{index}",
                             rooms[name], face, t=t)
-    # Water dressing belongs in water: fronds and bubbles go in the wet
-    # channels and the flooded branch only.  Down a dry brick tunnel they
-    # are the "underwater plant / underwater bubbling" the owner spotted.
-    for index, (name, tile, local) in enumerate(
-            [("n_channel", 668, (0.3, 0.5)), ("n_channel", 660, (0.7, 0.5)),
-             ("s_channel", 668, (0.6, 0.5)), ("s_channel", 664, (0.25, 0.5)),
-             ("flooded", 660, (0.35, 0.4)), ("flooded", 668, (0.7, 0.6))]):
-        if name not in rooms:
-            continue
-        props.stand_on_floor(layout, f"sewer:water_{index}",
-                             rooms[name].region_id, local=local, tile=tile)
+    # No aquatic dressing here.  `rules_blood.aquatic-sprite-is-under-water`
+    # is graded off the corpus -- 664 appears in 82 campaign sectors and every
+    # one is submerged, 660 in 142 likewise -- and it wants the sector's
+    # XSECTOR `underwater` flag, not merely a shallow `depth`.  These channels
+    # are ankle deep.  Weed and bubbles need a real underwater volume, which
+    # this sewer does not have and which needs its own link pair to build.
     return placed
+
+
+#: Which face of each ring segment the detail runs along, and which spans
+#: on it are already spoken for.  A leg's necks and chamber mouths are the
+#: occupied stretches: the run declines to build there rather than
+#: colliding, which is `prefab.alcove_run`'s rule generalised.
+#: Only faces that can be PROVEN solid carry a run.
+#:
+#: The ring's four long legs are missing from this table and that is a
+#: recorded limitation, not an oversight: they are joined to their corners
+#: and chambers by *face* connections, which carry no explicit span, so
+#: neither `runs.occupied_from_layout` nor anything else can say which
+#: stretches of a leg wall are free.  Guessing the spans from this module's
+#: own tables got the count from twelve hanging sprites down to four and no
+#: further, and tightening margins until the number reached zero would be
+#: luck rather than knowledge.  Grammar request #11 asks for free-span
+#: reporting on a face; until then the legs stay bare.
+RUN_FACES = {
+    "pump_room": ("north", ()),
+    "east_annex": ("east", ()),
+    "silt_trap": ("north", ()),
+    "flooded": ("south", ()),
+    "nw_corner": ("west", ()),
+    "ne_corner": ("east", ()),
+    "se_corner": ("south", ()),
+    "sw_corner": ("west", ()),
+}
+
+
+def detail_runs(layout, rooms) -> list:
+    """One run per ring segment, its length taken from the geometry.
+
+    The declaration is `RUN_FACES`; the emission is a rhythm of drips,
+    trusses, railings and plaques along the tunnels.  That asymmetry --
+    one line in, a lot out -- is the point of the layer.
+
+    Occupied spans are computed from this module's OWN tables rather than
+    from the layout.  The ring is joined with *face* connections, which
+    carry no explicit span, so `runs.occupied_from_layout` cannot see them;
+    and `props.solid_faces` correctly reports that every leg has a chamber
+    on all four of its faces, which would reject every leg outright.  What
+    is true is that each chamber covers a short stretch of one face, and
+    CHAMBERS says exactly which.
+    """
+    import props
+    import runs as run_layer
+
+    attached = {}
+    for cname, cx0, cy0, cx1, cy1, own, leg, leg_face, _note in CHAMBERS:
+        attached.setdefault(leg, []).append(
+            (leg_face, cx0 * PU, cy0 * PU, cx1 * PU, cy1 * PU))
+    for nname, nx0, ny0, nx1, ny1, joins, _note in NECKS:
+        for _own, other, other_face in joins:
+            attached.setdefault(other, []).append(
+                (other_face, nx0 * PU, ny0 * PU, nx1 * PU, ny1 * PU))
+
+    out = []
+    for name, (face, extra) in RUN_FACES.items():
+        room = rooms.get(name)
+        if room is None:
+            continue
+        x0, y0, x1, y1 = props.room_rect(room)
+        horizontal = face in ("north", "south")
+        lo, hi = (x0, x1) if horizontal else (y0, y1)
+        span = max(1, hi - lo)
+        length = span / run_layer.PLAN
+        if length < 1.0:
+            continue
+        # The parked network sits at a world offset and the tables are in
+        # local plan units, so the two frames have to be reconciled before
+        # any fraction is computed.  The offset is the difference between
+        # this segment's world rect and its own RING entry.
+        # Every face in RUN_FACES is proven solid below, so the only
+        # occupancy left to honour is whatever the caller declared.
+        solid = props.solid_faces(layout, room.region_id, (x0, y0, x1, y1))
+        if face not in solid:
+            continue
+        local = next((r for r in RING if r[0] == name), None)
+        offset = 0 if local is None else (
+            (x0 - local[1] * PU) if horizontal else (y0 - local[2] * PU))
+        occupied = list(extra)
+        for aface, ax0, ay0, ax1, ay1 in attached.get(name, ()):
+            if aface != face:
+                continue
+            a_lo, a_hi = (ax0, ax1) if horizontal else (ay0, ay1)
+            t0 = (a_lo + offset - lo) / span
+            t1 = (a_hi + offset - lo) / span
+            occupied.append((min(t0, t1) - 0.12, max(t0, t1) + 0.12))
+        out.append(run_layer.Run(
+            name=f"sewer_{name}", room=room, face=face,
+            length_plan=length, occupied=tuple(occupied),
+            elements=run_layer.SEWER_ELEMENTS))
+    return out

@@ -105,9 +105,18 @@ def main() -> int:
     # there.  Reading the manifest keeps the two honest as the city grows
     # (light pools joined the street network and this check caught it).
     manifest = json.load(open(PROJECT / "reports" / "build-manifest.json"))
-    expected_component = sum(manifest.values())
+    # Name the keys this row means.  Summing everything in the manifest has
+    # broken it three times now -- a list (`monuments`), then two structured
+    # records (the lighting report, the rule summary), then a count that is
+    # real but not street-joined (`door_frames`, the aperture reveal frames,
+    # which are interior).  What this row asserts is: how many sectors join
+    # the street's at-grade component.
+    STREET_JOINED = ("districts", "carved_areas", "gates",
+                     "stack_mouths_at_grade", "grate_kerb", "light_pools",
+                     "market_furniture")
+    expected_component = sum(int(manifest.get(k, 0)) for k in STREET_JOINED)
     row("street component joined",
-        f"{' + '.join(f'{k} {v}' for k, v in manifest.items())} "
+        f"{' + '.join(f'{k} {manifest.get(k, 0)}' for k in STREET_JOINED)} "
         f"= {expected_component}",
         read["street"]["sectors"],
         read["street"]["sectors"] == expected_component,

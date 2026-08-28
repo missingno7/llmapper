@@ -51,6 +51,12 @@ SEWER_FLOOR = CELLAR_FLOOR + 8192           # 61440
 #: Blood's own sewer varies its headroom by a factor of two.
 SEWER_CLEAR = 24576         # the runs: between E3M3's q1 and its median
 SEWER_CHAMBER_CLEAR = 32768  # the rooms: E3M3's q3
+# The pump-station stack is a walkable return link, not a decorative shaft.
+# Its plane is one max step below the ordinary sewer roof, which leaves a full
+# 20,480-unit body clearance in both halves and makes the lower ROR ceiling
+# continuous with the chamber that receives it.
+STATION_STACK_PLANE = GRADE + 8 * 4096     # 40,960
+STATION_STACK_LANDING_DEPTH = SEWER_FLOOR - STATION_STACK_PLANE  # 20,480
 #: Stack-link mouths: the pit's landing floor sits deep enough that a
 #: standing body's centre stays below the link plane (no warp ping-pong:
 #: centre is 8480 above the feet), and shallow enough to jump back out.

@@ -22,9 +22,9 @@ needs and land on the 1024 bay grid.
 
 from __future__ import annotations
 
-from bloodmap.doors import (xsector_direct_use, xsector_remote_rx,
-                            z_motion_endpoints)
+from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
+from bloodmap.slope import SlopeSpec
 
 import setpieces
 from materials import FACADES, INTERIORS, MASONRY
@@ -52,6 +52,9 @@ TABLE_RISE = setpieces.COUNTER        # a table is the same class as a counter
 PEDESTAL_RISE = setpieces.LOW_STEP    # 4070, the shallow-tier class
 STAGE_RISE = 4096         # one max step: the player can get up on it
 STAGE_CLEAR = 24576       # low, so the wall over the stage front is an arch
+# A shallow roof pitch gives the largest interior a readable volume without
+# compromising the already generous 2.9-player-height headroom.
+AUDITORIUM_PITCH = 8192
 
 #: The superblock's south face (on Theatre Row street) and east face (on
 #: the avenue); the forecourt's north edge is where the Aldermack fronts.
@@ -222,13 +225,13 @@ def build(city, theatre_st):
     venues = city.assembly(
         "theatre_venues",
         style=Style(**INTERIORS["common"].style_kwargs(
-            floor_z=GRADE, clear_height=ROOM_H, floor_shade=26)),
+            floor_z=GRADE, clear_height=ROOM_H)),
         note="Theatre Row's venues, in the superblock's void",
     )
     rooms: dict = {}
 
     def make(name, x0, y0, x1, y1, material_key, note, *, role="interior",
-             floor_z=GRADE, clear=ROOM_H, rk=None, shade=26):
+             floor_z=GRADE, clear=ROOM_H, rk=None):
         material = INTERIORS[material_key]
         made = venues.room(
             name, [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)],
@@ -236,14 +239,19 @@ def build(city, theatre_st):
             region_kwargs={**material.region_kwargs(), **(rk or {})},
             note=note)
         made.surfaces(**material.style_kwargs(floor_z=floor_z,
-                                              clear_height=clear,
-                                              floor_shade=shade))
+                                              clear_height=clear))
         rooms[name] = made
         return made
 
     for name, x0, y0, x1, y1, key, note in ROOMS:
+        rk = None
+        if name == "aldermack_auditorium":
+            # The first wall is deliberately the south stage edge, so the
+            # ceiling rises through the seating toward the rear of the house.
+            rk = {"ceiling_slope": SlopeSpec(
+                hinge=((x0, y0), (x1, y0)), rise_z=-AUDITORIUM_PITCH)}
         make(name, x0, y0, x1, y1, key, note,
-             clear=ROOM_HEIGHT.get(name, ROOM_H))
+             clear=ROOM_HEIGHT.get(name, ROOM_H), rk=rk)
     for small, sf, big, bf in JOINS:
         venues.connect(rooms[small].face(sf), rooms[big].face(bf),
                        connection_id=f"connection:venue_{small}_{big}")
@@ -260,23 +268,21 @@ def build(city, theatre_st):
         if face == "south":
             door = make(f"{name}_door", x0, y0, x1, y1 - PORCH_D, "common",
                         f"the {name} door", role="doorway", clear=0,
-                        rk={"type": 600, "door_face": 390,
+                        rk={"type": 600, "door_face": 22,
                             "inherit_finish": "both",
-                            "sector_behavior": {
-                                **z_motion_endpoints(GRADE, GRADE - DOOR_H),
-                                **xsector_direct_use(),
-                                **xsector_remote_rx(channel)}})
+                            "sector_behavior": z_motion_door(
+                                GRADE, GRADE - DOOR_H, interaction="both",
+                                rx_id=channel)})
             porch = make(f"{name}_porch", x0, y1 - PORCH_D, x1, y1, "service",
                          f"the {name} reveal", role="gateway", clear=DOOR_H)
         else:
             door = make(f"{name}_door", x0, y0, x1 - PORCH_D, y1, "common",
                         f"the {name} door", role="doorway", clear=0,
-                        rk={"type": 600, "door_face": 390,
+                        rk={"type": 600, "door_face": 22,
                             "inherit_finish": "both",
-                            "sector_behavior": {
-                                **z_motion_endpoints(GRADE, GRADE - DOOR_H),
-                                **xsector_direct_use(),
-                                **xsector_remote_rx(channel)}})
+                            "sector_behavior": z_motion_door(
+                                GRADE, GRADE - DOOR_H, interaction="both",
+                                rx_id=channel)})
             porch = make(f"{name}_porch", x1 - PORCH_D, y0, x1, y1, "service",
                          f"the {name} reveal", role="gateway", clear=DOOR_H)
         door.surfaces(wall_picnum=facade.opening, floor_z=GRADE, clear_height=0)

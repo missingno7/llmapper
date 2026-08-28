@@ -22,7 +22,7 @@ that the nave touches five of them, is the shape the measurement asks for.
 
 from __future__ import annotations
 
-from bloodmap.doors import xsector_direct_use, z_motion_endpoints
+from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
 from bloodmap.slope import SlopeSpec
 
@@ -121,13 +121,13 @@ def build(city, street, ground, gates):
     parish = city.assembly(
         "st_gallows",
         style=Style(**INTERIORS["church"].style_kwargs(
-            floor_z=GRADE, clear_height=65536, floor_shade=28)),
+            floor_z=GRADE, clear_height=65536)),
         note="St Gallow's: nave, chancel, apse, tower, vestry, narthex",
     )
     rooms: dict = {}
 
     def make(name, x0, y0, x1, y1, key, clear, note, *, role="interior",
-             floor_z=GRADE, rk=None, shade=28):
+             floor_z=GRADE, rk=None):
         material = INTERIORS[key]
         made = parish.room(
             name, [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)],
@@ -135,8 +135,7 @@ def build(city, street, ground, gates):
             region_kwargs={**material.region_kwargs(), **(rk or {})},
             note=note)
         made.surfaces(**material.style_kwargs(floor_z=floor_z,
-                                              clear_height=clear,
-                                              floor_shade=shade))
+                                              clear_height=clear))
         rooms[name] = made
         return made
 
@@ -173,11 +172,10 @@ def build(city, street, ground, gates):
             porch_x0, porch_x1 = hx0 - DOOR_D - PORCH_D, hx0 - DOOR_D
         door = make(f"{name}_door", door_x0, span0, door_x1, span1,
                     "church", 0, f"the {name} portal", role="doorway",
-                    rk={"type": 600, "door_face": 390,
+                    rk={"type": 600, "door_face": 22,
                         "inherit_finish": "both",
-                        "sector_behavior": {
-                            **z_motion_endpoints(GRADE, GRADE - DOOR_H),
-                            **xsector_direct_use()}})
+                        "sector_behavior": z_motion_door(
+                            GRADE, GRADE - DOOR_H)})
         porch = make(f"{name}_porch", porch_x0, span0, porch_x1, span1,
                      "church", DOOR_H, f"the {name} reveal", role="gateway")
         door.surfaces(wall_picnum=facade.opening, floor_z=GRADE,

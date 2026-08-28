@@ -19,7 +19,7 @@ from __future__ import annotations
 
 import functools
 
-from bloodmap.doors import xsector_direct_use, z_motion_endpoints
+from bloodmap.doors import z_motion_door
 from bloodmap.format import read_map
 from bloodmap.levelprog import Frame, RECT_FACES, Style
 from bloodmap.prefab import breakable
@@ -32,8 +32,9 @@ from materials import BACKDROP, FACADES, INTERIORS, MASONRY
 
 COMPASS = dict(zip(RECT_FACES, range(4)))
 
-#: Attested from E3M1's z-motion doors (sector 52): face 390, jambs 170.
-DOOR_FACE_TILE = 390
+#: The campaign's direct-use Z-door family uses tile 22 (64x128); 390 is a
+#: masonry surface and made our public leaves read as plain brown wall.
+DOOR_FACE_TILE = 22
 JAMB_TILE = 170
 
 #: Lamp sconce, campaign modal form (decoration registry tile 641).
@@ -148,8 +149,7 @@ def dress(city, ctx) -> dict:
             "door_face": DOOR_FACE_TILE,
             "inherit_finish": "both",
             "sector_behavior": {
-                **z_motion_endpoints(GRADE, GRADE - 16384),
-                **xsector_direct_use(),
+                **z_motion_door(GRADE, GRADE - 16384),
                 "amplitude": -24, "shade_frequency": 12, "shade_wave": 0,
             },
         },
@@ -185,10 +185,7 @@ def dress(city, ctx) -> dict:
             "type": 600,
             "door_face": DOOR_FACE_TILE,
             "inherit_finish": "both",
-            "sector_behavior": {
-                **z_motion_endpoints(GRADE, GRADE - 16384),
-                **xsector_direct_use(),
-            },
+            "sector_behavior": z_motion_door(GRADE, GRADE - 16384),
         },
         note="the canteen's second mouth, west end of the yard face",
     )

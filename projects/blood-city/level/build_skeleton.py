@@ -16,6 +16,7 @@ writes level/city-skeleton.MAP and refreshes level/blood-city-current.MAP.
 
 from __future__ import annotations
 
+import collections
 import pathlib
 import sys
 from collections import defaultdict
@@ -52,6 +53,7 @@ MARKER_TILE_LOWER = 2331
 STACK_MARKER_STATNUM = 0        # kStatDecoration
 STACK_MARKER_CSTAT = 128        # the campaign's stored value
 
+from bloodmap.rules_blood import MIRROR_TILE
 import city_plan
 from city_plan import plan
 from facade_pass import BAY as FACADE_BAY, snap_opening
@@ -547,7 +549,11 @@ def build():
             role="gateway", faces=dict(COMPASS), frame=Frame(int(ux), int(uy)),
             note=f"{name}: upper mouth (link plane at its floor)",
         )
-        upper.surfaces(floor_z=upper_floor)
+        # The mirror tile is what makes the far side draw: rules_blood's
+        # `stack-portal-wears-the-mirror-tile` is an ERROR sourced from
+        # mirrors.cpp IsRorSector.  `see_through` was accepted by this
+        # function and never used -- the flag was inert, and the cellar pit
+        # wore an ordinary service floor while claiming to be a portal.
         lower = city.assembly(
             f"{name}_mouth_below",
             style=Style(**SEWER.style_kwargs(
@@ -563,6 +569,15 @@ def build():
                                                "shade_frequency": 4}},
             note=f"{name}: parked lower mouth, congruent at the plane",
         )
+        # The mirror tile is what makes the far side draw: rules_blood's
+        # `stack-portal-wears-the-mirror-tile` is an ERROR sourced from
+        # mirrors.cpp IsRorSector.  `see_through` was accepted by this
+        # function and never used -- the flag was inert, and the cellar pit
+        # wore an ordinary service floor while claiming to be a portal.
+        upper.surfaces(floor_z=upper_floor,
+                       **({"floor_picnum": MIRROR_TILE} if see_through else {}))
+        if see_through:
+            lower.surfaces(ceiling_picnum=MIRROR_TILE)
         return upper, lower
 
     # Yard grate: see-through, one-way drop.  A bare square in the paving
@@ -628,7 +643,12 @@ def build():
         "cellar_pit", None, pit_xy, CELLAR_FLOOR,
         Style(**INTERIORS["service"].style_kwargs(floor_shade=38,
                                                   clear_height=SEWER_CLEAR)),
-        PIT_LANDING_DEPTH, see_through=False)
+        # See-through, not solid.  `rules_blood.stack-portal-wears-the-mirror-tile`
+        # is an ERROR sourced from mirrors.cpp IsRorSector: without the mirror
+        # tile the link still moves the player, who crosses it blind looking at
+        # an ordinary floor.  The original "solid where transparency is not
+        # wanted" fallback was a choice made before that rule was gradable.
+        PIT_LANDING_DEPTH, see_through=True)
     for face in ("north", "east", "south", "west"):
         city.connect(pit_upper.face(face), cellar.face("north"),
                      connection_id=f"connection:cellar_pit_rim_{face}")
@@ -721,7 +741,8 @@ def build():
             city, street_room, name, x=px, y=py, floor_z=GRADE,
             clear_height=STREET_SKY, floor_picnum=facade.floor,
             wall_picnum=facade.opening, ceiling_picnum=facade.ceiling,
-            sky=True, street_shade=DISTRICT_STYLE[district]["floor_shade"]))
+            sky=True,
+            size=lightpools.POOL))
     ctx_pools = [room.region_id for room in lit]
 
     # ---- L3: St Gallow's, the mandatory landmark of Old Crossing --------
@@ -885,6 +906,16 @@ def main() -> int:
 
     l3_sewer.populate(layout, ctx["sewer_rooms_new"], _attested_or_none,
                       torch_fields, flame_stand=FLAME_STAND)
+    # Parametric detail runs along the sewer ring: the declaration is a
+    # table of faces, the emission is a rhythm along the whole network.
+    import runs as run_layer
+    _sewer_runs = l3_sewer.detail_runs(layout, ctx["sewer_rooms_new"])
+    _planned = [run_layer.estimate(r) for r in _sewer_runs]
+    print(f"sewer runs planned: {len(_sewer_runs)} runs, "
+          f"{sum(p['beats'] for p in _planned)} beats, "
+          f"{sum(p['walls'] for p in _planned)} walls")
+    print("sewer runs:", run_layer.emit_all(layout, _sewer_runs))
+
     import l3_church
     print("church populated:", l3_church.populate(
         layout, ctx["church_rooms"], _attested_or_none, torch_fields,
@@ -910,10 +941,14 @@ def main() -> int:
     # bracket to -- which is precisely where the owner saw torches flying.
     # Tile 640 is what DWE3M1 stands in its streets: a lamp fixture that
     # sits ON the ground, 593 instances campaign-wide at height +0.00.
+    import lightpools
     for index, region_id in enumerate(ctx["light_pools"]):
         layout.place_on_floor(f"light:lamp_{index}", region_id,
                               local=(0.5, 0.5),
                               height_player_heights=props.height_of(props.STREET_LAMP),
+                              light_intensity=lightpools.LAMP_INTENSITY,
+                              light_height_player_heights=0.5,
+                              emits_light=True,
                               **props.fields(props.STREET_LAMP))
     # Grime, last of the sprite passes so it fills whatever the district
     # modules left bare.  Sprites per sector was 0.60 against a campaign
@@ -969,10 +1004,37 @@ def main() -> int:
         sign_rooms[f"street:{district}"] = region_id
     print("signage:", signage.write(layout, sign_rooms))
 
+    # Named interiors deliberately receive a small, coherent signature set;
+    # the generic grime pass remains sparse.  The detail pass chooses only
+    # props associated with each room's mined material combination and makes a
+    # wall bracket the source of the station hall's generated light.
+    import venue_detail
+    venue_details = venue_detail.apply(layout, {
+        "theatre": ctx["theatre_rooms"],
+        "mall": ctx["mall_rooms"],
+        "church": ctx["church_rooms"],
+        "station": ctx["station_rooms"],
+    })
+    ctx["manifest"]["venue_details"] = venue_details
+    print("venue detail:", venue_details)
+
     import dressing
     print("dressing:", dressing.dress(layout))
 
+    # Every moving door is a declared aperture, not a zero-height sector with a
+    # door tile sprayed over whatever facade happens to face it.  The shared
+    # compiler pass preserves each native type-600 sector and its behaviour,
+    # adds the two reveal frames, and snaps its open height to whole door-art
+    # repeats.  This is the reusable monastery correction, not a city-local
+    # shading workaround.
+    from bloodmap.aperture import frame_z_doors
+    from bloodmap.rules import art_sizes
+    door_frames = frame_z_doors(layout, art_sizes=art_sizes())
+    ctx["manifest"]["door_frames"] = len(door_frames["doors"])
+    print("door frames:", len(door_frames["doors"]))
+
     compiled = layout.compile()
+    ctx["manifest"]["lighting"] = dict(compiled.lighting_report)
     # Per-building facade variation (E3M1 runs 13 tiles over its street
     # network; one per district read as one repeated building).
     import facade_pass
@@ -1012,39 +1074,40 @@ def main() -> int:
         compiled.level, compiled, ctx["street_regions"]))
     print("align anchor:", align_wall_textures(compiled.level, art_sizes))
 
-    # Lighting pipelines on the compiled level.  flicker's default tile set
-    # does not include our lamp (641), which is why it animated 0 sectors
-    # against a campaign rate of 20.7%.
-    from bloodmap.lighting import (
-        flicker_lit_sectors, match_corpus_shade, shade_walls_directionally)
+    # LightBomb now runs inside ``layout.compile`` from the sources declared by
+    # each emitting placement.  Flicker remains a distinct runtime effect: it
+    # animates a lamp's generated base shade but does not decide that base.
+    from bloodmap.lighting import flicker_lit_sectors
     from l3_foundry import LAMP_TILE
     print("lighting flicker:", flicker_lit_sectors(
         compiled.level, tiles={LAMP_TILE, 506, 640, 1701}))
-    # The same lamp tiles the flicker pass uses.  Called with bloodmap's
-    # default set -- which does not contain our flame -- every venue counted
-    # as unlit, so the pass fell back to "light comes in through the widest
-    # opening" and made the DOOR the light source.  A door-lit room shades
-    # its own doorway wall darkest, which is why the pawn shop's way out was
-    # a black rectangle.
-    CITY_LAMPS = {LAMP_TILE, 506, 640, 1701}
-    for pipeline in (shade_walls_directionally, match_corpus_shade):
-        try:
-            report = (pipeline(compiled.level, tiles=CITY_LAMPS)
-                      if pipeline is shade_walls_directionally
-                      else pipeline(compiled.level))
-            summary = {k: report[k] for k in list(report)[:3]}                 if isinstance(report, dict) else report
-            print(f"lighting {pipeline.__name__}: {summary}")
-        except Exception as exc:
-            print(f"lighting {pipeline.__name__} skipped: {exc}")
-    # Doors are lit like the rooms they are in (the campaign's own rule),
-    # so this undoes the directional pass on door faces only.
-    import lightpools as _lightpools
-    print("lighting settle_room_spread:",
-          _lightpools.settle_room_spread(compiled.level))
-    print("lighting settle_door_shading:",
-          _lightpools.settle_door_shading(compiled.level))
+    print("lighting lightbomb:", compiled.lighting_report)
 
     disk = compiled.level.to_disk_map()
+    # The corpus-graded rule registry, whose severities derive from measured
+    # campaign violation rates rather than from anyone's opinion.  It was
+    # sitting unused: `evaluate` returns nothing at all unless `rules_blood`
+    # has been imported, because the registry is populated by that import's
+    # side effect -- so "0 diagnostics" was silence, not a clean map.
+    import bloodmap.rules_blood            # noqa: F401  (registers the rules)
+    from bloodmap.rules import evaluate as _evaluate_rules
+    _diags = _evaluate_rules(disk)
+    _by_sev = collections.Counter(d.severity for d in _diags)
+    _by_code = collections.Counter((d.severity, d.code) for d in _diags)
+    print(f"rules: {len(_diags)} diagnostics {dict(_by_sev)}")
+    for (_sev, _code), _n in _by_code.most_common():
+        if _sev in ("error", "warning"):
+            print(f"    {_sev:8s} {_code:38s} {_n}")
+    ctx["manifest"]["rules"] = {
+        "total": len(_diags),
+        "by_severity": dict(_by_sev),
+        "by_code": {f"{a}:{b}": c for (a, b), c in _by_code.items()},
+    }
+    _lines = ['# Rule registry, at build time', '', '`bloodmap.rules.evaluate`, severities derived from measured campaign', 'violation rates. Requires `bloodmap.rules_blood` to be imported: the', "registry is populated by that import's side effect, so a bare", '`evaluate` returns silence rather than a clean map.', '']
+    _lines += [f"- **{d.severity}** `{d.code}` -- {d.message} ({d.location})"
+               for d in sorted(_diags, key=lambda d: (d.severity, d.code))]
+    (pathlib.Path(__file__).resolve().parents[1] / "reports" / "rules.md").write_text(
+        chr(10).join(_lines), encoding="utf-8")
     out_dir = pathlib.Path(__file__).resolve().parent
     write_map(disk, out_dir / "city-skeleton.MAP")
     write_map(disk, out_dir / "blood-city-current.MAP")

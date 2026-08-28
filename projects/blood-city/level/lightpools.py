@@ -7,10 +7,11 @@ across a whole district and every street frame reads flat no matter how
 good the tiles are.
 
 A light pool is the campaign's answer at the smallest possible cost: a
-small sector cut into the street floor under a lamp, a few shade points
-lighter than the street around it, animating if the lamp is a flame.  One
-sector and four walls buys a pool of light, and the geometry is otherwise
-inert -- the floor is flush, so nothing changes underfoot.
+small sector cut into the street floor under a lamp.  Its brightness is now
+derived by LightBomb from the declared lamp source rather than stored as a
+second shade number.  One sector and a short faceted rim buys a pool of light,
+and the geometry is otherwise inert -- the floor is flush, so nothing changes
+underfoot.
 
 Pools are placed from the street-furniture rate (E3M1 runs a light prop per
 4-5k units of street frontage) at the places a city actually lights: venue
@@ -19,51 +20,75 @@ mouths, gates, stair heads, and junctions.
 
 from __future__ import annotations
 
+import math
+
 from bloodmap.levelprog import Frame, RECT_FACES, Style
 
 COMPASS = dict(zip(RECT_FACES, range(4)))
 
 #: A pool is two player-widths across: big enough to read as light on the
-#: ground, small enough that ten of them cost 40 walls.
+#: ground, small enough that ten of them cost 40 walls.  The footprint is a
+#: four-sided diamond approximation of a circle: its edges remain wide enough
+#: for Build's walkable portal rule while the angled rim reads as a pool of
+#: light instead of a square patch.
 POOL = 1536
+POOL_SIDES = 4
 
-#: Shade step into the pool.  The campaign's lit sectors sit 8-16 points
-#: brighter than the field around them; -12 read too faintly in the quay
-#: frame against a street at +32, so the pool takes -18 and carries a fire.
-POOL_SHADE_STEP = -18
+#: Outdoor lamps need a stronger source than an indoor bracket: the open sky
+#: absorbs the upward half of the rays and the road sector is large.  This is
+#: a source property, not a hand-tuned floor shade; LightBomb turns it into
+#: the actual generated surface values.
+LAMP_INTENSITY = 2.0
 
 #: Flicker, on the campaign's commonest wave (flicker2).
 FLICKER = {"amplitude": -8, "shade_wave": 7, "shade_frequency": 6}
 
 
+def _pool_outline(size: int) -> list[tuple[int, int]]:
+    """Return an integer, counter-clockwise circular pool footprint."""
+    center = size / 2.0
+    radius = size / 2.0
+    return [
+        (int(round(center + math.cos(2.0 * math.pi * index / POOL_SIDES) * radius)),
+         int(round(center + math.sin(2.0 * math.pi * index / POOL_SIDES) * radius)))
+        for index in range(POOL_SIDES)
+    ]
+
+
 def pool(city, street_room, name: str, *, x: int, y: int, floor_z: int,
          clear_height: int, floor_picnum: int, wall_picnum: int,
-         ceiling_picnum: int, sky: bool, street_shade: int,
+         ceiling_picnum: int, sky: bool,
          flicker: bool = True, size: int = POOL) -> object:
-    """Cut one light pool into `street_room` at (x, y) in world units."""
+    """Cut one light-receiving sector into `street_room` at (x, y).
+
+    Its shade is intentionally absent.  The lamp standing in this sector is a
+    declared LightBomb source, so the emitted geometry receives generated light
+    instead of carrying a second hand-tuned shade number.
+    """
     half = size // 2
     origin_x, origin_y = int(x - half), int(y - half)
+    outline = _pool_outline(size)
     frame = street_room.world_frame()
-    street_room.carve([(origin_x - frame.dx + dx, origin_y - frame.dy + dy)
-                       for dx, dy in ((0, 0), (size, 0), (size, size), (0, size))])
+    street_room.carve([(origin_x - frame.dx + px, origin_y - frame.dy + py)
+                       for px, py in outline])
     behavior = dict(FLICKER) if flicker else {}
     room = city.assembly(
         f"lightpool_{name}",
         style=Style(floor_picnum=floor_picnum, wall_picnum=wall_picnum,
                     ceiling_picnum=ceiling_picnum, parallax_ceiling=sky,
-                    floor_z=floor_z, clear_height=clear_height,
-                    floor_shade=street_shade + POOL_SHADE_STEP,
-                    wall_shade=street_shade + POOL_SHADE_STEP),
+                    floor_z=floor_z, clear_height=clear_height),
     ).room(
-        "pool", [(0, 0), (size, 0), (size, size), (0, size)],
-        role="detail", faces=dict(COMPASS),
+        "pool", outline,
+        role="detail", faces={f"edge{index}": index
+                               for index in range(POOL_SIDES)},
         frame=Frame(origin_x, origin_y),
+        intent={"light_pool": name, "generated_surfaces": ["floor"]},
         region_kwargs={"sector_behavior": behavior} if behavior else {},
         note=f"light pool: {name}",
     )
-    for face in ("north", "east", "south", "west"):
-        city.connect(room.face(face), street_room.face("north"),
-                     connection_id=f"connection:pool_{name}_{face}")
+    for index in range(POOL_SIDES):
+        city.connect(room.face(f"edge{index}"), street_room.face("north"),
+                     connection_id=f"connection:pool_{name}_{index}")
     return room
 
 

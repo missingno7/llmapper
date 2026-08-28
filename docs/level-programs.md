@@ -86,6 +86,17 @@ call and changes one sprite; nothing else in the compiled MAP moves. The
 constructors are `bloodmap.vocabulary`'s, so their corpus support travels with
 them — see [the authoring vocabulary](authoring-loop.md).
 
+## Shared semantics after lowering
+
+Some reusable semantics operate on the lowered `PlanarLayout` because they need
+the final connections or placements.  They are still source-level declarations,
+not post-MAP tweaks: rooms declare light sources through `Room.light_source()`
+or `emits_light=True`; the compiler applies LightBomb.  Door rooms declare their
+native motion through `doors.z_motion_door()` in `region_kwargs`; a project then
+runs `aperture.frame_z_doors()` before its final `layout.compile()` so the
+compiler owns the reveal geometry and art-aligned leaf.  See the [shared
+authoring toolkit](authoring-toolkit.md) for the complete routing rule.
+
 ## The escape hatch
 
 `Room.raw(note, apply)` runs arbitrary work against the lowered `PlanarLayout`,

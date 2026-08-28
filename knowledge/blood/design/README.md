@@ -25,6 +25,18 @@ They are retrieval, not prefabs.
 
 See [docs/door-affordances.md](../../../docs/door-affordances.md).
 
+## How this knowledge reaches a map
+
+This directory is a retrieval surface, not a second authoring language.  A map
+uses it through the shared constructors: `art` supplies tile dimensions,
+`surfaces`/`materials` carry finish vocabulary, `decoration` supplies attested
+appearance, `doors`/`aperture` implement mechanism and leaf conventions, and
+`lightbomb` derives illumination from declared sources.  A project should record
+its one-off choice in source and its evidence in a report; a repeated need must
+be promoted to the relevant `bloodmap` constructor and regression test.  The
+[shared authoring toolkit](../../../docs/authoring-toolkit.md) gives the full
+routing and ownership rule.
+
 SP mechanism compositions from E2M2 (fan-out TX/RX, single motion gates) were
 searched on the 43-map campaign and stored in
 [`reports/E2M2-mechanism-patterns.json`](../../../reports/E2M2-mechanism-patterns.json).

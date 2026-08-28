@@ -237,3 +237,55 @@ joinable, nameable edges. Everything above would then follow, since they
 all want "the wall segment of face F" and nothing more.
 
 Owned by the grammar agent; nothing here patches `bloodmap`.
+
+## Reconciliation, after the grammar workstream landed
+
+Checked against the tree as it stands, not as it was when these were filed.
+
+**Answered:**
+
+- **#7 — non-zero stack translation.** `bloodmap/roomoverroom.py` now
+  documents the boundary as "a translation at a plane" and states that a
+  non-zero offset is legal. The city's parked sewer no longer needs its
+  hand-built justification, though it still uses its own builder (see #8).
+- **#9 — an object scale below the prefab layer.** `set-pieces-v1.json` is
+  in `knowledge/blood/design/`, and `bloodmap.prefab` carries thirteen
+  constructors. `projects/blood-city/level/setpieces.py` should now be
+  folded into it rather than maintained alongside.
+
+**Still open, and now more urgent than when filed:**
+
+- **#8 / #8b — `roomoverroom` still builds dead links.** The module has
+  `MARKER_STATNUM = 10` and `MARKER_TILE = 3997` at lines 65 and 67, and
+  writes both at line 139. Both are wrong, and the evidence has not
+  changed: `db.cpp PropagateMarkerReferences()` **deletes** every sprite on
+  `kStatMarker` (10) whose type is not off/axis/warpdest/on — which
+  includes stack types 11 and 12 — and it runs at the end of `dbLoadMap`,
+  before `warpInit` ever sees them. All 273 campaign stack markers sit on
+  **statnum 0** with tiles **2332** (upper) and **2331** (lower); 3997 is a
+  torch, which is what XMapEdit draws where the link should be.
+  This matters more now: `docs/authoring-toolkit.md` routes authors to
+  `roomoverroom` for linked volumes, so the next map to follow the guide
+  gets links that silently do nothing. Blood City hand-builds its three
+  stack pairs for exactly this reason and they work.
+
+**New:**
+
+## #11 — a face cannot report its free spans
+
+`Assembly.connect(room.face(a), room.face(b))` produces a connection with
+no explicit span, so nothing downstream can ask *which stretches of this
+wall are free*. `props.solid_faces` can only answer per whole face, which
+is too coarse: every leg of the sewer ring has a chamber or a corner on all
+four of its faces, so a per-face test rejects all of them while in fact
+each leg has ten or more plan units of bare wall.
+
+This blocks the run layer (`projects/blood-city/level/runs.py`) on exactly
+the spaces it exists for. Deriving the spans from the calling module's own
+tables got the failure count from twelve hanging sprites to four and no
+further; tightening the margins until it reached zero would have been luck,
+not knowledge, so the four ring legs ship bare and say so.
+
+What would close it: a face-declared connection recording the span it
+occupies, or `PlanarLayout` exposing `free_spans(region_id, face)`.
+Everything a run generator needs follows from that one answer.

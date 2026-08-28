@@ -21,7 +21,7 @@ from __future__ import annotations
 
 from bloodmap.levelprog import Frame, RECT_FACES, Style
 
-from bloodmap.doors import xsector_direct_use, z_motion_endpoints
+from bloodmap.doors import z_motion_door
 
 from materials import Material, BOARDWALK, FACADES, INTERIORS, MASONRY
 from resolution import GRADE, PU, STREET_SKY
@@ -257,9 +257,8 @@ def dress(city, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
                    clear_height=DOOR_HEIGHT)
     door = room("door", 13.5, 45.0, 14.0, 47.0, common,
                 "the hall's door onto the plaza", role="doorway",
-                rk={"type": 600, "door_face": 390, "inherit_finish": "both",
-                    "sector_behavior": {**z_motion_endpoints(GRADE, GRADE - 16384),
-                                        **xsector_direct_use()}})
+                rk={"type": 600, "door_face": 22, "inherit_finish": "both",
+                    "sector_behavior": z_motion_door(GRADE, GRADE - 16384)})
     # A doorway's jambs belong to the room that LOOKS at them.  Left on the
     # interior material, the hall's jamb put papered wall (108) on a surface
     # the plaza sees floor-to-sky; it takes the facade's opening tile.

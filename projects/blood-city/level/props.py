@@ -35,6 +35,7 @@ support floor.  That is what a prop MEANS:
 from __future__ import annotations
 
 import json
+import math
 import pathlib
 
 PLAYER_HEIGHT = 16960
@@ -82,6 +83,17 @@ ALPHABET = range(3808, 3834)
 #: exist.  They belong to `keysign.py` and to nothing else.
 KEY_EMBLEMS = frozenset(range(2540, 2546))
 
+#: Aquatic tiles, from `bloodmap.furniture.wet_only()`.  They are weed and
+#: bubbles, and `rules_blood.aquatic-sprite-is-under-water` wants the
+#: sector's XSECTOR `underwater` flag -- not merely a shallow `depth`.
+#: Gravesend has no true underwater volume, so nothing here may use them.
+def _wet_only():
+    from bloodmap.furniture import wet_only
+    return frozenset(wet_only())
+
+
+WET_ONLY = _wet_only()
+
 #: Terrain.  This one is a judgement, not a measurement, and is written
 #: down as such: rocks and boulders genuinely co-occur with plank walls in
 #: the campaign (they share rustic and cave spaces), so association alone
@@ -103,6 +115,12 @@ STREET_LAMP = 640     # stands on the ground, 62% of it outdoors
 CANDELABRA = 580
 DEAD_TREE = 540
 CHANDELIER = 1701
+
+# A wall sprite has no depth buffer separation from another sprite hung on the
+# same plane.  Keeping their anchors at least one player body width apart avoids
+# view-angle-dependent painter-order flicker while still allowing a deliberately
+# dense authored composition to opt out at the direct layout level.
+MIN_WALL_PROP_SPACING = 384
 
 
 def fields(tile: int, **overrides) -> dict:
@@ -145,7 +163,8 @@ def props_for(wall: int, floor: int, ceiling: int, *, limit: int = 8,
             if exclude_lights and tile in LIGHTS:
                 continue
             if (tile in SURFACE_TILES or tile in TERRAIN
-                    or tile in ALPHABET or tile in KEY_EMBLEMS):
+                    or tile in ALPHABET or tile in KEY_EMBLEMS
+                    or tile in WET_ONLY):
                 continue
             share = CATALOGUE[tile]["sky_share"]
             if sky is True and share < 0.25:
@@ -193,15 +212,80 @@ def face_segment(rect, face: str, *, inset: int = 256):
 
 
 def mount_on_wall(layout, placement_id: str, room, face: str,
-                  tile: int = FLAME, *, t: float = 0.5, **overrides) -> str:
-    """Hang a prop on one face of a rectangular room, at its own height."""
+                  tile: int = FLAME, *, t: float = 0.5,
+                  emits_light: bool | None = None,
+                  light_intensity: float | None = None, **overrides) -> str:
+    """Hang a prop on one face of a rectangular room, at its own height.
+
+    A flame is also an authored lighting source unless the caller explicitly
+    says otherwise.  This keeps the visual prop and the LightBomb source in one
+    declaration instead of rediscovering light from tile ids in a finishing
+    pass.
+    """
     a1, a2 = face_segment(room_rect(room), face)
     region_id = getattr(room, "region_id", None) or room.id
+    if emits_light is None:
+        emits_light = tile == FLAME
+    t = safe_wall_fraction(layout, region_id, a1, a2, t)
     return layout.place_on_wall(
         placement_id, region_id, a1=a1, a2=a2, t=t,
         height_player_heights=height_of(tile),
         offset_player_widths=0.10,
+        emits_light=emits_light,
+        light_intensity=light_intensity,
         **fields(tile, **overrides))
+
+
+def safe_wall_fraction(layout, region_id: str, a1, a2, preferred: float,
+                       *, spacing: float = MIN_WALL_PROP_SPACING) -> float:
+    """Choose a non-overlapping anchor on a wall segment when one is available.
+
+    Wall-aligned sprites are coplanar by design.  If two placements overlap on
+    one wall, Build's painter order can make them swap in front of each other as
+    the view moves.  Existing wall anchors on that physical wall (including
+    signs and anchors whose logical regions compile into one sector) therefore
+    reserve a short run of their supporting line.  This is only an automatic
+    safeguard for ordinary props; a specialised composition can call
+    ``layout.place_on_wall`` directly and state its own layering deliberately.
+    """
+    ax, ay = (float(a1[0]), float(a1[1]))
+    bx, by = (float(a2[0]), float(a2[1]))
+    dx, dy = bx - ax, by - ay
+    length = math.hypot(dx, dy)
+    if length <= 1.0:
+        return float(preferred)
+    ux, uy = dx / length, dy / length
+
+    reserved: list[float] = []
+    for placement in layout.placements:
+        if not placement.anchor:
+            continue
+        anchor = placement.anchor
+        if anchor.get("kind") != "wall":
+            continue
+        px = float(anchor["a1"][0]) + (
+            float(anchor["a2"][0]) - float(anchor["a1"][0])
+        ) * float(anchor.get("t", 0.5))
+        py = float(anchor["a1"][1]) + (
+            float(anchor["a2"][1]) - float(anchor["a1"][1])
+        ) * float(anchor.get("t", 0.5))
+        # The point must lie on this infinite supporting line and within this
+        # segment's useful extent.  That also catches a sign whose segment is a
+        # differently inset copy of the same wall.
+        normal = abs((px - ax) * uy - (py - ay) * ux)
+        along = (px - ax) * ux + (py - ay) * uy
+        if normal <= 1.0 and -spacing <= along <= length + spacing:
+            reserved.append(along)
+    if not reserved:
+        return max(0.0, min(1.0, float(preferred)))
+
+    candidates = [max(0.12, min(0.88, float(preferred)))]
+    candidates.extend(i / 10 for i in range(1, 10))
+    best = max(
+        candidates,
+        key=lambda value: min(abs(value * length - other) for other in reserved),
+    )
+    return float(best)
 
 
 def stand_on_floor(layout, placement_id: str, region_id: str,

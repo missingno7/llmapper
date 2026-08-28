@@ -30,9 +30,9 @@ Three lessons from elsewhere land here:
 
 from __future__ import annotations
 
-from bloodmap.doors import (xsector_direct_use, xsector_remote_rx,
-                            z_motion_endpoints)
+from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
+from bloodmap.slope import SlopeSpec
 
 import keysign
 import setpieces
@@ -49,6 +49,10 @@ DOOR_H = 31744            # the campaign's median door opening
 CONCOURSE_H = 65536       # 3.86 player heights: E4M9's concourse
 UNIT_H = 28672            # 1.69: E4M9's retail units
 SERVICE_H = 24576
+# A concourse is a hall, not an extra-wide room.  This shallow clerestory-like
+# pitch supplies the missing interior volume while leaving every shop front
+# and portal at its existing clear height.
+CONCOURSE_PITCH = 8192
 
 #: The key the service corridor needs.  2 is the eye; its placard is 2541
 #: and its item is sprite type 101.
@@ -107,7 +111,7 @@ def build(city, market_st):
     arcade = city.assembly(
         "gravesend_arcade",
         style=Style(**INTERIORS["common"].style_kwargs(
-            floor_z=GRADE, clear_height=CONCOURSE_H, floor_shade=26)),
+            floor_z=GRADE, clear_height=CONCOURSE_H)),
         note="the Gravesend Arcade: E4M9's concourse, E6M1's shopfronts",
     )
     rooms: dict = {}
@@ -121,8 +125,7 @@ def build(city, market_st):
             region_kwargs={**material.region_kwargs(), **(rk or {})},
             note=note)
         made.surfaces(**material.style_kwargs(floor_z=floor_z,
-                                              clear_height=clear,
-                                              floor_shade=26))
+                                              clear_height=clear))
         rooms[name] = made
         return made
 
@@ -131,7 +134,12 @@ def build(city, market_st):
         # at rest -- which is what "locked" means.  The geometry audit
         # rightly flags a room with no walkable-at-rest exit unless it is
         # DECLARED as gated, so declare it rather than weaken the lock.
-        rk = {"declared_zero_exit": True} if name == "service" else None
+        rk = {"declared_zero_exit": True} if name == "service" else {}
+        if name == "concourse":
+            # Hinge on the long west edge so the roof pitch reads along the
+            # public route, not across individual shop fronts.
+            rk["ceiling_slope"] = SlopeSpec(
+                hinge=((x0, y1), (x0, y0)), rise_z=-CONCOURSE_PITCH)
         make(name, x0, y0, x1, y1, key, clear, note, rk=rk)
 
     # Each unit reaches the concourse through its own neck, so the frontage
@@ -165,10 +173,8 @@ def build(city, market_st):
     entry_y0, entry_y1 = 45568, 46592
     door = make("entry_door", 40192, entry_y0, 40448, entry_y1, "common", 0,
                 "the arcade entrance", role="doorway",
-                rk={"type": 600, "door_face": 390, "inherit_finish": "both",
-                    "sector_behavior": {
-                        **z_motion_endpoints(GRADE, GRADE - DOOR_H),
-                        **xsector_direct_use()}})
+                rk={"type": 600, "door_face": 22, "inherit_finish": "both",
+                    "sector_behavior": z_motion_door(GRADE, GRADE - DOOR_H)})
     door.surfaces(wall_picnum=facade.opening, floor_z=GRADE, clear_height=0)
     porch = make("entry_porch", 39936, entry_y0, 40192, entry_y1, "common",
                  DOOR_H, "the arcade reveal", role="gateway")
@@ -186,12 +192,10 @@ def build(city, market_st):
     key_door = make("service_door", 51712, entry_y0, 51968, entry_y1,
                     "service", 0, "the service door: needs the eye key",
                     role="doorway",
-                    rk={"type": 600, "door_face": 390,
+                    rk={"type": 600, "door_face": 22,
                         "inherit_finish": "both",
-                        "sector_behavior": {
-                            **z_motion_endpoints(GRADE, GRADE - DOOR_H),
-                            **xsector_direct_use(),
-                            **keysign.door_fields(SERVICE_KEY)}})
+                        "sector_behavior": z_motion_door(
+                            GRADE, GRADE - DOOR_H, key=SERVICE_KEY)})
     key_door.surfaces(wall_picnum=MASONRY.wall, floor_z=GRADE, clear_height=0)
     arcade.connect(key_door.face("west"), rooms["concourse"].face("east"),
                    connection_id="connection:arcade_service_in")

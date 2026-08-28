@@ -27,7 +27,24 @@ Verified field fragments (not complete doors):
 ```text
 bloodmap.doors.xsector_direct_use(key=None|1..7)
 bloodmap.doors.xsector_remote_rx(rx_id)
+bloodmap.doors.z_motion_door(floor_z, open_ceiling_z,
+                              interaction="direct"|"remote"|"both", ...)
 ```
+
+`z_motion_door` is the normal constructor for type-600 rising doors.  It adds
+both motion endpoints **and** the campaign-backed `busy_time_a/b=5` default.
+With both fields zero, NBlood changes the sector state immediately; a map that
+only called `z_motion_endpoints` therefore has an instant door, not a fast one.
+For a dual lever-and-push door use `interaction="both", rx_id=...`; composing
+`xsector_direct_use()` with `xsector_remote_rx()` directly clears the Use bits
+and silently produces remote-only interaction.
+
+Behaviour is only half the object.  A shut Z-door has zero height, so its leaf
+must be framed separately from the facade.  Apply
+`bloodmap.aperture.frame_z_doors(layout, art_sizes=...)` to ordinary declared
+rectangular Z-doors before compilation, or use `framed_door` for a bespoke
+opening.  The frame owns the bands around the leaf, preserves the room's facade
+above it, and snaps the open endpoint to a whole art-tile repeat.
 
 ## Five facets
 

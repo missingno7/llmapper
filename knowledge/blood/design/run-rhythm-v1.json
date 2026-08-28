@@ -1,0 +1,249 @@
+{
+ "$schema": "llmapper.run-rhythm",
+ "schema_version": 1,
+ "note": "Derived. A run is a sector at least 4 plan units long and 2.5x longer than wide; gaps are between consecutive items projected on the long axis.",
+ "runs_examined": 702,
+ "gaps_measured": 4755,
+ "gap_plan_units": {
+  "p10": 0.06,
+  "q1": 0.23,
+  "median": 0.5,
+  "q3": 1.25,
+  "p90": 2.99
+ },
+ "items_per_plan_unit": {
+  "p10": 0.16,
+  "median": 0.485,
+  "q3": 0.91,
+  "p90": 1.85
+ },
+ "tiles_seen_on_runs": [
+  [
+   624,
+   2943
+  ],
+  [
+   625,
+   1561
+  ],
+  [
+   104,
+   612
+  ],
+  [
+   795,
+   365
+  ],
+  [
+   805,
+   341
+  ],
+  [
+   17,
+   176
+  ],
+  [
+   660,
+   122
+  ],
+  [
+   640,
+   95
+  ],
+  [
+   1044,
+   91
+  ],
+  [
+   256,
+   84
+  ],
+  [
+   2621,
+   79
+  ],
+  [
+   580,
+   71
+  ],
+  [
+   1060,
+   63
+  ],
+  [
+   599,
+   61
+  ],
+  [
+   546,
+   61
+  ],
+  [
+   743,
+   60
+  ],
+  [
+   2290,
+   58
+  ],
+  [
+   18,
+   49
+  ],
+  [
+   641,
+   48
+  ],
+  [
+   2115,
+   45
+  ],
+  [
+   156,
+   43
+  ],
+  [
+   745,
+   37
+  ],
+  [
+   3812,
+   36
+  ],
+  [
+   791,
+   35
+  ],
+  [
+   668,
+   33
+  ],
+  [
+   191,
+   33
+  ],
+  [
+   112,
+   29
+  ],
+  [
+   664,
+   28
+  ],
+  [
+   1037,
+   26
+  ],
+  [
+   659,
+   26
+  ]
+ ],
+ "longest_runs": [
+  {
+   "map": "DWE3M2",
+   "sector": 675,
+   "length_plan": 232.0,
+   "items": 22,
+   "per_plan_unit": 0.095
+  },
+  {
+   "map": "DWE2M1",
+   "sector": 569,
+   "length_plan": 200.5,
+   "items": 34,
+   "per_plan_unit": 0.17
+  },
+  {
+   "map": "E1M3",
+   "sector": 284,
+   "length_plan": 166.0,
+   "items": 12,
+   "per_plan_unit": 0.072
+  },
+  {
+   "map": "E1M3",
+   "sector": 289,
+   "length_plan": 166.0,
+   "items": 15,
+   "per_plan_unit": 0.09
+  },
+  {
+   "map": "DWE1M2",
+   "sector": 368,
+   "length_plan": 156.0,
+   "items": 22,
+   "per_plan_unit": 0.141
+  },
+  {
+   "map": "DWE3M8",
+   "sector": 314,
+   "length_plan": 140.0,
+   "items": 26,
+   "per_plan_unit": 0.186
+  },
+  {
+   "map": "DWE3M8",
+   "sector": 313,
+   "length_plan": 139.0,
+   "items": 260,
+   "per_plan_unit": 1.871
+  },
+  {
+   "map": "DWE3M8",
+   "sector": 315,
+   "length_plan": 136.0,
+   "items": 747,
+   "per_plan_unit": 5.493
+  },
+  {
+   "map": "DWE3M4",
+   "sector": 872,
+   "length_plan": 134.0,
+   "items": 40,
+   "per_plan_unit": 0.299
+  },
+  {
+   "map": "E3M2",
+   "sector": 16,
+   "length_plan": 131.25,
+   "items": 45,
+   "per_plan_unit": 0.343
+  },
+  {
+   "map": "TEDE1M4",
+   "sector": 599,
+   "length_plan": 113.0,
+   "items": 29,
+   "per_plan_unit": 0.257
+  },
+  {
+   "map": "TEDE1M4",
+   "sector": 623,
+   "length_plan": 113.0,
+   "items": 6,
+   "per_plan_unit": 0.053
+  },
+  {
+   "map": "DWE3M10",
+   "sector": 391,
+   "length_plan": 110.0,
+   "items": 10,
+   "per_plan_unit": 0.091
+  },
+  {
+   "map": "DWE3M10",
+   "sector": 396,
+   "length_plan": 110.0,
+   "items": 19,
+   "per_plan_unit": 0.173
+  },
+  {
+   "map": "DWE3M4",
+   "sector": 636,
+   "length_plan": 110.0,
+   "items": 34,
+   "per_plan_unit": 0.309
+  }
+ ]
+}

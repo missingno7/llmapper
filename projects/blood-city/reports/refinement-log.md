@@ -1186,6 +1186,149 @@ a concourse. Sixteen signs, 123 letters, all placed.
 Build: 182 sectors / 1,210 walls / 297 sprites. 11/11 conformance, 16/16
 contract rows.
 
+## Iteration 23 — shared door semantics and retained authoring knowledge
+
+Owner: avoid losing a correction that the monastery had already made.  Blood
+City's thirteen type-600 doors used only `z_motion_endpoints` plus trigger
+bits.  Their native `busy_time_a` and `busy_time_b` were both zero, so NBlood
+changed state immediately.  The earlier reasoned-authoring project had already
+used 5/5 for every rising door; that fact was sitting in project-local helper
+copies instead of a reusable constructor.
+
+`bloodmap.doors.z_motion_door` now owns the complete normal declaration:
+motion endpoints, campaign-backed 5/5 travel time, and one explicit
+interaction choice (`direct`, `remote`, or `both`).  The dual case matters:
+merging `xsector_direct_use` with `xsector_remote_rx` in the old order cleared
+the direct-use bits, despite the source comment saying theatre doors supported
+both a push and a lever.  All Blood City doors use the new declaration; emitted
+sectors have `busy_time_a/b = 5`, and theatre channels 200–204 retain their Use
+bits as well as RX.
+
+The visual half of the monastery correction is now shared too.
+`bloodmap.aperture.frame_z_doors` turns each declared rectangular Z-door into
+frame -> leaf -> frame, preserves the surrounding facade, sizes the leaf to a
+whole number of its ART tile repeats, and moves the open endpoint to the same
+head height.  It added 26 frame sectors around the city's thirteen leaves.
+Observer views (`looks/doors-framed`) show the market entrance and canteen
+leaves inside masonry/reveal bands rather than a door texture filling the tall
+facade.
+
+The durable routing rule is now documented in
+[`docs/authoring-toolkit.md`](../../../docs/authoring-toolkit.md), with links from
+level programs, door affordances, the knowledge catalog and the repository
+README.  The rule is simple: search the shared grammar for the noun before
+adding a local helper; if the shared capability is absent, add a tested general
+case or a concrete grammar request.  Light sources follow the same path:
+declared sources -> LightBomb-generated base shades -> explicit overrides kept
+intact.
+
+Build: 208 sectors / 1,314 walls / 297 sprites. Native rule evaluation: 0
+errors.  26 observer frames generated (one parked-sector pose was intentionally
+skipped because its historical position is outside this build's sector map).
+
+## Iteration 24 — source-driven interiors and venue composition
+
+Owner: make Blood City's main interiors read as authored places while removing
+the last routine lighting numbers that prevented the shared lighting system
+from doing its work.
+
+`level/venue_detail.py` is a compact, deterministic venue layer rather than a
+second random dressing pass: eighteen wall details are selected only from the
+mined material-to-prop associations and mounted only on the owning room's
+solid wall.  It gives the saloon, parlor, Aldermack, arcade units, church and
+pump station repeatable visual cues while preserving the corpus-based 12%
+grime rule for ordinary rooms.  The map now has 317 sprites; none of the 18
+declared details fell back to an unsafe portal or missing room.
+
+The theatre, arcade, church and station no longer push a routine
+`floor_shade`/`wall_shade` through every interior.  Their baseline comes from
+the room description, and declared lamps drive LightBomb.  The station had
+been an especially clear failure: its fixed shade 22 prevented the new lamp
+from changing the observer view at all.  It now has two visible, wall-mounted
+brackets at the entry and stair head.  The shared light declaration gained an
+optional per-source intensity, used here at 2.5 for the maintained service
+fixtures; the build manifest records every source and strength.  This is the
+escape hatch for a larger fixture, not permission to tune its neighbouring
+surfaces by hand.
+
+The Aldermack auditorium and arcade concourse gained shallow hinged ceilings
+through `bloodmap.slope`, alongside the church nave roof.  This makes their
+height legible as volume rather than asking texture or shade to fake a roof.
+It preserves all portal clearances and reuses the shared hinge validation.
+
+Build: 208 sectors / 1,314 walls / 317 sprites. LightBomb: 24 semantic
+sources, 583 generated surfaces, 115 deliberate protected surfaces. Native
+rule evaluation: 0 errors. `look.py` wrote 22 named venue/station frames to
+`reports/looks/overhaul-final-lighting`; the historical `station_foot` pose is
+still correctly skipped because it lands in no sector. Focused shared
+regression suite: 121 passing tests.
+
+## Iteration 25 — visual attachment and the lower station ROR hand-off
+
+Owner: repair visible geometry, not compensate for it with a shade or a
+camera-specific placement.
+
+The seemingly instantaneous entrance problem had already been fixed at the
+mechanism level in Iteration 23, but the ordinary direct-use leaves still used
+tile 390: a 64x64 brown masonry tile.  `door-families-v1.json` identifies tile
+22 as the campaign's direct closed Z-door face (64x128).  The thirteen
+direct-use leaves now declare tile 22, so the shared aperture frame presents a
+wood-and-iron door rather than a flat patch of wall.  Motion remains the shared
+5/5 declaration; this change is only the visual material correction.
+
+The sewer review found one exact co-location: the flooded-room pickup and its
+water bubble were emitted at the same position.  The bubble was moved to its
+own wet-space anchor.  It also found a general failure mode: two logical rooms
+can lower onto the same physical wall, bypassing a same-room-only reservation.
+`props.mount_on_wall` now reserves the real supporting line for all ordinary
+wall props.  The post-build collision sweep finds no co-located visible
+sprites; its remaining close wall anchors are vertically separated lights and
+small details, confirmed by the narthex observer frame rather than guessed
+from distance alone.
+
+The reported ROR defect was the *bottom* pumping-station hand-off.  Its lower
+marker sector had a ceiling at 49,152 while `station_foot` opened at 28,672,
+making a 20,480-unit discontinuity inside the ROR transition.  A shared
+`STATION_STACK_PLANE` now defines both ceilings at 40,960.  The cellar stair is
+an eight-riser flight that ends at the matching lowered cellar, retaining
+20,480 units of clearance under the normal sewer roof and a normal 4,096-unit
+step only at the ordinary station-foot portal.  The source move initially
+exposed an unpaired portal candidate; correcting the cellar's position to the
+actual stair arrival made the topology explicit rather than hiding it.
+
+Build: 206 sectors / 1,306 walls / 317 sprites. LightBomb: 24 semantic
+sources, 581 generated surfaces, 115 protected surfaces. The lower ROR marker
+and `station_foot` both emit ceiling 40,960. `look.py` wrote focused frames to
+`reports/looks/visual-defects-fixed` and a church wall audit to
+`reports/looks/wall-audit`.
+
+## Iteration 26 — street lamps acquire a visible pool
+
+Owner: a street lamp must read as a light source in the world, not merely as a
+bright sprite standing on an unchanged road.
+
+The first attempt increased lamp intensity but produced no floor change: a
+floor-mounted sprite placed its LightBomb origin exactly on the floor plane, so
+downward rays had no surface to hit.  The shared `LightSourceSpec` now accepts
+an optional source height for a placement.  Street lamps remain seated on the
+ground, while their declared bulb is generated at 0.5 player heights above it.
+Their outdoor source intensity is 2.0, recorded in the manifest and converted
+by LightBomb rather than by a hand-authored shade.
+
+Each lamp sector is now a four-sided diamond approximation of a circle.  A
+fully faceted octagon would make each portal narrower than Build's 1,024-unit
+walkable threshold; the diamond keeps all four joins walkable and avoids
+changing the city's established street topology.  The pool opts its floor into
+`generated_surfaces`, so inherited road shade is not protected from its own
+declared source.  Emitted pool floors are shade 17 against nearby street floors
+30–36, giving the lamp a stable, readable local patch while retaining the
+road texture.
+
+The observer's point-in-sector helper also now respects carved holes, which
+keeps close lamp-pool poses from being incorrectly assigned to their host
+street.  `reports/looks/street-lamp-pools-final` contains three valid close
+frames; the yard frame shows both the bulb and its lit diamond at the approach.
+
 ### Where to take it next
 
 Ordered by measured gap rather than by taste:
@@ -1246,3 +1389,103 @@ eight next steps ordered by measured gap.
 
 Build: 182 sectors / 1,210 walls / 297 sprites. 11/11 conformance, 16/16
 contract rows.
+
+## Iteration 23 — the rule registry wired, and the run layer
+
+Re-read the repo first: the grammar workstream had landed 123 files and had
+edited this project's own level modules, adopting `aperture.frame_z_doors`
+for all thirteen Z-doors. The build was 206 sectors before I touched it.
+
+### The two audit findings, remeasured
+
+**Openings.** The owner's figure — 107 of 109 indoor openings over the
+grammar's limit, median 4.4 — predates that adoption. Running the grammar's
+*own* `aperture.audit` against the current build gives **37 findings**: 25
+lintels that do not continue the facade's tile, and 13 leaves over
+`DOOR_MAX` (2.5 humans) that are not named. Real, and smaller than
+reported. Not yet fixed — see below.
+
+**`rules.evaluate`.** Not in the build path, and worse than unused: it
+returns **nothing at all** unless `bloodmap.rules_blood` has been imported,
+because the registry is populated by that import's side effect. A bare
+`evaluate` reports zero diagnostics on any map, which reads as a clean bill
+of health. Wired now, with the import made explicit and commented.
+
+What it found immediately, all of which is now fixed:
+
+- **error x2, `stack-portal-wears-the-mirror-tile`.** The cellar pit's
+  stack pair wore an ordinary service floor. `mouth_pair` *accepted* a
+  `see_through` argument and never used it — the flag was inert, and the
+  rule is sourced from `mirrors.cpp IsRorSector`: without the mirror tile
+  the link still moves the player, who crosses it blind.
+- **warning x12, `aquatic-sprite-is-under-water`.** The weed and bubbles I
+  had gated on "wet" needed the sector's XSECTOR `underwater` flag, not a
+  shallow `depth`. Gravesend has no true underwater volume, so they are
+  gone. `props.WET_ONLY` was documented and never actually applied — the
+  exclusion list I wrote a session ago checked four other sets and not that
+  one.
+
+98 diagnostics with 2 errors and 13 warnings, down to **84 with none and
+one**. The remaining warning is a wall thinner than the corpus likes.
+
+Two conformance rows broke on the way and both were the same shape: the
+street-component row sums the build manifest, and the manifest has now
+gained a list, two structured records and a count that is real but not
+street-joined. It names the keys it means now.
+
+### The run layer
+
+`projects/blood-city/level/runs.py`. A run is a span plus its context that
+emits a rhythm of detail; the unit is the run, not the object.
+
+- **Rhythm is corpus-calibrated.** `tools/mine_run_rhythm.py`: 702 runs,
+  4,755 gaps, median gap 0.5 plan units, **0.485 items per plan unit** —
+  one thing every 2.06 units. That is `EVERY_PLAN`, and the q1/p90 bound
+  what a caller may ask for without saying why.
+- **Variation is deterministic**, seeded from the run's name and the beat
+  index. Proven by rebuilding twice and diffing: byte-identical.
+- **Cost is declared before emission.** `estimate` returns the walls a run
+  will add; a sprite element costs nothing, a carved one eight.
+- **The parameter range is the unit of test.** Verified at lengths 1, 2, 3,
+  5, 10, 17, 40, 60: no beat at either end, spacing never zero, converging
+  to 2.07 against the campaign's 2.06. Beats are placed at
+  `inset + usable*(i+0.5)/count`, not `i*every` — the latter is what left a
+  gap between every pair of `sprite_bridge`'s planks.
+- **Repetition is capped** at two identical beats before the run must vary.
+
+Two bugs it caught in me. Element `kind` is now read from the measured prop
+catalogue rather than declared: I had called tile 795 a wall element and the
+compiler correctly refused it, because it carries floor alignment and a
+floor sprite on a wall hangs in the air. And runs now keep clear of their
+own ends, because the first sewer runs put their last beat exactly on a
+corner join.
+
+### What the first application could not do, and why
+
+The sewer's four long legs ship **bare**. They are joined to their corners
+and chambers by *face* connections, which carry no explicit span, so nothing
+can say which stretches of a leg wall are free — and a per-face test
+rejects all four, since each has something on all four faces. Deriving the
+spans from this module's own tables got twelve hanging sprites down to four
+and no further. Tightening margins until the count reached zero would have
+been luck, so the legs stay bare and grammar request **#11** asks for
+free-span reporting on a face. Eight runs, fourteen beats, zero walls,
+placed on the corners and chambers where the faces can be proven solid.
+
+### Grammar requests reconciled
+
+**#7** (non-zero stack translation) and **#9** (object scale) are answered.
+**#8/#8b are not**, and now matter more: `roomoverroom.py` still writes
+`MARKER_STATNUM = 10` and `MARKER_TILE = 3997`, so every link it builds is
+dead — and `docs/authoring-toolkit.md` now routes authors to it.
+
+Build: 206 sectors / 1,306 walls / 323 sprites. 11/11 conformance, 16/16
+contract rows, 84 rule diagnostics with no errors.
+
+### Not done in this pass
+
+The 37 aperture findings are measured and unfixed: naming 13 leaves and
+making 25 lintels continue their facade is the next job, and it is the
+owner's original fault still standing. The module reconciliation is
+partial — `keysign.py`, `materials.py` and `setpieces.py` still duplicate
+`bloodmap.keys`, `surfaces` and `prefab`.
