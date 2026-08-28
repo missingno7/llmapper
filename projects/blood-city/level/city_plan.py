@@ -151,8 +151,14 @@ BLOCKS = [
      "rect": (X_C, Y_R3, X_SPUR, Y_QUAY), "notches": []},
     {"id": "kiosk", "district": "theatre_row", "role": "free_standing",
      "rect": (28.25, 12.25, 29.75, 13.75), "notches": []},    # 1.5 pu (CN 2 small)
+    # Widened from 2.0 to 2.375 plan units (2,432) so the composition has a
+    # face to carry lettering a player can read from the spawn eleven plan
+    # units away.  2.0 was the campaign's MEDIAN monument base
+    # (monuments-v1.json: median 2.0, q1 1.5, q3 3.25), so this is between
+    # its median and its q3 -- and 2,432 is the top of CN 2's free-standing
+    # band, which `plan_review` checks at 700..2,500.
     {"id": "monument", "district": "market_slip", "role": "free_standing",
-     "rect": (25, 44, 27, 46), "notches": []},                # 2 pu
+     "rect": (24.8125, 43.8125, 27.1875, 46.1875), "notches": []},   # 2.375 pu
     {"id": "gatehouse", "district": "foundry_ward", "role": "free_standing",
      "rect": (52, 19, 54.25, 21.25), "notches": []},          # 2.25 pu
 ]

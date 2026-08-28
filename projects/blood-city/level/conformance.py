@@ -68,6 +68,8 @@ def main() -> int:
     program = build_skeleton.build()[0]
     declared = citytree.venues(program)
     slots = {v["id"]: v for v in data["venues"]}
+    slots.update({b["id"]: dict(b, type=b["role"])
+                  for b in data["blocks"] if b["role"] == "free_standing"})
     missing = sorted(set(slots) - set(declared))
     unplanned = sorted(set(declared) - set(slots))
     doubled = sorted(k for k, v in declared.items() if len(v) > 1)
@@ -77,7 +79,7 @@ def main() -> int:
         if k in slots and getattr(nodes[0], "l1_type", None) != slots[k]["type"])
     built = [k for k, nodes in declared.items()
              if getattr(nodes[0], "built_by", "") != "(planned)"]
-    row("L1 venues with a node", len(slots), len(declared),
+    row("L1 venues and masses with a node", len(slots), len(declared),
         not missing and not unplanned and not doubled and not mismatched,
         f"{len(built)} built, {len(declared) - len(built)} declared and not "
         f"built yet"

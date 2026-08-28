@@ -5,7 +5,8 @@
   "stack_mouths_at_grade": 1,
   "grate_kerb": 1,
   "light_pools": 9,
-  "market_furniture": 7,
+  "market_furniture": 8,
+  "monument_tiers": 3,
   "venue_details": {
     "wall_details": 12,
     "light_sources": 2,
@@ -21,11 +22,11 @@
   },
   "door_frames": 13,
   "lighting": {
-    "lights": 24,
-    "rays_cast": 446582,
-    "surfaces_lit": 631,
-    "surfaces_protected": 148,
-    "walls_lit": 550,
+    "lights": 25,
+    "rays_cast": 460716,
+    "surfaces_lit": 655,
+    "surfaces_protected": 152,
+    "walls_lit": 573,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
@@ -51,6 +52,7 @@
       "light:lamp_6",
       "light:lamp_7",
       "light:lamp_8",
+      "light:monument:flame",
       "light:venue:station:hall:0",
       "light:venue:station:hall:1"
     ],
@@ -77,6 +79,7 @@
       "light:lamp_6": 2.0,
       "light:lamp_7": 2.0,
       "light:lamp_8": 2.0,
+      "light:monument:flame": 3.0,
       "light:venue:station:hall:0": 2.5,
       "light:venue:station:hall:1": 2.5
     },
@@ -89,7 +92,8 @@
       "light:lamp_5": 0.5,
       "light:lamp_6": 0.5,
       "light:lamp_7": 0.5,
-      "light:lamp_8": 0.5
+      "light:lamp_8": 0.5,
+      "light:monument:flame": 0.6
     }
   },
   "sewer_mouths": {
@@ -101,9 +105,9 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 386,
-    "wall_sprites": 201,
-    "planes": 35,
+    "sprites": 407,
+    "wall_sprites": 219,
+    "planes": 36,
     "clashing_pairs": 0,
     "sprites_involved": 0,
     "clash_rate_per_100_wall_sprites": 0.0,

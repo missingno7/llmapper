@@ -2186,3 +2186,114 @@ pairs, byte-identical rebuild.
   redundant given the path, harmless, not worth a rename pass.
 * The two unbuilt venues are declared and still unbuilt. That is the point
   of the state, but it is a to-do list with two entries on it.
+
+
+## Iteration 30 — the monument, and why its name will not carry to the spawn
+
+### Mined first
+
+`tools/mine_monuments.py` detects a monument rather than listing one: a
+chain of raised sectors under open sky, each tier's footprint strictly
+inside the one below. **421 of them across 66 maps.** Both of the questions
+worth asking have answers:
+
+* **The stepped base.** Two tiers is the norm -- **389 of 421** -- and three
+  is the rich version (30). A tier rises a median **0.42 player heights**
+  (q1 0.18, q3 0.97). The base runs a median **2.0 plan units** (q1 1.5,
+  q3 3.25) and the top **0.62** (q1 0.44, q3 1.25), so a top is about a
+  third of its base.
+* **The figure.** There is none. Only **77 of 421** carry anything at all,
+  and what they carry is *light*: 23 of the statuary sprites are one
+  invisible generator (type 709, tile 2520, cstat 32896 -- 1,930 of them
+  campaign-wide), the rest torches and lamps. **Blood has no
+  figure-on-a-plinth idiom**, so this monument does not invent one. Its apex
+  carries a flame, and the flame is what lights the plaza.
+
+The declared footprint was already the campaign's **median** monument base
+(2.0 plan units). It was widened to 2.375 -- between the median and the q3,
+and 2,432 units, the top of CN 2's free-standing band, which `plan_review`
+checks at 700..2,500.
+
+### Built through the kit
+
+`templates.monument` places three tiers: base 2,432 at 0.09 heights, plinth
+1,792 at 0.72, pedestal 1,024 at 0.72. Total **1.54 player heights**.
+`citytree zoom monument` reads:
+
+```
+- base      the base: one step up off the plaza
+- plinth    the plinth: the face the city is named on
+- pedestal  the pedestal: what the flame stands on
+```
+
+Three things the composition taught, each found by building it:
+
+* **The base must fill the hole the street cut, exactly.** The street
+  chamfers every convex corner of a free-standing mass by 512, so a square
+  base partly overlaps an octagonal hole. The base takes the street's own
+  outline and joins all eight edges.
+* **The plinth is 1,792, not 2,048**, because the base's chamfer runs
+  x+y = 1,920 from centre and a 2,048 square pokes through it.
+* **A step is not an opening, and it is not a doorway either.** The letters
+  belong to the BASE looking at the plinth's wall, not to the plinth: from
+  the plinth's side everything above its own floor is open and the compiler
+  is right to refuse a sprite there; from the base's side the same wall is
+  12,288 units of solid masonry. And the jamb rule had to be turned off for
+  it -- with `MASONRY`'s own opening tile the city's name was carved on
+  brown boards.
+
+### The lettering, and the register
+
+`fascia`, uniform, both lines. Not per-letter colour: only **9 of the
+corpus's 160 signs** mix palettes -- 5.6% -- and every one of them is in an
+attraction map (E1M4's carnival, DWE1M9's SPOOKY WORLD, DWE3M4 and
+DWE3M10's ICE). A civic monument is not a fairground. `fascia`'s own
+attested word is **WELCOME**.
+
+### The finding: the name cannot carry to the spawn, and here is the number
+
+Build's z axis is a sixteenth of its xy axis, so a letter's apparent height
+is `(size << 2) * 11 / 16`. The spawn is **11,229 units** from the monument:
+
+| size | face needed for GRAVESEND | subtends at the spawn |
+|---|---|---|
+| 64 (what fits) | 1,613 | **0.90 degrees** |
+| 96 | 2,419 | 1.35 |
+| 120 | 3,024 | 1.68 |
+
+The plinth's face is **1,792 units**, which caps the lettering at size 64.
+Reading it from the spawn wants roughly size 120, which wants a
+**3,024-unit face** -- 21% wider than CN 2's 2,500-unit ceiling for a
+free-standing mass and 69% wider than the chamfered base allows.
+
+**So the city's name cannot be read from the spawn on any free-standing mass
+CN 2 permits.** It reads from about five plan units in
+(`reports/looks/monument2/frames/monument_read.png`) and it reads plainly at
+the steps (`monument_close.png`). From the spawn what carries is the flame,
+which is exactly why the campaign's monuments carry lights.
+
+The recommendation for the opening-view pass, filed in the review queue: the
+name belongs on the **market hall's frontage** facing the plaza -- a
+building has no band ceiling -- with the monument staying the lit landmark
+in front of it.
+
+### The sweep
+
+Free-standing masses are declared exactly as venues are and were the class
+that went unbuilt in silence. The plan-to-tree correspondence covers both
+now, so the list is visible: **13 declared, 13 with a node, 4 of them
+placeholders** -- `ferry_office`, `gatehouse`, `kiosk`, `workshop_bar`.
+
+### Build
+
+**229 sectors / 1,498 walls / 407 sprites.** 13/13 conformance rows, 16/16
+contract rows, 5/5 tree properties, 219 wall sprites with 0 clashing pairs,
+byte-identical rebuild.
+
+### Not done
+
+* The kiosk and the gatehouse are declared and still unbuilt. They are
+  visible now, which is the change; building them is not this pass.
+* The opening view itself: a street lamp stands in the foreground of the
+  spawn frame and the plaza reads dark. That is the frame, not the monument,
+  and it is worth its own pass.

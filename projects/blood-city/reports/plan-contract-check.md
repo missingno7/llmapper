@@ -7,12 +7,12 @@ row is a plan bug (layer directive); green advances to Phase 1c.
 |---|---|---|---|
 | street loops 6..9 (CN 2) | 6 graph faces + 3 free-standing = 9 | **PASS** | derived: E-V+1 on EDGES + free_standing BLOCKS |
 | 2-3 superblocks at 24k..32k (CN 2) | [29696, 32768] | **PASS** | derived: BLOCKS role=superblock extents |
-| small free-standing masses ~768..2432 (CN 2) | [1536, 2048, 2304] | **PASS** | derived: BLOCKS role=free_standing extents |
+| small free-standing masses ~768..2432 (CN 2) | [1536, 2304, 2432] | **PASS** | derived: BLOCKS role=free_standing extents |
 | mid blocks inside precedent spread (CN 2) | [10240, 12288, 14336, 14336] | **PASS** | derived: BLOCKS role=block extents |
-| main streets 5120..7168, alleys 1024..2048 (CN 1) | {'street': 5120, 'lane': 3072, 'row': 6144, 'avenue': 7168, 'alley': 2048} | **PASS** | resolution.WIDTH_UNITS vs CN 1 bands |
+| main streets 5120..7168, alleys 1024..2048 (CN 1) | {'lane': 3072, 'avenue': 7168, 'alley': 2048, 'street': 5120, 'row': 6144} | **PASS** | resolution.WIDTH_UNITS vs CN 1 bands |
 | one plaza/forecourt/square/yard per district (CN 1) | {'market_slip': 'plaza', 'theatre_row': 'forecourt', 'old_crossing': 'cemetery', 'foundry_ward': 'yard'} | **PASS** | derived: AREAS by district |
 | avenue canyon 1.7..2.1 (CN 1) | 1.71 | **PASS** | resolution.STREET_SKY over avenue width |
-| substantial interiors 0.13..0.37 per 10240 frontage (CN 3) | 10 venues / 615k = 0.17 | **PASS** | derived: VENUES over block+boundary frontage |
+| substantial interiors 0.13..0.37 per 10240 frontage (CN 3) | 10 venues / 617k = 0.17 | **PASS** | derived: VENUES over block+boundary frontage |
 | doorways 0.23..1.17 per 10240 frontage (CN 3) | 23 -> 0.38 | **PASS** | derived: VENUES doorways + sewer entries |
 | venue mix: landmark complex + bar + walk-through + open-front (VP) | ['bar', 'church_complex', 'landmark_complex', 'open_front', 'retail_row', 'walk_through'] | **PASS** | VENUES types vs venue-patterns.md |
 | sewer entries ~0.02..0.04 per 10240 frontage, forms drop+stair (SP) | 2 (['drop', 'stair']) -> 0.033 | **PASS** | SEWER entries over frontage |

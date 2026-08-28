@@ -43,16 +43,16 @@
       "map": "SKELETON",
       "game": "blood",
       "budget": {
-        "sectors": 226,
-        "walls": 1466,
-        "sprites": 386
+        "sectors": 229,
+        "walls": 1498,
+        "sprites": 407
       },
       "street": {
-        "sectors": 24,
-        "area": 2914451456,
-        "area_share_of_map": 0.776,
+        "sectors": 25,
+        "area": 2914910208,
+        "area_share_of_map": 0.775,
         "width_units": {
-          "n": 2725,
+          "n": 2729,
           "min": 512.0,
           "p10": 3072.0,
           "median": 5632.0,
@@ -60,7 +60,7 @@
           "max": 59520.0
         },
         "width_player_widths": {
-          "n": 2725,
+          "n": 2729,
           "min": 1.3,
           "p10": 8.0,
           "median": 14.7,
@@ -68,14 +68,14 @@
           "max": 155.0
         },
         "canyon_ratio": {
-          "n": 2709,
+          "n": 2685,
           "min": 0.21,
           "p10": 0.25,
-          "median": 2.18,
+          "median": 2.23,
           "p90": 4.0,
           "max": 24.0
         },
-        "samples": 2725
+        "samples": 2729
       },
       "street_detection": {
         "indoor_link_merged": 0,
@@ -85,6 +85,20 @@
             "area": 7602176,
             "sample": [
               95
+            ]
+          },
+          {
+            "sectors": 1,
+            "area": 2162688,
+            "sample": [
+              129
+            ]
+          },
+          {
+            "sectors": 1,
+            "area": 1048576,
+            "sample": [
+              130
             ]
           }
         ],
@@ -97,7 +111,7 @@
         "block_extent_units": {
           "n": 10,
           "min": 1536.0,
-          "p10": 2048.0,
+          "p10": 1792.0,
           "median": 13312.0,
           "p90": 32768.0,
           "max": 32768.0
@@ -105,7 +119,7 @@
         "block_area": {
           "n": 10,
           "min": 1835008.0,
-          "p10": 3670016.0,
+          "p10": 3211264.0,
           "median": 107855872.0,
           "p90": 435355648.0,
           "max": 435355648.0
@@ -222,14 +236,14 @@
           },
           {
             "label": 11,
-            "area": 3670016,
+            "area": 3211264,
             "bbox_units": [
-              2048,
-              2048
+              1792,
+              1792
             ],
             "centroid": [
-              26624.0,
-              46080.0
+              26496.0,
+              45952.0
             ]
           }
         ]
@@ -365,8 +379,8 @@
           {
             "wall": 722,
             "street_sector": 97,
-            "into_sector": 142,
-            "interior_component": 9,
+            "into_sector": 145,
+            "interior_component": 10,
             "width": 2048,
             "gap_z": 31744,
             "via_door_sector": false,
@@ -453,7 +467,7 @@
             "substantial": true
           },
           {
-            "interior_component": 9,
+            "interior_component": 10,
             "sectors": 9,
             "area": 36175872,
             "substantial": true
@@ -461,24 +475,35 @@
         ]
       },
       "facade": {
-        "facade_length_units": 746012,
-        "boundary_walls": 157,
-        "walls_per_1024": 0.22,
+        "facade_length_units": 746187,
+        "boundary_walls": 153,
+        "walls_per_1024": 0.21,
         "masked_windows": 1,
         "masked_windows_per_1024": 0.001,
         "red_wall_openings": 14,
         "red_wall_openings_per_1024": 0.019,
-        "wall_sprites_in_street": 14,
-        "wall_sprites_per_1024": 0.019,
-        "face_sprites_in_street": 32
+        "wall_sprites_in_street": 32,
+        "wall_sprites_per_1024": 0.044,
+        "face_sprites_in_street": 34
       },
       "verticality": {
         "skyline": {
-          "roof_sectors": 0
+          "roof_sectors": 1,
+          "height_xy_units": {
+            "n": 1,
+            "min": 1632.0,
+            "p10": 1632.0,
+            "median": 1632.0,
+            "p90": 1632.0,
+            "max": 1632.0
+          },
+          "area_weighted_median_xy": 1632,
+          "tallest_xy": 1632,
+          "tallest_in_standing_heights": 1.5
         },
-        "street_grade_z_median": 8192.0,
+        "street_grade_z_median": 8192,
         "street_grade_z_spread": {
-          "n": 24,
+          "n": 25,
           "min": 4122.0,
           "p10": 5120.0,
           "median": 8192.0,
@@ -487,7 +512,7 @@
         },
         "rooftop_sky_sectors": 0,
         "rooftop_area_share_of_street": 0.0,
-        "perched_outdoor_sectors": 0,
+        "perched_outdoor_sectors": 1,
         "below_grade_sectors": 53,
         "below_grade_area": 452198400,
         "stack_pairs": [
@@ -497,7 +522,7 @@
             "congruent": true,
             "overlaps_in_plan": false,
             "upper_sector": 86,
-            "lower_sector": 152
+            "lower_sector": 155
           },
           {
             "family": "stack",
@@ -505,7 +530,7 @@
             "congruent": true,
             "overlaps_in_plan": false,
             "upper_sector": 81,
-            "lower_sector": 150
+            "lower_sector": 153
           },
           {
             "family": "stack",
@@ -513,7 +538,7 @@
             "congruent": true,
             "overlaps_in_plan": false,
             "upper_sector": 79,
-            "lower_sector": 151
+            "lower_sector": 154
           }
         ]
       },
@@ -521,10 +546,10 @@
         {
           "zone": 0,
           "zone_floor_picnum": 352,
-          "street_sectors": 16,
-          "sectors": 181,
-          "walls": 1194,
-          "sprites": 281
+          "street_sectors": 17,
+          "sectors": 184,
+          "walls": 1226,
+          "sprites": 302
         },
         {
           "zone": 1,
@@ -677,7 +702,7 @@
   "summary": {
     "street_width_player_widths": {
       "SKELETON": {
-        "n": 2725,
+        "n": 2729,
         "min": 1.3,
         "p10": 8.0,
         "median": 14.7,
@@ -687,10 +712,10 @@
     },
     "canyon_ratio": {
       "SKELETON": {
-        "n": 2709,
+        "n": 2685,
         "min": 0.21,
         "p10": 0.25,
-        "median": 2.18,
+        "median": 2.23,
         "p90": 4.0,
         "max": 24.0
       }
@@ -702,7 +727,7 @@
       "SKELETON": {
         "n": 10,
         "min": 1536.0,
-        "p10": 2048.0,
+        "p10": 1792.0,
         "median": 13312.0,
         "p90": 32768.0,
         "max": 32768.0
@@ -717,19 +742,30 @@
     "substantial_interiors_per_10240_frontage": {
       "SKELETON": 0.12
     },
-    "skyline_height_xy": {},
-    "skyline_area_weighted_median_xy": {},
+    "skyline_height_xy": {
+      "SKELETON": {
+        "n": 1,
+        "min": 1632.0,
+        "p10": 1632.0,
+        "median": 1632.0,
+        "p90": 1632.0,
+        "max": 1632.0
+      }
+    },
+    "skyline_area_weighted_median_xy": {
+      "SKELETON": 1632
+    },
     "facade_walls_per_1024": {
-      "SKELETON": 0.22
+      "SKELETON": 0.21
     },
     "wall_sprites_per_1024": {
-      "SKELETON": 0.019
+      "SKELETON": 0.044
     },
     "budgets": {
       "SKELETON": {
-        "sectors": 226,
-        "walls": 1466,
-        "sprites": 386
+        "sectors": 229,
+        "walls": 1498,
+        "sprites": 407
       }
     }
   }

@@ -466,6 +466,124 @@ def font(narthex, *, material, grade: int, host_clear: int,
 
 
 # ---------------------------------------------------------------------------
+# the monument
+# ---------------------------------------------------------------------------
+#
+# `tools/mine_monuments.py` detects a monument as a chain of raised sectors
+# under open sky, each tier's footprint strictly inside the one below.  421
+# of them across 66 maps, and they answer both questions this composition
+# had to ask:
+#
+# * **How is a stepped base built?**  Two tiers is the norm (389 of 421) and
+#   three is the rich version (30).  A tier rises a median **0.42 player
+#   heights** (q1 0.18, q3 0.97).  The base runs a median **2.0 plan units**
+#   (q1 1.5, q3 3.25) and the top **0.62** (q1 0.44, q3 1.25) -- so the top
+#   is about a third of the base.
+# * **How is a figure stood?**  It is not.  Only 77 of the 421 carry
+#   anything at all, and what they carry is **light**: 23 of the statuary
+#   sprites are one invisible generator (type 709, tile 2520, cstat 32896),
+#   the rest torches and lamps.  Blood has no figure-on-a-plinth idiom, so
+#   this composition does not invent one -- the apex carries a flame, and
+#   the flame is what lights the plaza.
+
+#: The three tiers, as (footprint in units, rise in units).  The rises are
+#: 0.09 / 0.72 / 0.24 player heights: the first is a step onto the base, the
+#: second is the drum that carries the lettering, the third caps it.  0.09 is
+#: below the mined q1 of 0.18 and deliberately so -- it is a step, and a step
+#: over 4,096 cannot be walked onto.
+#: The plinth is 1,792 and not 2,048 because the base is CHAMFERED: the
+#: street cuts 512 off every convex corner of a free-standing mass, so the
+#: base's corner runs x+y = 1,920 from centre and a 2,048 square pokes
+#: through it.  896 + 896 = 1,792 clears it.
+MONUMENT_TIERS = (
+    ("base", 2432, 1536),
+    ("plinth", 1792, 12288),
+    ("pedestal", 1024, 12288),
+)
+
+
+def monument_cost() -> dict:
+    """Declared before anything is emitted."""
+    return {"sectors": len(MONUMENT_TIERS), "walls": 4 * len(MONUMENT_TIERS),
+            "sprites": 4,
+            "source": "monuments-v1.json: 421 tiered outdoor masses, 66 maps"}
+
+
+def monument(parent, street, outline, *, material, cap_material, grade: int,
+             clear_height: int, name: str = "monument", connector=None,
+             tiers=MONUMENT_TIERS):
+    """A stepped base, a lettered plinth and a pedestal, filling a street hole.
+
+    The street already carves the free-standing mass out of itself, so the
+    first tier FILLS that hole rather than cutting a new one; every tier
+    after it is carved out of the one below, which is the same
+    concentric discipline `setpieces.basin` uses and the only construction
+    where every coincident edge is a declared portal.
+
+    Returns the assembly. Its children are named for what they are.
+    """
+    import citytree
+    import setpieces
+
+    node = parent.assembly(
+        name,
+        note="the plaza monument: stepped base, lettered plinth, pedestal")
+    owner = connector or parent
+
+    # Tier 1 fills the hole the street already cut -- and it must fill it
+    # exactly.  The street chamfers every convex corner of a free-standing
+    # mass (512 units, which is where most of a Build city's diagonals come
+    # from), so a square base overlaps the octagonal hole partly and the
+    # compiler refuses it.  `outline` is the hole, in world units, and every
+    # one of its eight edges is joined -- the four chamfers included.
+    from bloodmap.levelprog import Frame
+
+    label, size, rise = tiers[0]
+    floor = grade - rise
+    points = [(int(px), int(py)) for px, py in outline]
+    ox = min(px for px, _py in points)
+    oy = min(py for _px, py in points)
+    base = citytree.make_room(
+        node, label, [(px - ox, py - oy) for px, py in points],
+        role="detail", frame=Frame(ox, oy),
+        faces={f"edge{index}": index for index in range(len(points))},
+        region_kwargs=material.region_kwargs(),
+        note=f"the {label}: one step up off the plaza")
+    base.surfaces(**material.style_kwargs(floor_z=floor,
+                                          clear_height=clear_height - rise))
+    # Compass names for the four axis-aligned edges as well, because
+    # `setpieces._rim` joins an inner tier to its host by naming a face and
+    # a chamfered octagon offers only `edge0`..`edge7`.
+    from bloodmap.levelprog import _compass_edges
+    local = [(px - ox, py - oy) for px, py in points]
+    base.faces.update(_compass_edges(local))
+    for index in range(len(points)):
+        owner.connect(base.face(f"edge{index}"), street.face("north"),
+                      connection_id=f"connection:{name}_{label}_{index}")
+
+    below, below_floor, below_size = base, floor, size
+    cx = (min(px for px, _p in points) + max(px for px, _p in points)) // 2
+    cy = (min(py for _p, py in points) + max(py for _p, py in points)) // 2
+    made = {label: base}
+    for label, size, rise in tiers[1:]:
+        half = size // 2
+        inner = (cx - half, cy - half, cx + half, cy + half)
+        floor = below_floor - rise
+        piece = setpieces.raised_solid(
+            node, label, below, inner,
+            cap_material if label == tiers[-1][0] else material,
+            grade=below_floor, rise=rise,
+            host_clear=clear_height - (grade - below_floor),
+            connector=owner,
+            note={"plinth": "the plinth: the face the city is named on",
+                  "pedestal": "the pedestal: what the flame stands on"}
+                 .get(label, f"the {label}"))
+        made[label] = piece
+        below, below_floor, below_size = piece, floor, size
+    return node, made
+
+
+# ---------------------------------------------------------------------------
 # the sprite level: what ends up on the shelf
 # ---------------------------------------------------------------------------
 

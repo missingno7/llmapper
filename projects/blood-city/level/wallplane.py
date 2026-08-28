@@ -334,7 +334,8 @@ def portal_spans(layout, region_id: str, a1, a2) -> list:
 def find_slot(layout, region_id: str, a1, a2, *, width: float, above: int,
               below: int, t: float = 0.5, height_player_heights: float = 0.65,
               offset_player_widths: float = 0.10,
-              slide: bool = True, stack: bool = True):
+              slide: bool = True, stack: bool = True,
+              over_steps: bool = False):
     """A free (t, height) for a rectangle this size, or None.
 
     Tries the asked-for spot, then slides along the wall keeping the height,
@@ -347,7 +348,12 @@ def find_slot(layout, region_id: str, a1, a2, *, width: float, above: int,
     if width > length:
         return None
     planes = occupancy(layout)
-    blocked = portal_spans(layout, region_id, a1, a2)
+    # A portal is only an OPENING where it is open at the sprite's height.
+    # The wall around a raised island is a portal on every face and solid
+    # from the outside up to the island's floor -- it is a step, and it is
+    # exactly the surface a monument carries its name on.  The span table
+    # carries no z, so the caller says which case this is.
+    blocked = [] if over_steps else portal_spans(layout, region_id, a1, a2)
     half = width / 2.0
 
     clear = abs(int(region.floor_z) - int(region.ceiling_z))
@@ -618,7 +624,7 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
          style=None, size=64, palette="default", shade=LETTER_SHADE,
          t: float = 0.5, height_player_heights: float = 1.2,
          offset_player_widths: float = 0.12, vertical: bool = False,
-         required: bool = False):
+         required: bool = False, over_steps: bool = False):
     """Write a word on a wall, in the space the wall actually has free.
 
     `size`, `palette` and `shade` each take a scalar or a sequence: a
@@ -667,7 +673,8 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
         slot = find_slot(layout, region_id, a1, a2, width=wide,
                          above=above, below=below, t=t,
                          height_player_heights=height_player_heights,
-                         offset_player_widths=offset_player_widths)
+                         offset_player_widths=offset_player_widths,
+                         over_steps=over_steps)
         tried = trial
         if slot is not None:
             break

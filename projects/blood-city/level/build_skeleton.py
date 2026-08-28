@@ -835,7 +835,15 @@ def build():
     # ten venues went missing without anything noticing.
     import citytree
     block_district = {b["id"]: b["district"] for b in data["blocks"]}
-    for slot in data["venues"]:
+    # Venues AND free-standing masses.  The monument was declared as a block
+    # and never built for as long as the plan has existed, and the kiosk and
+    # the gatehouse still are: the plaza carved their holes and the holes
+    # stayed holes.  A block with a role is a thing the plan asked for, so
+    # the correspondence covers both classes.
+    slots = list(data["venues"]) + [
+        dict(block, type=block["role"], block=block["id"])
+        for block in data["blocks"] if block["role"] == "free_standing"]
+    for slot in slots:
         if any(getattr(node, "l1_venue", None) == slot["id"]
                for node, _d in citytree.walk(city)):
             continue
@@ -858,6 +866,8 @@ def build():
     ctx["street_regions"] = {room.region_id: name
                              for name, room in streets.items()}
     ctx["light_pools"] = ctx_pools
+    ctx["market_dressing"] = market_dressing
+    ctx["market_street"] = market_st
     ctx["manifest"] = {
         "districts": len(DISTRICT_BOUNDS),
         "carved_areas": sum(1 for a in data["areas"] if a.get("carved")),
@@ -869,6 +879,7 @@ def build():
         # street, so they join its walkable component (and cost no
         # walk-around loop -- the census is at its contract ceiling).
         "market_furniture": len(market_dressing["street_joined"]),
+        "monument_tiers": len(market_dressing.get("monument_rooms", {})),
     }
     return city, stack_links, gates, ctx, dressing
 
@@ -1072,6 +1083,13 @@ def main() -> int:
         _fx.signature(layout, f"sig:sewer_{_key}", _room.region_id)
         _sig += 1
     print(f"signature portholes: {_sig}")
+
+    # The monument, before the generic signage pass: it owns its own face.
+    import l3_market
+    _mon_rooms = ctx["market_dressing"].get("monument_rooms")
+    if _mon_rooms:
+        print("monument:", l3_market.dress_monument(layout, _mon_rooms,
+                                                 street=ctx["market_street"]))
 
     import signage
     sign_rooms = {}

@@ -39,6 +39,22 @@ LEVEL, UP, DOWN = 100, 160, 40
 #: Fixed sets stay stable across iterations so before/after pairs line up;
 #: fresh sets are added per iteration and never reused.
 POSE_SETS = {
+    #: The opening moment.  The monument is not a single object -- it is the
+    #: first thing the player sees -- so its acceptance is the frame from the
+    #: spawn at standing eye height, with the plaza behind it, the market
+    #: hall's frontage and the avenue running north.
+    "opening": {
+        "spawn": (33.5, 53.0, 26.0, 45.0, LEVEL,
+                  "the player's first frame: the spawn, facing the monument"),
+        "spawn_wide": (33.5, 53.0, 30.0, 44.0, LEVEL,
+                       "the same, the plaza and the avenue beyond"),
+        "monument_read": (29.0, 49.0, 26.0, 45.0, LEVEL,
+                          "half way to it, where the name should read"),
+        "monument_close": (26.0, 48.5, 26.0, 45.0, LEVEL,
+                           "at the foot of the steps"),
+        "monument_side": (23.0, 47.5, 26.0, 45.0, LEVEL,
+                          "from the plaza's west side"),
+    },
     "pilot": {
         "spur_street": (55.5, 26, 55.5, 16, LEVEL, "the rail spur, facing the yard"),
         "yard": (51.5, 19.5, 55.5, 19.5, LEVEL, "in the works yard, facing the spur"),

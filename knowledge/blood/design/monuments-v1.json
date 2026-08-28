@@ -1,0 +1,682 @@
+{
+ "$schema": "llmapper.blood-monuments",
+ "schema_version": 1,
+ "note": "Derived: every tier, rise, footprint and tile. A monument is a chain of raised sectors under open sky, each tier's footprint strictly inside the one below.",
+ "monuments": 421,
+ "maps_with_one": 66,
+ "tier_counts": {
+  "2": 389,
+  "3": 30,
+  "4": 1,
+  "5": 1
+ },
+ "tier_rise_player_heights": {
+  "n": 725,
+  "median": 0.42,
+  "q1": 0.18,
+  "q3": 0.97,
+  "min": 0.02,
+  "max": 41.9
+ },
+ "base_plan_units": {
+  "n": 421,
+  "median": 2.0,
+  "q1": 1.5,
+  "q3": 3.25,
+  "min": 0.44,
+  "max": 18.8
+ },
+ "top_plan_units": {
+  "n": 421,
+  "median": 0.62,
+  "q1": 0.44,
+  "q3": 1.25,
+  "min": 0.02,
+  "max": 5.0
+ },
+ "carrying_statuary": 77,
+ "statuary_alignment": {
+  "floor": 27,
+  "face": 71,
+  "wall": 21
+ },
+ "statuary_tiles": [
+  [
+   2520,
+   23
+  ],
+  [
+   938,
+   9
+  ],
+  [
+   624,
+   8
+  ],
+  [
+   634,
+   6
+  ],
+  [
+   0,
+   4
+  ],
+  [
+   2140,
+   4
+  ],
+  [
+   2101,
+   4
+  ],
+  [
+   805,
+   4
+  ],
+  [
+   34,
+   4
+  ],
+  [
+   298,
+   4
+  ],
+  [
+   754,
+   3
+  ],
+  [
+   39,
+   3
+  ],
+  [
+   536,
+   2
+  ],
+  [
+   1907,
+   2
+  ],
+  [
+   640,
+   2
+  ],
+  [
+   2331,
+   2
+  ]
+ ],
+ "examples": [
+  {
+   "map": "DWE1M1",
+   "sectors": [
+    533,
+    534,
+    535,
+    536,
+    537
+   ],
+   "tiers": 5,
+   "base_plan": [
+    2.38,
+    1.62
+   ],
+   "top_plan": [
+    0.5,
+    1.62
+   ],
+   "rises": [
+    21504,
+    2048,
+    2048,
+    2048,
+    2048
+   ],
+   "rises_player_heights": [
+    1.27,
+    0.12,
+    0.12,
+    0.12,
+    0.12
+   ],
+   "total_rise_player_heights": 1.75,
+   "tiles": [
+    304,
+    304,
+    304,
+    304,
+    304
+   ],
+   "wall_tiles": [
+    68,
+    68,
+    68,
+    68,
+    68
+   ],
+   "statuary": []
+  },
+  {
+   "map": "DWE1M1",
+   "sectors": [
+    483,
+    432,
+    433,
+    436
+   ],
+   "tiers": 4,
+   "base_plan": [
+    4.25,
+    3.62
+   ],
+   "top_plan": [
+    1.0,
+    1.5
+   ],
+   "rises": [
+    470016,
+    2048,
+    2048,
+    2048
+   ],
+   "rises_player_heights": [
+    27.71,
+    0.12,
+    0.12,
+    0.12
+   ],
+   "total_rise_player_heights": 28.08,
+   "tiles": [
+    458,
+    253,
+    253,
+    253
+   ],
+   "wall_tiles": [
+    20,
+    253,
+    195,
+    458
+   ],
+   "statuary": []
+  },
+  {
+   "map": "DNE3L1",
+   "sectors": [
+    151,
+    59,
+    1
+   ],
+   "tiers": 3,
+   "base_plan": [
+    2.44,
+    3.38
+   ],
+   "top_plan": [
+    0.75,
+    0.38
+   ],
+   "rises": [
+    12288,
+    3072,
+    1024
+   ],
+   "rises_player_heights": [
+    0.72,
+    0.18,
+    0.06
+   ],
+   "total_rise_player_heights": 0.97,
+   "tiles": [
+    44,
+    175,
+    471
+   ],
+   "wall_tiles": [
+    84,
+    471,
+    0
+   ],
+   "statuary": []
+  },
+  {
+   "map": "DWE1M1",
+   "sectors": [
+    712,
+    547,
+    761
+   ],
+   "tiers": 3,
+   "base_plan": [
+    2.5,
+    2.88
+   ],
+   "top_plan": [
+    0.75,
+    0.75
+   ],
+   "rises": [
+    48128,
+    0,
+    4096
+   ],
+   "rises_player_heights": [
+    2.84,
+    0.0,
+    0.24
+   ],
+   "total_rise_player_heights": 3.08,
+   "tiles": [
+    304,
+    304,
+    253
+   ],
+   "wall_tiles": [
+    109,
+    237,
+    237
+   ],
+   "statuary": [
+    {
+     "picnum": 2520,
+     "type": 709,
+     "cstat": 32896,
+     "align": "face",
+     "height_player_heights": 0.38,
+     "x_repeat": 64,
+     "y_repeat": 64
+    }
+   ]
+  },
+  {
+   "map": "DWE1M1",
+   "sectors": [
+    110,
+    111,
+    114
+   ],
+   "tiers": 3,
+   "base_plan": [
+    2.0,
+    2.5
+   ],
+   "top_plan": [
+    1.0,
+    1.5
+   ],
+   "rises": [
+    2048,
+    2048,
+    2048
+   ],
+   "rises_player_heights": [
+    0.12,
+    0.12,
+    0.12
+   ],
+   "total_rise_player_heights": 0.36,
+   "tiles": [
+    253,
+    253,
+    253
+   ],
+   "wall_tiles": [
+    253,
+    253,
+    458
+   ],
+   "statuary": []
+  },
+  {
+   "map": "DWE1M1",
+   "sectors": [
+    599,
+    600,
+    603
+   ],
+   "tiers": 3,
+   "base_plan": [
+    2.0,
+    2.5
+   ],
+   "top_plan": [
+    1.0,
+    1.5
+   ],
+   "rises": [
+    2048,
+    2048,
+    2048
+   ],
+   "rises_player_heights": [
+    0.12,
+    0.12,
+    0.12
+   ],
+   "total_rise_player_heights": 0.36,
+   "tiles": [
+    253,
+    253,
+    253
+   ],
+   "wall_tiles": [
+    253,
+    253,
+    458
+   ],
+   "statuary": []
+  },
+  {
+   "map": "DWE1M1",
+   "sectors": [
+    767,
+    768,
+    771
+   ],
+   "tiers": 3,
+   "base_plan": [
+    2.5,
+    2.0
+   ],
+   "top_plan": [
+    1.5,
+    1.0
+   ],
+   "rises": [
+    2048,
+    2048,
+    2048
+   ],
+   "rises_player_heights": [
+    0.12,
+    0.12,
+    0.12
+   ],
+   "total_rise_player_heights": 0.36,
+   "tiles": [
+    253,
+    253,
+    253
+   ],
+   "wall_tiles": [
+    253,
+    253,
+    458
+   ],
+   "statuary": []
+  },
+  {
+   "map": "DWE1M1",
+   "sectors": [
+    542,
+    543,
+    544
+   ],
+   "tiers": 3,
+   "base_plan": [
+    2.0,
+    1.12
+   ],
+   "top_plan": [
+    2.0,
+    0.38
+   ],
+   "rises": [
+    32768,
+    2048,
+    2048
+   ],
+   "rises_player_heights": [
+    1.93,
+    0.12,
+    0.12
+   ],
+   "total_rise_player_heights": 2.17,
+   "tiles": [
+    304,
+    304,
+    304
+   ],
+   "wall_tiles": [
+    68,
+    68,
+    68
+   ],
+   "statuary": []
+  },
+  {
+   "map": "DWE1M2",
+   "sectors": [
+    1,
+    2,
+    5
+   ],
+   "tiers": 3,
+   "base_plan": [
+    2.0,
+    2.5
+   ],
+   "top_plan": [
+    1.0,
+    1.5
+   ],
+   "rises": [
+    2048,
+    2048,
+    2048
+   ],
+   "rises_player_heights": [
+    0.12,
+    0.12,
+    0.12
+   ],
+   "total_rise_player_heights": 0.36,
+   "tiles": [
+    253,
+    253,
+    253
+   ],
+   "wall_tiles": [
+    253,
+    253,
+    458
+   ],
+   "statuary": []
+  },
+  {
+   "map": "DWE1M6",
+   "sectors": [
+    671,
+    691,
+    668
+   ],
+   "tiers": 3,
+   "base_plan": [
+    6.0,
+    2.25
+   ],
+   "top_plan": [
+    0.25,
+    1.5
+   ],
+   "rises": [
+    4096,
+    4096,
+    3072
+   ],
+   "rises_player_heights": [
+    0.24,
+    0.24,
+    0.18
+   ],
+   "total_rise_player_heights": 0.66,
+   "tiles": [
+    272,
+    272,
+    266
+   ],
+   "wall_tiles": [
+    448,
+    448,
+    266
+   ],
+   "statuary": []
+  },
+  {
+   "map": "DWE1M6",
+   "sectors": [
+    566,
+    568,
+    570
+   ],
+   "tiers": 3,
+   "base_plan": [
+    2.62,
+    2.88
+   ],
+   "top_plan": [
+    0.31,
+    0.31
+   ],
+   "rises": [
+    22528,
+    -15360,
+    1024
+   ],
+   "rises_player_heights": [
+    1.33,
+    -0.91,
+    0.06
+   ],
+   "total_rise_player_heights": 0.48,
+   "tiles": [
+    433,
+    140,
+    439
+   ],
+   "wall_tiles": [
+    2292,
+    379,
+    379
+   ],
+   "statuary": []
+  },
+  {
+   "map": "DWE1M6",
+   "sectors": [
+    571,
+    573,
+    575
+   ],
+   "tiers": 3,
+   "base_plan": [
+    2.62,
+    2.88
+   ],
+   "top_plan": [
+    0.31,
+    0.31
+   ],
+   "rises": [
+    22528,
+    -15360,
+    1024
+   ],
+   "rises_player_heights": [
+    1.33,
+    -0.91,
+    0.06
+   ],
+   "total_rise_player_heights": 0.48,
+   "tiles": [
+    433,
+    140,
+    439
+   ],
+   "wall_tiles": [
+    2292,
+    379,
+    379
+   ],
+   "statuary": []
+  },
+  {
+   "map": "DWE1M7",
+   "sectors": [
+    500,
+    505,
+    540
+   ],
+   "tiers": 3,
+   "base_plan": [
+    3.0,
+    4.62
+   ],
+   "top_plan": [
+    0.75,
+    0.75
+   ],
+   "rises": [
+    310272,
+    -3072,
+    11264
+   ],
+   "rises_player_heights": [
+    18.29,
+    -0.18,
+    0.66
+   ],
+   "total_rise_player_heights": 18.78,
+   "tiles": [
+    2448,
+    2448,
+    95
+   ],
+   "wall_tiles": [
+    380,
+    395,
+    386
+   ],
+   "statuary": []
+  },
+  {
+   "map": "DWE1M7",
+   "sectors": [
+    326,
+    303,
+    305
+   ],
+   "tiers": 3,
+   "base_plan": [
+    2.06,
+    1.38
+   ],
+   "top_plan": [
+    0.31,
+    0.44
+   ],
+   "rises": [
+    2048,
+    3072,
+    512
+   ],
+   "rises_player_heights": [
+    0.12,
+    0.18,
+    0.03
+   ],
+   "total_rise_player_heights": 0.33,
+   "tiles": [
+    34,
+    260,
+    272
+   ],
+   "wall_tiles": [
+    35,
+    272,
+    272
+   ],
+   "statuary": []
+  }
+ ]
+}

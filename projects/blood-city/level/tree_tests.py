@@ -172,7 +172,13 @@ def test_plan_correspondence(build) -> dict:
 
     program = build()[0]
     declared = citytree.venues(program)
-    slots = {venue["id"]: venue for venue in city_plan.plan()["venues"]}
+    data = city_plan.plan()
+    slots = {venue["id"]: venue for venue in data["venues"]}
+    # Free-standing masses are declared the same way and were the class that
+    # went unbuilt in silence: the monument, the kiosk, the gatehouse.
+    slots.update({block["id"]: dict(block, type=block["role"])
+                  for block in data["blocks"]
+                  if block["role"] == "free_standing"})
     missing = sorted(set(slots) - set(declared))
     unplanned = sorted(set(declared) - set(slots))
     doubled = sorted(name for name, nodes in declared.items() if len(nodes) > 1)

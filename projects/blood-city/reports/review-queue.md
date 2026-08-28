@@ -287,3 +287,21 @@ reaches you as a pair of frames rather than as a question.
 - **church_altar** — `reports/looks/objects-church_altar/frames/`, seen from
   the nave, which is where an altar is meant to be seen from.
 
+
+
+## The opening view (iteration 30)
+
+The monument is built and reads correctly at the steps and from five plan
+units. Two judgements that are the owner's, not the automation's:
+
+1. **The name does not carry to the spawn**, and cannot on a free-standing
+   mass -- the measurement is in iteration 30 of the refinement log.
+   Recommendation: put WELCOME TO GRAVESEND on the **market hall's frontage**
+   facing the plaza at size 120 or larger, and let the monument be the lit
+   landmark standing in front of it. A building frontage has no CN 2 band
+   ceiling.
+2. **The spawn frame is dark and a street lamp stands in the middle of it.**
+   `reports/looks/monument2/frames/spawn.png`. The monument, the plaza, the
+   market hall's frontage and the avenue vista are all in shot and none of
+   them is the subject. The opening view wants its own pass -- lamp
+   placement, plaza shade, and where the player is actually put down.

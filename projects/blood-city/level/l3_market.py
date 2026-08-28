@@ -97,10 +97,45 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     quay = district.assembly(
         "quay", note="the river gate: boardwalk, water, a moored lighter")
     px0, py0, px1, py1 = (int(v * PU) for v in plaza_rect_pu)
+
+
     # `street_joined` are the pieces within one max step of the street,
     # so they enter its walkable component and must be declared to the
     # conformance check; `interiors` do not.
     built = {"rooms": [], "street_joined": [], "interiors": []}
+
+    # ---- the monument: the first thing the player reads -------------------
+    # Declared at L1 as a free-standing mass since the plan was written, and
+    # never built: the plaza carved its hole and the hole stayed a hole, in
+    # the most visible spot in the city.
+    import citytree
+    import templates as _t
+    import city_plan as _plan
+    import build_skeleton as _bs
+    _rect = next(b["rect"] for b in _plan.BLOCKS if b["id"] == "monument")
+    # The very outline the street carved, chamfers and all.
+    _outline = _bs.mass_outline(_rect, [])
+    monument_node, monument_parts = _t.monument(
+        plaza, market_st, _outline,
+        # `opening` equal to `wall`, not the jamb tile.  A monument's step is
+        # not a doorway: with MASONRY's own opening (28, the boardwalk plank)
+        # the plinth's face came out as brown boards under the city's name.
+        material=Material(wall=MASONRY.wall, floor=MASONRY.floor,
+                          ceiling=MASONRY.ceiling, opening=MASONRY.wall,
+                          sky=True, note="the monument's stone"),
+        cap_material=Material(wall=MASONRY.wall, floor=MASONRY.floor,
+                              ceiling=facade.ceiling, opening=MASONRY.opening,
+                              sky=True, note="the pedestal's cap"),
+        grade=GRADE, clear_height=STREET_SKY, connector=district)
+    citytree.declare_venue(monument_node, "monument", "free_standing",
+                           built_by="l3_market")
+    built["rooms"] += [r.region_id for r in monument_parts.values()]
+    built["street_joined"].append(monument_parts["base"].region_id)
+    built["monument"] = {name: room.region_id
+                         for name, room in monument_parts.items()}
+    #: The rooms themselves, so the dressing pass can ask them for their
+    #: faces rather than reconstructing rectangles from region ids.
+    built["monument_rooms"] = dict(monument_parts)
 
     # ---- the fountain: L1 says centre-offset-west -------------------------
     basin_w = 3 * PU
@@ -297,3 +332,107 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
                            unit_b.region_id, neck_a.region_id,
                            neck_b.region_id]
     return built
+
+
+#: The monument's own words, and the register they are written in.
+#:
+#: Uniform palette, not per-letter.  Only **9 of the corpus's 160 signs**
+#: mix palettes at all -- 5.6% -- and every one of them is in an attraction
+#: map: E1M4's carnival, DWE1M9's SPOOKY WORLD, DWE3M4 and DWE3M10's ICE.
+#: A city's welcome monument is not a fairground, and `fascia` is the style
+#: whose own attested word IS `WELCOME` (10 words at size 120, palette 4,
+#: shade 0).  The style steps down its own ladder to whatever the plinth's
+#: 1,792-unit face will take.
+#: Heights are measured from the BASE's floor, and the step above it is
+#: 12,288 units -- 0.72 player heights -- of solid masonry.  Both lines sit
+#: inside it: at 64 a letter is 2,816 tall, so 0.50 spans 0.42..0.58 and
+#: 0.24 spans 0.16..0.32.
+MONUMENT_WORDS = (
+    ("WELCOME TO", 0.50),
+    ("GRAVESEND", 0.24),
+)
+
+
+def _local_of(room, x, y):
+    """A world point as a local fraction of a room's bounding box."""
+    import props
+    x0, y0, x1, y1 = props.room_rect(room)
+    return ((x - x0) / max(1, x1 - x0), (y - y0) / max(1, y1 - y0))
+
+
+def dress_monument(layout, parts, street=None) -> dict:
+    """Carve the city's name on the plinth, and light the pedestal.
+
+    The lettering goes on the plinth's SOUTH face because that is the face
+    the player is looking at: the spawn is on the quay at (33.5, 53) and the
+    monument's centre is (26, 45), eleven plan units north-west of it.
+
+    The apex carries a flame, not a figure.  `monuments-v1.json` finds 421
+    tiered outdoor masses and only 77 carry anything at all; what they carry
+    is light -- 23 of the statuary sprites are one invisible generator, the
+    rest torches and lamps.  Blood has no figure-on-a-plinth idiom, so this
+    does not invent one.
+    """
+    import props
+    import wallplane
+
+    report = {"lines": 0, "letters": 0, "lights": 0, "skipped": []}
+    plinth = parts.get("plinth")
+    pedestal = parts.get("pedestal")
+    base = parts.get("base")
+    if plinth is None:
+        return report
+
+    # The letters belong to the BASE, not the plinth.  The wall between them
+    # is a step: from the plinth's side everything above its own floor is
+    # open, and the compiler is right to refuse a sprite hung there.  From
+    # the base's side the same wall is 12,288 units of solid masonry, which
+    # is the surface a monument carries its name on.  The segment is wound
+    # backwards for the same reason -- the sprite has to face out of the
+    # plinth, not into it.
+    rect = props.room_rect(plinth)
+    a2, a1 = props.face_segment(rect, "south", inset=64)
+    for index, (words, height) in enumerate(MONUMENT_WORDS):
+        ids = wallplane.text(
+            layout, f"monument:{index}", base.region_id, a1, a2,
+            words=words, style="fascia", height_player_heights=height,
+            offset_player_widths=0.06, over_steps=True)
+        if not ids:
+            report["skipped"].append(words)
+            continue
+        report["lines"] += 1
+        report["letters"] += len(ids)
+
+    # The flame on the pedestal: the campaign's own monument statuary, and
+    # the plaza's own light.
+    if pedestal is not None:
+        layout.place_on_floor(
+            "monument:flame", pedestal.region_id, local=(0.5, 0.5),
+            height_player_heights=props.height_of(2101),
+            emits_light=True, light_intensity=3.0,
+            light_height_player_heights=0.6,
+            **props.fields(2101))
+        report["lights"] += 1
+    # A lamp at each end of the base's front, the pair E3M1 stands in its
+    # streets and `monuments-v1` finds on monuments twice.
+    if base is not None:
+        # The base is a chamfered octagon with the plinth carved out of its
+        # middle, so a hand-chosen local lands on a corner cut or in the
+        # hole.  Ask the room where its floor actually is.
+        # In the PLAZA, not on the base.  The base ring is only 320 units
+        # wide either side of the plinth, so a lamp standing on it stands
+        # directly in front of the lettering -- the first render had the G
+        # and the D of GRAVESEND behind lamp posts.
+        x0, y0, x1, y1 = props.room_rect(base)
+        for index, (px, py) in enumerate(((x0 - 1024, y1 + 1024),
+                                          (x1 + 1024, y1 + 1024))):
+            try:
+                layout.place_on_floor(
+                    f"monument:lamp_{index}", street.region_id,
+                    local=_local_of(street, px, py),
+                    height_player_heights=props.height_of(props.STREET_LAMP),
+                    **props.fields(props.STREET_LAMP))
+                report["lights"] += 1
+            except Exception:
+                report["skipped"].append(f"lamp_{index}")
+    return report
