@@ -289,3 +289,33 @@ not knowledge, so the four ring legs ship bare and say so.
 What would close it: a face-declared connection recording the span it
 occupies, or `PlanarLayout` exposing `free_spans(region_id, face)`.
 Everything a run generator needs follows from that one answer.
+
+## #12 — lettering conventions differ by expansion, and only one is expressible
+
+`bloodmap/lettering.py` mines its constants from the base campaign's 36
+words. The Death Wish maps set letters materially differently, and the
+module cannot express the difference:
+
+| | base campaign (lettering.py) | DWE3M1 + DWE3M10 (measured) |
+|---|---|---|
+| pitch | **1.45** drawn widths | **1.07** (n=83) |
+| repeats | "square, always" | 120x184 among the commonest (14 uses) |
+| palette | 4 most (53 letters) | **1** most (40), then 12, 11 |
+| shade | -8 (95 of 132) | **0** (53), then -50 (38) |
+
+`write_on_wall` takes `size`, `palette` and `shade` as parameters, so three
+of the four are reachable. **`PITCH` is a module constant**, so a
+Death-Wish-spaced sign cannot be written at all — and pitch is the one that
+decides whether a word reads as one word.
+
+What would close it: `pitch` as a parameter, defaulting to the base
+campaign's 1.45, or a named convention (`convention="deathwish"`) carrying
+the four together. Gravesend wants the second: its districts want different
+registers and two documented conventions are more useful than one averaged
+set.
+
+Also worth recording against the module: `read_sign` garbles some Death
+Wish signs. DWE3M10 returns `LIQUO`, `LOERS`, `WTID`, `GML` -- letters are
+being dropped or split across groups, most likely because signs of more
+than one line share an angle and are grouped by exact z. The inverse is
+this module's own acceptance test, so it is worth knowing it fails here.

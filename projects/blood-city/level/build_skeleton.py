@@ -990,6 +990,21 @@ def main() -> int:
         amb.append((room.region_id, "works", (0.5, 0.5)))
     print("ambience:", ambience.fill(layout, amb))
 
+    # The signature element: one thing repeated across the whole city is
+    # what makes it read as one place.  DWE3M10 repeats its porthole 125
+    # times; Gravesend had no such element at all.
+    import fixtures as _fx
+    _sig = 0
+    for _key, _room in list(ctx["mall_rooms"].items())[:6]:
+        if _key.endswith(("_door", "_porch", "_window", "_neck")):
+            continue
+        _fx.signature(layout, f"sig:mall_{_key}", _room.region_id)
+        _sig += 1
+    for _key, _room in list(ctx["sewer_rooms_new"].items())[:8]:
+        _fx.signature(layout, f"sig:sewer_{_key}", _room.region_id)
+        _sig += 1
+    print(f"signature portholes: {_sig}")
+
     import signage
     sign_rooms = {}
     for prefix, table in (("mall", ctx["mall_rooms"]),

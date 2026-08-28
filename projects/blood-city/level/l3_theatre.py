@@ -26,6 +26,7 @@ from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
 from bloodmap.slope import SlopeSpec
 
+import fixtures
 import setpieces
 from materials import FACADES, INTERIORS, MASONRY
 from resolution import GRADE, PU, STREET_SKY
@@ -208,14 +209,6 @@ FURNITURE = [
     ("parlor_range", 12288, 6656, 12800, 7168, TABLE_RISE, None, "a target"),
     ("parlor_range", 13824, 6656, 14336, 7168, TABLE_RISE, None, "a target"),
     ("parlor_range", 15360, 6656, 15872, 7168, TABLE_RISE, None, "a target"),
-    ("pawn_shop", 30720, 4096, 31232, 4608, PEDESTAL_RISE, None,
-     "a display pedestal"),
-    ("pawn_shop", 30720, 5120, 31232, 5632, PEDESTAL_RISE, None,
-     "a display pedestal"),
-    ("pawn_shop", 29184, 4096, 29696, 4608, PEDESTAL_RISE, None,
-     "a display pedestal"),
-    ("pawn_shop", 29184, 5120, 29696, 5632, COUNTER_RISE, None,
-     "the pawnbroker's counter"),
 ]
 
 
@@ -320,6 +313,22 @@ def build(city, theatre_st):
             host_clear=host_h, note=note)
         if over is not None:
             piece.surfaces(floor_z=GRADE - rise, clear_height=over)
+    # The pawn shop, furnished from the kit rather than by hand.  Every
+    # dimension that is pinned in the campaign family stays pinned here;
+    # only the run length is ours.  This is the first venue to compose
+    # from `fixtures.py` instead of from literal rectangles.
+    shop = rooms["pawn_shop"]
+    fixtures.run_along(
+        venues, "pawn_counter", shop, axis="x",
+        start=29184, end=31744, across0=4864, across1=5888,
+        family="counter", material=INTERIORS["shop"],
+        grade=GRADE, host_clear=ROOM_HEIGHT["pawn_shop"])
+    for index, px in enumerate((28928, 31488)):
+        fixtures.place(venues, f"pawn_pedestal_{index}", shop,
+                       (px, 3968, px + 512, 4480), INTERIORS["shop"],
+                       family="pedestal", grade=GRADE,
+                       host_clear=ROOM_HEIGHT["pawn_shop"])
+
     return rooms, levers
 
 
@@ -331,14 +340,14 @@ POPULATION = [
     ("parlor_range", 202, (0.6, 0.4)),
     ("aldermack_auditorium", 202, (0.12, 0.6)),   # between stage and tier
     ("aldermack_backstage", 203, (0.5, 0.3)),
-    ("pawn_shop", 203, (0.9, 0.75)),
+    ("pawn_shop", 203, (0.15, 0.08)),   # the strip north of the kit fixtures
 ]
 PICKUPS = [
     ("saloon_back", 65, (0.3, 0.6)),
     ("parlor_range", 62, (0.25, 0.5)),
     ("aldermack_dressing", 109, (0.5, 0.5)),
     ("aldermack_lobby", 67, (0.4, 0.5)),
-    ("pawn_shop", 63, (0.1, 0.3)),          # clear of the pedestals
+    ("pawn_shop", 63, (0.75, 0.08)),          # clear of the pedestals
 ]
 #: A brazier in every venue room, BRACKETED TO A NAMED WALL.
 #: (room, face, t along that face).  The campaign puts tile 506 within 512

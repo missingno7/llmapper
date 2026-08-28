@@ -1,0 +1,1144 @@
+{
+ "$schema": "llmapper.blood-fixtures",
+ "schema_version": 1,
+ "note": "Derived: counts, families, dimensions, palettes. Interpreted: the palette names.",
+ "sources": [
+  "DWE3M1",
+  "DWE3M10",
+  "E6M1",
+  "E4M9"
+ ],
+ "maps": [
+  {
+   "map": "DWE3M1",
+   "sectors": 606,
+   "sprites": 1690,
+   "fixtures": 171,
+   "goods_per_fixture": {
+    "mean": 0.269,
+    "median": 0,
+    "max": 11,
+    "bare": 143
+   },
+   "families": [
+    {
+     "rise": 21504,
+     "tile": 1666,
+     "count": 14,
+     "widths": [
+      256,
+      1775,
+      1838,
+      1869,
+      1913,
+      2048
+     ],
+     "depths": [
+      256,
+      1054,
+      1100,
+      1164,
+      1197,
+      2048,
+      3584
+     ],
+     "free_dimension": "depth",
+     "sectors": [
+      74,
+      75,
+      79,
+      81,
+      85,
+      87,
+      91,
+      93,
+      97,
+      99,
+      103,
+      105
+     ]
+    },
+    {
+     "rise": 11264,
+     "tile": 1666,
+     "count": 8,
+     "widths": [
+      512,
+      916,
+      952,
+      1024
+     ],
+     "depths": [
+      512,
+      1024,
+      1139,
+      1143
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      66,
+      72,
+      77,
+      83,
+      89,
+      95,
+      101,
+      216
+     ]
+    },
+    {
+     "rise": 8192,
+     "tile": 1666,
+     "count": 8,
+     "widths": [
+      256,
+      885,
+      947,
+      1536
+     ],
+     "depths": [
+      256,
+      1428,
+      1466,
+      1536
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      67,
+      73,
+      78,
+      84,
+      90,
+      96,
+      102,
+      217
+     ]
+    },
+    {
+     "rise": 10240,
+     "tile": 34,
+     "count": 6,
+     "widths": [
+      256
+     ],
+     "depths": [
+      256
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+     ]
+    },
+    {
+     "rise": 11264,
+     "tile": 448,
+     "count": 6,
+     "widths": [
+      128,
+      2048
+     ],
+     "depths": [
+      128,
+      4096
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      116,
+      117,
+      145,
+      146,
+      147,
+      148
+     ]
+    },
+    {
+     "rise": 8192,
+     "tile": 34,
+     "count": 6,
+     "widths": [
+      256,
+      768,
+      1536,
+      2048,
+      3328
+     ],
+     "depths": [
+      256,
+      512,
+      768,
+      2048,
+      3072
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      162,
+      164,
+      221,
+      315,
+      326,
+      483
+     ]
+    },
+    {
+     "rise": 21504,
+     "tile": 293,
+     "count": 5,
+     "widths": [
+      512
+     ],
+     "depths": [
+      640,
+      2304,
+      4608,
+      5120
+     ],
+     "free_dimension": "depth",
+     "sectors": [
+      336,
+      337,
+      341,
+      559,
+      560
+     ]
+    },
+    {
+     "rise": 6144,
+     "tile": 146,
+     "count": 4,
+     "widths": [
+      1024
+     ],
+     "depths": [
+      1024
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      149,
+      150,
+      151,
+      152
+     ]
+    },
+    {
+     "rise": 30720,
+     "tile": 34,
+     "count": 3,
+     "widths": [
+      768,
+      1280
+     ],
+     "depths": [
+      768,
+      1280
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      118,
+      119,
+      120
+     ]
+    },
+    {
+     "rise": 23552,
+     "tile": 195,
+     "count": 3,
+     "widths": [
+      128,
+      768
+     ],
+     "depths": [
+      128,
+      896
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      130,
+      304,
+      355
+     ]
+    },
+    {
+     "rise": 6144,
+     "tile": 34,
+     "count": 3,
+     "widths": [
+      256
+     ],
+     "depths": [
+      256,
+      768
+     ],
+     "free_dimension": "depth",
+     "sectors": [
+      157,
+      158,
+      222
+     ]
+    },
+    {
+     "rise": 26624,
+     "tile": 195,
+     "count": 3,
+     "widths": [
+      128,
+      1024
+     ],
+     "depths": [
+      128,
+      1024,
+      1792
+     ],
+     "free_dimension": "depth",
+     "sectors": [
+      237,
+      295,
+      296
+     ]
+    }
+   ],
+   "masked_wall_overlays": [
+    [
+     263,
+     8
+    ],
+    [
+     266,
+     6
+    ],
+    [
+     465,
+     2
+    ]
+   ],
+   "shutter_sprites": 40,
+   "top_props": [
+    [
+     973,
+     140
+    ],
+    [
+     624,
+     138
+    ],
+    [
+     2621,
+     110
+    ],
+    [
+     1907,
+     38
+    ],
+    [
+     640,
+     34
+    ],
+    [
+     1060,
+     28
+    ],
+    [
+     660,
+     25
+    ],
+    [
+     256,
+     19
+    ],
+    [
+     2211,
+     19
+    ],
+    [
+     2210,
+     19
+    ],
+    [
+     544,
+     17
+    ],
+    [
+     795,
+     16
+    ],
+    [
+     2082,
+     14
+    ],
+    [
+     1044,
+     12
+    ],
+    [
+     1904,
+     11
+    ],
+    [
+     664,
+     11
+    ]
+   ],
+   "letters": 40
+  },
+  {
+   "map": "DWE3M10",
+   "sectors": 498,
+   "sprites": 1038,
+   "fixtures": 136,
+   "goods_per_fixture": {
+    "mean": 0.199,
+    "median": 0.0,
+    "max": 5,
+    "bare": 125
+   },
+   "families": [
+    {
+     "rise": 3072,
+     "tile": 345,
+     "count": 8,
+     "widths": [
+      512,
+      1024
+     ],
+     "depths": [
+      1024
+     ],
+     "free_dimension": "width",
+     "sectors": [
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62
+     ]
+    },
+    {
+     "rise": 7168,
+     "tile": 34,
+     "count": 6,
+     "widths": [
+      256,
+      1536,
+      2048,
+      3072
+     ],
+     "depths": [
+      256,
+      512,
+      1280,
+      5632
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      31,
+      235,
+      288,
+      289,
+      290,
+      291
+     ]
+    },
+    {
+     "rise": 35840,
+     "tile": 21,
+     "count": 6,
+     "widths": [
+      256,
+      5120,
+      5888,
+      10496
+     ],
+     "depths": [
+      256,
+      4608,
+      5120,
+      8192
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      41,
+      185,
+      186,
+      274,
+      276,
+      280
+     ]
+    },
+    {
+     "rise": 7168,
+     "tile": 255,
+     "count": 5,
+     "widths": [
+      128,
+      256,
+      1536
+     ],
+     "depths": [
+      256,
+      640,
+      768
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      64,
+      98,
+      105,
+      311,
+      317
+     ]
+    },
+    {
+     "rise": 28672,
+     "tile": 255,
+     "count": 4,
+     "widths": [
+      128,
+      1024
+     ],
+     "depths": [
+      256,
+      512
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      44,
+      312,
+      314,
+      319
+     ]
+    },
+    {
+     "rise": 10240,
+     "tile": 448,
+     "count": 4,
+     "widths": [
+      256
+     ],
+     "depths": [
+      512
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      376,
+      377,
+      378,
+      379
+     ]
+    },
+    {
+     "rise": 4096,
+     "tile": 255,
+     "count": 3,
+     "widths": [
+      128
+     ],
+     "depths": [
+      256,
+      512
+     ],
+     "free_dimension": "depth",
+     "sectors": [
+      313,
+      315,
+      316
+     ]
+    },
+    {
+     "rise": 35840,
+     "tile": 181,
+     "count": 3,
+     "widths": [
+      64,
+      896
+     ],
+     "depths": [
+      256
+     ],
+     "free_dimension": "width",
+     "sectors": [
+      447,
+      448,
+      449
+     ]
+    }
+   ],
+   "masked_wall_overlays": [
+    [
+     266,
+     20
+    ],
+    [
+     1060,
+     10
+    ],
+    [
+     463,
+     10
+    ],
+    [
+     330,
+     2
+    ]
+   ],
+   "shutter_sprites": 22,
+   "top_props": [
+    [
+     795,
+     124
+    ],
+    [
+     660,
+     46
+    ],
+    [
+     640,
+     29
+    ],
+    [
+     743,
+     19
+    ],
+    [
+     2915,
+     18
+    ],
+    [
+     1060,
+     16
+    ],
+    [
+     599,
+     13
+    ],
+    [
+     624,
+     11
+    ],
+    [
+     3812,
+     11
+    ],
+    [
+     3827,
+     10
+    ],
+    [
+     694,
+     10
+    ],
+    [
+     742,
+     10
+    ],
+    [
+     3808,
+     10
+    ],
+    [
+     754,
+     8
+    ],
+    [
+     676,
+     8
+    ],
+    [
+     3816,
+     8
+    ]
+   ],
+   "letters": 89
+  },
+  {
+   "map": "E6M1",
+   "sectors": 123,
+   "sprites": 499,
+   "fixtures": 43,
+   "goods_per_fixture": {
+    "mean": 0.047,
+    "median": 0,
+    "max": 1,
+    "bare": 41
+   },
+   "families": [
+    {
+     "rise": 16384,
+     "tile": 452,
+     "count": 10,
+     "widths": [
+      512,
+      1024,
+      1536
+     ],
+     "depths": [
+      512,
+      1024,
+      1536
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      38,
+      49,
+      58,
+      60,
+      83,
+      84,
+      86,
+      93,
+      94,
+      102
+     ]
+    },
+    {
+     "rise": 32768,
+     "tile": 290,
+     "count": 6,
+     "widths": [
+      128,
+      256,
+      1024
+     ],
+     "depths": [
+      512,
+      1024,
+      2048
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      65,
+      66,
+      67,
+      68,
+      80,
+      115
+     ]
+    },
+    {
+     "rise": 8192,
+     "tile": 452,
+     "count": 6,
+     "widths": [
+      512,
+      1024
+     ],
+     "depths": [
+      512,
+      1024,
+      2048
+     ],
+     "free_dimension": "depth",
+     "sectors": [
+      81,
+      82,
+      85,
+      87,
+      92,
+      101
+     ]
+    },
+    {
+     "rise": 28672,
+     "tile": 20,
+     "count": 3,
+     "widths": [
+      64,
+      1024
+     ],
+     "depths": [
+      64,
+      1019,
+      1024
+     ],
+     "free_dimension": "depth",
+     "sectors": [
+      51,
+      53,
+      74
+     ]
+    },
+    {
+     "rise": 24576,
+     "tile": 1011,
+     "count": 3,
+     "widths": [
+      128
+     ],
+     "depths": [
+      128
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      70,
+      71,
+      72
+     ]
+    }
+   ],
+   "masked_wall_overlays": [
+    [
+     266,
+     4
+    ]
+   ],
+   "shutter_sprites": 0,
+   "top_props": [
+    [
+     52,
+     5
+    ],
+    [
+     21,
+     4
+    ],
+    [
+     51,
+     4
+    ],
+    [
+     2540,
+     4
+    ],
+    [
+     54,
+     3
+    ],
+    [
+     1050,
+     3
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     2541,
+     3
+    ],
+    [
+     69,
+     2
+    ],
+    [
+     751,
+     1
+    ],
+    [
+     2545,
+     1
+    ],
+    [
+     2290,
+     1
+    ]
+   ],
+   "letters": 0
+  },
+  {
+   "map": "E4M9",
+   "sectors": 228,
+   "sprites": 405,
+   "fixtures": 62,
+   "goods_per_fixture": {
+    "mean": 0.016,
+    "median": 0.0,
+    "max": 1,
+    "bare": 61
+   },
+   "families": [
+    {
+     "rise": 6144,
+     "tile": 43,
+     "count": 6,
+     "widths": [
+      384,
+      512,
+      992
+     ],
+     "depths": [
+      448,
+      512,
+      544,
+      672,
+      704
+     ],
+     "free_dimension": "depth",
+     "sectors": [
+      138,
+      140,
+      145,
+      146,
+      147,
+      148
+     ]
+    },
+    {
+     "rise": 8192,
+     "tile": 34,
+     "count": 5,
+     "widths": [
+      384,
+      512,
+      1024,
+      1280,
+      3584
+     ],
+     "depths": [
+      256,
+      512,
+      1536,
+      1792
+     ],
+     "free_dimension": "width",
+     "sectors": [
+      7,
+      9,
+      156,
+      163,
+      207
+     ]
+    },
+    {
+     "rise": 8192,
+     "tile": 174,
+     "count": 4,
+     "widths": [
+      1024
+     ],
+     "depths": [
+      2048,
+      2560
+     ],
+     "free_dimension": "depth",
+     "sectors": [
+      64,
+      65,
+      73,
+      77
+     ]
+    },
+    {
+     "rise": 8192,
+     "tile": 42,
+     "count": 3,
+     "widths": [
+      1152,
+      1280,
+      1536
+     ],
+     "depths": [
+      512
+     ],
+     "free_dimension": "width",
+     "sectors": [
+      8,
+      16,
+      17
+     ]
+    },
+    {
+     "rise": 50176,
+     "tile": 452,
+     "count": 3,
+     "widths": [
+      768,
+      1024
+     ],
+     "depths": [
+      768,
+      1024
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      24,
+      197,
+      199
+     ]
+    },
+    {
+     "rise": 4096,
+     "tile": 253,
+     "count": 3,
+     "widths": [
+      512,
+      1536
+     ],
+     "depths": [
+      512,
+      1536
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      35,
+      37,
+      42
+     ]
+    },
+    {
+     "rise": 8192,
+     "tile": 195,
+     "count": 3,
+     "widths": [
+      256,
+      4096
+     ],
+     "depths": [
+      256,
+      4352,
+      4864
+     ],
+     "free_dimension": "depth",
+     "sectors": [
+      80,
+      126,
+      129
+     ]
+    },
+    {
+     "rise": 49152,
+     "tile": 34,
+     "count": 3,
+     "widths": [
+      512,
+      2560
+     ],
+     "depths": [
+      512,
+      3328
+     ],
+     "free_dimension": "both",
+     "sectors": [
+      99,
+      100,
+      102
+     ]
+    }
+   ],
+   "masked_wall_overlays": [
+    [
+     266,
+     6
+    ],
+    [
+     465,
+     4
+    ]
+   ],
+   "shutter_sprites": 0,
+   "top_props": [
+    [
+     69,
+     5
+    ],
+    [
+     713,
+     4
+    ],
+    [
+     915,
+     3
+    ],
+    [
+     453,
+     2
+    ],
+    [
+     761,
+     2
+    ],
+    [
+     2540,
+     2
+    ],
+    [
+     672,
+     2
+    ],
+    [
+     824,
+     1
+    ],
+    [
+     949,
+     1
+    ],
+    [
+     219,
+     1
+    ],
+    [
+     785,
+     1
+    ],
+    [
+     455,
+     1
+    ],
+    [
+     731,
+     1
+    ],
+    [
+     929,
+     1
+    ],
+    [
+     469,
+     1
+    ],
+    [
+     732,
+     1
+    ]
+   ],
+   "letters": 0
+  }
+ ],
+ "attested_in_both_death_wish": [
+  624,
+  640,
+  660,
+  795,
+  1060
+ ],
+ "palettes": {
+  "town": {
+   "note": "DWE3M1's inland town register (interpreted name)",
+   "tiles": [
+    973,
+    2621,
+    544,
+    256,
+    421,
+    2210,
+    2211
+   ]
+  },
+  "waterfront": {
+   "note": "DWE3M10's pier register (interpreted name)",
+   "tiles": [
+    795,
+    676,
+    640,
+    743,
+    742,
+    624,
+    694,
+    754,
+    599,
+    660
+   ]
+  }
+ },
+ "reading_guide": [
+  "a family's free dimension is the one it varies; rise and tile pin",
+  "goods per fixture is a median of ZERO in every source",
+  "a shutter and a window are the same masked wall, different tile"
+ ]
+}

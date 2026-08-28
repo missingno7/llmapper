@@ -43,9 +43,9 @@
       "map": "SKELETON",
       "game": "blood",
       "budget": {
-        "sectors": 206,
-        "walls": 1306,
-        "sprites": 323
+        "sectors": 207,
+        "walls": 1314,
+        "sprites": 337
       },
       "street": {
         "sectors": 24,
@@ -84,7 +84,7 @@
             "sectors": 1,
             "area": 7602176,
             "sample": [
-              159
+              160
             ]
           }
         ],
@@ -325,7 +325,7 @@
           {
             "wall": 94,
             "street_sector": 2,
-            "into_sector": 160,
+            "into_sector": 161,
             "interior_component": 11,
             "width": 2048,
             "gap_z": 16384,
@@ -345,7 +345,7 @@
           {
             "wall": 98,
             "street_sector": 2,
-            "into_sector": 158,
+            "into_sector": 159,
             "interior_component": 10,
             "width": 1024,
             "gap_z": 16384,
@@ -355,7 +355,7 @@
           {
             "wall": 100,
             "street_sector": 2,
-            "into_sector": 156,
+            "into_sector": 157,
             "interior_component": 10,
             "width": 1024,
             "gap_z": 16384,
@@ -375,7 +375,7 @@
           {
             "wall": 145,
             "street_sector": 3,
-            "into_sector": 149,
+            "into_sector": 150,
             "interior_component": 9,
             "width": 2048,
             "gap_z": 31744,
@@ -436,7 +436,7 @@
           },
           {
             "interior_component": 7,
-            "sectors": 10,
+            "sectors": 11,
             "area": 10747904,
             "substantial": true
           },
@@ -522,9 +522,9 @@
           "zone": 0,
           "zone_floor_picnum": 352,
           "street_sectors": 16,
-          "sectors": 172,
-          "walls": 1122,
-          "sprites": 244
+          "sectors": 173,
+          "walls": 1130,
+          "sprites": 250
         },
         {
           "zone": 1,
@@ -595,7 +595,7 @@
           "note": "not reachable from any street",
           "sectors": 26,
           "walls": 144,
-          "sprites": 78
+          "sprites": 86
         }
       ],
       "mechanisms": {
@@ -727,9 +727,9 @@
     },
     "budgets": {
       "SKELETON": {
-        "sectors": 206,
-        "walls": 1306,
-        "sprites": 323
+        "sectors": 207,
+        "walls": 1314,
+        "sprites": 337
       }
     }
   }

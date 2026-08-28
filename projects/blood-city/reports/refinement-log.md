@@ -1489,3 +1489,90 @@ making 25 lintels continue their facade is the next job, and it is the
 owner's original fault still standing. The module reconciliation is
 partial — `keysign.py`, `materials.py` and `setpieces.py` still duplicate
 `bloodmap.keys`, `surfaces` and `prefab`.
+
+## Iteration 24 — the detail sources mined, and a fixture kit
+
+### The two "still open" items were already closed
+
+Stated plainly because the directive lists them as outstanding:
+
+* `bloodmap.aperture` **is** imported -- `build_skeleton.py:1030`,
+  `frame_z_doors`, adopted by the grammar workstream. The grammar's own
+  `aperture.audit` reports **37 findings on the current build, not 107 of
+  109**: 25 lintels that do not continue their facade tile, 13 leaves over
+  `DOOR_MAX` that are unnamed. Real and still unfixed, but a quarter of the
+  reported size.
+* `rules.evaluate` **is** in the build path, wired last iteration. It
+  reports at build time and currently finds 77 diagnostics, no errors.
+
+### The sources verify
+
+Every headline number checks out against the maps. DWE3M1 606 sectors /
+1,690 sprites; DWE3M10 498 / 1,038; E6M1 43 raised fixtures against the
+claimed 42; DWE3M1 exactly **40** letter sprites, DWE3M10 **89**.
+
+And the two named families are exactly as described:
+
+* DWE3M10 **rise 3072, tile 345, depth 1024**, widths 512 and 1024, eight
+  occurrences -- rise, tile and depth pinned, **width free**. The canonical
+  parametric fixture in the whole source set.
+* DWE3M1 **rise 21504, tile 1666**, fourteen occurrences.
+
+`attested in BOTH Death Wish maps` comes out as **624, 640, 660, 795,
+1060** -- the globe, the lamp, the kelp, the porthole and the shutter,
+which is the owner's prediction confirmed by construction.
+
+### Two findings that overturned the plan
+
+**Goods mostly do not reach the shelf.** Median sprites per fixture is
+**zero** in all four sources: 143 of DWE3M1's 171 fixtures are bare, 125 of
+136, 41 of 43, 61 of 62. The fixture *is* the detail; merchandise is an
+accent at about one fixture in seven. The kit's `GOODS_SHARE` is that
+number, and "one merchandise sprite per pedestal" -- which is what
+venue-patterns.md implies and what I would have built -- is wrong.
+
+**A shutter is a masked wall, not a sprite.** DWE3M10 draws tile 1060 as
+the `over_picnum` of a two-sided masked wall ten times. All four sources
+draw glass (266) identically. So closing a shopfront and glazing one are
+one constructor with a different tile, which is the cheapest possible
+answer to the empty-interiors problem.
+
+**And the signature element is two fixtures, not one.** Tile 795 is in both
+Death Wish maps, but DWE3M10 mounts 125 of them floor-aligned at +3.38
+player heights, cstat 160, shade -30 -- a lit ceiling porthole -- while
+DWE3M1 mounts its 16 wall-aligned at +0.12, shade 0. One tile, two
+conventions; recorded rather than averaged. Gravesend takes the pier form,
+fourteen of them, because repetition of one element is the property the
+city was missing.
+
+### The kit
+
+`level/fixtures.py`. Families carry what is pinned (rise, tile, depth) and
+what is free (length), with provenance on each. `place` applies the
+family's tile as well as its rise -- without that a fixture inherits its
+room's floor and eight of them read as eight blocks rather than one thing
+repeated, which is the whole reason a family is a family.
+
+Tested across the range: a counter run at lengths 512 to 12,288 emits 1 to
+10 modules with no degenerate case; cost declared before emission (8 walls
+per module); variation deterministic; the goods rate lands at 0.13 against
+the measured 0.14. Deterministic rebuild proven byte-identical.
+
+**The pawn shop is furnished from it** -- three counter modules on tile 345
+at rise 3072 and two pedestals on 452 at rise 2048, all from the campaign
+families, replacing four hand-placed rectangles. It is no longer an empty
+box.
+
+Build: 207 sectors / 1,314 walls / 337 sprites. 11/11 conformance, 16/16
+contract rows, 77 rule diagnostics with no errors.
+
+### Not done
+
+The venue-type refactor -- deriving rooms and storefront rhythm from
+frontage rather than literal coordinates -- is not started; `l3_mall.py`'s
+six units are still a fixed grid. The shutter constructor exists
+(`fixtures.close_front`) but no front is shuttered yet, so the
+"more units than we furnish" idea is available and unused. The 37 aperture
+findings are still open. Lettering is filed as grammar request #12 rather
+than fixed, because `PITCH` is a module constant and the Death Wish
+convention cannot be expressed without changing `bloodmap`.
