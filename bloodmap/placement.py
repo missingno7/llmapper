@@ -36,6 +36,92 @@ class PlacementError(ValueError):
     pass
 
 
+#: Blood draws a sprite centred on its own ``z``.
+#:
+#: ``GetSpriteExtents`` (db.h) is the whole rule, and it is shorter than the
+#: assumptions usually made about it::
+#:
+#:     *top = *bottom = pSprite->z;
+#:     if ((cstat & 0x30) != 0x20) {            // anything but floor-aligned
+#:         int center = tilesiz[picnum].y / 2 + picanm[picnum].yofs;
+#:         *top    -= (yrepeat << 2) * center;
+#:         *bottom += (yrepeat << 2) * (height - center);
+#:     }
+#:
+#: There is no ``cstat & 128`` test in it. Bit 128 is Duke's y-centring flag and
+#: Blood sets it on most sprites, but Blood's extents ignore it: face sprites and
+#: wall-aligned sprites alike hang half above and half below their z. Only a
+#: floor-aligned sprite (cstat & 0x30 == 0x20) is a flat plane at z.
+#:
+#: So placing a standing object at ``z = floor_z`` buries exactly half of it,
+#: which is not a rounding error but the default outcome of the obvious guess.
+#: The campaign puts the *bottom* on the floor: of its 65 fence sprites, 43 sit
+#: at ``bottom - floor_z == 0`` exactly.
+SPRITE_ALIGNMENT_MASK = 0x30
+SPRITE_ALIGNMENT_FLOOR = 0x20
+
+
+def sprite_extent(tile_height: int, y_repeat: int, cstat: int, *,
+                  y_offset: int = 0) -> tuple[int, int]:
+    """How far a sprite reaches above and below its own z, in z units.
+
+    Returns ``(above, below)``, both non-negative. A floor-aligned sprite is a
+    plane and returns ``(0, 0)``.
+    """
+    if int(cstat) & SPRITE_ALIGNMENT_MASK == SPRITE_ALIGNMENT_FLOOR:
+        return (0, 0)
+    height = int(tile_height)
+    centre = height // 2 + int(y_offset)
+    scale = int(y_repeat) << 2
+    return (scale * centre, scale * (height - centre))
+
+
+def drawn_height(tile_height: int, y_repeat: int) -> int:
+    """The z units a sprite covers top to bottom."""
+    return (int(y_repeat) << 2) * int(tile_height)
+
+
+def seated_z(*, seat: str, floor_z: int, ceiling_z: int, tile_height: int,
+             y_repeat: int, cstat: int, y_offset: int = 0,
+             clearance: int = 0) -> int:
+    """The z that puts a sprite where the author meant it.
+
+    ``seat`` is ``"floor"`` (bottom on the floor -- what a standing object
+    wants), ``"ceiling"`` (top against the ceiling -- what a hanging one wants),
+    or ``"centre"`` (z midway between, for something mounted on a wall). Build's
+    z axis points down, so the floor is the larger number.
+    """
+    above, below = sprite_extent(tile_height, y_repeat, cstat, y_offset=y_offset)
+    if seat == "floor":
+        return int(floor_z) - below - int(clearance)
+    if seat == "ceiling":
+        return int(ceiling_z) + above + int(clearance)
+    if seat == "centre":
+        return (int(floor_z) + int(ceiling_z)) // 2
+    raise PlacementError(f"unknown seat {seat!r}; use floor, ceiling or centre")
+
+
+def fits_between(floor_z: int, ceiling_z: int, tile_height: int, y_repeat: int,
+                 cstat: int, *, y_offset: int = 0) -> bool:
+    """Whether the sprite is short enough to stand in the space at all."""
+    above, below = sprite_extent(tile_height, y_repeat, cstat, y_offset=y_offset)
+    return (above + below) <= abs(int(floor_z) - int(ceiling_z))
+
+
+def repeat_to_fit(floor_z: int, ceiling_z: int, tile_height: int, *,
+                  fraction: float = 1.0, step: int = 8) -> int:
+    """The largest y_repeat whose drawn height is at most ``fraction`` of the space.
+
+    Snapped down to a multiple of ``step``: the campaign draws 73% of its
+    decorations at a power of two and uses only 53 distinct repeats in the whole
+    game, so an exact-fit repeat computed to the unit would be a value Blood
+    never uses.
+    """
+    span = abs(int(floor_z) - int(ceiling_z)) * float(fraction)
+    exact = int(span // (4 * int(tile_height)))
+    return max(step, (exact // step) * step)
+
+
 def _id(ref: str) -> int:
     return int(str(ref).split(":", 1)[1])
 
@@ -467,3 +553,157 @@ def validate_use_poses(disk: DiskMap) -> dict[str, Any]:
         "violations": violations,
         "ok": not violations,
     }
+
+
+def misseated_sprites(disk: Any, tile_extents: dict[int, tuple[int, int]],
+                      *, tolerance: int = 256) -> list[dict[str, Any]]:
+    """Sprites whose drawn extent leaves the sector they are in.
+
+    The fault this catches is invisible to every structural check: the map is
+    valid, the engine loads it, and the player sees a fence sunk to its waist in
+    the floor. It comes from placing a sprite at ``z = floor_z`` and expecting it
+    to stand there, which is the natural reading of the field and the wrong one.
+
+    `tolerance` allows the quarter-player-width slop the campaign itself carries;
+    212 of its 3,251 decorations sit further below their floor than that, so this
+    is a warning about a level's own intent rather than a law.
+    """
+    out: list[dict[str, Any]] = []
+    for index, sprite in enumerate(disk.sprites):
+        fields = sprite.fields
+        if int(fields["type"]) != 0 or int(fields["cstat"]) & 32768:
+            continue
+        extent = tile_extents.get(int(fields["picnum"]))
+        if extent is None:
+            continue
+        sector_id = int(fields["sector"])
+        if not 0 <= sector_id < len(disk.sectors):
+            continue
+        above, below = sprite_extent(
+            extent[0], int(fields["y_repeat"]), int(fields["cstat"]), y_offset=extent[1])
+        z = int(fields["z"])
+        sector = disk.sectors[sector_id].fields
+        floor_z, ceiling_z = int(sector["floor_z"]), int(sector["ceiling_z"])
+
+        # A floor-aligned sprite is a flat plane at its own z, so it has no
+        # extent to sink or poke -- and the test below therefore never saw one
+        # hanging in the air. Eleven of them were, because tile 795's canonical
+        # cstat is 224, which is floor alignment, and it had been copied into a
+        # *wall* placement. The mounting is part of the tile: laying a floor
+        # grate against a wall leaves a disc floating edge-on.
+        #
+        # It is measured against the *nearer* of the two horizontal planes,
+        # because a flat sprite is a plate and a plate lies on either. The
+        # campaign's ceiling lights are floor-aligned sprites hung at the
+        # ceiling, and a check that only knew about floors would have called
+        # every one of them a fault.
+        if int(fields["cstat"]) & SPRITE_ALIGNMENT_MASK == SPRITE_ALIGNMENT_FLOOR:
+            drift = min(abs(z - floor_z), abs(z - ceiling_z))
+            if drift > tolerance:
+                out.append({
+                    "sprite": index,
+                    "picnum": int(fields["picnum"]),
+                    "sector": sector_id,
+                    "floor_aligned_adrift": drift,
+                })
+            continue
+
+        sunk = (z + below) - floor_z
+        poking = ceiling_z - (z - above)
+        if sunk > tolerance or poking > tolerance:
+            out.append({
+                "sprite": index,
+                "picnum": int(fields["picnum"]),
+                "sector": sector_id,
+                "below_floor": max(0, sunk),
+                "above_ceiling": max(0, poking),
+            })
+    return out
+
+
+def sprite_width(tile_width: int, x_repeat: int) -> int:
+    """A sprite's drawn width in map units.
+
+    Build scales a sprite by four in both axes, and the z axis is a sixteenth of
+    the xy one -- so a height of ``(y_repeat << 2) * tile_height`` z units is a
+    width of ``x_repeat * tile_width / 4`` xy units for the same repeat.
+    """
+    return int(x_repeat) * int(tile_width) // 4
+
+
+def leaf_repeat(travel: int, tile_width: int) -> int:
+    """The widest x_repeat for a sliding leaf that fully clears its opening.
+
+    A leaf carried by a slide sector moves by the marker separation and no
+    further, so anything wider than that distance is still standing in the
+    doorway when the gate has finished opening. The campaign builds to just
+    inside the limit -- E1M1's leaf is 1536 wide and travels 1448, E1M5's is
+    1792 and travels 1600 -- so the rule is width <= travel, not width < travel.
+    """
+    return max(1, min(255, (int(travel) * 4) // int(tile_width)))
+
+
+def blocked_when_open(travel: int, tile_width: int, x_repeat: int) -> int:
+    """How much of the opening a leaf still covers once the gate has opened."""
+    return max(0, sprite_width(tile_width, x_repeat) - int(travel))
+
+
+def _wall_direction(ax: int, ay: int, bx: int, by: int) -> int:
+    from math import atan2, pi
+
+    return int(round(atan2(by - ay, bx - ax) / (2 * pi) * 2048)) & 2047
+
+
+def wall_mount_angles(disk: Any, *, max_distance: int = 460) -> list[dict[str, Any]]:
+    """Every wall-aligned sprite, with its angle relative to the wall it sits on.
+
+    A wall-aligned sprite's `angle` is the normal of its face, not the line it
+    lies along, so it presents itself to the room only when the angle is a
+    quarter turn from the wall's direction. The campaign is emphatic: of 2,839
+    wall-aligned sprites mounted within a player width or so of a wall, **92%
+    are perpendicular** and 83% are at exactly +512 -- which makes it a facing
+    rule rather than a symmetry, since +1536 (the other perpendicular) is only
+    8%.
+
+    Getting this wrong is invisible in every structural sense and unmissable on
+    screen: the sprite stands edge-on, a bright line instead of a fence.
+    """
+    out: list[dict[str, Any]] = []
+    for index, sprite in enumerate(disk.sprites):
+        fields = sprite.fields
+        cstat = int(fields["cstat"])
+        if cstat & SPRITE_ALIGNMENT_MASK != WALL_ALIGN_CSTAT or cstat & 32768:
+            continue
+        sector_id = int(fields["sector"])
+        if not 0 <= sector_id < len(disk.sectors):
+            continue
+        sector = disk.sectors[sector_id].fields
+        start, count = int(sector["wall_ptr"]), int(sector["wall_count"])
+        sx, sy = int(fields["x"]), int(fields["y"])
+        best = None
+        for wall in range(start, start + count):
+            ax, ay = int(disk.walls[wall].fields["x"]), int(disk.walls[wall].fields["y"])
+            nxt = int(disk.walls[wall].fields["point2"])
+            bx, by = int(disk.walls[nxt].fields["x"]), int(disk.walls[nxt].fields["y"])
+            dx, dy = bx - ax, by - ay
+            length = dx * dx + dy * dy
+            t = 0.0 if not length else max(0.0, min(1.0, ((sx - ax) * dx + (sy - ay) * dy) / length))
+            distance = hypot(sx - (ax + t * dx), sy - (ay + t * dy))
+            if best is None or distance < best[0]:
+                best = (distance, ax, ay, bx, by)
+        if best is None or best[0] > max_distance:
+            continue
+        relative = (int(fields["angle"]) - _wall_direction(*best[1:])) & 2047
+        out.append({
+            "sprite": index,
+            "picnum": int(fields["picnum"]),
+            "relative_angle": relative,
+            "perpendicular": relative in (512, 1536),
+            "distance": round(best[0]),
+        })
+    return out
+
+
+def edge_on_sprites(disk: Any, **kwargs: Any) -> list[dict[str, Any]]:
+    """Wall-mounted sprites presenting their edge to the room instead of a face."""
+    return [row for row in wall_mount_angles(disk, **kwargs) if not row["perpendicular"]]

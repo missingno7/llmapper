@@ -1,0 +1,112 @@
+{
+ "$schema": "llmapper.blood-apertures",
+ "schema_version": 1,
+ "maps": 43,
+ "unit": "standing humans (16960 z) and player widths (384)",
+ "summary": {
+  "two_sided_walkable_walls": 56624,
+  "kinds": {
+   "seam": {
+    "count": 25522,
+    "share": 0.4507
+   },
+   "lintel": {
+    "count": 9143,
+    "share": 0.1615
+   },
+   "step_only": {
+    "count": 8921,
+    "share": 0.1575
+   },
+   "pinch": {
+    "count": 7324,
+    "share": 0.1293
+   },
+   "door_sector": {
+    "count": 5714,
+    "share": 0.1009
+   }
+  },
+  "apertures": 22181,
+  "leaf_player_heights": {
+   "min": 0.24,
+   "q1": 1.57,
+   "median": 1.93,
+   "q3": 3.32,
+   "p95": 5.8,
+   "max": 75.47
+  },
+  "leaf_width_player_widths": {
+   "min": 0.01,
+   "q1": 1.33,
+   "median": 2.67,
+   "q3": 4.01,
+   "p95": 8.54,
+   "max": 160.0
+  },
+  "facade_player_heights": {
+   "min": 0.24,
+   "q1": 1.93,
+   "median": 2.9,
+   "q3": 3.98,
+   "p95": 8.12,
+   "max": 89.0
+  },
+  "lintel": {
+   "openings_with_one": 10475,
+   "share": 0.472,
+   "player_heights": {
+    "min": 0.01,
+    "q1": 0.24,
+    "median": 0.5,
+    "q3": 1.87,
+    "p95": 3.98,
+    "max": 32.0
+   },
+   "continues_the_facade": 0.704
+  },
+  "step": {
+   "openings_with_one": 6185,
+   "player_heights": {
+    "min": 0.01,
+    "q1": 0.24,
+    "median": 0.48,
+    "q3": 1.69,
+    "p95": 4.11,
+    "max": 77.71
+   }
+  },
+  "full_height": {
+   "openings": 8941,
+   "share": 0.4031,
+   "leaf_player_heights": {
+    "min": 0.24,
+    "q1": 1.69,
+    "median": 1.93,
+    "q3": 3.62,
+    "p95": 6.28,
+    "max": 62.31
+   },
+   "in_door_sectors": 2159
+  },
+  "leaf_taller_than": {
+   "1.5": 0.7896,
+   "2.0": 0.4284,
+   "2.5": 0.3508,
+   "3.0": 0.283,
+   "4.0": 0.1197,
+   "6.0": 0.0475
+  }
+ },
+ "engine": {
+  "bands": "a two-sided wall draws an upper section from the lower of the two ceilings up to its own, a lower section from the higher of the two floors down to its own, and leaves the gap between",
+  "lintel_owner": "the upper section takes this wall's own picnum, not the neighbour's, so the band above an opening belongs to the facade it is seen from"
+ },
+ "reading_guide": [
+  "leaf is the hole the player walks through, in standing humans",
+  "lintel is the facade above it and step the facade below, both measured on the viewing side",
+  "a seam is not an aperture: two sectors of one continuous space meeting, with no wall there to carry a lintel",
+  "full_height means the opening runs the whole facade -- no lintel and no step -- which the campaign does, rarely, and on purpose",
+  "a band is what the campaign did, never what a level must do"
+ ]
+}

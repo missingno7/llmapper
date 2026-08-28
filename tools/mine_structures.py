@@ -34,7 +34,14 @@ FIT_EPISODES = ("E1", "E2", "E3")
 HELD_OUT_EPISODES = ("E4", "E6")
 
 PLAYER_WIDTH = 384
-PLAYER_HEIGHT = 0x1600
+
+from bloodmap.player_space import PLAYER_PROFILES
+
+#: One standing human, from the player profile. Never hardcode this: it was
+#: 0x1600 in a dozen modules, which is `POSTURE.eyeAboveZ` -- an offset from
+#: the sprite's centre, not a body -- and every height in the project was
+#: denominated in a unit 3x too small.
+PLAYER_HEIGHT = PLAYER_PROFILES["blood"].standing_height
 
 #: Matches bloodmap.morphology._curved_chain_count so the mined parameters
 #: describe the same chains the shape corpus counts.
@@ -289,15 +296,44 @@ def _landing_candidate(rows: list[dict]) -> dict[str, Any]:
     }
 
 
-def _relation_candidate(name: str, rows: list[dict], key: str) -> dict[str, Any]:
+def _relation_candidate(name: str, fit: list[dict], held: list[dict], key: str,
+                        extra: tuple[str, ...] = ()) -> dict[str, Any]:
+    """Overlooks and pits, with the same fit/held-out split the others get.
+
+    These two used to report one pooled distribution, which is enough to say a
+    shape is common and not enough to promote it: the reading guide asks for a
+    held-out figure that matches the fitted one, and a pooled number cannot
+    produce that. The extra keys are the parameters a *constructor* would take,
+    because a distribution over something the vocabulary cannot express is not
+    evidence for adding it.
+    """
+    def profile(rows: list[dict]) -> dict[str, Any]:
+        result: dict[str, Any] = {
+            "examples": len(rows),
+            "measure_player_heights": _percentiles(
+                [float(item["parameters"][key]) / PLAYER_HEIGHT for item in rows]
+            ),
+        }
+        for field in extra:
+            values = [
+                float(item["parameters"][field])
+                for item in rows if field in item["parameters"]
+            ]
+            if values:
+                result[field] = _percentiles(values)
+        return result
+
+    everything = fit + held
     return {
         "candidate": name,
         "derived_from": f"structures.{name}",
-        "occurrences": len(rows),
-        "maps_with_at_least_one": len({item["map"] for item in rows}),
+        "occurrences": len(everything),
+        "maps_with_at_least_one": len({item["map"] for item in everything}),
         "measure_player_heights": _percentiles(
-            [float(item["parameters"][key]) / PLAYER_HEIGHT for item in rows]
+            [float(item["parameters"][key]) / PLAYER_HEIGHT for item in everything]
         ),
+        "fit": profile(fit),
+        "held_out": profile(held),
     }
 
 
@@ -360,6 +396,8 @@ def mine(directory: pathlib.Path, pattern: str = "E?M*.MAP") -> dict[str, Any]:
     run_fit, run_held = split(by_kind["stepped_run"])
     rec_fit, rec_held = split(by_kind["recess"])
     shell_fit, shell_held = split(by_kind["embedded_shell"])
+    overlook_fit, overlook_held = split(by_kind["overlook"])
+    pit_fit, pit_held = split(by_kind["pit"])
     arc_fit, arc_held = split(arcs)
 
     candidates = [
@@ -368,8 +406,10 @@ def mine(directory: pathlib.Path, pattern: str = "E?M*.MAP") -> dict[str, Any]:
         _arc_candidate(arc_fit, arc_held, arcs_by_map),
         _shell_candidate(shell_fit, shell_held),
         _landing_candidate(by_kind["landing"]),
-        _relation_candidate("overlook", by_kind["overlook"], "drop"),
-        _relation_candidate("pit", by_kind["pit"], "depth"),
+        _relation_candidate("overlook", overlook_fit, overlook_held, "drop",
+                            ("opening_width", "upper_area", "lower_area")),
+        _relation_candidate("pit", pit_fit, pit_held, "depth",
+                            ("area", "exits", "clear_height")),
     ]
     return {
         "$schema": SCHEMA,

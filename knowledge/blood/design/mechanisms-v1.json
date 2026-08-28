@@ -1,0 +1,181 @@
+{
+ "$schema": "llmapper.mechanism-shapes",
+ "schema_version": 1,
+ "first_user_channel": 30,
+ "maps": 43,
+ "user_channels_per_map": {
+  "median": 47,
+  "p90": 96,
+  "max": 147
+ },
+ "objects_per_channel": {
+  "median": 3,
+  "p90": 7,
+  "max": 161
+ },
+ "shapes": {
+  "one_to_one": {
+   "count": 739,
+   "share": 0.324
+  },
+  "fan_out": {
+   "count": 671,
+   "share": 0.294
+  },
+  "fan_in": {
+   "count": 355,
+   "share": 0.155
+  },
+  "mesh": {
+   "count": 252,
+   "share": 0.11
+  },
+  "orphan_receiver": {
+   "count": 151,
+   "share": 0.066
+  },
+  "orphan_transmitter": {
+   "count": 115,
+   "share": 0.05
+  }
+ },
+ "fan_out_receivers": {
+  "median": 3,
+  "p90": 10,
+  "max": 144
+ },
+ "fan_in_transmitters": {
+  "median": 2,
+  "p90": 6,
+  "max": 19
+ },
+ "receiver_types": [
+  {
+   "type": 600,
+   "channels": 548
+  },
+  {
+   "type": 0,
+   "channels": 367
+  },
+  {
+   "type": 614,
+   "channels": 249
+  },
+  {
+   "type": 20,
+   "channels": 234
+  },
+  {
+   "type": 21,
+   "channels": 155
+  },
+  {
+   "type": 711,
+   "channels": 132
+  },
+  {
+   "type": 710,
+   "channels": 130
+  },
+  {
+   "type": 416,
+   "channels": 122
+  },
+  {
+   "type": 459,
+   "channels": 104
+  },
+  {
+   "type": 617,
+   "channels": 99
+  },
+  {
+   "type": 708,
+   "channels": 95
+  },
+  {
+   "type": 22,
+   "channels": 73
+  },
+  {
+   "type": 417,
+   "channels": 65
+  },
+  {
+   "type": 602,
+   "channels": 44
+  },
+  {
+   "type": 145,
+   "channels": 43
+  }
+ ],
+ "transmitter_types": [
+  {
+   "type": 20,
+   "channels": 612
+  },
+  {
+   "type": 0,
+   "channels": 568
+  },
+  {
+   "type": 21,
+   "channels": 290
+  },
+  {
+   "type": 416,
+   "channels": 178
+  },
+  {
+   "type": 600,
+   "channels": 153
+  },
+  {
+   "type": 408,
+   "channels": 100
+  },
+  {
+   "type": 22,
+   "channels": 86
+  },
+  {
+   "type": 617,
+   "channels": 73
+  },
+  {
+   "type": 614,
+   "channels": 42
+  },
+  {
+   "type": 511,
+   "channels": 35
+  },
+  {
+   "type": 407,
+   "channels": 24
+  },
+  {
+   "type": 700,
+   "channels": 24
+  },
+  {
+   "type": 417,
+   "channels": 20
+  },
+  {
+   "type": 100,
+   "channels": 10
+  },
+  {
+   "type": 616,
+   "channels": 8
+  }
+ ],
+ "reading_guide": [
+  "a one-to-one channel is a switch and the thing it opens; the design interest is in the fan-outs and fan-ins",
+  "orphan channels are not necessarily faults -- the campaign carries them too, so a converted map with a few is in normal company",
+  "a share is what the campaign did, never what a level must do"
+ ]
+}

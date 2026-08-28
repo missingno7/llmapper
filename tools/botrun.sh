@@ -20,7 +20,10 @@ else
 fi
 cp -f "$SRC" "$GAME/$NAME"
 cd "$GAME"
-./nblood.exe -usecwd -nosetup -map "$NAME" -bot \
+# -noinstancechecking: without it a second copy stops on a "the game is
+# already running" prompt and waits for a click that is never coming, so a
+# run left behind by an earlier test wedges every run after it.
+./nblood.exe -usecwd -nosetup -noinstancechecking -map "$NAME" -bot \
   -bot_telemetry "$OUT/telemetry.ndjson" \
   -bot_trajectory "$OUT/trajectory.ndjson" \
   -bot_demo "$OUT/run.dem" "$@" >"$OUT/stdout.txt" 2>&1

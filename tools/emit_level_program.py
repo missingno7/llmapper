@@ -37,7 +37,14 @@ from bloodmap.structures import detect_structures
 from bloodmap.viewpoints import _sector_loops
 
 PLAYER_WIDTH = 384
-PLAYER_HEIGHT = 0x1600
+
+from bloodmap.player_space import PLAYER_PROFILES
+
+#: One standing human, from the player profile. Never hardcode this: it was
+#: 0x1600 in a dozen modules, which is `POSTURE.eyeAboveZ` -- an offset from
+#: the sprite's centre, not a body -- and every height in the project was
+#: denominated in a unit 3x too small.
+PLAYER_HEIGHT = PLAYER_PROFILES["blood"].standing_height
 
 #: Spaces at or above this footprint get their own named builder; the rest are
 #: emitted inside their area as parts, so the file has a readable top level.
@@ -86,6 +93,81 @@ def _bounds(points: list[tuple[int, int]]) -> tuple[int, int, int, int]:
     )
 
 
+def _on_segment(point: tuple[int, int], a: tuple[int, int], b: tuple[int, int]) -> bool:
+    """Whether *point* lies on the closed segment ab, exactly."""
+    cross = (b[0] - a[0]) * (point[1] - a[1]) - (b[1] - a[1]) * (point[0] - a[0])
+    if cross != 0:
+        return False
+    return (min(a[0], b[0]) <= point[0] <= max(a[0], b[0])
+            and min(a[1], b[1]) <= point[1] <= max(a[1], b[1]))
+
+
+def _splice_flush_hole(outer: list[tuple[int, int]],
+                       hole: list[tuple[int, int]]) -> list[tuple[int, int]] | None:
+    """Fold a hole that touches the outer boundary into the boundary itself.
+
+    Build lets a sector's inner loop sit flush against its outer loop -- E2M3's
+    sector 212 has one whose bottom edge lies exactly on the outer edge, with
+    sector 326 filling it. That is a bite out of the sector's edge drawn as a
+    hole, and it is perfectly legal: the renderer walks loops, not a subdivision.
+
+    A planar layout is a subdivision, so it needs the same shape drawn the other
+    way round -- as an indentation of the outer loop. Splicing loses nothing:
+    the boundary and the enclosed area are identical, and the region that filled
+    the hole now abuts the indentation instead of overlapping the edge.
+
+    Returns the spliced outline, or None when the hole is strictly interior and
+    should stay a hole.
+    """
+    for index in range(len(outer)):
+        a, b = outer[index], outer[(index + 1) % len(outer)]
+        touching = [i for i, point in enumerate(hole) if _on_segment(point, a, b)]
+        if len(touching) < 2:
+            continue
+        # Enter the hole at the touching vertex nearer a, walk it the other way
+        # round than the outer loop so the indentation reads as solid, and come
+        # back out at the far one.
+        def distance(i: int) -> int:
+            point = hole[i]
+            return (point[0] - a[0]) ** 2 + (point[1] - a[1]) ** 2
+
+        entry = min(touching, key=distance)
+        exit_ = max(touching, key=distance)
+
+        def path(step: int) -> list[tuple[int, int]]:
+            walk: list[tuple[int, int]] = []
+            current = entry
+            while current != exit_:
+                walk.append(hole[current])
+                current = (current + step) % len(hole)
+            walk.append(hole[exit_])
+            return walk
+
+        # Take the way round that goes *through* the hole rather than along the
+        # edge already lying on the boundary; the short way would just repeat
+        # the outer segment's own endpoints.
+        forward, backward = path(1), path(-1)
+        walk = forward if len(forward) >= len(backward) else backward
+        spliced = outer[:index + 1] + walk + outer[index + 1:]
+        # The hole's touching corners are often already vertices of the outer
+        # loop, so the seam repeats them. Drop the repeats rather than refusing:
+        # a duplicated point is a seam artefact, whereas a duplicate elsewhere
+        # would mean the splice folded the outline onto itself.
+        collapsed: list[tuple[int, int]] = []
+        for point in spliced:
+            if not collapsed or collapsed[-1] != point:
+                collapsed.append(point)
+        while len(collapsed) > 1 and collapsed[0] == collapsed[-1]:
+            collapsed.pop()
+        # Only accept a splice that leaves a simple, correctly wound outline.
+        if area2(tuple(collapsed)) <= 0:
+            return None
+        if len(set(collapsed)) != len(collapsed):
+            return None
+        return collapsed
+    return None
+
+
 def _sector_loops_split(level, sector_id: int) -> tuple[list[tuple[int, int]], list[list[tuple[int, int]]]]:
     """The sector's outer loop and its holes, wound the way the compiler wants."""
     loops = _sector_loops(level, sector_id)
@@ -100,6 +182,10 @@ def _sector_loops_split(level, sector_id: int) -> tuple[list[tuple[int, int]], l
         hole = [(int(x), int(y)) for x, y in loop]
         if area2(tuple(hole)) > 0:
             hole.reverse()
+        spliced = _splice_flush_hole(outer, hole)
+        if spliced is not None:
+            outer = spliced
+            continue
         holes.append(hole)
     return outer, holes
 

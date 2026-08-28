@@ -1,0 +1,252 @@
+{
+ "$schema": "llmapper.blood-prefab-shapes",
+ "schema_version": 1,
+ "maps": 43,
+ "small_sectors": 9494,
+ "small_area_threshold": 20.0,
+ "kinds": {
+  "junction": {
+   "instances": 2548,
+   "share_of_small": 0.268,
+   "per_map": {
+    "q1": 24.0,
+    "median": 47.0,
+    "q3": 95.0
+   },
+   "area": {
+    "q1": 1.78,
+    "median": 3.56,
+    "q3": 8.89
+   },
+   "walls": {
+    "q1": 4.0,
+    "median": 4.0,
+    "q3": 6.0
+   },
+   "height": {
+    "q1": 4.91,
+    "median": 6.36,
+    "q3": 10.36
+   },
+   "floor_step": {
+    "q1": 0.36,
+    "median": 1.45,
+    "q3": 4.91
+   },
+   "ceiling_step": {
+    "q1": 0.0,
+    "median": 1.45,
+    "q3": 5.82
+   }
+  },
+  "link": {
+   "instances": 2337,
+   "share_of_small": 0.246,
+   "per_map": {
+    "q1": 24.0,
+    "median": 45.0,
+    "q3": 66.0
+   },
+   "area": {
+    "q1": 1.88,
+    "median": 5.33,
+    "q3": 8.26
+   },
+   "walls": {
+    "q1": 4.0,
+    "median": 4.0,
+    "q3": 5.0
+   },
+   "height": {
+    "q1": 4.36,
+    "median": 5.82,
+    "q3": 5.82
+   },
+   "floor_step": {
+    "q1": 0.0,
+    "median": 0.73,
+    "q3": 1.64
+   },
+   "ceiling_step": {
+    "q1": 0.0,
+    "median": 0.91,
+    "q3": 5.45
+   }
+  },
+  "alcove": {
+   "instances": 1793,
+   "share_of_small": 0.189,
+   "per_map": {
+    "q1": 22.0,
+    "median": 39.0,
+    "q3": 56.0
+   },
+   "area": {
+    "q1": 0.88,
+    "median": 2.67,
+    "q3": 7.11
+   },
+   "walls": {
+    "q1": 4.0,
+    "median": 4.0,
+    "q3": 5.0
+   },
+   "height": {
+    "q1": 2.91,
+    "median": 5.09,
+    "q3": 6.55
+   },
+   "floor_step": {
+    "q1": 0.0,
+    "median": 0.36,
+    "q3": 2.18
+   },
+   "ceiling_step": {
+    "q1": 0.0,
+    "median": 0.0,
+    "q3": 1.45
+   }
+  },
+  "arch": {
+   "instances": 812,
+   "share_of_small": 0.086,
+   "per_map": {
+    "q1": 6.0,
+    "median": 18.0,
+    "q3": 27.0
+   },
+   "area": {
+    "q1": 1.78,
+    "median": 3.5,
+    "q3": 7.11
+   },
+   "walls": {
+    "q1": 4.0,
+    "median": 4.0,
+    "q3": 5.0
+   },
+   "height": {
+    "q1": 4.36,
+    "median": 5.09,
+    "q3": 5.82
+   },
+   "floor_step": {
+    "q1": 0.0,
+    "median": 0.0,
+    "q3": 0.0
+   },
+   "ceiling_step": {
+    "q1": 1.27,
+    "median": 4.36,
+    "q3": 5.82
+   }
+  },
+  "tread": {
+   "instances": 797,
+   "share_of_small": 0.084,
+   "per_map": {
+    "q1": 4.0,
+    "median": 11.0,
+    "q3": 26.0
+   },
+   "area": {
+    "q1": 3.56,
+    "median": 6.12,
+    "q3": 9.25
+   },
+   "walls": {
+    "q1": 4.0,
+    "median": 4.0,
+    "q3": 5.0
+   },
+   "height": {
+    "q1": 5.82,
+    "median": 8.0,
+    "q3": 10.18
+   },
+   "floor_step": {
+    "q1": 0.36,
+    "median": 0.73,
+    "q3": 1.09
+   },
+   "ceiling_step": {
+    "q1": 0.0,
+    "median": 0.0,
+    "q3": 0.0
+   }
+  },
+  "bay": {
+   "instances": 614,
+   "share_of_small": 0.065,
+   "per_map": {
+    "q1": 7.0,
+    "median": 12.0,
+    "q3": 20.0
+   },
+   "area": {
+    "q1": 1.78,
+    "median": 4.0,
+    "q3": 8.0
+   },
+   "walls": {
+    "q1": 4.0,
+    "median": 4.0,
+    "q3": 5.0
+   },
+   "height": {
+    "q1": 4.36,
+    "median": 6.69,
+    "q3": 11.09
+   },
+   "floor_step": {
+    "q1": 0.73,
+    "median": 1.45,
+    "q3": 3.64
+   },
+   "ceiling_step": {
+    "q1": 0.0,
+    "median": 0.0,
+    "q3": 1.27
+   }
+  },
+  "branch": {
+   "instances": 593,
+   "share_of_small": 0.062,
+   "per_map": {
+    "q1": 2.0,
+    "median": 10.0,
+    "q3": 19.0
+   },
+   "area": {
+    "q1": 3.17,
+    "median": 7.78,
+    "q3": 14.22
+   },
+   "walls": {
+    "q1": 4.0,
+    "median": 5.0,
+    "q3": 8.0
+   },
+   "height": {
+    "q1": 5.09,
+    "median": 5.82,
+    "q3": 7.82
+   },
+   "floor_step": {
+    "q1": 0.0,
+    "median": 1.09,
+    "q3": 4.36
+   },
+   "ceiling_step": {
+    "q1": 0.36,
+    "median": 1.45,
+    "q3": 5.82
+   }
+  }
+ },
+ "reading_guide": [
+  "a kind is what the sector does for its neighbours, not what shape it is; the same rectangle is an alcove, a bay or a tread depending on what it opens onto",
+  "'bay' and 'junction' are the ones that close a cycle -- together a third of every small sector in the campaign",
+  "a band is what the campaign did, never what a level must do"
+ ]
+}

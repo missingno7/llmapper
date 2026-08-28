@@ -39,7 +39,16 @@ class E3L11PlayableConversionTests(unittest.TestCase):
         self.assertEqual(sprite_types[11], 2)  # congruent air-hatch up-stacks
         self.assertEqual(sprite_types[12], 2)
         self.assertEqual(sprite_types[408], 6)  # shootable Blood wall cracks
-        self.assertEqual(sprite_types[459], 6)
+        # 6 SE13 hole exploders plus the 61 SEENINE chain nodes. Every one of
+        # E3L11's SEENINEs is authored at xrepeat 4, which Duke spawns invisible
+        # and zero-sized, so none of them becomes a visible TNT barrel.
+        self.assertEqual(sprite_types[459], 67)
+        self.assertEqual(sprite_types[400], 0)
+        self.assertEqual(sprite_types[18], 4)   # RESPAWN -> kMarkerDudeSpawn
+        self.assertEqual(sprite_types[1], 1)    # exactly one kMarkerSPStart
+        # No dead combination switches: a kSwitchCombo with data1/2/3 all zero
+        # can never satisfy data1 == data2 and never fires its channel.
+        self.assertEqual(sprite_types[22], 0)
         self.assertEqual(sprite_types[41], 2)
         self.assertGreater(sprite_types[201] + sprite_types[202], 40)
         exits = [sprite for sprite in reparsed.sprites if sprite.extra and sprite.extra.tx_id == 4]
@@ -49,8 +58,12 @@ class E3L11PlayableConversionTests(unittest.TestCase):
         self.assertEqual(reparsed.sectors[111].extra.rx_id, 125)
         self.assertEqual(reparsed.sectors[159].extra.rx_id, 141)
         self.assertEqual(reparsed.sectors[83].extra.busy_time_a, 5)   # GPSPEED 1024
-        self.assertEqual(reparsed.sectors[159].extra.busy_time_a, 11)  # GPSPEED 450
-        self.assertEqual(reparsed.sectors[220].extra.busy_time_a, 40)  # GPSPEED 128
+        # Sliding doors and rotate bridges now take their duration from the
+        # engine rather than from a fitted curve. The SE15 leaf in sector 159
+        # runs sector.extra >> 3 == 56 ticks at 30 Hz, which is 19 tenths of a
+        # second; every ST30 bridge runs actors.cpp's fixed 64, which is 21.
+        self.assertEqual(reparsed.sectors[159].extra.busy_time_a, 19)  # GPSPEED 450
+        self.assertEqual(reparsed.sectors[220].extra.busy_time_a, 21)  # GPSPEED 128
         for sector_id in (162, 220, 221, 222, 223):
             self.assertEqual(reparsed.sectors[sector_id].extra.rx_id, 149)
             self.assertEqual(reparsed.sectors[sector_id].extra.trigger_push, 0)
@@ -73,7 +86,13 @@ class E3L11PlayableConversionTests(unittest.TestCase):
         self.assertEqual(report["mechanisms"]["counts"]["explosive-z-sector"], 11)
         self.assertEqual(report["mechanisms"]["counts"]["hatch-marker"], 4)
         self.assertEqual(report["mechanisms"]["counts"]["switchable-light-pulse"], 32)
-        self.assertEqual(report["mechanisms"]["channel_audit"]["dangling_user_transmit_channels"], [139, 159, 160, 161])
+        # 139 now reaches the SEENINE cascade and 160/161 reach dude-spawn
+        # markers. 159 stays: it is a lone Duke touchplate wired to nothing in
+        # E3L11 itself, so a converted map that dropped it would be inventing a
+        # receiver the original never had.
+        self.assertEqual(report["mechanisms"]["channel_audit"]["dangling_user_transmit_channels"], [159])
+        self.assertEqual(report["mechanisms"]["counts"]["chain-exploder"], 61)
+        self.assertEqual(report["mechanisms"]["counts"]["dude-spawn"], 4)
         self.assertFalse([wall for wall in reparsed.walls if wall.type == 511])
         exploders = [sprite for sprite in reparsed.sprites if sprite.type == 459]
         self.assertTrue(all(sprite.status == 11 for sprite in exploders))

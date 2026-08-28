@@ -458,8 +458,11 @@ def _decorate(layout: PlanarLayout) -> None:
         layout.place_on_wall(f"dec_nave_sconce_{name}", "region:chapel_nave",
                              a1=P(26, 26), a2=P(26, 20), t=t_value,
                              height_player_heights=2.3, offset_player_widths=0.12, **sconce(0.9))
+    # A grille set in the arch: this wall is the opening, and filling it is the
+    # whole point of a grille. `spans_opening` says so; the check arrived at v5.
     layout.place_on_wall("dec_nave_grille_s", "region:chapel_nave", a1=P(28, 18), a2=P(36, 18),
-                         t=0.5, height_player_heights=3.2, offset_player_widths=0.12, **grille(1.8))
+                         t=0.5, height_player_heights=3.2, offset_player_widths=0.12,
+                         spans_opening=True, **grille(1.8))
     for name, t_value in (("south", 0.25), ("north", 0.75)):
         layout.place_on_wall(f"dec_apse_sconce_{name}", "region:chapel_apse",
                              a1=P(42, 21), a2=P(43, 22), t=t_value,
@@ -485,8 +488,11 @@ def _decorate(layout: PlanarLayout) -> None:
     for name, local in (("west", (0.2, 0.5)), ("east", (0.8, 0.5))):
         layout.place_on_ceiling(f"dec_crypt_chain_{name}", "region:crypt_hall",
                                 local=local, height_player_heights=0.5, **chain(2.0))
+    # Moved off the opening. The check that found this arrived at v5; the fault
+    # is the same one and it has been here since this iteration.
     layout.place_on_wall("dec_crypt_emblem", "region:crypt_hall", a1=P(40, 60), a2=P(25, 60),
-                         t=0.5, height_player_heights=2.2, offset_player_widths=0.12, **emblem(2545, 1.0))
+                         t=0.2, height_player_heights=2.2, offset_player_widths=0.12,
+                         **emblem(2545, 1.0))
     layout.place_on_ceiling("dec_crypt_lamp", "region:crypt_hall", local=(0.5, 0.45),
                             height_player_heights=0.6, **lamp(1.2))
     layout.place_on_wall("dec_reliquary_emblem", "region:crypt_reliquary",
@@ -517,7 +523,8 @@ def _decorate(layout: PlanarLayout) -> None:
                              a1=P(76, 12), a2=P(76, 39), t=t_value,
                              height_player_heights=2.2, offset_player_widths=0.10, **torch(1.6))
     layout.place_on_wall("dec_gallery_plank", "region:gallery", a1=P(62, 40), a2=P(62, 12),
-                         t=0.12, height_player_heights=1.6, offset_player_widths=0.10, **plank(0.6))
+                         t=0.12, height_player_heights=1.6, offset_player_widths=0.10,
+                         spans_opening=True, **plank(0.6))
     for name, local in (("west", (0.25, 0.5)), ("east", (0.75, 0.5))):
         layout.place_on_ceiling(f"dec_gallery_lamp_{name}", "region:gallery",
                                 local=local, height_player_heights=0.9, **lamp(2.2))

@@ -1,0 +1,1620 @@
+{
+ "$schema": "llmapper.decoration-evidence",
+ "schema_version": 1,
+ "definition": "a sprite with no gameplay type, not marked invisible, in a sector the player can reach",
+ "decorations": 3159,
+ "distinct_tiles": 319,
+ "sizing": {
+  "y_repeat_histogram": {
+   "64": 1898,
+   "32": 321,
+   "48": 219,
+   "40": 127,
+   "96": 82,
+   "24": 55,
+   "16": 55,
+   "56": 52,
+   "80": 44,
+   "88": 42,
+   "72": 28,
+   "128": 28
+  },
+  "natural_size_share": 0.601,
+  "power_of_two_share": 0.734,
+  "distinct_repeats": 53,
+  "tiles_drawn_at_one_size": 29,
+  "tiles_that_scale_with_the_room": 11,
+  "median_room_height_correlation": 0.23
+ },
+ "density": {
+  "decorated_sectors": 1393,
+  "decorations_per_decorated_sector": {
+   "median": 1,
+   "p90": 5,
+   "max": 45
+  }
+ },
+ "tiles": [
+  {
+   "picnum": 795,
+   "uses": 159,
+   "maps": 18,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.604,
+   "drawn_height_player_heights": {
+    "min": 0.18,
+    "p10": 0.73,
+    "median": 1.45,
+    "p90": 1.45,
+    "max": 1.45
+   },
+   "size_ratio_p90_over_p10": 2.0,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.21,
+   "alignment": {
+    "floor": 0.925,
+    "wall": 0.075
+   },
+   "above_floor_median": 5.82,
+   "canonical_cstat": 224,
+   "canonical_cstat_share": 0.358,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 2915,
+   "uses": 147,
+   "maps": 5,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.837,
+   "drawn_height_player_heights": {
+    "min": 2.91,
+    "p10": 2.91,
+    "median": 2.91,
+    "p90": 4.36,
+    "max": 5.82
+   },
+   "size_ratio_p90_over_p10": 1.5,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.09,
+   "alignment": {
+    "floor": 1.0
+   },
+   "above_floor_median": 0.0,
+   "canonical_cstat": 224,
+   "canonical_cstat_share": 0.973,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 506,
+   "uses": 138,
+   "maps": 15,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.971,
+   "drawn_height_player_heights": {
+    "min": 1.47,
+    "p10": 1.95,
+    "median": 1.95,
+    "p90": 1.95,
+    "max": 1.95
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": 0.09,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 3.64,
+   "canonical_cstat": 128,
+   "canonical_cstat_share": 0.464,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -128
+  },
+  {
+   "picnum": 68,
+   "uses": 111,
+   "maps": 13,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.45,
+   "drawn_height_player_heights": {
+    "min": 0.09,
+    "p10": 0.18,
+    "median": 0.36,
+    "p90": 0.73,
+    "max": 0.77
+   },
+   "size_ratio_p90_over_p10": 4.0,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": -0.17,
+   "alignment": {
+    "wall": 0.613,
+    "floor": 0.387
+   },
+   "above_floor_median": 2.45,
+   "canonical_cstat": 465,
+   "canonical_cstat_share": 0.36,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 2101,
+   "uses": 91,
+   "maps": 19,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.527,
+   "drawn_height_player_heights": {
+    "min": 0.42,
+    "p10": 1.26,
+    "median": 1.68,
+    "p90": 2.52,
+    "max": 3.99
+   },
+   "size_ratio_p90_over_p10": 2.0,
+   "fixed_size": false,
+   "scales_with_room": true,
+   "room_height_correlation": 0.58,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 0.0,
+   "canonical_cstat": 128,
+   "canonical_cstat_share": 0.857,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -128
+  },
+  {
+   "picnum": 660,
+   "uses": 86,
+   "maps": 12,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.674,
+   "drawn_height_player_heights": {
+    "min": 1.09,
+    "p10": 1.45,
+    "median": 1.45,
+    "p90": 2.73,
+    "max": 3.45
+   },
+   "size_ratio_p90_over_p10": 1.87,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": -0.33,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 0.0,
+   "canonical_cstat": 128,
+   "canonical_cstat_share": 0.965,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 641,
+   "uses": 71,
+   "maps": 11,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.958,
+   "drawn_height_player_heights": {
+    "min": 4.36,
+    "p10": 5.82,
+    "median": 5.82,
+    "p90": 5.82,
+    "max": 7.27
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": 0.39,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 10.36,
+   "canonical_cstat": 129,
+   "canonical_cstat_share": 0.338,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -128
+  },
+  {
+   "picnum": 2540,
+   "uses": 69,
+   "maps": 29,
+   "canonical_y_repeat": 32,
+   "canonical_share": 0.899,
+   "drawn_height_player_heights": {
+    "min": 0.99,
+    "p10": 1.32,
+    "median": 1.32,
+    "p90": 1.32,
+    "max": 2.64
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": 0.04,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 2.55,
+   "canonical_cstat": 464,
+   "canonical_cstat_share": 0.565,
+   "canonical_x_repeat": 32,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 664,
+   "uses": 68,
+   "maps": 12,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.868,
+   "drawn_height_player_heights": {
+    "min": 2.86,
+    "p10": 4.3,
+    "median": 5.73,
+    "p90": 5.73,
+    "max": 7.16
+   },
+   "size_ratio_p90_over_p10": 1.33,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": 0.41,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 0.0,
+   "canonical_cstat": 128,
+   "canonical_cstat_share": 0.956,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 3566,
+   "uses": 65,
+   "maps": 23,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.492,
+   "drawn_height_player_heights": {
+    "min": 0.78,
+    "p10": 2.35,
+    "median": 3.14,
+    "p90": 6.27,
+    "max": 9.41
+   },
+   "size_ratio_p90_over_p10": 2.67,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.1,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 0.0,
+   "canonical_cstat": 128,
+   "canonical_cstat_share": 0.938,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -128
+  },
+  {
+   "picnum": 1044,
+   "uses": 63,
+   "maps": 18,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.397,
+   "drawn_height_player_heights": {
+    "min": 3.64,
+    "p10": 5.09,
+    "median": 5.82,
+    "p90": 8.0,
+    "max": 12.36
+   },
+   "size_ratio_p90_over_p10": 1.57,
+   "fixed_size": false,
+   "scales_with_room": true,
+   "room_height_correlation": 0.65,
+   "alignment": {
+    "wall": 0.984,
+    "floor": 0.016
+   },
+   "above_floor_median": 2.91,
+   "canonical_cstat": 401,
+   "canonical_cstat_share": 0.365,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 580,
+   "uses": 59,
+   "maps": 8,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.983,
+   "drawn_height_player_heights": {
+    "min": 3.22,
+    "p10": 3.68,
+    "median": 3.68,
+    "p90": 3.68,
+    "max": 3.68
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": 0.08,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 0.0,
+   "canonical_cstat": 129,
+   "canonical_cstat_share": 0.492,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -128
+  },
+  {
+   "picnum": 915,
+   "uses": 56,
+   "maps": 20,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.518,
+   "drawn_height_player_heights": {
+    "min": 1.5,
+    "p10": 2.5,
+    "median": 4.0,
+    "p90": 4.0,
+    "max": 4.5
+   },
+   "size_ratio_p90_over_p10": 1.6,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.17,
+   "alignment": {
+    "wall": 0.964,
+    "floor": 0.036
+   },
+   "above_floor_median": 3.82,
+   "canonical_cstat": 208,
+   "canonical_cstat_share": 0.482,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 256,
+   "uses": 55,
+   "maps": 8,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.709,
+   "drawn_height_player_heights": {
+    "min": 2.91,
+    "p10": 2.91,
+    "median": 5.82,
+    "p90": 5.82,
+    "max": 11.64
+   },
+   "size_ratio_p90_over_p10": 2.0,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.19,
+   "alignment": {
+    "floor": 1.0
+   },
+   "above_floor_median": 9.45,
+   "canonical_cstat": 417,
+   "canonical_cstat_share": 0.636,
+   "canonical_x_repeat": 48,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 1701,
+   "uses": 53,
+   "maps": 11,
+   "canonical_y_repeat": 48,
+   "canonical_share": 0.509,
+   "drawn_height_player_heights": {
+    "min": 2.03,
+    "p10": 4.06,
+    "median": 4.06,
+    "p90": 5.41,
+    "max": 5.41
+   },
+   "size_ratio_p90_over_p10": 1.33,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": 0.32,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 10.91,
+   "canonical_cstat": 384,
+   "canonical_cstat_share": 0.377,
+   "canonical_x_repeat": 48,
+   "canonical_shade": -128
+  },
+  {
+   "picnum": 191,
+   "uses": 49,
+   "maps": 4,
+   "canonical_y_repeat": 32,
+   "canonical_share": 0.51,
+   "drawn_height_player_heights": {
+    "min": 2.91,
+    "p10": 2.91,
+    "median": 2.91,
+    "p90": 5.82,
+    "max": 5.82
+   },
+   "size_ratio_p90_over_p10": 2.0,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.28,
+   "alignment": {
+    "floor": 1.0
+   },
+   "above_floor_median": 6.0,
+   "canonical_cstat": 417,
+   "canonical_cstat_share": 0.918,
+   "canonical_x_repeat": 32,
+   "canonical_shade": 0
+  },
+  {
+   "picnum": 2493,
+   "uses": 43,
+   "maps": 4,
+   "canonical_y_repeat": 64,
+   "canonical_share": 1.0,
+   "drawn_height_player_heights": {
+    "min": 3.5,
+    "p10": 3.5,
+    "median": 3.5,
+    "p90": 3.5,
+    "max": 3.5
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": null,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 0.0,
+   "canonical_cstat": 385,
+   "canonical_cstat_share": 0.605,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -128
+  },
+  {
+   "picnum": 713,
+   "uses": 41,
+   "maps": 18,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.732,
+   "drawn_height_player_heights": {
+    "min": 1.09,
+    "p10": 1.45,
+    "median": 2.91,
+    "p90": 2.91,
+    "max": 2.91
+   },
+   "size_ratio_p90_over_p10": 2.0,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.2,
+   "alignment": {
+    "floor": 0.78,
+    "wall": 0.22
+   },
+   "above_floor_median": 0.0,
+   "canonical_cstat": 160,
+   "canonical_cstat_share": 0.171,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 668,
+   "uses": 41,
+   "maps": 6,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.976,
+   "drawn_height_player_heights": {
+    "min": 5.82,
+    "p10": 5.82,
+    "median": 5.82,
+    "p90": 5.82,
+    "max": 7.27
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": 0.02,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 0.0,
+   "canonical_cstat": 128,
+   "canonical_cstat_share": 1.0,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 732,
+   "uses": 38,
+   "maps": 17,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.658,
+   "drawn_height_player_heights": {
+    "min": 0.73,
+    "p10": 1.82,
+    "median": 2.91,
+    "p90": 2.91,
+    "max": 2.91
+   },
+   "size_ratio_p90_over_p10": 1.6,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.1,
+   "alignment": {
+    "floor": 0.947,
+    "wall": 0.053
+   },
+   "above_floor_median": 0.0,
+   "canonical_cstat": 224,
+   "canonical_cstat_share": 0.342,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 6,
+   "uses": 35,
+   "maps": 5,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.857,
+   "drawn_height_player_heights": {
+    "min": 0.09,
+    "p10": 0.18,
+    "median": 0.36,
+    "p90": 0.36,
+    "max": 0.36
+   },
+   "size_ratio_p90_over_p10": 2.0,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": -0.33,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 5.27,
+   "canonical_cstat": 465,
+   "canonical_cstat_share": 0.686,
+   "canonical_x_repeat": 64,
+   "canonical_shade": 16
+  },
+  {
+   "picnum": 470,
+   "uses": 35,
+   "maps": 3,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.857,
+   "drawn_height_player_heights": {
+    "min": 1.82,
+    "p10": 2.55,
+    "median": 2.91,
+    "p90": 2.91,
+    "max": 2.91
+   },
+   "size_ratio_p90_over_p10": 1.14,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": 0.25,
+   "alignment": {
+    "floor": 0.914,
+    "wall": 0.086
+   },
+   "above_floor_median": 9.09,
+   "canonical_cstat": 481,
+   "canonical_cstat_share": 0.457,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -6
+  },
+  {
+   "picnum": 754,
+   "uses": 31,
+   "maps": 9,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.226,
+   "drawn_height_player_heights": {
+    "min": 0.36,
+    "p10": 1.42,
+    "median": 3.55,
+    "p90": 5.68,
+    "max": 9.94
+   },
+   "size_ratio_p90_over_p10": 4.0,
+   "fixed_size": false,
+   "scales_with_room": true,
+   "room_height_correlation": 0.5,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 0.21,
+   "canonical_cstat": 128,
+   "canonical_cstat_share": 1.0,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 2542,
+   "uses": 31,
+   "maps": 15,
+   "canonical_y_repeat": 32,
+   "canonical_share": 0.581,
+   "drawn_height_player_heights": {
+    "min": 0.99,
+    "p10": 0.99,
+    "median": 1.32,
+    "p90": 1.65,
+    "max": 2.31
+   },
+   "size_ratio_p90_over_p10": 1.67,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.02,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 2.55,
+   "canonical_cstat": 464,
+   "canonical_cstat_share": 0.645,
+   "canonical_x_repeat": 32,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 2545,
+   "uses": 30,
+   "maps": 15,
+   "canonical_y_repeat": 32,
+   "canonical_share": 0.567,
+   "drawn_height_player_heights": {
+    "min": 0.99,
+    "p10": 0.99,
+    "median": 1.32,
+    "p90": 2.31,
+    "max": 2.64
+   },
+   "size_ratio_p90_over_p10": 2.33,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.11,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 2.67,
+   "canonical_cstat": 464,
+   "canonical_cstat_share": 0.8,
+   "canonical_x_repeat": 32,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 502,
+   "uses": 29,
+   "maps": 6,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.724,
+   "drawn_height_player_heights": {
+    "min": 0.91,
+    "p10": 1.82,
+    "median": 2.91,
+    "p90": 3.27,
+    "max": 4.73
+   },
+   "size_ratio_p90_over_p10": 1.8,
+   "fixed_size": false,
+   "scales_with_room": true,
+   "room_height_correlation": 0.73,
+   "alignment": {
+    "floor": 0.966,
+    "wall": 0.034
+   },
+   "above_floor_median": 2.91,
+   "canonical_cstat": 417,
+   "canonical_cstat_share": 0.897,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 511,
+   "uses": 29,
+   "maps": 6,
+   "canonical_y_repeat": 64,
+   "canonical_share": 1.0,
+   "drawn_height_player_heights": {
+    "min": 0.18,
+    "p10": 0.18,
+    "median": 0.18,
+    "p90": 0.18,
+    "max": 0.18
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": null,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 4.07,
+   "canonical_cstat": 144,
+   "canonical_cstat_share": 0.621,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -128
+  },
+  {
+   "picnum": 510,
+   "uses": 28,
+   "maps": 6,
+   "canonical_y_repeat": 64,
+   "canonical_share": 1.0,
+   "drawn_height_player_heights": {
+    "min": 1.45,
+    "p10": 1.45,
+    "median": 1.45,
+    "p90": 1.45,
+    "max": 1.45
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": null,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 4.36,
+   "canonical_cstat": 208,
+   "canonical_cstat_share": 0.571,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -128
+  },
+  {
+   "picnum": 1,
+   "uses": 28,
+   "maps": 4,
+   "canonical_y_repeat": 64,
+   "canonical_share": 1.0,
+   "drawn_height_player_heights": {
+    "min": 0.73,
+    "p10": 0.73,
+    "median": 0.73,
+    "p90": 0.73,
+    "max": 0.73
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": null,
+   "alignment": {
+    "wall": 0.5,
+    "face": 0.429,
+    "floor": 0.071
+   },
+   "above_floor_median": 7.45,
+   "canonical_cstat": 128,
+   "canonical_cstat_share": 0.429,
+   "canonical_x_repeat": 64,
+   "canonical_shade": 2
+  },
+  {
+   "picnum": 371,
+   "uses": 28,
+   "maps": 1,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.571,
+   "drawn_height_player_heights": {
+    "min": 1.45,
+    "p10": 1.45,
+    "median": 2.91,
+    "p90": 2.91,
+    "max": 2.91
+   },
+   "size_ratio_p90_over_p10": 2.0,
+   "fixed_size": false,
+   "scales_with_room": true,
+   "room_height_correlation": -0.55,
+   "alignment": {
+    "floor": 1.0
+   },
+   "above_floor_median": 5.64,
+   "canonical_cstat": 481,
+   "canonical_cstat_share": 0.964,
+   "canonical_x_repeat": 64,
+   "canonical_shade": 24
+  },
+  {
+   "picnum": 2541,
+   "uses": 27,
+   "maps": 13,
+   "canonical_y_repeat": 32,
+   "canonical_share": 0.63,
+   "drawn_height_player_heights": {
+    "min": 0.99,
+    "p10": 1.32,
+    "median": 1.32,
+    "p90": 2.31,
+    "max": 2.64
+   },
+   "size_ratio_p90_over_p10": 1.75,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.16,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 2.55,
+   "canonical_cstat": 464,
+   "canonical_cstat_share": 0.556,
+   "canonical_x_repeat": 32,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 2543,
+   "uses": 26,
+   "maps": 9,
+   "canonical_y_repeat": 32,
+   "canonical_share": 0.923,
+   "drawn_height_player_heights": {
+    "min": 0.99,
+    "p10": 1.32,
+    "median": 1.32,
+    "p90": 1.32,
+    "max": 1.32
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": 0.2,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 2.55,
+   "canonical_cstat": 464,
+   "canonical_cstat_share": 0.731,
+   "canonical_x_repeat": 32,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 929,
+   "uses": 24,
+   "maps": 16,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.708,
+   "drawn_height_player_heights": {
+    "min": 1.51,
+    "p10": 1.81,
+    "median": 2.41,
+    "p90": 2.41,
+    "max": 2.41
+   },
+   "size_ratio_p90_over_p10": 1.33,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": 0.08,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 2.0,
+   "canonical_cstat": 464,
+   "canonical_cstat_share": 0.5,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 515,
+   "uses": 23,
+   "maps": 6,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.609,
+   "drawn_height_player_heights": {
+    "min": 1.82,
+    "p10": 2.18,
+    "median": 2.91,
+    "p90": 3.27,
+    "max": 6.55
+   },
+   "size_ratio_p90_over_p10": 1.5,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.01,
+   "alignment": {
+    "floor": 1.0
+   },
+   "above_floor_median": 0.0,
+   "canonical_cstat": 224,
+   "canonical_cstat_share": 0.783,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 0,
+   "uses": 23,
+   "maps": 5,
+   "canonical_y_repeat": 64,
+   "canonical_share": 1.0,
+   "drawn_height_player_heights": {
+    "min": 2.91,
+    "p10": 2.91,
+    "median": 2.91,
+    "p90": 2.91,
+    "max": 2.91
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": null,
+   "alignment": {
+    "floor": 0.522,
+    "wall": 0.304,
+    "face": 0.174
+   },
+   "above_floor_median": 6.55,
+   "canonical_cstat": 481,
+   "canonical_cstat_share": 0.348,
+   "canonical_x_repeat": 64,
+   "canonical_shade": 12
+  },
+  {
+   "picnum": 672,
+   "uses": 20,
+   "maps": 9,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.5,
+   "drawn_height_player_heights": {
+    "min": 2.11,
+    "p10": 3.52,
+    "median": 5.64,
+    "p90": 9.16,
+    "max": 11.98
+   },
+   "size_ratio_p90_over_p10": 2.6,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": -0.22,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 0.05,
+   "canonical_cstat": 128,
+   "canonical_cstat_share": 1.0,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 838,
+   "uses": 18,
+   "maps": 1,
+   "canonical_y_repeat": 16,
+   "canonical_share": 1.0,
+   "drawn_height_player_heights": {
+    "min": 0.34,
+    "p10": 0.34,
+    "median": 0.34,
+    "p90": 0.34,
+    "max": 0.34
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": null,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 3.45,
+   "canonical_cstat": 208,
+   "canonical_cstat_share": 0.944,
+   "canonical_x_repeat": 16,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 384,
+   "uses": 18,
+   "maps": 1,
+   "canonical_y_repeat": 64,
+   "canonical_share": 1.0,
+   "drawn_height_player_heights": {
+    "min": 5.82,
+    "p10": 5.82,
+    "median": 5.82,
+    "p90": 5.82,
+    "max": 5.82
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": null,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 5.82,
+   "canonical_cstat": 209,
+   "canonical_cstat_share": 1.0,
+   "canonical_x_repeat": 64,
+   "canonical_shade": 31
+  },
+  {
+   "picnum": 381,
+   "uses": 18,
+   "maps": 1,
+   "canonical_y_repeat": 64,
+   "canonical_share": 1.0,
+   "drawn_height_player_heights": {
+    "min": 5.82,
+    "p10": 5.82,
+    "median": 5.82,
+    "p90": 5.82,
+    "max": 5.82
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": null,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 8.73,
+   "canonical_cstat": 209,
+   "canonical_cstat_share": 1.0,
+   "canonical_x_repeat": 64,
+   "canonical_shade": 45
+  },
+  {
+   "picnum": 69,
+   "uses": 18,
+   "maps": 4,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.722,
+   "drawn_height_player_heights": {
+    "min": 0.36,
+    "p10": 0.73,
+    "median": 0.73,
+    "p90": 0.82,
+    "max": 0.82
+   },
+   "size_ratio_p90_over_p10": 1.12,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": -0.0,
+   "alignment": {
+    "wall": 0.889,
+    "floor": 0.111
+   },
+   "above_floor_median": 3.5,
+   "canonical_cstat": 464,
+   "canonical_cstat_share": 0.611,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -4
+  },
+  {
+   "picnum": 3812,
+   "uses": 17,
+   "maps": 4,
+   "canonical_y_repeat": 48,
+   "canonical_share": 0.471,
+   "drawn_height_player_heights": {
+    "min": 0.38,
+    "p10": 0.38,
+    "median": 0.5,
+    "p90": 0.75,
+    "max": 1.75
+   },
+   "size_ratio_p90_over_p10": 2.0,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.26,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 2.91,
+   "canonical_cstat": 208,
+   "canonical_cstat_share": 1.0,
+   "canonical_x_repeat": 48,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 731,
+   "uses": 17,
+   "maps": 8,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.765,
+   "drawn_height_player_heights": {
+    "min": 1.09,
+    "p10": 1.45,
+    "median": 2.91,
+    "p90": 2.91,
+    "max": 2.91
+   },
+   "size_ratio_p90_over_p10": 2.0,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.23,
+   "alignment": {
+    "floor": 0.765,
+    "wall": 0.235
+   },
+   "above_floor_median": 0.0,
+   "canonical_cstat": 224,
+   "canonical_cstat_share": 0.353,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 58,
+   "uses": 16,
+   "maps": 4,
+   "canonical_y_repeat": 32,
+   "canonical_share": 0.562,
+   "drawn_height_player_heights": {
+    "min": 1.45,
+    "p10": 1.45,
+    "median": 1.45,
+    "p90": 2.91,
+    "max": 2.91
+   },
+   "size_ratio_p90_over_p10": 2.0,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.08,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 0.91,
+   "canonical_cstat": 145,
+   "canonical_cstat_share": 0.562,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 2544,
+   "uses": 16,
+   "maps": 8,
+   "canonical_y_repeat": 32,
+   "canonical_share": 0.625,
+   "drawn_height_player_heights": {
+    "min": 0.99,
+    "p10": 1.19,
+    "median": 1.32,
+    "p90": 1.32,
+    "max": 2.64
+   },
+   "size_ratio_p90_over_p10": 1.1,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": 0.34,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 2.86,
+   "canonical_cstat": 208,
+   "canonical_cstat_share": 0.562,
+   "canonical_x_repeat": 32,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 363,
+   "uses": 16,
+   "maps": 1,
+   "canonical_y_repeat": 64,
+   "canonical_share": 1.0,
+   "drawn_height_player_heights": {
+    "min": 2.91,
+    "p10": 2.91,
+    "median": 2.91,
+    "p90": 2.91,
+    "max": 2.91
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": null,
+   "alignment": {
+    "floor": 1.0
+   },
+   "above_floor_median": 5.27,
+   "canonical_cstat": 481,
+   "canonical_cstat_share": 1.0,
+   "canonical_x_repeat": 64,
+   "canonical_shade": 46
+  },
+  {
+   "picnum": 730,
+   "uses": 15,
+   "maps": 5,
+   "canonical_y_repeat": 64,
+   "canonical_share": 1.0,
+   "drawn_height_player_heights": {
+    "min": 1.45,
+    "p10": 1.45,
+    "median": 1.45,
+    "p90": 1.45,
+    "max": 1.45
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": null,
+   "alignment": {
+    "floor": 1.0
+   },
+   "above_floor_median": 0.0,
+   "canonical_cstat": 224,
+   "canonical_cstat_share": 0.4,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 20,
+   "uses": 15,
+   "maps": 3,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.933,
+   "drawn_height_player_heights": {
+    "min": 1.45,
+    "p10": 2.91,
+    "median": 2.91,
+    "p90": 2.91,
+    "max": 2.91
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": true,
+   "room_height_correlation": 0.96,
+   "alignment": {
+    "floor": 1.0
+   },
+   "above_floor_median": 5.14,
+   "canonical_cstat": 225,
+   "canonical_cstat_share": 0.533,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -2
+  },
+  {
+   "picnum": 640,
+   "uses": 14,
+   "maps": 3,
+   "canonical_y_repeat": 64,
+   "canonical_share": 1.0,
+   "drawn_height_player_heights": {
+    "min": 3.41,
+    "p10": 3.41,
+    "median": 3.41,
+    "p90": 3.41,
+    "max": 3.41
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": null,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 0.0,
+   "canonical_cstat": 385,
+   "canonical_cstat_share": 0.571,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 632,
+   "uses": 14,
+   "maps": 2,
+   "canonical_y_repeat": 112,
+   "canonical_share": 0.571,
+   "drawn_height_player_heights": {
+    "min": 2.41,
+    "p10": 2.41,
+    "median": 4.22,
+    "p90": 4.22,
+    "max": 4.22
+   },
+   "size_ratio_p90_over_p10": 1.75,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": -0.28,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 0.75,
+   "canonical_cstat": 385,
+   "canonical_cstat_share": 0.929,
+   "canonical_x_repeat": 96,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 1050,
+   "uses": 13,
+   "maps": 4,
+   "canonical_y_repeat": 32,
+   "canonical_share": 0.692,
+   "drawn_height_player_heights": {
+    "min": 0.73,
+    "p10": 0.73,
+    "median": 0.73,
+    "p90": 0.91,
+    "max": 0.91
+   },
+   "size_ratio_p90_over_p10": 1.25,
+   "fixed_size": true,
+   "scales_with_room": true,
+   "room_height_correlation": -0.54,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 1.09,
+   "canonical_cstat": 208,
+   "canonical_cstat_share": 0.846,
+   "canonical_x_repeat": 32,
+   "canonical_shade": 0
+  },
+  {
+   "picnum": 252,
+   "uses": 13,
+   "maps": 2,
+   "canonical_y_repeat": 98,
+   "canonical_share": 0.308,
+   "drawn_height_player_heights": {
+    "min": 2.91,
+    "p10": 3.27,
+    "median": 3.55,
+    "p90": 4.45,
+    "max": 4.45
+   },
+   "size_ratio_p90_over_p10": 1.36,
+   "fixed_size": false,
+   "scales_with_room": true,
+   "room_height_correlation": 0.48,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 4.73,
+   "canonical_cstat": 464,
+   "canonical_cstat_share": 0.923,
+   "canonical_x_repeat": 158,
+   "canonical_shade": 38
+  },
+  {
+   "picnum": 1067,
+   "uses": 13,
+   "maps": 2,
+   "canonical_y_repeat": 80,
+   "canonical_share": 0.538,
+   "drawn_height_player_heights": {
+    "min": 4.27,
+    "p10": 4.36,
+    "median": 7.27,
+    "p90": 7.27,
+    "max": 7.27
+   },
+   "size_ratio_p90_over_p10": 1.67,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.09,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 2.0,
+   "canonical_cstat": 144,
+   "canonical_cstat_share": 1.0,
+   "canonical_x_repeat": 96,
+   "canonical_shade": 11
+  },
+  {
+   "picnum": 436,
+   "uses": 13,
+   "maps": 2,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.923,
+   "drawn_height_player_heights": {
+    "min": 0.27,
+    "p10": 0.73,
+    "median": 0.73,
+    "p90": 0.73,
+    "max": 0.73
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": true,
+   "room_height_correlation": 0.47,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 9.64,
+   "canonical_cstat": 465,
+   "canonical_cstat_share": 0.615,
+   "canonical_x_repeat": 64,
+   "canonical_shade": 0
+  },
+  {
+   "picnum": 3808,
+   "uses": 12,
+   "maps": 5,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.25,
+   "drawn_height_player_heights": {
+    "min": 0.38,
+    "p10": 0.38,
+    "median": 0.75,
+    "p90": 0.81,
+    "max": 1.75
+   },
+   "size_ratio_p90_over_p10": 2.17,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.04,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 4.53,
+   "canonical_cstat": 208,
+   "canonical_cstat_share": 1.0,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 708,
+   "uses": 12,
+   "maps": 2,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.667,
+   "drawn_height_player_heights": {
+    "min": 1.39,
+    "p10": 1.39,
+    "median": 2.23,
+    "p90": 2.23,
+    "max": 2.23
+   },
+   "size_ratio_p90_over_p10": 1.6,
+   "fixed_size": false,
+   "scales_with_room": true,
+   "room_height_correlation": 0.5,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 1.05,
+   "canonical_cstat": 208,
+   "canonical_cstat_share": 1.0,
+   "canonical_x_repeat": 64,
+   "canonical_shade": 41
+  },
+  {
+   "picnum": 694,
+   "uses": 12,
+   "maps": 4,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.5,
+   "drawn_height_player_heights": {
+    "min": 4.36,
+    "p10": 4.36,
+    "median": 5.09,
+    "p90": 5.82,
+    "max": 5.82
+   },
+   "size_ratio_p90_over_p10": 1.33,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": -0.36,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 15.88,
+   "canonical_cstat": 129,
+   "canonical_cstat_share": 0.333,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 469,
+   "uses": 12,
+   "maps": 7,
+   "canonical_y_repeat": 48,
+   "canonical_share": 0.417,
+   "drawn_height_player_heights": {
+    "min": 2.1,
+    "p10": 2.1,
+    "median": 3.84,
+    "p90": 4.19,
+    "max": 4.89
+   },
+   "size_ratio_p90_over_p10": 2.0,
+   "fixed_size": false,
+   "scales_with_room": false,
+   "room_height_correlation": 0.05,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 9.38,
+   "canonical_cstat": 385,
+   "canonical_cstat_share": 0.667,
+   "canonical_x_repeat": 48,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 54,
+   "uses": 12,
+   "maps": 2,
+   "canonical_y_repeat": 64,
+   "canonical_share": 1.0,
+   "drawn_height_player_heights": {
+    "min": 2.91,
+    "p10": 2.91,
+    "median": 2.91,
+    "p90": 2.91,
+    "max": 2.91
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": null,
+   "alignment": {
+    "wall": 1.0
+   },
+   "above_floor_median": 3.66,
+   "canonical_cstat": 144,
+   "canonical_cstat_share": 0.75,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  },
+  {
+   "picnum": 2580,
+   "uses": 12,
+   "maps": 1,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.917,
+   "drawn_height_player_heights": {
+    "min": 5.82,
+    "p10": 5.82,
+    "median": 5.82,
+    "p90": 5.82,
+    "max": 6.18
+   },
+   "size_ratio_p90_over_p10": 1.0,
+   "fixed_size": true,
+   "scales_with_room": false,
+   "room_height_correlation": 0.3,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 2.91,
+   "canonical_cstat": 129,
+   "canonical_cstat_share": 0.5,
+   "canonical_x_repeat": 64,
+   "canonical_shade": 18
+  },
+  {
+   "picnum": 692,
+   "uses": 12,
+   "maps": 3,
+   "canonical_y_repeat": 64,
+   "canonical_share": 0.333,
+   "drawn_height_player_heights": {
+    "min": 3.64,
+    "p10": 3.64,
+    "median": 4.73,
+    "p90": 5.82,
+    "max": 5.82
+   },
+   "size_ratio_p90_over_p10": 1.6,
+   "fixed_size": false,
+   "scales_with_room": true,
+   "room_height_correlation": 0.52,
+   "alignment": {
+    "face": 1.0
+   },
+   "above_floor_median": 11.5,
+   "canonical_cstat": 128,
+   "canonical_cstat_share": 0.5,
+   "canonical_x_repeat": 64,
+   "canonical_shade": -8
+  }
+ ],
+ "reading_guide": [
+  "canonical_cstat is the structural mounting only, with the flip and translucency bits masked off; its share says how much of a habit it is, and a tile below about half genuinely varies and needs a decision",
+  "canonical_y_repeat is what to use; the drawn height is a consequence of the tile, not a number the designer chose",
+  "fixed_size means the campaign never varies this tile's size, so asking an author for one is asking them to get it wrong",
+  "scales_with_room names the few tiles that genuinely follow the space",
+  "a share is what the campaign did, never what a level must do"
+ ]
+}

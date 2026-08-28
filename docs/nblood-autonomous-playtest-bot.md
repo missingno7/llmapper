@@ -29,7 +29,8 @@ failure, completion, and summary records. The trajectory file contains
 demo format and can be replayed in a visible run.
 
 Useful switches are `-bot_telemetry`, `-bot_trajectory`, `-bot_demo`,
-`-bot_timeout`, `-bot_stall`, `-bot_realtime`, and `-bot_visible`.
+`-bot_timeout`, `-bot_stall`, `-bot_realtime`, `-bot_visible`, and
+`-bot_debug`.
 
 For a human-debugging run, add `-bot_visible` to watch the bot in the normal
 NBlood window. This automatically uses realtime pacing; the accelerated,
@@ -71,6 +72,142 @@ recovery is generic: a stuck target gets bounded jump attempts followed by a
 camera reorientation, and item observation accepts ordinary item sprites
 without assuming an XSPRITE record.
 
+## Architecture
+
+Four separate authorities, one question each, with dependencies pointing one
+way. The split is not cosmetic: the direction is what keeps engine detail out
+of the decisions.
+
+```text
+NBlood / Build engine
+        v
+llmapper/bot/blood/       what physically exists, read out of Blood
+llmapper/bot/terrain/     that geometry turned into Regions by its shape
+        v
+llmapper/bot/semantic/    the 3D world: Regions, SpatialRelations, Affordances
+        v
+llmapper/bot/traversal/   world + Caleb's current physics -> typed transitions
+        v
+llmapper/bot/planner/     of what can be executed, what to do
+        v
+llmapper/bot/exec/        carrying one chosen action out
+```
+
+`llmapper/bot/debug/` reads both sides so a log line can name the Blood
+objects behind a semantic id. It feeds nothing back; deleting it would not
+change a tick. `bot.cpp` runs the layers in order and owns none of their jobs.
+
+### One continuous space is one Region
+
+A Region is one physically continuous piece of standable space: an outline,
+the holes of whatever solid things stand in it, any wall it wraps around, the
+surface holding a body up over it and the free volume above that surface. It
+is not convex, it is not small, and it is not cut up to make walking across
+it easier.
+
+Regions are built from geometry in this order:
+
+1. read every support surface -- sector floors, and floor-aligned solid
+   sprites, which are surfaces in their own right;
+2. dissolve every seam that carries no physical meaning. A seam is
+   meaningless when the support plane, the clearance class, the hazard and
+   the dynamic owner are the same on both sides and the world does not close
+   it;
+3. reconstruct the continuous outline of what is left by cancelling every
+   internal edge, whatever subdivision it came from, and drop the vertices
+   that subdivision left lying on straight lines;
+4. that outline is the Region. Solid objects standing in it are holes; a wall
+   that divides part of it without cutting it in two is kept as a wall
+   inside it.
+
+A Region boundary therefore exists only where a player-relevant property
+changes: a different thing holding the body up, a different support or
+ceiling plane, a different clearance class, a hazard, something that can
+move, or genuinely disconnected space. Not because a sector changed, not
+because a polygon needed another piece, and never because there is a pickup
+or a button there.
+
+Measured on `AGTST6`: 42 support faces, 12 continuous spaces, **12 Regions**
+and 42 relations. Thirty Build sectors dissolve into one Region with six
+holes; the whole outdoor area -- which the previous convex model cut into
+thirty-four pieces -- is one 25-corner Region with one wall inside it.
+
+Region identity is derived from shape, so it survives observer movement,
+re-tessellation and re-authoring. No sampling constant -- ray count, ray
+range, connection radius, grid size -- exists above the mapper at all, and
+there is no convex decomposition anywhere in the semantic layers.
+
+### Region is planning, pose is execution
+
+A SpatialRelation says two Regions are next to each other and carries the
+Gateway: the interval of boundary they share, the vertical step across it and
+the clearance. It is not a traversal. Gateways come from real seams between
+distinct spaces, merged where an author split one opening into several walls
+and kept apart where there are genuinely two ways through.
+
+Getting across a Region is a real navigation problem, and it is solved in
+`llmapper/bot/nav/` -- below the planner, at the moment a leg is needed, in
+the actor's own configuration space:
+
+* the region's solid boundary is its outline and holes minus its openings,
+  plus any wall inside it;
+* Build does not clip a wall as a line alone -- it puts an axis-aligned
+  square of the body's width at each end -- so the end of a wall is a square
+  obstacle and the model uses the same shape;
+* corners are stood off at the distance that clears both of their faces,
+  which for a sharp corner is further and for a blunt one is nearer, and is
+  the body's own width divided by the sine of the corner's half angle;
+* a visibility graph over those corners gives the shortest polyline that
+  never comes within the body's width of anything.
+
+Nothing this produces is stored, and the planner never sees any of it. The
+acute wall spur in `AGTST6` at `(4096,-4096)` -- which the convex model
+turned into a chain of gateways through its tip -- is now an ordinary corner
+inside one Region, rounded by two steering points 209 units clear of it.
+
+### Affordances do not partition anything
+
+A pickup, a switch and a pushable wall are all one thing: an `Affordance`
+with an `ActionKind` and an execution domain. The domain is the set of poses
+the engine itself accepts the action from, grouped by the Region each pose
+falls in -- a door can be pushed from either side, and that is two options in
+two Regions and one affordance. Which option is used is chosen by the planner
+from what it can reach.
+
+Pickups use Blood's own `CheckPickUp` bounds; interactions use Blood's own
+`ActionScan`. Neither adds a Region, a node or a waypoint.
+
+### Physics decides what can be traversed
+
+`blood/caleb_physics.*` is the authority on what the actor can currently do.
+Given a relation it asks the engine, by walking the live hull with `ClipMove`
+and settling the way `MoveDude` settles it. Nothing compares a height
+difference to a number. Picking up Jumping Boots changes what this object
+says and nothing about the world -- an invariant the spatial tests check
+directly.
+
+`WALK` and `DROP` are derived; `CROUCH`, `JUMP` and `RIDE` have no
+engine-backed query written yet. What the actor can physically do and what
+this bot has an executor for are separate facts: a drop into a pit is
+reported as physically real and never selected.
+
+### Checking it
+
+`tools/bot_layering.sh` is the gate. It greps for engine vocabulary above the
+mapper, checks planning cannot reach provenance, and then compiles the
+semantic, terrain, traversal, local-path, planner and executor modules with
+no engine include path at all and runs the spatial invariants: tessellation
+(same footprints and gateways from one, four and eight sectors), authoring
+direction, one concave space staying one Region, a room with three crates
+staying one Region with three holes, a wall spur staying an obstacle, two
+doorways staying two ways, an internal wall surviving as a wall, meaningful
+steps, clearance classes, stacked supports, crossed supports, affordances not
+partitioning terrain, the Jumping Boots invariant and the capability split.
+
+```text
+bash tools/bot_layering.sh
+```
+
 ## First supplied-data runtime check
 
 On 2026-08-18, the modified executable was built and launched against the
@@ -102,35 +239,27 @@ its small dead-end branches, not the first door-use alignment.
 
 ## Exploration model
 
-The bot follows one branch into new territory and remembers what it passes.
-All unresolved work lives in a single ledger of *opportunities*: frontiers
-into unentered space, locked continuations, known mechanisms, pickups, and
-local space that has been entered but not yet observed. Selection is one
-ranked choice per committed mission, not a per-tick re-evaluation of every
-affordance, and each choice carries a reason that appears in telemetry:
+Regions are large, so having entered one is not the same as having explored
+from it, and `observed` is never taken to mean "finished with". The frontier
+is a way out, not a place:
 
-```text
-CONTINUE_FORWARD              keep pushing the branch the bot is on
-RETURN_FOR_KEY_DOOR           a held key just made a known door actionable
-RETURN_TO_UNEXPLORED_BRANCH   this branch ended; go back to unresolved work
-SOLVE_BLOCKING_OBSTACLE       the way forward is blocked; work the obstacle
-REOPEN_ROUTE_TO_OBJECTIVE     the route to that work passes a shut connection
-CONSUME_OPENED_ROUTE          go through what was just deliberately opened
-EXPOSE_UNSEEN_LOCAL_SPACE     look at reachable space never observed
-COLLECT_ON_THE_WAY            pick up something underfoot
-RETRY_DORMANT_OPPORTUNITY     nothing is live; re-arm the oldest dormant work
-```
+1. a gateway the actor can drive, has never gone through, and which leads
+   somewhere it has never stood;
+2. otherwise an affordance that has never been tried;
+3. otherwise a gateway that is known, has never been gone through and cannot
+   be -- a shut door is a fact about the world with something on the other
+   side of it, and standing at it is how the actor finds out what would open
+   it. Each is walked to once and then recorded as looked at;
+4. otherwise an affordance whose last attempt widened the world.
 
-Ordering is depth-first: a deeper pending frontier continues the branch
-already being followed, and popping to the next-deepest is a natural
-backtrack rather than a random hop. Nothing is ever permanently retired.
-Work that fails goes *dormant* with a growing cooldown and is re-armed
-later; a key acquisition clears the dormancy of every door that wanted it.
+There is a finite number of gateways and a finite number of affordances, so
+this terminates. There are no observation points anywhere in it.
 
-Entering a sector is not the same as having explored it. A Build sector can
-be large and concave, and a door or switch can sit around a corner inside a
-room the bot has already stood in, so the bot tracks which standable cells it
-has actually seen and treats unseen reachable space as real unresolved work.
+The world's geometry is read whole rather than discovered by looking at it,
+and what can be done in it is read the same way: a model that knew the floor
+of a room but not the switch on its wall would be inconsistent with itself.
+Whether a thing has actually been seen is recorded separately, which is what
+`observed` means.
 
 ## Dynamic topology
 
@@ -309,58 +438,101 @@ objective and satisfy every invariant. A violation means the bot has
 corrupted its own model of the level, whatever the outcome says.
 
 ```text
-python tools/bot_invariants.py work/botlab/mytag/telemetry.ndjson        --map reference/blood/AGTST4.map
+python tools/bot_invariants.py work/botlab/mytag/telemetry.ndjson        --map reference/blood/AGTST18.map
 ```
 
 ## Regression maps
 
-`reference/blood/AGTST1.map` and `AGTST2.map` are the fast exploration gate
-and should be run before the campaign corpus. They isolate, in order: a
-concave starting sector whose door is around a corner, a distraction alcove
-of tiny sectors, a crouch-height door that closes behind the player, a key,
-a keyed door requiring a deliberate return across the level, and a vertically
-awkward exit switch. Both complete deterministically.
+Five maps, and only these five. `tools/botcorpus.sh` runs them all without
+monsters -- this phase has no combat, so an enemy is not a test of anything
+the bot does; it only decides how long the run lasts.
 
-`AGTST5.map` adds a breakable wall in front of a key and a row of columns
-whose gaps are too narrow to walk between. `AGTST4.map` is a shorter,
-enemy-free E1M1 with four keys, only one of which is needed; it exercises a
-rotating arc door that seals a room until it is operated, and completes by
-opening that door once, collecting the key it reveals, returning, unlocking
-the door that key opens and throwing the lever behind it. `AGTST7.map` bars
-its only doorway with a pushable sprite panel: the bot must recognise a
-sprite as an obstacle and as a mechanism at the same time. All five
-complete.
+`AGTST1`, `AGTST6` and `AGTST7` are the behavioural gate. They need ordinary
+walking, exploration, a generic `Use` and a generic `Collect` and nothing
+else, which is exactly the abstraction being proved, and all three complete
+deterministically. Any other result on them is a regression.
 
-`AGTST6.map` puts a bridge of floor-aligned sprites across a damaging pit,
-behind a screen of solid sprites too tall to jump: the bot has to route
-around the solid ones and read the sprite surface as the floor it stands on.
-`AGTST3.map` is a run of pillars over a pit that can only be crossed by
-jumping, with a recovery route back up for a bot that falls in. All seven
-complete.
+* `AGTST1` -- a concave starting room whose way on is a wall that has to be
+  pushed, with the switch reachable from either side of the door it opens.
+* `AGTST6` -- a bridge of floor-aligned sprites across a damaging pit, an
+  acute wall spur in the middle of one continuous outdoor space, and thirty
+  Build sectors that are one corridor.
+* `AGTST7` -- a doorway barred by a pushable sprite panel, which the model
+  has to hold as an obstacle and a mechanism at the same time.
+
+`AGTST17` and `AGTST18` are the harder ones the model is pushed against.
+They are not there to pass; they are there to say which problem is next, and
+what matters about a run on them is which problem it exposes.
+
+```text
+AGTST1   COMPLETED         30s | 6 sectors -> 3 regions
+AGTST6   COMPLETED         61s | 35 sectors, 42 faces -> 12 regions
+AGTST7   COMPLETED         48s | 5 sectors -> 5 regions
+AGTST17  COMPLETED         79s | 8 sectors -> 5 regions
+AGTST18  NO_KNOWN_ACTION   28s | 155 sectors, 173 faces -> 133 regions,
+                                 121 places, 11 of them split by body width
+```
+
+`AGTST18` is the size at which the model stops being able to hide anything:
+698 relations, 208 of them walkable, and eleven Regions that one continuous
+piece of space for the world is several pieces of space for a body 384 units
+wide. Reading a run on it starts with the `why=` on each `relation_mapped`
+line and the `pieces=` on each `region_mapped` line.
 
 ```text
 bash tools/botcorpus.sh
-bash tools/botrun.sh reference/blood/AGTST2.map mytag -bot_timeout 180
-python tools/bot_scorecard.py work/botlab/mytag/telemetry.ndjson \
-                              work/botlab/mytag/trajectory.ndjson
+bash tools/botrun.sh reference/blood/AGTST18.map mytag -bot_timeout 300 -nodudes
+python tools/bot_scorecard.py work/botlab/mytag/telemetry.ndjson                               work/botlab/mytag/trajectory.ndjson
 python tools/bot_narrative.py work/botlab/mytag/telemetry.ndjson --collapse
-python tools/bot_map_render.py reference/blood/AGTST2.map \
-       work/botlab/mytag/trajectory.ndjson --output run.svg --zoom
+python tools/bot_map_render.py reference/blood/AGTST18.map        work/botlab/mytag/trajectory.ndjson --output run.svg --zoom
 ```
 
 Production behaviour contains no map, sector or wall identities. The IDs in
 these notes are evidence from runs, not inputs to the bot.
+
+## Seeing the world the bot sees
+
+`-bot_debug` draws the semantic world over the normal game view. It does not
+need `-bot`: with the flag on and the bot off, the mapper runs while a person
+plays the level, so the model can be walked through and looked at.
+
+```bash
+nblood.exe -usecwd -nosetup -map AGTST6.map -bot_debug
+```
+
+What is painted:
+
+```text
+translucent floor      one Region, coloured by id. Two Regions that ought to
+                       abut but actually overlap show up as one shape
+                       bleeding through another.
+outline  white         the Region the actor is standing in
+         violet        a Region that has been observed
+         amber         a Region that exists but has not been seen
+line across an opening
+         green         the model says the body can walk it
+         amber         physically possible, but this bot has no executor
+                       for it -- a drop, for instance
+         red           the model says no
+cross + "use N"        an affordance and its spatial target; green when the
+                       world currently accepts it, red when it does not, and
+                       a trailing * once it has been tried
+number                 the Region id, so a screenshot can be matched against
+                       the `region_mapped` telemetry
+```
+
+The two things worth looking for are a red line across a doorway that can
+plainly be walked through, and floor with no Region painted on it at all.
+Both mean the mapper is wrong, and both are much easier to see than to infer
+from a run that stalled.
 
 ## Watching a run
 
 `-bot_visible` draws a short status readout in the top-left corner:
 
 ```text
-T 1:23  sect 48  depth 12  seen 27      clock, where it is, how deep, how much seen
-RETURN_TO_UNEXPLORED_BRANCH             what it is doing and why
-obj t4 id446 ->s47 d1830 6s             objective: type, id, destination, distance, age
-todo 4  asleep 9  keys 2  hp 100        unresolved work, dormant work, keys, health
-no progress 7s                          only when nothing has advanced for a while
+BOT 1:23 r7/32 go_to       clock, which region it is in, how many are known,
+                            and what it is doing with the one it chose
 ```
 
 The clock is simulated seconds and is the same value as `game_time` in the
@@ -372,5 +544,10 @@ python tools/bot_narrative.py work/botlab/<tag>/telemetry.ndjson        --from-t
 
 `--all` shows every event in the window rather than just the decision story,
 which is usually what is wanted when a specific few seconds looked wrong.
-The objective `type` values are 1 pickup, 2 key, 3 interaction, 4 frontier,
-5 investigate, 6 expose.
+The decision events are `goal_chosen`, `waypoint`, `goal_finished`,
+`action_delivered`, `action_settled` and `no_known_action`. `world_mapped`,
+`region_mapped`, `relation_mapped` and `affordance_mapped` record what the
+mapper made of the world each time it was rebuilt, which is the trace to read
+when a run goes wrong: engine, mapper, Regions, relations, traversal, planner,
+executor, in that order. Each carries the Blood objects behind the semantic id
+it names, for reading only.

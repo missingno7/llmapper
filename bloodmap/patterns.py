@@ -34,7 +34,11 @@ from .spatial import analyze_spatial
 SCHEMA = "llmapper.design-patterns"
 SCHEMA_VERSION = 1
 PLAYER_WIDTH = 384
-PLAYER_HEIGHT = 0x1600
+#: One standing human, from the player profile. Never hardcode this: it was
+#: 0x1600 in a dozen modules, which is `POSTURE.eyeAboveZ` -- an offset from
+#: the sprite's centre, not a body -- and every height in the project was
+#: denominated in a unit 3x too small.
+PLAYER_HEIGHT = PLAYER_PROFILES["blood"].standing_height
 
 POPULATIONS = {
     "blood-campaign": "original Blood single-player episode maps (E*M*)",

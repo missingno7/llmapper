@@ -52,7 +52,14 @@ SCHEMA = "llmapper.level-program"
 SCHEMA_VERSION = 1
 
 PLAYER_WIDTH = 384
-PLAYER_HEIGHT = 0x1600
+
+from .player_space import PLAYER_PROFILES
+
+#: One standing human, from the player profile. Never hardcode this: it was
+#: 0x1600 in a dozen modules, which is `POSTURE.eyeAboveZ` -- an offset from
+#: the sprite's centre, not a body -- and every height in the project was
+#: denominated in a unit 3x too small.
+PLAYER_HEIGHT = PLAYER_PROFILES["blood"].standing_height
 
 #: Screen-space compass for a rectangular room.  Build's y grows downward, so
 #: the minimum-y edge is north, and a clockwise outer loop runs north, east,
@@ -72,29 +79,86 @@ class LevelProgramError(PlanarLayoutError):
 class Frame:
     """Where a node's local coordinates sit in its parent's.
 
-    Translation only, deliberately.  A translation is exact on Build's integer
-    grid, so a subtree can be moved without introducing a single unit of
-    rounding residual, and "this room is the same source wherever it sits" stays
-    literally true.  Rotation would buy expressiveness at the cost of a residual
-    on every vertex; when a rotated structure is needed, write its outline
-    rotated and keep the exactness.
+    Translation and quarter-turns, and nothing else.
+
+    The original rule here was translation only, on the grounds that rotation
+    buys expressiveness at the cost of a rounding residual on every vertex. That
+    reasoning is right, and it is right only about *arbitrary* angles. A
+    quarter-turn is ``(x, y) -> (-y, x)``: integer in, integer out, no sine
+    table, no residual, and exact under composition because the four turns form
+    a group. So the sharpened rule is:
+
+    * **k x 90 degrees belongs in the frame.** It is exact, it composes, and it
+      lets an assembly be stamped in any cardinal orientation with "this room is
+      the same source wherever it sits" still literally true.
+    * **Any other angle does not.** Nesting non-cardinal rotations is where
+      residual accumulates, one half-unit per vertex per level of nesting. Those
+      are a one-time *outline stamp* instead -- see `vocabulary.stamp`, which
+      composes in floating point and rounds once, before the planar overlay, so
+      both sides of a shared edge come from the same integer points.
+
+    `turns` counts anticlockwise quarter-turns in Build's coordinate space and
+    is applied *before* the translation, so a frame reads as "turn this, then
+    put it there".
+
+    Rotation is not only geometry. A sector's slope direction and any
+    first-wall-relative texture alignment reference the sector's first wall, so
+    they follow an outline that is rotated as a whole with its winding intact.
+    Sprite angles do not follow -- they are absolute -- so anything applying a
+    frame to a sprite must also call `apply_angle`.
     """
 
     dx: int = 0
     dy: int = 0
     dz: int = 0
+    #: Anticlockwise quarter-turns, taken modulo 4.
+    turns: int = 0
+
+    def __post_init__(self) -> None:
+        object.__setattr__(self, "turns", int(self.turns) % 4)
+
+    def turn(self, point: Sequence[float]) -> Point:
+        """The quarter-turn alone, about the local origin. Exact."""
+        x, y = int(point[0]), int(point[1])
+        for _ in range(self.turns):
+            x, y = -y, x
+        return (x, y)
+
+    def unturn(self, point: Sequence[float]) -> Point:
+        """The inverse quarter-turn. Exact, and exactly undoes `turn`."""
+        x, y = int(point[0]), int(point[1])
+        for _ in range((4 - self.turns) % 4):
+            x, y = -y, x
+        return (x, y)
 
     def apply(self, point: Sequence[float]) -> Point:
-        return (int(point[0]) + self.dx, int(point[1]) + self.dy)
+        x, y = self.turn(point)
+        return (x + self.dx, y + self.dy)
 
     def apply_z(self, z: int) -> int:
         return int(z) + self.dz
 
+    def apply_angle(self, angle: int) -> int:
+        """Rotate a Build angle by this frame's turns.
+
+        2048 is a full turn, so a quarter is 512. Sprites carry absolute angles
+        and are the one thing a rotated outline does not bring with it.
+        """
+        return (int(angle) + 512 * self.turns) % 2048
+
     def compose(self, child: "Frame") -> "Frame":
-        return Frame(self.dx + child.dx, self.dy + child.dy, self.dz + child.dz)
+        """This frame applied to a child's.
+
+        The child's translation happens in the child's own turned space, so it
+        has to be turned by *this* frame before being added. Turns simply add:
+        that is what makes the composition exact.
+        """
+        cdx, cdy = self.turn((child.dx, child.dy))
+        return Frame(self.dx + cdx, self.dy + cdy,
+                     self.dz + child.dz, self.turns + child.turns)
 
     def to_dict(self) -> dict[str, int]:
-        return {"dx": self.dx, "dy": self.dy, "dz": self.dz}
+        return {"dx": self.dx, "dy": self.dy, "dz": self.dz, "turns": self.turns}
 
 
 # ---------------------------------------------------------------------------
@@ -454,10 +518,25 @@ class Room(Node):
         parent_frame = Frame()
         for node in self.ancestors():
             parent_frame = parent_frame.compose(node.frame)
+
+        # Solve for this node's translation so that its face lands on the
+        # target. Written out rather than differenced, because with quarter
+        # turns in play the old shortcut -- world minus current, plus the
+        # existing offset -- silently assumed both this frame and its parents
+        # were unrotated.
+        #
+        #   world(p) = parent.turn(self.turn(p) + d) + parent.translation
+        #
+        # so, wanting world(local_start) == target.b:
+        #
+        #   d = parent.unturn(target.b - parent.translation) - self.turn(p)
+        #
         # An exact-reversed coincidence: my face starts where theirs ends.
         want_x, want_y = target.b
-        have_x, have_y = parent_frame.apply(local_start)
-        dx, dy = want_x - have_x + self.frame.dx, want_y - have_y + self.frame.dy
+        back = parent_frame.unturn((want_x - parent_frame.dx,
+                                    want_y - parent_frame.dy))
+        mine = self.frame.turn(local_start)
+        dx, dy = back[0] - mine[0], back[1] - mine[1]
         if slide:
             length = ((local_end[0] - local_start[0]) ** 2
                       + (local_end[1] - local_start[1]) ** 2) ** 0.5
@@ -465,7 +544,7 @@ class Room(Node):
                 ux, uy = (local_end[0] - local_start[0]) / length, (local_end[1] - local_start[1]) / length
                 dx += int(round(ux * slide))
                 dy += int(round(uy * slide))
-        self.frame = Frame(int(dx), int(dy), self.frame.dz)
+        self.frame = Frame(int(dx), int(dy), self.frame.dz, self.frame.turns)
         return self
 
     def hole_face(self, hole_index: int, name: str, *, at: float = 0.5,

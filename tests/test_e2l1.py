@@ -88,7 +88,13 @@ class E2L1PlayableConversionTests(unittest.TestCase):
         self.assertEqual(report["mechanisms"]["counts"]["platform"], 3)
         self.assertEqual(sprite_types[9], 2)
         self.assertEqual(sprite_types[10], 2)
-        self.assertEqual(sprite_types[400], 7)
+        # E2L1 carries both kinds of Duke explosive: 4 authored at xrepeat 40
+        # and 3 at xrepeat 4. Duke spawns anything at 8 or less invisible and
+        # zero-sized, so only the visible 4 get a TNT barrel to shoot, while all
+        # 7 become chain exploders on their hitag channel.
+        self.assertEqual(sprite_types[400], 4)
+        self.assertEqual(report["mechanisms"]["counts"]["chain-exploder"], 7)
+        self.assertEqual(report["mechanisms"]["counts"]["visible-explosive"], 4)
         self.assertGreaterEqual(
             report["entities"]["translated_counts"].get("approximation:Liztroop ducking->Tommy cultist", 0),
             7,

@@ -264,10 +264,17 @@ def audit_geometry(
                         "endpoints": endpoints,
                     })
                     continue
+                # All four link families raise the same question -- two sectors
+                # sharing an exact reversed boundary because one is above or
+                # beside the other through a link, not because a partition was
+                # left infinitely thin. `warpInit` treats them alike and so does
+                # this: goo is water with a different medium, and a plain link is
+                # a stack whose threshold is the marker's own z.
+                LINKED = {"water", "stack", "goo", "link"}
                 stacked_sectors = {
-                    int(a) for a, b, kind in (declared_specials or []) if kind in {"water", "stack"}
+                    int(a) for a, b, kind in (declared_specials or []) if kind in LINKED
                 } | {
-                    int(b) for a, b, kind in (declared_specials or []) if kind in {"water", "stack"}
+                    int(b) for a, b, kind in (declared_specials or []) if kind in LINKED
                 }
                 if owners[left] in stacked_sectors or owners[right] in stacked_sectors:
                     continue

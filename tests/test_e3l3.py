@@ -72,7 +72,13 @@ class E3L3PlayableConversionTests(unittest.TestCase):
         self.assertEqual(sprite_types[9], 25)
         self.assertEqual(sprite_types[10], 25)
         self.assertEqual(sector_types[617], 2)
-        self.assertEqual(sector_types[616], 1)
+        # E3L3's single SE20 is a stretch bridge, and SE20 is the one Duke
+        # moving sector that never calls A_MoveSector: it drags the two walls
+        # nearest the effector and leaves the rest of the sector alone. That is
+        # Blood's kSectorSlideMarked (614), not the whole-sector slide (616),
+        # which would carry the bridge away instead of extending it.
+        self.assertEqual(sector_types[614], 1)
+        self.assertEqual(sector_types[616], 0)
         self.assertEqual(sprite_types[408], 1)
         self.assertEqual(report["mechanisms"]["counts"]["swinging-door"], 2)
         self.assertEqual(report["mechanisms"]["counts"]["stretch-bridge"], 1)

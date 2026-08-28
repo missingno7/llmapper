@@ -228,15 +228,63 @@ def build_wall_join_test(map_path):
     return joins
 
 
+def walking_never_beats_the_step_allowance(rows, trajectory, report):
+    """The model derives one number for how far up this body walks in a
+    single step, from cliptestsector's own arithmetic.  The body then goes
+    and walks around.  If it ever climbs further than that in one sector
+    crossing, the derivation is wrong -- and if the derivation were instead
+    generous, the bot would keep walking into steps it cannot climb.
+
+    This is the differential the staircase bug hid behind: every crossing the
+    body actually made, measured against what the model said was possible."""
+    allowance = None
+    for row in rows:
+        if row["event"] == "actor_measured":
+            allowance = field(row, "step_up")
+            break
+    if allowance is None or not trajectory:
+        report.check("actual_climbs_stay_within_the_derived_step", [],
+                     "no actor measurement in this run")
+        return
+    failures = []
+    worst = 0
+    previous = None
+    for point in trajectory:
+        if previous is not None and point.get("sector") != previous.get("sector"):
+            # z counts downwards, so a smaller z is a higher place.
+            rise = previous.get("z", 0) - point.get("z", 0)
+            if rise > worst:
+                worst = rise
+            if rise > allowance and previous.get("on_ground") and point.get("on_ground"):
+                failures.append("tick %s: %d -> %d climbed %d, allowance %d"
+                                % (point.get("tick"), previous.get("sector"),
+                                   point.get("sector"), rise, allowance))
+        previous = point
+    report.check("actual_climbs_stay_within_the_derived_step", failures,
+                 "steepest climb %d of %d allowed" % (worst, allowance))
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("telemetry")
+    parser.add_argument("--trajectory", default="")
     parser.add_argument("--map", default="")
     parser.add_argument("--quiet", action="store_true")
     args = parser.parse_args()
 
     rows = load(args.telemetry)
     joins = build_wall_join_test(args.map) if args.map else None
+    trajectory = []
+    if args.trajectory and Path(args.trajectory).exists():
+        for line in Path(args.trajectory).read_text(
+                encoding="utf-8", errors="replace").splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                trajectory.append(json.loads(line))
+            except ValueError:
+                continue
 
     report = Report()
     accepted_activation_is_never_called_unanswered(rows, report)
@@ -247,6 +295,7 @@ def main():
     deliberate_holds_are_not_deadlocks(rows, report)
     search_probes_stand_still(rows, report)
     edge_failures_have_still_geometry(rows, report)
+    walking_never_beats_the_step_allowance(rows, trajectory, report)
     report.render(args.quiet)
     return 0 if report.ok() else 1
 

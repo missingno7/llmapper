@@ -1,0 +1,80 @@
+{
+ "$schema": "llmapper.blood-reference-map",
+ "schema_version": 1,
+ "subject": "E3M8",
+ "why": "Named as the closest campaign map to what the monastery candidate is trying to be, and much prettier and more complex. Measured against the candidate and against E1M1 as a second control, so that 'E3M8 is denser' can be separated from 'Blood is denser'.",
+ "measured_on": "2026-08-27",
+ "unit": "standing humans (16960 z) and body widths (384)",
+ "headline": "E3M8 is not bigger. It is 1.75x the candidate's playable area and 2.4x its sector density, and almost all of the extra sectors are small ones that carry trim, light and steps.",
+ "size": {
+  "playable_area_sq_human": {"E3M8": 1796, "E1M1": 1097, "candidate": 1027},
+  "playable_sectors": {"E3M8": 614, "E1M1": 146, "candidate": 149},
+  "sectors_per_100_sq_human": {"E3M8": 34.18, "E1M1": 13.31, "candidate": 14.5},
+  "note": "E1M1 sits with the candidate at ~13-14, so this density is E3M8's own choice, not a Blood baseline."
+ },
+ "wall_articulation": {
+  "finding": "The single biggest mechanical difference. E3M8 chops its walls into short segments, which is what gives it somewhere to put trim.",
+  "median_segment_body_widths": {"E3M8": 1.33, "E1M1": 1.33, "candidate": 3.0},
+  "share_under_one_body_width": {"E3M8": 0.165, "E1M1": 0.275, "candidate": 0.072},
+  "tile_change_at_corners": {"E3M8": 0.292, "E1M1": 0.283, "candidate": 0.32},
+  "reading": "The candidate changes tile at corners just as often -- it simply has far fewer corners. Its walls are 2.25x longer between breaks."
+ },
+ "palette": {
+  "wall_tiles_used": {"E3M8": 40, "E1M1": 40, "candidate": 17},
+  "shared_field_tiles": [110, 80],
+  "second_tier_absent_from_candidate": [
+   {"picnum": 93, "size": [32, 128], "walls": 217, "kind": "narrow pilaster with a banded foot"},
+   {"picnum": 174, "size": [64, 128], "walls": 185, "kind": "weathered rust panel"},
+   {"picnum": 1011, "size": [64, 128], "walls": 161, "kind": "plain render field"},
+   {"picnum": 115, "size": [32, 128], "walls": 126, "kind": "ornate pilaster, brick-edged"},
+   {"picnum": 200, "size": [32, 16], "walls": 98, "kind": "trim block"},
+   {"picnum": 6, "size": [64, 8], "walls": 86, "kind": "string course, 8 pixels tall"},
+   {"picnum": 97, "size": [128, 128], "walls": 70, "kind": "carved feature panel"},
+   {"picnum": 195, "size": [16, 128], "walls": 50, "kind": "edge trim"},
+   {"picnum": 479, "size": [32, 128], "walls": 31, "kind": "framed emblem panel"}
+  ],
+  "reading": "The gap is not 'more textures'. It is a whole class the candidate has none of: narrow vertical pilasters (32x128, 16x128) and thin horizontal bands (64x8, 32x16). Those are trim, and trim needs short wall segments to sit on."
+ },
+ "lighting": {
+  "distinct_floor_shades": {"E3M8": 46, "E1M1": 29, "candidate": 27},
+  "shade_step_between_neighbours": {
+   "E3M8": {"median": 2.0, "q3": 6.0, "p95": 31.0},
+   "E1M1": {"median": 8.0, "q3": 13.0, "p95": 30.0},
+   "candidate": {"median": 7.0, "q3": 8.0, "p95": 23.0}
+  },
+  "reading": "E3M8 shades gradually -- a median step of 2 across many small sectors -- and keeps a long tail for real contrast (p95 of 31). The candidate steps 7 at a time across few sectors, which reads as flat blocks rather than a gradient with a bright focus."
+ },
+ "relief": {
+  "sloped_sectors": {"E3M8": 0.27, "E1M1": 0.14, "candidate": 0.02},
+  "sloped_share_of_floor_area": {"E3M8": 0.11, "E1M1": 0.19, "candidate": 0.02},
+  "distinct_floor_levels": {"E3M8": 52, "E1M1": 39, "candidate": 39},
+  "vertical_range_humans": {"E3M8": 6.3, "E1M1": 4.3, "candidate": 32.4},
+  "reading": "E3M8 has MORE distinct floor levels than the candidate inside a FIFTH of the vertical range: it steps constantly within a human-scale band. The candidate's 32.4-human range is a few enormous drops, not relief."
+ },
+ "mechanism": {
+  "typed_sectors": {"E3M8": 70, "E1M1": 27, "candidate": 9},
+  "sector_type_kinds": {"E3M8": 6, "E1M1": 7, "candidate": 5}
+ },
+ "small_sectors": {
+  "share_under_0_35_sq_human": {"E3M8": 0.29, "E1M1": 0.2, "candidate": 0.15},
+  "reading": "29% of E3M8's playable sectors are smaller than a third of a square human height. They are inlaid floor patterns, light pools, plinths and steps."
+ },
+ "seen_in_render": [
+  "an ornate faceted column with a banded plinth, standing free in a tiled hall",
+  "a floor composed of several sectors: a checkered field with a plain inset strip run through it",
+  "a shrine niche framed by a carved arch panel, holding an altar and a candle, in a wall that is otherwise plain rubble",
+  "bright patches on a dark floor that are separate sectors, not sprites -- lighting built out of geometry"
+ ],
+ "what_the_candidate_should_take": [
+  "short wall segments before anything else: trim has nowhere to go on a 3-body-width wall",
+  "a trim tier in the material vocabulary -- pilaster and string-course tiles, distinct from field tiles",
+  "gradual shading: a median neighbour step near 2, with contrast saved for focal points",
+  "slopes, which the candidate has essentially none of at 2% against 27%",
+  "relief inside the human band -- more floor levels over less total range"
+ ],
+ "reading_guide": [
+  "every figure here is measured from the maps, not recalled",
+  "E1M1 is included as a control: where E1M1 sits with the candidate, the difference is E3M8's ambition; where E1M1 sits with E3M8, the candidate is the outlier",
+  "a band is what these maps did, never what a level must do"
+ ]
+}

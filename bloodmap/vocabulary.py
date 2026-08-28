@@ -222,7 +222,14 @@ WHERE_VALUES = {"flank", "tread", "back", "floor"}
 #: Blood's player, restated so this module stays free of a profile lookup at
 #: import time.  ``bloodmap.player_space.player_profile("blood")`` is the source.
 PLAYER_WIDTH = 384
-PLAYER_HEIGHT = 0x1600
+
+from .player_space import PLAYER_PROFILES
+
+#: One standing human, from the player profile. Never hardcode this: it was
+#: 0x1600 in a dozen modules, which is `POSTURE.eyeAboveZ` -- an offset from
+#: the sprite's centre, not a body -- and every height in the project was
+#: denominated in a unit 3x too small.
+PLAYER_HEIGHT = PLAYER_PROFILES["blood"].standing_height
 
 
 def sprite_repeats(
@@ -632,3 +639,133 @@ def vocabulary_manifest() -> dict[str, Any]:
             "expressive power comes from composition, not from more arguments",
         ],
     }
+
+
+# ---------------------------------------------------------------------------
+# Stamping: arbitrary rotation, composed in floats and rounded exactly once
+# ---------------------------------------------------------------------------
+
+#: Slope direction and first-wall-relative texture alignment both reference a
+#: sector's *first wall*, so an outline rotated as a whole -- winding intact,
+#: first vertex still first -- carries them without being asked. Sprite angles
+#: are absolute and do not follow; `stamp` rotates them explicitly.
+#:
+#: Whether to switch a rotated sector to relative alignment is a real question
+#: and the campaign answers it: of 13,649 playable sectors, 14.0% align their
+#: floor to the first wall. Split by cause, the signal is slope, not rotation --
+#:
+#:     floor / flat      11.0%        floor / cardinal   12.2%
+#:     floor / sloped    43.2%        floor / angled     17.6%
+#:
+#: -- so a rotated room does *not* get relative alignment by default. Blood
+#: leaves most of its angled floors world-aligned, which is fine for the rubble
+#: and stone its flats mostly are. A *sloped* floor is the case that needs it,
+#: at four times the base rate, because the slope direction is first-wall
+#: relative and a world-aligned texture on it slides against its own gradient.
+RELATIVE_ALIGNMENT = 64
+
+#: The shortest edge a stamp will rotate. Rounding costs up to half a unit per
+#: vertex, which is negligible against a wall and fatal against a chamfer.
+MIN_STAMP_EDGE = 32
+
+
+def stamp(
+    points: Iterable[Sequence[float]],
+    degrees: float,
+    *,
+    about: Sequence[float] = (0, 0),
+    offset: Sequence[float] = (0, 0),
+) -> list[Point]:
+    """Rotate an outline by an arbitrary angle, rounding once at the end.
+
+    This is the escape hatch `Frame` deliberately does not provide. A frame
+    holds quarter-turns, which are exact; anything else accumulates half a unit
+    of residual per vertex per level of nesting, and a residual that accumulates
+    is how two rooms that should share an edge end up 1 unit apart with a sliver
+    of solid space between them.
+
+    The discipline that makes an arbitrary angle safe is the same one
+    :func:`arc_through` follows, and it is the only reason this is allowed:
+
+    * compose the whole transform in floating point -- rotation, offset, the
+      lot -- and **round exactly once**, at emission;
+    * emit before the planar overlay, so the arrangement sees integer points and
+      both sides of a shared edge are generated from *the same* integers;
+    * never re-round downstream, and never nest one stamp inside another.
+
+    Residual is therefore bounded at half a unit per vertex and never
+    accumulates, because nothing after this touches the coordinates again.
+
+    `about` is the local point the rotation turns around, and `offset` is
+    applied after it, so "turn the chapel 45 degrees about its own door and put
+    the door here" is one call.
+
+    A rotation preserves every edge length, so what rounding costs is measured
+    against the *shortest* edge: half a unit of error on a 1024-unit wall is
+    nothing, and on an 8-unit wall it is the wall. Below `MIN_STAMP_EDGE` this
+    refuses rather than emitting a shape that is no longer the one written --
+    a unit square stamped at 45 degrees comes back as a triangle with three
+    collinear points, at exactly the right area, which is the kind of wrong that
+    an area check would pass.
+    """
+    source = [(float(p[0]), float(p[1])) for p in points]
+    if len(source) < 3:
+        raise VocabularyError("an outline needs at least three points to stamp")
+    shortest = min(
+        hypot(source[i][0] - source[i - 1][0], source[i][1] - source[i - 1][1])
+        for i in range(len(source)))
+    if shortest < MIN_STAMP_EDGE:
+        raise VocabularyError(
+            "the shortest edge of this outline is %.1f units, and a stamp rounds "
+            "each vertex by up to half a unit. Below %d units that is enough to "
+            "change the shape rather than turn it -- a unit square stamped at 45 "
+            "degrees comes back a triangle. Build the part larger, or keep it "
+            "cardinal and use Frame(turns=...), which is exact at any size."
+            % (shortest, MIN_STAMP_EDGE))
+    points = source
+    theta = radians(float(degrees))
+    cos_t, sin_t = cos(theta), sin(theta)
+    ox, oy = float(about[0]), float(about[1])
+    tx, ty = float(offset[0]), float(offset[1])
+    result: list[Point] = []
+    for point in points:
+        x, y = float(point[0]) - ox, float(point[1]) - oy
+        rx = x * cos_t - y * sin_t
+        ry = x * sin_t + y * cos_t
+        result.append((int(round(rx + ox + tx)), int(round(ry + oy + ty))))
+    deduped: list[Point] = []
+    for point in result:
+        if not deduped or point != deduped[-1]:
+            deduped.append(point)
+    if len(deduped) > 2 and deduped[0] == deduped[-1]:
+        deduped.pop()
+    if len(deduped) < 3:
+        raise VocabularyError(
+            "the outline collapsed to fewer than three distinct points at Build "
+            "integer resolution; it is too small to rotate at this scale"
+        )
+    return deduped
+
+
+def stamp_angle(angle: int, degrees: float) -> int:
+    """The Build angle a sprite carries after its room is stamped.
+
+    2048 units to a full turn. Sprites are the one thing a rotated outline does
+    not bring with it: a torch bracket keeps pointing the way it pointed, into
+    the wall the room used to have.
+    """
+    return int(round(int(angle) + float(degrees) * 2048.0 / 360.0)) % 2048
+
+
+def stamp_alignment(floor_stat: int, *, sloped: bool, directional: bool) -> int:
+    """The floor's alignment flag after a stamp, from the campaign's own habit.
+
+    Turns on first-wall-relative alignment when the surface is sloped -- where
+    Blood uses it 43.2% of the time against an 11.0% baseline -- or when the
+    material says its flat has a direction to get wrong. Leaves an ordinary flat
+    world-aligned, which is what Blood does with its angled rooms 82% of the
+    time.
+    """
+    if sloped or directional:
+        return int(floor_stat) | RELATIVE_ALIGNMENT
+    return int(floor_stat)

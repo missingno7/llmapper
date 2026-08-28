@@ -538,8 +538,10 @@ def _decorate(layout: PlanarLayout) -> None:
     for name, local in (("west", (0.2, 0.5)), ("east", (0.8, 0.5))):
         layout.place_on_ceiling(f"dec_crypt_chain_{name}", "region:crypt_hall",
                                 local=local, height_player_heights=0.3, **CHAIN)
+    # Moved off the opening. The check that found this arrived at v5; the fault
+    # is the same one and it has been here since this iteration.
     layout.place_on_wall("dec_crypt_emblem", "region:crypt_hall", a1=P(42, 60), a2=P(22, 60),
-                         t=0.5, height_player_heights=1.7, offset_player_widths=0.10,
+                         t=0.2, height_player_heights=1.7, offset_player_widths=0.10,
                          **EMBLEM_MOON)
     layout.place_on_wall("dec_reliquary_emblem", "region:crypt_reliquary",
                          a1=P(16, 58), a2=P(16, 52), t=0.5,
@@ -575,7 +577,9 @@ def _decorate(layout: PlanarLayout) -> None:
     for name, local in (("west", (0.25, 0.5)), ("east", (0.75, 0.5))):
         layout.place_on_ceiling(f"dec_gallery_lamp_{name}", "region:gallery",
                                 local=local, height_player_heights=0.45, **HANGING_LAMP)
-    layout.place_on_wall("dec_arch_emblem", "region:gallery_arch", a1=P(62, 20), a2=P(62, 24),
+    # Moved off the opening. The check that found this arrived at v5; the fault
+    # is the same one and it has been here since this iteration.
+    layout.place_on_wall("dec_arch_emblem", "region:gallery_arch", a1=P(58, 20), a2=P(62, 20),
                          t=0.5, height_player_heights=1.55, offset_player_widths=0.10,
                          **EMBLEM_SKULL)
 

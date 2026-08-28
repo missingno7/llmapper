@@ -1,0 +1,68 @@
+{
+ "$schema": "llmapper.blood-wall-thickness",
+ "schema_version": 1,
+ "maps": 43,
+ "summary": {
+  "probes": 48019,
+  "thickness": {
+   "min": 16,
+   "p01": 16,
+   "p05": 144,
+   "q1": 272,
+   "median": 544,
+   "q3": 1040,
+   "max": 2048
+  },
+  "thickness_player_widths": {
+   "min": 0.04,
+   "p01": 0.04,
+   "p05": 0.38,
+   "q1": 0.71,
+   "median": 1.42,
+   "q3": 2.71,
+   "max": 5.33
+  },
+  "thinnest_per_map": {
+   "min": 16.0,
+   "p01": 16.0,
+   "p05": 16.0,
+   "q1": 16.0,
+   "median": 64.0,
+   "q3": 96.0,
+   "max": 528.0
+  },
+  "histogram_to_512": {
+   "0": 564,
+   "32": 119,
+   "64": 409,
+   "96": 247,
+   "128": 1444,
+   "160": 242,
+   "192": 617,
+   "224": 384,
+   "256": 8893,
+   "288": 581,
+   "320": 357,
+   "352": 604,
+   "384": 1004,
+   "416": 277,
+   "448": 428,
+   "480": 256,
+   "512": 31593
+  },
+  "share_under": {
+   "64": 0.01422,
+   "128": 0.02788,
+   "192": 0.063,
+   "256": 0.08384,
+   "384": 0.30115,
+   "512": 0.34207
+  }
+ },
+ "method": "step outward from every solid wall of a playable sector along its own normal, in 16-unit steps to 2048, and record the distance at which another playable sector begins. Two-sided walls are openings and are excluded; a normal that re-enters its own sector is one space and is excluded.",
+ "reading_guide": [
+  "thickness is in Build units; one body width is 384",
+  "thinnest_per_map is the floor each map allowed itself, which is the number a minimum should be derived from -- a single outlier in one map is not a licence for every level",
+  "a band is what the campaign did, never what a level must do"
+ ]
+}

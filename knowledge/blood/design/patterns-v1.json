@@ -1,0 +1,330 @@
+{
+ "$schema": "llmapper.blood-patterns",
+ "schema_version": 1,
+ "unit": "standing humans (16960 z); plan distances divided by 1060",
+ "definitions": {
+  "overlook": "walkable neighbour 0.5-3.0 humans above a space of at least 5 square humans",
+  "ledge": "sector under 0.6 square humans, touching a solid wall, 0.08-0.60 humans above a big neighbour",
+  "arch": "MISNAMED in the first pass, kept here as a correction. Measured as 'a two-neighbour doorway sector with more than four corners' and reported as a shaped arch head. It is not: of E6M6's 112 such doorways, 82 have a ceiling EQUAL to both rooms they join, so there is no head to shape. The extra corners are in plan -- turns of 15 and 30 degrees, alongside the square ones -- so these are SPLAYED passages: a link that funnels or dog-legs rather than running as a straight square tube. Read the number as 'splayed connectors'.",
+  "pit": "walkable neighbour 0.5-4.0 humans below a big space",
+  "silhouette": "distinct ceiling heights, to the nearest 2048 z, among the sectors bounding one open-air sector"
+ },
+ "maps": [
+  {
+   "map": "BB2",
+   "playable": 172,
+   "big_spaces": 41,
+   "overlook": {
+    "spaces_with_one": 12,
+    "share_of_big_spaces": 0.293,
+    "per_big_space": 0.83
+   },
+   "pit": {
+    "spaces_with_one": 9,
+    "share_of_big_spaces": 0.22
+   },
+   "ledge": {
+    "count": 7,
+    "per_100_playable": 4.1
+   },
+   "arch": {
+    "doorways": 57,
+    "shaped_heads": 21,
+    "share": 0.368
+   },
+   "silhouette": {
+    "open_sectors": 63,
+    "median_distinct_rooflines": 2
+   }
+  },
+  {
+   "map": "CANDIDATE",
+   "playable": 149,
+   "big_spaces": 33,
+   "overlook": {
+    "spaces_with_one": 1,
+    "share_of_big_spaces": 0.03,
+    "per_big_space": 0.03
+   },
+   "pit": {
+    "spaces_with_one": 1,
+    "share_of_big_spaces": 0.03
+   },
+   "ledge": {
+    "count": 1,
+    "per_100_playable": 0.7
+   },
+   "arch": {
+    "doorways": 72,
+    "shaped_heads": 7,
+    "share": 0.097
+   },
+   "silhouette": {
+    "open_sectors": 23,
+    "median_distinct_rooflines": 1
+   }
+  },
+  {
+   "map": "DWE2M11",
+   "playable": 333,
+   "big_spaces": 48,
+   "overlook": {
+    "spaces_with_one": 15,
+    "share_of_big_spaces": 0.312,
+    "per_big_space": 0.81
+   },
+   "pit": {
+    "spaces_with_one": 9,
+    "share_of_big_spaces": 0.188
+   },
+   "ledge": {
+    "count": 2,
+    "per_100_playable": 0.6
+   },
+   "arch": {
+    "doorways": 86,
+    "shaped_heads": 25,
+    "share": 0.291
+   },
+   "silhouette": {
+    "open_sectors": 39,
+    "median_distinct_rooflines": 1
+   }
+  },
+  {
+   "map": "E1M1",
+   "playable": 146,
+   "big_spaces": 34,
+   "overlook": {
+    "spaces_with_one": 9,
+    "share_of_big_spaces": 0.265,
+    "per_big_space": 0.5
+   },
+   "pit": {
+    "spaces_with_one": 10,
+    "share_of_big_spaces": 0.294
+   },
+   "ledge": {
+    "count": 11,
+    "per_100_playable": 7.5
+   },
+   "arch": {
+    "doorways": 55,
+    "shaped_heads": 19,
+    "share": 0.345
+   },
+   "silhouette": {
+    "open_sectors": 30,
+    "median_distinct_rooflines": 1.0
+   }
+  },
+  {
+   "map": "E3M8",
+   "playable": 614,
+   "big_spaces": 92,
+   "overlook": {
+    "spaces_with_one": 7,
+    "share_of_big_spaces": 0.076,
+    "per_big_space": 0.18
+   },
+   "pit": {
+    "spaces_with_one": 1,
+    "share_of_big_spaces": 0.011
+   },
+   "ledge": {
+    "count": 21,
+    "per_100_playable": 3.4
+   },
+   "arch": {
+    "doorways": 234,
+    "shaped_heads": 38,
+    "share": 0.162
+   },
+   "silhouette": {
+    "open_sectors": 22,
+    "median_distinct_rooflines": 2.0
+   }
+  },
+  {
+   "map": "E6M3",
+   "playable": 239,
+   "big_spaces": 49,
+   "overlook": {
+    "spaces_with_one": 16,
+    "share_of_big_spaces": 0.327,
+    "per_big_space": 1.14
+   },
+   "pit": {
+    "spaces_with_one": 8,
+    "share_of_big_spaces": 0.163
+   },
+   "ledge": {
+    "count": 8,
+    "per_100_playable": 3.3
+   },
+   "arch": {
+    "doorways": 106,
+    "shaped_heads": 36,
+    "share": 0.34
+   },
+   "silhouette": {
+    "open_sectors": 22,
+    "median_distinct_rooflines": 1.5
+   }
+  },
+  {
+   "map": "E6M5",
+   "playable": 339,
+   "big_spaces": 47,
+   "overlook": {
+    "spaces_with_one": 12,
+    "share_of_big_spaces": 0.255,
+    "per_big_space": 0.68
+   },
+   "pit": {
+    "spaces_with_one": 4,
+    "share_of_big_spaces": 0.085
+   },
+   "ledge": {
+    "count": 22,
+    "per_100_playable": 6.5
+   },
+   "arch": {
+    "doorways": 142,
+    "shaped_heads": 30,
+    "share": 0.211
+   },
+   "silhouette": {
+    "open_sectors": 58,
+    "median_distinct_rooflines": 1.0
+   }
+  },
+  {
+   "map": "E6M6",
+   "playable": 371,
+   "big_spaces": 59,
+   "overlook": {
+    "spaces_with_one": 25,
+    "share_of_big_spaces": 0.424,
+    "per_big_space": 1.32
+   },
+   "pit": {
+    "spaces_with_one": 13,
+    "share_of_big_spaces": 0.22
+   },
+   "ledge": {
+    "count": 17,
+    "per_100_playable": 4.6
+   },
+   "arch": {
+    "doorways": 118,
+    "shaped_heads": 56,
+    "share": 0.475
+   },
+   "silhouette": {
+    "open_sectors": 113,
+    "median_distinct_rooflines": 1
+   }
+  },
+  {
+   "map": "E6M7",
+   "playable": 470,
+   "big_spaces": 70,
+   "overlook": {
+    "spaces_with_one": 16,
+    "share_of_big_spaces": 0.229,
+    "per_big_space": 0.51
+   },
+   "pit": {
+    "spaces_with_one": 5,
+    "share_of_big_spaces": 0.071
+   },
+   "ledge": {
+    "count": 28,
+    "per_100_playable": 6.0
+   },
+   "arch": {
+    "doorways": 224,
+    "shaped_heads": 65,
+    "share": 0.29
+   },
+   "silhouette": {
+    "open_sectors": 28,
+    "median_distinct_rooflines": 1.5
+   }
+  }
+ ],
+ "headline": "The candidate is not short of verticality, it is short of verticality at body scale. Around its large spaces it has 26 raised neighbours: 23 are steps under half a body, 1 is a parapet, 2 are whole storeys away. E6M6 has 134, of which 78 sit in the 0.5-3.0 band and NONE is more than 8 humans up.",
+ "rise_bands_around_big_spaces": {
+  "definition": "walkable neighbours whose floor stands above a space of at least 5 square humans, bucketed by how far above",
+  "E6M6": {
+   "0.1-0.5 step": 49,
+   "0.5-3.0 parapet": 78,
+   "3-8 gallery": 7,
+   "over 8": 0,
+   "total": 134
+  },
+  "candidate": {
+   "0.1-0.5 step": 23,
+   "0.5-3.0 parapet": 1,
+   "3-8 gallery": 0,
+   "over 8": 2,
+   "total": 26
+  },
+  "reading": "Blood's verticality is something you can see a man standing on. The candidate's is either a kerb or a different floor of the building, and neither reads as composition from inside the room."
+ },
+ "what_to_build": [
+  "parapets and raised walks around the big spaces: the candidate has 1 where comparable maps have 20-80",
+  "ledges and plinths against walls: 0.7 per 100 sectors against E1M1's 7.5",
+  "shaped door heads: 10% of the candidate's doorways have more than four corners, against E6M6's 48% -- Build cannot curve a wall top, so a gothic opening is shaped in plan",
+  "stop reaching for whole storeys; put the difference in the 0.5-3.0 band"
+ ],
+ "closest_maps_by_palette": [
+  {
+   "map": "E6M6",
+   "score": 0.532,
+   "why": "nearly the candidate's exact footprint -- 1080 square humans against 1027 -- with 2.5x the sectors and 2.9x shorter wall runs. The single best control in the corpus."
+  },
+  {
+   "map": "BB2",
+   "score": 0.428
+  },
+  {
+   "map": "E6M5",
+   "score": 0.399
+  },
+  {
+   "map": "E6M3",
+   "score": 0.397,
+   "why": "66% of its sectors are sloped"
+  },
+  {
+   "map": "E6M7",
+   "score": 0.383
+  },
+  {
+   "map": "E3M8",
+   "score": 0.356,
+   "why": "the map named by hand; a good match but the E6 (Post Mortem) episode is closer on palette"
+  }
+ ],
+ "episode_note": "E6 here is Post Mortem. Cryptic Passage is not in this corpus at all -- it ships custom tiles, so a tile-histogram comparison against it would be meaningless anyway. Recorded because an earlier pass named the E6 maps Cryptic Passage from memory rather than from anything measured.",
+ "splay": {
+  "corner_turns_in_E6M6": {
+   "90": 128,
+   "15": 98,
+   "30": 97,
+   "-30": 85,
+   "-15": 74,
+   "0": 61,
+   "45": 24,
+   "120": 14
+  },
+  "ceiling_vs_the_rooms": {
+   "equal": 82,
+   "lower": 15,
+   "higher": 15
+  },
+  "reading": "Blood's connective sectors turn. The candidate's are square tubes, which is the same fact as its 0th-percentile orientation variety and its wall runs being 2.9x longer than E6M6's."
+ }
+}

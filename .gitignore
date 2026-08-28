@@ -23,3 +23,25 @@ reference/
 projects/*/reports/looks/
 projects/*/reports/pilot-views/
 projects/*/references/plots/
+
+# XMapEdit, checked out beside NBlood as a second engine oracle. 163M of
+# third-party source with its own history; read, never redistributed.
+xmapedit/
+
+# Observation dumps from the visual loop -- the same category as
+# projects/*/reports/looks above, but written at the tree root by the ad-hoc
+# render harness. 26M and regenerable from the sources.
+.obs/
+
+# NBlood's runtime state, written next to the binary when a map is smoke
+# tested. Machine-local and rewritten on every run.
+nblood.cfg
+nblood_cvars.cfg
+nblood.log
+texturecache
+texturecache.index
+
+# XMapEdit's autosaves. The editor writes these beside whatever map is open;
+# the authored source is the .py beside them.
+ASAVE*.map
+ASAVE*.bak

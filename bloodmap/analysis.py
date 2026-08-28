@@ -9,6 +9,31 @@ from typing import Any
 from .model import DiskMap, DiskObject, LevelIR
 
 
+#: Statnums where a missing XSprite is a *crash*, not an omission. Only dudes
+#: qualify: `aiInit` walks every kStatDude sprite into `aiInitSprite`, which
+#: opens with an unguarded ``xsprite[pSprite->extra]`` and indexes
+#: ``gDudeExtra[nXSprite]`` with the same value (ai.cpp). At extra = -1 both read
+#: before the arrays start. Every other list the engine guards or never
+#: dereferences: `actInit` skips items entirely, and tests
+#: ``extra <= 0 || extra >= kMaxXSprites`` before touching things and traps,
+#: while `ambInit` does the same for ambient sound.
+XSPRITE_CRASHES_WITHOUT = frozenset({6})
+
+#: Marker types the loader binds to a sector through the sprite's `owner`, and
+#: deletes when it cannot. kMarkerOff, kMarkerOn, kMarkerAxis, kMarkerWarpDest.
+MARKER_OWNER_TYPES = frozenset({3, 4, 5, 8})
+MARKER_STATNUM = 10
+
+#: Statnums where the campaign always supplies an XSprite but the engine
+#: tolerates its absence: items (3), things (4), traps (11), ambience (12).
+#: The campaign is unanimous -- 15,071 of 15,071 across statnums 3, 4, 6, 11 and
+#: 12 -- but unanimity is not the same as necessity, and the Death Wish add-on
+#: ships playable maps whose type-710 ambient sprites have no XSprite. The sound
+#: simply does not play. So this is a warning: worth telling an author about,
+#: never a reason to reject a map that works.
+XSPRITE_EXPECTED_STATNUMS = frozenset({3, 4, 11, 12})
+
+
 @dataclass(frozen=True)
 class Diagnostic:
     severity: str
@@ -90,6 +115,21 @@ def validate_map(disk: DiskMap) -> list[Diagnostic]:
     for spi, sprite in enumerate(disk.sprites):
         if sprite.sector < 0 or sprite.sector >= ns:
             emit("error", "sprite-sector", f"sector {sprite.sector} is outside 0..{ns-1}", f"sprite[{spi}]")
+        # A dude without an XSprite segfaults Blood shortly after the level
+        # loads; every other statnum the engine guards, so its absence only
+        # means the sprite never acts. The severities differ accordingly.
+        if sprite.fields["extra"] <= 0:
+            status = sprite.fields["status"]
+            if status in XSPRITE_CRASHES_WITHOUT:
+                emit("error", "sprite-missing-xsprite",
+                     f"dude type {sprite.fields['type']} has no XSprite; aiInitSprite "
+                     f"reads xsprite[-1] and gDudeExtra[-1] for it",
+                     f"sprite[{spi}]")
+            elif status in XSPRITE_EXPECTED_STATNUMS:
+                emit("warning", "sprite-xsprite-omitted",
+                     f"type {sprite.fields['type']} on statnum {status} has no XSprite; "
+                     f"the engine skips it, so it will simply not act",
+                     f"sprite[{spi}]")
         # Sprite angle is a signed 16-bit disk field. Build angle consumers mask it
         # modulo 2048, and original maps intentionally contain negative values.
 
@@ -111,6 +151,30 @@ def validate_map(disk: DiskMap) -> list[Diagnostic]:
             # The packed reference field is redundant. Both authoritative loaders
             # bind by inline order/Build `extra` and overwrite this value with the
             # current owner; original maps contain stale values after deletions.
+
+    # A marker the loader will delete. `dbLoadMap` rebuilds marker0/marker1 from
+    # each marker sprite's `owner`, and any marker on the marker statnum whose
+    # owner does not name a sector with an XSECTOR is passed to `DeleteSprite`.
+    # So the sector keeps whatever marker index the file happened to carry, and
+    # `trInit` then dereferences a freed sprite slot. Every one of the campaign's
+    # 1,055 markers carries an owner.
+    for spi, sprite in enumerate(disk.sprites):
+        kind = int(sprite.fields["type"])
+        if kind not in MARKER_OWNER_TYPES:
+            continue
+        if int(sprite.fields["status"]) != MARKER_STATNUM:
+            continue
+        owner = int(sprite.fields["owner"])
+        if not 0 <= owner < ns:
+            emit("error", "marker-unowned",
+                 f"marker type {kind} has owner {owner}; the loader deletes a marker "
+                 f"whose owner is not a sector",
+                 f"sprite[{spi}]")
+        elif disk.sectors[owner].extra is None:
+            emit("error", "marker-unowned",
+                 f"marker type {kind} owns sector {owner}, which has no XSECTOR; "
+                 f"the loader deletes it",
+                 f"sprite[{spi}]")
 
     for si, sector in enumerate(disk.sectors):
         if sector.extra is None:

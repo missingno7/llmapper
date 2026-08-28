@@ -43,6 +43,12 @@ class PlayerSpatialProfile:
     min_passage_height_crouch: int | None
     evidence: dict[str, str]
     optional_meters_per_native: float | None = None
+    #: `POSTURE.eyeAboveZ` as the engine stores it: the camera's offset from the
+    #: player *sprite's own z*, which `GetSpriteExtents` puts at the body's
+    #: centre, not at the feet. It is not a height above the floor and it is not
+    #: a body height. Kept because `zView = pSprite->z - eyeAboveZ` is the line
+    #: that uses it, and anything reproducing that line needs this number.
+    eye_above_centre: int | None = None
 
     @property
     def id(self) -> str:
@@ -64,33 +70,69 @@ PLAYER_PROFILES = {
         native_unit="build",
         body_radius=192,
         body_width=384,
-        standing_height=0x1600,
-        eye_height=0x1600,
-        crouch_height=0x800,
+        # The body is the drawn figure, not the posture offset. See the note on
+        # `eye_above_centre` and the correction recorded below.
+        standing_height=16960,
+        eye_height=14112,
+        crouch_height=13376,
         max_step=4096,
         jump=True,
         crouch=True,
         min_passage_width=384,
-        min_passage_height_standing=0x1600,
-        min_passage_height_crouch=0x800,
+        min_passage_height_standing=16960,
+        min_passage_height_crouch=13376,
+        eye_above_centre=0x1600,
         evidence={
             "body_radius": (
                 "NBlood source/blood/src/dude.cpp gPlayerTemplate normal human clipdist=0x30; "
                 "player.cpp playerProcess dw = pSprite->clipdist<<2 → 192"
             ),
             "standing_height": (
-                "NBlood source/blood/src/player.cpp gPostureDefaults[kModeHuman][kPostureStand].eyeAboveZ=0x1600"
+                "NBlood source/blood/src/db.h:325 GetSpriteExtents -- a dude's body is "
+                "bottom-top = yrepeat*tilesizy*4, and the bot's own model agrees "
+                "(llmapper/bot/blood/blood_physics.cpp liveBody: shape.height = bottom - top). "
+                "Blood ships no Caleb sprite in any map, so the figure is taken from the "
+                "human dudes the campaign does place: tiles 2820/2825 (cultist) are 106px "
+                "at the yrepeat 40 used 1422 times => 16960. INTERPRETED as Caleb's scale; "
+                "liveBody() measures the real body exactly at runtime."
+            ),
+            "eye_height": (
+                "footOffset + eyeAboveZ. GetSpriteExtents puts a face sprite's z at its "
+                "centre, and player.cpp playerStart does `pSprite->z -= bottom - pSprite->z` "
+                "to drop the feet onto the start z -- so the centre sits (16960/2)=8480 above "
+                "the floor and the camera 0x1600 above that. Cross-checked by render: at this "
+                "height 17% of a cultist stands above the horizon, which is what "
+                "(16960-14112)/16960 predicts; at 0x1600 it would be 67%."
             ),
             "crouch_height": (
-                "NBlood source/blood/src/player.cpp gPostureDefaults[kModeHuman][kPostureCrouch].eyeAboveZ=0x800"
+                "the bot's derivation, llmapper/bot/blood/caleb_physics.cpp:255 -- "
+                "body.height - (standing.eyeAboveZ - crouching.eyeAboveZ) "
+                "= 16960 - (0x1600 - 0x800)"
+            ),
+            "min_passage_height_standing": (
+                "clipping tests the sprite extent, so a standing body needs its whole "
+                "height. llmapper/bot/blood/blood_terrain.cpp:204 clearanceFor returns "
+                "Standing only when freeHeight >= body.height. Campaign agrees: static "
+                "openings between playable sectors are uniformly sparse from 4k to 16k "
+                "(170-600 per 2k band) and jump 4x at 16384."
             ),
             "jump": "NBlood POSTURE.normalJumpZ is nonzero for standing human",
             "max_step": (
                 "llmapper spatial at-rest floor_delta threshold of 4096; Blood clipmove "
                 "flordist is sprite-extent derived, not a named autostep"
             ),
+            "correction": (
+                "Until 2026-08-27 every field here was 0x1600, on the evidence line "
+                "'gPostureDefaults[kModeHuman][kPostureStand].eyeAboveZ=0x1600'. That "
+                "read the engine correctly and then called the answer the wrong thing: "
+                "eyeAboveZ is measured from the sprite's centre, so it is neither a body "
+                "height nor a height above the floor. The consequence was a camera at 25% "
+                "of room height instead of 67% -- every observation in this project was "
+                "framed from chest level -- and a walkable-clearance test that passed "
+                "passages a third of the height the player needs."
+            ),
         },
-        optional_meters_per_native=1.76 / 0x1600,
+        optional_meters_per_native=1.76 / 16960,
     ),
     "duke3d": PlayerSpatialProfile(
         game="duke3d",

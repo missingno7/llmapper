@@ -60,8 +60,14 @@ class PlayerProfileTests(unittest.TestCase):
 
         self.assertEqual(blood.body_radius, 192)
         self.assertEqual(blood.body_width, 384)
-        self.assertEqual(blood.standing_height, 0x1600)
-        self.assertEqual(blood.crouch_height, 0x800)
+        # The body is the drawn figure. 0x1600 is `eyeAboveZ`, an offset from
+        # the sprite's centre, and it lives on its own field now -- calling it a
+        # standing height put this project's camera at chest level for months.
+        self.assertEqual(blood.standing_height, 16960)
+        self.assertEqual(blood.crouch_height, 13376)
+        self.assertEqual(blood.eye_above_centre, 0x1600)
+        self.assertEqual(blood.eye_height, 14112)
+        self.assertIn("GetSpriteExtents", blood.evidence["standing_height"])
         self.assertTrue(blood.jump)
         self.assertTrue(blood.crouch)
         self.assertIn("clipdist=0x30", blood.evidence["body_radius"])
@@ -101,10 +107,10 @@ class TraversalAffordanceTests(unittest.TestCase):
         self.assertEqual(spatial["views"]["traversability"]["walkable_at_rest"][0]["width"], 1024)
 
         fits = traversal_affordances(
-            width=400, opening=16384, floor_delta=0, blocking=False, profile=profile,
+            width=400, opening=20480, floor_delta=0, blocking=False, profile=profile,
         )
         blocked = traversal_affordances(
-            width=256, opening=16384, floor_delta=0, blocking=False, profile=profile,
+            width=256, opening=20480, floor_delta=0, blocking=False, profile=profile,
         )
         self.assertTrue(fits["can_fit"])
         self.assertTrue(fits["can_walk_through"])
@@ -115,20 +121,20 @@ class TraversalAffordanceTests(unittest.TestCase):
     def test_step_crouch_and_jump_follow_the_player_profile(self):
         profile = player_profile("blood")
         step = traversal_affordances(
-            width=1024, opening=16384, floor_delta=5000, blocking=False, profile=profile,
+            width=1024, opening=20480, floor_delta=5000, blocking=False, profile=profile,
         )
         self.assertFalse(step["can_step_up"])
         self.assertTrue(step["requires_jump"])
         self.assertFalse(step["can_walk_through"])
 
         crouch = traversal_affordances(
-            width=1024, opening=3000, floor_delta=0, blocking=False, profile=profile,
+            width=1024, opening=14336, floor_delta=0, blocking=False, profile=profile,
         )
         self.assertTrue(crouch["requires_crouch"])
         self.assertFalse(crouch["can_walk_through"])
 
         too_low = traversal_affordances(
-            width=1024, opening=1000, floor_delta=0, blocking=False, profile=profile,
+            width=1024, opening=12288, floor_delta=0, blocking=False, profile=profile,
         )
         self.assertTrue(too_low["cannot_traverse"])
 
@@ -251,7 +257,7 @@ class CrossGameAndMaterialTests(unittest.TestCase):
         build = synthetic_two_sector_map().to_build_ir()
         payload = sprite_height_above_floor(build, 0)
         self.assertEqual(payload["raw"], 8192)
-        self.assertEqual(payload["player_heights"], round(8192 / 0x1600, 4))
+        self.assertEqual(payload["player_heights"], round(8192 / 16960, 4))
 
     def test_doom_space_uses_the_doom_player_profile(self):
         vertices = [

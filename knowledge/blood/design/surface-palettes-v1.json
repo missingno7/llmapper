@@ -1,0 +1,2855 @@
+{
+ "$schema": "llmapper.surface-palettes",
+ "schema_version": 1,
+ "conditioned_on": [
+  "area",
+  "height",
+  "sky"
+ ],
+ "bands": {
+  "area_player_areas": [
+   "tiny",
+   "small",
+   "medium",
+   "large",
+   "vast"
+  ],
+  "height_player_heights": [
+   "crawl",
+   "low",
+   "tall",
+   "cavernous"
+  ],
+  "exits": [
+   "dead_end",
+   "through",
+   "junction",
+   "hub"
+  ]
+ },
+ "fit_episodes": [
+  "E1",
+  "E2",
+  "E3"
+ ],
+ "fit_sectors": 8891,
+ "held_out_sectors": 4758,
+ "contexts": [
+  {
+   "context": "area:tiny|height:tall|sky:False",
+   "fit_examples": 1735,
+   "held_out_examples": 712,
+   "wall": {
+    "top": [
+     {
+      "tile": 20,
+      "count": 139,
+      "share": 0.08
+     },
+     {
+      "tile": 110,
+      "count": 118,
+      "share": 0.068
+     },
+     {
+      "tile": 195,
+      "count": 87,
+      "share": 0.05
+     },
+     {
+      "tile": 2499,
+      "count": 86,
+      "share": 0.05
+     },
+     {
+      "tile": 109,
+      "count": 63,
+      "share": 0.036
+     },
+     {
+      "tile": 449,
+      "count": 60,
+      "share": 0.035
+     }
+    ],
+    "bits_saved": 0.51,
+    "held_out_top_share": 0.184
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 270,
+      "count": 207,
+      "share": 0.119
+     },
+     {
+      "tile": 20,
+      "count": 113,
+      "share": 0.065
+     },
+     {
+      "tile": 2448,
+      "count": 108,
+      "share": 0.062
+     },
+     {
+      "tile": 110,
+      "count": 100,
+      "share": 0.058
+     },
+     {
+      "tile": 68,
+      "count": 72,
+      "share": 0.041
+     },
+     {
+      "tile": 390,
+      "count": 65,
+      "share": 0.037
+     }
+    ],
+    "bits_saved": 0.48,
+    "held_out_top_share": 0.14
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 20,
+      "count": 201,
+      "share": 0.116
+     },
+     {
+      "tile": 68,
+      "count": 125,
+      "share": 0.072
+     },
+     {
+      "tile": 379,
+      "count": 109,
+      "share": 0.063
+     },
+     {
+      "tile": 255,
+      "count": 105,
+      "share": 0.061
+     },
+     {
+      "tile": 21,
+      "count": 93,
+      "share": 0.054
+     },
+     {
+      "tile": 329,
+      "count": 86,
+      "share": 0.05
+     }
+    ],
+    "bits_saved": 0.57,
+    "held_out_top_share": 0.215
+   }
+  },
+  {
+   "context": "area:small|height:tall|sky:False",
+   "fit_examples": 1320,
+   "held_out_examples": 581,
+   "wall": {
+    "top": [
+     {
+      "tile": 230,
+      "count": 133,
+      "share": 0.101
+     },
+     {
+      "tile": 110,
+      "count": 89,
+      "share": 0.067
+     },
+     {
+      "tile": 255,
+      "count": 76,
+      "share": 0.058
+     },
+     {
+      "tile": 556,
+      "count": 54,
+      "share": 0.041
+     },
+     {
+      "tile": 449,
+      "count": 51,
+      "share": 0.039
+     },
+     {
+      "tile": 1011,
+      "count": 37,
+      "share": 0.028
+     }
+    ],
+    "bits_saved": 0.56,
+    "held_out_top_share": 0.131
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 1120,
+      "count": 95,
+      "share": 0.072
+     },
+     {
+      "tile": 270,
+      "count": 92,
+      "share": 0.07
+     },
+     {
+      "tile": 491,
+      "count": 80,
+      "share": 0.061
+     },
+     {
+      "tile": 255,
+      "count": 78,
+      "share": 0.059
+     },
+     {
+      "tile": 110,
+      "count": 66,
+      "share": 0.05
+     },
+     {
+      "tile": 529,
+      "count": 57,
+      "share": 0.043
+     }
+    ],
+    "bits_saved": 0.42,
+    "held_out_top_share": 0.134
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 255,
+      "count": 130,
+      "share": 0.098
+     },
+     {
+      "tile": 1030,
+      "count": 120,
+      "share": 0.091
+     },
+     {
+      "tile": 379,
+      "count": 118,
+      "share": 0.089
+     },
+     {
+      "tile": 20,
+      "count": 74,
+      "share": 0.056
+     },
+     {
+      "tile": 455,
+      "count": 57,
+      "share": 0.043
+     },
+     {
+      "tile": 416,
+      "count": 44,
+      "share": 0.033
+     }
+    ],
+    "bits_saved": 0.45,
+    "held_out_top_share": 0.15
+   }
+  },
+  {
+   "context": "area:small|height:cavernous|sky:False",
+   "fit_examples": 984,
+   "held_out_examples": 725,
+   "wall": {
+    "top": [
+     {
+      "tile": 556,
+      "count": 87,
+      "share": 0.088
+     },
+     {
+      "tile": 1011,
+      "count": 51,
+      "share": 0.052
+     },
+     {
+      "tile": 230,
+      "count": 47,
+      "share": 0.048
+     },
+     {
+      "tile": 110,
+      "count": 45,
+      "share": 0.046
+     },
+     {
+      "tile": 80,
+      "count": 45,
+      "share": 0.046
+     },
+     {
+      "tile": 90,
+      "count": 38,
+      "share": 0.039
+     }
+    ],
+    "bits_saved": 0.53,
+    "held_out_top_share": 0.161
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 529,
+      "count": 80,
+      "share": 0.081
+     },
+     {
+      "tile": 270,
+      "count": 66,
+      "share": 0.067
+     },
+     {
+      "tile": 287,
+      "count": 63,
+      "share": 0.064
+     },
+     {
+      "tile": 491,
+      "count": 61,
+      "share": 0.062
+     },
+     {
+      "tile": 255,
+      "count": 42,
+      "share": 0.043
+     },
+     {
+      "tile": 280,
+      "count": 42,
+      "share": 0.043
+     }
+    ],
+    "bits_saved": 0.45,
+    "held_out_top_share": 0.091
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 512,
+      "count": 73,
+      "share": 0.074
+     },
+     {
+      "tile": 379,
+      "count": 52,
+      "share": 0.053
+     },
+     {
+      "tile": 120,
+      "count": 49,
+      "share": 0.05
+     },
+     {
+      "tile": 449,
+      "count": 48,
+      "share": 0.049
+     },
+     {
+      "tile": 1030,
+      "count": 48,
+      "share": 0.049
+     },
+     {
+      "tile": 255,
+      "count": 43,
+      "share": 0.044
+     }
+    ],
+    "bits_saved": 0.33,
+    "held_out_top_share": 0.13
+   }
+  },
+  {
+   "context": "area:medium|height:tall|sky:False",
+   "fit_examples": 777,
+   "held_out_examples": 318,
+   "wall": {
+    "top": [
+     {
+      "tile": 110,
+      "count": 62,
+      "share": 0.08
+     },
+     {
+      "tile": 449,
+      "count": 47,
+      "share": 0.06
+     },
+     {
+      "tile": 1011,
+      "count": 38,
+      "share": 0.049
+     },
+     {
+      "tile": 109,
+      "count": 34,
+      "share": 0.044
+     },
+     {
+      "tile": 492,
+      "count": 34,
+      "share": 0.044
+     },
+     {
+      "tile": 255,
+      "count": 30,
+      "share": 0.039
+     }
+    ],
+    "bits_saved": 0.52,
+    "held_out_top_share": 0.173
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 270,
+      "count": 99,
+      "share": 0.127
+     },
+     {
+      "tile": 491,
+      "count": 64,
+      "share": 0.082
+     },
+     {
+      "tile": 110,
+      "count": 45,
+      "share": 0.058
+     },
+     {
+      "tile": 290,
+      "count": 33,
+      "share": 0.042
+     },
+     {
+      "tile": 568,
+      "count": 31,
+      "share": 0.04
+     },
+     {
+      "tile": 255,
+      "count": 29,
+      "share": 0.037
+     }
+    ],
+    "bits_saved": 0.58,
+    "held_out_top_share": 0.292
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 255,
+      "count": 92,
+      "share": 0.118
+     },
+     {
+      "tile": 379,
+      "count": 79,
+      "share": 0.102
+     },
+     {
+      "tile": 455,
+      "count": 58,
+      "share": 0.075
+     },
+     {
+      "tile": 449,
+      "count": 40,
+      "share": 0.051
+     },
+     {
+      "tile": 20,
+      "count": 37,
+      "share": 0.048
+     },
+     {
+      "tile": 416,
+      "count": 37,
+      "share": 0.048
+     }
+    ],
+    "bits_saved": 0.6,
+    "held_out_top_share": 0.239
+   }
+  },
+  {
+   "context": "area:medium|height:cavernous|sky:False",
+   "fit_examples": 693,
+   "held_out_examples": 476,
+   "wall": {
+    "top": [
+     {
+      "tile": 449,
+      "count": 53,
+      "share": 0.076
+     },
+     {
+      "tile": 110,
+      "count": 42,
+      "share": 0.061
+     },
+     {
+      "tile": 556,
+      "count": 40,
+      "share": 0.058
+     },
+     {
+      "tile": 411,
+      "count": 31,
+      "share": 0.045
+     },
+     {
+      "tile": 194,
+      "count": 28,
+      "share": 0.04
+     },
+     {
+      "tile": 90,
+      "count": 18,
+      "share": 0.026
+     }
+    ],
+    "bits_saved": 0.6,
+    "held_out_top_share": 0.208
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 270,
+      "count": 59,
+      "share": 0.085
+     },
+     {
+      "tile": 529,
+      "count": 51,
+      "share": 0.074
+     },
+     {
+      "tile": 491,
+      "count": 43,
+      "share": 0.062
+     },
+     {
+      "tile": 290,
+      "count": 33,
+      "share": 0.048
+     },
+     {
+      "tile": 1120,
+      "count": 30,
+      "share": 0.043
+     },
+     {
+      "tile": 255,
+      "count": 25,
+      "share": 0.036
+     }
+    ],
+    "bits_saved": 0.51,
+    "held_out_top_share": 0.16
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 449,
+      "count": 63,
+      "share": 0.091
+     },
+     {
+      "tile": 512,
+      "count": 53,
+      "share": 0.076
+     },
+     {
+      "tile": 379,
+      "count": 51,
+      "share": 0.074
+     },
+     {
+      "tile": 255,
+      "count": 46,
+      "share": 0.066
+     },
+     {
+      "tile": 1030,
+      "count": 29,
+      "share": 0.042
+     },
+     {
+      "tile": 281,
+      "count": 28,
+      "share": 0.04
+     }
+    ],
+    "bits_saved": 0.47,
+    "held_out_top_share": 0.204
+   }
+  },
+  {
+   "context": "area:tiny|height:cavernous|sky:False",
+   "fit_examples": 641,
+   "held_out_examples": 314,
+   "wall": {
+    "top": [
+     {
+      "tile": 110,
+      "count": 41,
+      "share": 0.064
+     },
+     {
+      "tile": 1011,
+      "count": 36,
+      "share": 0.056
+     },
+     {
+      "tile": 90,
+      "count": 27,
+      "share": 0.042
+     },
+     {
+      "tile": 21,
+      "count": 23,
+      "share": 0.036
+     },
+     {
+      "tile": 406,
+      "count": 22,
+      "share": 0.034
+     },
+     {
+      "tile": 2499,
+      "count": 22,
+      "share": 0.034
+     }
+    ],
+    "bits_saved": 0.45,
+    "held_out_top_share": 0.076
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 270,
+      "count": 54,
+      "share": 0.084
+     },
+     {
+      "tile": 110,
+      "count": 31,
+      "share": 0.048
+     },
+     {
+      "tile": 294,
+      "count": 31,
+      "share": 0.048
+     },
+     {
+      "tile": 20,
+      "count": 29,
+      "share": 0.045
+     },
+     {
+      "tile": 200,
+      "count": 26,
+      "share": 0.041
+     },
+     {
+      "tile": 355,
+      "count": 26,
+      "share": 0.041
+     }
+    ],
+    "bits_saved": 0.32,
+    "held_out_top_share": 0.057
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 379,
+      "count": 64,
+      "share": 0.1
+     },
+     {
+      "tile": 20,
+      "count": 44,
+      "share": 0.069
+     },
+     {
+      "tile": 255,
+      "count": 32,
+      "share": 0.05
+     },
+     {
+      "tile": 115,
+      "count": 32,
+      "share": 0.05
+     },
+     {
+      "tile": 120,
+      "count": 29,
+      "share": 0.045
+     },
+     {
+      "tile": 422,
+      "count": 29,
+      "share": 0.045
+     }
+    ],
+    "bits_saved": 0.41,
+    "held_out_top_share": 0.07
+   }
+  },
+  {
+   "context": "area:tiny|height:crawl|sky:False",
+   "fit_examples": 402,
+   "held_out_examples": 209,
+   "wall": {
+    "top": [
+     {
+      "tile": 195,
+      "count": 27,
+      "share": 0.067
+     },
+     {
+      "tile": 449,
+      "count": 26,
+      "share": 0.065
+     },
+     {
+      "tile": 90,
+      "count": 19,
+      "share": 0.047
+     },
+     {
+      "tile": 556,
+      "count": 18,
+      "share": 0.045
+     },
+     {
+      "tile": 20,
+      "count": 17,
+      "share": 0.042
+     },
+     {
+      "tile": 194,
+      "count": 17,
+      "share": 0.042
+     }
+    ],
+    "bits_saved": 0.89,
+    "held_out_top_share": 0.201
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 20,
+      "count": 31,
+      "share": 0.077
+     },
+     {
+      "tile": 491,
+      "count": 28,
+      "share": 0.07
+     },
+     {
+      "tile": 529,
+      "count": 20,
+      "share": 0.05
+     },
+     {
+      "tile": 270,
+      "count": 18,
+      "share": 0.045
+     },
+     {
+      "tile": 255,
+      "count": 17,
+      "share": 0.042
+     },
+     {
+      "tile": 90,
+      "count": 17,
+      "share": 0.042
+     }
+    ],
+    "bits_saved": 0.49,
+    "held_out_top_share": 0.182
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 20,
+      "count": 56,
+      "share": 0.139
+     },
+     {
+      "tile": 255,
+      "count": 38,
+      "share": 0.095
+     },
+     {
+      "tile": 449,
+      "count": 21,
+      "share": 0.052
+     },
+     {
+      "tile": 379,
+      "count": 19,
+      "share": 0.047
+     },
+     {
+      "tile": 491,
+      "count": 19,
+      "share": 0.047
+     },
+     {
+      "tile": 120,
+      "count": 17,
+      "share": 0.042
+     }
+    ],
+    "bits_saved": 0.66,
+    "held_out_top_share": 0.206
+   }
+  },
+  {
+   "context": "area:large|height:cavernous|sky:False",
+   "fit_examples": 398,
+   "held_out_examples": 272,
+   "wall": {
+    "top": [
+     {
+      "tile": 110,
+      "count": 28,
+      "share": 0.07
+     },
+     {
+      "tile": 2490,
+      "count": 25,
+      "share": 0.063
+     },
+     {
+      "tile": 556,
+      "count": 18,
+      "share": 0.045
+     },
+     {
+      "tile": 458,
+      "count": 18,
+      "share": 0.045
+     },
+     {
+      "tile": 411,
+      "count": 17,
+      "share": 0.043
+     },
+     {
+      "tile": 80,
+      "count": 17,
+      "share": 0.043
+     }
+    ],
+    "bits_saved": 0.78,
+    "held_out_top_share": 0.114
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 270,
+      "count": 42,
+      "share": 0.106
+     },
+     {
+      "tile": 290,
+      "count": 32,
+      "share": 0.08
+     },
+     {
+      "tile": 2448,
+      "count": 28,
+      "share": 0.07
+     },
+     {
+      "tile": 529,
+      "count": 23,
+      "share": 0.058
+     },
+     {
+      "tile": 90,
+      "count": 20,
+      "share": 0.05
+     },
+     {
+      "tile": 491,
+      "count": 20,
+      "share": 0.05
+     }
+    ],
+    "bits_saved": 0.81,
+    "held_out_top_share": 0.206
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 449,
+      "count": 44,
+      "share": 0.111
+     },
+     {
+      "tile": 2448,
+      "count": 29,
+      "share": 0.073
+     },
+     {
+      "tile": 379,
+      "count": 24,
+      "share": 0.06
+     },
+     {
+      "tile": 512,
+      "count": 24,
+      "share": 0.06
+     },
+     {
+      "tile": 253,
+      "count": 15,
+      "share": 0.038
+     },
+     {
+      "tile": 416,
+      "count": 15,
+      "share": 0.038
+     }
+    ],
+    "bits_saved": 0.4,
+    "held_out_top_share": 0.191
+   }
+  },
+  {
+   "context": "area:tiny|height:low|sky:False",
+   "fit_examples": 296,
+   "held_out_examples": 95,
+   "wall": {
+    "top": [
+     {
+      "tile": 20,
+      "count": 36,
+      "share": 0.122
+     },
+     {
+      "tile": 255,
+      "count": 20,
+      "share": 0.068
+     },
+     {
+      "tile": 449,
+      "count": 19,
+      "share": 0.064
+     },
+     {
+      "tile": 379,
+      "count": 18,
+      "share": 0.061
+     },
+     {
+      "tile": 406,
+      "count": 16,
+      "share": 0.054
+     },
+     {
+      "tile": 195,
+      "count": 12,
+      "share": 0.041
+     }
+    ],
+    "bits_saved": 1.11,
+    "held_out_top_share": 0.179
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 20,
+      "count": 37,
+      "share": 0.125
+     },
+     {
+      "tile": 255,
+      "count": 22,
+      "share": 0.074
+     },
+     {
+      "tile": 34,
+      "count": 21,
+      "share": 0.071
+     },
+     {
+      "tile": 379,
+      "count": 17,
+      "share": 0.057
+     },
+     {
+      "tile": 449,
+      "count": 17,
+      "share": 0.057
+     },
+     {
+      "tile": 68,
+      "count": 13,
+      "share": 0.044
+     }
+    ],
+    "bits_saved": 0.93,
+    "held_out_top_share": 0.221
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 255,
+      "count": 44,
+      "share": 0.149
+     },
+     {
+      "tile": 20,
+      "count": 32,
+      "share": 0.108
+     },
+     {
+      "tile": 379,
+      "count": 26,
+      "share": 0.088
+     },
+     {
+      "tile": 272,
+      "count": 20,
+      "share": 0.068
+     },
+     {
+      "tile": 449,
+      "count": 19,
+      "share": 0.064
+     },
+     {
+      "tile": 68,
+      "count": 12,
+      "share": 0.041
+     }
+    ],
+    "bits_saved": 1.0,
+    "held_out_top_share": 0.232
+   }
+  },
+  {
+   "context": "area:large|height:tall|sky:False",
+   "fit_examples": 237,
+   "held_out_examples": 128,
+   "wall": {
+    "top": [
+     {
+      "tile": 110,
+      "count": 28,
+      "share": 0.118
+     },
+     {
+      "tile": 109,
+      "count": 16,
+      "share": 0.068
+     },
+     {
+      "tile": 449,
+      "count": 13,
+      "share": 0.055
+     },
+     {
+      "tile": 556,
+      "count": 13,
+      "share": 0.055
+     },
+     {
+      "tile": 2490,
+      "count": 12,
+      "share": 0.051
+     },
+     {
+      "tile": 2453,
+      "count": 11,
+      "share": 0.046
+     }
+    ],
+    "bits_saved": 1.18,
+    "held_out_top_share": 0.125
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 270,
+      "count": 30,
+      "share": 0.127
+     },
+     {
+      "tile": 529,
+      "count": 22,
+      "share": 0.093
+     },
+     {
+      "tile": 294,
+      "count": 17,
+      "share": 0.072
+     },
+     {
+      "tile": 491,
+      "count": 17,
+      "share": 0.072
+     },
+     {
+      "tile": 110,
+      "count": 16,
+      "share": 0.068
+     },
+     {
+      "tile": 2448,
+      "count": 13,
+      "share": 0.055
+     }
+    ],
+    "bits_saved": 1.11,
+    "held_out_top_share": 0.195
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 255,
+      "count": 23,
+      "share": 0.097
+     },
+     {
+      "tile": 455,
+      "count": 22,
+      "share": 0.093
+     },
+     {
+      "tile": 512,
+      "count": 21,
+      "share": 0.089
+     },
+     {
+      "tile": 2448,
+      "count": 16,
+      "share": 0.068
+     },
+     {
+      "tile": 253,
+      "count": 13,
+      "share": 0.055
+     },
+     {
+      "tile": 416,
+      "count": 13,
+      "share": 0.055
+     }
+    ],
+    "bits_saved": 0.94,
+    "held_out_top_share": 0.062
+   }
+  },
+  {
+   "context": "area:medium|height:cavernous|sky:True",
+   "fit_examples": 234,
+   "held_out_examples": 141,
+   "wall": {
+    "top": [
+     {
+      "tile": 2499,
+      "count": 30,
+      "share": 0.128
+     },
+     {
+      "tile": 2490,
+      "count": 19,
+      "share": 0.081
+     },
+     {
+      "tile": 2474,
+      "count": 15,
+      "share": 0.064
+     },
+     {
+      "tile": 2473,
+      "count": 14,
+      "share": 0.06
+     },
+     {
+      "tile": 2455,
+      "count": 13,
+      "share": 0.056
+     },
+     {
+      "tile": 2453,
+      "count": 10,
+      "share": 0.043
+     }
+    ],
+    "bits_saved": 1.36,
+    "held_out_top_share": 0.0
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 2448,
+      "count": 94,
+      "share": 0.402
+     },
+     {
+      "tile": 250,
+      "count": 14,
+      "share": 0.06
+     },
+     {
+      "tile": 255,
+      "count": 10,
+      "share": 0.043
+     },
+     {
+      "tile": 2915,
+      "count": 8,
+      "share": 0.034
+     },
+     {
+      "tile": 253,
+      "count": 8,
+      "share": 0.034
+     },
+     {
+      "tile": 110,
+      "count": 7,
+      "share": 0.03
+     }
+    ],
+    "bits_saved": 1.96,
+    "held_out_top_share": 0.085
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 2500,
+      "count": 132,
+      "share": 0.564
+     },
+     {
+      "tile": 3678,
+      "count": 68,
+      "share": 0.291
+     },
+     {
+      "tile": 3491,
+      "count": 34,
+      "share": 0.145
+     }
+    ],
+    "bits_saved": 4.33,
+    "held_out_top_share": 1.0
+   }
+  },
+  {
+   "context": "area:small|height:cavernous|sky:True",
+   "fit_examples": 233,
+   "held_out_examples": 172,
+   "wall": {
+    "top": [
+     {
+      "tile": 2499,
+      "count": 53,
+      "share": 0.227
+     },
+     {
+      "tile": 2490,
+      "count": 23,
+      "share": 0.099
+     },
+     {
+      "tile": 2492,
+      "count": 12,
+      "share": 0.052
+     },
+     {
+      "tile": 406,
+      "count": 8,
+      "share": 0.034
+     },
+     {
+      "tile": 2455,
+      "count": 8,
+      "share": 0.034
+     },
+     {
+      "tile": 2491,
+      "count": 8,
+      "share": 0.034
+     }
+    ],
+    "bits_saved": 1.62,
+    "held_out_top_share": 0.0
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 2448,
+      "count": 101,
+      "share": 0.433
+     },
+     {
+      "tile": 2490,
+      "count": 15,
+      "share": 0.064
+     },
+     {
+      "tile": 379,
+      "count": 9,
+      "share": 0.039
+     },
+     {
+      "tile": 15,
+      "count": 8,
+      "share": 0.034
+     },
+     {
+      "tile": 250,
+      "count": 7,
+      "share": 0.03
+     },
+     {
+      "tile": 2496,
+      "count": 6,
+      "share": 0.026
+     }
+    ],
+    "bits_saved": 2.04,
+    "held_out_top_share": 0.0
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 2500,
+      "count": 143,
+      "share": 0.614
+     },
+     {
+      "tile": 3678,
+      "count": 51,
+      "share": 0.219
+     },
+     {
+      "tile": 3491,
+      "count": 39,
+      "share": 0.167
+     }
+    ],
+    "bits_saved": 4.37,
+    "held_out_top_share": 1.0
+   }
+  },
+  {
+   "context": "area:large|height:cavernous|sky:True",
+   "fit_examples": 199,
+   "held_out_examples": 110,
+   "wall": {
+    "top": [
+     {
+      "tile": 2474,
+      "count": 20,
+      "share": 0.101
+     },
+     {
+      "tile": 2490,
+      "count": 19,
+      "share": 0.095
+     },
+     {
+      "tile": 2473,
+      "count": 19,
+      "share": 0.095
+     },
+     {
+      "tile": 2499,
+      "count": 17,
+      "share": 0.085
+     },
+     {
+      "tile": 90,
+      "count": 13,
+      "share": 0.065
+     },
+     {
+      "tile": 281,
+      "count": 8,
+      "share": 0.04
+     }
+    ],
+    "bits_saved": 1.5,
+    "held_out_top_share": 0.036
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 2448,
+      "count": 82,
+      "share": 0.412
+     },
+     {
+      "tile": 270,
+      "count": 10,
+      "share": 0.05
+     },
+     {
+      "tile": 110,
+      "count": 8,
+      "share": 0.04
+     },
+     {
+      "tile": 361,
+      "count": 7,
+      "share": 0.035
+     },
+     {
+      "tile": 120,
+      "count": 7,
+      "share": 0.035
+     },
+     {
+      "tile": 4,
+      "count": 7,
+      "share": 0.035
+     }
+    ],
+    "bits_saved": 2.07,
+    "held_out_top_share": 0.164
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 2500,
+      "count": 105,
+      "share": 0.528
+     },
+     {
+      "tile": 3678,
+      "count": 64,
+      "share": 0.322
+     },
+     {
+      "tile": 3491,
+      "count": 30,
+      "share": 0.151
+     }
+    ],
+    "bits_saved": 4.29,
+    "held_out_top_share": 1.0
+   }
+  },
+  {
+   "context": "area:tiny|height:cavernous|sky:True",
+   "fit_examples": 160,
+   "held_out_examples": 111,
+   "wall": {
+    "top": [
+     {
+      "tile": 2499,
+      "count": 25,
+      "share": 0.156
+     },
+     {
+      "tile": 28,
+      "count": 16,
+      "share": 0.1
+     },
+     {
+      "tile": 110,
+      "count": 11,
+      "share": 0.069
+     },
+     {
+      "tile": 414,
+      "count": 9,
+      "share": 0.056
+     },
+     {
+      "tile": 273,
+      "count": 8,
+      "share": 0.05
+     },
+     {
+      "tile": 2491,
+      "count": 6,
+      "share": 0.037
+     }
+    ],
+    "bits_saved": 1.72,
+    "held_out_top_share": 0.045
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 2448,
+      "count": 38,
+      "share": 0.237
+     },
+     {
+      "tile": 41,
+      "count": 11,
+      "share": 0.069
+     },
+     {
+      "tile": 281,
+      "count": 10,
+      "share": 0.062
+     },
+     {
+      "tile": 452,
+      "count": 9,
+      "share": 0.056
+     },
+     {
+      "tile": 270,
+      "count": 6,
+      "share": 0.037
+     },
+     {
+      "tile": 287,
+      "count": 6,
+      "share": 0.037
+     }
+    ],
+    "bits_saved": 1.45,
+    "held_out_top_share": 0.207
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 2500,
+      "count": 65,
+      "share": 0.406
+     },
+     {
+      "tile": 3678,
+      "count": 55,
+      "share": 0.344
+     },
+     {
+      "tile": 3491,
+      "count": 40,
+      "share": 0.25
+     }
+    ],
+    "bits_saved": 4.16,
+    "held_out_top_share": 1.0
+   }
+  },
+  {
+   "context": "area:vast|height:cavernous|sky:False",
+   "fit_examples": 119,
+   "held_out_examples": 68,
+   "wall": {
+    "top": [
+     {
+      "tile": 449,
+      "count": 12,
+      "share": 0.101
+     },
+     {
+      "tile": 110,
+      "count": 9,
+      "share": 0.076
+     },
+     {
+      "tile": 2490,
+      "count": 8,
+      "share": 0.067
+     },
+     {
+      "tile": 1011,
+      "count": 7,
+      "share": 0.059
+     },
+     {
+      "tile": 458,
+      "count": 6,
+      "share": 0.05
+     },
+     {
+      "tile": 556,
+      "count": 5,
+      "share": 0.042
+     }
+    ],
+    "bits_saved": 1.34,
+    "held_out_top_share": 0.147
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 270,
+      "count": 17,
+      "share": 0.143
+     },
+     {
+      "tile": 2448,
+      "count": 9,
+      "share": 0.076
+     },
+     {
+      "tile": 1005,
+      "count": 8,
+      "share": 0.067
+     },
+     {
+      "tile": 294,
+      "count": 5,
+      "share": 0.042
+     },
+     {
+      "tile": 276,
+      "count": 5,
+      "share": 0.042
+     },
+     {
+      "tile": 504,
+      "count": 5,
+      "share": 0.042
+     }
+    ],
+    "bits_saved": 0.92,
+    "held_out_top_share": 0.221
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 449,
+      "count": 18,
+      "share": 0.151
+     },
+     {
+      "tile": 2915,
+      "count": 10,
+      "share": 0.084
+     },
+     {
+      "tile": 2448,
+      "count": 10,
+      "share": 0.084
+     },
+     {
+      "tile": 67,
+      "count": 8,
+      "share": 0.067
+     },
+     {
+      "tile": 504,
+      "count": 5,
+      "share": 0.042
+     },
+     {
+      "tile": 379,
+      "count": 5,
+      "share": 0.042
+     }
+    ],
+    "bits_saved": 1.01,
+    "held_out_top_share": 0.25
+   }
+  },
+  {
+   "context": "area:vast|height:cavernous|sky:True",
+   "fit_examples": 102,
+   "held_out_examples": 61,
+   "wall": {
+    "top": [
+     {
+      "tile": 2490,
+      "count": 11,
+      "share": 0.108
+     },
+     {
+      "tile": 2499,
+      "count": 10,
+      "share": 0.098
+     },
+     {
+      "tile": 2473,
+      "count": 8,
+      "share": 0.078
+     },
+     {
+      "tile": 90,
+      "count": 7,
+      "share": 0.069
+     },
+     {
+      "tile": 449,
+      "count": 5,
+      "share": 0.049
+     },
+     {
+      "tile": 200,
+      "count": 4,
+      "share": 0.039
+     }
+    ],
+    "bits_saved": 1.61,
+    "held_out_top_share": 0.098
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 2448,
+      "count": 41,
+      "share": 0.402
+     },
+     {
+      "tile": 352,
+      "count": 8,
+      "share": 0.078
+     },
+     {
+      "tile": 2915,
+      "count": 6,
+      "share": 0.059
+     },
+     {
+      "tile": 278,
+      "count": 6,
+      "share": 0.059
+     },
+     {
+      "tile": 110,
+      "count": 4,
+      "share": 0.039
+     },
+     {
+      "tile": 1129,
+      "count": 3,
+      "share": 0.029
+     }
+    ],
+    "bits_saved": 2.34,
+    "held_out_top_share": 0.164
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 2500,
+      "count": 44,
+      "share": 0.431
+     },
+     {
+      "tile": 3678,
+      "count": 41,
+      "share": 0.402
+     },
+     {
+      "tile": 3491,
+      "count": 17,
+      "share": 0.167
+     }
+    ],
+    "bits_saved": 4.24,
+    "held_out_top_share": 1.0
+   }
+  },
+  {
+   "context": "area:small|height:low|sky:False",
+   "fit_examples": 87,
+   "held_out_examples": 53,
+   "wall": {
+    "top": [
+     {
+      "tile": 255,
+      "count": 16,
+      "share": 0.184
+     },
+     {
+      "tile": 272,
+      "count": 7,
+      "share": 0.08
+     },
+     {
+      "tile": 95,
+      "count": 6,
+      "share": 0.069
+     },
+     {
+      "tile": 109,
+      "count": 5,
+      "share": 0.057
+     },
+     {
+      "tile": 20,
+      "count": 4,
+      "share": 0.046
+     },
+     {
+      "tile": 2490,
+      "count": 4,
+      "share": 0.046
+     }
+    ],
+    "bits_saved": 1.95,
+    "held_out_top_share": 0.094
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 95,
+      "count": 10,
+      "share": 0.115
+     },
+     {
+      "tile": 1120,
+      "count": 9,
+      "share": 0.103
+     },
+     {
+      "tile": 20,
+      "count": 8,
+      "share": 0.092
+     },
+     {
+      "tile": 272,
+      "count": 8,
+      "share": 0.092
+     },
+     {
+      "tile": 376,
+      "count": 7,
+      "share": 0.08
+     },
+     {
+      "tile": 568,
+      "count": 6,
+      "share": 0.069
+     }
+    ],
+    "bits_saved": 1.5,
+    "held_out_top_share": 0.226
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 255,
+      "count": 27,
+      "share": 0.31
+     },
+     {
+      "tile": 272,
+      "count": 7,
+      "share": 0.08
+     },
+     {
+      "tile": 455,
+      "count": 6,
+      "share": 0.069
+     },
+     {
+      "tile": 21,
+      "count": 4,
+      "share": 0.046
+     },
+     {
+      "tile": 1120,
+      "count": 4,
+      "share": 0.046
+     },
+     {
+      "tile": 487,
+      "count": 4,
+      "share": 0.046
+     }
+    ],
+    "bits_saved": 1.73,
+    "held_out_top_share": 0.17
+   }
+  },
+  {
+   "context": "area:small|height:crawl|sky:False",
+   "fit_examples": 55,
+   "held_out_examples": 56,
+   "wall": {
+    "top": [
+     {
+      "tile": 255,
+      "count": 9,
+      "share": 0.164
+     },
+     {
+      "tile": 449,
+      "count": 6,
+      "share": 0.109
+     },
+     {
+      "tile": 110,
+      "count": 5,
+      "share": 0.091
+     },
+     {
+      "tile": 448,
+      "count": 4,
+      "share": 0.073
+     },
+     {
+      "tile": 200,
+      "count": 3,
+      "share": 0.055
+     },
+     {
+      "tile": 2490,
+      "count": 3,
+      "share": 0.055
+     }
+    ],
+    "bits_saved": 2.29,
+    "held_out_top_share": 0.143
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 568,
+      "count": 8,
+      "share": 0.145
+     },
+     {
+      "tile": 449,
+      "count": 5,
+      "share": 0.091
+     },
+     {
+      "tile": 376,
+      "count": 5,
+      "share": 0.091
+     },
+     {
+      "tile": 287,
+      "count": 4,
+      "share": 0.073
+     },
+     {
+      "tile": 273,
+      "count": 3,
+      "share": 0.055
+     },
+     {
+      "tile": 194,
+      "count": 3,
+      "share": 0.055
+     }
+    ],
+    "bits_saved": 1.55,
+    "held_out_top_share": 0.054
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 449,
+      "count": 6,
+      "share": 0.109
+     },
+     {
+      "tile": 1120,
+      "count": 6,
+      "share": 0.109
+     },
+     {
+      "tile": 255,
+      "count": 6,
+      "share": 0.109
+     },
+     {
+      "tile": 491,
+      "count": 5,
+      "share": 0.091
+     },
+     {
+      "tile": 253,
+      "count": 4,
+      "share": 0.073
+     },
+     {
+      "tile": 273,
+      "count": 4,
+      "share": 0.073
+     }
+    ],
+    "bits_saved": 1.53,
+    "held_out_top_share": 0.214
+   }
+  },
+  {
+   "context": "area:medium|height:low|sky:False",
+   "fit_examples": 37,
+   "held_out_examples": 14,
+   "wall": {
+    "top": [
+     {
+      "tile": 255,
+      "count": 22,
+      "share": 0.595
+     },
+     {
+      "tile": 200,
+      "count": 3,
+      "share": 0.081
+     },
+     {
+      "tile": 110,
+      "count": 2,
+      "share": 0.054
+     },
+     {
+      "tile": 492,
+      "count": 2,
+      "share": 0.054
+     },
+     {
+      "tile": 2453,
+      "count": 1,
+      "share": 0.027
+     },
+     {
+      "tile": 449,
+      "count": 1,
+      "share": 0.027
+     }
+    ],
+    "bits_saved": 4.17,
+    "held_out_top_share": 0.214
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 1120,
+      "count": 12,
+      "share": 0.324
+     },
+     {
+      "tile": 255,
+      "count": 10,
+      "share": 0.27
+     },
+     {
+      "tile": 110,
+      "count": 2,
+      "share": 0.054
+     },
+     {
+      "tile": 379,
+      "count": 2,
+      "share": 0.054
+     },
+     {
+      "tile": 530,
+      "count": 1,
+      "share": 0.027
+     },
+     {
+      "tile": 376,
+      "count": 1,
+      "share": 0.027
+     }
+    ],
+    "bits_saved": 2.84,
+    "held_out_top_share": 0.0
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 255,
+      "count": 18,
+      "share": 0.486
+     },
+     {
+      "tile": 1120,
+      "count": 9,
+      "share": 0.243
+     },
+     {
+      "tile": 281,
+      "count": 2,
+      "share": 0.054
+     },
+     {
+      "tile": 110,
+      "count": 2,
+      "share": 0.054
+     },
+     {
+      "tile": 501,
+      "count": 2,
+      "share": 0.054
+     },
+     {
+      "tile": 21,
+      "count": 1,
+      "share": 0.027
+     }
+    ],
+    "bits_saved": 3.47,
+    "held_out_top_share": 0.286
+   }
+  },
+  {
+   "context": "area:medium|height:crawl|sky:False",
+   "fit_examples": 28,
+   "held_out_examples": 9,
+   "wall": {
+    "top": [
+     {
+      "tile": 255,
+      "count": 13,
+      "share": 0.464
+     },
+     {
+      "tile": 0,
+      "count": 4,
+      "share": 0.143
+     },
+     {
+      "tile": 2490,
+      "count": 4,
+      "share": 0.143
+     },
+     {
+      "tile": 179,
+      "count": 1,
+      "share": 0.036
+     },
+     {
+      "tile": 414,
+      "count": 1,
+      "share": 0.036
+     },
+     {
+      "tile": 401,
+      "count": 1,
+      "share": 0.036
+     }
+    ],
+    "bits_saved": 3.97,
+    "held_out_top_share": 0.0
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 568,
+      "count": 9,
+      "share": 0.321
+     },
+     {
+      "tile": 120,
+      "count": 5,
+      "share": 0.179
+     },
+     {
+      "tile": 194,
+      "count": 4,
+      "share": 0.143
+     },
+     {
+      "tile": 2448,
+      "count": 3,
+      "share": 0.107
+     },
+     {
+      "tile": 4,
+      "count": 2,
+      "share": 0.071
+     },
+     {
+      "tile": 41,
+      "count": 1,
+      "share": 0.036
+     }
+    ],
+    "bits_saved": 3.04,
+    "held_out_top_share": 0.0
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 1120,
+      "count": 9,
+      "share": 0.321
+     },
+     {
+      "tile": 120,
+      "count": 4,
+      "share": 0.143
+     },
+     {
+      "tile": 2448,
+      "count": 4,
+      "share": 0.143
+     },
+     {
+      "tile": 255,
+      "count": 3,
+      "share": 0.107
+     },
+     {
+      "tile": 200,
+      "count": 3,
+      "share": 0.107
+     },
+     {
+      "tile": 20,
+      "count": 1,
+      "share": 0.036
+     }
+    ],
+    "bits_saved": 2.84,
+    "held_out_top_share": 0.0
+   }
+  },
+  {
+   "context": "area:tiny|height:tall|sky:True",
+   "fit_examples": 25,
+   "held_out_examples": 21,
+   "wall": {
+    "top": [
+     {
+      "tile": 88,
+      "count": 4,
+      "share": 0.16
+     },
+     {
+      "tile": 2491,
+      "count": 4,
+      "share": 0.16
+     },
+     {
+      "tile": 421,
+      "count": 2,
+      "share": 0.08
+     },
+     {
+      "tile": 109,
+      "count": 2,
+      "share": 0.08
+     },
+     {
+      "tile": 20,
+      "count": 2,
+      "share": 0.08
+     },
+     {
+      "tile": 281,
+      "count": 2,
+      "share": 0.08
+     }
+    ],
+    "bits_saved": 2.89,
+    "held_out_top_share": 0.0
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 2448,
+      "count": 8,
+      "share": 0.32
+     },
+     {
+      "tile": 174,
+      "count": 4,
+      "share": 0.16
+     },
+     {
+      "tile": 88,
+      "count": 4,
+      "share": 0.16
+     },
+     {
+      "tile": 42,
+      "count": 2,
+      "share": 0.08
+     },
+     {
+      "tile": 361,
+      "count": 1,
+      "share": 0.04
+     },
+     {
+      "tile": 253,
+      "count": 1,
+      "share": 0.04
+     }
+    ],
+    "bits_saved": 2.92,
+    "held_out_top_share": 0.0
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 2500,
+      "count": 20,
+      "share": 0.8
+     },
+     {
+      "tile": 3678,
+      "count": 3,
+      "share": 0.12
+     },
+     {
+      "tile": 3491,
+      "count": 2,
+      "share": 0.08
+     }
+    ],
+    "bits_saved": 4.8,
+    "held_out_top_share": 1.0
+   }
+  },
+  {
+   "context": "area:small|height:tall|sky:True",
+   "fit_examples": 22,
+   "held_out_examples": 30,
+   "wall": {
+    "top": [
+     {
+      "tile": 2499,
+      "count": 4,
+      "share": 0.182
+     },
+     {
+      "tile": 421,
+      "count": 3,
+      "share": 0.136
+     },
+     {
+      "tile": 2455,
+      "count": 2,
+      "share": 0.091
+     },
+     {
+      "tile": 2491,
+      "count": 2,
+      "share": 0.091
+     },
+     {
+      "tile": 329,
+      "count": 1,
+      "share": 0.045
+     },
+     {
+      "tile": 200,
+      "count": 1,
+      "share": 0.045
+     }
+    ],
+    "bits_saved": 2.79,
+    "held_out_top_share": 0.0
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 2448,
+      "count": 11,
+      "share": 0.5
+     },
+     {
+      "tile": 361,
+      "count": 2,
+      "share": 0.091
+     },
+     {
+      "tile": 270,
+      "count": 2,
+      "share": 0.091
+     },
+     {
+      "tile": 452,
+      "count": 2,
+      "share": 0.091
+     },
+     {
+      "tile": 95,
+      "count": 1,
+      "share": 0.045
+     },
+     {
+      "tile": 253,
+      "count": 1,
+      "share": 0.045
+     }
+    ],
+    "bits_saved": 3.43,
+    "held_out_top_share": 0.067
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 2500,
+      "count": 13,
+      "share": 0.591
+     },
+     {
+      "tile": 3678,
+      "count": 8,
+      "share": 0.364
+     },
+     {
+      "tile": 3491,
+      "count": 1,
+      "share": 0.045
+     }
+    ],
+    "bits_saved": 4.54,
+    "held_out_top_share": 1.0
+   }
+  },
+  {
+   "context": "area:vast|height:tall|sky:False",
+   "fit_examples": 20,
+   "held_out_examples": 9,
+   "wall": {
+    "top": [
+     {
+      "tile": 28,
+      "count": 3,
+      "share": 0.15
+     },
+     {
+      "tile": 110,
+      "count": 3,
+      "share": 0.15
+     },
+     {
+      "tile": 411,
+      "count": 2,
+      "share": 0.1
+     },
+     {
+      "tile": 2490,
+      "count": 2,
+      "share": 0.1
+     },
+     {
+      "tile": 449,
+      "count": 1,
+      "share": 0.05
+     },
+     {
+      "tile": 123,
+      "count": 1,
+      "share": 0.05
+     }
+    ],
+    "bits_saved": 2.85,
+    "held_out_top_share": 0.111
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 270,
+      "count": 6,
+      "share": 0.3
+     },
+     {
+      "tile": 2448,
+      "count": 3,
+      "share": 0.15
+     },
+     {
+      "tile": 2915,
+      "count": 1,
+      "share": 0.05
+     },
+     {
+      "tile": 459,
+      "count": 1,
+      "share": 0.05
+     },
+     {
+      "tile": 120,
+      "count": 1,
+      "share": 0.05
+     },
+     {
+      "tile": 529,
+      "count": 1,
+      "share": 0.05
+     }
+    ],
+    "bits_saved": 2.57,
+    "held_out_top_share": 0.0
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 2448,
+      "count": 4,
+      "share": 0.2
+     },
+     {
+      "tile": 2915,
+      "count": 2,
+      "share": 0.1
+     },
+     {
+      "tile": 504,
+      "count": 2,
+      "share": 0.1
+     },
+     {
+      "tile": 21,
+      "count": 1,
+      "share": 0.05
+     },
+     {
+      "tile": 140,
+      "count": 1,
+      "share": 0.05
+     },
+     {
+      "tile": 512,
+      "count": 1,
+      "share": 0.05
+     }
+    ],
+    "bits_saved": 2.0,
+    "held_out_top_share": 0.111
+   }
+  },
+  {
+   "context": "area:medium|height:tall|sky:True",
+   "fit_examples": 18,
+   "held_out_examples": 28,
+   "wall": {
+    "top": [
+     {
+      "tile": 2491,
+      "count": 5,
+      "share": 0.278
+     },
+     {
+      "tile": 2499,
+      "count": 4,
+      "share": 0.222
+     },
+     {
+      "tile": 200,
+      "count": 2,
+      "share": 0.111
+     },
+     {
+      "tile": 109,
+      "count": 2,
+      "share": 0.111
+     },
+     {
+      "tile": 2455,
+      "count": 2,
+      "share": 0.111
+     },
+     {
+      "tile": 421,
+      "count": 1,
+      "share": 0.056
+     }
+    ],
+    "bits_saved": 3.74,
+    "held_out_top_share": 0.0
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 2448,
+      "count": 11,
+      "share": 0.611
+     },
+     {
+      "tile": 42,
+      "count": 3,
+      "share": 0.167
+     },
+     {
+      "tile": 253,
+      "count": 1,
+      "share": 0.056
+     },
+     {
+      "tile": 274,
+      "count": 1,
+      "share": 0.056
+     },
+     {
+      "tile": 255,
+      "count": 1,
+      "share": 0.056
+     },
+     {
+      "tile": 120,
+      "count": 1,
+      "share": 0.056
+     }
+    ],
+    "bits_saved": 4.09,
+    "held_out_top_share": 0.036
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 2500,
+      "count": 15,
+      "share": 0.833
+     },
+     {
+      "tile": 3678,
+      "count": 3,
+      "share": 0.167
+     }
+    ],
+    "bits_saved": 5.07,
+    "held_out_top_share": 1.0
+   }
+  },
+  {
+   "context": "area:vast|height:crawl|sky:True",
+   "fit_examples": 13,
+   "held_out_examples": 3,
+   "wall": {
+    "top": [
+     {
+      "tile": 2453,
+      "count": 7,
+      "share": 0.538
+     },
+     {
+      "tile": 421,
+      "count": 1,
+      "share": 0.077
+     },
+     {
+      "tile": 415,
+      "count": 1,
+      "share": 0.077
+     },
+     {
+      "tile": 91,
+      "count": 1,
+      "share": 0.077
+     },
+     {
+      "tile": 2499,
+      "count": 1,
+      "share": 0.077
+     },
+     {
+      "tile": 2473,
+      "count": 1,
+      "share": 0.077
+     }
+    ],
+    "bits_saved": 4.3,
+    "held_out_top_share": 0.0
+   },
+   "floor": {
+    "top": [
+     {
+      "tile": 373,
+      "count": 4,
+      "share": 0.308
+     },
+     {
+      "tile": 362,
+      "count": 3,
+      "share": 0.231
+     },
+     {
+      "tile": 2448,
+      "count": 3,
+      "share": 0.231
+     },
+     {
+      "tile": 3678,
+      "count": 1,
+      "share": 0.077
+     },
+     {
+      "tile": 2915,
+      "count": 1,
+      "share": 0.077
+     },
+     {
+      "tile": 3491,
+      "count": 1,
+      "share": 0.077
+     }
+    ],
+    "bits_saved": 3.53,
+    "held_out_top_share": 0.333
+   },
+   "ceiling": {
+    "top": [
+     {
+      "tile": 3678,
+      "count": 10,
+      "share": 0.769
+     },
+     {
+      "tile": 2500,
+      "count": 2,
+      "share": 0.154
+     },
+     {
+      "tile": 3491,
+      "count": 1,
+      "share": 0.077
+     }
+    ],
+    "bits_saved": 4.73,
+    "held_out_top_share": 1.0
+   }
+  }
+ ],
+ "marginal": {
+  "floor": [
+   {
+    "tile": 270,
+    "count": 725,
+    "share": 0.082
+   },
+   {
+    "tile": 2448,
+    "count": 701,
+    "share": 0.079
+   },
+   {
+    "tile": 491,
+    "count": 414,
+    "share": 0.047
+   },
+   {
+    "tile": 110,
+    "count": 376,
+    "share": 0.042
+   },
+   {
+    "tile": 529,
+    "count": 326,
+    "share": 0.037
+   },
+   {
+    "tile": 255,
+    "count": 319,
+    "share": 0.036
+   }
+  ],
+  "ceiling": [
+   {
+    "tile": 255,
+    "count": 625,
+    "share": 0.07
+   },
+   {
+    "tile": 379,
+    "count": 563,
+    "share": 0.063
+   },
+   {
+    "tile": 2500,
+    "count": 551,
+    "share": 0.062
+   },
+   {
+    "tile": 20,
+    "count": 504,
+    "share": 0.057
+   },
+   {
+    "tile": 449,
+    "count": 350,
+    "share": 0.039
+   },
+   {
+    "tile": 3678,
+    "count": 320,
+    "share": 0.036
+   }
+  ],
+  "wall": [
+   {
+    "tile": 110,
+    "count": 508,
+    "share": 0.057
+   },
+   {
+    "tile": 449,
+    "count": 365,
+    "share": 0.041
+   },
+   {
+    "tile": 20,
+    "count": 316,
+    "share": 0.036
+   },
+   {
+    "tile": 2499,
+    "count": 311,
+    "share": 0.035
+   },
+   {
+    "tile": 255,
+    "count": 292,
+    "share": 0.033
+   },
+   {
+    "tile": 556,
+    "count": 292,
+    "share": 0.033
+   }
+  ]
+ },
+ "predictors": {
+  "basis": "median over campaign maps of at least 40 playable sectors",
+  "accuracy": {
+   "map_favourite": {
+    "wall": 0.375,
+    "floor": 0.352,
+    "ceiling": 0.336
+   },
+   "context": {
+    "wall": 0.454,
+    "floor": 0.493,
+    "ceiling": 0.543
+   },
+   "neighbours": {
+    "wall": 0.585,
+    "floor": 0.67,
+    "ceiling": 0.709
+   },
+   "neighbours_in_context": {
+    "wall": 0.603,
+    "floor": 0.706,
+    "ceiling": 0.76
+   }
+  },
+  "reading": "a surface is mostly inherited from what adjoins it and only occasionally decided; the space context modulates the decision rather than making it"
+ },
+ "reading_guide": [
+  "read `predictors` before the tables: it says how much of a surface choice each kind of evidence actually explains",
+  "the per-context tile lists are within-map guidance; tile identity is episode-specific, so held_out_top_share is low by nature and is not a defect of the conditioning",
+  "bits_saved is how much the context narrows the choice against the whole-corpus distribution; a context near zero is not worth asking about",
+  "held_out_top_share is the fraction of episode 4 and 6 sectors in the same context painted with a tile the fitted top list already named",
+  "a share is what the campaign did, never what a level must do"
+ ]
+}

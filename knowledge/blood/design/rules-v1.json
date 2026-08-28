@@ -1,0 +1,243 @@
+{
+ "$schema": "llmapper.blood-rule-grades",
+ "schema_version": 1,
+ "error_below": 0.01,
+ "warning_below": 0.05,
+ "reading_guide": [
+  "a rate is how often the campaign itself breaks the rule",
+  "severity is derived from the rate and is never chosen by hand",
+  "a rule with no grade here cannot be enforced at all"
+ ],
+ "rules": {
+  "aquatic-sprite-is-under-water": {
+   "rule": "aquatic-sprite-is-under-water",
+   "maps": 43,
+   "population": 281,
+   "violations": 7,
+   "rate": 0.02491,
+   "severity": "warning",
+   "statement": "an aquatic tile belongs in a sector that is under water",
+   "source": "corpus"
+  },
+  "blocked-wall-not-invisible-kerb": {
+   "rule": "blocked-wall-not-invisible-kerb",
+   "maps": 43,
+   "population": 2272,
+   "violations": 406,
+   "rate": 0.1787,
+   "severity": "note",
+   "statement": "a wall that blocks the player should either show why or stand at a drop they would not try to step",
+   "source": "corpus"
+  },
+  "ceiling-mover-is-not-open-to-the-sky": {
+   "rule": "ceiling-mover-is-not-open-to-the-sky",
+   "maps": 43,
+   "population": 779,
+   "violations": 6,
+   "rate": 0.0077,
+   "severity": "error",
+   "statement": "a Z-motion door that opens by lifting its ceiling cannot have a parallax one",
+   "source": "NBlood/source/blood/src/triggers.cpp OperateDoor"
+  },
+  "dude-carries-an-xsprite": {
+   "rule": "dude-carries-an-xsprite",
+   "maps": 43,
+   "population": 4370,
+   "violations": 0,
+   "rate": 0.0,
+   "severity": "error",
+   "statement": "a sprite on the dude list must carry an XSprite",
+   "source": "NBlood/source/blood/src/ai.cpp:1452 aiInitSprite"
+  },
+  "exit-switch-wears-the-exit-tile": {
+   "rule": "exit-switch-wears-the-exit-tile",
+   "maps": 43,
+   "population": 56,
+   "violations": 10,
+   "rate": 0.17857,
+   "severity": "note",
+   "statement": "the switch that ends the level wears the tile that says so",
+   "source": "corpus"
+  },
+  "flat-tile-power-of-two": {
+   "rule": "flat-tile-power-of-two",
+   "maps": 43,
+   "population": 26383,
+   "violations": 7,
+   "rate": 0.00027,
+   "severity": "error",
+   "statement": "a floor or ceiling tile must have power-of-two sides",
+   "source": "NBlood/source/build/src/tiles.cpp:281 tileUpdatePicSiz"
+  },
+  "floor-aligned-sprite-rests-on-a-surface": {
+   "rule": "floor-aligned-sprite-rests-on-a-surface",
+   "maps": 43,
+   "population": 1111,
+   "violations": 350,
+   "rate": 0.31503,
+   "severity": "note",
+   "statement": "a flat sprite is a plate and lies on a floor or a ceiling",
+   "source": "NBlood/source/blood/src/db.h GetSpriteExtents"
+  },
+  "glass-is-breakable": {
+   "rule": "glass-is-breakable",
+   "maps": 43,
+   "population": 337,
+   "violations": 181,
+   "rate": 0.53709,
+   "severity": "note",
+   "statement": "a pane of glass should be a wall the player can shoot out",
+   "source": "corpus"
+  },
+  "keyed-door-says-which-key": {
+   "rule": "keyed-door-says-which-key",
+   "maps": 43,
+   "population": 89,
+   "violations": 14,
+   "rate": 0.1573,
+   "severity": "note",
+   "statement": "a door that wants a key carries that key's emblem near it",
+   "source": "corpus"
+  },
+  "link-marker-carries-an-xsprite": {
+   "rule": "link-marker-carries-an-xsprite",
+   "maps": 43,
+   "population": 502,
+   "violations": 0,
+   "rate": 0.0,
+   "severity": "error",
+   "statement": "a room-over-room marker must carry an XSprite",
+   "source": "NBlood/source/blood/src/warp.cpp:43 warpInit"
+  },
+  "link-marker-is-paired": {
+   "rule": "link-marker-is-paired",
+   "maps": 43,
+   "population": 251,
+   "violations": 0,
+   "rate": 0.0,
+   "severity": "error",
+   "statement": "an upper link marker needs a lower one sharing its link id",
+   "source": "NBlood/source/blood/src/warp.cpp:183 CheckLink"
+  },
+  "lintel-continues-the-facade": {
+   "rule": "lintel-continues-the-facade",
+   "maps": 43,
+   "population": 10475,
+   "violations": 3098,
+   "rate": 0.29575,
+   "severity": "note",
+   "statement": "the band above an opening is made of the wall it is cut in",
+   "source": "corpus"
+  },
+  "marker-names-a-real-owner": {
+   "rule": "marker-names-a-real-owner",
+   "maps": 43,
+   "population": 1107,
+   "violations": 0,
+   "rate": 0.0,
+   "severity": "error",
+   "statement": "a marker sprite's owner must name a sector that has an XSECTOR",
+   "source": "NBlood/source/blood/src/db.cpp:680 PropagateMarkerReferences"
+  },
+  "masked-wall-not-faking-stone": {
+   "rule": "masked-wall-not-faking-stone",
+   "maps": 43,
+   "population": 600,
+   "violations": 14,
+   "rate": 0.02333,
+   "severity": "warning",
+   "statement": "a masked wall should be something you look through, not stone",
+   "source": "corpus"
+  },
+  "open-neighbours-share-a-sky": {
+   "rule": "open-neighbours-share-a-sky",
+   "maps": 43,
+   "population": 2402,
+   "violations": 81,
+   "rate": 0.03372,
+   "severity": "warning",
+   "statement": "two open sectors that touch should hold their sky at one height",
+   "source": "corpus"
+  },
+  "opening-clears-a-standing-body": {
+   "rule": "opening-clears-a-standing-body",
+   "maps": 43,
+   "population": 50910,
+   "violations": 3334,
+   "rate": 0.06549,
+   "severity": "note",
+   "statement": "a way through is at least one standing body tall",
+   "source": "NBlood/source/blood/src/db.h:325 GetSpriteExtents"
+  },
+  "pressed-switch-is-in-reach": {
+   "rule": "pressed-switch-is-in-reach",
+   "maps": 43,
+   "population": 453,
+   "violations": 12,
+   "rate": 0.02649,
+   "severity": "warning",
+   "statement": "a switch worked by hand hangs where a hand can reach it",
+   "source": "corpus"
+  },
+  "sky-is-never-below-a-roof": {
+   "rule": "sky-is-never-below-a-roof",
+   "maps": 43,
+   "population": 1348,
+   "violations": 4,
+   "rate": 0.00297,
+   "severity": "error",
+   "statement": "a sector open to the sky must hold its ceiling at least as high as any roofed neighbour's",
+   "source": "NBlood/source/build/src/engine.cpp:4688"
+  },
+  "sprite-drawn-square": {
+   "rule": "sprite-drawn-square",
+   "maps": 43,
+   "population": 18858,
+   "violations": 2112,
+   "rate": 0.11199,
+   "severity": "note",
+   "statement": "a sprite is normally drawn with equal repeats",
+   "source": "corpus"
+  },
+  "stack-portal-wears-the-mirror-tile": {
+   "rule": "stack-portal-wears-the-mirror-tile",
+   "maps": 43,
+   "population": 76,
+   "violations": 0,
+   "rate": 0.0,
+   "severity": "error",
+   "statement": "a sector carrying a stack marker must wear the mirror tile on the surface the stack looks through",
+   "source": "NBlood/source/blood/src/mirrors.cpp:243 IsRorSector"
+  },
+  "threshold-follows-the-roofed-side": {
+   "rule": "threshold-follows-the-roofed-side",
+   "maps": 43,
+   "population": 849,
+   "violations": 146,
+   "rate": 0.17197,
+   "severity": "note",
+   "statement": "a small sector joining an open space to a roofed one usually takes the roof",
+   "source": "corpus"
+  },
+  "two-sided-wall-is-reciprocal": {
+   "rule": "two-sided-wall-is-reciprocal",
+   "maps": 43,
+   "population": 60839,
+   "violations": 1,
+   "rate": 2e-05,
+   "severity": "error",
+   "statement": "a two-sided wall and its partner must point at each other",
+   "source": "NBlood/source/build/src/engine.cpp"
+  },
+  "wall-between-rooms-is-not-paper": {
+   "rule": "wall-between-rooms-is-not-paper",
+   "maps": 43,
+   "population": 8318,
+   "violations": 220,
+   "rate": 0.02645,
+   "severity": "warning",
+   "statement": "the mass between two rooms is at least 128 units thick",
+   "source": "corpus"
+  }
+ }
+}

@@ -21,6 +21,24 @@ from .geometry_audit import (
     validate_authored_level,
 )
 from .model import LevelIR
+from .placement import PLAYER_HEIGHT, seated_z, sprite_extent
+
+#: Blood's own event channels. Channel 2 is "a secret was found"; channel 1
+#: carries the level's secret total as `NUMERIC_COMMAND_BASE + n`.
+from . import slope as _slope
+
+#: A band above an opening thinner than this is not a lintel anybody built
+#: -- it is a floor that stepped. The campaign's lintels start at 0.24
+#: standing humans at q1, and this is that, in z.
+#: buildtypes.h:24 -- sector stat bit 6, "Align texture to first wall of
+#: sector". The bit that decides whether a rotated room's floor turns with it.
+_RELATIVE_ALIGNMENT = 64
+
+_LINTEL_FLOOR = 4096
+
+SECRET_FOUND_CHANNEL = 2
+TOTAL_SECRETS_CHANNEL = 1
+NUMERIC_COMMAND_BASE = 64
 from .planar_geom import (
     Point,
     Segment,
@@ -49,7 +67,141 @@ SCHEMA_VERSION = 1
 PORTAL_ROLES = {"portal", "doorway", "window"}
 PARTITION_ROLES = {
     "solid_boundary", "thin_partition", "masked_partition", "breakable_partition",
+    "blocked_portal",
 }
+
+#: Partition roles that leave the shared edge unpaired, so each side emits its
+#: own one-sided wall. Every other role pairs the edge into a real portal.
+#:
+#: Leaving an edge unpaired between two regions produces two coincident solid
+#: walls with nothing between them, and the Blood campaign contains **no such
+#: pair at all** -- zero across 113,261 walls in 43 maps. When Blood wants a
+#: barrier the player can see across but not cross, it pairs the wall and sets
+#: the blocking bit: 2,272 two-sided walls do that, and the share rises with the
+#: floor gap, from 1% where the floors are level to 10% where they differ by
+#: more than two player heights. ``blocked_portal`` is that idiom.
+UNPAIRED_PARTITION_ROLES = {
+    "solid_boundary", "thin_partition", "masked_partition", "breakable_partition",
+}
+
+#: Build sprite/wall cstat bit 1: blocks movement while staying see-through.
+CSTAT_WALL_BLOCKING = 1
+
+#: Build draws a two-sided wall's middle section only when it is masked, and
+#: takes that section from `over_picnum`. Masked plus hitscan is how every one
+#: of the campaign's 523 masked walls is built.
+CSTAT_WALL_MASKED = 16
+CSTAT_WALL_HITSCAN = 64
+
+
+def _marker_fields(item: Any) -> dict[str, Any]:
+    return item["fields"] if isinstance(item, dict) else item.fields
+
+
+#: The marker types the loader binds to a sector, and which XSECTOR field each
+#: one fills. `kMarkerWarpDest` shares `marker0` with off and axis.
+MARKER_OFF, MARKER_ON, MARKER_AXIS, MARKER_WARP = 3, 4, 5, 8
+MARKER_FIELD = {
+    MARKER_OFF: "marker_0",
+    MARKER_AXIS: "marker_0",
+    MARKER_WARP: "marker_0",
+    MARKER_ON: "marker_1",
+}
+
+#: Blood keeps its markers on this list, and the loader walks it by statnum.
+MARKER_STATNUM_LIST = 10
+
+
+def bind_markers(level: Any, *, owners: dict[str, int] | None = None) -> dict[str, Any]:
+    """Give every marker the `owner` the loader reads, and derive marker_0/1 from it.
+
+    This is the binding that actually matters, and it is not the one it looks
+    like. `dbLoadMap` does not read `marker0` and `marker1` from the file at all
+    -- it *rebuilds* them, by walking the marker statnum and asking each marker
+    sprite which sector it owns::
+
+        for (nSprite = headspritestat[kStatMarker]; ...) {
+            switch (sprite[nSprite].type) {
+                case kMarkerOff: case kMarkerAxis: case kMarkerWarpDest: {
+                    int nOwner = sprite[nSprite].owner;
+                    if (nOwner >= 0 && nOwner < numsectors) {
+                        int nXSector = sector[nOwner].extra;
+                        if (nXSector > 0 && nXSector < kMaxXSectors) {
+                            xsector[nXSector].marker0 = nSprite;
+                            continue;
+                        }
+                    }
+                }
+                break;
+                case kMarkerOn: { ... marker1 = nSprite; continue; }
+            }
+            DeleteSprite(nSprite);
+        }
+
+    Note the last line. A marker whose `owner` does not name a sector with an
+    XSECTOR does not merely fail to bind -- **it is deleted**. So a level that
+    writes `marker0` and `marker1` correctly and leaves `owner` at -1 loses every
+    marker it has, and its moving sectors then dereference freed sprite slots.
+
+    All 1,055 markers in the campaign carry an owner. All five in this project's
+    level carried -1, through five separate audits, because every check the
+    project had was looking at the field the engine ignores. The sample maps gave
+    it away: `ENVIRONMENT-SLIDETRICKS` stores marker indices of 107 and 108 in a
+    map with 62 sprites, which is only survivable if nothing reads them.
+
+    `owner` is the sector the marker *controls*, which is usually but not always
+    the one it stands in -- 387 of the campaign's markers sit in a different
+    sector from the one they mark. `owners` overrides the default per placement
+    id for those cases.
+    """
+    overrides = dict(owners or {})
+    bound = 0
+    for index, sprite in enumerate(level.sprites):
+        fields = _marker_fields(sprite)
+        kind = int(fields["type"])
+        if kind not in MARKER_FIELD:
+            continue
+        if int(fields.get("status", 0)) != MARKER_STATNUM_LIST:
+            continue
+        sector_id = overrides.get(str(index), int(fields["sector"]))
+        fields["owner"] = int(sector_id)
+        sector = level.sectors[sector_id]
+        blood = sector["blood"] if isinstance(sector, dict) else sector.extra
+        if blood is None:
+            raise PlanarLayoutError(
+                f"marker sprite {index} owns sector {sector_id}, which has no XSECTOR; "
+                f"the loader would delete the marker")
+        target = blood["fields"] if isinstance(blood, dict) else blood.fields
+        target[MARKER_FIELD[kind]] = index
+        bound += 1
+    return {
+        "markers_bound": bound,
+        "basis": (
+            "dbLoadMap rebuilds marker0/marker1 from each marker's owner and "
+            "deletes any marker whose owner names no XSECTOR sector"
+        ),
+    }
+
+
+
+def _flat_lies_flush(cstat: Any, height_player_heights: float) -> int:
+    """Clearance for a horizontal anchor, zeroed for floor-aligned tiles.
+
+    A floor-aligned sprite is a flat plate drawn in the plane of its own z. It
+    has no vertical extent, so it cannot hang from anything: given a clearance
+    it simply floats, a disc suspended in mid-air with nothing above it. The
+    campaign agrees -- 77% of its ceiling-side flat sprites and 63% of its
+    floor-side ones sit within a build tolerance of their surface, both with a
+    median drift of exactly zero.
+
+    So the mounting wins over the requested drop, the same way it does on a
+    wall. The difference is that a wall is an outright error (there is no
+    reading under which a flat sprite belongs on one) while a plate wanted a
+    little lower is merely a plate laid flush.
+    """
+    if int(cstat) & 0x30 == 0x20:
+        return 0
+    return int(round(float(height_player_heights) * PLAYER_HEIGHT))
 
 
 class PlanarLayoutError(AuthoredGeometryError):
@@ -74,6 +226,19 @@ def _cycle(points: Sequence[Point]) -> tuple[Point, ...]:
     return tuple((int(x), int(y)) for x, y in points)
 
 
+#: Statnums whose sprites always carry an XSprite. Items (3), things (4), dudes
+#: (6), traps (11) and ambient sound (12) do so in **15,071 of 15,071** sprites
+#: across the 43 campaign maps -- not a single exception -- while decoration
+#: (statnum 10) never does and statnum 0 does 63% of the time.
+#:
+#: For a dude the XSprite is load-bearing: `aiInitSprite` dereferences
+#: `xsprite[pSprite->extra]` with no guard, so one without it segfaults the
+#: engine. For the rest the engine guards, and the sprite merely never acts --
+#: still not what the author asked for. The compiler supplies one either way,
+#: which costs nothing and matches every map Blood shipped.
+XSPRITE_REQUIRED_STATNUMS = frozenset({3, 4, 6, 11, 12})
+
+
 @dataclass
 class RegionSpec:
     region_id: str
@@ -84,17 +249,109 @@ class RegionSpec:
     ceiling_picnum: int = 385
     floor_picnum: int = 292
     wall_picnum: int = 180
-    ceiling_shade: int = 0
-    floor_shade: int = 16
-    wall_shade: int = 8
+    #: Left unset, a surface takes the shade its region's description implies --
+    #: see `bloodmap.lighting.derived_shade`. Pass a number only where one is
+    #: actually a decision, such as a stair's ramp.
+    ceiling_shade: int | None = None
+    floor_shade: int | None = None
+    wall_shade: int | None = None
     role: str = "gameplay"
     layer: str = "ground"
     special: str | None = None
     parallax_ceiling: bool = False
+    #: Pitch this region's ceiling or floor about one of its outer edges, as a
+    #: `bloodmap.slope.SlopeSpec`. The engine hinges a slope on the sector's
+    #: *first* wall, so naming an edge here rotates the emitted wall loop -- and
+    #: the two surfaces of one sector necessarily share the same hinge.
+    ceiling_slope: Any = None
+    floor_slope: Any = None
+    #: Align this region's flats to its *first wall* instead of to the world.
+    #:
+    #: Build pastes a floor or ceiling texture from the world origin unless
+    #: sector stat bit 6 is set (buildtypes.h:24, "Align texture to first wall
+    #: of sector"). A room turned off the cardinal grid therefore keeps its
+    #: planks running north-south while its walls run at 30 degrees, which reads
+    #: as a floor that belongs to a different building.
+    #:
+    #: It is not on by default for rotated rooms, because the campaign does not
+    #: do that. Of 13,649 playable sectors, 14.0% align the floor to the first
+    #: wall; split by cause the signal is slope, not rotation --
+    #: sloped 43.2% against flat 11.0%, but angled only 17.6% against cardinal
+    #: 12.2%. Blood leaves most of its angled floors world-aligned, which is
+    #: fine for rubble and stone. Set this where the flat has a direction to get
+    #: wrong, and `bloodmap.vocabulary.stamp_alignment` decides it from the same
+    #: two causes the campaign splits on.
+    #:
+    #: One of None, "floor", "ceiling" or "both".
+    relative_alignment: str | None = None
     type: int = 0
     declared_zero_exit: bool = False
     stack_pair: str | None = None
     sector_behavior: dict[str, int] = field(default_factory=dict)
+    #: Take the ceiling and/or floor finish from the largest room this region
+    #: opens onto, instead of naming one.
+    #:
+    #: Blood paints regions rather than rooms: 65 to 78% of a level's sectors sit
+    #: in a run of three or more sharing a finish, and 85% of its small
+    #: mostly-portal sectors share a ceiling tile with a neighbour. A doorway is
+    #: not its own painted area -- it is a hole cut in a room, and it keeps that
+    #: room's ceiling.
+    #:
+    #: This level named a finish per region, so its doors and arches each sat
+    #: alone: 24 ceiling groups across 50 sectors, and a `ceiling_patch_share` of
+    #: 0.58 against a campaign median of 0.78. The door face itself belongs on
+    #: the portals (see `door_face`), not on the ceiling you look up at.
+    #:
+    #: One of "ceiling", "floor" or "both".
+    inherit_finish: str | None = None
+
+    #: Whether reaching this region counts as finding a secret.
+    #:
+    #: Blood has no "secret" sector type. A secret is a plain sector wired to the
+    #: engine's own channel 2 with the numeric command base, and the campaign is
+    #: near-unanimous about the form: type 0, tx_id 2, command 64,
+    #: trigger_enter, trigger_once, resting at state 0 -- 141 of its 152 secret
+    #: sectors are exactly that. The count is declared separately, by a sprite
+    #: transmitting `64 + n` on channel 1.
+    #:
+    #: A level with `role="secret"` regions and none of this wiring has hidden
+    #: rooms that no player is ever told they found, which is what this one was.
+    secret: bool = False
+
+    #: The tile a doorway shows to the rooms it joins.
+    #:
+    #: A region's `wall_picnum` paints the walls that face *into* it, and for a
+    #: sector the player never stands in -- a door, an arch, a gate -- those are
+    #: the one set of surfaces they never look at. What is seen approaching a
+    #: shut Z-door is the top section of the wall on the *room* side, and Build
+    #: draws that from that wall's own `picnum` (engine.c: the top step takes
+    #: `wal->picnum`; `overpicnum` is only for masked one-way walls). So a door
+    #: face declared as `wall_picnum` ends up on the inside of the frame and
+    #: nowhere the player can see it.
+    #:
+    #: `door_face` puts it where the engine reads it: on both sides of every
+    #: portal this region owns, leaving the region's own solid walls -- the
+    #: jambs -- to `wall_picnum`.
+    door_face: int | None = None
+    #: Dress this region's own openings in a different tile from its field walls.
+    #:
+    #: Blood does not paint a room in one material. Its playable sectors carry a
+    #: median of 2 distinct wall tiles and a q3 of 3, and only 37% use just one;
+    #: this project's level used one in 90% of its rooms, which is most of why
+    #: its frames were 66% wall against a campaign 50% and its tile variety 4
+    #: against 6.
+    #:
+    #: The division the campaign draws is not decorative, it is structural: of
+    #: the 8,320 campaign rooms with more than one wall tile, **74% put a
+    #: different tile on their two-sided walls than on their solid ones**, and
+    #: the minority takes a quarter to a half of the walls. Openings are dressed
+    #: and the field between them is not -- which is how masonry is actually
+    #: built, ashlar at the jambs and rubble in the spans.
+    #:
+    #: Only this region's own face is painted. The room on the other side dresses
+    #: its side itself, or does not. `door_face` still overrides this, because a
+    #: door is a thing rather than an opening.
+    portal_wall_picnum: int | None = None
     intent: dict[str, Any] = field(default_factory=dict)
 
 
@@ -128,6 +385,18 @@ class PartitionSpec:
     a1: Point | None = None
     a2: Point | None = None
     wall_behavior: dict[str, int] = field(default_factory=dict)
+    #: Make a blocked portal *opaque* as well as impassable.
+    #:
+    #: `blocked_portal` on its own sets cstat bit 1, which stops the player and
+    #: leaves the wall see-through. That is right for a rail you look over and
+    #: wrong for a stone jamb: the gate jambs in this project were invisible
+    #: barriers, and the level read as a gate floating in a gap.
+    #:
+    #: Blood's opaque two-sided wall is the masked one -- block + masked(16) +
+    #: hitscan(64), with the surface on `over_picnum`, which is how all 523 of
+    #: its masked walls are built. Setting this copies the wall's own picnum
+    #: onto its over_picnum, so the jamb is made of whatever the room is.
+    opaque: bool = False
 
 
 @dataclass
@@ -147,6 +416,25 @@ class PlacementSpec:
     shade: int = 0
     pal: int = 0
     behavior: dict[str, int] = field(default_factory=dict)
+    #: "floor", "ceiling" or "centre" -- how the sprite meets the room it is in.
+    #: A seated placement has its z computed from the tile's drawn extent rather
+    #: than taken as given, because Blood centres a sprite on its z and a
+    #: standing object placed at `floor_z` is buried to the waist.
+    seat: str | None = None
+    seat_clearance: int = 0
+    #: This sprite is meant to span an opening rather than hang on a wall.
+    #:
+    #: A wall placement whose wall turns out to be a portal has nothing behind it
+    #: at the sprite's own height: it floats in the doorway. Six of this level's
+    #: fifty wall placements did, and from inside they are the "wall sprites in
+    #: mid air" that kept getting reported.
+    #:
+    #: It cannot simply be forbidden, because some sprites are *for* openings --
+    #: a grille set in an arch, a plank nailed across a doorway. Those span the
+    #: gap; a sconce, an emblem or a torch is fixed to masonry and needs masonry
+    #: to be fixed to. The two are indistinguishable from geometry alone, so the
+    #: author says which, and the compiler refuses the ones that say nothing.
+    spans_opening: bool = False
     anchor: dict[str, Any] | None = None
 
 
@@ -237,6 +525,138 @@ class CompiledLayout:
         }
 
 
+
+
+def _nearest_wall_of(level: Any, sector_id: int, x: int, y: int) -> int | None:
+    """Which wall of this sector the point lies closest to."""
+    from math import hypot
+
+    fields = level.sectors[sector_id]["fields"]
+    start, count = int(fields["wall_ptr"]), int(fields["wall_count"])
+    best: tuple[float, int] | None = None
+    for wall_id in range(start, start + count):
+        here = level.walls[wall_id]["fields"]
+        there = level.walls[int(here["point2"])]["fields"]
+        ax, ay = int(here["x"]), int(here["y"])
+        bx, by = int(there["x"]), int(there["y"])
+        dx, dy = bx - ax, by - ay
+        length2 = dx * dx + dy * dy
+        if length2 <= 0:
+            distance = hypot(x - ax, y - ay)
+        else:
+            t = max(0.0, min(1.0, ((x - ax) * dx + (y - ay) * dy) / length2))
+            distance = hypot(x - (ax + t * dx), y - (ay + t * dy))
+        if best is None or distance < best[0]:
+            best = (distance, wall_id)
+    return None if best is None else best[1]
+
+
+def _open_band(level: Any, sector_id: int, wall_id: int) -> tuple[int, int] | None:
+    """The z band a two-sided wall leaves open, or None if it is solid.
+
+    Build draws a two-sided wall as a top section and a bottom section with a gap
+    between them, and the gap is the hole you walk through: from the lower of the
+    two ceilings down to the higher of the two floors.
+    """
+    here = level.walls[wall_id]["fields"]
+    other = int(here.get("next_sector", -1))
+    if other < 0:
+        return None
+    mine = level.sectors[sector_id]["fields"]
+    theirs = level.sectors[other]["fields"]
+    top = max(int(mine["ceiling_z"]), int(theirs["ceiling_z"]))
+    bottom = min(int(mine["floor_z"]), int(theirs["floor_z"]))
+    return (top, bottom) if bottom > top else None
+
+
+
+def _region_shading(region: "RegionSpec") -> dict[str, int]:
+    """The three shades this region will be built with.
+
+    Anything the author set explicitly wins; the rest is derived from what the
+    region is -- open to the sky or not, and how big its floor is.
+    """
+    from .lighting import derived_shade
+
+    derived = derived_shade(
+        outdoor=bool(region.parallax_ceiling),
+        area_player_widths=abs(area2(region.outer)) / 2.0 / (384.0 * 384.0),
+    )
+    for name in ("floor_shade", "ceiling_shade", "wall_shade"):
+        chosen = getattr(region, name)
+        if chosen is not None:
+            derived[name] = int(chosen)
+    return derived
+
+
+
+def _is_power_of_two(value: int) -> bool:
+    return value > 0 and (value & (value - 1)) == 0
+
+
+def _check_flat_tiles(level: Any, art_sizes: dict[int, tuple[int, int]],
+                      allocations: dict) -> None:
+    """A floor or ceiling texture has to have power-of-two sides.
+
+    `tileUpdatePicSiz` takes the largest power of two **not greater than** each
+    of a tile's dimensions, and the floor rasteriser masks its texture lookup
+    with exactly that::
+
+        globalxshift = 8 - (picsiz[globalpicnum] & 15);
+        globalyshift = 8 - (picsiz[globalpicnum] >> 4);
+
+    So a 64x400 tile laid on a floor is sampled as if it were 64x256: the last
+    144 rows are never drawn, and it tiles at the wrong pitch. Walls escape this
+    because `wallscan` handles arbitrary heights; floors and ceilings do not.
+
+    The campaign obeys it in 26,376 of 26,383 non-parallax surfaces -- 99.97%.
+    A parallax ceiling is exempt because the sky is not sampled this way at all.
+    """
+    offenders = []
+    for region_id, allocation in allocations.items():
+        fields = level.sectors[allocation.sector_id]["fields"]
+        for surface in ("floor", "ceiling"):
+            if int(fields.get(f"{surface}_stat", 0)) & 1:
+                continue                      # parallax: not a sampled surface
+            picnum = int(fields[f"{surface}_picnum"])
+            size = art_sizes.get(picnum)
+            if size is None:
+                continue                      # no ART to check against
+            width, height = int(size[0]), int(size[1])
+            if _is_power_of_two(width) and _is_power_of_two(height):
+                continue
+            offenders.append(
+                f"{region_id} {surface} tile {picnum} is {width}x{height}")
+    if offenders:
+        listing = "\n  " + "\n  ".join(sorted(offenders))
+        raise PlanarLayoutError(
+            "%d floor or ceiling surfaces carry a tile whose sides are not "
+            "powers of two, so Build will sample only part of it:%s"
+            "\nUse a power-of-two tile, or declare the surface parallax."
+            % (len(offenders), listing))
+
+
+def _rotate_to_hinge(loop: list["AtomicEdge"], region: "RegionSpec") -> list["AtomicEdge"]:
+    """Put the slope's hinge edge first, because Build hinges on ``wallptr``."""
+    specs = [s for s in (region.ceiling_slope, region.floor_slope) if s is not None]
+    hinges = {(tuple(s.hinge[0]), tuple(s.hinge[1])) for s in specs}
+    if len(hinges) > 1:
+        raise PlanarLayoutError(
+            f"{region.region_id} slopes its floor and ceiling about different "
+            "edges; one sector has one first wall and so one hinge -- a second "
+            "axis needs a second sector")
+    (start, end), = hinges
+    ux, uy = end[0] - start[0], end[1] - start[1]
+    for offset, edge in enumerate(loop):
+        if tuple(edge.a) != start:
+            continue
+        vx, vy = edge.b[0] - edge.a[0], edge.b[1] - edge.a[1]
+        if ux * vy - uy * vx == 0 and ux * vx + uy * vy > 0:   # collinear, same way
+            return loop[offset:] + loop[:offset]
+    raise PlanarLayoutError(
+        f"{region.region_id}: slope hinge {start}->{end} is not an edge of its outline")
+
+
 class PlanarLayout:
     """Replayable source representation above LevelIR."""
 
@@ -249,16 +669,33 @@ class PlanarLayout:
     #: for field.
     CORPUS_SKY_BITS = 4
 
-    def __init__(self, *, visibility: int = 800, name: str = "", sky_bits: int | None = None):
+    def __init__(self, *, visibility: int = 800, name: str = "", sky_bits: int | None = None,
+                 tile_extents: dict[int, tuple[int, int]] | None = None):
+        #: picnum -> (tile pixel height, picanm yofs). Needed only by seated
+        #: placements; a layout that seats nothing does not need the game's ART.
+        self.tile_extents: dict[int, tuple[int, int]] = dict(tile_extents or {})
+        #: picnum -> (width, height) for every tile that might land on a floor or
+        #: a ceiling. Only needed to enforce the power-of-two rule; a layout that
+        #: does not supply it is simply not checked.
+        self.flat_tile_sizes: dict[int, tuple[int, int]] = {}
         self.name = name
         self.visibility = int(visibility)
         self.sky_bits = None if sky_bits is None else int(sky_bits)
+        #: Slopes that left the range the campaign built in. Not errors -- the
+        #: campaign has a 13312 heinum somewhere -- but worth saying out loud.
+        self.slope_notes: list[str] = []
         self.regions: dict[str, RegionSpec] = {}
         self.connections: dict[str, ConnectionSpec] = {}
         self.partitions: dict[str, PartitionSpec] = {}
         self.placements: list[PlacementSpec] = []
         self.player_start: PlayerStartSpec | None = None
         self.special_pairs: list[tuple[str, str, str]] = []
+        #: Callables run on the emitted level at the end of `compile`, in order.
+        #: They exist for finishing passes that need the compiled geometry --
+        #: wall texture alignment needs each wall's picnum and its sector's
+        #: heights, neither of which a region declaration has. A hook must not
+        #: change what walls or sectors exist, only how they are dressed.
+        self.post_compile: list[Any] = []
 
     def add_region(
         self,
@@ -446,6 +883,23 @@ class PlanarLayout:
         height_player_heights: float = 0.0,
         **kwargs: Any,
     ) -> str:
+        """Stand a sprite on the floor.
+
+        `height_player_heights` lifts it off the floor by that much; at the
+        default of zero the sprite's *bottom* rests on the floor, which is what
+        "on the floor" has to mean. It did not: the anchor put the sprite's z --
+        its centre, in Blood -- on the floor, so everything placed this way was
+        buried to the waist. Callers that need the old behaviour can pass
+        ``seat=None`` explicitly.
+        """
+        # Seating needs the tile's drawn height, so a layout built without the
+        # game's ART keeps the old centre-on-the-anchor behaviour rather than
+        # failing. Asking for `seat` explicitly is still an error if the tile is
+        # unknown -- that is a request the compiler cannot honour quietly.
+        if self.tile_extents:
+            kwargs.setdefault("seat", "floor")
+        kwargs["seat_clearance"] = _flat_lies_flush(
+            kwargs.get("cstat", 0), height_player_heights)
         self.placements.append(PlacementSpec(
             placement_id=placement_id, region_id=region_id, x=0, y=0, z=0,
             anchor={
@@ -462,9 +916,19 @@ class PlanarLayout:
         region_id: str,
         *,
         local: tuple[float, float] = (0.5, 0.5),
-        height_player_heights: float = 0.15,
+        height_player_heights: float = 0.0,
         **kwargs: Any,
     ) -> str:
+        """Hang a sprite from the ceiling: its *top* against the ceiling.
+
+        `height_player_heights` drops it below the ceiling by that much. The
+        default was 0.15 and positioned the sprite's centre, which hung the top
+        half of every lamp and chain through the ceiling.
+        """
+        if self.tile_extents:
+            kwargs.setdefault("seat", "ceiling")
+        kwargs["seat_clearance"] = _flat_lies_flush(
+            kwargs.get("cstat", 0), height_player_heights)
         self.placements.append(PlacementSpec(
             placement_id=placement_id, region_id=region_id, x=0, y=0, z=0,
             anchor={
@@ -599,6 +1063,127 @@ class PlanarLayout:
             for atomic_id in atomic_ids:
                 wall_id = wall_from_atomic[atomic_id]
                 builder.set_behavior("wall", wall_id, **connection.wall_behavior)
+        # Finish inheritance, before anything reads a sector's tiles.
+        for region in self.regions.values():
+            if not region.inherit_finish:
+                continue
+            sector_id = allocations[region.region_id].sector_id
+            sector = builder.level.sectors[sector_id]["fields"]
+            start = int(sector["wall_ptr"])
+            count = int(sector["wall_count"])
+            # The donor is the largest neighbour, but a *roofed* neighbour is
+            # preferred over an open one whatever their sizes.
+            #
+            # Picking purely by size gave the chapel's door and its south porch
+            # the courtyard's sky, because the courtyard is the biggest thing
+            # they touch -- so the player stood inside a doorway of a roofed
+            # building and looked up at clouds. Blood does not do that: of the
+            # 849 small campaign sectors that touch both an open space and a
+            # roofed one, **83% are roofed**, and of the 82 that are Z-motion
+            # doors, **90%** are.
+            #
+            # It is a strong habit rather than a law -- a gate in an outdoor wall
+            # is legitimately open, and 7.1% of the campaign's doors are -- so a
+            # region that genuinely wants the sky says `parallax_ceiling=True`
+            # for itself and does not inherit.
+            best = None
+            for wall_id in range(start, start + count):
+                other = int(builder.level.walls[wall_id]["fields"].get("next_sector", -1))
+                if other < 0:
+                    continue
+                neighbour = builder.level.sectors[other]["fields"]
+                roofed = not int(neighbour.get("ceiling_stat", 0)) & 1
+                size = int(neighbour["wall_count"])
+                rank = (roofed, size)
+                if best is None or rank > best[0]:
+                    best = (rank, other)
+            if best is None:
+                raise PlanarLayoutError(
+                    f"{region.region_id} inherits its finish but opens onto nothing"
+                )
+            donor = builder.level.sectors[best[1]]["fields"]
+            if region.inherit_finish in ("ceiling", "both"):
+                sector["ceiling_picnum"] = int(donor["ceiling_picnum"])
+                # ...and whether that ceiling is the sky, which is not a separate
+                # decision. Inheriting the tile without the flag gave three
+                # doorways a 64x400 sky panel drawn as an ordinary ceiling --
+                # sampled at 64x256, so most of it was never drawn at all.
+                sector["ceiling_stat"] = (
+                    int(sector.get("ceiling_stat", 0)) & ~1
+                    | int(donor.get("ceiling_stat", 0)) & 1)
+            if region.inherit_finish in ("floor", "both"):
+                sector["floor_picnum"] = int(donor["floor_picnum"])
+
+        # Secrets: the wiring the engine counts, not a role name.
+        for region in self.regions.values():
+            if not region.secret:
+                continue
+            sector_id = allocations[region.region_id].sector_id
+            builder.set_behavior(
+                "sector", sector_id,
+                tx_id=SECRET_FOUND_CHANNEL, command=NUMERIC_COMMAND_BASE,
+                trigger_enter=1, trigger_once=1, state=0,
+                **dict(region.sector_behavior))
+
+        # Openings get their own material before doors do, so a door_face still
+        # wins on the sectors that declare one.
+        #
+        # A portal wall is two surfaces at once, and only one of them is the
+        # jamb. Build draws the band *above* the mouth from this same wall's
+        # picnum, so painting the whole wall with the opening tile hangs a slab
+        # of the dressing material over the doorway -- the "texture break above
+        # a corridor mouth". One of these in the candidate was a 4.35-human
+        # sheet of smooth ashlar (tile 5) floating on a rubble wall (110).
+        #
+        # The corpus draws the line the same place. Of the campaign's 10,475
+        # lintels, **70% carry the room's own field tile**, while separately 74%
+        # of its multi-tile rooms dress their two-sided walls. Both hold at once
+        # because the dressing goes on openings that have no lintel to carry --
+        # full-height mouths and seams. So: dress the opening, but where a
+        # lintel exists, the facade keeps it. See `bloodmap/aperture.py`.
+        for region in self.regions.values():
+            if region.portal_wall_picnum is None:
+                continue
+            allocation = allocations[region.region_id]
+            sector = builder.level.sectors[allocation.sector_id]
+            start = int(sector["fields"]["wall_ptr"])
+            count = int(sector["fields"]["wall_count"])
+            my_ceiling = int(sector["fields"]["ceiling_z"])
+            for wall_id in range(start, start + count):
+                fields = builder.level.walls[wall_id]["fields"]
+                other = int(fields.get("next_sector", -1))
+                if other < 0:
+                    continue                     # the field between the openings
+                their_ceiling = int(
+                    builder.level.sectors[other]["fields"]["ceiling_z"])
+                if their_ceiling - my_ceiling > _LINTEL_FLOOR:
+                    # This wall carries a visible band above the mouth. It is
+                    # facade, and facade is this room's own material.
+                    continue
+                fields["picnum"] = int(region.portal_wall_picnum)
+
+        # Doorway faces first, so an explicit connection face still overrides one.
+        for region in self.regions.values():
+            if region.door_face is None:
+                continue
+            sector = builder.level.sectors[allocations[region.region_id].sector_id]
+            start = int(sector["fields"]["wall_ptr"])
+            count = int(sector["fields"]["wall_count"])
+            painted = 0
+            for wall_id in range(start, start + count):
+                fields = builder.level.walls[wall_id]["fields"]
+                if int(fields.get("next_sector", -1)) < 0:
+                    continue                      # a jamb keeps the region's own tile
+                fields["picnum"] = int(region.door_face)
+                nxt = int(fields.get("next_wall") or -1)
+                if nxt >= 0:
+                    builder.level.walls[nxt]["fields"]["picnum"] = int(region.door_face)
+                painted += 1
+            if not painted:
+                raise PlanarLayoutError(
+                    f"{region.region_id} declares a door_face but owns no portal to show it on"
+                )
+
         for connection in self.connections.values():
             if not _connection_has_face(connection):
                 continue
@@ -650,6 +1235,60 @@ class PlanarLayout:
                 placement.x, placement.y, placement.z = resolved["x"], resolved["y"], resolved["z"]
                 if placement.anchor.get("kind") == "wall":
                     placement.angle = resolved["angle"]
+            # A wall placement must carry a wall mounting. A floor-aligned
+            # sprite is a flat plane at its own z, so putting one on a wall
+            # leaves it floating edge-on with nothing under it -- and because it
+            # has no vertical extent, no seating check can see that it is wrong.
+            if (placement.anchor or {}).get("kind") == "wall":
+                if int(placement.cstat) & 0x30 == 0x20:
+                    raise PlanarLayoutError(
+                        f"placement {placement.placement_id} is mounted on a wall but "
+                        f"tile {placement.picnum} carries floor alignment (cstat "
+                        f"{placement.cstat}); a floor sprite on a wall hangs in the air"
+                    )
+            if not placement.seat and self.tile_extents:
+                # A wall mount is positioned by its centre, so a tall tile can
+                # still hang through the floor or poke out of the ceiling --
+                # 15 of this level's 58 decorations did. Pull the whole sprite
+                # back inside the room it is in, rather than only its z, which
+                # is all `resolve_anchor` can do without knowing the tile.
+                extent = self.tile_extents.get(int(placement.picnum))
+                if extent is not None:
+                    above, below = sprite_extent(
+                        extent[0], placement.y_repeat, placement.cstat, y_offset=extent[1])
+                    if above + below <= abs(region.floor_z - region.ceiling_z):
+                        placement.z = max(region.ceiling_z + above,
+                                          min(region.floor_z - below, placement.z))
+            if placement.seat:
+                extent = self.tile_extents.get(int(placement.picnum))
+                if extent is None:
+                    raise PlanarLayoutError(
+                        f"placement {placement.placement_id} asks to be seated on the "
+                        f"{placement.seat} but tile {placement.picnum} has no extent; "
+                        f"pass tile_extents to PlanarLayout"
+                    )
+                tile_height, y_offset = extent
+                above, below = sprite_extent(
+                    tile_height, placement.y_repeat, placement.cstat, y_offset=y_offset)
+                room = abs(region.floor_z - region.ceiling_z)
+                if above + below > room:
+                    # Not a rounding problem: the campaign draws some tiles at
+                    # one size only -- tile 641 is 5.82 player heights in every
+                    # one of its 71 uses -- so a room shorter than that is a room
+                    # the decoration does not belong in. Saying so is more use
+                    # than quietly shrinking it to a size Blood never draws.
+                    raise PlanarLayoutError(
+                        f"placement {placement.placement_id}: tile {placement.picnum} "
+                        f"is {above + below} tall at y_repeat {placement.y_repeat} but "
+                        f"{placement.region_id} is only {room} -- pick a tile the room "
+                        f"can hold, or raise the room"
+                    )
+                placement.z = seated_z(
+                    seat=placement.seat, floor_z=region.floor_z, ceiling_z=region.ceiling_z,
+                    tile_height=tile_height, y_repeat=placement.y_repeat,
+                    cstat=placement.cstat, y_offset=y_offset,
+                    clearance=placement.seat_clearance,
+                )
             try:
                 sprite_id = builder.add_sprite(
                     sector=sector_id, x=placement.x, y=placement.y, z=placement.z,
@@ -663,13 +1302,21 @@ class PlanarLayout:
                     f"at {(placement.x, placement.y, placement.z)}: {exc}"
                 ) from exc
             placement_sprites[placement.placement_id] = sprite_id
-            if placement.behavior:
+            # A sprite on one of these statnums is given an XSprite whether or
+            # not the author asked for behaviour, because an empty dict is falsy
+            # and that is the line that shipped a segfault: a dude without an
+            # XSprite sends `aiInitSprite` through xsprite[-1].
+            if placement.behavior or int(placement.status) in XSPRITE_REQUIRED_STATNUMS:
                 builder.set_behavior("sprite", sprite_id, **placement.behavior)
         start = self.player_start
         builder.set_player_start(
             sector=allocations[start.region_id].sector_id,
             x=start.x, y=start.y, z=start.z, angle=start.angle,
         )
+        # Markers, before anything validates the structure. `dbLoadMap` rebuilds
+        # marker0/marker1 from each marker's `owner` and deletes any marker it
+        # cannot bind, so this is load-bearing rather than cosmetic.
+        bind_markers(builder.level)
         native_errors = [item for item in validate_map(builder.level.to_disk_map()) if item.severity == "error"]
         if native_errors:
             first = native_errors[0]
@@ -728,6 +1375,55 @@ class PlanarLayout:
                 allocations[item["region_a"]].sector_id,
                 allocations[item["region_b"]].sector_id,
             ]
+        # Wall sprites with nothing behind them.
+        #
+        # This cannot run with the other placement checks: those happen before
+        # the portals are paired, and until a wall knows its neighbour there is
+        # no way to ask whether it is solid. So it runs here, once the level is
+        # otherwise finished and every `next_sector` is filled in.
+        floating: list[str] = []
+        for placement in self.placements:
+            if (placement.anchor or {}).get("kind") != "wall":
+                continue
+            if placement.spans_opening:
+                continue
+            sprite_id = placement_sprites.get(placement.placement_id)
+            if sprite_id is None:
+                continue
+            fields = builder.level.sprites[sprite_id]["fields"]
+            sector_id = int(fields["sector"])
+            wall_id = _nearest_wall_of(
+                builder.level, sector_id, int(fields["x"]), int(fields["y"]))
+            if wall_id is None:
+                continue
+            band = _open_band(builder.level, sector_id, wall_id)
+            if band is None:
+                continue
+            extents = self.tile_extents.get(int(placement.picnum))
+            half = 0
+            if extents:
+                half = int(fields["y_repeat"]) * 4 * int(extents[0]) // 2
+            top, bottom = int(fields["z"]) - half, int(fields["z"]) + half
+            if top < band[1] and bottom > band[0]:
+                floating.append(
+                    f"{placement.placement_id} (tile {placement.picnum}) on wall "
+                    f"{wall_id} of sector {sector_id}, open over z "
+                    f"{band[0]}..{band[1]}"
+                )
+        if floating:
+            listing = ("\n  " + "\n  ".join(floating))
+            raise PlanarLayoutError(
+                "%d wall sprites hang over an opening and have nothing behind "
+                "them:%s" % (len(floating), listing)
+                + "\nMove each onto solid wall, or set spans_opening=True "
+                "where it is meant to fill the gap."
+            )
+
+        if self.flat_tile_sizes:
+            _check_flat_tiles(builder.level, self.flat_tile_sizes, allocations)
+
+        for hook in self.post_compile:
+            hook(builder.level)
         return CompiledLayout(
             level=builder.level,
             allocations=allocations,
@@ -954,7 +1650,21 @@ class PlanarLayout:
                 return False
             return undirected_key(*overlap) == undirected_key(edge.a, edge.b)
 
-        for connection in self.connections.values():
+        # A blocked portal is a portal for the purposes of pairing: the walls are
+        # joined and then flagged, which is how Blood builds a rail. Turning it
+        # into a ConnectionSpec here keeps one pairing pass rather than a second
+        # one that would have to repeat the interval and reversal rules.
+        blocked = [
+            ConnectionSpec(
+                connection_id=partition.partition_id,
+                region_a=partition.region_a, region_b=partition.region_b,
+                role="blocked_portal", a1=partition.a1, a2=partition.a2,
+                min_width=0, min_opening=0,
+            )
+            for partition in self.partitions.values()
+            if partition.role == "blocked_portal" and partition.region_b
+        ]
+        for connection in list(self.connections.values()) + blocked:
             candidates = []
             for edge in atomics:
                 if edge.region_id != connection.region_a:
@@ -997,6 +1707,8 @@ class PlanarLayout:
 
         allowed_unpaired = set()
         for partition in self.partitions.values():
+            if partition.role not in UNPAIRED_PARTITION_ROLES:
+                continue
             owners = {partition.region_a, partition.region_b}
             for edge in atomics:
                 if edge.region_id not in owners:
@@ -1082,12 +1794,24 @@ class PlanarLayout:
                     raise PlanarLayoutError(f"failed to reconstruct loop for {region.region_id}")
                 return ordered
 
-            build_loops.append(_ordered_loop(source_ids))
+            outer_loop = _ordered_loop(source_ids)
+            # A slope pivots about `wall[sector->wallptr]`, so the hinge is not a
+            # wall the author picks -- it is whichever wall happens to come
+            # first. Rotate the loop until the named edge does.
+            #
+            # The named edge may have been split into several atomics by a
+            # connection crossing it. That is harmless: Build reads only the
+            # first wall's origin and direction, and a collinear piece starting
+            # at the same point describes the same plane.
+            if region.ceiling_slope is not None or region.floor_slope is not None:
+                outer_loop = _rotate_to_hinge(outer_loop, region)
+            build_loops.append(outer_loop)
             for group in hole_source_groups:
                 build_loops.append(_ordered_loop(group))
             wall_base = len(ir.walls)
             wall_ids: list[int] = []
             wall_count = sum(len(loop) for loop in build_loops)
+            shading = _region_shading(region)
             fields = _empty(SECTOR_FIELDS)
             fields.update(
                 wall_ptr=wall_base,
@@ -1096,12 +1820,37 @@ class PlanarLayout:
                 floor_z=int(region.floor_z),
                 ceiling_picnum=int(region.ceiling_picnum),
                 floor_picnum=int(region.floor_picnum),
-                ceiling_shade=int(region.ceiling_shade),
-                floor_shade=int(region.floor_shade),
+                ceiling_shade=int(shading["ceiling_shade"]),
+                floor_shade=int(shading["floor_shade"]),
                 type=int(region.type),
                 extra=-1,
                 ceiling_stat=1 if region.parallax_ceiling else 0,
             )
+            if region.relative_alignment is not None:
+                if region.relative_alignment not in ("floor", "ceiling", "both"):
+                    raise PlanarLayoutError(
+                        f"{region.region_id}: relative_alignment must be "
+                        f"'floor', 'ceiling' or 'both', not "
+                        f"{region.relative_alignment!r}")
+                wanted = (("floor", "ceiling") if region.relative_alignment == "both"
+                          else (region.relative_alignment,))
+                for surface in wanted:
+                    key = f"{surface}_stat"
+                    fields[key] = int(fields.get(key, 0)) | _RELATIVE_ALIGNMENT
+
+            for surface, spec in (("ceiling", region.ceiling_slope),
+                                  ("floor", region.floor_slope)):
+                if spec is None:
+                    continue
+                heinum = (
+                    int(spec.heinum) if spec.heinum is not None
+                    else _slope.heinum_for_rise(
+                        region.outer, spec.hinge, float(spec.rise_z)))
+                fields[f"{surface}_heinum"] = heinum
+                fields[f"{surface}_stat"] = int(fields.get(f"{surface}_stat", 0)) | 2
+                note = _slope.steeper_than_campaign(heinum, surface)
+                if note:
+                    self.slope_notes.append(f"{region.region_id}: {note}")
             sector_id = len(ir.sectors)
             ir.sectors.append({"id": sector_id, "fields": fields, "blood": None})
             wall_id = wall_base
@@ -1114,7 +1863,8 @@ class PlanarLayout:
                     wall.update(
                         x=edge.a[0], y=edge.a[1], point2=next_id,
                         next_wall=-1, next_sector=-1, extra=-1,
-                        picnum=int(region.wall_picnum), shade=int(region.wall_shade),
+                        picnum=int(region.wall_picnum),
+                        shade=int(shading["wall_shade"]),
                         x_repeat=max(1, min(255, round(hypot(nx - edge.a[0], ny - edge.a[1]) / 128))),
                         y_repeat=8,
                     )
@@ -1138,7 +1888,44 @@ class PlanarLayout:
                 )
             a.update(next_wall=wb, next_sector=owners[wb])
             b.update(next_wall=wa, next_sector=owners[wa])
+            blocking = self._blocks(left, right)
+            if blocking:
+                a["cstat"] = int(a["cstat"]) | CSTAT_WALL_BLOCKING
+                b["cstat"] = int(b["cstat"]) | CSTAT_WALL_BLOCKING
+                if self._blocks_opaquely(left, right):
+                    for face in (a, b):
+                        face["cstat"] = int(face["cstat"]) | CSTAT_WALL_MASKED | CSTAT_WALL_HITSCAN
+                        if not int(face["over_picnum"]):
+                            face["over_picnum"] = int(face["picnum"])
         return ir, allocations, wall_from_atomic
+
+    def _blocks_opaquely(self, left: "AtomicEdge", right: "AtomicEdge") -> bool:
+        """Whether the covering blocked_portal asked to be solid to look at."""
+        for partition in self.partitions.values():
+            if partition.role != "blocked_portal" or not partition.opaque:
+                continue
+            owners = {partition.region_a, partition.region_b}
+            if {left.region_id, right.region_id} != owners:
+                continue
+            if partition.a1 and partition.a2:
+                if collinear_overlap_interval(partition.a1, partition.a2, left.a, left.b) is None:
+                    continue
+            return True
+        return False
+
+    def _blocks(self, left: "AtomicEdge", right: "AtomicEdge") -> bool:
+        """Whether a blocked_portal partition covers this paired edge."""
+        for partition in self.partitions.values():
+            if partition.role != "blocked_portal":
+                continue
+            owners = {partition.region_a, partition.region_b}
+            if {left.region_id, right.region_id} != owners:
+                continue
+            if partition.a1 and partition.a2:
+                if collinear_overlap_interval(partition.a1, partition.a2, left.a, left.b) is None:
+                    continue
+            return True
+        return False
 
 
 def _edges_of(region: RegionSpec) -> list[Segment]:

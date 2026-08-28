@@ -1,0 +1,78 @@
+{
+ "$schema": "llmapper.blood-visual-norms",
+ "schema_version": 1,
+ "maps": 43,
+ "frames": 1697,
+ "sample_per_map": 24,
+ "angles": [
+  0,
+  1024
+ ],
+ "metrics": {
+  "composition.ceiling": {
+   "q1": 0.001,
+   "median": 0.006,
+   "q3": 0.017
+  },
+  "composition.floor": {
+   "q1": 0.183,
+   "median": 0.232,
+   "q3": 0.262
+  },
+  "composition.lower": {
+   "q1": 0.003,
+   "median": 0.015,
+   "q3": 0.024
+  },
+  "composition.masked": {
+   "q1": 0.0,
+   "median": 0.0,
+   "q3": 0.0
+  },
+  "composition.sky": {
+   "q1": 0.0,
+   "median": 0.0,
+   "q3": 0.0
+  },
+  "composition.sprite": {
+   "q1": 0.006,
+   "median": 0.013,
+   "q3": 0.023
+  },
+  "composition.upper": {
+   "q1": 0.0,
+   "median": 0.0,
+   "q3": 0.001
+  },
+  "composition.wall": {
+   "q1": 0.472,
+   "median": 0.501,
+   "q3": 0.547
+  },
+  "contrast": {
+   "q1": 44.0,
+   "median": 48.0,
+   "q3": 51.5
+  },
+  "depth": {
+   "q1": 4.0,
+   "median": 5.0,
+   "q3": 6.0
+  },
+  "shade_spread": {
+   "q1": 9.675,
+   "median": 11.19,
+   "q3": 13.16
+  },
+  "tile_variety": {
+   "q1": 5.0,
+   "median": 6.0,
+   "q3": 7.0
+  }
+ },
+ "reading_guide": [
+  "each map contributes its own median, so a large level does not outvote a small one",
+  "composition shares are of painted pixels, not of the frame, so a view into the void does not count as floor",
+  "a band is what the campaign did, never what a level must do"
+ ]
+}

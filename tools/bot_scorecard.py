@@ -104,12 +104,41 @@ def summarize(telemetry_path, trajectory_path):
         if r.get("event") == "backtrack_started":
             backtracks[kv(r.get("detail")).get("reason", "UNSPECIFIED")] += 1
 
-    pickups = collections.Counter()
+    # What the bot took, read from what it actually did: the affordance
+    # records say what each thing is by Blood's own type number, and the
+    # delivery events say which of them it went and took.
+    kinds = {}
     for r in telemetry:
-        if r.get("event") == "pickup_collected":
-            pickups[kv(r.get("detail")).get("category", "other")] += 1
-    keys = sorted({kv(r.get("detail")).get("key") for r in telemetry
-                   if r.get("event") == "key_acquired"} - {None})
+        if r.get("event") != "affordance_mapped":
+            continue
+        fields = kv(r.get("detail"))
+        identity = fields.get("affordance")
+        if identity is not None and identity not in kinds:
+            kinds[identity] = (fields.get("kind"), as_int(fields.get("type"), -1))
+    taken = []
+    for r in telemetry:
+        if r.get("event") != "action_delivered":
+            continue
+        identity = kv(r.get("detail")).get("affordance")
+        if identity is not None:
+            taken.append(identity)
+    pickups = collections.Counter()
+    keys = []
+    for identity in taken:
+        kind, item = kinds.get(identity, (None, -1))
+        if kind != "collect":
+            continue
+        # Blood's key items are the first seven item types.
+        if 100 <= item <= 106:
+            name = "key%d" % (item - 99)
+            if name not in keys:
+                keys.append(name)
+            pickups["key"] += 1
+        elif 100 <= item <= 150:
+            pickups["item"] += 1
+        else:
+            pickups["ammo_or_weapon"] += 1
+    keys.sort()
 
     damage_dealt = sum(as_int(kv(r.get("detail")).get("amount"), 0)
                        for r in telemetry if r.get("event") == "damage_dealt")
@@ -198,6 +227,7 @@ def main():
             "backtracks": out["backtracking"]["total"],
             "kills": out["combat"]["enemies_killed"],
             "keys": len(out["items"]["keys_acquired"]),
+            "pickups": out["items"]["total_pickups"],
         }))
     else:
         print(json.dumps(out, indent=2))

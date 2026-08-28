@@ -11,6 +11,13 @@ from .construction import LevelBuilder, portal_profiles
 from .composition import _point_in_sector, _sector_surface_z
 from .conversion import DUKE_TO_BLOOD_MATERIAL_EXACT, _scale, convert_build_ir, native_scale
 from .duke import DukeDiskMap
+from .duke_motion import (
+    busy_time as duke_busy_time,
+    rotate_rise_bridge,
+    sliding_door,
+    stretch_bridge,
+    swinging_door,
+)
 from .duke_semantics import (
     CRACK_TILES, analyze_duke_mechanisms, classify_se7_groups, gpspeed_busy_time,
     hatch_endpoint_roles,
@@ -31,6 +38,51 @@ RESERVED_CHANNELS = frozenset({4})
 
 DUKE_CONTROLLERS = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 DUKE_SWITCHES = {130, 134, 164, 165, 166, 170}
+
+#: SEENINE and OOZFILTER: Duke's chained explosives. EDuke32 treats them as one
+#: family throughout ``actors.cpp``.
+SEENINE_TILES = {1247, 1079}
+
+#: ``game.cpp`` spawn zeroes a SEENINE's size and marks it invisible when its
+#: ``xrepeat`` is 8 or less. Every one of E3L11's 61 is authored at 4, so the
+#: whole cascade is hidden machinery rather than scenery -- converting them to
+#: visible TNT barrels puts 61 barrels through the level that Duke never shows.
+SEENINE_VISIBLE_REPEAT = 8
+
+# Blood's switch vocabulary, chosen from what the 99-map Blood corpus actually
+# authors rather than from one tile that happened to work.
+#
+# Tile 318 is the *level exit* lever: 59 of its 66 appearances in the corpus
+# transmit on channel 4, and only 7 do anything else. Putting it on every
+# converted switch tells the player that every switch in the level ends it.
+# Ordinary switches are tile 1070 (354 uses), 624 (298), 1046 (162) and 1074
+# (125); key-locked ones are overwhelmingly 1070, which carries keys 1 to 6 in
+# 26 of the corpus's locked switches.
+#
+# Each entry is (Blood switch type, tile, repeat, role). Duke switch art comes
+# in off/on pairs, so the odd tile beside each base is the same switch drawn in
+# its other state.
+SWITCH_VOCABULARY: dict[int, tuple[int, int, int, str]] = {
+    130: (20, 1070, 64, "equivalent:access-switch"),      # ACCESSSWITCH, a key reader
+    131: (20, 1070, 64, "equivalent:access-switch"),
+    170: (20, 1070, 64, "equivalent:access-switch"),      # ACCESSSWITCH2
+    171: (20, 1070, 64, "equivalent:access-switch"),
+    134: (20, 624, 64, "equivalent:light-switch"),        # LIGHTSWITCH
+    166: (20, 1046, 64, "equivalent:tech-switch"),        # TECHSWITCH
+    # A Duke dipswitch is a toggle the player flips, not a combination lock.
+    # kSwitchCombo counts data1 up and wraps it at data3, then fires only when
+    # data1 == data2 -- so a combo switch left with data1/2/3 at 0 steps to 1,
+    # can never match 0 again, and is dead for the rest of the level.
+    164: (20, 1161, 64, "equivalent:dipswitch->toggle"),         # DIPSWITCH2
+    165: (20, 1161, 64, "equivalent:dipswitch->toggle"),
+    142: (20, 318, 64, "equivalent:nuke-button->normal-exit"),  # the one real exit
+}
+
+#: Blood authors wall-mounted switches as 16|64|128|256 (566 in the corpus) and
+#: free-standing ones as 128|256 (1136). Duke wall switches carry the alignment
+#: bit, so the choice follows the source; the texture flip bits come with it.
+SWITCH_CSTAT_WALL = 464
+SWITCH_CSTAT_FACE = 384
 
 # Deliberate gameplay-role substitutions. The target type/tile pairs are
 # established by the local Blood map corpus; "approximation" is kept visible
@@ -76,12 +128,31 @@ ENTITY_MAP: dict[int, tuple[int, int, int, int, int, str]] = {
     1680: (201, 2820, 6, 384, 40, "approximation:Liztroop->Tommy cultist"),
     1682: (201, 2820, 6, 384, 40, "approximation:Liztroop stay-put->Tommy cultist"),
     1744: (201, 2820, 6, 384, 40, "approximation:Liztroop ducking->Tommy cultist"),
-    1247: (400, 907, 4, 385, 64, "equivalent:SEENINE->TNT barrel"),
     1550: (218, 1870, 6, 384, 40, "approximation:shark->bone eel"),
     1920: (206, 1470, 6, 384, 40, "approximation:Commander->flesh gargoyle"),
     1960: (206, 1470, 6, 384, 40, "approximation:Recon->flesh gargoyle"),
     2631: (227, 2680, 6, 384, 64, "approximation:Battlelord->Cerberus"),
 }
+
+
+def duke_skill_mask(lotag: int) -> int:
+    """Duke's minimum-skill threshold as Blood's launch-exclusion mask.
+
+    EDuke32 deletes a spawned actor when ``sprite.lotag > ud.player_skill``
+    (``game.cpp``, the ``G_TileHasActor`` default case and the RECON/TRIPBOMB
+    ones), so an actor's lotag is the lowest difficulty it appears on.
+
+    Blood inverts the question. ``blood.cpp`` deletes a sprite when
+    ``lSkill & (1 << difficulty)``, so a set bit means *absent* at that
+    difficulty, and XMAPEDIT shows the field negated as "Launch 1..5".  A Duke
+    threshold of *n* is therefore the mask with bits 0..n-1 set, which is
+    ``(1 << n) - 1``.
+
+    Blood's own maps author exactly those values: of the 8,656 typed dudes in
+    the corpus the non-zero masks are dominated by 7 (1,308), 15 (802), 3 (680)
+    and 1 (200) -- the same minimum-skill ladder, arrived at independently.
+    """
+    return (1 << max(0, min(5, int(lotag)))) - 1
 
 
 class ChannelAllocator:
@@ -158,16 +229,34 @@ def _underwater_sectors(duke: DukeDiskMap, builder: LevelBuilder) -> list[int]:
     }
     submerged = set(st2)
     for sector_id, target in enumerate(builder.level.sectors):
-        if target["fields"]["type"] not in {600, 616, 617, 604}:
+        if target["fields"]["type"] not in {600, 604, 614, 616, 617}:
             continue
         if any(neighbor in st2 for neighbor in _neighbors(duke, sector_id)):
             submerged.add(sector_id)
     return sorted(submerged)
 
 
+#: Blood authors its wall cracks as cstat 208/209 -- wall-aligned, one-sided and
+#: y-centered -- in 68 of the 155 in the corpus, and never translucent. Carrying
+#: the Duke sprite's cstat across kept its translucency bits and dropped the
+#: y-center, so the crack hung at the wrong height and showed through.
+CRACK_CSTAT = 1 | 16 | 64 | 128 | 256
+
+#: 105 of the corpus's 155 cracks are 64x64. Duke's crack art is a different
+#: size, so copying its repeat makes a Blood-tile crack the wrong scale.
+CRACK_REPEAT = 64
+
+
 def _crack_cstat(cstat: int) -> int:
-    """Wall-aligned, hittable Blood crack. NBlood VectorScan requires hitscan-block."""
-    return (int(cstat) | 1 | 16 | 256) & ~32768
+    """Blood's crack cstat, keeping only the source's texture flips.
+
+    The hitscan-block bit is the one deliberate departure from Blood's own
+    208/209: Blood cracks are opened with explosives and are not shot, but Duke
+    cracks are shot, and NBlood's VectorScan only reaches a sprite that blocks
+    hitscan. Keeping Duke's behaviour needs the bit; keeping Blood's look needs
+    the rest.
+    """
+    return CRACK_CSTAT | (int(cstat) & (4 | 8))
 
 
 def _surface_candidates(blood_maps: Path) -> dict[str, set[int]]:
@@ -364,8 +453,16 @@ def _add_marker(
     z = max(ceiling, min(floor, z))
     sprite_id = builder.add_sprite(
         sector=sector, x=x, y=y, z=z, type=type, picnum=3997,
-        status=10, angle=angle, cstat=32896, x_repeat=64, y_repeat=64,
+        status=10, angle=0, cstat=32896, x_repeat=64, y_repeat=64,
     )
+    # A rotation marker's angle is not a facing direction, so it must not be
+    # reduced mod 2048 the way add_sprite reduces every other sprite's. Blood
+    # interpolates the turn linearly from 0 to this value, so the sign picks the
+    # direction and magnitudes past a full turn mean full turns: the campaign
+    # authors -512 ninety times and -4096 (two turns backwards) nine times.
+    # Masking -256 to 1792 keeps the same final pose but sweeps 315 degrees the
+    # other way, dragging the sector through everything beside it.
+    builder.level.sprites[sprite_id]["fields"]["angle"] = int(angle)
     builder.level.sprites[sprite_id]["fields"]["owner"] = owner
     return sprite_id
 
@@ -503,10 +600,24 @@ def convert_e3l11_to_blood(
         style=style,
     )
 
+    # What makes a Duke sector listen to a channel. ACTIVATOR and
+    # ACTIVATORLOCKED are the obvious two, but a MASTERSWITCH is a receiver as
+    # well: when its channel fires it counts its hitag down and then calls
+    # G_OperateSectors on *its own sector* (``actors.cpp``), which is exactly
+    # what an ACTIVATOR does without the delay. 168 MasterSwitches in the corpus
+    # sit in an operable sector with no ACTIVATOR beside them, so leaving them
+    # out means those sectors receive nothing at all.
     controllers: dict[int, list[tuple[int, bool]]] = defaultdict(list)
     for sprite in duke.sprites:
         if sprite.picnum in {2, 4}:
             controllers[sprite.sector].append((sprite.lotag, sprite.picnum == 4))
+    masterswitch_delays: dict[int, int] = {}
+    for sprite in duke.sprites:
+        if sprite.picnum != 8:
+            continue
+        controllers[sprite.sector].append((sprite.lotag, False))
+        if sprite.hitag:
+            masterswitch_delays[sprite.sector] = int(sprite.hitag)
 
     mechanism_counts: Counter[str] = Counter()
     mechanism_records: list[dict[str, Any]] = []
@@ -660,18 +771,38 @@ def convert_e3l11_to_blood(
         target = builder.level.sectors[sector_id]["fields"]
         target["type"] = 616
         x, y, z = _scaled_position(builder, sprite, scale)
-        marker0 = _add_marker(builder, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=3, angle=sprite.angle)
-        marker1 = _add_marker(builder, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=4, angle=sprite.angle)
-        # EDuke32 A_MoveSector: xvel=16 for xrepeat>>3 ticks along the SE angle.
-        distance = _scale(max(128, sprite.x_repeat * 2), scale)
-        radians = sprite.angle * pi / 1024.0
-        builder.level.sprites[marker1]["fields"]["x"] = x + int(round(distance * cos(radians)))
-        builder.level.sprites[marker1]["fields"]["y"] = y + int(round(distance * sin(radians)))
-        busy = gpspeed_busy_time(duke, sector_id, 24)
-        fields = motion_fields(sector_id, marker_0=marker0, marker_1=marker1, busy_time_a=busy, busy_time_b=busy)
+        motion = sliding_door(duke, sprite)
+        # Both markers keep angle 0. TranslateSector interpolates the rotation
+        # as interpolate(marker0.ang, marker1.ang, busy), and interpolate(a, a, t)
+        # is a for every t -- so equal non-zero marker angles rotate the sector
+        # by that angle for the whole slide instead of leaving it flat. 1021 of
+        # the 1054 slide sectors in the Blood corpus author both markers at 0
+        # and carry the direction in marker1's position alone.
+        marker0 = _add_marker(builder, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=3, angle=0)
+        marker1 = _add_marker(builder, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=4, angle=0)
+        # The leaf travels 16 units per tick for (sector.extra >> 3) ticks. The
+        # effector's own texture repeat says nothing about how far it goes.
+        distance = _scale(motion["distance"], scale)
+        radians = motion["angle"] * pi / 1024.0
+        # trInit makes the authored geometry the busy == 1 pose: it translates
+        # the sector one full travel backwards, takes that as the base, and then
+        # moves to the sector's busy. A door authored closed and left at state 0
+        # therefore slides itself open the instant the level loads. Resting at
+        # state 1 puts it back on its authored coordinates, which means the
+        # actuated pose is the *other* end -- so marker1 goes the other way.
+        builder.level.sprites[marker1]["fields"]["x"] = x - int(round(distance * cos(radians)))
+        builder.level.sprites[marker1]["fields"]["y"] = y - int(round(distance * sin(radians)))
+        busy = duke_busy_time(motion["ticks"])
+        fields = motion_fields(sector_id, marker_0=marker0, marker_1=marker1,
+                               busy_time_a=busy, busy_time_b=busy, state=1)
         builder.set_behavior("sector", sector_id, **fields)
         mechanism_counts["sliding-door"] += 1
-        mechanism_records.append({"source_sector": sector_id, "source_effector": source_id, "blood_type": 616, "kind": "sliding-door"})
+        mechanism_records.append({
+            "source_sector": sector_id, "source_effector": source_id, "blood_type": 616,
+            "kind": "sliding-door", "classification": "faithfully-convertible",
+            "travel": motion["distance"], "duke_ticks": motion["ticks"],
+            "sector_extra": motion["sector_extra"],
+        })
 
     # Duke ST30/SE0 rotates 256 Build-angle units about the matching SE1 pivot.
     pivots = {sprite.hitag: sprite for sprite in duke.sprites if sprite.picnum == 1 and sprite.lotag == 1}
@@ -688,14 +819,32 @@ def convert_e3l11_to_blood(
         sector_id = sprite.sector
         target = builder.level.sectors[sector_id]["fields"]
         target["type"] = 617
+        motion = rotate_rise_bridge(duke, sprite, pivot)
+        # Blood's RDoorBusy interpolates the turn from 0 to marker0.ang, so the
+        # marker angle *is* the whole rotation. Duke's is 2 * sector.extra, not
+        # a constant: E3L11 alone carries both a 45 and a 90 degree bridge.
+        # The axis is the effector, not the pivot, unless spawn snapped the two
+        # together -- which it does only for an SE0 authored at angle 512.
+        axis_sector = pivot.sector if motion["snapped_to_pivot"] else sprite.sector
         marker = _add_marker(
-            builder, sector=pivot.sector, owner=sector_id,
-            x=_scale(pivot.x, scale), y=_scale(pivot.y, scale), z=_scale(pivot.z, scale),
-            type=5, angle=256 if sprite.pal else -256,
+            builder, sector=axis_sector, owner=sector_id,
+            x=_scale(motion["centre_x"], scale), y=_scale(motion["centre_y"], scale),
+            z=_scale(pivot.z if motion["snapped_to_pivot"] else sprite.z, scale),
+            # Negated for the same reason the slide's marker1 is reversed: the
+            # authored geometry is the busy == 1 pose, so resting at state 1
+            # keeps the bridge where Duke drew it and the turn runs backwards
+            # from there.
+            type=5, angle=-motion["angle"],
         )
         activation_tag = _rotation_activation_tag(duke, rotation_groups[sprite.hitag])
-        busy = gpspeed_busy_time(duke, sector_id, 32)
-        fields = motion_fields(sector_id, marker_0=marker, busy_time_a=busy, busy_time_b=busy)
+        busy = duke_busy_time(motion["ticks"])
+        # ST30 walks floorz toward the effector's z while it turns, and Blood's
+        # RDoorBusy runs ZTranslateSector beside TranslateSector, so the same
+        # sector does both halves once it is given the floor endpoint.
+        fields = motion_fields(
+            sector_id, marker_0=marker, busy_time_a=busy, busy_time_b=busy,
+            on_floor_z=_scale(motion["floor_z"], scale), state=1,
+        )
         if activation_tag is not None:
             fields.update(trigger_push=0, trigger_wall_push=0, rx_id=channels.allocate(activation_tag))
         builder.set_behavior("sector", sector_id, **fields)
@@ -704,6 +853,8 @@ def convert_e3l11_to_blood(
             "source_sector": sector_id, "source_effector": source_id, "blood_type": 617,
             "kind": "rotate-bridge", "classification": "faithfully-convertible" if activation_tag is not None else "semantically-approximated",
             "activation_tag": activation_tag,
+            "rotation": motion["angle"], "duke_ticks": motion["ticks"],
+            "sector_extra": motion["sector_extra"], "rises_to": motion["floor_z"],
         })
 
     # SE11 swinging doors pivot about the effector itself (EDuke32 stores wall
@@ -715,45 +866,69 @@ def convert_e3l11_to_blood(
         target = builder.level.sectors[sector_id]["fields"]
         target["type"] = 617
         x, y, z = _scaled_position(builder, sprite, scale)
+        # A swinging door is always a quarter turn: actors.cpp stops it at
+        # t_data[4] >= 512 regardless of speed. Spawn takes the direction from
+        # the effector angle as (ang > 1024) ? +2 : -2, so an angle *above*
+        # 1024 turns positive.
+        motion = swinging_door(duke, sprite)
         marker = _add_marker(
             builder, sector=sector_id, owner=sector_id, x=x, y=y, z=z,
-            type=5, angle=256 if sprite.angle <= 1024 else -256,
+            type=5, angle=-motion["angle"],
         )
-        busy = gpspeed_busy_time(duke, sector_id, 24)
-        fields = motion_fields(sector_id, marker_0=marker, busy_time_a=busy, busy_time_b=busy)
+        busy = duke_busy_time(motion["ticks"])
+        fields = motion_fields(sector_id, marker_0=marker, busy_time_a=busy,
+                               busy_time_b=busy, state=1)
         builder.set_behavior("sector", sector_id, **fields)
         mechanism_counts["swinging-door"] += 1
         mechanism_records.append({
             "source_sector": sector_id, "source_effector": source_id, "blood_type": 617,
             "kind": "swinging-door", "classification": "faithfully-convertible",
+            "rotation": motion["angle"], "duke_ticks": motion["ticks"],
         })
 
-    # SE20 stretch-bridge: Blood type 616 two-marker slide along the SE angle.
-    # DNE3L3 used marked-slide 614 for the rebuilt geometry; whole-sector 616 is
-    # the closest native lowering of Duke's moving stretch sector.
+    # SE20 stretch-bridge -> Blood type 614, the *marked* slide.
+    #
+    # This is the one Duke moving sector that never calls A_MoveSector. It drags
+    # the two walls nearest the effector and leaves the rest of the sector where
+    # it is, so the bridge extends instead of travelling. Blood's
+    # TranslateSector splits on exactly that distinction: kSectorSlide (616)
+    # moves every wall, kSectorSlideMarked (614) moves only walls flagged
+    # cstat & 16384. Lowering SE20 to 616 slides the whole bridge away.
     for source_id, sprite in enumerate(duke.sprites):
         if sprite.picnum != 1 or sprite.lotag != 20:
             continue
         sector_id = sprite.sector
         target = builder.level.sectors[sector_id]["fields"]
-        target["type"] = 616
+        target["type"] = 614
         x, y, z = _scaled_position(builder, sprite, scale)
-        marker0 = _add_marker(builder, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=3, angle=sprite.angle)
-        marker1 = _add_marker(builder, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=4, angle=sprite.angle)
-        distance = _scale(max(128, sprite.x_repeat * 2), scale)
-        radians = sprite.angle * pi / 1024.0
-        builder.level.sprites[marker1]["fields"]["x"] = x + int(round(distance * cos(radians)))
-        builder.level.sprites[marker1]["fields"]["y"] = y + int(round(distance * sin(radians)))
-        busy = gpspeed_busy_time(duke, sector_id, 24)
-        extra: dict[str, int] = {"marker_0": marker0, "marker_1": marker1, "busy_time_a": busy, "busy_time_b": busy}
+        motion = stretch_bridge(duke, sprite)
+        # Angle 0 on both, as for SE15: the extension direction is marker1's
+        # position, and a shared non-zero angle would turn the bridge instead.
+        marker0 = _add_marker(builder, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=3, angle=0)
+        marker1 = _add_marker(builder, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=4, angle=0)
+        distance = _scale(motion["distance"], scale)
+        radians = motion["angle"] * pi / 1024.0
+        # Same rest convention as SE15: the authored pose is busy == 1.
+        builder.level.sprites[marker1]["fields"]["x"] = x - int(round(distance * cos(radians)))
+        builder.level.sprites[marker1]["fields"]["y"] = y - int(round(distance * sin(radians)))
+        moved = []
+        for wall_id in motion["walls"]:
+            if 0 <= wall_id < len(builder.level.walls):
+                wall_fields = builder.level.walls[wall_id]["fields"]
+                wall_fields["cstat"] = int(wall_fields["cstat"]) | 16384
+                moved.append(wall_id)
+        busy = duke_busy_time(motion["ticks"])
+        extra: dict[str, int] = {"marker_0": marker0, "marker_1": marker1,
+                                 "busy_time_a": busy, "busy_time_b": busy, "state": 1}
         if sprite.hitag:
             extra.update(trigger_push=0, trigger_wall_push=0, rx_id=channels.allocate(sprite.hitag))
         fields = motion_fields(sector_id, **extra)
         builder.set_behavior("sector", sector_id, **fields)
         mechanism_counts["stretch-bridge"] += 1
         mechanism_records.append({
-            "source_sector": sector_id, "source_effector": source_id, "blood_type": 616,
-            "kind": "stretch-bridge", "classification": "semantically-approximated",
+            "source_sector": sector_id, "source_effector": source_id, "blood_type": 614,
+            "kind": "stretch-bridge", "classification": "faithfully-convertible" if moved else "semantically-approximated",
+            "moved_walls": moved, "travel": motion["distance"], "duke_ticks": motion["ticks"],
         })
 
     # SE10 is an autoclose timer on the host door sector, not a tag channel.
@@ -886,9 +1061,28 @@ def convert_e3l11_to_blood(
     for source_id, sprite in enumerate(duke.sprites):
         if sprite.picnum != 3:
             continue
+        # trigger_on is what actually makes it transmit. Entering the sector
+        # calls trTriggerSector, which for an untyped sector falls through to
+        # SetSectorState(state ^ 1); that only reaches its evSend when
+        # `triggerOn && state`. Without the bit the sector flips its own state
+        # and tells nobody, which is a touchplate that silently does nothing.
+        # 878 of the 885 Enter-plus-TX sectors in the Blood corpus set it, 751
+        # of them in exactly this (on=1, off=0, state=0) shape.
+        #
+        # A Duke touchplate's hitag is a use count, not a flag: it counts down
+        # on each activation and the plate is spent when it reaches zero, so a
+        # hitag of 1 is one-shot and 0 is unlimited.
+        # Do not touch `state`. A touchplate can share its sector with a moving
+        # one -- E1L3 puts one inside two of its rotate bridges -- and a mover
+        # rests at state 1 so that its authored geometry is its resting pose.
+        # Forcing state 0 here would drag the bridge a full arc off its mark
+        # before anything triggered it. Transmitting on both transitions makes
+        # the plate work from whichever state its sector happens to rest in;
+        # 122 of the corpus's Enter sectors are authored that way.
         builder.set_behavior(
-            "sector", sprite.sector, tx_id=channels.allocate(sprite.lotag), command=3,
-            trigger_enter=1, trigger_once=1 if sprite.hitag else 0,
+            "sector", sprite.sector, tx_id=channels.allocate(sprite.lotag), command=1,
+            trigger_enter=1, trigger_on=1, trigger_off=1,
+            trigger_once=1 if sprite.hitag == 1 else 0,
         )
         mechanism_counts["touchplate"] += 1
         mechanism_records.append({"source_sprite": source_id, "source_sector": sprite.sector, "kind": "touchplate", "channel": channels.allocate(sprite.lotag)})
@@ -1005,13 +1199,17 @@ def convert_e3l11_to_blood(
         crack = builder.add_sprite(
             sector=sprite.sector, x=x, y=y, z=z, type=408, picnum=1127,
             status=4, angle=sprite.angle, cstat=_crack_cstat(sprite.cstat),
-            x_repeat=max(16, sprite.x_repeat), y_repeat=max(16, sprite.y_repeat),
+            x_repeat=CRACK_REPEAT, y_repeat=CRACK_REPEAT,
         )
         # thingInfo[kThingWallCrack] has 0 bullet damage. NBlood actFireVector
         # only fires the sprite command when XSPRITE.Vector is set; Impact
         # covers nearby TNT (E3L11 SEENINE on the same hitag as SE13).
+        # A crack rests at state 0, which is what 154 of the corpus's 155 do.
+        # SetSpriteState returns early when the state already equals the one
+        # asked for, so a crack authored at state 1 and then switched on never
+        # reaches its evSend and never opens its hole.
         builder.set_behavior(
-            "sprite", crack, tx_id=channel, command=1, state=1,
+            "sprite", crack, tx_id=channel, command=1, state=0,
             trigger_on=1, trigger_off=1, trigger_vector=1, trigger_impact=1,
         )
         explosive = builder.add_sprite(
@@ -1041,7 +1239,14 @@ def convert_e3l11_to_blood(
             type=type_, picnum=tile, status=status, angle=source.angle, cstat=cstat,
             x_repeat=repeat, y_repeat=repeat, shade=0,
         )
-        builder.set_behavior("sprite", new_id)
+        # Only actors carry a skill threshold in their lotag. On everything else
+        # the lotag means something entirely different -- a switch's lotag is its
+        # channel -- so reading it as difficulty there would delete working
+        # machinery on the easier settings.
+        behavior: dict[str, int] = {}
+        if 200 <= type_ <= 260 and source.lotag:
+            behavior["launch_skill"] = duke_skill_mask(source.lotag)
+        builder.set_behavior("sprite", new_id, **behavior)
         entity_counts[classification] += 1
         entity_records.append({"source_sprite": source_id, "target_sprite": new_id, "classification": classification})
         return new_id
@@ -1052,6 +1257,8 @@ def convert_e3l11_to_blood(
             add_gameplay_sprite(source_id, (key_type, key_tile, 3, 128, 32, f"equivalent:access-card->{key_name}-key"))
         elif sprite.picnum in ENTITY_MAP:
             add_gameplay_sprite(source_id, ENTITY_MAP[sprite.picnum])
+        elif sprite.picnum in SEENINE_TILES:
+            pass  # lowered as a timed exploder chain below, not as an entity
         elif sprite.picnum in DUKE_CONTROLLERS or sprite.picnum in DUKE_SWITCHES or sprite.picnum == 142:
             continue
         else:
@@ -1061,40 +1268,219 @@ def convert_e3l11_to_blood(
     for source_id, sprite in enumerate(duke.sprites):
         if sprite.picnum not in DUKE_SWITCHES and sprite.picnum != 142:
             continue
+        switch_type, tile, repeat, classification = SWITCH_VOCABULARY.get(
+            sprite.picnum, (20, 1070, 64, "equivalent:toggle-switch"))
         if sprite.picnum == 142:
-            channel, key, classification = 4, 0, "equivalent:nuke-button->normal-exit"
+            channel, key = 4, 0
             command = 1
         else:
             channel, command = channels.allocate(sprite.lotag), 3
             key = _switch_key(sprite)
-            classification = (
-                "equivalent:access-switch" if sprite.picnum in {130, 170} else "equivalent:toggle-switch"
-            )
         x, y, z = _scaled_position(builder, sprite, scale)
+        base = SWITCH_CSTAT_WALL if int(sprite.cstat) & 16 else SWITCH_CSTAT_FACE
+        cstat = base | (int(sprite.cstat) & (4 | 8))
         new_id = builder.add_sprite(
             sector=sprite.sector, x=x, y=y, z=z,
-            type=20, picnum=318, status=0, angle=sprite.angle, cstat=sprite.cstat,
-            x_repeat=max(16, sprite.x_repeat), y_repeat=max(16, sprite.y_repeat),
+            type=switch_type, picnum=tile, status=0, angle=sprite.angle, cstat=cstat,
+            x_repeat=repeat, y_repeat=repeat,
         )
+        # data1/data2 on a toggle switch are its on/off sound ids, not data.
+        # Blood authors 200 for both; leaving them 0 makes a silent switch.
+        # dudeLockout keeps an enemy from walking into the level exit.
         builder.set_behavior(
             "sprite", new_id, tx_id=channel, command=command, key=key,
             trigger_on=1, trigger_off=1 if command == 3 else 0, trigger_push=1,
+            data_1=200, data_2=200, dude_lockout=1,
         )
         entity_counts[classification] += 1
         entity_records.append({"source_sprite": source_id, "target_sprite": new_id, "classification": classification, "channel": channel, "key": key})
+
+    # Duke's SEENINE cascade -> a chain of Blood kTrapExploder traps.
+    #
+    # A SEENINE is not a barrel. Damaging one sets shade -32 on every SEENINE
+    # sharing its hitag, and each then counts its own lotag down by 3 per 30 Hz
+    # tick before detonating (``actors.cpp``), so the *lotag is a fuse* and the
+    # hitag is the chain. E3L11 authors ten cascades whose fuses run 0 to 220,
+    # which is nearly three seconds of staggered explosions along the freeway.
+    #
+    # kTrapExploder reproduces that exactly. trInit clamps its waitTime to at
+    # least 1; SetSpriteState posts kCmdOff after waitTime tenths of a second
+    # when the trap is switched on, and OperateSprite explodes it on anything
+    # that is not kCmdOn. So one RX channel plus a per-sprite waitTime is the
+    # same machine. NBlood's actInit only arms exploders on kStatTraps.
+    #
+    # Duke's tag numbering wires this for free: the touchplate that starts the
+    # sequence, the MasterSwitch relaying it and the SEENINE group all carry the
+    # same number, so allocating the channel from the hitag joins them.
+    unsupported_respawns: list[dict[str, int]] = []
+    seenine_groups: dict[int, list[int]] = defaultdict(list)
+    for source_id, sprite in enumerate(duke.sprites):
+        if sprite.picnum in SEENINE_TILES:
+            seenine_groups[sprite.hitag].append(source_id)
+    # What actually arms a chain is not its hitag. A MasterSwitch sets shade -31
+    # on the explosives *in its own sector* (``actors.cpp``), and that one then
+    # chain-arms every explosive sharing its hitag. So a group is armed on the
+    # MasterSwitch's channel, which need not be its hitag at all: E3L11's group
+    # 50 is armed by the MasterSwitch on 49 that also turns the four bridges, so
+    # keying it to 50 leaves ten explosives listening to a channel nobody sends.
+    # Groups with no MasterSwitch keep the hitag, which is what their CRACK
+    # transmits on.
+    masterswitch_sectors: dict[int, set[int]] = defaultdict(set)
+    for sprite in duke.sprites:
+        if sprite.picnum == 8:
+            masterswitch_sectors[sprite.sector].add(int(sprite.lotag))
+    for hitag, members in sorted(seenine_groups.items()):
+        arming = sorted({
+            lotag
+            for source_id in members
+            for lotag in masterswitch_sectors.get(duke.sprites[source_id].sector, ())
+        })
+        # hitag 0 is not a group. Duke chains on equal hitags, so a lone
+        # explosive left at 0 belongs to nothing and is only ever set off by
+        # another blast reaching it -- which Blood's radius damage does too.
+        if arming:
+            channel = channels.allocate(arming[0])
+        elif hitag:
+            channel = channels.allocate(hitag)
+        else:
+            channel = 0
+        for source_id in members:
+            sprite = duke.sprites[source_id]
+            x, y, z = _scaled_position(builder, sprite, scale)
+            # lotag ticks / 3 per tick / 30 Hz = lotag / 90 seconds, and Blood
+            # waitTime is tenths of a second, so the fuse is lotag / 9.
+            fuse = max(1, min(4095, int(round(int(sprite.lotag) / 9.0))))
+            trap = builder.add_sprite(
+                sector=sprite.sector, x=x, y=y, z=z, type=459, picnum=908,
+                status=11, angle=sprite.angle, cstat=32896, x_repeat=4, y_repeat=4,
+            )
+            if channel:
+                builder.set_behavior("sprite", trap, rx_id=channel, wait_time=fuse)
+            else:
+                builder.set_behavior("sprite", trap, wait_time=fuse)
+            mechanism_counts["chain-exploder"] += 1
+            visible = int(sprite.x_repeat) > SEENINE_VISIBLE_REPEAT
+            if visible:
+                # Duke only draws the ones bigger than 8, and those are the ones
+                # the player can shoot. Give them a barrel to shoot at.
+                barrel = builder.add_sprite(
+                    sector=sprite.sector, x=x, y=y, z=z, type=400, picnum=907,
+                    status=4, angle=sprite.angle, cstat=385,
+                    x_repeat=64, y_repeat=64,
+                )
+                builder.set_behavior("sprite", barrel)
+                mechanism_counts["visible-explosive"] += 1
+            mechanism_records.append({
+                "source_sprite": source_id, "target_sprite": trap,
+                "kind": "chain-exploder", "classification": "faithfully-convertible",
+                "channel": channel, "duke_fuse_lotag": int(sprite.lotag),
+                "wait_time": fuse, "visible": visible,
+            })
+
+    # Duke RESPAWN (tile 9) -> Blood kMarkerDudeSpawn (type 18).
+    #
+    # A Duke RESPAWN listens on its lotag and spawns the actor named by its
+    # hitag when the channel fires (``game.cpp`` RESPAWN). Blood has the same
+    # object: triggers.cpp's kMarkerDudeSpawn calls actSpawnDude with the type
+    # in XSPRITE.data1 when it receives, and adds it to the kill count. The two
+    # line up field for field, so this is a transcription rather than a
+    # substitute -- the only judgement is which Blood dude stands in for which
+    # Duke one, which ENTITY_MAP already records.
+    for source_id, sprite in enumerate(duke.sprites):
+        if sprite.picnum != 9 or not sprite.lotag:
+            continue
+        definition = ENTITY_MAP.get(sprite.hitag)
+        if definition is None:
+            unsupported_respawns.append({"source_sprite": source_id, "tile": int(sprite.hitag)})
+            continue
+        dude_type = definition[0]
+        if not 200 <= dude_type <= 260:
+            unsupported_respawns.append({"source_sprite": source_id, "tile": int(sprite.hitag)})
+            continue
+        channel = channels.allocate(sprite.lotag)
+        x, y, z = _scaled_position(builder, sprite, scale)
+        marker = builder.add_sprite(
+            sector=sprite.sector, x=x, y=y, z=z, type=18, picnum=3997,
+            status=10, angle=sprite.angle, cstat=32768, x_repeat=64, y_repeat=64,
+        )
+        builder.set_behavior("sprite", marker, rx_id=channel, data_1=dude_type)
+        mechanism_counts["dude-spawn"] += 1
+        mechanism_records.append({
+            "source_sprite": source_id, "target_sprite": marker, "blood_type": 18,
+            "kind": "dude-spawn", "classification": "faithfully-convertible",
+            "channel": channel, "duke_tile": int(sprite.hitag), "blood_dude": dude_type,
+        })
+
+    # Blood decides the spawn from a marker, not from the map header. NBlood's
+    # warpInit overrides gStartZone from a kMarkerSPStart whose XSPRITE.data1 is
+    # 0 and then deletes the sprite; the header start is only the fallback
+    # (blood.cpp). All 43 campaign maps carry the marker, so a converted map
+    # without one is relying on a path no authored Blood level uses -- and no
+    # consumer that looks for the marker, including the level-program emitter,
+    # can find where the player begins.
+    start = builder.level.player_start
+    start_sector = int(start["sector"])
+    start_x, start_y = _nudge_into_sector(builder, start_sector, int(start["x"]), int(start["y"]))
+    start_marker = builder.add_sprite(
+        sector=start_sector, x=start_x, y=start_y, z=int(start["z"]),
+        type=1, picnum=2332, status=10, angle=int(start["angle"]) & 2047,
+        cstat=32768, x_repeat=64, y_repeat=64,
+    )
+    builder.set_behavior("sprite", start_marker, data_1=0)
+    mechanism_counts["player-start-marker"] = 1
+    mechanism_records.append({
+        "target_sprite": start_marker, "blood_type": 1, "kind": "player-start",
+        "classification": "faithfully-convertible", "source_sector": start_sector,
+    })
+
+    # A MasterSwitch counts its hitag down in 30 Hz ticks before acting, so it
+    # is a delay line as well as a relay. Blood sends a channel immediately and
+    # has no per-link delay, so the wait is lost; recording it keeps the report
+    # honest rather than letting a simultaneous trigger look faithful.
+    for sector_id, delay in sorted(masterswitch_delays.items()):
+        mechanism_records.append({
+            "source_sector": sector_id, "kind": "masterswitch-delay",
+            "classification": "semantically-approximated",
+            "duke_delay_ticks": delay,
+            "duke_delay_seconds": round(delay / 30.0, 2),
+            "note": "Blood has no per-link delay; the receiver fires immediately",
+        })
+    mechanism_counts["masterswitch-delay"] = len(masterswitch_delays)
 
     underwater_sectors = _underwater_sectors(duke, builder)
     for sector_id in underwater_sectors:
         builder.set_behavior("sector", sector_id, underwater=1)
     mechanism_counts["underwater-sector"] = len(underwater_sectors)
 
+    snapped_sectors: set[int] = set()
     for sector_id, off_ceiling, off_floor, flatten in explosive_snaps:
         target = builder.level.sectors[sector_id]["fields"]
         target["ceiling_z"] = off_ceiling
         target["floor_z"] = off_floor
+        snapped_sectors.add(sector_id)
         if flatten:
             target["ceiling_stat"] = int(target.get("ceiling_stat", 0)) & ~2
             target["floor_stat"] = int(target.get("floor_stat", 0)) & ~2
+
+    # An SE13 sector starts collapsed, so its floor is not where the Duke mapper
+    # placed the things standing on it. Duke gets away with it because its items
+    # fall; a Blood pickup keeps the z it is authored with, so anything left at
+    # the old floor height ends up inside the new one. Re-seat what the snap
+    # moved, and only that -- a sprite the mapper deliberately hung in the air
+    # somewhere else keeps its height.
+    reseated = 0
+    for sprite in builder.level.sprites:
+        fields = sprite["fields"]
+        sector_id = int(fields["sector"])
+        if sector_id not in snapped_sectors:
+            continue
+        ceiling = _sector_surface_z(builder.level, sector_id, int(fields["x"]), int(fields["y"]), "ceiling")
+        floor = _sector_surface_z(builder.level, sector_id, int(fields["x"]), int(fields["y"]), "floor")
+        clamped = max(ceiling, min(floor, int(fields["z"])))
+        if clamped != int(fields["z"]):
+            fields["z"] = clamped
+            reseated += 1
+    mechanism_counts["reseated-after-collapse"] = reseated
 
     disk = builder.level.to_disk_map()
     errors = [item for item in validate_map(disk) if item.severity == "error"]

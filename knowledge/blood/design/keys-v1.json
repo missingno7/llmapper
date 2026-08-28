@@ -1,0 +1,74 @@
+{
+ "$schema": "llmapper.blood-keys",
+ "schema_version": 1,
+ "maps": 43,
+ "tiles": {
+  "2540": "skull",
+  "2541": "eye",
+  "2542": "flame",
+  "2543": "dagger",
+  "2544": "spider",
+  "2545": "moon"
+ },
+ "key_to_tile": {
+  "4": 2543,
+  "1": 2540,
+  "6": 2545,
+  "3": 2542,
+  "2": 2541,
+  "5": 2544
+ },
+ "key_to_tile_votes": {
+  "4": {
+   "2543": 20
+  },
+  "1": {
+   "2540": 67,
+   "2542": 1,
+   "2541": 1
+  },
+  "6": {
+   "2545": 26
+  },
+  "3": {
+   "2542": 27,
+   "2540": 1
+  },
+  "2": {
+   "2541": 26,
+   "2540": 1
+  },
+  "5": {
+   "2544": 10
+  }
+ },
+ "placards": 200,
+ "keyed_things": 265,
+ "keyed_with_a_placard": 213,
+ "share_marked": 0.804,
+ "hung_above_floor_humans": {
+  "q1": 0.785,
+  "median": 0.845,
+  "q3": 0.966
+ },
+ "cstat": {
+  "464": 125,
+  "208": 75
+ },
+ "repeats": {
+  "(32, 32)": 149,
+  "(40, 40)": 17,
+  "(24, 24)": 14,
+  "(29, 29)": 6,
+  "(64, 64)": 6,
+  "(56, 56)": 5,
+  "(48, 48)": 3
+ },
+ "palette": {
+  "0": 200
+ },
+ "reading_guide": [
+  "the emblem is the message; the frame is the same on all six",
+  "key_to_tile is derived from co-location, not from a table"
+ ]
+}
