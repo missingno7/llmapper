@@ -206,19 +206,16 @@ def dress(city, ctx) -> dict:
                  connection_id="connection:canteen_side_street")
 
     # ---- backdrop window: the rail yard behind the works ------------------
-    scene = city.assembly(
-        "railyard_scene",
-        style=Style(**BACKDROP.style_kwargs(floor_shade=44,
-                                            floor_z=GRADE - 8192,
-                                            clear_height=STREET_SKY)),
-        note="backdrop-and-weave.md: 12-wall depth behind the canteen window",
-    )
-    box = scene.room(
-        "box", [(0, 0), (4096, 0), (4096, 2048), (0, 2048)],
+    box = city.room(
+        "railyard_scene", [(0, 0), (4096, 0), (4096, 2048), (0, 2048)],
         role="detail", faces=dict(COMPASS),
         frame=Frame(main_x0 + 256, main_y1 - 512 - 2560 - 2048 - 2048),
-        note="the rail-yard glimpse; sill 8192 keeps it scenery",
+        note="backdrop-and-weave.md: 12-wall depth behind the canteen "
+             "window; sill 8192 keeps it scenery",
     )
+    box.style = Style(**BACKDROP.style_kwargs(floor_shade=44,
+                                              floor_z=GRADE - 8192,
+                                              clear_height=STREET_SKY))
     box.carve([(1024, 512), (2560, 512), (2560, 1024), (1024, 1024)])
     city.connect(back.face("north"), box.face("south"),
                  connection_id="connection:backdrop_window")
@@ -230,19 +227,17 @@ def dress(city, ctx) -> dict:
     # free-standing version breaching the CN loop ceiling) ------------------
     cart_x0 = yard_x0 - 2048
     cart_y0 = yard_y1 - 2048
-    cart = city.assembly(
-        "yard_dock",
-        style=Style(**MASONRY.style_kwargs(
-            floor_picnum=FACADES["foundry_ward"].floor, floor_shade=36,
-            ceiling_picnum=INTERIORS["service"].ceiling,
-            parallax_ceiling=False, clear_height=16384)),
-    ).room(
+    cart = city.room(
         # Two bays tall so the dock's mouth lands between the painted
         # windows like every other opening in the city.
-        "platform", [(0, 0), (2048, 0), (2048, 2048), (0, 2048)],
+        "yard_dock", [(0, 0), (2048, 0), (2048, 2048), (0, 2048)],
         role="detail", faces=dict(COMPASS), frame=Frame(cart_x0, cart_y0),
         note="loading dock, rise 6144, recessed in the works face",
     )
+    cart.style = Style(**MASONRY.style_kwargs(
+        floor_picnum=FACADES["foundry_ward"].floor, floor_shade=36,
+        ceiling_picnum=INTERIORS["service"].ceiling,
+        parallax_ceiling=False, clear_height=16384))
     # street-furniture measured cart platforms at +6144, but those are
     # scenery; this one is an alcove the player should be able to step into,
     # and 6144 is above the 4096 max step.  A dock at exactly one max step

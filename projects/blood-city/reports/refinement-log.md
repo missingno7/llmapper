@@ -1576,3 +1576,156 @@ six units are still a fixed grid. The shutter constructor exists
 findings are still open. Lettering is filed as grammar request #12 rather
 than fixed, because `PITCH` is a module constant and the Death Wish
 convention cannot be expressed without changing `bloodmap`.
+
+
+## Iteration 25 — the city becomes as recursive as the design
+
+The parametric half had landed; the recursive half did not exist. A walk of
+the built program measured **201 nodes at maximum depth 2**: root, 38
+assemblies, 162 rooms, nothing below. Every claim in the directive checked
+out exactly.
+
+### The invariant, and what it caught
+
+Restructuring is a representation change, so the map must not move. The
+proof is `projects/blood-city/level/fingerprint.py`: an **order-independent**
+canonical multiset of sectors, walls and sprites, because reparenting
+renames every region and reorders the compile, and a byte diff cannot tell
+that apart from a redesign.
+
+That invariant held through every structural step, and it caught three
+things a byte diff would have hidden and a visual check would have missed:
+
+* **The grime pass was seeded from tree position.** `dressing` both sorted
+  and rolled on `region_id`, which is `"region:" + path()`. Reorganising
+  the tree would have reshuffled every grime sprite in the city and made the
+  restructure unverifiable. Reseeded on `props.place_id` -- the room's world
+  outline and floor, invariant under reparenting and different the moment
+  the room actually moves. Doing that first surfaced a latent bug:
+  `props.solid_faces` documents "a rectangular room's four faces" and never
+  checked it, so the diamond light pools reported all four bounding-box
+  lines as solid and a prop hung on one landed outside its sector.
+* **A district's `floor_shade` is its pavement's.** Nesting the venues into
+  Theatre Row handed 42 interior floors the shade of the road outside. Real
+  inheritance, wrong value -- a design change wearing a restructure's
+  clothes. Stated on the node that means it (`INTERIOR_FLOOR_SHADE`), and
+  the district's shade moved onto the street room where it belongs.
+* **A light pool's base shade must not be its district's.** LightBomb adds
+  to the base, so four districts' pavement shades would have made one
+  identical lamp read four different brightnesses. `lightpools.BASE_SHADE`.
+
+The district *frame* moved the same way and for the same reason: it now
+sits on the `streets` room, not on the district assembly. A district is a
+grouping; the thing that stands at (bx0, by0) is the street. With the frame
+on the assembly, everything later nested inside it would have had to be
+restated in district-local coordinates, and the first thing that happened
+when the venues moved in was that Old Crossing slid by its own origin.
+
+**Every structural step verified: sectors, walls and sprites byte-identical
+as multisets.**
+
+### The tree
+
+| | before | after |
+|---|---|---|
+| nodes | 201 | 213 |
+| maximum depth | 2 | **6** |
+| top-level children | 38 | **5** |
+| singleton assemblies | 28 | 9 |
+
+`gravesend -> theatre_row -> saloon -> main -> fittings -> main_bar ->
+main_bar_0` is district, venue, space, template, run, fixture. The full
+listing is `reports/city-tree.md`.
+
+`theatre_venues` is gone: `saloon`, `parlor`, `aldermack`, `pawn_shop` and
+`back_of_house` are assemblies under the district, and `saloon_main` is
+`saloon/main`. The prefix that encoded containment is stated once in
+`l3_theatre.MEMBERSHIP` and the tree carries it. Light pools live in the
+street they light, stack mouths in the space they open from, the sewer's 23
+sibling rooms are `trunk`, `ring`, `chambers`, `necks` and `mouths`.
+
+### Templates that instantiate templates
+
+`templates.py` is the composition chain the project did not have:
+
+    retail_row -> shop -> run -> fixture -> goods
+    bar        -> counter run + tables
+
+* **`retail_row`** derives the count from the frontage at E4M9's own
+  rhythm: a **2,560-unit** unit (its median across the 51 units opening onto
+  its concourse) opening on **1,536** (its median across 85 shared walls).
+  Range-tested 2,560 to 40,000 units -- 1 to 13 shops -- and it refuses a
+  frontage too short for one rather than returning an empty row.
+* **`l3_mall`'s six units are generated**, not drawn. The 3x2 grid of
+  absolute rectangles is gone; hand the arcade a longer concourse and it
+  builds more shops.
+* **All six units are furnished**, where four were, and the pawn shop and
+  the saloon go through `shop` and `bar` instead of literal rects.
+
+Two things the templates forced, both real:
+
+* A glazed unit cannot keep E4M9's full opening *and* a display box on the
+  same 2,560 units of frontage, so `retail_row` splits it: window, pier,
+  mouth. Without the pier the box and the neck share an edge that is a
+  portal on neither side.
+* Hand-written "clear of the counter" locals stop being true the moment
+  furniture is derived. `props.free_local` asks the room where the floor is;
+  the mall's and the theatre's population tables go through it now.
+
+### Goods: the measurement says no
+
+`templates.stock` places nothing, and that is the finding. Every prop the
+corpus associates with the shop palette is **wall-hung** -- 965 a window
+view, 269 a framed painting -- so there is no floor-standing merchandise to
+put on a shelf. It agrees with `mine_fixtures`: the median fixture in all
+four detail sources carries zero sprites. The fixture is the detail. An
+earlier version of the function filtered per-tile inside the loop and
+reported "20 fixtures, 0 stocked", which looked like an unlucky roll; it
+now filters up front and says why.
+
+### Apertures: 37 -> 13, of which 11 are not ours
+
+The audit reads a built map, so a declaration cannot satisfy it. Of 37
+findings, **26 were lintels not continuing their facade** -- the band above
+a mouth wearing the material's *opening* tile. Two rules about two
+different surfaces, one applied to both: the jamb rule is about the reveal,
+the aperture grammar's is about the band above. `apertures.continue_lintels`
+repaints exactly those walls: **25 repainted, 2 left**. Rule diagnostics
+fell from 75 to **50** as a side effect.
+
+The other **11 are seams** -- two sky-ceilinged street regions meeting, or a
+light pool's rim -- where nothing was pierced and no change to the map could
+ever satisfy the finding. Filed as grammar request #15 with a working
+predicate rather than papered over.
+
+### The properties, tested at city scale
+
+`python projects/blood-city/level/tree_tests.py` -- **3/3**.
+
+* **Locality**: restyling the saloon changes 11 sectors, all of them the
+  saloon's. The first version of this test perturbed `floor_picnum` and
+  measured nothing, because every room in this city restates its picnums
+  from its material; shade is the value they genuinely inherit.
+* **Exact frames**: moving the Aldermack translates 14 rooms exactly and
+  alters no number in any child's local outline.
+* **Traceable inheritance**: 1,190 resolved values across 170 rooms, every
+  one naming an ancestor or the room itself, 176 distinct origins.
+
+### Build
+
+**215 sectors / 1,378 walls / 339 sprites**, from 207/1,314/335. 11/11
+conformance, 16/16 contract rows, 50 rule diagnostics, no errors.
+
+### Not done
+
+* **`bloodmap` is untouched**, so `Assembly.summary`, `find`/`at`/`zoom` and
+  the nesting helpers live in `projects/blood-city/level/citytree.py` and are
+  filed as grammar requests #13 and #14. They are a generalisation candidate
+  once a second project wants them.
+* `citytree.measure` reports the tree's own geometry: sprites are placed by
+  later passes in `build_skeleton.main`, so a node measured from
+  `program.compile()` shows zero of them.
+* Two lintel findings survive the repaint.
+* `fixtures.close_front` still shutters no front, and the open-to-closed
+  ratio is still unmined.
+* Slopes remain at 3 sloped sectors of 215 against a campaign 21.7%.

@@ -9,7 +9,7 @@ row is a plan bug (layer directive); green advances to Phase 1c.
 | 2-3 superblocks at 24k..32k (CN 2) | [29696, 32768] | **PASS** | derived: BLOCKS role=superblock extents |
 | small free-standing masses ~768..2432 (CN 2) | [1536, 2048, 2304] | **PASS** | derived: BLOCKS role=free_standing extents |
 | mid blocks inside precedent spread (CN 2) | [10240, 12288, 14336, 14336] | **PASS** | derived: BLOCKS role=block extents |
-| main streets 5120..7168, alleys 1024..2048 (CN 1) | {'avenue': 7168, 'street': 5120, 'lane': 3072, 'alley': 2048, 'row': 6144} | **PASS** | resolution.WIDTH_UNITS vs CN 1 bands |
+| main streets 5120..7168, alleys 1024..2048 (CN 1) | {'alley': 2048, 'street': 5120, 'row': 6144, 'lane': 3072, 'avenue': 7168} | **PASS** | resolution.WIDTH_UNITS vs CN 1 bands |
 | one plaza/forecourt/square/yard per district (CN 1) | {'market_slip': 'plaza', 'theatre_row': 'forecourt', 'old_crossing': 'cemetery', 'foundry_ward': 'yard'} | **PASS** | derived: AREAS by district |
 | avenue canyon 1.7..2.1 (CN 1) | 1.71 | **PASS** | resolution.STREET_SKY over avenue width |
 | substantial interiors 0.13..0.37 per 10240 frontage (CN 3) | 10 venues / 615k = 0.17 | **PASS** | derived: VENUES over block+boundary frontage |

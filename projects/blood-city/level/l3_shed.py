@@ -70,7 +70,8 @@ CELLAR = (44032, 3584, 47616, 7168)
 PIT_LANDING = STATION_STACK_LANDING_DEPTH
 
 
-def build(city, foundry_st, foundry_origin):
+def build(district, foundry_st, foundry_origin):
+    city = district
     """The shed, its stair, and the cellar that holds the pit."""
     fx0, fy0 = foundry_origin
     sx0, sy0, sx1, sy1 = SHED
@@ -140,4 +141,6 @@ def build(city, foundry_st, foundry_origin):
                   (PIT[2] - CELLAR[0], PIT[1] - CELLAR[1]),
                   (PIT[2] - CELLAR[0], PIT[3] - CELLAR[1]),
                   (PIT[0] - CELLAR[0], PIT[3] - CELLAR[1])])
-    return {"hall": hall, "cellar": cellar}
+    # `_assembly` so the caller can hang the cellar pit INSIDE the
+    # station rather than at the top of the city.
+    return {"hall": hall, "cellar": cellar, "_assembly": shed}

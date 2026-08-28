@@ -91,9 +91,20 @@ def _rect_room(assembly, name, rect, material, *, floor_z, clear, note,
     region_kwargs = dict(material.region_kwargs())
     if behavior:
         region_kwargs["sector_behavior"] = behavior
-    room = assembly.room(
-        name, [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)],
-        role=role, faces=dict(COMPASS), frame=Frame(x0, y0),
+    import citytree
+    # `assembly` may now be the ROOM this piece furnishes: a counter belongs
+    # to the bar it stands in, not beside it in the bar's parent.  A frame is
+    # relative to its parent, so the world rect every caller states has to be
+    # taken back into the parent's coordinates -- otherwise nesting a fixture
+    # inside its host offsets it by the host's own frame, twice.
+    base = assembly.world_frame()
+    if base.turns:
+        raise SetPieceError(f"{name}: {assembly.node_id} is turned; a set piece "
+                            "states a world rect and cannot be un-turned here")
+    room = citytree.make_room(
+        assembly, name, [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)],
+        role=role, faces=dict(COMPASS),
+        frame=Frame(x0 - base.dx, y0 - base.dy, -base.dz),
         region_kwargs=region_kwargs, note=note)
     style = material.style_kwargs(floor_z=floor_z, clear_height=clear)
     if shade is not None:
@@ -108,6 +119,17 @@ def _carve_into(host, rect):
     frame = host.world_frame()
     host.carve([(x0 - frame.dx, y0 - frame.dy), (x1 - frame.dx, y0 - frame.dy),
                 (x1 - frame.dx, y1 - frame.dy), (x0 - frame.dx, y1 - frame.dy)])
+
+
+def _owner(node):
+    """The nearest node that may declare a portal.
+
+    A piece cut into a host is a room inside a room now, and a room cannot
+    declare connections; the assembly above it can, and it is the node that
+    owns both sides.
+    """
+    import citytree
+    return citytree.owner(node)
 
 
 def _rim(connector, piece, host, tag):
@@ -136,7 +158,7 @@ def raised_solid(assembly, name, host, rect, material, *, grade,
                        floor_z=grade - rise, clear=host_clear - rise,
                        note=note or f"{name}: a raised block at {rise} units",
                        shade=shade)
-    _rim(connector or assembly, piece, host, name)
+    _rim(connector or _owner(assembly), piece, host, name)
     return piece
 
 
@@ -180,7 +202,7 @@ def basin(assembly, name, host, rect, material, water_material, *, grade,
     rim = _rect_room(assembly, f"{name}_rim", rect, material,
                      floor_z=grade - LOW_STEP, clear=host_clear - LOW_STEP,
                      note=note or f"{name}: the basin rim")
-    _rim(connector or assembly, rim, host, f"{name}_rim")
+    _rim(connector or _owner(assembly), rim, host, f"{name}_rim")
 
     outer, previous = rim, rect
     for tier in range(1, tiers + 1):
@@ -195,7 +217,7 @@ def basin(assembly, name, host, rect, material, water_material, *, grade,
             floor_z=depth, clear=host_clear + step * tier,
             behavior={"depth": WATER_DEPTH} if last else None,
             note=f"{name}: tier {tier}" + (" (water)" if last else ""))
-        _rim(assembly, piece, outer, f"{name}_t{tier}")   # inner rings are ours
+        _rim(_owner(assembly), piece, outer, f"{name}_t{tier}")   # inner rings are ours
         outer, previous = piece, inner
     return {"rim": rim, "well": outer}
 

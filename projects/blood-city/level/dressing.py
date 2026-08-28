@@ -132,18 +132,27 @@ def dress(layout, regions=None) -> dict:
             report["bare"] += 1
             continue
         faces = props.solid_faces(layout, region_id, rect)
-        dressable.append((region_id, region, candidates, faces))
+        dressable.append((region_id, region, candidates, faces,
+                          props.place_id(region)))
 
     quota = max(1, round(props.GRIME_ROOM_SHARE * report.get("rooms", 0)))
-    dressable.sort(key=lambda row: _roll(f"{row[0]}:dress", 1_000_000))
+    # Seeded from the room's PLACE, not from its region id.  A region id is
+    # `"region:" + path()`, so it changes whenever the level program is
+    # reorganised -- and this pass, which both sorts and rolls on it, would
+    # then reshuffle every grime sprite in the city.  A restructure that
+    # moves no geometry has to be provably distinguishable from a redesign,
+    # and it cannot be if the sprite passes are seeded from tree position.
+    # `props.place_id` is the world outline and the floor: invariant under
+    # reparenting, and different the moment the room actually moves.
+    dressable.sort(key=lambda row: _roll(f"{row[4]}:dress", 1_000_000))
     report["bare"] += max(0, len(dressable) - quota)
 
-    for region_id, region, candidates, faces in dressable[:quota]:
+    for region_id, region, candidates, faces, place in dressable[:quota]:
         count = props.GRIME_COUNTS[
-            _roll(f"{region_id}:count", len(props.GRIME_COUNTS))]
+            _roll(f"{place}:count", len(props.GRIME_COUNTS))]
         put = 0
         for index in range(count):
-            seed = f"{region_id}:{index}"
+            seed = f"{place}:{index}"
             tile = candidates[_roll(seed + ":tile", len(candidates))]
             kind = props.kind_of(tile)
             if kind in ("wall_aligned", "bracket"):

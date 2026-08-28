@@ -55,7 +55,15 @@ def _pool_outline(size: int) -> list[tuple[int, int]]:
     ]
 
 
-def pool(city, street_room, name: str, *, x: int, y: int, floor_z: int,
+#: What a pool's floor is before the lamp lights it.  It has to be the same
+#: in every district: LightBomb adds to the base, so a pool inheriting its
+#: street's pavement shade would make one identical lamp read four different
+#: brightnesses across the city.  This is the value all nine had while they
+#: hung off the root, and now it is stated rather than inherited by accident.
+BASE_SHADE = 32
+
+
+def pool(district, street_room, name: str, *, x: int, y: int, floor_z: int,
          clear_height: int, floor_picnum: int, wall_picnum: int,
          ceiling_picnum: int, sky: bool,
          flicker: bool = True, size: int = POOL) -> object:
@@ -72,23 +80,30 @@ def pool(city, street_room, name: str, *, x: int, y: int, floor_z: int,
     street_room.carve([(origin_x - frame.dx + px, origin_y - frame.dy + py)
                        for px, py in outline])
     behavior = dict(FLICKER) if flicker else {}
-    room = city.assembly(
-        f"lightpool_{name}",
-        style=Style(floor_picnum=floor_picnum, wall_picnum=wall_picnum,
-                    ceiling_picnum=ceiling_picnum, parallax_ceiling=sky,
-                    floor_z=floor_z, clear_height=clear_height),
-    ).room(
-        "pool", outline,
+    # A light pool belongs to the street it lights.  Eleven of them used to
+    # sit at the top of the city, one room each, as siblings of the
+    # districts -- a singleton assembly for a patch of brighter paving.
+    # `citytree.sub` puts it inside the street; the district still declares
+    # the portals, because a room may not.
+    import citytree
+    room = citytree.make_room(
+        street_room, f"lightpool_{name}", outline,
         role="detail", faces={f"edge{index}": index
                                for index in range(POOL_SIDES)},
-        frame=Frame(origin_x, origin_y),
+        # Relative to the street it now sits in, not to the city: a frame
+        # is stated in its parent's coordinates.
+        frame=Frame(origin_x - frame.dx, origin_y - frame.dy, -frame.dz),
         intent={"light_pool": name, "generated_surfaces": ["floor"]},
         region_kwargs={"sector_behavior": behavior} if behavior else {},
         note=f"light pool: {name}",
     )
+    room.surfaces(floor_picnum=floor_picnum, wall_picnum=wall_picnum,
+                  ceiling_picnum=ceiling_picnum, parallax_ceiling=sky,
+                  floor_z=floor_z, clear_height=clear_height,
+                  floor_shade=BASE_SHADE)
     for index in range(POOL_SIDES):
-        city.connect(room.face(f"edge{index}"), street_room.face("north"),
-                     connection_id=f"connection:pool_{name}_{index}")
+        district.connect(room.face(f"edge{index}"), street_room.face("north"),
+                         connection_id=f"connection:pool_{name}_{index}")
     return room
 
 

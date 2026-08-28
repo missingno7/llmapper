@@ -5,9 +5,26 @@ actually wrong with it, and what to do next.
 
 ## Where it stands
 
-**182 sectors / 1,210 walls / 297 sprites.** 11/11 conformance rows, 16/16
-L1 contract rows. Wall budget is 7,000, so there is room for roughly five
-more districts' worth of content.
+**215 sectors / 1,378 walls / 339 sprites.** 11/11 conformance rows, 16/16
+L1 contract rows, 3/3 tree properties, 50 rule diagnostics with no errors.
+Wall budget is 7,000, so there is room for roughly four more districts'
+worth of content.
+
+The level program is a **six-deep tree**: city, district, venue, space,
+template, run, fixture. Read it from any distance without loading it all:
+
+```bash
+python projects/blood-city/level/citytree.py stats
+python projects/blood-city/level/citytree.py zoom saloon --depth 2 --cost
+python projects/blood-city/level/citytree.py at 46080,49152
+python projects/blood-city/level/citytree.py find pawn
+python projects/blood-city/level/tree_tests.py
+```
+
+`reports/city-tree.md` is the generated listing. `citytree.py` also carries
+`nest`, which reparents a node while proving its world frame did not move,
+and `join`, which declares a connection on the lowest assembly that owns
+both sides.
 
 ## Update — shared door and lighting semantics
 
@@ -101,7 +118,48 @@ this project's modules would not exist under that rule.
   doorway) is declared in `conformance.MONUMENTS` and set aside before the
   CN 2 block band.
 
+## The invariant that makes restructuring safe
+
+`level/fingerprint.py` reduces a compiled MAP to an **order-independent**
+multiset of sectors, walls and sprites. Reparenting renames every region
+and reorders the compile, so a byte diff cannot tell a restructure from a
+redesign; this can.
+
+```bash
+python projects/blood-city/level/fingerprint.py before.MAP after.MAP
+```
+
+Use it for any change that is meant to move structure and not geometry.
+Every step of the tree overhaul passed it with zero differences, and it
+caught three inheritance faults on the way -- see iteration 25 in
+`refinement-log.md`.
+
+## Composing, not placing
+
+`templates.py` is the layer above `fixtures.py`. A template takes the space
+it is handed and returns a node whose children are the templates it placed:
+
+    retail_row -> shop -> run -> fixture -> goods
+    bar        -> counter run + tables
+
+`retail_row` derives its count from the frontage at E4M9's measured rhythm
+(2,560-unit units opening on 1,536), so the arcade responds to its site
+instead of carrying a 3x2 grid of absolute rectangles. Range-tested 1 to 13
+shops. When adding a venue, reach for a template first and add one if
+nothing fits -- the same rule as `bloodmap`: grep for the noun.
+
 ## What is planned next, ordered by measured gap
+
+**0. Slopes, still: 3 sectors of 215 against a campaign 21.7%.** Now the
+cheapest large win, and the tree makes it a per-node change: an assembly can
+state a ceiling slope its rooms inherit. Candidates unchanged -- the arcade
+concourse (already pitched), the sewer legs as vaults, roof pitches once
+masses have tops.
+
+**0b. Shutter some fronts.** `fixtures.close_front` exists and is still
+unused, so the city shows exactly as many units as it furnishes. Mine the
+open-to-closed ratio from DWE3M1 and DWE3M10 first; the constructor is one
+line once the number is known.
 
 **1. Finish adopting the grammar.** `bloodmap.aperture` is now adopted for all
 thirteen Z-doors (`frame_z_doors` plus `z_motion_door`). Next: `bloodmap.keys`

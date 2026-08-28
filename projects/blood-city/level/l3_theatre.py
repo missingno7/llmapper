@@ -28,6 +28,7 @@ from bloodmap.slope import SlopeSpec
 
 import fixtures
 import setpieces
+import templates
 from materials import FACADES, INTERIORS, MASONRY
 from resolution import GRADE, PU, STREET_SKY
 
@@ -115,6 +116,50 @@ ROOMS = [
      "the pawn shop, open on the avenue"),
 ]
 
+#: A district's own `floor_shade` is the STREET's: Theatre Row states 30 for
+#: its pavement.  While the venues hung off the root they inherited the
+#: city's 32 instead, by accident of where they sat.  Nesting them in the
+#: district would have handed all 42 interior floors the pavement's shade,
+#: which is a design change wearing a restructure's clothes -- so the value
+#: they had is stated here, on the node that means it.
+INTERIOR_FLOOR_SHADE = 32
+
+#: **Which venue a room belongs to.**  This used to be the name prefix and
+#: nothing else: `saloon_main` and `aldermack_dressing` were siblings in one
+#: 42-room assembly called `theatre_venues`, told apart by string matching.
+#: That is the failure mode this project documents everywhere else -- an
+#: authored label standing in for structure -- so the containment is stated
+#: once here and the tree carries it from then on.  The flat name survives
+#: only as the lookup key the later passes index by.
+MEMBERSHIP = {
+    "saloon_main": ("saloon", "main"),
+    "saloon_back": ("saloon", "back"),
+    "saloon_passage": ("saloon", "passage"),
+    "parlor_gallery": ("parlor", "gallery"),
+    "parlor_range": ("parlor", "range"),
+    "parlor_passage": ("parlor", "passage"),
+    "aldermack_auditorium": ("aldermack", "auditorium"),
+    "aldermack_backstage": ("aldermack", "backstage"),
+    "aldermack_dressing": ("aldermack", "dressing"),
+    "aldermack_foyer": ("aldermack", "foyer"),
+    "aldermack_lobby": ("aldermack", "lobby"),
+    "back_passage_west": ("back_of_house", "west"),
+    "back_passage_east": ("back_of_house", "east"),
+    "pawn_shop": ("pawn_shop", "shop"),
+}
+
+#: (material key, what it is).  A venue assembly states its own palette, so
+#: a room that keeps it does not have to repeat it and a reader can see
+#: where a value came from.
+VENUES = {
+    "saloon": ("saloon", "the saloon, on Theatre Row"),
+    "parlor": ("parlor", "the shooting parlor, behind a one-bay mouth"),
+    "aldermack": ("theatre", "the Aldermack: the district's landmark"),
+    "pawn_shop": ("shop", "the pawn shop, open on the avenue"),
+    "back_of_house": ("service", "the back-of-house circuit joining the three"),
+}
+
+
 #: A piece of furniture is made of whatever its room is made of.
 ROOM_MATERIAL = {row[0]: row[5] for row in ROOMS}
 
@@ -186,11 +231,10 @@ WINDOWS = [
 #: proscenium arch, twenty thousand units of it, facing the audience.  With
 #: the house's own ceiling carried over the stage the auditorium was a hall
 #: with a step in it.
+#: The saloon's three rows -- a counter and two card tables -- are gone from
+#: this table: they are what every bar has, so they are `templates.bar` with
+#: a length rather than three literal rects.
 FURNITURE = [
-    ("saloon_main", 5120, 9216, 8192, 10240, COUNTER_RISE, None,
-     "the bar counter"),
-    ("saloon_main", 5120, 11264, 6144, 12288, TABLE_RISE, None, "a card table"),
-    ("saloon_main", 7168, 11264, 8192, 12288, TABLE_RISE, None, "a card table"),
     ("aldermack_auditorium", 20480, 4608, 25600, 6656, STAGE_RISE, STAGE_CLEAR,
      "the stage, under its proscenium"),
     # Three raked rows across the house, each an island in the floor so no
@@ -212,22 +256,56 @@ FURNITURE = [
 ]
 
 
-def build(city, theatre_st):
-    """Everything on the Aldermack superblock.  Returns its rooms."""
+def build(district, theatre_st):
+    """Everything on the Aldermack superblock, as venues under the district.
+
+    `district` is Theatre Row's own assembly, not the city: a venue standing
+    on Theatre Row is IN Theatre Row, and used to be its sibling.
+    """
+    import citytree
     facade = FACADES["theatre_row"]
-    venues = city.assembly(
-        "theatre_venues",
-        style=Style(**INTERIORS["common"].style_kwargs(
-            floor_z=GRADE, clear_height=ROOM_H)),
-        note="Theatre Row's venues, in the superblock's void",
-    )
+    city = district
+    while city.parent is not None:
+        city = city.parent
+    venue_nodes = {}
+    for venue_id, (material_key, note) in VENUES.items():
+        venue_nodes[venue_id] = district.assembly(
+            venue_id,
+            style=Style(**INTERIORS[material_key].style_kwargs(
+                floor_z=GRADE, clear_height=ROOM_H,
+                floor_shade=INTERIOR_FLOOR_SHADE)),
+            note=note,
+        )
     rooms: dict = {}
+
+    def venue_for(name):
+        """The venue this room belongs to, and its name inside that venue."""
+        if name in MEMBERSHIP:
+            return MEMBERSHIP[name]
+        for suffix in ("_door", "_porch"):
+            if name.endswith(suffix):
+                stem = name[: -len(suffix)]
+                served = next((row[1] for row in DOORS if row[0] == stem), None)
+                if served is None:
+                    continue
+                venue_id = MEMBERSHIP[served][0]
+                # A venue's own front door is just its door; the Aldermack
+                # has two fronts, so the second keeps the name that tells
+                # them apart.
+                return venue_id, (suffix[1:] if stem == venue_id else name)
+        host = next((row[1] for row in WINDOWS if row[0] == name), None)
+        if host is not None:
+            venue_id = MEMBERSHIP[host][0]
+            local = name[len(venue_id) + 1:] if name.startswith(venue_id + "_") else name
+            return venue_id, local
+        raise KeyError(f"{name} belongs to no venue; add it to MEMBERSHIP")
 
     def make(name, x0, y0, x1, y1, material_key, note, *, role="interior",
              floor_z=GRADE, clear=ROOM_H, rk=None):
         material = INTERIORS[material_key]
-        made = venues.room(
-            name, [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)],
+        venue_id, local = venue_for(name)
+        made = venue_nodes[venue_id].room(
+            local, [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)],
             role=role, faces=dict(COMPASS), frame=Frame(int(x0), int(y0)),
             region_kwargs={**material.region_kwargs(), **(rk or {})},
             note=note)
@@ -245,9 +323,11 @@ def build(city, theatre_st):
                 hinge=((x0, y0), (x1, y0)), rise_z=-AUDITORIUM_PITCH)}
         make(name, x0, y0, x1, y1, key, note,
              clear=ROOM_HEIGHT.get(name, ROOM_H), rk=rk)
+    # A join is declared on the node that owns BOTH ends: inside a venue
+    # that is the venue, between two venues it is the district.
     for small, sf, big, bf in JOINS:
-        venues.connect(rooms[small].face(sf), rooms[big].face(bf),
-                       connection_id=f"connection:venue_{small}_{big}")
+        citytree.join(rooms[small], rooms[big], at_a=sf, at_b=bf,
+                      connection_id=f"connection:venue_{small}_{big}")
 
     # Street doors: room -> door -> porch -> street, the reveal chain.
     # Each takes a channel so a lever beside it can open it; it keeps
@@ -281,10 +361,10 @@ def build(city, theatre_st):
         door.surfaces(wall_picnum=facade.opening, floor_z=GRADE, clear_height=0)
         porch.surfaces(wall_picnum=facade.opening, ceiling_picnum=facade.opening,
                        floor_z=GRADE, clear_height=DOOR_H)
-        venues.connect(door.face(inner), rooms[room_name].face(face),
-                       connection_id=f"connection:{name}_door_in")
-        venues.connect(porch.face(inner), door.face(face),
-                       connection_id=f"connection:{name}_porch_door")
+        citytree.join(door, rooms[room_name], at_a=inner, at_b=face,
+                      connection_id=f"connection:{name}_door_in")
+        citytree.join(porch, door, at_a=inner, at_b=face,
+                      connection_id=f"connection:{name}_porch_door")
         city.connect(porch.face(face), theatre_st.face("north"),
                      connection_id=f"connection:{name}_street")
         levers.append((f"lever:{name}", theatre_st.region_id,
@@ -296,8 +376,8 @@ def build(city, theatre_st):
                    f"the {name.replace('_', ' ')}: goods behind glass",
                    role="detail", floor_z=GRADE - plinth,
                    clear=ROOM_HEIGHT.get(room_name, ROOM_H) - plinth)
-        venues.connect(box.face("south"), rooms[room_name].face("north"),
-                       connection_id=f"connection:{name}_shop")
+        citytree.join(box, rooms[room_name], at_a="south", at_b="north",
+                      connection_id=f"connection:{name}_shop")
         city.connect(box.face("north"), theatre_st.face("north"),
                      connection_id=f"connection:{name}_street")
 
@@ -308,7 +388,7 @@ def build(city, theatre_st):
         host = rooms[room_name]
         host_h = ROOM_HEIGHT.get(room_name, ROOM_H)
         piece = setpieces.raised_solid(
-            venues, f"furniture_{index}", host, (x0, y0, x1, y1),
+            host, f"furniture_{index}", host, (x0, y0, x1, y1),
             INTERIORS[ROOM_MATERIAL[room_name]], grade=GRADE, rise=rise,
             host_clear=host_h, note=note)
         if over is not None:
@@ -317,17 +397,14 @@ def build(city, theatre_st):
     # dimension that is pinned in the campaign family stays pinned here;
     # only the run length is ours.  This is the first venue to compose
     # from `fixtures.py` instead of from literal rectangles.
-    shop = rooms["pawn_shop"]
-    fixtures.run_along(
-        venues, "pawn_counter", shop, axis="x",
-        start=29184, end=31744, across0=4864, across1=5888,
-        family="counter", material=INTERIORS["shop"],
-        grade=GRADE, host_clear=ROOM_HEIGHT["pawn_shop"])
-    for index, px in enumerate((28928, 31488)):
-        fixtures.place(venues, f"pawn_pedestal_{index}", shop,
-                       (px, 3968, px + 512, 4480), INTERIORS["shop"],
-                       family="pedestal", grade=GRADE,
-                       host_clear=ROOM_HEIGHT["pawn_shop"])
+    # Both venues are furnished by a template that reads the room it is
+    # handed.  The pawn shop was a run plus two `place` calls at four
+    # literal coordinates; the saloon was three rows of `FURNITURE`.  They
+    # are a shop and a bar, and now they say so.
+    templates.shop(rooms["pawn_shop"], material=INTERIORS["shop"],
+                   grade=GRADE, host_clear=ROOM_HEIGHT["pawn_shop"])
+    templates.bar(rooms["saloon_main"], material=INTERIORS["saloon"],
+                  grade=GRADE, host_clear=ROOM_H)
 
     return rooms, levers
 
@@ -368,8 +445,15 @@ def populate(layout, rooms, attested, flame_fields, flame_stand) -> int:
         spec = attested(type_id)
         if spec is None or name not in rooms:
             continue
-        layout.place_on_floor(f"theatre:{name}_{type_id}", rooms[name].region_id,
-                              local=local, **spec["fields"])
+        # Where the furniture is now depends on how big the room is, so a
+        # hand-chosen "clear of the counter" local has to be checked rather
+        # than trusted.
+        region_id = rooms[name].region_id
+        free = props.free_local(layout.regions[region_id], local)
+        if free is None:
+            continue
+        layout.place_on_floor(f"theatre:{name}_{type_id}", region_id,
+                              local=free, **spec["fields"])
         placed += 1
     for index, (name, face, t) in enumerate(LIT):
         if name not in rooms:

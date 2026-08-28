@@ -60,29 +60,42 @@ WATER = 1120
 WATER_DEPTH = 7
 
 
-def _island(city, street_room, name, *, x0, y0, x1, y1, floor_z, style,
-            note, region_kwargs=None):
+def _island(place, district, street_room, name, *, x0, y0, x1, y1, floor_z,
+            style, note, region_kwargs=None):
     """A sector cut into the street floor, joined on all four faces.
 
     Every coincident edge has to be a declared portal, so the four faces
     are connected explicitly -- the lesson that recurs in this project.
+
+    `place` is what the island is part of -- the plaza, the quay -- and
+    `district` is the node that declares its portals, because the street is
+    the other side of every one of them.  Each of these used to be its own
+    single-room assembly at the top of the city: `market_stall_0` holding
+    `stall_0`, three times over.
     """
     frame = street_room.world_frame()
     street_room.carve([(x0 - frame.dx, y0 - frame.dy), (x1 - frame.dx, y0 - frame.dy),
                        (x1 - frame.dx, y1 - frame.dy), (x0 - frame.dx, y1 - frame.dy)])
-    room = city.assembly(f"market_{name}", style=style).room(
+    room = place.room(
         name, [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)],
         role="detail", faces=dict(COMPASS), frame=Frame(int(x0), int(y0)),
         region_kwargs=region_kwargs or {}, note=note)
+    room.style = style
     for face in ("north", "east", "south", "west"):
-        city.connect(room.face(face), street_room.face("north"),
-                     connection_id=f"connection:market_{name}_{face}")
+        district.connect(room.face(face), street_room.face("north"),
+                         connection_id=f"connection:market_{name}_{face}")
     return room
 
 
-def dress(city, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
+def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     """Furnish Market Slip's public space.  Returns what it built."""
+    city = district
     facade = FACADES["market_slip"]
+    # The two public places of the district, and what stands in each.
+    plaza = district.assembly(
+        "plaza", note="the market plaza: its fountain and its stalls")
+    quay = district.assembly(
+        "quay", note="the river gate: boardwalk, water, a moored lighter")
     px0, py0, px1, py1 = (int(v * PU) for v in plaza_rect_pu)
     # `street_joined` are the pieces within one max step of the street,
     # so they enter its walkable component and must be declared to the
@@ -98,8 +111,8 @@ def dress(city, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     # water, standing inside a raised rim.  The hand-built version was one
     # sunk square -- a hole in the plaza, not a fountain.
     import setpieces
-    fountain_assembly = city.assembly(
-        "market_fountain",
+    fountain_assembly = plaza.assembly(
+        "fountain",
         style=Style(floor_picnum=MASONRY.floor, wall_picnum=MASONRY.wall,
                     ceiling_picnum=facade.ceiling, parallax_ceiling=True,
                     floor_z=GRADE, clear_height=STREET_SKY, floor_shade=24),
@@ -124,7 +137,7 @@ def dress(city, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     for index in range(3):
         sy = py0 + int((index * 3 + 1.5) * PU)
         stall = _island(
-            city, market_st, f"stall_{index}",
+            plaza, district, market_st, f"stall_{index}",
             x0=px0 + PU, y0=sy, x1=px0 + PU + stall_w, y1=sy + stall_d,
             floor_z=GRADE - STALL_RISE,
             style=Style(floor_picnum=BOARDWALK, wall_picnum=MASONRY.wall,
@@ -140,7 +153,7 @@ def dress(city, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     board_y0 = quay_y + int(3.5 * PU)
     board_y1 = quay_y + int(5.5 * PU)
     boards = _island(
-        city, market_st, "boardwalk",
+        quay, district, market_st, "boardwalk",
         x0=int(4 * PU), y0=board_y0, x1=int(52 * PU), y1=board_y1,
         floor_z=GRADE,
         style=Style(floor_picnum=BOARDWALK, wall_picnum=facade.wall,
@@ -159,19 +172,17 @@ def dress(city, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     # Deep enough that the far bank falls into the engine's own fog rather
     # than reading as the wall of a tank (visibility 800, E3M1's own).
     river_depth = 16 * PU
-    river = city.assembly(
-        "river",
-        style=Style(floor_picnum=WATER, wall_picnum=MASONRY.wall,
-                    ceiling_picnum=facade.ceiling, parallax_ceiling=True,
-                    floor_z=GRADE + SLIP_DROP,
-                    clear_height=STREET_SKY + SLIP_DROP, floor_shade=26),
-    ).room(
-        "water", [(0, 0), (river_x1 - river_x0, 0),
+    river = quay.room(
+        "river", [(0, 0), (river_x1 - river_x0, 0),
                   (river_x1 - river_x0, river_depth), (0, river_depth)],
         role="exterior", faces=dict(COMPASS),
         frame=Frame(river_x0, river_y0),
         region_kwargs={"sector_behavior": {"depth": WATER_DEPTH}},
         note="the river beyond the quay (promenade-patterns)")
+    river.style = Style(floor_picnum=WATER, wall_picnum=MASONRY.wall,
+                        ceiling_picnum=facade.ceiling, parallax_ceiling=True,
+                        floor_z=GRADE + SLIP_DROP,
+                        clear_height=STREET_SKY + SLIP_DROP, floor_shade=26)
     city.connect(river.face("north"), market_st.face("south"),
                  connection_id="connection:quay_river")
     built["rooms"].append(river.region_id)
@@ -185,16 +196,14 @@ def dress(city, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
                  (boat_x0 - river_x0 + boat_w, boat_y0 - river_y0),
                  (boat_x0 - river_x0 + boat_w, boat_y0 - river_y0 + boat_d),
                  (boat_x0 - river_x0, boat_y0 - river_y0 + boat_d)])
-    boat = city.assembly(
-        "boat",
-        style=Style(floor_picnum=BOARDWALK, wall_picnum=BOARDWALK,
-                    ceiling_picnum=facade.ceiling, parallax_ceiling=True,
-                    floor_z=GRADE - 1024, clear_height=STREET_SKY - 1024,
-                    floor_shade=28),
-    ).room(
-        "deck", [(0, 0), (boat_w, 0), (boat_w, boat_d), (0, boat_d)],
+    boat = quay.room(
+        "boat", [(0, 0), (boat_w, 0), (boat_w, boat_d), (0, boat_d)],
         role="detail", faces=dict(COMPASS), frame=Frame(boat_x0, boat_y0),
         note="a moored lighter: deck boards over the water")
+    boat.style = Style(floor_picnum=BOARDWALK, wall_picnum=BOARDWALK,
+                       ceiling_picnum=facade.ceiling, parallax_ceiling=True,
+                       floor_z=GRADE - 1024, clear_height=STREET_SKY - 1024,
+                       floor_shade=28)
     for face in ("north", "east", "south", "west"):
         city.connect(boat.face(face), river.face("north"),
                      connection_id=f"connection:boat_{face}")
@@ -205,7 +214,7 @@ def dress(city, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     # The block is a hole in the district's street region, so its inside is
     # void: interiors are placed in it directly, no carving needed.
     shop, common = INTERIORS["shop"], INTERIORS["common"]
-    hall = city.assembly(
+    hall = district.assembly(
         "market_hall",
         style=Style(**common.style_kwargs(floor_z=GRADE,
                                           clear_height=ROOM_HEIGHT,

@@ -34,6 +34,8 @@ support floor.  That is what a prop MEANS:
 
 from __future__ import annotations
 
+import hashlib
+
 import json
 import math
 import pathlib
@@ -193,6 +195,46 @@ def room_rect(room):
     return (min(xs), min(ys), max(xs), max(ys))
 
 
+def free_local(region, local, *, tries=25):
+    """A local this region really contains, starting from the one asked for.
+
+    A room that has been furnished is a room with holes in it, and a table
+    of hand-chosen locals written before the furniture arrived will land on
+    it.  Rather than move the numbers every time a template changes, ask.
+    Returns None if nothing in the room is free.
+    """
+    from dressing import _free_point
+    if _free_point(region, *local) is not None:
+        return tuple(local)
+    u0, v0 = float(local[0]), float(local[1])
+    for step in range(1, tries):
+        radius = 0.06 * step
+        for du, dv in ((0, radius), (0, -radius), (radius, 0), (-radius, 0),
+                       (radius, radius), (-radius, -radius),
+                       (radius, -radius), (-radius, radius)):
+            u, v = min(0.92, max(0.08, u0 + du)), min(0.92, max(0.08, v0 + dv))
+            if _free_point(region, u, v) is not None:
+                return (u, v)
+    return None
+
+
+def place_id(room) -> str:
+    """A room's identity as a PLACE rather than as a label.
+
+    `Room.region_id` is `"region:" + path()`, so it changes the moment a
+    room moves in the tree -- and any pass seeded from it reshuffles when
+    the program is reorganised, which makes a restructure impossible to
+    tell apart from a redesign.  A place is where it is: its world outline
+    and its floor.  Move the same room to a different parent and this is
+    unchanged; move the room itself and it changes, which is correct.
+    """
+    outline = (room.world_outline() if hasattr(room, "world_outline")
+               else list(getattr(room, "outer", ())))
+    floor = int(getattr(room, "floor_z", 0) or 0)
+    blob = repr((sorted((int(x), int(y)) for x, y in outline), floor))
+    return hashlib.sha256(blob.encode("utf-8")).hexdigest()[:16]
+
+
 def face_segment(rect, face: str, *, inset: int = 256):
     """The wall segment of one face of a rectangular room.
 
@@ -308,6 +350,19 @@ def solid_faces(layout, region_id: str, rect) -> list[str]:
     choose a wall is to ask, rather than to guess a face and hope.
     """
     x0, y0, x1, y1 = (int(v) for v in rect)
+    # "A rectangular room's four faces" is a precondition, and it was never
+    # checked.  The light pools are diamonds: their four edges are all
+    # portals to the street, but none of them lies on a bounding-box line,
+    # so every face read as solid and a prop hung on one landed outside the
+    # sector -- which the compiler catches, several hundred sprites later,
+    # as "sprite position is outside its sector".  A room that is not an
+    # axis-aligned rectangle offers no compass face to hang anything on.
+    region = getattr(layout, "regions", {}).get(region_id)
+    if region is not None:
+        outer = [(int(px), int(py)) for px, py in region.outer]
+        if len(outer) != 4 or {(px, py) for px, py in outer} != {
+                (x0, y0), (x1, y0), (x1, y1), (x0, y1)}:
+            return []
     lines = {"north": ("y", y0), "south": ("y", y1),
              "west": ("x", x0), "east": ("x", x1)}
     used = set()

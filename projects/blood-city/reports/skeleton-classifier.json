@@ -43,9 +43,9 @@
       "map": "SKELETON",
       "game": "blood",
       "budget": {
-        "sectors": 207,
-        "walls": 1314,
-        "sprites": 337
+        "sectors": 215,
+        "walls": 1378,
+        "sprites": 339
       },
       "street": {
         "sectors": 24,
@@ -84,7 +84,7 @@
             "sectors": 1,
             "area": 7602176,
             "sample": [
-              160
+              95
             ]
           }
         ],
@@ -255,8 +255,8 @@
           {
             "wall": 6,
             "street_sector": 0,
-            "into_sector": 109,
-            "interior_component": 6,
+            "into_sector": 13,
+            "interior_component": 0,
             "width": 1024,
             "gap_z": 31744,
             "via_door_sector": false,
@@ -265,8 +265,8 @@
           {
             "wall": 8,
             "street_sector": 0,
-            "into_sector": 111,
-            "interior_component": 6,
+            "into_sector": 22,
+            "interior_component": 0,
             "width": 1024,
             "gap_z": 31744,
             "via_door_sector": false,
@@ -275,8 +275,8 @@
           {
             "wall": 13,
             "street_sector": 0,
-            "into_sector": 113,
-            "interior_component": 6,
+            "into_sector": 34,
+            "interior_component": 0,
             "width": 1024,
             "gap_z": 31744,
             "via_door_sector": false,
@@ -285,8 +285,8 @@
           {
             "wall": 17,
             "street_sector": 0,
-            "into_sector": 115,
-            "interior_component": 6,
+            "into_sector": 36,
+            "interior_component": 0,
             "width": 1024,
             "gap_z": 31744,
             "via_door_sector": false,
@@ -295,8 +295,8 @@
           {
             "wall": 19,
             "street_sector": 0,
-            "into_sector": 117,
-            "interior_component": 7,
+            "into_sector": 44,
+            "interior_component": 1,
             "width": 1024,
             "gap_z": 31744,
             "via_door_sector": false,
@@ -305,77 +305,67 @@
           {
             "wall": 23,
             "street_sector": 0,
-            "into_sector": 118,
-            "interior_component": 7,
+            "into_sector": 45,
+            "interior_component": 1,
             "width": 2048,
             "gap_z": 22528,
             "via_door_sector": false,
             "block_label": 2
           },
           {
-            "wall": 69,
-            "street_sector": 1,
-            "into_sector": 61,
-            "interior_component": 4,
-            "width": 2048,
-            "gap_z": 31744,
-            "via_door_sector": false,
-            "block_label": 7
-          },
-          {
-            "wall": 94,
-            "street_sector": 2,
-            "into_sector": 161,
-            "interior_component": 11,
+            "wall": 538,
+            "street_sector": 72,
+            "into_sector": 96,
+            "interior_component": 6,
             "width": 2048,
             "gap_z": 16384,
             "via_door_sector": false,
             "block_label": 3
           },
           {
-            "wall": 96,
-            "street_sector": 2,
-            "into_sector": 29,
-            "interior_component": 1,
+            "wall": 540,
+            "street_sector": 72,
+            "into_sector": 76,
+            "interior_component": 3,
             "width": 2048,
             "gap_z": 24576,
             "via_door_sector": false,
             "block_label": 3
           },
           {
-            "wall": 98,
-            "street_sector": 2,
-            "into_sector": 159,
-            "interior_component": 10,
+            "wall": 542,
+            "street_sector": 72,
+            "into_sector": 94,
+            "interior_component": 5,
             "width": 1024,
             "gap_z": 16384,
             "via_door_sector": false,
             "block_label": 3
           },
           {
-            "wall": 100,
-            "street_sector": 2,
-            "into_sector": 157,
-            "interior_component": 10,
+            "wall": 544,
+            "street_sector": 72,
+            "into_sector": 92,
+            "interior_component": 5,
             "width": 1024,
             "gap_z": 16384,
             "via_door_sector": false,
             "block_label": 3
           },
           {
-            "wall": 104,
-            "street_sector": 2,
-            "into_sector": 37,
-            "interior_component": 3,
+            "wall": 548,
+            "street_sector": 72,
+            "into_sector": 82,
+            "interior_component": 4,
             "width": 1024,
             "gap_z": 31744,
             "via_door_sector": false,
             "block_label": 3
           },
           {
-            "wall": 145,
-            "street_sector": 3,
-            "into_sector": 150,
+            "wall": 722,
+            "street_sector": 97,
+            "into_sector": 142,
             "interior_component": 9,
             "width": 2048,
             "gap_z": 31744,
@@ -383,20 +373,30 @@
             "block_label": 8
           },
           {
-            "wall": 159,
-            "street_sector": 3,
-            "into_sector": 88,
-            "interior_component": 5,
+            "wall": 736,
+            "street_sector": 97,
+            "into_sector": 126,
+            "interior_component": 7,
             "width": 1024,
             "gap_z": 31744,
             "via_door_sector": false,
             "block_label": 9
           },
           {
-            "wall": 210,
-            "street_sector": 4,
-            "into_sector": 63,
-            "interior_component": 4,
+            "wall": 362,
+            "street_sector": 48,
+            "into_sector": 62,
+            "interior_component": 2,
+            "width": 2048,
+            "gap_z": 31744,
+            "via_door_sector": false,
+            "block_label": 7
+          },
+          {
+            "wall": 397,
+            "street_sector": 51,
+            "into_sector": 64,
+            "interior_component": 2,
             "width": 768,
             "gap_z": 31744,
             "via_door_sector": false,
@@ -405,57 +405,57 @@
         ],
         "interior_records": [
           {
+            "interior_component": 0,
+            "sectors": 44,
+            "area": 177209344,
+            "substantial": true
+          },
+          {
             "interior_component": 1,
-            "sectors": 15,
-            "area": 32505856,
+            "sectors": 11,
+            "area": 10747904,
             "substantial": true
           },
           {
-            "interior_component": 3,
-            "sectors": 15,
-            "area": 21233664,
-            "substantial": true
-          },
-          {
-            "interior_component": 4,
+            "interior_component": 2,
             "sectors": 23,
             "area": 41156608,
             "substantial": true
           },
           {
+            "interior_component": 3,
+            "sectors": 15,
+            "area": 32505856,
+            "substantial": true
+          },
+          {
+            "interior_component": 4,
+            "sectors": 15,
+            "area": 21233664,
+            "substantial": true
+          },
+          {
             "interior_component": 5,
-            "sectors": 27,
-            "area": 76283904,
+            "sectors": 13,
+            "area": 25427968,
             "substantial": true
           },
           {
             "interior_component": 6,
-            "sectors": 41,
-            "area": 177209344,
+            "sectors": 1,
+            "area": 4194304,
             "substantial": true
           },
           {
             "interior_component": 7,
-            "sectors": 11,
-            "area": 10747904,
+            "sectors": 32,
+            "area": 77332480,
             "substantial": true
           },
           {
             "interior_component": 9,
             "sectors": 9,
             "area": 36175872,
-            "substantial": true
-          },
-          {
-            "interior_component": 10,
-            "sectors": 13,
-            "area": 25427968,
-            "substantial": true
-          },
-          {
-            "interior_component": 11,
-            "sectors": 1,
-            "area": 4194304,
             "substantial": true
           }
         ]
@@ -470,7 +470,7 @@
         "red_wall_openings_per_1024": 0.019,
         "wall_sprites_in_street": 14,
         "wall_sprites_per_1024": 0.019,
-        "face_sprites_in_street": 29
+        "face_sprites_in_street": 32
       },
       "verticality": {
         "skyline": {
@@ -496,24 +496,24 @@
             "paired": true,
             "congruent": true,
             "overlaps_in_plan": false,
-            "upper_sector": 41,
-            "lower_sector": 42
+            "upper_sector": 86,
+            "lower_sector": 152
           },
           {
             "family": "stack",
             "paired": true,
             "congruent": true,
             "overlaps_in_plan": false,
-            "upper_sector": 33,
-            "lower_sector": 34
+            "upper_sector": 81,
+            "lower_sector": 150
           },
           {
             "family": "stack",
             "paired": true,
             "congruent": true,
             "overlaps_in_plan": false,
-            "upper_sector": 35,
-            "lower_sector": 36
+            "upper_sector": 79,
+            "lower_sector": 151
           }
         ]
       },
@@ -522,9 +522,9 @@
           "zone": 0,
           "zone_floor_picnum": 352,
           "street_sectors": 16,
-          "sectors": 173,
-          "walls": 1130,
-          "sprites": 250
+          "sectors": 181,
+          "walls": 1194,
+          "sprites": 245
         },
         {
           "zone": 1,
@@ -588,14 +588,14 @@
           "street_sectors": 1,
           "sectors": 1,
           "walls": 4,
-          "sprites": 1
+          "sprites": 2
         },
         {
           "zone": null,
           "note": "not reachable from any street",
           "sectors": 26,
           "walls": 144,
-          "sprites": 86
+          "sprites": 92
         }
       ],
       "mechanisms": {
@@ -727,9 +727,9 @@
     },
     "budgets": {
       "SKELETON": {
-        "sectors": 207,
-        "walls": 1314,
-        "sprites": 337
+        "sectors": 215,
+        "walls": 1378,
+        "sprites": 339
       }
     }
   }

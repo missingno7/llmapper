@@ -319,3 +319,62 @@ Wish signs. DWE3M10 returns `LIQUO`, `LOERS`, `WTID`, `GML` -- letters are
 being dropped or split across groups, most likely because signs of more
 than one line share an angle and are grouped by exact z. The inverse is
 this module's own acceptance test, so it is worth knowing it fails here.
+
+
+## #13 — `Assembly.add` will not let a room own anything
+
+`levelprog.Assembly.room()` and `.assembly()` both attach to an assembly,
+and `Assembly.add` raises on anything else. A `Room` already has
+`.children`, and `Node.rooms()` already recurses through whatever it finds
+there, so the tree supports a room owning nodes; only the constructors
+refuse to make one.
+
+That refusal is what kept every fixture in this city beside its host
+instead of in it: a counter belongs to the bar it stands in, and "what is
+in this bar" should be answerable by walking `children`.
+`projects/blood-city/level/citytree.py` works around it with `make_room`
+and `sub`, which attach directly.
+
+What would close it: `Node.add`, with `Room.room()` and `Room.assembly()`
+alongside the assembly ones. Nothing else has to change -- `rooms()`,
+`world_frame()` and `style_chain()` already walk arbitrary depth.
+
+## #14 — `all_connections` stops at the first room
+
+`LevelProgram.all_connections` recurses only into children that are
+`Assembly`:
+
+    for child in self.children:
+        if isinstance(child, Assembly):
+            result.extend(child.all_connections())
+
+So a connection declared on an assembly that sits under a room is
+**dropped in silence**, and the compiler reports the consequence as an
+unpaired portal somewhere else. With #13 in place this is a live trap
+rather than a theoretical one: the natural thing to write, once a room can
+own a run, is to let the run join its own modules.
+
+`citytree.sub` currently defends against it by replacing `connect` on any
+assembly it puts under a room with one that raises and names the fix, and
+`citytree.join` picks the lowest common assembly ancestor for the author.
+Both are workarounds for one missing `isinstance` branch.
+
+## #15 — `aperture.audit` counts seams between two identical rooms
+
+`audit` flags any two-sided wall it considers an aperture whose leaf is
+taller than `DOOR_MAX` (2.5 humans), asking for the leaf to be named. Of
+Gravesend's 37 findings, **11 are seams**: two sky-ceilinged street regions
+meeting along a shared edge, or a light pool's rim inside the street it
+lights. Both sides carry the same facade and the same ceiling, and there is
+no lintel, because nothing was pierced -- the regions simply meet.
+
+Naming such a leaf `full_height` is a *declaration*, and `audit` reads a
+built map, so there is nothing in the map that could ever satisfy it. The
+finding is therefore permanent by construction, and eleven permanent
+findings hide the ones that are real: the other 26 were lintels not
+continuing their facade, and every one of those was fixable and is now
+fixed.
+
+Suggested predicate (`projects/blood-city/level/apertures.py::seam` is the
+working version): no lintel, and the leaf is at least as tall as the
+facade on both sides -- that is a shared edge, not an opening.

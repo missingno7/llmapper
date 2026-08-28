@@ -112,7 +112,19 @@ PORTHOLE_HEIGHT = 3.38          # player heights, DWE3M10's own median
 
 
 def signature(layout, placement_id: str, region_id: str, local=(0.5, 0.5)):
-    """One porthole, at the height and shade DWE3M10 gives all 125 of its."""
+    """One porthole, at the height and shade DWE3M10 gives all 125 of its.
+
+    It hangs at 3.38 player heights, well over anything standing on the
+    floor -- but a sprite is still assigned to a sector by its XY, so a
+    porthole over the middle of a furnished room is a porthole over a hole
+    in that room.  Ask where the floor is before hanging it.
+    """
+    import props
+    region = layout.regions.get(region_id)
+    if region is not None:
+        local = props.free_local(region, local)
+        if local is None:
+            return None
     return layout.place_on_floor(
         placement_id, region_id, local=local,
         height_player_heights=PORTHOLE_HEIGHT, **PORTHOLE_FIELDS)
@@ -141,20 +153,25 @@ def cost(family: str, count: int) -> dict:
             "source": fam.source}
 
 
-def place(assembly, name, host, rect, material, *, family: str, grade: int,
-          host_clear: int, connector=None):
+def place(name, host, rect, material, *, family: str, grade: int,
+          host_clear: int, connector=None, into=None):
     """One fixture of a family: length from `rect`, everything else pinned.
 
     The rise, the tile and the depth are the family's, not the caller's --
     that is what makes eight of these read as one thing repeated rather
     than eight unrelated blocks.
+
+    The piece lands **in** its host, not beside it: `host.children` is how
+    "what is in this bar" gets an answer.  `into` overrides the parent for
+    a fixture that belongs to a run rather than straight to the room.
     """
     fam = FAMILIES[family]
     x0, y0, x1, y1 = (int(v) for v in rect)
     if x1 <= x0 or y1 <= y0:
         raise FixtureError(f"{name}: {rect} has no extent")
     piece = setpieces.raised_solid(
-        assembly, name, host, (x0, y0, x1, y1), material,
+        into if into is not None else host,
+        name, host, (x0, y0, x1, y1), material,
         grade=grade, rise=fam.rise, host_clear=host_clear,
         connector=connector,
         note=f"{family} ({fam.source})")
@@ -167,21 +184,28 @@ def place(assembly, name, host, rect, material, *, family: str, grade: int,
     return piece
 
 
-def run_along(assembly, name, host, *, axis: str, start: int, end: int,
+def run_along(name, host, *, axis: str, start: int, end: int,
               across0: int, across1: int, family: str, material,
               grade: int, host_clear: int, gap: int = 512,
-              connector=None) -> list:
+              connector=None):
     """A shelf or counter run: modules at the family's own widths.
 
     The run prefab shape -- given a length, emit modules at campaign
     spacing -- with the module's width taken from the family and varied
     deterministically between its attested sizes.
+
+    **The run is a node, not a list.**  It owns its modules, so a reader
+    standing on the bar sees one counter run rather than six loose blocks,
+    and a template that places a run can hand that node back to its own
+    parent.  `.children` are the modules; the return value is the node.
     """
+    import citytree
     fam = FAMILIES[family]
     span = end - start
     if span <= 0:
         raise FixtureError(f"{name}: run from {start} to {end} has no length")
-    out, cursor, index = [], start, 0
+    node = citytree.sub(host, name, note=f"{family} run: {fam.source}")
+    cursor, index = start, 0
     while cursor < end:
         width = fam.widths[_roll(f"{name}:{index}", len(fam.widths))]
         if cursor + width > end:
@@ -190,12 +214,12 @@ def run_along(assembly, name, host, *, axis: str, start: int, end: int,
             break
         rect = ((cursor, across0, cursor + width, across1) if axis == "x"
                 else (across0, cursor, across1, cursor + width))
-        out.append(place(assembly, f"{name}_{index}", host, rect, material,
-                         family=family, grade=grade, host_clear=host_clear,
-                         connector=connector))
+        place(f"{name}_{index}", host, rect, material, into=node,
+              family=family, grade=grade, host_clear=host_clear,
+              connector=connector)
         cursor += width + gap
         index += 1
-    return out
+    return node
 
 
 def goods_on(index: int, name: str) -> bool:

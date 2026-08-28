@@ -274,12 +274,29 @@ def build():
     alleys = {a["id"]: a for a in data["dead_end_alleys"]}
 
     streets = {}
+    district_of = {}
     for district, bounds in DISTRICT_BOUNDS.items():
         bx0, by0, bx1, by1 = bounds
         facade = FACADES[district]
+        # The district's frame lives on its STREET, not on the district.
+        # A district is a grouping -- the thing that sits at (bx0, by0) is
+        # the street.  Putting the offset on the assembly meant everything
+        # later nested inside it (its venues, its light pools, its stair)
+        # would have to be restated in district-local coordinates, and the
+        # first thing that happened when the venues moved in was that the
+        # whole of Old Crossing slid by its own origin.
+        # `floor_shade` is the PAVEMENT's, not the district's, and it stays
+        # on the street for the same reason the frame does: everything now
+        # nested in the district would otherwise inherit the brightness of
+        # the road it stands beside.  The facade wall and the ground tile do
+        # belong to the district -- they are its register, and an interior
+        # that wants its own restates them, which every one of them does.
+        district_style = {key: value
+                          for key, value in DISTRICT_STYLE[district].items()
+                          if key != "floor_shade"}
         assembly = city.assembly(
-            district, frame=Frame(int(bx0), int(by0)),
-            style=Style(**DISTRICT_STYLE[district]),
+            district,
+            style=Style(**district_style),
             note=data["districts"][district],
         )
         # The jamb rule (74% of campaign multi-tile rooms): this region's own
@@ -289,9 +306,11 @@ def build():
             "streets",
             [(0, 0), (bx1 - bx0, 0), (bx1 - bx0, by1 - by0), (0, by1 - by0)],
             role="exterior", faces=dict(COMPASS),
+            frame=Frame(int(bx0), int(by0)),
             region_kwargs=facade.region_kwargs(),
             intent={"district": district},
         )
+        room.surfaces(floor_shade=DISTRICT_STYLE[district]["floor_shade"])
         for block in data["blocks"]:
             if block["district"] != district or block.get("inside_area"):
                 continue
@@ -312,6 +331,7 @@ def build():
                 room.carve([(ax0 - bx0, ay0 - by0), (ax1 - bx0, ay0 - by0),
                             (ax1 - bx0, ay1 - by0), (ax0 - bx0, ay1 - by0)])
         streets[district] = room
+        district_of[district] = assembly
 
     # ---- carved areas: the cemetery as a walled, gated ground -------------
     gates = []
@@ -330,7 +350,7 @@ def build():
         rx0, ry0, rx1, ry1 = area["rect"]
         inset = (rx0 + wall_t, ry0 + wall_t, rx1 - wall_t, ry1 - wall_t)
         outline = mass_outline(inset, solids)
-        ground = city.assembly(
+        ground = district_of[area["district"]].assembly(
             area["id"],
             style=Style(**MASONRY.style_kwargs(floor_picnum=FLOOR_GROUND,
                                                floor_shade=34)),
@@ -425,9 +445,16 @@ def build():
         note=s["park"]["note"],
     )
 
+    # The trunk and its two chambers: the part of the network that predates
+    # the ring, and the part the two street entries actually land in.
+    trunk_part = sewer.assembly(
+        "trunk", note="the original trunk, its risers and its two chambers")
+    mouths_part = sewer.assembly(
+        "mouths", note="the parked lower halves of the three stack links")
+
     def sroom(name, x0, y0, x1, y1, note, role="interior", **kw):
         kw.setdefault("region_kwargs", {}).update(SEWER.region_kwargs())
-        return sewer.room(
+        return trunk_part.room(
             name, [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)],
             role=role, faces=dict(COMPASS), frame=Frame(int(x0), int(y0)),
             note=note, **kw,
@@ -488,7 +515,7 @@ def build():
     yard = areas["works_yard"]["rect"]
     yard_face_x = yard[0] * PU
     service = INTERIORS["service"]
-    stair = city.assembly(
+    stair = district_of["foundry_ward"].assembly(
         "works_stair",
         style=Style(**service.style_kwargs(floor_shade=38,
                                            clear_height=SEWER_CLEAR)),
@@ -544,23 +571,24 @@ def build():
         deep enough that a standing centre stays below the plane (no warp
         ping-pong), shallow enough to jump back out where intended."""
         ux, uy = upper_frame_xy
-        upper = city.assembly(f"{name}_mouth", style=upper_style).room(
-            f"{name}_upper", [(0, 0), (SHAFT, 0), (SHAFT, SHAFT), (0, SHAFT)],
+        # One room in the space it opens from.  Six of these used to be
+        # singleton assemblies at the top of the city -- `yard_grate_mouth`
+        # holding `yard_grate_upper`, and nothing else, ever.
+        upper = (upper_parent or city).room(
+            f"{name}_mouth", [(0, 0), (SHAFT, 0), (SHAFT, SHAFT), (0, SHAFT)],
             role="gateway", faces=dict(COMPASS), frame=Frame(int(ux), int(uy)),
             note=f"{name}: upper mouth (link plane at its floor)",
         )
+        upper.style = upper_style
         # The mirror tile is what makes the far side draw: rules_blood's
         # `stack-portal-wears-the-mirror-tile` is an ERROR sourced from
         # mirrors.cpp IsRorSector.  `see_through` was accepted by this
         # function and never used -- the flag was inert, and the cellar pit
         # wore an ordinary service floor while claiming to be a portal.
-        lower = city.assembly(
+        import citytree
+        lower = mouths_part.room(
             f"{name}_mouth_below",
-            style=Style(**SEWER.style_kwargs(
-                floor_shade=40, floor_z=upper_floor + landing_depth,
-                clear_height=landing_depth)),
-        ).room(
-            f"{name}_lower", [(0, 0), (SHAFT, 0), (SHAFT, SHAFT), (0, SHAFT)],
+            [(0, 0), (SHAFT, 0), (SHAFT, SHAFT), (0, SHAFT)],
             role="gateway", faces=dict(COMPASS),
             frame=Frame(int(ux + park_dx), int(uy + park_dy)),
             # All 6 paired links in E1M1/E3M1 have an XSector on both
@@ -569,6 +597,10 @@ def build():
                                                "shade_frequency": 4}},
             note=f"{name}: parked lower mouth, congruent at the plane",
         )
+        lower.frame = Frame(lower.frame.dx - park_dx, lower.frame.dy - park_dy)
+        lower.style = Style(**SEWER.style_kwargs(
+            floor_shade=40, floor_z=upper_floor + landing_depth,
+            clear_height=landing_depth))
         # The mirror tile is what makes the far side draw: rules_blood's
         # `stack-portal-wears-the-mirror-tile` is an ERROR sourced from
         # mirrors.cpp IsRorSector.  `see_through` was accepted by this
@@ -590,26 +622,25 @@ def build():
     kerb_half = KERB // 2
     foundry_st.carve([(foundry_local_gx - kerb_half + dx, gy - kerb_half + dy)
                       for dx, dy in ((0, 0), (KERB, 0), (KERB, KERB), (0, KERB))])
-    kerb = city.assembly(
-        "grate_kerb",
-        style=Style(**MASONRY.style_kwargs(
-            floor_picnum=INTERIORS["service"].floor, floor_shade=28,
-            floor_z=GRADE - KERB_RISE, clear_height=STREET_SKY - KERB_RISE)),
-        note="the raised stone ring around the yard grate",
-    ).room(
-        "ring", [(0, 0), (KERB, 0), (KERB, KERB), (0, KERB)],
+    kerb = district_of["foundry_ward"].room(
+        "grate_kerb", [(0, 0), (KERB, 0), (KERB, KERB), (0, KERB)],
         role="detail", faces=dict(COMPASS),
         frame=Frame(gx - kerb_half, gy - kerb_half),
         region_kwargs=MASONRY.region_kwargs(),
-        note="stepped over, not climbed: 1024 against a 4096 max step",
+        note="the raised stone ring around the yard grate: stepped over, "
+             "not climbed -- 1024 against a 4096 max step",
     )
+    kerb.surfaces(**MASONRY.style_kwargs(
+        floor_picnum=INTERIORS["service"].floor, floor_shade=28,
+        floor_z=GRADE - KERB_RISE, clear_height=STREET_SKY - KERB_RISE))
     kerb.carve([(kerb_half - SHAFT_HALF + dx, kerb_half - SHAFT_HALF + dy)
                 for dx, dy in ((0, 0), (SHAFT, 0), (SHAFT, SHAFT), (0, SHAFT))])
     for face in ("north", "east", "south", "west"):
         city.connect(kerb.face(face), foundry_st.face("east"),
                      connection_id=f"connection:kerb_street_{face}")
     grate_upper, grate_lower = mouth_pair(
-        "yard_grate", None, (gx - SHAFT_HALF, gy - SHAFT_HALF), GRADE,
+        "yard_grate", district_of["foundry_ward"],
+        (gx - SHAFT_HALF, gy - SHAFT_HALF), GRADE,
         Style(**MASONRY.style_kwargs(clear_height=STREET_SKY)),
         SEWER_FLOOR - GRADE, see_through=True)
     # The shaft's rim now meets the kerb ring, not the street: the ring is
@@ -640,7 +671,7 @@ def build():
     cellar.carve([(1024 + dx, 1024 + dy)
                   for dx, dy in ((0, 0), (SHAFT, 0), (SHAFT, SHAFT), (0, SHAFT))])
     pit_upper, pit_lower = mouth_pair(
-        "cellar_pit", None, pit_xy, CELLAR_FLOOR,
+        "cellar_pit", stair, pit_xy, CELLAR_FLOOR,
         Style(**INTERIORS["service"].style_kwargs(floor_shade=38,
                                                   clear_height=SEWER_CLEAR)),
         # See-through, not solid.  `rules_blood.stack-portal-wears-the-mirror-tile`
@@ -667,12 +698,13 @@ def build():
 
     # ---- the pumping station: road-level stairs into the sewer ----------
     import l3_shed
-    shed = l3_shed.build(city, foundry_st,
+    shed = l3_shed.build(district_of["foundry_ward"], foundry_st,
                          (int(DISTRICT_BOUNDS["foundry_ward"][0]),
                           int(DISTRICT_BOUNDS["foundry_ward"][1])))
     pit_x0, pit_y0, pit_x1, pit_y1 = l3_shed.PIT
     station_upper, station_lower = mouth_pair(
-        "station_pit", None, (pit_x0, pit_y0), l3_shed.CELLAR_FLOOR_Z,
+        "station_pit", shed["_assembly"], (pit_x0, pit_y0),
+        l3_shed.CELLAR_FLOOR_Z,
         Style(**INTERIORS["service"].style_kwargs(
             floor_shade=38, clear_height=SEWER_CLEAR)),
         l3_shed.PIT_LANDING, see_through=True)
@@ -738,7 +770,7 @@ def build():
     for name, street_room, district, px, py in pool_sites:
         facade = FACADES[district]
         lit.append(lightpools.pool(
-            city, street_room, name, x=px, y=py, floor_z=GRADE,
+            district_of[district], street_room, name, x=px, y=py, floor_z=GRADE,
             clear_height=STREET_SKY, floor_picnum=facade.floor,
             wall_picnum=facade.opening, ceiling_picnum=facade.ceiling,
             sky=True,
@@ -747,23 +779,24 @@ def build():
 
     # ---- L3: St Gallow's, the mandatory landmark of Old Crossing --------
     import l3_church
-    church_rooms = l3_church.build(city, oldcross_st, grounds["cemetery"],
-                                   gates)
+    church_rooms = l3_church.build(district_of["old_crossing"], oldcross_st,
+                                   grounds["cemetery"], gates)
 
     # ---- L3: the Gravesend Arcade (the shopping mall) -------------------
     import l3_mall
-    mall_rooms = l3_mall.build(city, market_st)
+    mall_rooms = l3_mall.build(district_of["market_slip"], market_st)
 
     # ---- L3: Theatre Row's venues (the entertainment district) ----------
     import l3_theatre
-    theatre_rooms, door_levers = l3_theatre.build(city, theatre_st)
+    theatre_rooms, door_levers = l3_theatre.build(district_of['theatre_row'], theatre_st)
 
     # ---- L3: Market Slip's public space (the district the player starts
     # in), furnished from its own L1 `furnish` slots ------------------------
     import l3_market
     plaza = next(a for a in data["areas"] if a["id"] == "market_plaza")
     market_dressing = l3_market.dress(
-        city, market_st, plaza["rect"], city_plan.Y_QUAY, city_plan.CITY_D)
+        district_of["market_slip"], market_st, plaza["rect"],
+        city_plan.Y_QUAY, city_plan.CITY_D)
 
 
     # ---- L3: the pilot district (Foundry Ward), dressed -------------------
@@ -786,7 +819,7 @@ def build():
         "stair_top_y0": top_y0,
     }
     import l3_foundry
-    dressing = l3_foundry.dress(city, ctx)
+    dressing = l3_foundry.dress(district_of["foundry_ward"], ctx)
     dressing["stash"] = stash.region_id
 
     # ---- start: the first circuit leg, on the quay ------------------------
@@ -987,6 +1020,8 @@ def main() -> int:
             continue
         amb.append((room.region_id, "interior", (0.5, 0.5)))
     for name, room in ctx["station_rooms"].items():
+        if name.startswith("_"):
+            continue                      # the assembly handle, not a room
         amb.append((room.region_id, "works", (0.5, 0.5)))
     print("ambience:", ambience.fill(layout, amb))
 
@@ -1013,6 +1048,8 @@ def main() -> int:
                           ("sewer", ctx["sewer_rooms_new"]),
                           ("station", ctx["station_rooms"])):
         for name, room in table.items():
+            if name.startswith("_"):
+                continue
             sign_rooms[f"{prefix}:{name}"] = room
     # Street signs address the street region directly, by district name.
     for region_id, district in ctx["street_regions"].items():
@@ -1032,6 +1069,24 @@ def main() -> int:
     })
     ctx["manifest"]["venue_details"] = venue_details
     print("venue detail:", venue_details)
+
+    # Goods, on the fixtures that carry any.  The composition chain ends
+    # here: retail_row -> shop -> run -> fixture -> goods, and the last
+    # step is one in seven, because the median fixture in all four detail
+    # sources carries nothing.
+    import templates, citytree
+    from materials import INTERIORS as _INT
+    _stocked = {"nodes": 0, "fixtures": 0, "stocked": 0}
+    for _node, _depth in citytree.walk(program):
+        if _node.node_id != "fittings":
+            continue
+        _shop = _INT["shop"]
+        _got = templates.stock(layout, _node, wall=_shop.wall,
+                               floor=_shop.floor, ceiling=_shop.ceiling)
+        _stocked["nodes"] += 1
+        _stocked["fixtures"] += _got["fixtures"]
+        _stocked["stocked"] += _got["stocked"]
+    print("goods:", _stocked)
 
     import dressing
     print("dressing:", dressing.dress(layout))
@@ -1098,7 +1153,20 @@ def main() -> int:
         compiled.level, tiles={LAMP_TILE, 506, 640, 1701}))
     print("lighting lightbomb:", compiled.lighting_report)
 
+    # Openings, against the grammar's own audit.  `frame_z_doors` above
+    # builds the reveals; this is the other half -- reading the finished map
+    # back and repainting the band above every mouth with the wall it
+    # interrupts, which is what 47% of Blood's apertures do.
+    import apertures
+    _before = apertures.report(compiled.level.to_disk_map())
+    print("apertures before:", _before)
+    print("lintels:", apertures.continue_lintels(compiled.level,
+                                                 compiled.level.to_disk_map()))
+
     disk = compiled.level.to_disk_map()
+    _after = apertures.report(disk)
+    print("apertures after:", _after)
+    ctx["manifest"]["apertures"] = _after
     # The corpus-graded rule registry, whose severities derive from measured
     # campaign violation rates rather than from anyone's opinion.  It was
     # sitting unused: `evaluate` returns nothing at all unless `rules_blood`

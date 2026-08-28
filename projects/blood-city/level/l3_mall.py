@@ -36,6 +36,7 @@ from bloodmap.slope import SlopeSpec
 
 import keysign
 import setpieces
+import templates
 from materials import FACADES, INTERIORS, MASONRY
 from resolution import GRADE, PU
 
@@ -58,50 +59,76 @@ CONCOURSE_PITCH = 8192
 #: and its item is sprite type 101.
 SERVICE_KEY = 2
 
-#: (name, x0, y0, x1, y1, material, clear, note)
+#: The concourse, which is the only thing here stated as a rectangle: it is
+#: the site, and everything else is derived from it.
+CONCOURSE = (40448, 44544, 51712, 47616)
+
+NECK_D = 512
+#: The band each range's openings live in.
+NORTH_BAND = (CONCOURSE[1] - NECK_D, CONCOURSE[1])
+SOUTH_BAND = (CONCOURSE[3], CONCOURSE[3] + NECK_D)
+UNIT_D = 2048
+#: How deep a display box stands in front of its shop.
+WINDOW_PLINTH = 2048
+
+#: **The ranges are generated, not drawn.**  They used to be six literal
+#: rectangles on a fixed 3x2 grid at absolute coordinates, so the arcade
+#: could not answer the only question a retail row is ever asked: how many
+#: shops fit here?  `templates.retail_row` answers it from the frontage,
+#: at E4M9's own measured rhythm -- a 2,560-unit unit (its median across 51
+#: units) opening on 1,536 (its median across 85 shared walls).  Hand it a
+#: longer concourse and it builds more shops.
+import templates as _templates
+
+#: One unit per range is glazed, because a mall whose every unit is behind
+#: glass has no way in and a mall with none is a corridor of doors.
+GLAZED = (0,)
+
+RANGES = {
+    "north": _templates.retail_row(
+        start=CONCOURSE[0], end=CONCOURSE[2], band=NORTH_BAND[0],
+        side="north", depth=UNIT_D, glaze=GLAZED),
+    "south": _templates.retail_row(
+        start=CONCOURSE[0], end=CONCOURSE[2], band=SOUTH_BAND[1],
+        side="south", depth=UNIT_D, glaze=GLAZED),
+}
+#: Unit names stay a, b, c ... so signage and the key placard keep working.
+_LETTERS = "abcdefghijklmnop"
+
+
+def _unit_name(side, index):
+    return "unit_" + _LETTERS[index + (0 if side == "north" else
+                                       len(RANGES["north"]))]
+
+
 ROOMS = [
-    ("concourse", 40448, 44544, 51712, 47616, "common", CONCOURSE_H,
+    ("concourse", *CONCOURSE, "common", CONCOURSE_H,
      "the arcade concourse: E4M9's height, which is what makes it a mall"),
-    # North range
-    # The units stand back from the concourse by one neck depth.  Letting
-    # them touch it directly means a shared edge that is only partly a
-    # portal, which leaves unpaired coincident walls -- the rule this
-    # project keeps relearning.  The 512-unit band between them is where
-    # the openings and the display windows go.
-    ("unit_a", 42496, 41984, 45056, 44032, "shop", UNIT_H, "a retail unit"),
-    ("unit_b", 45568, 41984, 48128, 44032, "shop", UNIT_H, "a retail unit"),
-    ("unit_c", 48640, 41984, 51200, 44032, "shop", UNIT_H, "a retail unit"),
-    # South range
-    ("unit_d", 42496, 48128, 45056, 50176, "shop", UNIT_H, "a retail unit"),
-    ("unit_e", 45568, 48128, 48128, 50176, "shop", UNIT_H, "a retail unit"),
-    ("unit_f", 48640, 48128, 51200, 50176, "shop", UNIT_H, "a retail unit"),
-    # Behind the locked door
+] + [
+    (_unit_name(side, unit.index), *unit.rect, "shop", UNIT_H,
+     f"a retail unit ({side} range, {unit.index})")
+    for side, units in RANGES.items() for unit in units
+] + [
     ("service", 51968, 44544, 53760, 47616, "service", SERVICE_H,
      "the service corridor, behind the keyed door"),
 ]
 
 #: Necks: each unit reaches the concourse through its own opening, so the
-#: rest of its frontage can be glass.  (unit, neck rect, side)
-#: (unit, x0, x1, which side of the concourse the unit is on)
+#: rest of its frontage can be glass.  (unit, x0, x1, side)
 NECKS = [
-    ("unit_a", 42752, 43776, "north"),
-    ("unit_b", 45824, 46848, "north"),
-    ("unit_c", 48896, 49920, "north"),
-    ("unit_d", 42752, 43776, "south"),
-    ("unit_e", 45824, 46848, "south"),
-    ("unit_f", 48896, 49920, "south"),
+    (_unit_name(side, unit.index), unit.opening[0], unit.opening[1], side)
+    for side, units in RANGES.items() for unit in units
 ]
-NECK_D = 512
-#: The band each range's openings live in.
-NORTH_BAND = (44032, 44544)
-SOUTH_BAND = (47616, 48128)
 
 #: Glazed display boxes, the E6M1 shopfront: (unit, x0, x1, side, plinth).
-#: Two of the six, because a mall whose every unit is behind glass has no
-#: way in and a mall with none is a corridor of doors.
+#: One per range, because a mall whose every unit is behind glass has no way
+#: in and a mall with none is a corridor of doors.  The pane takes the
+#: frontage left over beside the unit's own opening, so it never overlaps it.
 WINDOWS = [
-    ("unit_a", 44032, 44800, "north", 2048),
-    ("unit_d", 44032, 44800, "south", 2048),
+    (_unit_name(side, unit.index), unit.window[0], unit.window[1],
+     side, WINDOW_PLINTH)
+    for side, units in RANGES.items() for unit in units
+    if unit.window is not None
 ]
 
 
@@ -169,6 +196,21 @@ def build(city, market_st):
         arcade.connect(box.face(outer), rooms["concourse"].face(side),
                        connection_id=f"connection:{unit}_window_concourse")
 
+    # **The units are furnished by a template, not left empty.**  Six retail
+    # units with nothing in them is what "the buildings are still empty"
+    # meant; `templates.shop` fits each one out from its own rect -- a shelf
+    # run of pedestals down its long side, a counter across its front --
+    # and each of those runs is itself a parametric fixture family.  This is
+    # the composition chain: retail_row -> shop -> run -> fixture.
+    fitted = []
+    for _side, _units in RANGES.items():
+        for _unit in _units:
+            _name = _unit_name(_side, _unit.index)
+            fitted.append(templates.shop(
+                rooms[_name], material=INTERIORS["shop"], grade=GRADE,
+                host_clear=UNIT_H, margin=384))
+    rooms["_fitted"] = fitted
+
     # The street entrance: concourse -> door -> porch -> the market street.
     entry_y0, entry_y1 = 45568, 46592
     door = make("entry_door", 40192, entry_y0, 40448, entry_y1, "common", 0,
@@ -202,15 +244,10 @@ def build(city, market_st):
     arcade.connect(key_door.face("east"), rooms["service"].face("west"),
                    connection_id="connection:arcade_service_out")
 
-    # Counters, at the mined set-piece height.
-    for index, unit in enumerate(("unit_b", "unit_c", "unit_e", "unit_f")):
-        host = rooms[unit]
-        hx0, hy0 = next((r[1], r[2]) for r in ROOMS if r[0] == unit)
-        setpieces.counter(arcade, f"mall_counter_{index}", host,
-                          (hx0 + 512, hy0 + 512, hx0 + 2048, hy0 + 1024),
-                          INTERIORS["shop"], grade=GRADE,
-                          host_clear=UNIT_H,
-                          note=f"{unit}'s counter")
+    # The four hand-placed counters that used to sit here are gone: they
+    # were four of six units furnished, each a literal rect derived from
+    # its host's own origin.  `templates.shop` furnishes all six, from the
+    # same counter family, at whatever size the unit turns out to be.
     return rooms
 
 
@@ -230,31 +267,34 @@ def dress(layout, rooms, attested) -> dict:
     report["keyed_door"] = "eye"
 
     # E4M9's own ambience, in the concourse and the two ranges.
-    spots = [(concourse.region_id, (0.25, 0.5)),
-             (concourse.region_id, (0.75, 0.5)),
-             (rooms["unit_b"].region_id, (0.5, 0.5)),
-             (rooms["unit_e"].region_id, (0.5, 0.5))]
-    for index, (region_id, local) in enumerate(spots):
-        layout.place_on_floor(f"ambience:mall_{index}", region_id, local=local,
-                              height_player_heights=0.5,
-                              **ambience.fields("mall"))
-    report["ambience"] = len(spots)
+    # Through `ambience.fill`, which tests containment: a furnished unit is
+    # a unit with holes in it, and the centre of one is now its counter.
+    spots = [(concourse.region_id, "mall", (0.25, 0.5)),
+             (concourse.region_id, "mall", (0.75, 0.5)),
+             (rooms["unit_b"].region_id, "mall", (0.5, 0.5)),
+             (rooms["unit_e"].region_id, "mall", (0.5, 0.5))]
+    report["ambience"] = ambience.fill(layout, spots)["placed"]
 
     # Population and finds, attested as everywhere else.
     for index, (name, type_id, local) in enumerate(
             [("concourse", 202, (0.2, 0.4)), ("concourse", 203, (0.8, 0.6)),
              ("unit_a", 202, (0.5, 0.4)), ("unit_e", 203, (0.5, 0.85)),
              ("service", 202, (0.5, 0.5)),
-             # Locals kept clear of the unit counters, which are carved
-             # into the north strip of each unit's floor.
              ("unit_c", 65, (0.4, 0.85)), ("unit_d", 62, (0.5, 0.85)),
              ("service", 109, (0.3, 0.6))]):
         spec = attested(type_id)
         if spec is None or name not in rooms:
             continue
+        # The units are furnished by a template now, so where the fixtures
+        # are depends on how big the unit came out.  A hand-written local
+        # that used to be "clear of the counter" cannot know that any more;
+        # asking the room is the only version that stays true.
+        region_id = rooms[name].region_id
+        free = props.free_local(layout.regions[region_id], local)
+        if free is None:
+            continue
         layout.place_on_floor(f"mall:{name}_{type_id}_{index}",
-                              rooms[name].region_id, local=local,
-                              **spec["fields"])
+                              region_id, local=free, **spec["fields"])
     # A brazier at each end of the concourse: it is the city's longest room.
     for index, (face, t) in enumerate((("north", 0.08), ("south", 0.92))):
         props.mount_on_wall(layout, f"mall:brazier_{index}", concourse, face,

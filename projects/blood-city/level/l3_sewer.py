@@ -99,6 +99,7 @@ NECKS = [
 
 def expand(city, sewer, existing: dict) -> dict:
     """Build the ring, its chambers and the necks onto the parked network."""
+    import citytree
     rooms: dict = {}
 
     #: The chambers stand taller than the runs, as E3M3's do: a network
@@ -106,15 +107,24 @@ def expand(city, sewer, existing: dict) -> dict:
     #: is the tunnels' flat low ceiling that fills our frames.
     chambers = {name for name, *_rest in CHAMBERS}
 
-    def room(name, x0, y0, x1, y1, *, wet=False, note="", role="interior",
-             animate=True):
+    # The network has three parts and used to have none: 23 sibling rooms
+    # under one `sewer` assembly, a ring leg and a secret chamber and a neck
+    # all at the same level.  The parts are what the tables already say.
+    parts = {
+        "ring": sewer.assembly("ring", note="the circuit: legs, corners, channels"),
+        "chambers": sewer.assembly("chambers", note="what the ring passes through"),
+        "necks": sewer.assembly("necks", note="the short joins between the two"),
+    }
+
+    def room(name, x0, y0, x1, y1, *, part="ring", wet=False, note="",
+             role="interior", animate=True):
         material = SEWER_WET if wet else SEWER
         # E3M3 animates 57% of its sectors; animating every plain leg put us
         # at 79%, so the restless light goes to the water and the chambers.
         behavior = {"amplitude": -16, "shade_frequency": 9} if animate else {}
         if wet:
             behavior["depth"] = WATER_DEPTH
-        made = sewer.room(
+        made = parts[part].room(
             name,
             [(0, 0), (int((x1 - x0) * PU), 0),
              (int((x1 - x0) * PU), int((y1 - y0) * PU)),
@@ -142,21 +152,23 @@ def expand(city, sewer, existing: dict) -> dict:
              animate=name.endswith(("channel", "corner")),
              note=f"sewer ring: {name.replace('_', ' ')}")
     for a, fa, b, fb in RING_JOINS:
-        sewer.connect(rooms[a].face(fa), rooms[b].face(fb),
+        citytree.join(rooms[a], rooms[b], at_a=fa, at_b=fb,
                       connection_id=f"connection:ring_{a}_{fa}_{b}")
 
     for name, x0, y0, x1, y1, own, leg, leg_face, note in CHAMBERS:
-        made = room(name, x0, y0, x1, y1, wet=(name == "flooded"), note=note,
+        made = room(name, x0, y0, x1, y1, part="chambers",
+                    wet=(name == "flooded"), note=note,
                     role="secret" if name == "flooded" else "interior")
         if name == "flooded":
             # SP's secret branch: `secret=True` emits the campaign's own
             # wiring rather than a label (channel 2, command 64, once).
             made.region_kwargs["secret"] = True
-        sewer.connect(made.face(own), rooms[leg].face(leg_face),
+        citytree.join(made, rooms[leg], at_a=own, at_b=leg_face,
                       connection_id=f"connection:sewer_{name}")
 
     for name, x0, y0, x1, y1, joins, note in NECKS:
-        made = room(name, x0, y0, x1, y1, note=note, role="gateway")
+        made = room(name, x0, y0, x1, y1, part="necks", note=note,
+                    role="gateway")
         for own_face, other, other_face in joins:
             target = rooms.get(other) or existing[other]
             sewer.connect(made.face(own_face), target.face(other_face),
