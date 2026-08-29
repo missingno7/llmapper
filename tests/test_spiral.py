@@ -103,6 +103,15 @@ class TreadTests(unittest.TestCase):
         self.assertLess(plan.inner_tread, BODY)
         self.assertGreater(plan.outer_tread, BODY)
 
+    def test_room_portals_use_the_long_radial_side_not_a_tread_chord(self):
+        """A room must meet a usable flight width, not a 22.5-degree slit."""
+        _layout, structure = build(radius=1000)
+        entry, exit = structure.flanks
+        self.assertGreaterEqual(entry.width, 1000 - spiral.INNER_RADIUS - 1)
+        self.assertGreaterEqual(exit.width, 1000 - spiral.INNER_RADIUS - 1)
+        self.assertGreater(entry.width,
+                           1000 * math.radians(spiral.STEP_ANGLE))
+
 
 class SweepTests(unittest.TestCase):
     """The range, not one point in it."""

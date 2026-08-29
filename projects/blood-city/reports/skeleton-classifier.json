@@ -43,9 +43,9 @@
       "map": "SKELETON",
       "game": "blood",
       "budget": {
-        "sectors": 239,
-        "walls": 1581,
-        "sprites": 394
+        "sectors": 242,
+        "walls": 1605,
+        "sprites": 393
       },
       "street": {
         "sectors": 25,
@@ -262,8 +262,8 @@
           "min": 4194304.0,
           "p10": 4194304.0,
           "median": 36175872.0,
-          "p90": 428285017.0,
-          "max": 428285017.0
+          "p90": 429843448.0,
+          "max": 429843448.0
         },
         "doorway_records": [
           {
@@ -377,7 +377,7 @@
             "block_label": 3
           },
           {
-            "wall": 739,
+            "wall": 745,
             "street_sector": 96,
             "into_sector": 144,
             "interior_component": 10,
@@ -387,7 +387,7 @@
             "block_label": 8
           },
           {
-            "wall": 753,
+            "wall": 759,
             "street_sector": 96,
             "into_sector": 125,
             "interior_component": 7,
@@ -444,8 +444,8 @@
           },
           {
             "interior_component": 4,
-            "sectors": 61,
-            "area": 428285017,
+            "sectors": 64,
+            "area": 429843448,
             "substantial": true
           },
           {
@@ -513,8 +513,8 @@
         "rooftop_sky_sectors": 0,
         "rooftop_area_share_of_street": 0.0,
         "perched_outdoor_sectors": 1,
-        "below_grade_sectors": 63,
-        "below_grade_area": 446372953,
+        "below_grade_sectors": 66,
+        "below_grade_area": 447931384,
         "stack_pairs": [
           {
             "family": "stack",
@@ -539,9 +539,9 @@
           "zone": 0,
           "zone_floor_picnum": 352,
           "street_sectors": 17,
-          "sectors": 231,
-          "walls": 1541,
-          "sprites": 392
+          "sectors": 234,
+          "walls": 1565,
+          "sprites": 391
         },
         {
           "zone": 1,
@@ -748,9 +748,9 @@
     },
     "budgets": {
       "SKELETON": {
-        "sectors": 239,
-        "walls": 1581,
-        "sprites": 394
+        "sectors": 242,
+        "walls": 1605,
+        "sprites": 393
       }
     }
   }

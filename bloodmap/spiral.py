@@ -361,10 +361,15 @@ def spiral_stair(layout: Any, structure_id: str, *, axis: tuple[int, int],
                 a1=previous_anchor.a, a2=previous_anchor.b, **options)
         regions.append(region_id)
         if index == 0:
-            entry_chord = Anchor(region_id, _at(axis, plan.outer_radius, start),
-                                 _at(axis, plan.outer_radius, end))
-        exit_chord = Anchor(region_id, _at(axis, plan.outer_radius, start),
-                            _at(axis, plan.outer_radius, end))
+            # The free start/end edges are radial and therefore as long as the
+            # usable stair width.  An outer chord is only one tread deep
+            # (about 393 units at a 1000-unit radius): using it as a doorway
+            # made an approach from a room look like a sideways slit and could
+            # be narrower than the requested portal width.  A spiral must open
+            # through its long side, just like a straight stair flight.
+            entry_flank = Anchor(
+                region_id, _at(axis, plan.inner_radius, start),
+                _at(axis, plan.outer_radius, start))
         # The edge the next step shares with this one, computed from the angle
         # rather than read off the outline: `_step_outline` may reverse its
         # points to wind correctly, which scrambles any index-based guess.
@@ -396,13 +401,13 @@ def spiral_stair(layout: Any, structure_id: str, *, axis: tuple[int, int],
             if (other - index) % per_turn in (0, 1, per_turn - 1):
                 layout.declare_special(regions[index], regions[other], "helix")
 
-    # A tower opens through its outer wall. The radial edge is how one step
-    # meets the next; the chord at the outer radius is how the stair meets a
-    # room, and it is the only edge on a wedge that faces outward at all.
+    # The first start-radial and last end-radial edges are the two free, long
+    # sides of the staircase.  Internal radial edges join adjacent treads;
+    # only these two touch the shaft's rooms.
     structure = Structure(
         structure_id=structure_id, kind="spiral_stair", layout=layout,
         regions=tuple(regions), far=previous_anchor,
-        flanks=(entry_chord, exit_chord),
+        flanks=(entry_flank, previous_anchor),
         provenance={
             "vocabulary": "bloodmap.spiral.spiral_stair",
             "precedent": "E3M1 sectors 15-40: 23 steps of 2048 at 22.5 degrees, "

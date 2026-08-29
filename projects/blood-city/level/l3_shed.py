@@ -138,9 +138,10 @@ def build(district, foundry_st, foundry_origin):
     # The west face is wound south-to-north, so its anchor fraction runs in
     # the opposite direction to the room's local y coordinate.
     at = 1.0 - ((stair_y0 + STAIR_W / 2) - sy0) / face_len
-    hall.staircase("pump_flight", "west", at=at, width=STAIR_W,
-                   total_rise=FLIGHT * STEP, tread=TREAD, step_rise=STEP,
-                   arrive_at=cellar.region_id, connection={"role": "portal"})
+    hall.staircase(
+        "pump_flight", "west", at=at, width=STAIR_W,
+        total_rise=FLIGHT * STEP, tread=TREAD, step_rise=STEP,
+        arrive_at=cellar.region_id, connection={"role": "portal"})
 
     # The caller cuts the curved opening for the sewer spiral.  Leaving the
     # carve here would create a second, disconnected hole beside the stair.

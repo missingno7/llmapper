@@ -75,7 +75,7 @@ RING_JOINS = [
 CHAMBERS = [
     ("pump_room", 27.0, 12.0, 32.0, 18.0, "east", "w_leg", "west",
      "the pumping chamber: the network's one big room"),
-    ("silt_trap", 46.0, 2.0, 50.0, 6.0, "south", "n_walk", "north",
+    ("silt_trap", 45.5, 2.0, 50.0, 6.0, "south", "n_walk", "north",
      "a silt trap off the north walk"),
     ("east_annex", 53.0, 14.0, 57.0, 20.0, "west", "e_leg", "east",
      "the annex: an eastern dead end worth the walk for what is in it"),
@@ -203,7 +203,10 @@ PICKUPS = [
 #: another.  Recorded as a deliberate deviation from the 3% rate.
 LIT = [("pump_room", "north", 0.5), ("nw_corner", "north", 0.5),
        ("ne_corner", "east", 0.5), ("se_corner", "south", 0.5),
-       ("sw_corner", "west", 0.5), ("station_foot", "north", 0.5)]
+       ("sw_corner", "west", 0.5)]
+#: `station_foot` is deliberately unbracketed: its compact chamber is carved
+#: by the full spiral shaft, so its remaining wall pieces are circulation
+#: surfaces, not a stable place for a flame.
 
 #: Every rectangle in this module, in plan units, so a bracket can find a
 #: wall to hang on.

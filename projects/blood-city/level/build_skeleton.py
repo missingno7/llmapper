@@ -668,6 +668,14 @@ def build():
         "junction": junction, "cistern": cistern,
         "main_duct": main_duct, "grate_lower": grate_lower,
     })
+    # Sector 176 in the compiled map is the silt trap immediately east of the
+    # station foot.  Make that the lower approach: the player reaches the
+    # spiral from a normal sewer room, not by trying to turn through the
+    # chamber's short end wall.
+    import citytree
+    citytree.join(sewer_net["station_foot"], sewer_net["silt_trap"],
+                  at_a="east", at_b="west",
+                  connection_id="connection:station_spiral_silt_trap")
     city.connect(grate_lower.face("east"), sewer_net["e_leg"].face("west"),
                  connection_id="connection:grate_shaft_ring")
     # The towpath, from E3M3's own ledge family.  The two long legs are 24
@@ -717,7 +725,12 @@ def build():
     # receiving chamber.
     spiral_axis = ((l3_shed.PIT[0] + l3_shed.PIT[2]) // 2,
                    (l3_shed.PIT[1] + l3_shed.PIT[3]) // 2)
-    SPIRAL_RADIUS, SPIRAL_EXIT, SPIRAL_STEP = 1000, 270.0, 22.5
+    # Exit almost due east (one tread before the cardinal radial) so the
+    # station-foot connection opens on the long right-hand side.  The endpoint
+    # is derived from the rise; a full 0-degree turn would repeat the landing
+    # wedge, while 337.5 degrees leaves the same usable facing without that
+    # self-overlap.
+    SPIRAL_RADIUS, SPIRAL_EXIT, SPIRAL_STEP = 1000, 337.5, 22.5
 
     def spiral_footprint() -> list[tuple[int, int]]:
         """The exact C-shaped union of the spiral's twelve wedge sectors."""
@@ -730,8 +743,9 @@ def build():
                     int(round(spiral_axis[1] + radius * math.sin(radians))))
 
         # `spiral_stair` has a 248-unit newel.  Following the outer arc and
-        # returning along the inner one makes a single simple C-shaped hole;
-        # its outer chords are exactly the portals at each end of the helix.
+        # returning along the inner one makes a single simple C-shaped hole.
+        # The start/end radial edges are its long portal sides: the cellar and
+        # sewer meet the full stair width rather than a one-tread end slit.
         return [at(SPIRAL_RADIUS, angle) for angle in angles] + [
             at(248, angle) for angle in reversed(angles)
         ]
@@ -763,6 +777,13 @@ def build():
         # unexplained same-plan wall pair.
         layout.declare_special(shed["cellar"].region_id, foot.region_id,
                                "spiral_shaft")
+        # The silt trap is the side-room approach to the east portal.  It
+        # shares the pump-cellar's plan band above the shaft, so mark that
+        # deliberate vertical neighbour as part of the same shaft arrangement
+        # instead of letting clipmove treat it as an unexplained overlap.
+        layout.declare_special(shed["cellar"].region_id,
+                               sewer_net["silt_trap"].region_id,
+                               "spiral_shaft")
         # Every wedge touches one of those two C-shaped shaft rims in plan.
         # State that ownership per wedge as well: the audit otherwise sees
         # reciprocal solid walls on the same line and (correctly, absent this
@@ -771,6 +792,16 @@ def build():
             layout.declare_special(shed["cellar"].region_id, region_id,
                                    "spiral_shaft")
             layout.declare_special(foot.region_id, region_id, "spiral_shaft")
+            layout.declare_special(sewer_net["silt_trap"].region_id,
+                                   region_id, "spiral_shaft")
+        # The straight station flight runs immediately above the side-room
+        # approach (the former failure was its eighth tread).  It is part of
+        # the same vertical access envelope, not an independent street/sewer
+        # overlap.
+        for region_id in layout.regions:
+            if ":pump_flight:" in region_id:
+                layout.declare_special(sewer_net["silt_trap"].region_id,
+                                       region_id, "spiral_shaft")
         entry, exit = helix.flanks
         layout.add_connection("connection:pump_spiral_in",
                               shed["cellar"].region_id, entry.region_id,
