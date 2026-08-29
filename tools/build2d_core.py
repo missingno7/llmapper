@@ -283,24 +283,35 @@ class Build2DModel:
         return out
 
     def _bunches(self, sectors, p, heading, half=None):
-        """Front-facing wall runs per sector, within the view cone.
+        """Front-facing wall runs per sector, each sorted left to right.
 
         A bunch is what carries a sector's floor and ceiling across screen
-        columns, so this is the unit the draw order is decided between.
+        columns, so this is the unit the draw order is decided between.  Screen
+        x is monotonic in the angle off the view centre, so the angle stands in
+        for the column: only the ordering matters here, not the projection.
         """
         if half is None:
             half = FOV / 2 + 0.35
         out = []
+
+        def span(w):
+            # The short way round.  min/max of two separately normalised
+            # angles turns a wall straddling +-180 degrees into a 340 degree
+            # span instead of a 20 degree one, and a bunch that appears to
+            # cover the whole screen shares columns with everything.
+            a = _norm(math.atan2(w.a[1] - p[1], w.a[0] - p[0]) - heading)
+            b = _norm(math.atan2(w.b[1] - p[1], w.b[0] - p[0]) - heading)
+            d = _norm(b - a)
+            return (a, a + d) if d >= 0 else (a + d, a)
+
         for sid in sorted(sectors):
-            W = self.sectors[sid].walls
             run = []
             prev_b = None
-            for w in W:
+            for w in self.sectors[sid].walls:
                 cr = ((w.a[0] - p[0]) * (w.b[1] - p[1])
                       - (w.b[0] - p[0]) * (w.a[1] - p[1]))
-                angs = [_norm(math.atan2(q[1] - p[1], q[0] - p[0]) - heading)
-                        for q in (w.a, w.b)]
-                if cr > 0 and any(-half <= t <= half for t in angs):
+                lo, hi = span(w)
+                if cr > 0 and hi >= -half and lo <= half:
                     if run and prev_b == w.a:
                         run.append(w)
                     else:
@@ -315,14 +326,37 @@ class Build2DModel:
                     prev_b = None
             if run:
                 out.append((sid, run))
-        return out
+
+        return [(sid, sorted(((span(w), w) for w in run),
+                             key=lambda t: t[0][0]))
+                for sid, run in out]
 
     def _sort_conflict(self, admitted, p, overlap, nhead=12):
-        """Is the draw order between the two parents ever undecidable?
+        """Would the draw order between the two parents fail?
 
-        wallfront's -2 verdict is a mutual straddle: neither wall is wholly in
-        front of the other, so the engine has no answer and the floor of the
-        far sector can land on top of the near one.
+        Every wall pair between a bunch of A and a bunch of B is tested, and a
+        negative wallfront -- -1 collinear or -2 mutual straddle -- is the
+        fault: the sort answers both with `continue`, so the pair is drawn in
+        whatever order the loop happened to be holding (engine.c:942).
+
+        This is looser than the engine, knowingly.  bunchfront first checks the
+        bunches share screen columns, then compares exactly ONE pair: the first
+        wall of the later-starting bunch against the wall of the other spanning
+        that column.  Both were implemented and measured on BB4:
+
+          column sharing        changes nothing here -- these bunches always
+                                share columns
+          one representative    cuts 42 regions to 23 and 19 overlaps to 11,
+          pair                  and takes the owner's non-glitching camera at
+                                (-13783, 3011) from 8 overlaps to 1 -- but it
+                                also stops firing at (-11801, -1615), which
+                                does glitch in the engine
+
+        A validator that misses a confirmed glitch is worse than one that over
+        -reports, so the loose form stays until the difference is understood.
+        The likely gap is that the engine's sort is stateful: `closest` moves
+        as bunches are drawn and bunches are split as columns close, so which
+        pair gets compared is not fixed the way this model assumes.
         """
         A, B = overlap.sector_a, overlap.sector_b
         if A not in admitted or B not in admitted:
@@ -332,16 +366,16 @@ class Build2DModel:
             return False
         for k in range(nhead):
             heading = lo + (hi - lo) * k / max(1, nhead - 1)
-            bun = self._bunches(admitted, p, heading)
-            for i, (si, wi) in enumerate(bun):
-                if si != A and si != B:
+            bunches = self._bunches(admitted, p, heading)
+            for sa, b1 in bunches:
+                if sa != A:
                     continue
-                for j, (sj, wj) in enumerate(bun):
-                    if j <= i or {si, sj} != {A, B}:
+                for sb, b2 in bunches:
+                    if sb != B:
                         continue
-                    for u in wi:
-                        for v in wj:
-                            if _wallfront((u.a, u.b), (v.a, v.b), p) == -2:
+                    for _s1, u in b1:
+                        for _s2, v in b2:
+                            if _wallfront((u.a, u.b), (v.a, v.b), p) < 0:
                                 return True
         return False
 
