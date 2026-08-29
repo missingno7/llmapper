@@ -1,80 +1,50 @@
-#!/usr/bin/env python3
-"""
-transparent_domain_vector_solver.py
+"""The analytic ConflictRegion: where a camera can glitch an overlap.
 
-Finalized experiment for the current simplified XY model:
+Two sectors may share ground in XY.  The engine will draw both, and the floors
+and ceilings of the far one can land on the near one wherever the bunch sort
+has no answer.  This computes, as a polygon rather than a set of samples, the
+region of camera positions from which that can happen.
 
-SECTOR TOPOLOGY PHASE
----------------------
-Real sectors and red portal walls remain fully meaningful.
+    XY overlap
+      -> transparent visibility domain      dissolve the red portals inside a
+                                            chosen origin cluster, so a region
+                                            may cross MAIN -> I1 -> I2 while
+                                            those stay distinct Build sectors
+      -> target-local critical lines        only the silhouettes that can move
+                                            the answer, and only where the
+                                            blocker really occludes the target
+      -> arrangement                        cells inside which the answer is
+                                            constant
+      -> one classification per cell        Build2DModel.classify_point
+      -> ConflictRegion, then attributed back per sector with
+         G_sector = G_domain and sector_polygon
 
-SHAPE PHASE
------------
-For a chosen origin sector, recursively collect nested red-wall portal sectors
-that lie geometrically inside the origin shell.  Dissolve those sectors into
-ONE transparent visibility domain.
+Deliberately 2D: no z, no camera angle.  The whole calibration set stacks its
+overlapping pairs the same way in z, so z separates nothing there, and the
+angle is existential -- resolved by the critical lines rather than sampled.
 
-Internal red boundaries disappear completely from the shape calculation.
-Only:
-  - white/solid boundaries,
-  - the actual branch apertures leading toward the overlap,
-  - and overlap/branch geometry
-may shape the ConflictRegion.
-
-The solver computes ONE vector ConflictRegion over the full transparent domain.
-
-Only after that, the region is attributed back to real sectors with:
-
-    G_sector = G_domain ∩ sector_polygon
-
-Thus a single continuous glitch region may cross MAIN -> I1 -> I2 even though
-those remain distinct Build sectors topologically.
-
-This script reuses the point-classification oracle from
-build2d_vector_conflict_solver.py, but the output geometry is created from a
-target-local analytic arrangement, not from an XY sample grid.
+Driven by tools/vector_report.py.  There is no second validator: the earlier
+point-sampling one missed bad_1 and was removed.
 """
 
 from __future__ import annotations
 
-import argparse
-import importlib.util
-import json
 import math
 import sys
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Set, Tuple
+from typing import Dict, List, Optional, Set, Tuple
 
 from shapely.geometry import (
     GeometryCollection,
     LineString,
-    MultiPolygon,
     Point,
     Polygon,
-    mapping,
 )
 from shapely.ops import polygonize, unary_union
 
 Vec2 = Tuple[float, float]
 EPS = 1e-8
 
-
-# ---------------------------------------------------------------------------
-# Core loading
-# ---------------------------------------------------------------------------
-
-def load_core(path: Path):
-    spec = importlib.util.spec_from_file_location("build2d_core_domain", path)
-    mod = importlib.util.module_from_spec(spec)
-    assert spec.loader is not None
-    sys.modules[spec.name] = mod
-    spec.loader.exec_module(mod)
-    return mod
-
-
-# ---------------------------------------------------------------------------
-# Geometry helpers
-# ---------------------------------------------------------------------------
 
 def polygon_vertices(poly: Polygon) -> List[Vec2]:
     out = [(float(x), float(y)) for x, y in list(poly.exterior.coords)[:-1]]
@@ -85,10 +55,8 @@ def polygon_vertices(poly: Polygon) -> List[Vec2]:
         )
     return out
 
-
 def ring_vertices(ring) -> List[Vec2]:
     return [(float(x), float(y)) for x, y in list(ring.coords)[:-1]]
-
 
 def canonical_line(p: Vec2, q: Vec2):
     dx = q[0] - p[0]
@@ -106,7 +74,6 @@ def canonical_line(p: Vec2, q: Vec2):
 
     return (round(A, 11), round(B, 11), round(C, 11))
 
-
 def infinite_line(key, bounds):
     A, B, C = key
     minx, miny, maxx, maxy = bounds
@@ -121,7 +88,6 @@ def infinite_line(key, bounds):
         (p0[0] + d[0] * L, p0[1] + d[1] * L),
     ])
 
-
 def iter_polygons(geom):
     if geom.is_empty:
         return
@@ -134,17 +100,11 @@ def iter_polygons(geom):
             if g.geom_type == "Polygon":
                 yield g
 
-
 def polygonal_only(geom):
     polys = list(iter_polygons(geom))
     if not polys:
         return GeometryCollection()
     return unary_union(polys)
-
-
-# ---------------------------------------------------------------------------
-# Transparent visibility domain
-# ---------------------------------------------------------------------------
 
 def _overlap_partners(model):
     """sector -> the sectors it shares ground with, computed once per map."""
@@ -159,7 +119,6 @@ def _overlap_partners(model):
             cached.setdefault(sid, set())
         model._ov_partners = cached
     return cached
-
 
 def nested_transparent_cluster(
     model,
@@ -206,7 +165,6 @@ def nested_transparent_cluster(
 
     return cluster
 
-
 def dissolved_visibility_domain(model, cluster: Set[str]):
     """
     Unioning the sector polygons removes all shared internal red boundaries.
@@ -215,7 +173,6 @@ def dissolved_visibility_domain(model, cluster: Set[str]):
     return polygonal_only(
         unary_union([model.sectors[s].polygon for s in sorted(cluster)])
     )
-
 
 def domain_solid_vertices(domain) -> Set[Vec2]:
     """
@@ -250,7 +207,6 @@ def domain_solid_vertices(domain) -> Set[Vec2]:
 
     return out
 
-
 def sector_for_point(model, cluster: Set[str], p: Point) -> Optional[str]:
     """
     Resolve actual Build sector identity for oracle classification.
@@ -271,11 +227,6 @@ def sector_for_point(model, cluster: Set[str], p: Point) -> Optional[str]:
     hits.sort()
     return hits[0][1]
 
-
-# ---------------------------------------------------------------------------
-# Target-local constraints
-# ---------------------------------------------------------------------------
-
 def direct_domain_portal_endpoints(model, cluster: Set[str], parent: str):
     """
     Find portal walls leaving any sector in the transparent domain directly
@@ -290,7 +241,6 @@ def direct_domain_portal_endpoints(model, cluster: Set[str], parent: str):
                 pts.add(w.b)
 
     return sorted(pts)
-
 
 def reflex_vertices(poly: Polygon) -> Set[Vec2]:
     pts = [(float(x), float(y)) for x, y in list(poly.exterior.coords)[:-1]]
@@ -317,7 +267,6 @@ def reflex_vertices(poly: Polygon) -> Set[Vec2]:
 
     return out
 
-
 def branch_constraint_vertices(model, parent: str) -> Set[Vec2]:
     poly = model.sectors[parent].polygon
     out = reflex_vertices(poly)
@@ -328,7 +277,6 @@ def branch_constraint_vertices(model, parent: str) -> Set[Vec2]:
 
     return out
 
-
 def _solid_segments(model):
     """Every one-sided wall in the map, cached: the only real occluders."""
     cached = getattr(model, "_solid_segs", None)
@@ -338,14 +286,12 @@ def _solid_segments(model):
         model._solid_segs = cached
     return cached
 
-
 def _straddles(a, b, c, d):
     def side(p, q, r):
         v = (q[0]-p[0])*(r[1]-p[1]) - (q[1]-p[1])*(r[0]-p[0])
         return 0 if abs(v) < 1e-9 else (1 if v > 0 else -1)
     return (side(a, b, c) * side(a, b, d) < 0 and
             side(c, d, a) * side(c, d, b) < 0)
-
 
 def _sees(model, v, t, trim=1e-3):
     """Is the straight segment v->t free of solid walls?
@@ -362,7 +308,6 @@ def _sees(model, v, t, trim=1e-3):
         if _straddles(a, b, c, d):
             return False
     return True
-
 
 def target_local_lines(
     model,
@@ -464,11 +409,6 @@ def target_local_lines(
 
     return lines, meta
 
-
-# ---------------------------------------------------------------------------
-# Vector arrangement over the full transparent domain
-# ---------------------------------------------------------------------------
-
 def arrangement_cells(domain, lines: List[LineString]) -> List[Polygon]:
     pieces = [domain.boundary]
 
@@ -506,7 +446,6 @@ def arrangement_cells(domain, lines: List[LineString]) -> List[Polygon]:
 
     return cells
 
-
 def deterministic_audit_points(poly: Polygon, n: int):
     if n <= 0:
         return []
@@ -528,7 +467,6 @@ def deterministic_audit_points(poly: Polygon, n: int):
             out.append(q)
 
     return out
-
 
 def solve(
     model,
@@ -629,292 +567,3 @@ def solve(
         "mismatches": mismatches,
         "meta": meta,
     }
-
-
-# ---------------------------------------------------------------------------
-# Rendering / output
-# ---------------------------------------------------------------------------
-
-def render(
-    model,
-    overlap,
-    root_sector: str,
-    result,
-    out_png: Path,
-    out_svg: Path,
-):
-    import matplotlib.pyplot as plt
-
-    fig, ax = plt.subplots(figsize=(10, 10))
-    fig.patch.set_facecolor("#111111")
-    ax.set_facecolor("#111111")
-
-    # Unified region FIRST: draw over the entire dissolved domain so it visibly
-    # crosses former MAIN/I1/I2 red boundaries.
-    for p in iter_polygons(result["unified_region"]):
-        x, y = p.exterior.xy
-        ax.fill(
-            x,
-            y,
-            color="#9b59b6",
-            alpha=0.68,
-            zorder=2,
-        )
-
-    # Target overlap.
-    for p in iter_polygons(overlap.geometry):
-        x, y = p.exterior.xy
-        ax.fill(
-            x,
-            y,
-            color="#00bcd4",
-            alpha=0.30,
-            hatch="////",
-            zorder=3,
-        )
-
-    # Walls remain visible on top only as a map reference.
-    for sid, sec in model.sectors.items():
-        for w in sec.walls:
-            ax.plot(
-                [w.a[0], w.b[0]],
-                [w.a[1], w.b[1]],
-                color=("red" if w.kind == "portal" else "white"),
-                linewidth=(2.7 if w.kind == "portal" else 1.6),
-                alpha=(0.85 if w.kind == "portal" else 1.0),
-                zorder=4,
-            )
-
-    # Label the transparent cluster.
-    for sid in sorted(result["cluster"]):
-        rp = model.sectors[sid].polygon.representative_point()
-        ax.text(
-            rp.x,
-            rp.y,
-            sid,
-            color="white",
-            fontsize=10,
-            fontweight="bold",
-            ha="center",
-            va="center",
-            zorder=5,
-        )
-
-    bounds = [s.polygon.bounds for s in model.sectors.values()]
-    ax.set_xlim(min(b[0] for b in bounds) - 1, max(b[2] for b in bounds) + 1)
-    ax.set_ylim(min(b[1] for b in bounds) - 1, max(b[3] for b in bounds) + 1)
-
-    ax.set_aspect("equal")
-    ax.tick_params(colors="white")
-    ax.set_title(
-        f"Unified transparent-domain ConflictRegion — root {root_sector}\n"
-        f"purple crosses internal red sectors; red walls are sector boundaries only",
-        color="white",
-        fontsize=13,
-    )
-
-    handles = [
-        plt.Line2D(
-            [0], [0], color="#9b59b6", lw=9,
-            label="one unified ConflictRegion"
-        ),
-        plt.Line2D(
-            [0], [0], color="#00bcd4", lw=9,
-            label=f"Overlap {overlap.id}"
-        ),
-        plt.Line2D(
-            [0], [0], color="red", lw=3,
-            label="internal portal / sector boundary"
-        ),
-        plt.Line2D(
-            [0], [0], color="white", lw=2,
-            label="solid occluder"
-        ),
-    ]
-
-    ax.legend(
-        handles=handles,
-        loc="upper left",
-        facecolor="#222222",
-        labelcolor="white",
-    )
-
-    fig.tight_layout()
-
-    fig.savefig(
-        out_png,
-        dpi=190,
-        facecolor=fig.get_facecolor(),
-    )
-    fig.savefig(
-        out_svg,
-        format="svg",
-        facecolor=fig.get_facecolor(),
-        bbox_inches="tight",
-    )
-    plt.close(fig)
-
-
-def write_geojson(path: Path, overlap, result):
-    features = []
-
-    features.append({
-        "type": "Feature",
-        "properties": {
-            "kind": "unified_conflict_region",
-            "overlap": overlap.id,
-            "area": float(result["unified_region"].area),
-        },
-        "geometry": mapping(result["unified_region"]),
-    })
-
-    for sid, geom in result["per_sector"].items():
-        features.append({
-            "type": "Feature",
-            "properties": {
-                "kind": "sector_attribution",
-                "sector": sid,
-                "overlap": overlap.id,
-                "area": float(geom.area),
-            },
-            "geometry": mapping(geom),
-        })
-
-    path.write_text(
-        json.dumps(
-            {
-                "type": "FeatureCollection",
-                "features": features,
-            },
-            indent=2,
-        ),
-        encoding="utf-8",
-    )
-
-
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("map_json", type=Path)
-    ap.add_argument("--core", type=Path, required=True)
-    ap.add_argument("--root", default="MAIN")
-    ap.add_argument("--overlap", default="A__B")
-    ap.add_argument("--audit", type=int, default=3)
-    ap.add_argument(
-        "--out-dir",
-        type=Path,
-        default=Path("transparent_domain_out"),
-    )
-    args = ap.parse_args()
-
-    core = load_core(args.core)
-    model = core.Build2DModel.load(args.map_json)
-    overlap = model.overlap_by_id[args.overlap]
-
-    args.out_dir.mkdir(parents=True, exist_ok=True)
-
-    result = solve(
-        model,
-        overlap,
-        root_sector=args.root,
-        audit_n=args.audit,
-    )
-
-    unified = result["unified_region"]
-
-    print("root sector:", args.root)
-    print("overlap:", overlap.id)
-    print("transparent cluster:", sorted(result["cluster"]))
-    print("domain area:", round(result["domain"].area, 9))
-    print(
-        "remaining solid blocker vertices:",
-        result["meta"]["domain_solid_occluder_vertices"],
-    )
-    print("critical lines:", result["meta"]["critical_lines"])
-    print("arrangement cells:", len(result["cells"]))
-    print("bad cells:", len(result["bad_cells"]))
-    print("unified region type:", unified.geom_type)
-    print("unified region area:", round(unified.area, 9))
-    print("unified components:", len(list(iter_polygons(unified))))
-    print("audit mismatches:", len(result["mismatches"]))
-
-    print()
-    print("sector attribution:")
-    for sid, geom in result["per_sector"].items():
-        print(f"  {sid}: area={geom.area:.9f}")
-
-    attributed_sum = sum(
-        geom.area for geom in result["per_sector"].values()
-    )
-    print("sum attributed area:", round(attributed_sum, 9))
-    print(
-        "unified-attributed delta:",
-        round(unified.area - attributed_sum, 12),
-    )
-
-    report = {
-        "root_sector": args.root,
-        "overlap": overlap.id,
-        "transparent_cluster": sorted(result["cluster"]),
-        "domain": {
-            "geometry_type": result["domain"].geom_type,
-            "area": float(result["domain"].area),
-            "wkt": result["domain"].wkt,
-        },
-        "meta": result["meta"],
-        "arrangement_cells": len(result["cells"]),
-        "bad_cells": len(result["bad_cells"]),
-        "unified_region": {
-            "geometry_type": unified.geom_type,
-            "area": float(unified.area),
-            "components": len(list(iter_polygons(unified))),
-            "wkt": unified.wkt,
-        },
-        "sector_attribution": {
-            sid: {
-                "geometry_type": geom.geom_type,
-                "area": float(geom.area),
-                "wkt": geom.wkt,
-            }
-            for sid, geom in result["per_sector"].items()
-        },
-        "attributed_area_sum": float(attributed_sum),
-        "unified_minus_attributed": float(
-            unified.area - attributed_sum
-        ),
-        "audit_mismatches": result["mismatches"],
-    }
-
-    (args.out_dir / "report.json").write_text(
-        json.dumps(report, indent=2),
-        encoding="utf-8",
-    )
-
-    write_geojson(
-        args.out_dir / "regions.geojson",
-        overlap,
-        result,
-    )
-
-    render(
-        model,
-        overlap,
-        args.root,
-        result,
-        args.out_dir / "unified_region.png",
-        args.out_dir / "unified_region.svg",
-    )
-
-    if result["mismatches"]:
-        print("RESULT: audit mismatch")
-        return 2
-
-    if unified.is_empty:
-        print("RESULT: no conflict region")
-        return 0
-
-    print("RESULT: one unified transparent-domain conflict region found")
-    return 1
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())
