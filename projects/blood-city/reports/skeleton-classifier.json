@@ -43,14 +43,14 @@
       "map": "SKELETON",
       "game": "blood",
       "budget": {
-        "sectors": 229,
-        "walls": 1498,
-        "sprites": 407
+        "sectors": 239,
+        "walls": 1581,
+        "sprites": 394
       },
       "street": {
         "sectors": 25,
         "area": 2914910208,
-        "area_share_of_map": 0.775,
+        "area_share_of_map": 0.776,
         "width_units": {
           "n": 2729,
           "min": 512.0,
@@ -84,21 +84,21 @@
             "sectors": 1,
             "area": 7602176,
             "sample": [
-              95
+              94
             ]
           },
           {
             "sectors": 1,
             "area": 2162688,
             "sample": [
-              129
+              128
             ]
           },
           {
             "sectors": 1,
             "area": 1048576,
             "sample": [
-              130
+              129
             ]
           }
         ],
@@ -261,9 +261,9 @@
           "n": 9,
           "min": 4194304.0,
           "p10": 4194304.0,
-          "median": 32505856.0,
-          "p90": 177209344.0,
-          "max": 177209344.0
+          "median": 36175872.0,
+          "p90": 428285017.0,
+          "max": 428285017.0
         },
         "doorway_records": [
           {
@@ -329,7 +329,7 @@
           {
             "wall": 538,
             "street_sector": 72,
-            "into_sector": 96,
+            "into_sector": 95,
             "interior_component": 6,
             "width": 2048,
             "gap_z": 16384,
@@ -349,7 +349,7 @@
           {
             "wall": 542,
             "street_sector": 72,
-            "into_sector": 94,
+            "into_sector": 93,
             "interior_component": 5,
             "width": 1024,
             "gap_z": 16384,
@@ -359,7 +359,7 @@
           {
             "wall": 544,
             "street_sector": 72,
-            "into_sector": 92,
+            "into_sector": 91,
             "interior_component": 5,
             "width": 1024,
             "gap_z": 16384,
@@ -377,9 +377,9 @@
             "block_label": 3
           },
           {
-            "wall": 722,
-            "street_sector": 97,
-            "into_sector": 145,
+            "wall": 739,
+            "street_sector": 96,
+            "into_sector": 144,
             "interior_component": 10,
             "width": 2048,
             "gap_z": 31744,
@@ -387,9 +387,9 @@
             "block_label": 8
           },
           {
-            "wall": 736,
-            "street_sector": 97,
-            "into_sector": 126,
+            "wall": 753,
+            "street_sector": 96,
+            "into_sector": 125,
             "interior_component": 7,
             "width": 1024,
             "gap_z": 31744,
@@ -444,8 +444,8 @@
           },
           {
             "interior_component": 4,
-            "sectors": 15,
-            "area": 21233664,
+            "sectors": 61,
+            "area": 428285017,
             "substantial": true
           },
           {
@@ -513,32 +513,24 @@
         "rooftop_sky_sectors": 0,
         "rooftop_area_share_of_street": 0.0,
         "perched_outdoor_sectors": 1,
-        "below_grade_sectors": 53,
-        "below_grade_area": 452198400,
+        "below_grade_sectors": 63,
+        "below_grade_area": 446372953,
         "stack_pairs": [
           {
             "family": "stack",
             "paired": true,
             "congruent": true,
-            "overlaps_in_plan": false,
-            "upper_sector": 86,
-            "lower_sector": 155
-          },
-          {
-            "family": "stack",
-            "paired": true,
-            "congruent": true,
-            "overlaps_in_plan": false,
+            "overlaps_in_plan": true,
             "upper_sector": 81,
-            "lower_sector": 153
+            "lower_sector": 152
           },
           {
             "family": "stack",
             "paired": true,
             "congruent": true,
-            "overlaps_in_plan": false,
+            "overlaps_in_plan": true,
             "upper_sector": 79,
-            "lower_sector": 154
+            "lower_sector": 153
           }
         ]
       },
@@ -547,9 +539,9 @@
           "zone": 0,
           "zone_floor_picnum": 352,
           "street_sectors": 17,
-          "sectors": 184,
-          "walls": 1226,
-          "sprites": 302
+          "sectors": 231,
+          "walls": 1541,
+          "sprites": 392
         },
         {
           "zone": 1,
@@ -614,13 +606,6 @@
           "sectors": 1,
           "walls": 4,
           "sprites": 2
-        },
-        {
-          "zone": null,
-          "note": "not reachable from any street",
-          "sectors": 37,
-          "walls": 232,
-          "sprites": 103
         }
       ],
       "mechanisms": {
@@ -763,9 +748,9 @@
     },
     "budgets": {
       "SKELETON": {
-        "sectors": 229,
-        "walls": 1498,
-        "sprites": 407
+        "sectors": 239,
+        "walls": 1581,
+        "sprites": 394
       }
     }
   }

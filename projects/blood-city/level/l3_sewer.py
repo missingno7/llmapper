@@ -1,6 +1,6 @@
 """The sewer network proper: a ring, its branches, and places to go.
 
-The parked network was a trunk with three chambers hanging off it -- enough
+The early network was a trunk with three chambers hanging off it -- enough
 to prove the stack links, nowhere near the contract.  sewer-patterns.md
 asks for a network with its own topology (internal cycle rank 7+, denser
 than the street's), a wet share of 0.2-0.4 measured against E3M3, and a
@@ -36,7 +36,7 @@ LEDGE_STEP = 4096
 #: E3M3's shallow-water form, the one that reads wet in our own frames.
 WATER_DEPTH = 7
 
-#: The ring, in the parked network's own plan units.  Corner-leg-corner-leg
+#: The ring, directly below Foundry Ward in the city's plan units.  Corner-leg-corner-leg
 #: all the way round, faces matching exactly at every join.  The north and
 #: south legs are split lengthwise into a walk and a channel: that is the
 #: cross-section, not decoration.
@@ -98,7 +98,7 @@ NECKS = [
 
 
 def expand(city, sewer, existing: dict) -> dict:
-    """Build the ring, its chambers and the necks onto the parked network."""
+    """Build the ring, its chambers and the necks onto the under-city."""
     import citytree
     rooms: dict = {}
 
@@ -390,10 +390,9 @@ def detail_runs(layout, rooms) -> list:
         length = span / run_layer.PLAN
         if length < 1.0:
             continue
-        # The parked network sits at a world offset and the tables are in
-        # local plan units, so the two frames have to be reconciled before
-        # any fraction is computed.  The offset is the difference between
-        # this segment's world rect and its own RING entry.
+        # RING is stated in city plan units.  Reconcile its local rectangle
+        # with the compiled world rectangle before computing fractions; this
+        # also keeps the helper valid if a later district supplies a frame.
         # NOT `props.solid_faces`, which is all-or-nothing: it writes off a
         # face that carries any portal at all, and the east leg's face is
         # 24,576 units long with a 6,144-unit annex mouth in it.  A run

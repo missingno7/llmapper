@@ -33,10 +33,10 @@ GRADE = 8192
 #: Street sky at six repeats: avenue canyon (196608/16)/7168 = 1.71 (CN 1).
 STREET_SKY = 6 * TEXTURE_REPEAT
 
-#: Sewer, parked-geometry form (owner sewer directive): the works stair
-#: descends 11 max-step risers to the cellar; the cellar's pit and the yard
-#: grate are stack links into geometry parked east of the city.  Network
-#: floor sits 53248 z below grade = 3.13 standing (SP band 2.5..4).
+#: Sewer, under-city form: the network shares Foundry Ward's XY footprint
+#: and sits 53248 z below grade = 3.13 standing (SP band 2.5..4).  The yard
+#: grate and the old works pit retain their ROR links, while the pump station
+#: provides the ordinary walkable route with a physical spiral stair.
 CELLAR_DROP = 11 * 4096                     # 45056: the walkable flights
 CELLAR_FLOOR = GRADE + CELLAR_DROP          # 53248, also the pit link plane
 SEWER_FLOOR = CELLAR_FLOOR + 8192           # 61440
@@ -51,22 +51,16 @@ SEWER_FLOOR = CELLAR_FLOOR + 8192           # 61440
 #: Blood's own sewer varies its headroom by a factor of two.
 SEWER_CLEAR = 24576         # the runs: between E3M3's q1 and its median
 SEWER_CHAMBER_CLEAR = 32768  # the rooms: E3M3's q3
-# The pump-station stack is a walkable return link, not a decorative shaft.
-# Its plane is one max step below the ordinary sewer roof, which leaves a full
-# 20,480-unit body clearance in both halves and makes the lower ROR ceiling
-# continuous with the chamber that receives it.
+# The pump-station cellar starts its real spiral descent at this plane.
 STATION_STACK_PLANE = GRADE + 8 * 4096     # 40,960
 STATION_STACK_LANDING_DEPTH = SEWER_FLOOR - STATION_STACK_PLANE  # 20,480
 #: Stack-link mouths: the pit's landing floor sits deep enough that a
 #: standing body's centre stays below the link plane (no warp ping-pong:
 #: centre is 8480 above the feet), and shallow enough to jump back out.
 PIT_LANDING_DEPTH = 10240
-#: One shared XY translation for every sewer stack pair -- the wormhole law
-#: (99% of campaign water pairs hold this; conformance checks it).
-SEWER_PARK_D = (72 * PU, 0)
-#: Reserved parked-map-space (plan units), recorded so later districts
-#: cannot collide with it.
-SEWER_PARK_RESERVATION_PU = (98, 1, 130, 40)
+#: Stack mouths are aligned vertically: their source sectors share XY.
+#: Kept as a named vector because `build_stack_link` accepts arbitrary links.
+SEWER_CITY_D = (0, 0)
 
 #: Materials now live in level/materials.py, named by role.  This module
 #: keeps only the compatibility aliases the older call sites use.

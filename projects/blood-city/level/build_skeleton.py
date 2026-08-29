@@ -17,6 +17,7 @@ writes level/city-skeleton.MAP and refreshes level/blood-city-current.MAP.
 from __future__ import annotations
 
 import collections
+import math
 import pathlib
 import sys
 from collections import defaultdict
@@ -46,7 +47,7 @@ MARKER_TILE_LOWER = 2331
 #: kStatMarker and DeleteSprite()s any whose type is not kMarkerOff/Axis/
 #: WarpDest/On -- which includes kMarkerUpStack(11) and kMarkerLowStack(12).
 #: It runs at the end of dbLoadMap (db.cpp:1325); warpInit runs later, at
-#: level start (blood.cpp:750).  So a stack marker parked on statnum 10 is
+#: level start (blood.cpp:750).  So a stack marker placed on statnum 10 is
 #: deleted before the link is ever registered: no link, solid floor, no way
 #: down.  All six stack markers in E3M1 sit on statnum 0 with cstat 128,
 #: and warpInit sets the invisible bit itself.  Filed as a grammar request.
@@ -63,7 +64,8 @@ def facade_pass_bay() -> int:
     return FACADE_BAY
 from resolution import (
     CELLAR_DROP, CELLAR_FLOOR, DISTRICT_STYLE, GRADE, PIT_LANDING_DEPTH, PU,
-    SEWER_CLEAR, SEWER_FLOOR, SEWER_PARK_D, SKY_TILE, STREET_SKY, WIDTH_UNITS,
+    SEWER_CHAMBER_CLEAR, SEWER_CLEAR, SEWER_FLOOR, SEWER_CITY_D, SKY_TILE,
+    STREET_SKY, WIDTH_UNITS,
     FLOOR_BOARDWALK, FLOOR_GROUND,
 )
 from materials import FACADES, INTERIORS, MASONRY, SEWER, SEWER_WET
@@ -267,8 +269,13 @@ def build():
         style=Style(wall_picnum=DISTRICT_STYLE["market_slip"]["wall_picnum"],
                     floor_picnum=FLOOR_BOARDWALK, ceiling_picnum=SKY_TILE,
                     parallax_ceiling=True, floor_z=GRADE,
-                    clear_height=STREET_SKY, floor_shade=32),
+                    clear_height=STREET_SKY, floor_shade=32, layer="street"),
     )
+    city.declare_layer("street", ceiling_z=GRADE - STREET_SKY, floor_z=16384,
+                       note="the open city at grade")
+    city.declare_layer("sewer", ceiling_z=SEWER_FLOOR - SEWER_CHAMBER_CLEAR,
+                       floor_z=SEWER_FLOOR + 4096,
+                       note="the wet undercity beneath Foundry Ward")
 
     areas = {a["id"]: a for a in data["areas"]}
     alleys = {a["id"]: a for a in data["dead_end_alleys"]}
@@ -428,21 +435,19 @@ def build():
                                 width=CITY_W - SEAM_AVENUE),
                  connection_id="connection:seam_market_east")
 
-    # ---- the sewer: PARKED geometry, stack-linked entries -----------------
+    # ---- the sewer: directly beneath Foundry Ward --------------------------
     #
-    # Owner sewer directive: the network is separate geometry parked east of
-    # the city (Blood's own water-volume pattern; also how DukCity fakes it),
-    # connected through ROR stack links at each entry.  Every pair shares one
-    # XY translation (the wormhole law -- conformance checks it), and mouths
-    # are congruent at the link plane per stacks-v1.  This also dissolves the
-    # geometry-audit blocker: parked geometry overlaps nothing.
+    # The sewer occupies the same XY footprint as the city.  Its depth is
+    # carried by a distinct layer, not by a parking offset.  The remaining
+    # ROR mouths are vertically aligned; the pump station uses physical
+    # treads all the way down.
     s = data["sewer"]
-    park_dx, park_dy = SEWER_PARK_D
+    park_dx, park_dy = SEWER_CITY_D
     sewer = city.assembly(
         "sewer", frame=Frame(int(park_dx), int(park_dy)),
         style=Style(**SEWER.style_kwargs(floor_shade=40, floor_z=SEWER_FLOOR,
-                                         clear_height=SEWER_CLEAR)),
-        note=s["park"]["note"],
+                                         clear_height=SEWER_CLEAR, layer="sewer")),
+        note=s["under_city"]["note"],
     )
 
     # The trunk and its two chambers: the part of the network that predates
@@ -450,7 +455,7 @@ def build():
     trunk_part = sewer.assembly(
         "trunk", note="the original trunk, its risers and its two chambers")
     mouths_part = sewer.assembly(
-        "mouths", note="the parked lower halves of the three stack links")
+        "mouths", note="the lower halves of the two vertical ROR links")
 
     def sroom(name, x0, y0, x1, y1, note, role="interior", **kw):
         kw.setdefault("region_kwargs", {}).update(SEWER.region_kwargs())
@@ -564,7 +569,7 @@ def build():
     # ---- the two stack links (hand-built per stacks-v1; grammar req #7) ---
     def mouth_pair(name, upper_parent, upper_frame_xy, upper_floor,
                    upper_style, landing_depth, see_through):
-        """A congruent stack mouth pair: upper pit + parked lower tube.
+        """A congruent stack mouth pair: upper pit + aligned lower tube.
 
         The lower tube's ceiling is the link plane (set at compile time by
         the link builder); its floor sits `landing_depth` below the plane --
@@ -595,7 +600,7 @@ def build():
             # halves; a behaviour entry is how ours gets one.
             region_kwargs={"sector_behavior": {"amplitude": -4,
                                                "shade_frequency": 4}},
-            note=f"{name}: parked lower mouth, congruent at the plane",
+            note=f"{name}: aligned lower mouth, congruent at the plane",
         )
         lower.frame = Frame(lower.frame.dx - park_dx, lower.frame.dy - park_dy)
         lower.style = Style(**SEWER.style_kwargs(
@@ -687,7 +692,7 @@ def build():
     for face in ("north", "east", "south", "west"):
         city.connect(pit_upper.face(face), cellar.face("north"),
                      connection_id=f"connection:cellar_pit_rim_{face}")
-    # The pit's parked landing opens into the junction (it sits inside the
+    # The pit's aligned landing opens into the junction (it sits inside the
     # junction's footprint area -- adjacency via a carved island there).
     junction.carve([(pit_xy[0] - int(jx - jw / 2) + dx,
                      pit_xy[1] - int(jy - jd / 2) + dy)
@@ -705,35 +710,81 @@ def build():
     shed = l3_shed.build(district_of["foundry_ward"], foundry_st,
                          (int(DISTRICT_BOUNDS["foundry_ward"][0]),
                           int(DISTRICT_BOUNDS["foundry_ward"][1])))
-    pit_x0, pit_y0, pit_x1, pit_y1 = l3_shed.PIT
-    station_upper, station_lower = mouth_pair(
-        "station_pit", shed["_assembly"], (pit_x0, pit_y0),
-        l3_shed.CELLAR_FLOOR_Z,
-        Style(**INTERIORS["service"].style_kwargs(
-            floor_shade=38, clear_height=SEWER_CLEAR)),
-        l3_shed.PIT_LANDING, see_through=True)
-    for face in ("north", "east", "south", "west"):
-        city.connect(station_upper.face(face), shed["cellar"].face("north"),
-                     connection_id=f"connection:station_pit_rim_{face}")
-    # Its parked twin opens off the silt trap, on the ring's north side.
-    # The parked twin lands inside the foot chamber, carved from its middle
-    # so the shaft is ringed by floor you can stand on and jump from.
+    # The former 1024-square stack mouth has become the genuine return route:
+    # a 270-degree, ten-step helix from the station cellar to the sewer.  Its
+    # 1000-unit radius keeps the 393-unit outer tread just wider than a Blood
+    # body and leaves masonry between its C-shaped shaft and the 2048-unit
+    # receiving chamber.
+    spiral_axis = ((l3_shed.PIT[0] + l3_shed.PIT[2]) // 2,
+                   (l3_shed.PIT[1] + l3_shed.PIT[3]) // 2)
+    SPIRAL_RADIUS, SPIRAL_EXIT, SPIRAL_STEP = 1000, 270.0, 22.5
+
+    def spiral_footprint() -> list[tuple[int, int]]:
+        """The exact C-shaped union of the spiral's twelve wedge sectors."""
+        angles = [index * SPIRAL_STEP for index in range(
+            int(SPIRAL_EXIT / SPIRAL_STEP) + 1)]
+
+        def at(radius, angle):
+            radians = math.radians(angle)
+            return (int(round(spiral_axis[0] + radius * math.cos(radians))),
+                    int(round(spiral_axis[1] + radius * math.sin(radians))))
+
+        # `spiral_stair` has a 248-unit newel.  Following the outer arc and
+        # returning along the inner one makes a single simple C-shaped hole;
+        # its outer chords are exactly the portals at each end of the helix.
+        return [at(SPIRAL_RADIUS, angle) for angle in angles] + [
+            at(248, angle) for angle in reversed(angles)
+        ]
+
+    shaft = spiral_footprint()
+    cellar_frame = shed["cellar"].world_frame()
+    shed["cellar"].carve([(x - cellar_frame.dx, y - cellar_frame.dy)
+                           for x, y in shaft])
+    # The lower end opens into the station foot on the ring's north side.
+    # Carving the same footprint means the two portals share real boundary,
+    # not an invisible wormhole into an offset copy.
     foot = sewer_net["station_foot"]
     ff = foot.world_frame()
-    lx0, ly0 = pit_x0 + SEWER_PARK_D[0], pit_y0 + SEWER_PARK_D[1]
-    foot.carve([(lx0 - ff.dx, ly0 - ff.dy),
-                (lx0 - ff.dx + 1024, ly0 - ff.dy),
-                (lx0 - ff.dx + 1024, ly0 - ff.dy + 1024),
-                (lx0 - ff.dx, ly0 - ff.dy + 1024)])
-    for face in ("north", "east", "south", "west"):
-        city.connect(station_lower.face(face), foot.face("north"),
-                     connection_id=f"connection:station_pit_sewer_{face}")
+    foot.carve([(x - ff.dx, y - ff.dy) for x, y in shaft])
+
+    from bloodmap.spiral import spiral_stair
+
+    def wind_into_sewer(layout, _room):
+        helix = spiral_stair(
+            layout, "pump_station_spiral", axis=spiral_axis,
+            base_floor_z=l3_shed.CELLAR_FLOOR_Z,
+            rise=SEWER_FLOOR - l3_shed.CELLAR_FLOOR_Z,
+            entry_angle=0.0, exit_angle=SPIRAL_EXIT, radius=SPIRAL_RADIUS,
+            layer="sewer", **SEWER.style_kwargs(floor_shade=40))
+        # The upper cellar and lower foot deliberately carry the same
+        # C-shaped shaft outline.  It is neither a portal nor an ROR link --
+        # the helix owns the intervening volume -- but it is a named vertical
+        # arrangement, so coincident shaft edges are not mistaken for an
+        # unexplained same-plan wall pair.
+        layout.declare_special(shed["cellar"].region_id, foot.region_id,
+                               "spiral_shaft")
+        # Every wedge touches one of those two C-shaped shaft rims in plan.
+        # State that ownership per wedge as well: the audit otherwise sees
+        # reciprocal solid walls on the same line and (correctly, absent this
+        # declaration) calls them a zero-thickness partition.
+        for region_id in helix.regions:
+            layout.declare_special(shed["cellar"].region_id, region_id,
+                                   "spiral_shaft")
+            layout.declare_special(foot.region_id, region_id, "spiral_shaft")
+        entry, exit = helix.flanks
+        layout.add_connection("connection:pump_spiral_in",
+                              shed["cellar"].region_id, entry.region_id,
+                              a1=entry.a, a2=entry.b, min_width=512)
+        layout.add_connection("connection:pump_spiral_out",
+                              exit.region_id, foot.region_id,
+                              a1=exit.a, a2=exit.b, min_width=512)
+        return helix
+
+    shed["cellar"].raw(
+        "spiral: the pump station cellar down into the under-city",
+        wind_into_sewer)
 
     stack_links = [
-        {"stack_id": "stack:station_pit", "upper": station_upper.region_id,
-         "lower": station_lower.region_id, "link_id": 3,
-         "at_upper": ((pit_x0 + pit_x1) // 2, (pit_y0 + pit_y1) // 2),
-         "see_through": True},
         {"stack_id": "stack:yard_grate", "upper": grate_upper.region_id,
          "lower": grate_lower.region_id, "link_id": 1,
          "at_upper": (gx, gy), "see_through": True},
@@ -884,11 +935,11 @@ def build():
     return city, stack_links, gates, ctx, dressing
 
 
-def build_stack_link(layout, spec, park_d, *, see_through):
-    """A displaced stack pair, hand-built per stacks-v1 (grammar req #7:
+def build_stack_link(layout, spec, offset_d, *, see_through):
+    """A stack pair, hand-built per stacks-v1 (grammar req #7:
     room_over_room only places both markers at one point).  Congruent
     mouths, lower ceiling snapped to the upper floor plane, markers paired
-    by data_1, translation = the shared park offset (the wormhole law)."""
+    by data_1, translation = their explicit planar offset."""
     upper = layout.regions[spec["upper"]]
     lower = layout.regions[spec["lower"]]
     lower.ceiling_z = int(upper.floor_z)
@@ -907,7 +958,7 @@ def build_stack_link(layout, spec, park_d, *, see_through):
         ("upper", spec["upper"], MARKER_UP_STACK, ax, ay, int(upper.floor_z),
          MARKER_TILE_UPPER),
         ("lower", spec["lower"], MARKER_LOW_STACK,
-         ax + park_d[0], ay + park_d[1], int(lower.ceiling_z),
+         ax + offset_d[0], ay + offset_d[1], int(lower.ceiling_z),
          MARKER_TILE_LOWER),
     ):
         layout.add_sprite(
@@ -933,7 +984,7 @@ def main() -> int:
         layout.add_connection(gate_id, region_a, region_b, a1=a1, a2=a2,
                               min_width=1024)
     for spec in stack_links:
-        build_stack_link(layout, spec, SEWER_PARK_D,
+        build_stack_link(layout, spec, SEWER_CITY_D,
                          see_through=spec["see_through"])
     import l3_foundry
     l3_foundry.sprinkle(layout, ctx, dressing)

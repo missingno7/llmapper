@@ -60,7 +60,7 @@ POSE_SETS = {
         "yard": (51.5, 19.5, 55.5, 19.5, LEVEL, "in the works yard, facing the spur"),
         "canteen_in": (51.6, 13.2, 50.2, 13.2, LEVEL, "inside the canteen, facing the counter"),
         "grate_stand": (49.4, 21.5, 50.5, 21.5, LEVEL, "the grate and its kerb, from the dock"),
-        "sewer_junction": (114.0, 12.0, 118.0, 12.0, LEVEL, "the sewer junction (parked)"),
+        "sewer_junction": (42.0, 12.0, 46.0, 12.0, LEVEL, "the sewer junction under Foundry Ward"),
     },
     "fresh1": {
         "quay_start": (33.5, 53.0, 35.5, 45.0, LEVEL, "the player's first frame: quay, facing the avenue"),
@@ -75,7 +75,7 @@ POSE_SETS = {
         "dock": (50.0, 18.0, 48.5, 18.0, LEVEL, "the loading dock alcove"),
         "west_lane": (1.5, 25.0, 1.5, 40.0, LEVEL, "the west lane, south along the tenements"),
         "cemetery_gate": (18.0, 28.0, 24.0, 28.0, LEVEL, "the lychgate from the west street"),
-        "sewer_trunk": (115.0, 21.5, 121.0, 21.5, LEVEL, "the sewer trunk, facing the grate shaft"),
+        "sewer_trunk": (43.0, 21.5, 49.0, 21.5, LEVEL, "the sewer trunk, facing the grate shaft"),
     },
     "market": {
         "plaza_fountain": (24.0, 45.0, 21.0, 45.0, LEVEL, "the plaza, west to the fountain"),
@@ -123,14 +123,14 @@ POSE_SETS = {
         "saloon_in": (9.4, 12.4, 6.6, 9.8, LEVEL, "the saloon and its wall braziers"),
         "nave": (29.4, 28.6, 29.4, 24.2, LEVEL, "the nave, braziers on the aisle walls"),
         "street_lamp": (35.0, 30.0, 35.0, 14.0, LEVEL, "the avenue and its lamps"),
-        "sewer_wet": (117.5, 7.0, 117.5, 12.0, LEVEL, "the wet channel, where the water dressing is"),
+        "sewer_wet": (45.5, 7.0, 45.5, 12.0, LEVEL, "the wet channel, where the water dressing is"),
     },
     "signs": {
         "aldermack_sign": (28.2, 12.8, 28.2, 10.9, LEVEL, "the Aldermack's name over its portal"),
         "saloon_sign": (8.6, 10.5, 10.1, 10.5, LEVEL, "WHISKEY on the saloon's east wall"),
         "pawn_sign": (29.6, 4.9, 28.7, 4.9, LEVEL, "PAWN inside the shop"),
         "nave_sign": (29.4, 27.0, 29.4, 30.5, LEVEL, "ST GALLOWS across the nave's south wall"),
-        "sewer_sign": (110.5, 15.0, 110.5, 12.2, LEVEL, "OUTFALL in the pump chamber"),
+        "sewer_sign": (38.5, 15.0, 38.5, 12.2, LEVEL, "OUTFALL in the pump chamber"),
     },
     "mall": {
         "concourse": (42.0, 46.0, 48.0, 46.0, LEVEL, "down the arcade concourse"),
@@ -145,7 +145,7 @@ POSE_SETS = {
         "station_hall": (51.5, 6.6, 50.2, 6.6, LEVEL, "inside the station, facing the stair"),
         "station_stair": (49.5, 6.6, 47.8, 6.6, DOWN, "down the stair run"),
         "station_cellar": (44.5, 5.0, 45.6, 5.0, LEVEL, "the cellar and its pit"),
-        "station_foot": (116.5, 5.0, 115.0, 5.0, LEVEL, "the shaft foot, down in the sewer"),
+        "station_foot": (44.5, 5.0, 43.8, 5.0, LEVEL, "the spiral foot, down in the sewer"),
     },
     "lamp_pools": {
         "yard_lamp": (51.0, 19.0, 50.0, 19.0, LEVEL, "close to the works-yard lamp pool"),
@@ -153,11 +153,11 @@ POSE_SETS = {
         "quay_lamp": (36.0, 52.0, 37.0, 52.0, LEVEL, "close to the quay-gate lamp pool"),
     },
     "sewer": {
-        "north_walk": (110.0, 6.5, 114.0, 7.5, LEVEL, "the north walk beside its channel"),
-        "pump_room": (103.0, 15.0, 100.0, 14.0, LEVEL, "the pumping chamber"),
-        "flooded": (114.0, 34.5, 114.5, 38.0, LEVEL, "into the flooded branch"),
-        "east_leg": (124.0, 20.0, 124.0, 16.0, LEVEL, "the east leg of the ring"),
-        "annex": (124.5, 17.0, 128.0, 17.5, LEVEL, "the eastern annex"),
+        "north_walk": (38.0, 6.5, 42.0, 7.5, LEVEL, "the north walk beside its channel"),
+        "pump_room": (31.0, 15.0, 28.0, 14.0, LEVEL, "the pumping chamber"),
+        "flooded": (42.0, 34.5, 42.5, 38.0, LEVEL, "into the flooded branch"),
+        "east_leg": (52.0, 20.0, 52.0, 16.0, LEVEL, "the east leg of the ring"),
+        "annex": (52.5, 17.0, 56.0, 17.5, LEVEL, "the eastern annex"),
     },
     "entrances": {
         "canteen_face": (51.9, 17.2, 51.9, 15.0, LEVEL, "square on the canteen entrance"),
@@ -168,16 +168,16 @@ POSE_SETS = {
     "fresh5": {
         "cemetery_in": (24.0, 26.0, 27.0, 24.5, LEVEL, "inside the cemetery ground, toward the church"),
         "lychgate_out": (21.0, 28.0, 18.0, 29.5, LEVEL, "standing in the lychgate, out to the west street"),
-        "stash": (109.0, 21.5, 112.0, 22.5, LEVEL, "the secret stash off the sewer trunk"),
+        "stash": (37.0, 21.5, 40.0, 22.5, LEVEL, "the secret stash off the sewer trunk"),
         "canteen_side": (49.5, 16.0, 50.5, 13.5, LEVEL, "the canteen's second door from the yard"),
-        "pit_bottom": (114.0, 17.0, 116.5, 15.5, LEVEL, "the cellar pit landing, parked side"),
+        "pit_bottom": (42.0, 17.0, 44.5, 15.5, LEVEL, "the cellar pit landing under the works"),
         "well_sq": (14.0, 27.0, 17.0, 25.5, LEVEL, "the well square in Old Crossing"),
     },
     "fresh4": {
         "pool_yard": (54.0, 19.5, 50.0, 19.5, LEVEL, "the works yard west: lamps, dock, stair mouth"),
         "pool_quay": (35.0, 51.0, 32.5, 52.5, LEVEL, "the quay gate pool"),
         "pool_forecourt": (32.0, 14.2, 30.5, 13.0, LEVEL, "the forecourt pool and kiosk"),
-        "sewer_wet": (117.0, 21.5, 113.0, 21.5, LEVEL, "the wet trunk, west toward the junction"),
+        "sewer_wet": (45.0, 21.5, 41.0, 21.5, LEVEL, "the wet trunk, west toward the junction"),
         "market_plaza_w": (33.0, 45.0, 20.0, 45.0, LEVEL, "the plaza, west past the monument"),
     },
     "fresh3": {

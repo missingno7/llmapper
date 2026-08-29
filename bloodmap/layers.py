@@ -433,7 +433,7 @@ def permitted_band(layout: Any, region_id: str,
 #: connector even though it is many sectors -- a ten-step stair down from a loft
 #: to a yard is a single thing that spans two bands, and each step in the middle
 #: of it belongs to neither.
-CONNECTOR_ROLES = frozenset({"stair", "doorway", "lift", "ramp"})
+CONNECTOR_ROLES = frozenset({"stair", "doorway", "gateway", "lift", "ramp"})
 
 
 def _layers_reached(layout: Any, region_id: str,
@@ -456,6 +456,13 @@ def _layers_reached(layout: Any, region_id: str,
         if len(members) != 2:
             continue
         left, right = members
+        neighbours.setdefault(left, set()).add(right)
+        neighbours.setdefault(right, set()).add(left)
+    # Room-over-room pairs are vertical connectors, not portal edges.  They
+    # still join the two height bands for the purpose of a stair's permitted
+    # extent: otherwise a real stair ending at a stack mouth is incorrectly
+    # told it may only occupy its street band.
+    for left, right, _kind in getattr(layout, "special_pairs", ()):
         neighbours.setdefault(left, set()).add(right)
         neighbours.setdefault(right, set()).add(left)
 
@@ -846,6 +853,30 @@ def find_overlaps(layout: Any) -> list[Overlap]:
     ids = list(layout.regions)
     portals = portal_graph(layout)
     boxes = {region_id: _bbox(layout.regions[region_id]) for region_id in ids}
+    # A city can put one undercroft room beneath dozens of street sectors.  The
+    # earlier pair loop launched the same breadth-first portal search once per
+    # overlap, so adding the first real under-city made validation quadratic in
+    # overlaps *and* graph size.  Reachability has no dependency on the pair's
+    # overlap centre, therefore cache the complete limited search per source.
+    hop_cache: dict[str, dict[str, int]] = {}
+
+    def hops_from(source: str) -> dict[str, int]:
+        cached = hop_cache.get(source)
+        if cached is not None:
+            return cached
+        distances = {source: 0}
+        frontier = deque([source])
+        while frontier:
+            current = frontier.popleft()
+            distance = distances[current]
+            if distance >= 24:
+                continue
+            for other in portals.get(current, ()):
+                if other not in distances:
+                    distances[other] = distance + 1
+                    frontier.append(other)
+        hop_cache[source] = distances
+        return distances
 
     out: list[Overlap] = []
     for index, left_id in enumerate(ids):
@@ -874,7 +905,7 @@ def find_overlaps(layout: Any) -> list[Overlap]:
                 kind=kind,
                 z=z_relation(z_interval(int(left.ceiling_z), int(left.floor_z)),
                              z_interval(int(right.ceiling_z), int(right.floor_z))),
-                hops=hops_between(portals, left_id, right_id),
+                hops=hops_from(left_id).get(right_id),
                 one_clip_list=in_one_clip_list(layout, left_id, right_id,
                                                portals),
                 declared=declared.get(frozenset((left_id, right_id))),
@@ -1223,9 +1254,22 @@ def covisible(layout: Any, left_id: str, right_id: str,
     Returns the name of a region from which both are possibly visible, so the
     answer can be taken to the observer and rendered. `None` is the proof.
     """
-    reach: dict[str, set[str]] = {}
-    for region_id in layout.regions:
-        reach[region_id] = set(sight_reach(layout, region_id, depth))
+    # The reach map is a property of this layout's portals and height bands,
+    # not of the particular pair being asked about.  Layer validation asks the
+    # same question for every plan-overlap pair; recomputing every source walk
+    # for each pair turned a whole-city undercroft into minutes of duplicate
+    # work.  A layout is assembled before `compile`, so its region and
+    # connection counts are a sufficient invalidation key here.
+    key = (len(layout.regions), len(layout.connections), int(depth))
+    cached = getattr(layout, "_layer_sight_reach", None)
+    if not cached or cached.get("key") != key:
+        reach = {
+            region_id: set(sight_reach(layout, region_id, depth))
+            for region_id in layout.regions
+        }
+        layout._layer_sight_reach = {"key": key, "reach": reach}
+    else:
+        reach = cached["reach"]
     for region_id, seen in reach.items():
         if left_id in seen and right_id in seen:
             return region_id

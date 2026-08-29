@@ -169,13 +169,14 @@ def main() -> int:
     row("massing-stage doorways", ">=1 (works stair mouth)", doors,
         doors >= 1, "venue doorways arrive with Phase 3 facades")
 
-    # Sewer depth as compiled (parked form: network floor below grade).
+    # Sewer depth as compiled (network floor directly below the city).
     depth_std = (SEWER_FLOOR - GRADE) / STANDING
     row("sewer depth", f"{depth_std:.2f} standing", "same constant",
         2.5 <= depth_std <= 4, "resolution.SEWER_FLOOR - GRADE")
 
-    # The wormhole law: every sewer stack pair shares one XY translation
-    # (owner sewer directive; campaign water holds this at 99%).
+    # The remaining ROR mouths are vertically aligned.  The normal return
+    # route is the pump station's physical spiral, so this checks only the
+    # two legacy link pairs rather than an offset sewer copy.
     # Read the pairs through the project's own stack miner rather than
     # hardcoded marker ids: this check silently passed nothing when the
     # links were rebuilt in the stack family (11/12) while it still looked
@@ -187,12 +188,12 @@ def main() -> int:
     offsets = {r["link_id"]: tuple(r["offset"]) for r in pairs}
     families = {r["family"] for r in pairs}
     distinct = set(offsets.values())
-    row("sewer stack links: one shared translation, stack family",
+    row("sewer stack links: zero planar offset, stack family",
         f"{len(pairs)} pairs, families {sorted(families)}",
         f"offsets {sorted(distinct)}",
         len(pairs) >= 2 and len(distinct) == 1 and families == {"stack"},
-        "owner sewer directive; the campaign's walkable ROR floors are the "
-        "stack family, and every pair shares one translation")
+        "the campaign's walkable ROR floors are the stack family; the sewer "
+        "is directly beneath the city, so each pair's offset is zero")
 
     # ROR markers must survive the map loader.  NBlood db.cpp
     # PropagateMarkerReferences() deletes every sprite on statnum 10

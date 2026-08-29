@@ -575,6 +575,7 @@ def framed_door(layout: Any, door_region: str, *, near_edge: tuple,
         layout.add_region(
             frame_id, wound(ring), role="doorway",
             floor_z=int(door.floor_z), ceiling_z=head_z,
+            layer=door.layer,
             wall_picnum=int(jamb_picnum),
             floor_picnum=floor_tile,
             ceiling_picnum=ceiling_tile,

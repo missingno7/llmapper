@@ -12,11 +12,10 @@ free-standing hut, because a free-standing mass in the street would add a
 tenth walk-around loop and the loop census is at its contract ceiling of
 nine.
 
-The descent is real geometry all the way to the shared stack plane; the last
-20,480 is a stack link into the parked network -- 1.21 player heights, below
-the 1.24-height jump rise.  Crucially, that plane also matches the receiving
-sewer chamber's ceiling, so the link is a continuous threshold rather than a
-low-ceiling box cut into a tall room.
+The descent is real geometry all the way: a straight flight reaches the
+cellar, then a 270-degree spiral falls 20,480 units into the sewer directly
+below it.  The shaft is cut through both volumes instead of being an ROR
+teleport, so its walls and every tread have physical clearance.
 """
 
 from __future__ import annotations
@@ -51,22 +50,23 @@ DOOR_D, PORCH_D = 512, 512
 # and its reveal -- which makes this number the whole fix.
 DOOR_HEIGHT = 31744
 
-#: Eight risers of one max step land exactly on the shared station stack plane.
+#: Eight risers of one max step land exactly on the spiral's cellar plane.
 STEP, TREAD = 4096, 512
 FLIGHT = 8           # one straight run; the works void is long enough
 STAIR_W = 1024
 CELLAR_FLOOR_Z = STATION_STACK_PLANE
 assert CELLAR_FLOOR_Z == GRADE + FLIGHT * STEP
 
-#: Where the pit sits in the cellar, and therefore where its parked twin
-#: sits in the sewer: under the ring's north walk.
-#: Strictly inside both the cellar above and the foot chamber below
-#: (its parked twin sits at PIT + the 72-unit park offset).
+#: The spiral's axis: strictly inside both the cellar and the receiving foot
+#: chamber under the ring's north walk.
 PIT = (45056, 4608, 46080, 5632)
 # The eight-riser flight ends at x=47,616; keep the cellar flush with that
 # arrival edge rather than leaving a one-bay unpaired gap after changing the
 # shared ROR plane.
-CELLAR = (44032, 3584, 47616, 7168)
+# The north edge stops exactly at the sewer walk's south wall.  The former
+# extra plan unit intruded into that under-city tunnel at the cellar's own z;
+# a real shaft must meet the tunnel at a boundary, never share its air.
+CELLAR = (44032, 3584, 47616, 6144)
 PIT_LANDING = STATION_STACK_LANDING_DEPTH
 
 
@@ -113,7 +113,7 @@ def build(district, foundry_st, foundry_origin):
                     "sector_behavior": z_motion_door(GRADE, GRADE - DOOR_HEIGHT)},
                 note="the station door")
     door.surfaces(wall_picnum=MASONRY.wall, floor_z=GRADE, clear_height=0)
-    hall = room("hall", sx0 + 512, sy0 + 512, sx1 - PORCH_D - DOOR_D, sy1 - 512,
+    hall = room("hall", sx0 + 512, sy0, sx1 - PORCH_D - DOOR_D, sy1 - 512,
                 note="the station floor: the stair head is in here")
 
     city.connect(porch.face("east"), foundry_st.face("west"),
@@ -124,23 +124,26 @@ def build(district, foundry_st, foundry_origin):
                  connection_id="connection:pump_door_hall")
 
     # One straight flight west into the works void, then the cellar.
-    stair_y0 = MOUTH_Y0
+    # The stair uses the hall's southern bay, so it arrives entirely above the
+    # shortened cellar rather than into the sewer walk beyond its north wall.
+    stair_y0 = sy0
     cellar = room("cellar", *CELLAR, floor_z=CELLAR_FLOOR_Z, clear=20480,
+                  role="gateway",
                   note="the station cellar; its pit drops into the sewer")
 
     # The stair is one bay wide, taken from a sub-span of the hall's west
     # face: anchored to the whole face it would be three plan units wide and
     # would run straight through the rail-yard backdrop box.
-    face_len = (sy1 - 512) - (sy0 + 512)
-    at = ((stair_y0 + STAIR_W / 2) - (sy0 + 512)) / face_len
+    face_len = (sy1 - 512) - sy0
+    # The west face is wound south-to-north, so its anchor fraction runs in
+    # the opposite direction to the room's local y coordinate.
+    at = 1.0 - ((stair_y0 + STAIR_W / 2) - sy0) / face_len
     hall.staircase("pump_flight", "west", at=at, width=STAIR_W,
                    total_rise=FLIGHT * STEP, tread=TREAD, step_rise=STEP,
                    arrive_at=cellar.region_id, connection={"role": "portal"})
 
-    cellar.carve([(PIT[0] - CELLAR[0], PIT[1] - CELLAR[1]),
-                  (PIT[2] - CELLAR[0], PIT[1] - CELLAR[1]),
-                  (PIT[2] - CELLAR[0], PIT[3] - CELLAR[1]),
-                  (PIT[0] - CELLAR[0], PIT[3] - CELLAR[1])])
-    # `_assembly` so the caller can hang the cellar pit INSIDE the
-    # station rather than at the top of the city.
+    # The caller cuts the curved opening for the sewer spiral.  Leaving the
+    # carve here would create a second, disconnected hole beside the stair.
+    # `_assembly` lets the caller keep that spiral inside the station rather
+    # than at the top of the city.
     return {"hall": hall, "cellar": cellar, "_assembly": shed}

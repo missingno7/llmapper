@@ -237,20 +237,20 @@ SEWER = {
                  "player looks down through the grate into the gallery "
                  "(backdrop-urbanism logic applied downward); one-way fall, "
                  "return is the stair"},
-        {"id": "works_stair", "form": "stair", "link_form": "solid",
+        {"id": "works_stair", "form": "stair", "link_form": "see_through",
          "at": (48.5, 19),
          "note": "flights down to the works cellar; the cellar pit is a "
-                 "solid-texture stack (a dark shaft the player drops "
-                 "through -- no preview, and the parked seams stay hidden)"},
+                 "ROR shaft into the adjacent under-city junction"},
+        {"id": "pump_spiral", "form": "spiral", "link_form": "solid",
+         "at": (44.5, 5),
+         "note": "the pump station's road-level stair reaches a cellar, then "
+                 "a physical 270-degree spiral descends into the sewer"},
     ],
-    "park": {
-        # Updated when the ring was built: the network now spans local
-        # 27..57 in its own frame, i.e. world 99..129 with the 72-unit park
-        # offset.  Recorded so later districts cannot collide with it.
-        "reservation_pu": (98, 1, 130, 40),
-        "note": "the sewer is parked geometry east of the city (Blood's own "
-                "water-volume pattern); every entry pair shares one XY "
-                "translation -- the wormhole law, checked in conformance",
+    "under_city": {
+        "footprint_pu": (27, 2, 57, 39),
+        "note": "the sewer lies directly below Foundry Ward; its real spiral "
+                "stair stays in the same XY footprint, while the two remaining "
+                "ROR links are vertically aligned",
     },
     "roles": {"main_circuit": "required passage once (SP)",
               "secret_branch": "Phase 4, from the cistern (dive link)"},

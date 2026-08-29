@@ -181,7 +181,7 @@ def room_rect(room):
     """A room's bounding rectangle in WORLD units.
 
     Taken from the object itself, not from a module's table: an assembly
-    can carry a frame offset (the sewer is parked 72 plan units east), and
+    can carry a frame offset (the sewer currently uses the city frame), and
     a rect computed from local coordinates lands outside its sector.
 
     Accepts either a levelprog Room (`world_outline`) or a compiled layout
