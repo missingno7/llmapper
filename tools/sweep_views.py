@@ -28,7 +28,8 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
 from bloodmap.format import read_map
 from bloodmap.viewplan import eye_z, interior_point
-from bloodmap.viewpoints import _contains, _sector_loops
+from bloodmap.planar_geom import point_in_loops
+from bloodmap.viewpoints import _sector_loops
 from bloodmap.visual import ObservationRequest, Viewpoint, run_observation
 
 
@@ -42,15 +43,21 @@ def sweep_poses(level, *, step: int = 1024, angles: int = 8,
         loops = _sector_loops(level, sector_id)
         if not loops:
             continue
+        # Strictly inside, not `_contains`.  point_in_loop answers -1 on the
+        # boundary and _contains reads that as inside, which is the right call
+        # when validating an authored pose but not when placing an observer:
+        # a camera standing exactly on a wall plane belongs to no sector the
+        # engine will agree on, and 30 of BB4's 800 sweep points were such.
+        inside = lambda x, y: point_in_loops((x, y), loops) == 1
         xs = [p[0] for p in loops[0]]
         ys = [p[1] for p in loops[0]]
         points = [(x, y)
                   for x in range(min(xs) + step // 2, max(xs), step)
                   for y in range(min(ys) + step // 2, max(ys), step)
-                  if _contains(level, sector_id, x, y)]
+                  if inside(x, y)]
         if not points:
             point = interior_point(level, sector_id)
-            if point is None:
+            if point is None or not inside(*point):
                 continue
             points = [point]
         for px, py in points:

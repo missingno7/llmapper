@@ -99,7 +99,25 @@ def _sector_loops(level: LevelIR, sector_id: int) -> list[list[Point]]:
             loops.append(loop)
     if not loops:
         raise ViewpointError(f"sector:{sector_id} has no usable wall loop")
+    # Largest first, so loops[0] is the outline and the rest are holes.
+    # Tracing order is wall order, and Build does not guarantee the outer
+    # loop owns the lowest wall index: BB4 sector 41 traces a hole of
+    # 1048576 before an outline of 22077276, and E1M1 has seven such
+    # sectors.  Callers that read loops[0] as the outline -- _contains,
+    # interior_point, the look.py harnesses -- then accepted points that
+    # sit in the hole, which is outside the sector, and the observer was
+    # handed cameras standing in solid space.
+    loops.sort(key=lambda loop: abs(_loop_area2(loop)), reverse=True)
     return loops
+
+
+def _loop_area2(loop: list[Point]) -> int:
+    """Twice the signed area; sign is winding, magnitude orders the loops."""
+    total = 0
+    for index, point in enumerate(loop):
+        nxt = loop[(index + 1) % len(loop)]
+        total += point[0] * nxt[1] - nxt[0] * point[1]
+    return total
 
 
 def _contains(level: LevelIR, sector_id: int, x: int, y: int) -> bool:

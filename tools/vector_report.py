@@ -4,7 +4,7 @@ For every XY overlap, every candidate origin domain gets one analytic
 ConflictRegion -- a real polygon from the target-local arrangement, not a
 sampled grid.  The union over domains is the map verdict.
 
-    python -m tools.vector_report maps/sector_overlap -o work/vector-report
+    python -m tools.vector_report tests/data/sector_overlap -o work/vector-report
 """
 from __future__ import annotations
 
