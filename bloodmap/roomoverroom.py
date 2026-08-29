@@ -29,9 +29,18 @@ space, dived into. A **stack** is the same footprint in the same place, one room
 directly above another. They are opposite geometries and only the second is
 room-over-room in the sense people mean.
 
-Three things are unanimous across all 38 stack pairs and are therefore built in
-here rather than offered as options:
+Four things are unanimous across all 38 stack pairs -- and across all 502 link
+markers of every family -- and are therefore built in here rather than offered as
+options:
 
+* every marker sits on **statnum 0**, the decoration list. This one is fatal
+  rather than stylistic: `PropagateMarkerReferences` (db.cpp:681, called from
+  `dbLoadMap` at db.cpp:1325) walks `kStatMarker` -- statnum 10 -- and deletes
+  every sprite on it that is not an Off, On, Axis or WarpDest marker. A link
+  marker put there is destroyed before `warpInit` (blood.cpp:750) can pair it,
+  and the result is a stack with its mirror tiles and no link at all: the floor
+  stays solid and the room below is never drawn. This module shipped statnum 10
+  until the first map that actually used it was walked in the engine.
 * the upper sector's **floor** picnum and the lower sector's **ceiling** picnum
   are both **504**, `kMirrorTile`. This is what `IsRorSector` looks at, and it
   is the only reason the other side is drawn at all -- without it the link still
@@ -61,10 +70,31 @@ MARKER_UP_WATER, MARKER_LOW_WATER = 9, 10
 MARKER_UP_STACK, MARKER_LOW_STACK = 11, 12
 MARKER_UP_GOO, MARKER_LOW_GOO = 13, 14
 
-#: Markers live on the decoration list and are never drawn.
-MARKER_STATNUM = 10
-MARKER_CSTAT = 32768          # warpInit sets this itself; stating it is honest
-MARKER_TILE = 3997
+#: Markers live on the **decoration** list, statnum 0, and this is load-bearing.
+#:
+#: `PropagateMarkerReferences` (db.cpp:681) walks every sprite on `kStatMarker`
+#: -- statnum 10 -- and `DeleteSprite`s any whose type is not one of kMarkerOff,
+#: kMarkerAxis, kMarkerWarpDest or kMarkerOn. Link markers are none of those, so
+#: a stack marker parked on statnum 10 is destroyed during `dbLoadMap`, at
+#: db.cpp:1325, before `warpInit` runs at blood.cpp:750 and can pair it.
+#:
+#: The symptom is a room-over-room pair that has its mirror tiles and no link:
+#: the floor stays solid, the other side is never drawn, and nothing in the map
+#: file looks wrong. This module carried statnum 10 for as long as it had never
+#: built a map.
+#:
+#: All 502 link markers in the campaign are on statnum 0, across all four
+#: families, without exception.
+MARKER_STATNUM = 0
+
+#: 486 of the campaign's 502 link markers carry exactly this; `warpInit` then
+#: ors in 32768 and clears 257 itself (warp.cpp:113).
+MARKER_CSTAT = 128
+
+#: The editor's own marker tiles, unanimous across all four families and all
+#: 502 markers: the upper of a pair is 2332 and the lower is 2331.
+MARKER_TILE_UPPER = 2332
+MARKER_TILE_LOWER = 2331
 
 
 class StackError(ValueError):
@@ -129,14 +159,14 @@ def room_over_room(layout: Any, stack_id: str, upper_region: str,
     layout.declare_special(upper_region, lower_region, family)
 
     markers = {}
-    for tag, region_id, marker_type, z in (
-        ("upper", upper_region, upper_type, int(upper.floor_z)),
-        ("lower", lower_region, lower_type, int(lower.ceiling_z)),
+    for tag, region_id, marker_type, tile, z in (
+        ("upper", upper_region, upper_type, MARKER_TILE_UPPER, int(upper.floor_z)),
+        ("lower", lower_region, lower_type, MARKER_TILE_LOWER, int(lower.ceiling_z)),
     ):
         placement_id = f"{stack_id}_{tag}"
         layout.add_sprite(
             placement_id, region_id, x=int(at[0]), y=int(at[1]), z=z,
-            type=int(marker_type), status=MARKER_STATNUM, picnum=MARKER_TILE,
+            type=int(marker_type), status=MARKER_STATNUM, picnum=int(tile),
             cstat=MARKER_CSTAT, x_repeat=64, y_repeat=64, angle=0,
             # warpInit reads the link id out of the XSprite and skips any marker
             # that has not got one.

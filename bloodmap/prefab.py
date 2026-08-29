@@ -37,6 +37,10 @@ from .vocabulary import Anchor, VocabularyError, recess
 
 PLAYER_WIDTH = 384
 
+
+class PrefabError(ValueError):
+    """A prefab cannot be placed without making invalid authored geometry."""
+
 #: Alcove footprint, from 1,793 campaign instances: area q1 0.88, median 2.67,
 #: q3 7.11 player widths squared. A niche a bit over a player wide and about as
 #: deep lands on the median.
@@ -394,9 +398,9 @@ def breakable(kind: str, *, shade: int = -8) -> dict[str, Any]:
 #   hitscan-blocking (256). Drop the 1 and it is scenery you fall through.
 # * **repeat 48/48** on a 128-pixel tile, so each slab is drawn 1536 square,
 #   four player widths.
-# * **a pitch of 1448**, not 1536. The slabs *overlap by 88 units*. Laid
-#   edge-to-edge they would leave a seam at every join, and a seam in a floor
-#   made of sprites is a hole.
+# * each panel reaches exactly to the next one.  They meet at an edge, but must
+#   never cover the same area: coincident floor sprites shimmer and can give
+#   Build's renderer ambiguous draw order.
 # * each slab shaded separately -- DWE1M1's run spans shade 14 to 27 -- so the
 #   bridge has length to it rather than reading as one flat plane.
 
@@ -406,22 +410,60 @@ BRIDGE_TILE = 256
 #: Blocking, floor-aligned, centred, hitscan-blocking.
 BRIDGE_CSTAT = 1 | 32 | 128 | 256
 
-#: A floor-aligned sprite's footprint is ``repeat * tile_pixels / 8`` -- half the
-#: formula a wall sprite uses, and the correction cost this bridge two rebuilds.
-#: At repeat 48 on a 128-pixel tile that is 768 units, not 1536.
-FLOOR_SPRITE_DIVISOR = 8.0
+#: A floor-aligned sprite's footprint is ``repeat * tile_pixels / 4``.  The
+#: plane has the same XY scale as a wall sprite; confusing it with texture
+#: coverage (/8) halves the calculated square, making adjacent bridge panels
+#: overlap by half their real width.  At repeat 48 on a 128-pixel tile the
+#: footprint is 1536 units.
+FLOOR_SPRITE_DIVISOR = 4.0
 
-#: Pitch as a fraction of that footprint. Below 1.0 the slabs overlap and the
-#: walkway is continuous; above it they are separate and there is a hole between
-#: each pair.
-#:
-#: DWE1M1's slabs sit 1448 apart at a footprint of 768 -- a pitch of **1.88**, so
-#: they do not touch at all. Nineteen of them spread over thirty-five player
-#: widths square is not a bridge, it is stepping stones over a chasm, and
-#: reading it as a bridge is what produced a walkway you could see the pit floor
-#: through. Both are worth building; they are different things.
-BRIDGE_OVERLAP = 0.92
+#: Bridge panels touch edge-to-edge.  A fractional pitch used to make them
+#: overlap, which is not valid for floor-aligned sprites.  Kept as an explicit
+#: argument so old call sites fail loudly rather than silently recreating the
+#: bad geometry.
+BRIDGE_OVERLAP = 1.0
 STEPPING_STONE_PITCH = 1.88
+
+
+def _bridge_footprint(cx: float, cy: float, ux: float, uy: float,
+                      width: float) -> tuple[tuple[int, int], ...]:
+    """Return the four Build-grid corners of a square floor sprite."""
+    half = width / 2.0
+    px, py = -uy, ux
+    return tuple(
+        (int(round(cx + sx * ux * half + sy * px * half)),
+         int(round(cy + sx * uy * half + sy * py * half)))
+        for sx, sy in ((-1, -1), (1, -1), (1, 1), (-1, 1))
+    )
+
+
+def _bridge_is_inside_host(layout: PlanarLayout, region_id: str,
+                           footprint: tuple[tuple[int, int], ...]) -> bool:
+    """Whether a sprite square is strictly clear of the host walls and holes."""
+    from .planar_geom import classify_segment_pair, point_in_loops
+
+    host = layout.regions[region_id]
+    loops = (host.outer, *host.holes)
+    if any(point_in_loops(point, loops) != 1 for point in footprint):
+        return False
+    edges = tuple(zip(footprint, footprint[1:] + footprint[:1]))
+    for loop in loops:
+        host_edges = tuple(zip(loop, loop[1:] + loop[:1]))
+        for a, b in edges:
+            for c, d in host_edges:
+                if classify_segment_pair(a, b, c, d) is not None:
+                    return False
+    return True
+
+
+def _bridge_slabs_overlap(left: dict[str, float], right: dict[str, float],
+                          ux: float, uy: float) -> bool:
+    """True only for a positive-area overlap; a common edge is allowed."""
+    dx, dy = right["x"] - left["x"], right["y"] - left["y"]
+    along = abs(dx * ux + dy * uy)
+    across = abs(-dx * uy + dy * ux)
+    return (along < (left["width"] + right["width"]) / 2.0 - 1e-6
+            and across < (left["width"] + right["width"]) / 2.0 - 1e-6)
 
 
 def sprite_bridge(layout, bridge_id, region_id, *, start, end, z,
@@ -437,35 +479,79 @@ def sprite_bridge(layout, bridge_id, region_id, *, start, end, z,
     `quarter_turn` adds 90 degrees, for a tile whose planking wants to lie
     across the walkway rather than along it.
 
+    ``start`` and ``end`` are the outside edges of the complete deck, not its
+    first and last sprite centres.  Every panel is preflighted against the host
+    region, including its holes, and panels may share an edge but never area.
+
     Returns the placement ids. The caller is responsible for there being
     somewhere to fall: a bridge over a floor is just a rug.
     """
     (ax, ay), (bx, by) = start, end
-    span = hypot(bx - ax, by - ay)
+    dx, dy = bx - ax, by - ay
+    span = hypot(dx, dy)
+    if span <= 0:
+        raise PrefabError(f"{bridge_id}: bridge has no length")
+    if region_id not in layout.regions:
+        raise PrefabError(f"{bridge_id}: unknown host region {region_id!r}")
+    if int(repeat) != repeat or int(repeat) <= 0:
+        raise PrefabError(f"{bridge_id}: repeat must be a positive integer")
+    repeat = int(repeat)
+    if int(tile_width) != tile_width or int(tile_width) <= 0:
+        raise PrefabError(f"{bridge_id}: tile_width must be a positive integer")
+    tile_width = int(tile_width)
+    if abs(overlap - BRIDGE_OVERLAP) > 1e-9:
+        raise PrefabError(
+            f"{bridge_id}: overlapping floor sprites are forbidden; use a "
+            "separate stepping-stone prefab for gaps")
     if angle is None:
         # Build angles: 0 is +x, 512 is +y, 1024 is -x, 1536 is -y.
         angle = int(round(atan2(by - ay, bx - ax) * 1024.0 / pi)) % 2048
     if quarter_turn:
         angle = (angle + 512) % 2048
-    slab = repeat * tile_width / FLOOR_SPRITE_DIVISOR
-    if slab <= 0:
-        raise PrefabError(f"{bridge_id}: a slab with no width")
-    pitch = slab * overlap
-    # Ceiling, not rounding. The slabs are then spread evenly over the span, so
-    # their real spacing is `span / (count - 1)` -- and rounding down lets that
-    # exceed the pitch, which opens a gap between every pair. Standing on the
-    # first version of this bridge you could see the pit wall through it.
-    count = max(2, ceil(span / pitch) + 1)
-    out = []
+    unit = tile_width / FLOOR_SPRITE_DIVISOR
+    total_repeats = int(round(span / unit))
+    if total_repeats <= 0 or abs(span - total_repeats * unit) > 1e-6:
+        raise PrefabError(
+            f"{bridge_id}: span {span:g} cannot be tiled exactly by "
+            f"{unit:g}-unit floor-sprite texels")
+    # Distribute integer repeats across the panels.  This makes the complete
+    # deck terminate exactly on start/end, leaving neither a seam nor a
+    # coincident strip at a join.
+    count = max(1, ceil(total_repeats / repeat))
+    base_repeat, extra = divmod(total_repeats, count)
+    ux, uy = dx / span, dy / span
+    panels: list[dict[str, float]] = []
+    cursor = 0.0
     for index in range(count):
-        t = index / (count - 1) if count > 1 else 0.0
-        shade = int(round(shade_from + (shade_to - shade_from) * t))
+        panel_repeat = base_repeat + (1 if index < extra else 0)
+        width = panel_repeat * unit
+        distance = cursor + width / 2.0
+        panels.append({
+            "repeat": float(panel_repeat), "width": width,
+            "x": ax + ux * distance, "y": ay + uy * distance,
+            "t": distance / span,
+        })
+        cursor += width
+    if abs(cursor - span) > 1e-6:
+        raise PrefabError(f"{bridge_id}: panel layout did not cover its span")
+    for index, panel in enumerate(panels):
+        footprint = _bridge_footprint(panel["x"], panel["y"], ux, uy,
+                                      panel["width"])
+        if len(set(footprint)) != 4 or not _bridge_is_inside_host(
+                layout, region_id, footprint):
+            raise PrefabError(
+                f"{bridge_id}: panel {index} intersects a host wall or hole")
+        if index and _bridge_slabs_overlap(panels[index - 1], panel, ux, uy):
+            raise PrefabError(f"{bridge_id}: panels {index - 1} and {index} overlap")
+    out = []
+    for index, panel in enumerate(panels):
+        shade = int(round(shade_from + (shade_to - shade_from) * panel["t"]))
         placement_id = f"{bridge_id}_{index:02d}"
         layout.add_sprite(
             placement_id, region_id,
-            x=int(round(ax + (bx - ax) * t)), y=int(round(ay + (by - ay) * t)),
+            x=int(round(panel["x"])), y=int(round(panel["y"])),
             z=int(z), type=0, status=0, picnum=int(tile), cstat=BRIDGE_CSTAT,
-            x_repeat=int(repeat), y_repeat=int(repeat), shade=shade,
+            x_repeat=int(panel["repeat"]), y_repeat=int(panel["repeat"]), shade=shade,
             angle=int(angle),
         )
         out.append(placement_id)

@@ -47,6 +47,12 @@ class MaterialTests(unittest.TestCase):
         self.assertEqual([], check(wall_art_sizes()))
 
     def test_a_sky_material_carries_its_own_parallax(self):
+        """A sky material names a sky, and names *which* sky.
+
+        Levels do not share one. The monastery stands under `SKY_PANEL`; all 45
+        of E3M1's parallax sectors name 3491 instead, and a city built out of
+        these materials without `sky_tile` stood under the monastery's.
+        """
         from bloodmap.surfaces import MATERIALS, SKY_PANEL, material
 
         outdoor = [name for name, m in MATERIALS.items() if m.sky]
@@ -54,7 +60,15 @@ class MaterialTests(unittest.TestCase):
         for name in outdoor:
             built = material(name)
             self.assertTrue(built["parallax_ceiling"], name)
-            self.assertEqual(built["ceiling_picnum"], SKY_PANEL, name)
+            self.assertEqual(built["ceiling_picnum"],
+                             MATERIALS[name].sky_tile or SKY_PANEL, name)
+
+    def test_the_city_stands_under_the_city_sky(self):
+        from bloodmap.surfaces import CITY_SKY, MATERIALS, SKY_PANEL, material
+
+        self.assertEqual(material("leads")["ceiling_picnum"], CITY_SKY)
+        self.assertEqual(material("courtyard")["ceiling_picnum"], SKY_PANEL)
+        self.assertNotEqual(CITY_SKY, SKY_PANEL)
 
     def test_an_unknown_material_is_refused_by_name(self):
         from bloodmap.surfaces import SurfaceError, material

@@ -287,6 +287,21 @@ class FramedDoorTests(unittest.TestCase):
         _, built = self._framed()
         self.assertEqual(built["face_y_repeat"], 8)
 
+    def test_batch_framer_keeps_motion_and_leaf_height_in_one_declaration(self):
+        from bloodmap.aperture import frame_z_doors
+
+        layout = self._layout()
+        layout.regions["region:door"].sector_behavior = {
+            "off_ceiling_z": 8192, "on_ceiling_z": -23552,
+            "off_floor_z": 8192, "on_floor_z": 8192,
+        }
+        report = frame_z_doors(layout, art_sizes={22: (64, 128)})
+        self.assertEqual(len(report["doors"]), 1)
+        self.assertEqual(layout.regions["region:door"].sector_behavior["on_ceiling_z"],
+                         -24576)
+        self.assertIn("region:door_frame_near", layout.regions)
+        self.assertIn("region:door_frame_far", layout.regions)
+
     def test_the_facade_above_the_door_stays_facade(self):
         layout, _ = self._framed()
         disk = layout.compile().level.to_disk_map()

@@ -1,0 +1,3587 @@
+{
+ "$schema": "llmapper.level-program",
+ "schema_version": 1,
+ "name": "MALTX",
+ "tree": "malt_cross (levelprogram) -- a brewery yard at night, three levels deep in one footprint\n  yard (assembly) -- the brewery yard: cobbles, open to the night\n    cobbles (room) -- the yard proper\n    hatch (room) -- the malt hatch: the floor you can see the cellar through\n  brewhouse (assembly) -- the working building: mash floor below, malt loft above\n    ground (assembly) -- the mash floor, and the foot of the stair\n      mash (room) -- coppers and a drain; the loudest room here\n      stairfoot (room) -- where the stair down from the loft arrives\n      mash_door (room) -- through the stairwell wall, at the bottom\n      yard_door (room) -- out to the yard, through 512 units of outside wall\n    first (assembly) -- the malt loft; the alley between the buildings is the way off\n      loft (room) -- boarded floor and sacks; the way off is east, through the stair landing\n      landing (room) -- the head of the stair\n      loft_door (room) -- through the stairwell wall, at the top\n  kiln (assembly) -- where the malt is dried: warmer and dirtier than the brewhouse\n    ground (assembly) -- the drying floor and the foot of its stair\n      floor (room) -- perforated, hot, and the way in from the yard\n      stairfoot (room) -- the foot of the kiln stair\n      door (room) -- into the stairwell\n      yard_door (room) -- out to the yard, through 512 units of outside wall\n    first (assembly) -- the kiln loft, reached from its own stair\n      loft (room) -- one long room over the drying floor; the alley is west\n      landing (room) -- the head of the stair\n      door (room) -- out of the stairwell onto the loft\n  alley (assembly) -- the covered close between the buildings: both lofts, then the yard\n    ground (assembly) -- the foot of the alley stair, and the door onto the cobbles\n      stairfoot (room) -- where the alley stair arrives at street height\n      yard_door (room) -- out to the yard, between the two street doors, not above either\n    first (assembly) -- the head of the alley, fed from both lofts through their side walls\n      landing (room) -- the alley landing: east from the malt loft, west from the kiln loft\n      brew_door (room) -- through the brewhouse's east wall, off the malt-stair landing\n      kiln_door (room) -- through the kiln's west wall, the side of the loft\n  porches (assembly) -- side porches onto the yard, and the windows that look out over it\n    west_door (room) -- out of the malt loft through its west wall\n    west (room) -- the west porch: along the yard's west wall, onto the gantry\n    east_door (room) -- French doors out of the kiln loft, east of the street door, onto the balcony\n    east_run (room) -- the balcony along the kiln's south wall; it does not open to the yard\n    east (room) -- the east porch: into the yard through its east wall, not its north\n    brew_window (room) -- a window in the malt loft's south wall, west of the street door\n  store (assembly) -- a low range along the south of the yard; its roof is walked on\n    inside (assembly) -- the store itself\n      shed (room) -- barrels, and the way through to the yard\n      stairhead (room) -- the head of the cellar stair, walled off from the store floor\n      stair_door (room) -- through the store's south wall, to the stairhead\n      door (room) -- in from the yard, through the store's north wall\n    roof (assembly) -- the store roof: level with both lofts, and where the gantry lands\n      leads (room) -- walked over the store, open to the sky, reached by the stair inside it\n      tower_head (room) -- off the malt tower onto the store roof, facing the gantry\n  cellar (assembly) -- the malt cellar: the whole reason the yard has a hatch in it\n    vault (room) -- one long vault, under the yard\n    under_hatch (room) -- what the hatch looks down into\n    passage (room) -- a low run south under the yard, toward the store\n    landing (room) -- the foot of the stair up into the store\n    tower_foot (room) -- out of the cellar into the foot of the malt tower",
+ "rooms": [
+  {
+   "path": "malt_cross/yard/cobbles",
+   "region_id": "region:malt_cross/yard/cobbles",
+   "role": "gameplay",
+   "note": "the yard proper",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     0,
+     6400
+    ],
+    [
+     9984,
+     6400
+    ],
+    [
+     9984,
+     9216
+    ],
+    [
+     8960,
+     10240
+    ],
+    [
+     1024,
+     10240
+    ],
+    [
+     0,
+     9216
+    ]
+   ],
+   "faces": [
+    "east",
+    "hole0:east",
+    "hole0:north",
+    "hole0:south",
+    "hole0:west",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 252.89,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 3491,
+     "from": "malt_cross/yard"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 114688,
+     "from": "malt_cross/yard"
+    },
+    "floor_picnum": {
+     "value": 352,
+     "from": "malt_cross/yard"
+    },
+    "floor_shade": {
+     "value": 18,
+     "from": "malt_cross/yard"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/yard"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/yard"
+    },
+    "parallax_ceiling": {
+     "value": true,
+     "from": "malt_cross/yard"
+    },
+    "wall_picnum": {
+     "value": 417,
+     "from": "malt_cross/yard"
+    },
+    "wall_shade": {
+     "value": 16,
+     "from": "malt_cross/yard"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [
+    "moon"
+   ],
+   "holes": 1,
+   "raw_escapes": [
+    "sprite deck: the gantry from the west porch to the east porch"
+   ]
+  },
+  {
+   "path": "malt_cross/yard/hatch",
+   "region_id": "region:malt_cross/yard/hatch",
+   "role": "gameplay",
+   "note": "the malt hatch: the floor you can see the cellar through",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     4096,
+     7168
+    ],
+    [
+     5632,
+     7168
+    ],
+    [
+     5632,
+     8448
+    ],
+    [
+     4096,
+     8448
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 13.33,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 253,
+     "from": "malt_cross/yard/hatch"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/yard/hatch"
+    },
+    "floor_picnum": {
+     "value": 352,
+     "from": "malt_cross/yard"
+    },
+    "floor_shade": {
+     "value": 22,
+     "from": "malt_cross/yard/hatch"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/yard"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/yard"
+    },
+    "parallax_ceiling": {
+     "value": false,
+     "from": "malt_cross/yard/hatch"
+    },
+    "wall_picnum": {
+     "value": 417,
+     "from": "malt_cross/yard"
+    },
+    "wall_shade": {
+     "value": 16,
+     "from": "malt_cross/yard"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": [
+    "room-over-room: the yard floor opens onto the malt cellar"
+   ]
+  },
+  {
+   "path": "malt_cross/brewhouse/ground/mash",
+   "region_id": "region:malt_cross/brewhouse/ground/mash",
+   "role": "gameplay",
+   "note": "coppers and a drain; the loudest room here",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     512,
+     512
+    ],
+    [
+     3584,
+     512
+    ],
+    [
+     3584,
+     5376
+    ],
+    [
+     512,
+     5376
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 101.33,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/brewhouse"
+    },
+    "ceiling_shade": {
+     "value": 24,
+     "from": "malt_cross/brewhouse"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/brewhouse/ground"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/brewhouse"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/brewhouse/ground"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/brewhouse/ground"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/brewhouse"
+    },
+    "wall_shade": {
+     "value": 20,
+     "from": "malt_cross/brewhouse"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [
+    "copper_fire"
+   ],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/brewhouse/ground/stairfoot",
+   "region_id": "region:malt_cross/brewhouse/ground/stairfoot",
+   "role": "gameplay",
+   "note": "where the stair down from the loft arrives",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     4096,
+     4736
+    ],
+    [
+     5120,
+     4736
+    ],
+    [
+     5120,
+     5376
+    ],
+    [
+     4096,
+     5376
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 4.44,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/brewhouse/ground/stairfoot"
+    },
+    "ceiling_shade": {
+     "value": 24,
+     "from": "malt_cross/brewhouse"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/brewhouse/ground"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/brewhouse/ground/stairfoot"
+    },
+    "floor_shade": {
+     "value": 22,
+     "from": "malt_cross/brewhouse/ground/stairfoot"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/brewhouse/ground"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/brewhouse/ground"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/brewhouse/ground/stairfoot"
+    },
+    "wall_shade": {
+     "value": 20,
+     "from": "malt_cross/brewhouse"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/brewhouse/ground/mash_door",
+   "region_id": "region:malt_cross/brewhouse/ground/mash_door",
+   "role": "doorway",
+   "note": "through the stairwell wall, at the bottom",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     3584,
+     4864
+    ],
+    [
+     4096,
+     4864
+    ],
+    [
+     4096,
+     5376
+    ],
+    [
+     3584,
+     5376
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 1.78,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/brewhouse"
+    },
+    "ceiling_shade": {
+     "value": 24,
+     "from": "malt_cross/brewhouse"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/brewhouse/ground/mash_door"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/brewhouse"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/brewhouse/ground"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/brewhouse/ground"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/brewhouse"
+    },
+    "wall_shade": {
+     "value": 20,
+     "from": "malt_cross/brewhouse"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/brewhouse/ground/yard_door",
+   "region_id": "region:malt_cross/brewhouse/ground/yard_door",
+   "role": "doorway",
+   "note": "out to the yard, through 512 units of outside wall",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     2560,
+     5376
+    ],
+    [
+     3584,
+     5376
+    ],
+    [
+     3584,
+     6400
+    ],
+    [
+     2560,
+     6400
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 7.11,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/brewhouse"
+    },
+    "ceiling_shade": {
+     "value": 24,
+     "from": "malt_cross/brewhouse"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/brewhouse/ground/yard_door"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/brewhouse"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/brewhouse/ground"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/brewhouse/ground"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/brewhouse"
+    },
+    "wall_shade": {
+     "value": 20,
+     "from": "malt_cross/brewhouse"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/brewhouse/first/loft",
+   "region_id": "region:malt_cross/brewhouse/first/loft",
+   "role": "gameplay",
+   "note": "boarded floor and sacks; the way off is east, through the stair landing",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     512,
+     512
+    ],
+    [
+     3584,
+     512
+    ],
+    [
+     3584,
+     5376
+    ],
+    [
+     512,
+     5376
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 101.33,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 40,
+     "from": "malt_cross/brewhouse/first/loft"
+    },
+    "ceiling_shade": {
+     "value": 24,
+     "from": "malt_cross/brewhouse"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/brewhouse/first"
+    },
+    "floor_picnum": {
+     "value": 390,
+     "from": "malt_cross/brewhouse/first/loft"
+    },
+    "floor_shade": {
+     "value": 20,
+     "from": "malt_cross/brewhouse/first/loft"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/brewhouse/first"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/brewhouse/first"
+    },
+    "wall_picnum": {
+     "value": 28,
+     "from": "malt_cross/brewhouse/first/loft"
+    },
+    "wall_shade": {
+     "value": 20,
+     "from": "malt_cross/brewhouse"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [
+    "loft_lamp"
+   ],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/brewhouse/first/landing",
+   "region_id": "region:malt_cross/brewhouse/first/landing",
+   "role": "gameplay",
+   "note": "the head of the stair",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     4096,
+     768
+    ],
+    [
+     5120,
+     768
+    ],
+    [
+     5120,
+     1536
+    ],
+    [
+     4096,
+     1536
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 5.33,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/brewhouse"
+    },
+    "ceiling_shade": {
+     "value": 24,
+     "from": "malt_cross/brewhouse"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/brewhouse/first"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/brewhouse"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/brewhouse/first"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/brewhouse/first"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/brewhouse"
+    },
+    "wall_shade": {
+     "value": 20,
+     "from": "malt_cross/brewhouse"
+    }
+   },
+   "structures": [
+    {
+     "id": "malt_stair",
+     "kind": "staircase",
+     "face": "south",
+     "details": []
+    }
+   ],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/brewhouse/first/loft_door",
+   "region_id": "region:malt_cross/brewhouse/first/loft_door",
+   "role": "doorway",
+   "note": "through the stairwell wall, at the top",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     3584,
+     896
+    ],
+    [
+     4096,
+     896
+    ],
+    [
+     4096,
+     1536
+    ],
+    [
+     3584,
+     1536
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 2.22,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/brewhouse"
+    },
+    "ceiling_shade": {
+     "value": 24,
+     "from": "malt_cross/brewhouse"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/brewhouse/first/loft_door"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/brewhouse"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/brewhouse/first"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/brewhouse/first"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/brewhouse"
+    },
+    "wall_shade": {
+     "value": 20,
+     "from": "malt_cross/brewhouse"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/kiln/ground/floor",
+   "region_id": "region:malt_cross/kiln/ground/floor",
+   "role": "gameplay",
+   "note": "perforated, hot, and the way in from the yard",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     7168,
+     512
+    ],
+    [
+     9216,
+     512
+    ],
+    [
+     9216,
+     5376
+    ],
+    [
+     7168,
+     5376
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 67.56,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 20,
+     "from": "malt_cross/kiln"
+    },
+    "ceiling_shade": {
+     "value": 26,
+     "from": "malt_cross/kiln/ground/floor"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/kiln/ground"
+    },
+    "floor_picnum": {
+     "value": 294,
+     "from": "malt_cross/kiln"
+    },
+    "floor_shade": {
+     "value": 22,
+     "from": "malt_cross/kiln/ground/floor"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/kiln/ground"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/kiln/ground"
+    },
+    "wall_picnum": {
+     "value": 100,
+     "from": "malt_cross/kiln"
+    },
+    "wall_shade": {
+     "value": 18,
+     "from": "malt_cross/kiln"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [
+    "kiln_mouth"
+   ],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/kiln/ground/stairfoot",
+   "region_id": "region:malt_cross/kiln/ground/stairfoot",
+   "role": "gameplay",
+   "note": "the foot of the kiln stair",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     9728,
+     4736
+    ],
+    [
+     10752,
+     4736
+    ],
+    [
+     10752,
+     5376
+    ],
+    [
+     9728,
+     5376
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 4.44,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/kiln/ground/stairfoot"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/kiln/ground"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/kiln/ground/stairfoot"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/kiln/ground"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/kiln/ground"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/kiln/ground/stairfoot"
+    },
+    "wall_shade": {
+     "value": 18,
+     "from": "malt_cross/kiln"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/kiln/ground/door",
+   "region_id": "region:malt_cross/kiln/ground/door",
+   "role": "doorway",
+   "note": "into the stairwell",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     9216,
+     4864
+    ],
+    [
+     9728,
+     4864
+    ],
+    [
+     9728,
+     5376
+    ],
+    [
+     9216,
+     5376
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 1.78,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/kiln/ground/door"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/kiln/ground/door"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/kiln/ground/door"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/kiln/ground"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/kiln/ground"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/kiln/ground/door"
+    },
+    "wall_shade": {
+     "value": 18,
+     "from": "malt_cross/kiln"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/kiln/ground/yard_door",
+   "region_id": "region:malt_cross/kiln/ground/yard_door",
+   "role": "doorway",
+   "note": "out to the yard, through 512 units of outside wall",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     7168,
+     5376
+    ],
+    [
+     7936,
+     5376
+    ],
+    [
+     7936,
+     6400
+    ],
+    [
+     7168,
+     6400
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 5.33,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/kiln/ground/yard_door"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/kiln/ground/yard_door"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/kiln/ground/yard_door"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/kiln/ground"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/kiln/ground"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/kiln/ground/yard_door"
+    },
+    "wall_shade": {
+     "value": 18,
+     "from": "malt_cross/kiln"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/kiln/first/loft",
+   "region_id": "region:malt_cross/kiln/first/loft",
+   "role": "gameplay",
+   "note": "one long room over the drying floor; the alley is west",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     7168,
+     512
+    ],
+    [
+     9216,
+     512
+    ],
+    [
+     9216,
+     5376
+    ],
+    [
+     7168,
+     5376
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 67.56,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/kiln/first"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/kiln/first"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/kiln/first"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/kiln/first"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/kiln/first"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/kiln/first"
+    },
+    "wall_shade": {
+     "value": 18,
+     "from": "malt_cross/kiln"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [
+    "cowl"
+   ],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/kiln/first/landing",
+   "region_id": "region:malt_cross/kiln/first/landing",
+   "role": "gameplay",
+   "note": "the head of the stair",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     9728,
+     768
+    ],
+    [
+     10752,
+     768
+    ],
+    [
+     10752,
+     1536
+    ],
+    [
+     9728,
+     1536
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 5.33,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/kiln/first"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/kiln/first"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/kiln/first"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/kiln/first"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/kiln/first"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/kiln/first"
+    },
+    "wall_shade": {
+     "value": 18,
+     "from": "malt_cross/kiln"
+    }
+   },
+   "structures": [
+    {
+     "id": "kiln_stair",
+     "kind": "staircase",
+     "face": "south",
+     "details": []
+    }
+   ],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/kiln/first/door",
+   "region_id": "region:malt_cross/kiln/first/door",
+   "role": "doorway",
+   "note": "out of the stairwell onto the loft",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     9216,
+     896
+    ],
+    [
+     9728,
+     896
+    ],
+    [
+     9728,
+     1536
+    ],
+    [
+     9216,
+     1536
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 2.22,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/kiln/first"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/kiln/first/door"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/kiln/first"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/kiln/first"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/kiln/first"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/kiln/first"
+    },
+    "wall_shade": {
+     "value": 18,
+     "from": "malt_cross/kiln"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/alley/ground/stairfoot",
+   "region_id": "region:malt_cross/alley/ground/stairfoot",
+   "role": "gameplay",
+   "note": "where the alley stair arrives at street height",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     5632,
+     4736
+    ],
+    [
+     6656,
+     4736
+    ],
+    [
+     6656,
+     5376
+    ],
+    [
+     5632,
+     5376
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 4.44,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/alley/ground/stairfoot"
+    },
+    "ceiling_shade": {
+     "value": 26,
+     "from": "malt_cross/alley"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/alley/ground"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/alley/ground/stairfoot"
+    },
+    "floor_shade": {
+     "value": 22,
+     "from": "malt_cross/alley/ground/stairfoot"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/alley/ground"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/alley/ground"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/alley/ground/stairfoot"
+    },
+    "wall_shade": {
+     "value": 22,
+     "from": "malt_cross/alley"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/alley/ground/yard_door",
+   "region_id": "region:malt_cross/alley/ground/yard_door",
+   "role": "doorway",
+   "note": "out to the yard, between the two street doors, not above either",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     5632,
+     5376
+    ],
+    [
+     6656,
+     5376
+    ],
+    [
+     6656,
+     6400
+    ],
+    [
+     5632,
+     6400
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 7.11,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/alley"
+    },
+    "ceiling_shade": {
+     "value": 26,
+     "from": "malt_cross/alley"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/alley/ground/yard_door"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/alley"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/alley/ground"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/alley/ground"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/alley"
+    },
+    "wall_shade": {
+     "value": 22,
+     "from": "malt_cross/alley"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/alley/first/landing",
+   "region_id": "region:malt_cross/alley/first/landing",
+   "role": "gameplay",
+   "note": "the alley landing: east from the malt loft, west from the kiln loft",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     5632,
+     768
+    ],
+    [
+     6656,
+     768
+    ],
+    [
+     6656,
+     1536
+    ],
+    [
+     5632,
+     1536
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 5.33,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/alley"
+    },
+    "ceiling_shade": {
+     "value": 26,
+     "from": "malt_cross/alley"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/alley/first"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/alley"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/alley/first"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/alley/first"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/alley"
+    },
+    "wall_shade": {
+     "value": 22,
+     "from": "malt_cross/alley"
+    }
+   },
+   "structures": [
+    {
+     "id": "alley_stair",
+     "kind": "staircase",
+     "face": "south",
+     "details": []
+    }
+   ],
+   "details": [],
+   "light_sources": [
+    "alley_lamp"
+   ],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/alley/first/brew_door",
+   "region_id": "region:malt_cross/alley/first/brew_door",
+   "role": "doorway",
+   "note": "through the brewhouse's east wall, off the malt-stair landing",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     5120,
+     768
+    ],
+    [
+     5632,
+     768
+    ],
+    [
+     5632,
+     1536
+    ],
+    [
+     5120,
+     1536
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 2.67,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/alley"
+    },
+    "ceiling_shade": {
+     "value": 26,
+     "from": "malt_cross/alley"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/alley/first/brew_door"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/alley"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/alley/first"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/alley/first"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/alley"
+    },
+    "wall_shade": {
+     "value": 22,
+     "from": "malt_cross/alley"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/alley/first/kiln_door",
+   "region_id": "region:malt_cross/alley/first/kiln_door",
+   "role": "doorway",
+   "note": "through the kiln's west wall, the side of the loft",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     6656,
+     768
+    ],
+    [
+     7168,
+     768
+    ],
+    [
+     7168,
+     1536
+    ],
+    [
+     6656,
+     1536
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 2.67,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/alley"
+    },
+    "ceiling_shade": {
+     "value": 26,
+     "from": "malt_cross/alley"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/alley/first/kiln_door"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/alley"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/alley/first"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/alley/first"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/alley"
+    },
+    "wall_shade": {
+     "value": 22,
+     "from": "malt_cross/alley"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/porches/west_door",
+   "region_id": "region:malt_cross/porches/west_door",
+   "role": "doorway",
+   "note": "out of the malt loft through its west wall",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     0,
+     3200
+    ],
+    [
+     512,
+     3200
+    ],
+    [
+     512,
+     3968
+    ],
+    [
+     0,
+     3968
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 2.67,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/porches"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/porches/west_door"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/porches"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross/porches"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/porches"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/porches"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/porches"
+    },
+    "wall_shade": {
+     "value": 18,
+     "from": "malt_cross/porches"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/porches/west",
+   "region_id": "region:malt_cross/porches/west",
+   "role": "gameplay",
+   "note": "the west porch: along the yard's west wall, onto the gantry",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     -1024,
+     3200
+    ],
+    [
+     0,
+     3200
+    ],
+    [
+     0,
+     7424
+    ],
+    [
+     -1024,
+     7424
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 29.33,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 3491,
+     "from": "malt_cross/porches/west"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 73728,
+     "from": "malt_cross/porches/west"
+    },
+    "floor_picnum": {
+     "value": 4,
+     "from": "malt_cross/porches/west"
+    },
+    "floor_shade": {
+     "value": 14,
+     "from": "malt_cross/porches/west"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/porches"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/porches"
+    },
+    "parallax_ceiling": {
+     "value": true,
+     "from": "malt_cross/porches/west"
+    },
+    "wall_picnum": {
+     "value": 417,
+     "from": "malt_cross/porches/west"
+    },
+    "wall_shade": {
+     "value": 12,
+     "from": "malt_cross/porches/west"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [
+    "west_lamp"
+   ],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/porches/east_door",
+   "region_id": "region:malt_cross/porches/east_door",
+   "role": "doorway",
+   "note": "French doors out of the kiln loft, east of the street door, onto the balcony",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     8192,
+     5376
+    ],
+    [
+     9216,
+     5376
+    ],
+    [
+     9216,
+     5888
+    ],
+    [
+     8192,
+     5888
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 3.56,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/porches"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/porches/east_door"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/porches"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross/porches"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/porches"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/porches"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/porches"
+    },
+    "wall_shade": {
+     "value": 18,
+     "from": "malt_cross/porches"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/porches/east_run",
+   "region_id": "region:malt_cross/porches/east_run",
+   "role": "doorway",
+   "note": "the balcony along the kiln's south wall; it does not open to the yard",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     9216,
+     5376
+    ],
+    [
+     9984,
+     5376
+    ],
+    [
+     9984,
+     5888
+    ],
+    [
+     9216,
+     5888
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 2.67,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 3491,
+     "from": "malt_cross/porches/east_run"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 73728,
+     "from": "malt_cross/porches/east_run"
+    },
+    "floor_picnum": {
+     "value": 4,
+     "from": "malt_cross/porches/east_run"
+    },
+    "floor_shade": {
+     "value": 14,
+     "from": "malt_cross/porches/east_run"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/porches"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/porches"
+    },
+    "parallax_ceiling": {
+     "value": true,
+     "from": "malt_cross/porches/east_run"
+    },
+    "wall_picnum": {
+     "value": 417,
+     "from": "malt_cross/porches/east_run"
+    },
+    "wall_shade": {
+     "value": 12,
+     "from": "malt_cross/porches/east_run"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/porches/east",
+   "region_id": "region:malt_cross/porches/east",
+   "role": "gameplay",
+   "note": "the east porch: into the yard through its east wall, not its north",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     9984,
+     5376
+    ],
+    [
+     11008,
+     5376
+    ],
+    [
+     11008,
+     7424
+    ],
+    [
+     9984,
+     7424
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 14.22,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 3491,
+     "from": "malt_cross/porches/east"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 73728,
+     "from": "malt_cross/porches/east"
+    },
+    "floor_picnum": {
+     "value": 4,
+     "from": "malt_cross/porches/east"
+    },
+    "floor_shade": {
+     "value": 14,
+     "from": "malt_cross/porches/east"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/porches"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/porches"
+    },
+    "parallax_ceiling": {
+     "value": true,
+     "from": "malt_cross/porches/east"
+    },
+    "wall_picnum": {
+     "value": 417,
+     "from": "malt_cross/porches/east"
+    },
+    "wall_shade": {
+     "value": 12,
+     "from": "malt_cross/porches/east"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [
+    "east_lamp"
+   ],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/porches/brew_window",
+   "region_id": "region:malt_cross/porches/brew_window",
+   "role": "doorway",
+   "note": "a window in the malt loft's south wall, west of the street door",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     1024,
+     5376
+    ],
+    [
+     2048,
+     5376
+    ],
+    [
+     2048,
+     5888
+    ],
+    [
+     1024,
+     5888
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 3.56,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/porches"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/porches/brew_window"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/porches"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross/porches"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/porches"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/porches"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/porches"
+    },
+    "wall_shade": {
+     "value": 18,
+     "from": "malt_cross/porches"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/store/inside/shed",
+   "region_id": "region:malt_cross/store/inside/shed",
+   "role": "gameplay",
+   "note": "barrels, and the way through to the yard",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     1280,
+     10752
+    ],
+    [
+     8704,
+     10752
+    ],
+    [
+     8704,
+     11776
+    ],
+    [
+     1280,
+     11776
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 51.56,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/store"
+    },
+    "ceiling_shade": {
+     "value": 28,
+     "from": "malt_cross/store/inside/shed"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/store/inside"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/store"
+    },
+    "floor_shade": {
+     "value": 26,
+     "from": "malt_cross/store/inside/shed"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/store/inside"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/store/inside"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/store"
+    },
+    "wall_shade": {
+     "value": 14,
+     "from": "malt_cross"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [
+    "store_lamp"
+   ],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/store/inside/stairhead",
+   "region_id": "region:malt_cross/store/inside/stairhead",
+   "role": "gameplay",
+   "note": "the head of the cellar stair, walled off from the store floor",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     7552,
+     12288
+    ],
+    [
+     8064,
+     12288
+    ],
+    [
+     8064,
+     13312
+    ],
+    [
+     7552,
+     13312
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 3.56,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/store"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/store/inside"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/store"
+    },
+    "floor_shade": {
+     "value": 24,
+     "from": "malt_cross/store/inside/stairhead"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/store/inside"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/store/inside"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/store"
+    },
+    "wall_shade": {
+     "value": 14,
+     "from": "malt_cross"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/store/inside/stair_door",
+   "region_id": "region:malt_cross/store/inside/stair_door",
+   "role": "doorway",
+   "note": "through the store's south wall, to the stairhead",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     7552,
+     11776
+    ],
+    [
+     8064,
+     11776
+    ],
+    [
+     8064,
+     12288
+    ],
+    [
+     7552,
+     12288
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 1.78,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/store"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/store/inside/stair_door"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/store"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/store/inside"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/store/inside"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/store"
+    },
+    "wall_shade": {
+     "value": 14,
+     "from": "malt_cross"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/store/inside/door",
+   "region_id": "region:malt_cross/store/inside/door",
+   "role": "doorway",
+   "note": "in from the yard, through the store's north wall",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     4352,
+     10240
+    ],
+    [
+     5376,
+     10240
+    ],
+    [
+     5376,
+     10752
+    ],
+    [
+     4352,
+     10752
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 3.56,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/store"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/store/inside/door"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/store"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross"
+    },
+    "floor_z": {
+     "value": 8192,
+     "from": "malt_cross/store/inside"
+    },
+    "layer": {
+     "value": "street",
+     "from": "malt_cross/store/inside"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/store"
+    },
+    "wall_shade": {
+     "value": 14,
+     "from": "malt_cross"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/store/roof/leads",
+   "region_id": "region:malt_cross/store/roof/leads",
+   "role": "gameplay",
+   "note": "walked over the store, open to the sky, reached by the stair inside it",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     1536,
+     11008
+    ],
+    [
+     8448,
+     11008
+    ],
+    [
+     8448,
+     13056
+    ],
+    [
+     1536,
+     13056
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 96.0,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 3491,
+     "from": "malt_cross/store/roof"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 73728,
+     "from": "malt_cross/store/roof"
+    },
+    "floor_picnum": {
+     "value": 4,
+     "from": "malt_cross/store/roof"
+    },
+    "floor_shade": {
+     "value": 14,
+     "from": "malt_cross/store/roof"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/store/roof"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/store/roof"
+    },
+    "parallax_ceiling": {
+     "value": true,
+     "from": "malt_cross/store/roof"
+    },
+    "wall_picnum": {
+     "value": 417,
+     "from": "malt_cross/store/roof"
+    },
+    "wall_shade": {
+     "value": 12,
+     "from": "malt_cross/store/roof"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/store/roof/tower_head",
+   "region_id": "region:malt_cross/store/roof/tower_head",
+   "role": "doorway",
+   "note": "off the malt tower onto the store roof, facing the gantry",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     2874,
+     13056
+    ],
+    [
+     3400,
+     13056
+    ],
+    [
+     3400,
+     13825
+    ],
+    [
+     2874,
+     13930
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "west"
+   ],
+   "footprint_player_areas": 2.93,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/store/roof/tower_head"
+    },
+    "ceiling_shade": {
+     "value": 18,
+     "from": "malt_cross"
+    },
+    "clear_height": {
+     "value": 24576,
+     "from": "malt_cross/store/roof/tower_head"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/store/roof/tower_head"
+    },
+    "floor_shade": {
+     "value": 16,
+     "from": "malt_cross/store/roof/tower_head"
+    },
+    "floor_z": {
+     "value": -32768,
+     "from": "malt_cross/store/roof"
+    },
+    "layer": {
+     "value": "upper",
+     "from": "malt_cross/store/roof"
+    },
+    "parallax_ceiling": {
+     "value": false,
+     "from": "malt_cross/store/roof/tower_head"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/store/roof/tower_head"
+    },
+    "wall_shade": {
+     "value": 12,
+     "from": "malt_cross/store/roof"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/cellar/vault",
+   "region_id": "region:malt_cross/cellar/vault",
+   "role": "gameplay",
+   "note": "one long vault, under the yard",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     1536,
+     6656
+    ],
+    [
+     8448,
+     6656
+    ],
+    [
+     8448,
+     9216
+    ],
+    [
+     1536,
+     9216
+    ]
+   ],
+   "faces": [
+    "east",
+    "hole0:east",
+    "hole0:north",
+    "hole0:south",
+    "hole0:west",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 120.0,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 253,
+     "from": "malt_cross/cellar"
+    },
+    "ceiling_shade": {
+     "value": 30,
+     "from": "malt_cross/cellar"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/cellar"
+    },
+    "floor_picnum": {
+     "value": 253,
+     "from": "malt_cross/cellar"
+    },
+    "floor_shade": {
+     "value": 30,
+     "from": "malt_cross/cellar"
+    },
+    "floor_z": {
+     "value": 49152,
+     "from": "malt_cross/cellar"
+    },
+    "layer": {
+     "value": "undercroft",
+     "from": "malt_cross/cellar"
+    },
+    "wall_picnum": {
+     "value": 421,
+     "from": "malt_cross/cellar"
+    },
+    "wall_shade": {
+     "value": 28,
+     "from": "malt_cross/cellar"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [
+    "cellar_lamp"
+   ],
+   "holes": 1,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/cellar/under_hatch",
+   "region_id": "region:malt_cross/cellar/under_hatch",
+   "role": "gameplay",
+   "note": "what the hatch looks down into",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     4096,
+     7168
+    ],
+    [
+     5632,
+     7168
+    ],
+    [
+     5632,
+     8448
+    ],
+    [
+     4096,
+     8448
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 13.33,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 253,
+     "from": "malt_cross/cellar"
+    },
+    "ceiling_shade": {
+     "value": 30,
+     "from": "malt_cross/cellar"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/cellar"
+    },
+    "floor_picnum": {
+     "value": 253,
+     "from": "malt_cross/cellar"
+    },
+    "floor_shade": {
+     "value": 30,
+     "from": "malt_cross/cellar"
+    },
+    "floor_z": {
+     "value": 49152,
+     "from": "malt_cross/cellar"
+    },
+    "layer": {
+     "value": "undercroft",
+     "from": "malt_cross/cellar"
+    },
+    "wall_picnum": {
+     "value": 421,
+     "from": "malt_cross/cellar"
+    },
+    "wall_shade": {
+     "value": 28,
+     "from": "malt_cross/cellar"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/cellar/passage",
+   "region_id": "region:malt_cross/cellar/passage",
+   "role": "doorway",
+   "note": "a low run south under the yard, toward the store",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     3328,
+     9216
+    ],
+    [
+     4352,
+     9216
+    ],
+    [
+     4352,
+     12288
+    ],
+    [
+     3328,
+     12288
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 21.33,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 255,
+     "from": "malt_cross/cellar/passage"
+    },
+    "ceiling_shade": {
+     "value": 30,
+     "from": "malt_cross/cellar"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/cellar"
+    },
+    "floor_picnum": {
+     "value": 568,
+     "from": "malt_cross/cellar/passage"
+    },
+    "floor_shade": {
+     "value": 30,
+     "from": "malt_cross/cellar/passage"
+    },
+    "floor_z": {
+     "value": 49152,
+     "from": "malt_cross/cellar"
+    },
+    "layer": {
+     "value": "undercroft",
+     "from": "malt_cross/cellar"
+    },
+    "wall_picnum": {
+     "value": 492,
+     "from": "malt_cross/cellar/passage"
+    },
+    "wall_shade": {
+     "value": 28,
+     "from": "malt_cross/cellar"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  },
+  {
+   "path": "malt_cross/cellar/landing",
+   "region_id": "region:malt_cross/cellar/landing",
+   "role": "gameplay",
+   "note": "the foot of the stair up into the store",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     3328,
+     12288
+    ],
+    [
+     4352,
+     12288
+    ],
+    [
+     4352,
+     13312
+    ],
+    [
+     3328,
+     13312
+    ]
+   ],
+   "faces": [
+    "east",
+    "north",
+    "south",
+    "west"
+   ],
+   "footprint_player_areas": 7.11,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/cellar/landing"
+    },
+    "ceiling_shade": {
+     "value": 30,
+     "from": "malt_cross/cellar"
+    },
+    "clear_height": {
+     "value": 32768,
+     "from": "malt_cross/cellar"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/cellar/landing"
+    },
+    "floor_shade": {
+     "value": 28,
+     "from": "malt_cross/cellar/landing"
+    },
+    "floor_z": {
+     "value": 49152,
+     "from": "malt_cross/cellar"
+    },
+    "layer": {
+     "value": "undercroft",
+     "from": "malt_cross/cellar"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/cellar/landing"
+    },
+    "wall_shade": {
+     "value": 28,
+     "from": "malt_cross/cellar"
+    }
+   },
+   "structures": [
+    {
+     "id": "cellar_stair",
+     "kind": "staircase",
+     "face": "east",
+     "details": []
+    }
+   ],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": [
+    "spiral: the malt tower, cellar to the store roof"
+   ]
+  },
+  {
+   "path": "malt_cross/cellar/tower_foot",
+   "region_id": "region:malt_cross/cellar/tower_foot",
+   "role": "doorway",
+   "note": "out of the cellar into the foot of the malt tower",
+   "frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "world_frame": {
+    "dx": 0,
+    "dy": 0,
+    "dz": 0,
+    "turns": 0
+   },
+   "local_outline": [
+    [
+     3328,
+     13312
+    ],
+    [
+     4352,
+     13312
+    ],
+    [
+     3926,
+     13930
+    ],
+    [
+     3400,
+     13825
+    ]
+   ],
+   "faces": [
+    "north"
+   ],
+   "footprint_player_areas": 3.04,
+   "surfaces": {
+    "ceiling_picnum": {
+     "value": 379,
+     "from": "malt_cross/cellar/tower_foot"
+    },
+    "ceiling_shade": {
+     "value": 30,
+     "from": "malt_cross/cellar"
+    },
+    "clear_height": {
+     "value": 24576,
+     "from": "malt_cross/cellar/tower_foot"
+    },
+    "floor_picnum": {
+     "value": 304,
+     "from": "malt_cross/cellar/tower_foot"
+    },
+    "floor_shade": {
+     "value": 28,
+     "from": "malt_cross/cellar/tower_foot"
+    },
+    "floor_z": {
+     "value": 49152,
+     "from": "malt_cross/cellar"
+    },
+    "layer": {
+     "value": "undercroft",
+     "from": "malt_cross/cellar"
+    },
+    "wall_picnum": {
+     "value": 379,
+     "from": "malt_cross/cellar/tower_foot"
+    },
+    "wall_shade": {
+     "value": 28,
+     "from": "malt_cross/cellar"
+    }
+   },
+   "structures": [],
+   "details": [],
+   "light_sources": [],
+   "holes": 0,
+   "raw_escapes": []
+  }
+ ],
+ "connections": [
+  {
+   "id": "cellar_to_tower_foot",
+   "from": "malt_cross/cellar/landing.south@0.5",
+   "to": "malt_cross/cellar/tower_foot.north@0.5"
+  },
+  {
+   "id": "tower_head_to_leads",
+   "from": "malt_cross/store/roof/tower_head.north@0.5",
+   "to": "malt_cross/store/roof/leads.south@0.7683738425925926"
+  },
+  {
+   "id": "vault_to_passage",
+   "from": "malt_cross/cellar/vault.south@0.6666666666666666",
+   "to": "malt_cross/cellar/passage.north@0.5"
+  },
+  {
+   "id": "passage_to_landing",
+   "from": "malt_cross/cellar/passage.south@0.5",
+   "to": "malt_cross/cellar/landing.north@0.5"
+  },
+  {
+   "id": "cobbles_to_hatch_north",
+   "from": "malt_cross/yard/cobbles.hole0:north@0.5",
+   "to": "malt_cross/yard/hatch.north@0.5"
+  },
+  {
+   "id": "vault_to_under_hatch_north",
+   "from": "malt_cross/cellar/vault.hole0:north@0.5",
+   "to": "malt_cross/cellar/under_hatch.north@0.5"
+  },
+  {
+   "id": "cobbles_to_hatch_east",
+   "from": "malt_cross/yard/cobbles.hole0:east@0.5",
+   "to": "malt_cross/yard/hatch.east@0.5"
+  },
+  {
+   "id": "vault_to_under_hatch_east",
+   "from": "malt_cross/cellar/vault.hole0:east@0.5",
+   "to": "malt_cross/cellar/under_hatch.east@0.5"
+  },
+  {
+   "id": "cobbles_to_hatch_south",
+   "from": "malt_cross/yard/cobbles.hole0:south@0.5",
+   "to": "malt_cross/yard/hatch.south@0.5"
+  },
+  {
+   "id": "vault_to_under_hatch_south",
+   "from": "malt_cross/cellar/vault.hole0:south@0.5",
+   "to": "malt_cross/cellar/under_hatch.south@0.5"
+  },
+  {
+   "id": "cobbles_to_hatch_west",
+   "from": "malt_cross/yard/cobbles.hole0:west@0.5",
+   "to": "malt_cross/yard/hatch.west@0.5"
+  },
+  {
+   "id": "vault_to_under_hatch_west",
+   "from": "malt_cross/cellar/vault.hole0:west@0.5",
+   "to": "malt_cross/cellar/under_hatch.west@0.5"
+  },
+  {
+   "id": "yard_to_store_door",
+   "from": "malt_cross/yard/cobbles.south@0.5161290322580645",
+   "to": "malt_cross/store/inside/door.north@0.5"
+  },
+  {
+   "id": "store_door_to_shed",
+   "from": "malt_cross/store/inside/door.south@0.5",
+   "to": "malt_cross/store/inside/shed.north@0.5"
+  },
+  {
+   "id": "brewhouse_to_yard_door",
+   "from": "malt_cross/brewhouse/ground/mash.south@0.16666666666666666",
+   "to": "malt_cross/brewhouse/ground/yard_door.north@0.5"
+  },
+  {
+   "id": "yard_door_to_yard_brewhouse",
+   "from": "malt_cross/brewhouse/ground/yard_door.south@0.5",
+   "to": "malt_cross/yard/cobbles.north@0.3076923076923077"
+  },
+  {
+   "id": "kiln_to_yard_door",
+   "from": "malt_cross/kiln/ground/floor.south@0.8125",
+   "to": "malt_cross/kiln/ground/yard_door.north@0.5"
+  },
+  {
+   "id": "yard_door_to_yard_kiln",
+   "from": "malt_cross/kiln/ground/yard_door.south@0.5",
+   "to": "malt_cross/yard/cobbles.north@0.7564102564102564"
+  },
+  {
+   "id": "landing_to_alley_door",
+   "from": "malt_cross/brewhouse/first/landing.east@0.5",
+   "to": "malt_cross/alley/first/brew_door.west@0.5"
+  },
+  {
+   "id": "alley_door_to_landing",
+   "from": "malt_cross/alley/first/brew_door.east@0.5",
+   "to": "malt_cross/alley/first/landing.west@0.5"
+  },
+  {
+   "id": "kiln_loft_to_alley_door",
+   "from": "malt_cross/kiln/first/loft.west@0.868421052631579",
+   "to": "malt_cross/alley/first/kiln_door.east@0.5"
+  },
+  {
+   "id": "kiln_alley_door_to_landing",
+   "from": "malt_cross/alley/first/kiln_door.west@0.5",
+   "to": "malt_cross/alley/first/landing.east@0.5"
+  },
+  {
+   "id": "alley_door_to_yard",
+   "from": "malt_cross/alley/ground/yard_door.south@0.5",
+   "to": "malt_cross/yard/cobbles.north@0.6153846153846154"
+  },
+  {
+   "id": "loft_to_west_door",
+   "from": "malt_cross/brewhouse/first/loft.west@0.3684210526315789",
+   "to": "malt_cross/porches/west_door.east@0.5"
+  },
+  {
+   "id": "west_door_to_porch",
+   "from": "malt_cross/porches/west_door.west@0.5",
+   "to": "malt_cross/porches/west.east@0.09090909090909091"
+  },
+  {
+   "id": "west_porch_to_yard",
+   "from": "malt_cross/porches/west.east@0.8787878787878788",
+   "to": "malt_cross/yard/cobbles.west@0.8181818181818182"
+  },
+  {
+   "id": "loft_to_east_door",
+   "from": "malt_cross/kiln/first/loft.south@0.25",
+   "to": "malt_cross/porches/east_door.north@0.5"
+  },
+  {
+   "id": "east_door_to_run",
+   "from": "malt_cross/porches/east_door.east@0.5",
+   "to": "malt_cross/porches/east_run.west@0.5"
+  },
+  {
+   "id": "east_run_to_porch",
+   "from": "malt_cross/porches/east_run.east@0.5",
+   "to": "malt_cross/porches/east.west@0.875"
+  },
+  {
+   "id": "east_porch_to_yard",
+   "from": "malt_cross/porches/east.west@0.25",
+   "to": "malt_cross/yard/cobbles.east@0.18181818181818182"
+  },
+  {
+   "id": "brew_loft_to_window",
+   "from": "malt_cross/brewhouse/first/loft.south@0.6666666666666666",
+   "to": "malt_cross/porches/brew_window.north@0.5"
+  },
+  {
+   "id": "mash_to_door",
+   "from": "malt_cross/brewhouse/ground/mash.east@0.9473684210526315",
+   "to": "malt_cross/brewhouse/ground/mash_door.west@0.5"
+  },
+  {
+   "id": "door_to_stairfoot",
+   "from": "malt_cross/brewhouse/ground/mash_door.east@0.5",
+   "to": "malt_cross/brewhouse/ground/stairfoot.west@0.5"
+  },
+  {
+   "id": "loft_to_door",
+   "from": "malt_cross/brewhouse/first/loft.east@0.14473684210526316",
+   "to": "malt_cross/brewhouse/first/loft_door.west@0.5"
+  },
+  {
+   "id": "door_to_landing",
+   "from": "malt_cross/brewhouse/first/loft_door.east@0.5",
+   "to": "malt_cross/brewhouse/first/landing.west@0.5"
+  },
+  {
+   "id": "kiln_floor_to_door",
+   "from": "malt_cross/kiln/ground/floor.east@1.0",
+   "to": "malt_cross/kiln/ground/door.west@0.5"
+  },
+  {
+   "id": "kiln_door_to_stairfoot",
+   "from": "malt_cross/kiln/ground/door.east@0.5",
+   "to": "malt_cross/kiln/ground/stairfoot.west@0.5"
+  },
+  {
+   "id": "kiln_loft_to_door",
+   "from": "malt_cross/kiln/first/loft.east@0.14473684210526316",
+   "to": "malt_cross/kiln/first/door.west@0.5"
+  },
+  {
+   "id": "kiln_door_to_landing",
+   "from": "malt_cross/kiln/first/door.east@0.5",
+   "to": "malt_cross/kiln/first/landing.west@0.5"
+  },
+  {
+   "id": "alley_foot_to_yard_door",
+   "from": "malt_cross/alley/ground/stairfoot.south@0.5",
+   "to": "malt_cross/alley/ground/yard_door.north@0.5"
+  },
+  {
+   "id": "shed_to_stair_door",
+   "from": "malt_cross/store/inside/shed.south@0.1206896551724138",
+   "to": "malt_cross/store/inside/stair_door.north@0.5"
+  },
+  {
+   "id": "stair_door_to_stairhead",
+   "from": "malt_cross/store/inside/stair_door.south@0.5",
+   "to": "malt_cross/store/inside/stairhead.north@0.5"
+  }
+ ],
+ "reading_guide": [
+  "a room's summary is complete: geometry, surfaces, structures and details",
+  "surfaces carry the node that stated each value, so inheritance is checkable",
+  "native sector and wall ids are compiler output and appear nowhere here"
+ ]
+}

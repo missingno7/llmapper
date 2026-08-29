@@ -9,6 +9,7 @@ from bloodmap.doors import (
     door_affordance_report,
     xsector_direct_use,
     xsector_remote_rx,
+    z_motion_door,
 )
 from bloodmap.planar_layout import PlanarLayout
 from experiments.sp_progression_v1 import make_layout as make_v1
@@ -59,6 +60,22 @@ def _direct_door_layout(*, wallpush: bool, key: int | None = 1) -> PlanarLayout:
 
 
 class DirectUseDoorTests(unittest.TestCase):
+    def test_z_motion_door_has_campaign_speed_and_explicit_dual_use(self):
+        fields = z_motion_door(8192, -23552, interaction="both", rx_id=100,
+                               key=2)
+        self.assertEqual(fields["busy_time_a"], 5)
+        self.assertEqual(fields["busy_time_b"], 5)
+        self.assertEqual(fields["rx_id"], 100)
+        self.assertEqual(fields["key"], 2)
+        self.assertEqual(fields["trigger_push"], 1)
+        self.assertEqual(fields["trigger_wall_push"], 1)
+
+    def test_z_motion_door_rejects_instant_or_unwired_remote_motion(self):
+        with self.assertRaisesRegex(ValueError, "instant"):
+            z_motion_door(8192, -23552, open_time=0)
+        with self.assertRaisesRegex(ValueError, "rx_id"):
+            z_motion_door(8192, -23552, interaction="remote")
+
     def test_hallway_use_requires_wallpush_not_just_push(self):
         compiled = _direct_door_layout(wallpush=False).compile()
         audit = authored_gate_audit(compiled)

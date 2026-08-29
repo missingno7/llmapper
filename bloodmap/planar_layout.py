@@ -93,6 +93,20 @@ CSTAT_WALL_BLOCKING = 1
 CSTAT_WALL_MASKED = 16
 CSTAT_WALL_HITSCAN = 64
 
+#: `CSTAT_WALL_1WAY` (buildtypes.h:154), value 32. clipmove tests
+#: `wal->cstat & dawalclipmask` (clip.cpp:1626, :1913). CLIPMASK0 is
+#: `((1L)<<16)+1L` (build.h:225) -- bits 0 and 16, **not** bit 5. Bit 5 alone
+#: therefore does not stop the player. Bit 0 (`CSTAT_WALL_BLOCKING`) is in that
+#: mask, and setting it is exactly what stops movement. A one-way wall that also
+#: carries bit 0 is a blocked fake wall, not an open doorway.
+#:
+#: It is the only flag that cuts the sector flood, and it is *directional*: it
+#: lives on one of the two coincident walls and cuts only the view that starts in
+#: that wall's own sector. `bloodmap.overlap_visibility` already reads it as one
+#: of the two proofs that two sectors can never be drawn together; this is the
+#: side that writes it.
+CSTAT_WALL_ONE_WAY = 32
+
 
 def _marker_fields(item: Any) -> dict[str, Any]:
     return item["fields"] if isinstance(item, dict) else item.fields
@@ -374,6 +388,36 @@ class ConnectionSpec:
     face_cstat: int | None = None
     face_x_repeat: int | None = None
     face_y_repeat: int | None = None
+    #: Cut the renderer's flood through this portal, from one side only.
+    #:
+    #: `"left"`/`"a"` cuts the view that starts in `region_a`, `"right"`/`"b"`
+    #: the view that starts in `region_b`; a region id says the same thing
+    #: explicitly.
+    #:
+    #: Bit 5 does not touch clipmove: CLIPMASK0 is bits 0 and 16 (build.h:225),
+    #: tested at clip.cpp:1626. It also cannot resolve a *symmetric* co-visibility
+    #: problem, because the flag lives on one wall and cuts one direction only
+    #: (engine.c:3134). It is not a substitute for jogging the plan so that
+    #: `wallfront` (engine.cpp:2227) is not handed collinear bunches. A masked
+    #: wall (bit 4) changes what is painted, not what the sort can order, and
+    #: must not be used for this.
+    #:
+    #: What it is for: a portal into a sector that overlaps something else the
+    #: viewer can also reach, *and only when a named renderer pair's evidence
+    #: demands that specific wall*. Build's flood collects a neighbour sector
+    #: and then lets *all* of its walls compete for screen columns -- the
+    #: portal's own opening does not clip them (engine.cpp:9739 orders bunches
+    #: with `bunchfront`, which is `wallfront`, which has no z in it at all).
+    #: So a storey above the viewer's eye can win the columns belonging to the
+    #: room behind it. That is an overlap-and-flood fault, not the coplanar
+    #: neighbour fault `wallfront` records when two same-height rooms share a
+    #: line. Putting this flag on a doorway because an overlap exists nearby
+    #: does not rank those neighbours, and with bit 0 set it is a blocked fake
+    #: wall (CLIPMASK0, build.h:225).
+    #:
+    #: Declaring it makes the flagged side opaque: the wall's own picnum is
+    #: copied to `over_picnum` so the face is masonry rather than tile 0.
+    view_cut_from: str | None = None
 
 
 @dataclass
@@ -436,6 +480,32 @@ class PlacementSpec:
     #: author says which, and the compiler refuses the ones that say nothing.
     spans_opening: bool = False
     anchor: dict[str, Any] | None = None
+
+
+@dataclass(frozen=True)
+class LightSourceSpec:
+    """A declared source for generated lighting.
+
+    A source either follows a visual placement (the normal case for a torch or
+    lamp) or names a raw point for light that has no sprite, such as daylight
+    through a window.  In both cases it remains authored source, rather than a
+    later pass guessing from tile ids or sprite shade.
+    """
+
+    light_id: str
+    region_id: str
+    placement_id: str | None = None
+    x: int | None = None
+    y: int | None = None
+    z: int | None = None
+    #: Multiplier for the measured LightBomb source model.  ``None`` uses the
+    #: campaign-fitted default; a larger fixture may opt in to a stronger pool
+    #: without reintroducing manual surface shades.
+    intensity: float | None = None
+    #: Optional height of a source that follows a sprite.  This is useful for
+    #: a floor-mounted lamp whose visible fixture rests on the ground while
+    #: its bulb illuminates from above it.
+    height_player_heights: float | None = None
 
 
 @dataclass
@@ -507,6 +577,7 @@ class CompiledLayout:
     connection_report: list[dict[str, Any]]
     declared_specials: list[tuple[int, int, str]]
     layout: "PlanarLayout"
+    lighting_report: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -522,6 +593,7 @@ class CompiledLayout:
             "declared_specials": [
                 {"sectors": [a, b], "kind": kind} for a, b, kind in self.declared_specials
             ],
+            "lighting": dict(self.lighting_report),
         }
 
 
@@ -688,8 +760,14 @@ class PlanarLayout:
         self.connections: dict[str, ConnectionSpec] = {}
         self.partitions: dict[str, PartitionSpec] = {}
         self.placements: list[PlacementSpec] = []
+        #: Declarative illumination, resolved after geometry and sprite seating.
+        #: LightBomb only runs when this list is non-empty.
+        self.light_sources: list[LightSourceSpec] = []
         self.player_start: PlayerStartSpec | None = None
         self.special_pairs: list[tuple[str, str, str]] = []
+        #: Cross-layer overlaps `bloodmap.layers` approved during `compile`,
+        #: carried forward so the geometry audit is told they are intended.
+        self._approved_layer_overlaps: list[Any] = []
         #: Callables run on the emitted level at the end of `compile`, in order.
         #: They exist for finishing passes that need the compiled geometry --
         #: wall texture alignment needs each wall's picnum and its sector's
@@ -850,6 +928,45 @@ class PlanarLayout:
         ))
         return placement_id
 
+    def add_light_source(self, light_id: str, region_id: str, *,
+                         x: int, y: int, z: int,
+                         intensity: float | None = None) -> str:
+        """Declare an emissive point that is not tied to a sprite.
+
+        Use this for an authored source such as window light.  Lights attached
+        to a visible lamp should normally be declared with ``emits_light=True``
+        on ``place_on_wall`` / ``place_on_floor`` so seating and sector lookup
+        stay exactly in sync with that placement.
+        """
+        if any(item.light_id == light_id for item in self.light_sources):
+            raise PlanarLayoutError(f"duplicate light id {light_id!r}")
+        if region_id not in self.regions:
+            raise PlanarLayoutError(f"light {light_id!r} names unknown region {region_id!r}")
+        if intensity is not None and float(intensity) <= 0:
+            raise PlanarLayoutError(f"light {light_id!r} has non-positive intensity")
+        self.light_sources.append(LightSourceSpec(
+            str(light_id), region_id, x=int(x), y=int(y), z=int(z),
+            intensity=None if intensity is None else float(intensity),
+        ))
+        return light_id
+
+    def _add_placement_light(self, placement_id: str, region_id: str,
+                             intensity: float | None = None,
+                             height_player_heights: float | None = None) -> None:
+        light_id = (placement_id if placement_id.startswith("light:")
+                    else f"light:{placement_id}")
+        if any(item.light_id == light_id for item in self.light_sources):
+            raise PlanarLayoutError(f"duplicate light id {light_id!r}")
+        if intensity is not None and float(intensity) <= 0:
+            raise PlanarLayoutError(f"light {light_id!r} has non-positive intensity")
+        self.light_sources.append(LightSourceSpec(
+            light_id, region_id, placement_id=placement_id,
+            intensity=None if intensity is None else float(intensity),
+            height_player_heights=(
+                None if height_player_heights is None
+                else float(height_player_heights)),
+        ))
+
     def place_on_wall(
         self,
         placement_id: str,
@@ -861,6 +978,9 @@ class PlanarLayout:
         height_player_heights: float = 0.65,
         offset_player_widths: float = 0.08,
         facing: str = "into_region",
+        emits_light: bool = False,
+        light_intensity: float | None = None,
+        light_height_player_heights: float | None = None,
         **kwargs: Any,
     ) -> str:
         self.placements.append(PlacementSpec(
@@ -872,6 +992,10 @@ class PlanarLayout:
             },
             **kwargs,
         ))
+        if emits_light:
+            self._add_placement_light(
+                placement_id, region_id, light_intensity,
+                light_height_player_heights)
         return placement_id
 
     def place_on_floor(
@@ -881,6 +1005,9 @@ class PlanarLayout:
         *,
         local: tuple[float, float] = (0.5, 0.5),
         height_player_heights: float = 0.0,
+        emits_light: bool = False,
+        light_intensity: float | None = None,
+        light_height_player_heights: float | None = None,
         **kwargs: Any,
     ) -> str:
         """Stand a sprite on the floor.
@@ -908,6 +1035,10 @@ class PlanarLayout:
             },
             **kwargs,
         ))
+        if emits_light:
+            self._add_placement_light(
+                placement_id, region_id, light_intensity,
+                light_height_player_heights)
         return placement_id
 
     def place_on_ceiling(
@@ -941,6 +1072,47 @@ class PlanarLayout:
 
     def set_player_start(self, region_id: str, *, x: int, y: int, z: int, angle: int = 0) -> None:
         self.player_start = PlayerStartSpec(region_id=region_id, x=int(x), y=int(y), z=int(z), angle=int(angle))
+
+    def declared_joins(self) -> set[frozenset[str]]:
+        """Region pairs the author has explicitly joined, by any means.
+
+        A cross-layer edge is only allowed to take part in the planar pipeline
+        where one of these says so, which is what makes "the layers meet where I
+        said and nowhere else" a property of the source rather than a hope.
+        """
+        joins = {frozenset((a, b)) for a, b, _kind in self.special_pairs}
+        for connection in self.connections.values():
+            if connection.region_b:
+                joins.add(frozenset((connection.region_a, connection.region_b)))
+        for partition in self.partitions.values():
+            if partition.region_b:
+                joins.add(frozenset((partition.region_a, partition.region_b)))
+        return joins
+
+    def separate_arrangements(self, left: str, right: str,
+                              joins: set[frozenset[str]] | None = None) -> bool:
+        """Are these two regions in different planar arrangements?
+
+        Two regions of different declared layers are two different plans that
+        happen to be drawn on the same paper. Their edges must not split each
+        other, pair with each other, or be refused for crossing each other --
+        the whole point of a layer is that the street's kerb is allowed to run
+        straight through the cellar's wall, because they are not at the same
+        height.
+
+        A layout that declares no layers answers False for every pair and
+        behaves exactly as it did before layers existed.
+        """
+        if not getattr(self, "layers", None):
+            return False
+        left_region = self.regions.get(left)
+        right_region = self.regions.get(right)
+        if left_region is None or right_region is None:
+            return False
+        if left_region.layer == right_region.layer:
+            return False
+        known = self.declared_joins() if joins is None else joins
+        return frozenset((left, right)) not in known
 
     def declare_special(self, region_a: str, region_b: str, kind: str) -> None:
         self.special_pairs.append((region_a, region_b, kind))
@@ -1022,10 +1194,31 @@ class PlanarLayout:
             ],
         }
 
+    def declare_layer(self, layer_id: str, *, ceiling_z: int, floor_z: int,
+                      note: str = "") -> Any:
+        """Name a height band that a set of regions occupies.
+
+        Until a layout declares one, `RegionSpec.layer` is a label with no
+        consequences and every region shares one plan. Declaring layers is what
+        permits regions to overlap in XY -- and what makes them prove they can.
+        See `bloodmap.layers`.
+        """
+        from .layers import declare_layer
+
+        return declare_layer(self, layer_id, ceiling_z=ceiling_z,
+                             floor_z=floor_z, note=note)
+
     def compile(self) -> CompiledLayout:
         if self.player_start is None:
             raise PlanarLayoutError("player start has not been assigned")
         self._validate_regions()
+        self._approved_layer_overlaps = []
+        if getattr(self, "layers", None):
+            from .layers import enforce
+
+            self._approved_layer_overlaps = [
+                overlap for overlap in enforce(self) if not overlap.declared
+            ]
         source_edges = self._source_edges()
         split_points = self._collect_split_points(source_edges)
         atomics = self._split_edges(source_edges, split_points)
@@ -1324,6 +1517,13 @@ class PlanarLayout:
         specials = []
         for a, b, kind in self.special_pairs:
             specials.append((allocations[a].sector_id, allocations[b].sector_id, kind))
+        # An overlap the layer conditions approved is a declared relationship
+        # like any other, and the geometry audit has to be told so -- otherwise
+        # it refuses in XY exactly what `bloodmap.layers` just proved safe in z.
+        for overlap in self._approved_layer_overlaps:
+            if overlap.left in allocations and overlap.right in allocations:
+                specials.append((allocations[overlap.left].sector_id,
+                                 allocations[overlap.right].sector_id, "layer"))
         for partition in self.partitions.values():
             if partition.region_b and partition.region_a in allocations and partition.region_b in allocations:
                 specials.append((
@@ -1342,8 +1542,18 @@ class PlanarLayout:
             if region.declared_zero_exit or region.special in {"water", "stack", "helper"}
         }
         intended = [(item.region_a, item.region_b) for item in self.connections.values()]
+        # Which sectors are not on the same sheet of paper. The audit asks its
+        # questions in plan, and two layers do not share one.
+        joins = self.declared_joins()
+        apart = [
+            (allocations[left].sector_id, allocations[right].sector_id)
+            for index, left in enumerate(self.regions)
+            for right in list(self.regions)[index + 1:]
+            if self.separate_arrangements(left, right, joins)
+        ]
         diagnostics = validate_authored_level(
             builder.level,
+            separate_arrangements=apart,
             intended_adjacency=intended,
             gated_sectors=gated_sectors,
             declared_zero_exit=zero_exit,
@@ -1422,6 +1632,10 @@ class PlanarLayout:
         if self.flat_tile_sizes:
             _check_flat_tiles(builder.level, self.flat_tile_sizes, allocations)
 
+        lighting_report = self._apply_declared_lighting(
+            builder.level, allocations, placement_sprites,
+        )
+
         for hook in self.post_compile:
             hook(builder.level)
         return CompiledLayout(
@@ -1433,7 +1647,80 @@ class PlanarLayout:
             connection_report=connection_report,
             declared_specials=specials,
             layout=self,
+            lighting_report=lighting_report,
         )
+
+    def _apply_declared_lighting(self, level: LevelIR,
+                                 allocations: dict[str, SectorAllocation],
+                                 placement_sprites: dict[str, int]) -> dict[str, Any]:
+        """Run LightBomb from authored sources, preserving explicit shades.
+
+        Region shade fields are overrides, not lighting input.  A surface with
+        no stated shade starts at its derived campaign baseline and is then
+        illuminated here.  An explicitly stated surface remains untouched,
+        which makes the escape hatch local and inspectable.
+        """
+        if not self.light_sources:
+            return {"enabled": False, "sources": 0}
+
+        lights: list[tuple[int, int, int, int] | tuple[int, int, int, int, float]] = []
+        source_ids: list[str] = []
+        for source in self.light_sources:
+            sector = allocations[source.region_id].sector_id
+            if source.placement_id is not None:
+                sprite_id = placement_sprites.get(source.placement_id)
+                if sprite_id is None:
+                    raise PlanarLayoutError(
+                        f"light {source.light_id!r} follows missing placement "
+                        f"{source.placement_id!r}"
+                    )
+                fields = level.sprites[sprite_id]["fields"]
+                sprite_sector = int(fields["sector"])
+                source_z = int(fields["z"])
+                if source.height_player_heights is not None:
+                    floor_z = int(level.sectors[sprite_sector]["fields"]["floor_z"])
+                    source_z = floor_z - int(round(
+                        source.height_player_heights * PLAYER_HEIGHT))
+                position = (int(fields["x"]), int(fields["y"]),
+                            source_z, sprite_sector)
+            else:
+                if source.x is None or source.y is None or source.z is None:
+                    raise PlanarLayoutError(f"light {source.light_id!r} has no position")
+                position = (source.x, source.y, source.z, sector)
+            if source.intensity is None:
+                lights.append(position)
+            else:
+                lights.append((*position, float(source.intensity)))
+            source_ids.append(source.light_id)
+
+        protected = {"wall": set(), "floor": set(), "ceiling": set()}
+        for region_id, region in self.regions.items():
+            allocation = allocations[region_id]
+            generated = set(region.intent.get("generated_surfaces", ()))
+            if region.wall_shade is not None and "wall" not in generated:
+                protected["wall"].update(allocation.wall_ids)
+            if region.floor_shade is not None and "floor" not in generated:
+                protected["floor"].add(allocation.sector_id)
+            if region.ceiling_shade is not None and "ceiling" not in generated:
+                protected["ceiling"].add(allocation.sector_id)
+
+        from .lightbomb import light_bomb
+
+        report = light_bomb(level, lights, protected=protected)
+        report.update(
+            enabled=True,
+            source_ids=source_ids,
+            source_intensities={
+                source.light_id: (source.intensity if source.intensity is not None else 1.0)
+                for source in self.light_sources
+            },
+            source_heights={
+                source.light_id: source.height_player_heights
+                for source in self.light_sources
+                if source.height_player_heights is not None
+            },
+        )
+        return report
 
     def _validate_regions(self) -> None:
         for region in self.regions.values():
@@ -1447,10 +1734,17 @@ class PlanarLayout:
                 if errors:
                     raise PlanarLayoutError(f"{region.region_id} hole: {errors[0]}")
         declared = {frozenset((left, right)) for left, right, _kind in self.special_pairs}
+        joins = self.declared_joins()
         members = list(self.regions.values())
         for index, left in enumerate(members):
             for right in members[index + 1:]:
                 if frozenset((left.region_id, right.region_id)) in declared:
+                    continue
+                # Two declared layers are two plans on one sheet of paper. What
+                # they do to each other in XY is `bloodmap.layers`' business, and
+                # it judges them on height band and portal separation rather than
+                # refusing them outright.
+                if self.separate_arrangements(left.region_id, right.region_id, joins):
                     continue
                 if left.stack_pair == right.region_id or right.stack_pair == left.region_id:
                     continue
@@ -1514,6 +1808,7 @@ class PlanarLayout:
         declared = {
             frozenset((left, right)) for left, right, _kind in self.special_pairs
         }
+        joins = self.declared_joins()
         for left in edges:
             for right in edges:
                 if left.edge_id >= right.edge_id:
@@ -1523,6 +1818,11 @@ class PlanarLayout:
                     continue
                 kind = classified["kind"]
                 if frozenset((left.region_id, right.region_id)) in declared:
+                    continue
+                # Edges of different layers are not in the same plan, so they
+                # neither split nor obstruct each other. Splitting them here is
+                # what would put a vertex from the street into the cellar's wall.
+                if self.separate_arrangements(left.region_id, right.region_id, joins):
                     continue
                 if kind == "proper_crossing":
                     if left.region_id == right.region_id:
@@ -1723,6 +2023,7 @@ class PlanarLayout:
         for left_id, right_id, _kind in self.special_pairs:
             special_regions.add(left_id)
             special_regions.add(right_id)
+        joins = self.declared_joins()
         leftover = []
         for _key, group in by_undirected.items():
             if len(group) < 2:
@@ -1732,6 +2033,10 @@ class PlanarLayout:
                     if left.atomic_id >= right.atomic_id:
                         continue
                     if left.region_id in special_regions or right.region_id in special_regions:
+                        continue
+                    # Two layers may run a wall along the same line without that
+                    # line being a portal; they are at different heights.
+                    if self.separate_arrangements(left.region_id, right.region_id, joins):
                         continue
                     if not exact_reversed(left.a, left.b, right.a, right.b):
                         if left.a == right.a and left.b == right.b:
@@ -1888,6 +2193,19 @@ class PlanarLayout:
                 )
             a.update(next_wall=wb, next_sector=owners[wb])
             b.update(next_wall=wa, next_sector=owners[wa])
+            cut = self._view_cut_side(left, right)
+            if cut is not None:
+                near = a if cut == left.region_id else b
+                # Bit 5 alone: engine.c:3134 skips `scansector` on it, and
+                # engine.c:3157 then draws the wall solid from `over_picnum`.
+                # Bit 4 is not consulted on either path -- engine.c:2920 takes a
+                # wall into the masked list only when cstat&48 is exactly 16 --
+                # so adding it would buy nothing and make this look like a grate.
+                # The campaign agrees: of its 82 one-way walls, 95% carry an
+                # over_picnum and only 32% also set masked.
+                near["cstat"] = int(near["cstat"]) | CSTAT_WALL_ONE_WAY
+                if not int(near["over_picnum"]):
+                    near["over_picnum"] = int(near["picnum"])
             blocking = self._blocks(left, right)
             if blocking:
                 a["cstat"] = int(a["cstat"]) | CSTAT_WALL_BLOCKING
@@ -1898,6 +2216,39 @@ class PlanarLayout:
                         if not int(face["over_picnum"]):
                             face["over_picnum"] = int(face["picnum"])
         return ir, allocations, wall_from_atomic
+
+    def _view_cut_side(self, left: "AtomicEdge", right: "AtomicEdge") -> str | None:
+        """Which of this pair's two regions asked not to be seen through.
+
+        Returns the region id whose own wall carries the flag, or None. The
+        answer is a region id rather than a side name because by the time the
+        walls exist, "left" and "right" no longer mean anything: only the two
+        sectors do.
+        """
+        for connection in self.connections.values():
+            if connection.view_cut_from is None:
+                continue
+            if {connection.region_a, connection.region_b} != {left.region_id, right.region_id}:
+                continue
+            if connection.a1 and connection.a2:
+                if collinear_overlap_interval(connection.a1, connection.a2,
+                                              left.a, left.b) is None:
+                    continue
+            return self._resolve_cut_side(connection)
+        return None
+
+    @staticmethod
+    def _resolve_cut_side(connection: ConnectionSpec) -> str:
+        named = str(connection.view_cut_from)
+        if named in ("left", "a", connection.region_a):
+            return connection.region_a
+        if named in ("right", "b", connection.region_b):
+            return connection.region_b
+        raise PlanarLayoutError(
+            f"connection {connection.connection_id!r} cuts the view from "
+            f"{named!r}, which is neither of its regions "
+            f"({connection.region_a!r}, {connection.region_b!r}) nor "
+            f"'left'/'right'")
 
     def _blocks_opaquely(self, left: "AtomicEdge", right: "AtomicEdge") -> bool:
         """Whether the covering blocked_portal asked to be solid to look at."""

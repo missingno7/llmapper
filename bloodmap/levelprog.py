@@ -168,7 +168,7 @@ class Frame:
 STYLE_FIELDS = (
     "wall_picnum", "floor_picnum", "ceiling_picnum",
     "wall_shade", "floor_shade", "ceiling_shade",
-    "parallax_ceiling", "clear_height", "floor_z",
+    "parallax_ceiling", "clear_height", "floor_z", "layer",
 )
 
 
@@ -191,6 +191,12 @@ class Style:
     parallax_ceiling: bool | None = None
     clear_height: int | None = None
     floor_z: int | None = None
+    #: Which planar arrangement this part belongs to. Inherited like everything
+    #: else here, because a layer is a property of a *place* -- the whole first
+    #: floor of a building is on the upper layer -- and stating it once on the
+    #: assembly is the only way that stays true as rooms are added. See
+    #: `bloodmap.layers`.
+    layer: str | None = None
 
     def override(self, **values: Any) -> "Style":
         unknown = set(values) - set(STYLE_FIELDS)
@@ -260,6 +266,20 @@ class DetailDecl:
     aspect: float = 1.0
     offset_player_widths: float = 0.10
     fields: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class LightSourceDecl:
+    """An authored light source at a room-relative point.
+
+    The declaration is deliberately independent of sprite appearance: a flame
+    may have a visual detail, while a window or furnace opening can emit light
+    without one.  In both cases the source is explicit in the level program.
+    """
+
+    light_id: str
+    local: tuple[float, float] = (0.5, 0.5)
+    height_player_heights: float = 0.65
 
 
 @dataclass
@@ -448,12 +468,18 @@ class Room(Node):
         if area2(tuple(points)) < 0:
             points.reverse()
         self.outline = points
-        self.faces = dict(faces or {})
+        # A room that does not name its faces gets the compass ones its own
+        # outline offers. `rect_room` has always done this; a room with a shape
+        # had to be handed a face map, and handing it the rectangle's map -- four
+        # names against the first four indices -- silently named a chamfer
+        # "south" and put a door on the diagonal.
+        self.faces = dict(faces) if faces else _compass_edges(points)
         self.role = role
         self.intent = dict(intent or {})
         self.region_kwargs = dict(region_kwargs or {})
         self.structures: list[StructureDecl] = []
         self.details: list[DetailDecl] = []
+        self.light_sources: list[LightSourceDecl] = []
         self.holes: list[list[Point]] = []
         self._hole_faces: dict[str, tuple[int, int]] = {}
         self.raw_declarations: list[RawDecl] = []
@@ -610,6 +636,23 @@ class Room(Node):
         self.details.extend(details)
         return self
 
+    def light_source(self, light_id: str, *, local: Sequence[float] = (0.5, 0.5),
+                     height_player_heights: float = 0.65) -> "Room":
+        """Declare a source that will illuminate this room at compile time.
+
+        Sources are named in the room that owns them rather than inferred from
+        a decorative tile.  Put a visible lamp beside this declaration when the
+        source ought to be visible; use it alone for an invisible source such as
+        moonlight entering through an opening.
+        """
+        if any(item.light_id == light_id for item in self.light_sources):
+            raise LevelProgramError(f"{self.path()} already has light {light_id!r}")
+        self.light_sources.append(LightSourceDecl(
+            str(light_id), (float(local[0]), float(local[1])),
+            float(height_player_heights),
+        ))
+        return self
+
     def raw(self, note: str, apply: Callable[[PlanarLayout, "Room"], None]) -> "Room":
         """Escape hatch: do something to the compiled layout this model cannot say.
 
@@ -644,6 +687,7 @@ class Room(Node):
                 for item in self.structures
             ],
             "details": [item.detail_id for item in self.details],
+            "light_sources": [item.light_id for item in self.light_sources],
             "holes": len(self.holes),
             "raw_escapes": [item.note for item in self.raw_declarations],
         }
@@ -706,6 +750,22 @@ class LevelProgram(Assembly):
         self.art_sizes = dict(art_sizes or {})
         self.start: tuple[Room, tuple[float, float], int] | None = None
         self.stacks: list[tuple[str, str, str]] = []
+        self.layer_bands: list[dict[str, Any]] = []
+
+    def declare_layer(self, layer_id: str, *, ceiling_z: int, floor_z: int,
+                      note: str = "") -> "LevelProgram":
+        """Name a height band, so parts of this level may stand over each other.
+
+        Declaring layers is what lets two assemblies occupy the same ground --
+        a cellar under a yard -- and what makes them prove the engine can still
+        tell them apart. A program that declares none behaves as before: any XY
+        overlap is refused. See `bloodmap.layers`.
+        """
+        self.layer_bands.append({
+            "layer_id": layer_id, "ceiling_z": int(ceiling_z),
+            "floor_z": int(floor_z), "note": note,
+        })
+        return self
 
     def declare_stack(self, left: Room, right: Room, *, kind: str = "stack") -> "LevelProgram":
         """Declare that two rooms deliberately share XY footprint.
@@ -728,6 +788,10 @@ class LevelProgram(Assembly):
     def compile(self) -> PlanarLayout:
         """Lower the tree into flat planar source.  Absolute coordinates appear here."""
         layout = PlanarLayout(name=self.name, visibility=self.visibility)
+        for band in self.layer_bands:
+            layout.declare_layer(
+                band["layer_id"], ceiling_z=band["ceiling_z"],
+                floor_z=band["floor_z"], note=band["note"])
         rooms = self.rooms()
         if not rooms:
             raise LevelProgramError("a level program needs at least one room")
@@ -756,6 +820,8 @@ class LevelProgram(Assembly):
             for name in ("wall_shade", "floor_shade", "ceiling_shade"):
                 if style.get(name) is not None:
                     fields[name] = int(style[name])
+            if style.get("layer") is not None:
+                fields["layer"] = str(style["layer"])
             if style.get("parallax_ceiling"):
                 fields["parallax_ceiling"] = True
             if room.intent:
@@ -789,6 +855,15 @@ class LevelProgram(Assembly):
             self._place_details(layout, room.region_id, room, room.details)
             for declaration in room.raw_declarations:
                 declaration.apply(layout, room)
+            style = room.effective_style()
+            floor_z = room.world_frame().apply_z(int(style["floor_z"]))
+            for source in room.light_sources:
+                x, y = _interior_point(room, source.local)
+                layout.add_light_source(
+                    f"light:{room.path()}:{source.light_id}", room.region_id,
+                    x=x, y=y,
+                    z=floor_z - int(round(source.height_player_heights * PLAYER_HEIGHT)),
+                )
 
         if self.start is not None:
             room, local, angle = self.start
@@ -813,6 +888,12 @@ class LevelProgram(Assembly):
         for name in ("wall_shade", "floor_shade", "ceiling_shade"):
             if style.get(name) is not None:
                 surface.setdefault(name, int(style[name]))
+        # A structure is part of the room that grew it, so its regions belong to
+        # the room's layer. Without this every step of a staircase landed in the
+        # default layer and the level was refused for standing somewhere it had
+        # never been told about.
+        if style.get("layer") is not None:
+            surface.setdefault("layer", str(style["layer"]))
         surface.update({key: options.pop(key) for key in list(options)
                         if key in {"wall_picnum", "floor_picnum", "ceiling_picnum",
                                    "wall_shade", "floor_shade", "ceiling_shade"}})

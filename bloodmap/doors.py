@@ -88,6 +88,49 @@ def z_motion_endpoints(floor_z: int, open_ceiling_z: int) -> dict[str, int]:
     }
 
 
+def z_motion_door(floor_z: int, open_ceiling_z: int, *,
+                  interaction: str = "direct", rx_id: int | None = None,
+                  key: int | None = None, open_time: int = 5,
+                  close_time: int | None = None) -> dict[str, int]:
+    """Complete XSECTOR behaviour for a rising Z-motion door.
+
+    A type-600 sector with only :func:`z_motion_endpoints` is *not* a complete
+    door.  In particular, zero ``busy_time_a`` and ``busy_time_b`` make
+    NBlood set its state immediately.  The campaign-backed default is five
+    tenths of a second in both directions (the value used by the
+    reasoned-authoring pilot).  The three interaction modes keep direct use,
+    remote switches, and their deliberate combination distinct in source.
+
+    ``interaction`` is one of ``"direct"``, ``"remote"`` or ``"both"``.
+    ``rx_id`` is required for ``remote`` and ``both``; ``key`` only applies to
+    direct use.  Return this dictionary as a region's ``sector_behavior``.
+    """
+    if interaction not in {"direct", "remote", "both"}:
+        raise DoorError("interaction must be 'direct', 'remote', or 'both'")
+    if interaction in {"remote", "both"} and rx_id is None:
+        raise DoorError("a remote Z-motion door needs rx_id")
+    if int(open_time) < 1:
+        raise DoorError("a Z-motion door needs open_time >= 1; zero is instant")
+    if close_time is not None and int(close_time) < 1:
+        raise DoorError("a Z-motion door needs close_time >= 1; zero is instant")
+
+    fields = {
+        "busy_time_a": int(open_time),
+        "busy_time_b": int(open_time if close_time is None else close_time),
+        **z_motion_endpoints(floor_z, open_ceiling_z),
+    }
+    if interaction in {"direct", "both"}:
+        fields.update(xsector_direct_use(key=key))
+    if interaction in {"remote", "both"}:
+        # Do not use xsector_remote_rx here for the dual case: it correctly
+        # clears direct-use bits for a remote-only door.
+        fields["rx_id"] = int(rx_id)
+        if interaction == "remote":
+            fields["trigger_push"] = 0
+            fields["trigger_wall_push"] = 0
+    return fields
+
+
 def _extra(obj) -> dict[str, Any] | None:
     return None if obj.extra is None else dict(obj.extra.fields)
 

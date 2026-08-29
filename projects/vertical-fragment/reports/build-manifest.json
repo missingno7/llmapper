@@ -1,0 +1,302 @@
+{
+ "$schema": "llmapper.vertical-fragment-build",
+ "map": "MALTX.MAP",
+ "bytes": 23811,
+ "sectors": 126,
+ "walls": 556,
+ "sprites": 15,
+ "tree": {
+  "nodes": 54,
+  "max_depth": 3,
+  "rooms": 38
+ },
+ "layers": [
+  {
+   "layer": "upper",
+   "ceiling_z": -65536,
+   "floor_z": -32768,
+   "height": 32768,
+   "height_bodies": 1.93,
+   "note": "1.93 bodies of clear height; BB4's band",
+   "regions": 47
+  },
+  {
+   "layer": "street",
+   "ceiling_z": -24576,
+   "floor_z": 8192,
+   "height": 32768,
+   "height_bodies": 1.93,
+   "note": "1.93 bodies of clear height; BB4's band",
+   "regions": 16
+  },
+  {
+   "layer": "undercroft",
+   "ceiling_z": 16384,
+   "floor_z": 49152,
+   "height": 32768,
+   "height_bodies": 1.93,
+   "note": "1.93 bodies of clear height; BB4's band",
+   "regions": 63
+  }
+ ],
+ "overlaps": 71,
+ "layer_findings": [
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "4 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 4 on one line, 0 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/yard/cobbles / region:malt_cross/cellar/vault"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/yard/cobbles / region:malt_cross/cellar/passage"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "4 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 4 on one line, 0 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/brewhouse/ground/mash / region:malt_cross/brewhouse/first/loft"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "4 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 4 on one line, 0 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/kiln/ground/floor / region:malt_cross/kiln/first/loft"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/inside/shed / region:malt_cross/store/roof/leads"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "4 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 4 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/inside/shed / region:malt_cross/cellar/passage"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/inside/stairhead / region:malt_cross/store/roof/leads"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:malt_cross/cellar/passage"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:malt_cross/cellar/landing"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_01"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_02"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_03"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_04"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_05"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_06"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_07"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_08"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_09"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_10"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/tower_head / region:malt_cross/cellar/landing"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "1 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 1 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/tower_head / region:malt_cross/cellar/tower_foot"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "15872 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/brewhouse/ground/mash / region:malt_cross/brewhouse/first/loft"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "640 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/brewhouse/ground/mash / region:malt_cross/brewhouse/first/loft_door"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "768 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/brewhouse/ground/mash / region:malt_cross/porches/west_door"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "1024 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/brewhouse/ground/mash / region:malt_cross/porches/brew_window"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "512 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/brewhouse/ground/mash_door / region:malt_cross/brewhouse/first/loft"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "1024 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/brewhouse/ground/yard_door / region:malt_cross/brewhouse/first/loft"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "13824 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/floor / region:malt_cross/kiln/first/loft"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "640 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/floor / region:malt_cross/kiln/first/door"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "768 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/floor / region:malt_cross/alley/first/kiln_door"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "1024 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/floor / region:malt_cross/porches/east_door"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "256 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/stairfoot / region:malt_cross/porches/east_run"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "768 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/stairfoot / region:malt_cross/porches/east"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "512 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/door / region:malt_cross/kiln/first/loft"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "512 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/door / region:malt_cross/porches/east_run"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "768 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/yard_door / region:malt_cross/kiln/first/loft"
+  },
+  {
+   "severity": "warning",
+   "code": "layer-overlap-in-one-view",
+   "message": "region:malt_cross/yard/hatch has a clear plan sightline to both region:malt_cross/yard/cobbles and region:malt_cross/cellar/vault, which share ground; a renderer flood that holds both draws them in an order the map does not control. Build collects a neighbour sector through a portal and then lets all of its walls compete for screen columns -- the opening does not clip them -- so a storey above the eye can win the columns of the room behind it and leave them unwritten. The campaign's measured answer is architectural: openings on facades that are not the same line (BB4's stacked-entrance median is 98 degrees), and a plan that does not hand wallfront collinear neighbours. A one-way wall (engine.c:3134) cuts the flood from one side only and cannot resolve a symmetric co-visibility problem; a masked wall (cstat&48 == 16, engine.c:2920) changes what is painted, not what the sort can order. Neither flag is a substitute for moving the openings",
+   "location": "region:malt_cross/yard/cobbles / region:malt_cross/cellar/vault"
+  },
+  {
+   "severity": "warning",
+   "code": "layer-overlap-in-one-view",
+   "message": "region:malt_cross/store/inside/shed has a clear plan sightline to both region:malt_cross/store/inside/stair_door and region:malt_cross/store/roof/leads, which share ground; a renderer flood that holds both draws them in an order the map does not control. Build collects a neighbour sector through a portal and then lets all of its walls compete for screen columns -- the opening does not clip them -- so a storey above the eye can win the columns of the room behind it and leave them unwritten. The campaign's measured answer is architectural: openings on facades that are not the same line (BB4's stacked-entrance median is 98 degrees), and a plan that does not hand wallfront collinear neighbours. A one-way wall (engine.c:3134) cuts the flood from one side only and cannot resolve a symmetric co-visibility problem; a masked wall (cstat&48 == 16, engine.c:2920) changes what is painted, not what the sort can order. Neither flag is a substitute for moving the openings",
+   "location": "region:malt_cross/store/inside/stair_door / region:malt_cross/store/roof/leads"
+  },
+  {
+   "severity": "warning",
+   "code": "layer-overlap-in-one-view",
+   "message": "region:malt_tower:step_06 has a clear plan sightline to both region:malt_cross/store/roof/tower_head and region:malt_cross/cellar/tower_foot, which share ground; a renderer flood that holds both draws them in an order the map does not control. Build collects a neighbour sector through a portal and then lets all of its walls compete for screen columns -- the opening does not clip them -- so a storey above the eye can win the columns of the room behind it and leave them unwritten. The campaign's measured answer is architectural: openings on facades that are not the same line (BB4's stacked-entrance median is 98 degrees), and a plan that does not hand wallfront collinear neighbours. A one-way wall (engine.c:3134) cuts the flood from one side only and cannot resolve a symmetric co-visibility problem; a masked wall (cstat&48 == 16, engine.c:2920) changes what is painted, not what the sort can order. Neither flag is a substitute for moving the openings",
+   "location": "region:malt_cross/store/roof/tower_head / region:malt_cross/cellar/tower_foot"
+  }
+ ],
+ "techniques": {
+  "plan_overlap": 22,
+  "room_over_room": 1,
+  "spiral_turns": 48,
+  "blocking_floor_sprite": 13
+ },
+ "circulation": {
+  "sectors": 126,
+  "one_component": 126,
+  "unreached": []
+ },
+ "offmap_fraction": 0.0,
+ "rules": {
+  "graded": 23,
+  "registered": 23,
+  "errors": [],
+  "warnings": [],
+  "notes": 51
+ },
+ "apertures": {
+  "checked": 43,
+  "violations": []
+ }
+}

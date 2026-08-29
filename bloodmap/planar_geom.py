@@ -215,7 +215,6 @@ def point_on_loop_boundary(point: Point, loop: Sequence[Point]) -> bool:
             return True
     return False
 
-
 def point_in_loop(point: Point, loop: Sequence[Point]) -> int:
     """Return 1 inside, 0 outside, -1 on boundary. Even-odd with exact rationals."""
     if point_on_loop_boundary(point, loop):
@@ -449,3 +448,47 @@ class LoopView:
     def edges(self) -> list[Segment]:
         count = len(self.points)
         return [(self.points[index], self.points[(index + 1) % count]) for index in range(count)]
+
+def canonical_ring(loop: list[tuple[int, int]]) -> tuple[tuple[int, int], ...]:
+    """A loop's corners, with vertices that only subdivide an edge removed.
+
+    Two sectors on one footprint rarely have the same vertex list: each has its
+    own doorways splitting its own walls, so a storey and the storey over it are
+    the same rectangle with different points along the edges. Comparing raw
+    vertex lists calls them different shapes, which is how the commonest overlap
+    in Blood -- one room directly over another -- went undetected.
+    """
+    points = list(loop)
+    if len(points) > 2 and points[0] == points[-1]:
+        points.pop()
+    out: list[tuple[int, int]] = []
+    count = len(points)
+    for index in range(count):
+        prev = points[index - 1]
+        here = points[index]
+        nxt = points[(index + 1) % count]
+        cross = ((here[0] - prev[0]) * (nxt[1] - here[1])
+                 - (here[1] - prev[1]) * (nxt[0] - here[0]))
+        if cross != 0:
+            out.append((int(here[0]), int(here[1])))
+    return tuple(out)
+
+
+def same_ground(loop_a: list[tuple[int, int]], loop_b: list[tuple[int, int]]) -> bool:
+    """Do these two outlines enclose the same ground, however they are cut up?
+
+    Corner-for-corner, in either winding, from any starting vertex. This is a
+    stricter question than `polygon_relation`'s `exactly_shared_boundary`, which
+    a sector filling a *hole* in another also satisfies -- and that is not shared
+    ground at all, it is a cut-out.
+    """
+    a = canonical_ring(loop_a)
+    b = canonical_ring(loop_b)
+    if len(a) != len(b) or not a:
+        return False
+    for flip in (b, tuple(reversed(b))):
+        for start in range(len(flip)):
+            if a == flip[start:] + flip[:start]:
+                return True
+    return False
+

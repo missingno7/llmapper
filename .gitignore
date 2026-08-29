@@ -21,6 +21,7 @@ reference/
 # and the reference frames among them are renders of commercial maps, which
 # this repository does not redistribute.
 projects/*/reports/looks/
+projects/*/level/reports/looks/
 projects/*/reports/pilot-views/
 projects/*/references/plots/
 

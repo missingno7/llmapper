@@ -64,6 +64,22 @@ def _program(*, lobby_height: int = 9 * PH, rise: int = 4 * 4096,
 
 
 class LocalityTests(unittest.TestCase):
+    def test_room_light_source_is_visible_in_source_and_compiles(self):
+        level = LevelProgram(
+            "lit", style=Style(wall_picnum=180, floor_picnum=292,
+                               ceiling_picnum=385, floor_z=8192,
+                               clear_height=8 * PH),
+        )
+        room = level.rect_room("room", size=(8 * U, 8 * U),
+                               region_kwargs={"declared_zero_exit": True})
+        room.light_source("window", local=(0.25, 0.5), height_player_heights=2.0)
+        level.set_start(room)
+
+        compiled = level.compile().compile()
+
+        self.assertEqual(room.summary()["light_sources"], ["window"])
+        self.assertEqual(compiled.lighting_report["source_ids"], ["light:lit/room:window"])
+
     def test_a_room_summary_answers_everything_about_that_room(self):
         level = _program()
         lobby = next(room for room in level.rooms() if room.node_id == "lobby")

@@ -276,22 +276,32 @@ def hitscan(level: Any, x: float, y: float, z: float, sector: int,
     return Hit("void", sector, -1, x, y, z)
 
 
-def light_bomb(level: Any, lights: Sequence[tuple[int, int, int, int]], *,
-               intensity: int = INTENSITY,
+def light_bomb(level: Any, lights: Sequence[tuple[int, int, int, int] | tuple[int, int, int, int, float]], *,
+               intensity: float = INTENSITY,
                attenuation: float = ATTENUATION,
                reflections: int = REFLECTIONS,
                max_bright: int = MAX_BRIGHT,
                ramp_distance: int = RAMP_DISTANCE,
                azimuths: int = AZIMUTHS,
-               surfaces: Surfaces | None = None) -> dict[str, Any]:
+               surfaces: Surfaces | None = None,
+               protected: dict[str, Iterable[int]] | None = None) -> dict[str, Any]:
     """Cast light out of each source and shade what it reaches.
 
-    `lights` is a sequence of ``(x, y, z, sector)``. Returns what it did.
+    `lights` is a sequence of ``(x, y, z, sector)`` values, optionally with a
+    fifth per-source intensity. ``protected`` is an optional mapping of
+    ``wall``, ``floor`` and ``ceiling`` to emitted ids whose author-stated
+    shades must not be changed. Protected surfaces still receive rays -- they
+    continue to occlude and reflect light -- but their final shade remains an
+    explicit authoring decision.
     """
     prepared = surfaces if surfaces is not None else prepare(level)
     wall_gain = [0.0] * len(level.walls)
     floor_gain = [0.0] * len(level.sectors)
     ceiling_gain = [0.0] * len(level.sectors)
+    protected = protected or {}
+    protected_walls = {int(item) for item in protected.get("wall", ())}
+    protected_floors = {int(item) for item in protected.get("floor", ())}
+    protected_ceilings = {int(item) for item in protected.get("ceiling", ())}
     rays = 0
 
     def shoot(x: float, y: float, z: float, sector: int,
@@ -343,7 +353,17 @@ def light_bomb(level: Any, lights: Sequence[tuple[int, int, int, int]], *,
         elevations.append(math.radians(step))
         step += ELEVATION_STEP
 
-    for x, y, z, sector in lights:
+    for light in lights:
+        if len(light) == 4:
+            x, y, z, sector = light
+            source_intensity = float(intensity)
+        elif len(light) == 5:
+            x, y, z, sector, source_intensity = light
+            source_intensity = float(source_intensity)
+        else:
+            raise ValueError("a LightBomb source must have 4 or 5 values")
+        if source_intensity <= 0:
+            raise ValueError("a LightBomb source intensity must be positive")
         if not 0 <= sector < len(level.sectors):
             continue
         for elevation in elevations:
@@ -353,14 +373,18 @@ def light_bomb(level: Any, lights: Sequence[tuple[int, int, int, int]], *,
                 angle = 2.0 * math.pi * index / azimuths
                 shoot(x, y, z, sector,
                       math.cos(angle) * horizontal, math.sin(angle) * horizontal, dz,
-                      float(intensity), 0, 0.0)
+                      source_intensity, 0, 0.0)
 
     def apply(value: int, gain: float) -> int:
         return max(max_bright, min(SHADE_MAX, int(round(value - gain))))
 
     touched = 0
+    skipped = 0
     for wall_id, gain in enumerate(wall_gain):
         if gain <= 0:
+            continue
+        if wall_id in protected_walls:
+            skipped += 1
             continue
         fields = _fields(level.walls[wall_id])
         fields["shade"] = apply(int(fields["shade"]), gain)
@@ -368,11 +392,17 @@ def light_bomb(level: Any, lights: Sequence[tuple[int, int, int, int]], *,
     for index, gain in enumerate(floor_gain):
         if gain <= 0:
             continue
+        if index in protected_floors:
+            skipped += 1
+            continue
         fields = _fields(level.sectors[index])
         fields["floor_shade"] = apply(int(fields["floor_shade"]), gain)
         touched += 1
     for index, gain in enumerate(ceiling_gain):
         if gain <= 0:
+            continue
+        if index in protected_ceilings:
+            skipped += 1
             continue
         fields = _fields(level.sectors[index])
         fields["ceiling_shade"] = apply(int(fields["ceiling_shade"]), gain)
@@ -382,6 +412,7 @@ def light_bomb(level: Any, lights: Sequence[tuple[int, int, int, int]], *,
         "lights": len(lights),
         "rays_cast": rays,
         "surfaces_lit": touched,
+        "surfaces_protected": skipped,
         "walls_lit": sum(1 for g in wall_gain if g > 0),
         "basis": (
             "XMapEdit's own LightBomb, from edit3d.cpp: energy is "

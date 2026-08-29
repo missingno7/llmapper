@@ -1,0 +1,1681 @@
+{
+ "$schema": "llmapper.layer-report",
+ "rule": "two regions that share ground must be resolved by disjoint height bands, or by being far enough apart that one mover's clip box cannot hold a portal walk between them within 2 hops",
+ "draw_order_rule": "whether two sectors can be drawn together is decided by wallfront (build/src/engine.cpp:2227), which takes the two walls' x/y and the viewer's x/y and has no z in it; the bunch sort answers a negative with continue (engine.cpp:9736). Disjoint bands and portal-walk separation are clipmove conditions. They do not rank bunches.",
+ "min_portal_separation": 5,
+ "layers": [
+  {
+   "layer": "upper",
+   "ceiling_z": -65536,
+   "floor_z": -32768,
+   "height": 32768,
+   "height_bodies": 1.93,
+   "note": "1.93 bodies of clear height; BB4's band",
+   "regions": 47
+  },
+  {
+   "layer": "street",
+   "ceiling_z": -24576,
+   "floor_z": 8192,
+   "height": 32768,
+   "height_bodies": 1.93,
+   "note": "1.93 bodies of clear height; BB4's band",
+   "regions": 16
+  },
+  {
+   "layer": "undercroft",
+   "ceiling_z": 16384,
+   "floor_z": 49152,
+   "height": 32768,
+   "height_bodies": 1.93,
+   "note": "1.93 bodies of clear height; BB4's band",
+   "regions": 63
+  }
+ ],
+ "overlaps": [
+  {
+   "regions": [
+    "region:malt_cross/yard/cobbles",
+    "region:malt_cross/cellar/vault"
+   ],
+   "layers": [
+    "street",
+    "undercroft"
+   ],
+   "kind": "full_containment_b_in_a",
+   "z": "vertically_disjoint",
+   "hops": 3,
+   "one_clip_list": true,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/yard/cobbles",
+    "region:malt_cross/cellar/passage"
+   ],
+   "layers": [
+    "street",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 4,
+   "one_clip_list": true,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/yard/hatch",
+    "region:malt_cross/cellar/under_hatch"
+   ],
+   "layers": [
+    "street",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_touching",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "stack",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/brewhouse/ground/mash",
+    "region:malt_cross/brewhouse/first/loft"
+   ],
+   "layers": [
+    "street",
+    "upper"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 5,
+   "one_clip_list": true,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/kiln/ground/floor",
+    "region:malt_cross/kiln/first/loft"
+   ],
+   "layers": [
+    "street",
+    "upper"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 6,
+   "one_clip_list": true,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/inside/shed",
+    "region:malt_cross/store/roof/leads"
+   ],
+   "layers": [
+    "street",
+    "upper"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 12,
+   "one_clip_list": false,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/inside/shed",
+    "region:malt_cross/cellar/passage"
+   ],
+   "layers": [
+    "street",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 6,
+   "one_clip_list": false,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/inside/stairhead",
+    "region:malt_cross/store/roof/leads"
+   ],
+   "layers": [
+    "street",
+    "upper"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 14,
+   "one_clip_list": false,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/inside/stair_door",
+    "region:malt_cross/store/roof/leads"
+   ],
+   "layers": [
+    "street",
+    "upper"
+   ],
+   "kind": "full_containment_a_in_b",
+   "z": "vertically_disjoint",
+   "hops": 13,
+   "one_clip_list": false,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/roof/leads",
+    "region:malt_cross/cellar/passage"
+   ],
+   "layers": [
+    "upper",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 6,
+   "one_clip_list": true,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/roof/leads",
+    "region:malt_cross/cellar/landing"
+   ],
+   "layers": [
+    "upper",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 5,
+   "one_clip_list": true,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/roof/leads",
+    "region:cellar_stair:step_01"
+   ],
+   "layers": [
+    "upper",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 6,
+   "one_clip_list": true,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/roof/leads",
+    "region:cellar_stair:step_02"
+   ],
+   "layers": [
+    "upper",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 7,
+   "one_clip_list": true,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/roof/leads",
+    "region:cellar_stair:step_03"
+   ],
+   "layers": [
+    "upper",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 8,
+   "one_clip_list": true,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/roof/leads",
+    "region:cellar_stair:step_04"
+   ],
+   "layers": [
+    "upper",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 9,
+   "one_clip_list": true,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/roof/leads",
+    "region:cellar_stair:step_05"
+   ],
+   "layers": [
+    "upper",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 10,
+   "one_clip_list": false,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/roof/leads",
+    "region:cellar_stair:step_06"
+   ],
+   "layers": [
+    "upper",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 11,
+   "one_clip_list": false,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/roof/leads",
+    "region:cellar_stair:step_07"
+   ],
+   "layers": [
+    "upper",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 12,
+   "one_clip_list": false,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/roof/leads",
+    "region:cellar_stair:step_08"
+   ],
+   "layers": [
+    "upper",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 13,
+   "one_clip_list": false,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/roof/leads",
+    "region:cellar_stair:step_09"
+   ],
+   "layers": [
+    "upper",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 14,
+   "one_clip_list": false,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/roof/leads",
+    "region:cellar_stair:step_10"
+   ],
+   "layers": [
+    "upper",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 15,
+   "one_clip_list": false,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/roof/tower_head",
+    "region:malt_cross/cellar/landing"
+   ],
+   "layers": [
+    "upper",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 4,
+   "one_clip_list": true,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_cross/store/roof/tower_head",
+    "region:malt_cross/cellar/tower_foot"
+   ],
+   "layers": [
+    "upper",
+    "undercroft"
+   ],
+   "kind": "partial_area_overlap",
+   "z": "vertically_disjoint",
+   "hops": 3,
+   "one_clip_list": true,
+   "declared": null,
+   "movement_resolved_by": [
+    "bands",
+    "separation"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:landing_00",
+    "region:malt_tower:step_16"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:landing_00",
+    "region:malt_tower:step_32"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_01",
+    "region:malt_tower:step_17"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_01",
+    "region:malt_tower:step_33"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_02",
+    "region:malt_tower:step_18"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_02",
+    "region:malt_tower:step_34"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_03",
+    "region:malt_tower:step_19"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_03",
+    "region:malt_tower:step_35"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_04",
+    "region:malt_tower:step_20"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_04",
+    "region:malt_tower:step_36"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_05",
+    "region:malt_tower:step_21"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_05",
+    "region:malt_tower:step_37"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_06",
+    "region:malt_tower:step_22"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_06",
+    "region:malt_tower:step_38"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_07",
+    "region:malt_tower:step_23"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_07",
+    "region:malt_tower:step_39"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_08",
+    "region:malt_tower:step_24"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_08",
+    "region:malt_tower:step_40"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_09",
+    "region:malt_tower:step_25"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_09",
+    "region:malt_tower:step_41"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_10",
+    "region:malt_tower:step_26"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_10",
+    "region:malt_tower:step_42"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_11",
+    "region:malt_tower:step_27"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_11",
+    "region:malt_tower:step_43"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_12",
+    "region:malt_tower:step_28"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_12",
+    "region:malt_tower:step_44"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_13",
+    "region:malt_tower:step_29"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_13",
+    "region:malt_tower:step_45"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_14",
+    "region:malt_tower:step_30"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_14",
+    "region:malt_tower:step_46"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_15",
+    "region:malt_tower:step_31"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_15",
+    "region:malt_tower:landing_47"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_16",
+    "region:malt_tower:step_32"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_17",
+    "region:malt_tower:step_33"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_18",
+    "region:malt_tower:step_34"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_19",
+    "region:malt_tower:step_35"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_20",
+    "region:malt_tower:step_36"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_21",
+    "region:malt_tower:step_37"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_22",
+    "region:malt_tower:step_38"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_23",
+    "region:malt_tower:step_39"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_24",
+    "region:malt_tower:step_40"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_25",
+    "region:malt_tower:step_41"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_26",
+    "region:malt_tower:step_42"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_27",
+    "region:malt_tower:step_43"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_28",
+    "region:malt_tower:step_44"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_29",
+    "region:malt_tower:step_45"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_30",
+    "region:malt_tower:step_46"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  },
+  {
+   "regions": [
+    "region:malt_tower:step_31",
+    "region:malt_tower:landing_47"
+   ],
+   "layers": [
+    "undercroft",
+    "undercroft"
+   ],
+   "kind": "identical_footprint",
+   "z": "vertically_disjoint",
+   "hops": 1,
+   "one_clip_list": true,
+   "declared": "helix",
+   "movement_resolved_by": [
+    "bands"
+   ],
+   "safe_to_move_through": true
+  }
+ ],
+ "conditions": {
+  "layer-overlap-close": {
+   "examined": 22,
+   "failed": 0,
+   "inert": false
+  },
+  "layer-overlap-in-one-view": {
+   "examined": 22,
+   "failed": 3,
+   "inert": false
+  },
+  "layer-overlap-unresolved": {
+   "examined": 22,
+   "failed": 0,
+   "inert": false
+  },
+  "layer-owner-over-overlap": {
+   "examined": 1,
+   "failed": 0,
+   "inert": false
+  },
+  "layer-stacked-and-seen-together": {
+   "examined": 22,
+   "failed": 0,
+   "inert": false
+  },
+  "layer-unorderable-walls": {
+   "examined": 22,
+   "failed": 21,
+   "inert": false
+  },
+  "layer-walls-coincide": {
+   "examined": 19,
+   "failed": 15,
+   "inert": false
+  }
+ },
+ "findings": [
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "4 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 4 on one line, 0 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/yard/cobbles / region:malt_cross/cellar/vault"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/yard/cobbles / region:malt_cross/cellar/passage"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "4 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 4 on one line, 0 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/brewhouse/ground/mash / region:malt_cross/brewhouse/first/loft"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "4 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 4 on one line, 0 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/kiln/ground/floor / region:malt_cross/kiln/first/loft"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/inside/shed / region:malt_cross/store/roof/leads"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "4 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 4 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/inside/shed / region:malt_cross/cellar/passage"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/inside/stairhead / region:malt_cross/store/roof/leads"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:malt_cross/cellar/passage"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:malt_cross/cellar/landing"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_01"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_02"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_03"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_04"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_05"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_06"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_07"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_08"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_09"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/leads / region:cellar_stair:step_10"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "2 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 2 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/tower_head / region:malt_cross/cellar/landing"
+  },
+  {
+   "severity": "note",
+   "code": "layer-unorderable-walls",
+   "message": "1 wall pair(s) that `wallfront` (engine.cpp:2227) cannot rank -- 0 on one line, 1 crossing. The sort at engine.cpp:9736 answers a negative with `continue`, so which of the two draws first falls out of enumeration order. The campaign does this in 91.1% of its overlapping pairs and is fine, because the two halves are almost never reached by one flood; read this together with layer-overlap-in-one-view, and move the geometry where both fire",
+   "location": "region:malt_cross/store/roof/tower_head / region:malt_cross/cellar/tower_foot"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "15872 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/brewhouse/ground/mash / region:malt_cross/brewhouse/first/loft"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "640 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/brewhouse/ground/mash / region:malt_cross/brewhouse/first/loft_door"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "768 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/brewhouse/ground/mash / region:malt_cross/porches/west_door"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "1024 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/brewhouse/ground/mash / region:malt_cross/porches/brew_window"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "512 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/brewhouse/ground/mash_door / region:malt_cross/brewhouse/first/loft"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "1024 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/brewhouse/ground/yard_door / region:malt_cross/brewhouse/first/loft"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "13824 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/floor / region:malt_cross/kiln/first/loft"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "640 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/floor / region:malt_cross/kiln/first/door"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "768 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/floor / region:malt_cross/alley/first/kiln_door"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "1024 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/floor / region:malt_cross/porches/east_door"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "256 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/stairfoot / region:malt_cross/porches/east_run"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "768 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/stairfoot / region:malt_cross/porches/east"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "512 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/door / region:malt_cross/kiln/first/loft"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "512 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/door / region:malt_cross/porches/east_run"
+  },
+  {
+   "severity": "note",
+   "code": "layer-walls-coincide",
+   "message": "768 units of boundary run along each other with no portal between them; wallfront (build/src/engine.cpp:2227) is a 2D test and returns -1 for walls on one line, which the bunch sort skips rather than resolves, so which of the two is drawn first is not something the map decides. The campaign leaves 22 such pairs in 113,912 walls. `covisible` could not rule out a sightline holding both, from region:malt_cross/yard/cobbles. Separate the two footprints so there is nothing to order, or close the opening that lets one vantage reach both",
+   "location": "region:malt_cross/kiln/ground/yard_door / region:malt_cross/kiln/first/loft"
+  },
+  {
+   "severity": "warning",
+   "code": "layer-overlap-in-one-view",
+   "message": "region:malt_cross/yard/hatch has a clear plan sightline to both region:malt_cross/yard/cobbles and region:malt_cross/cellar/vault, which share ground; a renderer flood that holds both draws them in an order the map does not control. Build collects a neighbour sector through a portal and then lets all of its walls compete for screen columns -- the opening does not clip them -- so a storey above the eye can win the columns of the room behind it and leave them unwritten. The campaign's measured answer is architectural: openings on facades that are not the same line (BB4's stacked-entrance median is 98 degrees), and a plan that does not hand wallfront collinear neighbours. A one-way wall (engine.c:3134) cuts the flood from one side only and cannot resolve a symmetric co-visibility problem; a masked wall (cstat&48 == 16, engine.c:2920) changes what is painted, not what the sort can order. Neither flag is a substitute for moving the openings",
+   "location": "region:malt_cross/yard/cobbles / region:malt_cross/cellar/vault"
+  },
+  {
+   "severity": "warning",
+   "code": "layer-overlap-in-one-view",
+   "message": "region:malt_cross/store/inside/shed has a clear plan sightline to both region:malt_cross/store/inside/stair_door and region:malt_cross/store/roof/leads, which share ground; a renderer flood that holds both draws them in an order the map does not control. Build collects a neighbour sector through a portal and then lets all of its walls compete for screen columns -- the opening does not clip them -- so a storey above the eye can win the columns of the room behind it and leave them unwritten. The campaign's measured answer is architectural: openings on facades that are not the same line (BB4's stacked-entrance median is 98 degrees), and a plan that does not hand wallfront collinear neighbours. A one-way wall (engine.c:3134) cuts the flood from one side only and cannot resolve a symmetric co-visibility problem; a masked wall (cstat&48 == 16, engine.c:2920) changes what is painted, not what the sort can order. Neither flag is a substitute for moving the openings",
+   "location": "region:malt_cross/store/inside/stair_door / region:malt_cross/store/roof/leads"
+  },
+  {
+   "severity": "warning",
+   "code": "layer-overlap-in-one-view",
+   "message": "region:malt_tower:step_06 has a clear plan sightline to both region:malt_cross/store/roof/tower_head and region:malt_cross/cellar/tower_foot, which share ground; a renderer flood that holds both draws them in an order the map does not control. Build collects a neighbour sector through a portal and then lets all of its walls compete for screen columns -- the opening does not clip them -- so a storey above the eye can win the columns of the room behind it and leave them unwritten. The campaign's measured answer is architectural: openings on facades that are not the same line (BB4's stacked-entrance median is 98 degrees), and a plan that does not hand wallfront collinear neighbours. A one-way wall (engine.c:3134) cuts the flood from one side only and cannot resolve a symmetric co-visibility problem; a masked wall (cstat&48 == 16, engine.c:2920) changes what is painted, not what the sort can order. Neither flag is a substitute for moving the openings",
+   "location": "region:malt_cross/store/roof/tower_head / region:malt_cross/cellar/tower_foot"
+  }
+ ]
+}

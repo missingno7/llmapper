@@ -190,14 +190,25 @@ def audit_geometry(
     declared_specials: Iterable[tuple[int, int, str]] | None = None,
     gated_sectors: Iterable[int] | None = None,
     declared_zero_exit: Iterable[int] | None = None,
+    separate_arrangements: Iterable[tuple[int, int]] | None = None,
 ) -> dict[str, Any]:
-    """Return every suspicious geometric and connectivity relationship."""
+    """Return every suspicious geometric and connectivity relationship.
+
+    `separate_arrangements` names sector pairs that are not drawn on the same
+    sheet of paper -- two layers of one building, in `bloodmap.layers`' sense.
+    Everything on this page asks whether two walls are in the wrong relationship
+    *in plan*, and two sectors at different heights have no plan in common: a
+    kerb crossing over a cellar wall is not a T-junction, and a loft's doorjamb
+    landing halfway along the wall of the room below it is not an unsplit wall.
+    Their conditions are `bloodmap.layers`' business, and it checks them in z.
+    """
     level = _as_level(source)
     owners = _wall_owners(level)
     declared = {
         frozenset((int(a), int(b))): str(kind)
         for a, b, kind in (declared_specials or [])
     }
+    apart = {frozenset((int(a), int(b))) for a, b in (separate_arrangements or [])}
     conflicts: list[GeometryConflict] = []
     summaries: dict[str, list[dict[str, Any]]] = defaultdict(list)
 
@@ -228,6 +239,8 @@ def audit_geometry(
             if frozenset((owners[left], owners[right])) in {
                 frozenset((int(a), int(b))) for a, b, _kind in (declared_specials or [])
             }:
+                continue
+            if frozenset((owners[left], owners[right])) in apart:
                 continue
             relation = classify_segment_pair(*segments[left], *segments[right])
             if relation is None:
@@ -343,6 +356,14 @@ def audit_geometry(
         for sector_id, sector_loops in enumerate(loops):
             if sector_id == owner:
                 continue
+            # A pair the author declared as stacked, linked or layered is
+            # *supposed* to have one body inside the other's footprint. Every
+            # other check on this page already exempts them; this one did not,
+            # which is why a level could satisfy the layer conditions and still
+            # be refused for the geometry those conditions exist to permit.
+            pair = frozenset((owner, sector_id))
+            if pair in declared or pair in apart:
+                continue
             if point_in_loops(probe, sector_loops) == 1:
                 conflict = GeometryConflict(
                     kind="sub_body_wall_fragment",
@@ -362,6 +383,8 @@ def audit_geometry(
     footprint: list[dict[str, Any]] = []
     for left in range(len(level.sectors)):
         for right in range(left + 1, len(level.sectors)):
+            if frozenset((left, right)) in apart:
+                continue
             relation = polygon_relation(loops[left], loops[right])
             kind = str(relation["kind"])
             if kind == "disjoint":
@@ -454,6 +477,14 @@ def audit_geometry(
             stacked.add(int(a))
             stacked.add(int(b))
         if owner_set & stacked and len(owner_set - stacked) <= 1:
+            continue
+        # Three walls on one segment is only two walls on one segment, twice
+        # over, when the third belongs to another arrangement entirely.
+        together = [item for item in owner_set
+                    if sum(1 for other in owner_set
+                           if other != item
+                           and frozenset((item, other)) not in apart)]
+        if len(together) <= 2:
             continue
         conflicts.append(GeometryConflict(
             kind="more_than_two_boundary_owners",
@@ -646,6 +677,7 @@ def _traversal_audit(
 def validate_authored_geometry(
     source: DiskMap | LevelIR,
     *,
+    separate_arrangements: Iterable[tuple[int, int]] | None = None,
     declared_specials: Iterable[tuple[int, int, str]] | None = None,
     gated_sectors: Iterable[int] | None = None,
     declared_zero_exit: Iterable[int] | None = None,
@@ -657,6 +689,7 @@ def validate_authored_geometry(
         declared_specials=declared_specials,
         gated_sectors=gated_sectors,
         declared_zero_exit=declared_zero_exit,
+        separate_arrangements=separate_arrangements,
     )
     out: list[Diagnostic] = []
     for item in audit["conflicts"]:
@@ -683,6 +716,7 @@ def validate_authored_geometry(
 def validate_authored_level(
     source: DiskMap | LevelIR,
     *,
+    separate_arrangements: Iterable[tuple[int, int]] | None = None,
     intended_adjacency: Iterable[tuple[str | int, str | int]] | None = None,
     gated_sectors: Iterable[int] | None = None,
     declared_zero_exit: Iterable[int] | None = None,
@@ -699,6 +733,7 @@ def validate_authored_level(
         declared_specials=declared_specials,
         gated_sectors=gated,
         declared_zero_exit=allowed_zero,
+        separate_arrangements=separate_arrangements,
     ))
     level = _as_level(source)
     audit = audit_geometry(
@@ -706,6 +741,7 @@ def validate_authored_level(
         declared_specials=declared_specials,
         gated_sectors=gated,
         declared_zero_exit=allowed_zero,
+        separate_arrangements=separate_arrangements,
     )
     traversal = audit["traversal"]
     main = set(traversal["main_network"])

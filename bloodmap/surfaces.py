@@ -72,13 +72,19 @@ class Material:
     opening: int | None = None
     sky: bool = False
     note: str = ""
+    #: Which sky this material stands under. Levels do not share one: the
+    #: monastery's is `SKY_PANEL`, and all 45 of E3M1's parallax sectors name
+    #: 3491 instead. Left unset a material takes the default, which is how a
+    #: city built with these materials ended up under the monastery's sky.
+    sky_tile: int | None = None
 
     def region(self, **overrides: Any) -> dict[str, Any]:
         """Keyword arguments for `PlanarLayout.add_region`."""
         out: dict[str, Any] = {
             "wall_picnum": self.wall,
             "floor_picnum": self.floor,
-            "ceiling_picnum": SKY_PANEL if self.sky else self.ceiling,
+            "ceiling_picnum": ((self.sky_tile or SKY_PANEL) if self.sky
+                               else self.ceiling),
             "parallax_ceiling": self.sky,
         }
         if self.opening is not None:
@@ -216,3 +222,87 @@ _define(Material("gallery", wall=91, floor=44, ceiling=455, opening=90,
 _define(Material("undercroft", wall=194, floor=290, ceiling=296, opening=80))
 _define(Material("tower", wall=91, floor=568, ceiling=255, opening=90,
                  note="the bell tower stair and belfry"))
+
+
+# ---------------------------------------------------------------------------
+# The city
+# ---------------------------------------------------------------------------
+#
+# The monastery's materials above were chosen for one level. These were measured
+# for another and then could not be reached from a third, because they were
+# defined inside ``projects/blood-city/level/materials.py``. The census behind
+# them is the expensive part and it is not project-specific, so it lives here.
+#
+# Two passes stand behind every tile: a role-separated census of E3M1 / DWE3M1 /
+# TEDE1M2 / E3M3 -- walls weighted by length and split by whether the sector they
+# face is street, interior or underground, floors and ceilings weighted by area
+# -- and a contact sheet rendered from Blood's own ART through
+# ``bloodmap.art.tile_to_rgb``, so every id was looked at rather than remembered.
+# That check caught two tiles named from their filenames rather than their
+# pixels: 414 is plank boarding and was being used as a stone facade, and 352 is
+# the warm red cobble roadway while 4 is the grey pavement beside it.
+#
+# E3M1's street-facing wall census, weighted by length: 417 (55k units), 400
+# (40k), 401 (27k), 414 (27k), 380 (26k), 393 (21k).
+#
+# Each interior is one campaign building's own triple taken whole rather than
+# assembled from parts, because a building's palette is how a player knows which
+# building they are in: E3M1 alone puts 20 interior palettes in 337 sectors.
+
+#: E3M1's night sky. All 45 of its parallax sectors name this one tile.
+CITY_SKY = 3491
+
+#: E3M1's street runs three surfaces in near-equal thirds by area: 352 the warm
+#: red cobble roadway (37%), 4 the grey flagstone walk (34%), 379 grey streaked
+#: concrete (29%). 28 is the real plank boardwalk -- DWE3M10's pier promenade is
+#: 64% of it by area.
+CITY_ROADWAY, CITY_WALK, CITY_BOARDWALK = 352, 4, 28
+
+# -- outside ---------------------------------------------------------------
+_define(Material("street_masonry", wall=417, floor=CITY_ROADWAY, ceiling=CITY_SKY,
+                 opening=CITY_BOARDWALK, sky=True, sky_tile=CITY_SKY,
+                 note="grimy stone and brick: E3M1's most-used street wall, and "
+                      "what a yard wall or a dock back is made of"))
+_define(Material("street_ashlar", wall=400, floor=CITY_ROADWAY, ceiling=CITY_SKY,
+                 opening=417, sky=True, sky_tile=CITY_SKY,
+                 note="grey ashlar with cornice and sash window: the grand street"))
+_define(Material("street_brick", wall=384, floor=CITY_ROADWAY, ceiling=CITY_SKY,
+                 opening=417, sky=True, sky_tile=CITY_SKY,
+                 note="red brick with a small window: the humbler quarter"))
+_define(Material("street_industrial", wall=393, floor=CITY_ROADWAY, ceiling=CITY_SKY,
+                 opening=417, sky=True, sky_tile=CITY_SKY,
+                 note="brown brick with the big arched industrial window"))
+_define(Material("hoarding", wall=414, floor=CITY_ROADWAY, ceiling=CITY_SKY,
+                 opening=417, sky=True, sky_tile=CITY_SKY,
+                 note="plank boarding. A fence or a hoarding, never a facade"))
+#: A roof is walked on and looked down from, and the campaign has no dedicated
+#: tile for one. 4 is the grey flagstone of the pavement, which is what lead and
+#: slate read as from standing height. Chosen rather than measured, and said so.
+_define(Material("leads", wall=417, floor=CITY_WALK, ceiling=CITY_SKY,
+                 opening=417, sky=True, sky_tile=CITY_SKY,
+                 note="a flat roof under the open sky; the floor tile is a "
+                      "choice, not a census"))
+
+# -- inside ----------------------------------------------------------------
+_define(Material("city_common", wall=108, floor=304, ceiling=454, opening=100,
+                 note="E3M1's largest complex, 123 sectors: papered wall, "
+                      "coffered ceiling"))
+_define(Material("city_saloon", wall=CITY_BOARDWALK, floor=390, ceiling=40,
+                 opening=100,
+                 note="E3M1 building 3: plank walls over a wood floor under slate"))
+_define(Material("city_parlor", wall=100, floor=294, ceiling=20, opening=68,
+                 note="E3M1 building 4: rust plaster over chequered tile"))
+_define(Material("city_shop", wall=2294, floor=290, ceiling=40, opening=2293,
+                 note="E6M1's shop: brick over wainscot, the open-front reference"))
+_define(Material("city_service", wall=379, floor=304, ceiling=379, opening=CITY_BOARDWALK,
+                 note="E3M1 building 5: plain stone. Stairs, cellars, "
+                      "back-of-house -- the working half of a building"))
+
+# -- underneath ------------------------------------------------------------
+_define(Material("city_crypt", wall=421, floor=253, ceiling=253, opening=1011,
+                 note="E1M1's mausoleum galleries: mossy green brick"))
+_define(Material("city_sewer", wall=492, floor=568, ceiling=255, opening=255,
+                 note="E3M3, Blood's own sewer: 492 dominates its solid walls, "
+                      "255 its jambs and ceilings, 568 its floors"))
+_define(Material("city_sewer_wet", wall=492, floor=1120, ceiling=255, opening=255,
+                 note="the same run, with the mossy wet floor"))

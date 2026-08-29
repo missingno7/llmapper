@@ -197,6 +197,7 @@ python -m unittest discover -s tests -v
 
 - [Architecture and invariants](docs/architecture.md)
 - [Reasoned authoring loop](docs/authoring-loop.md)
+- [Shared authoring toolkit](docs/authoring-toolkit.md)
 - [Level programs: hierarchical, editable level source](docs/level-programs.md)
 - [Structured visual observation through XMapEdit](docs/visual-observation.md)
 - [Blood mechanics, and what the campaign does with them](docs/blood-mechanics-and-conventions.md)

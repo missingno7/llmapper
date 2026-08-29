@@ -15,6 +15,76 @@ def _rect(x0: int, y0: int, x1: int, y1: int) -> list[tuple[int, int]]:
 
 
 class PlanarLayoutTests(unittest.TestCase):
+    def test_declared_light_generates_shades_but_respects_explicit_override(self):
+        layout = PlanarLayout(name="declared-light")
+        layout.add_region("region:room", _rect(0, 0, 4096, 4096),
+                          floor_shade=77, declared_zero_exit=True)
+        layout.add_light_source("window-glow", "region:room", x=2048, y=2048, z=-4096)
+        layout.set_player_start("region:room", x=1024, y=1024, z=8192)
+
+        compiled = layout.compile()
+
+        report = compiled.lighting_report
+        self.assertTrue(report["enabled"])
+        self.assertEqual(report["source_ids"], ["window-glow"])
+        self.assertEqual(compiled.level.sectors[0]["fields"]["floor_shade"], 77)
+        self.assertLess(
+            min(int(wall["fields"]["shade"]) for wall in compiled.level.walls), 32,
+        )
+
+    def test_emitting_placement_is_a_declared_light_source(self):
+        layout = PlanarLayout(name="lamp")
+        layout.add_region("region:room", _rect(0, 0, 4096, 4096),
+                          declared_zero_exit=True)
+        layout.place_on_floor("torch", "region:room", local=(0.5, 0.5),
+                              picnum=506, shade=-128, emits_light=True)
+        layout.set_player_start("region:room", x=1024, y=1024, z=8192)
+
+        compiled = layout.compile()
+
+        self.assertEqual(compiled.lighting_report["source_ids"], ["light:torch"])
+        self.assertEqual(compiled.lighting_report["lights"], 1)
+
+    def test_emitting_placement_can_declare_its_light_strength(self):
+        layout = PlanarLayout(name="strong-lamp")
+        layout.add_region("region:room", _rect(0, 0, 4096, 4096),
+                          declared_zero_exit=True)
+        layout.place_on_floor("work-lamp", "region:room", local=(0.5, 0.5),
+                              picnum=506, shade=-128, emits_light=True,
+                              light_intensity=2.5)
+        layout.set_player_start("region:room", x=1024, y=1024, z=8192)
+
+        compiled = layout.compile()
+
+        self.assertEqual(
+            compiled.lighting_report["source_intensities"],
+            {"light:work-lamp": 2.5},
+        )
+
+    def test_floor_lamp_can_raise_its_light_origin_without_lifting_sprite(self):
+        layout = PlanarLayout(name="raised-bulb")
+        layout.add_region("region:room", _rect(0, 0, 4096, 4096),
+                          declared_zero_exit=True)
+        layout.place_on_floor(
+            "lamp", "region:room", local=(0.5, 0.5),
+            picnum=506, shade=-128, emits_light=True,
+            light_height_player_heights=0.5,
+        )
+        layout.set_player_start("region:room", x=1024, y=1024, z=8192)
+
+        compiled = layout.compile()
+
+        self.assertEqual(compiled.lighting_report["lights"], 1)
+        self.assertLess(compiled.level.sectors[0]["fields"]["floor_shade"], 32)
+
+    def test_declared_light_rejects_non_positive_strength(self):
+        layout = PlanarLayout(name="bad-lamp")
+        layout.add_region("region:room", _rect(0, 0, 4096, 4096),
+                          declared_zero_exit=True)
+        with self.assertRaisesRegex(PlanarLayoutError, "non-positive intensity"):
+            layout.add_light_source("bad", "region:room", x=2048, y=2048,
+                                    z=-4096, intensity=0)
+
     def test_exact_reversed_match_compiles_and_conserves(self):
         layout = PlanarLayout(name="exact")
         layout.add_region("region:a", _rect(0, 0, 8192, 4096))

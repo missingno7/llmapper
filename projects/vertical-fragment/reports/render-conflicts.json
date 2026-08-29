@@ -1,0 +1,1118 @@
+{
+ "$schema": "llmapper.render-conflicts",
+ "map": "projects/vertical-fragment/level/MALTX.MAP",
+ "source": "bunchfront, via the instrumented observer",
+ "pairs": [
+  {
+   "sectors": [
+    0,
+    0
+   ],
+   "asked": 56
+  },
+  {
+   "sectors": [
+    34,
+    34
+   ],
+   "asked": 20
+  },
+  {
+   "sectors": [
+    16,
+    17
+   ],
+   "asked": 16
+  },
+  {
+   "sectors": [
+    9,
+    9
+   ],
+   "asked": 12
+  },
+  {
+   "sectors": [
+    13,
+    13
+   ],
+   "asked": 12
+  },
+  {
+   "sectors": [
+    6,
+    6
+   ],
+   "asked": 8
+  },
+  {
+   "sectors": [
+    27,
+    27
+   ],
+   "asked": 8
+  },
+  {
+   "sectors": [
+    18,
+    19
+   ],
+   "asked": 4
+  },
+  {
+   "sectors": [
+    24,
+    25
+   ],
+   "asked": 4
+  },
+  {
+   "sectors": [
+    28,
+    29
+   ],
+   "asked": 4
+  }
+ ],
+ "views_rendered": 2410,
+ "views_with_a_conflict": [
+  "s0_1536_6400_a0",
+  "s0_1536_7424_a0",
+  "s0_1536_8448_a5",
+  "s0_2560_7424_a0",
+  "s0_2560_8448_a0",
+  "s0_2560_9472_a5",
+  "s0_3584_8448_a0",
+  "s0_3584_9472_a0",
+  "s0_4608_9472_a0",
+  "s0_512_6400_a0",
+  "s0_512_7424_a5",
+  "s0_6656_6400_a5",
+  "s0_7680_6400_a5",
+  "s0_7680_7424_a5",
+  "s0_8704_7424_a5",
+  "s0_8704_8448_a5",
+  "s0_9728_8448_a5",
+  "s0_9728_9472_a5",
+  "s13_7680_2048_a5",
+  "s13_8704_1024_a0",
+  "s13_8704_3072_a5",
+  "s18_6144_1280_a5",
+  "s21_256_3584_a0",
+  "s25_10496_5888_a5",
+  "s27_4864_11264_a5",
+  "s27_5888_11264_a5",
+  "s29_7808_12032_a0",
+  "s33_4096_7168_a0",
+  "s33_4096_7168_a1",
+  "s33_4096_7168_a2",
+  "s33_4096_7168_a3",
+  "s33_4096_7168_a9",
+  "s6_3072_1024_a0",
+  "s9_7680_3072_a0",
+  "s9_7680_5120_a0",
+  "s9_8704_4096_a0"
+ ],
+ "conflicts": [
+  {
+   "view": "s0_512_6400_a0",
+   "camera": {
+    "x": 512,
+    "y": 6400,
+    "z": -7072,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    0,
+    0
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_512_7424_a5",
+   "camera": {
+    "x": 512,
+    "y": 7424,
+    "z": -7072,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    0,
+    0
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_1536_6400_a0",
+   "camera": {
+    "x": 1536,
+    "y": 6400,
+    "z": -7072,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    0,
+    0
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_1536_7424_a0",
+   "camera": {
+    "x": 1536,
+    "y": 7424,
+    "z": -7072,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    0,
+    0
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_1536_8448_a5",
+   "camera": {
+    "x": 1536,
+    "y": 8448,
+    "z": -7072,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    0,
+    0
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_2560_7424_a0",
+   "camera": {
+    "x": 2560,
+    "y": 7424,
+    "z": -7072,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    0,
+    0
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_2560_8448_a0",
+   "camera": {
+    "x": 2560,
+    "y": 8448,
+    "z": -7072,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    0,
+    0
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_2560_9472_a5",
+   "camera": {
+    "x": 2560,
+    "y": 9472,
+    "z": -7072,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    0,
+    0
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_3584_8448_a0",
+   "camera": {
+    "x": 3584,
+    "y": 8448,
+    "z": -7072,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    0,
+    0
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_3584_9472_a0",
+   "camera": {
+    "x": 3584,
+    "y": 9472,
+    "z": -7072,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    0,
+    0
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_4608_9472_a0",
+   "camera": {
+    "x": 4608,
+    "y": 9472,
+    "z": -7072,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    0,
+    0
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_6656_6400_a5",
+   "camera": {
+    "x": 6656,
+    "y": 6400,
+    "z": -7072,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    16,
+    17
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_7680_6400_a5",
+   "camera": {
+    "x": 7680,
+    "y": 6400,
+    "z": -7072,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    0,
+    0
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_7680_7424_a5",
+   "camera": {
+    "x": 7680,
+    "y": 7424,
+    "z": -7072,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    16,
+    17
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_8704_7424_a5",
+   "camera": {
+    "x": 8704,
+    "y": 7424,
+    "z": -7072,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    0,
+    0
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_8704_8448_a5",
+   "camera": {
+    "x": 8704,
+    "y": 8448,
+    "z": -7072,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    16,
+    17
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_9728_8448_a5",
+   "camera": {
+    "x": 9728,
+    "y": 8448,
+    "z": -7072,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    0,
+    0
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s0_9728_9472_a5",
+   "camera": {
+    "x": 9728,
+    "y": 9472,
+    "z": -7072,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 0,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    16,
+    17
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s6_3072_1024_a0",
+   "camera": {
+    "x": 3072,
+    "y": 1024,
+    "z": -48032,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 6,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    6,
+    6
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s9_7680_3072_a0",
+   "camera": {
+    "x": 7680,
+    "y": 3072,
+    "z": -7072,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 9,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    9,
+    9
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s9_7680_5120_a0",
+   "camera": {
+    "x": 7680,
+    "y": 5120,
+    "z": -7072,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 9,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    9,
+    9
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s9_8704_4096_a0",
+   "camera": {
+    "x": 8704,
+    "y": 4096,
+    "z": -7072,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 9,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    9,
+    9
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s13_7680_2048_a5",
+   "camera": {
+    "x": 7680,
+    "y": 2048,
+    "z": -48032,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 13,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    13,
+    13
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s13_8704_1024_a0",
+   "camera": {
+    "x": 8704,
+    "y": 1024,
+    "z": -48032,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 13,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    13,
+    13
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s13_8704_3072_a5",
+   "camera": {
+    "x": 8704,
+    "y": 3072,
+    "z": -48032,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 13,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    13,
+    13
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s18_6144_1280_a5",
+   "camera": {
+    "x": 6144,
+    "y": 1280,
+    "z": -48032,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 18,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    18,
+    19
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s21_256_3584_a0",
+   "camera": {
+    "x": 256,
+    "y": 3584,
+    "z": -48032,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 21,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    6,
+    6
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s25_10496_5888_a5",
+   "camera": {
+    "x": 10496,
+    "y": 5888,
+    "z": -48032,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 25,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    24,
+    25
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s27_4864_11264_a5",
+   "camera": {
+    "x": 4864,
+    "y": 11264,
+    "z": -7072,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 27,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    27,
+    27
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s27_5888_11264_a5",
+   "camera": {
+    "x": 5888,
+    "y": 11264,
+    "z": -7072,
+    "angle": 1024,
+    "horiz": 100,
+    "sector": 27,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    27,
+    27
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s29_7808_12032_a0",
+   "camera": {
+    "x": 7808,
+    "y": 12032,
+    "z": -7072,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 29,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    28,
+    29
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    639,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s33_4096_7168_a0",
+   "camera": {
+    "x": 4096,
+    "y": 7168,
+    "z": 33888,
+    "angle": 0,
+    "horiz": 100,
+    "sector": 33,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    34,
+    34
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    321,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s33_4096_7168_a1",
+   "camera": {
+    "x": 4096,
+    "y": 7168,
+    "z": 33888,
+    "angle": 204,
+    "horiz": 100,
+    "sector": 33,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    34,
+    34
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    89,
+    639
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s33_4096_7168_a2",
+   "camera": {
+    "x": 4096,
+    "y": 7168,
+    "z": 33888,
+    "angle": 409,
+    "horiz": 100,
+    "sector": 33,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    34,
+    34
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    0,
+    424
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s33_4096_7168_a3",
+   "camera": {
+    "x": 4096,
+    "y": 7168,
+    "z": 33888,
+    "angle": 614,
+    "horiz": 100,
+    "sector": 33,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    34,
+    34
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    0,
+    216
+   ],
+   "asked": 4
+  },
+  {
+   "view": "s33_4096_7168_a9",
+   "camera": {
+    "x": 4096,
+    "y": 7168,
+    "z": 33888,
+    "angle": 1843,
+    "horiz": 100,
+    "sector": 33,
+    "eye_height_derived": false
+   },
+   "sectors": [
+    34,
+    34
+   ],
+   "why": "walls on one line",
+   "verdict": -1,
+   "columns": [
+    553,
+    639
+   ],
+   "asked": 4
+  }
+ ],
+ "overlapping_pairs": [],
+ "coplanar_pairs": [
+  {
+   "sectors": [
+    16,
+    17
+   ],
+   "asked": 16,
+   "floor_z": [
+    8192,
+    8192
+   ],
+   "ceiling_z": [
+    -24576,
+    -24576
+   ],
+   "box": [
+    [
+     5632,
+     4736,
+     6656,
+     5376
+    ],
+    [
+     5632,
+     5376,
+     6656,
+     5888
+    ]
+   ],
+   "overlapping": false
+  },
+  {
+   "sectors": [
+    18,
+    19
+   ],
+   "asked": 4,
+   "floor_z": [
+    -32768,
+    -32768
+   ],
+   "ceiling_z": [
+    -65536,
+    -65536
+   ],
+   "box": [
+    [
+     5632,
+     768,
+     6656,
+     1536
+    ],
+    [
+     5120,
+     768,
+     5632,
+     1536
+    ]
+   ],
+   "overlapping": false
+  },
+  {
+   "sectors": [
+    24,
+    25
+   ],
+   "asked": 4,
+   "floor_z": [
+    -32768,
+    -32768
+   ],
+   "ceiling_z": [
+    -106496,
+    -106496
+   ],
+   "box": [
+    [
+     9216,
+     5376,
+     9984,
+     5888
+    ],
+    [
+     9984,
+     5376,
+     11008,
+     6912
+    ]
+   ],
+   "overlapping": false
+  },
+  {
+   "sectors": [
+    28,
+    29
+   ],
+   "asked": 4,
+   "floor_z": [
+    8192,
+    8192
+   ],
+   "ceiling_z": [
+    -24576,
+    -24576
+   ],
+   "box": [
+    [
+     7552,
+     12288,
+     8064,
+     13312
+    ],
+    [
+     7552,
+     11776,
+     8064,
+     12288
+    ]
+   ],
+   "overlapping": false
+  }
+ ],
+ "same_sector_pairs": [
+  {
+   "sectors": [
+    0,
+    0
+   ],
+   "asked": 56
+  },
+  {
+   "sectors": [
+    34,
+    34
+   ],
+   "asked": 20
+  },
+  {
+   "sectors": [
+    9,
+    9
+   ],
+   "asked": 12
+  },
+  {
+   "sectors": [
+    13,
+    13
+   ],
+   "asked": 12
+  },
+  {
+   "sectors": [
+    6,
+    6
+   ],
+   "asked": 8
+  },
+  {
+   "sectors": [
+    27,
+    27
+   ],
+   "asked": 8
+  }
+ ],
+ "per_thousand": 14.94,
+ "per_thousand_two_sector": 2.9,
+ "per_thousand_overlapping": 0.0,
+ "per_thousand_coplanar": 2.9,
+ "per_thousand_same_sector": 12.03
+}

@@ -81,7 +81,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, Mapping
 
 from .player_space import PLAYER_PROFILES
 
@@ -637,3 +637,69 @@ def framed_door(layout: Any, door_region: str, *, near_edge: tuple,
         "basis": ("all 8 of the monastery's door faces painted the room facade; "
                   "the campaign's own median leaf is 1.93 standing humans"),
     }
+
+
+def frame_z_doors(layout: Any, *, art_sizes: Mapping[int, tuple[int, int]],
+                  door_types: tuple[int, ...] = (600, 602),
+                  face_y_repeat: int = 8, reveal: float = 0.34,
+                  strict: bool = True) -> dict[str, Any]:
+    """Apply :func:`framed_door` to every declared Z-door in a layout.
+
+    This is the project-boundary adapter for a level whose room program has
+    already declared type-600/602 door regions.  It keeps the native motion
+    sector, but makes the visual aperture implementation a compiler decision:
+    two named connections become frame -> leaf -> frame, the leaf is snapped
+    to its art grid, and its open endpoint is updated to that same height.
+
+    Authors still choose a deliberately unusual aperture by calling
+    :func:`framed_door` themselves.  ``strict=True`` is the normal generated
+    level setting: a door with an unknown face tile, a non-rectangular outline,
+    or anything other than two named edges is a missing declaration, not a
+    reason to silently fall back to the old broken style.
+    """
+    built: list[dict[str, Any]] = []
+    skipped: list[dict[str, str]] = []
+    for region_id, door in tuple(layout.regions.items()):
+        if int(door.type) not in {int(value) for value in door_types}:
+            continue
+        edges = [
+            (connection.a1, connection.a2)
+            for connection in layout.connections.values()
+            if region_id in (connection.region_a, connection.region_b)
+            and connection.a1 is not None and connection.a2 is not None
+        ]
+        face = int(door.door_face or door.wall_picnum)
+        tile = art_sizes.get(face)
+        reason = None
+        if len(edges) != 2:
+            reason = "needs exactly two named connection edges"
+        elif tile is None:
+            reason = "has no known face-tile size"
+        elif "on_ceiling_z" not in door.sector_behavior:
+            reason = "has no Z-motion open endpoint"
+        if reason is not None:
+            message = f"{region_id}: {reason}"
+            if strict:
+                raise ApertureError(message)
+            skipped.append({"door": region_id, "reason": reason})
+            continue
+
+        target = abs(int(door.floor_z) - int(door.sector_behavior["on_ceiling_z"]))
+        if target <= 0:
+            message = f"{region_id}: Z-motion open endpoint does not open a leaf"
+            if strict:
+                raise ApertureError(message)
+            skipped.append({"door": region_id, "reason": message})
+            continue
+        item = framed_door(
+            layout, region_id, near_edge=(tuple(edges[0][0]), tuple(edges[0][1])),
+            far_edge=(tuple(edges[1][0]), tuple(edges[1][1])),
+            leaf_height_z=target, face_picnum=face,
+            face_tile_height=int(tile[1]), jamb_picnum=int(door.wall_picnum),
+            face_y_repeat=face_y_repeat, reveal=reveal,
+        )
+        # Art-grid snapping is structural, not merely visual: motion must open
+        # to the same head height the two frames expose.
+        door.sector_behavior["on_ceiling_z"] = int(item["head_z"])
+        built.append(item)
+    return {"doors": built, "skipped": skipped}

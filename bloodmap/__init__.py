@@ -73,7 +73,7 @@ from .vocabulary import (
     sprite_repeats, staircase, vocabulary_manifest,
 )
 from .levelprog import (
-    Assembly, Frame, LevelProgram, LevelProgramError, Room, Style,
+    Assembly, Frame, LevelProgram, LevelProgramError, LightSourceDecl, Room, Style,
     ceiling_detail, floor_detail, native_detail, wall_detail,
 )
 
@@ -194,6 +194,7 @@ __all__ = [
     "Frame",
     "LevelProgram",
     "LevelProgramError",
+    "LightSourceDecl",
     "Room",
     "Style",
     "StructureError",
