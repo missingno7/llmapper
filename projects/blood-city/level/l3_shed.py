@@ -12,10 +12,11 @@ free-standing hut, because a free-standing mass in the street would add a
 tenth walk-around loop and the loop census is at its contract ceiling of
 nine.
 
-The descent is real geometry all the way: a straight flight reaches the
-cellar, then a 270-degree spiral falls 20,480 units into the sewer directly
-below it.  The shaft is cut through both volumes instead of being an ROR
-teleport, so its walls and every tread have physical clearance.
+The descent is real geometry all the way: a straight flight reaches a short
+cellar corridor, then a spiral falls 20,480 units into the sewer directly
+below it.  The stair owns its annulus and leaves its newel solid; the corridor
+meets only the long radial side of its first tread.  It is not a room wrapped
+round a hole in the stair.
 """
 
 from __future__ import annotations
@@ -57,16 +58,18 @@ STAIR_W = 1024
 CELLAR_FLOOR_Z = STATION_STACK_PLANE
 assert CELLAR_FLOOR_Z == GRADE + FLIGHT * STEP
 
-#: The spiral's axis: strictly inside both the cellar and the receiving foot
-#: chamber under the ring's north walk.
+#: The spiral's axis and the radial side of its first tread.  These values are
+#: shared by the top approach and the prefab call in ``build_skeleton``.
 PIT = (45056, 4608, 46080, 5632)
-# The eight-riser flight ends at x=47,616; keep the cellar flush with that
-# arrival edge rather than leaving a one-bay unpaired gap after changing the
-# shared ROR plane.
-# The north edge stops exactly at the sewer walk's south wall.  The former
-# extra plan unit intruded into that under-city tunnel at the cellar's own z;
-# a real shaft must meet the tunnel at a boundary, never share its air.
-CELLAR = (44032, 3584, 47616, 6144)
+SPIRAL_AXIS = ((PIT[0] + PIT[2]) // 2, (PIT[1] + PIT[3]) // 2)
+SPIRAL_INNER_X = 45816
+SPIRAL_OUTER_X = 46568
+# A one-bay-wide approach, perpendicular to the first tread.  Its south face
+# is exactly the stair's long radial portal; the straight flight reaches its
+# east end.  Keeping this a corridor rather than the former 3.5 x 2.5-bay
+# cellar prevents a host sector from enclosing the spiral and making a
+# zero-thickness C-shaped wall.
+CELLAR = (SPIRAL_INNER_X, 4096, 47616, 5120)
 PIT_LANDING = STATION_STACK_LANDING_DEPTH
 
 
@@ -113,7 +116,8 @@ def build(district, foundry_st, foundry_origin):
                     "sector_behavior": z_motion_door(GRADE, GRADE - DOOR_HEIGHT)},
                 note="the station door")
     door.surfaces(wall_picnum=MASONRY.wall, floor_z=GRADE, clear_height=0)
-    hall = room("hall", sx0 + 512, sy0, sx1 - PORCH_D - DOOR_D, sy1 - 512,
+    hall = room("hall", sx0 + 512, sy0 - STAIR_W,
+                sx1 - PORCH_D - DOOR_D, sy1 - 512,
                 note="the station floor: the stair head is in here")
 
     city.connect(porch.face("east"), foundry_st.face("west"),
@@ -126,7 +130,10 @@ def build(district, foundry_st, foundry_origin):
     # One straight flight west into the works void, then the cellar.
     # The stair uses the hall's southern bay, so it arrives entirely above the
     # shortened cellar rather than into the sewer walk beyond its north wall.
-    stair_y0 = sy0
+    # Approach the cellar from the north so its far end meets the first spiral
+    # tread head-on.  The old southern bay fed a room which wrapped around the
+    # stair and made the doorway look like a sideways slit.
+    stair_y0 = sy0 - STAIR_W
     cellar = room("cellar", *CELLAR, floor_z=CELLAR_FLOOR_Z, clear=20480,
                   role="gateway",
                   note="the station cellar; its pit drops into the sewer")
@@ -143,8 +150,7 @@ def build(district, foundry_st, foundry_origin):
         total_rise=FLIGHT * STEP, tread=TREAD, step_rise=STEP,
         arrive_at=cellar.region_id, connection={"role": "portal"})
 
-    # The caller cuts the curved opening for the sewer spiral.  Leaving the
-    # carve here would create a second, disconnected hole beside the stair.
-    # `_assembly` lets the caller keep that spiral inside the station rather
-    # than at the top of the city.
+    # `_assembly` lets the caller add the staircase against this corridor's
+    # single radial face.  There is deliberately no curved carve: the newel
+    # and the space around the remaining treads are solid masonry.
     return {"hall": hall, "cellar": cellar, "_assembly": shed}

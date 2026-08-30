@@ -225,9 +225,10 @@ def main() -> int:
         not wrong_tile and not upper_bad and not lower_bad,
         "so the editor shows a link, not a torch")
 
-    # Falling must not hurt, and there must be a way back up.  Both from
-    # NBlood: kDudeGravity 58254/tic, kFallDamageFloor 100<<4 forgiven, and
-    # the standing human's normalJumpZ 0xbaaaa.
+    # Falling must not hurt; the sewer links are intentionally one-way.  The
+    # physical pump spiral is the return route.  Constants are from NBlood:
+    # kDudeGravity 58254/tic, kFallDamageFloor 100<<4 forgiven, and the
+    # standing human's normalJumpZ 0xbaaaa.
     GRAVITY, FORGIVEN, JUMP_RISE = 58254, 100 << 4, 21113
     drops, climbs = [], []
     for pair in pairs:
@@ -247,10 +248,10 @@ def main() -> int:
         "impact damage 0 on every link (kFallDamageFloor forgives it)",
         "; ".join(f"link {i}: {d} units -> {dmg/16:.1f} HP" for i, d, dmg in drops),
         not harmful, "NBlood actor.cpp MoveDude + kDudeGravity")
-    row("at least one link is climbable back out",
-        f"a drop <= the {JUMP_RISE}-unit jump rise, so the sewer is not a trap",
+    row("sewer ROR links are one-way",
+        "no link is climbable back out; exit is the pump spiral",
         f"climbable links: {[c[0] for c in climbable]}",
-        bool(climbable), "NBlood player.cpp gPostureDefaults normalJumpZ 0xbaaaa")
+        not climbable, "the only return route is the physical pump-station spiral")
 
     row("ROR markers survive dbLoadMap",
         f"{len(markers)} link markers, none on statnum 10, all with XSprite",

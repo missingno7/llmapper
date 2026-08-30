@@ -17,7 +17,6 @@ writes level/city-skeleton.MAP and refreshes level/blood-city-current.MAP.
 from __future__ import annotations
 
 import collections
-import math
 import pathlib
 import sys
 from collections import defaultdict
@@ -668,14 +667,9 @@ def build():
         "junction": junction, "cistern": cistern,
         "main_duct": main_duct, "grate_lower": grate_lower,
     })
-    # Sector 176 in the compiled map is the silt trap immediately east of the
-    # station foot.  Make that the lower approach: the player reaches the
-    # spiral from a normal sewer room, not by trying to turn through the
-    # chamber's short end wall.
-    import citytree
-    citytree.join(sewer_net["station_foot"], sewer_net["silt_trap"],
-                  at_a="east", at_b="west",
-                  connection_id="connection:station_spiral_silt_trap")
+    # The station foot joins the silt trap in l3_sewer's chamber list.  That
+    # puts the lower approach on the long, east-facing side of the final tread
+    # instead of asking the player to turn through a short wall.
     city.connect(grate_lower.face("east"), sewer_net["e_leg"].face("west"),
                  connection_id="connection:grate_shaft_ring")
     # The towpath, from E3M3's own ledge family.  The two long legs are 24
@@ -718,90 +712,26 @@ def build():
     shed = l3_shed.build(district_of["foundry_ward"], foundry_st,
                          (int(DISTRICT_BOUNDS["foundry_ward"][0]),
                           int(DISTRICT_BOUNDS["foundry_ward"][1])))
-    # The former 1024-square stack mouth has become the genuine return route:
-    # a 270-degree, ten-step helix from the station cellar to the sewer.  Its
-    # 1000-unit radius keeps the 393-unit outer tread just wider than a Blood
-    # body and leaves masonry between its C-shaped shaft and the 2048-unit
-    # receiving chamber.
-    spiral_axis = ((l3_shed.PIT[0] + l3_shed.PIT[2]) // 2,
-                   (l3_shed.PIT[1] + l3_shed.PIT[3]) // 2)
-    # Exit almost due east (one tread before the cardinal radial) so the
-    # station-foot connection opens on the long right-hand side.  The endpoint
-    # is derived from the rise; a full 0-degree turn would repeat the landing
-    # wedge, while 337.5 degrees leaves the same usable facing without that
-    # self-overlap.
-    SPIRAL_RADIUS, SPIRAL_EXIT, SPIRAL_STEP = 1000, 337.5, 22.5
-
-    def spiral_footprint() -> list[tuple[int, int]]:
-        """The exact C-shaped union of the spiral's twelve wedge sectors."""
-        angles = [index * SPIRAL_STEP for index in range(
-            int(SPIRAL_EXIT / SPIRAL_STEP) + 1)]
-
-        def at(radius, angle):
-            radians = math.radians(angle)
-            return (int(round(spiral_axis[0] + radius * math.cos(radians))),
-                    int(round(spiral_axis[1] + radius * math.sin(radians))))
-
-        # `spiral_stair` has a 248-unit newel.  Following the outer arc and
-        # returning along the inner one makes a single simple C-shaped hole.
-        # The start/end radial edges are its long portal sides: the cellar and
-        # sewer meet the full stair width rather than a one-tread end slit.
-        return [at(SPIRAL_RADIUS, angle) for angle in angles] + [
-            at(248, angle) for angle in reversed(angles)
-        ]
-
-    shaft = spiral_footprint()
-    cellar_frame = shed["cellar"].world_frame()
-    shed["cellar"].carve([(x - cellar_frame.dx, y - cellar_frame.dy)
-                           for x, y in shaft])
-    # The lower end opens into the station foot on the ring's north side.
-    # Carving the same footprint means the two portals share real boundary,
-    # not an invisible wormhole into an offset copy.
-    foot = sewer_net["station_foot"]
-    ff = foot.world_frame()
-    foot.carve([(x - ff.dx, y - ff.dy) for x, y in shaft])
+    # E3M1 and Duke E1L1 use the same topology: four-wall treads around an
+    # uncovered solid newel, plus one ordinary tread-width corridor at each
+    # end.  The prior version carved the entire C-shaped stair annulus out of
+    # sectors 85 and 179.  Those sectors then wrapped round the staircase,
+    # sharing solid edges with it and producing both a zero-thickness wall and
+    # an unusably narrow lower turn.  The two dedicated corridor rooms are
+    # defined by l3_shed.CELLAR and l3_sewer.station_foot instead.
+    spiral_axis = l3_shed.SPIRAL_AXIS
+    SPIRAL_RADIUS, SPIRAL_EXIT = 1000, 270.0
 
     from bloodmap.spiral import spiral_stair
 
     def wind_into_sewer(layout, _room):
+        foot = sewer_net["station_foot"]
         helix = spiral_stair(
             layout, "pump_station_spiral", axis=spiral_axis,
             base_floor_z=l3_shed.CELLAR_FLOOR_Z,
             rise=SEWER_FLOOR - l3_shed.CELLAR_FLOOR_Z,
             entry_angle=0.0, exit_angle=SPIRAL_EXIT, radius=SPIRAL_RADIUS,
             layer="sewer", **SEWER.style_kwargs(floor_shade=40))
-        # The upper cellar and lower foot deliberately carry the same
-        # C-shaped shaft outline.  It is neither a portal nor an ROR link --
-        # the helix owns the intervening volume -- but it is a named vertical
-        # arrangement, so coincident shaft edges are not mistaken for an
-        # unexplained same-plan wall pair.
-        layout.declare_special(shed["cellar"].region_id, foot.region_id,
-                               "spiral_shaft")
-        # The silt trap is the side-room approach to the east portal.  It
-        # shares the pump-cellar's plan band above the shaft, so mark that
-        # deliberate vertical neighbour as part of the same shaft arrangement
-        # instead of letting clipmove treat it as an unexplained overlap.
-        layout.declare_special(shed["cellar"].region_id,
-                               sewer_net["silt_trap"].region_id,
-                               "spiral_shaft")
-        # Every wedge touches one of those two C-shaped shaft rims in plan.
-        # State that ownership per wedge as well: the audit otherwise sees
-        # reciprocal solid walls on the same line and (correctly, absent this
-        # declaration) calls them a zero-thickness partition.
-        for region_id in helix.regions:
-            layout.declare_special(shed["cellar"].region_id, region_id,
-                                   "spiral_shaft")
-            layout.declare_special(foot.region_id, region_id, "spiral_shaft")
-            layout.declare_special(sewer_net["silt_trap"].region_id,
-                                   region_id, "spiral_shaft")
-        # The straight station flight runs immediately above the side-room
-        # approach (the former failure was its eighth tread).  It is part of
-        # the same vertical access envelope, not an independent street/sewer
-        # overlap.
-        for region_id in layout.regions:
-            if ":pump_flight:" in region_id:
-                layout.declare_special(sewer_net["silt_trap"].region_id,
-                                       region_id, "spiral_shaft")
         entry, exit = helix.flanks
         layout.add_connection("connection:pump_spiral_in",
                               shed["cellar"].region_id, entry.region_id,
@@ -973,7 +903,9 @@ def build_stack_link(layout, spec, offset_d, *, see_through):
     by data_1, translation = their explicit planar offset."""
     upper = layout.regions[spec["upper"]]
     lower = layout.regions[spec["lower"]]
-    lower.ceiling_z = int(upper.floor_z)
+    from bloodmap.roomoverroom import align_lower_mouth
+    lower_ceiling, _lower_floor = align_lower_mouth(
+        layout, spec["upper"], spec["lower"])
     if see_through:
         upper.floor_picnum = MIRROR_TILE
         lower.ceiling_picnum = MIRROR_TILE
@@ -989,7 +921,7 @@ def build_stack_link(layout, spec, offset_d, *, see_through):
         ("upper", spec["upper"], MARKER_UP_STACK, ax, ay, int(upper.floor_z),
          MARKER_TILE_UPPER),
         ("lower", spec["lower"], MARKER_LOW_STACK,
-         ax + offset_d[0], ay + offset_d[1], int(lower.ceiling_z),
+         ax + offset_d[0], ay + offset_d[1], int(lower_ceiling),
          MARKER_TILE_LOWER),
     ):
         layout.add_sprite(

@@ -371,6 +371,23 @@ class RoomOverRoomTests(unittest.TestCase):
         # A declared stack is its own contract; the layer conditions leave it be.
         self.assertEqual(layers.check(layout), [])
 
+    def test_lower_mouth_follows_neighbour_roof_and_recesses_floor(self):
+        from bloodmap.roomoverroom import align_lower_mouth
+
+        layout = PlanarLayout(name="ror-clearance")
+        layout.add_region("upper", rect(0, 0, 2048, 2048),
+                          floor_z=53248, ceiling_z=20480, layer="street")
+        layout.add_region("lower", rect(0, 0, 2048, 2048),
+                          floor_z=61440, ceiling_z=36864, layer="sewer")
+        layout.add_region("neighbour", rect(1024, 0, 3072, 2048),
+                          floor_z=61440, ceiling_z=32768, layer="sewer")
+
+        ceiling, floor = align_lower_mouth(layout, "upper", "lower")
+        self.assertEqual(ceiling, 32768)
+        self.assertEqual(floor, 63488)
+        self.assertEqual(layout.regions["lower"].ceiling_z, ceiling)
+        self.assertEqual(layout.regions["lower"].floor_z, floor)
+
 
 class SightConditionTests(unittest.TestCase):
     """The condition that sat inert, and the case that proves it runs.

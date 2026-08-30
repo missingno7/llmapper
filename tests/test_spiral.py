@@ -112,6 +112,13 @@ class TreadTests(unittest.TestCase):
         self.assertGreater(entry.width,
                            1000 * math.radians(spiral.STEP_ANGLE))
 
+    def test_three_quarter_turn_matches_the_station_descent(self):
+        """A 20,480-unit station drop needs ten normal 2,048-unit treads."""
+        plan = spiral.plan_spiral(rise=20480, exit_angle=270.0, radius=1000)
+        self.assertEqual(plan.steps, 10)
+        self.assertEqual(plan.step_rise, 2048)
+        self.assertAlmostEqual(plan.swept_degrees, 270.0)
+
 
 class SweepTests(unittest.TestCase):
     """The range, not one point in it."""

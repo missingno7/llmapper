@@ -71,6 +71,17 @@ RING_JOINS = [
     ("w_leg", "north", "nw_corner", "south"),
 ]
 
+# The lower counterpart of the pumping-station stair is a corridor, not a
+# chamber with a C-shaped hole.  The ten 22.5-degree treads leave at 270
+# degrees: their final radial edge runs from (45,568, 4,120) to
+# (45,568, 4,872), and the corridor continues east, perpendicular to it, to
+# the silt trap.  This is deliberately the long side of a tread, just as the
+# E3M1 end sectors are.
+SPIRAL_FOOT_X0 = 45568 / PU
+SPIRAL_FOOT_Y0 = 4120 / PU
+SPIRAL_FOOT_X1 = 46592 / PU
+SPIRAL_FOOT_Y1 = 4872 / PU
+
 #: Places to go, hanging off the ring: (name, rect, own face, leg, leg face).
 CHAMBERS = [
     ("pump_room", 27.0, 12.0, 32.0, 18.0, "east", "w_leg", "west",
@@ -81,9 +92,11 @@ CHAMBERS = [
      "the annex: an eastern dead end worth the walk for what is in it"),
     ("flooded", 40.0, 34.0, 46.0, 39.0, "north", "s_walk", "south",
      "the flooded branch, waist-deep"),
-    ("station_foot", 43.5, 4.0, 45.5, 6.0, "south", "n_walk", "north",
-     "the foot of the pumping station's shaft: where the stairs deliver "
-     "you, and the way back up"),
+    ("station_foot", SPIRAL_FOOT_X0, SPIRAL_FOOT_Y0,
+     SPIRAL_FOOT_X1, SPIRAL_FOOT_Y1,
+     "east", "silt_trap", "west",
+     "the foot of the pumping-station spiral: a tread-width landing that "
+     "opens directly into the silt-trap approach"),
 ]
 
 #: Necks joining the ring to the network that already existed.
@@ -135,10 +148,12 @@ def expand(city, sewer, existing: dict) -> dict:
                            "sector_behavior": behavior},
             note=note)
         clear = SEWER_CHAMBER_CLEAR if name in chambers else SEWER_CLEAR
-        if name == "station_foot":
-            # Match the lower ROR half exactly.  The prior chamber roof was
-            # 20,480 units higher than the linked mouth, producing a visible
-            # ceiling discontinuity at the entrance.
+        if name in {"station_foot", "silt_trap"}:
+            # The spiral's foot and its receiving approach sit under the
+            # station's straight flight.  Their roof must begin at that
+            # flight's final floor, not rise through it: this leaves a real
+            # masonry slab between the two routes instead of an overlapping
+            # volume that merely happens not to be co-rendered.
             clear = SEWER_FLOOR - STATION_STACK_PLANE
         made.surfaces(**material.style_kwargs(
             floor_z=SEWER_FLOOR + (LEDGE_STEP if wet else 0),

@@ -101,6 +101,46 @@ class StackError(ValueError):
     """A room-over-room pair the engine would not build."""
 
 
+def align_lower_mouth(layout: Any, upper_region: str, lower_region: str,
+                      *, recess: int = 2048) -> tuple[int, int]:
+    """Fit a lower ROR mouth to the air around it.
+
+    A mirror floor is a threshold, not a second low ceiling: the lower mouth's
+    roof may be raised to its neighbouring sector roof, but never left below
+    it.  Its floor is kept at least ``recess`` units below neighbouring floors,
+    which makes a drop read as a shallow landing (and leaves room for water or
+    a damage volume) instead of a lip above the tunnel.  With no overlapping
+    lower-layer neighbour the historical upper-floor plane is retained.
+    """
+    upper = layout.regions[upper_region]
+    lower = layout.regions[lower_region]
+
+    def bbox(region: Any) -> tuple[int, int, int, int]:
+        xs = [int(point[0]) for point in region.outer]
+        ys = [int(point[1]) for point in region.outer]
+        return min(xs), min(ys), max(xs), max(ys)
+
+    lx0, ly0, lx1, ly1 = bbox(lower)
+    neighbours = []
+    for region_id, region in layout.regions.items():
+        if region_id == lower_region or getattr(region, "layer", None) != getattr(lower, "layer", None):
+            continue
+        x0, y0, x1, y1 = bbox(region)
+        if max(lx0, x0) < min(lx1, x1) and max(ly0, y0) < min(ly1, y1):
+            neighbours.append(region)
+
+    ceiling = int(upper.floor_z)
+    floor = int(lower.floor_z)
+    if neighbours:
+        ceiling = min(ceiling, min(int(region.ceiling_z) for region in neighbours))
+        floor = max(floor, max(int(region.floor_z) for region in neighbours) + int(recess))
+        if floor <= ceiling:
+            floor = ceiling + max(1, int(recess))
+    lower.ceiling_z = ceiling
+    lower.floor_z = floor
+    return ceiling, floor
+
+
 FAMILIES = {
     "stack": (MARKER_UP_STACK, MARKER_LOW_STACK),
     "water": (MARKER_UP_WATER, MARKER_LOW_WATER),
@@ -145,7 +185,7 @@ def room_over_room(layout: Any, stack_id: str, upper_region: str,
             f"{stack_id}: {lower_region} has its floor at {lower.floor_z}, which "
             f"is not below {upper_region}'s floor at {upper.floor_z}. Blood's z "
             "points down, so the room underneath needs the larger number")
-    lower.ceiling_z = int(upper.floor_z)
+    align_lower_mouth(layout, upper_region, lower_region)
 
     # The two surfaces the stack looks through. Unanimous across the corpus.
     upper.floor_picnum = MIRROR_TILE
