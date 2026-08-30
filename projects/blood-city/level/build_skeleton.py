@@ -720,7 +720,7 @@ def build():
     # an unusably narrow lower turn.  The two dedicated corridor rooms are
     # defined by l3_shed.CELLAR and l3_sewer.station_foot instead.
     spiral_axis = l3_shed.SPIRAL_AXIS
-    SPIRAL_RADIUS, SPIRAL_EXIT = 1000, 270.0
+    SPIRAL_RADIUS, SPIRAL_EXIT = l3_shed.SPIRAL_RADIUS, 270.0
 
     from bloodmap.spiral import spiral_stair
 

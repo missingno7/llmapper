@@ -23,6 +23,7 @@ from __future__ import annotations
 
 from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
+from bloodmap.spiral import INNER_RADIUS
 
 from materials import FACADES, INTERIORS, MASONRY
 from resolution import (GRADE, PU, STATION_STACK_LANDING_DEPTH,
@@ -62,8 +63,9 @@ assert CELLAR_FLOOR_Z == GRADE + FLIGHT * STEP
 #: shared by the top approach and the prefab call in ``build_skeleton``.
 PIT = (45056, 4608, 46080, 5632)
 SPIRAL_AXIS = ((PIT[0] + PIT[2]) // 2, (PIT[1] + PIT[3]) // 2)
-SPIRAL_INNER_X = 45816
-SPIRAL_OUTER_X = 46568
+SPIRAL_RADIUS = 1000
+SPIRAL_INNER_X = SPIRAL_AXIS[0] + INNER_RADIUS
+SPIRAL_OUTER_X = SPIRAL_AXIS[0] + SPIRAL_RADIUS
 # A one-bay-wide approach, perpendicular to the first tread.  Its south face
 # is exactly the stair's long radial portal; the straight flight reaches its
 # east end.  Keeping this a corridor rather than the former 3.5 x 2.5-bay

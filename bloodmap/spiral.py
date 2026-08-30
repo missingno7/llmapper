@@ -56,6 +56,15 @@ many whole turns to add before the exit angle::
 Every `k` lands the player facing the same way and they differ only in
 steepness, so :func:`spiral_stair` derives `k` and says which it chose and why.
 
+There are two directions at each end, and conflating them was the integration
+mistake in BloodCity.  ``entry_angle`` / the derived final radial angle name the
+*long portal edge* from the newel to the outer wall.  A connecting corridor
+extends perpendicular to that edge, not around the annulus.  For a right-handed
+stair its direction away from the entry is ``entry_angle - 90`` and its exit
+direction is ``final_radial_angle + 90``; reverse those signs for a left-handed
+stair.  The prefab records both directions in its provenance so a 90, 180, 270,
+or arbitrary-step stair can be joined without guessing from a rendered circle.
+
 It derives against the **corpus's own step rise**, not against the player's
 limit. `max_step` is 4,096 and a stair built to it is a ladder: it is used here
 only as the refusal threshold. The target is E3M1's 2,048.
@@ -151,6 +160,21 @@ class SpiralPlan:
     def outer_tread(self) -> float:
         return self.outer_radius * math.radians(self.step_angle)
 
+    @property
+    def final_radial_angle(self) -> float:
+        """Physical angle of the final long portal edge, in Build XY space."""
+        return (self.entry_angle + self.handed * self.swept_degrees) % 360.0
+
+    @property
+    def entry_corridor_angle(self) -> float:
+        """Direction away from the first tread, perpendicular to its portal."""
+        return (self.entry_angle - self.handed * 90.0) % 360.0
+
+    @property
+    def exit_corridor_angle(self) -> float:
+        """Direction away from the final tread, perpendicular to its portal."""
+        return (self.final_radial_angle + self.handed * 90.0) % 360.0
+
     def to_dict(self) -> dict[str, Any]:
         return {
             "steps": self.steps, "turns": round(self.turns, 3),
@@ -163,6 +187,9 @@ class SpiralPlan:
             "outer_tread": round(self.outer_tread),
             "clear_height": self.clear_height, "handed": self.handed,
             "entry_angle": self.entry_angle, "exit_angle": self.exit_angle,
+            "final_radial_angle": round(self.final_radial_angle, 3),
+            "entry_corridor_angle": round(self.entry_corridor_angle, 3),
+            "exit_corridor_angle": round(self.exit_corridor_angle, 3),
             "why": self.why,
         }
 
@@ -296,6 +323,28 @@ def _step_outline(axis: tuple[int, int], inner: int, outer: int,
     return points
 
 
+def port_corridor_outline(anchor: Anchor, *, angle: float,
+                          depth: int) -> tuple[tuple[int, int], ...]:
+    """Return the straight corridor continuing perpendicularly from a stair port.
+
+    ``angle`` is the direction *away from the stair*.  The first edge of the
+    returned rectangle is the supplied radial port, so callers can use it in an
+    ordinary portal connection.  This is deliberately a small extension of one
+    tread width, never the C-shaped annulus around a spiral.
+    """
+    if depth <= 0:
+        raise SpiralError("a spiral connector needs positive corridor depth")
+    radians = math.radians(angle)
+    dx = int(round(math.cos(radians) * depth))
+    dy = int(round(math.sin(radians) * depth))
+    points = [anchor.a, anchor.b,
+              (anchor.b[0] + dx, anchor.b[1] + dy),
+              (anchor.a[0] + dx, anchor.a[1] + dy)]
+    if area2(tuple(points)) < 0:
+        points.reverse()
+    return tuple(points)
+
+
 def spiral_stair(layout: Any, structure_id: str, *, axis: tuple[int, int],
                  base_floor_z: int, rise: int, exit_angle: float,
                  radius: int = OUTER_RADIUS, entry_angle: float = 0.0,
@@ -412,6 +461,18 @@ def spiral_stair(layout: Any, structure_id: str, *, axis: tuple[int, int],
             "vocabulary": "bloodmap.spiral.spiral_stair",
             "precedent": "E3M1 sectors 15-40: 23 steps of 2048 at 22.5 degrees, "
                          "clear 24576, radius 248 to 1375, solid newel",
+            "ports": {
+                "entry": {
+                    "radial_angle": round(plan.entry_angle % 360.0, 3),
+                    "corridor_angle": round(plan.entry_corridor_angle, 3),
+                    "edge": entry_flank.to_dict(),
+                },
+                "exit": {
+                    "radial_angle": round(plan.final_radial_angle, 3),
+                    "corridor_angle": round(plan.exit_corridor_angle, 3),
+                    "edge": previous_anchor.to_dict(),
+                },
+            },
             **plan.to_dict(),
         },
     )

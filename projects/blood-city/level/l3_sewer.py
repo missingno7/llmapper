@@ -24,6 +24,7 @@ anything meeting a tunnel mid-run does so through a neck.
 from __future__ import annotations
 
 from bloodmap.levelprog import Frame, RECT_FACES, Style
+from bloodmap.spiral import INNER_RADIUS
 
 from materials import SEWER, SEWER_WET
 from resolution import (PU, SEWER_CHAMBER_CLEAR, SEWER_CLEAR, SEWER_FLOOR,
@@ -77,10 +78,12 @@ RING_JOINS = [
 # (45,568, 4,872), and the corridor continues east, perpendicular to it, to
 # the silt trap.  This is deliberately the long side of a tread, just as the
 # E3M1 end sectors are.
-SPIRAL_FOOT_X0 = 45568 / PU
-SPIRAL_FOOT_Y0 = 4120 / PU
-SPIRAL_FOOT_X1 = 46592 / PU
-SPIRAL_FOOT_Y1 = 4872 / PU
+SPIRAL_AXIS = (45568, 5120)
+SPIRAL_RADIUS = 1000
+SPIRAL_FOOT_X0 = SPIRAL_AXIS[0] / PU
+SPIRAL_FOOT_Y0 = (SPIRAL_AXIS[1] - SPIRAL_RADIUS) / PU
+SPIRAL_FOOT_X1 = (SPIRAL_AXIS[0] + 1024) / PU
+SPIRAL_FOOT_Y1 = (SPIRAL_AXIS[1] - INNER_RADIUS) / PU
 
 #: Places to go, hanging off the ring: (name, rect, own face, leg, leg face).
 CHAMBERS = [

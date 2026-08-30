@@ -119,6 +119,18 @@ class TreadTests(unittest.TestCase):
         self.assertEqual(plan.step_rise, 2048)
         self.assertAlmostEqual(plan.swept_degrees, 270.0)
 
+    def test_ports_name_the_two_corridor_directions(self):
+        """A connector continues tangentially, not into the spiral's annulus."""
+        layout, structure = build(rise=20480, exit_angle=270.0, radius=1000)
+        ports = structure.provenance["ports"]
+        self.assertEqual(ports["entry"]["corridor_angle"], 270.0)
+        self.assertEqual(ports["exit"]["corridor_angle"], 0.0)
+        entry = structure.flanks[0]
+        outline = spiral.port_corridor_outline(entry, angle=270.0, depth=1024)
+        self.assertIn(entry.a, outline)
+        self.assertIn(entry.b, outline)
+        self.assertEqual(min(y for _x, y in outline), AXIS[1] - 1024)
+
 
 class SweepTests(unittest.TestCase):
     """The range, not one point in it."""
