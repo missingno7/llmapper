@@ -74,6 +74,7 @@ from .materials import (
 )
 from .art import read_art_directory, read_palette
 from .decompiler import DecompilerError, LevelSource, decompile_level, emit_python_source
+from .corpus import write_classified_corpus
 
 
 def _json(value: Any) -> str:
@@ -168,6 +169,25 @@ def cmd_duke_mechanisms(args: argparse.Namespace) -> int:
         "maps": maps,
         "aggregate_effector_lotags": dict(sorted(aggregate.items(), key=lambda item: int(item[0]))),
     }))
+    return 0
+
+
+def cmd_classify_corpus(args: argparse.Namespace) -> int:
+    manifest, summary = write_classified_corpus(
+        args.source,
+        args.canonical,
+        args.output_directory,
+        args.manifest,
+        args.summary,
+        workers=args.workers,
+    )
+    print(json.dumps({
+        "maps": len(manifest["records"]),
+        "classification_counts": summary["classification_counts"],
+        "manifest": str(Path(args.manifest).resolve()),
+        "summary": str(Path(args.summary).resolve()),
+        "output_directory": str(Path(args.output_directory).resolve()),
+    }, indent=2, sort_keys=True))
     return 0
 
 
@@ -1543,6 +1563,14 @@ def build_parser() -> argparse.ArgumentParser:
 
     p = sub.add_parser("corpus", help="inventory every file in a map directory")
     p.add_argument("directory"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_corpus)
+    p = sub.add_parser("classify-corpus", help="classify a Blood MAP corpus by deterministic design evidence")
+    p.add_argument("source", help="source BME/community MAP directory")
+    p.add_argument("--canonical", required=True, help="canonical reference MAP directory")
+    p.add_argument("--output-directory", required=True, help="directory for tiered copies")
+    p.add_argument("--manifest", required=True, help="complete machine-readable manifest JSON")
+    p.add_argument("--summary", required=True, help="validation summary JSON")
+    p.add_argument("--workers", type=int, default=1, help="parallel sensor workers (default: 1)")
+    p.set_defaults(func=cmd_classify_corpus)
     p = sub.add_parser("duke-mechanisms", help="derive a semantic mechanism corpus from classic Duke3D MAPs")
     p.add_argument("directory")
     p.add_argument("-o", "--output", help="write JSON; defaults to stdout")
