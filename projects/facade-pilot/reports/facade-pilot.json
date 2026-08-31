@@ -1,0 +1,257 @@
+{
+  "$schema": "llmapper.facade-pilot",
+  "schema_version": 1,
+  "cases": {
+    "narrow": {
+      "map": "D:\\Games\\DOS\\llmapper\\projects\\facade-pilot\\level\\facade-narrow.MAP",
+      "sectors": 5,
+      "walls": 28,
+      "sprites": 5,
+      "facade": "facade_narrow",
+      "interior": "region:facade_narrow:interior",
+      "run_units": 6144,
+      "run_bays": 6.0,
+      "bay": 1024,
+      "reveal": 256,
+      "openings": [
+        {
+          "reveal_region": "region:facade_narrow:reveal:00",
+          "connections": [
+            "connection:facade_narrow:00:mouth",
+            "connection:facade_narrow:00:back"
+          ],
+          "bay": 1,
+          "bays": 1,
+          "along_run": 1024,
+          "width_units": 1024,
+          "a1": [
+            1024,
+            0
+          ],
+          "a2": [
+            2048,
+            0
+          ]
+        },
+        {
+          "reveal_region": "region:facade_narrow:reveal:01",
+          "connections": [
+            "connection:facade_narrow:01:mouth",
+            "connection:facade_narrow:01:back"
+          ],
+          "bay": 3,
+          "bays": 1,
+          "along_run": 3072,
+          "width_units": 1024,
+          "a1": [
+            3072,
+            0
+          ],
+          "a2": [
+            4096,
+            0
+          ]
+        }
+      ],
+      "piers": [
+        {
+          "along_run": 0.0,
+          "width_units": 1024.0
+        },
+        {
+          "along_run": 2048,
+          "width_units": 1024
+        },
+        {
+          "along_run": 4096,
+          "width_units": 2048.0
+        }
+      ],
+      "signs": [
+        {
+          "text": "MEATS",
+          "placements": [
+            "sign:facade_narrow:00_00",
+            "sign:facade_narrow:00_01",
+            "sign:facade_narrow:00_02",
+            "sign:facade_narrow:00_03",
+            "sign:facade_narrow:00_04"
+          ],
+          "on_opening": 0,
+          "seat_z": -42400,
+          "height_player_heights": 2.5,
+          "above_its_header_z": 1440
+        }
+      ],
+      "datums": {
+        "header_z": -40960,
+        "sill_z": -1024,
+        "street_floor_z": 0
+      },
+      "material": {
+        "wall_picnum": 400,
+        "jamb_picnum": 195
+      },
+      "basis": {
+        "one wall tile across the run": "98% of 131 campaign multi-opening facades",
+        "shared header datum": "79%",
+        "shared sill datum": "77%",
+        "thin helper sector": "71% -- composed by the caller, see above",
+        "openings on whole bays": "31% -- offered, never enforced",
+        "sign height": {
+          "min": 1.69,
+          "p25": 2.25,
+          "median": 2.54,
+          "p75": 3.44,
+          "max": 5.13,
+          "coefficient_of_variation": 0.33,
+          "letters": 86,
+          "chosen": 2.5,
+          "kind": "authoring preference, not a datum"
+        }
+      },
+      "promotion_blockers": [
+        "no held-out reproduction test: vocabulary.py requires a compact parameter set to rebuild facades it was not derived from, and that has never been run",
+        "rhythm is not a parameter here -- 53 repeating runs in 890 campaign candidates is not enough recurrence to give one a default, so openings are an argument and never invented",
+        "building extent is only settled below eight bays: a run serving an interior serves exactly one building 732 times out of 749, but 20% of runs over sixteen bays cross a boundary (reports/blood-party-walls.md)"
+      ]
+    },
+    "wide": {
+      "map": "D:\\Games\\DOS\\llmapper\\projects\\facade-pilot\\level\\facade-wide.MAP",
+      "sectors": 6,
+      "walls": 36,
+      "sprites": 5,
+      "facade": "facade_wide",
+      "interior": "region:facade_wide:interior",
+      "run_units": 10240,
+      "run_bays": 10.0,
+      "bay": 1024,
+      "reveal": 256,
+      "openings": [
+        {
+          "reveal_region": "region:facade_wide:reveal:00",
+          "connections": [
+            "connection:facade_wide:00:mouth",
+            "connection:facade_wide:00:back"
+          ],
+          "bay": 1,
+          "bays": 1,
+          "along_run": 1024,
+          "width_units": 1024,
+          "a1": [
+            1024,
+            0
+          ],
+          "a2": [
+            2048,
+            0
+          ]
+        },
+        {
+          "reveal_region": "region:facade_wide:reveal:01",
+          "connections": [
+            "connection:facade_wide:01:mouth",
+            "connection:facade_wide:01:back"
+          ],
+          "bay": 3,
+          "bays": 1,
+          "along_run": 3072,
+          "width_units": 1024,
+          "a1": [
+            3072,
+            0
+          ],
+          "a2": [
+            4096,
+            0
+          ]
+        },
+        {
+          "reveal_region": "region:facade_wide:reveal:02",
+          "connections": [
+            "connection:facade_wide:02:mouth",
+            "connection:facade_wide:02:back"
+          ],
+          "bay": 6,
+          "bays": 2,
+          "along_run": 6144,
+          "width_units": 2048,
+          "a1": [
+            6144,
+            0
+          ],
+          "a2": [
+            8192,
+            0
+          ]
+        }
+      ],
+      "piers": [
+        {
+          "along_run": 0.0,
+          "width_units": 1024.0
+        },
+        {
+          "along_run": 2048,
+          "width_units": 1024
+        },
+        {
+          "along_run": 4096,
+          "width_units": 2048
+        },
+        {
+          "along_run": 8192,
+          "width_units": 2048.0
+        }
+      ],
+      "signs": [
+        {
+          "text": "MEATS",
+          "placements": [
+            "sign:facade_wide:00_00",
+            "sign:facade_wide:00_01",
+            "sign:facade_wide:00_02",
+            "sign:facade_wide:00_03",
+            "sign:facade_wide:00_04"
+          ],
+          "on_opening": 0,
+          "seat_z": -42400,
+          "height_player_heights": 2.5,
+          "above_its_header_z": 1440
+        }
+      ],
+      "datums": {
+        "header_z": -40960,
+        "sill_z": -1024,
+        "street_floor_z": 0
+      },
+      "material": {
+        "wall_picnum": 400,
+        "jamb_picnum": 195
+      },
+      "basis": {
+        "one wall tile across the run": "98% of 131 campaign multi-opening facades",
+        "shared header datum": "79%",
+        "shared sill datum": "77%",
+        "thin helper sector": "71% -- composed by the caller, see above",
+        "openings on whole bays": "31% -- offered, never enforced",
+        "sign height": {
+          "min": 1.69,
+          "p25": 2.25,
+          "median": 2.54,
+          "p75": 3.44,
+          "max": 5.13,
+          "coefficient_of_variation": 0.33,
+          "letters": 86,
+          "chosen": 2.5,
+          "kind": "authoring preference, not a datum"
+        }
+      },
+      "promotion_blockers": [
+        "no held-out reproduction test: vocabulary.py requires a compact parameter set to rebuild facades it was not derived from, and that has never been run",
+        "rhythm is not a parameter here -- 53 repeating runs in 890 campaign candidates is not enough recurrence to give one a default, so openings are an argument and never invented",
+        "building extent is only settled below eight bays: a run serving an interior serves exactly one building 732 times out of 749, but 20% of runs over sixteen bays cross a boundary (reports/blood-party-walls.md)"
+      ]
+    }
+  }
+}
