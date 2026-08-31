@@ -213,3 +213,25 @@ Full rows for both classes, including every ambiguous sector, are in
 `reports/blood-contrast-shelf-vs-crate.json` and
 `reports/blood-contrast-bookcase-vs-crate.json`.
 
+
+## Owner preliminary review (2026-08-31, rendered sector sheet)
+
+The owner reviewed rendered frames of all 16 shelf positives and 15 crate
+candidates (full, per-sector verdicts to follow later):
+
+- **Shelves: all 16 positives are true shelves.** The pilot's "one tile,
+  two structures" split (SSMALL one-portal recesses vs E6M1 retail-floor
+  walls) is two structural realizations of one visually coherent concept,
+  not a broken anchor. Tiles 2026/2635 are marked `binding: strong` in
+  owner-anchors-v1.json.
+- **Crates: several candidates read wrong to the owner, because the crate
+  tiles are usable in other contexts** - the binding-strength principle
+  from 03_...md, stated by the owner before seeing these frames and now
+  confirmed on them. The crate side of this contrast must be defined by
+  sector-level labels, not tiles.
+
+Consequence for the pending experiment: the owner's sector labels are
+chiefly needed on the CRATE side; the shelf anchor's positives can be
+taken as owner-confirmed. The two-realization split of shelves (niche
+shelving vs wall-run shelving) is itself a candidate concept pair worth
+carrying forward into assembly/functional-region work.
