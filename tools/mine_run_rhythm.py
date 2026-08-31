@@ -103,6 +103,13 @@ def main(argv=None) -> int:
     density = sorted(r["per_plan_unit"] for r in per_run)
     report = {
         "$schema": "llmapper.run-rhythm",
+        # What was actually measured. These files described themselves as
+        # campaign evidence while being mined over campaign plus curated
+        # community maps, and nothing in them said so. Stating the view
+        # makes the population a fact of the artifact rather than of
+        # whichever directory happened to be on disk.
+        "population": {"view": args.view,
+                       "populations": list(CORPUS_VIEWS[args.view])},
         "schema_version": 1,
         "note": ("Derived. A run is a sector at least 4 plan units long and "
                  "2.5x longer than wide; gaps are between consecutive items "

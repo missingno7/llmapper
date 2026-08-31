@@ -120,8 +120,14 @@ def main(argv=None) -> int:
             "n": a["n"], "maps": len(a["maps"]),
             "sky_share": round(a["sky"] / a["n"], 2),
         }
+    # The document is the tile map, so the population goes beside it under
+    # a reserved non-numeric key: every real key here is a picnum, and a
+    # reader that walks digits is unaffected.
+    document = {"population": {"view": args.view,
+                               "populations": list(CORPUS_VIEWS[args.view])},
+                **catalogue}
     pathlib.Path(args.output).write_text(
-        json.dumps(catalogue, indent=1, sort_keys=True), encoding="utf-8")
+        json.dumps(document, indent=1, sort_keys=True), encoding="utf-8")
     kinds = collections.Counter(v["kind"] for v in catalogue.values())
     print(f"wrote {args.output}: {len(catalogue)} props, {dict(kinds)}")
     return 0

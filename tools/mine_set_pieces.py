@@ -264,6 +264,13 @@ def main(argv=None) -> int:
 
     report = {
         "$schema": "llmapper.set-pieces",
+        # What was actually measured. These files described themselves as
+        # campaign evidence while being mined over campaign plus curated
+        # community maps, and nothing in them said so. Stating the view
+        # makes the population a fact of the artifact rather than of
+        # whichever directory happened to be on disk.
+        "population": {"view": args.view,
+                       "populations": list(CORPUS_VIEWS[args.view])},
         "schema_version": 1,
         "note": ("Signatures, proportions and occurrences are DERIVED. "
                  "Class names, where present, are INTERPRETED by a reader."),
