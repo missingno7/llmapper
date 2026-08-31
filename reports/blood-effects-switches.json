@@ -1,0 +1,173 @@
+{
+  "$schema": "llmapper.blood-hidden-switch-contrast",
+  "schema_version": 1,
+  "question": "does a concealed trigger command a different kind of thing than an exposed one",
+  "selection": {
+    "population": "blood-campaign",
+    "view": null,
+    "maps_searched": 43
+  },
+  "counts": {
+    "hidden": {
+      "switches": 115,
+      "maps": 18
+    },
+    "visible": {
+      "switches": 1281,
+      "maps": 43
+    }
+  },
+  "features_scored": [
+    "transmits",
+    "listens",
+    "relays",
+    "ends_the_level",
+    "reserved_channel",
+    "sectors_commanded",
+    "commands_nothing_in_this_map",
+    "commands_motion",
+    "commands_z_motion",
+    "commands_more_than_one_kind",
+    "one_way",
+    "keyed",
+    "once_only"
+  ],
+  "discriminator_floor": 0.65,
+  "discriminating": [],
+  "rejected": [
+    {
+      "feature": "sectors_commanded",
+      "kind": "numeric",
+      "positive_median": 0.0,
+      "comparison_median": 1.0,
+      "rule": "sectors_commanded < 0.5",
+      "positives_matching": 0.6783,
+      "comparison_matching": 0.4496,
+      "balanced_accuracy": 0.6143
+    },
+    {
+      "feature": "commands_nothing_in_this_map",
+      "kind": "boolean",
+      "positive_share": 0.6435,
+      "comparison_share": 0.4161,
+      "difference": 0.2274,
+      "balanced_accuracy": 0.6137,
+      "direction": "positive"
+    },
+    {
+      "feature": "commands_motion",
+      "kind": "boolean",
+      "positive_share": 0.2435,
+      "comparison_share": 0.4317,
+      "difference": -0.1882,
+      "balanced_accuracy": 0.5941,
+      "direction": "comparison"
+    },
+    {
+      "feature": "relays",
+      "kind": "boolean",
+      "positive_share": 0.8522,
+      "comparison_share": 0.676,
+      "difference": 0.1761,
+      "balanced_accuracy": 0.5881,
+      "direction": "positive"
+    },
+    {
+      "feature": "listens",
+      "kind": "boolean",
+      "positive_share": 0.8609,
+      "comparison_share": 0.7057,
+      "difference": 0.1552,
+      "balanced_accuracy": 0.5776,
+      "direction": "positive"
+    },
+    {
+      "feature": "commands_z_motion",
+      "kind": "boolean",
+      "positive_share": 0.2174,
+      "comparison_share": 0.3138,
+      "difference": -0.0964,
+      "balanced_accuracy": 0.5482,
+      "direction": "comparison"
+    },
+    {
+      "feature": "one_way",
+      "kind": "boolean",
+      "positive_share": 0.3739,
+      "comparison_share": 0.2818,
+      "difference": 0.0921,
+      "balanced_accuracy": 0.5461,
+      "direction": "positive"
+    },
+    {
+      "feature": "once_only",
+      "kind": "boolean",
+      "positive_share": 0.4174,
+      "comparison_share": 0.3365,
+      "difference": 0.0809,
+      "balanced_accuracy": 0.5405,
+      "direction": "positive"
+    },
+    {
+      "feature": "ends_the_level",
+      "kind": "boolean",
+      "positive_share": 0.0,
+      "comparison_share": 0.0437,
+      "difference": -0.0437,
+      "balanced_accuracy": 0.5219,
+      "direction": "comparison"
+    },
+    {
+      "feature": "keyed",
+      "kind": "boolean",
+      "positive_share": 0.0,
+      "comparison_share": 0.0133,
+      "difference": -0.0133,
+      "balanced_accuracy": 0.5066,
+      "direction": "comparison"
+    },
+    {
+      "feature": "reserved_channel",
+      "kind": "boolean",
+      "positive_share": 0.087,
+      "comparison_share": 0.0796,
+      "difference": 0.0073,
+      "balanced_accuracy": 0.5037,
+      "direction": "positive"
+    },
+    {
+      "feature": "commands_more_than_one_kind",
+      "kind": "boolean",
+      "positive_share": 0.0261,
+      "comparison_share": 0.0297,
+      "difference": -0.0036,
+      "balanced_accuracy": 0.5018,
+      "direction": "comparison"
+    },
+    {
+      "feature": "transmits",
+      "kind": "boolean",
+      "positive_share": 0.9652,
+      "comparison_share": 0.9664,
+      "difference": -0.0012,
+      "balanced_accuracy": 0.5006,
+      "direction": "comparison"
+    }
+  ],
+  "counterexamples": {
+    "rule": null,
+    "note": "no feature reached the discriminator floor"
+  },
+  "map_transfer": {
+    "rule": null,
+    "note": "no feature reached the discriminator floor"
+  },
+  "skipped": [],
+  "limitations": [
+    "Every feature is channel role or what the switch commands. Nothing geometric is scored, so a separator that is really position or tile identity cannot hide as one of them -- and by the same token this cannot say whether hidden switches sit somewhere different.",
+    "Balanced accuracy, not accuracy: the split is heavily imbalanced and a rule that never fires scores well on the raw rate.",
+    "Thresholds are fitted on the rows they are scored on. These are separations observed, not a validated classifier.",
+    "`commands_nothing_in_this_map` is a fact about the map, not about the switch: a channel with no listening sector may be commanding sprites, which this does not look at."
+  ],
+  "row_count": 1396
+}

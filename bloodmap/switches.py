@@ -41,6 +41,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from .doors import MOTION_TYPES, Z_MOTION_TYPES
 from .player_space import PLAYER_PROFILES
 
 PLAYER_HEIGHT = PLAYER_PROFILES["blood"].standing_height
@@ -158,3 +159,161 @@ def check(disk: Any) -> list[str]:
                 "41 of the campaign's 50 exits wear %d, which it uses almost "
                 "nowhere else" % (tx, picnum, EXIT_TILE))
     return complaints
+
+
+#: Build's "invisible" cstat bit. A sprite carrying it is in the map, is
+#: pressable, and is not drawn.
+INVISIBLE = 0x8000
+
+
+def _commanded_sectors(disk: Any, tx_id: int) -> list[int]:
+    """Which sectors listen on this channel."""
+    if not tx_id:
+        return []
+    out = []
+    for index, sector in enumerate(disk.sectors):
+        extra = _extra(sector)
+        if extra and int(extra.get("rx_id") or 0) == tx_id:
+            out.append(index)
+    return out
+
+
+def switch_role(disk: Any, sprite_index: int) -> dict[str, Any] | None:
+    """What one switch *does*, with nothing about where it is or how it looks.
+
+    The feature set is deliberately narrow, and the narrowness is the
+    experiment: the question is whether a concealed trigger commands a
+    different **kind** of thing than an exposed one, so a feature that reads
+    geometry, height, or tile identity would answer a different question and
+    look like an answer to this one.
+    """
+    sprite = disk.sprites[sprite_index]
+    if not is_switch(sprite):
+        return None
+    fields = sprite.fields
+    extra = _extra(sprite) or {}
+    tx_id = int(extra.get("tx_id") or 0)
+    rx_id = int(extra.get("rx_id") or 0)
+    commanded = _commanded_sectors(disk, tx_id)
+    types = sorted({int(disk.sectors[index].fields["type"]) for index in commanded})
+    return {
+        "sprite": sprite_index,
+        "hidden": bool(int(fields["cstat"]) & INVISIBLE),
+        "switch_kind": SWITCH_TYPES.get(int(fields["type"]), "other"),
+        # channel role
+        "transmits": bool(tx_id),
+        "listens": bool(rx_id),
+        "relays": bool(tx_id and rx_id),
+        "ends_the_level": tx_id in (CHANNEL_EXIT, CHANNEL_SECRET_EXIT),
+        "reserved_channel": 0 < tx_id < 8,
+        # what it commands
+        "sectors_commanded": len(commanded),
+        "commands_nothing_in_this_map": bool(tx_id) and not commanded,
+        "commands_motion": any(t in MOTION_TYPES for t in types),
+        "commands_z_motion": any(t in Z_MOTION_TYPES for t in types),
+        "commands_more_than_one_kind": len(types) > 1,
+        "commanded_types": types,
+        # how it may be worked
+        "one_way": int(fields["type"]) == 21,
+        "keyed": bool(int(extra.get("key") or 0)),
+        "once_only": bool(extra.get("trigger_once")),
+    }
+
+
+#: The features the contrast is scored on. Channel role and what the switch
+#: commands -- never geometry, never the tile.
+CONTRAST_FEATURES = (
+    "transmits", "listens", "relays", "ends_the_level", "reserved_channel",
+    "sectors_commanded", "commands_nothing_in_this_map", "commands_motion",
+    "commands_z_motion", "commands_more_than_one_kind", "one_way", "keyed",
+    "once_only",
+)
+
+
+def contrast_hidden_switches(
+    *, directory: Any = None, population: str = "blood-campaign",
+    view: str | None = None, examples: int = 8,
+) -> dict[str, Any]:
+    """Do concealed switches command a different kind of thing than open ones?
+
+    Same discipline as `anchors.contrast_anchor_sets`: balanced accuracy
+    rather than accuracy, a per-map transfer check so a mapper's habit cannot
+    pass as a concept, and counterexamples preserved rather than pruned.
+    """
+    from .anchors import (
+        DISCRIMINATOR_FLOOR, _counterexamples, _map_transfer, _separation,
+    )
+    from .format import read_map
+    from .patterns import list_corpus_maps
+
+    selected = list_corpus_maps(directory, population=population, view=view)
+    if not selected:
+        raise SwitchError(f"no maps for population={population!r}")
+
+    rows: list[dict[str, Any]] = []
+    skipped: list[dict[str, Any]] = []
+    for item in selected:
+        try:
+            disk = read_map(item.path)
+        except Exception as exc:
+            skipped.append({"map": item.path.stem,
+                            "reason": f"{type(exc).__name__}: {exc}"})
+            continue
+        for index in range(len(disk.sprites)):
+            role = switch_role(disk, index)
+            if role is None:
+                continue
+            rows.append({"map": item.path.stem,
+                         "label": "hidden" if role["hidden"] else "visible",
+                         **role})
+
+    hidden = [row for row in rows if row["label"] == "hidden"]
+    visible = [row for row in rows if row["label"] == "visible"]
+    if not hidden or not visible:
+        raise SwitchError(
+            f"contrast needs both sides: {len(hidden)} hidden, "
+            f"{len(visible)} visible")
+    measured = [_separation(name, [row[name] for row in hidden],
+                            [row[name] for row in visible])
+                for name in CONTRAST_FEATURES]
+    measured.sort(key=lambda item: -item.get("balanced_accuracy", 0))
+    discriminating = [m for m in measured
+                      if m.get("balanced_accuracy", 0) >= DISCRIMINATOR_FLOOR]
+    best = discriminating[0] if discriminating else None
+    return {
+        "$schema": "llmapper.blood-hidden-switch-contrast",
+        "schema_version": 1,
+        "question": "does a concealed trigger command a different kind of "
+                    "thing than an exposed one",
+        "selection": {"population": population, "view": view,
+                      "maps_searched": len(selected)},
+        "counts": {
+            "hidden": {"switches": len(hidden),
+                       "maps": len({row["map"] for row in hidden})},
+            "visible": {"switches": len(visible),
+                        "maps": len({row["map"] for row in visible})},
+        },
+        "features_scored": list(CONTRAST_FEATURES),
+        "discriminator_floor": DISCRIMINATOR_FLOOR,
+        "discriminating": discriminating,
+        "rejected": [m for m in measured
+                     if m.get("balanced_accuracy", 0) < DISCRIMINATOR_FLOOR],
+        "counterexamples": _counterexamples(best, hidden, visible, examples),
+        "map_transfer": _map_transfer(best, hidden),
+        "skipped": skipped,
+        "rows": rows,
+        "limitations": [
+            "Every feature is channel role or what the switch commands. "
+            "Nothing geometric is scored, so a separator that is really "
+            "position or tile identity cannot hide as one of them -- and by "
+            "the same token this cannot say whether hidden switches sit "
+            "somewhere different.",
+            "Balanced accuracy, not accuracy: the split is heavily imbalanced "
+            "and a rule that never fires scores well on the raw rate.",
+            "Thresholds are fitted on the rows they are scored on. These are "
+            "separations observed, not a validated classifier.",
+            "`commands_nothing_in_this_map` is a fact about the map, not "
+            "about the switch: a channel with no listening sector may be "
+            "commanding sprites, which this does not look at.",
+        ],
+    }
