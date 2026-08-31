@@ -1,0 +1,4681 @@
+{
+  "$schema": "llmapper.knowledge-index",
+  "by_provenance": {
+    "DERIVED": 205,
+    "INTERPRETED": 32,
+    "OWNER": 97
+  },
+  "count": 334,
+  "entries": [
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 73 is hanging clothes (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "73",
+      "subject_kind": "tile",
+      "terms": [
+        "hanging clothes",
+        "sprite",
+        "73"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "sprite",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 2377 is mannequin (sprite); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2377",
+      "subject_kind": "tile",
+      "terms": [
+        "mannequin",
+        "sprite",
+        "2377",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 1050 is electrical wall outlet (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "1050",
+      "subject_kind": "tile",
+      "terms": [
+        "electrical wall outlet",
+        "sprite",
+        "1050"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 758 is voxel chair (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "758",
+      "subject_kind": "tile",
+      "terms": [
+        "voxel chair",
+        "sprite",
+        "758"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 1165 is wall clock (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "1165",
+      "subject_kind": "tile",
+      "terms": [
+        "wall clock",
+        "sprite",
+        "1165"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 2520 is sector sound marker (invisible in game) (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2520",
+      "subject_kind": "tile",
+      "terms": [
+        "sector sound marker (invisible in game)",
+        "sprite",
+        "2520",
+        "wiring marker"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 2521 is environmental/ambient sound marker (invisible in game) (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2521",
+      "subject_kind": "tile",
+      "terms": [
+        "environmental/ambient sound marker (invisible in game)",
+        "sprite",
+        "2521",
+        "wiring marker"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 2332 is upper room-over-room stack marker; drawn as a downward arrow (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2332",
+      "subject_kind": "tile",
+      "terms": [
+        "upper room-over-room stack marker; drawn as a downward arrow",
+        "sprite",
+        "2332",
+        "wiring marker"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 720 is grandfather clock, front face (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "720",
+      "subject_kind": "tile",
+      "terms": [
+        "grandfather clock, front face",
+        "wall",
+        "720"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "wall",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 2026 is shelf (wall); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2026",
+      "subject_kind": "tile",
+      "terms": [
+        "shelf",
+        "wall",
+        "2026",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "wall",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 2635 is shelf (wall); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2635",
+      "subject_kind": "tile",
+      "terms": [
+        "shelf",
+        "wall",
+        "2635",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 95 is large crate (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "95",
+      "subject_kind": "tile",
+      "terms": [
+        "large crate",
+        "wall",
+        "95"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 452 is smaller crate (wall); state pair broken=462",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "452",
+      "subject_kind": "tile",
+      "terms": [
+        "smaller crate",
+        "wall",
+        "452",
+        "state pair"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 462 is smaller crate, broken (wall); state pair intact=452",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "462",
+      "subject_kind": "tile",
+      "terms": [
+        "smaller crate, broken",
+        "wall",
+        "462",
+        "state pair"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "weak",
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 456 is crate look, but often a plain wall/ceiling texture (wall); weak binding, material only -- never names",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "456",
+      "subject_kind": "tile",
+      "terms": [
+        "crate look, but often a plain wall/ceiling texture",
+        "wall",
+        "456",
+        "weak binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 144 is wooden lattice, used e.g. as windows (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "144",
+      "subject_kind": "tile",
+      "terms": [
+        "wooden lattice, used e.g. as windows",
+        "wall",
+        "144"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "weak",
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 202 is worn wall/facade texture, bricks showing through (wall); weak binding, material only -- never names",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "202",
+      "subject_kind": "tile",
+      "terms": [
+        "worn wall/facade texture, bricks showing through",
+        "wall",
+        "202",
+        "weak binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 332 is grate/lattice (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "332",
+      "subject_kind": "tile",
+      "terms": [
+        "grate/lattice",
+        "sprite",
+        "332"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 468 is vertical ceiling light, unlit (wall); state pair lit=469",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "468",
+      "subject_kind": "tile",
+      "terms": [
+        "vertical ceiling light, unlit",
+        "wall",
+        "468",
+        "state pair"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 469 is vertical ceiling light, lit (wall); state pair unlit=468",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "469",
+      "subject_kind": "tile",
+      "terms": [
+        "vertical ceiling light, lit",
+        "wall",
+        "469",
+        "state pair"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 458 is rock (wall); state pair mossy=459",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "458",
+      "subject_kind": "tile",
+      "terms": [
+        "rock",
+        "wall",
+        "458",
+        "state pair"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 459 is rock, moss-grown (wall); state pair bare=458",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "459",
+      "subject_kind": "tile",
+      "terms": [
+        "rock, moss-grown",
+        "wall",
+        "459",
+        "state pair"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 464 is grate door (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "464",
+      "subject_kind": "tile",
+      "terms": [
+        "grate door",
+        "wall",
+        "464"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 2476 is cash register top surface; also machinery (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2476",
+      "subject_kind": "tile",
+      "terms": [
+        "cash register top surface; also machinery",
+        "wall",
+        "2476"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 2477 is machinery (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2477",
+      "subject_kind": "tile",
+      "terms": [
+        "machinery",
+        "wall",
+        "2477"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 2462 is machinery (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2462",
+      "subject_kind": "tile",
+      "terms": [
+        "machinery",
+        "wall",
+        "2462"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 2463 is machinery (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2463",
+      "subject_kind": "tile",
+      "terms": [
+        "machinery",
+        "wall",
+        "2463"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 34 is wood, usable e.g. for counter/cabinet sides (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "34",
+      "subject_kind": "tile",
+      "terms": [
+        "wood, usable e.g. for counter/cabinet sides",
+        "wall",
+        "34"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 35 is drawer fronts (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "35",
+      "subject_kind": "tile",
+      "terms": [
+        "drawer fronts",
+        "wall",
+        "35"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 36 is drawer fronts (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "36",
+      "subject_kind": "tile",
+      "terms": [
+        "drawer fronts",
+        "wall",
+        "36"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 1097 is sheet metal for shafts (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "1097",
+      "subject_kind": "tile",
+      "terms": [
+        "sheet metal for shafts",
+        "wall",
+        "1097"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 63 is barrel wall, broken (wall); state pair intact=64",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "63",
+      "subject_kind": "tile",
+      "terms": [
+        "barrel wall, broken",
+        "wall",
+        "63",
+        "state pair"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 64 is barrel wall (wall); state pair broken=63",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "64",
+      "subject_kind": "tile",
+      "terms": [
+        "barrel wall",
+        "wall",
+        "64",
+        "state pair"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 31 is bookcase front (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "31",
+      "subject_kind": "tile",
+      "terms": [
+        "bookcase front",
+        "wall",
+        "31"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 32 is bookcase front (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "32",
+      "subject_kind": "tile",
+      "terms": [
+        "bookcase front",
+        "wall",
+        "32"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 33 is bookcase front (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "33",
+      "subject_kind": "tile",
+      "terms": [
+        "bookcase front",
+        "wall",
+        "33"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 496 is technical wall with pipes (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "496",
+      "subject_kind": "tile",
+      "terms": [
+        "technical wall with pipes",
+        "wall",
+        "496"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 497 is technical wall with pipes (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "497",
+      "subject_kind": "tile",
+      "terms": [
+        "technical wall with pipes",
+        "wall",
+        "497"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 498 is technical wall with pipes (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "498",
+      "subject_kind": "tile",
+      "terms": [
+        "technical wall with pipes",
+        "wall",
+        "498"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 499 is technical wall with pipes (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "499",
+      "subject_kind": "tile",
+      "terms": [
+        "technical wall with pipes",
+        "wall",
+        "499"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 500 is technical door (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "500",
+      "subject_kind": "tile",
+      "terms": [
+        "technical door",
+        "wall",
+        "500"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 501 is technical light (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "501",
+      "subject_kind": "tile",
+      "terms": [
+        "technical light",
+        "wall",
+        "501"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 502 is sewer grate (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "502",
+      "subject_kind": "tile",
+      "terms": [
+        "sewer grate",
+        "wall",
+        "502"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "maskwall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 463 is grate (maskwall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "463",
+      "subject_kind": "tile",
+      "terms": [
+        "grate",
+        "maskwall",
+        "463"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "maskwall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 465 is grate (maskwall); state pair broken=466",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "465",
+      "subject_kind": "tile",
+      "terms": [
+        "grate",
+        "maskwall",
+        "465",
+        "state pair"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "maskwall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 466 is grate, broken (maskwall); state pair intact=465",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "466",
+      "subject_kind": "tile",
+      "terms": [
+        "grate, broken",
+        "maskwall",
+        "466",
+        "state pair"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "sprite",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 2101 is flame (small fire) (sprite); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2101",
+      "subject_kind": "tile",
+      "terms": [
+        "flame (small fire)",
+        "sprite",
+        "2101",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "sprite",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 3566 is large flame / bonfire (sprite); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "3566",
+      "subject_kind": "tile",
+      "terms": [
+        "large flame / bonfire",
+        "sprite",
+        "3566",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "sprite",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 731 is blood (spreading) (sprite); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "731",
+      "subject_kind": "tile",
+      "terms": [
+        "blood (spreading)",
+        "sprite",
+        "731",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "sprite",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 713 is blood splatter (wall) (sprite); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "713",
+      "subject_kind": "tile",
+      "terms": [
+        "blood splatter (wall)",
+        "sprite",
+        "713",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "sprite",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 732 is gore / blood mass (sprite); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "732",
+      "subject_kind": "tile",
+      "terms": [
+        "gore / blood mass",
+        "sprite",
+        "732",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "sprite",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 929 is blood dripping from ceiling (sprite); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "929",
+      "subject_kind": "tile",
+      "terms": [
+        "blood dripping from ceiling",
+        "sprite",
+        "929",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "sprite",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 754 is thin smoke/steam column (sprite); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "754",
+      "subject_kind": "tile",
+      "terms": [
+        "thin smoke/steam column",
+        "sprite",
+        "754",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "sprite",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 672 is smoke/steam plume (sprite); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "672",
+      "subject_kind": "tile",
+      "terms": [
+        "smoke/steam plume",
+        "sprite",
+        "672",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 2915 is water surface; sometimes clouds seen from above (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2915",
+      "subject_kind": "tile",
+      "terms": [
+        "water surface; sometimes clouds seen from above",
+        "sprite",
+        "2915"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "sprite",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 580 is standing candelabrum, three candles (sprite); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "580",
+      "subject_kind": "tile",
+      "terms": [
+        "standing candelabrum, three candles",
+        "sprite",
+        "580",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "sprite",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 2493 is street lamp, snow-covered (sprite); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2493",
+      "subject_kind": "tile",
+      "terms": [
+        "street lamp, snow-covered",
+        "sprite",
+        "2493",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 384 is brick facade with shuttered window (backdrop) (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "384",
+      "subject_kind": "tile",
+      "terms": [
+        "brick facade with shuttered window (backdrop)",
+        "sprite",
+        "384"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 381 is facade section, cornice top, brick base (backdrop) (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "381",
+      "subject_kind": "tile",
+      "terms": [
+        "facade section, cornice top, brick base (backdrop)",
+        "sprite",
+        "381"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 371 is stone/slate wall with diamond emblem (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "371",
+      "subject_kind": "tile",
+      "terms": [
+        "stone/slate wall with diamond emblem",
+        "sprite",
+        "371"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 363 is stone block masonry (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "363",
+      "subject_kind": "tile",
+      "terms": [
+        "stone block masonry",
+        "sprite",
+        "363"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 470 is riveted metal plating (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "470",
+      "subject_kind": "tile",
+      "terms": [
+        "riveted metal plating",
+        "sprite",
+        "470"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 191 is metal hatch/grate with X brace (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "191",
+      "subject_kind": "tile",
+      "terms": [
+        "metal hatch/grate with X brace",
+        "sprite",
+        "191"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 58 is iron bars (jail) (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "58",
+      "subject_kind": "tile",
+      "terms": [
+        "iron bars (jail)",
+        "sprite",
+        "58"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 256 is wooden plank boarding; often a wooden rope-bridge deck (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "256",
+      "subject_kind": "tile",
+      "terms": [
+        "wooden plank boarding; often a wooden rope-bridge deck",
+        "sprite",
+        "256"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 69 is single wooden plank (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "69",
+      "subject_kind": "tile",
+      "terms": [
+        "single wooden plank",
+        "sprite",
+        "69"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 515 is straw (loose tangle) (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "515",
+      "subject_kind": "tile",
+      "terms": [
+        "straw (loose tangle)",
+        "sprite",
+        "515"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 838 is crack/hole in a wall (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "838",
+      "subject_kind": "tile",
+      "terms": [
+        "crack/hole in a wall",
+        "sprite",
+        "838"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 511 is small metal strip/plate (?) (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "511",
+      "subject_kind": "tile",
+      "terms": [
+        "small metal strip/plate (?)",
+        "sprite",
+        "511"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "sprite",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 3812 is letter E, font tile (sprite)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "3812",
+      "subject_kind": "tile",
+      "terms": [
+        "letter E, font tile",
+        "sprite",
+        "3812"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 449 is rough rock face / rubble stone (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "449",
+      "subject_kind": "tile",
+      "terms": [
+        "rough rock face / rubble stone",
+        "wall",
+        "449"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 80 is weathered vertical stone wall with hints of moss (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "80",
+      "subject_kind": "tile",
+      "terms": [
+        "weathered vertical stone wall with hints of moss",
+        "wall",
+        "80"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 91 is brick wall with base course (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "91",
+      "subject_kind": "tile",
+      "terms": [
+        "brick wall with base course",
+        "wall",
+        "91"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 200 is metal threshold with rivets (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "200",
+      "subject_kind": "tile",
+      "terms": [
+        "metal threshold with rivets",
+        "wall",
+        "200"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 2490 is light marble (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2490",
+      "subject_kind": "tile",
+      "terms": [
+        "light marble",
+        "wall",
+        "2490"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 109 is plaster wall with top beam and carved base (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "109",
+      "subject_kind": "tile",
+      "terms": [
+        "plaster wall with top beam and carved base",
+        "wall",
+        "109"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 427 is grey ashlar stone blocks (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "427",
+      "subject_kind": "tile",
+      "terms": [
+        "grey ashlar stone blocks",
+        "wall",
+        "427"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 90 is worn large bricks with moss (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "90",
+      "subject_kind": "tile",
+      "terms": [
+        "worn large bricks with moss",
+        "wall",
+        "90"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 84 is wooden paneling / wainscot (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "84",
+      "subject_kind": "tile",
+      "terms": [
+        "wooden paneling / wainscot",
+        "wall",
+        "84"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 385 is rough tan brickwork (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "385",
+      "subject_kind": "tile",
+      "terms": [
+        "rough tan brickwork",
+        "wall",
+        "385"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 21 is dark vertical planks (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "21",
+      "subject_kind": "tile",
+      "terms": [
+        "dark vertical planks",
+        "wall",
+        "21"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 67 is dark horizontal planks (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "67",
+      "subject_kind": "tile",
+      "terms": [
+        "dark horizontal planks",
+        "wall",
+        "67"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 369 is concrete/plaster with light cornice band (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "369",
+      "subject_kind": "tile",
+      "terms": [
+        "concrete/plaster with light cornice band",
+        "wall",
+        "369"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 195 is metal rail/track \u2014 e.g. the inner faces of doorways (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "195",
+      "subject_kind": "tile",
+      "terms": [
+        "metal rail/track \u2014 e.g. the inner faces of doorways",
+        "wall",
+        "195"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 281 is irregular grey stone masonry (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "281",
+      "subject_kind": "tile",
+      "terms": [
+        "irregular grey stone masonry",
+        "wall",
+        "281"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "wall",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 88 is wooden column/pilaster with base and capital (wall)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "88",
+      "subject_kind": "tile",
+      "terms": [
+        "wooden column/pilaster with base and capital",
+        "wall",
+        "88"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "surface",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 2500 is sky parallax segment (surface)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2500",
+      "subject_kind": "tile",
+      "terms": [
+        "sky parallax segment",
+        "surface",
+        "2500"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "surface",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 270 is dirt/earth ground (surface)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "270",
+      "subject_kind": "tile",
+      "terms": [
+        "dirt/earth ground",
+        "surface",
+        "270"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "weak",
+        "kind": "surface",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 2448 is marble; also used as snow (surface); weak binding, material only -- never names",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "2448",
+      "subject_kind": "tile",
+      "terms": [
+        "marble; also used as snow",
+        "surface",
+        "2448",
+        "weak binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "weak",
+        "kind": "surface",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 491 is metal plating; can also read as stone (surface); weak binding, material only -- never names",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "491",
+      "subject_kind": "tile",
+      "terms": [
+        "metal plating; can also read as stone",
+        "surface",
+        "491",
+        "weak binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "surface",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 273 is rock/cliff (surface)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "273",
+      "subject_kind": "tile",
+      "terms": [
+        "rock/cliff",
+        "surface",
+        "273"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "surface",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 416 is dark gravel/asphalt (surface)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "416",
+      "subject_kind": "tile",
+      "terms": [
+        "dark gravel/asphalt",
+        "surface",
+        "416"
+      ]
+    },
+    {
+      "detail": {
+        "binding": null,
+        "kind": "surface",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 3678 is dark rock / scorched ground (surface)",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "3678",
+      "subject_kind": "tile",
+      "terms": [
+        "dark rock / scorched ground",
+        "surface",
+        "3678"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "weak",
+        "kind": "surface",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 455 is moss-green surface material (also ceilings/walls) (surface); weak binding, material only -- never names",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "455",
+      "subject_kind": "tile",
+      "terms": [
+        "moss-green surface material (also ceilings/walls)",
+        "surface",
+        "455",
+        "weak binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "surface",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 361 is grass/turf with dirt patches (surface); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "361",
+      "subject_kind": "tile",
+      "terms": [
+        "grass/turf with dirt patches",
+        "surface",
+        "361",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "weak",
+        "kind": "surface",
+        "may_name": false
+      },
+      "provenance": "OWNER",
+      "says": "tile 253 is dressed/worked stone \u2014 altars, also concrete-like surfaces (surface); weak binding, material only -- never names",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "253",
+      "subject_kind": "tile",
+      "terms": [
+        "dressed/worked stone \u2014 altars, also concrete-like surfaces",
+        "surface",
+        "253",
+        "weak binding"
+      ]
+    },
+    {
+      "detail": {
+        "binding": "strong",
+        "kind": "surface",
+        "may_name": true
+      },
+      "provenance": "OWNER",
+      "says": "tile 1129 is railway track with sleepers, floor texture (surface); strong binding, may contribute to naming",
+      "source": "knowledge/blood/design/owner-anchors-v1.json",
+      "subject": "1129",
+      "subject_kind": "tile",
+      "terms": [
+        "railway track with sleepers, floor texture",
+        "surface",
+        "1129",
+        "strong binding"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "medium",
+        "status": "supported"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "A deathmatch start already sits in a large sky cell with many immediate portal choices and high local 2D sight.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:spawn:open-hunting-cell",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:spawn:open-hunting-cell",
+        "pattern:spawn:open-hunting-cell",
+        "open-hunting-cell",
+        "spawn"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "medium",
+        "status": "supported"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "A small sky pad with a single exit whose reachable neighborhood is still a large field.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:spawn:sky-porch-into-field",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:spawn:sky-porch-into-field",
+        "pattern:spawn:sky-porch-into-field",
+        "sky-porch",
+        "spawn"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "low",
+        "status": "hypothesis"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "Sky start whose locally reachable area is small relative to the corpus median.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:spawn:sky-constrained-alcove",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:spawn:sky-constrained-alcove",
+        "pattern:spawn:sky-constrained-alcove",
+        "sky-alcove",
+        "spawn"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "medium",
+        "status": "supported"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "Covered start that still reaches the largest sky component in a few portal hops.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:spawn:covered-hops-to-sky",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:spawn:covered-hops-to-sky",
+        "pattern:spawn:covered-hops-to-sky",
+        "covered-approach",
+        "spawn"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "low",
+        "status": "disputed"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "Sky starts whose pairwise 2D sight to other starts is commonly clear.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:spawn:pairwise-2d-exposed",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:spawn:pairwise-2d-exposed",
+        "pattern:spawn:pairwise-2d-exposed",
+        "spawn-sight",
+        "2d-limit"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "medium",
+        "status": "supported"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "Shortest at-rest path from a start to the largest sky sector never samples cover.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:route:all-sky-shortest-path",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:route:all-sky-shortest-path",
+        "pattern:route:all-sky-shortest-path",
+        "all-sky-route"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "low",
+        "status": "hypothesis"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "Shortest path samples cover first, then sky.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:route:cover-then-open",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:route:cover-then-open",
+        "pattern:route:cover-then-open",
+        "cover-to-open"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "low",
+        "status": "hypothesis"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "Sky path interrupted by a covered sample, then sky again.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:route:open-cover-open",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:route:open-cover-open",
+        "pattern:route:open-cover-open",
+        "through-mass"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "high",
+        "status": "disputed"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "Axis-aligned 4-vertex covered loop. The most common BloodBath local footprint.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:morph:rectangular-covered-cell",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:morph:rectangular-covered-cell",
+        "pattern:morph:rectangular-covered-cell",
+        "orthogonal-cell",
+        "construction-default"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "medium",
+        "status": "supported"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "Non-rectangular covered loop with 9+ vertices and loose AABB fill.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:morph:irregular-covered-footprint",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:morph:irregular-covered-footprint",
+        "pattern:morph:irregular-covered-footprint",
+        "irregular-footprint"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "medium",
+        "status": "supported"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "High-vertex covered loop with chamfer-like corners.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:morph:chamfered-irregular",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:morph:chamfered-irregular",
+        "pattern:morph:chamfered-irregular",
+        "chamfer"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "medium",
+        "status": "supported"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "Covered loop containing a segmented-arc / curved-chain candidate.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:morph:segmented-curve-chain",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:morph:segmented-curve-chain",
+        "pattern:morph:segmented-curve-chain",
+        "segmented-curve"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "medium",
+        "status": "supported"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "Sky sector whose outer loop contains one or more holes.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:morph:sky-host-with-holes",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:morph:sky-host-with-holes",
+        "pattern:morph:sky-host-with-holes",
+        "carved-mass",
+        "outdoor-host"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "low",
+        "status": "hypothesis"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "Walkable rest transition of about a storey within the same sky/cover class into a larger cell.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:vertical:storey-same-cover-into-larger",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:vertical:storey-same-cover-into-larger",
+        "pattern:vertical:storey-same-cover-into-larger",
+        "height-change"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "medium",
+        "status": "supported"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "Walkable transition from a sky sector into a covered sector.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:vertical:open-into-cover",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:vertical:open-into-cover",
+        "pattern:vertical:open-into-cover",
+        "enter-building"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "medium",
+        "status": "supported"
+      },
+      "population": "blood-bloodbath",
+      "provenance": "INTERPRETED",
+      "says": "Walkable transition from cover into sky.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:vertical:cover-into-open",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:vertical:cover-into-open",
+        "pattern:vertical:cover-into-open",
+        "exit-building"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "medium",
+        "status": "supported"
+      },
+      "population": "blood-campaign",
+      "provenance": "INTERPRETED",
+      "says": "Campaign start-to-sky shortest path samples cover first, then sky.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:campaign-route:cover-then-open",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:campaign-route:cover-then-open",
+        "pattern:campaign-route:cover-then-open",
+        "cover-to-open",
+        "campaign-start"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "high",
+        "status": "disputed"
+      },
+      "population": "blood-campaign",
+      "provenance": "INTERPRETED",
+      "says": "Axis-aligned 4-vertex covered loop. The modal campaign footprint.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:campaign-morph:rectangular-covered-cell",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:campaign-morph:rectangular-covered-cell",
+        "pattern:campaign-morph:rectangular-covered-cell",
+        "orthogonal-cell",
+        "construction-default"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "medium",
+        "status": "supported"
+      },
+      "population": "blood-campaign",
+      "provenance": "INTERPRETED",
+      "says": "Non-rectangular covered 9+ vertex loops with loose AABB fill in campaign maps.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:campaign-morph:irregular-covered-footprint",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:campaign-morph:irregular-covered-footprint",
+        "pattern:campaign-morph:irregular-covered-footprint",
+        "irregular-footprint"
+      ]
+    },
+    {
+      "detail": {
+        "confidence": "low",
+        "status": "hypothesis"
+      },
+      "population": "blood-campaign",
+      "provenance": "INTERPRETED",
+      "says": "Campaign storey-scale rest transitions within the same sky/cover class into a larger cell.",
+      "source": "knowledge/blood/design/catalog-v1.json",
+      "subject": "pattern:campaign-vertical:storey-same-cover-into-larger",
+      "subject_kind": "family",
+      "terms": [
+        "pattern:campaign-vertical:storey-same-cover-into-larger",
+        "pattern:campaign-vertical:storey-same-cover-into-larger",
+        "height-change"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "apertures: 5 recorded entries",
+      "source": "knowledge/blood/design/apertures-v1.json",
+      "subject": "apertures",
+      "subject_kind": "family",
+      "terms": [
+        "apertures",
+        "apertures-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "decoration: 60 recorded entries",
+      "source": "knowledge/blood/design/decoration-v1.json",
+      "subject": "decoration",
+      "subject_kind": "family",
+      "terms": [
+        "decoration",
+        "decoration-v1"
+      ]
+    },
+    {
+      "population": "blood-campaign",
+      "provenance": "DERIVED",
+      "says": "door families: 2 recorded entries",
+      "source": "knowledge/blood/design/door-families-v1.json",
+      "subject": "door families",
+      "subject_kind": "family",
+      "terms": [
+        "door families",
+        "door-families-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "e3m8 reference: 4 recorded entries",
+      "source": "knowledge/blood/design/e3m8-reference-v1.json",
+      "subject": "e3m8 reference",
+      "subject_kind": "family",
+      "terms": [
+        "e3m8 reference",
+        "e3m8-reference-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "fixtures: 5 recorded entries",
+      "source": "knowledge/blood/design/fixtures-v1.json",
+      "subject": "fixtures",
+      "subject_kind": "family",
+      "terms": [
+        "fixtures",
+        "fixtures-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "keys: 2 recorded entries",
+      "source": "knowledge/blood/design/keys-v1.json",
+      "subject": "keys",
+      "subject_kind": "family",
+      "terms": [
+        "keys",
+        "keys-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "layers: 4 recorded entries",
+      "source": "knowledge/blood/design/layers-v1.json",
+      "subject": "layers",
+      "subject_kind": "family",
+      "terms": [
+        "layers",
+        "layers-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "mechanisms: 15 recorded entries",
+      "source": "knowledge/blood/design/mechanisms-v1.json",
+      "subject": "mechanisms",
+      "subject_kind": "family",
+      "terms": [
+        "mechanisms",
+        "mechanisms-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "monuments: 16 recorded entries",
+      "source": "knowledge/blood/design/monuments-v1.json",
+      "subject": "monuments",
+      "subject_kind": "family",
+      "terms": [
+        "monuments",
+        "monuments-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "norms: 43 recorded entries",
+      "source": "knowledge/blood/design/norms-v1.json",
+      "subject": "norms",
+      "subject_kind": "family",
+      "terms": [
+        "norms",
+        "norms-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "overlooks: 309 recorded entries",
+      "source": "knowledge/blood/design/overlooks-v1.json",
+      "subject": "overlooks",
+      "subject_kind": "family",
+      "terms": [
+        "overlooks",
+        "overlooks-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "patterns: 9 recorded entries",
+      "source": "knowledge/blood/design/patterns-v1.json",
+      "subject": "patterns",
+      "subject_kind": "family",
+      "terms": [
+        "patterns",
+        "patterns-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "prefabs: 3 recorded entries",
+      "source": "knowledge/blood/design/prefabs-v1.json",
+      "subject": "prefabs",
+      "subject_kind": "family",
+      "terms": [
+        "prefabs",
+        "prefabs-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "rules: 3 recorded entries",
+      "source": "knowledge/blood/design/rules-v1.json",
+      "subject": "rules",
+      "subject_kind": "family",
+      "terms": [
+        "rules",
+        "rules-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "run rhythm: 30 recorded entries",
+      "source": "knowledge/blood/design/run-rhythm-v1.json",
+      "subject": "run rhythm",
+      "subject_kind": "family",
+      "terms": [
+        "run rhythm",
+        "run-rhythm-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "set pieces: 312 recorded entries",
+      "source": "knowledge/blood/design/set-pieces-v1.json",
+      "subject": "set pieces",
+      "subject_kind": "family",
+      "terms": [
+        "set pieces",
+        "set-pieces-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "sprite heights: 3 recorded entries",
+      "source": "knowledge/blood/design/sprite-heights-v1.json",
+      "subject": "sprite heights",
+      "subject_kind": "family",
+      "terms": [
+        "sprite heights",
+        "sprite-heights-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "stacks: 251 recorded entries",
+      "source": "knowledge/blood/design/stacks-v1.json",
+      "subject": "stacks",
+      "subject_kind": "family",
+      "terms": [
+        "stacks",
+        "stacks-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "storeys: 4 recorded entries",
+      "source": "knowledge/blood/design/storeys-v1.json",
+      "subject": "storeys",
+      "subject_kind": "family",
+      "terms": [
+        "storeys",
+        "storeys-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "surface items: 10 recorded entries",
+      "source": "knowledge/blood/design/surface-items-v1.json",
+      "subject": "surface items",
+      "subject_kind": "family",
+      "terms": [
+        "surface items",
+        "surface-items-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "surface palettes: 3 recorded entries",
+      "source": "knowledge/blood/design/surface-palettes-v1.json",
+      "subject": "surface palettes",
+      "subject_kind": "family",
+      "terms": [
+        "surface palettes",
+        "surface-palettes-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "switches: 1396 recorded entries",
+      "source": "knowledge/blood/design/switches-v1.json",
+      "subject": "switches",
+      "subject_kind": "family",
+      "terms": [
+        "switches",
+        "switches-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "texture fit: 3 recorded entries",
+      "source": "knowledge/blood/design/texture-fit-v1.json",
+      "subject": "texture fit",
+      "subject_kind": "family",
+      "terms": [
+        "texture fit",
+        "texture-fit-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "visual norms: 2 recorded entries",
+      "source": "knowledge/blood/design/visual-norms-v1.json",
+      "subject": "visual norms",
+      "subject_kind": "family",
+      "terms": [
+        "visual norms",
+        "visual-norms-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "wall sprites: 9 recorded entries",
+      "source": "knowledge/blood/design/wall-sprites-v1.json",
+      "subject": "wall sprites",
+      "subject_kind": "family",
+      "terms": [
+        "wall sprites",
+        "wall-sprites-v1"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "wall thickness: 3 recorded entries",
+      "source": "knowledge/blood/design/wall-thickness-v1.json",
+      "subject": "wall thickness",
+      "subject_kind": "family",
+      "terms": [
+        "wall thickness",
+        "wall-thickness-v1"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.anchor-kit",
+      "source": "reports/anchor-e6m1-shop.json",
+      "subject": "anchor-e6m1-shop",
+      "subject_kind": "family",
+      "terms": [
+        "anchor-e6m1-shop"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.anchor-kit",
+      "source": "reports/anchor-sewer-kit.json",
+      "subject": "anchor-sewer-kit",
+      "subject_kind": "family",
+      "terms": [
+        "anchor-sewer-kit"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "attachment_fixture",
+      "source": "reports/attachment_fixture.json",
+      "subject": "attachment_fixture",
+      "subject_kind": "family",
+      "terms": [
+        "attachment_fixture"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "BB2-qd-slice",
+      "source": "reports/BB2-qd-slice.json",
+      "subject": "BB2-qd-slice",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-qd-slice"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.reconstruction-contract",
+      "source": "reports/BB2-reconstruction-contract.json",
+      "subject": "BB2-reconstruction-contract",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-reconstruction-contract"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/BB2-reconstruction-understanding.md"
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.map-understanding-report",
+      "source": "reports/BB2-reconstruction-understanding.json",
+      "subject": "BB2-reconstruction-understanding",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-reconstruction-understanding"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/BB2-reconstruction-v3-understanding.md"
+      },
+      "provenance": "DERIVED",
+      "says": "bundled independent sensors; not a room model and not a similarity score",
+      "source": "reports/BB2-reconstruction-v3-understanding.json",
+      "subject": "BB2-reconstruction-v3-understanding",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-reconstruction-v3-understanding"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/BB2-semantic-roundtrip.md"
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.semantic-roundtrip",
+      "source": "reports/BB2-semantic-roundtrip.json",
+      "subject": "BB2-semantic-roundtrip",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-semantic-roundtrip"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/BB2-understanding.md"
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.map-understanding",
+      "source": "reports/BB2-understanding.json",
+      "subject": "BB2-understanding",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-understanding"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/BB2-v2-geometry-audit.md"
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.geometry-audit",
+      "source": "reports/BB2-v2-geometry-audit.json",
+      "subject": "BB2-v2-geometry-audit",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-v2-geometry-audit"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "BB2-v3-build-report",
+      "source": "reports/BB2-v3-build-report.json",
+      "subject": "BB2-v3-build-report",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-v3-build-report"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "BB3-vertical-patterns",
+      "source": "reports/BB3-vertical-patterns.json",
+      "subject": "BB3-vertical-patterns",
+      "subject_kind": "family",
+      "terms": [
+        "BB3-vertical-patterns"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "BB6-pattern-reconstruction-v1-build",
+      "source": "reports/BB6-pattern-reconstruction-v1-build.json",
+      "subject": "BB6-pattern-reconstruction-v1-build",
+      "subject_kind": "family",
+      "terms": [
+        "BB6-pattern-reconstruction-v1-build"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/BB6-pattern-reconstruction-v1-understanding.md"
+      },
+      "provenance": "DERIVED",
+      "says": "bundled independent sensors; not a room model and not a similarity score",
+      "source": "reports/BB6-pattern-reconstruction-v1-understanding.json",
+      "subject": "BB6-pattern-reconstruction-v1-understanding",
+      "subject_kind": "family",
+      "terms": [
+        "BB6-pattern-reconstruction-v1-understanding"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/BB6-understanding.md"
+      },
+      "provenance": "DERIVED",
+      "says": "bundled independent sensors; not a room model and not a similarity score",
+      "source": "reports/BB6-understanding.json",
+      "subject": "BB6-understanding",
+      "subject_kind": "family",
+      "terms": [
+        "BB6-understanding"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-assembly-counters.md"
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.static-assembly",
+      "source": "reports/blood-assembly-counters.json",
+      "subject": "blood-assembly-counters",
+      "subject_kind": "family",
+      "terms": [
+        "blood-assembly-counters"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-assembly-regions.md"
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.functional-region-survey",
+      "source": "reports/blood-assembly-regions.json",
+      "subject": "blood-assembly-regions",
+      "subject_kind": "family",
+      "terms": [
+        "blood-assembly-regions"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.blood-corpus-health",
+      "source": "reports/blood-community-corpus-health.json",
+      "subject": "blood-community-corpus-health",
+      "subject_kind": "family",
+      "terms": [
+        "blood-community-corpus-health"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-conditional-topology.md"
+      },
+      "population": "blood-campaign",
+      "provenance": "DERIVED",
+      "says": "llmapper.blood-conditional-topology",
+      "source": "reports/blood-conditional-topology.json",
+      "subject": "blood-conditional-topology",
+      "subject_kind": "family",
+      "terms": [
+        "blood-conditional-topology",
+        "conditional",
+        "gate",
+        "crack",
+        "keyed door",
+        "lift",
+        "base graph",
+        "blocking"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.anchor-contrast",
+      "source": "reports/blood-contrast-bookcase-vs-crate.json",
+      "subject": "blood-contrast-bookcase-vs-crate",
+      "subject_kind": "family",
+      "terms": [
+        "blood-contrast-bookcase-vs-crate"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.signature-contrast",
+      "source": "reports/blood-contrast-niche-pair-visible-only.json",
+      "subject": "blood-contrast-niche-pair-visible-only",
+      "subject_kind": "family",
+      "terms": [
+        "blood-contrast-niche-pair-visible-only"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-contrast-niche-pair.md"
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.signature-contrast",
+      "source": "reports/blood-contrast-niche-pair.json",
+      "subject": "blood-contrast-niche-pair",
+      "subject_kind": "family",
+      "terms": [
+        "blood-contrast-niche-pair"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-contrast-shelf-vs-crate.md"
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.anchor-contrast",
+      "source": "reports/blood-contrast-shelf-vs-crate.json",
+      "subject": "blood-contrast-shelf-vs-crate",
+      "subject_kind": "family",
+      "terms": [
+        "blood-contrast-shelf-vs-crate"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "population": "blood-campaign",
+      "provenance": "DERIVED",
+      "says": "llmapper.blood-doors",
+      "source": "reports/blood-door-families.json",
+      "subject": "blood-door-families",
+      "subject_kind": "family",
+      "terms": [
+        "blood-door-families",
+        "door family",
+        "door"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-effects-motion.md"
+      },
+      "population": "blood-campaign",
+      "provenance": "DERIVED",
+      "says": "llmapper.blood-effects-motion",
+      "source": "reports/blood-effects-motion.json",
+      "subject": "blood-effects-motion",
+      "subject_kind": "family",
+      "terms": [
+        "blood-effects-motion",
+        "effect",
+        "door",
+        "lift",
+        "z-motion",
+        "embedding"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-effects-switches.md"
+      },
+      "provenance": "DERIVED",
+      "says": "does a concealed trigger command a different kind of thing than an exposed one",
+      "source": "reports/blood-effects-switches.json",
+      "subject": "blood-effects-switches",
+      "subject_kind": "family",
+      "terms": [
+        "blood-effects-switches",
+        "switch",
+        "hidden switch",
+        "channel"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-facade-grammar.md"
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.facade-grammar",
+      "source": "reports/blood-facade-grammar.json",
+      "subject": "blood-facade-grammar",
+      "subject_kind": "family",
+      "terms": [
+        "blood-facade-grammar",
+        "facade",
+        "frontage",
+        "bay",
+        "street"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-hidden-switch-placement.md"
+      },
+      "population": "blood-campaign",
+      "provenance": "DERIVED",
+      "says": "does a concealed trigger sit somewhere different from an exposed one, relative to what it opens",
+      "source": "reports/blood-hidden-switch-placement.json",
+      "subject": "blood-hidden-switch-placement",
+      "subject_kind": "family",
+      "terms": [
+        "blood-hidden-switch-placement",
+        "hidden switch",
+        "placement",
+        "closet"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.blood-key-signifiers",
+      "source": "reports/blood-key-signifiers.json",
+      "subject": "blood-key-signifiers",
+      "subject_kind": "family",
+      "terms": [
+        "blood-key-signifiers",
+        "key",
+        "lock",
+        "emblem"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-lintel-band.md"
+      },
+      "provenance": "DERIVED",
+      "says": "is the band a sign sits on recoverable, and does it place the sign?",
+      "source": "reports/blood-lintel-band.json",
+      "subject": "blood-lintel-band",
+      "subject_kind": "family",
+      "terms": [
+        "blood-lintel-band"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.blood-corpus-health",
+      "source": "reports/blood-mechanism-corpus-health.json",
+      "subject": "blood-mechanism-corpus-health",
+      "subject_kind": "family",
+      "terms": [
+        "blood-mechanism-corpus-health"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-mining-population.md"
+      },
+      "provenance": "DERIVED",
+      "says": "these files say campaign and were mined over campaign plus curated; relabel them, or re-mine them narrower?",
+      "source": "reports/blood-mining-population.json",
+      "subject": "blood-mining-population",
+      "subject_kind": "family",
+      "terms": [
+        "blood-mining-population"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "population": "blood-campaign",
+      "provenance": "DERIVED",
+      "says": "llmapper.object-placement",
+      "source": "reports/blood-object-placement.json",
+      "subject": "blood-object-placement",
+      "subject_kind": "family",
+      "terms": [
+        "blood-object-placement"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-object-relations-pilot.md"
+      },
+      "population": "blood-campaign",
+      "provenance": "DERIVED",
+      "says": "llmapper.object-relation-pilot",
+      "source": "reports/blood-object-relations-pilot.json",
+      "subject": "blood-object-relations-pilot",
+      "subject_kind": "family",
+      "terms": [
+        "blood-object-relations-pilot"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.blood-corpus-health",
+      "source": "reports/blood-own-conversion-corpus-health.json",
+      "subject": "blood-own-conversion-corpus-health",
+      "subject_kind": "family",
+      "terms": [
+        "blood-own-conversion-corpus-health"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-party-walls.md"
+      },
+      "provenance": "DERIVED",
+      "says": "does anything on a facade mark where one building stops?",
+      "source": "reports/blood-party-walls.json",
+      "subject": "blood-party-walls",
+      "subject_kind": "family",
+      "terms": [
+        "blood-party-walls"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-passage-oracle.md"
+      },
+      "provenance": "DERIVED",
+      "says": "does a body fit through a turnstile at its mined spin rate",
+      "source": "reports/blood-passage-oracle.json",
+      "subject": "blood-passage-oracle",
+      "subject_kind": "family",
+      "terms": [
+        "blood-passage-oracle",
+        "passage",
+        "oracle",
+        "turnstile"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.design-pattern-corpus-summary",
+      "source": "reports/blood-pattern-corpus-summary.json",
+      "subject": "blood-pattern-corpus-summary",
+      "subject_kind": "family",
+      "terms": [
+        "blood-pattern-corpus-summary"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.blood-corpus-health",
+      "source": "reports/blood-reference-corpus-health.json",
+      "subject": "blood-reference-corpus-health",
+      "subject_kind": "family",
+      "terms": [
+        "blood-reference-corpus-health"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.blood-design-role-v2",
+      "source": "reports/blood-role-v2.json",
+      "subject": "blood-role-v2",
+      "subject_kind": "family",
+      "terms": [
+        "blood-role-v2",
+        "design role",
+        "naming",
+        "plane"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.scenic-candidates",
+      "source": "reports/blood-scenic-unreachable-candidates.json",
+      "subject": "blood-scenic-unreachable-candidates",
+      "subject_kind": "family",
+      "terms": [
+        "blood-scenic-unreachable-candidates"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "population": "blood-campaign",
+      "provenance": "DERIVED",
+      "says": "llmapper.blood-sprite-context",
+      "source": "reports/blood-sprite-context.json",
+      "subject": "blood-sprite-context",
+      "subject_kind": "family",
+      "terms": [
+        "blood-sprite-context"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-swept-mechanisms.md"
+      },
+      "population": "blood-campaign",
+      "provenance": "DERIVED",
+      "says": "llmapper.blood-swept-mechanisms",
+      "source": "reports/blood-swept-mechanisms.json",
+      "subject": "blood-swept-mechanisms",
+      "subject_kind": "family",
+      "terms": [
+        "blood-swept-mechanisms",
+        "slide",
+        "rotate",
+        "swept",
+        "payload",
+        "carried sprites",
+        "room over room",
+        "ror"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/blood-wiring-placement.md"
+      },
+      "population": "blood-campaign",
+      "provenance": "DERIVED",
+      "says": "where does a sector-sound marker sit, and is its z a convention",
+      "source": "reports/blood-wiring-placement.json",
+      "subject": "blood-wiring-placement",
+      "subject_kind": "family",
+      "terms": [
+        "blood-wiring-placement"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "corpus_inventory",
+      "source": "reports/corpus_inventory.json",
+      "subject": "corpus_inventory",
+      "subject_kind": "family",
+      "terms": [
+        "corpus_inventory"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "corpus_statistics",
+      "source": "reports/corpus_statistics.json",
+      "subject": "corpus_statistics",
+      "subject_kind": "family",
+      "terms": [
+        "corpus_statistics"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "bloodmap.design-corpus-demonstration",
+      "source": "reports/design_corpus_examples.json",
+      "subject": "design_corpus_examples",
+      "subject_kind": "family",
+      "terms": [
+        "design_corpus_examples"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.conversion-report",
+      "source": "reports/dne3l1_to_duke_geometry.json",
+      "subject": "dne3l1_to_duke_geometry",
+      "subject_kind": "family",
+      "terms": [
+        "dne3l1_to_duke_geometry"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "duke3d_corpus_inventory",
+      "source": "reports/duke3d_corpus_inventory.json",
+      "subject": "duke3d_corpus_inventory",
+      "subject_kind": "family",
+      "terms": [
+        "duke3d_corpus_inventory"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/E1M4-bundle.md"
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.multi-view-bundle",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4-bundle",
+      "subject_kind": "family",
+      "terms": [
+        "E1M4-bundle",
+        "bundle",
+        "multi-view",
+        "disagreement"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_ceiling); gates [11, 13], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 12",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 12",
+        "s12"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (slide)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 27",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 27",
+        "s27"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (slide)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 34",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 34",
+        "s34"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (slide)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 35",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 35",
+        "s35"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (slide)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 36",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 36",
+        "s36"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (slide)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 37",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 37",
+        "s37"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (slide)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 38",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 38",
+        "s38"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (slide)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 39",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 39",
+        "s39"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (slide)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 40",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 40",
+        "s40"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (slide)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 41",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 41",
+        "s41"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_ceiling); gates [25, 43], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 42",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 42",
+        "s42"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 56",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 56",
+        "s56"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_ceiling); gates [58, 60], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 59",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 59",
+        "s59"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "gates [25], neither; neither (z_floor)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 64",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 64",
+        "s64"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 75",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 75",
+        "s75"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 111",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 111",
+        "s111"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 114",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 114",
+        "s114"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 117",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 117",
+        "s117"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_ceiling); gates [105, 135], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 133",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 133",
+        "s133"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "both (z_floor); gates [132, 133, 134], both",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 135",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 135",
+        "s135"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 139",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 139",
+        "s139"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 149",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 149",
+        "s149"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 151",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 151",
+        "s151"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 152",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 152",
+        "s152"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 156",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 156",
+        "s156"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 162",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 162",
+        "s162"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a body between levels (z_split)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 172",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 172",
+        "s172"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "gates [172], neither; neither (z_floor)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 174",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 174",
+        "s174"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 182",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 182",
+        "s182"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (slide)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 184",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 184",
+        "s184"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a body between levels (z_floor); gates [202, 203, 364], carries a body between levels",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 201",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 201",
+        "s201"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 210",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 210",
+        "s210"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (slide)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 213",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 213",
+        "s213"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (slide)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 214",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 214",
+        "s214"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 216",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 216",
+        "s216"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (slide)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 218",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 218",
+        "s218"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_ceiling); gates [227, 340], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 228",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 228",
+        "s228"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 233",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 233",
+        "s233"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_ceiling); gates [234, 236], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 235",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 235",
+        "s235"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 237",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 237",
+        "s237"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 273",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 273",
+        "s273"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_ceiling); gates [245, 277, 278], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 276",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 276",
+        "s276"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_ceiling); gates [245, 276, 278], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 277",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 277",
+        "s277"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a body between levels (z_floor); gates [288, 289, 290, 291, 293], carries a body between levels",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 292",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 292",
+        "s292"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_ceiling); gates [294, 296], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 295",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 295",
+        "s295"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "gates [292], neither; neither (z_floor)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 299",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 299",
+        "s299"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 310",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 310",
+        "s310"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 314",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 314",
+        "s314"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 320",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 320",
+        "s320"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 321",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 321",
+        "s321"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 322",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 322",
+        "s322"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 323",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 323",
+        "s323"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 324",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 324",
+        "s324"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 325",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 325",
+        "s325"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 326",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 326",
+        "s326"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 327",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 327",
+        "s327"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 328",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 328",
+        "s328"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (rotate)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 329",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 329",
+        "s329"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 335",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 335",
+        "s335"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "gates [335, 336], neither; neither (z_floor)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 337",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 337",
+        "s337"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 338",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 338",
+        "s338"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 341",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 341",
+        "s341"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 346",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 346",
+        "s346"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_ceiling); gates [348, 351], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 349",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 349",
+        "s349"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 352",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 352",
+        "s352"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_ceiling); gates [358, 361], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 359",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 359",
+        "s359"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_ceiling); gates [204, 367], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 365",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 365",
+        "s365"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "gates [366], neither; neither (z_floor)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 368",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 368",
+        "s368"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a body between levels (z_floor); gates [370, 372], carries a body between levels",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 373",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 373",
+        "s373"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "neither (z_ceiling)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 374",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 374",
+        "s374"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_floor); gates [181, 205, 378], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 376",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 376",
+        "s376"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_ceiling); gates [130, 380], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 379",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 379",
+        "s379"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 381",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 381",
+        "s381"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 382",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 382",
+        "s382"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "neither (z_ceiling)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 383",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 383",
+        "s383"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 388",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 388",
+        "s388"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "carries a street facade",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 390",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 390",
+        "s390"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "changes what fits through (z_ceiling); gates [396, 397], changes what fits through",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 395",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 395",
+        "s395"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "not decidable from z alone (slide)",
+      "source": "reports/E1M4-bundle.json",
+      "subject": "E1M4 sector 397",
+      "subject_kind": "map-sector",
+      "terms": [
+        "E1M4",
+        "sector 397",
+        "s397"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "E2M2-mechanism-patterns",
+      "source": "reports/E2M2-mechanism-patterns.json",
+      "subject": "E2M2-mechanism-patterns",
+      "subject_kind": "family",
+      "terms": [
+        "E2M2-mechanism-patterns"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "keys + RX Z-motion + push motion + TX in reached sectors; not a player simulator",
+      "source": "reports/E2M2-progression.json",
+      "subject": "E2M2-progression",
+      "subject_kind": "family",
+      "terms": [
+        "E2M2-progression"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/E2M2-understanding.md"
+      },
+      "provenance": "DERIVED",
+      "says": "understand sensors + state-dependent progression; not a room detector",
+      "source": "reports/E2M2-understanding.json",
+      "subject": "E2M2-understanding",
+      "subject_kind": "family",
+      "terms": [
+        "E2M2-understanding"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.playable-conversion-summary",
+      "source": "reports/e3l11_playable_summary.json",
+      "subject": "e3l11_playable_summary",
+      "subject_kind": "family",
+      "terms": [
+        "e3l11_playable_summary"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.cross-game-evidence-summary",
+      "source": "reports/e3l1_cross_game_summary.json",
+      "subject": "e3l1_cross_game_summary",
+      "subject_kind": "family",
+      "terms": [
+        "e3l1_cross_game_summary"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.conversion-report",
+      "source": "reports/e3l1_to_blood_geometry.json",
+      "subject": "e3l1_to_blood_geometry",
+      "subject_kind": "family",
+      "terms": [
+        "e3l1_to_blood_geometry"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.eduke32-oracle-report",
+      "source": "reports/eduke32_conversion_oracle.json",
+      "subject": "eduke32_conversion_oracle",
+      "subject_kind": "family",
+      "terms": [
+        "eduke32_conversion_oracle"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "Level-0 static graph/traversal and direct-portal visibility candidates; no renderer or dynamic mechanism simulation.",
+      "source": "reports/experience_atlas_examples.json",
+      "subject": "experience_atlas_examples",
+      "subject_kind": "family",
+      "terms": [
+        "experience_atlas_examples"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "bloodmap.nblood-oracle-report",
+      "source": "reports/nblood_attachment_oracle.json",
+      "subject": "nblood_attachment_oracle",
+      "subject_kind": "family",
+      "terms": [
+        "nblood_attachment_oracle"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "bloodmap.nblood-behavior-oracle-report",
+      "source": "reports/nblood_behavior_oracle.json",
+      "subject": "nblood_behavior_oracle",
+      "subject_kind": "family",
+      "terms": [
+        "nblood_behavior_oracle"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "bloodmap.nblood-oracle-report",
+      "source": "reports/nblood_conversion_oracle.json",
+      "subject": "nblood_conversion_oracle",
+      "subject_kind": "family",
+      "terms": [
+        "nblood_conversion_oracle"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "bloodmap.nblood-oracle-report",
+      "source": "reports/nblood_e1m2_remix_oracle.json",
+      "subject": "nblood_e1m2_remix_oracle",
+      "subject_kind": "family",
+      "terms": [
+        "nblood_e1m2_remix_oracle"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "bloodmap.nblood-action-oracle-report",
+      "source": "reports/nblood_first_puzzle_room_action.json",
+      "subject": "nblood_first_puzzle_room_action",
+      "subject_kind": "family",
+      "terms": [
+        "nblood_first_puzzle_room_action"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "bloodmap.nblood-action-oracle-report",
+      "source": "reports/nblood_first_puzzle_room_switch_b_action.json",
+      "subject": "nblood_first_puzzle_room_switch_b_action",
+      "subject_kind": "family",
+      "terms": [
+        "nblood_first_puzzle_room_switch_b_action"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "bloodmap.nblood-oracle-report",
+      "source": "reports/nblood_mashup_oracle.json",
+      "subject": "nblood_mashup_oracle",
+      "subject_kind": "family",
+      "terms": [
+        "nblood_mashup_oracle"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "bloodmap.nblood-oracle-report",
+      "source": "reports/nblood_oracle.json",
+      "subject": "nblood_oracle",
+      "subject_kind": "family",
+      "terms": [
+        "nblood_oracle"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.open-test-baseline",
+      "source": "reports/open-test-baseline.json",
+      "subject": "open-test-baseline",
+      "subject_kind": "family",
+      "terms": [
+        "open-test-baseline"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.sp-progression-v1-build",
+      "source": "reports/SP-progression-v1-build.json",
+      "subject": "SP-progression-v1-build",
+      "subject_kind": "family",
+      "terms": [
+        "SP-progression-v1-build"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/SP-progression-v1-understanding.md"
+      },
+      "provenance": "DERIVED",
+      "says": "understand sensors + state-dependent progression; not a room detector",
+      "source": "reports/SP-progression-v1-understanding.json",
+      "subject": "SP-progression-v1-understanding",
+      "subject_kind": "family",
+      "terms": [
+        "SP-progression-v1-understanding"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": "reports/SP-v1-door-audit.md"
+      },
+      "provenance": "DERIVED",
+      "says": "SP-v1-door-audit",
+      "source": "reports/SP-v1-door-audit.json",
+      "subject": "SP-v1-door-audit",
+      "subject_kind": "family",
+      "terms": [
+        "SP-v1-door-audit"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.sp-progression-v2-build",
+      "source": "reports/SP-v2-build.json",
+      "subject": "SP-v2-build",
+      "subject_kind": "family",
+      "terms": [
+        "SP-v2-build"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.door-affordance",
+      "source": "reports/SP-v2-door-affordance.json",
+      "subject": "SP-v2-door-affordance",
+      "subject_kind": "family",
+      "terms": [
+        "SP-v2-door-affordance"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "llmapper.sp-v2-door-runtime",
+      "source": "reports/SP-v2-door-runtime.json",
+      "subject": "SP-v2-door-runtime",
+      "subject_kind": "family",
+      "terms": [
+        "SP-v2-door-runtime"
+      ]
+    },
+    {
+      "detail": {
+        "markdown": null
+      },
+      "provenance": "DERIVED",
+      "says": "bloodmap.spatial-ambiguity-demonstration",
+      "source": "reports/spatial_ambiguity_examples.json",
+      "subject": "spatial_ambiguity_examples",
+      "subject_kind": "family",
+      "terms": [
+        "spatial_ambiguity_examples"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "Anchor queries: Phase 2",
+      "source": "reports/anchor-queries.md",
+      "subject": "anchor-queries",
+      "subject_kind": "family",
+      "terms": [
+        "anchor-queries"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "BB2 semantic reconstruction \u2014 design-level comparison",
+      "source": "reports/BB2-reconstruction-comparison.md",
+      "subject": "BB2-reconstruction-comparison",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-reconstruction-comparison"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "BB2 semantic reconstruction \u2014 design decisions",
+      "source": "reports/BB2-reconstruction-decisions.md",
+      "subject": "BB2-reconstruction-decisions",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-reconstruction-decisions"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "BB2 semantic reconstruction \u2014 information loss",
+      "source": "reports/BB2-reconstruction-gaps.md",
+      "subject": "BB2-reconstruction-gaps",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-reconstruction-gaps"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "BB2 semantic reconstruction \u2014 pre-unblinding report",
+      "source": "reports/BB2-reconstruction-preblind.md",
+      "subject": "BB2-reconstruction-preblind",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-reconstruction-preblind"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "Independent understanding: `work/BB2-semantic-reconstruction-v2.MAP`",
+      "source": "reports/BB2-reconstruction-v2-understanding.md",
+      "subject": "BB2-reconstruction-v2-understanding",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-reconstruction-v2-understanding"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "BB2 semantic revision plan (v2)",
+      "source": "reports/BB2-semantic-revision-plan.md",
+      "subject": "BB2-semantic-revision-plan",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-semantic-revision-plan"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "BB2 semantic roundtrip \u2014 revision 2",
+      "source": "reports/BB2-semantic-roundtrip-v2.md",
+      "subject": "BB2-semantic-roundtrip-v2",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-semantic-roundtrip-v2"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "BB2 semantic roundtrip \u2014 revision 3",
+      "source": "reports/BB2-semantic-roundtrip-v3.md",
+      "subject": "BB2-semantic-roundtrip-v3",
+      "subject_kind": "family",
+      "terms": [
+        "BB2-semantic-roundtrip-v3"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "BB6 pattern-aware semantic roundtrip (small)",
+      "source": "reports/BB6-semantic-roundtrip.md",
+      "subject": "BB6-semantic-roundtrip",
+      "subject_kind": "family",
+      "terms": [
+        "BB6-semantic-roundtrip"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "Blood corpus health (Phase 0a)",
+      "source": "reports/blood-corpus-health.md",
+      "subject": "blood-corpus-health",
+      "subject_kind": "family",
+      "terms": [
+        "blood-corpus-health"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "Building a facade: the first crossing from reading to authoring",
+      "source": "reports/blood-facade-build.md",
+      "subject": "blood-facade-build",
+      "subject_kind": "family",
+      "terms": [
+        "blood-facade-build"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "Object-scale unsigned families: Phase 3",
+      "source": "reports/blood-object-context-families.md",
+      "subject": "blood-object-context-families",
+      "subject_kind": "family",
+      "terms": [
+        "blood-object-context-families"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "Blood design-pattern counterexamples",
+      "source": "reports/blood-pattern-counterexamples.md",
+      "subject": "blood-pattern-counterexamples",
+      "subject_kind": "family",
+      "terms": [
+        "blood-pattern-counterexamples"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "Blood design-pattern examples",
+      "source": "reports/blood-pattern-examples.md",
+      "subject": "blood-pattern-examples",
+      "subject_kind": "family",
+      "terms": [
+        "blood-pattern-examples"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "Rotating doors: the category, censused",
+      "source": "reports/blood-rotating-doors.md",
+      "subject": "blood-rotating-doors",
+      "subject_kind": "family",
+      "terms": [
+        "blood-rotating-doors",
+        "rotating door",
+        "swinging gate",
+        "turnstile",
+        "swinging door",
+        "vane",
+        "rotor"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "How much of a tier is the reference population?",
+      "source": "reports/blood-tiering-churn.md",
+      "subject": "blood-tiering-churn",
+      "subject_kind": "family",
+      "terms": [
+        "blood-tiering-churn"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "Re-running the tier classifier through the corpus registry",
+      "source": "reports/blood-tiering-rerun.md",
+      "subject": "blood-tiering-rerun",
+      "subject_kind": "family",
+      "terms": [
+        "blood-tiering-rerun"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "Building a turnstile: a mechanism promoted from four rotors",
+      "source": "reports/blood-turnstile-build.md",
+      "subject": "blood-turnstile-build",
+      "subject_kind": "family",
+      "terms": [
+        "blood-turnstile-build"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "E1M2 reordered-room remix",
+      "source": "reports/e1m2_remix.md",
+      "subject": "e1m2_remix",
+      "subject_kind": "family",
+      "terms": [
+        "e1m2_remix"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "E2M2 vs SP-progression-v1 (design space, not geometry)",
+      "source": "reports/E2M2-SP-v1-semantic-comparison.md",
+      "subject": "E2M2-SP-v1-semantic-comparison",
+      "subject_kind": "family",
+      "terms": [
+        "E2M2-SP-v1-semantic-comparison"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "First custom puzzle room",
+      "source": "reports/first_puzzle_room.md",
+      "subject": "first_puzzle_room",
+      "subject_kind": "family",
+      "terms": [
+        "first_puzzle_room"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "E1M2 Crossroads mashup",
+      "source": "reports/mashup_crossroads.md",
+      "subject": "mashup_crossroads",
+      "subject_kind": "family",
+      "terms": [
+        "mashup_crossroads"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "SP-progression-v2 door / gate audit",
+      "source": "reports/SP-v2-door-audit.md",
+      "subject": "SP-v2-door-audit",
+      "subject_kind": "family",
+      "terms": [
+        "SP-v2-door-audit"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "SP-progression-v2 understanding",
+      "source": "reports/SP-v2-understanding.md",
+      "subject": "SP-v2-understanding",
+      "subject_kind": "family",
+      "terms": [
+        "SP-v2-understanding"
+      ]
+    },
+    {
+      "provenance": "DERIVED",
+      "says": "Verification report",
+      "source": "reports/verification.md",
+      "subject": "verification",
+      "subject_kind": "family",
+      "terms": [
+        "verification"
+      ]
+    },
+    {
+      "provenance": "INTERPRETED",
+      "says": "promoted in `aperture.py`; still missing: a held-out reproduction test",
+      "source": "knowledge/blood/design/README.md",
+      "subject": "facade_run",
+      "subject_kind": "constructor",
+      "terms": [
+        "facade_run"
+      ]
+    },
+    {
+      "provenance": "INTERPRETED",
+      "says": "promoted in `mechanism.py`; still missing: **still** proof that a player can pass through: the oracle now exists and is calibrated, and it cannot yet answer this \u2014 `reports/blood-passage-oracle.md`",
+      "source": "knowledge/blood/design/README.md",
+      "subject": "turnstile` / `turnstile_pair",
+      "subject_kind": "constructor",
+      "terms": [
+        "turnstile",
+        "turnstile_pair"
+      ]
+    },
+    {
+      "provenance": "INTERPRETED",
+      "says": "promoted in 2.51; still missing: 2.92",
+      "source": "knowledge/blood/design/README.md",
+      "subject": "topology.mean_degree",
+      "subject_kind": "constructor",
+      "terms": [
+        "topology.mean_degree"
+      ]
+    },
+    {
+      "provenance": "INTERPRETED",
+      "says": "promoted in 32768; still missing: 39936",
+      "source": "knowledge/blood/design/README.md",
+      "subject": "shape.median_height",
+      "subject_kind": "constructor",
+      "terms": [
+        "shape.median_height"
+      ]
+    },
+    {
+      "provenance": "INTERPRETED",
+      "says": "promoted in 7.1; still missing: 8.9",
+      "source": "knowledge/blood/design/README.md",
+      "subject": "shape.walls_per_sector",
+      "subject_kind": "constructor",
+      "terms": [
+        "shape.walls_per_sector"
+      ]
+    },
+    {
+      "provenance": "INTERPRETED",
+      "says": "promoted in 1.71; still missing: 2.21",
+      "source": "knowledge/blood/design/README.md",
+      "subject": "shape.height_iqr_ratio",
+      "subject_kind": "constructor",
+      "terms": [
+        "shape.height_iqr_ratio"
+      ]
+    },
+    {
+      "provenance": "INTERPRETED",
+      "says": "promoted in 52; still missing: 76",
+      "source": "knowledge/blood/design/README.md",
+      "subject": "population.weapons_and_ammo",
+      "subject_kind": "constructor",
+      "terms": [
+        "population.weapons_and_ammo"
+      ]
+    },
+    {
+      "provenance": "INTERPRETED",
+      "says": "promoted in 71; still missing: 107",
+      "source": "knowledge/blood/design/README.md",
+      "subject": "population.pickups",
+      "subject_kind": "constructor",
+      "terms": [
+        "population.pickups"
+      ]
+    },
+    {
+      "provenance": "INTERPRETED",
+      "says": "promoted in 0.71; still missing: 1.14",
+      "source": "knowledge/blood/design/README.md",
+      "subject": "population.pickups_per_dude",
+      "subject_kind": "constructor",
+      "terms": [
+        "population.pickups_per_dude"
+      ]
+    },
+    {
+      "provenance": "INTERPRETED",
+      "says": "promoted in 0.135; still missing: 0.223",
+      "source": "knowledge/blood/design/README.md",
+      "subject": "topology.dead_end_fraction",
+      "subject_kind": "constructor",
+      "terms": [
+        "topology.dead_end_fraction"
+      ]
+    },
+    {
+      "provenance": "INTERPRETED",
+      "says": "promoted in 7; still missing: 13",
+      "source": "knowledge/blood/design/README.md",
+      "subject": "population.distinct_dude_types",
+      "subject_kind": "constructor",
+      "terms": [
+        "population.distinct_dude_types"
+      ]
+    },
+    {
+      "provenance": "INTERPRETED",
+      "says": "promoted in 27; still missing: 47.4",
+      "source": "knowledge/blood/design/README.md",
+      "subject": "topology.loops_per_100_sectors",
+      "subject_kind": "constructor",
+      "terms": [
+        "topology.loops_per_100_sectors"
+      ]
+    }
+  ],
+  "note": "an index over the knowledge store, not a second copy of it: every entry names the file it came from",
+  "schema_version": 1
+}

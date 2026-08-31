@@ -923,18 +923,26 @@ def cmd_understand(args: argparse.Namespace) -> int:
 def cmd_anchor_mine(args: argparse.Namespace) -> int:
     """From a sparse label to the structure around it, across a population."""
     from .anchors import (
-        AnchorError, anchor_from_material, anchor_from_regions, anchor_from_tiles,
-        load_kit, mine_anchor, mine_kit,
+        AnchorError, anchor_from_material, anchor_from_owner, anchor_from_regions,
+        anchor_from_tiles, load_kit, mine_anchor, mine_kit, owner_anchor_kit,
     )
 
-    chosen = sum(bool(x) for x in (args.tile, args.material, args.regions_map, args.kit))
+    chosen = sum(bool(x) for x in (args.tile, args.material, args.regions_map,
+                                   args.kit, args.owner_anchor, args.owner_kit))
     if chosen != 1:
-        raise AnchorError("give exactly one of --tile, --material, --regions-map, --kit")
+        raise AnchorError(
+            "give exactly one of --tile, --material, --regions-map, --kit, "
+            "--owner-anchor, --owner-kit")
     options = dict(directory=args.maps, population=args.population, view=args.view,
                    top_maps=args.top_maps, hops=args.hops,
                    analogues=not args.no_analogues)
-    if args.kit:
-        payload = mine_kit(load_kit(args.kit), **options)
+    if args.kit or args.owner_kit:
+        #: The owner's strong-binding tiles are the kit worth having by
+        #: default: they are exactly the set the binding rule allows a name
+        #: to rest on.
+        specs = (owner_anchor_kit(binding=args.owner_kit) if args.owner_kit
+                 else load_kit(args.kit))
+        payload = mine_kit(specs, **options)
         _write_text(args.output, _json(payload))
         for name, role in payload["roles"].items():
             dominant = role["dominant_context"]
@@ -945,6 +953,8 @@ def cmd_anchor_mine(args: argparse.Namespace) -> int:
         spec = anchor_from_tiles(args.name or "anchor", args.tile)
     elif args.material:
         spec = anchor_from_material(args.material)
+    elif args.owner_anchor:
+        spec = anchor_from_owner(args.owner_anchor)
     else:
         build = _read_build_ir(args.regions_map)
         if not args.region:
@@ -1863,6 +1873,19 @@ def _sprite_channel(disk, index: int) -> int:
     return int(fields.get("tx_id") or 0)
 
 
+def cmd_knowledge(args: argparse.Namespace) -> int:
+    from .knowledge_index import build_index, load_index, lookup
+
+    if args.rebuild:
+        _write_text(args.output, _json(build_index()))
+        return 0
+    entries = load_index(args.index)
+    report = lookup(args.query, entries=entries,
+                    subject_kind=args.subject_kind, provenance=args.provenance)
+    _write_text(args.output, _json(report))
+    return 0 if report["results"] else 1
+
+
 def cmd_transform(args: argparse.Namespace) -> int:
     game = _game_for_path(args.map)
     ir = _read_build_ir(args.map)
@@ -2052,6 +2075,13 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--regions-map", help="derive the anchor tiles from example regions of this map")
     p.add_argument("--region", type=int, action="append", help="example sector (repeatable)")
     p.add_argument("--kit", help="JSON with a role_assets table; mines every role")
+    p.add_argument("--owner-anchor",
+                   help="a substring of an owner anchor's English label; the "
+                        "class is the tiles the owner named that way")
+    p.add_argument("--owner-kit", nargs="?", const="strong",
+                   choices=("strong", "weak"),
+                   help="mine one class per owner tile at this binding "
+                        "(default: strong, the tiles a name may rest on)")
     p.add_argument("--maps", help="corpus root (default: BLOODMAP_CORPUS or maps/blood)")
     p.add_argument("--population", choices=tuple(POPULATIONS))
     p.add_argument("--view", choices=tuple(CORPUS_VIEWS))
@@ -2502,6 +2532,20 @@ def build_parser() -> argparse.ArgumentParser:
                    help="emit the whole trigger-gated progression instead")
     p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")
     p.set_defaults(func=cmd_conditional)
+    p = sub.add_parser(
+        "knowledge",
+        help="what do we know about a tile, a family, a constructor, a sector",
+    )
+    p.add_argument("query", nargs="?", default="",
+                   help='e.g. "332", "swinging doors", "E1M4 sector 26"')
+    p.add_argument("--index", help="a compiled index; rebuilt in memory if omitted")
+    p.add_argument("--subject-kind",
+                   choices=("tile", "family", "map-sector", "constructor", "map"))
+    p.add_argument("--provenance", choices=("OWNER", "DERIVED", "INTERPRETED"))
+    p.add_argument("--rebuild", action="store_true",
+                   help="compile the index and write it instead of querying")
+    p.add_argument("-o", "--output", help="write JSON; defaults to stdout")
+    p.set_defaults(func=cmd_knowledge)
     p = sub.add_parser("oracle-gzdoom", help="run a bounded GZDoom map-load smoke test")
     p.add_argument("--iwad", required=True)
     p.add_argument("--gzdoom", required=True)
