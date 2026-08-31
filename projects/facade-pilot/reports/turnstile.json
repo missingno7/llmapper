@@ -28,12 +28,19 @@
       },
       "axis_marker": "placement:turnstile:a:axis",
       "blades": [
-        "placement:turnstile:a:blade:0",
-        "placement:turnstile:a:blade:1",
-        "placement:turnstile:a:blade:2",
-        "placement:turnstile:a:blade:3"
+        "placement:turnstile:a:blade:0:0",
+        "placement:turnstile:a:blade:0:1",
+        "placement:turnstile:a:blade:1:0",
+        "placement:turnstile:a:blade:1:1"
       ],
       "sound": null,
+      "blade_span": {
+        "top_z": -32768,
+        "bottom_z": 0,
+        "centre_z": -16384,
+        "y_repeat": 64,
+        "drawn_height": 32768
+      },
       "template": "E1M4 151/314 + DWE1M9 61/64"
     },
     {
@@ -58,12 +65,19 @@
       },
       "axis_marker": "placement:turnstile:b:axis",
       "blades": [
-        "placement:turnstile:b:blade:0",
-        "placement:turnstile:b:blade:1",
-        "placement:turnstile:b:blade:2",
-        "placement:turnstile:b:blade:3"
+        "placement:turnstile:b:blade:0:0",
+        "placement:turnstile:b:blade:0:1",
+        "placement:turnstile:b:blade:1:0",
+        "placement:turnstile:b:blade:1:1"
       ],
       "sound": null,
+      "blade_span": {
+        "top_z": -32768,
+        "bottom_z": 0,
+        "centre_z": -16384,
+        "y_repeat": 64,
+        "drawn_height": 32768
+      },
       "template": "E1M4 151/314 + DWE1M9 61/64"
     }
   ]

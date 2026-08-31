@@ -28,6 +28,10 @@ WALL, FLOOR, CEILING, SKY = 400, 294, 285, 3491
 
 #: Each rotor is a square drum. The pair flanks a 2-unit gap, which is the
 #: passage: two portal walls form the way through, as all four mined rotors do.
+#: All four mined rotors are 32768 clear, which is exactly 64 blade tiles
+#: at y_repeat 64 -- the blade spans the opening because the opening was
+#: sized to the blade.
+ROTOR_CLEAR = 32768
 ROTOR = 2 * U
 GAP = 2 * U
 COURT = 12 * U
@@ -64,7 +68,7 @@ def build():
 
     built = turnstile_pair(
         layout, "turnstile", outlines=outlines, pivots=pivots,
-        period=PERIOD, floor_z=0, ceiling_z=-2 * PLAYER_HEIGHT,
+        period=PERIOD, floor_z=0, ceiling_z=-ROTOR_CLEAR,
         wall_picnum=WALL, floor_picnum=FLOOR, ceiling_picnum=CEILING)
 
     for index, outline in enumerate(outlines):

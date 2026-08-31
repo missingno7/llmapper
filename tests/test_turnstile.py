@@ -39,6 +39,8 @@ from bloodmap.planar_layout import PlanarLayout
 U = 1024
 COURT = 12 * U
 ROTOR, GAP = 2 * U, 2 * U
+#: All four mined rotors are 32768 clear: 64 blade tiles at y_repeat 64.
+ROTOR_CLEAR = 32768
 WALL, FLOOR, CEILING, SKY = 400, 294, 285, 3491
 
 
@@ -60,7 +62,7 @@ def court(**kwargs):
     pivots = ((left_x0 + ROTOR // 2, mid), (right_x0 + ROTOR // 2, mid))
     built = turnstile_pair(
         layout, "turnstile", outlines=outlines, pivots=pivots, period=255,
-        floor_z=0, ceiling_z=-2 * PLAYER_HEIGHT, wall_picnum=WALL,
+        floor_z=0, ceiling_z=-ROTOR_CLEAR, wall_picnum=WALL,
         floor_picnum=FLOOR, ceiling_picnum=CEILING, **kwargs)
     for index, outline in enumerate(outlines):
         side = "a" if index == 0 else "b"
@@ -145,6 +147,47 @@ class TemplateFieldTests(unittest.TestCase):
             index = int(rotor.extra.fields["marker_0"])
             self.assertEqual(int(self.disk.sprites[index].fields["type"]),
                              MARKER_AXIS_TYPE)
+
+    def test_a_blade_spans_its_rotor_from_floor_to_ceiling(self):
+        """The bug this pins: blades hanging in mid air.
+
+        Measured on all four rotors -- drawn height equals the clear height
+        (32768 at y_repeat 64 on a 128-tall tile), top on the ceiling, bottom
+        on the floor, centred because Blood centres a sprite on its own z.
+        A blade that does not meet both surfaces is something to duck under.
+        """
+        for rotor in self.built["rotors"]:
+            span = rotor["blade_span"]
+            self.assertEqual(span["drawn_height"], ROTOR_CLEAR)
+            self.assertEqual(span["top_z"], -ROTOR_CLEAR)
+            self.assertEqual(span["bottom_z"], 0)
+            self.assertEqual(span["centre_z"], -ROTOR_CLEAR // 2)
+            self.assertEqual(span["y_repeat"], 64)
+
+    def test_the_repeat_is_derived_from_the_opening_never_given(self):
+        import inspect
+
+        self.assertNotIn("y_repeat", inspect.signature(turnstile).parameters)
+
+    def test_a_rotor_the_blade_cannot_span_is_refused(self):
+        """Rather than emitting a blade that floats."""
+        layout = PlanarLayout(name="odd")
+        layout.add_region("region:o", [(0, 0), (4096, 0), (4096, 4096), (0, 4096)],
+                          floor_z=0, ceiling_z=-4 * PLAYER_HEIGHT, wall_picnum=WALL,
+                          floor_picnum=FLOOR, ceiling_picnum=SKY)
+        with self.assertRaises(MechanismError):
+            turnstile(layout, "r",
+                      [(1024, 1024), (2048, 1024), (2048, 2048), (1024, 2048)],
+                      pivot=(1536, 1536), period=255, floor_z=0,
+                      ceiling_z=-33920)          # 2 player heights, not 64 tiles
+
+    def test_the_blades_are_two_double_sided_panels_at_right_angles(self):
+        """Not four evenly spaced vanes. E1M4 151 carries 0, 0, 512, 512."""
+        blades = [s for s in self.disk.sprites if int(s.fields["picnum"]) == 332]
+        angles = sorted(int(s.fields["angle"]) for s in blades[:4])
+        self.assertEqual(angles, [0, 0, 512, 512])
+        faces = sorted(int(s.fields["cstat"]) for s in blades[:4])
+        self.assertEqual(faces, [8593, 8593, 8597, 8597])
 
     def test_four_blades_per_rotor_and_they_are_grates(self):
         """The blades are grates, which is what makes a turnstile read as
@@ -236,7 +279,7 @@ def court_period(period):
     return turnstile(layout, "rotor",
                      [(1024, 1024), (2048, 1024), (2048, 2048), (1024, 2048)],
                      pivot=(1536, 1536), period=period, floor_z=0,
-                     ceiling_z=-2 * PLAYER_HEIGHT)
+                     ceiling_z=-ROTOR_CLEAR)
 
 
 class CorpusAgreementTests(unittest.TestCase):

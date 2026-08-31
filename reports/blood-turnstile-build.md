@@ -126,6 +126,38 @@ Of the four things `auto-rotators.md` said promotion needed, three are done --
 the assembly template, the constructor deriving every fact from it, and the
 motion replay -- and the fourth, an oracle proving passage, is not.
 
+## The blades were wrong, and the owner caught it in a render
+
+The first build put four blades at even quarter turns, one player height tall,
+seated near the floor. In the frame they hang in mid air. Every one of those
+numbers was invented; none was measured. What the four rotors actually do:
+
+```text
+                    E1M4 151/314        DWE1M9 61/64
+rotor clear height  32768               32768
+blade drawn height  32768               32768        == the clear height
+blade z             mid-height          mid-height   Blood centres on its own z
+y_repeat            64                  64           128-tall tile * 64 * 4
+x_repeat            48                  56
+angles              0,0,512,512         1024,1024,1536,1536
+cstat               8593 / 8597         8341 / 8337  a pair differing by the flip bit
+```
+
+Two things follow, and both are now the constructor's.
+
+**A blade spans its rotor exactly** -- top on the ceiling, bottom on the floor.
+That is what makes it a barrier rather than something to duck under, and it is
+why `y_repeat` is *derived from the clear height* instead of given. A rotor
+whose height is not a whole number of blade tiles is refused rather than filled
+with a floating grate.
+
+**The four blades are two double-sided panels at right angles**, not four
+evenly spaced vanes: two sprites at one angle and two a quarter turn away, each
+pair differing only by the flip bit so the panel is drawn from either side.
+
+The rotors are 32768 clear because that is what all four mined rotors are --
+the opening was sized to the blade, not the other way round.
+
 ## A near-miss worth recording
 
 The mutation sweep for this file reported two survivors that were not

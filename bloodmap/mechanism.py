@@ -101,6 +101,29 @@ ROTATE_MARKED = 615
 BLADE_PICNUM = 332
 BLADE_COUNT = 4
 
+#: The four blade sprites are **two double-sided panels at right angles**, not
+#: four evenly spaced vanes. Measured on all four rotors: E1M4 151 carries
+#: angles 0, 0, 512, 512 and E1M4 314 carries 1024, 1024, 1536, 1536; DWE1M9's
+#: pair both carry 1024, 1024, 1536, 1536. Each panel is two sprites that
+#: differ only by the flip bit, so it is drawn from either side.
+BLADE_PANELS = 2
+BLADE_QUARTER = 512
+
+#: Transcribed rather than composed from flags: E1M4 stores 8593 and 8597 on
+#: the two faces of a panel, and the pair differ by bit 2 alone. 8192 is
+#: `CARRY_WITH`, so a blade rides its rotor.
+BLADE_CSTAT = 8593
+BLADE_CSTAT_FLIPPED = 8597
+
+#: A blade spans its rotor exactly: drawn height equals the clear height, top
+#: on the ceiling and bottom on the floor, centred on the midpoint because
+#: Blood centres a sprite on its own z. All four rotors are 32768 clear and
+#: draw a 128-tall tile at y_repeat 64, which is 128 * 64 * 4 = 32768. That is
+#: what makes the blade a barrier rather than something to step over -- and
+#: getting it wrong leaves the blades hanging in mid air.
+BLADE_X_REPEAT = 48
+SPRITE_REPEAT_SCALE = 4
+
 #: The ambient sound sprite. E1M4 puts one in *both* its rotors and DWE1M9 in
 #: *neither*, so it is a map's habit rather than a trait of the family, and it
 #: is off by default.
@@ -132,7 +155,14 @@ TURNSTILE_TEMPLATE = {
     "interruptable": 0,
     "marker": {"role": "kMarkerAxis", "count": 1, "picnum": MARKER_PICNUM},
     "blades": {"count": BLADE_COUNT, "picnum": BLADE_PICNUM,
-               "role": "carried_with_panel"},
+               "role": "carried_with_panel",
+               "arrangement": "two double-sided panels a quarter turn apart",
+               "angles": {"E1M4 151": (0, 0, 512, 512),
+                          "E1M4 314": (1024, 1024, 1536, 1536),
+                          "DWE1M9 61/64": (1024, 1024, 1536, 1536)},
+               "cstat": (BLADE_CSTAT, BLADE_CSTAT_FLIPPED),
+               "spans": "floor to ceiling; drawn height == clear height, "
+                        "32768 in all four rotors at y_repeat 64"},
     "busy_time": {"E1M4": (255, 0), "E1M4 partner": (0, 255),
                   "DWE1M9": (100, 0), "DWE1M9 partner": (0, 100)},
     "travel_angle": {"E1M4": -8192, "DWE1M9": 2047, "DNE3L6": 2032},
@@ -151,7 +181,8 @@ def turnstile(
     travel_angle: int = CAMPAIGN_TRAVEL_ANGLE,
     clockwise: bool = True,
     blade_picnum: int = BLADE_PICNUM,
-    blade_height_player_heights: float = 1.0,
+    blade_tile_height: int = 128,
+    blade_x_repeat: int = BLADE_X_REPEAT,
     sound: bool = False,
     **region_kwargs: Any,
 ) -> dict[str, Any]:
@@ -176,6 +207,14 @@ def turnstile(
     * exactly four blade sprites ride the sector on tile 332, and they are
       grates, which is what makes the turnstile read as passable machinery
       rather than a drum -- all four, in both populations;
+    * those four are **two double-sided panels at right angles**, not four
+      evenly spaced vanes: E1M4 151 carries angles 0, 0, 512, 512 and its
+      partner 1024, 1024, 1536, 1536, each pair differing only by the flip
+      bit so the panel is drawn from either side;
+    * **a blade spans the rotor exactly** -- top on the ceiling, bottom on the
+      floor, centred on the midpoint because Blood centres a sprite on its own
+      z. `y_repeat` is derived from the clear height rather than given, which
+      is the difference between a barrier and four grates hanging in mid air;
     * the spin period lives in `busy_time_a` **or** `busy_time_b` and never
       both: E1M4 runs 255/0 against 0/255 and DWE1M9 100/0 against 0/100. Which
       field carries it is what makes a pair counter-rotate, which is why
@@ -221,16 +260,33 @@ def turnstile(
         status=MARKER_STATNUM, angle=int(travel_angle),
         x_repeat=64, y_repeat=64)
 
+    # A blade fills its rotor from floor to ceiling. The repeat is derived
+    # from the clear height, never given: Blood draws a sprite
+    # `tile_height * y_repeat * 4` tall, so the height decides the repeat and
+    # a guessed repeat leaves the grates floating.
+    clear = abs(int(floor_z) - int(ceiling_z))
+    denominator = int(blade_tile_height) * SPRITE_REPEAT_SCALE
+    y_repeat = clear // denominator
+    if y_repeat < 1 or y_repeat > 255:
+        raise MechanismError(
+            f"{region_id}: a {clear}-unit rotor cannot be spanned by a "
+            f"{blade_tile_height}-tall blade (needs y_repeat {clear / denominator:.1f})")
+    if y_repeat * denominator != clear:
+        raise MechanismError(
+            f"{region_id}: clear height {clear} is not a whole number of blade "
+            f"tiles ({denominator} each); the blade would not meet both surfaces")
+    middle = (int(floor_z) + int(ceiling_z)) // 2
+
     blades = []
-    span = max(1, int(blade_height_player_heights * PLAYER_HEIGHT))
-    for index in range(BLADE_COUNT):
-        angle = (index * 2048) // BLADE_COUNT
-        blade_id = f"placement:{region_id}:blade:{index}"
-        layout.add_sprite(
-            blade_id, region_id, x=px, y=py, z=int(floor_z) - span // 2,
-            type=0, picnum=int(blade_picnum), cstat=CARRY_WITH | 16,
-            angle=angle, x_repeat=64, y_repeat=64)
-        blades.append(blade_id)
+    for panel in range(BLADE_PANELS):
+        angle = (panel * BLADE_QUARTER) % 2048
+        for face, cstat in enumerate((BLADE_CSTAT, BLADE_CSTAT_FLIPPED)):
+            blade_id = f"placement:{region_id}:blade:{panel}:{face}"
+            layout.add_sprite(
+                blade_id, region_id, x=px, y=py, z=middle,
+                type=0, picnum=int(blade_picnum), cstat=cstat,
+                angle=angle, x_repeat=int(blade_x_repeat), y_repeat=y_repeat)
+            blades.append(blade_id)
 
     sfx = None
     if sound:
@@ -246,6 +302,9 @@ def turnstile(
         "turns": round(travel_angle / TURN, 3),
         "behavior": behavior, "axis_marker": marker_id,
         "blades": blades, "sound": sfx,
+        "blade_span": {"top_z": int(ceiling_z), "bottom_z": int(floor_z),
+                       "centre_z": middle, "y_repeat": y_repeat,
+                       "drawn_height": y_repeat * denominator},
         "template": "E1M4 151/314 + DWE1M9 61/64",
     }
 
