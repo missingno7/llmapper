@@ -1,0 +1,410 @@
+{
+ "$schema": "llmapper.turnstile-template",
+ "schema_version": 1,
+ "family": "kSectorRotateMarked turnstile door",
+ "root_type": 615,
+ "evidence": {
+  "mined_from": [
+   {
+    "map": "E1M4",
+    "population": "blood-campaign",
+    "sectors": [
+     151,
+     314
+    ]
+   },
+   {
+    "map": "DWE1M9",
+    "population": "community-curated",
+    "sectors": [
+     61,
+     64
+    ]
+   }
+  ],
+  "family_size": "88 instances in 14 maps share the native signature (auto-rotators.md); this template is the door subfamily, which is a spatial split, not a field one",
+  "populations": {
+   "blood-campaign": "authoritative",
+   "community-curated": "precedent, never convention"
+  }
+ },
+ "members": [
+  {
+   "map": "E1M4",
+   "population": "blood-campaign",
+   "sector": 151,
+   "type": 615,
+   "busy_time": [
+    255,
+    0
+   ],
+   "rx_id": 7,
+   "busy_wave": [
+    1,
+    1
+   ],
+   "retrigger": [
+    1,
+    1
+   ],
+   "interruptable": 0,
+   "members": {
+    "sector": 1,
+    "carried_with_panel": 4,
+    "thing_710": 1,
+    "marker_axis": 1
+   },
+   "member_picnums": {
+    "332": 4,
+    "2521": 1,
+    "3997": 1
+   },
+   "relations": {
+    "state_busy": [
+     0,
+     0
+    ],
+    "height": 32768,
+    "pivot_angle": -8192
+   }
+  },
+  {
+   "map": "E1M4",
+   "population": "blood-campaign",
+   "sector": 314,
+   "type": 615,
+   "busy_time": [
+    0,
+    255
+   ],
+   "rx_id": 7,
+   "busy_wave": [
+    1,
+    1
+   ],
+   "retrigger": [
+    1,
+    1
+   ],
+   "interruptable": 0,
+   "members": {
+    "sector": 1,
+    "marker_axis": 1,
+    "carried_with_panel": 4,
+    "thing_710": 1
+   },
+   "member_picnums": {
+    "332": 4,
+    "3997": 1,
+    "2521": 1
+   },
+   "relations": {
+    "state_busy": [
+     0,
+     0
+    ],
+    "height": 32768,
+    "pivot_angle": -8192
+   }
+  },
+  {
+   "map": "DWE1M9",
+   "population": "community-curated",
+   "sector": 61,
+   "type": 615,
+   "busy_time": [
+    100,
+    0
+   ],
+   "rx_id": 7,
+   "busy_wave": [
+    1,
+    1
+   ],
+   "retrigger": [
+    1,
+    1
+   ],
+   "interruptable": 0,
+   "members": {
+    "sector": 1,
+    "carried_with_panel": 4,
+    "marker_axis": 1
+   },
+   "member_picnums": {
+    "332": 4,
+    "3997": 1
+   },
+   "relations": {
+    "state_busy": [
+     0,
+     0
+    ],
+    "height": 32768,
+    "pivot_angle": 2047
+   }
+  },
+  {
+   "map": "DWE1M9",
+   "population": "community-curated",
+   "sector": 64,
+   "type": 615,
+   "busy_time": [
+    0,
+    100
+   ],
+   "rx_id": 7,
+   "busy_wave": [
+    1,
+    1
+   ],
+   "retrigger": [
+    1,
+    1
+   ],
+   "interruptable": 0,
+   "members": {
+    "sector": 1,
+    "carried_with_panel": 4,
+    "marker_axis": 1
+   },
+   "member_picnums": {
+    "332": 4,
+    "3997": 1
+   },
+   "relations": {
+    "state_busy": [
+     0,
+     0
+    ],
+    "height": 32768,
+    "pivot_angle": 2047
+   }
+  }
+ ],
+ "template": {
+  "instances": 4,
+  "maps": 2,
+  "shapes": [
+   {
+    "roles": {
+     "carried_with_panel": 4,
+     "marker_axis": 1,
+     "sector": 1,
+     "thing_710": 1
+    },
+    "count": 2
+   },
+   {
+    "roles": {
+     "carried_with_panel": 4,
+     "marker_axis": 1,
+     "sector": 1
+    },
+    "count": 2
+   }
+  ],
+  "roles": {
+   "carried_with_panel": {
+    "instances": 16,
+    "settled": true,
+    "per_assembly": 4.0,
+    "fields": {
+     "picnum": {
+      "value": 332,
+      "share": 1.0,
+      "seen": {
+       "332": 1.0
+      }
+     },
+     "status": {
+      "value": 0,
+      "share": 1.0,
+      "seen": {
+       "0": 1.0
+      }
+     },
+     "type": {
+      "value": 0,
+      "share": 1.0,
+      "seen": {
+       "0": 1.0
+      }
+     },
+     "y_repeat": {
+      "value": 64,
+      "share": 1.0,
+      "seen": {
+       "64": 1.0
+      }
+     }
+    },
+    "xsprite": {},
+    "relations": {
+     "angle_over_wall": {
+      "median": 1024.0,
+      "q1": 0,
+      "q3": 1024,
+      "modal": 1024,
+      "modal_share": 0.5
+     },
+     "repeat_over_height": {
+      "median": 0.008,
+      "q1": 0.0078,
+      "q3": 0.0078,
+      "modal": 0.0078,
+      "modal_share": 1.0
+     },
+     "wall_distance": {
+      "median": 448.0,
+      "q1": 384,
+      "q3": 576,
+      "modal": 384,
+      "modal_share": 0.5
+     }
+    }
+   },
+   "marker_axis": {
+    "instances": 4,
+    "settled": false,
+    "per_assembly": 1.0,
+    "fields": {},
+    "xsprite": {},
+    "relations": {}
+   },
+   "sector": {
+    "instances": 4,
+    "settled": false,
+    "per_assembly": 1.0,
+    "fields": {},
+    "xsprite": {},
+    "relations": {}
+   },
+   "thing_710": {
+    "instances": 2,
+    "settled": false,
+    "per_assembly": 0.5,
+    "fields": {},
+    "xsprite": {},
+    "relations": {}
+   }
+  },
+  "assembly_relations": {
+   "height": {
+    "observed": 4,
+    "modal": 32768,
+    "modal_share": 1.0,
+    "seen": {
+     "32768": 1.0
+    },
+    "median": 32768.0,
+    "q1": 32768,
+    "q3": 32768
+   },
+   "pivot_angle": {
+    "observed": 4,
+    "modal": -8192,
+    "modal_share": 0.5,
+    "seen": {
+     "-8192": 0.5,
+     "2047": 0.5
+    },
+    "median": -3072.5,
+    "q1": -8192,
+    "q3": 2047
+   },
+   "state_busy": {
+    "observed": 4,
+    "modal": [
+     0,
+     0
+    ],
+    "modal_share": 1.0,
+    "seen": {
+     "(0, 0)": 1.0
+    }
+   }
+  }
+ },
+ "same_direction_variant": {
+  "note": "attested and rarer; kept out of the template's evidence so the counter-rotating default is not diluted",
+  "members": [
+   {
+    "map": "DNE3L6",
+    "population": "own-conversion",
+    "sector": 3,
+    "type": 615,
+    "busy_time": [
+     0,
+     100
+    ],
+    "rx_id": 7,
+    "busy_wave": [
+     1,
+     1
+    ],
+    "retrigger": [
+     1,
+     1
+    ],
+    "interruptable": 0,
+    "members": {
+     "sector": 1,
+     "carried_with_panel": 4,
+     "thing_710": 1,
+     "marker_axis": 1
+    },
+    "member_picnums": {
+     "465": 4,
+     "2521": 1,
+     "3997": 1
+    },
+    "relations": {
+     "state_busy": [
+      0,
+      0
+     ],
+     "height": 30720,
+     "pivot_angle": 2032
+    }
+   },
+   {
+    "map": "DNE3L6",
+    "population": "own-conversion",
+    "sector": 11,
+    "type": 615,
+    "busy_time": [
+     0,
+     100
+    ],
+    "rx_id": 7,
+    "busy_wave": [
+     1,
+     1
+    ],
+    "retrigger": [
+     1,
+     1
+    ],
+    "interruptable": 0,
+    "members": {
+     "sector": 1,
+     "carried_with_panel": 4,
+     "marker_axis": 1
+    },
+    "member_picnums": {
+     "465": 4,
+     "3997": 1
+    },
+    "relations": {
+     "state_busy": [
+      0,
+      0
+     ],
+     "height": 30720,
+     "pivot_angle": 2032
+    }
+   }
+  ]
+ }
+}

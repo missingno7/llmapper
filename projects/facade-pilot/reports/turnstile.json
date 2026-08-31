@@ -1,0 +1,70 @@
+{
+  "map": "D:\\Games\\DOS\\llmapper\\projects\\facade-pilot\\level\\turnstile.MAP",
+  "sectors": 4,
+  "walls": 24,
+  "sprites": 10,
+  "pair": "turnstile",
+  "counter_rotating": true,
+  "rotors": [
+    {
+      "region": "turnstile:a",
+      "pivot": [
+        4096,
+        6144
+      ],
+      "period": 255,
+      "clockwise": true,
+      "travel_angle": -8192,
+      "turns": -4.0,
+      "behavior": {
+        "rx_id": 7,
+        "busy_wave_a": 1,
+        "busy_wave_b": 1,
+        "retrigger_a": 1,
+        "retrigger_b": 1,
+        "interruptable": 0,
+        "busy_time_a": 255,
+        "busy_time_b": 0
+      },
+      "axis_marker": "placement:turnstile:a:axis",
+      "blades": [
+        "placement:turnstile:a:blade:0",
+        "placement:turnstile:a:blade:1",
+        "placement:turnstile:a:blade:2",
+        "placement:turnstile:a:blade:3"
+      ],
+      "sound": null,
+      "template": "E1M4 151/314 + DWE1M9 61/64"
+    },
+    {
+      "region": "turnstile:b",
+      "pivot": [
+        8192,
+        6144
+      ],
+      "period": 255,
+      "clockwise": false,
+      "travel_angle": -8192,
+      "turns": -4.0,
+      "behavior": {
+        "rx_id": 7,
+        "busy_wave_a": 1,
+        "busy_wave_b": 1,
+        "retrigger_a": 1,
+        "retrigger_b": 1,
+        "interruptable": 0,
+        "busy_time_a": 0,
+        "busy_time_b": 255
+      },
+      "axis_marker": "placement:turnstile:b:axis",
+      "blades": [
+        "placement:turnstile:b:blade:0",
+        "placement:turnstile:b:blade:1",
+        "placement:turnstile:b:blade:2",
+        "placement:turnstile:b:blade:3"
+      ],
+      "sound": null,
+      "template": "E1M4 151/314 + DWE1M9 61/64"
+    }
+  ]
+}
