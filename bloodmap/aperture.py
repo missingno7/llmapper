@@ -81,8 +81,9 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass, field
-from typing import Any, Mapping
+from typing import Any, Mapping, Sequence
 
+from .planar_geom import area2
 from .player_space import PLAYER_PROFILES
 
 #: One standing human and one body width, from the player profile.
@@ -441,6 +442,287 @@ def snap_leaf(tile_height: int, y_repeat: int, target_z: int,
         raise ApertureError("a tile with no vertical span cannot size a leaf")
     repeats = max(int(at_least), int(round(abs(target_z) / float(span))))
     return repeats * span, repeats
+
+
+# ---------------------------------------------------------------------------
+# A frontage: the openings belong to it, and it is built from measured defaults
+# ---------------------------------------------------------------------------
+#
+# `reports/blood-facade-grammar.md` measured 890 campaign facade candidates in
+# 37 maps and reported what keeps one coherent, in order of strength: one wall
+# tile across the whole run (98% of the 131 with more than one opening), a
+# shared header datum (79%) and a shared sill datum (77%) together, then a thin
+# helper sector (71%). Not the bay grid, which only 31% of their openings land
+# on -- so the grid is offered and never enforced.
+#
+# This is a **composable helper, not a `vocabulary.py` constructor.** That
+# module admits a concept only when it occurs across most original maps *and a
+# compact parameter set reproduces held-out examples*. The first half is met;
+# the second has never been run. What that would take is stated in
+# `FACADE_PROMOTION_BLOCKERS` rather than left implicit.
+
+#: One painted window and its pier, at the 16-units-per-tile-pixel facade
+#: scale confirmed on 3869 of 5275 campaign street walls.
+FACADE_BAY = 1024
+
+#: Where a sign sits, in player heights above the street floor. This is an
+#: authoring *preference*, not a datum: over 86 corpus letters the height runs
+#: 1.69 to 5.13 with a median of 2.54 and a coefficient of variation of 0.33,
+#: and measuring from the opening's head instead is looser still (cv 0.79).
+#: Every campaign letter is above its opening's head, so the head is a
+#: constraint this helper enforces and the height is a choice it states.
+SIGN_HEIGHT_PLAYER_HEIGHTS = 2.5
+SIGN_HEIGHT_CORPUS_SPREAD = {"min": 1.69, "p25": 2.25, "median": 2.54,
+                             "p75": 3.44, "max": 5.13,
+                             "coefficient_of_variation": 0.33, "letters": 86}
+
+#: How thick a facade wall is, in plan. Measured over the 1140 sectors behind
+#: a campaign facade opening: 256 and 512 are the two commonest depths (202 and
+#: 196 occurrences), p25 is 512 and 41% are at or under it. A facade wall has
+#: real thickness -- 780 of 780 campaign facade solid walls stand alone with
+#: void behind them and not one is a coincident pair -- so the piers between
+#: the openings are wall, and each opening is a passage cut through it. That
+#: passage is the `reveal` this module names.
+FACADE_REVEAL = 256
+
+#: Attested metal jamb and threshold trims (owner-anchored 195/200).
+JAMB_PICNUM = 195
+THRESHOLD_PICNUM = 200
+
+FACADE_PROMOTION_BLOCKERS = (
+    "no held-out reproduction test: vocabulary.py requires a compact parameter "
+    "set to rebuild facades it was not derived from, and that has never been run",
+    "rhythm is not a parameter here -- 53 repeating runs in 890 campaign "
+    "candidates is not enough recurrence to give one a default, so openings are "
+    "an argument and never invented",
+    "building extent is only settled below eight bays: a run serving an "
+    "interior serves exactly one building 732 times out of 749, but 20% of runs "
+    "over sixteen bays cross a boundary (reports/blood-party-walls.md)",
+)
+
+
+@dataclass(frozen=True)
+class FacadeOpening:
+    """One hole in a frontage, given rather than invented.
+
+    `bay` is the opening's first bay counted from the run's start, `bays` how
+    many it spans. Whole-bay openings are the campaign's largest single class
+    and a minority overall, so nothing here rounds a caller's numbers.
+    """
+
+    bay: int
+    bays: int = 1
+    sign: str | None = None
+
+
+def _wound(points: list) -> list:
+    """Build wants every outer loop the same way round; a slice cut off a
+    rectangle comes out either way depending on which side the normal fell."""
+    return points if area2(tuple(points)) >= 0 else list(reversed(points))
+
+
+def _facade_axis(a1, a2):
+    ax, ay = int(a1[0]), int(a1[1])
+    bx, by = int(a2[0]), int(a2[1])
+    length = math.hypot(bx - ax, by - ay)
+    if length <= 0:
+        raise ApertureError("a facade run needs two distinct ends")
+    return (ax, ay), (bx, by), length, ((bx - ax) / length, (by - ay) / length)
+
+
+def facade_run(
+    layout: Any,
+    facade_id: str,
+    *,
+    host_region: str,
+    a1: Sequence[int],
+    a2: Sequence[int],
+    depth: int,
+    openings: Sequence[FacadeOpening],
+    wall_picnum: int,
+    floor_picnum: int,
+    ceiling_picnum: int,
+    header_z: int,
+    sill_z: int,
+    interior_floor_z: int | None = None,
+    interior_ceiling_z: int | None = None,   # defaults to the header datum
+    jamb_picnum: int | None = None,
+    reveal: int = FACADE_REVEAL,
+    sign_height_player_heights: float = SIGN_HEIGHT_PLAYER_HEIGHTS,
+    sign_size: int = 64,
+    bay: int = FACADE_BAY,
+) -> dict[str, Any]:
+    """Build one street frontage and the interior behind it.
+
+    Every opening shares `header_z` and `sill_z`, because that is what the
+    corpus says makes several openings read as one facade. Every wall of the
+    run wears `wall_picnum`, for the same reason and more strongly. The bay
+    grid is offered through `bay` and used to place openings the caller names;
+    it is never used to move one.
+
+    Returns what it built, so a caller can report it rather than trust it.
+    """
+    if depth <= 0:
+        raise ApertureError(f"{facade_id}: depth must be positive")
+    if not openings:
+        raise ApertureError(f"{facade_id}: a facade run is interrupted by "
+                            "openings, and none were given")
+    host = layout.regions.get(host_region)
+    if host is None:
+        raise ApertureError(f"{facade_id}: unknown host region {host_region!r}")
+    street_floor_z = int(host.floor_z)
+    if header_z >= sill_z:
+        raise ApertureError(
+            f"{facade_id}: the header must be above the sill (z grows downward)")
+
+    (ax, ay), (bx, by), length, (ux, uy) = _facade_axis(a1, a2)
+    run_bays = length / bay
+    # The interior sits behind the frontage: on the side of the run away from
+    # the host. Which sign of the normal that is depends on the host's shape,
+    # not on a convention, so ask the host rather than assume it.
+    nx, ny = -uy, ux
+    outline = [(float(x), float(y)) for x, y in host.outer]
+    hx = sum(p[0] for p in outline) / len(outline)
+    hy = sum(p[1] for p in outline) / len(outline)
+    mx, my = (ax + bx) / 2, (ay + by) / 2
+    if (mx + nx - hx) ** 2 + (my + ny - hy) ** 2 < (mx - nx - hx) ** 2 + (my - ny - hy) ** 2:
+        nx, ny = -nx, -ny
+    if reveal <= 0 or reveal >= depth:
+        raise ApertureError(
+            f"{facade_id}: the wall has to be thinner than the building "
+            f"(reveal {reveal}, depth {depth})")
+
+    def offset(point, distance):
+        return (int(point[0] + nx * distance), int(point[1] + ny * distance))
+
+    # The piers between the openings are *wall*, and wall in Build is void:
+    # 780 of 780 campaign facade solid walls stand alone with nothing behind
+    # them, and not one is a coincident pair. So the interior is set back by
+    # the wall's thickness and only the openings reach the street, each as a
+    # passage cut through it -- the reveal.
+    interior_id = f"region:{facade_id}:interior"
+    layout.add_region(
+        interior_id,
+        _wound([offset((ax, ay), reveal), offset((ax, ay), depth),
+                offset((bx, by), depth), offset((bx, by), reveal)]),
+        # The datums are not annotations: the header *is* the neighbour's
+        # ceiling and the sill *is* its floor, which is what the corpus
+        # measured and what makes several openings read as one facade.
+        floor_z=sill_z if interior_floor_z is None else int(interior_floor_z),
+        ceiling_z=header_z if interior_ceiling_z is None else int(interior_ceiling_z),
+        wall_picnum=wall_picnum, floor_picnum=floor_picnum,
+        ceiling_picnum=ceiling_picnum,
+        portal_wall_picnum=jamb_picnum if jamb_picnum is not None else wall_picnum,
+        intent={"purpose": f"{facade_id}: the building behind the frontage"},
+    )
+
+    built: list[dict[str, Any]] = []
+    for index, opening in enumerate(openings):
+        start_u = opening.bay * bay
+        stop_u = start_u + max(1, opening.bays) * bay
+        if start_u < -1 or stop_u > length + 1:
+            raise ApertureError(
+                f"{facade_id}: opening {index} spans {start_u}..{stop_u} of a "
+                f"{length:.0f}-unit run")
+        p1 = (int(ax + ux * start_u), int(ay + uy * start_u))
+        p2 = (int(ax + ux * stop_u), int(ay + uy * stop_u))
+        q1, q2 = offset(p1, reveal), offset(p2, reveal)
+        mouth = f"region:{facade_id}:reveal:{index:02d}"
+        layout.add_region(
+            mouth, _wound([p1, q1, q2, p2]),
+            floor_z=sill_z, ceiling_z=header_z,
+            wall_picnum=jamb_picnum if jamb_picnum is not None else wall_picnum,
+            floor_picnum=floor_picnum, ceiling_picnum=ceiling_picnum,
+            portal_wall_picnum=jamb_picnum if jamb_picnum is not None else wall_picnum,
+            intent={"purpose": f"{facade_id}: opening {index}, cut through the wall"},
+        )
+        street_side = f"connection:{facade_id}:{index:02d}:mouth"
+        inner_side = f"connection:{facade_id}:{index:02d}:back"
+        # Dress the reveal, never the band above the mouth. The lintel band is
+        # drawn from the street-side wall record, so it has to carry the
+        # facade's own material: a jamb tile there paints a stripe of metal
+        # across the frontage above every window. The jamb belongs on the
+        # reveal's own walls, where the thickness is seen.
+        layout.add_connection(street_side, host_region, mouth, a1=p1, a2=p2,
+                              min_width=bay // 2, face_picnum=wall_picnum)
+        layout.add_connection(inner_side, mouth, interior_id, a1=q1, a2=q2,
+                              min_width=bay // 2)
+        built.append({
+            "reveal_region": mouth,
+            "connections": [street_side, inner_side],
+            "bay": opening.bay, "bays": opening.bays,
+            "along_run": start_u, "width_units": stop_u - start_u,
+            "a1": list(p1), "a2": list(p2),
+        })
+
+    piers = []
+    cursor = 0.0
+    for item in sorted(built, key=lambda b: b["along_run"]):
+        if item["along_run"] > cursor + 1:
+            piers.append({"along_run": round(cursor, 1),
+                          "width_units": round(item["along_run"] - cursor, 1)})
+        cursor = max(cursor, item["along_run"] + item["width_units"])
+    if length - cursor > 1:
+        piers.append({"along_run": round(cursor, 1),
+                      "width_units": round(length - cursor, 1)})
+
+    # The thin helper sector -- a kerb strip along the frontage -- is on 71% of
+    # multi-opening campaign facades and is deliberately *not* built here. It
+    # lies on the street side of the frontage line, so emitting it would mean
+    # reshaping the host, and a helper that silently carves its caller's room
+    # is worse than one that leaves a documented job. Compose it: give the
+    # street an edge a strip short of the frontage and fill the band.
+    threshold = None
+    signs = []
+    for index, opening in enumerate(openings):
+        if not opening.sign:
+            continue
+        from .lettering import write_on_wall
+
+        middle = (opening.bay + max(1, opening.bays) / 2) * bay
+        seat = street_floor_z - int(round(sign_height_player_heights * PLAYER_HEIGHT))
+        if seat >= header_z:
+            raise ApertureError(
+                f"{facade_id}: a sign at {sign_height_player_heights} player "
+                "heights would sit below its opening's head; every campaign "
+                "letter sits above it")
+        placed = write_on_wall(
+            layout, f"sign:{facade_id}:{index:02d}", host_region,
+            a1=(ax, ay), a2=(bx, by), text=opening.sign,
+            height_player_heights=sign_height_player_heights,
+            t=middle / length, size=sign_size)
+        signs.append({
+            "text": opening.sign, "placements": placed,
+            "on_opening": index, "seat_z": seat,
+            "height_player_heights": sign_height_player_heights,
+            "above_its_header_z": header_z - seat,
+        })
+
+    return {
+        "facade": facade_id,
+        "interior": interior_id,
+        "run_units": int(round(length)),
+        "run_bays": round(run_bays, 3),
+        "bay": bay,
+        "reveal": int(reveal),
+        "openings": built,
+        "piers": piers,
+        "signs": signs,
+        "datums": {"header_z": int(header_z), "sill_z": int(sill_z),
+                   "street_floor_z": street_floor_z},
+        "material": {"wall_picnum": int(wall_picnum), "jamb_picnum": jamb_picnum},
+        "basis": {
+            "one wall tile across the run": "98% of 131 campaign multi-opening facades",
+            "shared header datum": "79%",
+            "shared sill datum": "77%",
+            "thin helper sector": "71% -- composed by the caller, see above",
+            "openings on whole bays": "31% -- offered, never enforced",
+            "sign height": dict(SIGN_HEIGHT_CORPUS_SPREAD,
+                                chosen=sign_height_player_heights,
+                                kind="authoring preference, not a datum"),
+        },
+        "promotion_blockers": list(FACADE_PROMOTION_BLOCKERS),
+    }
 
 
 def _match_edge(outline: list, edge: tuple) -> tuple[int, int]:
