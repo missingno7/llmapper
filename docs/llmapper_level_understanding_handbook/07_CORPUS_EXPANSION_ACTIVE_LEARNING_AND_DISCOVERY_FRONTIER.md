@@ -66,6 +66,19 @@ mechanism    10   untiered 157
 in two tier directories (120 filenames occur in more than one tier, so a
 name-keyed join would mislabel them). It is never guessed.
 
+**Why those 120 exist (2026-08-31).** The tier tree's generator landed in this
+branch as `bloodmap/tiering.py` (PR #2), and re-running it explained the
+ambiguity: the old tree flattened every map to `tiered/<TIER>/<FILENAME>`, so
+two community maps sharing a name overwrote each other and one file stood for
+two maps. All 128 affected maps were among the 157 the hash join left untiered.
+The refactored generator keeps the source's shape below its population
+directory, and all 128 now carry a tier. The counts above still describe
+`maps/blood/corpus.json`, which reads the *old* tree; the re-run's assignment
+is in `maps/blood/tiered/manifest-v2.json` (local-only) and the two are
+compared in `reports/blood-tiering-rerun.md` -- 84% agree, and the 6% that
+move are all single-step S/A churn caused by the reference population changing
+from a 100-map `maps/canonical` directory to the 102-map `reference` view.
+
 The physical reorganization is **done**; there is no `canonical/` and no
 top-level `bloodbath/` directory anymore. "Canonical" survives as a named
 **view**, not a directory: the reference set the tier classifier scored

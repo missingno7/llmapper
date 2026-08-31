@@ -965,16 +965,20 @@ def _relative(path: Path, root: Path) -> str:
 def _tier_destination(record: dict[str, Any], output_root: Path) -> str:
     """Where a map's tier copy goes, as a path relative to the tier root.
 
-    The community population lives one directory deep, so the tier tree keeps
-    only the filename under the tier: `tiered/S/FOO.MAP`. The manifest carries
-    the registry-relative source path and the sha256, which is what makes a
-    record portable between checkouts.
+    The source's shape below its population directory is preserved:
+    `community/chronicles1/CRYPT.MAP` becomes `S/chronicles1/CRYPT.MAP`. The
+    old tier tree flattened to the filename, which is why 120 names ended up in
+    more than one tier directory and why a hash join was needed to read it
+    back. Two maps that share a name are two maps.
     """
-    relative = Path(record["source_relative"]).name
+    parts = Path(record["source_relative"]).parts
+    relative = Path(*parts[1:]) if len(parts) > 1 else Path(parts[-1])
     destination = output_root / record["classification"] / relative
     destination.parent.mkdir(parents=True, exist_ok=True)
     source = Path(record["source_absolute"])
     if destination.resolve() != source.resolve():
+        if destination.exists():
+            destination.unlink()          # copy2 carries the source's mode bits
         shutil.copy2(source, destination)
     return (Path(record["classification"]) / relative).as_posix()
 
