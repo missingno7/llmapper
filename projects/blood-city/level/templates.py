@@ -71,11 +71,19 @@ class TextureModule:
 
 
 # Crates are deliberately not shelf tops.  The modules below show one whole
-# 128x128 art tile on the top and on a vertical face.  They are source-art
-# units: 459 is the smaller, double-smooshed 1024-square crate; 95 is the
-# normal-scale 2048-square crate.  Their z rises preserve a physical cuboid
+# art tile on the top and on a vertical face.  They are source-art units:
+# 452 is the smaller crate at 64 texels, 95 the large one at 128; both sit on
+# the normal sixteen-units-per-texel floor grid, so 452 gives a 1024-square
+# module and 95 a 2048-square one.  Their z rises preserve a physical cuboid
 # after Build's 16:1 xy:z conversion.
-SMALL_CRATE = TextureModule(459, 1024, 16384, 8, 2)
+#
+# 452 is not interchangeable with 459.  Tile 459 is moss-grown rock
+# (knowledge/blood/design/owner-anchors-v1.json), and it stood here as
+# SMALL_CRATE until 2026-08-31 because it is 128x128 like the real large
+# crate and reads as boxy in a thumbnail.  A market hall of rock faces was
+# the result.  Do not confuse this with sprite *type* 459, kTrapExploder --
+# a different namespace, and l3_foundry's attested E3M1 use of it is correct.
+SMALL_CRATE = TextureModule(452, 1024, 16384, 0, 1)
 LARGE_CRATE = TextureModule(95, 2048, 32768, 0, 1)
 
 
@@ -473,7 +481,7 @@ def supermarket(space, *, material, grade: int, host_clear: int,
     """Lay out an E6M1-style sales floor: tall shelf banks and crate bays.
 
     E6M1 has two separate grammars.  Shelves are long, wall-like banks with
-    2026/2635/202 on their vertical faces; 459/95 are independent crate
+    2026/2635/202 on their vertical faces; 452/95 are independent crate
     cuboids, arranged in short bays beside them.  Treating every shelf as a
     pedestal was the reason the old supermarket looked like a field of floor
     tiles rather than a shop.
@@ -491,7 +499,7 @@ def supermarket(space, *, material, grade: int, host_clear: int,
 
     # Long shelf banks: the source uses 3,072--4,096-unit runs and vertical
     # faces taller than a player.  Their top is ordinary shop flooring, not a
-    # crate texture; the separate crate bays below provide the 459/95 detail.
+    # crate texture; the separate crate bays below provide the 452/95 detail.
     shelf_end = y1 - 2 * fixtures.PEDESTAL.depth
     bank_specs = (
         (x0 + 1536, x0 + 2560, y0 + 1024, shelf_end - 1024, 2026, 24576),
@@ -514,7 +522,7 @@ def supermarket(space, *, material, grade: int, host_clear: int,
         racks.append(bank)
 
     # Distinct crate bays on whole render-complete texture modules.  The west
-    # and centre aisles take the smaller 459 unit; the wider east aisle takes
+    # and centre aisles take the smaller 452 unit; the wider east aisle takes
     # one full 95 unit.  Neither skin is cropped merely to fill an aisle.
     crate_specs = (
         (SMALL_CRATE, (x0 + 256, y0 + 1536,
@@ -544,7 +552,7 @@ def supermarket(space, *, material, grade: int, host_clear: int,
         name=f"{space.node_id}_checkout", connector=connector, into=node)
 
     node.note = (f"supermarket fittings: {len(racks)} tall shelf banks, "
-                 "separate 459/95 crate stacks and one two-register checkout")
+                 "separate 452/95 crate stacks and one two-register checkout")
     return node
 
 

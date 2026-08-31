@@ -43,39 +43,39 @@
       "map": "SKELETON",
       "game": "blood",
       "budget": {
-        "sectors": 239,
-        "walls": 1529,
-        "sprites": 395
+        "sectors": 254,
+        "walls": 1648,
+        "sprites": 406
       },
       "street": {
         "sectors": 25,
         "area": 2914910208,
-        "area_share_of_map": 0.777,
+        "area_share_of_map": 0.761,
         "width_units": {
-          "n": 2729,
+          "n": 2721,
           "min": 512.0,
           "p10": 3072.0,
-          "median": 5632.0,
+          "median": 5504.0,
           "p90": 49152.0,
           "max": 59520.0
         },
         "width_player_widths": {
-          "n": 2729,
+          "n": 2721,
           "min": 1.3,
           "p10": 8.0,
-          "median": 14.7,
+          "median": 14.3,
           "p90": 128.0,
           "max": 155.0
         },
         "canyon_ratio": {
-          "n": 2685,
+          "n": 2623,
           "min": 0.21,
           "p10": 0.25,
-          "median": 2.23,
+          "median": 2.18,
           "p90": 4.0,
           "max": 24.0
         },
-        "samples": 2729
+        "samples": 2721
       },
       "street_detection": {
         "indoor_link_merged": 0,
@@ -249,19 +249,19 @@
         ]
       },
       "enterability": {
-        "doorways_from_street": 15,
+        "doorways_from_street": 18,
         "interior_components_entered": 9,
         "substantial_interiors_entered": 9,
         "blocks_total": 10,
         "blocks_enterable": 5,
         "enterable_block_share": 0.5,
-        "doorways_per_10240_frontage": 0.21,
+        "doorways_per_10240_frontage": 0.25,
         "substantial_interiors_per_10240_frontage": 0.12,
         "interior_area_per_entered_component": {
           "n": 9,
           "min": 4194304.0,
           "p10": 4194304.0,
-          "median": 36175872.0,
+          "median": 41156608.0,
           "p90": 426558375.0,
           "max": 426558375.0
         },
@@ -321,7 +321,7 @@
             "street_sector": 0,
             "into_sector": 45,
             "interior_component": 1,
-            "width": 2048,
+            "width": 4096,
             "gap_z": 22528,
             "via_door_sector": false,
             "block_label": 2
@@ -377,9 +377,19 @@
             "block_label": 3
           },
           {
-            "wall": 713,
+            "wall": 715,
             "street_sector": 96,
-            "into_sector": 144,
+            "into_sector": 156,
+            "interior_component": 10,
+            "width": 1024,
+            "gap_z": 30720,
+            "via_door_sector": false,
+            "block_label": 8
+          },
+          {
+            "wall": 717,
+            "street_sector": 96,
+            "into_sector": 158,
             "interior_component": 10,
             "width": 2048,
             "gap_z": 31744,
@@ -387,7 +397,27 @@
             "block_label": 8
           },
           {
-            "wall": 727,
+            "wall": 719,
+            "street_sector": 96,
+            "into_sector": 155,
+            "interior_component": 10,
+            "width": 3584,
+            "gap_z": 30720,
+            "via_door_sector": false,
+            "block_label": 8
+          },
+          {
+            "wall": 722,
+            "street_sector": 96,
+            "into_sector": 157,
+            "interior_component": 10,
+            "width": 7168,
+            "gap_z": 30720,
+            "via_door_sector": false,
+            "block_label": 8
+          },
+          {
+            "wall": 733,
             "street_sector": 96,
             "into_sector": 125,
             "interior_component": 7,
@@ -427,7 +457,7 @@
           {
             "interior_component": 1,
             "sectors": 11,
-            "area": 10747904,
+            "area": 15728640,
             "substantial": true
           },
           {
@@ -468,18 +498,18 @@
           },
           {
             "interior_component": 10,
-            "sectors": 9,
-            "area": 36175872,
+            "sectors": 23,
+            "area": 108265472,
             "substantial": true
           }
         ]
       },
       "facade": {
         "facade_length_units": 746187,
-        "boundary_walls": 153,
-        "walls_per_1024": 0.21,
-        "masked_windows": 1,
-        "masked_windows_per_1024": 0.001,
+        "boundary_walls": 159,
+        "walls_per_1024": 0.22,
+        "masked_windows": 4,
+        "masked_windows_per_1024": 0.005,
         "red_wall_openings": 14,
         "red_wall_openings_per_1024": 0.019,
         "wall_sprites_in_street": 32,
@@ -522,7 +552,7 @@
             "congruent": true,
             "overlaps_in_plan": true,
             "upper_sector": 81,
-            "lower_sector": 152
+            "lower_sector": 167
           },
           {
             "family": "stack",
@@ -530,7 +560,7 @@
             "congruent": true,
             "overlaps_in_plan": true,
             "upper_sector": 79,
-            "lower_sector": 153
+            "lower_sector": 168
           }
         ]
       },
@@ -539,9 +569,9 @@
           "zone": 0,
           "zone_floor_picnum": 352,
           "street_sectors": 17,
-          "sectors": 231,
-          "walls": 1489,
-          "sprites": 393
+          "sectors": 246,
+          "walls": 1608,
+          "sprites": 404
         },
         {
           "zone": 1,
@@ -687,20 +717,20 @@
   "summary": {
     "street_width_player_widths": {
       "SKELETON": {
-        "n": 2729,
+        "n": 2721,
         "min": 1.3,
         "p10": 8.0,
-        "median": 14.7,
+        "median": 14.3,
         "p90": 128.0,
         "max": 155.0
       }
     },
     "canyon_ratio": {
       "SKELETON": {
-        "n": 2685,
+        "n": 2623,
         "min": 0.21,
         "p10": 0.25,
-        "median": 2.23,
+        "median": 2.18,
         "p90": 4.0,
         "max": 24.0
       }
@@ -722,7 +752,7 @@
       "SKELETON": 0.5
     },
     "doorways_per_10240_frontage": {
-      "SKELETON": 0.21
+      "SKELETON": 0.25
     },
     "substantial_interiors_per_10240_frontage": {
       "SKELETON": 0.12
@@ -741,16 +771,16 @@
       "SKELETON": 1632
     },
     "facade_walls_per_1024": {
-      "SKELETON": 0.21
+      "SKELETON": 0.22
     },
     "wall_sprites_per_1024": {
       "SKELETON": 0.044
     },
     "budgets": {
       "SKELETON": {
-        "sectors": 239,
-        "walls": 1529,
-        "sprites": 395
+        "sectors": 254,
+        "walls": 1648,
+        "sprites": 406
       }
     }
   }
