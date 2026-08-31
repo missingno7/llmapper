@@ -6,6 +6,8 @@ from pathlib import Path
 
 from bloodmap.analysis import channel_graph, geometry_view, validate_map
 from bloodmap.format import encode_map, parse_map, read_map
+from bloodmap.patterns import list_corpus_maps
+from tests.helpers import campaign_directory, corpus_map, named_corpus_maps
 
 
 MAPS = Path(os.environ.get("BLOODMAP_CORPUS", Path(__file__).resolve().parents[1] / "maps" / "blood"))
@@ -13,13 +15,17 @@ MAPS = Path(os.environ.get("BLOODMAP_CORPUS", Path(__file__).resolve().parents[1
 
 class CorpusTests(unittest.TestCase):
     def test_every_available_map_is_supported_and_byte_exact_through_both_models(self):
-        """Every local Blood MAP must parse as a supported major version (6 or 7).
+        """Every named-population Blood MAP must parse as a supported major (6 or 7).
 
-        Canonical campaign maps (`E*.MAP`) are v7. Community/add-on maps in the
-        same folder may be v6 (for example BB9.MAP). The parser already handles
-        both; this gate must not assume the folder is campaign-only.
+        Campaign maps (`E*M*.MAP`) are v7. Hand-picked and converted maps in the
+        other population directories may be v6 (for example BB9.MAP); the parser
+        handles both, and this gate must not assume one population.
+
+        The bulk `community/` population is deliberately out of scope: it has
+        not passed the gate. `reports/blood-corpus-health.md` covers it
+        fail-closed instead.
         """
-        paths = sorted(MAPS.glob("*.MAP"))
+        paths = named_corpus_maps()
         if not paths:
             self.skipTest("no local Blood MAP corpus; set BLOODMAP_CORPUS to enable")
         for path in paths:
@@ -41,15 +47,16 @@ class CorpusTests(unittest.TestCase):
                 self.assertEqual(focused["selection"]["sector_ids"], [level.player_start["sector"]])
 
     def test_campaign_episode_maps_are_v7(self):
-        paths = sorted(MAPS.glob("E*.MAP"))
+        paths = [item.path for item in list_corpus_maps(MAPS, population="blood-campaign")]
         if not paths:
-            self.skipTest("no local Blood campaign E*.MAP files")
+            self.skipTest("no local Blood campaign E*M*.MAP files")
+        self.assertTrue(campaign_directory().is_dir() or not paths)
         for path in paths:
             with self.subTest(path=path.name):
                 self.assertEqual(read_map(path).version, 0x0700)
 
     def test_derived_views_cover_objects(self):
-        path = MAPS / "E1M1.MAP"
+        path = corpus_map("E1M1.MAP")
         if not path.exists():
             self.skipTest("E1M1.MAP is not present in the local corpus")
         disk = read_map(path)

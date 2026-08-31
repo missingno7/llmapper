@@ -1,0 +1,91 @@
+{
+  "$schema": "llmapper.blood-corpus-health",
+  "corpus_root": "maps/blood",
+  "failed": 0,
+  "failure_reason_counts": {},
+  "gate": [
+    "parses as a supported Blood/Duke major version",
+    "native disk parse/write is byte-identical",
+    "BuildIR native reconstruction is byte-identical",
+    "structural validation has zero hard errors"
+  ],
+  "map_versions": {
+    "0x0700": 4
+  },
+  "maps_selected": 4,
+  "passed": 4,
+  "policy": "fail-closed: a failing map is skipped and reported, never normalized",
+  "results": [
+    {
+      "byte_exact": true,
+      "filename": "DNE3L1.MAP",
+      "game": "blood",
+      "ir_byte_exact": true,
+      "map_version": "0x0700",
+      "mode": "unknown",
+      "parse": true,
+      "population": "own-conversion",
+      "relative": "conversions/DNE3L1.MAP",
+      "sha256": "8f35f72ca26e5c2745cc07f87d5af0f448940a2c696a35dbbe9340fb9ea49921",
+      "status": "pass",
+      "tier": null,
+      "validation_errors": 0,
+      "validation_warnings": 0
+    },
+    {
+      "byte_exact": true,
+      "filename": "DNE3L11.map",
+      "game": "blood",
+      "ir_byte_exact": true,
+      "map_version": "0x0700",
+      "mode": "unknown",
+      "parse": true,
+      "population": "own-conversion",
+      "relative": "conversions/DNE3L11.map",
+      "sha256": "3d05bf449b8d57a0231b5f4fe78bd6f8cfc289ae7e5ac0f3c24cd608edcdb03f",
+      "status": "pass",
+      "tier": null,
+      "validation_errors": 0,
+      "validation_warnings": 0
+    },
+    {
+      "byte_exact": true,
+      "filename": "DNE3L3.map",
+      "game": "blood",
+      "ir_byte_exact": true,
+      "map_version": "0x0700",
+      "mode": "unknown",
+      "parse": true,
+      "population": "own-conversion",
+      "relative": "conversions/DNE3L3.map",
+      "sha256": "1b6c9bc3e340484297865edca40a5f51ef45ea3d22f080dad4182e1889f81d35",
+      "status": "pass",
+      "tier": null,
+      "validation_errors": 0,
+      "validation_warnings": 0
+    },
+    {
+      "byte_exact": true,
+      "filename": "DNE3L6.map",
+      "game": "blood",
+      "ir_byte_exact": true,
+      "map_version": "0x0700",
+      "mode": "unknown",
+      "parse": true,
+      "population": "own-conversion",
+      "relative": "conversions/DNE3L6.map",
+      "sha256": "5c436a92e59b951b456322c3a3a8161a9a0cc096ed3d9c3d121145b1448679f3",
+      "status": "pass",
+      "tier": null,
+      "validation_errors": 0,
+      "validation_warnings": 0
+    }
+  ],
+  "schema_version": 1,
+  "selection": {
+    "mode": null,
+    "population": "own-conversion",
+    "tier": null,
+    "view": null
+  }
+}

@@ -12,7 +12,8 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-MAPS = ROOT / "maps" / "blood"
+#: The campaign population directory (corpus reorganized 2026-08-31).
+MAPS = ROOT / "maps" / "blood" / "campaign"
 ART = ROOT / "reference" / "blood"
 
 

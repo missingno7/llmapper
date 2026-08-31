@@ -1,0 +1,402 @@
+{
+  "$schema": "llmapper.object-relation-pilot",
+  "counts": {
+    "above": 17,
+    "adjacent_to": 307,
+    "against_wall": 464,
+    "faces_wall": 297,
+    "in_sector": 908,
+    "inside": 18,
+    "repeats_along": 1,
+    "rests_on": 310,
+    "shares_material": 46,
+    "shares_plane": 64
+  },
+  "distributions": {
+    "above.gap_player_heights": {
+      "flush": 7,
+      "half_to_one": 5,
+      "under_half": 5
+    },
+    "adjacent_to.width_player_widths": {
+      "one_to_two": 73,
+      "two_to_four": 64,
+      "under_one_body": 60,
+      "wide": 110
+    },
+    "against_wall.distance_player_widths": {
+      "flush": 212,
+      "loose": 127,
+      "near": 16,
+      "offset": 109
+    },
+    "repeats_along.spacing_player_widths": {
+      "wide": 1
+    },
+    "rests_on.clearance_player_heights": {
+      "band": 5,
+      "exact": 268,
+      "step": 12,
+      "sub_step": 25
+    }
+  },
+  "errors": [],
+  "faces_wall_exactly_perpendicular": {
+    "count": 261,
+    "fraction": 0.8788,
+    "of": 297
+  },
+  "limitations": [
+    "A pilot over sampled neighborhoods, not a corpus statistic. It says what the extractor produces, not what Blood usually does.",
+    "Seeds are the sprite-densest sectors, so the sample is biased toward furnished rooms -- deliberately, since that is where object-scale relations exist at all.",
+    "Every relation is an OBSERVATION. Nothing here is interpreted."
+  ],
+  "maps_sampled": 5,
+  "per_map": [
+    {
+      "counts": {
+        "above": 11,
+        "adjacent_to": 50,
+        "against_wall": 106,
+        "faces_wall": 77,
+        "in_sector": 204,
+        "inside": 10,
+        "rests_on": 73,
+        "shares_material": 9,
+        "shares_plane": 15
+      },
+      "map": "E1M1.MAP",
+      "neighborhood": {
+        "hops": 1,
+        "sectors": [
+          5,
+          22,
+          23,
+          24,
+          25,
+          46,
+          47,
+          48,
+          49,
+          52,
+          53,
+          55,
+          57,
+          58,
+          59,
+          63,
+          65,
+          66,
+          93,
+          99,
+          120,
+          122,
+          123,
+          125,
+          145,
+          146
+        ],
+        "seed_sectors": [
+          59,
+          65,
+          122
+        ],
+        "sprite_count": 204,
+        "wall_count": 318
+      },
+      "population": "blood-campaign",
+      "seed_sectors": [
+        65,
+        122,
+        59
+      ]
+    },
+    {
+      "counts": {
+        "adjacent_to": 42,
+        "against_wall": 56,
+        "faces_wall": 38,
+        "in_sector": 101,
+        "inside": 5,
+        "rests_on": 36,
+        "shares_material": 7,
+        "shares_plane": 7
+      },
+      "map": "E1M2.MAP",
+      "neighborhood": {
+        "hops": 1,
+        "sectors": [
+          5,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          112,
+          186,
+          193,
+          244,
+          248,
+          249,
+          252,
+          253,
+          256
+        ],
+        "seed_sectors": [
+          14,
+          19,
+          244
+        ],
+        "sprite_count": 101,
+        "wall_count": 170
+      },
+      "population": "blood-campaign",
+      "seed_sectors": [
+        19,
+        244,
+        14
+      ]
+    },
+    {
+      "counts": {
+        "above": 6,
+        "adjacent_to": 64,
+        "against_wall": 153,
+        "faces_wall": 99,
+        "in_sector": 255,
+        "rests_on": 82,
+        "shares_material": 11,
+        "shares_plane": 15
+      },
+      "map": "E1M3.MAP",
+      "neighborhood": {
+        "hops": 1,
+        "sectors": [
+          0,
+          1,
+          19,
+          33,
+          35,
+          36,
+          40,
+          41,
+          42,
+          43,
+          44,
+          54,
+          55,
+          56,
+          57,
+          58,
+          82,
+          83,
+          84,
+          85,
+          92,
+          93,
+          96,
+          98,
+          162,
+          163,
+          164,
+          165,
+          205,
+          210,
+          211,
+          225,
+          226,
+          231,
+          239,
+          284,
+          285,
+          286,
+          288,
+          289,
+          290,
+          291,
+          308,
+          325
+        ],
+        "seed_sectors": [
+          284,
+          289,
+          291
+        ],
+        "sprite_count": 255,
+        "wall_count": 406
+      },
+      "population": "blood-campaign",
+      "seed_sectors": [
+        284,
+        291,
+        289
+      ]
+    },
+    {
+      "counts": {
+        "adjacent_to": 74,
+        "against_wall": 129,
+        "faces_wall": 72,
+        "in_sector": 229,
+        "rests_on": 63,
+        "shares_material": 9,
+        "shares_plane": 11
+      },
+      "map": "E1M4.MAP",
+      "neighborhood": {
+        "hops": 1,
+        "sectors": [
+          5,
+          8,
+          9,
+          44,
+          47,
+          61,
+          66,
+          70,
+          71,
+          75,
+          155,
+          161,
+          163,
+          165,
+          166,
+          168,
+          171,
+          172,
+          175,
+          183,
+          218,
+          309,
+          320,
+          321,
+          322,
+          323,
+          324,
+          325,
+          326,
+          327,
+          328,
+          329,
+          338,
+          370,
+          371,
+          372,
+          381,
+          382
+        ],
+        "seed_sectors": [
+          320,
+          321,
+          382
+        ],
+        "sprite_count": 229,
+        "wall_count": 399
+      },
+      "population": "blood-campaign",
+      "seed_sectors": [
+        321,
+        320,
+        382
+      ]
+    },
+    {
+      "counts": {
+        "adjacent_to": 77,
+        "against_wall": 20,
+        "faces_wall": 11,
+        "in_sector": 119,
+        "inside": 3,
+        "repeats_along": 1,
+        "rests_on": 56,
+        "shares_material": 10,
+        "shares_plane": 16
+      },
+      "map": "E1M5.MAP",
+      "neighborhood": {
+        "hops": 1,
+        "sectors": [
+          46,
+          47,
+          48,
+          49,
+          50,
+          55,
+          56,
+          58,
+          59,
+          95,
+          209,
+          216,
+          219,
+          224,
+          225,
+          226,
+          227,
+          228,
+          231,
+          267,
+          285,
+          286,
+          299,
+          301,
+          302,
+          346,
+          348,
+          349,
+          396,
+          397,
+          398,
+          427
+        ],
+        "seed_sectors": [
+          216,
+          231,
+          267
+        ],
+        "sprite_count": 119,
+        "wall_count": 290
+      },
+      "population": "blood-campaign",
+      "seed_sectors": [
+        231,
+        216,
+        267
+      ]
+    }
+  ],
+  "population": "blood-campaign",
+  "relation_kinds": {
+    "above": "03 above/below; overlooks, lofts, stacked volumes",
+    "adjacent_to": "03 open_to/accessible_from at object scale",
+    "against_wall": "03 discriminator against_wall; shelf vs crate pile",
+    "faces_wall": "03 discriminator privileged_front / open_front",
+    "in_sector": "anchor: which space carries the object (03: contains)",
+    "inside": "03 inside/contains; a volume cut into another",
+    "repeats_along": "03 repeats_along + stackable_identical_units",
+    "rests_on": "03 supports/supported_by; what holds the object up",
+    "shares_material": "03 shares_style_with, the cheapest style relation",
+    "shares_plane": "03 coplanar_with/shares_height_with; a run of surfaces"
+  },
+  "repeating_runs": [
+    {
+      "axis": "plan",
+      "count": 3,
+      "map": "E1M5.MAP",
+      "members": [
+        "sprite:54",
+        "sprite:55",
+        "sprite:56"
+      ],
+      "picnum": 552,
+      "population": "blood-campaign",
+      "spacing_player_widths": 6.5,
+      "spacing_variation": 0.0
+    }
+  ],
+  "sampling": "the 3 sprite-densest sectors of the first 5 maps, expanded 1 portal hop(s)",
+  "schema_version": 1
+}

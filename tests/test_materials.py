@@ -393,7 +393,7 @@ class RetrievalAndExperimentTests(unittest.TestCase):
 
 class CorpusSkipTests(unittest.TestCase):
     def test_local_corpus_mining_is_optional(self):
-        maps = Path(__file__).resolve().parents[1] / "maps" / "blood"
+        maps = Path(__file__).resolve().parents[1] / "maps" / "blood" / "campaign"
         if not list(maps.glob("*.MAP")):
             self.skipTest("no local Blood MAP corpus")
         catalog = new_catalog(games=["blood"])

@@ -31,7 +31,7 @@ PH = 0x1600
 
 ROOT = Path(__file__).resolve().parent.parent
 RESOURCE_DIR = ROOT / "reference" / "blood"
-E2M3 = ROOT / "maps" / "blood" / "E2M3.MAP"
+E2M3 = ROOT / "maps" / "blood" / "campaign" / "E2M3.MAP"
 BLOOD_RFF = RESOURCE_DIR / "BLOOD.RFF"
 #: The palette NBlood displays, shipped loose alongside the archive.
 REFERENCE_PAL = RESOURCE_DIR / "xmapedit" / "palettes" / "import" / "BLOOD.PAL"

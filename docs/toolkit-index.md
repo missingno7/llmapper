@@ -78,6 +78,9 @@ Do not add a check anywhere else. If it is worth enforcing it is worth grading.
 | what connects to what | `reachability.portal_graph` — **portals only, no z, no step height** |
 | is this opening walkable | `player_space` |
 | does this map stack safely | `layers.report` |
+| what is *around* this object, without naming it | `relations.extract_relations` — object-scale relations, frame-independent |
+| which sectors here are worth looking at | `relations.sprite_dense_seeds` |
+| what surrounds a tile I have a name for | `anchors.mine_anchor` — and it tells you whether that context means anything (enrichment) |
 
 ## Knowing what Blood does
 

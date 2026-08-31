@@ -80,7 +80,7 @@ class SightlineTests(unittest.TestCase):
 
         report = spawn_sight_report(synthetic_two_sector_map().to_build_ir())
         self.assertGreaterEqual(len(report["starts"]), 1)
-        other = Path("maps/blood/BB1.MAP")
+        other = Path("maps/blood/campaign/multiplayer/BB1.MAP")
         if other.exists():
             from bloodmap.format import read_map
             extra = spawn_sight_report(read_map(other).to_build_ir())

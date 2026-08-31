@@ -23,13 +23,13 @@ from tools.emit_level_program import (
 
 ROOT = Path(__file__).resolve().parent.parent
 CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
-E2M3 = ROOT / "maps" / "blood" / "E2M3.MAP"
+E2M3 = ROOT / "maps" / "blood" / "campaign" / "E2M3.MAP"
 
 
 def campaign_maps() -> list[Path]:
     seen: set[str] = set()
     result = []
-    for path in sorted(glob.glob(str(ROOT / "maps" / "blood" / "*.MAP"))):
+    for path in sorted(glob.glob(str(ROOT / "maps" / "blood" / "campaign" / "*.MAP"))):
         name = Path(path).stem.upper()
         if name in seen or not CAMPAIGN.match(name):
             continue

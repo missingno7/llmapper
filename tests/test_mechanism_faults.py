@@ -14,7 +14,8 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-MAPS = ROOT / "maps" / "blood"
+#: The campaign population directory (corpus reorganized 2026-08-31).
+MAPS = ROOT / "maps" / "blood" / "campaign"
 CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP"
 
 SLIDE_TYPES = frozenset({613, 614, 615})

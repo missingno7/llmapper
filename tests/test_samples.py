@@ -16,8 +16,11 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SAMPLES = ROOT / "maps" / "blood" / "samples"
-MAPS = ROOT / "maps" / "blood"
+#: The XMapEdit sample maps are the `mechanism-tutorial` population now
+#: (corpus reorganized 2026-08-31); they were `maps/blood/samples/`.
+SAMPLES = ROOT / "maps" / "blood" / "mechanism"
+#: The campaign population directory (corpus reorganized 2026-08-31).
+MAPS = ROOT / "maps" / "blood" / "campaign"
 CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP"
 
 

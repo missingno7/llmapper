@@ -39,7 +39,7 @@ CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 
 def campaign_maps() -> list[Path]:
     result = []
-    for path in sorted(glob.glob(str(ROOT / "maps" / "blood" / "*.MAP"))):
+    for path in sorted(glob.glob(str(ROOT / "maps" / "blood" / "campaign" / "*.MAP"))):
         if CAMPAIGN.match(Path(path).stem.upper()):
             result.append(Path(path))
     return result

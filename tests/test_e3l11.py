@@ -8,6 +8,7 @@ from bloodmap.analysis import validate_map
 from bloodmap.duke import read_duke_map
 from bloodmap.e3l11 import convert_e3l11_to_blood
 from bloodmap.format import encode_map, parse_map
+from tests.helpers import corpus_map
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -129,7 +130,7 @@ class E3L11PlayableConversionTests(unittest.TestCase):
 class DNE3L11PartialConversionTests(unittest.TestCase):
     def test_dne3l11_is_a_partial_3_2_water_pass_of_e3l11(self):
         duke = ROOT / "maps" / "duke3d" / "E3L11.MAP"
-        blood = ROOT / "maps" / "blood" / "DNE3L11.map"
+        blood = corpus_map("DNE3L11.map")
         if not duke.exists() or not blood.exists():
             self.skipTest("E3L11/DNE3L11 pair is not present")
         from bloodmap.differential import compare_e3l1_pair, infer_xy_scale

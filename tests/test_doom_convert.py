@@ -70,7 +70,7 @@ class DoomConvertTests(unittest.TestCase):
         self.assertEqual(Z_SCALE, 256)
         if not DOOM_WAD.exists():
             self.skipTest("DOOM.WAD is not present")
-        tede = Path(__file__).resolve().parents[1] / "maps" / "blood" / "TEDE1M9.MAP"
+        tede = Path(__file__).resolve().parents[1] / "maps" / "blood" / "curated" / "TEDE1M9.MAP"
         if not tede.exists():
             self.skipTest("TEDE1M9.MAP is not present")
         doom = wad_map(read_wad(DOOM_WAD), "E1M1")

@@ -332,7 +332,7 @@ class CompactPresentationTests(unittest.TestCase):
 
 class OriginalMapAuditTests(unittest.TestCase):
     def test_original_maps_yield_player_relative_descriptions_when_present(self):
-        blood = Path("maps/blood/E1M1.MAP")
+        blood = Path("maps/blood/campaign/E1M1.MAP")
         duke = Path("maps/duke3d/E1L1.MAP")
         wad = Path("maps/doom/doom.wad")
         if not blood.is_file():

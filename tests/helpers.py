@@ -1,12 +1,65 @@
 from __future__ import annotations
 
 import copy
+from functools import lru_cache
+from pathlib import Path
 
 from bloodmap.format import (
     SECTOR_FIELDS, SPRITE_FIELDS, WALL_FIELDS, XSECTOR_SCHEMA, XSPRITE_SCHEMA,
     encode_map, parse_map,
 )
 from bloodmap.model import DiskMap, DiskObject, ExtraHeader, PackedExtra
+from bloodmap.patterns import corpus_root, is_structured_corpus, list_corpus_maps
+
+
+def blood_corpus_root() -> Path:
+    """The local Blood corpus root: `BLOODMAP_CORPUS`, else `maps/blood`."""
+    return corpus_root()
+
+
+def campaign_directory() -> Path:
+    """Where the original campaign `E*M*.MAP` files live.
+
+    The corpus was reorganized into provenance directories on 2026-08-31; a
+    flat `BLOODMAP_CORPUS` override still resolves to the root itself.
+    """
+    root = blood_corpus_root()
+    return root / "campaign" if is_structured_corpus(root) else root
+
+
+@lru_cache(maxsize=None)
+def _named_corpus_maps() -> dict[str, Path]:
+    """Filename -> path over the named populations (not the bulk community set).
+
+    Bulk community filenames are arbitrary and collide with campaign names, so
+    they are deliberately excluded from name-based lookup.
+    """
+    root = blood_corpus_root()
+    index: dict[str, Path] = {}
+    for population in ("blood-campaign", "blood-bloodbath", "community-curated",
+                       "own-conversion"):
+        for item in list_corpus_maps(root, population=population, attach_tiers=False):
+            index.setdefault(item.name.upper(), item.path)
+    return index
+
+
+def corpus_map(filename: str) -> Path:
+    """Resolve one named corpus map, wherever the layout puts it.
+
+    Returns a non-existent path when the corpus is absent, so a caller's
+    `exists()` skip guard still works.
+    """
+    return _named_corpus_maps().get(filename.upper(), blood_corpus_root() / filename)
+
+
+def named_corpus_maps() -> list[Path]:
+    """Campaign, BloodBath, curated and own-conversion maps, sorted.
+
+    This is the set the native losslessness gate is expected to hold for. The
+    bulk `community/` population is deliberately excluded: those maps have not
+    passed the gate, and the fail-closed health report covers them instead.
+    """
+    return sorted(_named_corpus_maps().values())
 
 
 def synthetic_map() -> DiskMap:

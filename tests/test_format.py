@@ -15,7 +15,7 @@ from bloodmap.format import (
     crypt, encode_map, parse_map, read_map,
 )
 from bloodmap.model import LevelIR
-from tests.helpers import synthetic_map
+from tests.helpers import corpus_map, synthetic_map
 
 
 MAPS = Path(os.environ.get("BLOODMAP_CORPUS", Path(__file__).resolve().parents[1] / "maps" / "blood"))
@@ -67,7 +67,7 @@ class PrimitiveTests(unittest.TestCase):
 class MutationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.path = MAPS / "E1M1.MAP"
+        cls.path = corpus_map("E1M1.MAP")
         if cls.path.exists():
             cls.original = read_map(cls.path)
             cls.original_bytes = cls.path.read_bytes()

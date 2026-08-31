@@ -11,6 +11,7 @@ from bloodmap.duke import read_duke_map
 from bloodmap.duke_semantics import classify_se7_groups
 from bloodmap.e3l11 import ChannelAllocator, convert_playable_duke_to_blood
 from bloodmap.format import encode_map, parse_map
+from tests.helpers import corpus_map
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -40,7 +41,7 @@ class ChannelAllocatorTests(unittest.TestCase):
 class E3L3PlayableConversionTests(unittest.TestCase):
     def _paths(self):
         duke = DUKE_MAPS / "E3L3.MAP"
-        blood = BLOOD_MAPS / "DNE3L3.map"
+        blood = corpus_map("DNE3L3.map")
         if not duke.exists():
             self.skipTest("E3L3 is not present in the local Duke corpus")
         return duke, blood if blood.exists() else None

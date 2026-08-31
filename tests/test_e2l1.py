@@ -12,6 +12,7 @@ from bloodmap.duke_semantics import analyze_duke_mechanisms
 from bloodmap.e3l11 import convert_playable_duke_to_blood
 from bloodmap.format import encode_map, parse_map, read_map
 from bloodmap.style import extract_visual_style, load_visual_style
+from tests.helpers import corpus_map
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,7 +25,7 @@ BLOOD_ART = ROOT / "reference" / "blood"
 class E2L1StyleReferenceTests(unittest.TestCase):
     def _paths(self):
         duke = DUKE_MAPS / "E2L1.MAP"
-        blood = BLOOD_MAPS / "DWE2M3.MAP"
+        blood = corpus_map("DWE2M3.MAP")
         if not duke.exists():
             self.skipTest("E2L1 is not present in the local Duke corpus")
         if not blood.exists():
@@ -52,7 +53,7 @@ class E2L1StyleReferenceTests(unittest.TestCase):
 class E2L1PlayableConversionTests(unittest.TestCase):
     def _paths(self):
         duke = DUKE_MAPS / "E2L1.MAP"
-        style = BLOOD_MAPS / "DWE2M3.MAP"
+        style = corpus_map("DWE2M3.MAP")
         if not duke.exists():
             self.skipTest("E2L1 is not present in the local Duke corpus")
         if not style.exists():

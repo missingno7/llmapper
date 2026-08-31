@@ -30,8 +30,8 @@ from .geometry_audit import (
     audit_geometry, audit_markdown, audit_svg, validate_authored_level,
 )
 from .patterns import (
-    PatternError, inspect_pattern, load_catalog, mine_directory,
-    pattern_aware_understanding, query_catalog,
+    CORPUS_VIEWS, MODES, POPULATIONS, TIERS, PatternError, inspect_pattern, load_catalog,
+    mine_directory, pattern_aware_understanding, query_catalog,
 )
 from .placement import PlacementError, mine_attachments, validate_attachments
 from .progression import ProgressionError, analyze_progression, classify_mechanisms, completion_witness
@@ -88,9 +88,10 @@ def _write_text(path: str | None, value: str) -> None:
         sys.stdout.write(value)
 
 
-def _map_files(directory: Path, pattern: str | None = None) -> list[Path]:
+def _map_files(directory: Path, pattern: str | None = None, *, recursive: bool = False) -> list[Path]:
     from fnmatch import fnmatch
-    files = sorted(path for path in directory.iterdir() if path.is_file() and path.suffix.lower() == ".map")
+    walk = directory.rglob("*") if recursive else directory.iterdir()
+    files = sorted(path for path in walk if path.is_file() and path.suffix.lower() == ".map")
     if pattern:
         files = [path for path in files if fnmatch(path.name, pattern)]
     return files
@@ -109,10 +110,12 @@ def _read_build_ir(path: str | Path):
     return read_map(path).to_build_ir() if _game_for_path(path) == "blood" else read_duke_map(path).to_build_ir()
 
 
-def _inventory(directory: Path) -> dict[str, Any]:
+def _inventory(
+    directory: Path, *, recursive: bool = False, paths: list[Path] | None = None,
+) -> dict[str, Any]:
     files = []
     versions: dict[str, int] = {}
-    for path in _map_files(directory):
+    for path in (paths if paths is not None else _map_files(directory, recursive=recursive)):
         data = path.read_bytes()
         entry: dict[str, Any] = {
             "filename": path.name, "size": len(data),
@@ -133,7 +136,8 @@ def _inventory(directory: Path) -> dict[str, Any]:
         except Exception as exc:
             entry.update(detected_format="unknown", status="error", error=str(exc))
         files.append(entry)
-    ignored = sorted(path.name for path in directory.iterdir() if path.is_file() and path.suffix.lower() != ".map")
+    walk = directory.rglob("*") if (recursive or paths is not None) else directory.iterdir()
+    ignored = sorted(path.name for path in walk if path.is_file() and path.suffix.lower() != ".map")
     return {
         "directory": str(directory), "maps_discovered": len(files), "versions": versions,
         "ignored_non_map_files": ignored, "files": files,
@@ -142,9 +146,95 @@ def _inventory(directory: Path) -> dict[str, Any]:
 
 def cmd_corpus(args: argparse.Namespace) -> int:
     directory = Path(args.directory)
-    inventory = _inventory(directory)
+    if args.population or args.view:
+        from .patterns import list_corpus_maps
+
+        paths = [item.path for item in list_corpus_maps(
+            directory, population=args.population, view=args.view, attach_tiers=False)]
+        inventory = _inventory(directory, paths=paths)
+        inventory["selection"] = {"population": args.population, "view": args.view}
+    else:
+        inventory = _inventory(directory, recursive=args.recursive)
     _write_text(args.output, _json(inventory))
     return 1 if any(item["status"] != "ok" for item in inventory["files"]) else 0
+
+
+def cmd_corpus_manifest(args: argparse.Namespace) -> int:
+    """Record the reorganized corpus layout, populations, views and tiers."""
+    from .patterns import build_corpus_manifest
+
+    manifest = build_corpus_manifest(args.directory)
+    _write_text(args.output, _json(manifest))
+    print(
+        f"{manifest['map_count']} maps ({manifest['distinct_sha256']} distinct) in "
+        f"{len(manifest['populations'])} populations under {manifest['corpus_root']}"
+    )
+    for name, item in manifest["populations"].items():
+        print(f"  {name:20} {item['map_count']:5}")
+    for name, view in manifest["views"].items():
+        print(f"  view {name:15} {view['map_count']:5}  = {' + '.join(view['populations'])}")
+    if manifest["cross_population_duplicates"]:
+        print(f"  {len(manifest['cross_population_duplicates'])} maps appear in more than one population")
+    return 0
+
+
+def cmd_corpus_health(args: argparse.Namespace) -> int:
+    """Fail-closed parse/losslessness gate over one population or view."""
+    from .patterns import list_corpus_maps
+
+    selection = list_corpus_maps(
+        args.maps, population=args.population, view=args.view, mode=args.mode, tier=args.tier,
+    )
+    if not selection:
+        print("no maps selected; nothing to report", file=sys.stderr)
+        return 1
+    results = []
+    for index, item in enumerate(selection, start=1):
+        record = _losslessness_gate(item.path)
+        record.update(
+            relative=item.relative, population=item.population, mode=item.mode,
+            tier=item.tier, sha256=hashlib.sha256(item.path.read_bytes()).hexdigest(),
+        )
+        results.append(record)
+        if index % 100 == 0 or index == len(selection):
+            print(f"[{index}/{len(selection)}] gated", file=sys.stderr, flush=True)
+    passed = [r for r in results if r["status"] == "pass"]
+    failed = [r for r in results if r["status"] != "pass"]
+    reasons: dict[str, int] = {}
+    for record in failed:
+        key = record.get("failure_reason", "unknown").split(":")[0].strip()
+        reasons[key] = reasons.get(key, 0) + 1
+    versions: dict[str, int] = {}
+    for record in results:
+        versions[str(record.get("map_version"))] = versions.get(str(record.get("map_version")), 0) + 1
+    payload = {
+        "$schema": "llmapper.blood-corpus-health",
+        "schema_version": 1,
+        "corpus_root": str(args.maps) if args.maps else None,
+        "selection": {
+            "population": args.population, "view": args.view,
+            "mode": args.mode, "tier": args.tier,
+        },
+        "gate": [
+            "parses as a supported Blood/Duke major version",
+            "native disk parse/write is byte-identical",
+            "BuildIR native reconstruction is byte-identical",
+            "structural validation has zero hard errors",
+        ],
+        "policy": "fail-closed: a failing map is skipped and reported, never normalized",
+        "maps_selected": len(results),
+        "passed": len(passed),
+        "failed": len(failed),
+        "map_versions": dict(sorted(versions.items())),
+        "failure_reason_counts": dict(sorted(reasons.items(), key=lambda kv: -kv[1])),
+        "results": results,
+    }
+    _write_text(args.output, _json(payload))
+    print(
+        f"{len(passed)}/{len(results)} maps pass the native parse/losslessness gate "
+        f"({len(failed)} skipped and reported)"
+    )
+    return 0
 
 
 def cmd_duke_mechanisms(args: argparse.Namespace) -> int:
@@ -270,32 +360,58 @@ def cmd_roundtrip(args: argparse.Namespace) -> int:
     return 1
 
 
+def _losslessness_gate(path: Path) -> dict[str, Any]:
+    """Run the native parse/roundtrip/validation gate over one map, fail-closed.
+
+    A map that cannot be parsed, or that does not rebuild byte-for-byte, is
+    reported with its reason. It is never normalized and never silently dropped.
+    """
+    try:
+        original = path.read_bytes()
+        game = _game_for_path(path)
+        disk = read_map(path) if game == "blood" else read_duke_map(path)
+        encoder = encode_map if game == "blood" else encode_duke_map
+        rebuilt = encoder(disk)
+        ir_rebuilt = encoder(disk.to_build_ir().to_native_disk_map())
+        diagnostics = validate_map(disk) if game == "blood" else disk.to_build_ir().validate()
+        errors = [x for x in diagnostics if x.severity == "error"]
+        item: dict[str, Any] = {
+            "filename": path.name, "game": game, "parse": True,
+            "map_version": f"0x{disk.version:04x}" if game == "blood" else str(disk.version),
+            "byte_exact": original == rebuilt, "ir_byte_exact": original == ir_rebuilt,
+            "validation_errors": len(errors),
+            "validation_warnings": sum(x.severity == "warning" for x in diagnostics),
+        }
+        reasons = []
+        if not item["byte_exact"]:
+            reasons.append("native disk roundtrip is not byte-exact")
+        if not item["ir_byte_exact"]:
+            reasons.append("BuildIR reconstruction is not byte-exact")
+        if errors:
+            reasons.append(f"{errors[0].code}: {errors[0].message}")
+        if reasons:
+            item["failure_reason"] = "; ".join(reasons)
+    except Exception as exc:
+        item = {
+            "filename": path.name, "parse": False, "map_version": None,
+            "byte_exact": False, "ir_byte_exact": False,
+            "failure_reason": f"{type(exc).__name__}: {exc}",
+        }
+    item["status"] = "pass" if "failure_reason" not in item else "fail"
+    return item
+
+
 def cmd_roundtrip_all(args: argparse.Namespace) -> int:
     results = []
     failed = 0
-    for path in _map_files(Path(args.directory)):
-        try:
-            original = path.read_bytes()
-            game = _game_for_path(path)
-            disk = read_map(path) if game == "blood" else read_duke_map(path)
-            encoder = encode_map if game == "blood" else encode_duke_map
-            rebuilt = encoder(disk)
-            ir_rebuilt = encoder(disk.to_build_ir().to_native_disk_map())
-            diagnostics = validate_map(disk) if game == "blood" else disk.to_build_ir().validate()
-            errors = sum(x.severity == "error" for x in diagnostics)
-            item = {
-                "filename": path.name, "game": game, "parse": True, "byte_exact": original == rebuilt,
-                "ir_byte_exact": original == ir_rebuilt, "validation_errors": errors,
-                "validation_warnings": sum(x.severity == "warning" for x in diagnostics),
-            }
-        except Exception as exc:
-            item = {"filename": path.name, "parse": False, "error": str(exc)}
-        ok = item.get("parse") and item.get("byte_exact") and item.get("ir_byte_exact") and item.get("validation_errors") == 0
-        item["status"] = "pass" if ok else "fail"
-        failed += not ok
+    for path in _map_files(Path(args.directory), recursive=getattr(args, "recursive", False)):
+        item = _losslessness_gate(path)
+        if item.get("failure_reason"):
+            item.setdefault("error", item["failure_reason"])
+        failed += item["status"] != "pass"
         results.append(item)
         if not args.json:
-            print(f"{item['status'].upper():4} {path.name}" + (f": {item.get('error')}" if not ok and item.get("error") else ""))
+            print(f"{item['status'].upper():4} {path.name}" + (f": {item['failure_reason']}" if item.get("failure_reason") else ""))
     summary = {"maps": len(results), "passed": len(results) - failed, "failed": failed, "results": results}
     if args.json:
         print(_json(summary), end="")
@@ -763,8 +879,97 @@ def cmd_understand(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_anchor_mine(args: argparse.Namespace) -> int:
+    """From a sparse label to the structure around it, across a population."""
+    from .anchors import (
+        AnchorError, anchor_from_material, anchor_from_regions, anchor_from_tiles,
+        load_kit, mine_anchor, mine_kit,
+    )
+
+    chosen = sum(bool(x) for x in (args.tile, args.material, args.regions_map, args.kit))
+    if chosen != 1:
+        raise AnchorError("give exactly one of --tile, --material, --regions-map, --kit")
+    options = dict(directory=args.maps, population=args.population, view=args.view,
+                   top_maps=args.top_maps, hops=args.hops,
+                   analogues=not args.no_analogues)
+    if args.kit:
+        payload = mine_kit(load_kit(args.kit), **options)
+        _write_text(args.output, _json(payload))
+        for name, role in payload["roles"].items():
+            dominant = role["dominant_context"]
+            print(f"{name}: {role['total_uses']} uses in {role['maps_with_use']} map(s); "
+                  f"enrichment {dominant.get('enrichment')}")
+        return 0
+    if args.tile:
+        spec = anchor_from_tiles(args.name or "anchor", args.tile)
+    elif args.material:
+        spec = anchor_from_material(args.material)
+    else:
+        build = _read_build_ir(args.regions_map)
+        if not args.region:
+            raise AnchorError("--regions-map needs at least one --region")
+        spec = anchor_from_regions(build, args.region, name=args.name or "regions",
+                                   source=Path(args.regions_map).name)
+    payload = mine_anchor(spec, **options)
+    _write_text(args.output, _json(payload))
+    dominant = payload["dominant_context"]
+    print(f"{spec.name}: {payload['total_uses']} uses in {payload['maps_with_use']} map(s), "
+          f"{len(payload['studied'])} studied")
+    print(f"  dominant context: {dominant.get('signature')}")
+    print(f"  enrichment vs unanchored sectors: {dominant.get('enrichment')}")
+    print(f"  counterexamples: {payload['counterexamples']['count']}; "
+          f"anchor-free analogues: {payload['anchor_free_analogues']['count']}")
+    for item in payload["skipped_maps"]:
+        print(f"  SKIPPED {item['map']} ({item['uses']} uses): {item['reason']}", file=sys.stderr)
+    return 0
+
+
+def cmd_relation_dump(args: argparse.Namespace) -> int:
+    """Object-scale relations in one local neighborhood."""
+    from .relations import extract_relations
+    from .patterns import classify_map_population
+
+    path = Path(args.map)
+    document = extract_relations(
+        _read_build_ir(path),
+        sectors=args.sector, sprites=args.sprite, hops=args.hops,
+        game=_game_for_path(path), source=path.name,
+        population=classify_map_population(path),
+    )
+    _write_text(args.output, _json(document))
+    hood = document["neighborhood"]
+    print(
+        f"{path.name}: {len(document['relations'])} relations over "
+        f"{len(hood['sectors'])} sectors, {hood['sprite_count']} sprites "
+        f"({hood['hops']} hop(s) from {hood['seed_sectors']})"
+    )
+    for kind, count in document["counts"].items():
+        print(f"  {kind:16} {count:5}")
+    return 0
+
+
+def cmd_relation_mine(args: argparse.Namespace) -> int:
+    """Run the relation extractor over a population and report what recurs."""
+    from .relations import mine_relations
+
+    payload = mine_relations(
+        args.maps, population=args.population, maps=args.map_limit,
+        seeds_per_map=args.seeds, hops=args.hops,
+    )
+    _write_text(args.output, _json(payload))
+    print(f"{args.population}: {payload['maps_sampled']} maps, "
+          f"{sum(payload['counts'].values())} relations, "
+          f"{len(payload['repeating_runs'])} repeating runs")
+    for kind, count in payload["counts"].items():
+        print(f"  {kind:16} {count:5}")
+    for item in payload["errors"]:
+        print(f"  SKIPPED {item['map']}: {item['error']}", file=sys.stderr)
+    return 0
+
+
 def cmd_pattern_mine(args: argparse.Namespace) -> int:
-    payload = mine_directory(args.maps, population=args.population)
+    payload = mine_directory(args.maps, population=args.population,
+                             tier=args.tier, limit=args.limit)
     _write_text(args.output, _json(payload))
     print(
         f"{args.population}: {payload['sample_count']} samples, "
@@ -1542,7 +1747,23 @@ def build_parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command", required=True)
 
     p = sub.add_parser("corpus", help="inventory every file in a map directory")
-    p.add_argument("directory"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_corpus)
+    p.add_argument("directory"); p.add_argument("-o", "--output")
+    p.add_argument("--recursive", action="store_true", help="descend into the reorganized corpus subdirectories")
+    p.add_argument("--population", choices=tuple(POPULATIONS), help="inventory one population instead of a directory")
+    p.add_argument("--view", choices=tuple(CORPUS_VIEWS), help="inventory a named view instead of a directory")
+    p.set_defaults(func=cmd_corpus)
+    p = sub.add_parser("corpus-manifest", help="record the corpus layout, populations, modes, tiers, and named views")
+    p.add_argument("directory", nargs="?", help="corpus root (default: BLOODMAP_CORPUS or maps/blood)")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_corpus_manifest)
+    p = sub.add_parser("corpus-health", help="fail-closed native parse/losslessness gate over a population or view")
+    p.add_argument("--maps", help="corpus root (default: BLOODMAP_CORPUS or maps/blood)")
+    p.add_argument("--population", choices=tuple(POPULATIONS))
+    p.add_argument("--view", choices=tuple(CORPUS_VIEWS))
+    p.add_argument("--mode", choices=MODES)
+    p.add_argument("--tier", choices=TIERS)
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_corpus_health)
     p = sub.add_parser("duke-mechanisms", help="derive a semantic mechanism corpus from classic Duke3D MAPs")
     p.add_argument("directory")
     p.add_argument("-o", "--output", help="write JSON; defaults to stdout")
@@ -1584,7 +1805,9 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("roundtrip", help="test byte-exact parse/write")
     p.add_argument("map"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_roundtrip)
     p = sub.add_parser("roundtrip-all", help="test parsing, disk/IR roundtrips, and validation")
-    p.add_argument("directory"); p.add_argument("--json", action="store_true"); p.set_defaults(func=cmd_roundtrip_all)
+    p.add_argument("directory"); p.add_argument("--json", action="store_true")
+    p.add_argument("--recursive", action="store_true", help="descend into the reorganized corpus subdirectories")
+    p.set_defaults(func=cmd_roundtrip_all)
     p = sub.add_parser("compare-e3l1", help="differentially analyze a Duke/Blood map pair (E3L1 defaults)")
     p.add_argument("--duke", default="maps/duke3d/E3L1.MAP")
     p.add_argument("--blood", default="maps/blood/DNE3L1.MAP")
@@ -1660,9 +1883,41 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--patterns", help="optional design-pattern catalog JSON to attach matches")
     p.add_argument("-o", "--output")
     p.set_defaults(func=cmd_understand)
+    p = sub.add_parser("anchor-mine", help="mine the structure around a labelled anchor across a population")
+    p.add_argument("--name", help="role name for the anchor")
+    p.add_argument("--tile", type=int, action="append", help="anchor tile/picnum (repeatable)")
+    p.add_argument("--material", help="use a named surfaces.Material's declared tiles")
+    p.add_argument("--regions-map", help="derive the anchor tiles from example regions of this map")
+    p.add_argument("--region", type=int, action="append", help="example sector (repeatable)")
+    p.add_argument("--kit", help="JSON with a role_assets table; mines every role")
+    p.add_argument("--maps", help="corpus root (default: BLOODMAP_CORPUS or maps/blood)")
+    p.add_argument("--population", choices=tuple(POPULATIONS))
+    p.add_argument("--view", choices=tuple(CORPUS_VIEWS))
+    p.add_argument("--top-maps", type=int, default=3, help="how many analysable maps to study")
+    p.add_argument("--hops", type=int, default=1)
+    p.add_argument("--no-analogues", action="store_true", help="skip the anchor-free search")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_anchor_mine)
+    p = sub.add_parser("relation-dump", help="object-scale relations in one local neighborhood")
+    p.add_argument("map")
+    p.add_argument("--sector", type=int, action="append", help="seed sector (repeatable)")
+    p.add_argument("--sprite", type=int, action="append", help="seed sprite (repeatable)")
+    p.add_argument("--hops", type=int, default=1, help="portal hops to expand the neighborhood")
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_relation_dump)
+    p = sub.add_parser("relation-mine", help="run the object-scale relation extractor over a population")
+    p.add_argument("--maps", help="corpus root (default: BLOODMAP_CORPUS or maps/blood)")
+    p.add_argument("--population", default="blood-campaign", choices=tuple(POPULATIONS))
+    p.add_argument("--map-limit", type=int, default=5, help="how many maps to sample")
+    p.add_argument("--seeds", type=int, default=3, help="sprite-densest sectors per map")
+    p.add_argument("--hops", type=int, default=1)
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_relation_mine)
     p = sub.add_parser("pattern-mine", help="observe and cluster unsigned design-pattern candidates from original maps")
     p.add_argument("--maps", default="maps/blood")
-    p.add_argument("--population", required=True, choices=("blood-campaign", "blood-bloodbath"))
+    p.add_argument("--population", required=True, choices=tuple(POPULATIONS))
+    p.add_argument("--tier", choices=TIERS, help="restrict a community mine to one heuristic tier")
+    p.add_argument("--limit", type=int, help="mine only the first N maps (a bounded sample)")
     p.add_argument("-o", "--output", required=True)
     p.set_defaults(func=cmd_pattern_mine)
     p = sub.add_parser("pattern-query", help="retrieve multiple pattern occurrences from a catalog")
@@ -1681,7 +1936,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_pattern_inspect)
     p = sub.add_parser("placement-mine", help="mine sprite-to-architecture attachment signatures from original maps")
     p.add_argument("--maps", default="maps/blood")
-    p.add_argument("--population", default="blood-campaign", choices=("blood-campaign", "blood-bloodbath"))
+    p.add_argument("--population", default="blood-campaign", choices=tuple(POPULATIONS))
     p.add_argument("-o", "--output", required=True)
     p.set_defaults(func=cmd_placement_mine)
     p = sub.add_parser("progression", help="state-dependent SP reachability witness (keys, RX motion, switches)")
@@ -1712,13 +1967,13 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_design_sp_v2)
     p = sub.add_parser("door-mine", help="mine original-map door/gate implementation families")
     p.add_argument("--maps", default="maps/blood")
-    p.add_argument("--population", default="blood-campaign", choices=("blood-campaign", "blood-bloodbath"))
+    p.add_argument("--population", default="blood-campaign", choices=tuple(POPULATIONS))
     p.add_argument("-o", "--output", required=True)
     p.add_argument("--signifiers", help="write key-signifier co-occurrence JSON")
     p.set_defaults(func=cmd_door_mine)
     p = sub.add_parser("sprite-context-mine", help="mine sprite sit/mechanism/key neighborhood facets")
     p.add_argument("--maps", default="maps/blood")
-    p.add_argument("--population", default="blood-campaign", choices=("blood-campaign", "blood-bloodbath"))
+    p.add_argument("--population", default="blood-campaign", choices=tuple(POPULATIONS))
     p.add_argument("-o", "--output", required=True)
     p.set_defaults(func=cmd_sprite_context_mine)
     p = sub.add_parser("door-query", help="retrieve original door precedents from a mined catalog")

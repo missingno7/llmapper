@@ -9,7 +9,7 @@ from bloodmap.sector_map import render_sector_map
 
 class SectorMapTests(unittest.TestCase):
     def _map_path(self) -> Path:
-        path = Path(__file__).parents[1] / "maps" / "blood" / "E1M1.MAP"
+        path = Path(__file__).parents[1] / "maps" / "blood" / "campaign" / "E1M1.MAP"
         if not path.exists():
             self.skipTest("E1M1.MAP is not present in the local Blood corpus")
         return path

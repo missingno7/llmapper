@@ -11,7 +11,10 @@ from bloodmap.fragment import (
     extract_behavior_closed_fragment, extract_fragment,
 )
 from bloodmap.format import encode_map, parse_map, read_map
-from tests.helpers import synthetic_multi_loop_map, synthetic_two_sector_map
+from tests.helpers import (
+    corpus_map, named_corpus_maps, synthetic_multi_loop_map,
+    synthetic_two_sector_map,
+)
 
 
 MAPS = Path(os.environ.get("BLOODMAP_CORPUS", Path(__file__).resolve().parents[1] / "maps" / "blood"))
@@ -134,7 +137,7 @@ class FragmentTests(unittest.TestCase):
             apply_fragment_in_place(changed, fragment)
 
     def test_original_map_sector_roundtrips_through_fragment_when_available(self):
-        path = MAPS / "E1M1.MAP"
+        path = corpus_map("E1M1.MAP")
         if not path.exists():
             self.skipTest("E1M1.MAP is not present in the local corpus")
         disk = read_map(path)
@@ -145,7 +148,7 @@ class FragmentTests(unittest.TestCase):
         self.assertEqual(encode_map(restored.to_disk_map()), path.read_bytes())
 
     def test_every_available_map_reinserts_representative_sectors_exactly(self):
-        paths = sorted(MAPS.glob("*.MAP"))
+        paths = named_corpus_maps()
         if not paths:
             self.skipTest("no local Blood MAP corpus; set BLOODMAP_CORPUS to enable")
         for path in paths:

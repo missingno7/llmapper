@@ -12,16 +12,18 @@ from bloodmap.conversion import (
 from bloodmap.differential import compare_e3l1_pair
 from bloodmap.duke import encode_duke_map, parse_duke_map, read_duke_map
 from bloodmap.format import encode_map, parse_map, read_map
+from tests.helpers import corpus_map
 
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOOD_MAPS = Path(os.environ.get("BLOODMAP_CORPUS", ROOT / "maps" / "blood"))
+DNE3L1 = corpus_map("DNE3L1.MAP")
 DUKE_MAPS = Path(os.environ.get("DUKEMAP_CORPUS", ROOT / "maps" / "duke3d"))
 
 
 class CrossGameTests(unittest.TestCase):
     def _pair(self) -> tuple[Path, Path]:
-        duke, blood = DUKE_MAPS / "E3L1.MAP", BLOOD_MAPS / "DNE3L1.MAP"
+        duke, blood = DUKE_MAPS / "E3L1.MAP", DNE3L1
         if not duke.exists() or not blood.exists():
             self.skipTest("E3L1/DNE3L1 pair is not present in the local corpora")
         return duke, blood
