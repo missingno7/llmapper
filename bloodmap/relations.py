@@ -39,6 +39,7 @@ from typing import Any, Iterable, Sequence
 
 from .build_ir import BuildIR
 from .design import _polygon_loops, _signed_area
+from .blood_types import sprite_visibility
 from .placement import build_angle, inward_normal, point_segment_distance
 from .planar_geom import point_in_loop
 from .player_space import player_profile
@@ -282,9 +283,22 @@ def _wall_segment(build: BuildIR, wall_id: int) -> tuple[tuple[int, int], tuple[
     return (int(fields["x"]), int(fields["y"])), (int(end["x"]), int(end["y"]))
 
 
+def sprite_kind(build: BuildIR, sprite_id: int, *, game: str = "blood") -> str:
+    """`visible` or `wiring` for one sprite. `unknown` off Blood.
+
+    BuildIR keeps Blood's sprite type in the shared `lotag` slot; on Duke that
+    slot is Duke's own lotag and means something else, so visibility is only
+    claimed for Blood.
+    """
+    if game != "blood":
+        return "unknown"
+    fields = build.sprites[sprite_id]["fields"]
+    return sprite_visibility(int(fields["lotag"]), int(fields["cstat"]))["kind"]
+
+
 def _sprite_relations(
     build: BuildIR, hood: Neighborhood, geometry: dict[int, dict[str, Any]],
-    width: int, height: int,
+    width: int, height: int, game: str = "blood",
 ) -> list[Relation]:
     """in_sector, against_wall, faces_wall, rests_on.
 
@@ -303,8 +317,9 @@ def _sprite_relations(
         x, y, z = int(fields["x"]), int(fields["y"]), int(fields["z"])
         out.append(Relation(
             kind="in_sector", subject=sprite_ref, object=_ref("sector", sector_id),
-            measures={"picnum": int(fields["picnum"])},
-            basis="native sprite.sector",
+            measures={"picnum": int(fields["picnum"]),
+                      "visibility": sprite_kind(build, sprite_id, game=game)},
+            basis="native sprite.sector; visibility from blood_types.sprite_visibility",
         ))
 
         best: tuple[float, float, int] | None = None
@@ -377,7 +392,7 @@ def _line_deviation(points: Sequence[tuple[float, float]]) -> float:
 
 
 def _repeat_relations(
-    build: BuildIR, hood: Neighborhood, width: int, height: int,
+    build: BuildIR, hood: Neighborhood, width: int, height: int, game: str = "blood",
 ) -> list[Relation]:
     """Runs of identical sprites, evenly spaced in plan or in z.
 
@@ -411,7 +426,8 @@ def _repeat_relations(
             ]
             relation = _even_run(
                 "plan", picnum, _canonical_order(plan), gaps,
-                unit=width, unit_name="player_widths")
+                unit=width, unit_name="player_widths",
+                visibility=_run_visibility(build, plan, game))
             if relation is not None:
                 out.append(relation)
         # Vertical run: same plan position, evenly spaced in z. Blood z grows
@@ -424,7 +440,8 @@ def _repeat_relations(
         ):
             gaps = [abs(points[b][2] - points[a][2]) for a, b in zip(column, column[1:])]
             relation = _even_run(
-                "vertical", picnum, column, gaps, unit=height, unit_name="player_heights")
+                "vertical", picnum, column, gaps, unit=height, unit_name="player_heights",
+                visibility=_run_visibility(build, column, game))
             if relation is not None:
                 out.append(relation)
     return out
@@ -443,9 +460,14 @@ def _canonical_order(members: Sequence[int]) -> list[int]:
     return min(forward, forward[::-1])
 
 
+def _run_visibility(build: BuildIR, members: Sequence[int], game: str) -> str:
+    kinds = {sprite_kind(build, sprite_id, game=game) for sprite_id in members}
+    return kinds.pop() if len(kinds) == 1 else "mixed"
+
+
 def _even_run(
     axis: str, picnum: int, members: Sequence[int], gaps: Sequence[float],
-    *, unit: int, unit_name: str,
+    *, unit: int, unit_name: str, visibility: str = "unknown",
 ) -> Relation | None:
     if len(gaps) < REPEAT_MIN_MEMBERS - 1 or min(gaps) <= 0:
         return None
@@ -460,6 +482,7 @@ def _even_run(
             "axis": axis,
             "count": len(members),
             "picnum": picnum,
+            "visibility": visibility,
             f"spacing_{unit_name}": round(spacing / unit, 4),
             "spacing_variation": round(cv, 4),
         },
@@ -565,12 +588,20 @@ def extract_relations(
     game: str = "blood",
     source: str | None = None,
     population: str | None = None,
+    sector_kinds: dict[int, str] | None = None,
 ) -> dict[str, Any]:
     """Dump every object-scale relation in one local neighborhood.
 
     The document is deterministic and frame-independent: the same neighborhood
     of a translated or quarter-turn-rotated map produces an identical
     `relations` list.
+
+    `sector_kinds` is `reachability.sector_kinds(disk)`, computed **once per
+    map** by the caller and passed in -- it needs a whole-map flood fill and
+    recomputing it per neighborhood would cost more than the extraction. When
+    it is absent the sectors are labelled `unknown` rather than assumed
+    reachable: a switch closet is routinely a map's sprite-densest sector, and
+    silently calling it a room is the defect this parameter exists to stop.
     """
     hood = neighborhood(build, sectors=sectors, sprites=sprites, hops=hops)
     profile = player_profile(game)
@@ -579,8 +610,8 @@ def extract_relations(
     spatial = analyze_spatial(build, hood.sectors)
 
     relations = [
-        *_sprite_relations(build, hood, geometry, width, height),
-        *_repeat_relations(build, hood, width, height),
+        *_sprite_relations(build, hood, geometry, width, height, game),
+        *_repeat_relations(build, hood, width, height, game),
         *_sector_relations(build, hood, geometry, spatial, width, height),
     ]
     leaked = sorted({
@@ -594,6 +625,12 @@ def extract_relations(
     counts: dict[str, int] = defaultdict(int)
     for relation in relations:
         counts[relation.kind] += 1
+    kinds = {sector_id: (sector_kinds or {}).get(sector_id, "unknown")
+             for sector_id in hood.sectors}
+    visibility: dict[str, int] = defaultdict(int)
+    for relation in relations:
+        if relation.kind == "in_sector":
+            visibility[relation.measures["visibility"]] += 1
     return {
         "$schema": SCHEMA,
         "schema_version": SCHEMA_VERSION,
@@ -602,6 +639,9 @@ def extract_relations(
         "game": game,
         "player_profile": {"body_width": width, "standing_height": height},
         "neighborhood": hood.to_dict(),
+        "sector_kinds": {str(key): value for key, value in sorted(kinds.items())},
+        "seed_sector_kinds": sorted({kinds[s] for s in hood.seeds if s in kinds}),
+        "object_visibility": dict(sorted(visibility.items())),
         "relation_kinds": dict(RELATION_KINDS),
         "counts": {kind: counts[kind] for kind in sorted(counts)},
         "relations": [relation.to_dict() for relation in relations],
@@ -616,6 +656,10 @@ def extract_relations(
             "rests_on states that a sprite sits within a clearance band of a "
             "surface. It does not read tile heights, so it is not contact.",
             "No relation here names an object. Interpretation is a later pass.",
+            "`sector_kinds` and each in_sector relation's `visibility` are "
+            "labels, not filters: wiring and off-map geometry stay in the dump "
+            "as evidence about how a level is wired. Statistics that mean to "
+            "describe furniture must select on them.",
         ],
     }
 
@@ -654,6 +698,7 @@ CONTEXT_FACETS = ("portals", "enclosed", "stacked", "coplanar")
 
 def context_signature(
     document: dict[str, Any], sector_id: int, *, facets: Sequence[str] | None = None,
+    visible_only: bool = True,
 ) -> str:
     """Reduce one carrying sector's relation neighborhood to a discrete key.
 
@@ -666,6 +711,11 @@ def context_signature(
     `CONTEXT_FACETS` relation is absent *by construction* there -- a scale-1
     signature that reported `portals:0` for a sector with four portals would be
     stating an artefact of the selection as a fact about the map.
+
+    `visible_only` (the default) counts only objects a player can see. Roughly
+    a quarter of every campaign map's sprites are sector-sound markers, link
+    markers, starts and generators; counting them made the `objects` facet
+    measure editor wiring. Pass False to key on the wiring instead.
     """
     ref = f"sector:{sector_id}"
     relations = document["relations"]
@@ -685,6 +735,7 @@ def context_signature(
     own = {
         item["subject"] for item in relations
         if item["kind"] == "in_sector" and item["object"] == ref
+        and not (visible_only and item["measures"].get("visibility") == "wiring")
     }
     seated = sum(
         1 for item in relations
@@ -726,19 +777,79 @@ def signature_facets(signature: str) -> dict[str, str]:
 # ---------------------------------------------------------------------------
 
 
-def sprite_dense_seeds(build: BuildIR, *, limit: int) -> list[int]:
-    """The sectors carrying the most sprites, as neighborhood seeds.
+def sprite_dense_seeds(
+    build: BuildIR, *, limit: int, sector_kinds: dict[int, str] | None = None,
+    game: str = "blood", visible_only: bool = True, reachable_only: bool = True,
+) -> list[int]:
+    """The sectors carrying the most *visible* objects, as neighborhood seeds.
 
     Object-scale relations only exist where objects are. Seeding on sprite
     density picks the neighborhoods with something to say without hand-picking
     them per map, which would smuggle the answer into the sample.
+
+    Two filters, both defaults, both measured defects rather than caution:
+
+    - `reachable_only` needs `sector_kinds` from `reachability.sector_kinds`.
+      A logic closet is routinely a map's densest sector -- E1M2's densest is
+      its switch closet -- and 3 of the Phase 1 pilot's 15 seeds were off-map.
+    - `visible_only` skips wiring sprites. A sector holding nine sound markers
+      and nothing else is not a furnished place.
+
+    Neither filter drops anything from the corpus; they only decide what a
+    furniture survey is allowed to point at. `excluded_dense_seeds` reports
+    what they held back.
     """
-    counts: dict[int, int] = defaultdict(int)
-    for sprite in build.sprites:
-        counts[int(sprite["fields"]["sector"])] += 1
+    counts = _seed_counts(build, game=game, visible_only=visible_only)
     ranked = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
-    return [sector_id for sector_id, _count in ranked[:limit]
-            if 0 <= sector_id < len(build.sectors)]
+    out = []
+    for sector_id, count in ranked:
+        if len(out) >= limit:
+            break
+        if not 0 <= sector_id < len(build.sectors) or count <= 0:
+            continue
+        if reachable_only and (sector_kinds or {}).get(sector_id, "unknown") not in (
+                "reachable", "unknown"):
+            continue
+        out.append(sector_id)
+    return out
+
+
+def _seed_counts(build: BuildIR, *, game: str, visible_only: bool) -> dict[int, int]:
+    counts: dict[int, int] = defaultdict(int)
+    for sprite_id, sprite in enumerate(build.sprites):
+        if visible_only and sprite_kind(build, sprite_id, game=game) == "wiring":
+            continue
+        counts[int(sprite["fields"]["sector"])] += 1
+    return counts
+
+
+def excluded_dense_seeds(
+    build: BuildIR, *, limit: int, sector_kinds: dict[int, str] | None = None,
+    game: str = "blood",
+) -> list[dict[str, Any]]:
+    """What the seed filters held back, and why. Reported, never discarded.
+
+    These are the switch closets and sound-marker pockets that a sprite-count
+    ranking puts first. They are wiring evidence for the conditional-topology
+    phases; they simply must not pose as furniture.
+    """
+    raw = _seed_counts(build, game=game, visible_only=False)
+    kept = set(sprite_dense_seeds(build, limit=limit, sector_kinds=sector_kinds, game=game))
+    visible = _seed_counts(build, game=game, visible_only=True)
+    out = []
+    for sector_id, count in sorted(raw.items(), key=lambda item: (-item[1], item[0]))[:limit]:
+        if sector_id in kept:
+            continue
+        kind = (sector_kinds or {}).get(sector_id, "unknown")
+        reasons = []
+        if kind not in ("reachable", "unknown"):
+            reasons.append(f"off-map: {kind}")
+        if visible.get(sector_id, 0) < count:
+            reasons.append(f"{count - visible.get(sector_id, 0)} of {count} sprites are wiring")
+        out.append({"sector": sector_id, "sprites": count,
+                    "visible_sprites": visible.get(sector_id, 0),
+                    "sector_kind": kind, "reasons": reasons})
+    return out
 
 
 def _bin(value: float, edges: Sequence[float], labels: Sequence[str]) -> str:
@@ -782,6 +893,7 @@ def mine_relations(
     """
     from .format import read_map
     from .patterns import list_corpus_maps
+    from .reachability import sector_kinds as reachability_sector_kinds
 
     selected = list_corpus_maps(directory, population=population)[:maps]
     if not selected:
@@ -790,48 +902,77 @@ def mine_relations(
     kind_counts: dict[str, int] = defaultdict(int)
     per_map: list[dict[str, Any]] = []
     distributions: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    wiring_distributions: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
     faces_exact = 0
     faces_total = 0
+    wiring_faces = 0
     runs: list[dict[str, Any]] = []
     errors: list[dict[str, str]] = []
+    excluded_seeds: list[dict[str, Any]] = []
+    wiring_runs: list[dict[str, Any]] = []
 
     for item in selected:
         try:
-            build = read_map(item.path).to_build_ir()
-            seeds = sprite_dense_seeds(build, limit=seeds_per_map)
+            disk = read_map(item.path)
+            build = disk.to_build_ir()
+            # Once per map. A whole-map flood fill per seed would cost more
+            # than every extraction in this pilot put together.
+            kinds = reachability_sector_kinds(disk) if game == "blood" else {}
+            seeds = sprite_dense_seeds(build, limit=seeds_per_map, sector_kinds=kinds,
+                                       game=game)
+            held_back = excluded_dense_seeds(build, limit=seeds_per_map,
+                                             sector_kinds=kinds, game=game)
             if not seeds:
-                errors.append({"map": item.name, "error": "no sprites to seed on"})
+                errors.append({"map": item.name, "error": "no visible objects to seed on"})
                 continue
             document = extract_relations(
                 build, sectors=seeds, hops=hops, game=game,
-                source=item.name, population=item.population,
+                source=item.name, population=item.population, sector_kinds=kinds,
             )
         except Exception as exc:                       # reported, never swallowed
             errors.append({"map": item.name, "error": f"{type(exc).__name__}: {exc}"})
             continue
         for kind, count in document["counts"].items():
             kind_counts[kind] += count
+        # Which sprite is wiring, from the in_sector relation that carries the
+        # label. Relations about a sound marker stay in the dump; they just do
+        # not enter a statistic that means to describe furniture.
+        visibility_of = {
+            relation["subject"]: relation["measures"]["visibility"]
+            for relation in document["relations"] if relation["kind"] == "in_sector"
+        }
         for relation in document["relations"]:
             kind = relation["kind"]
+            subject = relation.get("subject")
+            wiring = visibility_of.get(subject) == "wiring"
+            target = wiring_distributions if wiring else distributions
             for measure, (edges, labels) in _DISTRIBUTIONS.items():
                 if measure[0] == kind and measure[1] in relation["measures"]:
                     key = f"{measure[0]}.{measure[1]}"
-                    distributions[key][_bin(relation["measures"][measure[1]], edges, labels)] += 1
+                    target[key][_bin(relation["measures"][measure[1]], edges, labels)] += 1
             if kind == "faces_wall":
-                faces_total += 1
-                faces_exact += relation["measures"]["angle_from_inward_normal"] == 0
+                if wiring:
+                    wiring_faces += 1
+                else:
+                    faces_total += 1
+                    faces_exact += relation["measures"]["angle_from_inward_normal"] == 0
             if kind == "repeats_along":
-                runs.append({
-                    "map": item.name, "population": item.population,
-                    "members": relation["members"], **relation["measures"],
-                })
+                row = {"map": item.name, "population": item.population,
+                       "members": relation["members"], **relation["measures"]}
+                (runs if relation["measures"].get("visibility") == "visible"
+                 else wiring_runs).append(row)
         per_map.append({
             "map": item.name, "population": item.population,
             "seed_sectors": seeds, "neighborhood": document["neighborhood"],
+            "seed_sector_kinds": document["seed_sector_kinds"],
+            "object_visibility": document["object_visibility"],
             "counts": document["counts"],
+            "seeds_held_back": held_back,
         })
+        excluded_seeds.extend({"map": item.name, **row} for row in held_back)
 
-    runs.sort(key=lambda run: (-run["count"], run["map"], run["members"][0]))
+    for group in (runs, wiring_runs):
+        group.sort(key=lambda run: (-run["count"], run["map"], run["members"][0]))
     return {
         "$schema": "llmapper.object-relation-pilot",
         "schema_version": SCHEMA_VERSION,
@@ -844,11 +985,24 @@ def mine_relations(
         "relation_kinds": dict(RELATION_KINDS),
         "counts": {kind: kind_counts[kind] for kind in sorted(kind_counts)},
         "distributions": {key: dict(value) for key, value in sorted(distributions.items())},
+        "object_scope": "visible objects in reachable sectors",
         "faces_wall_exactly_perpendicular": {
             "count": faces_exact, "of": faces_total,
             "fraction": round(faces_exact / faces_total, 4) if faces_total else None,
         },
         "repeating_runs": runs,
+        "excluded": {
+            "note": "held back from the default statistics and kept here: "
+                    "off-map geometry and wiring sprites are evidence about "
+                    "how a level is wired, not about what furnishes it",
+            "seeds_held_back": excluded_seeds,
+            "wiring_repeating_runs": wiring_runs,
+            "wiring_object_relations": {
+                "faces_wall": wiring_faces,
+                "distributions": {key: dict(value)
+                                  for key, value in sorted(wiring_distributions.items())},
+            },
+        },
         "per_map": per_map,
         "errors": errors,
         "limitations": [
@@ -858,5 +1012,8 @@ def mine_relations(
             "furnished rooms -- deliberately, since that is where object-scale "
             "relations exist at all.",
             "Every relation is an OBSERVATION. Nothing here is interpreted.",
+            "Seeds are reachable sectors ranked by *visible* objects; what the "
+            "two filters held back is under `excluded`, with the reason. "
+            "Reachability is computed once per map.",
         ],
     }

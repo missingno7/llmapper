@@ -17,6 +17,7 @@ requires local unsigned mines in `work/` (gitignored). The compiled
 | `compile_catalog.py` | pattern templates + occurrence attach |
 | `catalog-v1.json` | versioned hypotheses with original-map occurrences |
 | `door-families-v1.json` | compact campaign door-family / key-emblem retrieval hints |
+| `owner-anchors-v1.json` | owner hand-tagged picnum semantic anchors (probes, not lookup rules); records dual roles (e.g. 1165 wall clock is also a shootable switch) and intact/broken state pairs |
 
 Door implementation families and key-signifier co-occurrence live in
 [`reports/blood-door-families.json`](../../../reports/blood-door-families.json)

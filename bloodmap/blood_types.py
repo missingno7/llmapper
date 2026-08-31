@@ -373,6 +373,55 @@ _CATALOGS = {
 }
 
 
+#: Sprite categories with no drawn representation in the game: the editor
+#: shows an icon, the engine shows nothing. Derived from this catalog's own
+#: categories rather than from a list of picnums, because the same art is
+#: reused -- picnum 2520 is `kSoundSector`'s speaker icon 1247 times out of
+#: 1250 in the campaign, and a switch the other 3.
+#:
+#: Measured over the 24,730 campaign sprites: `sound` carries Build's
+#: invisible cstat bit 99.9% of the time and `marker` 71.8%, but `start`
+#: never does and is still invisible -- so category and cstat are two
+#: independent signals and :func:`sprite_visibility` needs both.
+NON_VISIBLE_CATEGORIES = frozenset({"sound", "marker", "start", "generator"})
+
+#: Build's "invisible" sprite cstat bit. `assembly.py` already relies on it:
+#: an invisible sprite has no facing anyone can see, and ambient sound
+#: generators were being reported as deviating from a convention that cannot
+#: exist.
+INVISIBLE_CSTAT = 0x8000
+
+VISIBILITY_KINDS = ("visible", "wiring")
+
+
+def sprite_visibility(type_id: int, cstat: int = 0) -> dict[str, Any]:
+    """Whether a sprite is something the player sees, and on what evidence.
+
+    `wiring` covers the sector-sound markers, link and warp markers, player
+    starts and generators that make up roughly a quarter of every campaign
+    map's sprites. They are evidence about how a level is wired, not about
+    what furnishes it, and object-scale statistics that count them are
+    measuring the editor rather than the game.
+    """
+    entry = classify("sprite", int(type_id))
+    category = entry["category"]
+    by_category = category in NON_VISIBLE_CATEGORIES
+    by_cstat = bool(int(cstat) & INVISIBLE_CSTAT)
+    reasons = []
+    if by_category:
+        reasons.append(f"category {category!r} has no drawn representation")
+    if by_cstat:
+        reasons.append("cstat carries Build's invisible bit")
+    return {
+        "kind": "wiring" if (by_category or by_cstat) else "visible",
+        "category": category,
+        "type_name": entry.get("name"),
+        "non_visible_category": by_category,
+        "invisible_cstat": by_cstat,
+        "reasons": reasons,
+    }
+
+
 def classify(kind: str, type_id: int) -> dict[str, Any]:
     """Return a named catalog entry, or an explicit unknown record."""
     catalog = _CATALOGS.get(kind)

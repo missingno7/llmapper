@@ -924,6 +924,51 @@ def cmd_anchor_mine(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_anchor_contrast(args: argparse.Namespace) -> int:
+    """Measure which relations separate two classes: tiles, or signatures."""
+    from .anchors import AnchorError, anchor_from_tiles, contrast_anchor_sets, \
+        contrast_signature_classes
+
+    options = dict(directory=args.maps, population=args.population, view=args.view,
+                   hops=args.hops)
+    if args.positive_signature or args.comparison_signature:
+        if not (args.positive_signature and args.comparison_signature):
+            raise AnchorError("signature contrast needs both --positive-signature "
+                              "and --comparison-signature")
+        payload = contrast_signature_classes(
+            args.positive_signature, args.comparison_signature,
+            positive_name=args.positive_name or "positive",
+            comparison_name=args.comparison_name or "comparison", **options)
+    else:
+        if not (args.positive_tile and args.comparison_tile):
+            raise AnchorError("tile contrast needs --positive-tile and --comparison-tile")
+        payload = contrast_anchor_sets(
+            anchor_from_tiles(args.positive_name or "positive", args.positive_tile),
+            anchor_from_tiles(args.comparison_name or "comparison", args.comparison_tile),
+            **options)
+    _write_text(args.output, _json(payload))
+
+    counts = payload["counts"]
+    print("classes: " + ", ".join(
+        f"{name} {value['sectors']} sectors / {value['maps']} maps"
+        for name, value in counts.items() if isinstance(value, dict)))
+    if not payload["discriminating"]:
+        print(f"  no feature reaches the {payload['discriminator_floor']} floor: "
+              "nothing measured separates these classes")
+    for item in payload["discriminating"]:
+        detail = (f"{item['positive_share']:.0%} vs {item['comparison_share']:.0%}"
+                  if item["kind"] == "boolean" else item["rule"])
+        print(f"  {item['balanced_accuracy']:.3f}  {item['feature']:30} {detail}")
+    transfer = payload["map_transfer"]
+    if transfer.get("spread") is not None:
+        print(f"  map transfer: spread {transfer['spread']:.2f} over "
+              f"{transfer['maps']} maps"
+              + ("  <- separating maps, not concepts" if transfer["spread"] > 0.5 else ""))
+    for item in payload["skipped"]:
+        print(f"  SKIPPED {item['map']}: {item['reason']}", file=sys.stderr)
+    return 0
+
+
 def cmd_relation_dump(args: argparse.Namespace) -> int:
     """Object-scale relations in one local neighborhood."""
     from .relations import extract_relations
@@ -1898,6 +1943,19 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--no-analogues", action="store_true", help="skip the anchor-free search")
     p.add_argument("-o", "--output", required=True)
     p.set_defaults(func=cmd_anchor_mine)
+    p = sub.add_parser("anchor-contrast", help="measure which relations separate two anchored classes")
+    p.add_argument("--positive-name")
+    p.add_argument("--comparison-name")
+    p.add_argument("--positive-tile", type=int, action="append", help="tile on the positive side (repeatable)")
+    p.add_argument("--comparison-tile", type=int, action="append", help="tile on the comparison side (repeatable)")
+    p.add_argument("--positive-signature", help="object-context signature instead of tiles")
+    p.add_argument("--comparison-signature", help="object-context signature instead of tiles")
+    p.add_argument("--maps", help="corpus root (default: BLOODMAP_CORPUS or maps/blood)")
+    p.add_argument("--population", choices=tuple(POPULATIONS))
+    p.add_argument("--view", choices=tuple(CORPUS_VIEWS))
+    p.add_argument("--hops", type=int, default=1)
+    p.add_argument("-o", "--output", required=True)
+    p.set_defaults(func=cmd_anchor_contrast)
     p = sub.add_parser("relation-dump", help="object-scale relations in one local neighborhood")
     p.add_argument("map")
     p.add_argument("--sector", type=int, action="append", help="seed sector (repeatable)")

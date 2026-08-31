@@ -1,0 +1,1091 @@
+{
+  "$schema": "llmapper.signature-contrast",
+  "comparison": {
+    "name": "floor_object_niche",
+    "signature": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:all|wallbound:all|run:no|size:tiny|clear:tight"
+  },
+  "counterexamples": {
+    "comparisons_it_wrongly_matches": {
+      "count": 0,
+      "examples": []
+    },
+    "positives_it_misses": {
+      "count": 5,
+      "examples": [
+        {
+          "map": "E2M6.MAP",
+          "sector": 217,
+          "twin_neighbours": 0
+        },
+        {
+          "map": "E3M6.MAP",
+          "sector": 205,
+          "twin_neighbours": 0
+        },
+        {
+          "map": "E4M6.MAP",
+          "sector": 400,
+          "twin_neighbours": 0
+        },
+        {
+          "map": "E6M3.MAP",
+          "sector": 117,
+          "twin_neighbours": 0
+        },
+        {
+          "map": "E6M4.MAP",
+          "sector": 211,
+          "twin_neighbours": 0
+        }
+      ]
+    },
+    "rule": "twin_neighbours >= 0.5"
+  },
+  "counts": {
+    "floor_object_niche": {
+      "maps": 7,
+      "sectors": 10
+    },
+    "wall_fixture_niche": {
+      "maps": 10,
+      "sectors": 13
+    }
+  },
+  "differing_facets": [
+    "seated"
+  ],
+  "discriminating": [
+    {
+      "balanced_accuracy": 0.8077,
+      "comparison_matching": 0.0,
+      "comparison_median": 0.0,
+      "feature": "twin_neighbours",
+      "kind": "numeric",
+      "positive_median": 1.0,
+      "positives_matching": 0.6154,
+      "rule": "twin_neighbours >= 0.5"
+    },
+    {
+      "balanced_accuracy": 0.6731,
+      "comparison_share": 0.5,
+      "difference": -0.3462,
+      "direction": "comparison",
+      "feature": "raised_above_all_neighbours",
+      "kind": "boolean",
+      "positive_share": 0.1538
+    },
+    {
+      "balanced_accuracy": 0.6615,
+      "comparison_matching": 0.6,
+      "comparison_median": 0.966,
+      "feature": "min_opening_player_heights",
+      "kind": "numeric",
+      "positive_median": 1.1472,
+      "positives_matching": 0.9231,
+      "rule": "min_opening_player_heights < 1.2377"
+    }
+  ],
+  "discriminator_floor": 0.65,
+  "features_excluded_as_bound_by_the_signature": {
+    "area_player_areas": "size",
+    "clear_height_player_heights": "clear",
+    "in_a_repeating_run": "run",
+    "inside_another_sector": "enclosed",
+    "objects_against_wall": "wallbound",
+    "objects_held": "objects",
+    "objects_resting": "seated",
+    "portals": "portals",
+    "shares_a_plane": "coplanar",
+    "stands_above_a_neighbour": "stacked",
+    "stands_under_a_neighbour": "stacked",
+    "wiring_objects_held": "objects"
+  },
+  "features_measured": [
+    "enterable",
+    "solid_closed_volume",
+    "max_step_player_heights",
+    "min_opening_player_heights",
+    "raised_above_all_neighbours",
+    "rise_over_neighbours_player_heights",
+    "twin_neighbours",
+    "solid_wall_share"
+  ],
+  "limitations": [
+    "The two classes differ by construction in the facets listed under `differing_facets`; those and every other signature-bound feature are excluded from scoring.",
+    "`object_description` is a description of what sits in each class, not a discriminator. Separating the classes by picnum would be separating them by texture, which is a finding, not a success.",
+    "Thresholds are fitted on the same rows they are scored on."
+  ],
+  "map_transfer": {
+    "leave_one_map_out": {
+      "E2M2.MAP": {
+        "on_the_held_out_map": 1.0,
+        "on_the_rest": 0.4444
+      },
+      "E2M3.MAP": {
+        "on_the_held_out_map": 1.0,
+        "on_the_rest": 0.5833
+      },
+      "E2M6.MAP": {
+        "on_the_held_out_map": 0.0,
+        "on_the_rest": 0.6667
+      },
+      "E3M2.MAP": {
+        "on_the_held_out_map": 1.0,
+        "on_the_rest": 0.5833
+      },
+      "E3M4.MAP": {
+        "on_the_held_out_map": 1.0,
+        "on_the_rest": 0.5833
+      },
+      "E3M6.MAP": {
+        "on_the_held_out_map": 0.0,
+        "on_the_rest": 0.6667
+      },
+      "E4M3.MAP": {
+        "on_the_held_out_map": 1.0,
+        "on_the_rest": 0.5833
+      },
+      "E4M6.MAP": {
+        "on_the_held_out_map": 0.0,
+        "on_the_rest": 0.6667
+      },
+      "E6M3.MAP": {
+        "on_the_held_out_map": 0.0,
+        "on_the_rest": 0.6667
+      },
+      "E6M4.MAP": {
+        "on_the_held_out_map": 0.0,
+        "on_the_rest": 0.6667
+      }
+    },
+    "maps": 10,
+    "per_map": {
+      "E2M2.MAP": {
+        "matching": 1.0,
+        "positives": 4
+      },
+      "E2M3.MAP": {
+        "matching": 1.0,
+        "positives": 1
+      },
+      "E2M6.MAP": {
+        "matching": 0.0,
+        "positives": 1
+      },
+      "E3M2.MAP": {
+        "matching": 1.0,
+        "positives": 1
+      },
+      "E3M4.MAP": {
+        "matching": 1.0,
+        "positives": 1
+      },
+      "E3M6.MAP": {
+        "matching": 0.0,
+        "positives": 1
+      },
+      "E4M3.MAP": {
+        "matching": 1.0,
+        "positives": 1
+      },
+      "E4M6.MAP": {
+        "matching": 0.0,
+        "positives": 1
+      },
+      "E6M3.MAP": {
+        "matching": 0.0,
+        "positives": 1
+      },
+      "E6M4.MAP": {
+        "matching": 0.0,
+        "positives": 1
+      }
+    },
+    "reading": "a rule whose per-map share swings from near 0 to near 1 is separating maps, not concepts. Spread near 0 means it transfers.",
+    "rule": "twin_neighbours >= 0.5",
+    "spread": 1.0
+  },
+  "object_description": {
+    "floor_object_niche": {
+      "commonest": [
+        {
+          "count": 1,
+          "picnum": 908
+        },
+        {
+          "count": 1,
+          "picnum": 1721
+        },
+        {
+          "count": 1,
+          "picnum": 809
+        },
+        {
+          "count": 1,
+          "picnum": 619
+        },
+        {
+          "count": 1,
+          "picnum": 938
+        },
+        {
+          "count": 1,
+          "picnum": 2554
+        },
+        {
+          "count": 1,
+          "picnum": 759
+        },
+        {
+          "count": 1,
+          "picnum": 1066
+        }
+      ],
+      "distinct_picnums": 10
+    },
+    "wall_fixture_niche": {
+      "commonest": [
+        {
+          "count": 7,
+          "picnum": 144
+        },
+        {
+          "count": 2,
+          "picnum": 525
+        },
+        {
+          "count": 1,
+          "picnum": 1530
+        },
+        {
+          "count": 1,
+          "picnum": 1066
+        },
+        {
+          "count": 1,
+          "picnum": 537
+        },
+        {
+          "count": 1,
+          "picnum": 2548
+        }
+      ],
+      "distinct_picnums": 6
+    }
+  },
+  "positive": {
+    "name": "wall_fixture_niche",
+    "signature": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight"
+  },
+  "rejected": [
+    {
+      "balanced_accuracy": 0.6308,
+      "comparison_matching": 0.2,
+      "comparison_median": 0.483,
+      "feature": "max_step_player_heights",
+      "kind": "numeric",
+      "positive_median": 0.966,
+      "positives_matching": 0.4615,
+      "rule": "max_step_player_heights >= 0.9962"
+    },
+    {
+      "balanced_accuracy": 0.6308,
+      "comparison_matching": 0.2,
+      "comparison_median": 0.483,
+      "feature": "rise_over_neighbours_player_heights",
+      "kind": "numeric",
+      "positive_median": 0.966,
+      "positives_matching": 0.4615,
+      "rule": "rise_over_neighbours_player_heights >= 0.9962"
+    },
+    {
+      "balanced_accuracy": 0.55,
+      "comparison_matching": 0.9,
+      "comparison_median": 0.5,
+      "feature": "solid_wall_share",
+      "kind": "numeric",
+      "positive_median": 0.5,
+      "positives_matching": 1.0,
+      "rule": "solid_wall_share < 0.5834"
+    },
+    {
+      "balanced_accuracy": 0.5154,
+      "comparison_share": 0.2,
+      "difference": 0.0308,
+      "direction": "positive",
+      "feature": "enterable",
+      "kind": "boolean",
+      "positive_share": 0.2308
+    },
+    {
+      "balanced_accuracy": 0.5154,
+      "comparison_share": 0.8,
+      "difference": -0.0308,
+      "direction": "comparison",
+      "feature": "solid_closed_volume",
+      "kind": "boolean",
+      "positive_share": 0.7692
+    }
+  ],
+  "rows": [
+    {
+      "area_player_areas": 2.1111,
+      "clear_height_player_heights": 1.0868,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:all|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E1M3.MAP",
+      "max_step_player_heights": 0.483,
+      "min_opening_player_heights": 0.966,
+      "object_picnums": [
+        908
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 1,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 0.483,
+      "sector": 111,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 1.0,
+      "clear_height_player_heights": 0.6642,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:all|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E1M3.MAP",
+      "max_step_player_heights": 1.8717,
+      "min_opening_player_heights": 0.6642,
+      "object_picnums": [
+        1721
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 1,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": true,
+      "rise_over_neighbours_player_heights": 1.8717,
+      "sector": 210,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 1,
+      "wiring_picnums": [
+        2521
+      ]
+    },
+    {
+      "area_player_areas": 1.7778,
+      "clear_height_player_heights": 1.4491,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:all|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E1M4.MAP",
+      "max_step_player_heights": 0.483,
+      "min_opening_player_heights": 1.4491,
+      "object_picnums": [
+        809
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 1,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": true,
+      "rise_over_neighbours_player_heights": 0.483,
+      "sector": 177,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 1.7778,
+      "clear_height_player_heights": 0.966,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:all|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E1M4.MAP",
+      "max_step_player_heights": 0.966,
+      "min_opening_player_heights": 0.966,
+      "object_picnums": [
+        619
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 1,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": true,
+      "rise_over_neighbours_player_heights": 0.966,
+      "sector": 180,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 1.7778,
+      "clear_height_player_heights": 1.2075,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E2M2.MAP",
+      "max_step_player_heights": 0.4226,
+      "min_opening_player_heights": 1.2075,
+      "object_picnums": [
+        144
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 0,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 0.4226,
+      "sector": 126,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 1,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 0.8889,
+      "clear_height_player_heights": 1.2075,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E2M2.MAP",
+      "max_step_player_heights": 0.4226,
+      "min_opening_player_heights": 1.2075,
+      "object_picnums": [
+        144
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 0,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 0.4226,
+      "sector": 127,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 1,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 0.8889,
+      "clear_height_player_heights": 1.2075,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E2M2.MAP",
+      "max_step_player_heights": 0.4226,
+      "min_opening_player_heights": 1.2075,
+      "object_picnums": [
+        144
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 0,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 0.4226,
+      "sector": 129,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 1,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 1.1111,
+      "clear_height_player_heights": 1.3283,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E2M2.MAP",
+      "max_step_player_heights": 2.2943,
+      "min_opening_player_heights": 1.3283,
+      "object_picnums": [
+        144
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 0,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 2.2943,
+      "sector": 141,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 1,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 0.8889,
+      "clear_height_player_heights": 0.966,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E2M3.MAP",
+      "max_step_player_heights": 1.3887,
+      "min_opening_player_heights": 0.966,
+      "object_picnums": [
+        144
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 0,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 1.3887,
+      "sector": 205,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 1,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 3.3333,
+      "clear_height_player_heights": 1.2075,
+      "enterable": true,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E2M6.MAP",
+      "max_step_player_heights": 0.483,
+      "min_opening_player_heights": 1.2075,
+      "object_picnums": [
+        525
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 0,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 0.483,
+      "sector": 217,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": false,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 2,
+      "wiring_picnums": [
+        0,
+        0
+      ]
+    },
+    {
+      "area_player_areas": 0.8889,
+      "clear_height_player_heights": 1.4491,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:all|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E3M1.MAP",
+      "max_step_player_heights": 0.483,
+      "min_opening_player_heights": 1.4491,
+      "object_picnums": [
+        938
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 1,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": true,
+      "rise_over_neighbours_player_heights": 0.483,
+      "sector": 111,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.6667,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 2.6667,
+      "clear_height_player_heights": 0.966,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:all|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E3M1.MAP",
+      "max_step_player_heights": 0.966,
+      "min_opening_player_heights": 0.966,
+      "object_picnums": [
+        2554
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 1,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": true,
+      "rise_over_neighbours_player_heights": 0.966,
+      "sector": 156,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 3.1111,
+      "clear_height_player_heights": 0.5434,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:all|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E3M2.MAP",
+      "max_step_player_heights": 0.483,
+      "min_opening_player_heights": 0.5434,
+      "object_picnums": [
+        759
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 1,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 0.483,
+      "sector": 38,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 0.6667,
+      "clear_height_player_heights": 0.966,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E3M2.MAP",
+      "max_step_player_heights": 1.0264,
+      "min_opening_player_heights": 0.966,
+      "object_picnums": [
+        144
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 0,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 1.0264,
+      "sector": 363,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 1,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 2.6667,
+      "clear_height_player_heights": 1.1472,
+      "enterable": true,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E3M4.MAP",
+      "max_step_player_heights": 2.1132,
+      "min_opening_player_heights": 1.1472,
+      "object_picnums": [
+        1530
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 0,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 2.1132,
+      "sector": 397,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": false,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 1,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 0.6667,
+      "clear_height_player_heights": 1.2075,
+      "enterable": true,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E3M6.MAP",
+      "max_step_player_heights": 11.7132,
+      "min_opening_player_heights": 1.2075,
+      "object_picnums": [
+        1066
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 0,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 11.7132,
+      "sector": 205,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": false,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 3.1111,
+      "clear_height_player_heights": 1.4491,
+      "enterable": true,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:all|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E3M8.MAP",
+      "max_step_player_heights": 0.0,
+      "min_opening_player_heights": 1.4491,
+      "object_picnums": [
+        1066
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 1,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 0.0,
+      "sector": 72,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": false,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 0.8889,
+      "clear_height_player_heights": 0.966,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E4M3.MAP",
+      "max_step_player_heights": 0.7849,
+      "min_opening_player_heights": 0.966,
+      "object_picnums": [
+        144
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 0,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 0.7849,
+      "sector": 26,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 1,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 1.7778,
+      "clear_height_player_heights": 1.0264,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E4M6.MAP",
+      "max_step_player_heights": 0.483,
+      "min_opening_player_heights": 1.0264,
+      "object_picnums": [
+        537
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 0,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": true,
+      "rise_over_neighbours_player_heights": 0.483,
+      "sector": 400,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 0.8889,
+      "clear_height_player_heights": 0.483,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E6M3.MAP",
+      "max_step_player_heights": 1.1472,
+      "min_opening_player_heights": 0.483,
+      "object_picnums": [
+        2548
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 0,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 1.1472,
+      "sector": 117,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 1,
+      "wiring_picnums": [
+        2521
+      ]
+    },
+    {
+      "area_player_areas": 1.7778,
+      "clear_height_player_heights": 0.7245,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:all|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E6M4.MAP",
+      "max_step_player_heights": 2.4151,
+      "min_opening_player_heights": 0.7245,
+      "object_picnums": [
+        1044
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 1,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 2.4151,
+      "sector": 34,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 3.5556,
+      "clear_height_player_heights": 0.966,
+      "enterable": false,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E6M4.MAP",
+      "max_step_player_heights": 0.966,
+      "min_opening_player_heights": 0.966,
+      "object_picnums": [
+        525
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 0,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": true,
+      "rise_over_neighbours_player_heights": 0.966,
+      "sector": 211,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": true,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    },
+    {
+      "area_player_areas": 2.6667,
+      "clear_height_player_heights": 1.3283,
+      "enterable": true,
+      "in_a_repeating_run": false,
+      "inside_another_sector": false,
+      "label": "portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:all|wallbound:all|run:no|size:tiny|clear:tight",
+      "map": "E6M5.MAP",
+      "max_step_player_heights": 0.0,
+      "min_opening_player_heights": 1.2679,
+      "object_picnums": [
+        1920
+      ],
+      "objects_against_wall": 1,
+      "objects_held": 1,
+      "objects_resting": 1,
+      "population": "blood-campaign",
+      "portals": 2,
+      "raised_above_all_neighbours": false,
+      "rise_over_neighbours_player_heights": 0.0,
+      "sector": 322,
+      "sector_kind": "reachable",
+      "shares_a_plane": true,
+      "solid_closed_volume": false,
+      "solid_wall_share": 0.5,
+      "stands_above_a_neighbour": false,
+      "stands_under_a_neighbour": false,
+      "twin_neighbours": 0,
+      "wiring_objects_held": 0,
+      "wiring_picnums": []
+    }
+  ],
+  "schema_version": 1,
+  "selection": {
+    "hops": 1,
+    "maps_searched": 43,
+    "population": "blood-campaign",
+    "view": null
+  },
+  "skipped": [
+    {
+      "map": "E6M7.MAP",
+      "reason": "the map failed whole-map wall-ownership validation",
+      "sectors_unanalysable": 202
+    }
+  ],
+  "wiring_description": {
+    "floor_object_niche": {
+      "commonest": [
+        {
+          "count": 1,
+          "picnum": 2521
+        }
+      ],
+      "distinct_picnums": 1
+    },
+    "note": "non-visible sprites in the same sectors; reported, never counted as objects",
+    "wall_fixture_niche": {
+      "commonest": [
+        {
+          "count": 2,
+          "picnum": 0
+        },
+        {
+          "count": 1,
+          "picnum": 2521
+        }
+      ],
+      "distinct_picnums": 2
+    }
+  }
+}

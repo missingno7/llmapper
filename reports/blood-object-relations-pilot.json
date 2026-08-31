@@ -1,69 +1,167 @@
 {
   "$schema": "llmapper.object-relation-pilot",
   "counts": {
-    "above": 17,
-    "adjacent_to": 307,
-    "against_wall": 464,
-    "faces_wall": 297,
-    "in_sector": 908,
-    "inside": 18,
-    "repeats_along": 1,
-    "rests_on": 310,
-    "shares_material": 46,
-    "shares_plane": 64
+    "above": 13,
+    "adjacent_to": 289,
+    "against_wall": 406,
+    "faces_wall": 263,
+    "in_sector": 745,
+    "inside": 19,
+    "repeats_along": 3,
+    "rests_on": 209,
+    "shares_material": 47,
+    "shares_plane": 55
   },
   "distributions": {
     "above.gap_player_heights": {
-      "flush": 7,
+      "flush": 1,
       "half_to_one": 5,
-      "under_half": 5
+      "under_half": 7
     },
     "adjacent_to.width_player_widths": {
-      "one_to_two": 73,
-      "two_to_four": 64,
-      "under_one_body": 60,
-      "wide": 110
+      "one_to_two": 80,
+      "two_to_four": 56,
+      "under_one_body": 77,
+      "wide": 76
     },
     "against_wall.distance_player_widths": {
-      "flush": 212,
-      "loose": 127,
-      "near": 16,
-      "offset": 109
+      "flush": 149,
+      "loose": 94,
+      "near": 6,
+      "offset": 30
     },
     "repeats_along.spacing_player_widths": {
+      "tight": 1,
+      "two_to_four": 1,
       "wide": 1
     },
     "rests_on.clearance_player_heights": {
-      "band": 5,
-      "exact": 268,
-      "step": 12,
-      "sub_step": 25
+      "band": 6,
+      "exact": 106,
+      "step": 18,
+      "sub_step": 37
     }
   },
   "errors": [],
+  "excluded": {
+    "note": "held back from the default statistics and kept here: off-map geometry and wiring sprites are evidence about how a level is wired, not about what furnishes it",
+    "seeds_held_back": [
+      {
+        "map": "E1M1.MAP",
+        "reasons": [
+          "18 of 33 sprites are wiring"
+        ],
+        "sector": 122,
+        "sector_kind": "reachable",
+        "sprites": 33,
+        "visible_sprites": 15
+      },
+      {
+        "map": "E1M2.MAP",
+        "reasons": [
+          "off-map: logic_closet",
+          "17 of 42 sprites are wiring"
+        ],
+        "sector": 19,
+        "sector_kind": "logic_closet",
+        "sprites": 42,
+        "visible_sprites": 25
+      },
+      {
+        "map": "E1M3.MAP",
+        "reasons": [
+          "40 of 59 sprites are wiring"
+        ],
+        "sector": 284,
+        "sector_kind": "reachable",
+        "sprites": 59,
+        "visible_sprites": 19
+      },
+      {
+        "map": "E1M3.MAP",
+        "reasons": [
+          "off-map: logic_closet",
+          "11 of 54 sprites are wiring"
+        ],
+        "sector": 291,
+        "sector_kind": "logic_closet",
+        "sprites": 54,
+        "visible_sprites": 43
+      },
+      {
+        "map": "E1M3.MAP",
+        "reasons": [
+          "36 of 51 sprites are wiring"
+        ],
+        "sector": 289,
+        "sector_kind": "reachable",
+        "sprites": 51,
+        "visible_sprites": 15
+      },
+      {
+        "map": "E1M4.MAP",
+        "reasons": [
+          "56 of 72 sprites are wiring"
+        ],
+        "sector": 321,
+        "sector_kind": "reachable",
+        "sprites": 72,
+        "visible_sprites": 16
+      },
+      {
+        "map": "E1M5.MAP",
+        "reasons": [
+          "off-map: logic_closet",
+          "12 of 43 sprites are wiring"
+        ],
+        "sector": 231,
+        "sector_kind": "logic_closet",
+        "sprites": 43,
+        "visible_sprites": 31
+      }
+    ],
+    "wiring_object_relations": {
+      "distributions": {
+        "against_wall.distance_player_widths": {
+          "flush": 64,
+          "loose": 31,
+          "near": 12,
+          "offset": 20
+        },
+        "rests_on.clearance_player_heights": {
+          "exact": 41,
+          "step": 1
+        }
+      },
+      "faces_wall": 71
+    },
+    "wiring_repeating_runs": []
+  },
   "faces_wall_exactly_perpendicular": {
-    "count": 261,
-    "fraction": 0.8788,
-    "of": 297
+    "count": 170,
+    "fraction": 0.8854,
+    "of": 192
   },
   "limitations": [
     "A pilot over sampled neighborhoods, not a corpus statistic. It says what the extractor produces, not what Blood usually does.",
     "Seeds are the sprite-densest sectors, so the sample is biased toward furnished rooms -- deliberately, since that is where object-scale relations exist at all.",
-    "Every relation is an OBSERVATION. Nothing here is interpreted."
+    "Every relation is an OBSERVATION. Nothing here is interpreted.",
+    "Seeds are reachable sectors ranked by *visible* objects; what the two filters held back is under `excluded`, with the reason. Reachability is computed once per map."
   ],
   "maps_sampled": 5,
+  "object_scope": "visible objects in reachable sectors",
   "per_map": [
     {
       "counts": {
-        "above": 11,
-        "adjacent_to": 50,
-        "against_wall": 106,
-        "faces_wall": 77,
-        "in_sector": 204,
-        "inside": 10,
-        "rests_on": 73,
+        "above": 13,
+        "adjacent_to": 38,
+        "against_wall": 77,
+        "faces_wall": 60,
+        "in_sector": 177,
+        "inside": 5,
+        "rests_on": 66,
         "shares_material": 9,
-        "shares_plane": 15
+        "shares_plane": 8
       },
       "map": "E1M1.MAP",
       "neighborhood": {
@@ -74,58 +172,71 @@
           23,
           24,
           25,
-          46,
-          47,
-          48,
-          49,
-          52,
-          53,
           55,
-          57,
-          58,
           59,
           63,
           65,
           66,
+          79,
+          80,
+          82,
+          83,
+          84,
+          85,
           93,
-          99,
           120,
-          122,
-          123,
-          125,
           145,
           146
         ],
         "seed_sectors": [
           59,
           65,
-          122
+          82
         ],
-        "sprite_count": 204,
-        "wall_count": 318
+        "sprite_count": 177,
+        "wall_count": 241
+      },
+      "object_visibility": {
+        "visible": 107,
+        "wiring": 70
       },
       "population": "blood-campaign",
+      "seed_sector_kinds": [
+        "reachable"
+      ],
       "seed_sectors": [
         65,
-        122,
-        59
+        59,
+        82
+      ],
+      "seeds_held_back": [
+        {
+          "reasons": [
+            "18 of 33 sprites are wiring"
+          ],
+          "sector": 122,
+          "sector_kind": "reachable",
+          "sprites": 33,
+          "visible_sprites": 15
+        }
       ]
     },
     {
       "counts": {
-        "adjacent_to": 42,
-        "against_wall": 56,
-        "faces_wall": 38,
-        "in_sector": 101,
-        "inside": 5,
-        "rests_on": 36,
-        "shares_material": 7,
-        "shares_plane": 7
+        "adjacent_to": 54,
+        "against_wall": 55,
+        "faces_wall": 44,
+        "in_sector": 81,
+        "inside": 9,
+        "rests_on": 22,
+        "shares_material": 10,
+        "shares_plane": 9
       },
       "map": "E1M2.MAP",
       "neighborhood": {
         "hops": 1,
         "sectors": [
+          2,
           5,
           12,
           13,
@@ -134,116 +245,149 @@
           16,
           17,
           18,
-          19,
           112,
           186,
           193,
+          197,
+          198,
+          199,
+          200,
           244,
           248,
           249,
           252,
           253,
-          256
+          256,
+          270
         ],
         "seed_sectors": [
           14,
-          19,
-          244
+          244,
+          270
         ],
-        "sprite_count": 101,
-        "wall_count": 170
+        "sprite_count": 81,
+        "wall_count": 241
+      },
+      "object_visibility": {
+        "visible": 61,
+        "wiring": 20
       },
       "population": "blood-campaign",
+      "seed_sector_kinds": [
+        "reachable"
+      ],
       "seed_sectors": [
-        19,
+        14,
         244,
-        14
+        270
+      ],
+      "seeds_held_back": [
+        {
+          "reasons": [
+            "off-map: logic_closet",
+            "17 of 42 sprites are wiring"
+          ],
+          "sector": 19,
+          "sector_kind": "logic_closet",
+          "sprites": 42,
+          "visible_sprites": 25
+        }
       ]
     },
     {
       "counts": {
-        "above": 6,
-        "adjacent_to": 64,
-        "against_wall": 153,
-        "faces_wall": 99,
-        "in_sector": 255,
-        "rests_on": 82,
-        "shares_material": 11,
-        "shares_plane": 15
+        "adjacent_to": 18,
+        "against_wall": 101,
+        "faces_wall": 53,
+        "in_sector": 162,
+        "repeats_along": 1,
+        "rests_on": 36,
+        "shares_material": 5,
+        "shares_plane": 6
       },
       "map": "E1M3.MAP",
       "neighborhood": {
         "hops": 1,
         "sectors": [
-          0,
-          1,
-          19,
-          33,
-          35,
-          36,
-          40,
-          41,
-          42,
-          43,
-          44,
-          54,
-          55,
-          56,
-          57,
-          58,
-          82,
-          83,
-          84,
-          85,
-          92,
-          93,
-          96,
-          98,
-          162,
-          163,
-          164,
-          165,
-          205,
-          210,
-          211,
-          225,
-          226,
-          231,
-          239,
-          284,
-          285,
-          286,
-          288,
-          289,
-          290,
-          291,
-          308,
-          325
+          66,
+          67,
+          68,
+          102,
+          104,
+          105,
+          106,
+          107,
+          109,
+          110,
+          112,
+          113,
+          115,
+          121,
+          125,
+          320
         ],
         "seed_sectors": [
-          284,
-          289,
-          291
+          66,
+          115,
+          121
         ],
-        "sprite_count": 255,
-        "wall_count": 406
+        "sprite_count": 162,
+        "wall_count": 128
+      },
+      "object_visibility": {
+        "visible": 114,
+        "wiring": 48
       },
       "population": "blood-campaign",
+      "seed_sector_kinds": [
+        "reachable"
+      ],
       "seed_sectors": [
-        284,
-        291,
-        289
+        115,
+        121,
+        66
+      ],
+      "seeds_held_back": [
+        {
+          "reasons": [
+            "40 of 59 sprites are wiring"
+          ],
+          "sector": 284,
+          "sector_kind": "reachable",
+          "sprites": 59,
+          "visible_sprites": 19
+        },
+        {
+          "reasons": [
+            "off-map: logic_closet",
+            "11 of 54 sprites are wiring"
+          ],
+          "sector": 291,
+          "sector_kind": "logic_closet",
+          "sprites": 54,
+          "visible_sprites": 43
+        },
+        {
+          "reasons": [
+            "36 of 51 sprites are wiring"
+          ],
+          "sector": 289,
+          "sector_kind": "reachable",
+          "sprites": 51,
+          "visible_sprites": 15
+        }
       ]
     },
     {
       "counts": {
-        "adjacent_to": 74,
-        "against_wall": 129,
-        "faces_wall": 72,
-        "in_sector": 229,
-        "rests_on": 63,
+        "adjacent_to": 80,
+        "against_wall": 143,
+        "faces_wall": 91,
+        "in_sector": 208,
+        "repeats_along": 1,
+        "rests_on": 52,
         "shares_material": 9,
-        "shares_plane": 11
+        "shares_plane": 10
       },
       "map": "E1M4.MAP",
       "neighborhood": {
@@ -252,14 +396,20 @@
           5,
           8,
           9,
+          25,
           44,
           47,
           61,
+          65,
           66,
           70,
           71,
           75,
+          89,
+          153,
+          154,
           155,
+          156,
           161,
           163,
           165,
@@ -271,17 +421,11 @@
           183,
           218,
           309,
+          310,
           320,
-          321,
-          322,
-          323,
-          324,
-          325,
-          326,
-          327,
-          328,
-          329,
+          335,
           338,
+          358,
           370,
           371,
           372,
@@ -289,31 +433,49 @@
           382
         ],
         "seed_sectors": [
+          156,
           320,
-          321,
           382
         ],
-        "sprite_count": 229,
-        "wall_count": 399
+        "sprite_count": 208,
+        "wall_count": 441
+      },
+      "object_visibility": {
+        "visible": 173,
+        "wiring": 35
       },
       "population": "blood-campaign",
+      "seed_sector_kinds": [
+        "reachable"
+      ],
       "seed_sectors": [
-        321,
         320,
-        382
+        382,
+        156
+      ],
+      "seeds_held_back": [
+        {
+          "reasons": [
+            "56 of 72 sprites are wiring"
+          ],
+          "sector": 321,
+          "sector_kind": "reachable",
+          "sprites": 72,
+          "visible_sprites": 16
+        }
       ]
     },
     {
       "counts": {
-        "adjacent_to": 77,
-        "against_wall": 20,
-        "faces_wall": 11,
-        "in_sector": 119,
-        "inside": 3,
+        "adjacent_to": 99,
+        "against_wall": 30,
+        "faces_wall": 15,
+        "in_sector": 117,
+        "inside": 5,
         "repeats_along": 1,
-        "rests_on": 56,
-        "shares_material": 10,
-        "shares_plane": 16
+        "rests_on": 33,
+        "shares_material": 14,
+        "shares_plane": 22
       },
       "map": "E1M5.MAP",
       "neighborhood": {
@@ -329,6 +491,13 @@
           58,
           59,
           95,
+          176,
+          177,
+          178,
+          179,
+          180,
+          191,
+          197,
           209,
           216,
           219,
@@ -337,7 +506,7 @@
           226,
           227,
           228,
-          231,
+          240,
           267,
           285,
           286,
@@ -347,6 +516,8 @@
           346,
           348,
           349,
+          394,
+          395,
           396,
           397,
           398,
@@ -354,17 +525,36 @@
         ],
         "seed_sectors": [
           216,
-          231,
-          267
+          267,
+          394
         ],
-        "sprite_count": 119,
-        "wall_count": 290
+        "sprite_count": 117,
+        "wall_count": 439
+      },
+      "object_visibility": {
+        "visible": 75,
+        "wiring": 42
       },
       "population": "blood-campaign",
+      "seed_sector_kinds": [
+        "reachable"
+      ],
       "seed_sectors": [
-        231,
+        394,
         216,
         267
+      ],
+      "seeds_held_back": [
+        {
+          "reasons": [
+            "off-map: logic_closet",
+            "12 of 43 sprites are wiring"
+          ],
+          "sector": 231,
+          "sector_kind": "logic_closet",
+          "sprites": 43,
+          "visible_sprites": 31
+        }
       ]
     }
   ],
@@ -384,6 +574,44 @@
   "repeating_runs": [
     {
       "axis": "plan",
+      "count": 11,
+      "map": "E1M3.MAP",
+      "members": [
+        "sprite:134",
+        "sprite:125",
+        "sprite:131",
+        "sprite:126",
+        "sprite:133",
+        "sprite:127",
+        "sprite:129",
+        "sprite:128",
+        "sprite:130",
+        "sprite:132",
+        "sprite:135"
+      ],
+      "picnum": 574,
+      "population": "blood-campaign",
+      "spacing_player_widths": 0.3333,
+      "spacing_variation": 0.0,
+      "visibility": "visible"
+    },
+    {
+      "axis": "plan",
+      "count": 3,
+      "map": "E1M4.MAP",
+      "members": [
+        "sprite:172",
+        "sprite:173",
+        "sprite:174"
+      ],
+      "picnum": 470,
+      "population": "blood-campaign",
+      "spacing_player_widths": 2.7474,
+      "spacing_variation": 0.0246,
+      "visibility": "visible"
+    },
+    {
+      "axis": "plan",
       "count": 3,
       "map": "E1M5.MAP",
       "members": [
@@ -394,7 +622,8 @@
       "picnum": 552,
       "population": "blood-campaign",
       "spacing_player_widths": 6.5,
-      "spacing_variation": 0.0
+      "spacing_variation": 0.0,
+      "visibility": "visible"
     }
   ],
   "sampling": "the 3 sprite-densest sectors of the first 5 maps, expanded 1 portal hop(s)",

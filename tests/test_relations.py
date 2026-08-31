@@ -16,6 +16,9 @@ from bloodmap.format import encode_map, parse_map
 from bloodmap.patterns import list_corpus_maps
 from bloodmap.relations import (
     FORBIDDEN_MEASURE_KEYS,
+    context_signature,
+    excluded_dense_seeds,
+    sprite_kind,
     RELATION_KINDS,
     RelationError,
     extract_relations,
@@ -44,19 +47,20 @@ def furnished_map():
     for index, x in enumerate((400, 512, 624)):
         sprite = copy.deepcopy(template)
         sprite.fields.update(x=x, y=512, z=floor_z, sector=0, picnum=700,
-                             angle=0, index=index, extra=-1, owner=-1)
+                             type=0, cstat=0, angle=0, index=index, extra=-1,
+                             owner=-1)
         sprite.extra = None
         sprites.append(sprite)
     # Against the south wall (0,0)-(1024,0), square to its inward normal.
     flush = copy.deepcopy(template)
     flush.fields.update(x=512, y=20, z=floor_z, sector=0, picnum=701,
-                        angle=512, index=3, extra=-1, owner=-1)
+                        type=0, cstat=0, angle=512, index=3, extra=-1, owner=-1)
     flush.extra = None
     sprites.append(flush)
     # Clear of floor, ceiling and every wall.
     free = copy.deepcopy(template)
     free.fields.update(x=1536, y=512, z=0, sector=1, picnum=702,
-                       angle=0, index=4, extra=-1, owner=-1)
+                       type=0, cstat=0, angle=0, index=4, extra=-1, owner=-1)
     free.extra = None
     sprites.append(free)
 
@@ -82,7 +86,8 @@ def stacked_map():
     disk.sectors[1].fields.update(floor_z=ceiling_0 - 4096, ceiling_z=ceiling_0 - 4096 - 16384)
     disk.sprites = [disk.sprites[0]]
     disk.sprites[0].fields.update(x=512, y=512, z=int(disk.sectors[0].fields["floor_z"]),
-                                  sector=0, picnum=700, extra=-1, owner=-1)
+                                  sector=0, picnum=700, type=0, cstat=0,
+                                  extra=-1, owner=-1)
     disk.sprites[0].extra = None
     disk.header["num_sprites"] = 1
     return parse_map(encode_map(disk)).to_build_ir()
@@ -121,15 +126,115 @@ def notched_map():
     disk.sectors, disk.walls = sectors, walls
     disk.sprites = [disk.sprites[0]]
     disk.sprites[0].fields.update(x=512, y=512, z=8192, sector=0, picnum=700,
-                                  extra=-1, owner=-1)
+                                  type=0, cstat=0, extra=-1, owner=-1)
     disk.sprites[0].extra = None
     disk.header.update(num_sectors=len(sectors), num_walls=len(walls), num_sprites=1,
                        start_sector=0, start_x=512, start_y=512)
     return parse_map(encode_map(disk)).to_build_ir()
 
 
+def wired_map():
+    """A room with two visible objects, and a sealed closet full of wiring.
+
+    Sector 1 is unreachable from sector 0 -- the portal is unlinked -- and
+    holds nothing but sound markers. It is the shape of the defect: by raw
+    sprite count it is the denser sector, and a furniture survey that ranks on
+    that puts a switch closet at the top.
+    """
+    disk = synthetic_two_sector_map()
+    disk.walls[1].fields.update(next_wall=-1, next_sector=-1)
+    disk.walls[7].fields.update(next_wall=-1, next_sector=-1)
+    template = copy.deepcopy(disk.sprites[0])
+    floor_z = int(disk.sectors[0].fields["floor_z"])
+    sprites = []
+    for index, x in enumerate((400, 624)):                 # visible decorations
+        sprite = copy.deepcopy(template)
+        sprite.fields.update(x=x, y=512, z=floor_z, sector=0, picnum=700,
+                             type=0, cstat=0, index=index, extra=-1, owner=-1)
+        sprite.extra = None
+        sprites.append(sprite)
+    for index in range(4):                                 # kSoundSector markers
+        sprite = copy.deepcopy(template)
+        sprite.fields.update(x=1400 + 64 * index, y=512, z=floor_z, sector=1,
+                             picnum=2520, type=709, cstat=32896,
+                             index=2 + index, extra=-1, owner=-1)
+        sprite.extra = None
+        sprites.append(sprite)
+    disk.sprites = sprites
+    disk.header["num_sprites"] = len(sprites)
+    return parse_map(encode_map(disk)).to_build_ir()
+
+
 def _relations(document, kind):
     return [item for item in document["relations"] if item["kind"] == kind]
+
+
+class VisibilityAndReachabilityTests(unittest.TestCase):
+    """Wiring is labelled, never dropped, and never counted as furniture."""
+
+    def setUp(self):
+        self.build = wired_map()
+
+    def test_a_sound_marker_is_wiring_and_a_decoration_is_visible(self):
+        self.assertEqual(sprite_kind(self.build, 0), "visible")
+        self.assertEqual(sprite_kind(self.build, 2), "wiring")
+
+    def test_visibility_is_only_claimed_for_blood(self):
+        """BuildIR keeps Blood's sprite type in the shared `lotag` slot, which
+        means something else on Duke."""
+        self.assertEqual(sprite_kind(self.build, 2, game="duke3d"), "unknown")
+
+    def test_every_in_sector_relation_carries_the_label(self):
+        document = extract_relations(self.build, sectors=[0, 1], hops=0)
+        placed = _relations(document, "in_sector")
+        self.assertEqual(len(placed), 6, "wiring stays in the dump")
+        kinds = {item["subject"]: item["measures"]["visibility"] for item in placed}
+        self.assertEqual(kinds["sprite:0"], "visible")
+        self.assertEqual(kinds["sprite:2"], "wiring")
+        self.assertEqual(document["object_visibility"], {"visible": 2, "wiring": 4})
+
+    def test_the_signature_counts_visible_objects_only(self):
+        document = extract_relations(self.build, sectors=[1], hops=0)
+        visible = context_signature(document, 1)
+        self.assertIn("objects:0", visible)
+        wiring = context_signature(document, 1, visible_only=False)
+        self.assertIn("objects:3+", wiring)
+
+    def test_a_run_of_sound_markers_is_tagged_as_wiring(self):
+        document = extract_relations(self.build, sectors=[1], hops=0)
+        runs = _relations(document, "repeats_along")
+        self.assertEqual(len(runs), 1)
+        self.assertEqual(runs[0]["measures"]["visibility"], "wiring")
+
+    def test_the_denser_sector_is_not_seeded_on(self):
+        """Sector 1 has four sprites to sector 0's two, and is still not a
+        place a furniture survey should point at."""
+        raw = sprite_dense_seeds(self.build, limit=1, visible_only=False,
+                                 reachable_only=False)
+        self.assertEqual(raw, [1])
+        self.assertEqual(sprite_dense_seeds(self.build, limit=1), [0])
+
+    def test_an_offmap_sector_is_not_seeded_on_and_is_reported(self):
+        kinds = {0: "reachable", 1: "logic_closet"}
+        self.assertEqual(
+            sprite_dense_seeds(self.build, limit=2, sector_kinds=kinds,
+                               visible_only=False), [0])
+        held = excluded_dense_seeds(self.build, limit=2, sector_kinds=kinds)
+        self.assertEqual([row["sector"] for row in held], [1])
+        self.assertEqual(held[0]["sector_kind"], "logic_closet")
+        self.assertIn("off-map: logic_closet", held[0]["reasons"])
+        self.assertIn("4 of 4 sprites are wiring", held[0]["reasons"])
+
+    def test_sector_kinds_are_recorded_on_the_document(self):
+        kinds = {0: "reachable", 1: "logic_closet"}
+        document = extract_relations(self.build, sectors=[0, 1], hops=0,
+                                     sector_kinds=kinds)
+        self.assertEqual(document["sector_kinds"], {"0": "reachable", "1": "logic_closet"})
+        self.assertEqual(document["seed_sector_kinds"], ["logic_closet", "reachable"])
+
+    def test_an_absent_reachability_map_labels_unknown_rather_than_reachable(self):
+        document = extract_relations(self.build, sectors=[0], hops=0)
+        self.assertEqual(document["sector_kinds"], {"0": "unknown"})
 
 
 class NeighborhoodTests(unittest.TestCase):

@@ -399,6 +399,31 @@ def classify_offmap(disk: DiskMap, reach: Reachability | None = None, *,
     }
 
 
+#: What a sector is, for a consumer that wants to label rather than drop.
+#: `design_sectors` answers "which sectors should a statistic cover"; this
+#: answers "what is this one, and why", so an off-map sector can be reported
+#: under its own heading instead of vanishing.
+SECTOR_KINDS = ("reachable", "logic_closet", "signature", "helper", "bare", "sealed")
+
+
+def sector_kinds(disk: DiskMap, reach: Reachability | None = None) -> dict[int, str]:
+    """Every sector, mapped to `reachable` or to its off-map kind.
+
+    Computed once per map. Object-scale mining calls this before it seeds
+    anything: a logic closet is routinely the sprite-densest sector on a map
+    -- E1M2's densest is its switch closet -- so seeding on sprite count
+    without it puts switch wiring at the top of a furniture survey.
+    """
+    reach = reach or analyze_reachability(disk)
+    kinds = {sector_id: "reachable" for sector_id in reach.reached}
+    for component in classify_offmap(disk, reach)["components"]:
+        for sector_id in component["sectors"]:
+            kinds[sector_id] = component["kind"]
+    for sector_id in range(len(disk.sectors)):
+        kinds.setdefault(sector_id, "bare")
+    return kinds
+
+
 def design_sectors(disk: DiskMap, *, keep: Sequence[str] = ()) -> frozenset[int]:
     """The sectors a statistic about level design should be computed over.
 

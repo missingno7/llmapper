@@ -32,8 +32,24 @@ reports each anchor's context enrichment; see `reports/anchor-queries.md`.
 
 **Phase 3 (object-scale unsigned families) is done (2026-08-31).** The
 `object-context` family lives in `patterns.py` alongside the three that were
-there; see `reports/blood-object-context-families.md`. The next runnable task
-is Phase 0 (the architecture note) or Phase 4.
+there; see `reports/blood-object-context-families.md`.
+
+**Phase 4 (contrastive concepts) is done (2026-08-31).** Contrast machinery is
+in `anchors.py`; see `reports/blood-contrast-*.md`. Read pilot 1 before
+trusting any tile as a class definition.
+
+**Phase 0 (architecture note) is done (2026-08-31).** Before adding a module,
+read "Where a new fact belongs" in `docs/architecture.md`; the boundaries are
+pinned by `tests/test_architecture.py`.
+
+**Mining hygiene (2026-08-31).** Object-scale mining labels two axes and
+defaults its statistics to reachable geometry and visible objects:
+`reachability.sector_kinds` and `blood_types.sprite_visibility`. Roughly a
+quarter of every campaign map's sprites are wiring the engine never draws, and
+a logic closet is routinely the sprite-densest sector. Never rank sectors by
+raw sprite count. The excluded remainder is reported, never dropped.
+
+The next runnable task is Phase 5.
 
 ## Working rule
 

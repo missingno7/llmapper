@@ -25,6 +25,18 @@ sprite 2915 = floor decoration
 
 Anchors are not complete concepts. They seed corpus queries.
 
+**Binding strength (owner principle, 2026-08-31):** every tile→meaning rule
+has exceptions, and how many depends on how strong and distinctive the
+tile's *look* is. A visually singular tile (a mannequin) carries its meaning
+almost everywhere it appears; a generic surface (a planked wall that reads
+as "crate" only when boxed) is material first and object identity only in
+context. So an anchor's reliability is itself a measurable property, not an
+assumption — Phase 2's **enrichment** figure is its empirical estimator
+(mannequin 30.4×, pipe walls 1.15×), and `owner-anchors-v1.json` records
+the owner's reading as `binding` where known. Weak-binding anchors must be
+confirmed by structure (the relations around the occurrence), never by tile
+identity alone.
+
 ## Existing precedent in the repository
 
 Two working single-anchor miners already implement this discipline and are

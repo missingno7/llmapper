@@ -110,8 +110,17 @@ python -m bloodmap anchor-mine --name mannequin --tile 2377 \
   --view reference -o work/anchor-mannequin.json
 ```
 
-See [`reports/blood-object-relations-pilot.md`](../reports/blood-object-relations-pilot.md)
-and [`reports/anchor-queries.md`](../reports/anchor-queries.md).
+Contrasting two classes measures which relations actually separate them, and
+reports a map-transfer spread so a mapper's habit is not read as a convention:
+
+```text
+python -m bloodmap anchor-contrast --positive-name shelf   --positive-tile 2026 --positive-tile 2635 --comparison-name crate   --comparison-tile 95 --comparison-tile 452 --view reference   -o reports/blood-contrast-shelf-vs-crate.json
+```
+
+See [`reports/blood-object-relations-pilot.md`](../reports/blood-object-relations-pilot.md),
+[`reports/anchor-queries.md`](../reports/anchor-queries.md), and the contrast
+pilots in [`reports/blood-contrast-shelf-vs-crate.md`](../reports/blood-contrast-shelf-vs-crate.md)
+and [`reports/blood-contrast-niche-pair.md`](../reports/blood-contrast-niche-pair.md).
 
 ## Knowledge store
 

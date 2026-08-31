@@ -15,10 +15,47 @@ python -m bloodmap pattern-mine --maps maps/blood --population community \
   --tier S --limit 20 -o work/blood-pattern-unsigned-tierS.json
 ```
 
-The signature is the relation context plus two scale bands. Because the
-features are Phase 1 relations, it is frame-independent: two furnished
-corners in different maps at different orientations key the same, which is
-the only reason mining them together means anything.
+## Regenerated 2026-08-31 after the mining-hygiene fix
+
+**The first run counted wiring as furniture.** Every sample now carries two
+labels and nothing is dropped:
+
+- `sector_kind` from `reachability.sector_kinds` -- `reachable`, or the
+  off-map kind (`logic_closet`, `signature`, `helper`, `sealed`, `bare`);
+- the visible/wiring split of what it holds, from
+  `blood_types.sprite_visibility`. Sector-sound markers, link markers,
+  player starts and generators are not objects a player can see.
+
+A sample is in the **default scope** when it sits in reachable geometry and
+holds at least one visible object. Everything else is `excluded` and is
+clustered under its own heading -- a sound-marker pocket is evidence about
+wiring, not garbage. Reachability is computed once per map.
+
+### What changed against the polluted run
+
+```text
+                                   before          after
+object-context candidates          1328            1076
+object-context occurrences         6599            4637
+share in candidates spanning        80%             78%
+  three or more maps
+excluded and reported              none            173 candidates, 1962 occurrences
+```
+
+**1962 of 6599 object-context occurrences (30%) left the default
+statistics.** Split by reason:
+
+```text
+all objects are wiring or markers   1889
+off-map geometry                      79   (50 logic_closet, 29 sealed)
+```
+
+The off-map share matches what was measured before the fix (81 of 6803,
+1.2%); the wiring share is far larger and was invisible until the sprite
+catalog was consulted. The cross-map stability figure barely moved (80% ->
+78%), which says the recurring structure was never the wiring -- but the
+*membership* of several families changed a great deal, and one dissolved
+almost entirely (see below).
 
 ## The bands are measured, not chosen
 
@@ -26,133 +63,96 @@ Quartiles of the 2837 sprite-carrying sectors in the first 15 campaign maps:
 area p25/p50/p75 = 3.7/14.2/56.7 player areas, clear height 1.57/1.93/3.50
 player heights. The first version guessed round numbers (1.0/2.0/4.0 on
 height) and put nearly every campaign sector in one bucket, which would have
-made the facet decorative. Calibrated, the four bands hold 25/24/27/24% and
-25/33/20/22% of the sample.
+made the facet decorative.
 
 ## Candidate stability and cross-map coverage
 
-| population | samples | `object-context` candidates | occurrences | in >=3 maps | share of occurrences |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| `blood-campaign` | 27925 | 1328 | 6599 | 460 | 80% |
-| `blood-bloodbath` | 2295 | 242 | 546 | 28 | 38% |
-| `community tier S` | 16064 | 894 | 2997 | 217 | 63% |
+| population | `object-context` candidates | occurrences | in >=3 maps | share of occurrences |
+| --- | ---: | ---: | ---: | ---: |
+| `blood-campaign` | 1076 | 4637 | 351 | 78% |
+| `blood-bloodbath` | 182 | 396 | 19 | 36% |
+| `community tier S` | 781 | 2402 | 178 | 59% |
 
-**80% of campaign object-context occurrences fall in a candidate that recurs
-across three or more maps.** Half the candidates are singletons, but they
-hold only 10% of the occurrences: the tail is long and thin, and the mass is
-in recurring structure.
-
-For comparison, in the same run `route-exposure` puts 50% of its occurrences
-in candidates spanning three or more maps, and 0% in BloodBath. The new
-family is more stable than one of the families already in the pipeline.
+**78% of campaign object-context occurrences fall in a candidate that recurs
+across three or more maps.** For comparison, in the same run `route-exposure`
+puts half its occurrences in candidates spanning three or more maps, and none
+in BloodBath. The new family is more stable than one already in the pipeline.
 
 ### The vocabulary transfers between populations
 
 ```text
-campaign signatures                      1328
-also seen in BloodBath                   204 = 89% of BloodBath occurrences
-also seen in community tier S (20 maps)  579 = 84% of tier-S occurrences
+campaign signatures                      1076
+also seen in BloodBath                   152 = 89% of BloodBath occurrences
+also seen in community tier S (20 maps)  481 = 81% of tier-S occurrences
 ```
 
 Populations stay separate as evidence -- this is a *coverage* statement, not
-a claim that community maps follow campaign convention. What it says is that
-the signature vocabulary is not campaign-specific: nine tenths of BloodBath's
-object-scale contexts are contexts the campaign also builds.
+a claim that community maps follow campaign convention.
 
 ## Clusters nobody programmed
 
-The exit criterion. None of these is a named concept anywhere in the code --
-they are discrete signatures that recurred.
-
-- **256 occurrences across 41 maps** (BloodBath x23; tier S x69)
+- **188 occurrences across 40 maps** (BloodBath x17; tier S x61)
   `portals:3+|enclosed:no|stacked:none|coplanar:yes|objects:3+|seated:some|wallbound:some|run:no|size:hall|clear:lofty`
-- **101 occurrences across 32 maps** (BloodBath x17; tier S x39)
-  `portals:3+|enclosed:no|stacked:none|coplanar:yes|objects:3+|seated:some|wallbound:some|run:no|size:hall|clear:standing`
-- **91 occurrences across 32 maps** (tier S x68)
+- **78 occurrences across 31 maps** (tier S x51)
   `portals:3+|enclosed:no|stacked:none|coplanar:yes|objects:3+|seated:some|wallbound:some|run:no|size:hall|clear:open`
-- **63 occurrences across 31 maps** (BloodBath x12; tier S x11)
-  `portals:3+|enclosed:no|stacked:none|coplanar:yes|objects:3+|seated:some|wallbound:none|run:no|size:hall|clear:lofty`
-- **72 occurrences across 30 maps** (BloodBath x5; tier S x22)
+- **88 occurrences across 30 maps** (BloodBath x13; tier S x34)
+  `portals:3+|enclosed:no|stacked:none|coplanar:yes|objects:3+|seated:some|wallbound:some|run:no|size:hall|clear:standing`
+- **58 occurrences across 28 maps** (BloodBath x5; tier S x18)
   `portals:3+|enclosed:no|stacked:none|coplanar:yes|objects:3+|seated:some|wallbound:some|run:no|size:room|clear:standing`
-- **77 occurrences across 28 maps** (BloodBath x7; tier S x35)
-  `portals:2|enclosed:no|stacked:none|coplanar:yes|objects:1|seated:none|wallbound:all|run:no|size:tiny|clear:tight`
+- **46 occurrences across 25 maps** (BloodBath x10; tier S x8)
+  `portals:3+|enclosed:no|stacked:none|coplanar:yes|objects:3+|seated:some|wallbound:none|run:no|size:hall|clear:lofty`
 
-### The pair worth looking at
+### The contrast pair, after the fix
 
-Two candidates identical in every facet but one:
-
-```text
- 77 occ / 28 maps   seated:none   the object hangs on the wall
- 72 occ / 24 maps   seated:all    the object stands on the floor
-
-shared: a tiny, tight, two-portal sector holding exactly one object,
-        against a wall, sharing a floor plane with a neighbour
-```
-
-A niche in a passage with one fixture in it, and the same niche with the
-fixture on the floor instead of the wall. Both recur in over twenty
-campaign maps and in both other populations. That is `03_...md`'s
-contrastive mining -- "nearly identical structures with one systematic
-relational difference" -- arrived at without searching for it.
-
-Automatic contrast search over candidates spanning eight or more maps finds
-pairs differing in exactly one facet; `clear` and `size` dominate (the same
-furnished hall at four ceiling heights), and the informative ones are the
-`seated`/`wallbound` pairs above.
-
-## The Phase 2 prediction, tested
-
-Phase 2 ended with a prediction: object anchors would cluster tightly and
-material anchors would not. The campaign mine keys every sprite-carrying
-sector to a signature, so testing it is a join, not new mining. For each
-anchor role: what share of its campaign carrying sectors fall in its single
-commonest object-context signature?
+The pair this report originally led with -- a tiny two-portal niche holding
+one wall-bound object, `seated:none` against `seated:all` -- **was mostly
+sound-marker placement**:
 
 ```text
-anchor                 Ph2 enrichment   sectors   concentration
-chair                          11.58        22           0.500
-outlet                          9.38        13           0.154
-hanging_clothes                 6.97        27           0.333
-sewer_grate                     5.77        44           0.136
-machinery                       3.14        62           0.129
-crate_surface                   2.77      1067           0.157
-shelf_wall                      2.56        25           0.360
-sewer_light                     2.22        51           0.059
-wood_casework                   1.40       486           0.068
-pipe_walls                      1.15       384           0.133
-drawer_surface                  0.83        50           0.220
-shaft_metal                     0.75       132           0.152
-sewer_door                      0.53        33           0.242
-
-Pearson r = 0.541  (n = 13)
+                     before                after (visible objects only)
+seated:none            77 occ / 28 maps         13 occ / 10 maps
+seated:all             72 occ / 24 maps         10 occ /  7 maps
 ```
 
-**Directionally supported, not established.** The extremes behave: `chair`
-(11.6x, 0.50) and `hanging_clothes` (7.0x, 0.33) are high on both; 
-`sewer_light` (2.2x, 0.059) and `wood_casework` (1.4x, 0.068) are low on
-both. But r = 0.54 at n = 13 is weak, and there are two clear
-counterexamples: `outlet` has the third-highest enrichment and near-lowest
-concentration (11 distinct signatures over 13 sectors), and `sewer_door` is
-anti-associated by enrichment (0.53) yet more concentrated than several
-enriched anchors.
+Phase 4 followed this up as a contrast and found the same thing from the
+other direction: picnum 2520, which was 83% of *both* classes, is
+`kSoundSector`'s editor icon. See the re-run section of
+`reports/blood-contrast-niche-pair.md`. The structural niche shape is still
+there; the two-variant reading was carried by where the editor drops a
+marker.
 
-The two numbers are also measured on different corpora -- enrichment on the
-reference view's densest maps, concentration on the campaign -- so part of
-the scatter is corpus mismatch rather than signal. The prediction survives
-as a hypothesis with a measured effect size; it is not a finding.
+## Excluded: the wiring, under its own heading
+
+173 candidates, 1962 occurrences. The largest are sectors whose only
+contents are markers -- reachable geometry, so not off-map, but not
+furnished either:
+
+| occurrences | maps | sector kinds | signature |
+| ---: | ---: | --- | --- |
+| 165 | 34 | reachable 165 | `portals:2|enclosed:no|stacked:none|coplanar:yes|objects:0|se...` |
+| 144 | 31 | reachable 144 | `portals:2|enclosed:no|stacked:none|coplanar:yes|objects:0|se...` |
+| 116 | 32 | reachable 116 | `portals:3+|enclosed:no|stacked:none|coplanar:yes|objects:0|s...` |
+| 109 | 26 | reachable 109 | `portals:2|enclosed:no|stacked:none|coplanar:yes|objects:0|se...` |
+| 64 | 21 | reachable 64 | `portals:3+|enclosed:no|stacked:none|coplanar:yes|objects:0|s...` |
+| 63 | 25 | reachable 63 | `portals:3+|enclosed:no|stacked:none|coplanar:yes|objects:0|s...` |
+
+These are where the ambient-sound wiring of a level lives, and they are kept
+for the conditional-topology phases rather than deleted.
 
 ## Limitations
 
 - Only sectors holding at least one sprite are sampled. An empty sector has
-  no object-scale content, and including 600 per map would bury the
-  families that do.
-- The tier-S run is **20 maps of 294**, taken in enumeration order so a
-  rerun mines the same ones. It is a bounded sample and the report says so.
+  no object-scale content.
+- The tier-S run is **20 maps of 294**, taken in enumeration order so a rerun
+  mines the same ones. It is a bounded sample and says so.
 - `E6M7.MAP` produces no samples in any family: its sector 144 has invalid
   wall ownership and `analyze_spatial` validates the whole map before any
   selection. Reported in `observe_errors`, not silently dropped.
-- Every candidate is `unsigned`. No occurrence here has been interpreted,
-  and the signature describes a sector's role among its neighbours, not its
-  shape -- two differently shaped rooms can key alike.
+- Visibility is a Blood judgement, from sprite type category plus Build's
+  invisible cstat bit. Neither signal alone is enough: `start` sprites never
+  carry the bit and are still invisible, and 730 campaign `thing` sprites
+  carry it while their category is visible.
+- Every candidate is `unsigned`. The signature describes a sector's role
+  among its neighbours, not its shape.
 - Community and tier-S occurrences are precedent, never campaign convention.
 

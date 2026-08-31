@@ -897,38 +897,85 @@ def observe_object_context(
     Only sectors carrying at least one sprite are sampled. An empty sector has
     no object-scale content, and including 600 of them per map would bury the
     families that do.
+
+    Every sample is labelled twice and nothing is dropped: `sector_kind` from
+    `reachability.sector_kinds` (a switch closet is not a furnished room) and
+    the visible/wiring split of what it holds. A sample is in `scope`
+    `"default"` when it sits in reachable geometry and holds at least one
+    object a player can see; everything else is `"excluded"` and is clustered
+    under its own heading, because a sound-marker pocket is evidence about
+    wiring rather than about furniture.
+
+    Reachability is computed **once per map** here, never per sample.
     """
-    from .relations import context_signature, extract_relations
+    from .blood_types import sprite_visibility
+    from .reachability import sector_kinds as reachability_sector_kinds
+    from .relations import context_signature, extract_relations, sprite_kind
 
     build = disk.to_build_ir()
+    kinds = reachability_sector_kinds(disk)
     carrying: dict[int, int] = defaultdict(int)
-    for sprite in build.sprites:
-        carrying[int(sprite["fields"]["sector"])] += 1
+    visible: dict[int, int] = defaultdict(int)
+    wiring_categories: dict[int, Counter] = defaultdict(Counter)
+    for sprite_id, sprite in enumerate(build.sprites):
+        fields = sprite["fields"]
+        sector_id = int(fields["sector"])
+        carrying[sector_id] += 1
+        if sprite_kind(build, sprite_id) == "visible":
+            visible[sector_id] += 1
+        else:
+            found = sprite_visibility(int(fields["lotag"]), int(fields["cstat"]))
+            wiring_categories[sector_id][
+                found["category"] if found["non_visible_category"] else "hidden-" + found["category"]
+            ] += 1
 
     samples = []
     for sector_id in sorted(carrying):
         if not 0 <= sector_id < len(build.sectors):
             continue
-        document = extract_relations(build, sectors=[sector_id], hops=hops)
+        document = extract_relations(build, sectors=[sector_id], hops=hops,
+                                     sector_kinds=kinds)
         area = _area(build, sector_id) / (PLAYER_WIDTH ** 2)
         fields = build.sectors[sector_id]["fields"]
         height = (int(fields["floor_z"]) - int(fields["ceiling_z"])) / PLAYER_HEIGHT
-        samples.append({
+        kind = kinds.get(sector_id, "unknown")
+        seen = visible[sector_id]
+        excluded_because = []
+        if kind not in ("reachable", "unknown"):
+            excluded_because.append(f"off-map: {kind}")
+        if seen == 0:
+            excluded_because.append(
+                f"all {carrying[sector_id]} objects are wiring or markers")
+        sample = {
             "subject": "object-context",
             "population": population,
             "map": map_id,
             "focus": {"sector": sector_id},
+            "sector_kind": kind,
+            "scope": "excluded" if excluded_because else "default",
+            "excluded_because": excluded_because,
             "context_signature": context_signature(document, sector_id),
             "scale": {
                 "area_player_areas": round(area, 4),
                 "clear_height_player_heights": round(height, 4),
-                "objects": carrying[sector_id],
+                "objects": seen,
+                "objects_all": carrying[sector_id],
+                "objects_wiring": carrying[sector_id] - seen,
             },
             "relation_counts": dict(document["counts"]),
             "materials": _materials(build, sector_id),
             "evidence": ["relations.extract_relations one-hop neighborhood",
-                         "relations.context_signature"],
-        })
+                         "relations.context_signature (visible objects only)",
+                         "reachability.sector_kinds"],
+        }
+        if wiring_categories[sector_id]:
+            # Keyed on the wiring instead. Without this an excluded sample
+            # reads `objects:0` and says nothing about what it actually holds,
+            # which makes the excluded heading a bin rather than a finding.
+            sample["wiring_signature"] = context_signature(
+                document, sector_id, visible_only=False)
+            sample["wiring_categories"] = dict(sorted(wiring_categories[sector_id].items()))
+        samples.append(sample)
     return samples
 
 
@@ -1055,7 +1102,16 @@ def _median(values: list[float]) -> float:
 
 
 def cluster_samples(samples: Iterable[dict[str, Any]]) -> dict[str, Any]:
-    """Group samples by independent discrete signatures. No room names."""
+    """Group samples by independent discrete signatures. No room names.
+
+    A sample may carry `scope`. Anything marked `"excluded"` -- off-map
+    geometry, or a sector whose every object is wiring -- is clustered
+    separately into `excluded_candidates` rather than mixed into the default
+    statistics or thrown away. It is evidence about how a level is wired.
+    """
+    samples = list(samples)
+    excluded = [item for item in samples if item.get("scope") == "excluded"]
+    samples = [item for item in samples if item.get("scope") != "excluded"]
     by_subject: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for sample in samples:
         by_subject[str(sample["subject"])].append(sample)
@@ -1097,9 +1153,22 @@ def cluster_samples(samples: Iterable[dict[str, Any]]) -> dict[str, Any]:
                 "common_properties": _common_properties(subject, signature, members),
                 "status": "unsigned",
             })
+    excluded_candidates = _cluster_excluded(excluded)
     return {
         "$schema": SCHEMA,
         "schema_version": SCHEMA_VERSION,
+        "scope": {
+            "default_samples": len(samples),
+            "excluded_samples": len(excluded),
+            "excluded_reasons": dict(sorted(Counter(
+                reason for item in excluded
+                for reason in item.get("excluded_because", ())
+                or ("unstated",)).items())),
+            "note": "default statistics cover reachable geometry and visible "
+                    "objects; the excluded remainder is wiring evidence, "
+                    "clustered under excluded_candidates",
+        },
+        "excluded_candidates": excluded_candidates,
         "kind": "derived",
         "model": "discrete independent-view signatures; names are not assigned here",
         "sample_count": sum(len(items) for items in by_subject.values()),
@@ -1120,6 +1189,55 @@ def _common_properties(subject: str, signature: str, members: list[dict[str, Any
         "count": len(members),
         "maps": sorted({item["map"] for item in members}),
     }
+
+
+def _cluster_excluded(samples: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """The same clustering, over what the default scope holds back."""
+    buckets: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
+    for item in samples:
+        subject = str(item["subject"])
+        signer = _SIGNATURES.get(subject)
+        if signer is None or subject == "spawn-neighborhood":
+            continue
+        #: An excluded sample is keyed on what it *does* hold. Keying it on the
+        #: visible objects it does not have would file every sound-marker
+        #: pocket in the campaign under one meaningless `objects:0` bucket.
+        if "wiring_signature" in item:
+            keyed = dict(item)
+            keyed["context_signature"] = item["wiring_signature"]
+            buckets[(subject, signer(keyed))].append(item)
+        else:
+            buckets[(subject, signer(item))].append(item)
+    out = []
+    for (subject, signature), members in sorted(
+            buckets.items(), key=lambda kv: (-len(kv[1]), kv[0])):
+        maps = sorted({item["map"] for item in members})
+        out.append({
+            "candidate_id": f"excluded:{subject}:{signature}",
+            "subject": subject,
+            "signature": signature,
+            "occurrence_count": len(members),
+            "map_count": len(maps),
+            "maps": maps,
+            "reasons": dict(sorted(Counter(
+                reason for item in members
+                for reason in item.get("excluded_because", ())).items())),
+            "sector_kinds": dict(sorted(Counter(
+                item.get("sector_kind", "unknown") for item in members).items())),
+            "wiring_categories": dict(sorted(Counter(
+                category for item in members
+                for category, count in item.get("wiring_categories", {}).items()
+                for _ in range(count)).items())),
+            "keyed_on": "wiring" if any("wiring_signature" in item for item in members)
+                        else "visible objects",
+            "occurrences": [
+                {"map": item["map"], "focus": item["focus"],
+                 "population": item["population"]}
+                for item in members
+            ],
+            "status": "excluded-from-default-statistics",
+        })
+    return out
 
 
 def mine_directory(

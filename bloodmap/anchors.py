@@ -452,3 +452,650 @@ def mine_kit(specs: Sequence[AnchorSpec], **kwargs: Any) -> dict[str, Any]:
         "selection": next(iter(roles.values()))["selection"],
         "roles": roles,
     }
+
+
+# ---------------------------------------------------------------------------
+# Contrast: which relations actually separate two anchored classes
+# ---------------------------------------------------------------------------
+#
+# `03_...md` lists candidate discriminators for confusing pairs -- shelf vs
+# crate pile, storefront vs window -- and says to mine the differences instead
+# of guessing them. The classes are defined by owner-tagged tiles, so the one
+# thing a result here may *not* rest on is the tile: a separator that is really
+# texture identity is a finding to report, not a success.
+
+#: Relational features, and the `03_...md` discriminator each stands for.
+#: Every one is read from Phase 1 relations or from the sector's own portal
+#: measurements. None of them reads a picnum.
+CONTRAST_FEATURES: dict[str, str] = {
+    "objects_held": "contains_smaller_props: how many *visible* sprites the "
+                    "sector carries",
+    "wiring_objects_held": "how many non-visible wiring sprites it carries -- "
+                           "reported, never counted as furniture",
+    "objects_resting": "supports: how many of them sit on one of its planes",
+    "objects_against_wall": "against_wall, counted over the sector's own objects",
+    "portals": "open_front vs privileged_front: how many ways in",
+    "enterable": "requires_access_clearance: some portal a player can walk through",
+    "solid_closed_volume": "no portal a player can walk through",
+    "max_step_player_heights": "the biggest step up from a neighbour",
+    "min_opening_player_heights": "the tightest at-rest opening into it",
+    "stands_above_a_neighbour": "above: a volume stacked over another volume. "
+                                "Not the same as a raised platform -- a crate "
+                                "inside a room sits above that room's floor, "
+                                "not above its ceiling.",
+    "raised_above_all_neighbours": "the platform reading of stackable_identical_"
+                                   "units: this sector's floor is higher than "
+                                   "every neighbour's",
+    "rise_over_neighbours_player_heights": "how far its floor stands proud of "
+                                           "the lowest neighbour",
+    "stands_under_a_neighbour": "below: something overhangs it",
+    "inside_another_sector": "inside: a volume cut into a bigger one",
+    "shares_a_plane": "coplanar_with a neighbour's floor or ceiling",
+    "in_a_repeating_run": "repeats_along: its objects form an even row",
+    "twin_neighbours": "stackable_identical_units: neighbours of the same "
+                       "footprint and clear height",
+    "clear_height_player_heights": "standing room, or not a place at all",
+    "area_player_areas": "plan size; a bounding-box measure, kept to be rejected",
+    "solid_wall_share": "share of its own walls that are one-sided",
+}
+
+#: Blood's step limit, from `vocabulary.staircase`. A neighbour higher than
+#: this cannot be walked into.
+MAX_STEP_PLAYER_HEIGHTS = 4096 / 16960
+
+BOOLEAN_FEATURES = (
+    "enterable", "solid_closed_volume", "stands_above_a_neighbour",
+    "raised_above_all_neighbours",
+    "stands_under_a_neighbour", "inside_another_sector", "shares_a_plane",
+    "in_a_repeating_run",
+)
+
+
+def carrier_features(
+    build: BuildIR, sector_id: int, document: dict[str, Any],
+) -> dict[str, Any]:
+    """Relational features of one carrying sector. No picnum is read."""
+    from .relations import _id, _polygon_loops, _signed_area
+
+    ref = f"sector:{sector_id}"
+    relations = document["relations"]
+    #: Visible objects only. Roughly a quarter of every campaign map's sprites
+    #: are sector-sound markers, link markers, starts and generators; counting
+    #: them made `objects_held` measure the editor's wiring. The wiring stays
+    #: in the document and is counted separately below.
+    own = {item["subject"] for item in relations
+           if item["kind"] == "in_sector" and item["object"] == ref
+           and item["measures"].get("visibility") != "wiring"}
+    wiring = {item["subject"] for item in relations
+              if item["kind"] == "in_sector" and item["object"] == ref
+              and item["measures"].get("visibility") == "wiring"}
+    portals = [item for item in relations
+               if item["kind"] == "adjacent_to" and ref in (item["subject"], item["object"])]
+    steps = [item["measures"]["step_player_heights"] for item in portals]
+    openings = [item["measures"]["opening_player_heights"] for item in portals]
+    enterable = any(
+        item["measures"]["opening_player_heights"] >= 1.0
+        and item["measures"]["step_player_heights"] <= MAX_STEP_PLAYER_HEIGHTS
+        and not item["measures"]["blocking_flag"]
+        for item in portals
+    )
+
+    fields = build.sectors[sector_id]["fields"]
+    clear = (int(fields["floor_z"]) - int(fields["ceiling_z"])) / 16960
+    loops = _polygon_loops(build, sector_id)
+    area = abs(sum(_signed_area(loop) for loop in loops)) / (384 ** 2)
+    first, count = int(fields["wall_ptr"]), int(fields["wall_count"])
+    walls = [build.walls[w]["fields"] for w in range(first, first + count)
+             if 0 <= w < len(build.walls)]
+    solid = sum(1 for w in walls if int(w["next_sector"]) < 0)
+
+    #: Twins: neighbours with the same footprint area and clear height. A crate
+    #: in a stack has them; a shelf recess does not.
+    twins = 0
+    for other in document["neighborhood"]["sectors"]:
+        if other == sector_id or not 0 <= other < len(build.sectors):
+            continue
+        other_fields = build.sectors[other]["fields"]
+        other_loops = _polygon_loops(build, other)
+        if not other_loops:
+            continue
+        other_area = abs(sum(_signed_area(loop) for loop in other_loops)) / (384 ** 2)
+        other_clear = (int(other_fields["floor_z"]) - int(other_fields["ceiling_z"])) / 16960
+        if area > 0 and abs(other_area - area) / area <= 0.05 and abs(other_clear - clear) <= 0.05:
+            twins += 1
+
+    #: A raised platform, which `above` does not capture: a crate inside a room
+    #: has that room's *floor* below it, not its ceiling. Blood z grows
+    #: downward, so a higher floor is a smaller floor_z.
+    floor_z = int(fields["floor_z"])
+    neighbour_floors = []
+    for item in portals:
+        other = _id(item["object"] if item["subject"] == ref else item["subject"])
+        if 0 <= other < len(build.sectors):
+            neighbour_floors.append(int(build.sectors[other]["fields"]["floor_z"]))
+    rise = (max(neighbour_floors) - floor_z) / 16960 if neighbour_floors else 0.0
+
+    return {
+        "objects_held": len(own),
+        "wiring_objects_held": len(wiring),
+        "raised_above_all_neighbours": bool(neighbour_floors) and all(
+            floor_z < other for other in neighbour_floors),
+        "rise_over_neighbours_player_heights": round(rise, 4),
+        "objects_resting": sum(1 for item in relations
+                               if item["kind"] == "rests_on" and item["subject"] in own),
+        "objects_against_wall": sum(1 for item in relations
+                                    if item["kind"] == "against_wall" and item["subject"] in own),
+        "portals": len(portals),
+        "enterable": enterable,
+        "solid_closed_volume": not enterable,
+        "max_step_player_heights": round(max(steps), 4) if steps else 0.0,
+        "min_opening_player_heights": round(min(openings), 4) if openings else 0.0,
+        "stands_above_a_neighbour": any(item["kind"] == "above" and item["subject"] == ref
+                                        for item in relations),
+        "stands_under_a_neighbour": any(item["kind"] == "above" and item["object"] == ref
+                                        for item in relations),
+        "inside_another_sector": any(item["kind"] == "inside" and item["subject"] == ref
+                                     for item in relations),
+        "shares_a_plane": any(item["kind"] == "shares_plane" and ref in item.get("members", [])
+                              for item in relations),
+        "in_a_repeating_run": any(item["kind"] == "repeats_along" and own & set(item.get("members", []))
+                                  for item in relations),
+        "twin_neighbours": twins,
+        "clear_height_player_heights": round(clear, 4),
+        "area_player_areas": round(area, 4),
+        "solid_wall_share": round(solid / max(1, len(walls)), 4),
+    }
+
+
+def _separation(name: str, positives: list[Any], comparison: list[Any]) -> dict[str, Any]:
+    """How well one feature separates two classes, stated honestly.
+
+    Booleans report the share on each side. Numerics report each side's median
+    and the single threshold that maximizes balanced accuracy, with the two
+    rates kept separate -- on a 28-vs-1250 split a headline accuracy would be
+    98% for a rule that never fires.
+    """
+    if not positives or not comparison:
+        return {"feature": name, "verdict": "no data"}
+    if isinstance(positives[0], bool):
+        share_pos = sum(bool(v) for v in positives) / len(positives)
+        share_neg = sum(bool(v) for v in comparison) / len(comparison)
+        balanced = (share_pos + (1 - share_neg)) / 2
+        return {
+            "feature": name, "kind": "boolean",
+            "positive_share": round(share_pos, 4),
+            "comparison_share": round(share_neg, 4),
+            "difference": round(share_pos - share_neg, 4),
+            "balanced_accuracy": round(max(balanced, 1 - balanced), 4),
+            "direction": "positive" if share_pos >= share_neg else "comparison",
+        }
+    edges = sorted({float(v) for v in positives} | {float(v) for v in comparison})
+    best = None
+    for index, edge in enumerate(edges):
+        midpoint = edge if index == 0 else (edges[index - 1] + edge) / 2
+        for sense in (1, -1):
+            hit = sum(1 for v in positives if (v >= midpoint) == (sense > 0))
+            miss = sum(1 for v in comparison if (v >= midpoint) == (sense > 0))
+            tpr = hit / len(positives)
+            tnr = 1 - miss / len(comparison)
+            score = (tpr + tnr) / 2
+            if best is None or score > best[0]:
+                best = (score, midpoint, sense, tpr, tnr)
+    score, threshold, sense, tpr, tnr = best
+    return {
+        "feature": name, "kind": "numeric",
+        "positive_median": round(_median_of(positives), 4),
+        "comparison_median": round(_median_of(comparison), 4),
+        "rule": f"{name} {'>=' if sense > 0 else '<'} {round(threshold, 4)}",
+        "positives_matching": round(tpr, 4),
+        "comparison_matching": round(1 - tnr, 4),
+        "balanced_accuracy": round(score, 4),
+    }
+
+
+def _median_of(values: list[Any]) -> float:
+    ordered = sorted(float(v) for v in values)
+    if not ordered:
+        return 0.0
+    middle = len(ordered) // 2
+    if len(ordered) % 2:
+        return ordered[middle]
+    return (ordered[middle - 1] + ordered[middle]) / 2
+
+
+#: Below this, a feature is reported as rejected rather than discriminating.
+#: 0.65 balanced accuracy on a two-class split is barely above the 0.5 a coin
+#: gets; anything under it is not a separator, and saying so is the point.
+DISCRIMINATOR_FLOOR = 0.65
+
+
+def contrast_anchor_sets(
+    positive: AnchorSpec,
+    comparison: AnchorSpec,
+    *,
+    directory: str | Path | None = None,
+    population: str | None = None,
+    view: str | None = "reference",
+    hops: int = 1,
+    examples: int = 8,
+) -> dict[str, Any]:
+    """Measure which relations separate two tile-anchored classes.
+
+    Sectors carrying tiles from both anchors are **ambiguous**: they are held
+    out of the measurement and reported, never assigned to a side.
+    """
+    from .format import read_map
+
+    selected = list_corpus_maps(directory, population=population, view=view)
+    if not selected:
+        raise AnchorError(f"no maps for population={population!r} view={view!r}")
+
+    rows: list[dict[str, Any]] = []
+    ambiguous: list[dict[str, Any]] = []
+    skipped: list[dict[str, Any]] = []
+    maps_with: Counter = Counter()
+    for item in selected:
+        try:
+            build = read_map(item.path).to_build_ir()
+        except Exception as exc:
+            skipped.append({"map": item.name, "reason": f"{type(exc).__name__}: {exc}"})
+            continue
+        pos_sectors = {o["sector"] for o in find_occurrences(build, positive.tiles)}
+        neg_sectors = {o["sector"] for o in find_occurrences(build, comparison.tiles)}
+        if not pos_sectors and not neg_sectors:
+            continue
+        overlap = pos_sectors & neg_sectors
+        if pos_sectors:
+            maps_with[positive.name] += 1
+        if neg_sectors:
+            maps_with[comparison.name] += 1
+        failed = 0
+        wanted = ([(s, positive.name) for s in sorted(pos_sectors - overlap)]
+                  + [(s, comparison.name) for s in sorted(neg_sectors - overlap)])
+        for sector_id, label in wanted:
+            try:
+                document = extract_relations(build, sectors=[sector_id], hops=hops)
+            except Exception:
+                failed += 1
+                continue
+            rows.append({
+                "map": item.name, "population": item.population, "sector": sector_id,
+                "label": label, **carrier_features(build, sector_id, document),
+            })
+        for sector_id in sorted(overlap):
+            ambiguous.append({
+                "map": item.name, "sector": sector_id,
+                "reason": "carries tiles from both anchors",
+            })
+        if failed:
+            skipped.append({
+                "map": item.name, "carriers_unanalysable": failed,
+                "reason": "the map failed whole-map wall-ownership validation",
+            })
+
+    positives = [row for row in rows if row["label"] == positive.name]
+    comparisons = [row for row in rows if row["label"] == comparison.name]
+    if not positives or not comparisons:
+        raise AnchorError(
+            f"contrast needs both sides: {len(positives)} {positive.name}, "
+            f"{len(comparisons)} {comparison.name}"
+        )
+    measured = [
+        _separation(name, [row[name] for row in positives],
+                    [row[name] for row in comparisons])
+        for name in CONTRAST_FEATURES
+    ]
+    measured.sort(key=lambda item: -item.get("balanced_accuracy", 0))
+    discriminating = [m for m in measured
+                      if m.get("balanced_accuracy", 0) >= DISCRIMINATOR_FLOOR]
+    rejected = [m for m in measured
+                if m.get("balanced_accuracy", 0) < DISCRIMINATOR_FLOOR]
+    best = discriminating[0] if discriminating else None
+    return {
+        "$schema": "llmapper.anchor-contrast",
+        "schema_version": SCHEMA_VERSION,
+        "positive": positive.to_dict(),
+        "comparison": comparison.to_dict(),
+        "selection": {"population": population, "view": view, "hops": hops,
+                      "maps_searched": len(selected)},
+        "counts": {
+            positive.name: {"sectors": len(positives), "maps": maps_with[positive.name]},
+            comparison.name: {"sectors": len(comparisons), "maps": maps_with[comparison.name]},
+            "ambiguous_sectors": len(ambiguous),
+        },
+        "feature_definitions": dict(CONTRAST_FEATURES),
+        "discriminator_floor": DISCRIMINATOR_FLOOR,
+        "discriminating": discriminating,
+        "rejected": rejected,
+        "ambiguous": ambiguous[:40],
+        "counterexamples": _counterexamples(best, positives, comparisons, examples),
+        "map_transfer": _map_transfer(best, positives),
+        "skipped": skipped,
+        "rows": rows,
+        "limitations": [
+            "Class membership comes from owner-tagged tiles. Every feature "
+            "measured is relational and reads no picnum, so a separator that "
+            "is really texture identity cannot hide as one of them.",
+            "Balanced accuracy, not accuracy: on an imbalanced split a rule "
+            "that never fires scores well on the raw rate.",
+            "Thresholds are fitted on the same rows they are scored on. These "
+            "are separations observed, not a validated classifier.",
+            "Sectors carrying both anchors are held out and reported, never "
+            "assigned to a side.",
+            "`map_transfer` is the guard against a mapper's habit: a rule whose "
+            "per-map share swings from near 0 to near 1 is separating maps.",
+        ],
+    }
+
+
+def _map_transfer(
+    best: dict[str, Any] | None, positives: list[dict[str, Any]],
+) -> dict[str, Any]:
+    """Does the best discriminator hold in every map, or only in one?
+
+    The check that caught the first contrast pilot: its winning rule matched
+    89% of one map's positives and 0% of another's, so it was separating maps
+    rather than concepts. A rule fitted on two maps and tested on a third is
+    the cheapest guard against reading a mapper's habit as a convention.
+    """
+    if best is None:
+        return {"rule": None, "note": "no feature reached the discriminator floor"}
+    name = best["feature"]
+    if best["kind"] == "boolean":
+        wanted = best["direction"] == "positive"
+
+        def holds(row: dict[str, Any]) -> bool:
+            return bool(row[name]) == wanted
+    else:
+        parts = best["rule"].split()
+        sense, threshold = parts[1], float(parts[2])
+
+        def holds(row: dict[str, Any]) -> bool:
+            value = row[name]
+            return value >= threshold if sense == ">=" else value < threshold
+
+    maps = sorted({row["map"] for row in positives})
+    per_map = {}
+    for name_of_map in maps:
+        subset = [row for row in positives if row["map"] == name_of_map]
+        per_map[name_of_map] = {
+            "positives": len(subset),
+            "matching": round(sum(1 for row in subset if holds(row)) / len(subset), 4),
+        }
+    shares = [item["matching"] for item in per_map.values()]
+    held_out = {}
+    if len(maps) >= 2:
+        for name_of_map in maps:
+            rest = [row for row in positives if row["map"] != name_of_map]
+            subset = [row for row in positives if row["map"] == name_of_map]
+            held_out[name_of_map] = {
+                "on_the_rest": round(sum(1 for row in rest if holds(row)) / len(rest), 4),
+                "on_the_held_out_map": round(
+                    sum(1 for row in subset if holds(row)) / len(subset), 4),
+            }
+    return {
+        "rule": best.get("rule") or f"{name} is {best.get('direction') == 'positive'}",
+        "maps": len(maps),
+        "per_map": per_map,
+        "spread": round(max(shares) - min(shares), 4) if shares else None,
+        "leave_one_map_out": held_out,
+        "reading": "a rule whose per-map share swings from near 0 to near 1 is "
+                   "separating maps, not concepts. Spread near 0 means it "
+                   "transfers.",
+    }
+
+
+def _counterexamples(
+    best: dict[str, Any] | None, positives: list[dict[str, Any]],
+    comparisons: list[dict[str, Any]], limit: int,
+) -> dict[str, Any]:
+    """Members the best discriminator gets wrong. Preserved, never pruned."""
+    if best is None:
+        return {"rule": None, "note": "no feature reached the discriminator floor"}
+    name = best["feature"]
+    if best["kind"] == "boolean":
+        wanted = best["direction"] == "positive"
+        wrong_pos = [row for row in positives if bool(row[name]) != wanted]
+        wrong_neg = [row for row in comparisons if bool(row[name]) == wanted]
+        rule = f"{name} is {wanted}"
+    else:
+        parts = best["rule"].split()
+        sense, threshold = parts[1], float(parts[2])
+
+        def holds(value: float) -> bool:
+            return value >= threshold if sense == ">=" else value < threshold
+
+        wrong_pos = [row for row in positives if not holds(row[name])]
+        wrong_neg = [row for row in comparisons if holds(row[name])]
+        rule = best["rule"]
+    return {
+        "rule": rule,
+        "positives_it_misses": {
+            "count": len(wrong_pos),
+            "examples": [{"map": r["map"], "sector": r["sector"], name: r[name]}
+                         for r in wrong_pos[:limit]],
+        },
+        "comparisons_it_wrongly_matches": {
+            "count": len(wrong_neg),
+            "examples": [{"map": r["map"], "sector": r["sector"], name: r[name]}
+                         for r in wrong_neg[:limit]],
+        },
+    }
+
+
+#: Features a signature-defined contrast must not be scored on, because the
+#: signature fixes them. `objects_resting` *is* the `seated` facet: scoring it
+#: would report the class definition back as a discovery.
+SIGNATURE_BOUND_FEATURES = {
+    "objects_held": "objects",
+    "wiring_objects_held": "objects",
+    "objects_resting": "seated",
+    "objects_against_wall": "wallbound",
+    "portals": "portals",
+    "inside_another_sector": "enclosed",
+    "shares_a_plane": "coplanar",
+    "in_a_repeating_run": "run",
+    "stands_above_a_neighbour": "stacked",
+    "stands_under_a_neighbour": "stacked",
+    # `raised_above_all_neighbours` is deliberately NOT bound: the `stacked`
+    # facet comes from the `above` relation, which compares a floor with a
+    # *ceiling*. Standing proud of a neighbour's floor is a different
+    # measurement and the signature does not fix it.
+    "area_player_areas": "size",
+    "clear_height_player_heights": "clear",
+}
+
+
+def _object_context_rows(
+    build: BuildIR, map_name: str, population: str, wanted: set[str], hops: int,
+    kinds: dict[int, str] | None = None, reachable_only: bool = True,
+) -> tuple[list[dict[str, Any]], int]:
+    """Every sprite-carrying sector whose object-context signature is wanted.
+
+    Signatures are computed over *visible* objects, so a class defined by an
+    `objects:1` facet now means one object a player can see. Off-map sectors
+    are skipped by default rather than silently mixed in.
+    """
+    from .patterns import PLAYER_HEIGHT, PLAYER_WIDTH, _object_context_signature
+    from .relations import (
+        _polygon_loops, _signed_area, context_signature, sprite_kind,
+    )
+
+    carrying: Counter = Counter()
+    for sprite in build.sprites:
+        carrying[int(sprite["fields"]["sector"])] += 1
+    rows: list[dict[str, Any]] = []
+    failed = 0
+    for sector_id in sorted(carrying):
+        if not 0 <= sector_id < len(build.sectors):
+            continue
+        if reachable_only and (kinds or {}).get(sector_id, "unknown") not in (
+                "reachable", "unknown"):
+            continue
+        try:
+            document = extract_relations(build, sectors=[sector_id], hops=hops,
+                                         sector_kinds=kinds)
+        except Exception:
+            failed += 1
+            continue
+        fields = build.sectors[sector_id]["fields"]
+        loops = _polygon_loops(build, sector_id)
+        area = abs(sum(_signed_area(loop) for loop in loops)) / (PLAYER_WIDTH ** 2)
+        height = (int(fields["floor_z"]) - int(fields["ceiling_z"])) / PLAYER_HEIGHT
+        signature = _object_context_signature({
+            "context_signature": context_signature(document, sector_id),
+            "scale": {"area_player_areas": round(area, 4),
+                      "clear_height_player_heights": round(height, 4)},
+        })
+        if signature not in wanted:
+            continue
+        rows.append({
+            "map": map_name, "population": population, "sector": sector_id,
+            "label": signature, **carrier_features(build, sector_id, document),
+            "sector_kind": (kinds or {}).get(sector_id, "unknown"),
+            "object_picnums": sorted(
+                int(s["fields"]["picnum"]) for sprite_id, s in enumerate(build.sprites)
+                if int(s["fields"]["sector"]) == sector_id
+                and sprite_kind(build, sprite_id) == "visible"),
+            "wiring_picnums": sorted(
+                int(s["fields"]["picnum"]) for sprite_id, s in enumerate(build.sprites)
+                if int(s["fields"]["sector"]) == sector_id
+                and sprite_kind(build, sprite_id) == "wiring"),
+        })
+    return rows, failed
+
+
+def _picnum_profile_wiring(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """The non-visible sprites in the same sectors. Not objects -- but what
+    these sectors are actually for, which is the whole point of labelling."""
+    counts: Counter = Counter()
+    for row in rows:
+        counts.update(row.get("wiring_picnums", ()))
+    return {
+        "distinct_picnums": len(counts),
+        "commonest": [{"picnum": picnum, "count": count}
+                      for picnum, count in counts.most_common(8)],
+    }
+
+
+def contrast_signature_classes(
+    positive: str,
+    comparison: str,
+    *,
+    positive_name: str = "positive",
+    comparison_name: str = "comparison",
+    directory: str | Path | None = None,
+    population: str | None = "blood-campaign",
+    view: str | None = None,
+    hops: int = 1,
+    examples: int = 8,
+) -> dict[str, Any]:
+    """Contrast two object-context signature classes found by Phase 3.
+
+    The anchor contrast starts from owner-tagged tiles and asks which relations
+    separate them. This starts from two classes that were already found
+    *relationally*, differing in exactly one facet, and asks the opposite
+    question: does anything else differ? If nothing does, the pair is one
+    concept with a variant; if something does, they are two.
+
+    Features the signature itself fixes are excluded and listed, so the class
+    definition cannot be reported back as a discovery.
+    """
+    from .format import read_map
+    from .reachability import sector_kinds as reachability_sector_kinds
+
+    selected = list_corpus_maps(directory, population=population, view=view)
+    if not selected:
+        raise AnchorError(f"no maps for population={population!r} view={view!r}")
+    wanted = {positive, comparison}
+    rows: list[dict[str, Any]] = []
+    skipped: list[dict[str, Any]] = []
+    for item in selected:
+        try:
+            build = read_map(item.path).to_build_ir()
+        except Exception as exc:
+            skipped.append({"map": item.name, "reason": f"{type(exc).__name__}: {exc}"})
+            continue
+        kinds = reachability_sector_kinds(read_map(item.path))
+        found, failed = _object_context_rows(build, item.name, item.population,
+                                             wanted, hops, kinds)
+        rows.extend(found)
+        if failed:
+            skipped.append({"map": item.name, "sectors_unanalysable": failed,
+                            "reason": "the map failed whole-map wall-ownership validation"})
+
+    positives = [row for row in rows if row["label"] == positive]
+    comparisons = [row for row in rows if row["label"] == comparison]
+    if not positives or not comparisons:
+        raise AnchorError(
+            f"contrast needs both classes: {len(positives)} / {len(comparisons)}")
+
+    free = [name for name in CONTRAST_FEATURES if name not in SIGNATURE_BOUND_FEATURES]
+    measured = [
+        _separation(name, [row[name] for row in positives],
+                    [row[name] for row in comparisons])
+        for name in free
+    ]
+    measured.sort(key=lambda item: -item.get("balanced_accuracy", 0))
+    discriminating = [m for m in measured
+                      if m.get("balanced_accuracy", 0) >= DISCRIMINATOR_FLOOR]
+    rejected = [m for m in measured
+                if m.get("balanced_accuracy", 0) < DISCRIMINATOR_FLOOR]
+    best = discriminating[0] if discriminating else None
+    return {
+        "$schema": "llmapper.signature-contrast",
+        "schema_version": SCHEMA_VERSION,
+        "positive": {"name": positive_name, "signature": positive},
+        "comparison": {"name": comparison_name, "signature": comparison},
+        "differing_facets": sorted(
+            key for key, value in signature_facets(positive).items()
+            if signature_facets(comparison).get(key) != value),
+        "selection": {"population": population, "view": view, "hops": hops,
+                      "maps_searched": len(selected)},
+        "counts": {
+            positive_name: {"sectors": len(positives),
+                            "maps": len({r["map"] for r in positives})},
+            comparison_name: {"sectors": len(comparisons),
+                              "maps": len({r["map"] for r in comparisons})},
+        },
+        "features_excluded_as_bound_by_the_signature": dict(SIGNATURE_BOUND_FEATURES),
+        "features_measured": free,
+        "discriminator_floor": DISCRIMINATOR_FLOOR,
+        "discriminating": discriminating,
+        "rejected": rejected,
+        "counterexamples": _counterexamples(best, positives, comparisons, examples),
+        "map_transfer": _map_transfer(best, positives),
+        "object_description": {
+            positive_name: _picnum_profile(positives),
+            comparison_name: _picnum_profile(comparisons),
+        },
+        "wiring_description": {
+            "note": "non-visible sprites in the same sectors; reported, never "
+                    "counted as objects",
+            positive_name: _picnum_profile_wiring(positives),
+            comparison_name: _picnum_profile_wiring(comparisons),
+        },
+        "skipped": skipped,
+        "rows": rows,
+        "limitations": [
+            "The two classes differ by construction in the facets listed under "
+            "`differing_facets`; those and every other signature-bound feature "
+            "are excluded from scoring.",
+            "`object_description` is a description of what sits in each class, "
+            "not a discriminator. Separating the classes by picnum would be "
+            "separating them by texture, which is a finding, not a success.",
+            "Thresholds are fitted on the same rows they are scored on.",
+        ],
+    }
+
+
+def _picnum_profile(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    """What actually sits in these sectors. Description, never a separator."""
+    counts: Counter = Counter()
+    for row in rows:
+        counts.update(row.get("object_picnums", ()))
+    return {
+        "distinct_picnums": len(counts),
+        "commonest": [{"picnum": picnum, "count": count}
+                      for picnum, count in counts.most_common(8)],
+    }

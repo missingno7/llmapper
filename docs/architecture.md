@@ -83,6 +83,65 @@ player body, original-map percentiles, and neighbor ratios. It does not invent
 rooms, replace native units, or make meters the primary abstraction. See
 [player-space.md](player-space.md).
 
+## Where a new fact belongs
+
+Read this before adding a module. Every row is a module that already owns a
+kind of fact; the question is which kind you have, not which module is
+convenient.
+
+| A fact about... | Belongs in | Not in |
+| --- | --- | --- |
+| what a native type *means* (`type 709 is kSoundSector`, and that it is never drawn) | `blood_types.py` | wherever you noticed it |
+| whether the player can get to a sector, and what off-map geometry is for | `reachability.py` | a fresh flood fill |
+| what a mechanism is made of and how its parts relate | `assembly.py` | a second grouping pass |
+| how one dynamic family works in detail (doors, lifts) | `doors.py`, `mechanism.py` | `assembly.py`, which owns membership, not behaviour |
+| a derived spatial view over sectors (adjacency, portals, loops) | `spatial.py` | recomputing from walls |
+| an object-scale relation between a sprite, a wall and a sector | `relations.py` | `patterns.py` |
+| a reduction of relations to a comparable key | `relations.py` (`context_signature`) | its consumers |
+| where a corpus map came from, and which population it is | `patterns.py` (the corpus registry) | globbing a directory |
+| a recurring unsigned signature family | `patterns.py` (`observe_*` + `_SIGNATURES`) | a new pipeline |
+| what surrounds a labelled anchor, and whether that context means anything | `anchors.py` | `patterns.py` |
+| an architectural structure candidate with parameters and residual (stairs, recesses) | `structures.py` | `relations.py` |
+| a measured, versioned, citable design number | `knowledge/blood/design/*-vN.json` | a constant in the module that needed it |
+| something an author should be able to *write* | a `vocabulary.py` / `prefab.py` constructor | the knowledge store |
+
+Two directions, and they are not symmetric. A fact is **observed** into a
+sensor module and, once it recurs and is understood, **promoted** into a
+constructor. The promotion rule is in
+[`knowledge/blood/design/README.md`](../knowledge/blood/design/README.md) and
+requires recurrence, a known invariant, counterexamples, and a regression test
+that can fail. Nothing goes the other way: an authoring constructor is never
+evidence for anything, and generated maps are never evidence at all.
+
+### The motivating example
+
+`context_signature` reduces a relation document to a discrete key. It was
+written inside `anchors.py`, because the anchor query was the first thing that
+needed it. When the unsigned pattern pipeline needed exactly the same key, the
+import would have been `patterns.py` -> `anchors.py` -> `patterns.py`, a
+cycle -- and the alternative on offer was a second copy that would drift.
+
+The question that resolved it is the one this table asks: *what kind of fact is
+it?* A signature is a reduction of relations, so it belongs with the relations,
+and both consumers import it from there. The cycle was a symptom; the missing
+answer was the cause.
+
+### Two rules that keep costing more than they look
+
+**A label is not a filter.** When a sensor learns that some of its input is a
+different kind of thing -- off-map geometry, a sprite the engine never draws --
+the fix is to tag it and default the statistics to the part that answers the
+question, not to drop it. `reachability.sector_kinds` and
+`blood_types.sprite_visibility` are both consumed this way: object-scale mining
+labels every sample with both and reports the excluded remainder under its own
+heading, because a switch closet is evidence about wiring even when it is not
+evidence about furniture.
+
+**Compute a whole-map fact once per map.** `analyze_reachability` floods the
+whole map; calling it per sample cost more than every relation extraction in
+the Phase 1 pilot put together. Sensors that need it take a precomputed
+mapping as a parameter and say so in the docstring.
+
 ## Native disk models
 
 `DiskMap` mirrors Blood v7, including encryption, CRC, packed extended records,

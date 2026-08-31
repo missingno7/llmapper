@@ -31,17 +31,149 @@ def furnished_disk():
     for index, x in enumerate((400, 512, 624)):
         sprite = copy.deepcopy(template)
         sprite.fields.update(x=x, y=512, z=floor_z, sector=0, picnum=700,
-                             angle=0, index=index, extra=-1, owner=-1)
+                             type=0, cstat=0, angle=0, index=index, extra=-1,
+                             owner=-1)
         sprite.extra = None
         sprites.append(sprite)
     flush = copy.deepcopy(template)
     flush.fields.update(x=512, y=20, z=floor_z, sector=0, picnum=701,
-                        angle=512, index=3, extra=-1, owner=-1)
+                        type=0, cstat=0, angle=512, index=3, extra=-1, owner=-1)
     flush.extra = None
     sprites.append(flush)
     disk.sprites = sprites
     disk.header["num_sprites"] = len(sprites)
     return parse_map(encode_map(disk))
+
+
+def wired_disk():
+    """A furnished room, plus an unreachable closet holding only sound markers.
+
+    Sector 1 is sealed (its portal is unlinked) and every sprite in it is a
+    `kSoundSector` marker. Both exclusion reasons in one fixture.
+    """
+    disk = synthetic_two_sector_map()
+    disk.walls[1].fields.update(next_wall=-1, next_sector=-1)
+    disk.walls[7].fields.update(next_wall=-1, next_sector=-1)
+    template = copy.deepcopy(disk.sprites[0])
+    floor_z = int(disk.sectors[0].fields["floor_z"])
+    sprites = []
+    for index, x in enumerate((400, 512, 624)):
+        sprite = copy.deepcopy(template)
+        sprite.fields.update(x=x, y=512, z=floor_z, sector=0, picnum=700,
+                             type=0, cstat=0, angle=0, index=index, extra=-1, owner=-1)
+        sprite.extra = None
+        sprites.append(sprite)
+    for index in range(2):
+        sprite = copy.deepcopy(template)
+        sprite.fields.update(x=1400 + 128 * index, y=512, z=floor_z, sector=1,
+                             picnum=2520, type=709, cstat=32896, angle=0,
+                             index=3 + index, extra=-1, owner=-1)
+        sprite.extra = None
+        sprites.append(sprite)
+    disk.sprites = sprites
+    disk.header["num_sprites"] = len(sprites)
+    return parse_map(encode_map(disk))
+
+
+class ObjectContextHygieneTests(unittest.TestCase):
+    """Off-map geometry and wiring are labelled and excluded by default."""
+
+    def setUp(self):
+        self.samples = observe_object_context(
+            wired_disk(), map_id="wired.MAP", population="blood-campaign")
+        self.by_sector = {item["focus"]["sector"]: item for item in self.samples}
+
+    def test_both_sectors_are_still_sampled(self):
+        """Labelling, not dropping: the wiring closet keeps its sample."""
+        self.assertEqual(sorted(self.by_sector), [0, 1])
+
+    def test_the_furnished_room_is_in_the_default_scope(self):
+        room = self.by_sector[0]
+        self.assertEqual(room["scope"], "default")
+        self.assertEqual(room["excluded_because"], [])
+        self.assertEqual(room["scale"]["objects"], 3)
+        self.assertEqual(room["scale"]["objects_wiring"], 0)
+
+    def test_the_wiring_closet_is_excluded_and_says_why(self):
+        closet = self.by_sector[1]
+        self.assertEqual(closet["scope"], "excluded")
+        self.assertEqual(closet["scale"]["objects"], 0)
+        self.assertEqual(closet["scale"]["objects_all"], 2)
+        self.assertEqual(closet["scale"]["objects_wiring"], 2)
+        self.assertTrue(closet["excluded_because"])
+        self.assertTrue(any("wiring" in reason for reason in closet["excluded_because"]))
+
+    def test_every_sample_carries_its_reachability_kind(self):
+        for sample in self.samples:
+            self.assertIn(sample["sector_kind"],
+                          ("reachable", "logic_closet", "signature", "helper",
+                           "bare", "sealed", "unknown"))
+        self.assertEqual(self.by_sector[0]["sector_kind"], "reachable")
+        self.assertNotEqual(self.by_sector[1]["sector_kind"], "reachable")
+
+    def test_the_signature_counts_visible_objects_only(self):
+        self.assertIn("objects:3+", _object_context_signature(self.by_sector[0]))
+        self.assertIn("objects:0", _object_context_signature(self.by_sector[1]))
+
+    def test_clustering_keeps_the_excluded_under_their_own_heading(self):
+        clustered = cluster_samples(self.samples)
+        default = [c for c in clustered["candidates"] if c["subject"] == "object-context"]
+        self.assertEqual(len(default), 1)
+        self.assertEqual(default[0]["occurrence_count"], 1)
+        self.assertEqual(clustered["scope"]["default_samples"], 1)
+        self.assertEqual(clustered["scope"]["excluded_samples"], 1)
+        self.assertEqual(len(clustered["excluded_candidates"]), 1)
+        excluded = clustered["excluded_candidates"][0]
+        self.assertEqual(excluded["status"], "excluded-from-default-statistics")
+        self.assertTrue(excluded["reasons"])
+        self.assertTrue(excluded["sector_kinds"])
+
+    def test_an_excluded_sample_is_keyed_on_what_it_does_hold(self):
+        """Keyed on the visible objects it lacks, every sound-marker pocket in
+        the campaign files under one meaningless `objects:0` bucket."""
+        closet = self.by_sector[1]
+        self.assertIn("wiring_signature", closet)
+        self.assertIn("objects:0", closet["context_signature"])
+        self.assertNotIn("objects:0", closet["wiring_signature"])
+        self.assertEqual(closet["wiring_categories"], {"sound": 2})
+
+    def test_a_default_sample_has_no_wiring_signature(self):
+        self.assertNotIn("wiring_signature", self.by_sector[0])
+        self.assertNotIn("wiring_categories", self.by_sector[0])
+
+    def test_excluded_clusters_report_what_they_hold_and_how_they_were_keyed(self):
+        clustered = cluster_samples(self.samples)
+        excluded = clustered["excluded_candidates"][0]
+        self.assertEqual(excluded["keyed_on"], "wiring")
+        self.assertEqual(excluded["wiring_categories"], {"sound": 2})
+        self.assertNotIn("objects:0", excluded["signature"])
+
+    def test_two_wiring_pockets_with_the_same_shape_cluster_together(self):
+        """The point of keying on the wiring: recurrence becomes visible."""
+        first = observe_object_context(wired_disk(), map_id="a.MAP",
+                                       population="blood-campaign")
+        second = observe_object_context(wired_disk(), map_id="b.MAP",
+                                        population="blood-campaign")
+        clustered = cluster_samples(first + second)
+        excluded = clustered["excluded_candidates"]
+        self.assertEqual(len(excluded), 1, "the two pockets must be one candidate")
+        self.assertEqual(excluded[0]["occurrence_count"], 2)
+        self.assertEqual(excluded[0]["map_count"], 2)
+
+    def test_reachability_is_computed_once_per_map(self):
+        """A whole-map flood fill per sample would cost more than every
+        relation extraction put together."""
+        import bloodmap.reachability as reachability
+
+        calls = []
+        original = reachability.analyze_reachability
+        reachability.analyze_reachability = lambda disk: calls.append(1) or original(disk)
+        try:
+            observe_object_context(wired_disk(), map_id="wired.MAP",
+                                   population="blood-campaign")
+        finally:
+            reachability.analyze_reachability = original
+        self.assertEqual(len(calls), 1, f"analyze_reachability ran {len(calls)} times")
 
 
 class ObjectContextFamilyTests(unittest.TestCase):
@@ -61,7 +193,11 @@ class ObjectContextFamilyTests(unittest.TestCase):
         self.assertEqual(sample["map"], "synthetic.MAP")
         self.assertEqual(sample["scale"]["objects"], 4)
         self.assertTrue(sample["evidence"])
-        self.assertIn("relations.context_signature", sample["evidence"])
+        self.assertIn("relations.context_signature (visible objects only)",
+                      sample["evidence"])
+        self.assertIn("reachability.sector_kinds", sample["evidence"])
+        self.assertEqual(sample["sector_kind"], "reachable")
+        self.assertEqual(sample["scope"], "default")
 
     def test_the_signature_is_the_relation_context_plus_two_scale_bands(self):
         signature = _object_context_signature(self.samples[0])
