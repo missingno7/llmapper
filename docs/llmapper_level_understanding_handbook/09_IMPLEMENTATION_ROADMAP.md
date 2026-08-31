@@ -756,6 +756,29 @@ promoted into `vocabulary.py`.
 
 # Phase 8 — Neutral dynamic-state observations
 
+**Owner steering (2026-08-31), the phase's program in one example.** The
+turnstile is where several planes meet — a kind of mechanism, a kind of
+space, a kind of style — and mechanics must be learned *generally*, factored
+along exactly those planes:
+
+1. **Physical primitive** — "a sector rotates about an axis": sector type,
+   the origin marker with its position *and angle*, busy_time as
+   speed/direction. Engine fact, no semantics.
+2. **Carried parts** — the sprites riding the motion (the turnstile's blade
+   grates) and their *relations* to the axis — `assembly.py`'s domain.
+3. **Embedding** — where it sits. This is where meaning is born, and it is
+   already measured: 88 instances of the same auto-rotating primitive, only
+   6 are doors; the rest are a carnival ride, station rotors, fans. Same
+   machine, different design object, decided by space, never by fields.
+4. **Style/readability** — the blades being see-through grates, the
+   counter-rotating pair, the ambient sound riding along.
+
+The same primitive family serves other purposes across the corpus, so this
+phase delivers a neutral state-change vocabulary plus the rule that the
+*name* is assigned from embedding — never a catalog of named prefabs. The
+`turnstile` constructor in `mechanism.py` is one worked example of the
+decomposition, not the deliverable's shape.
+
 **Before mining the excluded remainder, split it (2026-08-31).** The hygiene
 fix moved 30% of campaign object-context occurrences out of the default
 statistics and called them "wiring". Opening that bin
