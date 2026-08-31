@@ -47,13 +47,33 @@ CH_STAGED_MOMENT = 30
 
 
 @functools.lru_cache(maxsize=None)
+def _corpus_map(map_name: str):
+    """Where a named campaign map lives, asked of the corpus registry.
+
+    The corpus was reorganized into provenance directories on 2026-08-31, so
+    ``maps/blood/E3M1.MAP`` no longer exists and a flat path silently stops
+    the whole build. `bloodmap.patterns` owns the layout; ask it rather than
+    guessing a directory.
+    """
+    from bloodmap.patterns import list_corpus_maps
+
+    wanted = f"{map_name.upper()}.MAP"
+    for population in ("blood-campaign", "blood-bloodbath", "community-curated"):
+        for item in list_corpus_maps("maps/blood", population=population,
+                                     attach_tiers=False):
+            if item.name.upper() == wanted:
+                return item.path
+    raise FileNotFoundError(f"{wanted} is not in the local corpus")
+
+
+@functools.lru_cache(maxsize=None)
 def _attested(map_name: str, type_id: int, picnum: int | None = None) -> dict:
     """Sprite fields + behavior for a type, transcribed from a campaign map.
 
     `picnum` narrows the match: decorations all carry type 0, so a fire is
     identified by the tile the campaign draws it with.
     """
-    disk = read_map(f"maps/blood/{map_name}.MAP")
+    disk = read_map(_corpus_map(map_name))
     for sprite in disk.sprites:
         if int(sprite.fields.get("type", 0)) == type_id and (
                 picnum is None or int(sprite.fields["picnum"]) == picnum):
