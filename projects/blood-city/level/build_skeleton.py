@@ -305,15 +305,17 @@ def build():
             style=Style(**district_style),
             note=data["districts"][district],
         )
-        # The jamb rule (74% of campaign multi-tile rooms): this region's own
-        # openings wear the material's opening tile, its field walls the
-        # facade.  One statement per district, not per doorway.
+        # The street is the exterior layer of every doorway/window sandwich.
+        # Its portal-side record continues the facade; the thin porch, door
+        # frame or display volume behind it owns the distinct jamb material.
+        # Otherwise each portal splits a long street face with an opening-tile
+        # stripe (wall 733 was the visible example).
         room = assembly.room(
             "streets",
             [(0, 0), (bx1 - bx0, 0), (bx1 - bx0, by1 - by0), (0, by1 - by0)],
             role="exterior", faces=dict(COMPASS),
             frame=Frame(int(bx0), int(by0)),
-            region_kwargs=facade.region_kwargs(),
+            region_kwargs=facade.facade_region_kwargs(),
             intent={"district": district},
         )
         room.surfaces(floor_shade=DISTRICT_STYLE[district]["floor_shade"])
@@ -1104,6 +1106,10 @@ def main() -> int:
     if _mon_rooms:
         print("monument:", l3_market.dress_monument(layout, _mon_rooms,
                                                  street=ctx["market_street"]))
+    _supermarket_rooms = ctx["market_dressing"].get("supermarket_rooms")
+    if _supermarket_rooms:
+        print("supermarket:", l3_market.dress_supermarket(
+            layout, _supermarket_rooms))
 
     import signage
     sign_rooms = {}
@@ -1181,12 +1187,13 @@ def main() -> int:
     print("headers:", facade_pass.align_headers(compiled.level, compiled,
                                                 ctx["street_regions"]))
     # Shop glass, after the facade pass so it survives what that painted.
-    import glass, l3_theatre, l3_mall
+    import glass, l3_theatre, l3_mall, l3_market
     spans = [(w[3], w[4], w[5], w[6]) for w in l3_theatre.WINDOWS]
     for _unit, wx0, wx1, side, _plinth in l3_mall.WINDOWS:
         wy0, wy1 = (l3_mall.NORTH_BAND if side == "north"
                     else l3_mall.SOUTH_BAND)
         spans.append((wx0, wy0, wx1, wy1))
+    spans.extend(l3_market.SUPERMARKET_WINDOWS)
     print("shop glass:", glass.glaze(compiled.level, spans))
 
     # The landmark wears its own stone, inside and out, as E1M5's does.
@@ -1205,7 +1212,15 @@ def main() -> int:
     from bloodmap.texture_align import (
         align_wall_runs, align_wall_textures, wall_art_sizes)
     art_sizes = wall_art_sizes("reference/blood")
-    print("align runs:", align_wall_runs(compiled.level, art_sizes))
+    # The arcade concourse is a single deliberate frontage loop; its several
+    # doors and display boxes are cuts in one continuous interior finish.
+    # This is XMapEdit's `>` operation expressed as a named design intent,
+    # not a map-wide attempt to phase every portal band.
+    concourse_sector = compiled.allocations[
+        ctx["mall_rooms"]["concourse"].region_id].sector_id
+    print("align runs:", align_wall_runs(
+        compiled.level, art_sizes,
+        continuous_portal_sectors={int(concourse_sector)}))
     # Street facades override run-continuation with world phase, so the
     # bay grid is the same everywhere in a district (E3M1's own practice).
     print("facade phase:", facade_pass.world_align_facades(

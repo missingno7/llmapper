@@ -232,6 +232,7 @@ def _connection_has_face(connection: ConnectionSpec) -> bool:
         for value in (
             connection.face_picnum, connection.face_over_picnum, connection.face_shade,
             connection.face_cstat, connection.face_x_repeat, connection.face_y_repeat,
+            connection.face_x_repeat_scale, connection.face_y_repeat_scale,
         )
     )
 
@@ -269,6 +270,11 @@ class RegionSpec:
     ceiling_shade: int | None = None
     floor_shade: int | None = None
     wall_shade: int | None = None
+    #: Raw Build flags on the horizontal surfaces.  Bits for texture flip,
+    #: repeat-size variant and relative alignment are authoring data, not
+    #: decoration; preserving them is what makes a prefab render like Blood.
+    floor_stat: int = 0
+    ceiling_stat: int = 0
     role: str = "gameplay"
     layer: str = "ground"
     special: str | None = None
@@ -388,6 +394,14 @@ class ConnectionSpec:
     face_cstat: int | None = None
     face_x_repeat: int | None = None
     face_y_repeat: int | None = None
+    #: Multiply the generated repeats on both records of a portal face.
+    #:
+    #: A prefab can be physically smaller than the construction default while
+    #: still needing to show a complete art tile.  The scale is deliberately
+    #: applied after geometry-derived repeats, so a two-crate-wide face keeps
+    #: two complete tiles instead of stretching one tile across the stack.
+    face_x_repeat_scale: float | None = None
+    face_y_repeat_scale: float | None = None
     #: Cut the renderer's flood through this portal, from one side only.
     #:
     #: `"left"`/`"a"` cuts the view that starts in `region_a`, `"right"`/`"b"`
@@ -1144,6 +1158,10 @@ class PlanarLayout:
                     "floor_z": region.floor_z,
                     "ceiling_picnum": region.ceiling_picnum,
                     "floor_picnum": region.floor_picnum,
+                    "ceiling_stat": region.ceiling_stat,
+                    "floor_stat": region.floor_stat,
+                    "ceiling_heinum": getattr(region.ceiling_slope, "heinum", None),
+                    "floor_heinum": getattr(region.floor_slope, "heinum", None),
                     "wall_picnum": region.wall_picnum,
                     "layer": region.layer,
                     "special": region.special,
@@ -1163,6 +1181,8 @@ class PlanarLayout:
                     "interval": None if item.a1 is None else [list(item.a1), list(item.a2 or item.a1)],
                     "gated": item.gated,
                     "face_picnum": item.face_picnum,
+                    "face_x_repeat_scale": item.face_x_repeat_scale,
+                    "face_y_repeat_scale": item.face_y_repeat_scale,
                 }
                 for item in self.connections.values()
             ],
@@ -1406,6 +1426,14 @@ class PlanarLayout:
                     fields["x_repeat"] = int(connection.face_x_repeat)
                 if connection.face_y_repeat is not None:
                     fields["y_repeat"] = int(connection.face_y_repeat)
+                if connection.face_x_repeat_scale is not None:
+                    fields["x_repeat"] = max(
+                        1, min(255, round(int(fields["x_repeat"])
+                                          * connection.face_x_repeat_scale)))
+                if connection.face_y_repeat_scale is not None:
+                    fields["y_repeat"] = max(
+                        1, min(255, round(int(fields["y_repeat"])
+                                          * connection.face_y_repeat_scale)))
         placement_sprites: dict[str, int] = {}
         for placement in self.placements:
             region = self.regions[placement.region_id]
@@ -2129,7 +2157,9 @@ class PlanarLayout:
                 floor_shade=int(shading["floor_shade"]),
                 type=int(region.type),
                 extra=-1,
-                ceiling_stat=1 if region.parallax_ceiling else 0,
+                floor_stat=int(region.floor_stat),
+                ceiling_stat=(int(region.ceiling_stat)
+                              | (1 if region.parallax_ceiling else 0)),
             )
             if region.relative_alignment is not None:
                 if region.relative_alignment not in ("floor", "ceiling", "both"):

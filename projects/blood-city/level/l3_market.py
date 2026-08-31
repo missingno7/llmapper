@@ -31,6 +31,10 @@ from resolution import GRADE, PU, STREET_SKY
 UNIT_MOUTH = 1536
 #: The campaign's median room is one wall-texture repeat tall.
 ROOM_HEIGHT = 32768
+# The shop itself has the E6M1 retail clearance: a full normal-scale crate
+# tile is 32,768 z units tall, so the selling floor needs an upper bay above
+# it rather than clipping the crate into its ceiling.
+MARKET_HALL_HEIGHT = 49152
 #: A doorway's clear height: half a texture repeat, ~1.9 player heights.
 # Campaign z-motion doors open to a median of 31,744 -- 1.87 player
 # heights, measured over 1,269 of them; even their 10th percentile is
@@ -40,6 +44,14 @@ ROOM_HEIGHT = 32768
 # plain wall stone), so an opening reads as a door through its proportion
 # and its reveal -- which makes this number the whole fix.
 DOOR_HEIGHT = 31744
+
+# The hall occupies most of block A: a broad sales floor, shallow rear stock
+# and display galleries on the east and north sides.
+SUPERMARKET_WINDOWS = (
+    (13824, 41472, 15360, 45056),
+    (13824, 48128, 15360, 49152),
+    (3584, 40960, 10752, 41472),
+)
 
 COMPASS = dict(zip(RECT_FACES, range(4)))
 
@@ -245,9 +257,10 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     built["rooms"].append(boat.region_id)
     built["street_joined"].append(boat.region_id)
 
-    # ---- the market hall: E4M9's retail row, inside block A --------------
-    # The block is a hole in the district's street region, so its inside is
-    # void: interiors are placed in it directly, no carving needed.
+    # ---- the market hall: a full supermarket inside block A --------------
+    # Use most of the block for one readable sales floor, reserve the south
+    # strip for staff-only stock, and put shallow display galleries along the
+    # north/east sides.
     shop, common = INTERIORS["shop"], INTERIORS["common"]
     import citytree
     hall = district.assembly(
@@ -255,11 +268,12 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
         style=Style(**common.style_kwargs(floor_z=GRADE,
                                           clear_height=ROOM_HEIGHT,
                                           floor_shade=32)),
-        note="market hall: concourse plus two units (E4M9 grammar)")
+        note="market hall: a large supermarket with windows, aisles and stock")
     citytree.declare_venue(hall, "market_hall", "retail_row",
                            built_by="l3_market")
 
     def room(name, x0, y0, x1, y1, material, note, **kw):
+        clear_height = int(kw.pop("clear_height", ROOM_HEIGHT))
         r = hall.room(
             name, [(0, 0), (int((x1 - x0) * PU), 0),
                    (int((x1 - x0) * PU), int((y1 - y0) * PU)),
@@ -269,23 +283,28 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
             region_kwargs={**material.region_kwargs(), **kw.pop("rk", {})},
             note=note)
         r.surfaces(**material.style_kwargs(floor_z=GRADE,
-                                           clear_height=ROOM_HEIGHT))
+                                           clear_height=clear_height))
         return r
 
-    concourse = room("concourse", 10.5, 42.5, 13.5, 48.5, common,
-                     "the hall's concourse; units open off its west side")
-    # Each unit meets the concourse through a mouth-sized neck.  Two rooms
-    # sharing only part of an edge leave the remainder coincident and
-    # unpaired; a neck whose whole face is the mouth avoids that, and it is
-    # what a storefront reveal is anyway.
-    unit_a = room("unit_a", 7.5, 43.0, 10.0, 45.5, shop,
-                  "retail unit: the chandlery's neighbour")
-    unit_b = room("unit_b", 7.5, 45.8, 10.0, 48.3, shop,
-                  "retail unit: differentiated by its stock, not its plan")
-    neck_a = room("neck_a", 10.0, 43.75, 10.5, 44.75, shop,
-                  "unit A's storefront reveal")
-    neck_b = room("neck_b", 10.0, 46.55, 10.5, 47.55, shop,
-                  "unit B's storefront reveal")
+    sales = room("supermarket", 3.5, 40.5, 13.5, 48.0, shop,
+                 "the market hall sales floor: tall E6M1 shelf banks and crate bays",
+                 clear_height=MARKET_HALL_HEIGHT)
+    stock = room("stockroom", 3.5, 48.0, 13.5, 49.5, shop,
+                 "staff-only rear stock: separate 452/95 crate bays")
+    stock.surfaces(wall_picnum=63)
+    # Display galleries are separate shallow sectors, so mannequins and window
+    # lighting never occupy a sales aisle.  The east strip is split by the
+    # entrance; the north strip makes the building read from the side.
+    display_n = room("display_n", 13.5, 40.5, 15.0, 44.0, shop,
+                     "east supermarket window: raised display behind glass",
+                     role="detail")
+    display_s = room("display_s", 13.5, 47.0, 15.0, 48.0, shop,
+                     "east supermarket window: lower display behind glass",
+                     role="detail")
+    display_side = room("display_side", 3.5, 40.0, 10.5, 40.5, shop,
+                        "north side display gallery behind glass", role="detail")
+    for box in (display_n, display_s, display_side):
+        box.surfaces(floor_z=GRADE - 2048, clear_height=ROOM_HEIGHT - 2048)
     # Two bays wide (2048) with both edges on the 1024 bay grid, so the
     # opening replaces whole painted bays instead of slicing windows in
     # half.  E3M1's modal street opening is one bay; a public hall takes
@@ -297,12 +316,12 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     # storeys, which is what the stall frame showed.  A porch with a
     # door-height ceiling gives the facade back the wall above the opening
     # (the project's aperture grammar: a leaf plus its mediation).
-    porch = room("porch", 14.0, 45.0, 15.0, 47.0, common,
+    porch = room("porch", 14.5, 44.5, 15.0, 46.5, common,
                  "the hall's porch: the reveal that owns the wall above",
                  role="gateway")
     porch.surfaces(wall_picnum=facade.opening, ceiling_picnum=facade.opening,
                    clear_height=DOOR_HEIGHT)
-    door = room("door", 13.5, 45.0, 14.0, 47.0, common,
+    door = room("door", 13.5, 44.5, 14.5, 46.5, common,
                 "the hall's door onto the plaza", role="doorway",
                 rk={"type": 600, "door_face": 22, "inherit_finish": "both",
                     "sector_behavior": z_motion_door(GRADE, GRADE - 16384)})
@@ -310,28 +329,83 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     # interior material, the hall's jamb put papered wall (108) on a surface
     # the plaza sees floor-to-sky; it takes the facade's opening tile.
     door.surfaces(wall_picnum=facade.opening, clear_height=0)
-    # Anchor a partial join from the SMALLER face: a connection takes its
-    # geometry from the left anchor, so anchoring on the long concourse
-    # wall leaves the unit's own edge unpaired (the recurring lesson).
-    for tag, unit, neck in (("a", unit_a, neck_a), ("b", unit_b, neck_b)):
-        hall.connect(neck.face("west"), unit.face("east"),
-                     connection_id=f"connection:hall_unit_{tag}_in")
-        hall.connect(neck.face("east"), concourse.face("west"),
-                     connection_id=f"connection:hall_unit_{tag}_out")
-    hall.connect(door.face("west"), concourse.face("east", at=0.5,
+    # Anchor partial joins from the smaller room: a connection takes its
+    # geometry from the left anchor, preventing a long sales-floor wall from
+    # leaving the warehouse opening or windows as coincident fake walls.
+    hall.connect(stock.face("north"), sales.face("south"),
+                 connection_id="connection:supermarket_stock")
+    for tag, box in (("north", display_n), ("south", display_s)):
+        hall.connect(box.face("west"), sales.face("east"),
+                     connection_id=f"connection:supermarket_window_{tag}_in")
+        city.connect(box.face("east"), market_st.face("north"),
+                     connection_id=f"connection:supermarket_window_{tag}_street")
+    hall.connect(display_side.face("south"), sales.face("north"),
+                 connection_id="connection:supermarket_window_side_in")
+    city.connect(display_side.face("north"), market_st.face("north"),
+                 connection_id="connection:supermarket_window_side_street")
+    hall.connect(door.face("west"), sales.face("east", at=0.5,
                                                    width=UNIT_MOUTH),
                  connection_id="connection:hall_door_in")
     hall.connect(porch.face("west"), door.face("east"),
                  connection_id="connection:hall_porch_door")
     city.connect(porch.face("east"), market_st.face("north"),
                  connection_id="connection:hall_porch_plaza")
-    built["hall"] = {"concourse": concourse.region_id,
-                     "unit_a": unit_a.region_id, "unit_b": unit_b.region_id}
-    built["rooms"] += [concourse.region_id, unit_a.region_id, unit_b.region_id]
-    built["interiors"] += [concourse.region_id, unit_a.region_id,
-                           unit_b.region_id, neck_a.region_id,
-                           neck_b.region_id]
+    # Geometry is intentionally separate from dressing: the template gives
+    # the supermarket a usable aisle topology, then the late pass adds its
+    # wall clock and electrical detail without creating floor-sprite clashes.
+    import templates
+    templates.supermarket(sales, material=shop, grade=GRADE,
+                          host_clear=MARKET_HALL_HEIGHT)
+    templates.stockroom(stock, material=shop, grade=GRADE,
+                         host_clear=ROOM_HEIGHT)
+    # Rear staff entrance: it reaches the stock strip directly and never turns
+    # the public checkout aisle into a through-route.
+    staff_door = room("staff_door", 6.0, 49.5, 8.0, 50.0, common,
+                      "staff-only rear entrance", role="doorway",
+                      rk={"door_face": 22})
+    staff_door.surfaces(wall_picnum=facade.opening, clear_height=0)
+    hall.connect(staff_door.face("north"), stock.face("south"),
+                 connection_id="connection:supermarket_staff_inner")
+    city.connect(staff_door.face("south"), market_st.face("north"),
+                 connection_id="connection:supermarket_staff_outer")
+    built["hall"] = {"supermarket": sales.region_id, "stockroom": stock.region_id,
+                      "staff_door": staff_door.region_id}
+    built["supermarket_rooms"] = {"sales": sales, "stock": stock,
+                                  "display_n": display_n, "display_s": display_s,
+                                  "display_side": display_side,
+                                  "staff_door": staff_door}
+    built["rooms"] += [sales.region_id, stock.region_id]
+    built["interiors"] += [sales.region_id, stock.region_id,
+                           display_n.region_id, display_s.region_id,
+                           display_side.region_id, staff_door.region_id]
     return built
+
+
+def dress_supermarket(layout, rooms) -> dict:
+    """Late, non-blocking retail detail for the supermarket sales room.
+
+    The shelves and counters are sectors, so they must exist before this
+    pass.  These are deliberately wall details: an outlet and clock read as
+    utility and retail timekeeping without occupying an aisle or intersecting
+    a shelf bank.
+    """
+    import props
+
+    sales, stock = rooms["sales"], rooms["stock"]
+    sales_rect = props.room_rect(sales)
+    north_a, north_b = props.face_segment(sales_rect, "north", inset=512)
+    stock_a, stock_b = props.face_segment(props.room_rect(stock), "west", inset=256)
+    layout.place_on_wall(
+        "market:super_clock", sales.region_id, a1=north_a, a2=north_b,
+        t=0.78, height_player_heights=1.35, offset_player_widths=0.06,
+        type=0, picnum=1165, cstat=144, shade=-8,
+        x_repeat=48, y_repeat=48, status=0)
+    layout.place_on_wall(
+        "market:super_outlet", stock.region_id, a1=stock_a, a2=stock_b,
+        t=0.25, height_player_heights=0.45, offset_player_widths=0.06,
+        type=0, picnum=1050, cstat=144, shade=-4,
+        x_repeat=32, y_repeat=32, status=0)
+    return {"wall_details": 2, "tiles": [1165, 1050]}
 
 
 #: The monument's own words, and the register they are written in.

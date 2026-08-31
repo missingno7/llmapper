@@ -13,6 +13,8 @@ returns **a node whose children are the templates it placed**:
 
     retail_row  -> shop        -> shelf_run -> pedestal fixtures -> goods
                                   counter_run -> counter fixtures
+                   clothier   -> wall racks, sales counter, garment stands
+                   stockroom  -> crate run
     bar         -> counter_run -> counter fixtures
                    back_bar    -> panel fixtures
                    tables      -> table fixtures
@@ -38,8 +40,68 @@ from dataclasses import dataclass
 
 import fixtures
 import setpieces
+from bloodmap.slope import SlopeSpec
 
 PLAYER = 16960
+
+# E6M1 sectors 33/34 are the canonical small register top: floor tile 2476,
+# stat 122 (flip/repeat variant plus relative alignment), and heinum -1792.
+# Keep this signature together so a checkout cannot silently regress to a
+# flat, full-size floor patch.
+E6_REGISTER_FLOOR_STAT = 122
+E6_REGISTER_FLOOR_HEINUM = -1792
+
+@dataclass(frozen=True)
+class TextureModule:
+    """One render-complete prefab cell, not an estimate in player units.
+
+    Build's floor texture grid has two measured scales: 16 map units per
+    texel normally, or 8 with floor-stat bit 8 ("double smoosh").  The two
+    crate images are 128 square texels, so their module sizes are derived
+    from the art grid and the engine's 16:1 vertical scale.  A wall's default
+    repeat comes from its length; ``repeat_scale`` corrects it where the
+    prefab deliberately uses the finer eight-unit grid.
+    """
+
+    tile: int
+    side: int
+    rise: int
+    floor_stat: int
+    repeat_scale: int
+
+
+# Crates are deliberately not shelf tops.  The modules below show one whole
+# 128x128 art tile on the top and on a vertical face.  They are source-art
+# units: 459 is the smaller, double-smooshed 1024-square crate; 95 is the
+# normal-scale 2048-square crate.  Their z rises preserve a physical cuboid
+# after Build's 16:1 xy:z conversion.
+SMALL_CRATE = TextureModule(459, 1024, 16384, 8, 2)
+LARGE_CRATE = TextureModule(95, 2048, 32768, 0, 1)
+
+
+def _e6_register_slope(rect):
+    x0, y0, x1, _y1 = (int(v) for v in rect)
+    return SlopeSpec(hinge=((x0, y0), (x1, y0)),
+                     heinum=E6_REGISTER_FLOOR_HEINUM)
+
+
+def _crate_block(parent, name, host, rect, material, *, grade, host_clear,
+                 module: TextureModule, rise: int, connector=None,
+                 note="crate block"):
+    """One complete texture-grid cuboid, with the same skin on top and rim."""
+    if rise % module.rise:
+        raise TemplateError(f"{name}: rise {rise} is not whole {module.tile} modules")
+    crate = setpieces.raised_solid(
+        parent, name, host, rect, material, grade=grade, rise=rise,
+        host_clear=host_clear, connector=connector, face_picnum=module.tile,
+        face_x_repeat_scale=module.repeat_scale,
+        face_y_repeat_scale=module.repeat_scale,
+        note=note)
+    crate.surfaces(wall_picnum=module.tile, floor_picnum=module.tile,
+                   floor_stat=module.floor_stat,
+                   floor_z=grade - rise, clear_height=host_clear - rise)
+    crate.region_kwargs["portal_wall_picnum"] = module.tile
+    return crate
 
 #: E4M9's median retail unit long side, and the depth that goes with it.
 UNIT_LONG = 2560
@@ -224,6 +286,305 @@ def shop(space, *, material, grade: int, host_clear: int, name: str = "fittings"
     node.note = ("shop fittings: "
                  + " and ".join(kind for kind, _d, _o in placed)
                  + f" ({across} deep, {usable} clear)")
+    return node
+
+
+def clothier(space, *, material, grade: int, host_clear: int,
+             name: str = "clothier_fittings", connector=None):
+    """Fit a broad-fronted shop without sacrificing its entrance aisle.
+
+    E6M1's shop language is a *tall shelf wall* (2026/202/2635) with crate
+    texture on its small solid modules (95/452), not a room scattered with
+    anonymous plinths.  Its cashwrap is separate geometry: a 6,144-rise
+    3,072x1,024 counter and two 2,048-rise register tops using tile 2476.
+    The composition keeps the entrance-side aisle clear of those solids.
+
+    The template is directional only through its handed-in rectangular space:
+    its long side is the window frontage and the caller keeps the entrance on
+    the opposite short face.  That makes it reusable for another broad shop
+    without copying its furniture coordinates.
+    """
+    import citytree
+    import props
+
+    x0, y0, x1, y1 = (int(v) for v in props.room_rect(space))
+    width, depth = x1 - x0, y1 - y0
+    if width < 10 * fixtures.PEDESTAL.depth or depth < 4 * fixtures.PEDESTAL.depth:
+        raise TemplateError(
+            f"{space.node_id}: {width}x{depth} is too small for a clothier")
+    node = citytree.sub(space, name, note="E6M1-style racks, counter and garment stands")
+
+    # Sector 61/63's shelf language has crate-top modules but *shelf* walls.
+    # This wall-side run is intentionally a single bank, leaving the broad
+    # eastern approach to the doorway as usable floor instead of an aisle
+    # squeezed between two parallel furniture rows.
+    rack = fixtures.run_along(
+        f"{space.node_id}_shelf_bank", space, axis="y",
+        start=y0 + 2 * fixtures.PEDESTAL.depth,
+        end=y1 - fixtures.PEDESTAL.depth,
+        across0=x0 + WALL_STANDOFF,
+        across1=x0 + WALL_STANDOFF + fixtures.PEDESTAL.depth,
+        family="pedestal", material=material, grade=grade,
+        host_clear=host_clear, gap=WALL_STANDOFF, connector=connector,
+        wall_picnum=2026)
+
+    # This small shop needs one legible point of sale, not a pair of tills.
+    # Keep E6M1's source-proven counter geometry, but expose only one register.
+    counter = cashwrap(
+        space, material=material, grade=grade, host_clear=host_clear,
+        rect=(x0 + 2 * fixtures.PEDESTAL.depth, y0 + WALL_STANDOFF,
+              x0 + 8 * fixtures.PEDESTAL.depth,
+              y0 + WALL_STANDOFF + fixtures.COUNTER.depth),
+        name=f"{space.node_id}_checkout", connector=connector, into=node,
+        registers=1)
+
+    # Two discrete 512-square modules read as clothing rails/display stands.
+    # They sit behind the main line of travel and retain one module of clear
+    # space to both the counter and the entrance wall.
+    rail_y1 = y1 - WALL_STANDOFF
+    rail_y0 = rail_y1 - fixtures.PEDESTAL.depth
+    rail_start = x0 + fixtures.PEDESTAL.depth
+    rails = []
+    for index in range(2):
+        rx0 = rail_start + index * 2 * fixtures.PEDESTAL.depth
+        rx1 = rx0 + fixtures.PEDESTAL.depth
+        if rx1 > x1 - fixtures.PEDESTAL.depth:
+            break
+        rails.append(fixtures.place(
+            f"{space.node_id}_garment_rail_{index}", space,
+            (rx0, rail_y0, rx1, rail_y1), material, family="pedestal",
+            grade=grade, host_clear=host_clear, connector=connector,
+            into=node, wall_picnum=202))
+
+    # `run_along` makes its own assembly beneath the room; this composition
+    # owns it alongside the directly placed counter and rails.
+    space.children.remove(rack)
+    rack.parent = node
+    node.children.append(rack)
+    node.note = ("clothier fittings: E6M1 shelf bank, single checkout and "
+                 f"{len(rails)} garment rails; door-side aisle preserved")
+    return node
+
+
+def checkout_counter(space, *, material, grade: int, host_clear: int, rect,
+                     name: str = "checkout", connector=None, into=None):
+    """A normal 2,048x1,024 sales counter with one clearly readable register.
+
+    A neighbourhood shop needs a place to pay rather than a miniature
+    department-store island.  The base uses the campaign counter rise and
+    E6M1's wood casework; the single small top carries tile 2476, so it reads
+    as a register instead of a second anonymous platform.
+    """
+    import citytree
+
+    x0, y0, x1, y1 = (int(value) for value in rect)
+    width, depth = x1 - x0, y1 - y0
+    if sorted((width, depth)) != [fixtures.COUNTER.depth,
+                                  4 * fixtures.PEDESTAL.depth]:
+        raise TemplateError(
+            f"{name}: {width}x{depth}; a checkout is 1024x2048")
+    parent = into if into is not None else citytree.sub(
+        space, name, note="single checkout counter with one register")
+    base = fixtures.place(
+        f"{name}_base", space, (x0, y0, x1, y1), material,
+        family="counter", grade=grade, host_clear=host_clear,
+        connector=connector, into=parent, wall_picnum=34)
+    base.surfaces(wall_picnum=34, floor_picnum=20,
+                  floor_z=grade - fixtures.COUNTER.rise,
+                  clear_height=host_clear - fixtures.COUNTER.rise)
+    base.region_kwargs["portal_wall_picnum"] = 34
+    # Centre the till toward the cashier side.  A 512-square top gives it a
+    # silhouette distinct from the counter without blocking the customer's
+    # entire approach.
+    if width > depth:
+        register_rect = (x1 - 768, y0 + 256, x1 - 256, y0 + 768)
+    else:
+        register_rect = (x0 + 256, y1 - 768, x0 + 768, y1 - 256)
+    register = setpieces.raised_solid(
+        parent, f"{name}_register", base, register_rect, material,
+        grade=grade - fixtures.COUNTER.rise, rise=1024,
+        host_clear=host_clear - fixtures.COUNTER.rise, connector=connector,
+        face_picnum=34,
+        note="E6M1 register top: tile 2476")
+    register.surfaces(wall_picnum=34, floor_picnum=2476,
+                      floor_stat=E6_REGISTER_FLOOR_STAT,
+                  floor_z=grade - fixtures.COUNTER.rise - 1024,
+                  clear_height=host_clear - fixtures.COUNTER.rise - 1024)
+    register.region_kwargs["portal_wall_picnum"] = 34
+    register.region_kwargs["floor_slope"] = _e6_register_slope(register_rect)
+    return base
+
+
+def cashwrap(space, *, material, grade: int, host_clear: int, rect,
+             name: str = "cashwrap", connector=None, into=None,
+             registers: int = 2):
+    """E6M1's counter S32 plus its two raised cash-register tops S33/S34.
+
+    The base is precisely one player-width by three player-widths, raised
+    6,144 from its host.  Each register top is a 512-square solid at a further
+    rise of 2,048, with floor tile 2476.  `rect` may be rotated, but must keep
+    those two dimensions; this is a real prefab, not a texture suggestion.
+    """
+    import citytree
+
+    x0, y0, x1, y1 = (int(value) for value in rect)
+    width, depth = x1 - x0, y1 - y0
+    if sorted((width, depth)) != [fixtures.COUNTER.depth,
+                                  6 * fixtures.PEDESTAL.depth]:
+        raise TemplateError(
+            f"{name}: {width}x{depth}; E6M1 cashwrap is 1024x3072")
+    if registers not in (1, 2):
+        raise TemplateError(f"{name}: registers must be 1 or 2")
+    parent = into if into is not None else citytree.sub(
+        space, name, note="E6M1 S32 cashwrap with S33/S34 registers")
+    base = setpieces.raised_solid(
+        parent, f"{name}_base", space, (x0, y0, x1, y1), material,
+        grade=grade, rise=6144, host_clear=host_clear, connector=connector,
+        face_picnum=34,
+        note="E6M1 S32 counter base: rise 6144, floor tile 20")
+    base.surfaces(wall_picnum=34, floor_picnum=20,
+                  floor_z=grade - 6144, clear_height=host_clear - 6144)
+    base.region_kwargs["portal_wall_picnum"] = 34
+    horizontal = width > depth
+    panels = (
+        ((x0 + 256, y0 + 256, x0 + 768, y0 + 768),
+         (x1 - 768, y0 + 256, x1 - 256, y0 + 768)) if horizontal else
+        ((x0 + 256, y0 + 256, x0 + 768, y0 + 768),
+         (x0 + 256, y1 - 768, x0 + 768, y1 - 256))
+    )
+    for index, panel in enumerate(panels[:registers]):
+        register = setpieces.raised_solid(
+            parent, f"{name}_register_{index}", base, panel, material,
+            grade=grade - 6144, rise=2048, host_clear=host_clear - 6144,
+            connector=connector,
+            face_picnum=34,
+            note="E6M1 register top: tile 2476")
+        register.surfaces(wall_picnum=34, floor_picnum=2476,
+                          floor_stat=E6_REGISTER_FLOOR_STAT,
+                          floor_z=grade - 8192,
+                          clear_height=host_clear - 8192)
+        register.region_kwargs["portal_wall_picnum"] = 34
+        register.region_kwargs["floor_slope"] = _e6_register_slope(panel)
+    return base
+
+
+def supermarket(space, *, material, grade: int, host_clear: int,
+                name: str = "supermarket_fittings", connector=None):
+    """Lay out an E6M1-style sales floor: tall shelf banks and crate bays.
+
+    E6M1 has two separate grammars.  Shelves are long, wall-like banks with
+    2026/2635/202 on their vertical faces; 459/95 are independent crate
+    cuboids, arranged in short bays beside them.  Treating every shelf as a
+    pedestal was the reason the old supermarket looked like a field of floor
+    tiles rather than a shop.
+    """
+    import citytree
+    import props
+
+    x0, y0, x1, y1 = (int(v) for v in props.room_rect(space))
+    width, depth = x1 - x0, y1 - y0
+    if min(width, depth) < 4 * fixtures.PEDESTAL.depth:
+        raise TemplateError(
+            f"{space.node_id}: {width}x{depth} is too small for a supermarket")
+    node = citytree.sub(space, name,
+                        note="E6M1 shelf aisles and paired supermarket checkouts")
+
+    # Long shelf banks: the source uses 3,072--4,096-unit runs and vertical
+    # faces taller than a player.  Their top is ordinary shop flooring, not a
+    # crate texture; the separate crate bays below provide the 459/95 detail.
+    shelf_end = y1 - 2 * fixtures.PEDESTAL.depth
+    bank_specs = (
+        (x0 + 1536, x0 + 2560, y0 + 1024, shelf_end - 1024, 2026, 24576),
+        (x0 + 4096, x0 + 5120, y0 + 1024, shelf_end, 2635, 20480),
+        (x0 + 6656, x0 + 7680, y0 + 1024, shelf_end - 1024, 202, 24576),
+    )
+    racks = []
+    for index, (sx0, sx1, sy0, sy1, wall_tile, rise) in enumerate(bank_specs):
+        if sx1 > x1 - 512 or sy1 <= sy0:
+            continue
+        bank = setpieces.raised_solid(
+            node, f"{space.node_id}_shelf_bank_{index}", space,
+            (sx0, sy0, sx1, sy1), material, grade=grade, rise=rise,
+            host_clear=host_clear, connector=connector,
+            face_picnum=wall_tile,
+            note="E6M1 long shelf bank")
+        bank.surfaces(wall_picnum=wall_tile, floor_picnum=material.floor,
+                      floor_z=grade - rise, clear_height=host_clear - rise)
+        bank.region_kwargs["portal_wall_picnum"] = wall_tile
+        racks.append(bank)
+
+    # Distinct crate bays on whole render-complete texture modules.  The west
+    # and centre aisles take the smaller 459 unit; the wider east aisle takes
+    # one full 95 unit.  Neither skin is cropped merely to fill an aisle.
+    crate_specs = (
+        (SMALL_CRATE, (x0 + 256, y0 + 1536,
+                       x0 + 256 + SMALL_CRATE.side,
+                       y0 + 1536 + SMALL_CRATE.side), SMALL_CRATE.rise),
+        (SMALL_CRATE, (x0 + 256, y0 + 3328,
+                       x0 + 256 + SMALL_CRATE.side,
+                       y0 + 3328 + SMALL_CRATE.side), SMALL_CRATE.rise),
+        (SMALL_CRATE, (x0 + 2816, y0 + 2304,
+                       x0 + 2816 + SMALL_CRATE.side,
+                       y0 + 2304 + SMALL_CRATE.side), SMALL_CRATE.rise),
+        (LARGE_CRATE, (x1 - 256 - LARGE_CRATE.side, y0 + 2048,
+                       x1 - 256, y0 + 2048 + LARGE_CRATE.side),
+         LARGE_CRATE.rise),
+    )
+    for index, (module, rect, rise) in enumerate(crate_specs):
+        _crate_block(node, f"{space.node_id}_crate_{index}", space, rect,
+                     material, grade=grade, host_clear=host_clear, module=module,
+                     rise=rise, connector=connector, note="market crate stack")
+
+    # The full S32--S34 cashwrap belongs in the large sales floor: its two
+    # register tops read as staffed lanes, unlike the pawn shop's single till.
+    checkout_y0 = y1 - 1280
+    cashwrap(
+        space, material=material, grade=grade, host_clear=host_clear,
+        rect=(x0 + 512, checkout_y0, x0 + 3584, checkout_y0 + 1024),
+        name=f"{space.node_id}_checkout", connector=connector, into=node)
+
+    node.note = (f"supermarket fittings: {len(racks)} tall shelf banks, "
+                 "separate 459/95 crate stacks and one two-register checkout")
+    return node
+
+
+def stockroom(space, *, material, grade: int, host_clear: int,
+              name: str = "stock", connector=None):
+    """A back-room made of complete small and large crate cuboids."""
+    import citytree
+    import props
+
+    x0, y0, x1, y1 = (int(v) for v in props.room_rect(space))
+    width, depth = x1 - x0, y1 - y0
+    if min(width, depth) < 2 * fixtures.PEDESTAL.depth:
+        raise TemplateError(f"{space.node_id}: {width}x{depth} is too small for stock")
+    node = citytree.sub(space, name, note="back-stock complete crate stacks")
+    # The staff door occupies the centre of the south edge, so stacks sit in
+    # discrete bays to either side.  Every rect and height is an integer count
+    # of its source crate module.
+    stock_specs = (
+        (SMALL_CRATE, (x0 + 256, y0 + 256,
+                       x0 + 256 + SMALL_CRATE.side,
+                       y0 + 256 + SMALL_CRATE.side), SMALL_CRATE.rise),
+        (SMALL_CRATE, (x0 + 1536, y0 + 256,
+                       x0 + 1536 + SMALL_CRATE.side,
+                       y0 + 256 + SMALL_CRATE.side), SMALL_CRATE.rise),
+        (SMALL_CRATE, (x0 + 5120, y0 + 256,
+                       x0 + 5120 + SMALL_CRATE.side,
+                       y0 + 256 + SMALL_CRATE.side), SMALL_CRATE.rise),
+        (SMALL_CRATE, (x0 + 7680, y0 + 256,
+                       x0 + 7680 + SMALL_CRATE.side,
+                       y0 + 256 + SMALL_CRATE.side), SMALL_CRATE.rise),
+        (SMALL_CRATE, (x0 + 9216, y0 + 256,
+                       x0 + 9216 + SMALL_CRATE.side,
+                       y0 + 256 + SMALL_CRATE.side), SMALL_CRATE.rise),
+    )
+    for index, (module, rect, rise) in enumerate(stock_specs):
+        if rect[2] > x1 - 256:
+            continue
+        _crate_block(node, f"{space.node_id}_crate_{index}", space, rect,
+                     material, grade=grade, host_clear=host_clear, module=module,
+                     rise=rise, connector=connector, note="stockroom crate stack")
     return node
 
 

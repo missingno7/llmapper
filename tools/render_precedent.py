@@ -24,11 +24,13 @@ of it proves stability and nothing else.
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import pathlib
 from typing import Any
 
-from bloodmap.format import read_map
+from bloodmap.format import read_map, write_map
+from bloodmap.blood_types import classify
 from bloodmap.viewplan import angle_toward, eye_z, interior_point
 from bloodmap.visual import (
     ObservationRequest,
@@ -63,6 +65,33 @@ def _pose(level, sector_id: int, angle: int | None) -> Viewpoint | None:
     )
 
 
+def _architecture_only_map(map_path: pathlib.Path, out: pathlib.Path) -> tuple[pathlib.Path, int]:
+    """Write a renderer-only copy with non-player actor sprites hidden.
+
+    The observer loads a MAP, so a view cannot merely ask it to omit a sprite
+    after it has already drawn and occluded geometry.  Keep every record and
+    index intact, but give classified ``dude`` sprites no drawn size.  This
+    leaves portals, triggers and all non-actor decoration untouched while
+    making a reference frame about the level's architecture rather than its
+    encounter population.
+    """
+    disk = copy.deepcopy(read_map(map_path))
+    hidden = 0
+    for sprite in disk.sprites:
+        fields = sprite.fields
+        type_id = int(fields.get("type", 0))
+        # Player starts are useful orientation evidence and do not clutter a
+        # scene; all other classified actors are encounter population.
+        if classify("sprite", type_id).get("category") != "dude" or 231 <= type_id <= 238:
+            continue
+        fields["x_repeat"] = 0
+        fields["y_repeat"] = 0
+        hidden += 1
+    filtered = out / "architecture-only.MAP"
+    write_map(disk, filtered)
+    return filtered, hidden
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("map")
@@ -78,6 +107,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--screenshot", action="append", default=[],
                         help="sector ids to write a frame for; repeatable")
     parser.add_argument("--brightness", type=int, default=0)
+    parser.add_argument("--hide-dudes", action="store_true",
+                        help="render a temporary architecture-only copy without non-player actors")
     parser.add_argument("-o", "--out", required=True)
     args = parser.parse_args(argv)
 
@@ -85,6 +116,10 @@ def main(argv: list[str] | None = None) -> int:
     level = read_map(map_path).to_level_ir()
     out = pathlib.Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
+    observed_map = map_path
+    hidden_dudes = 0
+    if args.hide_dudes:
+        observed_map, hidden_dudes = _architecture_only_map(map_path, out)
 
     wanted = [int(item) for item in args.sectors.split(",") if item.strip()]
     views: list[Viewpoint] = []
@@ -105,7 +140,7 @@ def main(argv: list[str] | None = None) -> int:
 
     shots = {"sector_%s" % item for item in args.screenshot}
     request = ObservationRequest(
-        map_path=str(map_path), output_dir=str(out / "observation"),
+        map_path=str(observed_map), output_dir=str(out / "observation"),
         resource_dir=args.resource_dir, viewpoints=tuple(views),
         brightness=args.brightness,
     )
@@ -141,6 +176,8 @@ def main(argv: list[str] | None = None) -> int:
         "$schema": "llmapper.precedent-observation",
         "schema_version": 1,
         "of": map_path.name,
+        "rendered_map": observed_map.name,
+        "hidden_dudes": hidden_dudes,
         "source_crc32": "%08x" % read_map(map_path).source_crc32,
         "renderer": manifest.data.get("renderer", {}),
         "timing_ms": manifest.timing,

@@ -132,7 +132,8 @@ def _owner(node):
     return citytree.owner(node)
 
 
-def _rim(connector, piece, host, tag):
+def _rim(connector, piece, host, tag, *, face_picnum=None,
+         face_x_repeat_scale=None, face_y_repeat_scale=None):
     """Join a piece to its host on all four faces.
 
     Every coincident edge must be a declared portal -- the rule this
@@ -140,9 +141,16 @@ def _rim(connector, piece, host, tag):
     is whichever object owns BOTH sides: a piece cut into a street belongs
     to its own assembly but joins the city.
     """
-    for face in ("north", "east", "south", "west"):
-        connector.connect(piece.face(face), host.face("north"),
-                          connection_id=f"connection:{tag}_{face}")
+    face = {}
+    if face_picnum is not None:
+        face["face_picnum"] = int(face_picnum)
+    if face_x_repeat_scale is not None:
+        face["face_x_repeat_scale"] = float(face_x_repeat_scale)
+    if face_y_repeat_scale is not None:
+        face["face_y_repeat_scale"] = float(face_y_repeat_scale)
+    for side in ("north", "east", "south", "west"):
+        connector.connect(piece.face(side), host.face("north"),
+                          connection_id=f"connection:{tag}_{side}", **face)
 
 
 # --------------------------------------------------------------------------
@@ -151,14 +159,22 @@ def _rim(connector, piece, host, tag):
 
 def raised_solid(assembly, name, host, rect, material, *, grade,
                  rise=COUNTER, host_clear, note="", shade=None,
-                 connector=None):
+                 connector=None, face_picnum=None,
+                 face_x_repeat_scale=None, face_y_repeat_scale=None):
     """One block standing above its host floor.  Class: raised block."""
     _carve_into(host, rect)
     piece = _rect_room(assembly, name, rect, material,
                        floor_z=grade - rise, clear=host_clear - rise,
                        note=note or f"{name}: a raised block at {rise} units",
                        shade=shade)
-    _rim(connector or _owner(assembly), piece, host, name)
+    # A raised sector has two wall records at every rim.  The player sees the
+    # host-side record, so setting only the piece's own wall tile leaves the
+    # visible face on the host's doorway material (2293 in the shop).  A
+    # connection face deliberately paints both records.
+    _rim(connector or _owner(assembly), piece, host, name,
+         face_picnum=material.wall if face_picnum is None else face_picnum,
+         face_x_repeat_scale=face_x_repeat_scale,
+         face_y_repeat_scale=face_y_repeat_scale)
     return piece
 
 

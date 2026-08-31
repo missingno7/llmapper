@@ -56,6 +56,16 @@ class Material:
         """Region fields that are not Style fields (the jamb rule)."""
         return {"portal_wall_picnum": self.opening}
 
+    def facade_region_kwargs(self) -> dict:
+        """The street-facing half of an aperture keeps the facade continuous.
+
+        A street is the exterior shell, not the reveal behind a door or a
+        display pane.  Its portal-side record therefore carries ``wall``;
+        the thin porch/window sector on the other side keeps ``opening`` for
+        the jamb.  This is the Build-sector equivalent of a wall sandwich.
+        """
+        return {"portal_wall_picnum": self.wall}
+
 
 #: E3M1's night sky: all 45 of its parallax sectors name 3491, and a
 #: side-by-side of our street against E3M1 sector 6 confirms the same red

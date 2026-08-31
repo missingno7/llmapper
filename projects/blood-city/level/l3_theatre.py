@@ -12,8 +12,8 @@ anatomies venue-patterns.md measured:
   8192, with stools and bottles as face sprites.
 * **walk-through** -- a deep plan behind a narrow mouth; the mouth
   undersells the inside, which is the whole trick of the type.
-* **open-front shop** -- 512-square display pedestals at rise 2048 (the
-  E6M1 module), merchandise as face sprites.
+* **open-front shop** -- a broad E6M1-inspired storefront: large glazed
+  bays, low crate-top display racks, garment rails and a sales counter.
 
 Everything lives in the superblock's void, so nothing here is carved out of
 the street; the four street doors each get the porch reveal the facade
@@ -110,10 +110,12 @@ ROOMS = [
     ("back_passage_east", 16384, 7168, 17408, 8192, "service",
      "the parlor's way through to the Aldermack's backstage"),
     # --- the pawn shop ---------------------------------------------------
-    # Widened west over the foyer's shoulder: at 1536 x 2560 the shop was
-     # two pedestals and no floor, and every frame of it was a wall.
-    ("pawn_shop", 28672, 3584, 32256, 6144, "shop",
-     "the pawn shop, open on the avenue"),
+    # This is a real, broad-fronted shop rather than a shallow row of props:
+    # the sales floor is five by 2.5 plan units.  It stops 512 units east of
+    # the Aldermack auditorium, preserving a real masonry wall instead of
+    # turning the two interiors into an accidental overlap.
+    ("pawn_shop", 27136, 3584, 32256, 6144, "shop",
+     "the pawn shop: broad glazing, sales floor and avenue entrance"),
 ]
 
 #: A district's own `floor_shade` is the STREET's: Theatre Row states 30 for
@@ -225,10 +227,10 @@ DOORS = [
 #: transparent *to*.  E6M1 glazes exactly such a pair (see glass.py).
 #:
 #: The pawn shop's long frontage is its NORTH face, on Theatre Row, not the
-#: avenue end where its door is -- so the window goes there and gets two
-#: full bays, with the goods on a plinth behind the glass.
+#: avenue end where its door is.  Four full bays make the shop legible
+#: from the street; the west and east masonry piers leave it a real shell.
 WINDOWS = [
-    ("pawn_display", "pawn_shop", "north", 29184, 3072, 31232, 3584, 2048),
+    ("pawn_display", "pawn_shop", "north", 27648, 3072, 31744, 3584, 2048),
 ]
 
 #: Furniture cut into a room's floor: (room, x0, y0, x1, y1, rise, ceiling,
@@ -394,16 +396,11 @@ def build(district, theatre_st):
     templates.shooting_range(
         rooms["parlor_range"], material=INTERIORS["parlor"],
         grade=GRADE, host_clear=ROOM_HEIGHT["parlor_range"], targets=3)
-    # The pawn shop, furnished from the kit rather than by hand.  Every
-    # dimension that is pinned in the campaign family stays pinned here;
-    # only the run length is ours.  This is the first venue to compose
-    # from `fixtures.py` instead of from literal rectangles.
-    # Both venues are furnished by a template that reads the room it is
-    # handed.  The pawn shop was a run plus two `place` calls at four
-    # literal coordinates; the saloon was three rows of `FURNITURE`.  They
-    # are a shop and a bar, and now they say so.
-    templates.shop(rooms["pawn_shop"], material=INTERIORS["shop"],
-                   grade=GRADE, host_clear=ROOM_HEIGHT["pawn_shop"])
+    # E6M1's repetitive display modules become a full retail composition:
+    # window-side racks, two free-standing garment rails and a sales counter
+    # that leaves the door-side aisle open.
+    templates.clothier(rooms["pawn_shop"], material=INTERIORS["shop"],
+                       grade=GRADE, host_clear=ROOM_HEIGHT["pawn_shop"])
     templates.bar(rooms["saloon_main"], material=INTERIORS["saloon"],
                   grade=GRADE, host_clear=ROOM_H)
 
@@ -427,6 +424,16 @@ PICKUPS = [
     ("aldermack_lobby", 67, (0.4, 0.5)),
     ("pawn_shop", 63, (0.75, 0.08)),          # clear of the pedestals
 ]
+
+# E6M1's retail dress is not generic debris.  The source places nine hanging
+# garments (tile 73) along one apparel wall, with palettes 11--14, and three
+# mannequins (2377) in a separate window sector.  This smaller shop takes four
+# garments at the source's height and palette range, plus the three-window
+# mannequin rhythm.  The actual values were captured by tools.mine_e6m1_shop.
+SHOP_CLOTHES = ((0.14, 14), (0.37, 11), (0.60, 12), (0.83, 13))
+SHOP_MANNEQUINS = ((0.25, 12, 385), (0.50, 13, 389), (0.75, 11, 385))
+SHOP_CLOTHES_HEIGHT = 14336 / 16960
+SHOP_MANNEQUIN_ABOVE_FLOOR = 10976
 #: A brazier in every venue room, BRACKETED TO A NAMED WALL.
 #: (room, face, t along that face).  The campaign puts tile 506 within 512
 #: units of a solid wall 92% of the time, at 1.03 player heights; placing
@@ -461,5 +468,33 @@ def populate(layout, rooms, attested, flame_fields, flame_stand) -> int:
             continue
         props.mount_on_wall(layout, f"theatre:brazier_{index}",
                             rooms[name], face, t=t)
+        placed += 1
+    # The large south wall is solid and away from both the street glass and
+    # the east door.  It is the shop's apparel rack: a real wall-mounted
+    # sequence rather than floor sprites pushed into a shelf sector.
+    shop = rooms["pawn_shop"]
+    sx0, sy0, sx1, sy1 = props.room_rect(shop)
+    for index, (t, palette) in enumerate(SHOP_CLOTHES):
+        layout.place_on_wall(
+            f"theatre:pawn_clothes_{index}", shop.region_id,
+            a1=(sx1 - 512, sy1), a2=(sx0 + 512, sy1), t=t,
+            height_player_heights=SHOP_CLOTHES_HEIGHT,
+            offset_player_widths=0.06, facing="into_region",
+            type=417, picnum=73, cstat=144, pal=palette, shade=-8,
+            x_repeat=64, y_repeat=64, status=4)
+        placed += 1
+    # E6M1 S50: mannequins sit in their own display volume behind the glass,
+    # not in the player aisle.  Keeping their source z offset means the feet
+    # stand visually on the display plinth without intersecting its walls.
+    display = rooms["pawn_display"]
+    dx0, dy0, dx1, dy1 = props.room_rect(display)
+    display_floor = int(layout.regions[display.region_id].floor_z)
+    for index, (u, palette, cstat) in enumerate(SHOP_MANNEQUINS):
+        layout.add_sprite(
+            f"theatre:pawn_mannequin_{index}", display.region_id,
+            x=round(dx0 + (dx1 - dx0) * u), y=(dy0 + dy1) // 2,
+            z=display_floor - SHOP_MANNEQUIN_ABOVE_FLOOR,
+            type=416, picnum=2377, cstat=cstat, pal=palette, shade=-8,
+            x_repeat=56, y_repeat=56, status=4, angle=512)
         placed += 1
     return placed

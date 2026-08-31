@@ -169,7 +169,8 @@ def _wall_angle(level: Any, this: int, nxt: int) -> float:
     return abs(math.degrees(math.atan2(ux * vy - uy * vx, ux * vx + uy * vy)))
 
 
-def align_wall_runs(level: Any, art_sizes: dict[int, tuple[int, int]]) -> dict[str, Any]:
+def align_wall_runs(level: Any, art_sizes: dict[int, tuple[int, int]], *,
+                    continuous_portal_sectors: set[int] | None = None) -> dict[str, Any]:
     """Carry a wall texture across a corner instead of restarting it there.
 
     Blood advances the horizontal texture coordinate by ``x_repeat * 8`` tile
@@ -195,12 +196,15 @@ def align_wall_runs(level: Any, art_sizes: dict[int, tuple[int, int]]) -> dict[s
     So a run is carried around anything short of an outside corner, and is not
     carried between two portal walls -- there the visible surface is an upper or
     lower band whose extent depends on the neighbouring sector, and the campaign
-    mostly leaves those alone. Aligning every join would be tidier than any real
-    Blood level, which is its own kind of wrong.
+    mostly leaves those alone.  A named frontage loop may opt in through
+    ``continuous_portal_sectors``: an arcade concourse is one deliberately
+    continuous interior face, so its window/door cuts must not restart the same
+    wallpaper at every aperture.
     """
+    continuous_portal_sectors = set(continuous_portal_sectors or ())
     changed = 0
     runs = 0
-    for sector in level.sectors:
+    for sector_id, sector in enumerate(level.sectors):
         fields = sector["fields"] if isinstance(sector, dict) else sector.fields
         start = int(fields["wall_ptr"])
         count = int(fields["wall_count"])
@@ -216,7 +220,8 @@ def align_wall_runs(level: Any, art_sizes: dict[int, tuple[int, int]]) -> dict[s
             a, b = face(this), face(nxt)
             if int(a["picnum"]) != int(b["picnum"]):
                 return False                      # a change of material
-            if int(a["next_sector"]) >= 0 and int(b["next_sector"]) >= 0:
+            if (int(a["next_sector"]) >= 0 and int(b["next_sector"]) >= 0
+                    and sector_id not in continuous_portal_sectors):
                 return False                      # both are portal bands
             if int(b["x_panning"]):
                 return False                      # somebody panned it on purpose
@@ -256,6 +261,7 @@ def align_wall_runs(level: Any, art_sizes: dict[int, tuple[int, int]]) -> dict[s
     return {
         "walls_repanned": changed,
         "runs": runs,
+        "continuous_portal_sectors": len(continuous_portal_sectors),
         "basis": (
             "the campaign continues 82% of collinear joins and 74% of "
             "solid-to-solid ones, but only 23% of reflex corners and 33% of "

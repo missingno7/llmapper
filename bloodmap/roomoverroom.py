@@ -123,7 +123,11 @@ def align_lower_mouth(layout: Any, upper_region: str, lower_region: str,
     lx0, ly0, lx1, ly1 = bbox(lower)
     neighbours = []
     for region_id, region in layout.regions.items():
-        if region_id == lower_region or getattr(region, "layer", None) != getattr(lower, "layer", None):
+        # The stack partner overlaps the lower region by construction; it is
+        # the plane being met, not a co-planar neighbour to stay clear of.
+        if region_id in (lower_region, upper_region):
+            continue
+        if getattr(region, "layer", None) != getattr(lower, "layer", None):
             continue
         x0, y0, x1, y1 = bbox(region)
         if max(lx0, x0) < min(lx1, x1) and max(ly0, y0) < min(ly1, y1):

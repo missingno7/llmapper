@@ -168,7 +168,8 @@ class Frame:
 STYLE_FIELDS = (
     "wall_picnum", "floor_picnum", "ceiling_picnum",
     "wall_shade", "floor_shade", "ceiling_shade",
-    "parallax_ceiling", "clear_height", "floor_z", "layer",
+    "parallax_ceiling", "clear_height", "floor_z", "floor_stat",
+    "ceiling_stat", "layer",
 )
 
 
@@ -191,6 +192,12 @@ class Style:
     parallax_ceiling: bool | None = None
     clear_height: int | None = None
     floor_z: int | None = None
+    #: Raw Build surface flags.  These are deliberately exposed because the
+    #: campaign uses them for texture flip/repeat variants (and, on the E6M1
+    #: register, together with a slope).  The compiler still ORs in the sky,
+    #: relative-alignment and slope bits instead of discarding them.
+    floor_stat: int | None = None
+    ceiling_stat: int | None = None
     #: Which planar arrangement this part belongs to. Inherited like everything
     #: else here, because a layer is a property of a *place* -- the whole first
     #: floor of a building is on the upper layer -- and stating it once on the
@@ -818,6 +825,9 @@ class LevelProgram(Assembly):
                 "role": room.role,
             }
             for name in ("wall_shade", "floor_shade", "ceiling_shade"):
+                if style.get(name) is not None:
+                    fields[name] = int(style[name])
+            for name in ("floor_stat", "ceiling_stat"):
                 if style.get(name) is not None:
                     fields[name] = int(style[name])
             if style.get("layer") is not None:

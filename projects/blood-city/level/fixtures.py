@@ -179,7 +179,7 @@ def cost(family: str, count: int) -> dict:
 
 
 def place(name, host, rect, material, *, family: str, grade: int,
-          host_clear: int, connector=None, into=None):
+          host_clear: int, connector=None, into=None, wall_picnum: int | None = None):
     """One fixture of a family: length from `rect`, everything else pinned.
 
     The rise, the tile and the depth are the family's, not the caller's --
@@ -199,20 +199,31 @@ def place(name, host, rect, material, *, family: str, grade: int,
         name, host, (x0, y0, x1, y1), material,
         grade=grade, rise=fam.rise, host_clear=host_clear,
         connector=connector,
+        face_picnum=wall_picnum if wall_picnum is not None else material.wall,
         note=f"{family} ({fam.source})")
     # The family pins the TILE as well as the rise and the depth.  Without
     # it the fixture inherits its room's floor and eight of these read as
     # eight blocks rather than as one thing repeated, which is the whole
     # reason the family is a family.
-    piece.surfaces(floor_picnum=fam.tile, floor_z=grade - fam.rise,
-                   clear_height=host_clear - fam.rise)
+    style = {"floor_picnum": fam.tile, "floor_z": grade - fam.rise,
+             "clear_height": host_clear - fam.rise}
+    if wall_picnum is not None:
+        style["wall_picnum"] = int(wall_picnum)
+    piece.surfaces(**style)
+    # A fixture is carved into its host and all four edges are real portals.
+    # Build therefore reads the *portal* wall for the visible riser, not the
+    # sector's field wall.  Keep the requested family tile on that riser too;
+    # otherwise a crate/shelf has its own top but inherits the shop doorway
+    # tile on every side (the old sector-157 half-crate symptom).
+    piece.region_kwargs["portal_wall_picnum"] = int(
+        wall_picnum if wall_picnum is not None else material.wall)
     return piece
 
 
 def run_along(name, host, *, axis: str, start: int, end: int,
               across0: int, across1: int, family: str, material,
               grade: int, host_clear: int, gap: int = 512,
-              connector=None):
+              connector=None, wall_picnum: int | None = None):
     """A shelf or counter run: modules at the family's own widths.
 
     The run prefab shape -- given a length, emit modules at campaign
@@ -241,7 +252,7 @@ def run_along(name, host, *, axis: str, start: int, end: int,
                 else (across0, cursor, across1, cursor + width))
         place(f"{name}_{index}", host, rect, material, into=node,
               family=family, grade=grade, host_clear=host_clear,
-              connector=connector)
+              connector=connector, wall_picnum=wall_picnum)
         cursor += width + gap
         index += 1
     return node
