@@ -578,7 +578,18 @@ class CampaignTest(unittest.TestCase):
             self.assertNotEqual(int(disk.walls[wall_id].fields["type"]), KWALLGIB)
         graph = build_graph(disk, base=BASE_BLOCKING_AWARE)
         self.assertIn(28, graph.base.get(30, set()))
-        self.assertGreater(len(graph.reachable(Held())), 90)
+        self.assertGreater(len(graph.reachable(graph.at_rest())), 90)
+
+    def test_the_e1m1_casket_opens_on_the_level_start_broadcast(self):
+        # The player start is inside a closed casket and the switch that
+        # opens it is in another sector, listening on rx 7 -- so no body
+        # ever works it. A frontier that waits for a player to reach that
+        # switch reports the whole level unreachable.
+        disk = self._map("E1M1")
+        graph = build_graph(disk)
+        self.assertIn(7, graph.fired_at_start)
+        #: sprite 51: rx 7 -> tx 102, and sectors 30 and 28 listen on 102.
+        self.assertIn(102, graph.fired_at_start)
 
     def test_every_campaign_gib_wall_is_built_shut_and_wired(self):
         disk = self._map("E1M3")
@@ -590,10 +601,15 @@ class CampaignTest(unittest.TestCase):
             self.assertTrue(edge.causes)
             self.assertEqual(edge.delta["state_at_rest"], "off")
 
-    def test_rotate_and_slide_are_scoped_out_rather_than_answered(self):
+    def test_slide_and_rotate_are_read_rather_than_scoped_out(self):
+        # They used to be excluded wholesale. Now every one is described --
+        # primitive, payload, the gap its leaf vacates -- and only the
+        # question of which state blocks is declined.
         disk = self._map("E1M1")
         _, summary = conditional_edges(disk)
-        self.assertGreater(summary["scoped_out_rotate_slide"], 0)
+        self.assertGreater(summary["swept_mechanisms"], 0)
+        self.assertLessEqual(summary["swept_recorded_but_not_gated"],
+                             summary["swept_mechanisms"])
 
 
 if __name__ == "__main__":

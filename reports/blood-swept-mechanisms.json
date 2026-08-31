@@ -1,0 +1,648 @@
+{
+  "$schema": "llmapper.blood-swept-mechanisms",
+  "schema_version": 1,
+  "population": "blood-campaign",
+  "totals": {
+    "z_motion_mechanisms": 1353,
+    "wired": 1192,
+    "inert_no_cause": 161,
+    "swept_mechanisms": 628,
+    "swept_recorded_but_not_gated": 623,
+    "scoped_out_no_reading": 10,
+    "conditional": 4378,
+    "never": 1071,
+    "irreversible": 967,
+    "keyed": 312,
+    "blocking_crossings": 1392,
+    "blocking_reopened_by_a_gib_wall": 214,
+    "blocking_shut_for_ever": 1190,
+    "channels_fired_at_level_start": 228,
+    "swept sectors seen": 659,
+    "  opens a body's width": 538
+  },
+  "payloads": {
+    "its own walls": 511,
+    "carried sprites": 35,
+    "walls and carried sprites": 101,
+    "nothing that moves": 12
+  },
+  "roles": {
+    "required passage": 137,
+    "side passage": 631,
+    "fixture": 395,
+    "technical workaround": 12
+  },
+  "sprite_only_payloads": [
+    {
+      "map": "E1M1",
+      "sector": 65,
+      "sprites": [
+        38,
+        37
+      ],
+      "walls": 49,
+      "also_ror": true
+    },
+    {
+      "map": "E1M2",
+      "sector": 3,
+      "sprites": [
+        17,
+        44,
+        62,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        109,
+        110,
+        397
+      ],
+      "walls": 28,
+      "also_ror": false
+    },
+    {
+      "map": "E1M2",
+      "sector": 21,
+      "sprites": [
+        106,
+        107,
+        124,
+        385,
+        386,
+        387,
+        388,
+        479,
+        480,
+        481
+      ],
+      "walls": 43,
+      "also_ror": false
+    },
+    {
+      "map": "E1M2",
+      "sector": 103,
+      "sprites": [
+        341
+      ],
+      "walls": 8,
+      "also_ror": false
+    },
+    {
+      "map": "E1M2",
+      "sector": 104,
+      "sprites": [
+        340
+      ],
+      "walls": 8,
+      "also_ror": false
+    },
+    {
+      "map": "E1M3",
+      "sector": 68,
+      "sprites": [
+        5
+      ],
+      "walls": 6,
+      "also_ror": false
+    },
+    {
+      "map": "E1M3",
+      "sector": 84,
+      "sprites": [
+        920,
+        921
+      ],
+      "walls": 4,
+      "also_ror": false
+    },
+    {
+      "map": "E1M3",
+      "sector": 88,
+      "sprites": [
+        918,
+        919
+      ],
+      "walls": 4,
+      "also_ror": false
+    },
+    {
+      "map": "E1M3",
+      "sector": 92,
+      "sprites": [
+        908,
+        909
+      ],
+      "walls": 4,
+      "also_ror": false
+    },
+    {
+      "map": "E1M3",
+      "sector": 104,
+      "sprites": [
+        14
+      ],
+      "walls": 3,
+      "also_ror": false
+    },
+    {
+      "map": "E1M4",
+      "sector": 151,
+      "sprites": [
+        148,
+        149,
+        150,
+        151
+      ],
+      "walls": 8,
+      "also_ror": false
+    },
+    {
+      "map": "E1M4",
+      "sector": 314,
+      "sprites": [
+        756,
+        757,
+        758,
+        759
+      ],
+      "walls": 8,
+      "also_ror": false
+    },
+    {
+      "map": "E1M5",
+      "sector": 318,
+      "sprites": [
+        223,
+        224
+      ],
+      "walls": 24,
+      "also_ror": false
+    },
+    {
+      "map": "E1M6",
+      "sector": 465,
+      "sprites": [
+        368
+      ],
+      "walls": 14,
+      "also_ror": false
+    },
+    {
+      "map": "E1M6",
+      "sector": 466,
+      "sprites": [
+        210
+      ],
+      "walls": 12,
+      "also_ror": false
+    },
+    {
+      "map": "E1M8",
+      "sector": 51,
+      "sprites": [
+        31
+      ],
+      "walls": 4,
+      "also_ror": false
+    },
+    {
+      "map": "E1M8",
+      "sector": 392,
+      "sprites": [
+        331
+      ],
+      "walls": 4,
+      "also_ror": false
+    },
+    {
+      "map": "E1M8",
+      "sector": 393,
+      "sprites": [
+        335
+      ],
+      "walls": 4,
+      "also_ror": false
+    },
+    {
+      "map": "E1M8",
+      "sector": 421,
+      "sprites": [
+        618
+      ],
+      "walls": 4,
+      "also_ror": false
+    },
+    {
+      "map": "E1M8",
+      "sector": 422,
+      "sprites": [
+        620
+      ],
+      "walls": 4,
+      "also_ror": false
+    },
+    {
+      "map": "E2M2",
+      "sector": 185,
+      "sprites": [
+        176,
+        180,
+        181,
+        177,
+        178,
+        179
+      ],
+      "walls": 16,
+      "also_ror": false
+    },
+    {
+      "map": "E2M5",
+      "sector": 510,
+      "sprites": [
+        434,
+        433
+      ],
+      "walls": 4,
+      "also_ror": false
+    },
+    {
+      "map": "E2M7",
+      "sector": 70,
+      "sprites": [
+        91,
+        333
+      ],
+      "walls": 6,
+      "also_ror": false
+    },
+    {
+      "map": "E2M7",
+      "sector": 248,
+      "sprites": [
+        275,
+        277,
+        278,
+        279,
+        280,
+        306,
+        324
+      ],
+      "walls": 34,
+      "also_ror": false
+    },
+    {
+      "map": "E2M7",
+      "sector": 445,
+      "sprites": [
+        6,
+        7,
+        8,
+        9,
+        19
+      ],
+      "walls": 16,
+      "also_ror": false
+    },
+    {
+      "map": "E3M1",
+      "sector": 216,
+      "sprites": [
+        410,
+        412
+      ],
+      "walls": 30,
+      "also_ror": false
+    },
+    {
+      "map": "E3M4",
+      "sector": 257,
+      "sprites": [
+        174,
+        175
+      ],
+      "walls": 4,
+      "also_ror": false
+    },
+    {
+      "map": "E4M2",
+      "sector": 33,
+      "sprites": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "walls": 31,
+      "also_ror": false
+    },
+    {
+      "map": "E4M3",
+      "sector": 51,
+      "sprites": [
+        72
+      ],
+      "walls": 10,
+      "also_ror": false
+    },
+    {
+      "map": "E4M3",
+      "sector": 62,
+      "sprites": [
+        10
+      ],
+      "walls": 9,
+      "also_ror": false
+    },
+    {
+      "map": "E4M3",
+      "sector": 63,
+      "sprites": [
+        73
+      ],
+      "walls": 9,
+      "also_ror": false
+    },
+    {
+      "map": "E6M3",
+      "sector": 135,
+      "sprites": [
+        114,
+        123,
+        511
+      ],
+      "walls": 9,
+      "also_ror": false
+    },
+    {
+      "map": "E6M3",
+      "sector": 137,
+      "sprites": [
+        115,
+        124
+      ],
+      "walls": 9,
+      "also_ror": false
+    },
+    {
+      "map": "E6M3",
+      "sector": 139,
+      "sprites": [
+        116
+      ],
+      "walls": 10,
+      "also_ror": false
+    },
+    {
+      "map": "E6M4",
+      "sector": 148,
+      "sprites": [
+        126
+      ],
+      "walls": 3,
+      "also_ror": false
+    }
+  ],
+  "ror_link_pairs_per_map": {
+    "0": 11,
+    "1": 4,
+    "2": 5,
+    "3": 1,
+    "4": 3,
+    "5": 2,
+    "6": 6,
+    "7": 1,
+    "8": 1,
+    "9": 1,
+    "11": 3,
+    "15": 1,
+    "16": 1,
+    "19": 1,
+    "32": 1,
+    "37": 1
+  },
+  "per_map": {
+    "E1M1": {
+      "ror_link_pairs": 2,
+      "swept": 13,
+      "ungated": 13
+    },
+    "E1M2": {
+      "ror_link_pairs": 1,
+      "swept": 21,
+      "ungated": 20
+    },
+    "E1M3": {
+      "ror_link_pairs": 1,
+      "swept": 42,
+      "ungated": 42
+    },
+    "E1M4": {
+      "ror_link_pairs": 11,
+      "swept": 26,
+      "ungated": 26
+    },
+    "E1M5": {
+      "ror_link_pairs": 2,
+      "swept": 16,
+      "ungated": 16
+    },
+    "E1M6": {
+      "ror_link_pairs": 11,
+      "swept": 21,
+      "ungated": 21
+    },
+    "E1M7": {
+      "ror_link_pairs": 2,
+      "swept": 0,
+      "ungated": 0
+    },
+    "E1M8": {
+      "ror_link_pairs": 5,
+      "swept": 18,
+      "ungated": 18
+    },
+    "E2M1": {
+      "ror_link_pairs": 15,
+      "swept": 20,
+      "ungated": 20
+    },
+    "E2M2": {
+      "ror_link_pairs": 6,
+      "swept": 10,
+      "ungated": 10
+    },
+    "E2M3": {
+      "ror_link_pairs": 3,
+      "swept": 10,
+      "ungated": 10
+    },
+    "E2M4": {
+      "ror_link_pairs": 0,
+      "swept": 35,
+      "ungated": 35
+    },
+    "E2M5": {
+      "ror_link_pairs": 5,
+      "swept": 36,
+      "ungated": 36
+    },
+    "E2M6": {
+      "ror_link_pairs": 9,
+      "swept": 18,
+      "ungated": 18
+    },
+    "E2M7": {
+      "ror_link_pairs": 7,
+      "swept": 7,
+      "ungated": 7
+    },
+    "E2M8": {
+      "ror_link_pairs": 2,
+      "swept": 0,
+      "ungated": 0
+    },
+    "E2M9": {
+      "ror_link_pairs": 11,
+      "swept": 49,
+      "ungated": 49
+    },
+    "E3M1": {
+      "ror_link_pairs": 4,
+      "swept": 17,
+      "ungated": 17
+    },
+    "E3M2": {
+      "ror_link_pairs": 6,
+      "swept": 25,
+      "ungated": 25
+    },
+    "E3M3": {
+      "ror_link_pairs": 37,
+      "swept": 7,
+      "ungated": 7
+    },
+    "E3M4": {
+      "ror_link_pairs": 0,
+      "swept": 34,
+      "ungated": 34
+    },
+    "E3M5": {
+      "ror_link_pairs": 4,
+      "swept": 27,
+      "ungated": 26
+    },
+    "E3M6": {
+      "ror_link_pairs": 4,
+      "swept": 17,
+      "ungated": 17
+    },
+    "E3M7": {
+      "ror_link_pairs": 0,
+      "swept": 1,
+      "ungated": 1
+    },
+    "E3M8": {
+      "ror_link_pairs": 0,
+      "swept": 12,
+      "ungated": 12
+    },
+    "E4M1": {
+      "ror_link_pairs": 6,
+      "swept": 6,
+      "ungated": 6
+    },
+    "E4M2": {
+      "ror_link_pairs": 2,
+      "swept": 14,
+      "ungated": 13
+    },
+    "E4M3": {
+      "ror_link_pairs": 16,
+      "swept": 4,
+      "ungated": 4
+    },
+    "E4M4": {
+      "ror_link_pairs": 19,
+      "swept": 11,
+      "ungated": 11
+    },
+    "E4M5": {
+      "ror_link_pairs": 0,
+      "swept": 3,
+      "ungated": 3
+    },
+    "E4M6": {
+      "ror_link_pairs": 8,
+      "swept": 20,
+      "ungated": 20
+    },
+    "E4M7": {
+      "ror_link_pairs": 6,
+      "swept": 0,
+      "ungated": 0
+    },
+    "E4M8": {
+      "ror_link_pairs": 0,
+      "swept": 0,
+      "ungated": 0
+    },
+    "E4M9": {
+      "ror_link_pairs": 6,
+      "swept": 2,
+      "ungated": 2
+    },
+    "E6M1": {
+      "ror_link_pairs": 1,
+      "swept": 7,
+      "ungated": 7
+    },
+    "E6M2": {
+      "ror_link_pairs": 1,
+      "swept": 2,
+      "ungated": 2
+    },
+    "E6M3": {
+      "ror_link_pairs": 0,
+      "swept": 16,
+      "ungated": 14
+    },
+    "E6M4": {
+      "ror_link_pairs": 32,
+      "swept": 22,
+      "ungated": 22
+    },
+    "E6M5": {
+      "ror_link_pairs": 6,
+      "swept": 4,
+      "ungated": 4
+    },
+    "E6M6": {
+      "ror_link_pairs": 0,
+      "swept": 7,
+      "ungated": 7
+    },
+    "E6M7": {
+      "ror_link_pairs": 0,
+      "swept": 25,
+      "ungated": 25
+    },
+    "E6M8": {
+      "ror_link_pairs": 0,
+      "swept": 0,
+      "ungated": 0
+    },
+    "E6M9": {
+      "ror_link_pairs": 0,
+      "swept": 3,
+      "ungated": 3
+    }
+  }
+}

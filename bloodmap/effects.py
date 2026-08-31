@@ -58,11 +58,49 @@ STEP_UP = 6656
 #: A gap under this admits nothing at all, crouched or otherwise; `doors.py`
 #: uses the same figure for "shut".
 CLOSED = 512
+#: How wide a body is. A gap narrower than this admits nobody however far
+#: the leaf travelled.
+BODY_WIDTH = PLAYER_PROFILES["blood"].body_width
+
 #: A body on its knees, from the profile the whole repo measures against.
 #: Worth a separate question from standing, because the largest single shape
 #: in the residue below is a gap that opens to more than this and less than a
 #: standing body -- a way through that a body has to duck for.
 CROUCH_HEIGHT = PLAYER_PROFILES["blood"].crouch_height or PLAYER_HEIGHT
+
+#: What a marked motion is told to do, and by what.
+#:
+#: `triggers.cpp:TranslateSector` interpolates the sector between two marker
+#: sprites: `marker_0` gives the rest position and angle, `marker_1` the
+#: moved one. A rotate carries one marker and turns about it; a slide
+#: carries two and travels between them.
+MARKER_REST, MARKER_MOVED = "marker_0", "marker_1"
+
+#: **What actually moves, which is not always the sector's own geometry.**
+#:
+#: `TranslateSector`'s last argument is `bAllWalls`, and the caller passes
+#: `type == kSectorSlide` / `type == kSectorRotate` -- so the *unmarked*
+#: types 616 and 617 drag every wall they own, while the **Marked** types
+#: 614 and 615 drag only walls flagged `cstat & 16384` (with the motion) or
+#: `cstat & 32768` (against it).
+#:
+#: Sprites are dragged on their own flags, `cstat & 8192` and `& 16384`, and
+#: they are dragged **whether or not any wall is**. E1M1's sector 65 is the
+#: case that proves it: 49 walls, not one of them flagged, and two wall
+#: sprites (37 and 38) carrying 8192 and 16384 -- a sliding gate whose whole
+#: moving part is two sprites. A reading that only sweeps geometry sees a
+#: mechanism that does nothing.
+WALL_MOVES_WITH = 16384
+WALL_MOVES_AGAINST = 32768
+SPRITE_MOVES_WITH = 8192
+SPRITE_MOVES_AGAINST = 16384
+MOVES_ALL_WALLS_TYPES = frozenset({616, 617})
+
+#: What a motion carries.
+PAYLOAD_WALLS = "its own walls"
+PAYLOAD_SPRITES = "carried sprites"
+PAYLOAD_BOTH = "walls and carried sprites"
+PAYLOAD_NOTHING = "nothing that moves"
 
 #: The design objects `design_object` can return. Names, and nothing in the
 #: reading depends on them -- they are the output, never an input.
@@ -168,7 +206,294 @@ def embedding(record: dict[str, Any],
     }
 
 
-def design_object(spatial: dict[str, Any], *, moves_in_z: bool = True) -> str:
+def motion_markers(disk: Any, sector_id: int) -> dict[str, Any]:
+    """The marker sprites a marked motion interpolates between.
+
+    Returned as the engine reads them -- position and angle -- with no
+    opinion about which is "open". A rotate's `marker_1` is absent, and that
+    absence is the difference between turning about a point and travelling
+    between two.
+    """
+    extra = getattr(disk.sectors[sector_id], "extra", None)
+    fields = extra.fields if extra is not None and hasattr(extra, "fields") else {}
+    out: dict[str, Any] = {}
+    for role in (MARKER_REST, MARKER_MOVED):
+        #: `or -1` would throw away sprite 0, which is a real marker in a
+        #: real map -- E1M1's sector 65 references sprite 0 as its own.
+        raw = fields.get(role)
+        index = -1 if raw is None else int(raw)
+        if not 0 <= index < len(disk.sprites):
+            continue
+        sprite = disk.sprites[index].fields
+        out[role] = {
+            "sprite": index, "type": int(sprite["type"]),
+            "x": int(sprite["x"]), "y": int(sprite["y"]),
+            #: A marker's angle is travel, not a facing, so it is never
+            #: masked -- E1M4's -8192 is four whole turns and masks to 0.
+            "angle": int(sprite["angle"]),
+        }
+    return out
+
+
+def payload(disk: Any, sector_id: int) -> dict[str, Any]:
+    """What the motion drags: the sector's own walls, sprites, or both."""
+    sector = disk.sectors[sector_id]
+    type_id = int(sector.fields["type"])
+    start = int(sector.fields["wall_ptr"])
+    count = int(sector.fields["wall_count"])
+    all_walls = type_id in MOVES_ALL_WALLS_TYPES
+    with_walls, against_walls = [], []
+    for wall_id in range(start, start + count):
+        cstat = int(disk.walls[wall_id].fields["cstat"])
+        if cstat & WALL_MOVES_WITH:
+            with_walls.append(wall_id)
+        elif cstat & WALL_MOVES_AGAINST:
+            against_walls.append(wall_id)
+    with_sprites, against_sprites = [], []
+    for index, sprite in enumerate(disk.sprites):
+        if int(sprite.fields["sector"]) != sector_id:
+            continue
+        cstat = int(sprite.fields["cstat"])
+        if cstat & SPRITE_MOVES_WITH:
+            with_sprites.append(index)
+        elif cstat & SPRITE_MOVES_AGAINST:
+            against_sprites.append(index)
+    moves_walls = all_walls or bool(with_walls or against_walls)
+    moves_sprites = bool(with_sprites or against_sprites)
+    if moves_walls and moves_sprites:
+        carries = PAYLOAD_BOTH
+    elif moves_walls:
+        carries = PAYLOAD_WALLS
+    elif moves_sprites:
+        carries = PAYLOAD_SPRITES
+    else:
+        carries = PAYLOAD_NOTHING
+    return {
+        "carries": carries,
+        "moves_every_wall": all_walls,
+        "walls_with": with_walls, "walls_against": against_walls,
+        "sprites_with": with_sprites, "sprites_against": against_sprites,
+        "wall_count": count,
+        "engine": "triggers.cpp TranslateSector: bAllWalls is set for "
+                  "kSectorSlide/kSectorRotate; the Marked types drag only "
+                  "walls flagged 16384/32768, and sprites are dragged on "
+                  "their own 8192/16384 whatever the walls do",
+    }
+
+
+def swept_motion(disk: Any, sector_id: int, record: dict[str, Any]
+                 ) -> dict[str, Any] | None:
+    """Plane 1 for a mechanism that travels or turns rather than rising.
+
+    Returns None for a sector that only moves in z -- that one is already
+    described by `physical_effects`. What is measured here is the engine's
+    own instruction: where the markers are, how far apart, and how much
+    turn between them.
+    """
+    type_id = int(record["type_id"])
+    if type_id not in SLIDE_TYPES and type_id not in ROTATE_TYPES:
+        return None
+    markers = motion_markers(disk, sector_id)
+    rest = markers.get(MARKER_REST)
+    moved = markers.get(MARKER_MOVED)
+    kind = TRANSLATE_XY if type_id in SLIDE_TYPES else ROTATE_ABOUT_AXIS
+    out: dict[str, Any] = {
+        "effect": kind, "type_id": type_id, "markers": markers,
+        "payload": payload(disk, sector_id),
+        "period": int(record["busy_time_a"]),
+    }
+    if rest is None:
+        #: A marked motion with no rest marker cannot be interpolated, so
+        #: nothing is claimed about where it goes.
+        out["travel"] = None
+        out["undriven"] = True
+        return out
+    if kind == ROTATE_ABOUT_AXIS:
+        out["pivot"] = {"x": rest["x"], "y": rest["y"]}
+        out["turn"] = rest["angle"]
+        out["travel"] = abs(rest["angle"])
+        return out
+    if moved is None:
+        out["travel"] = None
+        out["undriven"] = True
+        return out
+    dx, dy = moved["x"] - rest["x"], moved["y"] - rest["y"]
+    out["translation"] = {"dx": dx, "dy": dy}
+    out["turn"] = moved["angle"] - rest["angle"]
+    out["travel"] = int((dx * dx + dy * dy) ** 0.5)
+    return out
+
+
+def _segment_length(disk: Any, wall_id: int) -> float:
+    here = disk.walls[wall_id].fields
+    there = disk.walls[int(here["point2"])].fields
+    dx = int(there["x"]) - int(here["x"])
+    dy = int(there["y"]) - int(here["y"])
+    return (dx * dx + dy * dy) ** 0.5
+
+
+def _sprite_width(disk: Any, index: int) -> float:
+    """A wall sprite's drawn width: x_repeat * tile_width / 4.
+
+    The tile width is not in the MAP, so 64 is assumed -- the width of every
+    blade and panel tile this repo has measured. Where that is wrong the
+    number is wrong by a factor, never by a sign.
+    """
+    return int(disk.sprites[index].fields["x_repeat"]) * 64 / 4
+
+
+def swept_opening(disk: Any, sector_id: int, motion: dict[str, Any]
+                  ) -> dict[str, Any]:
+    """How wide a gap the moving payload vacates.
+
+    The swept-area question, answered on the leaf rather than on the room. A
+    door leaf of length `L` sliding `d` along its own line leaves an opening
+    of `min(d, L)`: travel beyond its own length buys nothing, and a leaf
+    longer than its travel is still partly in the way. A leaf hinged at one
+    end and swung by `theta` leaves the chord `2 * L * sin(theta / 2)`.
+
+    Then the only question that matters: **is that opening wider than a
+    body?** 384 units, from the same profile everything else here measures
+    against.
+
+    This is a reading of the leaf, not a polygon sweep of the room. It
+    cannot see a leaf that slides into a recess already too small for it, or
+    two leaves that foul each other. Those need the real swept polygon, and
+    that is still the gap.
+    """
+    load = motion["payload"]
+    lengths = [_segment_length(disk, wall_id)
+               for wall_id in load["walls_with"] + load["walls_against"]]
+    if load["moves_every_wall"] and not lengths:
+        start = int(disk.sectors[sector_id].fields["wall_ptr"])
+        count = int(disk.sectors[sector_id].fields["wall_count"])
+        lengths = [_segment_length(disk, wall_id)
+                   for wall_id in range(start, start + count)]
+    lengths.extend(_sprite_width(disk, index)
+                   for index in load["sprites_with"] + load["sprites_against"])
+    travel = motion.get("travel")
+    if not lengths or travel is None:
+        return {"leaf_length": None, "opening": 0, "admits_a_body": False,
+                "basis": "no moving payload, or a motion with no markers to "
+                         "interpolate between"}
+    #: The longest moving part is the leaf. A door built of several panels
+    #: opens as wide as its widest one, not as wide as their sum.
+    leaf = max(lengths)
+    if motion["effect"] == ROTATE_ABOUT_AXIS:
+        from math import pi, sin
+
+        opening = abs(2 * leaf * sin(pi * (motion.get("turn") or 0) / 2048.0))
+        basis = "chord swept by a leaf hinged at one end: 2 L sin(theta/2)"
+    else:
+        opening = min(float(travel), leaf)
+        basis = "a leaf sliding along its own line vacates min(travel, length)"
+    return {
+        "leaf_length": round(leaf, 1),
+        "leaf_parts": len(lengths),
+        "opening": int(opening),
+        "body_width": BODY_WIDTH,
+        "admits_a_body": opening >= BODY_WIDTH,
+        "basis": basis,
+    }
+
+
+def leaf_segments(disk: Any, sector_id: int, motion: dict[str, Any]
+                  ) -> list[tuple[tuple[float, float], tuple[float, float]]]:
+    """The solid moving walls: the leaf, as `(start, end, sign)` segments.
+
+    A leaf is a moving wall that is **not** a portal. That is what a door
+    leaf is in Build -- E1M1's s4, s63 and s125 all move one-sided walls
+    while their portals stay put -- and it is the only part of a moving
+    sector that can stand between two sides.
+
+    A sector every one of whose walls is a portal has no leaf, and this
+    returns nothing. That is not a failure to find one; there is none, and
+    what blocks such a sector is its whole geometry moving, which needs the
+    polygon sweep this module does not have.
+    """
+    load = motion["payload"]
+    if load["moves_every_wall"]:
+        start = int(disk.sectors[sector_id].fields["wall_ptr"])
+        count = int(disk.sectors[sector_id].fields["wall_count"])
+        walls = [(wall_id, 1) for wall_id in range(start, start + count)]
+    else:
+        #: The sign is the engine's: `cstat & 16384` travels with the motion
+        #: and `& 32768` against it. A double door is one sector with both,
+        #: and translating them the same way leaves half the door still
+        #: across the opening -- which is how E1M1's s4 read as never
+        #: opening at all.
+        walls = ([(wall_id, 1) for wall_id in load["walls_with"]]
+                 + [(wall_id, -1) for wall_id in load["walls_against"]])
+    out = []
+    for wall_id, sign in walls:
+        fields = disk.walls[wall_id].fields
+        if int(fields["next_sector"]) >= 0:
+            continue                      # a portal is a way, not a leaf
+        there = disk.walls[int(fields["point2"])].fields
+        out.append(((float(fields["x"]), float(fields["y"])),
+                    (float(there["x"]), float(there["y"])), sign))
+    return out
+
+
+def _moved(point: tuple[float, float], motion: dict[str, Any], sign: int = 1
+           ) -> tuple[float, float]:
+    """Where a point of the leaf ends up once the motion has run."""
+    from .motion_sim import rotate_about
+
+    if motion["effect"] == ROTATE_ABOUT_AXIS:
+        pivot = motion.get("pivot")
+        if pivot is None:
+            return point
+        return rotate_about(point, sign * int(motion.get("turn") or 0),
+                            (float(pivot["x"]), float(pivot["y"])))
+    shift = motion.get("translation") or {"dx": 0, "dy": 0}
+    return (point[0] + sign * shift["dx"], point[1] + sign * shift["dy"])
+
+
+def leaf_blocks(disk: Any, sector_id: int, motion: dict[str, Any],
+                a: tuple[float, float], b: tuple[float, float], *,
+                moved: bool) -> bool | None:
+    """Does the leaf stand between these two points, in this state?
+
+    The straight line from one portal's midpoint to the other is the way a
+    body would take across the sector. If a leaf segment crosses that line,
+    the way is shut.
+
+    Returns None when the sector has no leaf, because "no leaf found" and
+    "the leaf is not in the way" are different answers and only one of them
+    is a measurement.
+    """
+    from .motion_sim import segments_cross
+
+    segments = leaf_segments(disk, sector_id, motion)
+    if not segments:
+        return None
+    for start, end, sign in segments:
+        if moved:
+            start = _moved(start, motion, sign)
+            end = _moved(end, motion, sign)
+        if segments_cross(a, b, start, end):
+            return True
+    return False
+
+
+def portal_midpoint(disk: Any, sector_id: int, neighbour: int
+                    ) -> tuple[float, float] | None:
+    """The middle of the wall this sector shares with that neighbour."""
+    start = int(disk.sectors[sector_id].fields["wall_ptr"])
+    count = int(disk.sectors[sector_id].fields["wall_count"])
+    for wall_id in range(start, start + count):
+        fields = disk.walls[wall_id].fields
+        if int(fields["next_sector"]) != neighbour:
+            continue
+        there = disk.walls[int(fields["point2"])].fields
+        return ((int(fields["x"]) + int(there["x"])) / 2.0,
+                (int(fields["y"]) + int(there["y"])) / 2.0)
+    return None
+
+
+def design_object(spatial: dict[str, Any], *, moves_in_z: bool = True,
+                  sweeps: dict[str, Any] | None = None) -> str:
     """Plane 3's conclusion: what the thing *is*, from where it sits.
 
     Takes the embedding and nothing else. There is deliberately no way to
@@ -180,6 +505,11 @@ def design_object(spatial: dict[str, Any], *, moves_in_z: bool = True) -> str:
     opening -- and a mechanism that only slides or turns gets `UNCLASSIFIED`
     rather than a confident wrong answer.
     """
+    if sweeps is not None:
+        #: A swept mechanism is read on the gap its leaf vacates, not on a
+        #: vertical opening. This is the branch that unparks slide and
+        #: rotate; before it, 657 campaign mechanisms came back undecided.
+        return OPENS_A_WAY if sweeps["admits_a_body"] else NEITHER
     if not moves_in_z:
         return UNCLASSIFIED
     opens = bool(spatial["changes_what_fits"])
@@ -241,12 +571,16 @@ def read_mechanism(disk: Any, sector_id: int, *,
         (int(disk.sectors[index].fields["floor_z"]) for index in neighbours),
     )
     effects = physical_effects(record)
+    motion = swept_motion(disk, sector_id, record)
+    sweeps = swept_opening(disk, sector_id, motion) if motion else None
     return {
         "$schema": SCHEMA,
         "schema_version": SCHEMA_VERSION,
         "sector_id": sector_id,
         "primitive": {
             "effects": [dict(item) for item in effects],
+            "swept": motion,
+            "swept_opening": sweeps,
             "motion": record["motion"],
             "type_id": record["type_id"],
             "period": record["busy_time_a"],
@@ -258,7 +592,7 @@ def read_mechanism(disk: Any, sector_id: int, *,
         "style": style(record),
         #: Last, and from the embedding alone.
         "design_object": design_object(
-            spatial,
+            spatial, sweeps=sweeps,
             moves_in_z=any(item["effect"] in (MOVE_FLOOR_Z, MOVE_CEILING_Z)
                            for item in effects)),
     }

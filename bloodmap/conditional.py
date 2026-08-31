@@ -35,7 +35,11 @@ from .doors import (
     KEY_NAMES, KEY_TYPES, MOTION_TYPES, PLAYER_HEIGHT, SWITCH_TYPES,
     Z_MOTION_TYPES, _wall_owners, observe_motion_sector,
 )
-from .effects import STEP_UP, design_object, embedding, physical_effects
+from .effects import (
+    OPENS_A_WAY, PAYLOAD_NOTHING, PAYLOAD_SPRITES, STEP_UP, design_object,
+    embedding, leaf_blocks, physical_effects, portal_midpoint, swept_motion,
+    swept_opening,
+)
 from .fragment import SYSTEM_CHANNELS
 from .reachability import analyze_reachability
 
@@ -252,6 +256,48 @@ def transmitters(disk: Any) -> dict[int, list[Source]]:
     return dict(out)
 
 
+#: Channels the engine fires by itself when the level loads
+#: (`eventq.h`: kChannelLevelStart and the ports' own variants). Anything
+#: listening on one of these has already happened before the player does
+#: anything at all.
+LEVEL_START_CHANNELS = frozenset({7, 17, 18})
+
+
+def level_start_closure(disk: Any,
+                        wires: dict[int, list[Source]] | None = None) -> frozenset[int]:
+    """Every channel that has fired before the player moves.
+
+    The level-start broadcast is not a player action and a reading that
+    treats it as one gets a level badly wrong. E1M1 is the case: its player
+    start is inside a closed casket, and the switch that opens it sits in
+    another sector entirely, listening on **rx 7** with a six-tick wait. No
+    body can reach that switch, so a frontier that waits for a player to
+    work it reports the whole level unreachable -- 2 sectors of 155.
+
+    The closure is transitive, because a start-fired thing may transmit to
+    something else that transmits again.
+    """
+    wires = transmitters(disk) if wires is None else wires
+    listeners: dict[int, list[int]] = defaultdict(list)
+    for kind, items in (("sprite", disk.sprites), ("wall", disk.walls),
+                        ("sector", disk.sectors)):
+        for item in items:
+            extra = _extra(item)
+            listens = int(extra.get("rx_id") or 0)
+            sends = int(extra.get("tx_id") or 0)
+            if listens and sends:
+                listeners[listens].append(sends)
+    fired = set(LEVEL_START_CHANNELS)
+    pending = list(fired)
+    while pending:
+        channel = pending.pop()
+        for onward in listeners.get(channel, ()):
+            if onward not in fired:
+                fired.add(onward)
+                pending.append(onward)
+    return frozenset(fired)
+
+
 def key_sprites(disk: Any) -> dict[int, list[int]]:
     """Where each key lies, by the key number an XSECTOR would name."""
     out: dict[int, list[int]] = defaultdict(list)
@@ -377,14 +423,86 @@ def conditional_edges(disk: Any, *, owners: Sequence[int] | None = None
     scoped_out = 0
     considered = 0
     inert = 0
+    swept = 0
+    ungated = 0
     for sector_id in range(len(disk.sectors)):
         record = observe_motion_sector(disk, sector_id, owners=owners)
         if record is None:
             continue
         effects = physical_effects(record)
+        motion = swept_motion(disk, sector_id, record)
+        if motion is not None:
+            #: Slide and rotate, no longer parked. A leaf is a solid wall
+            #: *inside* the mechanism's sector -- E1M1's s4, s63 and s125
+            #: all move walls that are not portals at all -- so what the
+            #: motion gates is the sector's own crossings: while the leaf is
+            #: in the way there is no getting from one side to the other.
+            sweeps = swept_opening(disk, sector_id, motion)
+            load = motion["payload"]["carries"]
+            causes = _causes_for(record, wires)
+            if not causes or load == PAYLOAD_NOTHING:
+                inert += 1
+                continue
+            swept += 1
+            neighbours = sorted({int(portal["next_sector"])
+                                 for portal in record["portals"]})
+            rest = rest_state(record)
+            other = "off" if rest == "on" else "on"
+            #: Which state actually blocks, measured rather than assumed.
+            #: The line between two portals' midpoints is the way across; if
+            #: a leaf segment crosses it, that way is shut. Assuming instead
+            #: that the rest state is the shut one cut E1M2 from 231
+            #: reachable sectors to 26.
+            shut_at_rest = None
+            if len(neighbours) == 2:
+                a = portal_midpoint(disk, sector_id, neighbours[0])
+                b = portal_midpoint(disk, sector_id, neighbours[1])
+                if a is not None and b is not None:
+                    at_rest = leaf_blocks(disk, sector_id, motion, a, b,
+                                          moved=(rest != "off"))
+                    when_moved = leaf_blocks(disk, sector_id, motion, a, b,
+                                             moved=(rest == "off"))
+                    if at_rest is not None and at_rest != when_moved:
+                        shut_at_rest = at_rest
+            if (load == PAYLOAD_SPRITES or not sweeps["admits_a_body"]
+                    or shut_at_rest is None):
+                #: Three reasons to record the route and gate nothing.
+                #:
+                #: The payload is sprites, so the gate stands somewhere
+                #: inside the sector and locating it needs the polygon sweep
+                #: this does not have. Or the leaf never vacates a body's
+                #: width. Or -- the one the campaign forced -- no leaf
+                #: segment separates the sector's two portals in one state
+                #: and not the other, so which state is shut is not
+                #: measurable here. That covers a sector with more than two
+                #: portal neighbours (a room carrying scenery, like E1M2's
+                #: seven-neighbour sector 34) and a sector all of whose
+                #: walls are portals (no leaf at all).
+                ungated += 1
+                continue
+            reads_as = design_object({}, sweeps=sweeps)
+            for neighbour in sorted(neighbours):
+                for pair in ((sector_id, neighbour), (neighbour, sector_id)):
+                    edges.append(ConditionalEdge(
+                        sectors=pair, mechanism=sector_id,
+                        enabling_state=(other if shut_at_rest else rest),
+                        verdict="conditional",
+                        delta={"kind": "swept", "rest_state": rest,
+                               "effect": motion["effect"],
+                               "travel": motion.get("travel"),
+                               "turn": motion.get("turn"),
+                               "payload": load,
+                               "shut_at_rest": shut_at_rest,
+                               "leaf_length": sweeps["leaf_length"],
+                               "opening": sweeps["opening"],
+                               "body_width": sweeps["body_width"],
+                               "basis": sweeps["basis"],
+                               "reads_as": reads_as},
+                        causes=causes,
+                        requires_key=int(record["key"] or 0),
+                        irreversible=all(item.irreversible for item in causes)))
+            continue
         if not any(item["effect"].startswith("move_") for item in effects):
-            #: Slide and rotate. No swept-area reading exists, so no claim is
-            #: made about what they gate -- excluded, not answered.
             if record["type_id"] in MOTION_TYPES:
                 scoped_out += 1
             continue
@@ -453,7 +571,9 @@ def conditional_edges(disk: Any, *, owners: Sequence[int] | None = None
         "z_motion_mechanisms": considered,
         "wired": considered - inert,
         "inert_no_cause": inert,
-        "scoped_out_rotate_slide": scoped_out,
+        "swept_mechanisms": swept,
+        "swept_recorded_but_not_gated": ungated,
+        "scoped_out_no_reading": scoped_out,
         "conditional": sum(1 for e in edges if e.verdict == "conditional"),
         "never": sum(1 for e in edges if e.verdict == "never"),
         "irreversible": sum(1 for e in edges if e.irreversible),
@@ -801,13 +921,45 @@ class ConditionalGraph:
     base: dict[int, set[int]] = field(default_factory=dict)
     gated: set[tuple[int, int]] = field(default_factory=set)
     reach: Any = None
+    #: Fired before the player does anything -- see `level_start_closure`.
+    fired_at_start: frozenset[int] = frozenset()
 
-    def reachable(self, held: Held) -> set[int]:
+    def at_rest(self) -> Held:
+        """What has already happened when the level loads."""
+        return Held(channels=self.fired_at_start)
+
+    def reachable(self, held: Held,
+                  without: set[tuple[str, int]] | None = None) -> set[int]:
+        """Where a body can get, optionally with one mechanism struck out.
+
+        `without` is how every question below is asked: run the map with
+        everything worked, then again with this one mechanism removed, and
+        the difference is what that mechanism is *for*.
+        """
         graph = {sector: set(neighbours) for sector, neighbours in self.base.items()}
+        struck = without or set()
+        held = Held(frozenset(held.channels | self.fired_at_start),
+                    held.keys, held.operated)
         for edge in self.edges:
+            if (edge.mechanism_kind, edge.mechanism) in struck:
+                continue
             if _edge_enabled(edge, held):
                 graph.setdefault(edge.sectors[0], set()).add(edge.sectors[1])
         return _flood(graph, self.start)
+
+    def everything_worked(self) -> Held:
+        """Every channel fired, every key held, every hand-worked thing worked.
+
+        Not a claim that a player can do all of it -- it is the upper bound
+        the counterfactuals are measured against.
+        """
+        channels = {cause.channel for edge in self.edges
+                    for cause in edge.causes if cause.channel}
+        keys = {edge.requires_key for edge in self.edges if edge.requires_key}
+        operated = {edge.mechanism for edge in self.edges
+                    if edge.mechanism_kind == "sector"
+                    and not any(cause.channel for cause in edge.causes)}
+        return Held(frozenset(channels), frozenset(keys), frozenset(operated))
 
     def available_actions(self, held: Held, reached: set[int]) -> list[Action]:
         """Everything a body standing in `reached` could do next.
@@ -873,6 +1025,190 @@ class ConditionalGraph:
         return chains
 
 
+#: What a mechanism is *for*, as far as where it sits can say.
+#:
+#: These five are assigned from one counterfactual -- run the map with the
+#: mechanism, run it without, read the difference -- plus two facts about
+#: the sector itself. They are deliberately fewer than the eight names an
+#: author would use, because **the embedding does not determine all eight**.
+#: See `reports/blood-swept-mechanisms.md`: E1M1's rat trap and its curtain
+#: have identical topological signatures and different dramatic jobs, and
+#: its plain sliding door is more load-bearing than the double rotating door
+#: the author built as the way on. Naming those apart is a reading of intent,
+#: not of space, and inventing a spatial rule that happens to split eleven
+#: hand-labelled cases would be fitting noise.
+#:
+#: What the reading *can* separate is recorded here; what it cannot is
+#: recorded beside it as content, for a human or a later phase to read.
+ROLE_NARRATIVE = "narrative"
+ROLE_ROR_CARRIER = "technical workaround"
+ROLE_FIXTURE = "fixture"
+ROLE_REQUIRED = "required passage"
+ROLE_SIDE = "side passage"
+#: The mechanism is described -- primitive, payload, the gap it vacates --
+#: but which of its states blocks was not measurable, so it gates nothing
+#: and nothing is claimed about what it is for. Saying that is the point.
+ROLE_UNPLACED = "recorded, not placed"
+
+#: kChannelSecretFound. A sector that transmits on it *is* a secret: entering
+#: it is what scores one, so a secret within reach of what a mechanism opens
+#: is the measurable form of "this revealed a secret".
+SECRET_CHANNEL = 2
+#: How far beyond a mechanism a secret still counts as the thing it revealed.
+SECRET_REACH = 1
+
+#: How many portal neighbours a swept mechanism may have and still be read
+#: as a leaf between two sides rather than a room carrying scenery.
+LEAF_NEIGHBOURS = 2
+
+
+def secret_sectors(disk: Any) -> set[int]:
+    return {index for index, sector in enumerate(disk.sectors)
+            if int(_extra(sector).get("tx_id") or 0) == SECRET_CHANNEL}
+
+
+def dude_sectors(disk: Any) -> set[int]:
+    from .blood_types import classify
+
+    out = set()
+    for sprite in disk.sprites:
+        try:
+            category = classify("sprite", int(sprite.fields["type"])).get("category")
+        except Exception:
+            continue
+        if category == "dude":
+            out.add(int(sprite.fields["sector"]))
+    return out
+
+
+def ror_sectors(reach: Any) -> set[int]:
+    """Sectors that are half of a stack link.
+
+    Room-over-room is not only a way through: it is a **budget**. Two ROR
+    volumes must not be in view at once or the renderer shows both, so a
+    level gets very few of them and authors reuse the ones they have. E1M1
+    reuses its one big ROR volume (sector 65) as the carrier for a sliding
+    gate rather than building a second sector for the gate -- an engine
+    visibility constraint reshaping the authoring, visible in the map as one
+    sector doing two unrelated jobs.
+    """
+    out = set()
+    for record in reach.links:
+        left, right = record["sectors"]
+        out.add(int(left))
+        out.add(int(right))
+    return out
+
+
+def design_role(graph: "ConditionalGraph", mechanism: int, *,
+                kind: str = "sector") -> dict[str, Any]:
+    """What this mechanism is for, from where it sits and what it reaches.
+
+    One counterfactual answers the topological half: work everything, then
+    work everything except this, and read the difference.
+
+    * it never opens a body's width -- a **fixture**;
+    * removing it costs the map more than its own sector -- a **required
+      passage**;
+    * removing it costs only itself -- a **side passage**.
+
+    Two names are not about what is reached at all. A mechanism whose sector
+    holds the player start is **narrative**; nothing about reachability says
+    so, and E1M1's casket is the level's opening shot. A mechanism that is
+    also half of a room-over-room pair is a **technical workaround**: the
+    visibility budget on ROR volumes is why one sector is doing two jobs,
+    which is a fact about the engine rather than about the room.
+
+    `secret_within_reach` and `dudes_immediately_beyond` are recorded and
+    **not** used to name. They are what an author would call a secret or an
+    ambush, and the measurements show they do not separate: E1M1's curtain
+    has dudes immediately beyond it too, and its plain sliding door has a
+    secret one hop away.
+    """
+    from collections import deque
+
+    disk = graph.disk
+    held = graph.everything_worked()
+    full = graph.reachable(held)
+    without = graph.reachable(held, without={(kind, mechanism)})
+    lost = sorted(full - without)
+    edges = [edge for edge in graph.edges
+             if edge.mechanism == mechanism and edge.mechanism_kind == kind]
+    joins = sorted({sector for edge in edges for sector in edge.sectors
+                    if kind == "wall" or sector != mechanism})
+    opening = next((edge.delta.get("opening") for edge in edges
+                    if edge.delta.get("opening") is not None), None)
+    admits = any(edge.delta.get("reads_as") == OPENS_A_WAY for edge in edges)
+    if opening is None and kind == "sector":
+        #: An ungated swept mechanism still has a measured leaf. Reading the
+        #: opening only off the edges called a 1792-unit sliding shelf a
+        #: fixture, because it has no edges.
+        from .doors import observe_motion_sector
+
+        record = observe_motion_sector(disk, mechanism)
+        motion = swept_motion(disk, mechanism, record) if record else None
+        if motion is not None:
+            measured = swept_opening(disk, mechanism, motion)
+            opening = measured["opening"]
+            admits = admits or measured["admits_a_body"]
+
+    secrets = secret_sectors(disk)
+    dudes = dude_sectors(disk)
+    nearby: set[int] = set()
+    for origin in joins:
+        seen, pending = {origin, mechanism}, deque([(origin, 0)])
+        while pending:
+            current, depth = pending.popleft()
+            if current in secrets:
+                nearby.add(current)
+            if depth >= SECRET_REACH:
+                continue
+            for neighbour in graph.reach.graph.get(current, ()):
+                if neighbour not in seen:
+                    seen.add(neighbour)
+                    pending.append((neighbour, depth + 1))
+    linked = kind == "sector" and mechanism in ror_sectors(graph.reach)
+    start_here = kind == "sector" and mechanism == graph.start
+
+    #: Order matters, and only the first two clauses jump the queue: a
+    #: mechanism can be the player's first sight of the level, or a reused
+    #: ROR volume, whatever it does to reachability.
+    if start_here:
+        role = ROLE_NARRATIVE
+    elif linked:
+        role = ROLE_ROR_CARRIER
+    elif not admits and (opening or 0) < 384:
+        role = ROLE_FIXTURE
+    elif not edges:
+        role = ROLE_UNPLACED
+    elif len(lost) > 1:
+        role = ROLE_REQUIRED
+    else:
+        role = ROLE_SIDE
+    return {
+        "mechanism": mechanism, "mechanism_kind": kind, "role": role,
+        "joins": joins,
+        "sectors_lost_without_it": len(lost),
+        "lost_without_it": lost[:24],
+        "holds_the_player_start": start_here,
+        "half_of_a_room_over_room_pair": linked,
+        "swept_opening": opening,
+        #: Recorded, never used to name -- see the docstring.
+        "secret_within_reach": sorted(nearby),
+        "dudes_immediately_beyond": [item for item in joins if item in dudes],
+        "basis": "one counterfactual: everything worked, against everything "
+                 "worked but this; plus the player start and the ROR pairing",
+    }
+
+
+def design_roles(graph: "ConditionalGraph") -> list[dict[str, Any]]:
+    """Every gating mechanism in the map, named from its embedding."""
+    seen = {(edge.mechanism_kind, edge.mechanism) for edge in graph.edges
+            if edge.verdict == "conditional"}
+    return [design_role(graph, mechanism, kind=kind)
+            for kind, mechanism in sorted(seen, key=lambda item: (item[0], item[1]))]
+
+
 def build_graph(disk: Any, *, owners: Sequence[int] | None = None,
                 base: str = BASE_BLOCKING_AWARE) -> ConditionalGraph:
     """Read one map into a conditional-traversability graph.
@@ -899,8 +1235,11 @@ def build_graph(disk: Any, *, owners: Sequence[int] | None = None,
         "conditional": sum(1 for e in edges if e.verdict == "conditional"),
     }
     start = int(reach.start["sector"])
+    fired = level_start_closure(disk)
+    summary["channels_fired_at_level_start"] = len(fired)
     return ConditionalGraph(disk=disk, edges=edges, summary=summary,
-                            start=start, base=graph, gated=gated, reach=reach)
+                            start=start, base=graph, gated=gated, reach=reach,
+                            fired_at_start=fired)
 
 
 def what_becomes_reachable(disk: Any, action: Action, *,
