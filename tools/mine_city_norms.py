@@ -47,6 +47,7 @@ import numpy as np
 from bloodmap.doors import MOTION_TYPES as BLOOD_DOOR_SECTOR_TYPES
 from bloodmap.duke import read_duke_map
 from bloodmap.format import read_map
+from bloodmap.patterns import corpus_map_path
 from bloodmap.player_space import PLAYER_PROFILES
 from tools.mine_mechanisms import observe as observe_channels
 from tools.mine_stacks import observe as observe_stacks
@@ -74,9 +75,17 @@ MIN_INTERIOR_AREA = 1024 * 1024
 #: closed-at-rest Duke door from being read as a solid wall.
 DUKE_DOOR_LOTAGS = {20, 21, 22, 23, 25, 26, 27, 28, 29}
 
+#: Blood sources name a map; the registry says where it lives, because the
+#: corpus is provenance directories rather than one flat folder. Duke's is
+#: still a flat directory, so it is still spelled out.
+#:
+#: `missing_ok` because this table is built at import time: without a local
+#: corpus it must still yield a path that does not exist, exactly as the
+#: hardcoded strings did, rather than stopping the import of every module
+#: that reads this list.
 STRUCTURE_SOURCES = [
-    ("E3M1", "blood", "maps/blood/E3M1.MAP"),
-    ("DWE3M1", "blood", "maps/blood/DWE3M1.MAP"),
+    ("E3M1", "blood", corpus_map_path("E3M1", missing_ok=True)),
+    ("DWE3M1", "blood", corpus_map_path("DWE3M1", missing_ok=True)),
     ("DukCity1", "duke3d", "maps/duke3d/DukCity1.map"),
     ("DukCity2", "duke3d", "maps/duke3d/DukCity2.map"),
     ("DukCity3", "duke3d", "maps/duke3d/DukCity3.map"),
@@ -87,9 +96,9 @@ STRUCTURE_SOURCES = [
     # in street_component and blocks_fronted: DWE2M1 (open space, not
     # streets), E2M2 (lumber stacks, not buildings), and the wilderness set
     # (loops without enterability are landscape).
-    ("DWE3M10", "blood", "maps/blood/DWE3M10.MAP"),
-    ("TEDE1M2", "blood", "maps/blood/TEDE1M2.MAP"),
-    ("E3M2", "blood", "maps/blood/E3M2.MAP"),
+    ("DWE3M10", "blood", corpus_map_path("DWE3M10", missing_ok=True)),
+    ("TEDE1M2", "blood", corpus_map_path("TEDE1M2", missing_ok=True)),
+    ("E3M2", "blood", corpus_map_path("E3M2", missing_ok=True)),
 ]
 
 #: Art admissibility measured 2026-08-27: TEDE1M2 uses 95% and DWE3M10 97%

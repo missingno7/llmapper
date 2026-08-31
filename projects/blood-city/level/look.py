@@ -24,6 +24,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 from bloodmap.format import read_map
+from bloodmap.patterns import corpus_map_path
 from bloodmap.viewplan import angle_toward, eye_z, interior_point
 from bloodmap.visual import ObservationRequest, Viewpoint, run_observation
 from bloodmap.viewpoints import _contains, _sector_loops
@@ -248,7 +249,7 @@ def main(argv=None) -> int:
     parser.add_argument("-o", "--out", default=None)
     args = parser.parse_args(argv)
 
-    map_path = (pathlib.Path(f"maps/blood/{args.ref}.MAP") if args.ref
+    map_path = (corpus_map_path(args.ref) if args.ref
                 else pathlib.Path(args.map))
     level = read_map(map_path).to_level_ir()
     if args.ref:

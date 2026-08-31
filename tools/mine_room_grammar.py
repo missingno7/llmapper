@@ -25,6 +25,7 @@ from collections import Counter, defaultdict
 from typing import Any
 
 from bloodmap.blood_types import SPRITE_TYPES
+from bloodmap.patterns import corpus_map_path
 from tools.mine_city_norms import MapGeom, load_source
 from tools.mine_mechanisms import observe as observe_channels
 from tools.mine_stacks import observe as observe_stacks
@@ -204,7 +205,7 @@ def sprite_language(geom: MapGeom) -> dict:
 
 
 def analyze(name: str) -> dict:
-    geom = load_source(name, "blood", f"maps/blood/{name}.MAP")
+    geom = load_source(name, "blood", corpus_map_path(name))
     spaces = walkable_spaces(geom)
     big = spaces[0]
 
@@ -228,7 +229,7 @@ def analyze(name: str) -> dict:
                  and bbox_metrics(geom, s)["fill"] >= 0.7]
     corridor_widths = [bbox_metrics(geom, s)["short"] for s in corridors]
 
-    mech = observe_channels(pathlib.Path(f"maps/blood/{name}.MAP"))
+    mech = observe_channels(corpus_map_path(name))
     return {
         "map": name,
         "totals": {"sectors": len(geom.sectors), "walls": len(geom.walls),

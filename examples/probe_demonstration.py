@@ -5,13 +5,14 @@ from bloodmap import probes  # noqa: F401 - registers probes
 from bloodmap.build_ir import BuildIR
 from bloodmap.duke import read_duke_map
 from bloodmap.format import read_map
+from bloodmap.patterns import corpus_map_path
 from bloodmap.probe_schema import DesignProbe, run_probe
 from bloodmap.state_model import PlayerState, WorldState
 
 
 def run_demonstrations():
     # --- Blood E1M1 ---
-    disk = read_map("maps/blood/E1M1.MAP")
+    disk = read_map(corpus_map_path("E1M1"))
     build = disk.to_build_ir()
     start_sector = build.player_start["sector"]
 

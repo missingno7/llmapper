@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from bloodmap.format import read_map
+from bloodmap.patterns import corpus_map_path
 from bloodmap.placement import mine_attachments
 from bloodmap.progression import analyze_progression, classify_mechanisms, compact_progression_report, completion_witness
 from bloodmap.sp_understand import (
@@ -33,7 +34,7 @@ def write_reports(*, maps_dir: str = "maps/blood") -> dict[str, str]:
     written["placement"] = "reports/blood-object-placement.json"
 
     compositions = mine_mechanism_compositions(maps_dir, population="blood-campaign")
-    e2m2 = read_map("maps/blood/E2M2.MAP")
+    e2m2 = read_map(corpus_map_path("E2M2"))
     packet = build_sp_packet(e2m2, map_name="E2M2.MAP")
     _write("reports/E2M2-understanding.json", packet)
     written["e2m2_understanding"] = "reports/E2M2-understanding.json"
@@ -46,7 +47,7 @@ def write_reports(*, maps_dir: str = "maps/blood") -> dict[str, str]:
     _write("reports/E2M2-mechanism-patterns.json", {"compositions": compositions, "e2m2": patterns})
     written["e2m2_mechanisms"] = "reports/E2M2-mechanism-patterns.json"
 
-    bb3 = read_map("maps/blood/BB3.MAP")
+    bb3 = read_map(corpus_map_path("BB3"))
     bb3_vertical = analyze_floor_bands(bb3)
     retrieval = retrieve_vertical_in_campaign(
         maps_dir, query_delta_min=0.4, query_delta_max=3.0, population="blood-campaign",

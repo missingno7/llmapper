@@ -30,8 +30,9 @@ from .geometry_audit import (
     audit_geometry, audit_markdown, audit_svg, validate_authored_level,
 )
 from .patterns import (
-    CORPUS_VIEWS, MODES, POPULATIONS, TIERS, PatternError, inspect_pattern, load_catalog,
-    mine_directory, pattern_aware_understanding, query_catalog,
+    CORPUS_VIEWS, MODES, POPULATIONS, TIERS, PatternError, corpus_map_path,
+    inspect_pattern, load_catalog, mine_directory, pattern_aware_understanding,
+    query_catalog,
 )
 from .placement import PlacementError, mine_attachments, validate_attachments
 from .progression import ProgressionError, analyze_progression, classify_mechanisms, completion_witness
@@ -1910,7 +1911,8 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_roundtrip_all)
     p = sub.add_parser("compare-e3l1", help="differentially analyze a Duke/Blood map pair (E3L1 defaults)")
     p.add_argument("--duke", default="maps/duke3d/E3L1.MAP")
-    p.add_argument("--blood", default="maps/blood/DNE3L1.MAP")
+    p.add_argument("--blood",
+                   default=str(corpus_map_path("DNE3L1", missing_ok=True)))
     p.add_argument("-o", "--output")
     p.set_defaults(func=cmd_compare_pair)
     p = sub.add_parser("convert", help="convert Blood/Duke3D through BuildIR with an explicit fidelity policy")

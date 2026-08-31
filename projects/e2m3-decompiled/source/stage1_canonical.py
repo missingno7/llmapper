@@ -25,8 +25,12 @@ import pathlib
 
 from bloodmap.decompiler import decompile_level
 from bloodmap.format import read_map
+from bloodmap.patterns import corpus_map_path
 
-MAP_PATH = pathlib.Path("maps/blood/E2M3.MAP")
+#: The corpus is a registry of provenance directories, not a flat
+#: folder; missing_ok so importing this module without a local corpus
+#: still yields a path that simply does not exist.
+MAP_PATH = corpus_map_path("E2M3", missing_ok=True)
 
 #: From ``provenance.json``; the number every later claim is anchored to.
 EXPECTED = {"sectors": 340, "walls": 2808, "sprites": 454}

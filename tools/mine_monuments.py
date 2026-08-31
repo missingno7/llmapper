@@ -36,6 +36,7 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
 from bloodmap.format import read_map
+from bloodmap.patterns import list_corpus_maps
 
 PLAYER = 16960
 PLAN = 1024
@@ -201,11 +202,17 @@ def survey(path) -> dict:
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("-o", "--output")
-    parser.add_argument("--maps", default="maps/blood/*.MAP")
+    parser.add_argument("--maps", default=None,
+                        help="glob of maps; default is the campaign population")
     args = parser.parse_args(argv)
 
     found = []
-    for path in sorted(glob.glob(args.maps)):
+    # Default to the population the docstring names rather than a glob of
+    # a directory the corpus no longer has.
+    paths = (sorted(glob.glob(args.maps)) if args.maps else
+             sorted(str(item.path) for item in
+                    list_corpus_maps(population="blood-campaign")))
+    for path in paths:
         try:
             found += survey(path)["monuments"]
         except Exception:

@@ -24,13 +24,13 @@ from __future__ import annotations
 
 import argparse
 import collections
-import glob
 import json
 import pathlib
 import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from bloodmap.format import read_map
+from bloodmap.patterns import list_corpus_maps
 
 PLAYER = 16960          # a standing human, in z units
 PLAN = 1024             # the project's plan unit, for footprints
@@ -200,7 +200,11 @@ def main(argv=None) -> int:
 
     classes = collections.defaultdict(list)
     examined = found = 0
-    for path in sorted(glob.glob("maps/blood/*.MAP")):
+    # This asks what "the campaign" does. It used to glob a flat maps/blood,
+    # which swept in whatever else sat there and, once the corpus became
+    # provenance directories, matched nothing at all. Name the population.
+    for path in sorted(str(item.path) for item in
+                       list_corpus_maps(population="blood-campaign")):
         name = pathlib.Path(path).stem
         try:
             rows, seen = collect(path)

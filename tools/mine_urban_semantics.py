@@ -41,6 +41,8 @@ from typing import Any
 
 import numpy as np
 
+from bloodmap.patterns import corpus_map_path
+
 from tools.mine_city_norms import (
     CELL, MapGeom, StreetRaster, _full_walk_adjacency, doorways,
     indoor_components, load_source, street_component,
@@ -496,8 +498,9 @@ def main(argv=None) -> int:
     args = parser.parse_args(argv)
     records = []
     for name in args.maps:
-        path = (f"maps/blood/{name}.MAP" if args.game == "blood"
-                else f"maps/duke3d/{name}.map")
+        # Blood's corpus is a registry; Duke's is still a flat directory.
+        path = (corpus_map_path(name) if args.game == "blood"
+                else pathlib.Path(f"maps/duke3d/{name}.map"))
         geom = load_source(name, args.game, path)
         record = classify(geom)
         if args.plots:

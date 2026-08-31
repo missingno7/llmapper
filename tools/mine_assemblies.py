@@ -24,7 +24,6 @@ found in the monastery by playing it were relations this reports.
 from __future__ import annotations
 
 import argparse
-import glob
 import json
 import pathlib
 import re
@@ -34,6 +33,7 @@ from typing import Any
 
 from bloodmap.assembly import Assembly, assembly_around
 from bloodmap.format import read_map
+from bloodmap.patterns import list_corpus_maps
 
 CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 
@@ -72,8 +72,12 @@ def instances(directory: str, root_type: int, *, campaign_only: bool = True) -> 
     mined campaign-only can say nothing about it.
     """
     found: list[Assembly] = []
-    pattern = "*.MAP" if campaign_only else "**/*.[Mm][Aa][Pp]"
-    for path in sorted(glob.glob(str(pathlib.Path(directory) / pattern), recursive=True)):
+    # These used to be two globs over a flat corpus. The corpus is now a
+    # registry of provenance directories, so ask it for the population the
+    # docstring above names: the shipped episodes, or the mechanism samples.
+    population = "blood-campaign" if campaign_only else "mechanism-tutorial"
+    for path in sorted(str(item.path) for item in
+                       list_corpus_maps(directory or None, population=population)):
         name = pathlib.Path(path).stem.upper()
         if campaign_only and not CAMPAIGN.match(name):
             continue
@@ -273,7 +277,8 @@ def check(found: list[Assembly], template: dict[str, Any],
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--maps", default="maps/blood")
+    parser.add_argument("--maps", default=None,
+                        help="corpus root; defaults to the registry's")
     parser.add_argument("--samples", action="store_true",
                         help="mine the XMapEdit sample maps instead of the campaign")
     parser.add_argument("--root", type=int, required=True, help="root sector type")
@@ -283,8 +288,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("-o", "--output")
     args = parser.parse_args(argv)
 
-    corpus_dir = "maps/blood/samples" if args.samples else args.maps
-    found = instances(corpus_dir, args.root, campaign_only=not args.samples)
+    found = instances(args.maps, args.root, campaign_only=not args.samples)
     if not found:
         print("no campaign instances of sector type %d" % args.root)
         return 1

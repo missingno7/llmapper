@@ -37,6 +37,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
 from bloodmap.art import read_art_directory
 from bloodmap.format import read_map
+from bloodmap.patterns import corpus_map_path
 
 #: The maps the project already mines for fixtures, plus the two richest
 #: interiors in the corpus.
@@ -113,7 +114,7 @@ def surfaces(m):
 
 
 def survey(name: str, art) -> dict:
-    m = read_map(f"maps/blood/{name}.MAP")
+    m = read_map(corpus_map_path(name))
     found = surfaces(m)
     by_sector = collections.defaultdict(list)
     for sprite in m.sprites:

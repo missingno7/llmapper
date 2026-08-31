@@ -19,7 +19,6 @@ from __future__ import annotations
 
 import argparse
 import collections
-import glob
 import json
 import pathlib
 import statistics
@@ -27,6 +26,7 @@ import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from bloodmap.format import read_map
+from bloodmap.patterns import list_corpus_maps
 
 PLAN = 1024
 PLAYER = 16960
@@ -52,7 +52,11 @@ def main(argv=None) -> int:
     gaps = []
     per_run = []
     tiles_on_runs = collections.Counter()
-    for path in sorted(glob.glob("maps/blood/*.MAP")):
+    # This asks what "the campaign" does. It used to glob a flat maps/blood,
+    # which swept in whatever else sat there and, once the corpus became
+    # provenance directories, matched nothing at all. Name the population.
+    for path in sorted(str(item.path) for item in
+                       list_corpus_maps(population="blood-campaign")):
         name = pathlib.Path(path).stem
         try:
             m = read_map(path)
