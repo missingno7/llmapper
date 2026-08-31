@@ -101,25 +101,47 @@ ROTATE_MARKED = 615
 BLADE_PICNUM = 332
 BLADE_COUNT = 4
 
-#: The four blade sprites are two vanes crossing at right angles, and each
-#: vane is drawn as **two half-sprites on opposite sides of the axis** -- not
-#: one panel standing on it. Measured on all four rotors: E1M4 151 carries
-#: angles 0, 0, 512, 512 and E1M4 314 carries 1024, 1024, 1536, 1536; DWE1M9's
-#: pair both carry 1024, 1024, 1536, 1536. The two halves of a vane differ by
-#: the flip bit so each faces outward.
-BLADE_PANELS = 2
+#: **Vane count is the variant, and the mechanism is one.** Censused over the
+#: corpus, every grated rotating door is the same kSectorRotateMarked sector
+#: with a different number of vanes on it:
+#:
+#:     1 vane    15 rotors   a swinging gate   (DOOR-SWINGINGGATE[D])
+#:     2 vanes    1 rotor    a double gate     (DOOR-SWINGINGGATE s52)
+#:     4 vanes    9 rotors   a turnstile       (E1M4, DWE1M9, DNE3L6, DOOR-ROTATING)
+#:
+#: So `turnstile` is the four-vane case of a rotating door, not a thing of its
+#: own, and `vanes` selects which.
+TURNSTILE_VANES = 4
 BLADE_QUARTER = 512
 
-#: How far a blade sits from the axis. **A constant, not a derived quantity**:
-#: all 16 blades in the four mined rotors sit at exactly 384, while the half
-#: drawn width (384 on E1M4's x_repeat 48, 448 on DWE1M9's 56) and the rotor
-#: side (1536 against 1792) both vary. It happens to equal the player's body
-#: width; nothing here claims that is the reason.
+#: Two ways to build the same cross, both attested. E1M4 and DWE1M9 use two
+#: angles and the flip bit to face the opposite halves outward (0, 0, 512, 512
+#: with cstat 8593/8597); DNE3L6 and XMapEdit's own DOOR-ROTATING use four
+#: distinct angles a quarter turn apart with one cstat. `FLIPPED_PAIRS` is the
+#: campaign's and stays the default; `DISTINCT_ANGLES` generalizes to any vane
+#: count, which is why a 1- or 2-vane gate uses it.
+FLIPPED_PAIRS, DISTINCT_ANGLES = "flipped_pairs", "distinct_angles"
+
+#: A vane's inner edge meets the axis: it stands off the pivot by **half its
+#: own drawn width**, so the four of them close on the centre without
+#: overlapping. Censused over every grated rotating door in the corpus --
+#: 25 rotors in 6 maps -- this holds for **45 of 53 vanes**. The eight
+#: exceptions are DWE1M9's, every one 64 short, so its vanes cross the pivot
+#: slightly.
 #:
-#: Getting this wrong is what put every blade on the pivot, stacked on top of
-#: one another, in the first build -- z, angle, repeat and cstat were all
-#: measured and the position never was.
-BLADE_OFFSET = 384
+#: An earlier version of this file called 384 a constant. It is not: 384 is
+#: what E1M4's `x_repeat` 48 happens to produce, and DNE3L6 and the XMapEdit
+#: door samples all sit at 448 on `x_repeat` 56. Two maps looked like a rule.
+#:
+#: Getting the offset wrong at all is what put every blade on the pivot,
+#: stacked on top of one another, in the first build: z, angle, repeat and
+#: cstat were measured and the position never was.
+BLADE_TILE_WIDTH = 64
+
+
+def blade_offset(x_repeat: int, tile_width: int = BLADE_TILE_WIDTH) -> int:
+    """How far a vane stands off the axis: half its own drawn width."""
+    return int(x_repeat) * int(tile_width) // 8
 
 #: Build angle -> unit direction. A wall sprite's `ang` is the normal of its
 #: face, so a vane extends along the *perpendicular* of its own angle: the
@@ -180,9 +202,13 @@ TURNSTILE_TEMPLATE = {
                "cstat": (BLADE_CSTAT, BLADE_CSTAT_FLIPPED),
                "spans": "floor to ceiling; drawn height == clear height, "
                         "32768 in all four rotors at y_repeat 64",
-               "offset_from_axis": BLADE_OFFSET,
-               "arrangement_detail": "two crossing vanes, each drawn as two "
-                                     "half-sprites either side of the axis"},
+               "offset_from_axis": "half the vane's own drawn width; 45 of 53 "
+                                   "corpus vanes, the 8 exceptions all DWE1M9",
+               "counts": {"1 vane": "swinging gate, 15 rotors",
+                          "2 vanes": "double gate, 1 rotor",
+                          "4 vanes": "turnstile, 9 rotors"},
+               "one_rotor_is_a_door": "all 25 grated rotating doors reach "
+                                      "exactly two sectors on their own"},
     "busy_time": {"E1M4": (255, 0), "E1M4 partner": (0, 255),
                   "DWE1M9": (100, 0), "DWE1M9 partner": (0, 100)},
     "travel_angle": {"E1M4": -8192, "DWE1M9": 2047, "DNE3L6": 2032},
@@ -198,9 +224,18 @@ def turnstile_spec(
     clockwise: bool = True,
     blade_picnum: int = BLADE_PICNUM,
     blade_tile_height: int = 128,
+    blade_tile_width: int = BLADE_TILE_WIDTH,
     blade_x_repeat: int = BLADE_X_REPEAT,
+    vanes: int = TURNSTILE_VANES,
+    arrangement: str = FLIPPED_PAIRS,
 ) -> dict[str, Any]:
     """The template's own facts, with no layout involved.
+
+    `vanes` is the variant: 4 is a turnstile, 2 a double gate, 1 a swinging
+    gate, and all three are the same sector with a different number of leaves
+    on it. **One rotor is a complete door** -- all 25 grated rotating doors in
+    the corpus reach exactly two sectors on their own -- so a pair is a
+    composition someone chose, not part of the mechanism.
 
     `turnstile` builds a rotor into a `PlanarLayout`; a project with its own
     room grammar needs the same facts without the region-making, and there
@@ -222,19 +257,28 @@ def turnstile_spec(
             f"clear height {clear} is not a whole number of blade tiles "
             f"({denominator} each); the blade would not meet both surfaces")
 
-    blades = []
-    for panel in range(BLADE_PANELS):
-        angle = (panel * BLADE_QUARTER) % 2048
+    offset = blade_offset(blade_x_repeat, blade_tile_width)
+    middle = (int(floor_z) + int(ceiling_z)) // 2
+
+    def vane(angle, sign, cstat):
         ux, uy = BUILD_DIRECTIONS[(angle + BLADE_QUARTER) % 2048]
-        for sign, cstat in ((1, BLADE_CSTAT), (-1, BLADE_CSTAT_FLIPPED)):
-            blades.append({
-                "type": 0, "picnum": int(blade_picnum), "cstat": cstat,
-                "angle": angle, "x_repeat": int(blade_x_repeat),
-                "y_repeat": y_repeat,
-                "z": (int(floor_z) + int(ceiling_z)) // 2,
-                "dx": sign * ux * BLADE_OFFSET,
-                "dy": sign * uy * BLADE_OFFSET,
-            })
+        return {"type": 0, "picnum": int(blade_picnum), "cstat": cstat,
+                "angle": angle % 2048, "x_repeat": int(blade_x_repeat),
+                "y_repeat": y_repeat, "z": middle,
+                "dx": sign * ux * offset, "dy": sign * uy * offset}
+
+    blades = []
+    if vanes == 4 and arrangement == FLIPPED_PAIRS:
+        # The campaign's: two angles, the flip bit facing the halves outward.
+        for panel in range(2):
+            angle = (panel * BLADE_QUARTER) % 2048
+            blades.append(vane(angle, 1, BLADE_CSTAT))
+            blades.append(vane(angle, -1, BLADE_CSTAT_FLIPPED))
+    else:
+        # The general form: one sprite per vane, evenly spaced, all facing out.
+        step = 2048 // max(1, vanes)
+        for index in range(vanes):
+            blades.append(vane((index * step) % 2048, 1, BLADE_CSTAT))
     return {
         "sector_type": ROTATE_MARKED,
         "behavior": {
@@ -254,6 +298,8 @@ def turnstile_spec(
                        "centre_z": (int(floor_z) + int(ceiling_z)) // 2,
                        "y_repeat": y_repeat,
                        "drawn_height": y_repeat * denominator},
+        "vanes": int(vanes), "arrangement": arrangement,
+        "blade_offset": offset,
         "period": int(period), "clockwise": bool(clockwise),
         "travel_angle": int(travel_angle),
         "turns": round(travel_angle / TURN, 3),
@@ -274,7 +320,10 @@ def turnstile(
     clockwise: bool = True,
     blade_picnum: int = BLADE_PICNUM,
     blade_tile_height: int = 128,
+    blade_tile_width: int = BLADE_TILE_WIDTH,
     blade_x_repeat: int = BLADE_X_REPEAT,
+    vanes: int = TURNSTILE_VANES,
+    arrangement: str = FLIPPED_PAIRS,
     sound: bool = False,
     **region_kwargs: Any,
 ) -> dict[str, Any]:
@@ -334,7 +383,8 @@ def turnstile(
             period=period, floor_z=floor_z, ceiling_z=ceiling_z,
             travel_angle=travel_angle, clockwise=clockwise,
             blade_picnum=blade_picnum, blade_tile_height=blade_tile_height,
-            blade_x_repeat=blade_x_repeat)
+            blade_tile_width=blade_tile_width, blade_x_repeat=blade_x_repeat,
+            vanes=vanes, arrangement=arrangement)
     except MechanismError as exc:
         raise MechanismError(f"{region_id}: {exc}") from None
     behavior = spec["behavior"]
@@ -362,6 +412,8 @@ def turnstile(
 
     return {
         "region": region_id, "pivot": [px, py],
+        "vanes": spec["vanes"], "arrangement": spec["arrangement"],
+        "blade_offset": spec["blade_offset"],
         "period": int(period), "clockwise": bool(clockwise),
         "travel_angle": int(travel_angle),
         "turns": round(travel_angle / TURN, 3),

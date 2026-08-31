@@ -17,7 +17,9 @@ import unittest
 from bloodmap.construction import _sprite_angle
 from bloodmap.mechanism import (
     BLADE_COUNT,
-    BLADE_OFFSET,
+    blade_offset,
+    BLADE_TILE_WIDTH,
+    BLADE_X_REPEAT,
     BUILD_DIRECTIONS,
     BLADE_PICNUM,
     CAMPAIGN_TRAVEL_ANGLE,
@@ -200,7 +202,8 @@ class TemplateFieldTests(unittest.TestCase):
             axis = markers[int(sprite.fields["sector"])]
             dx = int(sprite.fields["x"]) - int(axis.fields["x"])
             dy = int(sprite.fields["y"]) - int(axis.fields["y"])
-            self.assertEqual(max(abs(dx), abs(dy)), BLADE_OFFSET)
+            self.assertEqual(max(abs(dx), abs(dy)),
+                             blade_offset(BLADE_X_REPEAT, BLADE_TILE_WIDTH))
             self.assertEqual(min(abs(dx), abs(dy)), 0, "a vane lies on an axis")
             seen += 1
         self.assertEqual(seen, 8)
@@ -308,6 +311,94 @@ class TravelAngleTests(unittest.TestCase):
         self.assertEqual(angles, {DEATH_WISH_TRAVEL_ANGLE})
 
 
+class CategoryTests(unittest.TestCase):
+    """A rotating door is one mechanism; the vane count is the variant.
+
+    Censused over every grated rotating door in the corpus -- 25 rotors in 6
+    maps, including XMapEdit's own DOOR-ROTATING and DOOR-SWINGINGGATE samples:
+
+        1 vane    15 rotors   a swinging gate
+        2 vanes    1 rotor    a double gate
+        4 vanes    9 rotors   a turnstile
+    """
+
+    def spec(self, **kwargs):
+        from bloodmap.mechanism import turnstile_spec
+
+        kwargs.setdefault("arrangement", "distinct_angles")
+        return turnstile_spec(period=255, floor_z=0, ceiling_z=-ROTOR_CLEAR,
+                              **kwargs)
+
+    def test_a_single_vane_is_a_swinging_gate(self):
+        self.assertEqual(len(self.spec(vanes=1)["blades"]), 1)
+
+    def test_two_vanes_are_a_double_gate(self):
+        blades = self.spec(vanes=2)["blades"]
+        self.assertEqual(len(blades), 2)
+        self.assertEqual({b["angle"] for b in blades}, {0, 1024})
+
+    def test_four_vanes_are_a_turnstile_and_the_default(self):
+        from bloodmap.mechanism import TURNSTILE_VANES, turnstile_spec
+
+        self.assertEqual(TURNSTILE_VANES, 4)
+        default = turnstile_spec(period=255, floor_z=0, ceiling_z=-ROTOR_CLEAR)
+        self.assertEqual(len(default["blades"]), 4)
+
+    def test_both_attested_arrangements_build_the_same_cross(self):
+        """E1M4 uses two angles and the flip bit; DNE3L6 and DOOR-ROTATING use
+        four distinct angles. Either way four vanes stand off the axis."""
+        flipped = self.spec(vanes=4, arrangement="flipped_pairs")["blades"]
+        distinct = self.spec(vanes=4, arrangement="distinct_angles")["blades"]
+        for blades in (flipped, distinct):
+            spots = {(b["dx"], b["dy"]) for b in blades}
+            self.assertEqual(len(spots), 4)
+            self.assertEqual({abs(b["dx"]) + abs(b["dy"]) for b in blades},
+                             {blade_offset(BLADE_X_REPEAT, BLADE_TILE_WIDTH)})
+
+    def test_a_vane_stands_off_by_half_its_own_drawn_width(self):
+        """Not by a constant. 384 is what E1M4's x_repeat 48 produces; DNE3L6
+        and the door samples sit at 448 on x_repeat 56.
+        """
+        self.assertEqual(blade_offset(48), 384)
+        self.assertEqual(blade_offset(56), 448)
+        wide = self.spec(vanes=4, blade_x_repeat=56)["blades"]
+        self.assertEqual({abs(b["dx"]) + abs(b["dy"]) for b in wide}, {448})
+
+
+class OneRotorIsADoorTests(unittest.TestCase):
+    """All 25 grated rotating doors reach exactly two sectors on their own, so
+    a pair is a composition somebody chose and not part of the mechanism.
+    """
+
+    def rotor_reaches(self, name, sector):
+        from bloodmap.format import read_map
+        from bloodmap.patterns import PatternError, corpus_map_path
+
+        try:
+            path = corpus_map_path(name)
+        except PatternError:
+            self.skipTest(f"{name} is not in the local corpus")
+        if not path.exists():
+            self.skipTest(f"{name} is not in the local corpus")
+        disk = read_map(path)
+        f = disk.sectors[sector].fields
+        first, count = int(f["wall_ptr"]), int(f["wall_count"])
+        return sorted({int(disk.walls[w].fields["next_sector"])
+                       for w in range(first, first + count)
+                       if int(disk.walls[w].fields["next_sector"]) >= 0})
+
+    def test_dne3l6_rotors_are_each_their_own_door(self):
+        """Two different rooms either side of one rotor, not a mirrored pair."""
+        for sector in (3, 11):
+            with self.subTest(sector=sector):
+                self.assertEqual(len(self.rotor_reaches("DNE3L6", sector)), 2)
+
+    def test_the_campaign_rotors_are_doors_on_their_own_too(self):
+        for sector in (151, 314):
+            with self.subTest(sector=sector):
+                self.assertEqual(len(self.rotor_reaches("E1M4", sector)), 2)
+
+
 class RefusalTests(unittest.TestCase):
     def test_a_period_outside_the_engine_field_is_refused(self):
         for period in (0, -1, 70000):
@@ -369,7 +460,8 @@ class CorpusAgreementTests(unittest.TestCase):
                 offsets.add(max(abs(dx), abs(dy)))
                 counted += 1
         self.assertEqual(counted, 8)
-        self.assertEqual(offsets, {BLADE_OFFSET})
+        self.assertEqual(offsets, {blade_offset(48)},
+                         "E1M4's x_repeat 48 gives a 384 stand-off")
 
     def test_the_campaign_pair_has_the_fields_the_template_claims(self):
         disk, rotors = self.rotors("E1M4", (151, 314))
