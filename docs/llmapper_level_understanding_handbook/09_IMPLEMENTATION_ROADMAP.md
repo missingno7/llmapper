@@ -695,6 +695,38 @@ outright — one repeat, not four — and over the 540 campaign walls carrying i
 the tile draws a median of 1.00 times up its wall. `at_least` drops from 2 to 1,
 which against the corrected span would otherwise have doubled every leaf.
 
+**Built, 2026-08-31: `aperture.facade_run`.** The phase's reading was crossed
+into authoring. One street frontage emitted from the measured defaults and
+nothing else, at two widths, in `projects/facade-pilot/`. Verified with "it
+compiled" excluded: `validate`, `roundtrip` (byte-exact) and
+`validate-authored` all clean at both widths, geometry-audit native 0 /
+authored 0, and an NBlood load/spawn smoke reaching map_initialization and the
+game loop. Width invariance holds -- at 6 and 10 bays the bay, the reveal, both
+datums, both materials and the sign seat are identical, which is Phase 13's
+exit shape piloted early. Report `reports/blood-facade-build.md`, tests
+`tests/test_facade_run.py` (26, 11 of 11 mutants caught).
+
+**Building corrected the reading twice, and both corrections are in the
+phase's numbers now.**
+
+1. *The datums were annotations.* Recording `header_z` beside the opening left
+   the mouth open floor-to-ceiling; the placement validator caught it as sign
+   letters hanging over a hole. The header **is** the neighbour's ceiling, so
+   it shapes the opening rather than describing it.
+2. *A facade wall has thickness, and the piers are void.* Giving the interior
+   the whole frontage and declaring the spans solid is a wall sandwich, which
+   the authored-geometry gate rejects. Asked directly, the corpus is
+   unanimous: of **780 campaign facade solid walls, 0 have a reversed
+   coincident partner and 780 stand alone**. So the interior is set back and
+   each opening is a passage cut through the wall -- the reveal -- whose depth
+   is measured too: 256 and 512 are the commonest of the 1140 sectors behind a
+   campaign facade opening, and 41% are at or under 512.
+
+`facade_run` is a **composable helper, not a `vocabulary.py` constructor**.
+That module admits a concept only when a compact parameter set reproduces
+held-out examples, which has never been run; the blockers are returned on every
+build rather than left in a comment.
+
 ## Already in the repository
 
 `aperture.py` (an opening is a leaf plus mediation; reveal dressing rules),
@@ -764,6 +796,41 @@ concentration 55% against 32%; only 3% at the sector midpoint), with 0 units
 a preference, not a rule, and predicted but not determined by whether the
 sector has headroom. 116 markers (9%) sit below their own floor, which closes
 the Phase 4 contrast's last open counterexample.
+
+**Turnstile template promoted, 2026-08-31 -- partly.** The
+kSectorRotateMarked door subfamily (88 instances in 14 maps; the door/scenery
+split is spatial, not a field) is now a template mined by name from E1M4
+151/314 and DWE1M9 61/64, and a constructor: `mechanism.turnstile` and
+`turnstile_pair`, beside `sliding_gate`. Report
+`reports/blood-turnstile-build.md`, template
+`projects/facade-pilot/reports/turnstile-template.json`, tests
+`tests/test_turnstile.py` (23, 13 of 13 mutants caught).
+
+Its **state-change reading is this phase's material**: the rotor takes the
+`level_start` broadcast once on `rx_id` 7 and cycles for ever because both
+waves retrigger, which is a state machine with one input and no rest pose --
+a shape neither `doors.py` nor the Z-motion vocabulary covers.
+
+Two corrections to `auto-rotators.md` came out of building it. The ambient
+sound sprite is **not** a family trait -- E1M4 has one in both rotors and
+DWE1M9 in neither -- so it is off by default. And direction is **not** the
+marker's sign: both E1M4 rotors carry the same marker angle and mirrored busy
+fields, so what counter-rotates a pair is which busy field carries the period.
+
+**A silent defect found by the motion replay.** `construction.add_sprite`
+masked every sprite angle to `& 2047`. For a kMarkerAxis the angle is not a
+facing but the *travel* -- Blood interpolates `0 -> ang` -- and E1M4's -8192 is
+four whole turns, which masks to exactly **0**: a rotor that does not move,
+written silently with every validator green. The mask now applies to facings
+only.
+
+**Not proven, and the phase is not DONE on it:** that a player can pass through
+at the mined spin rates. The available oracles are a load/spawn smoke and an
+action oracle that presses Use once; neither walks a body through a moving
+aperture. The map loads, spawns and survives. Relatedly, `motion_sim` agrees
+with the original and cannot check this mechanism: a 615 sweeps only walls
+flagged `cstat & 16384/32768`, every E1M4 rotor wall is `cstat 0`, and what
+turns is the carried grates, which `blood_sweep` does not model.
 
 ## Already in the repository
 

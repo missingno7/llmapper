@@ -32,7 +32,19 @@ This directory is a retrieval surface, not a second authoring language.  A map
 uses it through the shared constructors: `art` supplies tile dimensions,
 `surfaces`/`materials` carry finish vocabulary, `decoration` supplies attested
 appearance, `doors`/`aperture` implement mechanism and leaf conventions, and
-`lightbomb` derives illumination from declared sources.  A project should record
+`lightbomb` derives illumination from declared sources.
+
+Two constructors were promoted on 2026-08-31 and neither is a `vocabulary.py`
+entry, because that module wants a compact parameter set to reproduce held-out
+examples and neither has been put through it:
+
+| what | where | evidence | what is still missing |
+| --- | --- | --- | --- |
+| `facade_run` | `aperture.py` | 890 campaign facade candidates in 37 maps; `reports/blood-facade-build.md` | a held-out reproduction test |
+| `turnstile` / `turnstile_pair` | `mechanism.py` | 4 door rotors, E1M4 151/314 + DWE1M9 61/64; `reports/blood-turnstile-build.md` | an oracle proving a player can pass through |
+
+Both return their own promotion blockers with every build, so a caller cannot
+use one without being told what it is not.  A project should record
 its one-off choice in source and its evidence in a report; a repeated need must
 be promoted to the relevant `bloodmap` constructor and regression test.  The
 [shared authoring toolkit](../../../docs/authoring-toolkit.md) gives the full
