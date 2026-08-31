@@ -60,6 +60,26 @@ class SectorAllocation:
     wall_ids: tuple[int, ...]
 
 
+#: kMarkerAxis. Its angle is not a facing.
+MARKER_AXIS_TYPE = 5
+
+
+def _sprite_angle(type_id: int, angle: int) -> int:
+    """Normalize a facing; leave a travel alone.
+
+    A sprite's `ang` is a direction and wraps at 2048, so masking it is right
+    for everything that faces somewhere. A kMarkerAxis does not face: Blood
+    interpolates 0 -> ang to sweep its RotateMarked sector, so the magnitude is
+    *how far it turns* and the sign is which way. E1M4's turnstiles store -8192
+    -- four full turns -- and masking that to 2047 leaves exactly 0, which is a
+    rotor that does not move. The angle stays raw for that one type, and the
+    int16 field carries it the way the campaign stores it.
+    """
+    if type_id == MARKER_AXIS_TYPE:
+        return int(angle)
+    return int(angle) & 2047
+
+
 class LevelBuilder:
     """Native-array LevelIR allocator for exact reversed portals and conversion.
 
@@ -254,7 +274,8 @@ class LevelBuilder:
             x=int(x), y=int(y), z=int(z), cstat=int(cstat), picnum=int(picnum),
             shade=int(shade), pal=int(pal), clipdist=int(clipdist),
             x_repeat=int(x_repeat), y_repeat=int(y_repeat), sector=sector_id,
-            status=int(status), angle=int(angle) & 2047, owner=-1, index=sprite_id,
+            status=int(status), angle=_sprite_angle(int(type), int(angle)),
+            owner=-1, index=sprite_id,
             type=int(type), initial_type=int(type), extra=-1,
         )
         self.level.sprites.append({"id": sprite_id, "fields": sprite, "blood": None})
