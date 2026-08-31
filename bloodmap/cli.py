@@ -1814,6 +1814,55 @@ def cmd_oracle_nblood_passage(args: argparse.Namespace) -> int:
     return 0 if report["status"] == "pass" else 1
 
 
+def cmd_conditional(args: argparse.Namespace) -> int:
+    from .conditional import (
+        Action, Held, build_graph, frontier, route_edges, what_becomes_reachable,
+    )
+
+    disk = read_map(args.map)
+    graph = build_graph(disk)
+    if args.frontier:
+        _write_text(args.output, _json(frontier(disk, graph=graph)))
+        return 0
+    if args.action is None:
+        report = {
+            "$schema": "llmapper.conditional-traversability",
+            "schema_version": 1,
+            "map": str(args.map),
+            "summary": dict(graph.summary),
+            "start_sector": graph.start,
+            "at_rest_reachable": len(graph.reachable(Held())),
+            "routes": route_edges(graph.edges),
+            "edges": [edge.to_dict() for edge in graph.edges],
+        }
+        _write_text(args.output, _json(report))
+        return 0
+    held = Held(keys=frozenset(args.holding_key or ()),
+                channels=frozenset(args.fired_channel or ()))
+    if args.action == "obtain-key":
+        action = Action(kind="obtain_key", key=int(args.target))
+    elif args.action == "use-switch":
+        index = int(args.target)
+        channel = int(_sprite_channel(disk, index))
+        action = Action(kind="use_switch", index=index, channel=channel)
+    elif args.action == "destroy":
+        index = int(args.target)
+        channel = int(_sprite_channel(disk, index))
+        action = Action(kind="destroy", index=index, channel=channel)
+    else:
+        action = Action(kind="operate", index=int(args.target))
+    report = what_becomes_reachable(disk, action, already=held, graph=graph)
+    report["map"] = str(args.map)
+    _write_text(args.output, _json(report))
+    return 0 if report["newly_reachable"] else 1
+
+
+def _sprite_channel(disk, index: int) -> int:
+    extra = getattr(disk.sprites[index], "extra", None)
+    fields = extra.fields if extra is not None and hasattr(extra, "fields") else {}
+    return int(fields.get("tx_id") or 0)
+
+
 def cmd_transform(args: argparse.Namespace) -> int:
     game = _game_for_path(args.map)
     ir = _read_build_ir(args.map)
@@ -2432,6 +2481,23 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--work-dir", help="preserve logs and the trajectory under this ignored directory")
     p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")
     p.set_defaults(func=cmd_oracle_nblood_passage)
+    p = sub.add_parser(
+        "conditional",
+        help="conditional traversability: which ways are gated, and what opens them",
+    )
+    p.add_argument("map", help="a Blood MAP")
+    p.add_argument("--action", choices=("use-switch", "destroy", "obtain-key", "operate"),
+                   help="ask what becomes reachable after this action")
+    p.add_argument("--target", help="sprite index for use-switch/destroy, key "
+                                    "number for obtain-key, sector for operate")
+    p.add_argument("--holding-key", type=int, action="append",
+                   help="a key already held; repeatable")
+    p.add_argument("--fired-channel", type=int, action="append",
+                   help="a channel already fired; repeatable")
+    p.add_argument("--frontier", action="store_true",
+                   help="emit the whole trigger-gated progression instead")
+    p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")
+    p.set_defaults(func=cmd_conditional)
     p = sub.add_parser("oracle-gzdoom", help="run a bounded GZDoom map-load smoke test")
     p.add_argument("--iwad", required=True)
     p.add_argument("--gzdoom", required=True)
