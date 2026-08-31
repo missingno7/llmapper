@@ -235,6 +235,39 @@ def motion_markers(disk: Any, sector_id: int) -> dict[str, Any]:
     return out
 
 
+def _owner_materials(disk: Any, wall_ids: Sequence[int],
+                     sprite_ids: Sequence[int]) -> list[dict[str, Any]]:
+    """The owner's reading of every tile the moving parts wear.
+
+    `may_name` travels with each one. A weak-binding tile is material and a
+    name must not rest on it; carrying the flag beside the label is what
+    makes that rule checkable downstream instead of remembered.
+    """
+    from .owner_anchors import OwnerAnchorError, load_owner_anchors
+
+    try:
+        anchors = load_owner_anchors()
+    except OwnerAnchorError:
+        return []
+    seen: dict[int, dict[str, Any]] = {}
+    for source, indices in (("wall", wall_ids), ("sprite", sprite_ids)):
+        items = disk.walls if source == "wall" else disk.sprites
+        for index in indices:
+            if not 0 <= index < len(items):
+                continue
+            picnum = int(items[index].fields["picnum"])
+            anchor = anchors.get(picnum)
+            if anchor is None or picnum in seen:
+                continue
+            seen[picnum] = {
+                "picnum": picnum, "on": source,
+                "label": anchor.describe(),
+                "binding": anchor.binding or "untested",
+                "may_name": anchor.may_name,
+            }
+    return [seen[key] for key in sorted(seen)]
+
+
 def payload(disk: Any, sector_id: int) -> dict[str, Any]:
     """What the motion drags: the sector's own walls, sprites, or both."""
     sector = disk.sectors[sector_id]
@@ -270,6 +303,12 @@ def payload(disk: Any, sector_id: int) -> dict[str, Any]:
         carries = PAYLOAD_NOTHING
     return {
         "carries": carries,
+        #: What the moving parts are *made of*, in the owner's words. A
+        #: blade sprite on tile 332 reads "grate/lattice (owner)" in a
+        #: report rather than as a bare number, and the label is reproduced
+        #: from `owner-anchors-v1.json` rather than retyped here.
+        "materials": _owner_materials(disk, with_walls + against_walls,
+                                      with_sprites + against_sprites),
         "moves_every_wall": all_walls,
         "walls_with": with_walls, "walls_against": against_walls,
         "sprites_with": with_sprites, "sprites_against": against_sprites,

@@ -97,6 +97,59 @@ def anchor_from_material(name: str) -> AnchorSpec:
                       origin=f"surfaces.MATERIALS[{name!r}] declared surfaces")
 
 
+def anchor_from_owner(name: str, *, binding: str | None = None,
+                      kind: str | None = None) -> AnchorSpec:
+    """An anchor built from the owner's own tile readings.
+
+    The third way to say what a class is, beside a typed tile list and a
+    material's declared surfaces -- and the one that had been missing, so
+    every caller that wanted "the tiles the owner calls crates" typed the
+    numbers again.
+
+    `name` is a substring of the owner's English label; `binding` and `kind`
+    narrow it further. The origin string carries the query, so a report says
+    which owner reading a class came from rather than showing a bare list.
+    """
+    from .owner_anchors import load_owner_anchors
+
+    anchors = load_owner_anchors()
+    needle = name.strip().lower()
+    chosen = [item for item in anchors
+              if needle in item.label_en.lower()
+              and (binding is None or item.binding == binding)
+              and (kind is None or item.kind == kind)]
+    if not chosen:
+        raise AnchorError(
+            f"the owner's anchors name nothing matching {name!r}"
+            + (f" with binding {binding!r}" if binding else "")
+            + (f" of kind {kind!r}" if kind else ""))
+    detail = ", ".join(filter(None, (f"label~{name!r}",
+                                     f"binding={binding}" if binding else "",
+                                     f"kind={kind}" if kind else "")))
+    return AnchorSpec(
+        name=f"owner:{name}", tiles=tuple(sorted(item.picnum for item in chosen)),
+        origin=f"owner-anchors-v1.json ({detail}); OWNER provenance")
+
+
+def owner_anchor_kit(*, binding: str = "strong") -> list[AnchorSpec]:
+    """One anchor per owner tile at this binding -- the default kit.
+
+    `anchor-mine --kit` used to need a hand-written JSON table. The owner's
+    strong-binding tiles are exactly the set the binding rule says a name may
+    rest on, so they are the kit worth having by default.
+    """
+    from .owner_anchors import load_owner_anchors
+
+    anchors = load_owner_anchors()
+    return [
+        AnchorSpec(name=f"owner:{item.label_en}", tiles=(item.picnum,),
+                   origin=f"owner-anchors-v1.json tile {item.picnum}, "
+                          f"binding {item.binding}; OWNER provenance")
+        for item in sorted(anchors.by_binding(binding),
+                           key=lambda entry: entry.picnum)
+    ]
+
+
 def anchor_from_regions(
     build: BuildIR, sector_ids: Iterable[int], *, name: str, source: str = "",
 ) -> AnchorSpec:
