@@ -159,6 +159,27 @@ def cmd_corpus(args: argparse.Namespace) -> int:
     return 1 if any(item["status"] != "ok" for item in inventory["files"]) else 0
 
 
+def cmd_corpus_tier(args: argparse.Namespace) -> int:
+    """Heuristic tiers for the bulk community corpus. Navigation, not evidence."""
+    from .tiering import write_tiered_corpus
+
+    manifest, summary = write_tiered_corpus(
+        args.output_directory, args.manifest, args.summary,
+        directory=args.maps, population=args.population,
+        reference_view=args.view, health_report=args.health_report,
+        workers=args.workers,
+    )
+    gate = manifest["health_gate"]
+    print(f"{len(manifest['records'])} maps tiered against the "
+          f"{manifest['reference_view']} view ({manifest['reference_map_count']} maps)")
+    for name, count in sorted(summary["classification_counts"].items()):
+        print(f"  {name:14} {count:5}")
+    if gate["skipped"]:
+        print(f"  skipped by the health gate: {len(gate['skipped'])} "
+              f"({gate['basis']})", file=sys.stderr)
+    return 0
+
+
 def cmd_corpus_manifest(args: argparse.Namespace) -> int:
     """Record the reorganized corpus layout, populations, views and tiers."""
     from .patterns import build_corpus_manifest
@@ -1797,6 +1818,18 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--population", choices=tuple(POPULATIONS), help="inventory one population instead of a directory")
     p.add_argument("--view", choices=tuple(CORPUS_VIEWS), help="inventory a named view instead of a directory")
     p.set_defaults(func=cmd_corpus)
+    p = sub.add_parser("corpus-tier", help="heuristic navigation tiers for the community corpus")
+    p.add_argument("--maps", help="corpus root (default: BLOODMAP_CORPUS or maps/blood)")
+    p.add_argument("--population", default="community", choices=tuple(POPULATIONS))
+    p.add_argument("--view", default="reference", choices=tuple(CORPUS_VIEWS),
+                   help="the reference population to compare against")
+    p.add_argument("--health-report", help="corpus-health JSON; maps that failed "
+                                           "the gate are skipped and reported")
+    p.add_argument("--output-directory", required=True, help="directory for tiered copies")
+    p.add_argument("--manifest", required=True)
+    p.add_argument("--summary", required=True)
+    p.add_argument("--workers", type=int, default=1)
+    p.set_defaults(func=cmd_corpus_tier)
     p = sub.add_parser("corpus-manifest", help="record the corpus layout, populations, modes, tiers, and named views")
     p.add_argument("directory", nargs="?", help="corpus root (default: BLOODMAP_CORPUS or maps/blood)")
     p.add_argument("-o", "--output", required=True)
