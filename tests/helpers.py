@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import copy
-from functools import lru_cache
 from pathlib import Path
 
 from bloodmap.format import (
@@ -9,7 +8,10 @@ from bloodmap.format import (
     encode_map, parse_map,
 )
 from bloodmap.model import DiskMap, DiskObject, ExtraHeader, PackedExtra
-from bloodmap.patterns import corpus_root, is_structured_corpus, list_corpus_maps
+from bloodmap.patterns import (
+    NAMED_POPULATIONS, corpus_map_path, corpus_root, is_structured_corpus,
+    list_corpus_maps,
+)
 
 
 def blood_corpus_root() -> Path:
@@ -27,29 +29,15 @@ def campaign_directory() -> Path:
     return root / "campaign" if is_structured_corpus(root) else root
 
 
-@lru_cache(maxsize=None)
-def _named_corpus_maps() -> dict[str, Path]:
-    """Filename -> path over the named populations (not the bulk community set).
-
-    Bulk community filenames are arbitrary and collide with campaign names, so
-    they are deliberately excluded from name-based lookup.
-    """
-    root = blood_corpus_root()
-    index: dict[str, Path] = {}
-    for population in ("blood-campaign", "blood-bloodbath", "community-curated",
-                       "own-conversion"):
-        for item in list_corpus_maps(root, population=population, attach_tiers=False):
-            index.setdefault(item.name.upper(), item.path)
-    return index
-
-
 def corpus_map(filename: str) -> Path:
     """Resolve one named corpus map, wherever the layout puts it.
 
     Returns a non-existent path when the corpus is absent, so a caller's
-    `exists()` skip guard still works.
+    `exists()` skip guard still works. This lived here first; it is now
+    `bloodmap.patterns.corpus_map_path`, because eight non-test callers
+    needed the same answer and were each spelling a flat path by hand.
     """
-    return _named_corpus_maps().get(filename.upper(), blood_corpus_root() / filename)
+    return corpus_map_path(filename, root=blood_corpus_root(), missing_ok=True)
 
 
 def named_corpus_maps() -> list[Path]:
@@ -58,8 +46,15 @@ def named_corpus_maps() -> list[Path]:
     This is the set the native losslessness gate is expected to hold for. The
     bulk `community/` population is deliberately excluded: those maps have not
     passed the gate, and the fail-closed health report covers them instead.
+    `NAMED_POPULATIONS` is the same set `corpus_map_path` searches by name,
+    and for the same reason.
     """
-    return sorted(_named_corpus_maps().values())
+    root = blood_corpus_root()
+    found: dict[str, Path] = {}
+    for population in NAMED_POPULATIONS:
+        for item in list_corpus_maps(root, population=population, attach_tiers=False):
+            found.setdefault(item.name.upper(), item.path)
+    return sorted(found.values())
 
 
 def synthetic_map() -> DiskMap:

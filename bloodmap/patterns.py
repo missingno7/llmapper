@@ -20,7 +20,7 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass, replace
 from math import atan2, degrees, hypot
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Iterable, Sequence
 
 from .build_ir import BuildIR
 from .design import _polygon_loops, _signed_area
@@ -447,6 +447,64 @@ def list_original_maps(
     if population not in POPULATIONS:
         raise PatternError(f"unknown population {population!r}")
     return [item.path for item in list_corpus_maps(directory, population=population)]
+
+
+#: Populations a bare filename may name unambiguously. The bulk `community/`
+#: set is excluded on purpose: its filenames are arbitrary and collide with
+#: campaign names, so a name lookup across it would silently hand back
+#: somebody else's E1M1.
+NAMED_POPULATIONS: tuple[str, ...] = (
+    "blood-campaign", "blood-bloodbath", "community-curated", "own-conversion",
+)
+
+
+def _named_map_index(
+    root: Path, populations: tuple[str, ...],
+) -> dict[str, Path]:
+    index: dict[str, Path] = {}
+    for population in populations:
+        for item in list_corpus_maps(root, population=population, attach_tiers=False):
+            index.setdefault(item.name.upper(), item.path)
+    return index
+
+
+def corpus_map_path(
+    name: str,
+    *,
+    root: str | Path | None = None,
+    populations: Sequence[str] = NAMED_POPULATIONS,
+    missing_ok: bool = False,
+) -> Path:
+    """Where a named map lives, whatever directory the corpus puts it in.
+
+    `name` may be given with or without its extension and in any case, so
+    ``"E3M1"``, ``"e3m1.map"`` and ``"E3M1.MAP"`` all resolve.
+
+    The corpus was reorganized into provenance directories, so
+    ``maps/blood/E3M1.MAP`` stopped existing and every caller that spelled
+    that path by hand stopped working -- silently, at whatever depth it first
+    read a map. This is the one place that knows the layout. Enumerate
+    through it, never by globbing a directory.
+
+    Raises `PatternError` when the map is absent, so a miner fails at the
+    lookup rather than deep inside. Pass ``missing_ok=True`` to get the path
+    it *would* have back instead, which is what a test's `exists()` skip
+    guard wants.
+    """
+    root_path = corpus_root(root)
+    wanted = Path(str(name)).name.upper()
+    if not wanted.endswith(".MAP"):
+        wanted += ".MAP"
+    index = _named_map_index(root_path, tuple(populations))
+    found = index.get(wanted)
+    if found is not None:
+        return found
+    if missing_ok:
+        return root_path / wanted
+    raise PatternError(
+        f"{wanted} is not in the corpus at {root_path}; "
+        f"searched {', '.join(populations)}"
+    )
 
 
 CORPUS_MANIFEST_SCHEMA = "llmapper.blood-corpus-manifest"

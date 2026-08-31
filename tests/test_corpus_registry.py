@@ -23,6 +23,7 @@ from bloodmap.patterns import (
     build_corpus_manifest,
     classify_map_population,
     clear_corpus_cache,
+    corpus_map_path,
     corpus_root,
     filename_population_hint,
     list_corpus_maps,
@@ -224,6 +225,120 @@ class SyntheticCorpusTests(unittest.TestCase):
                 os.environ.pop("BLOODMAP_CORPUS", None)
             else:
                 os.environ["BLOODMAP_CORPUS"] = previous
+
+
+class NamedMapLookupTests(unittest.TestCase):
+    """`corpus_map_path`: the one place that knows where a named map lives.
+
+    The corpus was reorganized into provenance directories, so
+    `maps/blood/E3M1.MAP` stopped existing and every caller that spelled that
+    path by hand broke silently. These pin the replacement.
+    """
+
+    LAYOUT = SyntheticCorpusTests.LAYOUT
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls._tmp = tempfile.mkdtemp(prefix="llmapper-named-")
+        cls.root = Path(cls._tmp)
+        payload = encode_map(synthetic_map())
+        for index, relative in enumerate(cls.LAYOUT):
+            path = cls.root / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(payload + bytes([index]))
+        clear_corpus_cache()
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        clear_corpus_cache()
+        shutil.rmtree(cls._tmp, ignore_errors=True)
+
+    def resolve(self, name, **kwargs):
+        return corpus_map_path(name, root=self.root, **kwargs)
+
+    def test_a_campaign_map_resolves_to_its_population_directory(self):
+        self.assertEqual(self.resolve("E1M1"), self.root / "campaign" / "E1M1.MAP")
+
+    def test_the_extension_and_the_case_are_both_optional(self):
+        for spelling in ("E1M1", "e1m1", "E1M1.MAP", "e1m1.map", "E1M1.Map"):
+            with self.subTest(spelling=spelling):
+                self.assertEqual(self.resolve(spelling),
+                                 self.root / "campaign" / "E1M1.MAP")
+
+    def test_a_mode_subdirectory_is_found_too(self):
+        """BB1 is in campaign/multiplayer/, which no caller should have to know."""
+        self.assertEqual(self.resolve("BB1"),
+                         self.root / "campaign" / "multiplayer" / "BB1.MAP")
+
+    def test_curated_and_conversions_resolve(self):
+        self.assertEqual(self.resolve("DWE1M1"), self.root / "curated" / "DWE1M1.MAP")
+        self.assertEqual(self.resolve("DNE3L1"),
+                         self.root / "conversions" / "DNE3L1.MAP")
+
+    def test_the_bulk_community_set_is_not_searched(self):
+        """Its filenames are arbitrary. A name lookup that reached into it
+        would answer questions about original Blood with somebody else's map.
+        """
+        with self.assertRaises(PatternError):
+            self.resolve("WHATEVER")
+
+    def test_a_missing_map_says_what_it_searched(self):
+        with self.assertRaises(PatternError) as caught:
+            self.resolve("NOSUCH")
+        message = str(caught.exception)
+        self.assertIn("NOSUCH.MAP", message)
+        self.assertIn("blood-campaign", message)
+
+    def test_missing_ok_returns_the_path_it_would_have(self):
+        """What a test's exists() skip guard wants: no corpus, no exception."""
+        self.assertEqual(self.resolve("NOSUCH", missing_ok=True),
+                         self.root / "NOSUCH.MAP")
+
+    def test_a_directory_component_in_the_name_is_ignored(self):
+        """Callers migrating from the flat layout pass the old path whole."""
+        self.assertEqual(self.resolve("maps/blood/E1M1.MAP"),
+                         self.root / "campaign" / "E1M1.MAP")
+
+    def test_the_population_search_order_is_a_named_argument(self):
+        with self.assertRaises(PatternError):
+            self.resolve("E1M1", populations=("community-curated",))
+
+
+class NamedMapCollisionTests(unittest.TestCase):
+    """A community file may be called E1M1.MAP and not be the Monolith map."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls._tmp = tempfile.mkdtemp(prefix="llmapper-collide-")
+        cls.root = Path(cls._tmp)
+        payload = encode_map(synthetic_map())
+        for index, relative in enumerate(("campaign/E1M1.MAP",
+                                          "community/E1M1.MAP",
+                                          "curated/E1M1.MAP")):
+            path = cls.root / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(payload + bytes([index]))
+        clear_corpus_cache()
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        clear_corpus_cache()
+        shutil.rmtree(cls._tmp, ignore_errors=True)
+
+    def test_the_campaign_copy_wins(self):
+        """Search order is population order, and campaign is first: an
+        authoritative statement about original Blood must not be answered
+        with a community file that happens to share the name.
+        """
+        self.assertEqual(corpus_map_path("E1M1", root=self.root),
+                         self.root / "campaign" / "E1M1.MAP")
+
+    def test_the_bulk_community_copy_is_never_the_answer(self):
+        for populations in (("blood-campaign",), ("community-curated",)):
+            with self.subTest(populations=populations):
+                found = corpus_map_path("E1M1", root=self.root,
+                                        populations=populations)
+                self.assertNotIn("community", found.parts)
 
 
 class FilenameHintTests(unittest.TestCase):
