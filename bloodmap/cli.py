@@ -1820,7 +1820,7 @@ def cmd_conditional(args: argparse.Namespace) -> int:
     )
 
     disk = read_map(args.map)
-    graph = build_graph(disk)
+    graph = build_graph(disk, base=args.base)
     if args.frontier:
         _write_text(args.output, _json(frontier(disk, graph=graph)))
         return 0
@@ -2494,6 +2494,10 @@ def build_parser() -> argparse.ArgumentParser:
                    help="a key already held; repeatable")
     p.add_argument("--fired-channel", type=int, action="append",
                    help="a channel already fired; repeatable")
+    p.add_argument("--base", default="blocking_aware",
+                   choices=("blocking_aware", "optimistic", "strict"),
+                   help="which base graph to gate; each assumes something "
+                        "different and the report says which was used")
     p.add_argument("--frontier", action="store_true",
                    help="emit the whole trigger-gated progression instead")
     p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")

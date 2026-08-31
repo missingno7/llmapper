@@ -10,14 +10,55 @@ after this action?"** with the chain that explains it.
 bloodmap/conditional.py        the view
 bloodmap/cli.py                llmapper conditional
 reports/blood-conditional-topology.json
-tests/test_conditional.py      27 tests, 16 of 16 mutants caught
+tests/test_conditional.py      46 tests, 25 of 25 mutants caught
 work/_cond_report.py  work/_pilot_verify.py  work/_progression_diff.py
 ```
 
+## Three bases, one default
+
+Updated 2026-09-01. The base graph is no longer a single permissive answer.
+
+```text
+optimistic       reachability.portal_graph: every two-sided wall is a way,
+                 gating ignored. Reaches behind shut doors.
+blocking_aware   THE DEFAULT. portal_graph minus crossings whose wall carries
+                 the blocking cstat, plus the blocking walls a kWallGib
+                 mechanism reopens -- as conditional crossings with their
+                 cause chain, not as walls.
+strict           spatial.walkable_at_rest: the blocking flag, a portal under
+                 512 wide and an opening under 4096 are all hard stops, and
+                 nothing reopens any of them.
+```
+
+All three stay callable and every report says which it ran on, because they
+disagree by a lot and the disagreement is a finding rather than a setting.
+
+**Only one mechanism in the engine reopens a blocked wall.**
+`triggers.cpp:SetupGibWallState` clears `cstat & 65` and the masked bit on
+both sides when a kWallGib (type 511) XWALL's `state` is 1, and sets them
+again when it is 0. Nothing else changes a wall's blocking bit — a Z-motion
+sector moves floors and ceilings, never cstat — so a blocking wall that is
+not a gib wall is **shut for ever**.
+
+```text
+60839 two-sided campaign walls    2272 blocking (3.7%)
+  kWallGib (511)            205    every one built shut, every one wired
+  plain and solid for ever 1183
+  plain, on a motion sector 850    the door's own jamb walls
+  other XWALL                34
+```
+
+Two rules the measurement forced, in opposite directions. A **wall pair** is
+shut when *either* side carries the bit, because the engine sets it on one
+side and clears it on the other. A **sector pair** is shut only when *every*
+wall pair between the two blocks — reading that the other way made this base
+stricter than the strict base, and E1M1 fell to 28 sectors against strict's
+34, which is how the mistake surfaced.
+
 ## What it reads
 
-Three kinds of crossing, over `reachability.py`'s graph and `effects.py`'s
-embedding — no second opinion about what a portal is:
+Three kinds of crossing, over the chosen base and `effects.py`'s embedding —
+no second opinion about what a portal is:
 
 * **at rest** — passable with nobody doing anything; left in the base.
 * **conditional** — passable in exactly one of a mechanism's two states,
@@ -38,23 +79,25 @@ directed edges.
 43 maps.
 
 ```text
-Z-motion mechanisms                1365
-  wired                            1235
-  inert -- nothing can reach them    130
+Z-motion mechanisms                1365      blocking crossings      1392
+  wired                            1235        reopened by a gib wall  214
+  inert -- nothing can reach them    130        shut for ever          1190
 rotate and slide, scoped out        657
-conditional crossings              4160   -> 1069 routes
+conditional crossings              4378   -> 1178 routes
 never passable in either state     1085
 routes needing a key                 87
-routes that cannot be undone         156
+routes that cannot be undone         268
 ```
 
 ```text
-routes by what the mechanism reads as        routes by trigger kind
-changes what fits through   665  62.2%       switch    514
-carries a body between lvl  182  17.0%       push      264
-both                        134  12.5%       shot      176
-neither                      88   8.2%       unknown   170
-                                             touch      70
+routes by what gates them           routes by trigger kind
+a moving sector    1069             push 488   shot 303   switch 285
+a breakable wall    109             relay 125  touch 69   pickup 12
+                                    unknown 9  leave 3    kill 1   generator 1
+
+routes by what the mechanism reads as
+changes what fits through   774        both        134
+carries a body between lvl  182        neither      88
 ```
 
 **Not one gating channel is a system channel.** Of the 113 distinct channels
@@ -143,6 +186,23 @@ Every link is a field in the map.
 `--frontier` emits the whole progression instead; `--holding-key` and
 `--fired-channel` set the state to ask from, which a keyed door needs.
 
+## The trigger kinds, and what "unknown" was really measuring
+
+170 routes used to carry a cause reading `unknown`. They were never unknown
+triggers: the classifier was measuring the **absence of a player-facing
+flag**, and `trigger_on` / `trigger_off` are *response* flags — what a thing
+does when its channel fires — not causes.
+
+Five kinds were missing. **`relay`** (154 of the 204 unclassified causes): a
+thing that listens on one channel and retransmits on another, a link in a
+chain rather than its head; 99 of them are kSectorZMotion sectors that
+transmit when they move. **`pickup`**: 18 were key sprites, and picking up a
+key is the commonest progression step in the game. **`leave`**: Blood's
+`trigger_exit`, fired by walking *out*. **`kill`**: a dude that transmits on
+death. **`generator`**: kGenTrigger and its family.
+
+That takes the residue from 170 routes to **9 causes, all kTrapExploder**.
+
 ## Against `sp_understand`, and neither of us is right
 
 Five campaign maps, at-rest and final reachable sector counts. `loose` is
@@ -150,31 +210,29 @@ this view on `reachability.py`'s base, `strict` is the same view on
 `spatial.py`'s walkable-at-rest base, `sp` is `analyze_progression`.
 
 ```text
-map    sectors  design | loose  final | strict  final |  sp  final  exit
-E1M1       155     146 |   125    130 |     34     38 |   2      2  False
-E1M2       313     293 |   231    233 |    218    220 | 242    248  True
-E1M3       329     320 |   227    269 |    208    240 | 243    271  True
-E1M4       398     387 |   260    362 |    231    306 | 263    278  False
-E2M2       290     260 |   221    255 |    195    222 | 204    221  True
+map    sectors design |  optimistic | blocking-aware |    strict | sp_understand
+E1M1       155    146 |  125 > 131  |     97 > 120   |  34 > 38  |     2 > 2
+E1M2       313    293 |  231 > 238  |    226 > 233   | 218 > 225 |   242 > 248
+E1M3       329    320 |  227 > 269  |    211 > 243   | 208 > 240 |   243 > 271
+E1M4       398    387 |  260 > 362  |    253 > 357   | 231 > 308 |   263 > 278
+E2M2       290    260 |  221 > 255  |    201 > 230   | 195 > 222 |   204 > 221
 ```
 
-**Final-reachable agreement: 0 of 5.** But the size of the disagreement is
-the finding, not the count:
+**Final-reachable agreement is exact 0 of 5 on every base.** Gaps on the
+default base are 118, 15, 28, 79 and 9. The size of the disagreement is the
+finding, not the count — E2M2 differs by 9 and E1M1 by 118.
 
-* **E1M3 agrees to within 2 sectors** (269 against 271) and E2M2 within 34.
-* **E1M1 disagrees catastrophically**: 2 against 130, on a map with 146
-  design sectors that players finish. Diagnosed: the player start (sector 30)
-  has three portals — one to sector 29, and two 1920-wide ones to 67 and 68
-  that carry the **wall cstat blocking flag**. `analyze_spatial` files
-  blocking-flagged walls under `blocked_or_state_dependent`, and
-  `analyze_progression` only floods walkable-at-rest plus channel-opened
-  extras, so the flood halts at two sectors.
+**And the earlier diagnosis of E1M1 was wrong.** Its two blocking-flagged
+start portals carry **no XWALL**, so nothing in the engine can ever open
+them; `analyze_spatial` is right to treat them as hard stops. The player
+start is a four-sector box, and the way out is a **paired stack link** to
+sector 28 — which `analyze_spatial` records under
+`known_non_portal_transitions` and `analyze_progression` never reads. That
+is why it reaches 2 of 146 design sectors on a map players finish, and it is
+a defect in its input rather than in any base graph.
 
-Neither base is right, and they are wrong in opposite directions.
-`reachability.portal_graph` ignores blocking flags entirely, so "at rest 125"
-on E1M1 counts sectors behind shut doors. `spatial.walkable_at_rest` refuses
-a blocking flag even where a door opens it. The view runs on either, and says
-which it used.
+The blocking-aware base keeps links and teleports whatever else it refuses,
+for exactly this reason.
 
 ## Limitations
 
@@ -185,9 +243,13 @@ which it used.
 - The base graph is somebody else's answer, so a static height difference
   between two ordinary sectors is not gated. Only a mechanism's own crossings
   are.
-- 170 routes have a cause whose trigger kind reads `unknown`: something
-  transmits on the channel but neither a switch type, a destructible, nor a
-  recognisable trigger flag explains how it fires.
+- The blocking-aware base gates on the blocking cstat and nothing else. It
+  does **not** adopt `spatial.walkable_at_rest`'s width and opening
+  thresholds, so a portal 300 units wide is still a way in the default base.
+- 9 causes still read `unknown`, and they are all one type: kTrapExploder
+  sprites that transmit with no trigger flag and no `rx_id`, so nothing in
+  the map says what fires them. (This was 170 routes before the classifier
+  learned about relays — see below.)
 - Firing a channel is modelled as making every listener's enabling state
   available. A channel that toggles listeners into different states, or a
   `command` that turns one off, is not distinguished.

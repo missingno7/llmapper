@@ -10,10 +10,12 @@ endpoints produced 60 conditional edges opened by nobody.
 import unittest
 
 from bloodmap.conditional import (
-    Action, ConditionalError, Held, build_graph, conditional_edges,
-    frontier, passable, rest_state, route_edges, transmitters,
-    what_becomes_reachable,
+    BASES, BASE_BLOCKING_AWARE, BASE_OPTIMISTIC, BASE_STRICT, KWALLGIB,
+    WALL_BLOCK, Action, ConditionalError, Held, blocking_crossings,
+    build_graph, conditional_edges, frontier, gib_wall_edges, passable,
+    rest_state, route_edges, transmitters, what_becomes_reachable,
 )
+from bloodmap.conditional import _trigger_for
 from bloodmap.effects import STEP_UP
 from bloodmap.doors import PLAYER_HEIGHT
 
@@ -212,6 +214,133 @@ class SyntheticMapTest(unittest.TestCase):
         self.assertFalse(route_edges(mixed)[0]["irreversible"])
 
 
+class BlockingBaseTest(unittest.TestCase):
+    """A blocked wall is a wall, unless a mechanism clears it."""
+
+    def blocked(self, *, gib=False, wired=True, state=0):
+        """start(0) -- blocked wall -- end(1), with an optional gib mechanism."""
+        walls, sectors = [], []
+        cstat = WALL_BLOCK
+        extra = ({"state": state, "rx_id": 300 if wired else 0,
+                  "trigger_vector": 0, "tx_id": 0} if gib else None)
+        wtype = KWALLGIB if gib else 0
+        for index, (here, there) in enumerate(((0, 1), (1, 0))):
+            start = len(walls)
+            for offset, neighbour in enumerate([there, -1, -1, -1]):
+                item = wall(index * 1000 + offset * 10, 0,
+                            next_sector=neighbour,
+                            point2=start + (offset + 1) % 4)
+                if neighbour >= 0:
+                    item.fields["cstat"] = cstat
+                    item.fields["type"] = wtype
+                    item.fields["next_wall"] = 4 - start
+                    if extra is not None:
+                        item.extra = Extra(dict(extra))
+                walls.append(item)
+            sectors.append(plain_sector(start))
+        sprites = []
+        if gib and wired:
+            #: A switch in the start room that fires the wall's channel.
+            sprites.append(Item(sprite_fields(20, 1070, sector=0),
+                                {"tx_id": 300}))
+        return Disk(sectors, walls, sprites)
+
+    def test_a_blocked_wall_with_no_mechanism_is_simply_shut(self):
+        disk = self.blocked()
+        self.assertEqual(sorted(blocking_crossings(disk)), [(0, 1), (1, 0)])
+        graph = build_graph(disk, base=BASE_BLOCKING_AWARE)
+        self.assertEqual(graph.reachable(Held()), {0})
+        self.assertEqual(graph.edges, [])
+
+    def test_a_blocked_wall_a_mechanism_drives_is_one_conditional_route(self):
+        disk = self.blocked(gib=True)
+        graph = build_graph(disk, base=BASE_BLOCKING_AWARE)
+        routes = route_edges(graph.edges)
+        self.assertEqual(len(routes), 1)
+        self.assertEqual(routes[0]["mechanism_kind"], "wall")
+        self.assertEqual(routes[0]["joins"], [0, 1])
+        self.assertEqual([cause["trigger"] for cause in routes[0]["causes"]],
+                         ["switch"])
+        self.assertEqual(graph.reachable(Held()), {0})
+        opened = graph.reachable(Held(channels=frozenset({300})))
+        self.assertEqual(opened, {0, 1})
+
+    def test_a_gib_wall_nothing_fires_yields_no_edge(self):
+        # Wired to a channel no one transmits on, and not shootable. The
+        # engine can clear it; nothing in the map ever will.
+        disk = self.blocked(gib=True, wired=False)
+        graph = build_graph(disk, base=BASE_BLOCKING_AWARE)
+        self.assertEqual(graph.edges, [])
+        self.assertEqual(graph.reachable(Held()), {0})
+
+    def test_the_graph_never_invents_an_opening(self):
+        # Every conditional crossing the blocking-aware base adds back must
+        # correspond to a crossing the optimistic base already had. It may
+        # only ever subtract ways, or re-offer ones it subtracted.
+        disk = self.blocked(gib=True)
+        optimistic = build_graph(disk, base=BASE_OPTIMISTIC)
+        aware = build_graph(disk, base=BASE_BLOCKING_AWARE)
+        everything = {(a, b) for a, group in optimistic.base.items() for b in group}
+        everything |= {edge.sectors for edge in optimistic.edges}
+        for edge in aware.edges:
+            self.assertIn(edge.sectors, everything)
+        for sector, group in aware.base.items():
+            for neighbour in group:
+                self.assertIn((sector, neighbour), everything)
+
+    def test_an_unblocked_pair_is_not_refused_for_a_blocked_neighbour_wall(self):
+        # Two rooms sharing an open doorway and a blocked wall are still
+        # joined. Refusing the pair on the strength of the blocked wall made
+        # this base stricter than the strict one.
+        disk = self.blocked()
+        opening = disk.walls[0]
+        opening.fields["cstat"] = 0
+        disk.walls[4].fields["cstat"] = 0
+        self.assertEqual(blocking_crossings(disk), {})
+        graph = build_graph(disk, base=BASE_BLOCKING_AWARE)
+        self.assertEqual(graph.reachable(Held()), {0, 1})
+
+    def test_either_side_of_a_wall_pair_blocking_shuts_the_crossing(self):
+        # SetupGibWallState sets the bit on one side and clears it on the
+        # other, so reading only the near side misses half of them. Both
+        # arrangements have to shut the crossing.
+        near = self.blocked()
+        near.walls[4].fields["cstat"] = 0
+        self.assertEqual(sorted(blocking_crossings(near)), [(0, 1), (1, 0)])
+        far = self.blocked()
+        far.walls[0].fields["cstat"] = 0
+        self.assertEqual(sorted(blocking_crossings(far)), [(0, 1), (1, 0)])
+        self.assertEqual(build_graph(far, base=BASE_BLOCKING_AWARE)
+                         .reachable(Held()), {0})
+
+    def test_no_base_may_refuse_a_stack_link(self):
+        # A link is not a portal and carries no wall, so nothing about a
+        # blocking cstat can apply to it. Dropping links is how a reading
+        # loses the way out of E1M1's start.
+        disk = self.blocked()
+        disk.sprites.append(Item(sprite_fields(12, 0, sector=0),
+                                 {"data_1": 77}))
+        disk.sprites.append(Item(sprite_fields(11, 0, sector=1),
+                                 {"data_1": 77}))
+        # The strict base needs a BuildIR the hand-built map cannot make;
+        # it refuses crossings through the same `keep_anyway` set, so the
+        # other two exercise the clause.
+        for base in (BASE_OPTIMISTIC, BASE_BLOCKING_AWARE):
+            graph = build_graph(disk, base=base)
+            self.assertIn(1, graph.base.get(0, set()), base)
+            self.assertEqual(graph.reachable(Held()), {0, 1}, base)
+
+    def test_the_three_bases_are_named_and_each_says_what_it_assumes(self):
+        self.assertEqual(sorted(BASES),
+                         [BASE_BLOCKING_AWARE, BASE_OPTIMISTIC, BASE_STRICT])
+        for name, note in BASES.items():
+            self.assertGreater(len(note), 40, name)
+
+    def test_an_unknown_base_is_refused_rather_than_guessed(self):
+        with self.assertRaises(ConditionalError):
+            build_graph(synthetic(), base="whatever-sounds-right")
+
+
 class ActionTest(unittest.TestCase):
     def test_shooting_the_crack_opens_the_way_and_says_why(self):
         # From a state where the middle room has already been reached: the
@@ -330,6 +459,43 @@ class RestStateTest(unittest.TestCase):
             "off_floor_z": 10, "off_ceiling_z": 10}), "off")
 
 
+class TriggerKindTest(unittest.TestCase):
+    """How a cause gets fired, and what is left genuinely unexplained.
+
+    Before this classifier existed, 170 campaign routes carried a cause
+    reading `unknown`. It was measuring the absence of a player-facing flag,
+    not the absence of an explanation.
+    """
+
+    def test_a_body_leaving_a_sector_is_a_trigger(self):
+        self.assertEqual(_trigger_for("sector", 0, {"trigger_exit": 1}),
+                         "leave")
+
+    def test_something_that_only_listens_is_a_relay(self):
+        # 154 of the 204 formerly-unknown causes: a Z-motion sector that
+        # transmits when it moves is a link in a chain, not its head.
+        self.assertEqual(_trigger_for("sector", 600, {"rx_id": 120}), "relay")
+
+    def test_a_key_that_transmits_is_a_pickup(self):
+        self.assertEqual(_trigger_for("sprite", 100, {"tx_id": 9}), "pickup")
+
+    def test_a_dude_that_transmits_is_a_kill(self):
+        self.assertEqual(_trigger_for("sprite", 204, {"tx_id": 9}), "kill")
+
+    def test_a_generator_is_named_as_one(self):
+        self.assertEqual(_trigger_for("sprite", 700, {"tx_id": 9}), "generator")
+
+    def test_a_player_facing_flag_beats_what_the_thing_is(self):
+        # A switch that is also shootable is fired by shooting it.
+        self.assertEqual(_trigger_for("sprite", 20, {"trigger_vector": 1}),
+                         "shot")
+
+    def test_something_with_no_flag_and_no_channel_stays_unknown(self):
+        # The honest residue: 9 kTrapExploder sprites in the campaign
+        # transmit and nothing says what fires them.
+        self.assertEqual(_trigger_for("sprite", 459, {}), "unknown")
+
+
 class TransmitterTest(unittest.TestCase):
     def test_sectors_transmit_too(self):
         # A `trigger_enter` room that opens a door elsewhere has no sprite
@@ -375,6 +541,54 @@ class CampaignTest(unittest.TestCase):
         self.assertTrue(lift)
         self.assertEqual({edge.delta["reads_as"] for edge in lift},
                          {"carries a body between levels"})
+
+    def test_the_pilots_answer_the_same_on_every_base(self):
+        # The three were verified independently against the raw XSECTOR and
+        # the editor renderer. A base change that moves them is a regression,
+        # not an improvement.
+        expected = {
+            ("E1M3", 241): ([240, 242], "carries a body between levels", None),
+            ("E1M4", 276): ([245, 277, 278], "changes what fits through", None),
+            ("E1M4", 295): ([294, 296], "changes what fits through", "moon"),
+        }
+        for (name, mechanism), want in expected.items():
+            disk = self._map(name)
+            for base in BASES:
+                graph = build_graph(disk, base=base)
+                route = [item for item in route_edges(graph.edges)
+                         if item["mechanism"] == mechanism
+                         and item["mechanism_kind"] == "sector"]
+                self.assertEqual(len(route), 1, (name, mechanism, base))
+                got = (route[0]["joins"], route[0]["reads_as"],
+                       route[0]["requires_key_name"])
+                self.assertEqual(got, want, (name, mechanism, base))
+
+    def test_the_e1m1_start_leaves_by_a_stack_link_not_a_portal(self):
+        # The player start is a four-sector box whose only portals carry the
+        # blocking cstat and have no XWALL, so nothing can ever open them.
+        # The way out is a paired stack link to sector 28, which
+        # `analyze_spatial` files under known_non_portal_transitions and
+        # `analyze_progression` never reads -- which is why that reading
+        # reaches 2 of 146 design sectors.
+        disk = self._map("E1M1")
+        blocked = blocking_crossings(disk)
+        self.assertIn((30, 67), blocked)
+        self.assertIn((30, 68), blocked)
+        for wall_id in blocked[(30, 67)] + blocked[(30, 68)]:
+            self.assertNotEqual(int(disk.walls[wall_id].fields["type"]), KWALLGIB)
+        graph = build_graph(disk, base=BASE_BLOCKING_AWARE)
+        self.assertIn(28, graph.base.get(30, set()))
+        self.assertGreater(len(graph.reachable(Held())), 90)
+
+    def test_every_campaign_gib_wall_is_built_shut_and_wired(self):
+        disk = self._map("E1M3")
+        wires = transmitters(disk)
+        edges = gib_wall_edges(disk, wires)
+        self.assertTrue(edges)
+        for edge in edges:
+            self.assertEqual(edge.mechanism_kind, "wall")
+            self.assertTrue(edge.causes)
+            self.assertEqual(edge.delta["state_at_rest"], "off")
 
     def test_rotate_and_slide_are_scoped_out_rather_than_answered(self):
         disk = self._map("E1M1")

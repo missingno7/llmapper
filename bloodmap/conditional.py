@@ -50,16 +50,66 @@ CRACK_TYPE = 408
 EXPLODER_TYPE = 459
 #: Things that are destroyed rather than operated. Firing at one is an action
 #: that cannot be taken back, so an edge it opens never closes.
-DESTRUCTIBLE_TYPES = frozenset({CRACK_TYPE, 406, 411, 412, 417})
+DESTRUCTIBLE_TYPES = frozenset({CRACK_TYPE, 400, 406, 411, 412,
+                                416, 417})
+
+#: Build wall cstat bits. Bit 0 stops a body; bit 4 makes the mid-texture
+#: solid-looking; bit 6 stops a hitscan. Only bit 0 decides whether a body
+#: gets through, masked or not.
+WALL_BLOCK, WALL_MASKED, WALL_HITSCAN = 1, 16, 64
+
+#: kWallGib (NBlood `common_game.h:459`). **The only wall a mechanism can
+#: reopen.** `triggers.cpp:SetupGibWallState` clears `cstat & 65` and the
+#: masked bit on both sides when the XWALL's `state` is 1, and sets them
+#: again when it is 0. Nothing else in the engine changes a wall's blocking
+#: bit -- a Z-motion sector moves floors and ceilings, never cstat -- so a
+#: blocking wall that is not a gib wall is shut for ever.
+KWALLGIB = 511
+
+#: The three base graphs, and what each assumes. One is the default; all
+#: three stay callable, because they disagree by a lot and the disagreement
+#: is a finding rather than a setting.
+BASE_OPTIMISTIC = "optimistic"
+BASE_BLOCKING_AWARE = "blocking_aware"
+BASE_STRICT = "strict"
+BASES = {
+    BASE_OPTIMISTIC: "reachability.portal_graph: every two-sided wall is a "
+                     "way, gating ignored. Reaches behind shut doors.",
+    BASE_BLOCKING_AWARE: "portal_graph, minus crossings whose wall carries "
+                         "the blocking cstat, plus those blocking walls a "
+                         "kWallGib mechanism reopens. The default.",
+    BASE_STRICT: "spatial.walkable_at_rest: blocking flag, portal width "
+                 "below 512 and opening below 4096 are all hard stops, and "
+                 "nothing reopens any of them.",
+}
 
 #: How an action reaches a mechanism.
 BY_SWITCH = "switch"
 BY_SHOT = "shot"
 BY_TOUCH = "touch"
 BY_PUSH = "push"
+BY_PICKUP = "pickup"
+BY_GENERATOR = "generator"
+#: Not a player action at all: the thing listens on one channel and
+#: retransmits on another. Three quarters of what this classifier first
+#: called `unknown` is this -- a link in a chain rather than its head.
+BY_RELAY = "relay"
+#: A body leaving the sector rather than entering it -- Blood's `trigger_exit`.
+BY_LEAVE = "leave"
+#: Something dying. A dude that transmits does it on death.
+BY_KILL = "kill"
 BY_KEY = "key"
 BY_START = "level_start"
 BY_UNKNOWN = "unknown"
+
+#: kGenTrigger and its family: things that fire a channel on their own
+#: schedule (NBlood `kGenTrigger` 700 upward).
+GENERATOR_TYPES = frozenset(range(700, 712))
+#: Sprite categories a player takes rather than works. A key that transmits
+#: when collected is a cause, and calling it unknown loses the commonest
+#: progression step in the game.
+PICKUP_CATEGORIES = frozenset({"key", "health", "ammo", "weapon", "armor",
+                               "powerup", "item"})
 
 
 class ConditionalError(ValueError):
@@ -108,18 +158,51 @@ class Source:
         return out
 
 
-def _sprite_trigger(type_id: int, extra: dict[str, Any]) -> str:
-    if type_id in SWITCH_TYPES:
-        return BY_SWITCH
-    if type_id in DESTRUCTIBLE_TYPES:
-        return BY_SHOT
+def _category(kind: str, type_id: int) -> str:
+    from .blood_types import classify
+
+    try:
+        return classify(kind, type_id).get("category") or ""
+    except Exception:
+        return ""
+
+
+def _trigger_for(kind: str, type_id: int, extra: dict[str, Any]) -> str:
+    """How this thing gets fired, in the order the evidence is strongest.
+
+    Player-facing flags first, then what the thing *is*, and only then the
+    fallback that it listens to somebody else. Reaching the fallback is the
+    common case: a Z-motion sector that transmits when it moves is a relay,
+    not an unexplained trigger, and 154 of the campaign's 204 formerly
+    `unknown` causes are exactly that.
+    """
     if extra.get("trigger_vector"):
         return BY_SHOT
-    if extra.get("trigger_push"):
+    if extra.get("trigger_push") or extra.get("trigger_wall_push"):
         return BY_PUSH
-    if extra.get("trigger_touch") or extra.get("trigger_proximity"):
+    if extra.get("trigger_touch") or extra.get("trigger_proximity") \
+            or extra.get("trigger_enter"):
         return BY_TOUCH
+    if extra.get("trigger_exit"):
+        return BY_LEAVE
+    if kind == "sprite":
+        if type_id in SWITCH_TYPES:
+            return BY_SWITCH
+        if type_id in DESTRUCTIBLE_TYPES:
+            return BY_SHOT
+        if type_id in GENERATOR_TYPES:
+            return BY_GENERATOR
+        if type_id in KEY_TYPES or _category("sprite", type_id) in PICKUP_CATEGORIES:
+            return BY_PICKUP
+        if _category("sprite", type_id) == "dude":
+            return BY_KILL
+    if int(extra.get("rx_id") or 0):
+        return BY_RELAY
     return BY_UNKNOWN
+
+
+def _sprite_trigger(type_id: int, extra: dict[str, Any]) -> str:
+    return _trigger_for("sprite", type_id, extra)
 
 
 def transmitters(disk: Any) -> dict[int, list[Source]]:
@@ -150,8 +233,7 @@ def transmitters(disk: Any) -> dict[int, list[Source]]:
         out[channel].append(Source(
             kind="wall", index=index, type_id=int(wall.fields["type"]),
             channel=channel,
-            trigger=BY_PUSH if extra.get("trigger_push") else (
-                BY_SHOT if extra.get("trigger_vector") else BY_UNKNOWN),
+            trigger=_trigger_for("wall", int(wall.fields["type"]), extra),
             key=int(extra.get("key") or 0),
             once=bool(extra.get("trigger_once")),
         ))
@@ -163,9 +245,7 @@ def transmitters(disk: Any) -> dict[int, list[Source]]:
         out[channel].append(Source(
             kind="sector", index=index, type_id=int(sector.fields["type"]),
             channel=channel,
-            trigger=BY_TOUCH if (extra.get("trigger_enter")
-                                 or extra.get("trigger_proximity")) else (
-                BY_PUSH if extra.get("trigger_push") else BY_UNKNOWN),
+            trigger=_trigger_for("sector", int(sector.fields["type"]), extra),
             key=int(extra.get("key") or 0),
             once=bool(extra.get("trigger_once")),
         ))
@@ -237,6 +317,8 @@ class ConditionalEdge:
     mechanism: int
     enabling_state: str
     verdict: str                       # conditional | never
+    #: A crossing is gated by a moving *sector* or by a breakable *wall*.
+    mechanism_kind: str = "sector"
     delta: dict[str, Any] = field(default_factory=dict)
     causes: list[Source] = field(default_factory=list)
     requires_key: int = 0
@@ -248,7 +330,7 @@ class ConditionalEdge:
         out = {
             "from": self.sectors[0], "to": self.sectors[1],
             "sectors": list(self.sectors), "mechanism": self.mechanism,
-            "walls": self.walls,
+            "mechanism_kind": self.mechanism_kind, "walls": self.walls,
             "enabling_state": self.enabling_state, "verdict": self.verdict,
             "topology_delta": dict(self.delta),
             "causes": [item.to_dict() for item in self.causes],
@@ -401,6 +483,110 @@ def _delta(record: dict[str, Any], rest: str, other: str,
     }
 
 
+def blocking_crossings(disk: Any) -> dict[tuple[int, int], list[int]]:
+    """Sector pairs a body cannot cross, because every wall between blocks.
+
+    Two levels, and conflating them is wrong in both directions.
+
+    A **wall pair** -- a wall and its `nextwall` partner -- is shut when
+    either side carries the blocking bit, because Blood's own gib-wall setup
+    sets it on one side and clears it on the other
+    (`triggers.cpp:679-684`). Asking only the near side misses half of them.
+
+    A **sector pair** is shut only when *every* wall pair between the two
+    blocks. Two rooms often share a blocked wall and an open doorway, and
+    refusing the crossing on the strength of the blocked one made this base
+    stricter than the strict base -- E1M1 fell to 28 sectors against the
+    strict base's 34, which is how the mistake surfaced.
+    """
+    owners = _wall_owners(disk)
+    total: dict[tuple[int, int], int] = defaultdict(int)
+    blocked: dict[tuple[int, int], list[int]] = defaultdict(list)
+    seen: set[int] = set()
+    for index, wall in enumerate(disk.walls):
+        other = int(wall.fields["next_sector"])
+        if other < 0 or index >= len(owners) or owners[index] < 0:
+            continue
+        if index in seen:
+            continue
+        partner = int(wall.fields["next_wall"])
+        seen.add(index)
+        if 0 <= partner < len(disk.walls):
+            seen.add(partner)
+        here = owners[index]
+        pair = (here, other)
+        stops = bool(int(wall.fields["cstat"]) & WALL_BLOCK)
+        if 0 <= partner < len(disk.walls):
+            stops = stops or bool(int(disk.walls[partner].fields["cstat"]) & WALL_BLOCK)
+        for key in (pair, (other, here)):
+            total[key] += 1
+            if stops:
+                blocked[key].append(index)
+    return {pair: walls for pair, walls in blocked.items()
+            if len(walls) == total[pair]}
+
+
+def gib_wall_edges(disk: Any, wires: dict[int, list[Source]]
+                   ) -> list[ConditionalEdge]:
+    """Breakable walls, as conditional crossings.
+
+    kWallGib is the one mechanism in the engine that reopens a blocked wall.
+    Every one of the campaign's 205 is built in state 0 -- shut -- and every
+    one of them is wired, by a channel or by being shootable. There are no
+    exceptions to reopen by hand.
+    """
+    owners = _wall_owners(disk)
+    edges: list[ConditionalEdge] = []
+    seen: set[int] = set()
+    for index, wall in enumerate(disk.walls):
+        other = int(wall.fields["next_sector"])
+        if other < 0 or index >= len(owners) or owners[index] < 0:
+            continue
+        if int(wall.fields["type"]) != KWALLGIB or index in seen:
+            continue
+        #: 210 of the campaign's 218 gib walls carry type 511 on *both*
+        #: sides of the pair, because the engine sets both up together.
+        #: Reading each side as its own mechanism doubles every breakable
+        #: wall in the map.
+        seen.add(index)
+        partner = int(wall.fields["next_wall"])
+        if 0 <= partner < len(disk.walls)                 and int(disk.walls[partner].fields["type"]) == KWALLGIB:
+            seen.add(partner)
+        extra = _extra(wall)
+        if not extra:
+            continue
+        here = owners[index]
+        listens = int(extra.get("rx_id") or 0)
+        causes: list[Source] = list(wires.get(listens, ())) if listens else []
+        if extra.get("trigger_vector"):
+            causes.append(Source(
+                kind="wall", index=index, type_id=KWALLGIB, channel=0,
+                trigger=BY_SHOT, key=int(extra.get("key") or 0),
+                irreversible=True, once=bool(extra.get("trigger_once"))))
+        if not causes:
+            continue
+        shut = not int(extra.get("state") or 0)
+        delta = {
+            "kind": "wall_blocking_cstat",
+            "wall": index,
+            "cstat": int(wall.fields["cstat"]),
+            "blocking_at_rest": shut,
+            "state_at_rest": "off" if shut else "on",
+            "engine": "NBlood triggers.cpp SetupGibWallState: state 1 clears "
+                      "cstat & 65 and the masked bit on both sides; state 0 "
+                      "sets them",
+            "reads_as": "changes what fits through",
+        }
+        for pair in ((here, other), (other, here)):
+            edges.append(ConditionalEdge(
+                sectors=pair, mechanism=index, mechanism_kind="wall",
+                enabling_state="on" if shut else "off",
+                verdict="conditional", delta=delta, causes=causes,
+                requires_key=int(extra.get("key") or 0),
+                irreversible=all(item.irreversible for item in causes)))
+    return edges
+
+
 def route_edges(edges: Sequence["ConditionalEdge"]) -> list[dict[str, Any]]:
     """Collapse a mechanism's crossings into the route it gates.
 
@@ -410,17 +596,20 @@ def route_edges(edges: Sequence["ConditionalEdge"]) -> list[dict[str, Any]]:
     what this returns: one route per mechanism, naming the rooms it joins
     and carrying the same cause chain.
     """
-    by_mechanism: dict[int, list[ConditionalEdge]] = defaultdict(list)
+    by_mechanism: dict[tuple[str, int], list[ConditionalEdge]] = defaultdict(list)
     for edge in edges:
         if edge.verdict == "conditional":
-            by_mechanism[edge.mechanism].append(edge)
+            by_mechanism[(edge.mechanism_kind, edge.mechanism)].append(edge)
     routes = []
-    for mechanism, group in sorted(by_mechanism.items()):
+    for (kind, mechanism), group in sorted(by_mechanism.items()):
+        #: A wall gates the two sectors it separates and is not one of them;
+        #: a sector gates its neighbours and is not one of them either.
         joins = sorted({sector for edge in group for sector in edge.sectors
-                        if sector != mechanism})
+                        if kind == "wall" or sector != mechanism})
         first = group[0]
         routes.append({
             "mechanism": mechanism,
+            "mechanism_kind": kind,
             "joins": joins,
             "crossings": len(group),
             "enabling_states": sorted({edge.enabling_state for edge in group}),
@@ -539,29 +728,53 @@ def walkable_at_rest(disk: Any) -> set[tuple[int, int]]:
     return out
 
 
-def _directed_base(disk: Any, gated: set[tuple[int, int]], *, strict: bool
+def _non_portal_pairs(reach: Any) -> set[tuple[int, int]]:
+    """Stack links and teleports, which are not portals and never blocked.
+
+    Leaving these out is not a small error. E1M1's player start is a closed
+    box of four sectors whose only two portals carry the blocking cstat;
+    the way out is a **paired stack link** to sector 28. `analyze_spatial`
+    records it under `known_non_portal_transitions` and
+    `analyze_progression` never reads that list, which is why it reaches 2
+    of 146 design sectors on a map players finish.
+    """
+    out: set[tuple[int, int]] = set()
+    for group in (reach.links, reach.teleports):
+        for record in group:
+            left, right = record["sectors"]
+            out.add((int(left), int(right)))
+            out.add((int(right), int(left)))
+    return out
+
+
+def _directed_base(disk: Any, gated: set[tuple[int, int]], *, base: str
                    ) -> tuple[dict[int, set[int]], Any]:
     """The base graph, directed, with the gated crossings removed.
 
     The base is taken whole rather than rebuilt: this view's job is to put
     gates back on somebody else's answer, not to have a second opinion about
-    what a portal is. Links and teleports come along with it.
+    what a portal is.
     """
+    if base not in BASES:
+        raise ConditionalError(
+            f"unknown base {base!r}; choose one of {sorted(BASES)}")
     reach = analyze_reachability(disk)
-    allowed = walkable_at_rest(disk) if strict else None
+    keep_anyway = _non_portal_pairs(reach)
+    refused: set[tuple[int, int]] = set()
+    if base == BASE_BLOCKING_AWARE:
+        refused = set(blocking_crossings(disk))
+    elif base == BASE_STRICT:
+        allowed = walkable_at_rest(disk)
+        refused = {(a, b) for a, group in reach.graph.items() for b in group
+                   if (a, b) not in allowed}
     out: dict[int, set[int]] = defaultdict(set)
     for sector, neighbours in reach.graph.items():
         for neighbour in neighbours:
-            if (sector, neighbour) in gated:
+            pair = (sector, neighbour)
+            if pair in gated:
                 continue
-            if allowed is not None and (sector, neighbour) not in allowed:
-                #: Links and teleports have no portal, so `analyze_spatial`
-                #: never saw them; they are kept whatever the base.
-                if not any((sector, neighbour) == tuple(record["sectors"])
-                           or (neighbour, sector) == tuple(record["sectors"])
-                           for group in (reach.links, reach.teleports)
-                           for record in group):
-                    continue
+            if pair in refused and pair not in keep_anyway:
+                continue
             out[sector].add(neighbour)
     return out, reach
 
@@ -661,20 +874,33 @@ class ConditionalGraph:
 
 
 def build_graph(disk: Any, *, owners: Sequence[int] | None = None,
-                strict: bool = False) -> ConditionalGraph:
+                base: str = BASE_BLOCKING_AWARE) -> ConditionalGraph:
     """Read one map into a conditional-traversability graph.
 
-    `strict` swaps the permissive base for `spatial.py`'s walkable-at-rest
-    one. The two disagree enormously and neither is right, which is a finding
-    rather than a setting -- see `walkable_at_rest`.
+    Three bases, one default, each saying what it assumes -- see `BASES`.
+    They disagree by a lot, and the disagreement is a finding rather than a
+    setting, so all three stay callable.
     """
     edges, summary = conditional_edges(disk, owners=owners)
+    if base == BASE_BLOCKING_AWARE:
+        #: A blocked wall a mechanism reopens is a conditional crossing, not
+        #: a wall. Added before the base is built so the base refuses it as
+        #: a portal and the edge puts it back with its cause chain.
+        edges = edges + gib_wall_edges(disk, transmitters(disk))
     gated = {edge.sectors for edge in edges}
-    base, reach = _directed_base(disk, gated, strict=strict)
-    summary = {**summary, "base": "walkable_at_rest" if strict else "portal_graph"}
+    graph, reach = _directed_base(disk, gated, base=base)
+    blocked = blocking_crossings(disk)
+    reopened = {edge.sectors for edge in edges if edge.mechanism_kind == "wall"}
+    summary = {
+        **summary, "base": base, "base_assumes": BASES[base],
+        "blocking_crossings": len(blocked),
+        "blocking_reopened_by_a_gib_wall": len(reopened),
+        "blocking_shut_for_ever": len(set(blocked) - reopened),
+        "conditional": sum(1 for e in edges if e.verdict == "conditional"),
+    }
     start = int(reach.start["sector"])
     return ConditionalGraph(disk=disk, edges=edges, summary=summary,
-                            start=start, base=base, gated=gated, reach=reach)
+                            start=start, base=graph, gated=gated, reach=reach)
 
 
 def what_becomes_reachable(disk: Any, action: Action, *,
