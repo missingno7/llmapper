@@ -182,8 +182,15 @@ def analyze_progression(
     *,
     skip_tx_ids: set[int] | None = None,
     skip_key_ids: set[int] | None = None,
+    include_pacing: bool = True,
 ) -> dict[str, Any]:
-    """Derive a grounded SP progression graph. Ungrounded tricks stay unknown."""
+    """Derive a grounded SP progression graph. Ungrounded tricks stay unknown.
+
+    ``include_pacing=False`` keeps the reachability witness and progression
+    measurements while omitting the expensive player-space snapshots intended
+    for interactive reports. Corpus indexing uses this mode because it needs
+    measurements for every map, not a full route presentation for each one.
+    """
     skip_tx_ids = set(skip_tx_ids or ())
     skip_key_ids = set(skip_key_ids or ())
     build = disk.to_build_ir()
@@ -225,7 +232,7 @@ def analyze_progression(
     reached = _flood({start}, rest, extra_open)
     events: list[dict[str, Any]] = [{"kind": "spawn", "sector": start, "reachable": len(reached)}]
     steps = []
-    pacing = [snapshot("spawn")] if not skip_tx_ids and not skip_key_ids else []
+    pacing = [snapshot("spawn")] if include_pacing and not skip_tx_ids and not skip_key_ids else []
     changed = True
     safety = 0
     while changed and safety < 64:

@@ -29,20 +29,51 @@ def _selected(build: BuildIR, sector_ids: Iterable[int] | None) -> set[int]:
     return values
 
 
-def _owners(build: BuildIR) -> list[int]:
+def _owners(build: BuildIR) -> tuple[list[int], list[int], list[str]]:
+    """Return wall owners while isolating accepted degenerate sectors.
+
+    Build accepts sectors with fewer than three walls as degenerate source
+    data.  They cannot form polygon geometry, but they should not prevent
+    spatial analysis of the rest of an otherwise usable map.  Their walls
+    receive the private owner ``-2`` and are ignored by downstream geometry
+    and mechanism views.
+    """
     owners = [-1] * len(build.walls)
+    ranges: dict[int, tuple[int, int]] = {}
+    degenerate: list[int] = []
+    diagnostics: list[str] = []
     for sector_id, sector in enumerate(build.sectors):
         fields = sector["fields"]
         first, count = int(fields["wall_ptr"]), int(fields["wall_count"])
-        if first < 0 or count < 3 or first + count > len(build.walls):
+        if first < 0 or count < 0 or first + count > len(build.walls):
             raise SpatialAnalysisError(f"sector:{sector_id} has invalid wall ownership")
+        ranges[sector_id] = (first, count)
+        if count < 3:
+            degenerate.append(sector_id)
+            diagnostics.append(
+                f"sector:{sector_id} has only {count} wall(s); excluded from polygon-based spatial views"
+            )
+
+    for sector_id, (first, count) in ranges.items():
+        if sector_id in degenerate:
+            continue
         for wall_id in range(first, first + count):
             if owners[wall_id] != -1:
                 raise SpatialAnalysisError(f"wall:{wall_id} has multiple sector owners")
             owners[wall_id] = sector_id
+
+    for sector_id in degenerate:
+        first, count = ranges[sector_id]
+        for wall_id in range(first, first + count):
+            if owners[wall_id] == -1:
+                owners[wall_id] = -2
+            else:
+                diagnostics.append(
+                    f"sector:{sector_id} wall:{wall_id} overlaps another sector's wall ownership"
+                )
     if -1 in owners:
         raise SpatialAnalysisError(f"wall:{owners.index(-1)} has no sector owner")
-    return owners
+    return owners, degenerate, diagnostics
 
 
 def _bounds(points: list[tuple[int, int]]) -> dict[str, int]:
@@ -257,7 +288,10 @@ def analyze_spatial(build: BuildIR, sector_ids: Iterable[int] | None = None) -> 
     their models; no output here modifies BuildIR or native map data.
     """
     selected = _selected(build, sector_ids)
-    owners = _owners(build)
+    owners, ignored_sector_ids, diagnostics = _owners(build)
+    selected -= set(ignored_sector_ids)
+    if not selected:
+        raise SpatialAnalysisError("sector selection contains no geometrically valid sectors")
     sector_data: dict[int, dict[str, Any]] = {}
     for sector_id in sorted(selected):
         loops = _polygon_loops(build, sector_id)
@@ -435,6 +469,8 @@ def analyze_spatial(build: BuildIR, sector_ids: Iterable[int] | None = None) -> 
         "$schema": "bloodmap.spatial-analysis", "schema_version": 1,
         "source_game": build.source_game, "scope": "level" if sector_ids is None else "selection",
         "sector_ids": [_ref("sector", value) for value in sorted(selected)],
+        "ignored_degenerate_sector_ids": [_ref("sector", value) for value in ignored_sector_ids],
+        "diagnostics": diagnostics,
         "views": {
             "geometry": {
                 "model": "raw Build sector adjacency through portal references",
