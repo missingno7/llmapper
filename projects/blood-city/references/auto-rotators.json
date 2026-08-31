@@ -1,0 +1,1991 @@
+{
+  "$schema": "llmapper.auto-rotating-sectors",
+  "schema_version": 1,
+  "signature": {
+    "sector_type": "in {613, 615, 617}",
+    "rx_id": "7 (system channel level_start)",
+    "retrigger": "both waves",
+    "no_key_no_push": true,
+    "reading": "receives the level-start broadcast once and cycles forever"
+  },
+  "corpus": "reference view (campaign + curated, both modes) + conversions",
+  "instances": [
+    {
+      "map": "E1M4.MAP",
+      "population": "campaign",
+      "sector": 151,
+      "type": 615,
+      "walls": 8,
+      "portal_walls": 2,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        22784,
+        16384
+      ],
+      "riding_picnums": [
+        332,
+        332,
+        332,
+        332
+      ],
+      "sound_picnums": [
+        2521
+      ],
+      "counter_rotating_pair": 314
+    },
+    {
+      "map": "E1M4.MAP",
+      "population": "campaign",
+      "sector": 314,
+      "type": 615,
+      "walls": 8,
+      "portal_walls": 2,
+      "busy_time_a": 0,
+      "busy_time_b": 255,
+      "axis": [
+        24832,
+        16384
+      ],
+      "riding_picnums": [
+        332,
+        332,
+        332,
+        332
+      ],
+      "sound_picnums": [
+        2521
+      ],
+      "counter_rotating_pair": 151
+    },
+    {
+      "map": "E3M2.MAP",
+      "population": "campaign",
+      "sector": 232,
+      "type": 617,
+      "walls": 10,
+      "portal_walls": 10,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        33024,
+        16256
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "E3M2.MAP",
+      "population": "campaign",
+      "sector": 234,
+      "type": 617,
+      "walls": 10,
+      "portal_walls": 10,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        35328,
+        8832
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "E4M2.MAP",
+      "population": "campaign",
+      "sector": 257,
+      "type": 617,
+      "walls": 32,
+      "portal_walls": 32,
+      "busy_time_a": 120,
+      "busy_time_b": 0,
+      "axis": [
+        16896,
+        -10752
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "E4M2.MAP",
+      "population": "campaign",
+      "sector": 258,
+      "type": 615,
+      "walls": 32,
+      "portal_walls": 16,
+      "busy_time_a": 120,
+      "busy_time_b": 0,
+      "axis": [
+        16896,
+        -10752
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [
+        2521
+      ],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M8.MAP",
+      "population": "curated",
+      "sector": 214,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 4,
+      "busy_time_a": 80,
+      "busy_time_b": 80,
+      "axis": [
+        23808,
+        61696
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 61,
+      "type": 615,
+      "walls": 4,
+      "portal_walls": 2,
+      "busy_time_a": 100,
+      "busy_time_b": 0,
+      "axis": [
+        -5632,
+        91968
+      ],
+      "riding_picnums": [
+        332,
+        332,
+        332,
+        332
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": 64
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 64,
+      "type": 615,
+      "walls": 4,
+      "portal_walls": 2,
+      "busy_time_a": 0,
+      "busy_time_b": 100,
+      "axis": [
+        -11776,
+        91968
+      ],
+      "riding_picnums": [
+        332,
+        332,
+        332,
+        332
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": 61
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 72,
+      "type": 615,
+      "walls": 32,
+      "portal_walls": 32,
+      "busy_time_a": 100,
+      "busy_time_b": 0,
+      "axis": [
+        -8704,
+        82432
+      ],
+      "riding_picnums": [
+        3110,
+        3818,
+        3822,
+        3823,
+        3826,
+        3822,
+        3832,
+        3825,
+        3822,
+        3830,
+        3819,
+        3811
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 201,
+      "type": 617,
+      "walls": 20,
+      "portal_walls": 20,
+      "busy_time_a": 0,
+      "busy_time_b": 200,
+      "axis": [
+        -22016,
+        58880
+      ],
+      "riding_picnums": [
+        1907,
+        795
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": 202
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 202,
+      "type": 617,
+      "walls": 20,
+      "portal_walls": 20,
+      "busy_time_a": 200,
+      "busy_time_b": 0,
+      "axis": [
+        -22016,
+        55808
+      ],
+      "riding_picnums": [
+        795
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": 201
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 354,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 35,
+      "busy_time_b": 0,
+      "axis": [
+        27136,
+        83456
+      ],
+      "riding_picnums": [
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 355,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 40,
+      "busy_time_b": 0,
+      "axis": [
+        22848,
+        88896
+      ],
+      "riding_picnums": [
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 356,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 25,
+      "busy_time_b": 0,
+      "axis": [
+        24064,
+        94976
+      ],
+      "riding_picnums": [
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 357,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 30,
+      "busy_time_b": 0,
+      "axis": [
+        32000,
+        96256
+      ],
+      "riding_picnums": [
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 358,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 8,
+      "busy_time_b": 0,
+      "axis": [
+        32000,
+        91648
+      ],
+      "riding_picnums": [
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 359,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 40,
+      "busy_time_b": 0,
+      "axis": [
+        31232,
+        87040
+      ],
+      "riding_picnums": [
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 419,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 4,
+      "busy_time_a": 35,
+      "busy_time_b": 0,
+      "axis": [
+        50688,
+        82176
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 420,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 4,
+      "busy_time_a": 40,
+      "busy_time_b": 0,
+      "axis": [
+        46400,
+        87616
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 421,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 4,
+      "busy_time_a": 25,
+      "busy_time_b": 0,
+      "axis": [
+        47616,
+        93696
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 422,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 4,
+      "busy_time_a": 30,
+      "busy_time_b": 0,
+      "axis": [
+        55552,
+        94976
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 423,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 4,
+      "busy_time_a": 8,
+      "busy_time_b": 0,
+      "axis": [
+        55552,
+        90368
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 424,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 4,
+      "busy_time_a": 40,
+      "busy_time_b": 0,
+      "axis": [
+        54784,
+        85760
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE1M9.MAP",
+      "population": "curated",
+      "sector": 715,
+      "type": 615,
+      "walls": 32,
+      "portal_walls": 32,
+      "busy_time_a": 200,
+      "busy_time_b": 200,
+      "axis": [
+        35328,
+        -12800
+      ],
+      "riding_picnums": [
+        624,
+        624,
+        624,
+        2830,
+        795,
+        2840,
+        795,
+        2895,
+        795,
+        2840,
+        795,
+        2850,
+        795,
+        2840,
+        795,
+        2830
+      ],
+      "sound_picnums": [
+        2521
+      ],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 473,
+      "type": 617,
+      "walls": 16,
+      "portal_walls": 16,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [
+        2521
+      ],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 474,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 475,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 476,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 477,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 478,
+      "type": 617,
+      "walls": 72,
+      "portal_walls": 72,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [
+        3812,
+        3822,
+        3825,
+        3810,
+        3823,
+        795,
+        795,
+        795,
+        795
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 479,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 8,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 480,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 8,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 481,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 8,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 482,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 8,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 483,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 8,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 484,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 8,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 485,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 8,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 486,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 8,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 654,
+      "type": 617,
+      "walls": 6,
+      "portal_walls": 6,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [
+        795,
+        795
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 655,
+      "type": 617,
+      "walls": 6,
+      "portal_walls": 6,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 656,
+      "type": 617,
+      "walls": 6,
+      "portal_walls": 6,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 657,
+      "type": 617,
+      "walls": 6,
+      "portal_walls": 6,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [
+        795,
+        795
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 658,
+      "type": 617,
+      "walls": 6,
+      "portal_walls": 6,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 659,
+      "type": 617,
+      "walls": 6,
+      "portal_walls": 6,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [
+        795,
+        795
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 660,
+      "type": 617,
+      "walls": 6,
+      "portal_walls": 6,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [
+        795
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 661,
+      "type": 617,
+      "walls": 6,
+      "portal_walls": 6,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [
+        795
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 662,
+      "type": 617,
+      "walls": 5,
+      "portal_walls": 5,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [
+        795,
+        795
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 663,
+      "type": 617,
+      "walls": 5,
+      "portal_walls": 5,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 664,
+      "type": 617,
+      "walls": 5,
+      "portal_walls": 5,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [
+        795,
+        795
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 665,
+      "type": 617,
+      "walls": 5,
+      "portal_walls": 5,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 666,
+      "type": 617,
+      "walls": 5,
+      "portal_walls": 5,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [
+        795,
+        795
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 667,
+      "type": 617,
+      "walls": 5,
+      "portal_walls": 5,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 668,
+      "type": 617,
+      "walls": 5,
+      "portal_walls": 5,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M3.MAP",
+      "population": "curated",
+      "sector": 669,
+      "type": 617,
+      "walls": 5,
+      "portal_walls": 5,
+      "busy_time_a": 100,
+      "busy_time_b": 100,
+      "axis": [
+        12288,
+        27279
+      ],
+      "riding_picnums": [
+        795,
+        795
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M6.MAP",
+      "population": "curated",
+      "sector": 530,
+      "type": 615,
+      "walls": 6,
+      "portal_walls": 6,
+      "busy_time_a": 50,
+      "busy_time_b": 50,
+      "axis": [
+        64768,
+        38912
+      ],
+      "riding_picnums": [
+        732,
+        732,
+        732,
+        713,
+        713,
+        713,
+        713,
+        713
+      ],
+      "sound_picnums": [
+        2521
+      ],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M6.MAP",
+      "population": "curated",
+      "sector": 598,
+      "type": 615,
+      "walls": 46,
+      "portal_walls": 46,
+      "busy_time_a": 250,
+      "busy_time_b": 250,
+      "axis": [
+        -87040,
+        43008
+      ],
+      "riding_picnums": [
+        3085,
+        3080,
+        3080,
+        3080,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256,
+        256
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M6.MAP",
+      "population": "curated",
+      "sector": 642,
+      "type": 615,
+      "walls": 16,
+      "portal_walls": 16,
+      "busy_time_a": 240,
+      "busy_time_b": 240,
+      "axis": [
+        -70144,
+        35584
+      ],
+      "riding_picnums": [
+        3090,
+        3075
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWE2M6.MAP",
+      "population": "curated",
+      "sector": 660,
+      "type": 615,
+      "walls": 18,
+      "portal_walls": 18,
+      "busy_time_a": 120,
+      "busy_time_b": 120,
+      "axis": [
+        -70144,
+        46592
+      ],
+      "riding_picnums": [
+        3090,
+        3090
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSEVICT.MAP",
+      "population": "curated",
+      "sector": 252,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 30,
+      "busy_time_b": 0,
+      "axis": [
+        54400,
+        50560
+      ],
+      "riding_picnums": [
+        795,
+        795,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        732
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSEVICT.MAP",
+      "population": "curated",
+      "sector": 488,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 30,
+      "busy_time_b": 0,
+      "axis": [
+        32768,
+        62784
+      ],
+      "riding_picnums": [
+        795,
+        795,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        68,
+        1068,
+        1068
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSEVICT.MAP",
+      "population": "curated",
+      "sector": 818,
+      "type": 617,
+      "walls": 3,
+      "portal_walls": 3,
+      "busy_time_a": 30,
+      "busy_time_b": 5,
+      "axis": [
+        49152,
+        48768
+      ],
+      "riding_picnums": [
+        148
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSFACE.MAP",
+      "population": "curated",
+      "sector": 37,
+      "type": 615,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 15,
+      "busy_time_b": 0,
+      "axis": [
+        -13824,
+        -4096
+      ],
+      "riding_picnums": [
+        1701,
+        624,
+        890,
+        870,
+        870,
+        885,
+        870,
+        3056,
+        624
+      ],
+      "sound_picnums": [
+        2521
+      ],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSFACE.MAP",
+      "population": "curated",
+      "sector": 175,
+      "type": 615,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 15,
+      "busy_time_b": 0,
+      "axis": [
+        512,
+        61440
+      ],
+      "riding_picnums": [
+        469,
+        624,
+        890,
+        870,
+        870,
+        885,
+        870,
+        2427,
+        624
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSFACE.MAP",
+      "population": "curated",
+      "sector": 291,
+      "type": 615,
+      "walls": 40,
+      "portal_walls": 24,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        -6656,
+        28416
+      ],
+      "riding_picnums": [
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        3056,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        2446,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        2427,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        2446,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        3056
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSHIVE.MAP",
+      "population": "curated",
+      "sector": 108,
+      "type": 615,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 15,
+      "busy_time_b": 0,
+      "axis": [
+        38208,
+        6336
+      ],
+      "riding_picnums": [
+        469,
+        2415,
+        2415,
+        2410,
+        2415,
+        2415
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSHIVE.MAP",
+      "population": "curated",
+      "sector": 233,
+      "type": 615,
+      "walls": 16,
+      "portal_walls": 8,
+      "busy_time_a": 18,
+      "busy_time_b": 0,
+      "axis": [
+        72704,
+        23552
+      ],
+      "riding_picnums": [
+        2130,
+        2130,
+        2130,
+        2130,
+        2130,
+        2130,
+        2130,
+        2130,
+        3056,
+        2090,
+        2091
+      ],
+      "sound_picnums": [
+        2521,
+        2521,
+        2521
+      ],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSHIVE.MAP",
+      "population": "curated",
+      "sector": 686,
+      "type": 615,
+      "walls": 6,
+      "portal_walls": 6,
+      "busy_time_a": 15,
+      "busy_time_b": 0,
+      "axis": [
+        76672,
+        41760
+      ],
+      "riding_picnums": [
+        693,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSHIVE.MAP",
+      "population": "curated",
+      "sector": 698,
+      "type": 615,
+      "walls": 13,
+      "portal_walls": 13,
+      "busy_time_a": 15,
+      "busy_time_b": 0,
+      "axis": [
+        78976,
+        36992
+      ],
+      "riding_picnums": [
+        693,
+        68,
+        68,
+        68,
+        529,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSHIVE.MAP",
+      "population": "curated",
+      "sector": 706,
+      "type": 615,
+      "walls": 5,
+      "portal_walls": 5,
+      "busy_time_a": 15,
+      "busy_time_b": 0,
+      "axis": [
+        81088,
+        32512
+      ],
+      "riding_picnums": [
+        693,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSMALL.MAP",
+      "population": "curated",
+      "sector": 271,
+      "type": 617,
+      "walls": 16,
+      "portal_walls": 16,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        31232,
+        14848
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSMALL.MAP",
+      "population": "curated",
+      "sector": 272,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        31232,
+        14848
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSMALL.MAP",
+      "population": "curated",
+      "sector": 273,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        31232,
+        14848
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSMALL.MAP",
+      "population": "curated",
+      "sector": 274,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        31232,
+        14848
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSMALL.MAP",
+      "population": "curated",
+      "sector": 275,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        31232,
+        14848
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSMALL.MAP",
+      "population": "curated",
+      "sector": 276,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        31232,
+        14848
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSMALL.MAP",
+      "population": "curated",
+      "sector": 277,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        31232,
+        14848
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSMALL.MAP",
+      "population": "curated",
+      "sector": 278,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        31232,
+        14848
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSMALL.MAP",
+      "population": "curated",
+      "sector": 279,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        31232,
+        14848
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSMALL.MAP",
+      "population": "curated",
+      "sector": 280,
+      "type": 617,
+      "walls": 16,
+      "portal_walls": 16,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        31232,
+        14848
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSMALL.MAP",
+      "population": "curated",
+      "sector": 281,
+      "type": 617,
+      "walls": 56,
+      "portal_walls": 24,
+      "busy_time_a": 255,
+      "busy_time_b": 0,
+      "axis": [
+        31232,
+        14848
+      ],
+      "riding_picnums": [
+        795,
+        624,
+        795,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        218,
+        218,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624,
+        624
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSMALL.MAP",
+      "population": "curated",
+      "sector": 655,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 30,
+      "busy_time_b": 0,
+      "axis": [
+        -4608,
+        69376
+      ],
+      "riding_picnums": [
+        436,
+        436
+      ],
+      "sound_picnums": [
+        2521
+      ],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "SSMALL.MAP",
+      "population": "curated",
+      "sector": 896,
+      "type": 617,
+      "walls": 4,
+      "portal_walls": 4,
+      "busy_time_a": 50,
+      "busy_time_b": 0,
+      "axis": [
+        44608,
+        43584
+      ],
+      "riding_picnums": [
+        468,
+        511,
+        511,
+        511,
+        511,
+        743,
+        2357
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DWBB2.MAP",
+      "population": "curated/multiplayer",
+      "sector": 45,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 4,
+      "busy_time_a": 80,
+      "busy_time_b": 80,
+      "axis": [
+        23808,
+        61696
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DNE3L1.MAP",
+      "population": "conversions",
+      "sector": 182,
+      "type": 615,
+      "walls": 7,
+      "portal_walls": 4,
+      "busy_time_a": 0,
+      "busy_time_b": 20,
+      "axis": [
+        37920,
+        -59168
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DNE3L6.map",
+      "population": "conversions",
+      "sector": 3,
+      "type": 615,
+      "walls": 18,
+      "portal_walls": 8,
+      "busy_time_a": 0,
+      "busy_time_b": 100,
+      "axis": [
+        42175,
+        -63603
+      ],
+      "riding_picnums": [
+        465,
+        465,
+        465,
+        465
+      ],
+      "sound_picnums": [
+        2521
+      ],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DNE3L6.map",
+      "population": "conversions",
+      "sector": 11,
+      "type": 615,
+      "walls": 18,
+      "portal_walls": 8,
+      "busy_time_a": 0,
+      "busy_time_b": 100,
+      "axis": [
+        42209,
+        -65517
+      ],
+      "riding_picnums": [
+        465,
+        465,
+        465,
+        465
+      ],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    },
+    {
+      "map": "DNE3L6.map",
+      "population": "conversions",
+      "sector": 77,
+      "type": 617,
+      "walls": 8,
+      "portal_walls": 8,
+      "busy_time_a": 128,
+      "busy_time_b": 0,
+      "axis": [
+        51264,
+        -64608
+      ],
+      "riding_picnums": [],
+      "sound_picnums": [],
+      "counter_rotating_pair": null
+    }
+  ]
+}
