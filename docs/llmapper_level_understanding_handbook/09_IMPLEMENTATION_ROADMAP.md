@@ -1081,10 +1081,48 @@ occurrences inside `mine_object_contexts`' excluded scope + 30 whose sector
 is reachable *and* holds something visible. Both numbers are right; they
 count sprites and occurrences-in-a-bin respectively.
 
-**NOT done, stated as the known gap.** The 657 rotate and slide mechanisms
-have no swept-area spatial-effect reading and are **excluded, not answered**.
-The turnstile family is inside that gap and is parked by owner decision; its
-passage blocker stands.
+**Slide and rotate unparked, 2026-09-01.** They are no longer excluded:
+`effects.py` reads the engine's own instruction (two markers for a slide, one
+for a rotate), **what the motion drags**, and how wide a gap the leaf
+vacates. 659 swept sectors described, 538 of them opening a body's width.
+`reports/blood-swept-mechanisms.md`.
+
+Owner-attested E1M1 reading (sector ids owner-supplied) is the specification
+and the evidence: one slide/rotate/ROR machinery, many design objects.
+
+Three engine facts now encoded rather than rediscovered.
+`TranslateSector`'s `bAllWalls` is `type == kSectorSlide/kSectorRotate`, so
+the unmarked types 616/617 drag every wall and the **Marked** 614/615 drag
+only walls flagged `cstat & 16384`/`& 32768` -- while **sprites are dragged
+on their own 8192/16384 whatever the walls do**. 35 campaign mechanisms move
+*only* sprites, E1M1's sector 65 among them: 49 walls, none flagged, two wall
+sprites doing the whole job of a gate. Room-over-room participates in
+mechanism composition (the casket is slide-marked *and* stack-linked) and is
+a **budget** -- two ROR volumes must not be in view at once, so 11 of 43 maps
+have none and most of the rest have a handful, and E1M1 reuses one big ROR
+volume as a slide carrier rather than spending another. And
+**kChannelLevelStart fires before the player moves**: E1M1's casket is opened
+by a switch on rx 7 that no body can reach, and treating that as a player
+action reported the level as 2 reachable sectors of 155.
+
+**NOT done, and it is now the only gap.** *Which state of a swept mechanism
+blocks* is answered for **5 of 628**. The cheap test -- does a leaf segment
+cross the line between two portal midpoints -- is correct where it fires and
+almost never fires, because a door's two portals are adjacent as often as
+opposite (E1M1 s63's are 512 apart on the same side). Assuming the rest state
+is the shut one is far worse and was measured as such: it cut E1M2 from 226
+reachable sectors to 26. **The polygon sweep is what remains.**
+
+The owner's eight design-object names are **not all recoverable from
+embedding**, and the measurements say where it stops: E1M1's rat trap and its
+curtain have identical topological signatures, and its plain sliding door is
+more load-bearing than the double rotating door built as the way on. What is
+assigned is narrative, technical workaround, fixture, and required against
+side passage; `secret_within_reach` and `dudes_immediately_beyond` are
+recorded and never named from.
+
+The turnstile family sits inside the remaining gap and is parked by owner
+decision; its passage blocker stands.
 
 ## Base graph resolved, 2026-09-01
 
