@@ -1,0 +1,93 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "reports/E1M4-bundle-views/architecture-only.MAP",
+ "resource_dir": "reference/blood",
+ "output": "reports/E1M4-bundle-views/observation",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "sector_102",
+   "x": -1205,
+   "y": 7249,
+   "z": -13216,
+   "angle": 1295,
+   "horiz": 100,
+   "sector": 102,
+   "screenshot": true
+  },
+  {
+   "id": "sector_294",
+   "x": 33323,
+   "y": 34987,
+   "z": 25696,
+   "angle": 1394,
+   "horiz": 100,
+   "sector": 294,
+   "screenshot": true
+  },
+  {
+   "id": "sector_245",
+   "x": 35423,
+   "y": 53487,
+   "z": 25696,
+   "angle": 1654,
+   "horiz": 100,
+   "sector": 245,
+   "screenshot": true
+  },
+  {
+   "id": "sector_234",
+   "x": 8768,
+   "y": 36352,
+   "z": 26624,
+   "angle": 1577,
+   "horiz": 100,
+   "sector": 234,
+   "screenshot": true
+  },
+  {
+   "id": "sector_139",
+   "x": -16799,
+   "y": 21116,
+   "z": 7264,
+   "angle": 50,
+   "horiz": 100,
+   "sector": 139,
+   "screenshot": true
+  },
+  {
+   "id": "sector_352",
+   "x": 11719,
+   "y": 33877,
+   "z": 25696,
+   "angle": 1721,
+   "horiz": 100,
+   "sector": 352,
+   "screenshot": true
+  },
+  {
+   "id": "sector_132",
+   "x": -7578,
+   "y": 20374,
+   "z": -6656,
+   "angle": 1681,
+   "horiz": 100,
+   "sector": 132,
+   "screenshot": true
+  },
+  {
+   "id": "sector_14",
+   "x": 17920,
+   "y": 14464,
+   "z": 22528,
+   "angle": 1104,
+   "horiz": 100,
+   "sector": 14,
+   "screenshot": true
+  }
+ ]
+}
