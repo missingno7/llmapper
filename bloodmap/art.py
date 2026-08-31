@@ -253,6 +253,48 @@ def tile_to_rgb(tile: ArtTile, palette: tuple[tuple[int, int, int], ...]) -> byt
     return bytes(rgb)
 
 
+#: How far above the mean row-to-row change a course line has to stand.
+COURSE_SIGMA = 2.0
+
+
+def row_luminance(tile: ArtTile,
+                  palette: tuple[tuple[int, int, int], ...]) -> list[float]:
+    """Mean perceived brightness of each row of a tile, top row first."""
+    rgb = tile_to_rgb(tile, palette)
+    out = []
+    for y in range(tile.height):
+        total = 0
+        for x in range(tile.width):
+            index = (y * tile.width + x) * 3
+            total += rgb[index] * 299 + rgb[index + 1] * 587 + rgb[index + 2] * 114
+        out.append(total / (tile.width * 1000.0) if tile.width else 0.0)
+    return out
+
+
+def course_rows(tile: ArtTile, palette: tuple[tuple[int, int, int], ...], *,
+                sigma: float = COURSE_SIGMA) -> list[int]:
+    """Rows where a wall tile changes horizontally: its painted courses.
+
+    A cornice, a plinth, the band a shopfront sign sits on -- Blood paints
+    them into the tile rather than building them, so they live at fixed
+    texture rows. Given a wall's `y_repeat` and anchor, `texture_align`
+    turns a row into a world z.
+
+    Returned as the row *below* each change, so row 0 is never a course: an
+    edge is between two rows and belongs to the lower one.
+    """
+    lum = row_luminance(tile, palette)
+    if len(lum) < 2:
+        return []
+    edges = [abs(lum[y] - lum[y - 1]) for y in range(1, len(lum))]
+    mean = sum(edges) / len(edges)
+    spread = (sum((e - mean) ** 2 for e in edges) / len(edges)) ** 0.5
+    if spread <= 0:
+        return []          # an even gradient, or a flat tile: no row stands out
+    cut = mean + float(sigma) * spread
+    return [y + 1 for y, edge in enumerate(edges) if edge >= cut]
+
+
 def rgb_png(width: int, height: int, rgb: bytes) -> bytes:
     if width <= 0 or height <= 0:
         raise ArtError("PNG dimensions must be positive")

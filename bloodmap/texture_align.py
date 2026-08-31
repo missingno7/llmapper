@@ -50,6 +50,26 @@ def repeat_span(tile_height: int, y_repeat: int) -> int:
     return tile_height * TEXTURE_SPAN_SCALE // y_repeat
 
 
+def course_z(anchor_z: int, tile_height: int, y_repeat: int, row: int, *,
+             y_panning: int = 0, upward: bool = True) -> int:
+    """World z of one texture row, given the wall edge the texture hangs from.
+
+    `anchor_z` is the z of the texture's own origin edge -- the head of an
+    opening for the top step of a two-sided wall, the sector ceiling when the
+    wall is aligned to it. `upward` is how the tile runs from there: Blood's z
+    grows downward, so a row measured up from the anchor has a smaller z.
+
+    This is what makes a painted band placeable: `art.course_rows` says which
+    row the band is on, and this says where that row lands in the world.
+    """
+    span = repeat_span(int(tile_height), int(y_repeat))
+    if span <= 0 or tile_height <= 0:
+        return int(anchor_z)
+    per_row = span / float(tile_height)
+    offset = (int(row) + int(y_panning) * tile_height / PANNING_PERIOD) * per_row
+    return int(round(anchor_z - offset if upward else anchor_z + offset))
+
+
 def floor_anchored_panning(height: int, span: int) -> int:
     """The panning that drives the leftover to the top of the wall."""
     if span <= 0:
