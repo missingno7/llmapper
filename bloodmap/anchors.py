@@ -30,7 +30,7 @@ from dataclasses import dataclass, replace
 from math import hypot
 from statistics import mean, pstdev
 from pathlib import Path
-from typing import Any, Iterable, Sequence
+from typing import Any, Iterable, Mapping, Sequence
 
 from .build_ir import BuildIR
 from .patterns import list_corpus_maps
@@ -1871,5 +1871,140 @@ def _facade_signage(
             "wall_aligned": bool(int(fields["cstat"]) & 16),
             "x_repeat": int(fields["x_repeat"]),
             "pal": int(fields["pal"]),
+        })
+    return out
+
+# A facade candidate is a plane, not a building. `reports/blood-facade-grammar.md`
+# named that as the one thing blocking a `facade_run()` constructor: 47 campaign
+# runs are longer than 30 bays, and nothing in the run itself says where one
+# frontage stops and the next begins.
+#
+# The oracle for that is not a label, it is the interior. Two openings on one
+# frontage are in the same building when you can walk from one interior to the
+# other without stepping back outside.
+
+#: What a street and an alley have in common, and what a shop interior does not.
+def _outdoor(build: BuildIR, sector_id: int) -> bool:
+    return bool(int(build.sectors[sector_id]["fields"]["ceiling_stat"]) & 1)
+
+
+def interior_components(build: BuildIR) -> dict[int, int]:
+    """Label every sector by the interior it belongs to; outdoor space is -1.
+
+    Portals through outdoor sectors are cut, so two shops that share a street
+    are not thereby one building. A whole-map fact, computed once per map, as
+    `docs/architecture.md` asks.
+    """
+    inside = [s for s in range(len(build.sectors)) if not _outdoor(build, s)]
+    graph: dict[int, set[int]] = {s: set() for s in inside}
+    for owner in inside:
+        fields = build.sectors[owner]["fields"]
+        first, count = int(fields["wall_ptr"]), int(fields["wall_count"])
+        for wall_id in range(first, min(first + count, len(build.walls))):
+            other = int(build.walls[wall_id]["fields"]["next_sector"])
+            if other in graph:
+                graph[owner].add(other)
+                graph[other].add(owner)
+    labels = {s: -1 for s in range(len(build.sectors))}
+    seen: set[int] = set()
+    index = 0
+    for start in inside:
+        if start in seen:
+            continue
+        stack, group = [start], []
+        seen.add(start)
+        while stack:
+            node = stack.pop()
+            group.append(node)
+            for neighbour in graph[node]:
+                if neighbour not in seen:
+                    seen.add(neighbour)
+                    stack.append(neighbour)
+        for node in group:
+            labels[node] = index
+        index += 1
+    return labels
+
+
+#: What is measured on the solid stretch between two openings on one frontage.
+PARTY_WALL_FEATURES = (
+    "gap_bays",
+    "solid_walls_between",
+    "header_changes",
+    "sill_changes",
+    "gap_tile_differs_from_run",
+    "flank_tiles_differ",
+    "gap_shade_differs_from_run",
+    "masked_wall_in_gap",
+    "interior_depth_changes",
+)
+
+
+def _modal(values: list[int]) -> int | None:
+    return Counter(values).most_common(1)[0][0] if values else None
+
+
+def party_wall_gaps(
+    build: BuildIR, facade: Facade, components: Mapping[int, int],
+) -> list[dict[str, Any]]:
+    """Each consecutive pair of openings on one run, and what lies between.
+
+    The oracle is `different_buildings`, taken from the interior rather than
+    from the street: the two openings lead into interiors that are not
+    connected to each other except by going back outside. A pair where either
+    side opens onto more outdoor space carries no verdict and is excluded
+    rather than guessed.
+    """
+    run = list(facade.walls)
+    position = {wall_id: index for index, wall_id in enumerate(run)}
+    ordered = sorted(
+        ((int(item["wall"].split(":")[1]), item) for item in facade.openings),
+        key=lambda pair: position[pair[0]])
+    dominant = facade.measures["dominant_tile"]
+    shades = [int(build.walls[w]["fields"]["shade"]) for w in facade.solid]
+    run_shade = _modal(shades)
+
+    out: list[dict[str, Any]] = []
+    for (left_id, left), (right_id, right) in zip(ordered, ordered[1:]):
+        low, high = position[left_id], position[right_id]
+        between = [w for w in run[low + 1:high]
+                   if int(build.walls[w]["fields"]["next_sector"]) < 0]
+        gap = ((right["along_run"] - right["width_units"] / 2)
+               - (left["along_run"] + left["width_units"] / 2))
+        left_interior = int(left["leads_to"].split(":")[1])
+        right_interior = int(right["leads_to"].split(":")[1])
+        left_label, right_label = components.get(left_interior, -1), components.get(right_interior, -1)
+        picnums = [int(build.walls[w]["fields"]["picnum"]) for w in between]
+        gap_shades = [int(build.walls[w]["fields"]["shade"]) for w in between]
+        before = run[low - 1] if low > 0 else None
+        after = run[high + 1] if high + 1 < len(run) else None
+
+        def depth(sector_id: int) -> float:
+            box = _sector_bounds(build, sector_id)
+            return min(box[2] - box[0], box[3] - box[1]) if box else 0.0
+
+        out.append({
+            "left": left["wall"], "right": right["wall"],
+            "left_interior": left["leads_to"], "right_interior": right["leads_to"],
+            "verdict": ("unknown" if left_label < 0 or right_label < 0 else
+                        "different_buildings" if left_label != right_label else
+                        "one_building"),
+            "gap_units": round(gap, 1),
+            "gap_bays": round(gap / FACADE_BAY, 3),
+            "solid_walls_between": len(between),
+            "header_changes": left["header_ceiling_z"] != right["header_ceiling_z"],
+            "sill_changes": left["sill_above_street"] != right["sill_above_street"],
+            "gap_tile_differs_from_run": (_modal(picnums) is not None
+                                          and _modal(picnums) != dominant),
+            "flank_tiles_differ": (
+                before is not None and after is not None
+                and int(build.walls[before]["fields"]["picnum"])
+                != int(build.walls[after]["fields"]["picnum"])),
+            "gap_shade_differs_from_run": (_modal(gap_shades) is not None
+                                           and _modal(gap_shades) != run_shade),
+            "masked_wall_in_gap": any(
+                int(build.walls[w]["fields"]["over_picnum"]) > 0 for w in between),
+            "interior_depth_changes": round(
+                abs(depth(left_interior) - depth(right_interior)) / FACADE_BAY, 3),
         })
     return out
