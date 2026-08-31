@@ -26,7 +26,9 @@ by review, and never here.
 from __future__ import annotations
 
 from collections import Counter, defaultdict
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
+from math import hypot
+from statistics import mean, pstdev
 from pathlib import Path
 from typing import Any, Iterable, Sequence
 
@@ -1489,3 +1491,362 @@ def region_candidates(
             "A zone is a candidate, not a room's meaning.",
         ],
     }
+
+
+# ---------------------------------------------------------------------------
+# Facades: the composition that owns its openings
+# ---------------------------------------------------------------------------
+#
+# `06_...md`: the facade owns the openings, the opening does not own the
+# facade. So a facade is not found by looking for windows; it is found as a
+# coherent run of street-facing wall, and the openings are what interrupt it.
+#
+# Two measured constants come from `projects/blood-city/level/facade_pass.py`
+# and are re-confirmed corpus-wide in `reports/blood-facade-grammar.md`:
+# street walls are drawn at 16 world units per tile pixel (73% of 5275
+# campaign street-facing walls), so a 64-pixel facade tile spans 1024 units
+# and that is the bay.
+
+#: `length / (x_repeat * 8)` for a wall drawn at the facade scale.
+FACADE_UNITS_PER_TILE_PIXEL = 16
+FACADE_SCALE_TOLERANCE = 0.5
+#: One painted window and its pier.
+FACADE_BAY = 1024
+#: Build's ceiling-alignment bit, which a header wall takes so it continues the
+#: wall it hangs from rather than its own opening.
+ALIGN_TO_CEILING = 4
+#: A run has to be long enough to have a rhythm at all.
+FACADE_MIN_BAYS = 2
+#: How straight "the same plane" is: the perpendicular offset a wall end may
+#: have from the run's line, in world units.
+FACADE_COLLINEAR_UNITS = 64
+
+FACADE_RHYTHMS = {
+    "single": "one opening; nothing to repeat",
+    "repeating": "even spacing, coefficient of variation <= 0.12",
+    "alternating": "two spacings alternating",
+    "intentionally_broken": "even but for one outlier -- an authored break, "
+                            "kept rather than regularized",
+    "irregular": "no repeating structure measured",
+}
+
+
+@dataclass(frozen=True)
+class Facade:
+    """A run of street-facing wall, and everything that hangs off it."""
+
+    host: int
+    walls: tuple[int, ...]
+    solid: tuple[int, ...]
+    openings: tuple[dict[str, Any], ...]
+    helpers: tuple[int, ...]
+    datums: dict[str, Any]
+    bays: dict[str, Any]
+    rhythm: str
+    signage: tuple[dict[str, Any], ...]
+    measures: dict[str, Any]
+    basis: tuple[str, ...]
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "host": f"sector:{self.host}",
+            "walls": [f"wall:{w}" for w in self.walls],
+            "solid_walls": len(self.solid),
+            "openings": [dict(item) for item in self.openings],
+            "helper_sectors": [f"sector:{s}" for s in self.helpers],
+            "datums": dict(self.datums),
+            "bays": dict(self.bays),
+            "rhythm": self.rhythm,
+            "signage": [dict(item) for item in self.signage],
+            "measures": dict(self.measures),
+            "basis": list(self.basis),
+        }
+
+
+def _wall_ends(build: BuildIR, wall_id: int) -> tuple[tuple[int, int], tuple[int, int]]:
+    wall = build.walls[wall_id]["fields"]
+    end = build.walls[int(wall["point2"])]["fields"]
+    return (int(wall["x"]), int(wall["y"])), (int(end["x"]), int(end["y"]))
+
+
+def _facade_scale(build: BuildIR, wall_id: int) -> bool:
+    """Is this wall drawn at the facade scale, 16 world units per tile pixel?"""
+    (ax, ay), (bx, by) = _wall_ends(build, wall_id)
+    length = hypot(bx - ax, by - ay)
+    repeat = int(build.walls[wall_id]["fields"]["x_repeat"])
+    if not length or not repeat:
+        return False
+    return abs(length / (repeat * 8) - FACADE_UNITS_PER_TILE_PIXEL) <= FACADE_SCALE_TOLERANCE
+
+
+def _collinear_runs(build: BuildIR, wall_ids: Sequence[int]) -> list[list[int]]:
+    """Split a wall loop into maximal runs that lie on one line.
+
+    The main plane of a facade, in the `06_...md` sense: a facade turns a
+    corner into a different facade of the same building, and a run that
+    wandered round a corner would have no plane to measure datums against.
+    """
+    runs: list[list[int]] = []
+    current: list[int] = []
+    for wall_id in wall_ids:
+        if not current:
+            current = [wall_id]
+            continue
+        (ax, ay), _ = _wall_ends(build, current[0])
+        (_, _), (bx, by) = _wall_ends(build, current[-1])
+        _, (dx, dy) = _wall_ends(build, wall_id)
+        length = hypot(bx - ax, by - ay)
+        # Perpendicular distance of the candidate wall's far end from the run's
+        # line. It has to be the far end: in a closed loop the near end is the
+        # previous wall's end, which lies on the line by construction, so
+        # measuring it would never detect a corner.
+        offset = (abs((bx - ax) * (dy - ay) - (by - ay) * (dx - ax)) / length
+                  if length else 0.0)
+        if length and offset <= FACADE_COLLINEAR_UNITS:
+            current.append(wall_id)
+        else:
+            runs.append(current)
+            current = [wall_id]
+    if current:
+        runs.append(current)
+    return runs
+
+
+def _rhythm(offsets: Sequence[float], run_length: float) -> str:
+    if len(offsets) <= 1:
+        return "single"
+    gaps = [b - a for a, b in zip(offsets, offsets[1:])]
+    if len(gaps) == 1:
+        centred = abs(offsets[0] + (offsets[-1] - offsets[0]) / 2 - run_length / 2)
+        return "centered" if centred <= FACADE_BAY / 2 else "irregular"
+    spacing = mean(gaps)
+    if spacing <= 0:
+        return "irregular"
+    variation = pstdev(gaps) / spacing
+    if variation <= 0.12:
+        return "repeating"
+    if len(gaps) >= 3:
+        odd = gaps[0::2]
+        even = gaps[1::2]
+        if (len(odd) > 1 and len(even) > 0
+                and pstdev(odd) / max(mean(odd), 1) <= 0.12
+                and (len(even) < 2 or pstdev(even) / max(mean(even), 1) <= 0.12)
+                and abs(mean(odd) - mean(even)) > 0.25 * spacing):
+            return "alternating"
+        trimmed = sorted(gaps)[:-1]
+        if len(trimmed) > 1 and pstdev(trimmed) / max(mean(trimmed), 1) <= 0.12:
+            return "intentionally_broken"
+    return "irregular"
+
+
+def find_facades(
+    build: BuildIR,
+    *,
+    disk: Any = None,
+    sector_kinds: dict[int, str] | None = None,
+    game: str = "blood",
+    require_openings: bool = True,
+) -> list[Facade]:
+    """Facade candidates: coherent runs of street-facing wall.
+
+    A run qualifies when it is a maximal collinear sequence in a sky-lit
+    reachable sector, spans at least two bays, and carries at least one
+    opening. What makes its openings *belong together* is measured rather
+    than assumed: the shared plane, the shared material family, the shared
+    sill and header datums, and the bay grid they land on.
+    """
+    from .lettering import FIRST_LETTER, LAST_LETTER
+
+    out: list[Facade] = []
+    for sector_id, sector in enumerate(build.sectors):
+        if sector_kinds is not None and sector_kinds.get(sector_id, "unknown") not in (
+                "reachable", "unknown"):
+            continue
+        fields = sector["fields"]
+        if not int(fields["ceiling_stat"]) & 1:          # not open to the sky
+            continue
+        first, count = int(fields["wall_ptr"]), int(fields["wall_count"])
+        wall_ids = [w for w in range(first, first + count) if 0 <= w < len(build.walls)]
+        floor_z = int(fields["floor_z"])
+        candidates = []
+        for run in _collinear_runs(build, wall_ids):
+            found = _facade_from_run(build, sector_id, run, floor_z, disk,
+                                     FIRST_LETTER, LAST_LETTER, require_openings)
+            if found is not None:
+                candidates.append(found)
+        out.extend(_assign_signage(candidates))
+    return out
+
+
+def _assign_signage(candidates: list[Facade]) -> list[Facade]:
+    """A letter belongs to one facade: the plane it is nearest to.
+
+    Two collinear runs of the same street sector can both be within a bay of
+    the same sign, and counting a word twice would report a shopfront as two
+    shopfronts. The nearest plane wins.
+    """
+    if len(candidates) < 2:
+        return candidates
+    best: dict[str, tuple[float, int]] = {}
+    for index, facade in enumerate(candidates):
+        for sign in facade.signage:
+            offset = sign["offset_from_plane_units"]
+            if sign["sprite"] not in best or offset < best[sign["sprite"]][0]:
+                best[sign["sprite"]] = (offset, index)
+    return [
+        replace(facade, signage=tuple(
+            sign for sign in facade.signage
+            if best.get(sign["sprite"], (0, index))[1] == index))
+        for index, facade in enumerate(candidates)
+    ]
+
+
+def _facade_from_run(
+    build: BuildIR, host: int, run: Sequence[int], floor_z: int, disk: Any,
+    first_letter: int, last_letter: int, require_openings: bool,
+) -> Facade | None:
+    (ox, oy), _ = _wall_ends(build, run[0])
+    _, (ex, ey) = _wall_ends(build, run[-1])
+    run_length = hypot(ex - ox, ey - oy)
+    if run_length < FACADE_MIN_BAYS * FACADE_BAY:
+        return None
+
+    def along(x: float, y: float) -> float:
+        return hypot(x - ox, y - oy)
+
+    solid, openings, helpers = [], [], []
+    sills: Counter = Counter()
+    headers: Counter = Counter()
+    scale_hits = 0
+    picnums: Counter = Counter()
+    for wall_id in run:
+        wall = build.walls[wall_id]["fields"]
+        (ax, ay), (bx, by) = _wall_ends(build, wall_id)
+        other = int(wall["next_sector"])
+        if _facade_scale(build, wall_id):
+            scale_hits += 1
+        if other < 0:
+            solid.append(wall_id)
+            picnums[int(wall["picnum"])] += 1
+            continue
+        neighbour = build.sectors[other]["fields"]
+        sill = int(neighbour["floor_z"]) - floor_z
+        header = int(neighbour["ceiling_z"]) - int(build.sectors[host]["fields"]["ceiling_z"])
+        sills[sill] += 1
+        headers[int(neighbour["ceiling_z"])] += 1
+        width = hypot(bx - ax, by - ay)
+        openings.append({
+            "wall": f"wall:{wall_id}",
+            "leads_to": f"sector:{other}",
+            "along_run": round(along((ax + bx) / 2, (ay + by) / 2), 1),
+            "width_units": round(width, 1),
+            "width_bays": round(width / FACADE_BAY, 3),
+            "whole_bay": abs(width / FACADE_BAY - round(width / FACADE_BAY)) < 0.02
+                         and width >= FACADE_BAY * 0.5,
+            "sill_above_street": sill,
+            "header_ceiling_z": int(neighbour["ceiling_z"]),
+            "header_aligned_to_ceiling": bool(int(wall["cstat"]) & ALIGN_TO_CEILING),
+        })
+        area = abs(int(neighbour["floor_z"]) - int(neighbour["ceiling_z"]))
+        if area and _sector_bounds(build, other):
+            box = _sector_bounds(build, other)
+            span = min(box[2] - box[0], box[3] - box[1])
+            if span <= FACADE_BAY // 2:                  # a thin helper, not a room
+                helpers.append(other)
+    if require_openings and not openings:
+        return None
+
+    offsets = sorted(item["along_run"] for item in openings)
+    signage = _facade_signage(build, disk, host, run, (ox, oy), run_length,
+                             first_letter, last_letter, floor_z)
+    dominant = picnums.most_common(1)[0] if picnums else (None, 0)
+    return Facade(
+        host=host, walls=tuple(run), solid=tuple(solid),
+        openings=tuple(openings), helpers=tuple(sorted(set(helpers))),
+        datums={
+            "sill_above_street": {str(k): v for k, v in sorted(sills.items())},
+            "repeated_sill": max(sills.values()) if sills else 0,
+            "header_ceiling_z": {str(k): v for k, v in sorted(headers.items())},
+            "repeated_header": max(headers.values()) if headers else 0,
+            "cornice": None,
+            "cornice_note": "not recoverable from geometry: a street sector's "
+                            "ceiling is the sky, so the top of a facade is "
+                            "painted rather than built",
+        },
+        bays={
+            "run_bays": round(run_length / FACADE_BAY, 3),
+            "whole_bay_openings": sum(1 for item in openings if item["whole_bay"]),
+            "openings": len(openings),
+        },
+        rhythm=_rhythm(offsets, run_length),
+        signage=tuple(signage),
+        measures={
+            "run_length_units": round(run_length, 1),
+            "walls": len(run),
+            "solid_walls": len(solid),
+            "at_facade_scale": scale_hits,
+            "facade_scale_share": round(scale_hits / len(run), 3),
+            "distinct_wall_tiles": len(picnums),
+            "dominant_tile": dominant[0],
+            "dominant_tile_share": round(dominant[1] / max(1, len(solid)), 3),
+            "helper_sectors": len(set(helpers)),
+        },
+        basis=(
+            "maximal collinear run of one sky-lit sector's wall loop",
+            f"at least {FACADE_MIN_BAYS} bays of {FACADE_BAY} units",
+            "openings are the two-sided walls interrupting the run",
+        ),
+    )
+
+
+def _facade_signage(
+    build: BuildIR, disk: Any, host: int, run: Sequence[int],
+    origin: tuple[int, int], run_length: float, first_letter: int, last_letter: int,
+    floor_z: int,
+) -> list[dict[str, Any]]:
+    """Letter sprites standing on this facade, placed against its own grid.
+
+    Signage is a member of the hierarchy, not decoration: where a sign sits is
+    measured in bays along the run and in player heights above the street, so
+    two facades in different maps can be compared.
+    """
+    from .player_space import player_profile
+
+    profile = player_profile("blood")
+    letters = [
+        (index, sprite) for index, sprite in enumerate(build.sprites)
+        if first_letter <= int(sprite["fields"]["picnum"]) <= last_letter
+        and int(sprite["fields"]["sector"]) == host
+    ]
+    if not letters:
+        return []
+    ox, oy = origin
+    (ax, ay), _ = _wall_ends(build, run[0])
+    _, (bx, by) = _wall_ends(build, run[-1])
+    ux, uy = bx - ax, by - ay
+    length = hypot(ux, uy) or 1.0
+    ux, uy = ux / length, uy / length
+
+    out = []
+    for index, sprite in letters:
+        fields = sprite["fields"]
+        px, py = int(fields["x"]) - ox, int(fields["y"]) - oy
+        along = px * ux + py * uy
+        offset = abs(px * -uy + py * ux)
+        if not (-FACADE_BAY <= along <= run_length + FACADE_BAY):
+            continue
+        if offset > FACADE_BAY:                          # not on this plane
+            continue
+        out.append({
+            "sprite": f"sprite:{index}",
+            "picnum": int(fields["picnum"]),
+            "along_run_units": round(along, 1),
+            "along_run_bays": round(along / FACADE_BAY, 3),
+            "offset_from_plane_units": round(offset, 1),
+            "height_above_street_player_heights": round(
+                (floor_z - int(fields["z"])) / profile.standing_height, 3),
+            "wall_aligned": bool(int(fields["cstat"]) & 16),
+            "x_repeat": int(fields["x_repeat"]),
+            "pal": int(fields["pal"]),
+        })
+    return out
