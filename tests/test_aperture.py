@@ -267,18 +267,42 @@ class FramedDoorTests(unittest.TestCase):
     def test_the_leaf_is_a_whole_number_of_tile_repeats(self):
         """5.50 spans slices the top course through its own iron band."""
         _, built = self._framed()
-        self.assertEqual(built["leaf_repeats"], 4)
-        self.assertEqual(built["leaf_height_z"], 4 * 128 * 8 * 8)
+        self.assertEqual(built["leaf_repeats"], 1)
+        self.assertEqual(built["leaf_height_z"], 128 * 2048 // 8)
 
-    def test_four_repeats_is_the_campaign_median_leaf(self):
-        """Tile 22 at the y_repeat Blood pins it to spans 8192 z, and four of
-        those is 32768 -- 1.93 standing humans, the campaign's median aperture.
-        The art's grid and the campaign's door height are the same number."""
+    def test_one_repeat_is_the_campaign_median_leaf(self):
+        """Tile 22 at the y_repeat Blood pins it to spans 32768 z -- 1.93
+        standing humans, the campaign's median aperture, and the median number
+        of times the tile actually draws up its wall is 1.00 over 540 campaign
+        walls. The art's grid and the campaign's door height are the same
+        number.
+        """
         from bloodmap.aperture import PLAYER_HEIGHT, snap_leaf
 
         height, repeats = snap_leaf(128, 8, 32768)
-        self.assertEqual(repeats, 4)
+        self.assertEqual(repeats, 1)
+        self.assertEqual(height, 32768)
         self.assertAlmostEqual(height / PLAYER_HEIGHT, 1.93, places=2)
+
+    def test_the_vertical_span_has_one_definition(self):
+        """It had two, reciprocal in y_repeat, agreeing only at y_repeat 16."""
+        from bloodmap.aperture import tile_span_z
+        from bloodmap.texture_align import repeat_span
+
+        for tile_height, y_repeat in ((128, 8), (64, 8), (256, 16), (128, 32)):
+            self.assertEqual(tile_span_z(tile_height, y_repeat),
+                             repeat_span(tile_height, y_repeat))
+
+    def test_a_wall_texture_is_square_at_the_pairing_blood_pins(self):
+        """Blood's z is 16x finer than x and y, so 2048/y_repeat z per texture
+        pixel at y_repeat 8 is the same 16 world units per pixel the facade
+        scale runs at horizontally at x_repeat 8.
+        """
+        from bloodmap.aperture import tile_span_z
+
+        z_per_pixel = tile_span_z(128, 8) / 128
+        self.assertEqual(z_per_pixel, 256)
+        self.assertEqual(z_per_pixel / 16, 16)
 
     def test_the_repeat_itself_is_left_alone(self):
         """The obvious fix -- stretch the tile until it draws once -- is one the

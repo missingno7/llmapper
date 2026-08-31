@@ -388,35 +388,53 @@ def audit(disk: Any, *, player_height: int | None = None) -> list[dict[str, Any]
 # ---------------------------------------------------------------------------
 
 def tile_span_z(tile_height: int, y_repeat: int) -> int:
-    """A wall tile's vertical extent in z: ``tilesizy * y_repeat * 8``."""
-    return int(tile_height) * int(y_repeat) * 8
+    """A wall tile's vertical extent in z.
+
+    One definition, in `texture_align.repeat_span`. This function once had a
+    second one -- ``tilesizy * y_repeat * 8`` -- which is the reciprocal in
+    ``y_repeat`` and agrees only at ``y_repeat`` 16. It was wrong, and the
+    campaign says so twice over:
+
+    * Under `repeat_span`, **48% of the campaign's 51571 one-sided walls with
+      known art are exactly one repeat tall** and 93% are between a half and
+      four. Under the old formula the mode was four repeats and only 49% fell
+      in that range -- the same distribution scaled by the error.
+    * Blood's z is 16 times finer than x and y. ``2048 / y_repeat`` z per
+      texture pixel is 256 z at ``y_repeat`` 8, which is 16 world units --
+      exactly the 16 units per tile pixel the facade scale runs at
+      horizontally at ``x_repeat`` 8. At the pairing Blood pins, a wall
+      texture is square.
+    """
+    from .texture_align import repeat_span
+
+    return repeat_span(int(tile_height), int(y_repeat))
 
 
 def snap_leaf(tile_height: int, y_repeat: int, target_z: int,
-              *, at_least: int = 2) -> tuple[int, int]:
+              *, at_least: int = 1) -> tuple[int, int]:
     """A leaf height that is a whole number of tile repeats.
 
     Returns ``(height_z, repeats)``.
 
-    Two corrections live in this function, both of them against the obvious fix.
+    The obvious fix for "the door tile draws part of a course" is to stretch
+    the tile until it draws once. **The campaign says no.** Of the ten
+    commonest ``(x_repeat, y_repeat)`` pairings Blood uses for tile 22, nine
+    pin ``y_repeat`` at 8 and vary only the horizontal. So the repeat stays at
+    whatever the tile is used at, and the *opening* is sized to a whole number
+    of them instead: a part-repeat slices the top course of planks through the
+    middle of its iron band.
 
-    The obvious fix for "the door tile draws five and a half times" is to
-    stretch the tile until it draws once. **The campaign says no.** Of the ten
-    commonest ``(x_repeat, y_repeat)`` pairings Blood uses for tile 22, nine pin
-    ``y_repeat`` at 8 and vary only the horizontal; the tile is planking, and
-    Blood tiles it a median of 3.0 times up a door. Forcing ``y_repeat`` to 44
-    to make one giant leaf stretches a tile in a way the campaign never does.
+    The arithmetic then lands somewhere worth noticing. Tile 22 is 128 tall,
+    and at ``y_repeat`` 8 it spans 32768 z -- 1.93 standing humans, *exactly*
+    the campaign's median aperture leaf. Measured over the 540 campaign walls
+    that carry tile 22, it draws a **median of 1.00 times** up its wall, 304 of
+    them at exactly one. The tile's own grid and the campaign's door height are
+    the same number, which is not a coincidence: the height came from the art.
 
-    So the repeat stays at whatever the tile is used at, and the *opening* is
-    sized to a whole number of them instead. The half-repeat is the real fault:
-    5.50 spans means the top course of planks is sliced through the middle of
-    its iron band.
-
-    The arithmetic then lands somewhere worth noticing. Tile 22 at ``y_repeat``
-    8 spans 8192 z, and four of those is 32768 -- which is 1.93 standing humans,
-    *exactly* the campaign's median aperture leaf. The tile's own grid and the
-    campaign's door height are the same number, which is not a coincidence: the
-    height came from the art.
+    ``at_least`` is 1 for the same reason. It was 2 while `tile_span_z` was
+    four times too small, where two repeats came to one door; against the
+    corrected span two repeats is 65536 z, nearly four standing humans, and
+    would double every leaf this sizes.
     """
     span = tile_span_z(tile_height, y_repeat)
     if span <= 0:
