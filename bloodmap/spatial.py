@@ -590,3 +590,70 @@ def spatial_selection_context(build: BuildIR, sector_ids: Iterable[int]) -> dict
         "overlapping_hypotheses": [compact_hypothesis(item) for item in hypotheses],
         "limitations": ["contrast does not prove a dramatic reveal", "hypotheses overlap and do not partition sectors"],
     }
+
+
+# ---------------------------------------------------------------------------
+# Functional zoning: a room is not always one place
+# ---------------------------------------------------------------------------
+#
+# A derived view, so it lives here and knows nothing about bundles or anchors;
+# `anchors.region_candidates` composes it with Phase 5 bundles. The partition
+# is by floor plane and floor material, which is the strongest zoning signal
+# geometry offers on its own -- and the E6M1 measurement says plainly how far
+# that gets: the shop's apparel bay, display window and selling floor share one
+# plane and one tile, so this view cannot separate them. What it does separate
+# is the cashwrap, its register caps and the back office, which are three
+# genuine zones in one shop.
+
+def zone_partition(build: BuildIR, sector_ids: Iterable[int]) -> list[dict[str, Any]]:
+    """Split a group of sectors into zones sharing a floor plane and material.
+
+    Zones are connected: two sectors with the same plane and tile that do not
+    touch are two zones, because a shop floor and a corridor floor built from
+    the same slab are not one place.
+    """
+    selected = sorted({int(value) for value in sector_ids})
+    invalid = [s for s in selected if not 0 <= s < len(build.sectors)]
+    if invalid:
+        raise SpatialAnalysisError(f"sector IDs are out of range: {invalid}")
+
+    def key(sector_id: int) -> tuple[int, int]:
+        fields = build.sectors[sector_id]["fields"]
+        return int(fields["floor_z"]), int(fields["floor_picnum"])
+
+    adjacency: dict[int, set[int]] = {s: set() for s in selected}
+    for sector_id in selected:
+        fields = build.sectors[sector_id]["fields"]
+        first, count = int(fields["wall_ptr"]), int(fields["wall_count"])
+        for wall_id in range(first, first + count):
+            if not 0 <= wall_id < len(build.walls):
+                continue
+            other = int(build.walls[wall_id]["fields"]["next_sector"])
+            if other in adjacency and key(other) == key(sector_id):
+                adjacency[sector_id].add(other)
+                adjacency[other].add(sector_id)
+
+    seen: set[int] = set()
+    zones: list[dict[str, Any]] = []
+    for sector_id in selected:
+        if sector_id in seen:
+            continue
+        stack, group = [sector_id], []
+        seen.add(sector_id)
+        while stack:
+            current = stack.pop()
+            group.append(current)
+            for other in adjacency[current]:
+                if other not in seen:
+                    seen.add(other)
+                    stack.append(other)
+        floor_z, picnum = key(sector_id)
+        zones.append({
+            "id": f"zone:{min(group)}",
+            "sectors": sorted(group),
+            "floor_z": floor_z,
+            "floor_picnum": picnum,
+            "basis": "connected sectors sharing a floor plane and floor tile",
+        })
+    zones.sort(key=lambda zone: zone["sectors"][0])
+    return zones

@@ -49,7 +49,21 @@ quarter of every campaign map's sprites are wiring the engine never draws, and
 a logic closet is routinely the sprite-densest sector. Never rank sectors by
 raw sprite count. The excluded remainder is reported, never dropped.
 
-The next runnable task is Phase 5.
+**Phase 5 (object assemblies and negative space) is done (2026-08-31).**
+`anchors.find_bundles` groups a static bundle, `player_space.Clearance` states
+the space it claims, and `anchors.compare_placements` tells an authored bundle
+from the same props scattered. Before asserting any clearance rule, read
+`reports/blood-assembly-counters.md`: 73% of campaign counters are flush
+against something, so clearance is an *access front*, not a prism.
+
+**Phase 6 (functional regions) is done (2026-08-31).**
+`spatial.zone_partition` + `anchors.region_candidates` explain a room as
+several zones. The zones are unnamed on purpose: two ways of naming a
+counter's two sides were measured against the campaign and both failed
+(`reports/blood-assembly-regions.md`). Read that before proposing a shop
+grammar.
+
+The next runnable task is Phase 7.
 
 ## Working rule
 

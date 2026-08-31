@@ -32,6 +32,7 @@ from typing import Any, Iterable, Sequence
 
 from .build_ir import BuildIR
 from .patterns import list_corpus_maps
+from .player_space import player_profile
 from .relations import (
     CONTEXT_FACETS, OBJECT_FACETS, context_signature, extract_relations,
     signature_facets,
@@ -1098,4 +1099,393 @@ def _picnum_profile(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "distinct_picnums": len(counts),
         "commonest": [{"picnum": picnum, "count": count}
                       for picnum, count in counts.most_common(8)],
+    }
+
+
+# ---------------------------------------------------------------------------
+# Static bundles: several sectors and sprites that are one authored thing
+# ---------------------------------------------------------------------------
+#
+# `assembly.py` groups the parts of a *mechanism* -- things bound by channels
+# and state. A counter has neither and is still one object. `04_...md` lists
+# the grouping signals: proximity, alignment, consistent orientation, repeated
+# spacing, shared wall, common height, contact/support, enclosure. It also says
+# proximity alone is insufficient, which is why the rule below leads with
+# support and enclosure and never counts sprites in a radius.
+
+#: The player's step limit, from `vocabulary.staircase`. A floor raised by more
+#: than this cannot be walked onto, which is what makes a counter a counter
+#: rather than a kerb.
+STEP_LIMIT = 4096
+
+#: Waist height: raised by more than one step but no more than half a body.
+#: Measured, not chosen -- of 958 campaign blocking islands the rise
+#: distribution has its largest mass here (38.3%), and E6M1's owner-identified
+#: cashwrap sits at 6144, in the middle of it.
+WAIST_RISE = (STEP_LIMIT, 8192)
+
+#: An elongated footprint. A square blocking island is a pillar or a crate; a
+#: counter is a run you stand along.
+COUNTER_MIN_ASPECT = 2.0
+
+BUNDLE_KINDS = {
+    "raised-island": "a floor raised out of its host by more than one step, "
+                     "with exactly one host, carrying caps or visible props",
+}
+
+
+@dataclass(frozen=True)
+class Bundle:
+    """Several primitives that are one authored object.
+
+    `core` is the raised sector; `host` is the floor it stands in; `caps` are
+    sectors inset into the core's own footprint (E6M1's two register caps);
+    `props` are the visible sprites the core carries. Wiring never counts as a
+    prop -- `reports/blood-wiring-placement.md` is the reason.
+    """
+
+    kind: str
+    core: int
+    host: int
+    caps: tuple[int, ...]
+    props: tuple[int, ...]
+    measures: dict[str, Any]
+    basis: tuple[str, ...]
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "kind": self.kind,
+            "core": f"sector:{self.core}",
+            "host": f"sector:{self.host}",
+            "caps": [f"sector:{value}" for value in self.caps],
+            "props": [f"sprite:{value}" for value in self.props],
+            "measures": dict(self.measures),
+            "basis": list(self.basis),
+        }
+
+
+def _sector_bounds(build: BuildIR, sector_id: int) -> tuple[int, int, int, int] | None:
+    fields = build.sectors[sector_id]["fields"]
+    first, count = int(fields["wall_ptr"]), int(fields["wall_count"])
+    points = [(int(build.walls[w]["fields"]["x"]), int(build.walls[w]["fields"]["y"]))
+              for w in range(first, first + count) if 0 <= w < len(build.walls)]
+    if not points:
+        return None
+    xs = [p[0] for p in points]
+    ys = [p[1] for p in points]
+    return min(xs), min(ys), max(xs), max(ys)
+
+
+def _sector_neighbours(build: BuildIR, sector_id: int) -> set[int]:
+    fields = build.sectors[sector_id]["fields"]
+    first, count = int(fields["wall_ptr"]), int(fields["wall_count"])
+    out = set()
+    for wall_id in range(first, first + count):
+        if 0 <= wall_id < len(build.walls):
+            other = int(build.walls[wall_id]["fields"]["next_sector"])
+            if other >= 0:
+                out.add(other)
+    return out
+
+
+def _box_contains(outer: tuple[int, ...], inner: tuple[int, ...]) -> bool:
+    return (outer[0] <= inner[0] and outer[1] <= inner[1]
+            and outer[2] >= inner[2] and outer[3] >= inner[3])
+
+
+def find_bundles(
+    build: BuildIR,
+    *,
+    sector_kinds: dict[int, str] | None = None,
+    game: str = "blood",
+    waist_only: bool = True,
+    require_elongated: bool = True,
+    require_carried: bool = True,
+) -> list[Bundle]:
+    """Every raised-island bundle in a map.
+
+    The rule, in the order the signals are applied -- none of them is proximity:
+
+    1. **enclosure**: the sector has exactly one neighbour that does not sit
+       inside its own footprint. That neighbour is the host; the rest are caps.
+    2. **common height**: its floor is above the host's.
+    3. **contact**: by more than a step, so the host floor and the core are two
+       surfaces rather than one.
+    4. **support / enclosure again**: it carries a cap or a visible prop.
+       A bare raised island is a kerb or a plinth, not a bundle.
+
+    The defaults narrow to the counter-like family measured in
+    `reports/blood-assembly-counters.md`; relax them to see the whole
+    raised-island population.
+    """
+    from .relations import sprite_kind
+
+    visible: dict[int, list[int]] = defaultdict(list)
+    for sprite_id, sprite in enumerate(build.sprites):
+        if sprite_kind(build, sprite_id, game=game) == "visible":
+            visible[int(sprite["fields"]["sector"])].append(sprite_id)
+
+    out: list[Bundle] = []
+    for core in range(len(build.sectors)):
+        if sector_kinds is not None and sector_kinds.get(core, "unknown") not in (
+                "reachable", "unknown"):
+            continue
+        box = _sector_bounds(build, core)
+        if box is None:
+            continue
+        caps, outer = [], []
+        for other in _sector_neighbours(build, core):
+            other_box = _sector_bounds(build, other)
+            (caps if other_box and _box_contains(box, other_box) else outer).append(other)
+        if len(outer) != 1:
+            continue
+        host = outer[0]
+        rise = (int(build.sectors[host]["fields"]["floor_z"])
+                - int(build.sectors[core]["fields"]["floor_z"]))
+        if rise <= STEP_LIMIT:
+            continue
+        if waist_only and not WAIST_RISE[0] < rise <= WAIST_RISE[1]:
+            continue
+        width, depth = box[2] - box[0], box[3] - box[1]
+        long_side, short_side = max(width, depth), min(width, depth)
+        aspect = long_side / short_side if short_side else 0.0
+        if require_elongated and aspect < COUNTER_MIN_ASPECT:
+            continue
+        props = tuple(sorted(visible.get(core, ())))
+        if require_carried and not props and not caps:
+            continue
+        profile = player_profile(game)
+        out.append(Bundle(
+            kind="raised-island", core=core, host=host,
+            caps=tuple(sorted(caps)), props=props,
+            measures={
+                "rise_units": rise,
+                "rise_player_heights": round(rise / profile.standing_height, 4),
+                "aspect": round(aspect, 3),
+                "long_player_widths": round(long_side / profile.body_width, 3),
+                "short_player_widths": round(short_side / profile.body_width, 3),
+                "caps": len(caps),
+                "visible_props": len(props),
+            },
+            basis=(
+                "one outer neighbour; every other neighbour sits inside its footprint",
+                f"floor raised {rise} units over the host, more than the "
+                f"{STEP_LIMIT}-unit step limit",
+                "carries a cap or a visible prop",
+            ),
+        ))
+    return out
+
+
+# ---------------------------------------------------------------------------
+# The random-prop-scattering detector
+# ---------------------------------------------------------------------------
+#
+# `04_...md`: a common AI failure is to reach the right density by scattering
+# props, and a map can match sprite counts and still fail composition. So the
+# detector may not count sprites. It looks for the absence of authored
+# structure: no support relationship, no grouping, no relation to walls.
+#
+# The load-bearing signal is **support**. An authored prop sits on something --
+# a counter, a shelf, a plinth -- and a scattered one sits on the floor of the
+# room it landed in. That is a Phase 1 relation (`rests_on`, plus the raised
+# core the bundle already found), not a distance threshold.
+
+#: A room whose props are this concentrated on supports reads as authored.
+#: Not tuned on the corpus: it is the midpoint, and the synthetic pair in
+#: `tests/test_assembly_bundles.py` sits at 1.0 and 0.0.
+AUTHORED_SUPPORT_SHARE = 0.5
+
+
+def scatter_verdict(
+    build: BuildIR,
+    host: int,
+    *,
+    sector_kinds: dict[int, str] | None = None,
+    game: str = "blood",
+) -> dict[str, Any]:
+    """Are this room's props placed on something, or dropped on the floor?
+
+    Returns the measured signals and one of `authored` / `scattered` /
+    `ambiguous`. It never reads how *many* props there are: the same props,
+    the same count, moved off their support, must flip the verdict, and
+    `tests/test_assembly_bundles.py` pins exactly that.
+    """
+    from .relations import sprite_kind
+
+    bundles = find_bundles(build, sector_kinds=sector_kinds, game=game,
+                           require_carried=False)
+    cores = {bundle.core: bundle for bundle in bundles if bundle.host == host}
+
+    props, supported, on_core_sectors = [], [], set()
+    for sprite_id, sprite in enumerate(build.sprites):
+        if sprite_kind(build, sprite_id, game=game) != "visible":
+            continue
+        sector_id = int(sprite["fields"]["sector"])
+        if sector_id == host:
+            props.append(sprite_id)
+        elif sector_id in cores:
+            props.append(sprite_id)
+            supported.append(sprite_id)
+            on_core_sectors.add(sector_id)
+
+    total = len(props)
+    if not total:
+        return {
+            "host": f"sector:{host}", "verdict": "no props",
+            "props": 0, "supports_available": len(cores),
+        }
+    share = len(supported) / total
+    #: The verdict names what was measured, not a judgement about the author.
+    #: E6M1's own selling floor scores 0.16 -- three props on the cashwrap and
+    #: sixteen on the shop floor, every one of them deliberate. A detector that
+    #: called that "scattered" would be wrong about the source material.
+    verdict = ("props_on_supports" if share >= AUTHORED_SUPPORT_SHARE
+               else "props_off_supports" if not supported and cores
+               else "mixed")
+    return {
+        "host": f"sector:{host}",
+        "verdict": verdict,
+        "props": total,
+        "props_on_a_support": len(supported),
+        "support_share": round(share, 4),
+        "supports_available": len(cores),
+        "supports_used": len(on_core_sectors),
+        "signals": {
+            "support": "props resting on a raised island rather than on the "
+                       "host floor",
+            "grouping": "how many of the available supports are actually used",
+        },
+        "basis": "Phase 1 relations plus the raised-island rule; no sprite "
+                 "count enters the verdict",
+        "limitations": [
+            "A room with no raised support cannot be told apart this way and "
+            "says so rather than guessing.",
+            "This is a measurement of one room, not a verdict on its author. "
+            "A shop floor legitimately carries props on the floor: E6M1's "
+            "scores 0.16 and is hand-authored. Use `compare_placements` for "
+            "the question the phase actually asks.",
+            "Synthetic scenes are validation only and are never evidence.",
+        ],
+    }
+
+
+def compare_placements(
+    authored: BuildIR, candidate: BuildIR, host: int, *,
+    sector_kinds: dict[int, str] | None = None, game: str = "blood",
+) -> dict[str, Any]:
+    """The Phase 5 question: the same props, placed two ways -- which is which?
+
+    Not "is this room good". Given one arrangement and another of the *same*
+    props in the *same* room, say which one is authored. The answer is carried
+    by whether the props are on their support, so a scatter that preserves
+    count, room and prop identity still loses.
+    """
+    left = scatter_verdict(authored, host, sector_kinds=sector_kinds, game=game)
+    right = scatter_verdict(candidate, host, sector_kinds=sector_kinds, game=game)
+    same_props = left.get("props") == right.get("props")
+    gap = left.get("support_share", 0) - right.get("support_share", 0)
+    return {
+        "host": f"sector:{host}",
+        "same_prop_count": same_props,
+        "authored": left,
+        "candidate": right,
+        "support_share_gap": round(gap, 4),
+        "verdict": ("the first is authored" if gap > 0
+                    else "the second is authored" if gap < 0
+                    else "indistinguishable by support"),
+        "basis": "prop count is identical by construction, so it cannot be "
+                 "carrying the answer",
+    }
+
+
+# ---------------------------------------------------------------------------
+# Functional region candidates: zones, and the bundles inside them
+# ---------------------------------------------------------------------------
+
+#: Two naming hypotheses were tested against the campaign and both failed.
+#: They are recorded here because a later pass will think of them again.
+REJECTED_ZONE_NAMINGS = (
+    {
+        "hypothesis": "a counter's wide side is the customer front, because "
+                      "that is where the ways out are",
+        "measured": "84.1% of a host's ways out are on the wide side, but the "
+                    "wide side also carries 83.2% of the host's wall: a lift "
+                    "of +0.024, and only 43% of bundles beat their own wall "
+                    "share (a coin flip is 50%)",
+        "verdict": "rejected: the wide side has the exits because it has the "
+                   "wall, not because it is the public side",
+    },
+    {
+        "hypothesis": "merchandise stands on the customer side, so the wide "
+                      "side is denser in props",
+        "measured": "props on the wide side 0.651 against a floor share of "
+                    "0.730 -- a lift of -0.080, and the wide side is the "
+                    "denser one in only 40% of bundles",
+        "verdict": "rejected, and in the opposite direction to the guess",
+    },
+)
+
+
+def region_candidates(
+    build: BuildIR,
+    sector_ids: Iterable[int],
+    *,
+    sector_kinds: dict[int, str] | None = None,
+    game: str = "blood",
+) -> dict[str, Any]:
+    """Zones in a group of sectors, with the bundles each one contains.
+
+    Hierarchical containment: complex -> zone -> {sectors, bundles -> {core,
+    caps, props}}. Zones are unnamed on purpose. `04_...md` offers a shop
+    grammar (`public_floor`, `counter_boundary`, `employee_workspace`) and the
+    campaign does not support the naming -- see `REJECTED_ZONE_NAMINGS` and
+    `reports/blood-assembly-regions.md`. Structure before naming.
+    """
+    from .patterns import PLAYER_WIDTH, _area
+    from .relations import sprite_kind
+    from .spatial import zone_partition
+
+    selected = sorted({int(value) for value in sector_ids})
+    zones = zone_partition(build, selected)
+    bundles = {b.core: b for b in find_bundles(build, sector_kinds=sector_kinds,
+                                               game=game)}
+
+    visible: dict[int, int] = defaultdict(int)
+    for sprite_id, sprite in enumerate(build.sprites):
+        if sprite_kind(build, sprite_id, game=game) == "visible":
+            visible[int(sprite["fields"]["sector"])] += 1
+
+    out = []
+    for zone in zones:
+        members = zone["sectors"]
+        held = [bundles[core].to_dict() for core in members if core in bundles]
+        hosted = [bundles[core].to_dict() for core in bundles
+                  if bundles[core].host in members]
+        out.append({
+            **zone,
+            "sector_count": len(members),
+            "area_player_areas": round(
+                sum(_area(build, s) for s in members) / (PLAYER_WIDTH ** 2), 2),
+            "visible_props": sum(visible.get(s, 0) for s in members),
+            "is_a_bundle_core": held,
+            "hosts_bundles": hosted,
+            "sector_kinds": sorted({(sector_kinds or {}).get(s, "unknown")
+                                    for s in members}),
+        })
+    return {
+        "$schema": "llmapper.functional-regions",
+        "schema_version": 1,
+        "sectors": selected,
+        "zone_count": len(out),
+        "zones": out,
+        "rejected_namings": [dict(item) for item in REJECTED_ZONE_NAMINGS],
+        "limitations": [
+            "Zones are unnamed. The partition is by floor plane and floor "
+            "tile, which separates a counter from the floor it stands in and "
+            "a sunken office from a shop, and does not separate one shop "
+            "floor's apparel bay from its display window -- those share a "
+            "plane and a tile in E6M1 and differ only in what they hold.",
+            "A zone is a candidate, not a room's meaning.",
+        ],
     }

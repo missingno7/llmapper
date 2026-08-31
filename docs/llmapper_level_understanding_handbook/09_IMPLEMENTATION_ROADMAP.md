@@ -441,7 +441,46 @@ by texture or bounding box alone.
 
 ---
 
-# Phase 5 — Object assemblies and negative space
+# Phase 5 — Object assemblies and negative space (DONE, 2026-08-31)
+
+**Status: complete.** Grouping in `bloodmap/anchors.py` (`Bundle`,
+`find_bundles`, `scatter_verdict`, `compare_placements`); clearance in
+`bloodmap/player_space.py` (`Clearance`, `bundle_clearance`,
+`check_clearance`); report `reports/blood-assembly-counters.{json,md}`; tests
+`tests/test_assembly_bundles.py` (26).
+
+**The bundle: a raised island.** One outer neighbour (the host), everything
+else inset in its own footprint (the caps), floor raised over the host by more
+than the 4096-unit step limit, in the waist band, elongated, carrying a cap or
+a visible prop. Proximity is not one of the signals. Given nothing but that
+rule it recovers E6M1's cashwrap exactly as the owner's shop reference
+describes it -- core S32, host S61, caps {S33, S34}, three props, rise 6144.
+**146 campaign bundles in 31 maps**, 238 curated as precedent; the waist band
+itself is measured, since of 958 campaign blocking islands 38.3% fall in
+4096-8192 units and a second mass (33.2%) above 1.45 player heights is wall
+stubs rather than furniture.
+
+**The clearance measurement overturned the obvious model.** `04_...md` suggests
+a clearance prism around an object. Measured: only **23%** of campaign counters
+keep half a player width on every side, **73% are flush against their host on
+at least one**, and **95% are asymmetric**. A clearance-all-round rule would
+reject 77% of the campaign's own counters. So `Clearance` represents an
+*access front* -- the widest free side, `hard: false`, owned by the assembly,
+narrow sides recorded rather than required. Every campaign bundle keeps at
+least 1.333 player widths on that side (median 9.33), which is the check;
+10 of 238 curated bundles fall below it and are preserved as counterexamples.
+
+**The scatter detector uses support, never sprite count.** An authored prop
+sits on something; a scattered one sits on the floor it landed on. Validated on
+a synthetic pair -- one host, one island, three props on it against the same
+three on the floor: support share 1.00 against 0.00, and doubling the scattered
+props does not move it. `compare_placements` answers the A/B question the exit
+criterion states. Run on E6M1's own selling floor it reports `mixed` at 0.16
+(three props on the counter, sixteen deliberately on the floor), so the verdict
+names what was measured rather than judging a room's author.
+
+Table + chairs was the stated fallback and was not needed: 146 campaign
+instances in 31 maps is not thin evidence.
 
 ## Already in the repository
 
@@ -468,7 +507,43 @@ distributed nearby.
 
 ---
 
-# Phase 6 — Functional regions
+# Phase 6 — Functional regions (DONE, 2026-08-31)
+
+**Status: complete.** `spatial.zone_partition` is the derived view (connected
+sectors sharing a floor plane and floor tile) and knows nothing about bundles;
+`anchors.region_candidates` composes it with Phase 5 bundles into hierarchical
+containment — complex → zone → {sectors, bundles → core/caps/props}. Report
+`reports/blood-assembly-regions.{json,md}`; tests in
+`tests/test_assembly_bundles.py` (37 total).
+
+**E6M1 first, as the phase asks.** Two hops from the cashwrap's host gives a
+20-sector complex and 11 zones. The largest is the public shop floor — the
+apparel bay, display window, selling floor and their connectors, 8 sectors,
+746 player areas, 36 props, one plane and one tile — recovered as a single
+place, with the counter its own zone, each register cap another, and the
+sunken back office another. Corpus-wide: **every one of the 146 campaign
+counter complexes holds ≥2 zones (median 7), and in all 146 the counter is in
+a different zone from its host**; 92% are alone in theirs. Not a tautology —
+a counter at its host's plane and tile merges, and a test pins that.
+
+**Two namings were tested and both rejected**, which is the phase's real
+result. `04_...md` offers `customer_front` / `employee_workspace` either side
+of a counter boundary, and Phase 5's 95%-asymmetric figure looked like exactly
+that. (1) *The wide side is the customer front because that is where the ways
+out are*: 84.1% of a host's exits are on the wide side — but that side also
+carries 83.2% of the host's wall, a lift of **+0.024**, with only 43% of
+bundles beating their own wall share. The wide side has the exits because it
+has the wall. (2) *Merchandise stands on the customer side*: props on the wide
+side 0.651 against a floor share of 0.730, a lift of **−0.080** — the opposite
+of the guess. So the asymmetry is a shape fact, not a zoning fact, and
+`region_candidates` emits zones with **no names** and carries the rejections
+in `REJECTED_ZONE_NAMINGS`.
+
+**Stated ceiling.** The owner's shop reference names apparel bay, display
+window and selling floor as three zones; they share one plane and one tile and
+differ only in what they hold, so this view cannot separate them. That is
+anchor evidence, not geometric evidence, and the report says so rather than
+inventing a split.
 
 ## Already in the repository
 
@@ -540,6 +615,16 @@ hidden-thing        156   hidden-switch        85    >  triggers and spawners: T
 generator            75   /
 hidden-decoration    32
 ```
+
+**Queued experiment: visible against hidden switches.** 85 campaign switch
+sprites carry Build's invisible cstat bit while their type category is
+`switch` -- a mapper deliberately concealing a trigger. `assembly.py` already
+records the TX/RX side, so the contrast is runnable with existing machinery:
+positives = hidden switches, comparison = visible ones, features = channel role
+and what the switch commands, **not** geometry. The question is whether a
+concealed trigger commands a different *kind* of thing than an exposed one. Use
+`anchors.contrast_anchor_sets`' discipline: balanced accuracy, a map-transfer
+check, counterexamples preserved. Not run yet; recorded so it is not lost.
 
 Roughly two thirds is ambience and navigation. `excluded_candidates` are now
 keyed on the wiring they hold (`wiring_signature`, `wiring_categories`) rather

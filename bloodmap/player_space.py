@@ -1134,3 +1134,148 @@ def sprite_height_above_floor(
         raw=above, unit=profile.standing_height, unit_name="height", profile=profile,
         low="near the floor", high="high on the wall or in the volume",
     )
+
+
+# ---------------------------------------------------------------------------
+# Negative space: the clearance an assembly claims
+# ---------------------------------------------------------------------------
+#
+# `04_...md`: many design constraints are about intentionally empty space, and
+# the concept matters more than the geometry. Nothing here builds a sector; a
+# clearance is a claim about floor an assembly needs kept free, carried by the
+# assembly and checkable against a map.
+#
+# The numbers below are measured, and they overturned the obvious model. Of the
+# 146 counter-like bundles in the campaign, only 23% keep half a player width
+# on *every* side and 73% are flush against their host on at least one -- a
+# counter backs onto something. What every one of them keeps is one open side.
+# So the claim is an access front, not a prism around the object.
+
+#: Every campaign bundle measured keeps at least this much free floor on its
+#: widest side; the median is 9.33. Below this nothing was observed, which is
+#: what makes it a floor rather than a preference.
+ACCESS_FRONT_MIN_PLAYER_WIDTHS = 1.333
+
+CLEARANCE_ROLES = {
+    "access_front": "the open side an assembly is used from",
+    "workspace_behind": "the side an operator stands on, when there is one",
+}
+
+
+@dataclass(frozen=True)
+class Clearance:
+    """Floor an assembly claims. `hard` is false: this is a design claim.
+
+    `sides_player_widths` is sorted, so the value carries no world bearing --
+    the same assembly rotated a quarter turn produces the same clearance.
+    """
+
+    id: str
+    owner: str
+    role: str
+    hard: bool
+    sides_player_widths: tuple[float, ...]
+    required_free_from: tuple[str, ...] = ("static_solids",)
+    preferred_free_from: tuple[str, ...] = ("decoration",)
+    basis: str = ""
+
+    @property
+    def access_front(self) -> float:
+        """The widest free side. What the assembly is actually used from."""
+        return max(self.sides_player_widths) if self.sides_player_widths else 0.0
+
+    @property
+    def narrowest(self) -> float:
+        return min(self.sides_player_widths) if self.sides_player_widths else 0.0
+
+    @property
+    def backs_onto_something(self) -> bool:
+        """Flush on at least one side. True of 73% of campaign counters."""
+        return self.narrowest <= 0.05
+
+    @property
+    def asymmetric(self) -> bool:
+        widest = self.access_front
+        return widest > 0 and self.narrowest / widest < 0.5
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "id": self.id,
+            "owner": self.owner,
+            "role": self.role,
+            "hard": self.hard,
+            "sides_player_widths": list(self.sides_player_widths),
+            "access_front_player_widths": round(self.access_front, 3),
+            "narrowest_player_widths": round(self.narrowest, 3),
+            "backs_onto_something": self.backs_onto_something,
+            "asymmetric": self.asymmetric,
+            "required_free_from": list(self.required_free_from),
+            "preferred_free_from": list(self.preferred_free_from),
+            "basis": self.basis,
+        }
+
+
+def bundle_clearance(
+    build, core: int, host: int, *, game: str = "blood", owner: str | None = None,
+) -> Clearance:
+    """The free floor a raised island keeps inside its host, per side.
+
+    Bounding boxes, not polygons: the gap is between the core's plan box and
+    the host's, which is exact under the quarter-turn rotations Build geometry
+    admits and is named `bounding-box` in the basis so no consumer mistakes it
+    for a swept volume. A negative side means the core's box reaches past the
+    host's, which happens when the host is L-shaped; it is reported, not
+    clamped.
+    """
+    from .anchors import _sector_bounds
+
+    profile = player_profile(game)
+    core_box = _sector_bounds(build, core)
+    host_box = _sector_bounds(build, host)
+    if core_box is None or host_box is None:
+        raise PlayerSpaceError(f"sector:{core} or sector:{host} has no outline")
+    gaps = sorted([
+        core_box[0] - host_box[0], core_box[1] - host_box[1],
+        host_box[2] - core_box[2], host_box[3] - core_box[3],
+    ])
+    return Clearance(
+        id=f"sector:{core}:access",
+        owner=owner or f"sector:{core}",
+        role="access_front",
+        hard=False,
+        sides_player_widths=tuple(round(g / profile.body_width, 3) for g in gaps),
+        basis="bounding-box gap between the core and its host, per side, sorted",
+    )
+
+
+def check_clearance(
+    clearance: Clearance, *, minimum: float = ACCESS_FRONT_MIN_PLAYER_WIDTHS,
+) -> dict[str, Any]:
+    """Does this assembly keep the access front the corpus always keeps?
+
+    Deliberately **not** a clearance-all-round check. Asserting free floor on
+    every side would reject 77% of the campaign's own counters, which is how a
+    plausible rule becomes a critic that fails the source material.
+    """
+    front = clearance.access_front
+    violations = []
+    if front < minimum:
+        violations.append({
+            "code": "access-front-too-narrow",
+            "measured_player_widths": round(front, 3),
+            "minimum_player_widths": minimum,
+            "message": f"widest free side is {front:.2f} player widths; every "
+                       f"campaign bundle measured keeps at least {minimum}",
+        })
+    return {
+        "owner": clearance.owner,
+        "role": clearance.role,
+        "hard": clearance.hard,
+        "access_front_player_widths": round(front, 3),
+        "passes": not violations,
+        "violations": violations,
+        "notes": [
+            "backs onto something on at least one side" if clearance.backs_onto_something
+            else "free on every side, which 77% of campaign counters are not",
+        ],
+    }

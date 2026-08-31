@@ -81,6 +81,8 @@ Do not add a check anywhere else. If it is worth enforcing it is worth grading.
 | what is *around* this object, without naming it | `relations.extract_relations` — object-scale relations, frame-independent |
 | which sectors here are worth looking at | `relations.sprite_dense_seeds` |
 | what surrounds a tile I have a name for | `anchors.mine_anchor` — and it tells you whether that context means anything (enrichment) |
+| is this a bundle or props in a heap | `anchors.compare_placements` — support, never sprite count |
+| how much free floor does this fixture need | `player_space.check_clearance` — an access front; 73% of campaign counters back onto something |
 
 ## Knowing what Blood does
 
