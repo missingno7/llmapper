@@ -1,0 +1,621 @@
+{
+  "$schema": "llmapper.blood-effects-motion",
+  "schema_version": 1,
+  "population": "blood-campaign",
+  "maps": 43,
+  "mechanisms": 2027,
+  "by_design_object": {
+    "not decidable from z alone": 662,
+    "changes what fits through": 724,
+    "carries a body between levels": 207,
+    "neither": 292,
+    "both": 142
+  },
+  "by_motion_field": {
+    "z_floor": 541,
+    "slide": 396,
+    "z_ceiling": 646,
+    "rotate": 263,
+    "z_split": 180,
+    "unknown": 1
+  },
+  "cross": {
+    "z_floor|not decidable from z alone": 4,
+    "slide|not decidable from z alone": 387,
+    "z_floor|changes what fits through": 122,
+    "z_ceiling|changes what fits through": 540,
+    "rotate|not decidable from z alone": 260,
+    "slide|changes what fits through": 4,
+    "z_floor|carries a body between levels": 168,
+    "z_floor|neither": 152,
+    "z_ceiling|neither": 102,
+    "z_split|changes what fits through": 56,
+    "z_split|both": 47,
+    "z_floor|both": 95,
+    "z_split|neither": 32,
+    "z_split|carries a body between levels": 39,
+    "z_split|not decidable from z alone": 6,
+    "z_ceiling|not decidable from z alone": 4,
+    "slide|neither": 5,
+    "rotate|changes what fits through": 2,
+    "rotate|neither": 1,
+    "unknown|not decidable from z alone": 1
+  },
+  "by_sector_type": {
+    "600|not decidable from z alone": 10,
+    "614|not decidable from z alone": 301,
+    "600|changes what fits through": 671,
+    "617|not decidable from z alone": 208,
+    "614|changes what fits through": 4,
+    "602|carries a body between levels": 8,
+    "616|not decidable from z alone": 86,
+    "602|neither": 18,
+    "0|neither": 30,
+    "600|neither": 237,
+    "613|not decidable from z alone": 11,
+    "600|carries a body between levels": 186,
+    "600|both": 127,
+    "0|both": 8,
+    "0|changes what fits through": 30,
+    "602|changes what fits through": 17,
+    "615|not decidable from z alone": 41,
+    "0|not decidable from z alone": 5,
+    "602|both": 7,
+    "0|carries a body between levels": 13,
+    "614|neither": 3,
+    "616|neither": 2,
+    "617|changes what fits through": 2,
+    "618|neither": 1,
+    "617|neither": 1
+  },
+  "naming_from_fields": {
+    "scored": 1179,
+    "misnamed": 471
+  },
+  "residue": {
+    "total": 292,
+    "shuts_to_nothing": 118,
+    "open_throughout": 169,
+    "moves_nothing": 0,
+    "one_neighbour": 141,
+    "crouch_only": 46
+  },
+  "examples": {
+    "changes what fits through": [
+      {
+        "map": "E1M3",
+        "sector": 312,
+        "type_id": 600,
+        "motion": "z_ceiling",
+        "interaction": "remote_rx",
+        "embedding": {
+          "changes_what_fits": true,
+          "admits_a_body": {
+            "off": false,
+            "on": true
+          },
+          "admits_a_ducked_body": {
+            "off": false,
+            "on": true
+          },
+          "crouch_only": false,
+          "carries_between_levels": false,
+          "floor_travel": 0,
+          "ceiling_travel": 26624,
+          "neighbour_levels": 4,
+          "levels_served": 2,
+          "shuts_to_nothing": true,
+          "open_throughout": false,
+          "openings": {
+            "off": 0,
+            "on": 26624,
+            "widest": 26624,
+            "narrowest": 0,
+            "at_rest": 0
+          }
+        }
+      },
+      {
+        "map": "E1M8",
+        "sector": 397,
+        "type_id": 600,
+        "motion": "z_ceiling",
+        "interaction": "remote_rx",
+        "embedding": {
+          "changes_what_fits": true,
+          "admits_a_body": {
+            "off": false,
+            "on": true
+          },
+          "admits_a_ducked_body": {
+            "off": false,
+            "on": true
+          },
+          "crouch_only": false,
+          "carries_between_levels": false,
+          "floor_travel": 0,
+          "ceiling_travel": 26624,
+          "neighbour_levels": 2,
+          "levels_served": 2,
+          "shuts_to_nothing": true,
+          "open_throughout": false,
+          "openings": {
+            "off": 0,
+            "on": 26624,
+            "widest": 26624,
+            "narrowest": 0,
+            "at_rest": 26624
+          }
+        }
+      },
+      {
+        "map": "E2M2",
+        "sector": 227,
+        "type_id": 600,
+        "motion": "z_ceiling",
+        "interaction": "remote_rx",
+        "embedding": {
+          "changes_what_fits": true,
+          "admits_a_body": {
+            "off": false,
+            "on": true
+          },
+          "admits_a_ducked_body": {
+            "off": false,
+            "on": true
+          },
+          "crouch_only": false,
+          "carries_between_levels": false,
+          "floor_travel": 0,
+          "ceiling_travel": 26624,
+          "neighbour_levels": 2,
+          "levels_served": 2,
+          "shuts_to_nothing": true,
+          "open_throughout": false,
+          "openings": {
+            "off": 0,
+            "on": 26624,
+            "widest": 26624,
+            "narrowest": 0,
+            "at_rest": 0
+          }
+        }
+      },
+      {
+        "map": "E2M2",
+        "sector": 229,
+        "type_id": 600,
+        "motion": "z_ceiling",
+        "interaction": "remote_rx",
+        "embedding": {
+          "changes_what_fits": true,
+          "admits_a_body": {
+            "off": false,
+            "on": true
+          },
+          "admits_a_ducked_body": {
+            "off": false,
+            "on": true
+          },
+          "crouch_only": false,
+          "carries_between_levels": false,
+          "floor_travel": 0,
+          "ceiling_travel": 26624,
+          "neighbour_levels": 2,
+          "levels_served": 2,
+          "shuts_to_nothing": true,
+          "open_throughout": false,
+          "openings": {
+            "off": 0,
+            "on": 26624,
+            "widest": 26624,
+            "narrowest": 0,
+            "at_rest": 0
+          }
+        }
+      }
+    ],
+    "carries a body between levels": [
+      {
+        "map": "E2M2",
+        "sector": 276,
+        "type_id": 600,
+        "motion": "z_floor",
+        "interaction": "remote_rx",
+        "embedding": {
+          "changes_what_fits": false,
+          "admits_a_body": {
+            "off": true,
+            "on": true
+          },
+          "admits_a_ducked_body": {
+            "off": true,
+            "on": true
+          },
+          "crouch_only": false,
+          "carries_between_levels": true,
+          "floor_travel": 32768,
+          "ceiling_travel": 0,
+          "neighbour_levels": 3,
+          "levels_served": 2,
+          "shuts_to_nothing": false,
+          "open_throughout": true,
+          "openings": {
+            "off": 60416,
+            "on": 27648,
+            "widest": 60416,
+            "narrowest": 27648,
+            "at_rest": 60416
+          }
+        }
+      },
+      {
+        "map": "E2M3",
+        "sector": 18,
+        "type_id": 600,
+        "motion": "z_floor",
+        "interaction": "remote_rx",
+        "embedding": {
+          "changes_what_fits": false,
+          "admits_a_body": {
+            "off": true,
+            "on": true
+          },
+          "admits_a_ducked_body": {
+            "off": true,
+            "on": true
+          },
+          "crouch_only": false,
+          "carries_between_levels": true,
+          "floor_travel": 32768,
+          "ceiling_travel": 0,
+          "neighbour_levels": 2,
+          "levels_served": 2,
+          "shuts_to_nothing": false,
+          "open_throughout": true,
+          "openings": {
+            "off": 65536,
+            "on": 32768,
+            "widest": 65536,
+            "narrowest": 32768,
+            "at_rest": 32768
+          }
+        }
+      },
+      {
+        "map": "E2M5",
+        "sector": 769,
+        "type_id": 600,
+        "motion": "z_floor",
+        "interaction": "wall_push",
+        "embedding": {
+          "changes_what_fits": false,
+          "admits_a_body": {
+            "off": true,
+            "on": true
+          },
+          "admits_a_ducked_body": {
+            "off": true,
+            "on": true
+          },
+          "crouch_only": false,
+          "carries_between_levels": true,
+          "floor_travel": 32768,
+          "ceiling_travel": 0,
+          "neighbour_levels": 3,
+          "levels_served": 2,
+          "shuts_to_nothing": false,
+          "open_throughout": true,
+          "openings": {
+            "off": 18432,
+            "on": 51200,
+            "widest": 51200,
+            "narrowest": 18432,
+            "at_rest": 18432
+          }
+        }
+      },
+      {
+        "map": "E2M6",
+        "sector": 0,
+        "type_id": 600,
+        "motion": "z_floor",
+        "interaction": "touch",
+        "embedding": {
+          "changes_what_fits": false,
+          "admits_a_body": {
+            "off": true,
+            "on": true
+          },
+          "admits_a_ducked_body": {
+            "off": true,
+            "on": true
+          },
+          "crouch_only": false,
+          "carries_between_levels": true,
+          "floor_travel": 32768,
+          "ceiling_travel": 0,
+          "neighbour_levels": 2,
+          "levels_served": 2,
+          "shuts_to_nothing": false,
+          "open_throughout": true,
+          "openings": {
+            "off": 135168,
+            "on": 102400,
+            "widest": 135168,
+            "narrowest": 102400,
+            "at_rest": 135168
+          }
+        }
+      }
+    ],
+    "neither": [
+      {
+        "map": "E1M3",
+        "sector": 108,
+        "type_id": 600,
+        "motion": "z_split",
+        "interaction": "remote_rx",
+        "embedding": {
+          "changes_what_fits": false,
+          "admits_a_body": {
+            "off": false,
+            "on": false
+          },
+          "admits_a_ducked_body": {
+            "off": false,
+            "on": true
+          },
+          "crouch_only": true,
+          "carries_between_levels": false,
+          "floor_travel": 7168,
+          "ceiling_travel": 7168,
+          "neighbour_levels": 2,
+          "levels_served": 1,
+          "shuts_to_nothing": true,
+          "open_throughout": false,
+          "openings": {
+            "off": 0,
+            "on": 14336,
+            "widest": 14336,
+            "narrowest": 0,
+            "at_rest": 0
+          }
+        }
+      },
+      {
+        "map": "E1M3",
+        "sector": 109,
+        "type_id": 600,
+        "motion": "z_split",
+        "interaction": "remote_rx",
+        "embedding": {
+          "changes_what_fits": false,
+          "admits_a_body": {
+            "off": false,
+            "on": false
+          },
+          "admits_a_ducked_body": {
+            "off": false,
+            "on": true
+          },
+          "crouch_only": true,
+          "carries_between_levels": false,
+          "floor_travel": 6144,
+          "ceiling_travel": 8192,
+          "neighbour_levels": 2,
+          "levels_served": 1,
+          "shuts_to_nothing": true,
+          "open_throughout": false,
+          "openings": {
+            "off": 0,
+            "on": 14336,
+            "widest": 14336,
+            "narrowest": 0,
+            "at_rest": 0
+          }
+        }
+      },
+      {
+        "map": "E2M7",
+        "sector": 415,
+        "type_id": 600,
+        "motion": "z_floor",
+        "interaction": "remote_rx",
+        "embedding": {
+          "changes_what_fits": false,
+          "admits_a_body": {
+            "off": false,
+            "on": false
+          },
+          "admits_a_ducked_body": {
+            "off": false,
+            "on": true
+          },
+          "crouch_only": true,
+          "carries_between_levels": false,
+          "floor_travel": 14336,
+          "ceiling_travel": 0,
+          "neighbour_levels": 3,
+          "levels_served": 1,
+          "shuts_to_nothing": true,
+          "open_throughout": false,
+          "openings": {
+            "off": 0,
+            "on": 14336,
+            "widest": 14336,
+            "narrowest": 0,
+            "at_rest": 0
+          }
+        }
+      },
+      {
+        "map": "E2M7",
+        "sector": 420,
+        "type_id": 600,
+        "motion": "z_floor",
+        "interaction": "remote_rx",
+        "embedding": {
+          "changes_what_fits": false,
+          "admits_a_body": {
+            "off": false,
+            "on": false
+          },
+          "admits_a_ducked_body": {
+            "off": false,
+            "on": true
+          },
+          "crouch_only": true,
+          "carries_between_levels": false,
+          "floor_travel": 14336,
+          "ceiling_travel": 0,
+          "neighbour_levels": 2,
+          "levels_served": 1,
+          "shuts_to_nothing": true,
+          "open_throughout": false,
+          "openings": {
+            "off": 0,
+            "on": 14336,
+            "widest": 14336,
+            "narrowest": 0,
+            "at_rest": 14336
+          }
+        }
+      }
+    ],
+    "not decidable from z alone": [
+      {
+        "map": "E1M1",
+        "sector": 0,
+        "type_id": 600,
+        "motion": "z_floor",
+        "interaction": "wall_push",
+        "embedding": {
+          "changes_what_fits": false,
+          "admits_a_body": {
+            "off": true,
+            "on": true
+          },
+          "admits_a_ducked_body": {
+            "off": true,
+            "on": true
+          },
+          "crouch_only": false,
+          "carries_between_levels": false,
+          "floor_travel": 0,
+          "ceiling_travel": 0,
+          "neighbour_levels": 2,
+          "levels_served": 0,
+          "shuts_to_nothing": false,
+          "open_throughout": true,
+          "openings": {
+            "off": 31744,
+            "on": 31744,
+            "widest": 31744,
+            "narrowest": 31744,
+            "at_rest": 31744
+          }
+        }
+      },
+      {
+        "map": "E1M1",
+        "sector": 4,
+        "type_id": 614,
+        "motion": "slide",
+        "interaction": "remote_rx",
+        "embedding": {
+          "changes_what_fits": false,
+          "admits_a_body": {
+            "off": true,
+            "on": true
+          },
+          "admits_a_ducked_body": {
+            "off": true,
+            "on": true
+          },
+          "crouch_only": false,
+          "carries_between_levels": false,
+          "floor_travel": 0,
+          "ceiling_travel": 0,
+          "neighbour_levels": 2,
+          "levels_served": 2,
+          "shuts_to_nothing": false,
+          "open_throughout": true,
+          "openings": {
+            "off": 28672,
+            "on": 28672,
+            "widest": 28672,
+            "narrowest": 28672,
+            "at_rest": 28672
+          }
+        }
+      },
+      {
+        "map": "E1M1",
+        "sector": 28,
+        "type_id": 614,
+        "motion": "slide",
+        "interaction": "remote_rx",
+        "embedding": {
+          "changes_what_fits": false,
+          "admits_a_body": {
+            "off": true,
+            "on": true
+          },
+          "admits_a_ducked_body": {
+            "off": true,
+            "on": true
+          },
+          "crouch_only": false,
+          "carries_between_levels": false,
+          "floor_travel": 0,
+          "ceiling_travel": 0,
+          "neighbour_levels": 2,
+          "levels_served": 2,
+          "shuts_to_nothing": false,
+          "open_throughout": true,
+          "openings": {
+            "off": 30720,
+            "on": 30720,
+            "widest": 30720,
+            "narrowest": 30720,
+            "at_rest": 30720
+          }
+        }
+      },
+      {
+        "map": "E1M1",
+        "sector": 65,
+        "type_id": 614,
+        "motion": "slide",
+        "interaction": "remote_rx",
+        "embedding": {
+          "changes_what_fits": false,
+          "admits_a_body": {
+            "off": true,
+            "on": true
+          },
+          "admits_a_ducked_body": {
+            "off": true,
+            "on": true
+          },
+          "crouch_only": false,
+          "carries_between_levels": false,
+          "floor_travel": 0,
+          "ceiling_travel": 0,
+          "neighbour_levels": 3,
+          "levels_served": 2,
+          "shuts_to_nothing": false,
+          "open_throughout": true,
+          "openings": {
+            "off": 36864,
+            "on": 36864,
+            "widest": 36864,
+            "narrowest": 36864,
+            "at_rest": 36864
+          }
+        }
+      }
+    ]
+  }
+}
