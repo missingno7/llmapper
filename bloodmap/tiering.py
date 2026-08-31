@@ -20,6 +20,17 @@ Exact duplicate hashes are collapsed for reference statistics; geometry and
 topology family keys are reported separately so related revisions can be
 reviewed without deleting or silently merging their files.
 
+**`quality_score` stays, and is navigation only** (owner decision,
+2026-08-31).  It is a declared rubric with every component and penalty
+exposed, which is what separates it from the confidence scalar that was
+removed: it does not pretend to be a probability, and a reader can see what
+produced it.  It exists to *order* a sampling queue -- look at these before
+those -- and it must **never gate acceptance**.  A critic is forbidden a
+single quality number, because a number that can reject a map has to be
+right about quality and this one is not; a sampling aid only has to be
+useful.  Anything that consumes `quality_score` to pass or fail a map is
+misusing it.
+
 There is deliberately **no confidence scalar**.  The tier decision is
 rule-based and its evidence is the rule trace plus the percentile table, both
 of which are in the manifest; a number like ``0.58 + 0.035 * |strong - weak|``
@@ -978,7 +989,11 @@ def _tier_destination(record: dict[str, Any], output_root: Path) -> str:
     source = Path(record["source_absolute"])
     if destination.resolve() != source.resolve():
         if destination.exists():
-            destination.unlink()          # copy2 carries the source's mode bits
+            # copy2 carries the source's mode bits, and a good part of this
+            # corpus is read-only 0444 from a 2004 archive. Re-running the
+            # tiering must not need a chmod -R first.
+            destination.chmod(0o666)
+            destination.unlink()
         shutil.copy2(source, destination)
     return (Path(record["classification"]) / relative).as_posix()
 
@@ -1058,6 +1073,66 @@ def _health_failures(report_path: str | Path | None) -> tuple[set[str], str]:
 
 class CorpusTieringError(ValueError):
     pass
+
+
+def _reference_fingerprint(records: list[dict[str, Any]]) -> str:
+    """One digest over the reference population's content hashes.
+
+    A tier is a comparison, so two tiers are only comparable if they were
+    compared against the same thing. The view *name* is not enough: `reference`
+    means whatever `campaign + curated` held on the day, and the corpus is
+    edited in place.
+    """
+    digest = hashlib.sha256()
+    for value in sorted(record["source_sha256"] for record in records):
+        digest.update(value.encode("ascii"))
+    return digest.hexdigest()
+
+
+def compare_tier_manifests(left: dict[str, Any], right: dict[str, Any]) -> dict[str, Any]:
+    """Agreements and moves between two tier manifests, or a refusal.
+
+    Measured: halving the reference population from the 102-map `reference`
+    view to the 52-map `original` view moved **14.6%** of community maps
+    (213 of 1461), all of it inside S/A/B. `C`, `bloodbath`, `mechanism` and
+    `questionable` never moved, because those rules read absolute evidence -
+    sector counts, player starts, mechanism counts, sensor status - rather than
+    the reference distribution.
+
+    So comparing tiers scored against different references measures the
+    reference, not the maps, and this refuses to do it.
+    """
+    for side, payload in (("left", left), ("right", right)):
+        if "reference_fingerprint" not in payload:
+            raise CorpusTieringError(
+                f"{side} manifest predates reference fingerprinting and cannot "
+                "be compared; regenerate it with corpus-tier"
+            )
+    if left["reference_fingerprint"] != right["reference_fingerprint"]:
+        raise CorpusTieringError(
+            "refusing to compare tier manifests scored against different "
+            f"reference populations: {left['reference_view']} "
+            f"({left['reference_map_count']} maps, "
+            f"{left['reference_fingerprint'][:12]}) against "
+            f"{right['reference_view']} ({right['reference_map_count']} maps, "
+            f"{right['reference_fingerprint'][:12]}). Measured churn between "
+            "the reference and original views is 14.6%, so the difference "
+            "would be the reference and not the maps."
+        )
+    a = {record["source_relative"]: record["classification"] for record in left["records"]}
+    b = {record["source_relative"]: record["classification"] for record in right["records"]}
+    shared = sorted(set(a) & set(b))
+    moved = [name for name in shared if a[name] != b[name]]
+    return {
+        "reference_view": left["reference_view"],
+        "reference_fingerprint": left["reference_fingerprint"],
+        "shared": len(shared),
+        "agree": len(shared) - len(moved),
+        "moved": len(moved),
+        "only_in_left": sorted(set(a) - set(b)),
+        "only_in_right": sorted(set(b) - set(a)),
+        "moves": dict(Counter(f"{a[name]}->{b[name]}" for name in moved)),
+    }
 
 
 def tier_corpus(
@@ -1165,6 +1240,7 @@ def tier_corpus(
         "population": population,
         "reference_view": reference_view,
         "reference_map_count": len(reference_maps),
+        "reference_fingerprint": _reference_fingerprint(reference_records),
         "output_directory": output_root.as_posix(),
         "paths_are": "relative to the corpus root; sha256 is the identity",
         "health_gate": {"basis": health_basis, "skipped": skipped},

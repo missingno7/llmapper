@@ -93,7 +93,11 @@ CORPUS_DIRECTORIES: dict[str, str] = {
 #: map is never counted as two independent pieces of evidence.
 COMMUNITY_TIER_DIRECTORY = "tiered"
 
-TIERS = ("S", "A", "B", "C", "questionable", "multiplayer", "mechanism")
+#: Tier directory names under `tiered/`. These are the classifier's own
+#: classification labels (`tiering.CLASSIFICATIONS`). `multiplayer` is the name
+#: the first tier tree used for what the classifier calls `bloodbath`; it stays
+#: readable so an older tree still resolves.
+TIERS = ("S", "A", "B", "C", "questionable", "bloodbath", "mechanism", "multiplayer")
 
 MODE_SUBDIRECTORY = "multiplayer"
 

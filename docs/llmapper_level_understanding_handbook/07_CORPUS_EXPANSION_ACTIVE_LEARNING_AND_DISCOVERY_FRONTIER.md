@@ -55,16 +55,22 @@ mechanism-tutorial  172
 reference view      102   = campaign + curated, both modes
 ```
 
-Tier attach, by content hash (`community/` files, `tiered/` as the index):
+Tier attach, by content hash (`community/` files, `tiered/` as the index),
+after the regenerated tree replaced the flattened one:
 
 ```text
-multiplayer 548   S 294   questionable 152   B 150   A 139   C 50
-mechanism    10   untiered 157
+bloodbath 538   S 373   A 182   B 172   questionable 132   C 52
+mechanism  12   untiered 37
 ```
 
-`untiered` is honest absence: the map is not under `tiered/`, or its hash lands
-in two tier directories (120 filenames occur in more than one tier, so a
-name-keyed join would mislabel them). It is never guessed.
+The 37 untiered are exactly the maps the native losslessness gate rejected, so
+they were never scored. The previous tree gave 157 untiered because it
+flattened every map to `tiered/<TIER>/<FILENAME>` and same-named maps
+overwrote each other; `reports/blood-tiering-rerun.md` has the accounting. The
+old tree is kept locally as `tiered-v1-backup/`.
+
+`untiered` is honest absence: the map is not under `tiered/`. It is never
+guessed.
 
 **Why those 120 exist (2026-08-31).** The tier tree's generator landed in this
 branch as `bloodmap/tiering.py` (PR #2), and re-running it explained the

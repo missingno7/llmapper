@@ -13,6 +13,8 @@ from pathlib import Path
 
 from bloodmap.tiering import (
     CorpusTieringError,
+    _reference_fingerprint,
+    compare_tier_manifests,
     _health_failures,
     _summary,
     classify_record,
@@ -174,6 +176,72 @@ class HealthGateTests(unittest.TestCase):
         failed, basis = _health_failures(path)
         self.assertEqual(failed, {"community/B.MAP"})
         self.assertIn("1 maps failed", basis)
+
+
+class ReferenceFingerprintTests(unittest.TestCase):
+    """A tier is a comparison, so two tiers are comparable only if they were
+    compared against the same thing. Measured: halving the reference moves
+    14.6% of the corpus."""
+
+    LEFT = {
+        "reference_view": "reference", "reference_map_count": 102,
+        "reference_fingerprint": "aaaa",
+        "records": [{"source_relative": "community/A.MAP", "classification": "S"},
+                    {"source_relative": "community/B.MAP", "classification": "A"}],
+    }
+
+    def test_the_fingerprint_is_over_the_population_not_its_order(self):
+        left = [{"source_sha256": "a"}, {"source_sha256": "b"}]
+        right = [{"source_sha256": "b"}, {"source_sha256": "a"}]
+        self.assertEqual(_reference_fingerprint(left), _reference_fingerprint(right))
+
+    def test_a_different_population_fingerprints_differently(self):
+        base = [{"source_sha256": "a"}, {"source_sha256": "b"}]
+        wider = base + [{"source_sha256": "c"}]
+        self.assertNotEqual(_reference_fingerprint(base), _reference_fingerprint(wider))
+        self.assertNotEqual(_reference_fingerprint(base), _reference_fingerprint([]))
+
+    def test_it_refuses_across_different_references(self):
+        right = dict(self.LEFT, reference_view="original",
+                     reference_map_count=52, reference_fingerprint="bbbb")
+        with self.assertRaises(CorpusTieringError) as caught:
+            compare_tier_manifests(self.LEFT, right)
+        message = str(caught.exception)
+        self.assertIn("refusing to compare", message)
+        self.assertIn("reference", message)
+        self.assertIn("original", message)
+        self.assertIn("14.6%", message)
+
+    def test_the_view_name_alone_is_not_enough(self):
+        """`reference` means whatever campaign + curated held on the day, and
+        the corpus is edited in place."""
+        right = dict(self.LEFT, reference_fingerprint="cccc")
+        self.assertEqual(right["reference_view"], self.LEFT["reference_view"])
+        with self.assertRaises(CorpusTieringError):
+            compare_tier_manifests(self.LEFT, right)
+
+    def test_a_manifest_without_a_fingerprint_cannot_be_compared(self):
+        old = {k: v for k, v in self.LEFT.items() if k != "reference_fingerprint"}
+        with self.assertRaises(CorpusTieringError) as caught:
+            compare_tier_manifests(self.LEFT, old)
+        self.assertIn("predates reference fingerprinting", str(caught.exception))
+
+    def test_the_same_reference_compares_and_reports_the_moves(self):
+        right = {
+            **self.LEFT,
+            "records": [{"source_relative": "community/A.MAP", "classification": "S"},
+                        {"source_relative": "community/B.MAP", "classification": "B"}],
+        }
+        found = compare_tier_manifests(self.LEFT, right)
+        self.assertEqual(found["shared"], 2)
+        self.assertEqual(found["agree"], 1)
+        self.assertEqual(found["moved"], 1)
+        self.assertEqual(found["moves"], {"A->B": 1})
+
+    def test_a_manifest_compared_with_itself_moves_nothing(self):
+        found = compare_tier_manifests(self.LEFT, self.LEFT)
+        self.assertEqual(found["moved"], 0)
+        self.assertEqual(found["agree"], found["shared"])
 
 
 class DegenerateSectorMeasurementTests(unittest.TestCase):

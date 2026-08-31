@@ -161,8 +161,26 @@ def cmd_corpus(args: argparse.Namespace) -> int:
 
 def cmd_corpus_tier(args: argparse.Namespace) -> int:
     """Heuristic tiers for the bulk community corpus. Navigation, not evidence."""
-    from .tiering import write_tiered_corpus
+    from .tiering import (
+        CorpusTieringError, compare_tier_manifests, write_tiered_corpus,
+    )
 
+    if args.compare:
+        left, right = (json.loads(Path(path).read_text(encoding="utf-8"))
+                       for path in args.compare)
+        found = compare_tier_manifests(left, right)
+        _write_text(args.output, _json(found))
+        print(f"{found['agree']}/{found['shared']} maps keep their tier "
+              f"({found['agree'] / max(1, found['shared']):.1%}), {found['moved']} moved")
+        for move, count in sorted(found["moves"].items(), key=lambda kv: -kv[1])[:8]:
+            print(f"  {move:22} {count:5}")
+        return 0
+
+    missing = [name for name in ("output_directory", "manifest", "summary")
+               if not getattr(args, name)]
+    if missing:
+        raise CorpusTieringError(
+            "corpus-tier needs --" + ", --".join(n.replace("_", "-") for n in missing))
     manifest, summary = write_tiered_corpus(
         args.output_directory, args.manifest, args.summary,
         directory=args.maps, population=args.population,
@@ -1825,10 +1843,14 @@ def build_parser() -> argparse.ArgumentParser:
                    help="the reference population to compare against")
     p.add_argument("--health-report", help="corpus-health JSON; maps that failed "
                                            "the gate are skipped and reported")
-    p.add_argument("--output-directory", required=True, help="directory for tiered copies")
-    p.add_argument("--manifest", required=True)
-    p.add_argument("--summary", required=True)
+    p.add_argument("--output-directory", help="directory for tiered copies")
+    p.add_argument("--manifest")
+    p.add_argument("--summary")
     p.add_argument("--workers", type=int, default=1)
+    p.add_argument("--compare", nargs=2, metavar=("LEFT", "RIGHT"),
+                   help="compare two tier manifests instead of tiering; refuses "
+                        "when they were scored against different references")
+    p.add_argument("-o", "--output", help="where a --compare report goes")
     p.set_defaults(func=cmd_corpus_tier)
     p = sub.add_parser("corpus-manifest", help="record the corpus layout, populations, modes, tiers, and named views")
     p.add_argument("directory", nargs="?", help="corpus root (default: BLOODMAP_CORPUS or maps/blood)")
