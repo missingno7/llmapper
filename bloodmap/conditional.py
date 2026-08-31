@@ -1049,6 +1049,19 @@ ROLE_SIDE = "side passage"
 #: but which of its states blocks was not measurable, so it gates nothing
 #: and nothing is claimed about what it is for. Saying that is the point.
 ROLE_UNPLACED = "recorded, not placed"
+ROLE_SECRET = "secret"
+ROLE_SECRET_ENTRANCE = "secret entrance"
+ROLE_AMBUSH = "ambush"
+
+#: The four planes a name can come from, in the order that decides ties.
+#:
+#: A mechanism the player starts inside is narrative whatever else is true,
+#: so **position** outranks everything. A distinctively dressed one is what
+#: its dressing says -- but only where the owner called that tile strongly
+#: binding, which is the rule that keeps a name off wallpaper. What waits
+#: beyond beats how much is lost, because "rats come out" is a stronger
+#: claim than "one sector fewer".
+PLANES = ("position", "dressing", "contents", "topology")
 
 #: kChannelSecretFound. A sector that transmits on it *is* a secret: entering
 #: it is what scores one, so a secret within reach of what a mechanism opens
@@ -1100,63 +1113,75 @@ def ror_sectors(reach: Any) -> set[int]:
     return out
 
 
-def design_role(graph: "ConditionalGraph", mechanism: int, *,
-                kind: str = "sector") -> dict[str, Any]:
-    """What this mechanism is for, from where it sits and what it reaches.
+def _position_plane(graph: "ConditionalGraph", mechanism: int, kind: str
+                    ) -> tuple[str, dict[str, Any]] | None:
+    """Where it sits: at the spawn, or inside a room-over-room pair."""
+    if kind == "sector" and mechanism == graph.start:
+        return ROLE_NARRATIVE, {"reason": "the player starts inside it"}
+    if kind == "sector" and mechanism in ror_sectors(graph.reach):
+        return ROLE_ROR_CARRIER, {
+            "reason": "half of a stack link and a mechanism at once; the "
+                      "visibility budget on ROR volumes is why one sector "
+                      "does two jobs"}
+    return None
 
-    One counterfactual answers the topological half: work everything, then
-    work everything except this, and read the difference.
 
-    * it never opens a body's width -- a **fixture**;
-    * removing it costs the map more than its own sector -- a **required
-      passage**;
-    * removing it costs only itself -- a **side passage**.
+def _dressing_plane(graph: "ConditionalGraph", mechanism: int, kind: str
+                    ) -> tuple[str, dict[str, Any]] | None:
+    """What the moving faces are wearing, where the owner vouched for it.
 
-    Two names are not about what is reached at all. A mechanism whose sector
-    holds the player start is **narrative**; nothing about reachability says
-    so, and E1M1's casket is the level's opening shot. A mechanism that is
-    also half of a room-over-room pair is a **technical workaround**: the
-    visibility budget on ROR volumes is why one sector is doing two jobs,
-    which is a fact about the engine rather than about the room.
-
-    `secret_within_reach` and `dudes_immediately_beyond` are recorded and
-    **not** used to name. They are what an author would call a secret or an
-    ambush, and the measurements show they do not separate: E1M1's curtain
-    has dudes immediately beyond it too, and its plain sliding door has a
-    secret one hop away.
+    Only a **strong**-binding owner tile may name. That is the owner's rule
+    and it bites: on E1M1's thirteen attested cases this plane returns
+    nothing at all, because none of their moved faces wears a tile the owner
+    graded strong. The curtain of sector 125 wears tile 146, which the
+    anchors do not grade -- so the plane that would have called it a
+    furnishing is silent, and says so rather than guessing from a tile it
+    was told not to trust.
     """
+    if kind != "sector":
+        return None
+    from .doors import observe_motion_sector
+    from .owner_anchors import OwnerAnchorError, load_owner_anchors
+
+    record = observe_motion_sector(graph.disk, mechanism)
+    motion = swept_motion(graph.disk, mechanism, record) if record else None
+    if motion is None:
+        return None
+    load = motion["payload"]
+    try:
+        anchors = load_owner_anchors()
+    except OwnerAnchorError:
+        return None
+    picnums = []
+    walls = load["walls_with"] + load["walls_against"]
+    if load["moves_every_wall"]:
+        start = int(graph.disk.sectors[mechanism].fields["wall_ptr"])
+        count = int(graph.disk.sectors[mechanism].fields["wall_count"])
+        walls = list(range(start, start + count))
+    for wall_id in walls:
+        if 0 <= wall_id < len(graph.disk.walls):
+            picnums.append(int(graph.disk.walls[wall_id].fields["picnum"]))
+    for index in load["sprites_with"] + load["sprites_against"]:
+        if 0 <= index < len(graph.disk.sprites):
+            picnums.append(int(graph.disk.sprites[index].fields["picnum"]))
+    evidence = anchors.naming_evidence(picnums, used_for="dressing")
+    if not evidence:
+        return None
+    #: The name is the owner's own label. Nothing is invented from a tile.
+    return f"dressed: {evidence[0]['label']}", {
+        "reason": "a strong-binding owner tile on the moving faces",
+        "owner_evidence": evidence}
+
+
+def _contents_plane(graph: "ConditionalGraph", joins: list[int],
+                    secrets: set[int], dudes: set[int]
+                    ) -> tuple[str, dict[str, Any]] | None:
+    """What waits on the far side."""
     from collections import deque
 
-    disk = graph.disk
-    held = graph.everything_worked()
-    full = graph.reachable(held)
-    without = graph.reachable(held, without={(kind, mechanism)})
-    lost = sorted(full - without)
-    edges = [edge for edge in graph.edges
-             if edge.mechanism == mechanism and edge.mechanism_kind == kind]
-    joins = sorted({sector for edge in edges for sector in edge.sectors
-                    if kind == "wall" or sector != mechanism})
-    opening = next((edge.delta.get("opening") for edge in edges
-                    if edge.delta.get("opening") is not None), None)
-    admits = any(edge.delta.get("reads_as") == OPENS_A_WAY for edge in edges)
-    if opening is None and kind == "sector":
-        #: An ungated swept mechanism still has a measured leaf. Reading the
-        #: opening only off the edges called a 1792-unit sliding shelf a
-        #: fixture, because it has no edges.
-        from .doors import observe_motion_sector
-
-        record = observe_motion_sector(disk, mechanism)
-        motion = swept_motion(disk, mechanism, record) if record else None
-        if motion is not None:
-            measured = swept_opening(disk, mechanism, motion)
-            opening = measured["opening"]
-            admits = admits or measured["admits_a_body"]
-
-    secrets = secret_sectors(disk)
-    dudes = dude_sectors(disk)
     nearby: set[int] = set()
     for origin in joins:
-        seen, pending = {origin, mechanism}, deque([(origin, 0)])
+        seen, pending = {origin}, deque([(origin, 0)])
         while pending:
             current, depth = pending.popleft()
             if current in secrets:
@@ -1167,37 +1192,109 @@ def design_role(graph: "ConditionalGraph", mechanism: int, *,
                 if neighbour not in seen:
                     seen.add(neighbour)
                     pending.append((neighbour, depth + 1))
-    linked = kind == "sector" and mechanism in ror_sectors(graph.reach)
-    start_here = kind == "sector" and mechanism == graph.start
+    waiting = [item for item in joins if item in dudes]
+    if nearby:
+        role = (ROLE_SECRET_ENTRANCE if set(nearby) & set(joins)
+                else ROLE_SECRET)
+        return role, {"reason": "a secret sector within reach of what it opens",
+                      "secrets": sorted(nearby)}
+    if waiting:
+        return ROLE_AMBUSH, {"reason": "dudes in the sector immediately beyond",
+                             "sectors": waiting}
+    return None
 
-    #: Order matters, and only the first two clauses jump the queue: a
-    #: mechanism can be the player's first sight of the level, or a reused
-    #: ROR volume, whatever it does to reachability.
-    if start_here:
-        role = ROLE_NARRATIVE
-    elif linked:
-        role = ROLE_ROR_CARRIER
-    elif not admits and (opening or 0) < 384:
-        role = ROLE_FIXTURE
+
+def design_role(graph: "ConditionalGraph", mechanism: int, *,
+                kind: str = "sector") -> dict[str, Any]:
+    """What this mechanism is for, read across four planes.
+
+    Version 2. The first read topology alone and could name five things; the
+    evidence said naming is cross-view, so each plane now proposes
+    independently and the report says **which one decided**.
+
+    * **position** -- the player starts inside it, or it is half of a stack
+      link. Outranks everything, because neither fact is about reachability.
+    * **dressing** -- a strong-binding owner tile on the moving faces. The
+      name is the owner's own label. Weak and untested tiles never reach
+      here.
+    * **contents** -- a secret within reach of what it opens, or dudes in the
+      sector immediately beyond.
+    * **topology** -- one counterfactual: work everything, then everything
+      but this, and read the difference.
+
+    `contested` lists the planes that proposed something else. Two planes
+    disagreeing is not an error; it is two readings of one object, and
+    hiding it would be the error.
+    """
+    disk = graph.disk
+    held = graph.everything_worked()
+    full = graph.reachable(held)
+    without = graph.reachable(held, without={(kind, mechanism)})
+    lost = sorted(full - without)
+    edges = [edge for edge in graph.edges
+             if edge.mechanism == mechanism and edge.mechanism_kind == kind]
+    joins = sorted({sector for edge in edges for sector in edge.sectors
+                    if kind == "wall" or sector != mechanism})
+    if not joins and kind == "sector":
+        #: A mechanism this view declines to gate still *joins* the sectors
+        #: it has portals to, and the contents plane has every right to look
+        #: at them. Reading joins off the edges alone left the plane blind
+        #: on exactly the mechanisms topology could not place.
+        joins = sorted(graph.reach.graph.get(mechanism, set()))
+    opening = next((edge.delta.get("opening") for edge in edges
+                    if edge.delta.get("opening") is not None), None)
+    admits = any(edge.delta.get("reads_as") == OPENS_A_WAY for edge in edges)
+    if opening is None and kind == "sector":
+        from .doors import observe_motion_sector
+
+        record = observe_motion_sector(disk, mechanism)
+        motion = swept_motion(disk, mechanism, record) if record else None
+        if motion is not None:
+            measured = swept_opening(disk, mechanism, motion)
+            opening = measured["opening"]
+            admits = admits or measured["admits_a_body"]
+
+    secrets, dudes = secret_sectors(disk), dude_sectors(disk)
+    proposals: dict[str, tuple[str, dict[str, Any]]] = {}
+    found = _position_plane(graph, mechanism, kind)
+    if found:
+        proposals["position"] = found
+    found = _dressing_plane(graph, mechanism, kind)
+    if found:
+        proposals["dressing"] = found
+    found = _contents_plane(graph, joins, secrets, dudes)
+    if found:
+        proposals["contents"] = found
+    if not admits and (opening or 0) < 384:
+        proposals["topology"] = (ROLE_FIXTURE, {
+            "reason": "never opens a body's width"})
     elif not edges:
-        role = ROLE_UNPLACED
+        proposals["topology"] = (ROLE_UNPLACED, {
+            "reason": "which of its states blocks was not measurable, so it "
+                      "gates nothing and nothing is claimed"})
     elif len(lost) > 1:
-        role = ROLE_REQUIRED
+        proposals["topology"] = (ROLE_REQUIRED, {
+            "reason": f"{len(lost)} sectors are lost without it"})
     else:
-        role = ROLE_SIDE
+        proposals["topology"] = (ROLE_SIDE, {
+            "reason": "removing it costs only its own sector"})
+
+    decided_by = next((plane for plane in PLANES if plane in proposals), None)
+    role, why = proposals[decided_by] if decided_by else (ROLE_UNPLACED, {})
+    contested = sorted(plane for plane, (name, _) in proposals.items()
+                       if plane != decided_by and name != role)
     return {
         "mechanism": mechanism, "mechanism_kind": kind, "role": role,
+        "decided_by": decided_by, "why": why,
+        "proposals": {plane: {"role": name, **detail}
+                      for plane, (name, detail) in proposals.items()},
+        "contested": contested,
         "joins": joins,
         "sectors_lost_without_it": len(lost),
         "lost_without_it": lost[:24],
-        "holds_the_player_start": start_here,
-        "half_of_a_room_over_room_pair": linked,
         "swept_opening": opening,
-        #: Recorded, never used to name -- see the docstring.
-        "secret_within_reach": sorted(nearby),
-        "dudes_immediately_beyond": [item for item in joins if item in dudes],
-        "basis": "one counterfactual: everything worked, against everything "
-                 "worked but this; plus the player start and the ROR pairing",
+        "basis": "four planes -- position, dressing, contents, topology -- "
+                 "each proposing on its own evidence; ties go in that order",
     }
 
 

@@ -1,0 +1,207 @@
+{
+  "$schema": "llmapper.blood-design-role-v2",
+  "schema_version": 2,
+  "planes": [
+    "position",
+    "dressing",
+    "contents",
+    "topology"
+  ],
+  "e1m1_owner_cases": [
+    {
+      "sector": 30,
+      "owner": "narrative",
+      "role": "narrative",
+      "decided_by": "position",
+      "contested": [
+        "topology"
+      ],
+      "matched": true,
+      "proposals": {
+        "position": "narrative",
+        "topology": "recorded, not placed"
+      }
+    },
+    {
+      "sector": 26,
+      "owner": "secret",
+      "role": "secret",
+      "decided_by": "contents",
+      "contested": [
+        "topology"
+      ],
+      "matched": true,
+      "proposals": {
+        "contents": "secret",
+        "topology": "recorded, not placed"
+      }
+    },
+    {
+      "sector": 4,
+      "owner": "progression",
+      "role": "recorded, not placed",
+      "decided_by": "topology",
+      "contested": [],
+      "matched": false,
+      "proposals": {
+        "topology": "recorded, not placed"
+      }
+    },
+    {
+      "sector": 50,
+      "owner": "progression",
+      "role": "recorded, not placed",
+      "decided_by": "topology",
+      "contested": [],
+      "matched": false,
+      "proposals": {
+        "topology": "recorded, not placed"
+      }
+    },
+    {
+      "sector": 51,
+      "owner": "progression",
+      "role": "recorded, not placed",
+      "decided_by": "topology",
+      "contested": [],
+      "matched": false,
+      "proposals": {
+        "topology": "recorded, not placed"
+      }
+    },
+    {
+      "sector": 65,
+      "owner": "technical workaround",
+      "role": "technical workaround",
+      "decided_by": "position",
+      "contested": [
+        "contents",
+        "topology"
+      ],
+      "matched": true,
+      "proposals": {
+        "position": "technical workaround",
+        "contents": "secret",
+        "topology": "recorded, not placed"
+      }
+    },
+    {
+      "sector": 90,
+      "owner": "technical workaround",
+      "role": "technical workaround",
+      "decided_by": "position",
+      "contested": [
+        "contents",
+        "topology"
+      ],
+      "matched": true,
+      "proposals": {
+        "position": "technical workaround",
+        "contents": "secret entrance",
+        "topology": "fixture"
+      }
+    },
+    {
+      "sector": 99,
+      "owner": "ambush",
+      "role": "ambush",
+      "decided_by": "contents",
+      "contested": [
+        "topology"
+      ],
+      "matched": true,
+      "proposals": {
+        "contents": "ambush",
+        "topology": "recorded, not placed"
+      }
+    },
+    {
+      "sector": 125,
+      "owner": "furnishing",
+      "role": "ambush",
+      "decided_by": "contents",
+      "contested": [
+        "topology"
+      ],
+      "matched": false,
+      "proposals": {
+        "contents": "ambush",
+        "topology": "recorded, not placed"
+      }
+    },
+    {
+      "sector": 63,
+      "owner": "passage",
+      "role": "secret",
+      "decided_by": "contents",
+      "contested": [
+        "topology"
+      ],
+      "matched": false,
+      "proposals": {
+        "contents": "secret",
+        "topology": "recorded, not placed"
+      }
+    },
+    {
+      "sector": 70,
+      "owner": "secret entrance",
+      "role": "secret",
+      "decided_by": "contents",
+      "contested": [
+        "topology"
+      ],
+      "matched": false,
+      "proposals": {
+        "contents": "secret",
+        "topology": "recorded, not placed"
+      }
+    },
+    {
+      "sector": 86,
+      "owner": "fixture",
+      "role": "fixture",
+      "decided_by": "topology",
+      "contested": [],
+      "matched": true,
+      "proposals": {
+        "topology": "fixture"
+      }
+    },
+    {
+      "sector": 139,
+      "owner": "fixture",
+      "role": "fixture",
+      "decided_by": "topology",
+      "contested": [],
+      "matched": true,
+      "proposals": {
+        "topology": "fixture"
+      }
+    }
+  ],
+  "e1m1_recovered": 7,
+  "e1m1_total": 13,
+  "e1m1_decided_by": {
+    "position": 3,
+    "contents": 5,
+    "topology": 5
+  },
+  "e1m4": {
+    "mechanisms": 26,
+    "roles": {
+      "side passage": 7,
+      "secret": 6,
+      "required passage": 2,
+      "ambush": 6,
+      "fixture": 4,
+      "secret entrance": 1
+    },
+    "decided_by": {
+      "topology": 13,
+      "contents": 13
+    },
+    "contested": 13
+  },
+  "held_out": "none: the owner has attested one map. The cross-cut frequency is uncharacterised until a second arrives."
+}
