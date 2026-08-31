@@ -101,6 +101,85 @@ class GateTemplateTests(unittest.TestCase):
 
 
 @unittest.skipUnless(have_campaign(), "no Blood campaign maps")
+class TemplateSerializationTests(unittest.TestCase):
+    """A template nobody can write down is a template nobody can review.
+
+    A distribution here is keyed by the measured value, and a measured value
+    is sometimes a pair. `json.dumps(default=str)` rescues values and never
+    keys, so every `-o` run of this miner raised TypeError and no root type
+    could be written to disk at all.
+    """
+
+    def test_a_tuple_key_survives_being_written_out(self):
+        import json
+
+        from tools.mine_assemblies import jsonable
+
+        template = {"assembly_relations": {
+            "state_busy": {"modal": (0, 0),
+                           "seen": {(0, 0): 0.99, (1, 65536): 0.01}}}}
+        text = json.dumps(jsonable(template), indent=1, default=str)
+        seen = json.loads(text)["assembly_relations"]["state_busy"]["seen"]
+        self.assertEqual(seen, {"(0, 0)": 0.99, "(1, 65536)": 0.01})
+
+    def test_the_in_memory_template_keeps_the_pair_as_a_pair(self):
+        """The conversion belongs at the boundary: `check` and these tests
+        read `seen[(0, 0)]`, and a tuple is the honest key for a fact that is
+        a pair.
+        """
+        from tools.mine_assemblies import jsonable
+
+        template = {"seen": {(0, 0): 1.0}}
+        jsonable(template)
+        self.assertEqual(set(template["seen"]), {(0, 0)})
+
+    def test_string_keys_are_left_alone(self):
+        from tools.mine_assemblies import jsonable
+
+        self.assertEqual(jsonable({"roles": {"marker_off": 1}}),
+                         {"roles": {"marker_off": 1}})
+
+    def test_it_reaches_keys_nested_under_lists(self):
+        from tools.mine_assemblies import jsonable
+
+        self.assertEqual(jsonable({"shapes": [{"roles": {(1, 2): 3}}]}),
+                         {"shapes": [{"roles": {"(1, 2)": 3}}]})
+
+    def test_the_o_flag_actually_writes_a_file(self):
+        """The defect was in main(), not in the converter, so this runs it.
+
+        Every `-o` invocation of this miner raised TypeError before the fix,
+        for every root type.
+        """
+        import json
+        import tempfile
+
+        from tools.mine_assemblies import main
+
+        if not have_campaign():
+            self.skipTest("the campaign population is not present")
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "template.json"
+            code = main(["--root", "614", "-o", str(out)])
+            self.assertEqual(code, 0)
+            self.assertTrue(out.exists(), "-o wrote nothing")
+            template = json.loads(out.read_text(encoding="utf-8"))
+            self.assertGreater(template["instances"], 250)
+            self.assertIn("(0, 0)", template["assembly_relations"]["state_busy"]["seen"])
+
+    def test_the_real_template_writes_and_reads_back(self):
+        import json
+
+        from tools.mine_assemblies import build_template, instances, jsonable
+
+        if not have_campaign():
+            self.skipTest("the campaign population is not present")
+        template = build_template(instances(str(MAPS), 614))
+        again = json.loads(json.dumps(jsonable(template), indent=1, default=str))
+        self.assertEqual(again["instances"], template["instances"])
+        self.assertEqual(again["maps"], template["maps"])
+
+
 class SampleSizeTests(unittest.TestCase):
     def test_a_role_seen_once_states_nothing(self):
         """Exactly one campaign sludge sector has a switch in it.

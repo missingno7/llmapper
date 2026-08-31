@@ -103,6 +103,29 @@ def _modal(values: list[Any]) -> tuple[Any, float] | None:
     return value, count / len(values)
 
 
+def jsonable(node: Any) -> Any:
+    """The template as JSON, with its distribution keys spelled out.
+
+    A distribution here is keyed by the measured value itself, and a measured
+    value is sometimes a tuple -- `operator_commands (1,)`, `state_busy
+    (0, 0)`. `json.dumps(default=str)` rescues unserializable *values* and
+    never keys, so those tuples raised TypeError and no template could be
+    written to disk at all; `skipkeys` would have silently dropped exactly the
+    composite observations the field exists for.
+
+    The conversion belongs here rather than in `build_template`, because the
+    template is read in memory too -- `check` compares against it and the
+    tests read `seen[(0, 0)]` -- and a tuple is the honest key for a fact that
+    is a pair.
+    """
+    if isinstance(node, dict):
+        return {(k if isinstance(k, str) else repr(k)): jsonable(v)
+                for k, v in node.items()}
+    if isinstance(node, (list, tuple)):
+        return [jsonable(v) for v in node]
+    return node
+
+
 def build_template(found: list[Assembly]) -> dict[str, Any]:
     roles: dict[str, list[Any]] = defaultdict(list)
     for one in found:
@@ -322,7 +345,8 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.output:
         pathlib.Path(args.output).write_text(
-            json.dumps(template, indent=1, default=str) + "\n", encoding="utf-8")
+            json.dumps(jsonable(template), indent=1, default=str) + "\n",
+            encoding="utf-8")
 
     if args.against:
         disk = read_map(args.against)
