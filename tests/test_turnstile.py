@@ -17,6 +17,8 @@ import unittest
 from bloodmap.construction import _sprite_angle
 from bloodmap.mechanism import (
     BLADE_COUNT,
+    BLADE_OFFSET,
+    BUILD_DIRECTIONS,
     BLADE_PICNUM,
     CAMPAIGN_TRAVEL_ANGLE,
     DEATH_WISH_TRAVEL_ANGLE,
@@ -181,6 +183,55 @@ class TemplateFieldTests(unittest.TestCase):
                       pivot=(1536, 1536), period=255, floor_z=0,
                       ceiling_z=-33920)          # 2 player heights, not 64 tiles
 
+    def test_a_blade_stands_off_the_axis_and_does_not_sit_on_it(self):
+        """The defect the owner caught: four blades stacked on the pivot.
+
+        All 16 blades in the four mined rotors sit exactly 384 from their
+        axis, forming a cross. 384 is a constant and not a derived quantity --
+        the half drawn width is 384 on E1M4 and 448 on DWE1M9, and the rotor
+        side is 1536 against 1792, while the offset never moves.
+        """
+        markers = {int(s.fields["sector"]): s for s in self.disk.sprites
+                   if int(s.fields["type"]) == MARKER_AXIS_TYPE}
+        seen = 0
+        for sprite in self.disk.sprites:
+            if int(sprite.fields["picnum"]) != 332:
+                continue
+            axis = markers[int(sprite.fields["sector"])]
+            dx = int(sprite.fields["x"]) - int(axis.fields["x"])
+            dy = int(sprite.fields["y"]) - int(axis.fields["y"])
+            self.assertEqual(max(abs(dx), abs(dy)), BLADE_OFFSET)
+            self.assertEqual(min(abs(dx), abs(dy)), 0, "a vane lies on an axis")
+            seen += 1
+        self.assertEqual(seen, 8)
+
+    def test_the_four_blades_of_a_rotor_are_at_four_different_places(self):
+        """Stacked sprites pass every validator and render as one blade."""
+        by_sector = {}
+        for sprite in self.disk.sprites:
+            if int(sprite.fields["picnum"]) == 332:
+                by_sector.setdefault(int(sprite.fields["sector"]), []).append(
+                    (int(sprite.fields["x"]), int(sprite.fields["y"])))
+        self.assertTrue(by_sector)
+        for sector, spots in by_sector.items():
+            self.assertEqual(len(set(spots)), 4, f"sector {sector}")
+
+    def test_a_vane_extends_perpendicular_to_its_own_facing(self):
+        """A wall sprite's angle is the normal of its face, so the blade at
+        angle 0 runs along +-y and the one at 512 along +-x."""
+        markers = {int(s.fields["sector"]): s for s in self.disk.sprites
+                   if int(s.fields["type"]) == MARKER_AXIS_TYPE}
+        for sprite in self.disk.sprites:
+            if int(sprite.fields["picnum"]) != 332:
+                continue
+            axis = markers[int(sprite.fields["sector"])]
+            dx = int(sprite.fields["x"]) - int(axis.fields["x"])
+            dy = int(sprite.fields["y"]) - int(axis.fields["y"])
+            angle = int(sprite.fields["angle"])
+            ux, uy = BUILD_DIRECTIONS[(angle + 512) % 2048]
+            self.assertEqual((abs(dx) > 0, abs(dy) > 0),
+                             (abs(ux) > 0, abs(uy) > 0), f"angle {angle}")
+
     def test_the_blades_are_two_double_sided_panels_at_right_angles(self):
         """Not four evenly spaced vanes. E1M4 151 carries 0, 0, 512, 512."""
         blades = [s for s in self.disk.sprites if int(s.fields["picnum"]) == 332]
@@ -297,6 +348,28 @@ class CorpusAgreementTests(unittest.TestCase):
             self.skipTest(f"{name} is not in the local corpus")
         disk = read_map(path)
         return disk, [disk.sectors[s] for s in sectors]
+
+    def test_the_campaign_blades_stand_off_their_axis_by_the_same_384(self):
+        """The constructor's constant, checked against the map it came from
+        rather than against itself."""
+        disk, rotors = self.rotors("E1M4", (151, 314))
+        offsets, counted = set(), 0
+        for sector, rotor in zip((151, 314), rotors):
+            # Each rotor's blades against *its own* axis: measuring them
+            # against the other rotor's marker is how this test first read
+            # 1664 and 2432.
+            marker = disk.sprites[int(rotor.extra.fields["marker_0"])].fields
+            for sprite in disk.sprites:
+                g = sprite.fields
+                if int(g["picnum"]) != 332 or int(g["sector"]) != sector:
+                    continue
+                dx = int(g["x"]) - int(marker["x"])
+                dy = int(g["y"]) - int(marker["y"])
+                self.assertEqual(min(abs(dx), abs(dy)), 0)
+                offsets.add(max(abs(dx), abs(dy)))
+                counted += 1
+        self.assertEqual(counted, 8)
+        self.assertEqual(offsets, {BLADE_OFFSET})
 
     def test_the_campaign_pair_has_the_fields_the_template_claims(self):
         disk, rotors = self.rotors("E1M4", (151, 314))

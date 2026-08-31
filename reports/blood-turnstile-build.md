@@ -158,6 +158,46 @@ pair differing only by the flip bit so the panel is drawn from either side.
 The rotors are 32768 clear because that is what all four mined rotors are --
 the opening was sized to the blade, not the other way round.
 
+## The blades were on the pivot, and the owner fixed the map by hand
+
+The second correction, and the more instructive one. After the span fix the
+four blades were still all at the **axis**, stacked on one another. The owner
+moved them in XMapEdit; measured against E1M4, their correction is exactly
+what the campaign does.
+
+```text
+                  offsets from the axis     angle       
+E1M4 151          (0,+-384) and (+-384,0)   0 / 512
+E1M4 314          (0,+-384) and (+-384,0)   1024 / 1536
+DWE1M9 61 and 64  (0,+-384) and (+-384,0)   1024 / 1536
+the owner's fix   (0,+-384) and (+-384,0)   0 / 512
+```
+
+All 16 blades in the four mined rotors sit at exactly **384** from their axis,
+forming a cross of two vanes. The offset is a *constant*, not a derived
+quantity: the half drawn width is 384 on E1M4's `x_repeat` 48 and 448 on
+DWE1M9's 56, and the rotor side is 1536 against 1792, while the offset never
+moves. It equals the player's body width; nothing here claims that is why.
+
+The offset direction is always **perpendicular to the blade's own angle** -- a
+wall sprite's `ang` is the normal of its face, so a vane at angle 0 extends
+along +-y. Each vane is therefore two half-sprites either side of the pivot,
+the pair differing by the flip bit so both faces point outward.
+
+**How the mistake happened.** I measured `z`, `angle`, `x_repeat`, `y_repeat`
+and `cstat`, and never measured `x, y`. Having decided the axis marker went at
+the pivot, I assumed a sprite carried by a rotating sector was positioned *by*
+the rotation, so the pivot was where blades went -- and I then misread the
+8593/8597 pair as the two faces of one panel rather than the two halves of one
+vane, which made stacking them look coherent. The report's own limitations
+section flagged the angles as "a reading, not a measurement"; I wrote that down
+and still did not go back for the positions.
+
+The constructor now emits the offsets, and a rebuild reproduces the owner's
+corrected map field for field on both rotors -- same sectors, walls and
+sprites, every field equal. Four mutants covering the offset all die, and one
+test checks the constant against E1M4 rather than against the constructor.
+
 ## A near-miss worth recording
 
 The mutation sweep for this file reported two survivors that were not

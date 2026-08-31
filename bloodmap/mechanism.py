@@ -101,13 +101,30 @@ ROTATE_MARKED = 615
 BLADE_PICNUM = 332
 BLADE_COUNT = 4
 
-#: The four blade sprites are **two double-sided panels at right angles**, not
-#: four evenly spaced vanes. Measured on all four rotors: E1M4 151 carries
+#: The four blade sprites are two vanes crossing at right angles, and each
+#: vane is drawn as **two half-sprites on opposite sides of the axis** -- not
+#: one panel standing on it. Measured on all four rotors: E1M4 151 carries
 #: angles 0, 0, 512, 512 and E1M4 314 carries 1024, 1024, 1536, 1536; DWE1M9's
-#: pair both carry 1024, 1024, 1536, 1536. Each panel is two sprites that
-#: differ only by the flip bit, so it is drawn from either side.
+#: pair both carry 1024, 1024, 1536, 1536. The two halves of a vane differ by
+#: the flip bit so each faces outward.
 BLADE_PANELS = 2
 BLADE_QUARTER = 512
+
+#: How far a blade sits from the axis. **A constant, not a derived quantity**:
+#: all 16 blades in the four mined rotors sit at exactly 384, while the half
+#: drawn width (384 on E1M4's x_repeat 48, 448 on DWE1M9's 56) and the rotor
+#: side (1536 against 1792) both vary. It happens to equal the player's body
+#: width; nothing here claims that is the reason.
+#:
+#: Getting this wrong is what put every blade on the pivot, stacked on top of
+#: one another, in the first build -- z, angle, repeat and cstat were all
+#: measured and the position never was.
+BLADE_OFFSET = 384
+
+#: Build angle -> unit direction. A wall sprite's `ang` is the normal of its
+#: face, so a vane extends along the *perpendicular* of its own angle: the
+#: blades at angle 0 sit at (0, +-384) and those at 512 at (+-384, 0).
+BUILD_DIRECTIONS = {0: (1, 0), 512: (0, 1), 1024: (-1, 0), 1536: (0, -1)}
 
 #: Transcribed rather than composed from flags: E1M4 stores 8593 and 8597 on
 #: the two faces of a panel, and the pair differ by bit 2 alone. 8192 is
@@ -162,11 +179,86 @@ TURNSTILE_TEMPLATE = {
                           "DWE1M9 61/64": (1024, 1024, 1536, 1536)},
                "cstat": (BLADE_CSTAT, BLADE_CSTAT_FLIPPED),
                "spans": "floor to ceiling; drawn height == clear height, "
-                        "32768 in all four rotors at y_repeat 64"},
+                        "32768 in all four rotors at y_repeat 64",
+               "offset_from_axis": BLADE_OFFSET,
+               "arrangement_detail": "two crossing vanes, each drawn as two "
+                                     "half-sprites either side of the axis"},
     "busy_time": {"E1M4": (255, 0), "E1M4 partner": (0, 255),
                   "DWE1M9": (100, 0), "DWE1M9 partner": (0, 100)},
     "travel_angle": {"E1M4": -8192, "DWE1M9": 2047, "DNE3L6": 2032},
 }
+
+
+def turnstile_spec(
+    *,
+    period: int,
+    floor_z: int,
+    ceiling_z: int,
+    travel_angle: int = CAMPAIGN_TRAVEL_ANGLE,
+    clockwise: bool = True,
+    blade_picnum: int = BLADE_PICNUM,
+    blade_tile_height: int = 128,
+    blade_x_repeat: int = BLADE_X_REPEAT,
+) -> dict[str, Any]:
+    """The template's own facts, with no layout involved.
+
+    `turnstile` builds a rotor into a `PlanarLayout`; a project with its own
+    room grammar needs the same facts without the region-making, and there
+    must not be two copies of them. Returns the sector behaviour, the axis
+    marker and the blades, ready to apply to whatever a caller's grammar
+    calls a room.
+    """
+    if period <= 0 or period > 65535:
+        raise MechanismError("a spin period must be 1..65535")
+    clear = abs(int(floor_z) - int(ceiling_z))
+    denominator = int(blade_tile_height) * SPRITE_REPEAT_SCALE
+    y_repeat = clear // denominator
+    if y_repeat < 1 or y_repeat > 255:
+        raise MechanismError(
+            f"a {clear}-unit rotor cannot be spanned by a "
+            f"{blade_tile_height}-tall blade (needs y_repeat {clear / denominator:.1f})")
+    if y_repeat * denominator != clear:
+        raise MechanismError(
+            f"clear height {clear} is not a whole number of blade tiles "
+            f"({denominator} each); the blade would not meet both surfaces")
+
+    blades = []
+    for panel in range(BLADE_PANELS):
+        angle = (panel * BLADE_QUARTER) % 2048
+        ux, uy = BUILD_DIRECTIONS[(angle + BLADE_QUARTER) % 2048]
+        for sign, cstat in ((1, BLADE_CSTAT), (-1, BLADE_CSTAT_FLIPPED)):
+            blades.append({
+                "type": 0, "picnum": int(blade_picnum), "cstat": cstat,
+                "angle": angle, "x_repeat": int(blade_x_repeat),
+                "y_repeat": y_repeat,
+                "z": (int(floor_z) + int(ceiling_z)) // 2,
+                "dx": sign * ux * BLADE_OFFSET,
+                "dy": sign * uy * BLADE_OFFSET,
+            })
+    return {
+        "sector_type": ROTATE_MARKED,
+        "behavior": {
+            "rx_id": LEVEL_START_CHANNEL,
+            "busy_wave_a": 1, "busy_wave_b": 1,
+            "retrigger_a": 1, "retrigger_b": 1,
+            "interruptable": 0,
+            "busy_time_a": int(period) if clockwise else 0,
+            "busy_time_b": 0 if clockwise else int(period),
+        },
+        "axis": {"type": MARKER_AXIS_TYPE, "picnum": MARKER_PICNUM,
+                 "cstat": MARKER_CSTAT, "status": MARKER_STATNUM,
+                 "angle": int(travel_angle), "x_repeat": 64, "y_repeat": 64,
+                 "z": int(floor_z)},
+        "blades": blades,
+        "blade_span": {"top_z": int(ceiling_z), "bottom_z": int(floor_z),
+                       "centre_z": (int(floor_z) + int(ceiling_z)) // 2,
+                       "y_repeat": y_repeat,
+                       "drawn_height": y_repeat * denominator},
+        "period": int(period), "clockwise": bool(clockwise),
+        "travel_angle": int(travel_angle),
+        "turns": round(travel_angle / TURN, 3),
+        "template": "E1M4 151/314 + DWE1M9 61/64",
+    }
 
 
 def turnstile(
@@ -234,59 +326,32 @@ def turnstile(
 
     Returns what it built.
     """
-    if period <= 0 or period > 65535:
-        raise MechanismError(f"{region_id}: a spin period must be 1..65535")
     if len(outline) < 3:
         raise MechanismError(f"{region_id}: a rotor needs a closed outline")
     px, py = int(pivot[0]), int(pivot[1])
-
-    behavior = {
-        "rx_id": LEVEL_START_CHANNEL,
-        "busy_wave_a": 1, "busy_wave_b": 1,
-        "retrigger_a": 1, "retrigger_b": 1,
-        "interruptable": 0,
-        # Direction is which field carries the period, not a sign on an angle.
-        "busy_time_a": int(period) if clockwise else 0,
-        "busy_time_b": 0 if clockwise else int(period),
-    }
+    try:
+        spec = turnstile_spec(
+            period=period, floor_z=floor_z, ceiling_z=ceiling_z,
+            travel_angle=travel_angle, clockwise=clockwise,
+            blade_picnum=blade_picnum, blade_tile_height=blade_tile_height,
+            blade_x_repeat=blade_x_repeat)
+    except MechanismError as exc:
+        raise MechanismError(f"{region_id}: {exc}") from None
+    behavior = spec["behavior"]
     layout.add_region(
         region_id, outline, floor_z=floor_z, ceiling_z=ceiling_z,
         type=ROTATE_MARKED, sector_behavior=behavior, **region_kwargs)
 
     marker_id = f"placement:{region_id}:axis"
-    layout.add_sprite(
-        marker_id, region_id, x=px, y=py, z=int(floor_z),
-        type=MARKER_AXIS_TYPE, picnum=MARKER_PICNUM, cstat=MARKER_CSTAT,
-        status=MARKER_STATNUM, angle=int(travel_angle),
-        x_repeat=64, y_repeat=64)
-
-    # A blade fills its rotor from floor to ceiling. The repeat is derived
-    # from the clear height, never given: Blood draws a sprite
-    # `tile_height * y_repeat * 4` tall, so the height decides the repeat and
-    # a guessed repeat leaves the grates floating.
-    clear = abs(int(floor_z) - int(ceiling_z))
-    denominator = int(blade_tile_height) * SPRITE_REPEAT_SCALE
-    y_repeat = clear // denominator
-    if y_repeat < 1 or y_repeat > 255:
-        raise MechanismError(
-            f"{region_id}: a {clear}-unit rotor cannot be spanned by a "
-            f"{blade_tile_height}-tall blade (needs y_repeat {clear / denominator:.1f})")
-    if y_repeat * denominator != clear:
-        raise MechanismError(
-            f"{region_id}: clear height {clear} is not a whole number of blade "
-            f"tiles ({denominator} each); the blade would not meet both surfaces")
-    middle = (int(floor_z) + int(ceiling_z)) // 2
+    layout.add_sprite(marker_id, region_id, x=px, y=py, **spec["axis"])
 
     blades = []
-    for panel in range(BLADE_PANELS):
-        angle = (panel * BLADE_QUARTER) % 2048
-        for face, cstat in enumerate((BLADE_CSTAT, BLADE_CSTAT_FLIPPED)):
-            blade_id = f"placement:{region_id}:blade:{panel}:{face}"
-            layout.add_sprite(
-                blade_id, region_id, x=px, y=py, z=middle,
-                type=0, picnum=int(blade_picnum), cstat=cstat,
-                angle=angle, x_repeat=int(blade_x_repeat), y_repeat=y_repeat)
-            blades.append(blade_id)
+    for index, blade in enumerate(spec["blades"]):
+        fields = dict(blade)
+        dx, dy = fields.pop("dx"), fields.pop("dy")
+        blade_id = f"placement:{region_id}:blade:{index}"
+        layout.add_sprite(blade_id, region_id, x=px + dx, y=py + dy, **fields)
+        blades.append(blade_id)
 
     sfx = None
     if sound:
@@ -302,9 +367,7 @@ def turnstile(
         "turns": round(travel_angle / TURN, 3),
         "behavior": behavior, "axis_marker": marker_id,
         "blades": blades, "sound": sfx,
-        "blade_span": {"top_z": int(ceiling_z), "bottom_z": int(floor_z),
-                       "centre_z": middle, "y_repeat": y_repeat,
-                       "drawn_height": y_repeat * denominator},
+        "blade_span": spec["blade_span"],
         "template": "E1M4 151/314 + DWE1M9 61/64",
     }
 

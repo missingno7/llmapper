@@ -28,10 +28,10 @@
       },
       "axis_marker": "placement:turnstile:a:axis",
       "blades": [
-        "placement:turnstile:a:blade:0:0",
-        "placement:turnstile:a:blade:0:1",
-        "placement:turnstile:a:blade:1:0",
-        "placement:turnstile:a:blade:1:1"
+        "placement:turnstile:a:blade:0",
+        "placement:turnstile:a:blade:1",
+        "placement:turnstile:a:blade:2",
+        "placement:turnstile:a:blade:3"
       ],
       "sound": null,
       "blade_span": {
@@ -65,10 +65,10 @@
       },
       "axis_marker": "placement:turnstile:b:axis",
       "blades": [
-        "placement:turnstile:b:blade:0:0",
-        "placement:turnstile:b:blade:0:1",
-        "placement:turnstile:b:blade:1:0",
-        "placement:turnstile:b:blade:1:1"
+        "placement:turnstile:b:blade:0",
+        "placement:turnstile:b:blade:1",
+        "placement:turnstile:b:blade:2",
+        "placement:turnstile:b:blade:3"
       ],
       "sound": null,
       "blade_span": {
