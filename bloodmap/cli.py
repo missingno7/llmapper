@@ -62,6 +62,7 @@ from .model import LevelIR
 from .oracle import (
     OracleError, run_eduke32_oracle, run_gzdoom_oracle, run_nblood_action_oracle,
     run_nblood_behavior_oracle, run_nblood_oracle,
+    run_nblood_passage_oracle,
 )
 from .recipe import RecipeError, build_composition_recipe
 from .semantics import ObservationError
@@ -1803,6 +1804,16 @@ def cmd_oracle_nblood_behavior(args: argparse.Namespace) -> int:
     return 0 if report["status"] == "pass" else 1
 
 
+def cmd_oracle_nblood_passage(args: argparse.Namespace) -> int:
+    report = run_nblood_passage_oracle(
+        args.map, far_sectors=args.far_sector, nblood=args.nblood,
+        game_dir=args.game_dir, game_seconds=args.game_seconds,
+        wall_clock_timeout=args.wall_clock_timeout, work_dir=args.work_dir,
+    )
+    _write_text(args.output, _json(report))
+    return 0 if report["status"] == "pass" else 1
+
+
 def cmd_transform(args: argparse.Namespace) -> int:
     game = _game_for_path(args.map)
     ir = _read_build_ir(args.map)
@@ -2406,6 +2417,21 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--work-dir", help="preserve logs and screenshots under this ignored directory")
     p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")
     p.set_defaults(func=cmd_oracle_nblood_action)
+    p = sub.add_parser(
+        "oracle-nblood-passage",
+        help="drive a body through a MAP and report whether it reached the far side",
+    )
+    p.add_argument("map", help="candidate MAP with the body spawned before the aperture")
+    p.add_argument("--far-sector", type=int, action="append", required=True,
+                   help="sector index counting as the far side; repeatable")
+    p.add_argument("--nblood", required=True, help="path to NBlood executable")
+    p.add_argument("--game-dir", required=True, help="path to local Blood/NBlood game data")
+    p.add_argument("--game-seconds", type=int, default=90,
+                   help="simulated game-time limit handed to the driver")
+    p.add_argument("--wall-clock-timeout", type=float, default=180.0)
+    p.add_argument("--work-dir", help="preserve logs and the trajectory under this ignored directory")
+    p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")
+    p.set_defaults(func=cmd_oracle_nblood_passage)
     p = sub.add_parser("oracle-gzdoom", help="run a bounded GZDoom map-load smoke test")
     p.add_argument("--iwad", required=True)
     p.add_argument("--gzdoom", required=True)

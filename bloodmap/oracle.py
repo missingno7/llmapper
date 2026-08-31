@@ -27,8 +27,9 @@ asked of the editor renderer, and exactly why the behavioural ones cannot be.
 
 from __future__ import annotations
 
-import hashlib
 import ctypes
+import hashlib
+import json
 import os
 import re
 import shutil
@@ -37,7 +38,7 @@ import tempfile
 import time
 from copy import deepcopy
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 
 from .analysis import validate_map
 from .composition import insert_fragment
@@ -1012,6 +1013,191 @@ def assess_behavior_equivalence(baseline: dict[str, Any], candidate: dict[str, A
         "both_states_changed": both_changed,
         "both_views_stable": both_stable,
     }
+
+
+def _read_trajectory(path: Path) -> list[dict[str, Any]]:
+    """Parse the engine's own per-tick record of where the body was."""
+    if not path.exists():
+        return []
+    samples = []
+    for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            samples.append(json.loads(line))
+        except ValueError:
+            continue          # a run killed mid-write leaves a partial line
+    return samples
+
+
+def _probe_passage_trajectory(
+    map_path: Path, *, nblood: Path, game_dir: Path, work_dir: Path,
+    game_seconds: int, wall_clock_timeout: float,
+) -> dict[str, Any]:
+    """Run one map headless and bring back the sector sequence.
+
+    Headless is not a nicety here. Driving the body by synthesizing keystrokes
+    means focusing the game window, which takes the desktop away from whoever
+    is using the machine; and reading the outcome from screenshots means
+    arguing about pictures. `-bot` draws no frame at all (`blood.cpp:2066`),
+    runs accelerated (`:2008`), and `-bot_trajectory` writes x/y/z/**sector**
+    every tick (`bot_debug.cpp:159`). The sector sequence is the thing being
+    asked about, so read it rather than infer it.
+    """
+    identity = _map_identity(map_path)
+    work_dir.mkdir(parents=True, exist_ok=True)
+    for name in ("nblood.log", "stdout.txt", "stderr.txt",
+                 "trajectory.ndjson", "telemetry.ndjson"):
+        candidate = work_dir / name
+        if candidate.exists():
+            candidate.unlink()
+    shutil.copy2(map_path, work_dir / "oracle.MAP")
+    (work_dir / "oracle.cfg").write_text(_CONFIG, encoding="utf-8", newline="\n")
+    command = [
+        str(nblood), "-usecwd", "-game_dir", str(game_dir),
+        "-cfg", "oracle.cfg", "-map", "oracle.MAP",
+        "-noautoload", "-quick", "-nosetup",
+        "-bot", "-bot_timeout", str(int(game_seconds)),
+        "-bot_trajectory", "trajectory.ndjson",
+        "-bot_telemetry", "telemetry.ndjson",
+    ]
+    stdout_path, stderr_path = work_dir / "stdout.txt", work_dir / "stderr.txt"
+    timed_out = False
+    with stdout_path.open("wb") as stdout, stderr_path.open("wb") as stderr:
+        process = subprocess.Popen(
+            command, cwd=work_dir, stdout=stdout, stderr=stderr,
+            **_hidden_process_options(),
+        )
+        try:
+            process.wait(timeout=wall_clock_timeout)
+        except subprocess.TimeoutExpired:
+            timed_out = True
+            process.kill()
+            process.wait(timeout=5)
+        returncode = process.poll()
+    log_path = work_dir / "nblood.log"
+    log = log_path.read_text(encoding="utf-8", errors="replace") \
+        if log_path.exists() else ""
+    stderr_text = stderr_path.read_text(encoding="utf-8", errors="replace")
+    assessment = assess_nblood_output(log, stderr_text, False)
+    trajectory = _read_trajectory(work_dir / "trajectory.ndjson")
+    telemetry = _read_trajectory(work_dir / "telemetry.ndjson")
+    return {
+        "identity": identity,
+        "returncode": returncode,
+        "wall_clock_timed_out": timed_out,
+        "ticks": len(trajectory),
+        "trajectory": trajectory,
+        "telemetry_events": [event.get("event") for event in telemetry],
+        "fatal_indicators": assessment["fatal_indicators"],
+    }
+
+
+def passage_verdict(probe: dict[str, Any],
+                    far_sectors: Sequence[int]) -> dict[str, Any]:
+    """Did the body cross to the far side?
+
+    Two clauses, and the second is what stops the first from being a
+    formality:
+
+    1. some tick of the trajectory puts the body in a far sector;
+    2. the *first* tick does not, because a probe that spawns the body beyond
+       the aperture answers yes without anything having been traversed. That
+       is exactly how an earlier attempt at this fooled itself -- it spawned
+       in the exit sector and read the result back as passage.
+
+    A `passed` is evidence about the aperture whatever drove the body: the
+    engine recorded the sector changing, so a body did fit through. A failure
+    is **not** the converse -- see `run_nblood_passage_oracle`.
+    """
+    trajectory = probe["trajectory"]
+    far = {int(item) for item in far_sectors}
+    order: list[int] = []
+    arrived = None
+    for sample in trajectory:
+        sector = int(sample.get("sector", -1))
+        if sector not in order:
+            order.append(sector)
+        if arrived is None and sector in far:
+            arrived = sample
+    started = int(trajectory[0].get("sector", -1)) if trajectory else -1
+    began_beyond = started in far
+    return {
+        "passed": bool(arrived is not None and not began_beyond),
+        "crossed": arrived is not None,
+        "began_beyond_the_aperture": began_beyond,
+        "start_sector": started,
+        "far_sectors": sorted(far),
+        "sectors_visited": order,
+        "ticks": len(trajectory),
+        "arrived_tick": arrived.get("tick") if arrived else None,
+        "arrived_game_time": arrived.get("game_time") if arrived else None,
+    }
+
+
+def run_nblood_passage_oracle(
+    map_path: str | Path,
+    *,
+    far_sectors: Sequence[int],
+    nblood: str | Path,
+    game_dir: str | Path,
+    game_seconds: int = 90,
+    wall_clock_timeout: float = 180.0,
+    work_dir: str | Path | None = None,
+) -> dict[str, Any]:
+    """Drive a body through a map and report whether it reached the far side.
+
+    The oracle the turnstile needed and did not have: the load smoke proves a
+    map starts, the action oracle presses Use once, and neither gets a body
+    through a moving aperture.
+
+    **A pass and a fail are not symmetric here, and pretending otherwise would
+    be the whole error.** The body is driven by the in-process playtest bot,
+    which is unfinished and experimental. A pass is still evidence about the
+    aperture -- the engine wrote down the body's sector changing, so a body of
+    that size did get through at that spin rate. A fail is ambiguous between
+    an aperture that blocks and a driver that never tried, so read one only
+    beside a positive control that shares the driver: if the bot cannot cross
+    an open corridor, nothing it fails to cross has been tested.
+    """
+    if os.name != "nt":
+        raise OracleError("the passage oracle currently requires Windows")
+    candidate = Path(map_path).resolve()
+    nblood_path, game_path = Path(nblood).resolve(), Path(game_dir).resolve()
+    if not candidate.is_file():
+        raise OracleError(f"passage-oracle MAP does not exist: {candidate}")
+    if not nblood_path.is_file():
+        raise OracleError(f"NBlood executable does not exist: {nblood_path}")
+    if not game_path.is_dir():
+        raise OracleError(f"NBlood game-data directory does not exist: {game_path}")
+    if not far_sectors:
+        raise OracleError("passage oracle needs at least one far sector")
+    if not 1 <= int(game_seconds) <= 3600:
+        raise OracleError("game_seconds must be between 1 and 3600")
+
+    def execute(root: Path) -> dict[str, Any]:
+        probe = _probe_passage_trajectory(
+            candidate, nblood=nblood_path, game_dir=game_path, work_dir=root,
+            game_seconds=int(game_seconds),
+            wall_clock_timeout=float(wall_clock_timeout))
+        verdict = passage_verdict(probe, far_sectors)
+        summary = dict(probe)
+        #: The per-tick record stays on disk; a report carrying thousands of
+        #: samples is a report nobody reads.
+        summary["trajectory"] = probe["trajectory"][:1] + probe["trajectory"][-1:]
+        return {
+            "$schema": "bloodmap.nblood-passage-oracle",
+            "schema_version": 1,
+            "status": "pass" if verdict["passed"] else "fail",
+            "verdict": verdict,
+            "probe": summary,
+        }
+
+    if work_dir is not None:
+        return execute(Path(work_dir).resolve())
+    with tempfile.TemporaryDirectory(prefix="bloodmap-passage-") as directory:
+        return execute(Path(directory))
 
 
 def run_nblood_behavior_oracle(

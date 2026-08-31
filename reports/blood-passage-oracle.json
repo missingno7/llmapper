@@ -1,0 +1,265 @@
+{
+  "$schema": "llmapper.blood-passage-oracle",
+  "schema_version": 1,
+  "question": "does a body fit through a turnstile at its mined spin rate",
+  "driver": {
+    "how": "NBlood -bot with -bot_trajectory, headless (no frame drawn, CREATE_NO_WINDOW)",
+    "readout": "the engine's own per-tick sector, from bot_debug.cpp sampleTrajectory",
+    "caveat": "the in-process playtest bot is unfinished and experimental; a crossing is evidence about the aperture whatever drove the body, a non-crossing is not"
+  },
+  "controls": {
+    "open-corridor": {
+      "expect_passage": true,
+      "passed": true,
+      "informative": true,
+      "ticks": 675,
+      "start_sector": 0,
+      "far_sectors": [
+        1
+      ],
+      "sectors_visited": [
+        0,
+        1
+      ],
+      "arrived_game_time": 1,
+      "driver_result": [
+        "act_withheld",
+        null
+      ],
+      "period": null
+    },
+    "walled-corridor": {
+      "expect_passage": false,
+      "passed": false,
+      "informative": true,
+      "ticks": 83,
+      "start_sector": 0,
+      "far_sectors": [
+        1
+      ],
+      "sectors_visited": [
+        0
+      ],
+      "arrived_game_time": null,
+      "driver_result": [
+        "act_withheld",
+        null
+      ],
+      "period": null
+    },
+    "single-255": {
+      "expect_passage": true,
+      "passed": false,
+      "informative": false,
+      "ticks": 0,
+      "start_sector": -1,
+      "far_sectors": [
+        1
+      ],
+      "sectors_visited": [],
+      "arrived_game_time": null,
+      "driver_result": [
+        "act_withheld",
+        null
+      ],
+      "period": 255
+    },
+    "single-100": {
+      "expect_passage": true,
+      "passed": false,
+      "informative": false,
+      "ticks": 0,
+      "start_sector": -1,
+      "far_sectors": [
+        1
+      ],
+      "sectors_visited": [],
+      "arrived_game_time": null,
+      "driver_result": [
+        "act_withheld",
+        null
+      ],
+      "period": 100
+    },
+    "pair-255": {
+      "expect_passage": true,
+      "passed": false,
+      "informative": false,
+      "ticks": 0,
+      "start_sector": -1,
+      "far_sectors": [
+        1
+      ],
+      "sectors_visited": [],
+      "arrived_game_time": null,
+      "driver_result": [
+        "act_withheld",
+        null
+      ],
+      "period": 255
+    },
+    "pair-255-same": {
+      "expect_passage": true,
+      "passed": false,
+      "informative": false,
+      "ticks": 0,
+      "start_sector": -1,
+      "far_sectors": [
+        1
+      ],
+      "sectors_visited": [],
+      "arrived_game_time": null,
+      "driver_result": [
+        "act_withheld",
+        null
+      ],
+      "period": 255
+    },
+    "solid-blades": {
+      "expect_passage": false,
+      "passed": false,
+      "informative": false,
+      "ticks": 0,
+      "start_sector": -1,
+      "far_sectors": [
+        1
+      ],
+      "sectors_visited": [],
+      "arrived_game_time": null,
+      "driver_result": [
+        "act_withheld",
+        null
+      ],
+      "period": 255
+    },
+    "sealed-rotor": {
+      "expect_passage": false,
+      "passed": false,
+      "informative": false,
+      "ticks": 0,
+      "start_sector": -1,
+      "far_sectors": [
+        1
+      ],
+      "sectors_visited": [],
+      "arrived_game_time": null,
+      "driver_result": [
+        "act_withheld",
+        null
+      ],
+      "period": 255
+    }
+  },
+  "period_sweep": {
+    "period-32": {
+      "expect_passage": true,
+      "passed": false,
+      "informative": false,
+      "ticks": 0,
+      "start_sector": -1,
+      "far_sectors": [
+        1
+      ],
+      "sectors_visited": [],
+      "arrived_game_time": null,
+      "driver_result": [
+        "act_withheld",
+        null
+      ],
+      "period": 32
+    },
+    "period-64": {
+      "expect_passage": true,
+      "passed": false,
+      "informative": false,
+      "ticks": 0,
+      "start_sector": -1,
+      "far_sectors": [
+        1
+      ],
+      "sectors_visited": [],
+      "arrived_game_time": null,
+      "driver_result": [
+        "act_withheld",
+        null
+      ],
+      "period": 64
+    },
+    "period-100": {
+      "expect_passage": true,
+      "passed": false,
+      "informative": false,
+      "ticks": 0,
+      "start_sector": -1,
+      "far_sectors": [
+        1
+      ],
+      "sectors_visited": [],
+      "arrived_game_time": null,
+      "driver_result": [
+        "act_withheld",
+        null
+      ],
+      "period": 100
+    },
+    "period-160": {
+      "expect_passage": true,
+      "passed": false,
+      "informative": false,
+      "ticks": 0,
+      "start_sector": -1,
+      "far_sectors": [
+        1
+      ],
+      "sectors_visited": [],
+      "arrived_game_time": null,
+      "driver_result": [
+        "act_withheld",
+        null
+      ],
+      "period": 160
+    },
+    "period-255": {
+      "expect_passage": true,
+      "passed": false,
+      "informative": false,
+      "ticks": 0,
+      "start_sector": -1,
+      "far_sectors": [
+        1
+      ],
+      "sectors_visited": [],
+      "arrived_game_time": null,
+      "driver_result": [
+        "act_withheld",
+        null
+      ],
+      "period": 255
+    },
+    "period-400": {
+      "expect_passage": true,
+      "passed": false,
+      "informative": false,
+      "ticks": 0,
+      "start_sector": -1,
+      "far_sectors": [
+        1
+      ],
+      "sectors_visited": [],
+      "arrived_game_time": null,
+      "driver_result": [
+        "act_withheld",
+        null
+      ],
+      "period": 400
+    }
+  },
+  "conclusion": {
+    "readout_calibrated": true,
+    "rotor_probes_informative": false,
+    "passage_through_a_rotor": "unproven",
+    "why": "the driver refuses to enter a kSectorRotateMarked sector at all: the entry relation is derived walk=0 why=no_stance while the exit relation is walk=1, so the run ends at game_time 0 with NO_KNOWN_ACTION and writes no trajectory",
+    "period_dependence": "none observed; 0 ticks at every period from 32 to 400, so the refusal precedes any motion",
+    "promotion_blocker": "stands; the Aldermack forecourt mouth is not sealed"
+  }
+}
