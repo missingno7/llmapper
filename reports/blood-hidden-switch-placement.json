@@ -1,0 +1,270 @@
+{
+  "$schema": "llmapper.blood-hidden-switch-placement",
+  "schema_version": 1,
+  "question": "does a concealed trigger sit somewhere different from an exposed one, relative to what it opens",
+  "population": "blood-campaign",
+  "switch_sprites": 1396,
+  "by_label": {
+    "visible": 1281,
+    "hidden": 115
+  },
+  "sector_kind_of_the_switch": {
+    "hidden": {
+      "logic_closet": 65,
+      "reachable": 50
+    },
+    "visible": {
+      "logic_closet": 752,
+      "reachable": 511,
+      "sealed": 18
+    }
+  },
+  "features_scored": [
+    "same_sector",
+    "adjacent_sector",
+    "hops_to_target",
+    "target_unreachable_by_portal",
+    "sees_the_target",
+    "targets",
+    "distance_to_target",
+    "switch_in_a_logic_closet",
+    "switch_in_reachable_geometry"
+  ],
+  "discriminator_floor": 0.65,
+  "scopes": [
+    {
+      "scope": "gated",
+      "counts": {
+        "scored": 385,
+        "held_out_no_target": 1011,
+        "held_out_by_label": {
+          "visible": 918,
+          "hidden": 93
+        },
+        "hidden": {
+          "switches": 22,
+          "maps": 11
+        },
+        "visible": {
+          "switches": 363,
+          "maps": 42
+        }
+      },
+      "discriminating": [],
+      "rejected": [
+        {
+          "feature": "distance_to_target",
+          "kind": "numeric",
+          "positive_median": 24988.8895,
+          "comparison_median": 15655.982,
+          "rule": "distance_to_target >= 3217.221",
+          "positives_matching": 0.9091,
+          "comparison_matching": 0.6281,
+          "balanced_accuracy": 0.6405
+        },
+        {
+          "feature": "targets",
+          "kind": "numeric",
+          "positive_median": 2.0,
+          "comparison_median": 1.0,
+          "rule": "targets >= 1.5",
+          "positives_matching": 0.5455,
+          "comparison_matching": 0.3251,
+          "balanced_accuracy": 0.6102
+        },
+        {
+          "feature": "sees_the_target",
+          "kind": "boolean",
+          "positive_share": 0.1364,
+          "comparison_share": 0.2534,
+          "difference": -0.1171,
+          "balanced_accuracy": 0.5585,
+          "direction": "comparison"
+        },
+        {
+          "feature": "hops_to_target",
+          "kind": "numeric",
+          "positive_median": -1.0,
+          "comparison_median": -1.0,
+          "rule": "hops_to_target < 0.5",
+          "positives_matching": 0.6818,
+          "comparison_matching": 0.5758,
+          "balanced_accuracy": 0.553
+        },
+        {
+          "feature": "target_unreachable_by_portal",
+          "kind": "boolean",
+          "positive_share": 0.6364,
+          "comparison_share": 0.5399,
+          "difference": 0.0964,
+          "balanced_accuracy": 0.5482,
+          "direction": "positive"
+        },
+        {
+          "feature": "adjacent_sector",
+          "kind": "boolean",
+          "positive_share": 0.0909,
+          "comparison_share": 0.1846,
+          "difference": -0.0937,
+          "balanced_accuracy": 0.5468,
+          "direction": "comparison"
+        },
+        {
+          "feature": "switch_in_a_logic_closet",
+          "kind": "boolean",
+          "positive_share": 0.5455,
+          "comparison_share": 0.4821,
+          "difference": 0.0634,
+          "balanced_accuracy": 0.5317,
+          "direction": "positive"
+        },
+        {
+          "feature": "switch_in_reachable_geometry",
+          "kind": "boolean",
+          "positive_share": 0.4545,
+          "comparison_share": 0.5152,
+          "difference": -0.0606,
+          "balanced_accuracy": 0.5303,
+          "direction": "comparison"
+        },
+        {
+          "feature": "same_sector",
+          "kind": "boolean",
+          "positive_share": 0.0455,
+          "comparison_share": 0.0358,
+          "difference": 0.0096,
+          "balanced_accuracy": 0.5048,
+          "direction": "positive"
+        }
+      ],
+      "counterexamples": {
+        "rule": null,
+        "note": "no feature reached the discriminator floor"
+      },
+      "map_transfer": {
+        "rule": null,
+        "note": "no feature reached the discriminator floor"
+      }
+    },
+    {
+      "scope": "listening",
+      "counts": {
+        "scored": 742,
+        "held_out_no_target": 654,
+        "held_out_by_label": {
+          "visible": 576,
+          "hidden": 78
+        },
+        "hidden": {
+          "switches": 37,
+          "maps": 14
+        },
+        "visible": {
+          "switches": 705,
+          "maps": 43
+        }
+      },
+      "discriminating": [],
+      "rejected": [
+        {
+          "feature": "distance_to_target",
+          "kind": "numeric",
+          "positive_median": 22448.04,
+          "comparison_median": 19206.953,
+          "rule": "distance_to_target >= 3217.221",
+          "positives_matching": 0.8649,
+          "comparison_matching": 0.6596,
+          "balanced_accuracy": 0.6026
+        },
+        {
+          "feature": "adjacent_sector",
+          "kind": "boolean",
+          "positive_share": 0.0541,
+          "comparison_share": 0.1943,
+          "difference": -0.1403,
+          "balanced_accuracy": 0.5701,
+          "direction": "comparison"
+        },
+        {
+          "feature": "hops_to_target",
+          "kind": "numeric",
+          "positive_median": -1.0,
+          "comparison_median": -1.0,
+          "rule": "hops_to_target < -0.5",
+          "positives_matching": 0.7027,
+          "comparison_matching": 0.5759,
+          "balanced_accuracy": 0.5634
+        },
+        {
+          "feature": "target_unreachable_by_portal",
+          "kind": "boolean",
+          "positive_share": 0.7027,
+          "comparison_share": 0.5759,
+          "difference": 0.1268,
+          "balanced_accuracy": 0.5634,
+          "direction": "positive"
+        },
+        {
+          "feature": "sees_the_target",
+          "kind": "boolean",
+          "positive_share": 0.1081,
+          "comparison_share": 0.2298,
+          "difference": -0.1217,
+          "balanced_accuracy": 0.5608,
+          "direction": "comparison"
+        },
+        {
+          "feature": "targets",
+          "kind": "numeric",
+          "positive_median": 1.0,
+          "comparison_median": 1.0,
+          "rule": "targets >= 7.5",
+          "positives_matching": 0.1081,
+          "comparison_matching": 0.0383,
+          "balanced_accuracy": 0.5349
+        },
+        {
+          "feature": "switch_in_a_logic_closet",
+          "kind": "boolean",
+          "positive_share": 0.5946,
+          "comparison_share": 0.5376,
+          "difference": 0.057,
+          "balanced_accuracy": 0.5285,
+          "direction": "positive"
+        },
+        {
+          "feature": "switch_in_reachable_geometry",
+          "kind": "boolean",
+          "positive_share": 0.4054,
+          "comparison_share": 0.4596,
+          "difference": -0.0542,
+          "balanced_accuracy": 0.5271,
+          "direction": "comparison"
+        },
+        {
+          "feature": "same_sector",
+          "kind": "boolean",
+          "positive_share": 0.0541,
+          "comparison_share": 0.0865,
+          "difference": -0.0325,
+          "balanced_accuracy": 0.5162,
+          "direction": "comparison"
+        }
+      ],
+      "counterexamples": {
+        "rule": null,
+        "note": "no feature reached the discriminator floor"
+      },
+      "map_transfer": {
+        "rule": null,
+        "note": "no feature reached the discriminator floor"
+      }
+    }
+  ],
+  "count_reconciliation": {
+    "hidden_switch_sprites": 115,
+    "in_scope_default": 30,
+    "in_scope_excluded": 85,
+    "explanation": "115 counts the invisible switch sprites; 85 counts hidden-switch occurrences inside `mine_object_contexts`' excluded scope, which drops a sector that is reachable *and* holds something a player can see. The 30 that differ are hidden switches sharing a furnished, reachable sector. Both numbers are right and they count different things."
+  }
+}
