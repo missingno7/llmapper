@@ -26,7 +26,7 @@ import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from bloodmap.format import read_map
-from bloodmap.patterns import list_corpus_maps
+from bloodmap.patterns import CORPUS_VIEWS, list_corpus_maps
 
 PLAYER = 16960
 #: Sprites that are furniture/props rather than actors, pickups or markers.
@@ -68,6 +68,9 @@ def height_band(units: int) -> str:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("-o", "--output", default=None)
+    ap.add_argument("--view", default="reference",
+                    choices=sorted(CORPUS_VIEWS),
+                    help="corpus view to mine (default: reference)")
     ap.add_argument("--support", type=int, default=6,
                     help="minimum co-occurrences before an association counts")
     args = ap.parse_args(argv)
@@ -82,11 +85,16 @@ def main(argv=None) -> int:
     surface_count = collections.Counter()
     total_rooms = 0
 
-    # This asks what "the campaign" does. It used to glob a flat maps/blood,
-    # which swept in whatever else sat there and, once the corpus became
-    # provenance directories, matched nothing at all. Name the population.
+    # This used to glob a flat maps/blood, which after the corpus became
+    # provenance directories matched nothing at all. The population it
+    # was really reading is the `reference` view -- campaign, BloodBath
+    # and the curated community sets -- and that is what the committed
+    # knowledge file was mined from, so it stays the default rather than
+    # silently moving numbers nobody asked to move. Note that the prose
+    # above says "the campaign" and the evidence is wider than that;
+    # `--view original` is the honest campaign-only run.
     for path in sorted(str(item.path) for item in
-                       list_corpus_maps(population="blood-campaign")):
+                       list_corpus_maps(view=args.view)):
         name = pathlib.Path(path).stem
         try:
             m = read_map(path)

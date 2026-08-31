@@ -26,7 +26,7 @@ from __future__ import annotations
 
 import argparse
 import collections
-import glob
+from glob import glob
 import json
 import os
 import pathlib
@@ -36,7 +36,7 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
 from bloodmap.format import read_map
-from bloodmap.patterns import list_corpus_maps
+from bloodmap.patterns import CORPUS_VIEWS, list_corpus_maps
 
 PLAYER = 16960
 PLAN = 1024
@@ -203,15 +203,19 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("-o", "--output")
     parser.add_argument("--maps", default=None,
-                        help="glob of maps; default is the campaign population")
+                        help="explicit glob of maps; overrides --view")
+    parser.add_argument("--view", default="reference",
+                        choices=sorted(CORPUS_VIEWS),
+                        help="corpus view to mine (default: reference)")
     args = parser.parse_args(argv)
 
     found = []
-    # Default to the population the docstring names rather than a glob of
-    # a directory the corpus no longer has.
-    paths = (sorted(glob.glob(args.maps)) if args.maps else
+    # Default to the view the flat glob was really reading -- campaign,
+    # BloodBath and the curated sets -- rather than a directory the corpus
+    # no longer has. `--view original` is the campaign-only run.
+    paths = (sorted(glob(args.maps)) if args.maps else
              sorted(str(item.path) for item in
-                    list_corpus_maps(population="blood-campaign")))
+                    list_corpus_maps(view=args.view)))
     for path in paths:
         try:
             found += survey(path)["monuments"]

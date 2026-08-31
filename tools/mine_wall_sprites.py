@@ -46,7 +46,9 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
 from bloodmap.art import read_art_directory
 from bloodmap.format import read_map
-from bloodmap.patterns import corpus_map_path, list_corpus_maps
+from bloodmap.patterns import (
+    CORPUS_VIEWS, corpus_map_path, list_corpus_maps,
+)
 from bloodmap.placement import sprite_extent
 
 #: cstat bits 4-5: 00 face, 01 wall, 10 floor.
@@ -570,6 +572,9 @@ def main(argv=None) -> int:
                         help="survey the campaign, for the rate to beat")
     parser.add_argument("-o", "--output")
     parser.add_argument("--reference", default="reference/blood")
+    parser.add_argument("--view", default="reference",
+                    choices=sorted(CORPUS_VIEWS),
+                    help="corpus view to mine (default: reference)")
     args = parser.parse_args(argv)
 
     art = _art(args.reference)
@@ -577,14 +582,13 @@ def main(argv=None) -> int:
     if args.corpus:
         targets += [corpus_map_path(name) for name in CORPUS]
     rows = [survey(path, art) for path in targets]
-    # Both of these ask what "the campaign" writes. They used to glob a
-    # flat maps/blood, which swept curated and converted maps in beside
-    # the campaign and, after the corpus was reorganized, matched
-    # nothing at all. Name the population instead.
-    campaign = sorted(item.path for item in
-                      list_corpus_maps(population="blood-campaign"))
-    geometry = text_geometry(campaign) if args.corpus else {}
-    styles = text_styles(campaign) if args.corpus else {}
+    # These used to glob a flat maps/blood, which after the reorganization
+    # matched nothing at all. The population they were really reading is
+    # the `reference` view, so it stays the default; the docstrings say
+    # "the campaign" and are looser than the evidence.
+    sources = sorted(item.path for item in list_corpus_maps(view=args.view))
+    geometry = text_geometry(sources) if args.corpus else {}
+    styles = text_styles(sources) if args.corpus else {}
     for row in rows:
         print(f"{row['map']:12s} wall sprites {row['wall_sprites']:4d}  "
               f"clashing pairs {row['clashing_pairs']:4d}  "
