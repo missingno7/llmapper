@@ -280,13 +280,21 @@ their interiors connect without going back outside -- and **withdrew it**: a
 run serving any interior serves exactly one building in 98% of the campaign,
 never below four bays, and the exceptions are long runs.
 
-What still blocks promotion:
+The two other reasons it gave, both now answered:
 
-- **The visible lintel.** Sill and header datums exist, but the band a sign
-  sits on does not, and every campaign sign sits on it. A constructor could
-  place the opening and not the band above it.
-- **Rhythm is rare.** 53 repeating runs in 890 campaign candidates
-  is not enough recurrence to promote a rhythm parameter with a default.
+- ~~**The visible lintel.**~~ Withdrawn too.
+  `reports/blood-lintel-band.md` finds the band -- Blood paints it into the
+  wall art, so it lives at a fixed texture row that `art.course_rows` finds
+  and `texture_align.course_z` places -- and then shows Blood does not hang
+  its signs from it: 22% of letters sit within three texture rows of a
+  painted course against a 27% null. There is no datum to miss.
+- **Rhythm is rare** -- 53 repeating runs in 890 campaign
+  candidates -- which is not a blocker but a shape: a constructor should
+  take its opening positions rather than invent them from a default.
+
+So nothing measured now blocks promotion. What is left is building rather
+than reading: a generated facade has to survive the validators and the
+engine before a constructor is real.
 
 What *is* established and can be used now, with the numbers above behind it:
 one material across a run, a header line and a sill line shared by its

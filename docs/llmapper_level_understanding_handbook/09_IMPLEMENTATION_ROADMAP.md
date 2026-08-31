@@ -583,8 +583,9 @@ building-extent question the first pass left open. Reports
 `reports/blood-facade-grammar.{json,md}` and
 `reports/blood-party-walls.{json,md}`, frames under
 `reports/blood-facade-views/`, tests in `tests/test_facade.py` (43) and
-`tests/test_party_walls.py` (19), with 28 of 28 non-equivalent mutants caught.
-The facade JSON is abridged — every candidate in full is 32 MB — and says so.
+`tests/test_party_walls.py` (19) and `tests/test_lintel.py` (22), with 36 of 36
+non-equivalent mutants caught. The facade JSON is abridged — every candidate in
+full is 32 MB — and says so.
 
 **Two defects, both found by the synthetic fixture rather than the corpus.**
 The numbers below are from the corrected extractor; none of the first draft's
@@ -651,12 +652,48 @@ zero pairs of either class, which follows from the 98% one-tile figure. Pier
 width falls to 0.617 — Blood puts two- and three-bay piers *inside* one
 shopfront (E1M3 median 2.5 bays, E3M6 3.0).
 
-**Constructor promotion: still refused, but for one reason instead of three.**
-`facade_run()` stays out of `vocabulary.py` because the **visible lintel band**
-a sign sits on is not recoverable from sector geometry — the header available
-is the neighbour's `ceiling_z`, not the painted band — and every campaign sign
-sits on that band. Rhythm also remains too rare to parameterize (53 repeating
-runs in 890). Building extent is no longer a blocker below eight bays.
+**The lintel band: recoverable, and not what places a sign.** The last stated
+blocker, measured. Blood paints its cornices and plinths into the wall art, so
+the band lives at a fixed texture row: `art.course_rows` finds it and
+`texture_align.course_z` puts it in the world. Every tile carrying campaign or
+curated signage has courses, and tile 80's bottom course, hung from the E3M2
+loading bay's head, lands 3 texture pixels below the LOADING letters — the band
+the rendered frame shows, computed from the art.
+
+**But Blood does not use it.** Letters sit within 3 texture rows of a painted
+course 22% of the time against a **27% null** for random rows on the same
+tiles — no closer than chance, marginally further. Nor is anything else tight:
+the best of four candidate datums is height above the street floor at a
+coefficient of variation of 0.33 (1.69 to 5.13 player heights), and measuring
+from the opening's head is *worse* (cv 0.79) even though every campaign letter
+is above it. The head is a constraint, not a datum.
+
+**Constructor promotion: unblocked, not yet done.** The blocker dissolves the
+opposite way round from expected — not because the missing datum was found, but
+because **there is no datum to miss**. "A constructor cannot place the band" is
+therefore not a reason to refuse `facade_run()`: placing a sign at ~2.5 player
+heights above the street and above its opening's head is as right as Blood is,
+and can carry the spread instead of implying a precision the corpus lacks.
+What promotion still needs is a generated facade that survives the validators
+and the engine — reading is not building — and opening positions taken rather
+than invented, since 53 repeating runs in 890 is not enough recurrence to give
+rhythm a default. Report `reports/blood-lintel-band.{json,md}`, tests in
+`tests/test_lintel.py` (22, 8 of 8 mutants caught).
+
+**A third defect, found on the way.** A wall texture's vertical span had two
+definitions in the codebase, reciprocal in `y_repeat` and agreeing only at
+`y_repeat` 16. `texture_align.repeat_span` is right — under it 48% of the
+campaign's 51571 one-sided walls with known art are exactly one repeat tall,
+against a mode of four repeats under the other — and `aperture.tile_span_z`
+now delegates to it. The dimensional check agrees: Blood's z is 16 times finer
+than x and y, so 2048/`y_repeat` is 256 z per texture pixel at `y_repeat` 8,
+which is 16 world units — the same 16 units per pixel the facade scale runs at
+horizontally. At the pairing Blood pins, a wall texture is square.
+`snap_leaf`'s docstring arithmetic was scaled by that error: tile 22 at
+`y_repeat` 8 spans 32768 z, which is the campaign's median aperture leaf
+outright — one repeat, not four — and over the 540 campaign walls carrying it
+the tile draws a median of 1.00 times up its wall. `at_least` drops from 2 to 1,
+which against the corrected span would otherwise have doubled every leaf.
 
 ## Already in the repository
 
