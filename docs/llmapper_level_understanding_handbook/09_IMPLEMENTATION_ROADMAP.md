@@ -754,7 +754,7 @@ promoted into `vocabulary.py`.
 
 ---
 
-# Phase 8 — Neutral dynamic-state observations
+# Phase 8 — Neutral dynamic-state observations  **[DONE — Z-motion and swept; the polygon sweep is open]**
 
 **Owner steering (2026-08-31), the phase's program in one example.** The
 turnstile is where several planes meet — a kind of mechanism, a kind of
@@ -998,7 +998,7 @@ promotion blocker stands and the Aldermack forecourt mouth is not sealed.
 
 ---
 
-# Phase 9 — Conditional topology and causal meaning
+# Phase 9 — Conditional topology and causal meaning  **[DONE — swept blocking states are open]**
 
 ## Already in the repository
 
@@ -1203,7 +1203,7 @@ what fires them.
 
 ---
 
-# Phase 10 — Multi-view understanding bundle
+# Phase 10 — Multi-view understanding bundle  **[DONE — one map]**
 
 ## Already in the repository
 
@@ -1262,6 +1262,77 @@ until the crack is shot.
 undecidable, so the bundle describes about half of E1M4's machinery. The
 rotate and slide swept-area reading is still the gap, and the turnstile
 inside it stays parked.
+
+---
+
+# Realign — plumbing, 2026-09-01  **[Phase 11's prerequisite]**
+
+Not a phase. An audit found the pipeline healthy and three structural
+defects, all of them plumbing, and Phase 11 cannot be built on them.
+
+**1. Owner knowledge was not consumed.** `owner-anchors-v1.json` -- 97 tiles
+the owner named by hand -- was read by people and not by code, so every
+module that needed a tile's meaning typed its own list. `bloodmap/
+owner_anchors.py` is the typed, schema-validated access: by picnum, kind,
+binding, the wiring set, the state pairs. A malformed entry now fails a test
+instead of a mining run. `anchors.anchor_from_owner` and `owner_anchor_kit`
+make a class out of the owner's readings (`anchor-mine --owner-anchor`,
+`--owner-kit`), and `effects.payload` names what a mechanism's moving parts
+are made of in the owner's words.
+
+**The binding rule is executable.** The owner's principle -- a visually
+singular tile binds its meaning, a generic surface is material -- becomes:
+**strong-binding tiles may contribute naming evidence, weak and untested
+ones never may.** Each use stamps provenance (`anchor 361, binding strong`)
+so a wrong name is traceable to the tile it rested on. The rule bites
+immediately: see the dressing plane below.
+
+**2. Mechanism naming read only topology.** `design_role` v2 proposes across
+four planes -- **position** (spawn, ROR pairing), **dressing** (strong-binding
+owner tiles on the moving faces), **contents** (secrets and dudes beyond),
+**topology** (the counterfactual) -- and reports which plane decided and
+which others disagreed. On the owner's thirteen attested E1M1 cases it
+recovers **7 of 13**, against 5 for the topology-only version: position 3,
+contents 5, topology 5. `reports/blood-role-v2.md`.
+
+The six misses are each traceable, and two are the most useful output of the
+run. s4/s50/s51 are unplaceable because the swept blocking state is unknown
+-- the parked polygon sweep. **s125's curtain is misnamed an ambush because
+its tile (146) has no owner binding**, so the plane that would have called it
+a furnishing is silent by the rule rather than guessing. A binding for 146
+would fix it; that is a request, not a tuning knob. Features were **not**
+tuned to hit thirteen labels.
+
+The owner has attested one map, so there is no held-out test and **the
+cross-cut frequency is uncharacterised**.
+
+**3. The retrieval surface predated most of the knowledge.**
+`bloodmap/knowledge_index.py` indexes the owner anchors, the pattern catalog,
+every versioned knowledge file, every report (JSON *and* prose-only -- the
+rotating-door census has no JSON and was unreachable), the bundle's
+per-sector readings, and the promoted constructors. 334 entries, every one
+naming the file it came from and its grade: **OWNER**, **DERIVED**,
+**INTERPRETED**. `llmapper knowledge "332"` / `"swinging doors"` /
+`"E1M4 sector 26"` all answer with sources from one entry point; a query
+nothing knows about relaxes and says so rather than answering no.
+`design-index` indexes maps by fingerprint and is a different axis; neither
+subsumes the other.
+
+---
+
+# Pattern Zoo — standing infrastructure, 2026-09-01
+
+The playable half of the batched review queue. `projects/pattern-zoo/` is a
+generated gallery in which every pattern, mechanism and constructor the
+pipeline has learned stands as one labelled exhibit, so the owner can walk
+it, try everything, and send corrections **per exhibit label**.
+
+Generated from a registry, never hand-placed. A conformance test fails when a
+public constructor has no exhibit and no explicit skip reason, which is what
+keeps the zoo current: **future constructor promotions must add an exhibit.**
+
+Labels are unique and stable, because owner feedback arrives by label name.
+Tour sheet: `reports/pattern-zoo-tour.md`.
 
 ---
 
