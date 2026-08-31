@@ -1,0 +1,315 @@
+{
+  "$schema": "llmapper.pattern-zoo-build",
+  "schema_version": 1,
+  "stall_sectors": {
+    "stall:push_door": 2,
+    "stall:switched_door": 6,
+    "stall:keyed_door": 10,
+    "stall:lift": 14,
+    "stall:crack_barrier": 18,
+    "stall:turnstile_pair": 22,
+    "stall:turnstile_same_way": 26,
+    "stall:sliding_gate": 30,
+    "stall:casket": 33,
+    "stall:double_slide_door": 36,
+    "stall:double_rotate_door": 39,
+    "stall:curtain": 43,
+    "stall:shelf_secret": 46,
+    "stall:stack_link": 50,
+    "stall:facade_narrow": 52,
+    "stall:facade_wide": 55,
+    "stall:dressed_doorway": 58,
+    "stall:counter": 61,
+    "stall:crate_stack": 65,
+    "stall:shelf_run": 67,
+    "stall:mannequin_row": 69,
+    "stall:park_corner": 71,
+    "stall:sewer_wall": 75,
+    "stall:tile_museum": 78
+  },
+  "map": "projects/pattern-zoo/level/pattern-zoo.MAP",
+  "sectors": 79,
+  "walls": 424,
+  "sprites": 255,
+  "exhibits": [
+    {
+      "label": "PUSH DOOR",
+      "about": "a z-motion door opened by pushing its own wall",
+      "try": "walk up to it and press use on the door face",
+      "provenance": "doors.z_motion_door; reports/blood-door-families.md",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [
+        "bloodmap.doors.z_motion_door",
+        "bloodmap.doors.xsector_direct_use"
+      ],
+      "sector": 2
+    },
+    {
+      "label": "SWITCHED DOOR",
+      "about": "the same door, worked from a switch across the stall",
+      "try": "press the switch on the side wall, not the door",
+      "provenance": "doors.xsector_remote_rx; reports/blood-effects-switches.md",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [
+        "bloodmap.doors.xsector_remote_rx"
+      ],
+      "sector": 6
+    },
+    {
+      "label": "KEYED DOOR",
+      "about": "a door with a key emblem; the key lies in the stall",
+      "try": "try the door first, then take the key and try again",
+      "provenance": "doors.KEY_TYPES + knowledge/blood/design/keys-v1.json; E1M4 sector 295 wears the moon emblem",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [
+        "bloodmap.doors.z_motion_endpoints"
+      ],
+      "sector": 10
+    },
+    {
+      "label": "LIFT",
+      "about": "a floor that carries a body between two standing levels",
+      "try": "ride it up, then step off and look down",
+      "provenance": "reports/blood-effects-motion.md; E1M3 sector 241",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 14
+    },
+    {
+      "label": "CRACK BARRIER",
+      "about": "a wall that opens once, when shot, and never closes",
+      "try": "shoot the crack; the way behind it stays open",
+      "provenance": "reports/blood-conditional-topology.md; E1M4 sprite 373 on channel 119",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 18
+    },
+    {
+      "label": "TURNSTILE PAIR",
+      "about": "two counter-rotating four-vane rotors, E1M4's spin rate",
+      "try": "WALK THROUGH IT. this settles the parked passage question",
+      "provenance": "mechanism.turnstile_pair; reports/blood-rotating-doors.md; passage unproven -- reports/blood-passage-oracle.md",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [
+        "bloodmap.mechanism.turnstile_pair"
+      ],
+      "sector": 22
+    },
+    {
+      "label": "TURNSTILE SAME WAY",
+      "about": "the DNE3L6 variant: both rotors turning the same way",
+      "try": "walk through and compare with the pair next door",
+      "provenance": "reports/blood-rotating-doors.md; DNE3L6 sectors 3 and 11",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [
+        "bloodmap.mechanism.turnstile"
+      ],
+      "sector": 26
+    },
+    {
+      "label": "SLIDING GATE",
+      "about": "a gate that slides rather than turning",
+      "try": "watch which way it goes and try to follow it",
+      "provenance": "mechanism.sliding_gate",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [
+        "bloodmap.mechanism.sliding_gate"
+      ],
+      "sector": 30
+    },
+    {
+      "label": "CASKET",
+      "about": "the player start as a mechanism: slide, stack link and z at once",
+      "try": "look up, then walk out; this is E1M1's opening shot",
+      "provenance": "owner-attested E1M1 reading, sectors 30 and 28, stack link 10; roadmap Phase 8 note",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": true,
+      "covers": [],
+      "sector": 33
+    },
+    {
+      "label": "DOUBLE SLIDE DOOR",
+      "about": "one sector carrying both leaves, parting in opposite directions",
+      "try": "stand in the middle and watch both halves go",
+      "provenance": "owner-attested E1M1 reading, sector 4",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 36
+    },
+    {
+      "label": "DOUBLE ROTATE DOOR",
+      "about": "two rotating leaves chained by channel, one firing the next",
+      "try": "press once and watch the second leaf follow",
+      "provenance": "owner-attested E1M1 reading, sectors 50 and 51 (rx 105 -> tx 106 -> rx 106)",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 39
+    },
+    {
+      "label": "CURTAIN",
+      "about": "a slide used as furnishing rather than as a way through",
+      "try": "open it; nothing beyond it was closed off",
+      "provenance": "owner-attested E1M1 reading, sector 125. Its tile has no owner binding, which is why the dressing plane cannot name it -- reports/blood-role-v2.md",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 43
+    },
+    {
+      "label": "SHELF SECRET",
+      "about": "a shelf that slides aside and is a secret entrance",
+      "try": "find what opens it, then look behind the shelf",
+      "provenance": "owner-attested E1M1 reading, sector 70",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 46
+    },
+    {
+      "label": "STACK LINK",
+      "about": "room over room: two floors in one place",
+      "try": "walk the lower floor, then the upper, and look down",
+      "provenance": "reachability.link_pairs; owner note on the ROR visibility budget -- two volumes must not be in view at once",
+      "empty": true,
+      "blocker": "NEEDS A SECOND ROR VOLUME OUT OF SIGHT OF THE CASKET",
+      "room_over_room": true,
+      "covers": [],
+      "sector": 50
+    },
+    {
+      "label": "FACADE NARROW",
+      "about": "a street frontage at its narrow width, with its lettered sign",
+      "try": "stand back in the corridor and read the sign",
+      "provenance": "aperture.facade_run; reports/blood-facade-build.md",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [
+        "bloodmap.aperture.facade_run"
+      ],
+      "sector": 52
+    },
+    {
+      "label": "FACADE WIDE",
+      "about": "the same grammar at the wide width",
+      "try": "compare the bay rhythm with the narrow one",
+      "provenance": "aperture.facade_run; reports/blood-facade-grammar.md",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 55
+    },
+    {
+      "label": "DRESSED DOORWAY",
+      "about": "a doorway wearing jamb rail and threshold",
+      "try": "look down at the threshold and along the jambs",
+      "provenance": "owner anchors 195 (metal rail) and 200 (threshold); reports/blood-facade-grammar.md",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 58
+    },
+    {
+      "label": "COUNTER",
+      "about": "a counter with the working clearance behind it",
+      "try": "try to stand behind the counter; the gap is measured",
+      "provenance": "reports/blood-assembly-counters.json",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 61
+    },
+    {
+      "label": "CRATE STACK",
+      "about": "crates built from the owner's tiles: intact, broken, large",
+      "try": "check these are crates and not mossy rocks",
+      "provenance": "owner anchors 452 / 462 / 95; a build once shipped tile 459, a moss-grown rock, as a crate",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 65
+    },
+    {
+      "label": "SHELF RUN",
+      "about": "a run of wall shelves, the owner's strong-binding tile",
+      "try": "look along the run; the tile is 2026",
+      "provenance": "owner anchor 2026 (wall shelf, strong binding)",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 67
+    },
+    {
+      "label": "MANNEQUIN ROW",
+      "about": "three mannequins in a display row",
+      "try": "the tile binds its meaning almost always -- does it here",
+      "provenance": "owner anchor 2377 (mannequin, strong binding); reports/blood-contrast-shelf-vs-crate.json",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 69
+    },
+    {
+      "label": "PARK CORNER",
+      "about": "grass and dirt with trees",
+      "try": "walk the grass and look at where it meets the dirt",
+      "provenance": "owner anchors 361 (grass, strong) and 270 (dirt); furniture.py park vocabulary",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 71
+    },
+    {
+      "label": "SEWER WALL",
+      "about": "the sewer kit: pipe walls and a technical door",
+      "try": "look for the seam between the pipe run and the door",
+      "provenance": "reports/anchor-sewer-kit.json; owner anchors 496-502",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 75
+    },
+    {
+      "label": "TILE MUSEUM",
+      "about": "the owner's strong-binding tiles, each with its name",
+      "try": "read the names and correct any that are wrong",
+      "provenance": "knowledge/blood/design/owner-anchors-v1.json, binding strong",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "sector": 78
+    }
+  ]
+}

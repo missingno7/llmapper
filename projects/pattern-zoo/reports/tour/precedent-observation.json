@@ -1,0 +1,2703 @@
+{
+ "$schema": "llmapper.precedent-observation",
+ "schema_version": 1,
+ "of": "pattern-zoo.MAP",
+ "rendered_map": "pattern-zoo.MAP",
+ "hidden_dudes": 0,
+ "source_crc32": "5bce23aa",
+ "renderer": {
+  "engine": "xmapedit classic Build software renderer",
+  "width": 640,
+  "height": 480,
+  "palette": "Blood palette and 15 shade tables from the resource archive",
+  "palette_authentic": true,
+  "brightness": 0
+ },
+ "timing_ms": {
+  "engine_init": 43.0,
+  "art_load": 1.0,
+  "map_load": 0.0,
+  "views_total": 44.0,
+  "view_count": 24
+ },
+ "requested_sectors": [
+  2,
+  6,
+  10,
+  14,
+  18,
+  22,
+  26,
+  30,
+  33,
+  36,
+  39,
+  43,
+  46,
+  50,
+  52,
+  55,
+  58,
+  61,
+  65,
+  67,
+  69,
+  71,
+  75,
+  78
+ ],
+ "refused": [],
+ "views": [
+  {
+   "view_id": "sector_2",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": -4864,
+    "y": 6656,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 2,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 2537,
+    "unwritten_bbox": [
+     321,
+     156,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_2.png",
+   "visible": [
+    {
+     "node": "sector:2",
+     "path": [
+      "sector:2"
+     ],
+     "pixels": 307200,
+     "frame_fraction": 1.0,
+     "structural_fraction": 1.0,
+     "surfaces": 4,
+     "sectors": [
+      2
+     ],
+     "pixels_by_kind": {
+      "floor": 89161,
+      "ceiling": 88521,
+      "upper": 65029,
+      "wall": 64489
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 129518
+      },
+      {
+       "picnum": 294,
+       "pixels": 89161
+      },
+      {
+       "picnum": 285,
+       "pixels": 88521
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    }
+   ]
+  },
+  {
+   "view_id": "sector_6",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": 4864,
+    "y": 12800,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 6,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 308839,
+    "sky_pixels": 0,
+    "unwritten": 5285,
+    "unwritten_bbox": [
+     0,
+     127,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_6.png",
+   "visible": [
+    {
+     "node": "sector:6",
+     "path": [
+      "sector:6"
+     ],
+     "pixels": 266470,
+     "frame_fraction": 0.8674,
+     "structural_fraction": 0.8621,
+     "surfaces": 5,
+     "sectors": [
+      6
+     ],
+     "pixels_by_kind": {
+      "floor": 89172,
+      "ceiling": 88532,
+      "wall": 87127,
+      "sprite": 1639
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89172
+      },
+      {
+       "picnum": 285,
+       "pixels": 88532
+      },
+      {
+       "picnum": 400,
+       "pixels": 87127
+      },
+      {
+       "picnum": 1070,
+       "pixels": 1639
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:0",
+     "path": [
+      "sector:0"
+     ],
+     "pixels": 27679,
+     "frame_fraction": 0.0901,
+     "structural_fraction": 0.0901,
+     "surfaces": 3,
+     "sectors": [
+      0
+     ],
+     "pixels_by_kind": {
+      "wall": 14391,
+      "floor": 6644,
+      "ceiling": 6644
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 14391
+      },
+      {
+       "picnum": 294,
+       "pixels": 6644
+      },
+      {
+       "picnum": 285,
+       "pixels": 6644
+      }
+     ],
+     "near_player_widths": 9.07,
+     "far_player_widths": 372.37
+    },
+    {
+     "node": "sector:5",
+     "path": [
+      "sector:5"
+     ],
+     "pixels": 14690,
+     "frame_fraction": 0.0478,
+     "structural_fraction": 0.0478,
+     "surfaces": 3,
+     "sectors": [
+      5
+     ],
+     "pixels_by_kind": {
+      "wall": 5606,
+      "ceiling": 4542,
+      "floor": 4542
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 5606
+      },
+      {
+       "picnum": 285,
+       "pixels": 4542
+      },
+      {
+       "picnum": 294,
+       "pixels": 4542
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.07
+    }
+   ]
+  },
+  {
+   "view_id": "sector_10",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": -4864,
+    "y": 18944,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 10,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 315450,
+    "sky_pixels": 0,
+    "unwritten": 2581,
+    "unwritten_bbox": [
+     267,
+     156,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_10.png",
+   "visible": [
+    {
+     "node": "sector:10",
+     "path": [
+      "sector:10"
+     ],
+     "pixels": 315450,
+     "frame_fraction": 1.0269,
+     "structural_fraction": 1.0,
+     "surfaces": 5,
+     "sectors": [
+      10
+     ],
+     "pixels_by_kind": {
+      "floor": 89161,
+      "ceiling": 88521,
+      "upper": 65029,
+      "wall": 64489,
+      "sprite": 8250
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 129518
+      },
+      {
+       "picnum": 294,
+       "pixels": 89161
+      },
+      {
+       "picnum": 285,
+       "pixels": 88521
+      },
+      {
+       "picnum": 2552,
+       "pixels": 8250
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    }
+   ]
+  },
+  {
+   "view_id": "sector_14",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": 4864,
+    "y": 25088,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 14,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 5283,
+    "unwritten_bbox": [
+     0,
+     127,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_14.png",
+   "visible": [
+    {
+     "node": "sector:14",
+     "path": [
+      "sector:14"
+     ],
+     "pixels": 264831,
+     "frame_fraction": 0.8621,
+     "structural_fraction": 0.8621,
+     "surfaces": 4,
+     "sectors": [
+      14
+     ],
+     "pixels_by_kind": {
+      "floor": 89172,
+      "ceiling": 88532,
+      "wall": 87127
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89172
+      },
+      {
+       "picnum": 285,
+       "pixels": 88532
+      },
+      {
+       "picnum": 400,
+       "pixels": 87127
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:0",
+     "path": [
+      "sector:0"
+     ],
+     "pixels": 27679,
+     "frame_fraction": 0.0901,
+     "structural_fraction": 0.0901,
+     "surfaces": 3,
+     "sectors": [
+      0
+     ],
+     "pixels_by_kind": {
+      "wall": 14391,
+      "floor": 6644,
+      "ceiling": 6644
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 14391
+      },
+      {
+       "picnum": 294,
+       "pixels": 6644
+      },
+      {
+       "picnum": 285,
+       "pixels": 6644
+      }
+     ],
+     "near_player_widths": 9.07,
+     "far_player_widths": 340.41
+    },
+    {
+     "node": "sector:13",
+     "path": [
+      "sector:13"
+     ],
+     "pixels": 14690,
+     "frame_fraction": 0.0478,
+     "structural_fraction": 0.0478,
+     "surfaces": 3,
+     "sectors": [
+      13
+     ],
+     "pixels_by_kind": {
+      "wall": 5606,
+      "ceiling": 4542,
+      "floor": 4542
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 5606
+      },
+      {
+       "picnum": 285,
+       "pixels": 4542
+      },
+      {
+       "picnum": 294,
+       "pixels": 4542
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.07
+    }
+   ]
+  },
+  {
+   "view_id": "sector_18",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": -4864,
+    "y": 31232,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 18,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 310456,
+    "sky_pixels": 0,
+    "unwritten": 2550,
+    "unwritten_bbox": [
+     0,
+     156,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_18.png",
+   "visible": [
+    {
+     "node": "sector:18",
+     "path": [
+      "sector:18"
+     ],
+     "pixels": 310456,
+     "frame_fraction": 1.0106,
+     "structural_fraction": 1.0,
+     "surfaces": 5,
+     "sectors": [
+      18
+     ],
+     "pixels_by_kind": {
+      "floor": 89161,
+      "ceiling": 88521,
+      "upper": 65029,
+      "wall": 64489,
+      "sprite": 3256
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 129518
+      },
+      {
+       "picnum": 294,
+       "pixels": 89161
+      },
+      {
+       "picnum": 285,
+       "pixels": 88521
+      },
+      {
+       "picnum": 1127,
+       "pixels": 3256
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    }
+   ]
+  },
+  {
+   "view_id": "sector_22",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": 4864,
+    "y": 37376,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 22,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 5283,
+    "unwritten_bbox": [
+     0,
+     127,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_22.png",
+   "visible": [
+    {
+     "node": "sector:22",
+     "path": [
+      "sector:22"
+     ],
+     "pixels": 264831,
+     "frame_fraction": 0.8621,
+     "structural_fraction": 0.8621,
+     "surfaces": 4,
+     "sectors": [
+      22
+     ],
+     "pixels_by_kind": {
+      "floor": 89172,
+      "ceiling": 88532,
+      "wall": 87127
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89172
+      },
+      {
+       "picnum": 285,
+       "pixels": 88532
+      },
+      {
+       "picnum": 400,
+       "pixels": 87127
+      }
+     ],
+     "near_player_widths": 6.7,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:0",
+     "path": [
+      "sector:0"
+     ],
+     "pixels": 27679,
+     "frame_fraction": 0.0901,
+     "structural_fraction": 0.0901,
+     "surfaces": 3,
+     "sectors": [
+      0
+     ],
+     "pixels_by_kind": {
+      "wall": 14391,
+      "floor": 6644,
+      "ceiling": 6644
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 14391
+      },
+      {
+       "picnum": 294,
+       "pixels": 6644
+      },
+      {
+       "picnum": 285,
+       "pixels": 6644
+      }
+     ],
+     "near_player_widths": 9.07,
+     "far_player_widths": 308.45
+    },
+    {
+     "node": "sector:21",
+     "path": [
+      "sector:21"
+     ],
+     "pixels": 14690,
+     "frame_fraction": 0.0478,
+     "structural_fraction": 0.0478,
+     "surfaces": 3,
+     "sectors": [
+      21
+     ],
+     "pixels_by_kind": {
+      "wall": 5606,
+      "floor": 4542,
+      "ceiling": 4542
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 5606
+      },
+      {
+       "picnum": 294,
+       "pixels": 4542
+      },
+      {
+       "picnum": 285,
+       "pixels": 4542
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.07
+    }
+   ]
+  },
+  {
+   "view_id": "sector_26",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": -4864,
+    "y": 43520,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 26,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 343209,
+    "sky_pixels": 0,
+    "unwritten": 9433,
+    "unwritten_bbox": [
+     0,
+     124,
+     639,
+     351
+    ]
+   },
+   "screenshot": "frames/sector_26.png",
+   "visible": [
+    {
+     "node": "sector:26",
+     "path": [
+      "sector:26"
+     ],
+     "pixels": 259699,
+     "frame_fraction": 0.8454,
+     "structural_fraction": 0.8454,
+     "surfaces": 5,
+     "sectors": [
+      26
+     ],
+     "pixels_by_kind": {
+      "floor": 89142,
+      "ceiling": 88502,
+      "wall": 82055
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89142
+      },
+      {
+       "picnum": 285,
+       "pixels": 88502
+      },
+      {
+       "picnum": 400,
+       "pixels": 82055
+      }
+     ],
+     "near_player_widths": 6.7,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:27",
+     "path": [
+      "sector:27"
+     ],
+     "pixels": 83510,
+     "frame_fraction": 0.2718,
+     "structural_fraction": 0.1546,
+     "surfaces": 8,
+     "sectors": [
+      27
+     ],
+     "pixels_by_kind": {
+      "wall": 36165,
+      "sprite": 36009,
+      "floor": 9159,
+      "ceiling": 2177
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 36165
+      },
+      {
+       "picnum": 332,
+       "pixels": 36009
+      },
+      {
+       "picnum": 294,
+       "pixels": 9159
+      },
+      {
+       "picnum": 285,
+       "pixels": 2177
+      }
+     ],
+     "near_player_widths": 6.7,
+     "far_player_widths": 13.42
+    }
+   ]
+  },
+  {
+   "view_id": "sector_30",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": 4864,
+    "y": 49664,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 30,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 5283,
+    "unwritten_bbox": [
+     0,
+     127,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_30.png",
+   "visible": [
+    {
+     "node": "sector:30",
+     "path": [
+      "sector:30"
+     ],
+     "pixels": 264831,
+     "frame_fraction": 0.8621,
+     "structural_fraction": 0.8621,
+     "surfaces": 4,
+     "sectors": [
+      30
+     ],
+     "pixels_by_kind": {
+      "floor": 89172,
+      "ceiling": 88532,
+      "wall": 87127
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89172
+      },
+      {
+       "picnum": 285,
+       "pixels": 88532
+      },
+      {
+       "picnum": 400,
+       "pixels": 87127
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:0",
+     "path": [
+      "sector:0"
+     ],
+     "pixels": 27679,
+     "frame_fraction": 0.0901,
+     "structural_fraction": 0.0901,
+     "surfaces": 3,
+     "sectors": [
+      0
+     ],
+     "pixels_by_kind": {
+      "wall": 14391,
+      "floor": 6644,
+      "ceiling": 6644
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 14391
+      },
+      {
+       "picnum": 294,
+       "pixels": 6644
+      },
+      {
+       "picnum": 285,
+       "pixels": 6644
+      }
+     ],
+     "near_player_widths": 9.07,
+     "far_player_widths": 276.5
+    },
+    {
+     "node": "sector:29",
+     "path": [
+      "sector:29"
+     ],
+     "pixels": 14690,
+     "frame_fraction": 0.0478,
+     "structural_fraction": 0.0478,
+     "surfaces": 3,
+     "sectors": [
+      29
+     ],
+     "pixels_by_kind": {
+      "wall": 5606,
+      "ceiling": 4542,
+      "floor": 4542
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 5606
+      },
+      {
+       "picnum": 285,
+       "pixels": 4542
+      },
+      {
+       "picnum": 294,
+       "pixels": 4542
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.07
+    }
+   ]
+  },
+  {
+   "view_id": "sector_33",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": -4864,
+    "y": 55808,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 33,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 6995,
+    "unwritten_bbox": [
+     0,
+     156,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_33.png",
+   "visible": [
+    {
+     "node": "sector:33",
+     "path": [
+      "sector:33"
+     ],
+     "pixels": 263849,
+     "frame_fraction": 0.8589,
+     "structural_fraction": 0.8589,
+     "surfaces": 4,
+     "sectors": [
+      33
+     ],
+     "pixels_by_kind": {
+      "floor": 89161,
+      "ceiling": 88521,
+      "wall": 64489,
+      "upper": 21678
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89161
+      },
+      {
+       "picnum": 285,
+       "pixels": 88521
+      },
+      {
+       "picnum": 400,
+       "pixels": 86167
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:34",
+     "path": [
+      "sector:34"
+     ],
+     "pixels": 43351,
+     "frame_fraction": 0.1411,
+     "structural_fraction": 0.1411,
+     "surfaces": 4,
+     "sectors": [
+      34
+     ],
+     "pixels_by_kind": {
+      "wall": 25897,
+      "floor": 13091,
+      "ceiling": 4363
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 25897
+      },
+      {
+       "picnum": 294,
+       "pixels": 13091
+      },
+      {
+       "picnum": 285,
+       "pixels": 4363
+      }
+     ],
+     "near_player_widths": 9.43,
+     "far_player_widths": 13.73
+    }
+   ]
+  },
+  {
+   "view_id": "sector_36",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": 4864,
+    "y": 61952,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 36,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 5283,
+    "unwritten_bbox": [
+     0,
+     127,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_36.png",
+   "visible": [
+    {
+     "node": "sector:36",
+     "path": [
+      "sector:36"
+     ],
+     "pixels": 264831,
+     "frame_fraction": 0.8621,
+     "structural_fraction": 0.8621,
+     "surfaces": 4,
+     "sectors": [
+      36
+     ],
+     "pixels_by_kind": {
+      "floor": 89172,
+      "ceiling": 88532,
+      "wall": 87127
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89172
+      },
+      {
+       "picnum": 285,
+       "pixels": 88532
+      },
+      {
+       "picnum": 400,
+       "pixels": 87127
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:0",
+     "path": [
+      "sector:0"
+     ],
+     "pixels": 27679,
+     "frame_fraction": 0.0901,
+     "structural_fraction": 0.0901,
+     "surfaces": 3,
+     "sectors": [
+      0
+     ],
+     "pixels_by_kind": {
+      "wall": 14391,
+      "floor": 6644,
+      "ceiling": 6644
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 14391
+      },
+      {
+       "picnum": 294,
+       "pixels": 6644
+      },
+      {
+       "picnum": 285,
+       "pixels": 6644
+      }
+     ],
+     "near_player_widths": 9.07,
+     "far_player_widths": 244.57
+    },
+    {
+     "node": "sector:35",
+     "path": [
+      "sector:35"
+     ],
+     "pixels": 14690,
+     "frame_fraction": 0.0478,
+     "structural_fraction": 0.0478,
+     "surfaces": 3,
+     "sectors": [
+      35
+     ],
+     "pixels_by_kind": {
+      "wall": 5606,
+      "floor": 4542,
+      "ceiling": 4542
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 5606
+      },
+      {
+       "picnum": 294,
+       "pixels": 4542
+      },
+      {
+       "picnum": 285,
+       "pixels": 4542
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.07
+    }
+   ]
+  },
+  {
+   "view_id": "sector_39",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": -4864,
+    "y": 68096,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 39,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 325456,
+    "sky_pixels": 0,
+    "unwritten": 9511,
+    "unwritten_bbox": [
+     0,
+     124,
+     639,
+     351
+    ]
+   },
+   "screenshot": "frames/sector_39.png",
+   "visible": [
+    {
+     "node": "sector:39",
+     "path": [
+      "sector:39"
+     ],
+     "pixels": 261338,
+     "frame_fraction": 0.8507,
+     "structural_fraction": 0.8454,
+     "surfaces": 6,
+     "sectors": [
+      39
+     ],
+     "pixels_by_kind": {
+      "floor": 89142,
+      "ceiling": 88502,
+      "wall": 82055,
+      "sprite": 1639
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89142
+      },
+      {
+       "picnum": 285,
+       "pixels": 88502
+      },
+      {
+       "picnum": 400,
+       "pixels": 82055
+      },
+      {
+       "picnum": 1070,
+       "pixels": 1639
+      }
+     ],
+     "near_player_widths": 6.7,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:40",
+     "path": [
+      "sector:40"
+     ],
+     "pixels": 64118,
+     "frame_fraction": 0.2087,
+     "structural_fraction": 0.1546,
+     "surfaces": 5,
+     "sectors": [
+      40
+     ],
+     "pixels_by_kind": {
+      "wall": 36165,
+      "sprite": 16617,
+      "floor": 9159,
+      "ceiling": 2177
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 36165
+      },
+      {
+       "picnum": 332,
+       "pixels": 16617
+      },
+      {
+       "picnum": 294,
+       "pixels": 9159
+      },
+      {
+       "picnum": 285,
+       "pixels": 2177
+      }
+     ],
+     "near_player_widths": 6.7,
+     "far_player_widths": 13.42
+    }
+   ]
+  },
+  {
+   "view_id": "sector_43",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": 4864,
+    "y": 74240,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 43,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 5283,
+    "unwritten_bbox": [
+     0,
+     127,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_43.png",
+   "visible": [
+    {
+     "node": "sector:43",
+     "path": [
+      "sector:43"
+     ],
+     "pixels": 264831,
+     "frame_fraction": 0.8621,
+     "structural_fraction": 0.8621,
+     "surfaces": 4,
+     "sectors": [
+      43
+     ],
+     "pixels_by_kind": {
+      "floor": 89172,
+      "ceiling": 88532,
+      "wall": 87127
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89172
+      },
+      {
+       "picnum": 285,
+       "pixels": 88532
+      },
+      {
+       "picnum": 400,
+       "pixels": 87127
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:0",
+     "path": [
+      "sector:0"
+     ],
+     "pixels": 27679,
+     "frame_fraction": 0.0901,
+     "structural_fraction": 0.0901,
+     "surfaces": 3,
+     "sectors": [
+      0
+     ],
+     "pixels_by_kind": {
+      "wall": 14391,
+      "floor": 6644,
+      "ceiling": 6644
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 14391
+      },
+      {
+       "picnum": 294,
+       "pixels": 6644
+      },
+      {
+       "picnum": 285,
+       "pixels": 6644
+      }
+     ],
+     "near_player_widths": 9.07,
+     "far_player_widths": 212.65
+    },
+    {
+     "node": "sector:42",
+     "path": [
+      "sector:42"
+     ],
+     "pixels": 14690,
+     "frame_fraction": 0.0478,
+     "structural_fraction": 0.0478,
+     "surfaces": 3,
+     "sectors": [
+      42
+     ],
+     "pixels_by_kind": {
+      "wall": 5606,
+      "floor": 4542,
+      "ceiling": 4542
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 5606
+      },
+      {
+       "picnum": 294,
+       "pixels": 4542
+      },
+      {
+       "picnum": 285,
+       "pixels": 4542
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.07
+    }
+   ]
+  },
+  {
+   "view_id": "sector_46",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": -4864,
+    "y": 80384,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 46,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 323720,
+    "sky_pixels": 0,
+    "unwritten": 8227,
+    "unwritten_bbox": [
+     0,
+     146,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_46.png",
+   "visible": [
+    {
+     "node": "sector:46",
+     "path": [
+      "sector:46"
+     ],
+     "pixels": 243810,
+     "frame_fraction": 0.7937,
+     "structural_fraction": 0.7883,
+     "surfaces": 4,
+     "sectors": [
+      46
+     ],
+     "pixels_by_kind": {
+      "floor": 89161,
+      "ceiling": 88521,
+      "wall": 64489,
+      "sprite": 1639
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89161
+      },
+      {
+       "picnum": 285,
+       "pixels": 88521
+      },
+      {
+       "picnum": 400,
+       "pixels": 64489
+      },
+      {
+       "picnum": 1070,
+       "pixels": 1639
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:48",
+     "path": [
+      "sector:48"
+     ],
+     "pixels": 47901,
+     "frame_fraction": 0.1559,
+     "structural_fraction": 0.1559,
+     "surfaces": 4,
+     "sectors": [
+      48
+     ],
+     "pixels_by_kind": {
+      "wall": 30929,
+      "floor": 8486,
+      "ceiling": 8486
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 30929
+      },
+      {
+       "picnum": 294,
+       "pixels": 8486
+      },
+      {
+       "picnum": 285,
+       "pixels": 8486
+      }
+     ],
+     "near_player_widths": 10.67,
+     "far_player_widths": 15.21
+    },
+    {
+     "node": "sector:47",
+     "path": [
+      "sector:47"
+     ],
+     "pixels": 32009,
+     "frame_fraction": 0.1042,
+     "structural_fraction": 0.0558,
+     "surfaces": 4,
+     "sectors": [
+      47
+     ],
+     "pixels_by_kind": {
+      "sprite": 14881,
+      "ceiling": 6273,
+      "floor": 6273,
+      "wall": 4582
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 1044,
+       "pixels": 14881
+      },
+      {
+       "picnum": 285,
+       "pixels": 6273
+      },
+      {
+       "picnum": 294,
+       "pixels": 6273
+      },
+      {
+       "picnum": 400,
+       "pixels": 4582
+      }
+     ],
+     "near_player_widths": 9.43,
+     "far_player_widths": 10.67
+    }
+   ]
+  },
+  {
+   "view_id": "sector_50",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": 4864,
+    "y": 86528,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 50,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 5283,
+    "unwritten_bbox": [
+     0,
+     127,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_50.png",
+   "visible": [
+    {
+     "node": "sector:50",
+     "path": [
+      "sector:50"
+     ],
+     "pixels": 264831,
+     "frame_fraction": 0.8621,
+     "structural_fraction": 0.8621,
+     "surfaces": 4,
+     "sectors": [
+      50
+     ],
+     "pixels_by_kind": {
+      "floor": 89172,
+      "ceiling": 88532,
+      "wall": 87127
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89172
+      },
+      {
+       "picnum": 285,
+       "pixels": 88532
+      },
+      {
+       "picnum": 400,
+       "pixels": 87127
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:0",
+     "path": [
+      "sector:0"
+     ],
+     "pixels": 27679,
+     "frame_fraction": 0.0901,
+     "structural_fraction": 0.0901,
+     "surfaces": 3,
+     "sectors": [
+      0
+     ],
+     "pixels_by_kind": {
+      "wall": 14391,
+      "floor": 6644,
+      "ceiling": 6644
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 14391
+      },
+      {
+       "picnum": 294,
+       "pixels": 6644
+      },
+      {
+       "picnum": 285,
+       "pixels": 6644
+      }
+     ],
+     "near_player_widths": 9.07,
+     "far_player_widths": 225.95
+    },
+    {
+     "node": "sector:49",
+     "path": [
+      "sector:49"
+     ],
+     "pixels": 14690,
+     "frame_fraction": 0.0478,
+     "structural_fraction": 0.0478,
+     "surfaces": 3,
+     "sectors": [
+      49
+     ],
+     "pixels_by_kind": {
+      "wall": 5606,
+      "ceiling": 4542,
+      "floor": 4542
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 5606
+      },
+      {
+       "picnum": 285,
+       "pixels": 4542
+      },
+      {
+       "picnum": 294,
+       "pixels": 4542
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.07
+    }
+   ]
+  },
+  {
+   "view_id": "sector_52",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": -4864,
+    "y": 92672,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 52,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 9324,
+    "unwritten_bbox": [
+     0,
+     146,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_52.png",
+   "visible": [
+    {
+     "node": "sector:52",
+     "path": [
+      "sector:52"
+     ],
+     "pixels": 242171,
+     "frame_fraction": 0.7883,
+     "structural_fraction": 0.7883,
+     "surfaces": 3,
+     "sectors": [
+      52
+     ],
+     "pixels_by_kind": {
+      "floor": 89161,
+      "ceiling": 88521,
+      "wall": 64489
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89161
+      },
+      {
+       "picnum": 285,
+       "pixels": 88521
+      },
+      {
+       "picnum": 400,
+       "pixels": 64489
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:53",
+     "path": [
+      "sector:53"
+     ],
+     "pixels": 65029,
+     "frame_fraction": 0.2117,
+     "structural_fraction": 0.2117,
+     "surfaces": 4,
+     "sectors": [
+      53
+     ],
+     "pixels_by_kind": {
+      "wall": 38847,
+      "floor": 13091,
+      "ceiling": 13091
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 38847
+      },
+      {
+       "picnum": 294,
+       "pixels": 13091
+      },
+      {
+       "picnum": 285,
+       "pixels": 13091
+      }
+     ],
+     "near_player_widths": 9.43,
+     "far_player_widths": 13.73
+    }
+   ]
+  },
+  {
+   "view_id": "sector_55",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": 4864,
+    "y": 98816,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 55,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 5283,
+    "unwritten_bbox": [
+     0,
+     127,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_55.png",
+   "visible": [
+    {
+     "node": "sector:55",
+     "path": [
+      "sector:55"
+     ],
+     "pixels": 264831,
+     "frame_fraction": 0.8621,
+     "structural_fraction": 0.8621,
+     "surfaces": 4,
+     "sectors": [
+      55
+     ],
+     "pixels_by_kind": {
+      "floor": 89172,
+      "ceiling": 88532,
+      "wall": 87127
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89172
+      },
+      {
+       "picnum": 285,
+       "pixels": 88532
+      },
+      {
+       "picnum": 400,
+       "pixels": 87127
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:0",
+     "path": [
+      "sector:0"
+     ],
+     "pixels": 27679,
+     "frame_fraction": 0.0901,
+     "structural_fraction": 0.0901,
+     "surfaces": 3,
+     "sectors": [
+      0
+     ],
+     "pixels_by_kind": {
+      "wall": 14391,
+      "floor": 6644,
+      "ceiling": 6644
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 14391
+      },
+      {
+       "picnum": 294,
+       "pixels": 6644
+      },
+      {
+       "picnum": 285,
+       "pixels": 6644
+      }
+     ],
+     "near_player_widths": 9.07,
+     "far_player_widths": 257.87
+    },
+    {
+     "node": "sector:54",
+     "path": [
+      "sector:54"
+     ],
+     "pixels": 14690,
+     "frame_fraction": 0.0478,
+     "structural_fraction": 0.0478,
+     "surfaces": 3,
+     "sectors": [
+      54
+     ],
+     "pixels_by_kind": {
+      "wall": 5606,
+      "ceiling": 4542,
+      "floor": 4542
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 5606
+      },
+      {
+       "picnum": 285,
+       "pixels": 4542
+      },
+      {
+       "picnum": 294,
+       "pixels": 4542
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.07
+    }
+   ]
+  },
+  {
+   "view_id": "sector_58",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": -4864,
+    "y": 104960,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 58,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 9447,
+    "unwritten_bbox": [
+     0,
+     146,
+     639,
+     361
+    ]
+   },
+   "screenshot": "frames/sector_58.png",
+   "visible": [
+    {
+     "node": "sector:58",
+     "path": [
+      "sector:58"
+     ],
+     "pixels": 242171,
+     "frame_fraction": 0.7883,
+     "structural_fraction": 0.7883,
+     "surfaces": 3,
+     "sectors": [
+      58
+     ],
+     "pixels_by_kind": {
+      "floor": 89161,
+      "ceiling": 88521,
+      "wall": 64489
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89161
+      },
+      {
+       "picnum": 285,
+       "pixels": 88521
+      },
+      {
+       "picnum": 400,
+       "pixels": 64489
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:59",
+     "path": [
+      "sector:59"
+     ],
+     "pixels": 65029,
+     "frame_fraction": 0.2117,
+     "structural_fraction": 0.2117,
+     "surfaces": 4,
+     "sectors": [
+      59
+     ],
+     "pixels_by_kind": {
+      "wall": 38847,
+      "ceiling": 13091,
+      "floor": 13091
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 38847
+      },
+      {
+       "picnum": 285,
+       "pixels": 13091
+      },
+      {
+       "picnum": 200,
+       "pixels": 13091
+      }
+     ],
+     "near_player_widths": 9.43,
+     "far_player_widths": 13.73
+    }
+   ]
+  },
+  {
+   "view_id": "sector_61",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": 4864,
+    "y": 111104,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 61,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 5283,
+    "unwritten_bbox": [
+     0,
+     127,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_61.png",
+   "visible": [
+    {
+     "node": "sector:61",
+     "path": [
+      "sector:61"
+     ],
+     "pixels": 264831,
+     "frame_fraction": 0.8621,
+     "structural_fraction": 0.8621,
+     "surfaces": 4,
+     "sectors": [
+      61
+     ],
+     "pixels_by_kind": {
+      "floor": 89172,
+      "ceiling": 88532,
+      "wall": 87127
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89172
+      },
+      {
+       "picnum": 285,
+       "pixels": 88532
+      },
+      {
+       "picnum": 400,
+       "pixels": 87127
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:0",
+     "path": [
+      "sector:0"
+     ],
+     "pixels": 27679,
+     "frame_fraction": 0.0901,
+     "structural_fraction": 0.0901,
+     "surfaces": 3,
+     "sectors": [
+      0
+     ],
+     "pixels_by_kind": {
+      "wall": 14391,
+      "floor": 6644,
+      "ceiling": 6644
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 14391
+      },
+      {
+       "picnum": 294,
+       "pixels": 6644
+      },
+      {
+       "picnum": 285,
+       "pixels": 6644
+      }
+     ],
+     "near_player_widths": 9.07,
+     "far_player_widths": 289.81
+    },
+    {
+     "node": "sector:60",
+     "path": [
+      "sector:60"
+     ],
+     "pixels": 14690,
+     "frame_fraction": 0.0478,
+     "structural_fraction": 0.0478,
+     "surfaces": 3,
+     "sectors": [
+      60
+     ],
+     "pixels_by_kind": {
+      "wall": 5606,
+      "ceiling": 4542,
+      "floor": 4542
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 5606
+      },
+      {
+       "picnum": 285,
+       "pixels": 4542
+      },
+      {
+       "picnum": 294,
+       "pixels": 4542
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.07
+    }
+   ]
+  },
+  {
+   "view_id": "sector_65",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": -4864,
+    "y": 117248,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 65,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 5026,
+    "unwritten_bbox": [
+     0,
+     155,
+     639,
+     351
+    ]
+   },
+   "screenshot": "frames/sector_65.png",
+   "visible": [
+    {
+     "node": "sector:65",
+     "path": [
+      "sector:65"
+     ],
+     "pixels": 307200,
+     "frame_fraction": 1.0,
+     "structural_fraction": 1.0,
+     "surfaces": 4,
+     "sectors": [
+      65
+     ],
+     "pixels_by_kind": {
+      "wall": 129518,
+      "floor": 89161,
+      "ceiling": 88521
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 129518
+      },
+      {
+       "picnum": 294,
+       "pixels": 89161
+      },
+      {
+       "picnum": 285,
+       "pixels": 88521
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    }
+   ]
+  },
+  {
+   "view_id": "sector_67",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": 4864,
+    "y": 123392,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 67,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 5283,
+    "unwritten_bbox": [
+     0,
+     127,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_67.png",
+   "visible": [
+    {
+     "node": "sector:67",
+     "path": [
+      "sector:67"
+     ],
+     "pixels": 264831,
+     "frame_fraction": 0.8621,
+     "structural_fraction": 0.8621,
+     "surfaces": 4,
+     "sectors": [
+      67
+     ],
+     "pixels_by_kind": {
+      "floor": 89172,
+      "ceiling": 88532,
+      "wall": 87127
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89172
+      },
+      {
+       "picnum": 285,
+       "pixels": 88532
+      },
+      {
+       "picnum": 400,
+       "pixels": 87127
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:0",
+     "path": [
+      "sector:0"
+     ],
+     "pixels": 27679,
+     "frame_fraction": 0.0901,
+     "structural_fraction": 0.0901,
+     "surfaces": 3,
+     "sectors": [
+      0
+     ],
+     "pixels_by_kind": {
+      "wall": 14391,
+      "floor": 6644,
+      "ceiling": 6644
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 14391
+      },
+      {
+       "picnum": 294,
+       "pixels": 6644
+      },
+      {
+       "picnum": 285,
+       "pixels": 6644
+      }
+     ],
+     "near_player_widths": 9.07,
+     "far_player_widths": 321.77
+    },
+    {
+     "node": "sector:66",
+     "path": [
+      "sector:66"
+     ],
+     "pixels": 14690,
+     "frame_fraction": 0.0478,
+     "structural_fraction": 0.0478,
+     "surfaces": 3,
+     "sectors": [
+      66
+     ],
+     "pixels_by_kind": {
+      "wall": 5606,
+      "floor": 4542,
+      "ceiling": 4542
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 5606
+      },
+      {
+       "picnum": 294,
+       "pixels": 4542
+      },
+      {
+       "picnum": 285,
+       "pixels": 4542
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.07
+    }
+   ]
+  },
+  {
+   "view_id": "sector_69",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": -4864,
+    "y": 129536,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 69,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 5026,
+    "unwritten_bbox": [
+     0,
+     155,
+     639,
+     351
+    ]
+   },
+   "screenshot": "frames/sector_69.png",
+   "visible": [
+    {
+     "node": "sector:69",
+     "path": [
+      "sector:69"
+     ],
+     "pixels": 307200,
+     "frame_fraction": 1.0,
+     "structural_fraction": 1.0,
+     "surfaces": 4,
+     "sectors": [
+      69
+     ],
+     "pixels_by_kind": {
+      "wall": 129518,
+      "floor": 89161,
+      "ceiling": 88521
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 129518
+      },
+      {
+       "picnum": 294,
+       "pixels": 89161
+      },
+      {
+       "picnum": 285,
+       "pixels": 88521
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    }
+   ]
+  },
+  {
+   "view_id": "sector_71",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": 4864,
+    "y": 135680,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 71,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 5283,
+    "unwritten_bbox": [
+     0,
+     127,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_71.png",
+   "visible": [
+    {
+     "node": "sector:71",
+     "path": [
+      "sector:71"
+     ],
+     "pixels": 264831,
+     "frame_fraction": 0.8621,
+     "structural_fraction": 0.8621,
+     "surfaces": 4,
+     "sectors": [
+      71
+     ],
+     "pixels_by_kind": {
+      "floor": 89172,
+      "ceiling": 88532,
+      "wall": 87127
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89172
+      },
+      {
+       "picnum": 285,
+       "pixels": 88532
+      },
+      {
+       "picnum": 400,
+       "pixels": 87127
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:0",
+     "path": [
+      "sector:0"
+     ],
+     "pixels": 27679,
+     "frame_fraction": 0.0901,
+     "structural_fraction": 0.0901,
+     "surfaces": 3,
+     "sectors": [
+      0
+     ],
+     "pixels_by_kind": {
+      "wall": 14391,
+      "floor": 6644,
+      "ceiling": 6644
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 14391
+      },
+      {
+       "picnum": 294,
+       "pixels": 6644
+      },
+      {
+       "picnum": 285,
+       "pixels": 6644
+      }
+     ],
+     "near_player_widths": 9.07,
+     "far_player_widths": 353.73
+    },
+    {
+     "node": "sector:70",
+     "path": [
+      "sector:70"
+     ],
+     "pixels": 14690,
+     "frame_fraction": 0.0478,
+     "structural_fraction": 0.0478,
+     "surfaces": 3,
+     "sectors": [
+      70
+     ],
+     "pixels_by_kind": {
+      "wall": 5606,
+      "floor": 4542,
+      "ceiling": 4542
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 5606
+      },
+      {
+       "picnum": 294,
+       "pixels": 4542
+      },
+      {
+       "picnum": 285,
+       "pixels": 4542
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.07
+    }
+   ]
+  },
+  {
+   "view_id": "sector_75",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": -4864,
+    "y": 141824,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 75,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 2947,
+    "unwritten_bbox": [
+     0,
+     146,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_75.png",
+   "visible": [
+    {
+     "node": "sector:75",
+     "path": [
+      "sector:75"
+     ],
+     "pixels": 242171,
+     "frame_fraction": 0.7883,
+     "structural_fraction": 0.7883,
+     "surfaces": 3,
+     "sectors": [
+      75
+     ],
+     "pixels_by_kind": {
+      "floor": 89161,
+      "ceiling": 88521,
+      "wall": 64489
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89161
+      },
+      {
+       "picnum": 285,
+       "pixels": 88521
+      },
+      {
+       "picnum": 400,
+       "pixels": 64489
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:76",
+     "path": [
+      "sector:76"
+     ],
+     "pixels": 65029,
+     "frame_fraction": 0.2117,
+     "structural_fraction": 0.2117,
+     "surfaces": 4,
+     "sectors": [
+      76
+     ],
+     "pixels_by_kind": {
+      "wall": 38847,
+      "ceiling": 13091,
+      "floor": 13091
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 496,
+       "pixels": 38847
+      },
+      {
+       "picnum": 285,
+       "pixels": 13091
+      },
+      {
+       "picnum": 294,
+       "pixels": 13091
+      }
+     ],
+     "near_player_widths": 9.43,
+     "far_player_widths": 13.73
+    }
+   ]
+  },
+  {
+   "view_id": "sector_78",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": 4864,
+    "y": 147968,
+    "z": -12720,
+    "angle": 1280,
+    "horiz": 100,
+    "sector": 78,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 307200,
+    "sky_pixels": 0,
+    "unwritten": 5272,
+    "unwritten_bbox": [
+     0,
+     127,
+     639,
+     350
+    ]
+   },
+   "screenshot": "frames/sector_78.png",
+   "visible": [
+    {
+     "node": "sector:78",
+     "path": [
+      "sector:78"
+     ],
+     "pixels": 264831,
+     "frame_fraction": 0.8621,
+     "structural_fraction": 0.8621,
+     "surfaces": 4,
+     "sectors": [
+      78
+     ],
+     "pixels_by_kind": {
+      "floor": 89172,
+      "ceiling": 88532,
+      "wall": 87127
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 294,
+       "pixels": 89172
+      },
+      {
+       "picnum": 285,
+       "pixels": 88532
+      },
+      {
+       "picnum": 400,
+       "pixels": 87127
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.43
+    },
+    {
+     "node": "sector:0",
+     "path": [
+      "sector:0"
+     ],
+     "pixels": 27679,
+     "frame_fraction": 0.0901,
+     "structural_fraction": 0.0901,
+     "surfaces": 3,
+     "sectors": [
+      0
+     ],
+     "pixels_by_kind": {
+      "wall": 14391,
+      "floor": 6644,
+      "ceiling": 6644
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 14391
+      },
+      {
+       "picnum": 294,
+       "pixels": 6644
+      },
+      {
+       "picnum": 285,
+       "pixels": 6644
+      }
+     ],
+     "near_player_widths": 9.07,
+     "far_player_widths": 385.69
+    },
+    {
+     "node": "sector:77",
+     "path": [
+      "sector:77"
+     ],
+     "pixels": 14690,
+     "frame_fraction": 0.0478,
+     "structural_fraction": 0.0478,
+     "surfaces": 3,
+     "sectors": [
+      77
+     ],
+     "pixels_by_kind": {
+      "wall": 5606,
+      "ceiling": 4542,
+      "floor": 4542
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 400,
+       "pixels": 5606
+      },
+      {
+       "picnum": 285,
+       "pixels": 4542
+      },
+      {
+       "picnum": 294,
+       "pixels": 4542
+      }
+     ],
+     "near_player_widths": 7.18,
+     "far_player_widths": 9.07
+    }
+   ]
+  }
+ ],
+ "limitations": [
+  "one static world state: no door moves, no sector effect runs, no gameplay happens",
+  "the editor renderer, not the game renderer; NBlood differs in sprite and effect handling",
+  "coverage is post-occlusion painted pixels; sprite occlusion follows the engine sprite clipping",
+  "voxels and models are not drawn",
+  "a sector is its own node here; an original has no authored source to join to"
+ ]
+}

@@ -1,0 +1,199 @@
+View: sector_2 -- precedent
+  camera: sector 2, angle 1280, horiz 100
+  of: sector:2
+  visible:
+    sector:2: dominant, 100.0% of frame at 7.18-9.43 PW
+  dominant surfaces: tile 400 (42%), tile 294 (29%), tile 285 (29%)
+
+View: sector_6 -- precedent
+  camera: sector 6, angle 1280, horiz 100
+  of: sector:6
+  visible:
+    sector:6: dominant, 86.7% of frame at 7.18-9.43 PW
+    sector:0: present, 9.0% of frame at 9.07-372.37 PW
+    sector:5: present, 4.8% of frame at 7.18-9.07 PW
+  dominant surfaces: tile 400 (35%), tile 294 (33%), tile 285 (32%)
+
+View: sector_10 -- precedent
+  camera: sector 10, angle 1280, horiz 100
+  of: sector:10
+  visible:
+    sector:10: dominant, 102.7% of frame at 7.18-9.43 PW
+  dominant surfaces: tile 400 (42%), tile 294 (29%), tile 285 (29%)
+
+View: sector_14 -- precedent
+  camera: sector 14, angle 1280, horiz 100
+  of: sector:14
+  visible:
+    sector:14: dominant, 86.2% of frame at 7.18-9.43 PW
+    sector:0: present, 9.0% of frame at 9.07-340.41 PW
+    sector:13: present, 4.8% of frame at 7.18-9.07 PW
+  dominant surfaces: tile 400 (35%), tile 294 (33%), tile 285 (32%)
+
+View: sector_18 -- precedent
+  camera: sector 18, angle 1280, horiz 100
+  of: sector:18
+  visible:
+    sector:18: dominant, 101.1% of frame at 7.18-9.43 PW
+  dominant surfaces: tile 400 (42%), tile 294 (29%), tile 285 (29%)
+
+View: sector_22 -- precedent
+  camera: sector 22, angle 1280, horiz 100
+  of: sector:22
+  visible:
+    sector:22: dominant, 86.2% of frame at 6.7-9.43 PW
+    sector:0: present, 9.0% of frame at 9.07-308.45 PW
+    sector:21: present, 4.8% of frame at 7.18-9.07 PW
+  dominant surfaces: tile 400 (35%), tile 294 (33%), tile 285 (32%)
+
+View: sector_26 -- precedent
+  camera: sector 26, angle 1280, horiz 100
+  of: sector:26
+  visible:
+    sector:26: dominant, 84.5% of frame at 6.7-9.43 PW
+    sector:27: prominent, 27.2% of frame at 6.7-13.42 PW
+  dominant surfaces: tile 400 (38%), tile 294 (32%), tile 285 (30%)
+
+View: sector_30 -- precedent
+  camera: sector 30, angle 1280, horiz 100
+  of: sector:30
+  visible:
+    sector:30: dominant, 86.2% of frame at 7.18-9.43 PW
+    sector:0: present, 9.0% of frame at 9.07-276.5 PW
+    sector:29: present, 4.8% of frame at 7.18-9.07 PW
+  dominant surfaces: tile 400 (35%), tile 294 (33%), tile 285 (32%)
+
+View: sector_33 -- precedent
+  camera: sector 33, angle 1280, horiz 100
+  of: sector:33
+  visible:
+    sector:33: dominant, 85.9% of frame at 7.18-9.43 PW
+    sector:34: prominent, 14.1% of frame at 9.43-13.73 PW
+  dominant surfaces: tile 400 (36%), tile 294 (33%), tile 285 (30%)
+
+View: sector_36 -- precedent
+  camera: sector 36, angle 1280, horiz 100
+  of: sector:36
+  visible:
+    sector:36: dominant, 86.2% of frame at 7.18-9.43 PW
+    sector:0: present, 9.0% of frame at 9.07-244.57 PW
+    sector:35: present, 4.8% of frame at 7.18-9.07 PW
+  dominant surfaces: tile 400 (35%), tile 294 (33%), tile 285 (32%)
+
+View: sector_39 -- precedent
+  camera: sector 39, angle 1280, horiz 100
+  of: sector:39
+  visible:
+    sector:39: dominant, 85.1% of frame at 6.7-9.43 PW
+    sector:40: prominent, 20.9% of frame at 6.7-13.42 PW
+  dominant surfaces: tile 400 (38%), tile 294 (32%), tile 285 (30%)
+
+View: sector_43 -- precedent
+  camera: sector 43, angle 1280, horiz 100
+  of: sector:43
+  visible:
+    sector:43: dominant, 86.2% of frame at 7.18-9.43 PW
+    sector:0: present, 9.0% of frame at 9.07-212.65 PW
+    sector:42: present, 4.8% of frame at 7.18-9.07 PW
+  dominant surfaces: tile 400 (35%), tile 294 (33%), tile 285 (32%)
+
+View: sector_46 -- precedent
+  camera: sector 46, angle 1280, horiz 100
+  of: sector:46
+  visible:
+    sector:46: dominant, 79.4% of frame at 7.18-9.43 PW
+    sector:48: prominent, 15.6% of frame at 10.67-15.21 PW
+    sector:47: prominent, 10.4% of frame at 9.43-10.67 PW
+  dominant surfaces: tile 294 (34%), tile 285 (34%), tile 400 (33%)
+
+View: sector_50 -- precedent
+  camera: sector 50, angle 1280, horiz 100
+  of: sector:50
+  visible:
+    sector:50: dominant, 86.2% of frame at 7.18-9.43 PW
+    sector:0: present, 9.0% of frame at 9.07-225.95 PW
+    sector:49: present, 4.8% of frame at 7.18-9.07 PW
+  dominant surfaces: tile 400 (35%), tile 294 (33%), tile 285 (32%)
+
+View: sector_52 -- precedent
+  camera: sector 52, angle 1280, horiz 100
+  of: sector:52
+  visible:
+    sector:52: dominant, 78.8% of frame at 7.18-9.43 PW
+    sector:53: prominent, 21.2% of frame at 9.43-13.73 PW
+  dominant surfaces: tile 400 (34%), tile 294 (33%), tile 285 (33%)
+
+View: sector_55 -- precedent
+  camera: sector 55, angle 1280, horiz 100
+  of: sector:55
+  visible:
+    sector:55: dominant, 86.2% of frame at 7.18-9.43 PW
+    sector:0: present, 9.0% of frame at 9.07-257.87 PW
+    sector:54: present, 4.8% of frame at 7.18-9.07 PW
+  dominant surfaces: tile 400 (35%), tile 294 (33%), tile 285 (32%)
+
+View: sector_58 -- precedent
+  camera: sector 58, angle 1280, horiz 100
+  of: sector:58
+  visible:
+    sector:58: dominant, 78.8% of frame at 7.18-9.43 PW
+    sector:59: prominent, 21.2% of frame at 9.43-13.73 PW
+  dominant surfaces: tile 400 (34%), tile 285 (33%), tile 294 (29%)
+
+View: sector_61 -- precedent
+  camera: sector 61, angle 1280, horiz 100
+  of: sector:61
+  visible:
+    sector:61: dominant, 86.2% of frame at 7.18-9.43 PW
+    sector:0: present, 9.0% of frame at 9.07-289.81 PW
+    sector:60: present, 4.8% of frame at 7.18-9.07 PW
+  dominant surfaces: tile 400 (35%), tile 294 (33%), tile 285 (32%)
+
+View: sector_65 -- precedent
+  camera: sector 65, angle 1280, horiz 100
+  of: sector:65
+  visible:
+    sector:65: dominant, 100.0% of frame at 7.18-9.43 PW
+  dominant surfaces: tile 400 (42%), tile 294 (29%), tile 285 (29%)
+
+View: sector_67 -- precedent
+  camera: sector 67, angle 1280, horiz 100
+  of: sector:67
+  visible:
+    sector:67: dominant, 86.2% of frame at 7.18-9.43 PW
+    sector:0: present, 9.0% of frame at 9.07-321.77 PW
+    sector:66: present, 4.8% of frame at 7.18-9.07 PW
+  dominant surfaces: tile 400 (35%), tile 294 (33%), tile 285 (32%)
+
+View: sector_69 -- precedent
+  camera: sector 69, angle 1280, horiz 100
+  of: sector:69
+  visible:
+    sector:69: dominant, 100.0% of frame at 7.18-9.43 PW
+  dominant surfaces: tile 400 (42%), tile 294 (29%), tile 285 (29%)
+
+View: sector_71 -- precedent
+  camera: sector 71, angle 1280, horiz 100
+  of: sector:71
+  visible:
+    sector:71: dominant, 86.2% of frame at 7.18-9.43 PW
+    sector:0: present, 9.0% of frame at 9.07-353.73 PW
+    sector:70: present, 4.8% of frame at 7.18-9.07 PW
+  dominant surfaces: tile 400 (35%), tile 294 (33%), tile 285 (32%)
+
+View: sector_75 -- precedent
+  camera: sector 75, angle 1280, horiz 100
+  of: sector:75
+  visible:
+    sector:75: dominant, 78.8% of frame at 7.18-9.43 PW
+    sector:76: prominent, 21.2% of frame at 9.43-13.73 PW
+  dominant surfaces: tile 294 (33%), tile 285 (33%), tile 400 (21%)
+
+View: sector_78 -- precedent
+  camera: sector 78, angle 1280, horiz 100
+  of: sector:78
+  visible:
+    sector:78: dominant, 86.2% of frame at 7.18-9.43 PW
+    sector:0: present, 9.0% of frame at 9.07-385.69 PW
+    sector:77: present, 4.8% of frame at 7.18-9.07 PW
+  dominant surfaces: tile 400 (35%), tile 294 (33%), tile 285 (32%)
