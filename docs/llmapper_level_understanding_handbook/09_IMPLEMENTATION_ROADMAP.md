@@ -570,7 +570,58 @@ with evidence.
 
 ---
 
-# Phase 7 — Facade grammar
+# Phase 7 — Facade grammar (DONE, 2026-08-31)
+
+**Status: complete.** `anchors.find_facades` mines facade candidates as
+maximal **collinear** runs of a sky-lit reachable sector's wall loop, at least
+two 1024-unit bays long, carrying at least one opening. The openings are what
+interrupts the run, per `06_...md`: the facade owns the openings. Signage is a
+member of the hierarchy (building -> facade -> bay -> opening -> signage), not
+decoration, per owner steering. Report
+`reports/blood-facade-grammar.{json,md}`, frames under
+`reports/blood-facade-views/`, tests in `tests/test_facade.py` (40; 18 of 18
+mutants caught, including the corner bug below). The JSON is abridged --
+every candidate in full is 32 MB -- and says so.
+
+**The exit criterion, answered with numbers.** 3570 campaign candidates in 37
+maps; 450 have more than one opening, which is where "belonging together"
+means anything. What keeps them coherent, in order of strength: **one wall
+tile across the whole run (98%), a shared header datum (90%), a shared sill
+datum (64%), a thin helper sector (44%)** — and *not* the bay grid, which only
+31% of their openings land on. A rule that demanded whole-bay openings would
+reject most of the campaign's own facades.
+
+**A shipped constant partly contradicted.** `facade_pass.py`'s
+16-world-units-per-tile-pixel scale is confirmed corpus-wide (3869/5275, 73%),
+and it is what makes `BAY = 1024` real. Its other two claims do not
+generalize: world-phased `x_panning` is 20% campaign-wide (E6M3 80%, E6M1 72%)
+and header cstat bit 4 is 28% (E3M1 38%). Both are local habits, and
+blood-city should not adopt them as rules. E6M3, not E3M1, is the campaign's
+most disciplined street.
+
+**A defect found by the fixture, not the corpus.** The first collinearity
+predicate measured the candidate wall's *near* end, which in a closed loop is
+the previous wall's end and lies on the line by construction; it collapsed to
+`|dx_run| * |dy| / L` — correct for an east-west run, identically zero for a
+north-south one, so every north-south street ran through its own corners. The
+tell was in the draft report as a limitation: median sign-to-plane distance
+429 units, now **4 units**. Every number in the report is from the fixed
+predicate, and a test rotates the fixture a quarter turn to pin it.
+
+**Signage.** 165 letter sprites on 27 facades (7 campaign in 4 maps, 20
+curated — the statistics lean on Death Wish and say so). 100% wall-aligned,
+none a perpendicular flag; median 2.25 player heights above the street; 66% in
+the middle half of their run; 75% within one bay of an opening. The two-tier
+reading from the E3M2 frame (a bay sign low, a building sign above) survives
+measurement but on **two facades out of 27** — real, not a convention.
+
+**Constructor promotion: refused.** `facade_run()` stays out of
+`vocabulary.py`. A candidate is a plane, not a building: nothing in the
+geometry says where one frontage stops and the next begins (47 campaign runs
+exceed 30 bays; the longest is 144). The visible lintel a sign sits on is not
+recoverable — a street sector's ceiling is the sky, so `datums.cornice` is
+`null` with that reason rather than guessed. And rhythm is rare: 112 repeating
+runs in 3570 candidates is not recurrence.
 
 ## Already in the repository
 

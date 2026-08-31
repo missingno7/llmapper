@@ -1,0 +1,28 @@
+View: sector_301 -- precedent
+  camera: sector 301, angle 1003, horiz 100
+  of: sector:301
+  visible:
+    sector:119: dominant, 54.6% of frame at 3.27-31.11 PW
+    sector:301: dominant, 41.9% of frame at 1.81-24.26 PW
+    sector:347: present, 3.6% of frame at 22.6-33.14 PW
+    sector:107: present, 3.5% of frame at 29.56-34.49 PW
+    sector:120: present, 3.5% of frame at 33.21-35.76 PW
+    sector:427: a trace, 1.9% of frame at 50.68-53.98 PW
+    ... and 2 more, none above 1.5%
+  reached the renderer but nothing survived: sector:426
+  sky: 2.0% of frame
+  dominant surfaces: tile 397 (34%), tile 352 (24%), tile 414 (19%)
+
+View: sector_179 -- precedent
+  camera: sector 179, angle 272, horiz 100
+  of: sector:179
+  visible:
+    sector:179: dominant, 48.9% of frame at 2.39-14.77 PW
+    sector:301: prominent, 24.1% of frame at 14.26-42.73 PW
+    sector:118: prominent, 16.7% of frame at 3.62-16.29 PW
+    sector:119: present, 3.0% of frame at 14.26-32.15 PW
+    sector:109: present, 3.0% of frame at 14.77-27.55 PW
+    sector:260: present, 2.7% of frame at 15.44-23.53 PW
+    ... and 11 more, none above 1.3%
+  sky: 0.0% of frame
+  dominant surfaces: tile 90 (24%), tile 281 (18%), tile 397 (15%)

@@ -1,0 +1,33 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "maps/blood/campaign/E3M2.MAP",
+ "resource_dir": "reference/blood",
+ "output": "reports/blood-facade-views/E3M2-signage/observation",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "sector_301",
+   "x": 14415,
+   "y": 18344,
+   "z": -6048,
+   "angle": 1003,
+   "horiz": 100,
+   "sector": 301,
+   "screenshot": true
+  },
+  {
+   "id": "sector_179",
+   "x": 10530,
+   "y": 8082,
+   "z": -6048,
+   "angle": 272,
+   "horiz": 100,
+   "sector": 179,
+   "screenshot": true
+  }
+ ]
+}

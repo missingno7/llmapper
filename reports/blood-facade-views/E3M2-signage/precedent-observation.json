@@ -1,0 +1,946 @@
+{
+ "$schema": "llmapper.precedent-observation",
+ "schema_version": 1,
+ "of": "E3M2.MAP",
+ "rendered_map": "E3M2.MAP",
+ "hidden_dudes": 0,
+ "source_crc32": "e8ffd38a",
+ "renderer": {
+  "engine": "xmapedit classic Build software renderer",
+  "width": 640,
+  "height": 480,
+  "palette": "Blood palette and 15 shade tables from the resource archive",
+  "palette_authentic": true,
+  "brightness": 0
+ },
+ "timing_ms": {
+  "engine_init": 29.0,
+  "art_load": 1.0,
+  "map_load": 0.0,
+  "views_total": 6.0,
+  "view_count": 2
+ },
+ "requested_sectors": [
+  301,
+  179
+ ],
+ "refused": [],
+ "views": [
+  {
+   "view_id": "sector_301",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": 14415,
+    "y": 18344,
+    "z": -6048,
+    "angle": 1003,
+    "horiz": 100,
+    "sector": 301,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 340055,
+    "sky_pixels": 6013,
+    "unwritten": 13143,
+    "unwritten_bbox": [
+     77,
+     2,
+     638,
+     345
+    ]
+   },
+   "screenshot": "frames/sector_301.png",
+   "visible": [
+    {
+     "node": "sector:119",
+     "path": [
+      "sector:119"
+     ],
+     "pixels": 167845,
+     "frame_fraction": 0.5464,
+     "structural_fraction": 0.4338,
+     "surfaces": 23,
+     "sectors": [
+      119
+     ],
+     "pixels_by_kind": {
+      "floor": 74416,
+      "wall": 56184,
+      "sprite": 34587,
+      "lower": 2658
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 352,
+       "pixels": 74416
+      },
+      {
+       "picnum": 414,
+       "pixels": 56184
+      },
+      {
+       "picnum": 3798,
+       "pixels": 21085
+      },
+      {
+       "picnum": 932,
+       "pixels": 9468
+      }
+     ],
+     "near_player_widths": 3.27,
+     "far_player_widths": 31.11
+    },
+    {
+     "node": "sector:301",
+     "path": [
+      "sector:301"
+     ],
+     "pixels": 128859,
+     "frame_fraction": 0.4195,
+     "structural_fraction": 0.4195,
+     "surfaces": 3,
+     "sectors": [
+      301
+     ],
+     "pixels_by_kind": {
+      "wall": 99093,
+      "floor": 29640,
+      "lower": 126
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 397,
+       "pixels": 99093
+      },
+      {
+       "picnum": 281,
+       "pixels": 29640
+      },
+      {
+       "picnum": 273,
+       "pixels": 126
+      }
+     ],
+     "near_player_widths": 1.81,
+     "far_player_widths": 24.26
+    },
+    {
+     "node": "sector:347",
+     "path": [
+      "sector:347"
+     ],
+     "pixels": 11192,
+     "frame_fraction": 0.0364,
+     "structural_fraction": 0.0364,
+     "surfaces": 4,
+     "sectors": [
+      347
+     ],
+     "pixels_by_kind": {
+      "lower": 6405,
+      "wall": 4752,
+      "sky": 35
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 154,
+       "pixels": 6405
+      },
+      {
+       "picnum": 397,
+       "pixels": 4752
+      },
+      {
+       "picnum": 3498,
+       "pixels": 35
+      }
+     ],
+     "near_player_widths": 22.6,
+     "far_player_widths": 33.14
+    },
+    {
+     "node": "sector:107",
+     "path": [
+      "sector:107"
+     ],
+     "pixels": 10739,
+     "frame_fraction": 0.035,
+     "structural_fraction": 0.035,
+     "surfaces": 5,
+     "sectors": [
+      107
+     ],
+     "pixels_by_kind": {
+      "lower": 9161,
+      "wall": 1326,
+      "floor": 252
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 154,
+       "pixels": 9002
+      },
+      {
+       "picnum": 414,
+       "pixels": 1326
+      },
+      {
+       "picnum": 281,
+       "pixels": 252
+      },
+      {
+       "picnum": 273,
+       "pixels": 159
+      }
+     ],
+     "near_player_widths": 29.56,
+     "far_player_widths": 34.49
+    },
+    {
+     "node": "sector:120",
+     "path": [
+      "sector:120"
+     ],
+     "pixels": 10711,
+     "frame_fraction": 0.0349,
+     "structural_fraction": 0.0347,
+     "surfaces": 5,
+     "sectors": [
+      120
+     ],
+     "pixels_by_kind": {
+      "wall": 10027,
+      "ceiling": 644,
+      "sprite": 40
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 2050,
+       "pixels": 9723
+      },
+      {
+       "picnum": 2288,
+       "pixels": 644
+      },
+      {
+       "picnum": 414,
+       "pixels": 304
+      },
+      {
+       "picnum": 811,
+       "pixels": 40
+      }
+     ],
+     "near_player_widths": 33.21,
+     "far_player_widths": 35.76
+    },
+    {
+     "node": "sector:427",
+     "path": [
+      "sector:427"
+     ],
+     "pixels": 5909,
+     "frame_fraction": 0.0192,
+     "structural_fraction": 0.0192,
+     "surfaces": 2,
+     "sectors": [
+      427
+     ],
+     "pixels_by_kind": {
+      "sky": 4118,
+      "wall": 1791
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 3498,
+       "pixels": 4118
+      },
+      {
+       "picnum": 391,
+       "pixels": 1791
+      }
+     ],
+     "near_player_widths": 50.68,
+     "far_player_widths": 53.98
+    },
+    {
+     "node": "sector:413",
+     "path": [
+      "sector:413"
+     ],
+     "pixels": 4506,
+     "frame_fraction": 0.0147,
+     "structural_fraction": 0.0143,
+     "surfaces": 8,
+     "sectors": [
+      413
+     ],
+     "pixels_by_kind": {
+      "lower": 1976,
+      "sky": 1656,
+      "upper": 637,
+      "wall": 131,
+      "sprite": 106
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 84,
+       "pixels": 1976
+      },
+      {
+       "picnum": 3499,
+       "pixels": 1656
+      },
+      {
+       "picnum": 68,
+       "pixels": 637
+      },
+      {
+       "picnum": 414,
+       "pixels": 131
+      }
+     ],
+     "near_player_widths": 32.91,
+     "far_player_widths": 59.79
+    },
+    {
+     "node": "sector:429",
+     "path": [
+      "sector:429"
+     ],
+     "pixels": 294,
+     "frame_fraction": 0.001,
+     "structural_fraction": 0.001,
+     "surfaces": 2,
+     "sectors": [
+      429
+     ],
+     "pixels_by_kind": {
+      "sky": 204,
+      "wall": 90
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 3499,
+       "pixels": 204
+      },
+      {
+       "picnum": 391,
+       "pixels": 90
+      }
+     ],
+     "near_player_widths": 52.21,
+     "far_player_widths": 53.59
+    }
+   ]
+  },
+  {
+   "view_id": "sector_179",
+   "status": "ok",
+   "reason": "",
+   "camera": {
+    "x": 10530,
+    "y": 8082,
+    "z": -6048,
+    "angle": 272,
+    "horiz": 100,
+    "sector": 179,
+    "eye_height_derived": false
+   },
+   "frame": {
+    "pixels": 307200,
+    "painted": 315516,
+    "sky_pixels": 42,
+    "unwritten": 2696,
+    "unwritten_bbox": [
+     163,
+     0,
+     639,
+     469
+    ]
+   },
+   "screenshot": "frames/sector_179.png",
+   "visible": [
+    {
+     "node": "sector:179",
+     "path": [
+      "sector:179"
+     ],
+     "pixels": 150109,
+     "frame_fraction": 0.4886,
+     "structural_fraction": 0.4865,
+     "surfaces": 15,
+     "sectors": [
+      179
+     ],
+     "pixels_by_kind": {
+      "wall": 64814,
+      "floor": 53928,
+      "upper": 16632,
+      "lower": 14089,
+      "sprite": 646
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 281,
+       "pixels": 53928
+      },
+      {
+       "picnum": 90,
+       "pixels": 50896
+      },
+      {
+       "picnum": 80,
+       "pixels": 37439
+      },
+      {
+       "picnum": 414,
+       "pixels": 7200
+      }
+     ],
+     "near_player_widths": 2.39,
+     "far_player_widths": 14.77
+    },
+    {
+     "node": "sector:301",
+     "path": [
+      "sector:301"
+     ],
+     "pixels": 73968,
+     "frame_fraction": 0.2408,
+     "structural_fraction": 0.2316,
+     "surfaces": 23,
+     "sectors": [
+      301
+     ],
+     "pixels_by_kind": {
+      "wall": 49357,
+      "upper": 16414,
+      "lower": 3308,
+      "sprite": 2815,
+      "floor": 2032,
+      "sky": 42
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 397,
+       "pixels": 47458
+      },
+      {
+       "picnum": 90,
+       "pixels": 18313
+      },
+      {
+       "picnum": 80,
+       "pixels": 3137
+      },
+      {
+       "picnum": 281,
+       "pixels": 2032
+      }
+     ],
+     "near_player_widths": 14.26,
+     "far_player_widths": 42.73
+    },
+    {
+     "node": "sector:118",
+     "path": [
+      "sector:118"
+     ],
+     "pixels": 51138,
+     "frame_fraction": 0.1665,
+     "structural_fraction": 0.1665,
+     "surfaces": 10,
+     "sectors": [
+      118
+     ],
+     "pixels_by_kind": {
+      "floor": 37151,
+      "lower": 13675,
+      "wall": 312
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 352,
+       "pixels": 37151
+      },
+      {
+       "picnum": 414,
+       "pixels": 12121
+      },
+      {
+       "picnum": 6,
+       "pixels": 1866
+      }
+     ],
+     "near_player_widths": 3.62,
+     "far_player_widths": 16.29
+    },
+    {
+     "node": "sector:119",
+     "path": [
+      "sector:119"
+     ],
+     "pixels": 9268,
+     "frame_fraction": 0.0302,
+     "structural_fraction": 0.0202,
+     "surfaces": 6,
+     "sectors": [
+      119
+     ],
+     "pixels_by_kind": {
+      "floor": 5073,
+      "sprite": 3062,
+      "lower": 1133
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 352,
+       "pixels": 5073
+      },
+      {
+       "picnum": 3798,
+       "pixels": 3062
+      },
+      {
+       "picnum": 6,
+       "pixels": 1133
+      }
+     ],
+     "near_player_widths": 14.26,
+     "far_player_widths": 32.15
+    },
+    {
+     "node": "sector:109",
+     "path": [
+      "sector:109"
+     ],
+     "pixels": 9109,
+     "frame_fraction": 0.0297,
+     "structural_fraction": 0.0297,
+     "surfaces": 11,
+     "sectors": [
+      109
+     ],
+     "pixels_by_kind": {
+      "wall": 6139,
+      "ceiling": 1924,
+      "upper": 481,
+      "lower": 376,
+      "floor": 189
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 90,
+       "pixels": 3325
+      },
+      {
+       "picnum": 20,
+       "pixels": 2228
+      },
+      {
+       "picnum": 174,
+       "pixels": 1924
+      },
+      {
+       "picnum": 1011,
+       "pixels": 1443
+      }
+     ],
+     "near_player_widths": 14.77,
+     "far_player_widths": 27.55
+    },
+    {
+     "node": "sector:260",
+     "path": [
+      "sector:260"
+     ],
+     "pixels": 8217,
+     "frame_fraction": 0.0267,
+     "structural_fraction": 0.0221,
+     "surfaces": 7,
+     "sectors": [
+      260
+     ],
+     "pixels_by_kind": {
+      "wall": 6045,
+      "sprite": 1413,
+      "ceiling": 671,
+      "floor": 88
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 21,
+       "pixels": 6045
+      },
+      {
+       "picnum": 2288,
+       "pixels": 671
+      },
+      {
+       "picnum": 1709,
+       "pixels": 490
+      },
+      {
+       "picnum": 1708,
+       "pixels": 448
+      }
+     ],
+     "near_player_widths": 15.44,
+     "far_player_widths": 23.53
+    },
+    {
+     "node": "sector:258",
+     "path": [
+      "sector:258"
+     ],
+     "pixels": 3896,
+     "frame_fraction": 0.0127,
+     "structural_fraction": 0.0114,
+     "surfaces": 5,
+     "sectors": [
+      258
+     ],
+     "pixels_by_kind": {
+      "wall": 2185,
+      "upper": 980,
+      "sprite": 380,
+      "floor": 351
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 494,
+       "pixels": 2185
+      },
+      {
+       "picnum": 492,
+       "pixels": 980
+      },
+      {
+       "picnum": 559,
+       "pixels": 380
+      },
+      {
+       "picnum": 253,
+       "pixels": 351
+      }
+     ],
+     "near_player_widths": 11.21,
+     "far_player_widths": 25.42
+    },
+    {
+     "node": "sector:180",
+     "path": [
+      "sector:180"
+     ],
+     "pixels": 2094,
+     "frame_fraction": 0.0068,
+     "structural_fraction": 0.0068,
+     "surfaces": 3,
+     "sectors": [
+      180
+     ],
+     "pixels_by_kind": {
+      "wall": 1088,
+      "ceiling": 882,
+      "floor": 124
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 195,
+       "pixels": 1088
+      },
+      {
+       "picnum": 68,
+       "pixels": 882
+      },
+      {
+       "picnum": 281,
+       "pixels": 124
+      }
+     ],
+     "near_player_widths": 10.19,
+     "far_player_widths": 13.81
+    },
+    {
+     "node": "sector:95",
+     "path": [
+      "sector:95"
+     ],
+     "pixels": 2011,
+     "frame_fraction": 0.0065,
+     "structural_fraction": 0.0065,
+     "surfaces": 1,
+     "sectors": [
+      95
+     ],
+     "pixels_by_kind": {
+      "floor": 2011
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 414,
+       "pixels": 2011
+      }
+     ],
+     "near_player_widths": 5.92,
+     "far_player_widths": 7.67
+    },
+    {
+     "node": "sector:117",
+     "path": [
+      "sector:117"
+     ],
+     "pixels": 1760,
+     "frame_fraction": 0.0057,
+     "structural_fraction": 0.0057,
+     "surfaces": 3,
+     "sectors": [
+      117
+     ],
+     "pixels_by_kind": {
+      "wall": 958,
+      "ceiling": 704,
+      "floor": 98
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 195,
+       "pixels": 958
+      },
+      {
+       "picnum": 174,
+       "pixels": 704
+      },
+      {
+       "picnum": 253,
+       "pixels": 98
+      }
+     ],
+     "near_player_widths": 10.12,
+     "far_player_widths": 14.3
+    },
+    {
+     "node": "sector:94",
+     "path": [
+      "sector:94"
+     ],
+     "pixels": 1043,
+     "frame_fraction": 0.0034,
+     "structural_fraction": 0.0034,
+     "surfaces": 1,
+     "sectors": [
+      94
+     ],
+     "pixels_by_kind": {
+      "floor": 1043
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 414,
+       "pixels": 1043
+      }
+     ],
+     "near_player_widths": 10.36,
+     "far_player_widths": 12.75
+    },
+    {
+     "node": "sector:259",
+     "path": [
+      "sector:259"
+     ],
+     "pixels": 992,
+     "frame_fraction": 0.0032,
+     "structural_fraction": 0.0032,
+     "surfaces": 3,
+     "sectors": [
+      259
+     ],
+     "pixels_by_kind": {
+      "wall": 988,
+      "floor": 4
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 494,
+       "pixels": 788
+      },
+      {
+       "picnum": 20,
+       "pixels": 200
+      },
+      {
+       "picnum": 253,
+       "pixels": 4
+      }
+     ],
+     "near_player_widths": 16.14,
+     "far_player_widths": 16.77
+    },
+    {
+     "node": "sector:235",
+     "path": [
+      "sector:235"
+     ],
+     "pixels": 959,
+     "frame_fraction": 0.0031,
+     "structural_fraction": 0.0031,
+     "surfaces": 3,
+     "sectors": [
+      235
+     ],
+     "pixels_by_kind": {
+      "wall": 944,
+      "ceiling": 15
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 170,
+       "pixels": 876
+      },
+      {
+       "picnum": 20,
+       "pixels": 68
+      },
+      {
+       "picnum": 68,
+       "pixels": 15
+      }
+     ],
+     "near_player_widths": 23.3,
+     "far_player_widths": 26.55
+    },
+    {
+     "node": "sector:108",
+     "path": [
+      "sector:108"
+     ],
+     "pixels": 432,
+     "frame_fraction": 0.0014,
+     "structural_fraction": 0.0014,
+     "surfaces": 4,
+     "sectors": [
+      108
+     ],
+     "pixels_by_kind": {
+      "lower": 277,
+      "ceiling": 129,
+      "floor": 26
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 253,
+       "pixels": 258
+      },
+      {
+       "picnum": 174,
+       "pixels": 129
+      },
+      {
+       "picnum": 429,
+       "pixels": 45
+      }
+     ],
+     "near_player_widths": 21.39,
+     "far_player_widths": 24.22
+    },
+    {
+     "node": "sector:261",
+     "path": [
+      "sector:261"
+     ],
+     "pixels": 231,
+     "frame_fraction": 0.0008,
+     "structural_fraction": 0.0008,
+     "surfaces": 2,
+     "sectors": [
+      261
+     ],
+     "pixels_by_kind": {
+      "wall": 228,
+      "ceiling": 3
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 494,
+       "pixels": 228
+      },
+      {
+       "picnum": 273,
+       "pixels": 3
+      }
+     ],
+     "near_player_widths": 22.93,
+     "far_player_widths": 23.6
+    },
+    {
+     "node": "sector:110",
+     "path": [
+      "sector:110"
+     ],
+     "pixels": 175,
+     "frame_fraction": 0.0006,
+     "structural_fraction": 0.0006,
+     "surfaces": 4,
+     "sectors": [
+      110
+     ],
+     "pixels_by_kind": {
+      "ceiling": 119,
+      "lower": 55,
+      "floor": 1
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 174,
+       "pixels": 119
+      },
+      {
+       "picnum": 253,
+       "pixels": 53
+      },
+      {
+       "picnum": 429,
+       "pixels": 3
+      }
+     ],
+     "near_player_widths": 21.87,
+     "far_player_widths": 24.68
+    },
+    {
+     "node": "sector:61",
+     "path": [
+      "sector:61"
+     ],
+     "pixels": 114,
+     "frame_fraction": 0.0004,
+     "structural_fraction": 0.0004,
+     "surfaces": 1,
+     "sectors": [
+      61
+     ],
+     "pixels_by_kind": {
+      "lower": 114
+     },
+     "dominant_tiles": [
+      {
+       "picnum": 414,
+       "pixels": 114
+      }
+     ],
+     "near_player_widths": 6.29,
+     "far_player_widths": 10.31
+    }
+   ]
+  }
+ ],
+ "limitations": [
+  "one static world state: no door moves, no sector effect runs, no gameplay happens",
+  "the editor renderer, not the game renderer; NBlood differs in sprite and effect handling",
+  "coverage is post-occlusion painted pixels; sprite occlusion follows the engine sprite clipping",
+  "voxels and models are not drawn",
+  "a sector is its own node here; an original has no authored source to join to"
+ ]
+}

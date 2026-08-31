@@ -1,0 +1,23 @@
+View: sector_142 -- precedent
+  camera: sector 142, angle 1266, horiz 100
+  of: sector:142
+  visible:
+    sector:142: dominant, 100.1% of frame at 7.73-45.08 PW
+    sector:141: present, 3.4% of frame at 22.85-33.44 PW
+    sector:143: a trace, 1.6% of frame at 22.85-33.82 PW
+    sector:140: a trace, 1.5% of frame at 20.22-24.43 PW
+  sky: 2.7% of frame
+  dominant surfaces: tile 95 (49%), tile 255 (33%), tile 2825 (6%)
+
+View: sector_32 -- precedent
+  camera: sector 32, angle 641, horiz 100
+  of: sector:32
+  visible:
+    sector:32: dominant, 61.1% of frame at 5.75-14.45 PW
+    sector:125: dominant, 33.6% of frame at 5.74-14.82 PW
+    sector:86: present, 3.1% of frame at 14.34-20.76 PW
+    sector:145: a trace, 1.7% of frame at 5.75-40.4 PW
+    sector:87: a trace, 0.9% of frame at 13.34-14.95 PW
+    sector:47: a trace, 0.1% of frame at 15.27-24.17 PW
+  sky: 3.9% of frame
+  dominant surfaces: tile 194 (32%), tile 568 (30%), tile 22 (30%)

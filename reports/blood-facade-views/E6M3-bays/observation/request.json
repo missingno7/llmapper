@@ -1,0 +1,33 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "maps/blood/campaign/E6M3.MAP",
+ "resource_dir": "reference/blood",
+ "output": "reports/blood-facade-views/E6M3-rhythm/observation",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "sector_142",
+   "x": 22983,
+   "y": -24121,
+   "z": -8096,
+   "angle": 1266,
+   "horiz": 100,
+   "sector": 142,
+   "screenshot": true
+  },
+  {
+   "id": "sector_32",
+   "x": 10331,
+   "y": -13312,
+   "z": -40864,
+   "angle": 641,
+   "horiz": 100,
+   "sector": 32,
+   "screenshot": true
+  }
+ ]
+}
