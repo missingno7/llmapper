@@ -163,6 +163,13 @@ def design_fingerprint(build: BuildIR, sector_ids: Iterable[int] | None = None) 
     invalid = sorted(value for value in selected if not 0 <= value < len(build.sectors))
     if invalid:
         raise DesignUnderstandingError(f"sector IDs are out of range: {invalid}")
+    ignored_degenerate = sorted(
+        value for value in selected
+        if int(build.sectors[value]["fields"]["wall_count"]) < 3
+    )
+    selected -= set(ignored_degenerate)
+    if not selected:
+        raise DesignUnderstandingError("sector selection contains no geometrically valid sectors")
 
     areas: dict[int, float] = {}
     heights: dict[int, int] = {}
@@ -292,6 +299,7 @@ def design_fingerprint(build: BuildIR, sector_ids: Iterable[int] | None = None) 
         "source_game": build.source_game,
         "scope": "level" if sector_ids is None else "selection",
         "sector_ids": sorted(selected),
+        "ignored_degenerate_sector_ids": ignored_degenerate,
         "metrics": metrics,
         "interpretations": interpretations,
         "source_mechanisms": source_mechanisms,

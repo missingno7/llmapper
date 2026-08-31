@@ -164,10 +164,21 @@ def _loop_metrics(points: list[tuple[int, int]]) -> dict[str, Any]:
     }
 
 
-def analyze_morphology(build: BuildIR) -> dict[str, Any]:
+def analyze_morphology(build: BuildIR, sector_ids: set[int] | None = None) -> dict[str, Any]:
     """Measure wall orientation, corner, and loop-shape variation."""
     if not build.walls:
         raise MorphologyError("map has no walls")
+    selected = set(range(len(build.sectors))) if sector_ids is None else {int(value) for value in sector_ids}
+    invalid = sorted(value for value in selected if not 0 <= value < len(build.sectors))
+    if invalid:
+        raise MorphologyError(f"sector IDs are out of range: {invalid}")
+    ignored_degenerate = sorted(
+        value for value in selected
+        if int(build.sectors[value]["fields"]["wall_count"]) < 3
+    )
+    selected -= set(ignored_degenerate)
+    if not selected:
+        raise MorphologyError("sector selection contains no geometrically valid sectors")
     lengths_all: list[float] = []
     orthogonal_length = 0.0
     diagonal_length = 0.0
@@ -203,7 +214,7 @@ def analyze_morphology(build: BuildIR) -> dict[str, Any]:
     corner_count = 0
     curved_chains = 0
     fill_values: list[float] = []
-    for sector_id in range(len(build.sectors)):
+    for sector_id in sorted(selected):
         sector_loops = _polygon_loops(build, sector_id)
         outer = max(sector_loops, key=lambda loop: abs(_signed_area(loop)))
         metrics = _loop_metrics(outer)
@@ -257,13 +268,14 @@ def analyze_morphology(build: BuildIR) -> dict[str, Any]:
             "segmented_arc_chain_count": curved_chains,
         },
         "sectors": {
-            "count": len(build.sectors),
-            "rectangular_fraction": round(rectangular_sectors / max(1, len(build.sectors)), 4),
-            "convex_fraction": round(convex_sectors / max(1, len(build.sectors)), 4),
+            "count": len(selected),
+            "rectangular_fraction": round(rectangular_sectors / max(1, len(selected)), 4),
+            "convex_fraction": round(convex_sectors / max(1, len(selected)), 4),
             "outer_vertex_counts": _summary([float(value) for value in vertex_counts]),
             "aabb_fill": _summary(fill_values),
         },
         "loops": loops,
+        "ignored_degenerate_sector_ids": ignored_degenerate,
         "limitations": [
             "inner loops are ignored for rectangularity",
             "slopes and sprites are ignored",
