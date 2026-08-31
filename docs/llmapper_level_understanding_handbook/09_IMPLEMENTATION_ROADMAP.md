@@ -982,6 +982,87 @@ causal provenance.
 The question above is answered mechanically and the explanation cites
 native evidence (channels, XSECTOR fields), not prose.
 
+## Status, 2026-08-31 — DONE for Z-motion
+
+**The view exists.** `bloodmap/conditional.py`, a reading over
+`reachability.py`'s graph and `effects.py`'s embedding, plus
+`llmapper conditional`. Crossings are **directed** (climbing is capped at the
+engine's step-up 6656, falling is not) and collapse into **routes**, which is
+what a reader means by "the door": one mechanism, the two rooms it joins.
+
+**The question is answered mechanically, and the explanation is fields.**
+`llmapper conditional MAP --action destroy --target 373` returns the newly
+reachable set and, per crossing, trigger → channel → mechanism → topology
+delta → crossing. On E1M4's crack that reads: `sprite 373, type 408, shot,
+irreversible` → `channel 119` → `sector 276, enabling state on` → `opening
+0 → 28672` → `276 → 245`.
+
+**The campaign, measured** (43 maps, `reports/blood-conditional-topology.md`):
+
+```text
+Z-motion mechanisms 1365   wired 1235   inert (nothing can reach them) 130
+rotate and slide, scoped out                                          657
+conditional crossings 4160  -> 1069 routes    never passable        1085
+routes needing a key    87        routes that cannot be undone        156
+
+routes by reading            triggers
+door-like       665  62.2%   switch 514   push 264   shot 176
+lift-like       182  17.0%   unknown 170  touch 70
+both            134  12.5%
+neither          88   8.2%
+```
+
+Not one of the 113 distinct gating channels is below 100: the reserved band
+carries level start, exit and secrets and **never gates a door**.
+
+**Three pilots, each checked against the raw XSECTOR and the editor
+renderer**, not against the view's own graph. A lift (E1M3 s241: floor
+18432 → -16384, exactly its two neighbours' floors, gains 33). A breakable
+barrier (E1M4 sprite 373 → sectors 276/277, flush at rest, `trigger_once`,
+gains 14 — and the renderer independently **refused** sector 276 for want of
+standing clearance). A keyed door (E1M4 s295, `key=6`, gains 46 — and the
+render from s294 shows a moon lock plate on the wall).
+
+**The hidden-switch placement question is answered, and it is a null.**
+`reports/blood-hidden-switch-placement.md`: no spatial feature reaches the
+0.65 floor in either scope; the best is `distance_to_target` at 0.640. The
+weak signals agree in direction — hidden switches sit further from what they
+open, less often adjacent, less often in sight — but 0.64 on 22 positives is
+a tendency, not a distinction. The reframing finding is that **57% of hidden
+and 59% of visible switch sprites sit in a logic closet**, so the invisible
+cstat bit is largely a construction detail of closet wiring rather than a
+decision to hide a trigger. Both contrasts have been comparing two
+populations that are mostly the same thing.
+
+**115 against 85, reconciled and computed:** 115 = 85 hidden-switch
+occurrences inside `mine_object_contexts`' excluded scope + 30 whose sector
+is reachable *and* holds something visible. Both numbers are right; they
+count sprites and occurrences-in-a-bin respectively.
+
+**NOT done, stated as the known gap.** The 657 rotate and slide mechanisms
+have no swept-area spatial-effect reading and are **excluded, not answered**.
+The turnstile family is inside that gap and is parked by owner decision; its
+passage blocker stands.
+
+## Handoff to Phase 10
+
+1. **Neither base graph is right, and they are wrong in opposite
+   directions.** On five campaign maps the conditional frontier and
+   `analyze_progression` agree 0 of 5 on final reachability — but within 2
+   sectors on E1M3 and by 128 on E1M1. Diagnosed: E1M1's player start has two
+   wide portals carrying the wall cstat blocking flag, which `analyze_spatial`
+   files as blocked and `analyze_progression` never floods, halting at 2 of
+   146 design sectors; `reachability.portal_graph` ignores blocking flags
+   entirely and so counts sectors behind shut doors. A base that gates on the
+   blocking flag *and* re-opens it through the mechanism that drives it is the
+   single highest-value fix in the stack.
+2. The multi-view bundle should carry the conditional view beside the spatial
+   one, and carry which base it ran on.
+3. 170 routes have a cause whose trigger kind is `unknown` — something
+   transmits and nothing explains how it fires.
+4. The switch question that survives is about **XWALLs**, not sprites: the
+   face a player actually pushes. Nothing has measured those.
+
 ---
 
 # Phase 10 — Multi-view understanding bundle
