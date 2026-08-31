@@ -882,6 +882,78 @@ SEMANTICS per `05_...md`.
 The same low-level motion representation describes all three mechanisms;
 semantic distinction comes from spatial context, and the report shows it.
 
+## Status, 2026-08-31 — DONE for Z-motion, and for the switch question
+
+**The vocabulary exists as a reading.** `bloodmap/effects.py`, over what
+`doors.py` and `assembly.py` already record: `move_floor_z`,
+`move_ceiling_z`, `translate_xy`, `rotate_about_axis`, factored along the
+owner's four planes. `design_object` takes the embedding and **cannot be
+handed a sector type** — there is no parameter for one.
+
+**The three-way experiment is run and the exit criterion is met, for
+Z-motion.** 2027 moving sectors in 43 campaign maps
+(`reports/blood-effects-motion.md`):
+
+```text
+                      changes what fits   carries between   both   neither   undecidable
+z_ceiling   646              540                 –            –      102          4
+z_floor     541              122               168           95      152          4
+z_split     180               56                39           47       32          6
+slide       396                4                 –            –        5        387
+rotate      263                2                 –            –        1        260
+```
+
+**Naming from the surface that moves gets 40% of them wrong** — 471 of 1179.
+The third mechanism, described without its name, is a motion that changes
+neither: 292 of them, of which 46 open to more than a crouching body and less
+than a standing one. The reading returns `not decidable from z alone` for the
+662 that only slide or turn, because both embedding questions are about a
+vertical opening; filing those under "neither" was the first thing the
+experiment did wrong.
+
+**The queued hidden-vs-visible switch contrast is run, and the answer is
+no.** 115 hidden switches in 18 maps against 1281 visible
+(`reports/blood-effects-switches.md`). Not one feature of channel role or of
+what is commanded reaches the 0.65 discriminator floor; the best is
+`commands_nothing_in_this_map` at 0.614, and that one is the least
+trustworthy of them. Two absolutes worth a targeted test rather than a
+promotion: no hidden campaign switch ends the level (0/115 against 56/1281),
+and none is keyed (0/115 against 17/1281). Concealment is not a property of
+what a trigger does — which makes the placement question Phase 9's.
+
+The count is 115 here against the 85 recorded above; the two selections
+differ and are unreconciled.
+
+**NOT done, and the phase is not DONE on it.** Slide and rotate have no
+spatial effect test: `changes_what_fits` is z-only, and
+`motion_sim.blood_sweep` cannot supply the swept-area one for the rotor
+family. 650 mechanisms are returned undecided rather than guessed at.
+
+**Still not proven: that a body passes a turnstile.** A passage oracle now
+exists, is headless, and is calibrated in both directions — a body driven
+across an open corridor is recorded crossing, the same corridor walled is
+recorded staying put. It cannot answer for a rotor: the only available driver
+refuses to enter a `kSectorRotateMarked` sector at all, at every period from
+32 to 400, deriving `walk=0 why=no_stance` on the entry relation while the
+exit relation is `walk=1`. `reports/blood-passage-oracle.md`. The turnstile's
+promotion blocker stands and the Aldermack forecourt mouth is not sealed.
+
+## Handoff to Phase 9
+
+1. **Where hidden switches sit.** The contrast above is forbidden to look at
+   geometry and came back empty, so what distinguishes a concealed trigger is
+   its placement. That is the conditional view's question, and it is now a
+   sharp one rather than a fishing expedition.
+2. **The 292-sector residue is Phase 9 material.** A motion that changes
+   neither passability nor elevation still changes *something* — 118 shut to
+   nothing, 46 open only to a crouch. Conditional topology is where a
+   crouch-only way and a closing gap stop being the same thing.
+3. **`design_object` is the naming rule to build the conditional view on.**
+   It reads embedding and nothing else, and Phase 9 should extend the
+   embedding rather than reach back for fields.
+4. **Slide and rotate need a swept-area effect test** before either can be
+   named. Until then any conditional view over them is over undecided input.
+
 ---
 
 # Phase 9 — Conditional topology and causal meaning
