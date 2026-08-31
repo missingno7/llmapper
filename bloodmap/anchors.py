@@ -1539,6 +1539,7 @@ class Facade:
     walls: tuple[int, ...]
     solid: tuple[int, ...]
     openings: tuple[dict[str, Any], ...]
+    seams: tuple[int, ...]
     helpers: tuple[int, ...]
     datums: dict[str, Any]
     bays: dict[str, Any]
@@ -1553,6 +1554,7 @@ class Facade:
             "walls": [f"wall:{w}" for w in self.walls],
             "solid_walls": len(self.solid),
             "openings": [dict(item) for item in self.openings],
+            "seams": [f"wall:{w}" for w in self.seams],
             "helper_sectors": [f"sector:{s}" for s in self.helpers],
             "datums": dict(self.datums),
             "bays": dict(self.bays),
@@ -1701,6 +1703,20 @@ def _assign_signage(candidates: list[Facade]) -> list[Facade]:
     ]
 
 
+def _facade_helper(build: BuildIR, sector_id: int, helpers: list[int]) -> None:
+    """A neighbour shallower than half a bay is dressing, not a room.
+
+    Kerb strips and opening frames reach a facade through seams as often as
+    through openings, so this is asked of every two-sided neighbour.
+    """
+    fields = build.sectors[sector_id]["fields"]
+    if not abs(int(fields["floor_z"]) - int(fields["ceiling_z"])):
+        return
+    box = _sector_bounds(build, sector_id)
+    if box and min(box[2] - box[0], box[3] - box[1]) <= FACADE_BAY // 2:
+        helpers.append(sector_id)
+
+
 def _facade_from_run(
     build: BuildIR, host: int, run: Sequence[int], floor_z: int, disk: Any,
     first_letter: int, last_letter: int, require_openings: bool,
@@ -1714,11 +1730,12 @@ def _facade_from_run(
     def along(x: float, y: float) -> float:
         return hypot(x - ox, y - oy)
 
-    solid, openings, helpers = [], [], []
+    solid, openings, seams, helpers = [], [], [], []
     sills: Counter = Counter()
     headers: Counter = Counter()
     scale_hits = 0
     picnums: Counter = Counter()
+    ceiling_z = int(build.sectors[host]["fields"]["ceiling_z"])
     for wall_id in run:
         wall = build.walls[wall_id]["fields"]
         (ax, ay), (bx, by) = _wall_ends(build, wall_id)
@@ -1731,7 +1748,16 @@ def _facade_from_run(
             continue
         neighbour = build.sectors[other]["fields"]
         sill = int(neighbour["floor_z"]) - floor_z
-        header = int(neighbour["ceiling_z"]) - int(build.sectors[host]["fields"]["ceiling_z"])
+        # Blood z grows downward, so a larger ceiling_z is a lower ceiling. An
+        # opening in a facade has a lintel; a two-sided wall that keeps the
+        # host's own ceiling is ground, not wall -- a kerb, a step, the seam
+        # between two sectors of one street. 3187 of the 4331 two-sided walls
+        # on campaign facade runs are that, and counting them as openings is
+        # what the first version of this did.
+        if int(neighbour["ceiling_z"]) <= ceiling_z:
+            seams.append(wall_id)
+            _facade_helper(build, other, helpers)
+            continue
         sills[sill] += 1
         headers[int(neighbour["ceiling_z"])] += 1
         width = hypot(bx - ax, by - ay)
@@ -1747,12 +1773,7 @@ def _facade_from_run(
             "header_ceiling_z": int(neighbour["ceiling_z"]),
             "header_aligned_to_ceiling": bool(int(wall["cstat"]) & ALIGN_TO_CEILING),
         })
-        area = abs(int(neighbour["floor_z"]) - int(neighbour["ceiling_z"]))
-        if area and _sector_bounds(build, other):
-            box = _sector_bounds(build, other)
-            span = min(box[2] - box[0], box[3] - box[1])
-            if span <= FACADE_BAY // 2:                  # a thin helper, not a room
-                helpers.append(other)
+        _facade_helper(build, other, helpers)
     if require_openings and not openings:
         return None
 
@@ -1762,7 +1783,8 @@ def _facade_from_run(
     dominant = picnums.most_common(1)[0] if picnums else (None, 0)
     return Facade(
         host=host, walls=tuple(run), solid=tuple(solid),
-        openings=tuple(openings), helpers=tuple(sorted(set(helpers))),
+        openings=tuple(openings), seams=tuple(seams),
+        helpers=tuple(sorted(set(helpers))),
         datums={
             "sill_above_street": {str(k): v for k, v in sorted(sills.items())},
             "repeated_sill": max(sills.values()) if sills else 0,
@@ -1784,6 +1806,7 @@ def _facade_from_run(
             "run_length_units": round(run_length, 1),
             "walls": len(run),
             "solid_walls": len(solid),
+            "seams": len(seams),
             "at_facade_scale": scale_hits,
             "facade_scale_share": round(scale_hits / len(run), 3),
             "distinct_wall_tiles": len(picnums),

@@ -47,7 +47,8 @@ def quarter_turn(build):
 
 
 def street_scene(*, openings=(1, 3, 5), sign_at=None, stray_at=(), sky=True,
-                 bays=8, step=FACADE_BAY, corner=False, room_depth=1024):
+                 bays=8, step=FACADE_BAY, corner=False, room_depth=1024,
+                 room_ceiling=STREET_CEILING + 16384, seam_at=()):
     """A sky-lit street with a straight wall along one side.
 
     The wall runs `bays` bays divided into walls of `step` units, and
@@ -58,7 +59,10 @@ def street_scene(*, openings=(1, 3, 5), sign_at=None, stray_at=(), sky=True,
     `corner` opens the east wall too, so the street has two facades meeting at
     a right angle -- the case where one letter is within a bay of both.
     `room_depth` is how deep the rooms behind the openings are: shallower than
-    half a bay and they are dressing, not rooms.
+    half a bay and they are dressing, not rooms. `room_ceiling` is what makes
+    a two-sided wall an opening: at the street's own ceiling there is no
+    lintel, and the wall is a seam in the ground rather than a hole in a wall.
+    `seam_at` names bays that get such a neighbour whatever `room_ceiling` is.
     Everything is on the 1024 grid, because the point of the fixture is that
     the extractor finds the grid when it is there.
     """
@@ -91,7 +95,7 @@ def street_scene(*, openings=(1, 3, 5), sign_at=None, stray_at=(), sky=True,
     add_sector(0, len(loop), STREET_FLOOR, STREET_CEILING, parallax=sky)
 
     # One room per opening, linked to the wall it sits behind.
-    for order, bay in enumerate(openings):
+    for order, bay in enumerate(tuple(openings) + tuple(seam_at)):
         base = len(walls)
         x0 = bay * step
         room = [(x0, 0), (x0, -room_depth), (x0 + step, -room_depth),
@@ -101,7 +105,8 @@ def street_scene(*, openings=(1, 3, 5), sign_at=None, stray_at=(), sky=True,
         walls[base + 3].fields.update(next_wall=bay, next_sector=1 + order)
         walls[bay].fields.update(next_wall=base + 3, next_sector=1 + order,
                                  cstat=ALIGN_TO_CEILING)
-        add_sector(base, len(room), STREET_FLOOR - 2048, STREET_CEILING + 16384)
+        add_sector(base, len(room), STREET_FLOOR - 2048,
+                   STREET_CEILING if bay in seam_at else room_ceiling)
 
     if corner:
         base = len(walls)
@@ -197,6 +202,33 @@ class FacadeRunTests(unittest.TestCase):
         facade = self.facades[0]
         self.assertIsNone(facade.datums["cornice"])
         self.assertIn("sky", facade.datums["cornice_note"])
+
+    def test_a_two_sided_wall_with_no_lintel_is_a_seam_not_an_opening(self):
+        """A kerb, a step, the seam between two sectors of one street: the
+        neighbour keeps the street's own ceiling, so there is no hole in any
+        wall. 3187 of the 4331 two-sided walls on campaign facade runs are
+        that, and the first version of this counted every one as an opening.
+        """
+        build = street_scene(room_ceiling=STREET_CEILING)
+        facades = find_facades(build, require_openings=False)
+        self.assertTrue(facades)
+        facade = max(facades, key=lambda f: f.measures["run_length_units"])
+        self.assertEqual(facade.openings, ())
+        self.assertEqual(len(facade.seams), 3)
+        self.assertEqual(facade.measures["seams"], 3)
+
+    def test_a_run_interrupted_only_by_seams_is_not_a_facade(self):
+        self.assertEqual(find_facades(street_scene(room_ceiling=STREET_CEILING)), [])
+
+    def test_a_kerb_reached_through_a_seam_is_still_a_thin_helper(self):
+        """The helper is a fact about the neighbour, not about how the run
+        reaches it -- the E3M2 kerb strip is on the far side of a seam.
+        """
+        build = street_scene(room_ceiling=STREET_CEILING, room_depth=256)
+        facade = max(find_facades(build, require_openings=False),
+                     key=lambda f: f.measures["run_length_units"])
+        self.assertEqual(facade.openings, ())
+        self.assertEqual(facade.measures["helper_sectors"], 3)
 
     def test_an_indoor_wall_is_not_a_facade(self):
         """Without a sky-lit host there is no street to face."""
@@ -409,15 +441,21 @@ class EmittedFacadeReportTests(unittest.TestCase):
         self.camp = self.doc["summary"]["blood-campaign"]
 
     def test_material_continuity_is_the_strongest_coherence_signal(self):
-        """The headline: one material, then a header line, then a sill line -
-        and the bay grid nowhere near the top."""
+        """The headline: one material by a long way, then a header line and a
+        sill line together, and the bay grid nowhere near the top.
+
+        Header and sill are within two points of each other on 131 runs, so
+        this deliberately does not rank them against one another.
+        """
         co = self.camp["multi_opening_coherence"]
         multi = self.camp["multi_opening"]
         self.assertGreater(co["one_wall_tile"] / multi, 0.9)
-        self.assertGreater(co["shared_header_datum"] / multi, 0.8)
-        self.assertGreater(co["one_wall_tile"], co["shared_header_datum"])
-        self.assertGreater(co["shared_header_datum"], co["shared_sill_datum"])
-        self.assertGreater(co["shared_sill_datum"], co["with_helper_sector"])
+        self.assertGreater(co["shared_header_datum"] / multi, 0.7)
+        self.assertGreater(co["shared_sill_datum"] / multi, 0.7)
+        for datum in ("shared_header_datum", "shared_sill_datum"):
+            self.assertGreater(co["one_wall_tile"] - co[datum], 0.1 * multi)
+        self.assertGreater(min(co["shared_header_datum"], co["shared_sill_datum"]),
+                           co["whole_bay_openings"] / co["openings"] * multi)
 
     def test_the_bay_grid_is_not_claimed_as_a_rule(self):
         """A rule demanding whole-bay openings would reject two thirds of the
