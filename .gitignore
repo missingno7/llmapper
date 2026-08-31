@@ -25,6 +25,21 @@ projects/*/level/reports/looks/
 projects/*/reports/pilot-views/
 projects/*/references/plots/
 
+# The same category, written under a project's own reports and references by
+# the newer visual loops and precedent miners: sweep-*, *-views, and the
+# per-source directories a mine leaves beside its report. Each holds rendered
+# frames and, for a mined precedent, an architecture-only copy of the source
+# map -- a commercial level with its dressing stripped is still a commercial
+# level. 33M under blood-city alone, all regenerable from the miners and the
+# build script beside them.
+#
+# A mined precedent's artifact is its flat report pair (e6m1-shop.{json,md});
+# the directory next to it is the dump. Nothing under references/ that is a
+# directory has ever been tracked, so none of them are.
+projects/*/reports/*-views/
+projects/*/reports/sweep-*/
+projects/*/references/*/
+
 # XMapEdit, checked out beside NBlood as a second engine oracle. 163M of
 # third-party source with its own history; read, never redistributed.
 xmapedit/
