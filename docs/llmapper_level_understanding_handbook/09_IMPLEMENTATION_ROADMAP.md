@@ -779,6 +779,48 @@ phase delivers a neutral state-change vocabulary plus the rule that the
 `turnstile` constructor in `mechanism.py` is one worked example of the
 decomposition, not the deliverable's shape.
 
+**Owner-attested E1M1 mechanism reading (2026-09-01; sector ids
+owner-supplied, start/links verified against the map).** The campaign's
+opening is a showcase of themed realizations of the slide/rotate/ROR
+primitives — many *design objects* on the same machinery:
+
+- **the casket** — the player start (sector 30, kMarkerSPStart) IS a
+  kSectorSlideMarked sector, ROR-paired via stack link_id 10 with sector 28
+  (also slide, rx 102, shade wave); the opening lid is slide + link + z
+  change, and sector 30 TXs 103 onward. *Narrative* — the primitive dressed
+  as waking from a coffin.
+- **the crypt arc** — sector 26, kSectorRotate with a 20-wall arc,
+  trigger_wall_push, dude_lockout: a curved wall revealing a *secret*.
+- **the double sliding door out of the crypt** — sector 4 (one
+  kSectorSlideMarked carrying both leaves). NOT the ROR pair.
+- **the double rotating door** — sectors 50 + 51, two kSectorRotate leaves
+  chained by channel (50 rx 105 → tx 106 → 51 rx 106).
+- **sectors 65 + 90 are an ROR portal, not a door** — they connect the
+  building's second storey. Sector 65 is *additionally* slide-marked so it
+  can drive wall sprites 37/38, a small sliding gate at its entrance.
+  Owner explanation: **multiple ROR sectors must not be visible at once or
+  the view glitches**, so the level uses one giant ROR sector and hangs
+  the gate's motion on it — an engine-constraint-driven authoring
+  workaround, and a slide mechanism whose moved subject is *sprites*, not
+  its own walls.
+- **sector 99** — slides away and rats run out: an *ambush/flavor reveal*.
+- **sector 125** — a *curtain* that opens (slide as soft furnishing).
+- **sector 63** — a plain standalone sliding door.
+- **sector 70** — a shelf that is a *secret entrance*, sliding aside.
+- **the furnace** — sector 88 is only the interior; the whole crematorium
+  furnace composes a conveyor (sector 79) with sectors 81 and 89, embedded
+  in the wall — an *assembly spanning mechanisms and static parts* that is
+  deliberately hard to separate.
+- **sectors 86 + 139** — a sink with dirty water (fixture, not a door).
+
+Any swept-area/slide reading must describe all of these with ONE
+vocabulary and let embedding name them: narrative, secret, progression,
+ambush, furnishing, fixture, workaround. Two structural lessons: ROR links
+participate in mechanism composition (the casket) *and* impose global
+visibility constraints that reshape authoring (the 65/90 workaround); and
+a slide sector's moved subject may be carried sprites rather than its own
+geometry.
+
 **Before mining the excluded remainder, split it (2026-08-31).** The hygiene
 fix moved 30% of campaign object-context occurrences out of the default
 statistics and called them "wiring". Opening that bin
@@ -1044,18 +1086,76 @@ have no swept-area spatial-effect reading and are **excluded, not answered**.
 The turnstile family is inside that gap and is parked by owner decision; its
 passage blocker stands.
 
+## Base graph resolved, 2026-09-01
+
+**Three bases, one default, each saying what it assumes** (`conditional.BASES`):
+
+```text
+optimistic       reachability.portal_graph: every two-sided wall is a way.
+                 Reaches behind shut doors.
+blocking_aware   the default. portal_graph minus crossings whose wall carries
+                 the blocking cstat, plus the blocking walls a kWallGib
+                 mechanism reopens.
+strict           spatial.walkable_at_rest: blocking flag, width under 512 and
+                 opening under 4096 are all hard stops, none reopened.
+```
+
+**Only one wall mechanism reopens a blocked wall.** `triggers.cpp`
+`SetupGibWallState` clears `cstat & 65` and the masked bit on both sides when
+a kWallGib (type 511) XWALL's `state` is 1. Nothing else in the engine
+changes a wall's blocking bit — a Z-motion sector moves floors and ceilings,
+never cstat — so a blocking wall that is not a gib wall is shut for ever.
+
+Campaign, 43 maps: 60839 two-sided walls, 2272 blocking (3.7%). Of those,
+**205 are kWallGib, every one built shut and every one wired** — no
+exceptions to open by hand. The rest are permanently solid: 1183 plain, 850
+on a motion sector (the door's own jamb walls), 34 other XWALL types.
+
+Two rules the measurement forced. A **wall pair** is shut when *either* side
+carries the bit, because the engine sets it on one side and clears it on the
+other. A **sector pair** is shut only when *every* wall pair between the two
+blocks — reading it the other way made this base stricter than the strict
+base, and E1M1 fell to 28 sectors against strict's 34, which is how the
+mistake surfaced.
+
+```text
+map    sectors design |  optimistic | blocking-aware |   strict | sp_understand
+E1M1       155    146 |  125 > 131  |     97 > 120   |  34 > 38 |     2 > 2
+E1M2       313    293 |  231 > 238  |    226 > 233   | 218 > 225|   242 > 248
+E1M3       329    320 |  227 > 269  |    211 > 243   | 208 > 240|   243 > 271
+E1M4       398    387 |  260 > 362  |    253 > 357   | 231 > 308|   263 > 278
+E2M2       290    260 |  221 > 255  |    201 > 230   | 195 > 222|   204 > 221
+```
+
+Final-reachable agreement with `sp_understand` is still **exact 0 of 5** on
+every base; gaps on the blocking-aware base are 118, 15, 28, 79, 9. E1M1
+remains the outlier for the reason above, which is a defect in
+`analyze_progression`'s input rather than in any base.
+
+**The three Phase 9 pilots return identical answers on all three bases** —
+joins, reading, key and trigger kind unchanged. None of their crossings
+carries a blocking flag, so no base can move them; the test asserts it.
+
+**The 170 unknown-trigger routes are classified**, and they were never
+unknown triggers. The classifier was measuring the absence of a
+player-facing flag: `trigger_on` / `trigger_off` are *response* flags, not
+causes. Adding `relay` (listens on one channel, retransmits on another),
+`pickup`, `kill`, `generator` and `leave` (Blood's `trigger_exit`) takes the
+residue from **170 routes to 9 causes**, all one type: kTrapExploder sprites
+that transmit with no trigger flag and no `rx_id`, so nothing in the map says
+what fires them.
+
 ## Handoff to Phase 10
 
-1. **Neither base graph is right, and they are wrong in opposite
-   directions.** On five campaign maps the conditional frontier and
-   `analyze_progression` agree 0 of 5 on final reachability — but within 2
-   sectors on E1M3 and by 128 on E1M1. Diagnosed: E1M1's player start has two
-   wide portals carrying the wall cstat blocking flag, which `analyze_spatial`
-   files as blocked and `analyze_progression` never floods, halting at 2 of
-   146 design sectors; `reachability.portal_graph` ignores blocking flags
-   entirely and so counts sectors behind shut doors. A base that gates on the
-   blocking flag *and* re-opens it through the mechanism that drives it is the
-   single highest-value fix in the stack.
+1. ~~**Neither base graph is right, and they are wrong in opposite
+   directions.**~~ **RESOLVED 2026-09-01, and the diagnosis above was
+   wrong.** E1M1's two blocking-flagged start portals carry no XWALL, so
+   nothing in the engine can ever open them — `analyze_spatial` is right to
+   treat them as hard stops. The real cause is that the player start is a
+   four-sector box whose way out is a **paired stack link** to sector 28:
+   `analyze_spatial` files it under `known_non_portal_transitions` and
+   `analyze_progression` never reads that list. The blocking-aware base is
+   built and is now the default; see the Phase 9 status note below.
 2. The multi-view bundle should carry the conditional view beside the spatial
    one, and carry which base it ran on.
 3. 170 routes have a cause whose trigger kind is `unknown` — something
@@ -1087,6 +1187,43 @@ section listing disagreements between views.
 ## Exit criteria
 
 No single view pretends to be canonical; cross-view relations are explicit.
+
+## Status, 2026-09-01 — DONE for one map
+
+`bloodmap/bundle.py`, `reports/E1M4-bundle.json` (370 KiB) and
+`reports/E1M4-bundle.md`. **All eight views gathered, none missing.** Every
+view names the module that produced it and what that module assumes; nothing
+is merged.
+
+**E1M4 chosen over E3M2 and E6M1.** E3M2 exercises the conditional view
+harder (65 routes and 29 lifts against 26 and 4); E1M4 carries the most
+facades of any candidate (41) *and* three mechanisms already verified
+against the raw XSECTOR and the editor renderer independently of any code
+here. Checkability beat volume. The trade-off given up is lift variety.
+
+```text
+geometry            398 sectors, 3651 walls, 995 portals; 387 reachable
+assemblies          56, in 30 distinct shapes
+functional regions  257 candidates over 191 sectors (164 overlooks)
+facades             41: 37 single, 2 repeating, 2 centered
+effects             56 mechanisms; 29 not decidable from z alone
+conditional         26 routes; 16 blocking crossings, 4 reopened, 14 shut
+progression         253 at rest -> 357 after 5 rounds
+visual              8 frames; 1 sector refused for want of clearance
+```
+
+**Five disagreements, none reconciled.** Reachability 357 against
+`sp_understand`'s 278; 29 mechanisms both views refuse for the same reason
+but count differently; 4 sectors that are both frontage and structure; 30
+sectors the geometry calls player space that the traversal cannot enter; and
+the renderer refusing sector 276 — which is really an *agreement*, two
+readings with no shared code independently saying a body cannot stand there
+until the crack is shot.
+
+**NOT done.** One map only, and on that map 29 of 56 mechanisms are
+undecidable, so the bundle describes about half of E1M4's machinery. The
+rotate and slide swept-area reading is still the gap, and the turnstile
+inside it stays parked.
 
 ---
 
