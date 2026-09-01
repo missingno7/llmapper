@@ -696,73 +696,176 @@ def _signed_area(points) -> float:
     return total / 2.0
 
 
+#: The curtain family has four dialects in the originals. Measured over the
+#: 43 campaign maps plus the tutorials: 39 type-614 sectors wear 146/147, of
+#: which 26 carry one flagged wall, 12 carry two, and one (E2M1 s95) carries
+#: three. (A 40th sector turns up if `maps/blood/campaign/ASAVE1.map` is
+#: scanned -- editor autosave debris whose s125 duplicates E1M1's.)
+CURTAIN_LEAVES = (1, 2)
+#: What the leaf retracts INTO. `void` is the tutorial's default: the slot
+#: walls are one-sided and the fabric is simply the wall. `pocket` is
+#: DOOR-CURTAINSD s4: the slot is a real sector and the pocket-side wall is
+#: MASKED with an over_picnum, which is the only reason the fabric draws in
+#: the middle band there.
+CURTAIN_SLOTS = ("void", "pocket")
+#: DOOR-CURTAINSD s4's pocket overlay.
+POCKET_OVER_PICNUM = 1060
+#: block | masked | hitscan -- s4's pocket-side walls, cstat 81.
+POCKET_CSTAT = 1 | 16 | 64
+
+
 def curtain_spec(
     *,
     opening: tuple[int, int, int, int],
     axis: str,
     anchored: str = "high",
+    leaves: int = 1,
+    slot: str = "void",
     fin_width: int = CURTAIN_FIN_WIDTH,
     retracted: int = CURTAIN_RETRACTED,
     tile_width: int = CURTAIN_TILE_WIDTH,
 ) -> dict:
-    """The FACTS of a curtain fin: outline, fabric edges, markers, repeats.
+    """The FACTS of a curtain: outline, fabric edges, flags, markers, repeats.
 
     Separated from `curtain` for the same reason `turnstile_spec` is
     separated from `turnstile`: a project that speaks the levelprog TREE
     cannot call a PlanarLayout constructor, and blood-city speaks the tree.
-    Without this it would have to re-derive the fin -- which is how two
-    curtains come to disagree about what a curtain is.
 
-    Everything here is geometry and numbers. Nothing is placed.
+    **`leaves`** is 1 or 2. One leaf hangs from the anchored jamb and draws
+    the whole way across (DOOR-CURTAINS s3, and 26 of the campaign's 39). Two
+    leaves hang from both jambs and CONVERGE, which is why their tips carry
+    OPPOSITE flags -- `0x4000` moves with the travel and `0x8000` against it
+    (DOOR-CURTAINSD s2, E1M1 s125, and 12 of the 39).
+
+    **`slot`** is where a leaf retracts to. `void` leaves the slot walls
+    one-sided, so the fabric is the wall and draws everywhere. `pocket` makes
+    the slot a real sector, and then the pocket-side wall must be MASKED with
+    an over_picnum or the engine draws nothing in the walkable band
+    (engine.cpp:4938-4940: a two-sided wall's middle band is reached only for
+    a one-way or masked wall). The pocket regions are the caller's to build;
+    this returns where they go.
+
+    `anchored` names the jamb a ONE-leaf curtain hangs from. It is ignored
+    for two leaves, which hang from both.
     """
     if axis not in ("x", "y"):
         raise MechanismError(f"axis is 'x' or 'y', not {axis!r}")
     if anchored not in ("low", "high"):
         raise MechanismError("anchored is 'low' or 'high'")
+    if int(leaves) not in CURTAIN_LEAVES:
+        raise MechanismError(
+            f"leaves is 1 or 2, not {leaves!r}; the campaign's 39 curtains "
+            f"are 26 one-leaf and 12 two-leaf, and the single three-flag "
+            f"sector (E2M1 s95) is not a dialect this builds")
+    if slot not in CURTAIN_SLOTS:
+        raise MechanismError(f"slot is 'void' or 'pocket', not {slot!r}")
     x0, y0, x1, y1 = (int(v) for v in opening)
     if axis == "y":
         a0, a1, c0, c1 = y0, y1, x0, x1
     else:
         a0, a1, c0, c1 = x0, x1, y0, y1
-    if anchored == "low":
+    if int(leaves) == 1 and anchored == "low":
         a0, a1 = a1, a0
-    reach = a0 - a1
-    if abs(reach) <= abs(int(retracted)):
+    span = abs(a1 - a0)
+    if span <= abs(int(retracted)):
         raise MechanismError(
-            f"the fin is drawn {retracted} into an opening only {abs(reach)} "
+            f"the fin is drawn {retracted} into an opening only {span} "
             f"across; there is nothing for it to draw over")
     if abs(c1 - c0) <= int(fin_width):
         raise MechanismError(
             f"a {fin_width}-wide fin does not fit a {abs(c1 - c0)}-thick "
             f"doorway")
-    step = 1 if reach > 0 else -1
-    tip = a1 + step * int(retracted)
     middle = (c0 + c1) // 2
     f0, f1 = middle - int(fin_width) // 2, middle + int(fin_width) // 2
 
     def _pt(along: int, across: int) -> tuple[int, int]:
         return (across, along) if axis == "y" else (along, across)
 
-    outline = [_pt(a1, c0), _pt(a0, c0), _pt(a0, c1), _pt(a1, c1),
-               _pt(a1, f1), _pt(tip, f1), _pt(tip, f0), _pt(a1, f0)]
+    low, high = min(a0, a1), max(a0, a1)
+    tip_low = tip_high = None
+    if int(leaves) == 1:
+        step = 1 if (a0 - a1) > 0 else -1
+        tip = a1 + step * int(retracted)
+        jambs = [(a1, tip, 0x4000)]
+        #: the fabric closes the whole span
+        closed = [span]
+    else:
+        #: Two leaves converge from both jambs, each covering half. The tips
+        #: carry OPPOSITE flags, which is what makes them approach rather
+        #: than travel together.
+        tip_low = low + int(retracted)
+        tip_high = high - int(retracted)
+        jambs = [(low, tip_low, 0x4000), (high, tip_high, 0x8000)]
+        #: named for the outline walk below
+        closed = [span // 2, span // 2]
+
+    #: The notch is CUT OUT of the doorway rect, not stuck onto it -- the
+    #: space inside it belongs to nobody, which is what leaves its three
+    #: walls one-sided and the fabric visible. So the outline is a traversal
+    #: of the rect with each notch inserted where the walk reaches its jamb.
+    #: Appending them instead gave a polygon that crossed itself, because
+    #: two notches at opposite ends cannot both follow the fourth corner.
+    fabric, flagged, repeats, pockets = [], [], [], []
+
+    def _notch(root, tip, first, second):
+        """The four points of a slot cut inward from the `root` jamb."""
+        return [_pt(root, first), _pt(tip, first),
+                _pt(tip, second), _pt(root, second)]
+
+    if int(leaves) == 1:
+        outline = ([_pt(a1, c0), _pt(a0, c0), _pt(a0, c1), _pt(a1, c1)]
+                   + _notch(a1, jambs[0][1], f1, f0))
+    else:
+        #: down c0, up the high jamb through its notch, back along c1, and
+        #: down the low jamb through its own.
+        outline = ([_pt(low, c0), _pt(high, c0)]
+                   + _notch(high, tip_high, f0, f1)
+                   + [_pt(high, c1), _pt(low, c1)]
+                   + _notch(low, tip_low, f1, f0))
+
+    for index, (root, tip, flag) in enumerate(jambs):
+        first, second = (f1, f0) if (int(leaves) == 1 or index == 1) else (f0, f1)
+        fabric += [(_pt(root, first), _pt(tip, first)),
+                   (_pt(tip, first), _pt(tip, second)),
+                   (_pt(tip, second), _pt(root, second))]
+        flagged.append({"edge": (_pt(tip, first), _pt(tip, second)),
+                        "cstat": flag,
+                        "moves": "with" if flag == 0x4000 else "against"})
+        shut = closed[index]
+        repeats += [natural_x_repeat(shut, int(tile_width)),
+                    natural_x_repeat(int(fin_width), int(tile_width)),
+                    natural_x_repeat(shut, int(tile_width))]
+        if slot == "pocket":
+            back = root - (tip - root)
+            corner_a, corner_b = _pt(root, f0), _pt(back, f1)
+            pockets.append({
+                "rect": (min(corner_a[0], corner_b[0]),
+                         min(corner_a[1], corner_b[1]),
+                         max(corner_a[0], corner_b[0]),
+                         max(corner_a[1], corner_b[1])),
+                "over_picnum": POCKET_OVER_PICNUM, "cstat": POCKET_CSTAT})
+
     if _signed_area(outline) < 0:
         outline.reverse()
-    closed_span = abs(reach)
+
     return {
-        "outline": outline,
-        #: the fin's two sides and its free end, in that order
-        "fabric": ((_pt(a1, f1), _pt(tip, f1)),
-                   (_pt(tip, f1), _pt(tip, f0)),
-                   (_pt(tip, f0), _pt(a1, f0))),
-        #: only the free end is flagged: it is what drags the fabric across
-        "flagged": (_pt(tip, f1), _pt(tip, f0)),
-        "off_at": _pt(a0, middle), "on_at": _pt(tip, middle),
-        "closed_span": closed_span,
-        #: the repeat is authored for the CLOSED span, not the drawn one
-        "x_repeats": (natural_x_repeat(closed_span, int(tile_width)),
-                      natural_x_repeat(int(fin_width), int(tile_width)),
-                      natural_x_repeat(closed_span, int(tile_width))),
-        "anchored_at": a1, "tip_drawn_at": tip, "closed_at": a0,
+        "outline": outline, "leaves": int(leaves), "slot": slot,
+        "fabric": tuple(fabric),
+        "flagged": tuple(flagged),
+        #: kept for the one-leaf callers that predate `leaves`
+        "flagged_edge": flagged[0]["edge"],
+        #: DOOR-CURTAINSD s2 places a TWO-leaf pair's markers at the span's
+        #: MIDDLE (off) and at one leaf's tip (on), so the delta is
+        #: `span/2 - retracted` -- how far each tip travels to meet the
+        #: other. Measured on s2: span 2048, retracted 64, travel 960.
+        #: A one-leaf pair spans the whole opening instead.
+        "off_at": (_pt(a0, middle) if int(leaves) == 1
+                   else _pt((low + high) // 2, middle)),
+        "on_at": (_pt(jambs[0][1], middle) if int(leaves) == 1
+                  else _pt(tip_high, middle)),
+        "closed_span": span, "x_repeats": tuple(repeats),
+        "pockets": tuple(pockets),
+        "anchored_at": a1, "closed_at": a0,
     }
 
 
@@ -777,10 +880,12 @@ def curtain(
     floor_z: int,
     ceiling_z: int,
     anchored: str = "high",
+    leaves: int = 1,
+    slot: str = "void",
     fin_width: int = CURTAIN_FIN_WIDTH,
+    retracted: int = CURTAIN_RETRACTED,
     tile_width: int = CURTAIN_TILE_WIDTH,
     frame_picnum: int | None = None,
-    retracted: int = CURTAIN_RETRACTED,
     state: int = 0,
     picnum: int = CURTAIN_PICNUM,
     busy_out: int = CURTAIN_BUSY,
@@ -788,71 +893,30 @@ def curtain(
     route: str = "remote",
     **region_kwargs,
 ) -> dict:
-    """A curtain: an internal FIN that extends across its own doorway.
+    """A curtain: internal fins that draw across their own doorway.
 
-    Built to `maps/blood/mechanism/Vanilla/DOOR-CURTAINS.map`, which is the
-    tutorial for exactly this and settles two things this project had wrong.
+    Built to `maps/blood/mechanism/Vanilla/DOOR-CURTAINS.map` and its double,
+    and it now knows both leaf counts. `curtain_spec` carries the geometry so
+    this and blood-city's tree-language version cannot drift apart.
 
-    **The fabric is a FIN inside the sector's own outline**, not a separate
-    thin sector and not a pair of caps closing on each other. s3 is eight
-    walls: the four sides of the doorway, then the outline runs back along
-    the anchored edge into a narrow tab -- 64 wide of a 256 opening, centred
-    -- whose free END is the one flagged wall. Extending it drags that end
-    across the doorway and the tab's two side walls STRETCH, which is the
-    fabric being drawn. Because every vertex that moves is interior to this
-    sector's own outline, nothing outside it can be deformed: the isolation
-    seam is part of the sector, not a split of somebody else's wall.
+    ONE leaf hangs from the anchored jamb and draws the whole way across --
+    26 of the campaign's 39. TWO hang from both jambs and CONVERGE, their
+    tips carrying opposite flags, which is the only thing that makes them
+    approach rather than travel together -- 12 of the 39.
 
-    **Markers are state-anchored.** Type 3 is the position for state OFF and
-    type 4 for state ON, the geometry is DRAWN at the ON pose, and `state`
-    says which one it snaps to at load. s3's fin tip is saved at y -1152,
-    exactly where its type-4 marker sits, and its type-3 marker is away at
-    -2048 where the fabric will be when drawn across. With `state` 0 -- the
-    tutorial's default, and this one's -- the curtain comes up CLOSED.
+    Markers are state-anchored: type 3 is the position for state OFF, type 4
+    for ON, the geometry is saved at ON, and `state` decides the snap. With
+    state 0 the curtain comes up CLOSED.
 
-    So `retracted` is how far the tab protrudes as DRAWN (open), and the OFF
-    marker is at the far side of the opening (closed). Getting that pair the
-    wrong way round is what ran the zoo's curtains backwards.
+    The repeats are authored for the CLOSED span, not the drawn one. The file
+    holds the gathered bundle; sizing the texture to that is what left this
+    project's first curtain at forty-eight times natural stretch.
     """
-    if axis not in ("x", "y"):
-        raise MechanismError(f"{name}: axis is 'x' or 'y', not {axis!r}")
-    if anchored not in ("low", "high"):
-        raise MechanismError(f"{name}: anchored is 'low' or 'high'")
+    spec = curtain_spec(opening=opening, axis=axis, anchored=anchored,
+                        leaves=leaves, slot=slot, fin_width=fin_width,
+                        retracted=retracted, tile_width=tile_width)
     if state not in (0, 1):
         raise MechanismError(f"{name}: state is 0 or 1")
-    x0, y0, x1, y1 = (int(v) for v in opening)
-    #: `along` is the way the fabric draws; `across` is the doorway's own
-    #: thickness, which the fin sits inside.
-    if axis == "y":
-        a0, a1, c0, c1 = y0, y1, x0, x1
-    else:
-        a0, a1, c0, c1 = x0, x1, y0, y1
-    if anchored == "low":
-        a0, a1 = a1, a0
-    #: a1 is now the anchored edge and a0 the far side.
-    reach = a0 - a1
-    if abs(reach) <= abs(int(retracted)):
-        raise MechanismError(
-            f"{name}: the fin is drawn {retracted} into an opening only "
-            f"{abs(reach)} across; there is nothing for it to draw over")
-    if abs(c1 - c0) <= int(fin_width):
-        raise MechanismError(
-            f"{name}: a {fin_width}-wide fin does not fit a "
-            f"{abs(c1 - c0)}-thick doorway")
-    step = 1 if reach > 0 else -1
-    tip = a1 + step * int(retracted)
-    middle = (c0 + c1) // 2
-    f0, f1 = middle - int(fin_width) // 2, middle + int(fin_width) // 2
-
-    def _pt(along: int, across: int) -> tuple[int, int]:
-        return (across, along) if axis == "y" else (along, across)
-
-    #: The tutorial's own wall order: round the doorway, then back along the
-    #: anchored edge and out into the tab.
-    outline = [_pt(a1, c0), _pt(a0, c0), _pt(a0, c1), _pt(a1, c1),
-               _pt(a1, f1), _pt(tip, f1), _pt(tip, f0), _pt(a1, f0)]
-    if _signed_area(outline) < 0:
-        outline.reverse()
 
     behavior = {
         "busy_time_a": int(busy_out), "busy_time_b": int(busy_back),
@@ -861,68 +925,34 @@ def curtain(
     behavior.update(motion.wiring(route=route, channel=channel,
                                   command=motion.CMD_TOGGLE,
                                   receiver_state=int(state)))
-    #: NOT pushable through the sector. A commit of mine claimed
-    #: DOOR-CURTAINS s3 carries `trigger_wall_push`; it does not. The whole of
-    #: s3's XSECTOR is rx 100, two busy times and the marker pair, and the
-    #: shove arrives from XWALLs on the fabric faces (wired below). Putting
-    #: the flag on the sector instead makes the entire doorway a button,
-    #: including the frame, which is not what a curtain is.
-    #: Only the FABRIC wears the fabric. DOOR-CURTAINS s3 has eight walls and
-    #: exactly three of them carry tile 146; the doorway's own reveal is the
-    #: room's material. Painting the whole region with the cloth tile put
-    #: curtain on the door frame, which reads as a mistake even when the
-    #: mechanism is right.
-    layout.add_region(leaf_region, outline, role="doorway", type=614,
+    #: NOT pushable through the sector: the shove belongs on the cloth, as
+    #: XWALLs, which is how the tutorial wires it. A sector flag would make
+    #: the whole doorway a button, frame included.
+    layout.add_region(leaf_region, spec["outline"], role="doorway", type=614,
                       floor_z=floor_z, ceiling_z=ceiling_z,
                       wall_picnum=int(frame_picnum if frame_picnum is not None
                                       else picnum),
                       sector_behavior=behavior, **region_kwargs)
-    #: The fin's free END, and only that.
-    layout.carry_wall(leaf_region, _pt(tip, f1), _pt(tip, f0), moves="with")
-
-    #: The three fabric faces become the buttons, as in the tutorial: the two
-    #: sides of the tab and its free end. A shove on the cloth opens it; a
-    #: shove on the door frame does nothing, which is right.
-    fabric = ((_pt(a1, f1), _pt(tip, f1)), (_pt(tip, f1), _pt(tip, f0)),
-              (_pt(tip, f0), _pt(a1, f0)))
-    for edge in fabric:
+    for flag in spec["flagged"]:
+        edge = flag["edge"]
+        layout.carry_wall(leaf_region, edge[0], edge[1], moves=flag["moves"])
+    for edge, repeat in zip(spec["fabric"], spec["x_repeats"]):
+        layout.paint_wall(leaf_region, edge[0], edge[1],
+                          picnum=int(picnum), x_repeat=int(repeat))
         motion.wall_button(layout, leaf_region, edge, channel=channel,
                            command=motion.CMD_TOGGLE, receiver_state=state)
 
-    #: THE FABRIC IS CALIBRATED FOR THE CLOSED SPAN, NOT THE DRAWN ONE.
-    #:
-    #: The geometry is saved at the ON pose, so the sides are at their SHORT
-    #: length in the file -- and sizing the texture to that is what left the
-    #: zoo's curtain at 48 times natural stretch when drawn across. A curtain
-    #: is a thing you look at closed; open it is a gathered bundle. So the
-    #: repeat is computed for the closed span, which makes the drape natural
-    #: when shut and SQUASHES it hard as it gathers, which is what cloth
-    #: does.
-    #:
-    #: Natural is `length / x_repeat == 2 * tile_width`
-    #: (`texture_align.NATURAL_TEXEL_SCALE`), and DOOR-CURTAINS agrees to the
-    #: unit: s3 and s53 carry x_repeat 16 over a 1024 closed span on tile 146
-    #: (32 wide), and 1 over their 64-wide free end. s24 is the one exemplar
-    #: that departs, at twice that -- deliberately coarser cloth.
-    closed_span = abs(reach)
-    for edge, span in zip(fabric, (closed_span, int(fin_width), closed_span)):
-        layout.paint_wall(leaf_region, edge[0], edge[1],
-                          picnum=int(picnum),
-                          x_repeat=natural_x_repeat(span, int(tile_width)))
-
     markers = motion.place_markers(
         layout, name.replace(":", "_"), driven_region=leaf_region,
-        off_at=_pt(a0, middle), on_at=_pt(tip, middle), z=int(floor_z))
+        off_at=spec["off_at"], on_at=spec["on_at"], z=int(floor_z))
     return {
-        "leaf": leaf_region, "channel": int(channel),
-        "opening": (min(a0, a1), max(a0, a1)),
-        "fin": (min(f0, f1), max(f0, f1)),
-        "anchored_at": a1, "tip_drawn_at": tip, "closed_at": a0,
+        "leaf": leaf_region, "channel": int(channel), "leaves": int(leaves),
+        "slot": slot, "spec": spec,
         "state": int(state), "rests": "open" if state else "closed",
         "markers": markers,
-        #: Every moved vertex is interior to this sector's own outline.
         "declared_motion": [leaf_region],
     }
+
 
 def planar_door(
     layout: PlanarLayout,
