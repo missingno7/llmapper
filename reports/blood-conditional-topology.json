@@ -3,34 +3,37 @@
   "schema_version": 1,
   "population": "blood-campaign",
   "totals": {
-    "z_motion_mechanisms": 1365,
-    "wired": 1235,
-    "inert_no_cause": 130,
-    "scoped_out_rotate_slide": 657,
+    "z_motion_mechanisms": 1353,
+    "wired": 1192,
+    "inert_no_cause": 161,
+    "swept_mechanisms": 628,
+    "swept_recorded_but_not_gated": 623,
+    "scoped_out_no_reading": 10,
     "conditional": 4378,
-    "never": 1085,
+    "never": 1071,
     "irreversible": 967,
     "keyed": 312,
     "blocking_crossings": 1392,
     "blocking_reopened_by_a_gib_wall": 214,
     "blocking_shut_for_ever": 1190,
-    "routes": 1178,
+    "channels_fired_at_level_start": 228,
+    "routes": 1175,
     "routes_keyed": 87,
     "routes_irreversible": 268,
     "maps": 43
   },
   "routes_by_reads_as": {
-    "changes what fits through": 774,
+    "changes what fits through": 773,
     "carries a body between levels": 182,
     "both": 134,
-    "neither": 88
+    "neither": 86
   },
   "routes_by_trigger": {
-    "push": 488,
+    "push": 276,
     "shot": 303,
-    "switch": 285,
-    "relay": 125,
-    "touch": 69,
+    "switch": 498,
+    "relay": 123,
+    "touch": 70,
     "unknown": 9,
     "leave": 3,
     "generator": 1,
@@ -38,7 +41,7 @@
     "kill": 1
   },
   "routes_by_mechanism_kind": {
-    "sector": 1069,
+    "sector": 1066,
     "wall": 109
   },
   "system_channels_as_cause": {},
@@ -46,11 +49,13 @@
     "E1M1": {
       "sectors": 155,
       "summary": {
-        "z_motion_mechanisms": 14,
-        "wired": 12,
-        "inert_no_cause": 2,
-        "scoped_out_rotate_slide": 14,
-        "conditional": 53,
+        "z_motion_mechanisms": 13,
+        "wired": 10,
+        "inert_no_cause": 3,
+        "swept_mechanisms": 13,
+        "swept_recorded_but_not_gated": 13,
+        "scoped_out_no_reading": 1,
+        "conditional": 47,
         "never": 14,
         "irreversible": 38,
         "keyed": 0,
@@ -58,18 +63,21 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 40,
         "blocking_reopened_by_a_gib_wall": 6,
-        "blocking_shut_for_ever": 34
+        "blocking_shut_for_ever": 34,
+        "channels_fired_at_level_start": 7
       },
-      "routes": 13
+      "routes": 12
     },
     "E1M2": {
       "sectors": 313,
       "summary": {
         "z_motion_mechanisms": 23,
-        "wired": 23,
-        "inert_no_cause": 0,
-        "scoped_out_rotate_slide": 23,
-        "conditional": 107,
+        "wired": 21,
+        "inert_no_cause": 2,
+        "swept_mechanisms": 21,
+        "swept_recorded_but_not_gated": 20,
+        "scoped_out_no_reading": 0,
+        "conditional": 111,
         "never": 21,
         "irreversible": 44,
         "keyed": 4,
@@ -77,9 +85,10 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 24,
         "blocking_reopened_by_a_gib_wall": 6,
-        "blocking_shut_for_ever": 18
+        "blocking_shut_for_ever": 18,
+        "channels_fired_at_level_start": 4
       },
-      "routes": 23
+      "routes": 24
     },
     "E1M3": {
       "sectors": 329,
@@ -87,7 +96,9 @@
         "z_motion_mechanisms": 49,
         "wired": 41,
         "inert_no_cause": 8,
-        "scoped_out_rotate_slide": 42,
+        "swept_mechanisms": 42,
+        "swept_recorded_but_not_gated": 42,
+        "scoped_out_no_reading": 0,
         "conditional": 177,
         "never": 86,
         "irreversible": 4,
@@ -96,7 +107,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 128,
         "blocking_reopened_by_a_gib_wall": 40,
-        "blocking_shut_for_ever": 88
+        "blocking_shut_for_ever": 88,
+        "channels_fired_at_level_start": 11
       },
       "routes": 47
     },
@@ -104,9 +116,11 @@
       "sectors": 398,
       "summary": {
         "z_motion_mechanisms": 27,
-        "wired": 26,
-        "inert_no_cause": 1,
-        "scoped_out_rotate_slide": 29,
+        "wired": 23,
+        "inert_no_cause": 4,
+        "swept_mechanisms": 26,
+        "swept_recorded_but_not_gated": 26,
+        "scoped_out_no_reading": 0,
         "conditional": 87,
         "never": 14,
         "irreversible": 26,
@@ -115,7 +129,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 16,
         "blocking_reopened_by_a_gib_wall": 4,
-        "blocking_shut_for_ever": 14
+        "blocking_shut_for_ever": 14,
+        "channels_fired_at_level_start": 4
       },
       "routes": 26
     },
@@ -125,7 +140,9 @@
         "z_motion_mechanisms": 45,
         "wired": 45,
         "inert_no_cause": 0,
-        "scoped_out_rotate_slide": 16,
+        "swept_mechanisms": 16,
+        "swept_recorded_but_not_gated": 16,
+        "scoped_out_no_reading": 0,
         "conditional": 116,
         "never": 66,
         "irreversible": 7,
@@ -134,7 +151,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 98,
         "blocking_reopened_by_a_gib_wall": 10,
-        "blocking_shut_for_ever": 88
+        "blocking_shut_for_ever": 88,
+        "channels_fired_at_level_start": 4
       },
       "routes": 40
     },
@@ -142,9 +160,11 @@
       "sectors": 526,
       "summary": {
         "z_motion_mechanisms": 81,
-        "wired": 69,
-        "inert_no_cause": 12,
-        "scoped_out_rotate_slide": 24,
+        "wired": 67,
+        "inert_no_cause": 14,
+        "swept_mechanisms": 21,
+        "swept_recorded_but_not_gated": 21,
+        "scoped_out_no_reading": 1,
         "conditional": 224,
         "never": 73,
         "irreversible": 29,
@@ -153,7 +173,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 10,
         "blocking_reopened_by_a_gib_wall": 4,
-        "blocking_shut_for_ever": 6
+        "blocking_shut_for_ever": 6,
+        "channels_fired_at_level_start": 5
       },
       "routes": 58
     },
@@ -163,7 +184,9 @@
         "z_motion_mechanisms": 6,
         "wired": 5,
         "inert_no_cause": 1,
-        "scoped_out_rotate_slide": 0,
+        "swept_mechanisms": 0,
+        "swept_recorded_but_not_gated": 0,
+        "scoped_out_no_reading": 0,
         "conditional": 24,
         "never": 6,
         "irreversible": 0,
@@ -172,7 +195,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 4,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 4
+        "blocking_shut_for_ever": 4,
+        "channels_fired_at_level_start": 4
       },
       "routes": 5
     },
@@ -180,9 +204,11 @@
       "sectors": 433,
       "summary": {
         "z_motion_mechanisms": 29,
-        "wired": 25,
-        "inert_no_cause": 4,
-        "scoped_out_rotate_slide": 24,
+        "wired": 19,
+        "inert_no_cause": 10,
+        "swept_mechanisms": 18,
+        "swept_recorded_but_not_gated": 18,
+        "scoped_out_no_reading": 0,
         "conditional": 88,
         "never": 18,
         "irreversible": 49,
@@ -191,7 +217,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 6,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 6
+        "blocking_shut_for_ever": 6,
+        "channels_fired_at_level_start": 13
       },
       "routes": 24
     },
@@ -199,9 +226,11 @@
       "sectors": 249,
       "summary": {
         "z_motion_mechanisms": 14,
-        "wired": 14,
-        "inert_no_cause": 0,
-        "scoped_out_rotate_slide": 21,
+        "wired": 13,
+        "inert_no_cause": 1,
+        "swept_mechanisms": 20,
+        "swept_recorded_but_not_gated": 20,
+        "scoped_out_no_reading": 0,
         "conditional": 46,
         "never": 21,
         "irreversible": 24,
@@ -210,7 +239,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 32,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 32
+        "blocking_shut_for_ever": 32,
+        "channels_fired_at_level_start": 13
       },
       "routes": 10
     },
@@ -220,7 +250,9 @@
         "z_motion_mechanisms": 19,
         "wired": 19,
         "inert_no_cause": 0,
-        "scoped_out_rotate_slide": 10,
+        "swept_mechanisms": 10,
+        "swept_recorded_but_not_gated": 10,
+        "scoped_out_no_reading": 0,
         "conditional": 57,
         "never": 1,
         "irreversible": 0,
@@ -229,7 +261,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 28,
         "blocking_reopened_by_a_gib_wall": 8,
-        "blocking_shut_for_ever": 20
+        "blocking_shut_for_ever": 20,
+        "channels_fired_at_level_start": 8
       },
       "routes": 21
     },
@@ -239,7 +272,9 @@
         "z_motion_mechanisms": 44,
         "wired": 40,
         "inert_no_cause": 4,
-        "scoped_out_rotate_slide": 10,
+        "swept_mechanisms": 10,
+        "swept_recorded_but_not_gated": 10,
+        "scoped_out_no_reading": 0,
         "conditional": 122,
         "never": 30,
         "irreversible": 76,
@@ -248,7 +283,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 34,
         "blocking_reopened_by_a_gib_wall": 4,
-        "blocking_shut_for_ever": 34
+        "blocking_shut_for_ever": 34,
+        "channels_fired_at_level_start": 4
       },
       "routes": 34
     },
@@ -258,7 +294,9 @@
         "z_motion_mechanisms": 31,
         "wired": 30,
         "inert_no_cause": 1,
-        "scoped_out_rotate_slide": 36,
+        "swept_mechanisms": 35,
+        "swept_recorded_but_not_gated": 35,
+        "scoped_out_no_reading": 1,
         "conditional": 108,
         "never": 14,
         "irreversible": 20,
@@ -267,7 +305,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 88,
         "blocking_reopened_by_a_gib_wall": 10,
-        "blocking_shut_for_ever": 78
+        "blocking_shut_for_ever": 78,
+        "channels_fired_at_level_start": 4
       },
       "routes": 32
     },
@@ -277,7 +316,9 @@
         "z_motion_mechanisms": 38,
         "wired": 35,
         "inert_no_cause": 3,
-        "scoped_out_rotate_slide": 39,
+        "swept_mechanisms": 36,
+        "swept_recorded_but_not_gated": 36,
+        "scoped_out_no_reading": 3,
         "conditional": 114,
         "never": 46,
         "irreversible": 90,
@@ -286,17 +327,20 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 26,
         "blocking_reopened_by_a_gib_wall": 14,
-        "blocking_shut_for_ever": 12
+        "blocking_shut_for_ever": 12,
+        "channels_fired_at_level_start": 4
       },
       "routes": 34
     },
     "E2M6": {
       "sectors": 237,
       "summary": {
-        "z_motion_mechanisms": 30,
-        "wired": 26,
-        "inert_no_cause": 4,
-        "scoped_out_rotate_slide": 17,
+        "z_motion_mechanisms": 28,
+        "wired": 23,
+        "inert_no_cause": 5,
+        "swept_mechanisms": 18,
+        "swept_recorded_but_not_gated": 18,
+        "scoped_out_no_reading": 0,
         "conditional": 69,
         "never": 25,
         "irreversible": 12,
@@ -305,7 +349,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 16,
         "blocking_reopened_by_a_gib_wall": 4,
-        "blocking_shut_for_ever": 12
+        "blocking_shut_for_ever": 12,
+        "channels_fired_at_level_start": 4
       },
       "routes": 21
     },
@@ -313,9 +358,11 @@
       "sectors": 449,
       "summary": {
         "z_motion_mechanisms": 82,
-        "wired": 81,
-        "inert_no_cause": 1,
-        "scoped_out_rotate_slide": 8,
+        "wired": 80,
+        "inert_no_cause": 2,
+        "swept_mechanisms": 7,
+        "swept_recorded_but_not_gated": 7,
+        "scoped_out_no_reading": 0,
         "conditional": 379,
         "never": 91,
         "irreversible": 20,
@@ -324,7 +371,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 0,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 0
+        "blocking_shut_for_ever": 0,
+        "channels_fired_at_level_start": 4
       },
       "routes": 68
     },
@@ -334,7 +382,9 @@
         "z_motion_mechanisms": 3,
         "wired": 3,
         "inert_no_cause": 0,
-        "scoped_out_rotate_slide": 0,
+        "swept_mechanisms": 0,
+        "swept_recorded_but_not_gated": 0,
+        "scoped_out_no_reading": 0,
         "conditional": 15,
         "never": 5,
         "irreversible": 0,
@@ -343,26 +393,30 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 0,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 0
+        "blocking_shut_for_ever": 0,
+        "channels_fired_at_level_start": 6
       },
       "routes": 3
     },
     "E2M9": {
       "sectors": 166,
       "summary": {
-        "z_motion_mechanisms": 23,
-        "wired": 22,
-        "inert_no_cause": 1,
-        "scoped_out_rotate_slide": 48,
+        "z_motion_mechanisms": 21,
+        "wired": 19,
+        "inert_no_cause": 2,
+        "swept_mechanisms": 49,
+        "swept_recorded_but_not_gated": 49,
+        "scoped_out_no_reading": 0,
         "conditional": 82,
-        "never": 14,
+        "never": 11,
         "irreversible": 7,
         "keyed": 0,
         "base": "blocking_aware",
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 0,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 0
+        "blocking_shut_for_ever": 0,
+        "channels_fired_at_level_start": 4
       },
       "routes": 19
     },
@@ -372,7 +426,9 @@
         "z_motion_mechanisms": 34,
         "wired": 34,
         "inert_no_cause": 0,
-        "scoped_out_rotate_slide": 17,
+        "swept_mechanisms": 17,
+        "swept_recorded_but_not_gated": 17,
+        "scoped_out_no_reading": 0,
         "conditional": 163,
         "never": 44,
         "irreversible": 74,
@@ -381,7 +437,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 86,
         "blocking_reopened_by_a_gib_wall": 18,
-        "blocking_shut_for_ever": 68
+        "blocking_shut_for_ever": 68,
+        "channels_fired_at_level_start": 5
       },
       "routes": 39
     },
@@ -389,9 +446,11 @@
       "sectors": 567,
       "summary": {
         "z_motion_mechanisms": 68,
-        "wired": 67,
-        "inert_no_cause": 1,
-        "scoped_out_rotate_slide": 28,
+        "wired": 65,
+        "inert_no_cause": 3,
+        "swept_mechanisms": 25,
+        "swept_recorded_but_not_gated": 25,
+        "scoped_out_no_reading": 1,
         "conditional": 219,
         "never": 49,
         "irreversible": 30,
@@ -400,7 +459,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 54,
         "blocking_reopened_by_a_gib_wall": 2,
-        "blocking_shut_for_ever": 52
+        "blocking_shut_for_ever": 52,
+        "channels_fired_at_level_start": 4
       },
       "routes": 65
     },
@@ -410,7 +470,9 @@
         "z_motion_mechanisms": 30,
         "wired": 30,
         "inert_no_cause": 0,
-        "scoped_out_rotate_slide": 7,
+        "swept_mechanisms": 7,
+        "swept_recorded_but_not_gated": 7,
+        "scoped_out_no_reading": 0,
         "conditional": 138,
         "never": 21,
         "irreversible": 9,
@@ -419,7 +481,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 38,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 38
+        "blocking_shut_for_ever": 38,
+        "channels_fired_at_level_start": 4
       },
       "routes": 22
     },
@@ -427,9 +490,11 @@
       "sectors": 434,
       "summary": {
         "z_motion_mechanisms": 31,
-        "wired": 30,
-        "inert_no_cause": 1,
-        "scoped_out_rotate_slide": 35,
+        "wired": 29,
+        "inert_no_cause": 2,
+        "swept_mechanisms": 34,
+        "swept_recorded_but_not_gated": 34,
+        "scoped_out_no_reading": 0,
         "conditional": 108,
         "never": 11,
         "irreversible": 2,
@@ -438,36 +503,42 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 56,
         "blocking_reopened_by_a_gib_wall": 12,
-        "blocking_shut_for_ever": 44
+        "blocking_shut_for_ever": 44,
+        "channels_fired_at_level_start": 5
       },
       "routes": 34
     },
     "E3M5": {
       "sectors": 341,
       "summary": {
-        "z_motion_mechanisms": 49,
-        "wired": 44,
-        "inert_no_cause": 5,
-        "scoped_out_rotate_slide": 24,
-        "conditional": 120,
-        "never": 82,
+        "z_motion_mechanisms": 44,
+        "wired": 37,
+        "inert_no_cause": 7,
+        "swept_mechanisms": 27,
+        "swept_recorded_but_not_gated": 26,
+        "scoped_out_no_reading": 0,
+        "conditional": 114,
+        "never": 76,
         "irreversible": 0,
         "keyed": 9,
         "base": "blocking_aware",
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 36,
         "blocking_reopened_by_a_gib_wall": 2,
-        "blocking_shut_for_ever": 34
+        "blocking_shut_for_ever": 34,
+        "channels_fired_at_level_start": 13
       },
-      "routes": 34
+      "routes": 30
     },
     "E3M6": {
       "sectors": 533,
       "summary": {
         "z_motion_mechanisms": 59,
-        "wired": 58,
-        "inert_no_cause": 1,
-        "scoped_out_rotate_slide": 18,
+        "wired": 57,
+        "inert_no_cause": 2,
+        "swept_mechanisms": 17,
+        "swept_recorded_but_not_gated": 17,
+        "scoped_out_no_reading": 0,
         "conditional": 182,
         "never": 85,
         "irreversible": 2,
@@ -476,7 +547,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 104,
         "blocking_reopened_by_a_gib_wall": 10,
-        "blocking_shut_for_ever": 94
+        "blocking_shut_for_ever": 94,
+        "channels_fired_at_level_start": 4
       },
       "routes": 55
     },
@@ -486,7 +558,9 @@
         "z_motion_mechanisms": 7,
         "wired": 6,
         "inert_no_cause": 1,
-        "scoped_out_rotate_slide": 1,
+        "swept_mechanisms": 1,
+        "swept_recorded_but_not_gated": 1,
+        "scoped_out_no_reading": 0,
         "conditional": 18,
         "never": 3,
         "irreversible": 0,
@@ -495,18 +569,21 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 0,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 0
+        "blocking_shut_for_ever": 0,
+        "channels_fired_at_level_start": 6
       },
       "routes": 6
     },
     "E3M8": {
       "sectors": 631,
       "summary": {
-        "z_motion_mechanisms": 59,
-        "wired": 59,
+        "z_motion_mechanisms": 58,
+        "wired": 58,
         "inert_no_cause": 0,
-        "scoped_out_rotate_slide": 11,
-        "conditional": 253,
+        "swept_mechanisms": 12,
+        "swept_recorded_but_not_gated": 12,
+        "scoped_out_no_reading": 0,
+        "conditional": 251,
         "never": 3,
         "irreversible": 20,
         "keyed": 12,
@@ -514,17 +591,20 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 22,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 22
+        "blocking_shut_for_ever": 22,
+        "channels_fired_at_level_start": 4
       },
-      "routes": 59
+      "routes": 58
     },
     "E4M1": {
       "sectors": 215,
       "summary": {
         "z_motion_mechanisms": 18,
-        "wired": 18,
-        "inert_no_cause": 0,
-        "scoped_out_rotate_slide": 7,
+        "wired": 17,
+        "inert_no_cause": 1,
+        "swept_mechanisms": 6,
+        "swept_recorded_but_not_gated": 6,
+        "scoped_out_no_reading": 0,
         "conditional": 52,
         "never": 28,
         "irreversible": 22,
@@ -533,7 +613,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 10,
         "blocking_reopened_by_a_gib_wall": 2,
-        "blocking_shut_for_ever": 8
+        "blocking_shut_for_ever": 8,
+        "channels_fired_at_level_start": 4
       },
       "routes": 15
     },
@@ -541,10 +622,12 @@
       "sectors": 291,
       "summary": {
         "z_motion_mechanisms": 4,
-        "wired": 3,
-        "inert_no_cause": 1,
-        "scoped_out_rotate_slide": 16,
-        "conditional": 10,
+        "wired": 1,
+        "inert_no_cause": 3,
+        "swept_mechanisms": 14,
+        "swept_recorded_but_not_gated": 13,
+        "scoped_out_no_reading": 0,
+        "conditional": 14,
         "never": 0,
         "irreversible": 0,
         "keyed": 4,
@@ -552,9 +635,10 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 56,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 56
+        "blocking_shut_for_ever": 56,
+        "channels_fired_at_level_start": 4
       },
-      "routes": 3
+      "routes": 4
     },
     "E4M3": {
       "sectors": 471,
@@ -562,7 +646,9 @@
         "z_motion_mechanisms": 25,
         "wired": 25,
         "inert_no_cause": 0,
-        "scoped_out_rotate_slide": 4,
+        "swept_mechanisms": 4,
+        "swept_recorded_but_not_gated": 4,
+        "scoped_out_no_reading": 0,
         "conditional": 68,
         "never": 2,
         "irreversible": 6,
@@ -571,7 +657,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 14,
         "blocking_reopened_by_a_gib_wall": 2,
-        "blocking_shut_for_ever": 12
+        "blocking_shut_for_ever": 12,
+        "channels_fired_at_level_start": 4
       },
       "routes": 26
     },
@@ -581,7 +668,9 @@
         "z_motion_mechanisms": 23,
         "wired": 18,
         "inert_no_cause": 5,
-        "scoped_out_rotate_slide": 12,
+        "swept_mechanisms": 11,
+        "swept_recorded_but_not_gated": 11,
+        "scoped_out_no_reading": 1,
         "conditional": 41,
         "never": 31,
         "irreversible": 34,
@@ -590,7 +679,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 12,
         "blocking_reopened_by_a_gib_wall": 6,
-        "blocking_shut_for_ever": 6
+        "blocking_shut_for_ever": 6,
+        "channels_fired_at_level_start": 6
       },
       "routes": 16
     },
@@ -600,7 +690,9 @@
         "z_motion_mechanisms": 8,
         "wired": 5,
         "inert_no_cause": 3,
-        "scoped_out_rotate_slide": 3,
+        "swept_mechanisms": 3,
+        "swept_recorded_but_not_gated": 3,
+        "scoped_out_no_reading": 0,
         "conditional": 17,
         "never": 2,
         "irreversible": 0,
@@ -609,7 +701,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 4,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 4
+        "blocking_shut_for_ever": 4,
+        "channels_fired_at_level_start": 4
       },
       "routes": 5
     },
@@ -619,7 +712,9 @@
         "z_motion_mechanisms": 33,
         "wired": 24,
         "inert_no_cause": 9,
-        "scoped_out_rotate_slide": 20,
+        "swept_mechanisms": 20,
+        "swept_recorded_but_not_gated": 20,
+        "scoped_out_no_reading": 0,
         "conditional": 59,
         "never": 9,
         "irreversible": 0,
@@ -628,7 +723,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 84,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 84
+        "blocking_shut_for_ever": 84,
+        "channels_fired_at_level_start": 4
       },
       "routes": 19
     },
@@ -636,9 +732,11 @@
       "sectors": 147,
       "summary": {
         "z_motion_mechanisms": 35,
-        "wired": 16,
-        "inert_no_cause": 19,
-        "scoped_out_rotate_slide": 1,
+        "wired": 15,
+        "inert_no_cause": 20,
+        "swept_mechanisms": 0,
+        "swept_recorded_but_not_gated": 0,
+        "scoped_out_no_reading": 0,
         "conditional": 36,
         "never": 4,
         "irreversible": 0,
@@ -647,7 +745,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 0,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 0
+        "blocking_shut_for_ever": 0,
+        "channels_fired_at_level_start": 8
       },
       "routes": 16
     },
@@ -657,7 +756,9 @@
         "z_motion_mechanisms": 17,
         "wired": 17,
         "inert_no_cause": 0,
-        "scoped_out_rotate_slide": 0,
+        "swept_mechanisms": 0,
+        "swept_recorded_but_not_gated": 0,
+        "scoped_out_no_reading": 0,
         "conditional": 51,
         "never": 2,
         "irreversible": 0,
@@ -666,7 +767,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 2,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 2
+        "blocking_shut_for_ever": 2,
+        "channels_fired_at_level_start": 4
       },
       "routes": 16
     },
@@ -676,7 +778,9 @@
         "z_motion_mechanisms": 11,
         "wired": 11,
         "inert_no_cause": 0,
-        "scoped_out_rotate_slide": 2,
+        "swept_mechanisms": 2,
+        "swept_recorded_but_not_gated": 2,
+        "scoped_out_no_reading": 0,
         "conditional": 19,
         "never": 29,
         "irreversible": 14,
@@ -685,28 +789,32 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 16,
         "blocking_reopened_by_a_gib_wall": 6,
-        "blocking_shut_for_ever": 10
+        "blocking_shut_for_ever": 10,
+        "channels_fired_at_level_start": 4
       },
       "routes": 7
     },
     "E6M1": {
       "sectors": 123,
       "summary": {
-        "z_motion_mechanisms": 11,
-        "wired": 10,
+        "z_motion_mechanisms": 10,
+        "wired": 9,
         "inert_no_cause": 1,
-        "scoped_out_rotate_slide": 6,
-        "conditional": 31,
-        "never": 15,
+        "swept_mechanisms": 7,
+        "swept_recorded_but_not_gated": 7,
+        "scoped_out_no_reading": 0,
+        "conditional": 29,
+        "never": 10,
         "irreversible": 4,
         "keyed": 16,
         "base": "blocking_aware",
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 10,
         "blocking_reopened_by_a_gib_wall": 4,
-        "blocking_shut_for_ever": 6
+        "blocking_shut_for_ever": 6,
+        "channels_fired_at_level_start": 5
       },
-      "routes": 10
+      "routes": 9
     },
     "E6M2": {
       "sectors": 271,
@@ -714,7 +822,9 @@
         "z_motion_mechanisms": 5,
         "wired": 5,
         "inert_no_cause": 0,
-        "scoped_out_rotate_slide": 2,
+        "swept_mechanisms": 2,
+        "swept_recorded_but_not_gated": 2,
+        "scoped_out_no_reading": 0,
         "conditional": 38,
         "never": 2,
         "irreversible": 0,
@@ -723,7 +833,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 44,
         "blocking_reopened_by_a_gib_wall": 14,
-        "blocking_shut_for_ever": 30
+        "blocking_shut_for_ever": 30,
+        "channels_fired_at_level_start": 4
       },
       "routes": 12
     },
@@ -731,10 +842,12 @@
       "sectors": 240,
       "summary": {
         "z_motion_mechanisms": 25,
-        "wired": 24,
-        "inert_no_cause": 1,
-        "scoped_out_rotate_slide": 19,
-        "conditional": 90,
+        "wired": 21,
+        "inert_no_cause": 4,
+        "swept_mechanisms": 16,
+        "swept_recorded_but_not_gated": 14,
+        "scoped_out_no_reading": 0,
+        "conditional": 98,
         "never": 20,
         "irreversible": 42,
         "keyed": 4,
@@ -742,9 +855,10 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 18,
         "blocking_reopened_by_a_gib_wall": 10,
-        "blocking_shut_for_ever": 8
+        "blocking_shut_for_ever": 8,
+        "channels_fired_at_level_start": 5
       },
-      "routes": 25
+      "routes": 27
     },
     "E6M4": {
       "sectors": 373,
@@ -752,7 +866,9 @@
         "z_motion_mechanisms": 73,
         "wired": 68,
         "inert_no_cause": 5,
-        "scoped_out_rotate_slide": 23,
+        "swept_mechanisms": 22,
+        "swept_recorded_but_not_gated": 22,
+        "scoped_out_no_reading": 1,
         "conditional": 239,
         "never": 28,
         "irreversible": 40,
@@ -761,7 +877,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 12,
         "blocking_reopened_by_a_gib_wall": 10,
-        "blocking_shut_for_ever": 2
+        "blocking_shut_for_ever": 2,
+        "channels_fired_at_level_start": 4
       },
       "routes": 68
     },
@@ -771,7 +888,9 @@
         "z_motion_mechanisms": 80,
         "wired": 64,
         "inert_no_cause": 16,
-        "scoped_out_rotate_slide": 4,
+        "swept_mechanisms": 4,
+        "swept_recorded_but_not_gated": 4,
+        "scoped_out_no_reading": 0,
         "conditional": 256,
         "never": 53,
         "irreversible": 196,
@@ -780,7 +899,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 0,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 0
+        "blocking_shut_for_ever": 0,
+        "channels_fired_at_level_start": 4
       },
       "routes": 63
     },
@@ -790,7 +910,9 @@
         "z_motion_mechanisms": 35,
         "wired": 27,
         "inert_no_cause": 8,
-        "scoped_out_rotate_slide": 8,
+        "swept_mechanisms": 7,
+        "swept_recorded_but_not_gated": 7,
+        "scoped_out_no_reading": 1,
         "conditional": 95,
         "never": 13,
         "irreversible": 26,
@@ -799,7 +921,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 36,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 36
+        "blocking_shut_for_ever": 36,
+        "channels_fired_at_level_start": 4
       },
       "routes": 26
     },
@@ -809,7 +932,9 @@
         "z_motion_mechanisms": 42,
         "wired": 35,
         "inert_no_cause": 7,
-        "scoped_out_rotate_slide": 25,
+        "swept_mechanisms": 25,
+        "swept_recorded_but_not_gated": 25,
+        "scoped_out_no_reading": 0,
         "conditional": 138,
         "never": 2,
         "irreversible": 0,
@@ -818,7 +943,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 24,
         "blocking_reopened_by_a_gib_wall": 6,
-        "blocking_shut_for_ever": 24
+        "blocking_shut_for_ever": 24,
+        "channels_fired_at_level_start": 4
       },
       "routes": 38
     },
@@ -828,7 +954,9 @@
         "z_motion_mechanisms": 7,
         "wired": 7,
         "inert_no_cause": 0,
-        "scoped_out_rotate_slide": 0,
+        "swept_mechanisms": 0,
+        "swept_recorded_but_not_gated": 0,
+        "scoped_out_no_reading": 0,
         "conditional": 20,
         "never": 0,
         "irreversible": 0,
@@ -837,7 +965,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 96,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 96
+        "blocking_shut_for_ever": 96,
+        "channels_fired_at_level_start": 4
       },
       "routes": 7
     },
@@ -847,7 +976,9 @@
         "z_motion_mechanisms": 18,
         "wired": 14,
         "inert_no_cause": 4,
-        "scoped_out_rotate_slide": 3,
+        "swept_mechanisms": 3,
+        "swept_recorded_but_not_gated": 3,
+        "scoped_out_no_reading": 0,
         "conditional": 49,
         "never": 2,
         "irreversible": 0,
@@ -856,7 +987,8 @@
         "base_assumes": "portal_graph, minus crossings whose wall carries the blocking cstat, plus those blocking walls a kWallGib mechanism reopens. The default.",
         "blocking_crossings": 8,
         "blocking_reopened_by_a_gib_wall": 0,
-        "blocking_shut_for_ever": 8
+        "blocking_shut_for_ever": 8,
+        "channels_fired_at_level_start": 4
       },
       "routes": 14
     }
@@ -917,26 +1049,6 @@
       ],
       "channels": [
         108
-      ],
-      "channel_names": []
-    },
-    {
-      "map": "E1M1",
-      "mechanism": 30,
-      "mechanism_kind": "sector",
-      "joins": [
-        29,
-        67,
-        68
-      ],
-      "requires_key_name": null,
-      "irreversible": false,
-      "reads_as": "changes what fits through",
-      "trigger_kinds": [
-        "switch"
-      ],
-      "channels": [
-        102
       ],
       "channel_names": []
     },
@@ -1132,6 +1244,26 @@
     },
     {
       "map": "E1M2",
+      "mechanism": 8,
+      "mechanism_kind": "sector",
+      "joins": [
+        9,
+        34
+      ],
+      "requires_key_name": null,
+      "irreversible": false,
+      "reads_as": "changes what fits through",
+      "trigger_kinds": [
+        "switch",
+        "touch"
+      ],
+      "channels": [
+        111
+      ],
+      "channel_names": []
+    },
+    {
+      "map": "E1M2",
       "mechanism": 15,
       "mechanism_kind": "sector",
       "joins": [
@@ -1143,7 +1275,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         118
@@ -1163,7 +1296,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         118
@@ -2482,7 +2616,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         108
@@ -2594,7 +2728,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         127
@@ -2613,7 +2747,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         115
@@ -2804,7 +2939,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         152
@@ -2861,7 +2997,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         163
@@ -3038,7 +3175,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         105
@@ -3056,7 +3193,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         105
@@ -3074,7 +3211,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         105
@@ -3111,7 +3248,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -3827,7 +3963,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -3847,7 +3982,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -3867,7 +4001,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -3983,7 +4116,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -4061,7 +4193,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         126
@@ -4121,8 +4253,8 @@
       "irreversible": false,
       "reads_as": "both",
       "trigger_kinds": [
-        "push",
-        "relay"
+        "relay",
+        "switch"
       ],
       "channels": [
         179
@@ -4142,8 +4274,8 @@
       "irreversible": false,
       "reads_as": "both",
       "trigger_kinds": [
-        "push",
-        "relay"
+        "relay",
+        "switch"
       ],
       "channels": [
         179
@@ -4218,8 +4350,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
-        "relay"
+        "relay",
+        "switch"
       ],
       "channels": [
         176
@@ -4238,8 +4370,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
-        "relay"
+        "relay",
+        "switch"
       ],
       "channels": [
         176
@@ -4258,8 +4390,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
-        "relay"
+        "relay",
+        "switch"
       ],
       "channels": [
         176
@@ -4567,7 +4699,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -4605,7 +4736,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         197
@@ -5082,7 +5213,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         121
@@ -5101,7 +5233,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         124
@@ -5122,7 +5255,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push",
+        "switch",
         "touch"
       ],
       "channels": [
@@ -5142,7 +5275,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         107
@@ -5161,7 +5294,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         107
@@ -5371,7 +5504,7 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         104
@@ -5512,7 +5645,7 @@
       "irreversible": false,
       "reads_as": "both",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         126
@@ -5533,7 +5666,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         126
@@ -5553,7 +5686,7 @@
       "irreversible": false,
       "reads_as": "both",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         126
@@ -5665,7 +5798,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         110
@@ -5684,7 +5817,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -5704,7 +5836,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -5724,7 +5855,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -5744,7 +5874,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -5763,7 +5892,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         151
@@ -5781,7 +5910,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         151
@@ -5799,7 +5928,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         151
@@ -5817,7 +5946,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         151
@@ -5971,7 +6100,7 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         103
@@ -5991,7 +6120,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         102
@@ -6010,7 +6139,7 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         103
@@ -6029,7 +6158,7 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         103
@@ -6047,7 +6176,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         104
@@ -6065,7 +6194,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         104
@@ -6083,7 +6212,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         104
@@ -6101,7 +6230,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         104
@@ -6221,7 +6350,7 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         102
@@ -6396,7 +6525,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         115
@@ -6414,7 +6543,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         115
@@ -6432,7 +6561,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         115
@@ -6450,7 +6579,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         115
@@ -6468,7 +6597,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         115
@@ -6486,7 +6615,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         115
@@ -6504,7 +6633,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         115
@@ -6522,7 +6651,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         115
@@ -6558,7 +6687,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         121
@@ -6701,7 +6831,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         116
@@ -6772,8 +6902,8 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push",
-        "shot"
+        "shot",
+        "switch"
       ],
       "channels": [
         103
@@ -7023,7 +7153,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
+        "switch",
         "touch"
       ],
       "channels": [
@@ -7099,7 +7229,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         139
@@ -7526,7 +7656,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         170
@@ -7545,7 +7676,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         169
@@ -7564,7 +7696,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         168
@@ -7702,7 +7835,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
+        "switch",
         "touch"
       ],
       "channels": [
@@ -7898,7 +8031,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -8141,7 +8273,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -8160,7 +8293,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -8293,7 +8427,7 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         101
@@ -8313,7 +8447,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         101
@@ -8585,7 +8719,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         119
@@ -9136,7 +9270,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         138
@@ -10886,7 +11020,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -10906,7 +11040,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -10926,7 +11060,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -10946,7 +11080,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -10966,7 +11100,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -10986,7 +11120,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11006,7 +11140,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11026,7 +11160,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11046,7 +11180,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11066,7 +11200,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11086,7 +11220,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11106,7 +11240,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11126,7 +11260,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11146,7 +11280,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11167,7 +11301,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11187,7 +11321,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11207,7 +11341,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11227,7 +11361,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11247,7 +11381,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11267,7 +11401,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         117
@@ -11324,7 +11458,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -11364,7 +11497,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -11630,7 +11762,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         136
@@ -11806,7 +11938,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -11826,7 +11957,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -11846,7 +11976,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -11866,7 +11995,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -11886,7 +12014,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         176
@@ -11906,7 +12034,7 @@
       "irreversible": false,
       "reads_as": "both",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         183
@@ -11924,7 +12052,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         182
@@ -11942,7 +12070,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         182
@@ -11960,7 +12088,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         182
@@ -11978,7 +12106,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         182
@@ -12306,7 +12434,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         129
@@ -12534,8 +12662,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push",
-        "shot"
+        "shot",
+        "switch"
       ],
       "channels": [
         182
@@ -12554,8 +12682,8 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push",
-        "shot"
+        "shot",
+        "switch"
       ],
       "channels": [
         182
@@ -12626,7 +12754,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         142
@@ -12826,7 +12954,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         168
@@ -12844,7 +12972,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         168
@@ -12862,7 +12990,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         168
@@ -12880,7 +13008,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         168
@@ -12977,7 +13105,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         189
@@ -13141,10 +13269,30 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         105
+      ],
+      "channel_names": []
+    },
+    {
+      "map": "E3M5",
+      "mechanism": 19,
+      "mechanism_kind": "sector",
+      "joins": [
+        18,
+        273
+      ],
+      "requires_key_name": null,
+      "irreversible": false,
+      "reads_as": "changes what fits through",
+      "trigger_kinds": [
+        "switch"
+      ],
+      "channels": [
+        104
       ],
       "channel_names": []
     },
@@ -13160,7 +13308,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         106
@@ -13179,7 +13327,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         106
@@ -13198,7 +13346,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         106
@@ -13235,8 +13383,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
-        "relay"
+        "relay",
+        "switch"
       ],
       "channels": [
         108
@@ -13255,8 +13403,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
-        "relay"
+        "relay",
+        "switch"
       ],
       "channels": [
         108
@@ -13275,8 +13423,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
-        "relay"
+        "relay",
+        "switch"
       ],
       "channels": [
         108
@@ -13371,66 +13519,6 @@
         "push"
       ],
       "channels": [],
-      "channel_names": []
-    },
-    {
-      "map": "E3M5",
-      "mechanism": 86,
-      "mechanism_kind": "sector",
-      "joins": [
-        87,
-        88
-      ],
-      "requires_key_name": null,
-      "irreversible": false,
-      "reads_as": "changes what fits through",
-      "trigger_kinds": [
-        "relay",
-        "switch"
-      ],
-      "channels": [
-        114
-      ],
-      "channel_names": []
-    },
-    {
-      "map": "E3M5",
-      "mechanism": 89,
-      "mechanism_kind": "sector",
-      "joins": [
-        88,
-        90
-      ],
-      "requires_key_name": null,
-      "irreversible": false,
-      "reads_as": "changes what fits through",
-      "trigger_kinds": [
-        "relay",
-        "switch"
-      ],
-      "channels": [
-        114
-      ],
-      "channel_names": []
-    },
-    {
-      "map": "E3M5",
-      "mechanism": 92,
-      "mechanism_kind": "sector",
-      "joins": [
-        90,
-        91
-      ],
-      "requires_key_name": null,
-      "irreversible": false,
-      "reads_as": "changes what fits through",
-      "trigger_kinds": [
-        "relay",
-        "switch"
-      ],
-      "channels": [
-        114
-      ],
       "channel_names": []
     },
     {
@@ -13535,42 +13623,6 @@
       ],
       "channels": [
         127
-      ],
-      "channel_names": []
-    },
-    {
-      "map": "E3M5",
-      "mechanism": 156,
-      "mechanism_kind": "sector",
-      "joins": [
-        155
-      ],
-      "requires_key_name": null,
-      "irreversible": false,
-      "reads_as": "changes what fits through",
-      "trigger_kinds": [
-        "switch"
-      ],
-      "channels": [
-        133
-      ],
-      "channel_names": []
-    },
-    {
-      "map": "E3M5",
-      "mechanism": 157,
-      "mechanism_kind": "sector",
-      "joins": [
-        155
-      ],
-      "requires_key_name": null,
-      "irreversible": false,
-      "reads_as": "changes what fits through",
-      "trigger_kinds": [
-        "switch"
-      ],
-      "channels": [
-        133
       ],
       "channel_names": []
     },
@@ -13689,7 +13741,7 @@
       "irreversible": false,
       "reads_as": "both",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         159
@@ -13708,7 +13760,7 @@
       "irreversible": false,
       "reads_as": "both",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         159
@@ -13867,7 +13919,7 @@
       "irreversible": false,
       "reads_as": "both",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         119
@@ -13905,7 +13957,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         300
@@ -14087,7 +14140,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         811
@@ -14106,7 +14159,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         811
@@ -14125,7 +14178,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         811
@@ -14144,7 +14197,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         811
@@ -14163,7 +14216,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         811
@@ -14182,7 +14235,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         811
@@ -14201,7 +14254,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         811
@@ -14221,7 +14274,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         811
@@ -14240,7 +14293,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         100
@@ -14484,7 +14537,7 @@
       "irreversible": false,
       "reads_as": "both",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         120
@@ -14640,7 +14693,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         150
@@ -14659,7 +14713,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         150
@@ -14837,8 +14892,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
-        "relay"
+        "relay",
+        "switch"
       ],
       "channels": [
         100
@@ -14856,8 +14911,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
-        "relay"
+        "relay",
+        "switch"
       ],
       "channels": [
         100
@@ -14876,8 +14931,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
-        "relay"
+        "relay",
+        "switch"
       ],
       "channels": [
         100
@@ -14896,8 +14951,8 @@
       "irreversible": false,
       "reads_as": "both",
       "trigger_kinds": [
-        "push",
-        "relay"
+        "relay",
+        "switch"
       ],
       "channels": [
         100
@@ -14954,7 +15009,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         101
@@ -14973,7 +15028,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         102
@@ -14992,7 +15047,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         139
@@ -15047,7 +15102,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         114
@@ -15273,7 +15329,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
+        "switch",
         "touch"
       ],
       "channels": [
@@ -15350,7 +15406,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
+        "switch",
         "touch"
       ],
       "channels": [
@@ -15655,7 +15711,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         133
@@ -15693,7 +15749,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         135
@@ -15712,7 +15768,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         135
@@ -15805,7 +15861,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -15824,7 +15879,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -15843,7 +15897,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -15862,7 +15915,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -15932,25 +15984,6 @@
     },
     {
       "map": "E3M8",
-      "mechanism": 594,
-      "mechanism_kind": "sector",
-      "joins": [
-        589,
-        595
-      ],
-      "requires_key_name": null,
-      "irreversible": false,
-      "reads_as": "neither",
-      "trigger_kinds": [
-        "switch"
-      ],
-      "channels": [
-        146
-      ],
-      "channel_names": []
-    },
-    {
-      "map": "E3M8",
       "mechanism": 595,
       "mechanism_kind": "sector",
       "joins": [
@@ -15980,7 +16013,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         147
@@ -16001,7 +16034,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         147
@@ -16021,7 +16054,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         147
@@ -16042,7 +16075,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         147
@@ -16348,7 +16381,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         105
@@ -16367,7 +16401,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         100
@@ -16392,6 +16427,25 @@
       "channel_names": []
     },
     {
+      "map": "E4M2",
+      "mechanism": 201,
+      "mechanism_kind": "sector",
+      "joins": [
+        200,
+        218
+      ],
+      "requires_key_name": null,
+      "irreversible": false,
+      "reads_as": "changes what fits through",
+      "trigger_kinds": [
+        "relay"
+      ],
+      "channels": [
+        103
+      ],
+      "channel_names": []
+    },
+    {
       "map": "E4M3",
       "mechanism": 21,
       "mechanism_kind": "sector",
@@ -16403,7 +16457,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         103
@@ -16439,7 +16494,8 @@
       "irreversible": false,
       "reads_as": "both",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         103
@@ -16460,7 +16516,6 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16481,7 +16536,6 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16538,7 +16592,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         101
@@ -16556,7 +16610,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16575,7 +16628,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16594,7 +16646,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16630,7 +16681,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16649,7 +16699,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16668,7 +16717,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16687,7 +16735,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16706,7 +16753,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16725,7 +16771,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16744,7 +16789,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16763,7 +16807,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16782,7 +16825,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16802,7 +16844,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16821,7 +16862,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16840,7 +16880,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16859,7 +16898,6 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
         "switch"
       ],
       "channels": [
@@ -16916,7 +16954,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         105
@@ -16934,7 +16972,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         100
@@ -16952,7 +16990,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         100
@@ -16970,7 +17008,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         100
@@ -16988,7 +17026,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         104
@@ -17006,7 +17044,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         104
@@ -17024,7 +17062,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         104
@@ -17042,7 +17080,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         104
@@ -17221,7 +17259,8 @@
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
         "push",
-        "relay"
+        "relay",
+        "switch"
       ],
       "channels": [
         107
@@ -17319,7 +17358,7 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         113
@@ -17339,7 +17378,7 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         113
@@ -17506,7 +17545,7 @@
       "irreversible": false,
       "reads_as": "both",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         102
@@ -17687,7 +17726,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         102
@@ -17706,7 +17745,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         103
@@ -17869,7 +17908,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         102
@@ -17925,7 +17964,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         114
@@ -17944,7 +17983,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         114
@@ -17963,7 +18002,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         108
@@ -17982,7 +18021,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         113
@@ -18001,7 +18040,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         111
@@ -18020,7 +18059,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         112
@@ -18040,7 +18079,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         109
@@ -18061,7 +18100,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         109
@@ -18081,7 +18120,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         109
@@ -18102,7 +18141,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         109
@@ -18192,7 +18231,8 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         122
@@ -18211,7 +18251,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         110
@@ -18367,25 +18407,6 @@
       "requires_key_name": null,
       "irreversible": false,
       "reads_as": "changes what fits through",
-      "trigger_kinds": [
-        "switch"
-      ],
-      "channels": [
-        100
-      ],
-      "channel_names": []
-    },
-    {
-      "map": "E6M1",
-      "mechanism": 25,
-      "mechanism_kind": "sector",
-      "joins": [
-        14,
-        21
-      ],
-      "requires_key_name": null,
-      "irreversible": false,
-      "reads_as": "neither",
       "trigger_kinds": [
         "switch"
       ],
@@ -18751,6 +18772,25 @@
     },
     {
       "map": "E6M3",
+      "mechanism": 31,
+      "mechanism_kind": "sector",
+      "joins": [
+        146,
+        232
+      ],
+      "requires_key_name": null,
+      "irreversible": false,
+      "reads_as": "changes what fits through",
+      "trigger_kinds": [
+        "push"
+      ],
+      "channels": [
+        130
+      ],
+      "channel_names": []
+    },
+    {
+      "map": "E6M3",
       "mechanism": 52,
       "mechanism_kind": "sector",
       "joins": [
@@ -18834,6 +18874,25 @@
         "push"
       ],
       "channels": [],
+      "channel_names": []
+    },
+    {
+      "map": "E6M3",
+      "mechanism": 91,
+      "mechanism_kind": "sector",
+      "joins": [
+        84,
+        90
+      ],
+      "requires_key_name": null,
+      "irreversible": false,
+      "reads_as": "changes what fits through",
+      "trigger_kinds": [
+        "push"
+      ],
+      "channels": [
+        101
+      ],
       "channel_names": []
     },
     {
@@ -18966,7 +19025,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         100
@@ -19002,7 +19062,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         100
@@ -19219,7 +19280,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -19237,7 +19299,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -19256,7 +19319,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -19276,7 +19340,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -19296,7 +19361,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -19315,7 +19381,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -19334,7 +19401,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -19353,7 +19421,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -19372,7 +19441,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -19392,7 +19462,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -19410,7 +19481,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -19429,7 +19501,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -19448,7 +19521,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -19518,7 +19592,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         147
@@ -19537,7 +19611,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         139
@@ -19707,7 +19781,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         136
@@ -19744,7 +19819,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         165
@@ -19762,7 +19837,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         165
@@ -19780,7 +19855,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         165
@@ -19798,7 +19873,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         165
@@ -19816,7 +19891,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         165
@@ -19834,7 +19909,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         165
@@ -19852,7 +19927,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         165
@@ -21718,7 +21793,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         103
@@ -21738,7 +21813,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         105
@@ -21757,7 +21832,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         106
@@ -21845,7 +21920,8 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         110
@@ -21865,7 +21941,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         107
@@ -21970,8 +22047,8 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push",
-        "shot"
+        "shot",
+        "switch"
       ],
       "channels": [
         111
@@ -22285,7 +22362,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         100
@@ -22341,7 +22418,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         118
@@ -22360,7 +22437,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         118
@@ -22380,7 +22457,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         118
@@ -22686,7 +22763,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         138
@@ -22758,7 +22835,7 @@
       "irreversible": false,
       "reads_as": "changes what fits through",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         150
@@ -22921,7 +22998,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         102
@@ -22941,7 +23018,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         105
@@ -22961,7 +23038,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         104
@@ -22981,7 +23058,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         103
@@ -23001,7 +23078,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         101
@@ -23021,7 +23098,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         106
@@ -23058,7 +23135,8 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         101
@@ -23115,7 +23193,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         109
@@ -23133,7 +23211,8 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push"
+        "push",
+        "switch"
       ],
       "channels": [
         102
@@ -23169,7 +23248,7 @@
       "irreversible": false,
       "reads_as": "neither",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         112
@@ -23224,7 +23303,7 @@
       "irreversible": false,
       "reads_as": "carries a body between levels",
       "trigger_kinds": [
-        "push"
+        "switch"
       ],
       "channels": [
         104

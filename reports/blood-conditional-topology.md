@@ -91,14 +91,25 @@ routes that cannot be undone         268
 
 ```text
 routes by what gates them           routes by trigger kind
-a moving sector    1069             push 488   shot 303   switch 285
-a breakable wall    109             relay 125  touch 69   pickup 12
+a moving sector    1069             push 276   shot 303   switch 498
+a breakable wall    109             relay 123  touch 70   pickup 12
                                     unknown 9  leave 3    kill 1   generator 1
 
 routes by what the mechanism reads as
 changes what fits through   774        both        134
 carries a body between lvl  182        neither      88
 ```
+
+**Restated 2026-09-01: a switch worked by pushing is a switch.** The trigger
+classifier put player-facing flags before what the thing *is*, so 212 routes
+fired by pressing a switch sprite were reported as `push` -- indistinguishable
+from a pushable wall, which is the one thing the label had to separate them
+from. The rule now reads: a `SWITCH_TYPES` sprite whose push flag would have
+decided it reports `switch`. It stays below `trigger_vector`, so a shootable
+switch still reports `shot`, and it is scoped to the push flags alone, so a
+proximity or exit switch still reports how it actually fires. The split above
+is the re-measured one; the earlier `push 488 / switch 285` counted the same
+routes under the less specific name.
 
 **Not one gating channel is a system channel.** Of the 113 distinct channels
 that cause a conditional crossing, every one is ≥ 100; the reserved band

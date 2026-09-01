@@ -183,6 +183,15 @@ def _trigger_for(kind: str, type_id: int, extra: dict[str, Any]) -> str:
     if extra.get("trigger_vector"):
         return BY_SHOT
     if extra.get("trigger_push") or extra.get("trigger_wall_push"):
+        #: The one place where what a thing *is* beats how it is fired: a
+        #: switch worked by pushing is still a switch, and reporting "push"
+        #: loses the only thing that separates it from a pushable wall. It
+        #: stays below `trigger_vector`, because a *shootable* switch is
+        #: fired by shooting, which is the more specific fact; and it is
+        #: scoped to the push flags alone, so a proximity or exit switch
+        #: still reports how it actually fires.
+        if kind == "sprite" and type_id in SWITCH_TYPES:
+            return BY_SWITCH
         return BY_PUSH
     if extra.get("trigger_touch") or extra.get("trigger_proximity") \
             or extra.get("trigger_enter"):
