@@ -61,25 +61,81 @@ STONES = ("headstone_rip", "headstone_cross", "headstone_flame", "tomb")
 TREES = ("oak", "elm", "pine", "deadwood")
 
 
-def _slots(count: int, box, *, margin: int):
-    """`count` positions spread over a box, as (x, y) in world units.
+def _inside(polygon, x: float, y: float) -> bool:
+    """Ray casting against the room's ACTUAL outline, notches and all."""
+    hit = False
+    count = len(polygon)
+    for index in range(count):
+        ax, ay = polygon[index]
+        bx, by = polygon[(index + 1) % count]
+        if (ay > y) != (by > y):
+            cross = ax + (y - ay) * (bx - ax) / (by - ay)
+            if x < cross:
+                hit = not hit
+    return hit
 
-    A lattice rather than a line, and inset from the wall so nothing stands
-    in the masonry. Positions are deterministic: the same green always grows
-    the same way, which is what makes a rebuild diffable.
+
+def _clearance(polygon, x: float, y: float) -> float:
+    """Distance from a point to the nearest edge of the outline."""
+    best = float("inf")
+    count = len(polygon)
+    for index in range(count):
+        ax, ay = polygon[index]
+        bx, by = polygon[(index + 1) % count]
+        dx, dy = bx - ax, by - ay
+        span = dx * dx + dy * dy
+        t = 0.0 if not span else max(0.0, min(1.0, ((x - ax) * dx +
+                                                    (y - ay) * dy) / span))
+        px, py = ax + t * dx, ay + t * dy
+        best = min(best, ((x - px) ** 2 + (y - py) ** 2) ** 0.5)
+    return best
+
+
+def _slots(count: int, box, *, margin: int, outline=None):
+    """`count` positions that are actually ON the ground, as world (x, y).
+
+    The first version laid a lattice over the BOUNDING BOX and let the caller
+    filter afterwards, which dropped eleven of twenty plants in the cemetery:
+    a green with a church and two mausolea standing in it is not a rectangle,
+    and most of its bounding box is masonry.
+
+    So the lattice is oversampled and then filtered against the room's own
+    NOTCHED outline -- inside it, and `margin` clear of every edge, so a tree
+    does not grow through a wall it is standing against. Positions stay
+    deterministic: the same green always grows the same way, which is what
+    makes a rebuild diffable.
     """
     x0, y0, x1, y1 = box
-    x0, y0, x1, y1 = x0 + margin, y0 + margin, x1 - margin, y1 - margin
     if x1 <= x0 or y1 <= y0 or count <= 0:
         return []
-    columns = max(1, int(round(count ** 0.5)))
-    rows = max(1, (count + columns - 1) // columns)
-    out = []
-    for index in range(count):
-        column, row = index % columns, index // columns
-        out.append((int(x0 + (x1 - x0) * (column + 0.5) / columns),
-                    int(y0 + (y1 - y0) * (row + 0.5) / rows)))
-    return out
+    if outline is None:
+        inner = (x0 + margin, y0 + margin, x1 - margin, y1 - margin)
+        if inner[2] <= inner[0] or inner[3] <= inner[1]:
+            return []
+        columns = max(1, int(round(count ** 0.5)))
+        rows = max(1, (count + columns - 1) // columns)
+        return [(int(inner[0] + (inner[2] - inner[0]) * (i % columns + 0.5)
+                     / columns),
+                 int(inner[1] + (inner[3] - inner[1]) * (i // columns + 0.5)
+                     / rows))
+                for i in range(count)]
+    #: Oversample, keep what lands on the ground, then thin evenly so the
+    #: survivors are spread rather than clustered in whichever corner the
+    #: lattice happened to favour.
+    side = max(3, int((count * 6) ** 0.5) + 1)
+    candidates = []
+    for row in range(side):
+        for column in range(side):
+            x = x0 + (x1 - x0) * (column + 0.5) / side
+            y = y0 + (y1 - y0) * (row + 0.5) / side
+            if _inside(outline, x, y) and _clearance(outline, x, y) >= margin:
+                candidates.append((int(x), int(y)))
+    if not candidates:
+        return []
+    if len(candidates) <= count:
+        return candidates
+    step = len(candidates) / float(count)
+    return [candidates[int(index * step)] for index in range(count)]
 
 
 def _local(box, x, y):
@@ -106,34 +162,75 @@ def green(city, layout_ground, *, district, grade: int, art_sizes=None,
 
     report = {"ground": layout_ground.region_id, "tile": GRASS,
               "area": area, "paths": [], "planted": {}, "refused": [],
-              "solids": [tuple(int(v) for v in solid) for solid in solids]}
+              "solids": [tuple(int(v) for v in solid) for solid in solids],
+              #: the ground's ACTUAL shape, notches and all -- what the slot
+              #: lattice has to respect
+              "outline": [(int(p[0]), int(p[1])) for p in outline]}
 
     #: A path down the middle, gate side to far side. Its own room at the
     #: ground's level: a different surface underfoot, not a stripe painted on
     #: the same one. It must match the hole exactly, which is the compiler's
     #: rule for anything standing in a carved opening.
     if paths and min(width, depth) > 4 * PATH_WIDTH:
-        px0 = box[0] + (width - PATH_WIDTH) // 2
-        path_box = (px0, box[1] + PATH_WIDTH, px0 + PATH_WIDTH,
-                    box[3] - PATH_WIDTH)
+        #: A path down the MIDDLE of the bounding box walks through the
+        #: church. So candidate strips are scanned outwards from the middle
+        #: and the first one that is clear of everything standing on the
+        #: green wins -- a path goes where there is room for it, which is how
+        #: a path comes to be in the first place.
         gx0, gy0 = box[0], box[1]
-        #: A green with a church and two mausolea standing in it is not a
-        #: rectangle, and a path laid straight down the middle of the
-        #: bounding box walks through the church. Anything already standing
-        #: on the ground refuses the path rather than being cut through.
-        blocked = [tuple(solid) for solid in solids
-                   if _overlaps(path_box, tuple(solid))]
-        if blocked:
+        blocked_boxes = [tuple(solid) for solid in solids]
+        path_box = None
+        centre = box[0] + (width - PATH_WIDTH) // 2
+        span = (width - PATH_WIDTH) // 2
+        for offset in range(0, span + 1, PATH_WIDTH // 2):
+            for sign in ((0,) if offset == 0 else (-1, 1)):
+                px0 = centre + sign * offset
+                trial = (px0, box[1] + PATH_WIDTH, px0 + PATH_WIDTH,
+                         box[3] - PATH_WIDTH)
+                if any(_overlaps(trial, b) for b in blocked_boxes):
+                    continue
+                #: and it has to lie wholly ON the ground. The ground's
+                #: outline is NOTCHED around the church and the mausolea, so
+                #: "clear of the solids" is not the same as "inside the
+                #: room" -- a strip running past the end of the turf carves a
+                #: hole through nothing and the compiler sees a malformed
+                #: region.
+                #: Sampled down the CENTRELINE with real clearance, not at
+                #: the corners. A corner probe one unit inside the boundary
+                #: passes while the strip's edge lies flush against a
+                #: mausoleum, and a carve that shares an edge with a notch is
+                #: a degenerate polygon -- which showed up, bizarrely, as the
+                #: cemetery overlapping a street two districts away.
+                need = PATH_WIDTH // 2 + 256
+                mid = (trial[0] + trial[2]) // 2
+                steps = max(2, (trial[3] - trial[1]) // 512)
+                ok = True
+                for step in range(steps + 1):
+                    py = trial[1] + (trial[3] - trial[1]) * step / steps
+                    if not _inside(outline, mid, py) or                             _clearance(outline, mid, py) < need:
+                        ok = False
+                        break
+                if not ok:
+                    continue
+                path_box = trial
+                break
+            if path_box:
+                break
+        if path_box is None:
             report["refused"].append(
-                f"path: would run through {len(blocked)} thing(s) standing "
-                f"on the green")
+                "path: no strip across the green is clear of the things "
+                "standing on it")
             return report, box, area
         try:
+            #: In the GROUND's own coordinates. It was built with no frame
+            #: of its own -- the district's frame lives on its street -- so
+            #: its local space is world space, and subtracting the bounding
+            #: box origin (which the roadways correctly do, because a street
+            #: room IS framed) put the hole a district away from the path
+            #: standing in it.
             layout_ground.carve([
-                (path_box[0] - gx0, path_box[1] - gy0),
-                (path_box[2] - gx0, path_box[1] - gy0),
-                (path_box[2] - gx0, path_box[3] - gy0),
-                (path_box[0] - gx0, path_box[3] - gy0)])
+                (path_box[0], path_box[1]), (path_box[2], path_box[1]),
+                (path_box[2], path_box[3]), (path_box[0], path_box[3])])
             path = district.room(
                 "green_path",
                 [(0, 0), (path_box[2] - path_box[0], 0),
@@ -149,6 +246,9 @@ def green(city, layout_ground, *, district, grade: int, art_sizes=None,
                 city.connect(path.face(face), layout_ground.face("north"),
                              connection_id=f"connection:green_path_{face}")
             report["paths"].append(path_box)
+            #: Nothing stands ON the path. It joins the list of things the
+            #: planting yields to, which is the whole point of a path.
+            report["solids"].append(tuple(int(v) for v in path_box))
         except Exception as exc:                       # pragma: no cover
             report["refused"].append(f"path: {exc}")
 
@@ -156,7 +256,8 @@ def green(city, layout_ground, *, district, grade: int, art_sizes=None,
 
 
 def plant(layout, ground_region: str, box, area, *, art_sizes=None,
-          prefix: str = "green", solids=(), clearance: int = 512):
+          prefix: str = "green", solids=(), clearance: int = 256,
+          outline=None):
     """Fill a green's slots with what a green holds. Deterministic.
 
     A green with a church and two mausolea in it is not a rectangle, and the
@@ -175,12 +276,19 @@ def plant(layout, ground_region: str, box, area, *, art_sizes=None,
 
     planted = {}
     dropped = 0
-    plans = (("tree", TREES, TREE_PER, 2048),
-             ("stone", STONES, STONE_PER, 1536),
-             ("bush", ("bush",), BUSH_PER, 1024))
+    #: Margins are the clear space a thing needs from the ground's own edge,
+    #: and they were first written for an open lawn. This green is a walled
+    #: yard with a church, two mausolea and now a path in it, and the turf
+    #: left over is in strips: a 2048 margin put a tree nowhere. A tree wants
+    #: a body's room, a headstone less, a bush almost none -- which is also
+    #: how they sit in E1M1's cemetery.
+    plans = (("tree", TREES, TREE_PER, 1024),
+             ("stone", STONES, STONE_PER, 640),
+             ("bush", ("bush",), BUSH_PER, 384))
     for kind, names, per, margin in plans:
         count = max(1, int(area // per))
-        for index, (x, y) in enumerate(_slots(count, box, margin=margin)):
+        for index, (x, y) in enumerate(_slots(count, box, margin=margin,
+                                              outline=outline)):
             if not _free(x, y):
                 dropped += 1
                 continue
@@ -197,7 +305,9 @@ def plant(layout, ground_region: str, box, area, *, art_sizes=None,
                                       (0.08, 0.92), (0.92, 0.92))):
         x = box[0] + (box[2] - box[0]) * fx
         y = box[1] + (box[3] - box[1]) * fy
-        if not _free(x, y):
+        on_ground = (_inside(outline, x, y)
+                     and _clearance(outline, x, y) >= 256) if outline             else _free(x, y)
+        if not on_ground:
             dropped += 1
             continue
         layout.place_on_floor(f"{prefix}:straw:{index}", ground_region,
