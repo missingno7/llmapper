@@ -56,18 +56,22 @@ state preview           15 mechanisms in both poses, snapped by the marker law
 
 ## What to try first
 
-1. **CASKET** -- stand on the lid and hit the switch. It should toggle
-   (it sent a bare ON to a sector already ON before, and did nothing),
+1. **CURTAIN** -- push the CLOTH, not the door frame. The shove is now
+   wired the way the tutorial wires it: an XWALL on each of the three
+   fabric faces transmits, and the sector only receives. Pushing the
+   frame should do nothing, and that is correct. It also rests CLOSED
+   and gathers open; it ran backwards two runs ago.
+2. **CASKET** -- stand on the lid and hit the switch. It should toggle,
    both planes should move together so the ceiling below opens as the
    floor above does, and the hole should be SEEN through, not just
    fallen through.
-2. **CURTAIN** -- push the fabric itself, and the switch. It rests
-   CLOSED now and opening gathers it; it ran backwards before. The room
-   around it must not move at all.
-3. **TURNSTILE PAIR** (street) -- walk into it. Whether a body passes a
-   turning rotor is the pipeline's longest-standing unproven claim.
-4. **Any other switch** -- all five in the zoo were silent until this
-   run. PUSH DOOR, SWITCHED DOOR, SHELF SECRET are the others.
+3. **LIFT** -- ride it up and step off. The mechanism is
+   `mechanism.lift` now rather than thirty hand-written lines, built to
+   MACHINERY-LIFT s2; it should behave exactly as it did.
+4. **TURNSTILE PAIR** (street) -- walk into it. Whether a body passes a
+   turning rotor is the pipeline's longest-standing unproven claim, and
+   the new clearance gate checks the rotor does not sweep through the
+   room, which is a different question from whether YOU fit.
 5. **SHOP** as a whole -- the section is the claim. Does it read as a
    shop, or as four exhibits in a room?
 
@@ -127,9 +131,10 @@ a door that wants the moon key, which lies in the room.
 a floor that carries a body between two storeys, with a landing worth arriving at.
 
 - **try:** ride it up, step off, and look back down
-- **from:** reports/blood-effects-motion.md; E1M3 sector 241, whose floor endpoints are exactly its neighbours'
+- **from:** Vanilla/MACHINERY-LIFT.map s2, the basic exemplar of twenty-odd differing one field at a time; E1M3 sector 241, whose floor endpoints are exactly its neighbours'
 - **read back as:** 1 sector(s) of type 600, read as a carries a body between levels
-- **hand-composed:** the mechanism itself: a floor-travelling z-motion. doors.z_motion_door writes CEILING endpoints only, so no constructor owns a lift; the upper room that makes the ride worth taking -- promotion candidate
+- **hand-composed:** the upper room that makes the ride worth taking -- promotion candidate
+- **covers:** bloodmap.mechanism.lift
 
 ![LIFT](projects/pattern-zoo/reports/tour/observation/frames/lift.png)
 
