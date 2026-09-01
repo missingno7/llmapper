@@ -71,6 +71,24 @@ POSE_SETS = {
         "yard_approach": (55.5, 19.5, 50.0, 19.5, LEVEL, "approaching the yard off the spur"),
         "cellar": (41.0, 12.8, 42.6, 13.8, LEVEL, "the works cellar, facing the pit"),
     },
+    #: Wave 1: what the street anatomy and the green actually changed. Walk
+    #: order -- the west street's carriageway, the kerb that makes it one,
+    #: then in through the lychgate to the green.
+    "wave1": {
+        "west_street_road": (18.0, 22.0, 18.0, 34.0, LEVEL,
+                             "the west street: the carriageway running south "
+                             "between its pavements"),
+        "west_street_kerb": (17.0, 26.0, 19.0, 26.0, LEVEL,
+                             "across the kerb -- the 2048 step E3M1 measures"),
+        "spur_road": (56.5, 42.0, 56.5, 52.0, LEVEL,
+                      "the spur south carriageway"),
+        "lychgate": (18.0, 28.0, 24.0, 28.0, LEVEL,
+                     "the lychgate from the west street"),
+        "green_in": (22.0, 28.0, 28.0, 28.0, LEVEL,
+                     "inside the green: turf, not tarmac"),
+        "green_stones": (26.0, 31.0, 26.0, 25.0, LEVEL,
+                         "the headstones and the planting"),
+    },
     "fresh2": {
         "canteen_door": (51.9, 16.4, 51.9, 13.5, LEVEL, "the canteen door from the yard"),
         "dock": (50.0, 18.0, 48.5, 18.0, LEVEL, "the loading dock alcove"),
