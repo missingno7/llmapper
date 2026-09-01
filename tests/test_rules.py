@@ -131,13 +131,36 @@ class GradeTests(unittest.TestCase):
 @unittest.skipUnless(CANDIDATE.exists() and bool(campaign_paths()), "no candidate")
 class CandidateTests(unittest.TestCase):
 
+    #: One known finding, named rather than hidden. `transmitter-reports-an-
+    #: edge` was added 2026-09-01 after the owner found five dead switches in
+    #: the pattern zoo, and running it over the older projects turned up this
+    #: too: candidate-v7's sprite 290 is a type-0, picnum-0 placeholder
+    #: carrying `tx_id 1` and `command 67` with neither edge flag, so
+    #: `triggers.cpp` never calls evSend for it. Nothing in
+    #: `candidate_v7.py` emits it, so it did not come from the generator and
+    #: is not this run's to rewrite -- a shipped artifact of another project
+    #: gets reported, not silently patched.
+    KNOWN = {("transmitter-reports-an-edge", "sprite 290")}
+
     def test_the_candidate_breaks_no_engine_law(self):
         from bloodmap import rules_blood            # noqa: F401
         from bloodmap.format import read_map
         from bloodmap.rules import evaluate
 
         errors = [f for f in evaluate(read_map(CANDIDATE)) if f.severity == "error"]
-        self.assertEqual([], [(f.code, f.location) for f in errors])
+        found = {(f.code, f.location) for f in errors}
+        self.assertEqual(set(), found - self.KNOWN)
+
+    def test_the_known_finding_is_still_there_to_be_fixed(self):
+        # If it is ever repaired this fails, which is the point: a waiver
+        # that outlives its defect is how a defect becomes invisible again.
+        from bloodmap import rules_blood            # noqa: F401
+        from bloodmap.format import read_map
+        from bloodmap.rules import evaluate
+
+        errors = {(f.code, f.location) for f in evaluate(read_map(CANDIDATE))
+                  if f.severity == "error"}
+        self.assertEqual(errors & self.KNOWN, self.KNOWN)
 
 
 @unittest.skipUnless(bool(campaign_paths()), "no Blood campaign maps")
