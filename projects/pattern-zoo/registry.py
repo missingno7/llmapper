@@ -93,6 +93,11 @@ class Expect:
     wall_tiles: tuple[int, ...] = ()
     #: Tiles that must appear as sprites rather than as surfaces.
     sprite_tiles: tuple[int, ...] = ()
+    #: What `effects.payload_shape` must call this mechanism's payload --
+    #: "boundary re-partition", "the sector resizes itself", and so on.
+    #: The only checkable claim for a mechanism that moves geometry without
+    #: ever opening or closing a portal.
+    payload_shape: str = ""
 
     def summary(self) -> str:
         """What the self-read had to find, in words, for the tour sheet."""
@@ -109,6 +114,8 @@ class Expect:
             parts.append(f"requiring key {self.requires_key}")
         if self.irreversible:
             parts.append("one-way")
+        if self.payload_shape:
+            parts.append(f"whose payload is {self.payload_shape!r}")
         if self.stack_link:
             parts.append("stack-linked across a room-over-room plane")
         if self.wall_tiles:
@@ -124,7 +131,7 @@ class Expect:
                 and not self.reads_as and not self.requires_key
                 and not self.irreversible and self.rx_id is None
                 and not self.stack_link and not self.wall_tiles
-                and not self.sprite_tiles)
+                and not self.sprite_tiles and not self.payload_shape)
 
 
 @dataclass(frozen=True)
@@ -231,15 +238,31 @@ class Section:
                 + PIER)
 
 
-#: Owner-anchor material families. Nothing here is a gallery skin: each is
-#: the family of the place it builds.
-STONE = (400, 294, 285)
-BRICK = (90, 294, 285)
-TIMBER = (156, 294, 285)
-SEWER_SKIN = (496, 294, 285)
-STREET_SKIN = (1097, 294, 285)
-PARK_SKIN = (400, 361, 285)
-SHOP_SKIN = (202, 294, 285)
+#: Materials, chosen from what the campaign actually builds with. Counted
+#: over 43 maps in knowledge/blood/design/usage-kinds-v1.json.
+#:
+#: v3 got this badly wrong and the corpus audit caught it quantitatively.
+#: Tile 400 is a multi-storey facade BACKDROP (owner anchor, binding weak)
+#: that the campaign puts on 48 wall slots in the entire campaign; the zoo
+#: made it the default gallery wall and used it 162 times in one level --
+#: 786 times the campaign's rate. Every one of those uses was in an attested
+#: slot, so a usage-kind check passes them all and the level still looks
+#: nothing like Blood. Tile 202 was 250x and 1097 was 132x.
+#:
+#: These are the campaign's bulk stone and brick instead, with the sky and
+#: ground tiles the campaign uses for them.
+GALLERY = (80, 294, 285)        # weathered vertical stone, 4053 wall slots
+MASONRY = (281, 294, 285)       # irregular grey masonry, 1012
+BRICK = (90, 294, 285)          # worn large bricks with moss, 1542
+ROCK = (449, 294, 285)          # rough rock face / rubble stone, 4312
+BASE_COURSE = (91, 294, 285)    # brick wall with base course, 3126
+SEWER_SKIN = (497, 294, 285)    # the pipe run's commonest tile, 401
+#: The sky. All three sky-family tiles are 64x400, which is why they may only
+#: appear with the parallax bit -- see bloodmap/usage_kinds.py.
+SKY = 2500
+STREET_SKIN = (91, 294, SKY)
+PARK_SKIN = (449, 361, SKY)
+SHOP_SKIN = (90, 294, 285)
 
 
 def sections() -> list[Section]:
@@ -252,7 +275,7 @@ def sections() -> list[Section]:
             label="DOORS AND MECHANISMS",
             about="the gallery: the z-motion door family, a lift, a shot-open "
                   "breach, and the E1M1 blueprints the owner attested",
-            skin=STONE, clear=MEDIAN_CLEAR,
+            skin=GALLERY, clear=MEDIAN_CLEAR,
             hand_composed=(
                 "the gallery hall itself: a plain ashlar room, because no "
                 "constructor owns a gallery",),
@@ -325,21 +348,30 @@ def sections() -> list[Section]:
                                   irreversible=True, rx_id=301)),
                 Exhibit(
                     label="CASKET",
-                    about="the player start as a mechanism: a lid that slides "
-                          "aside across a room-over-room plane",
+                    about="a lid that slides aside by MOVING THE BOUNDARY "
+                          "between the hole and the cover, breathing light "
+                          "as it goes",
                     try_this="look up, then walk out; E1M1 opens inside one",
                     provenance="owner-attested E1M1 reading, sectors 28/30 "
                                "(hole, slide-marked, ROR-linked) and 27/29 "
                                "(cover). Each slide sector moves exactly ONE "
                                "flagged wall, and that wall is the hole/cover "
                                "boundary",
-                    build=stalls.casket, prefix="casket", room_over_room=True,
-                    depth=6 * 1024,
+                    covers=("bloodmap.mechanism.planar_door",
+                            "bloodmap.mechanism.shade_wave"),
+                    build=stalls.casket, prefix="casket",
+                    bay=5 * 1024, depth=6 * 1024,
                     hand_composed=(
-                        "boundary-wall area re-partition: the lid works by a "
-                        "flagged wall moving the line between hole and cover, "
-                        "and no constructor expresses that",),
-                    expect=Expect(sector_type=614, stack_link=True)),
+                        "the room-over-room half: E1M1's casket is four "
+                        "sectors in two pairs, stack-linked and synced, and "
+                        "PlanarLayout has no stack link at all",),
+                    #: NOT a trigger claim. A boundary re-partition moves
+                    #: geometry without ever opening or closing a portal, so
+                    #: `conditional` finds no gated route through it -- which
+                    #: is a real gap in the model, filed in the roadmap
+                    #: queue, not a defect in the map.
+                    expect=Expect(sector_type=614, rx_id=309,
+                                  payload_shape="boundary re-partition")),
                 Exhibit(
                     label="DOUBLE SLIDE DOOR",
                     about="one sector, two leaves parting along their own line",
@@ -382,27 +414,26 @@ def sections() -> list[Section]:
                     expect=Expect(sector_type=614, rx_id=304)),
                 Exhibit(
                     label="CURTAIN",
-                    about="a thin sector whose WIDTH changes -- the texture "
-                          "squashing IS the animation",
-                    try_this="nothing yet: read the wall and tell us if the "
-                             "description matches what you know",
+                    about="a thin sector whose own LENGTH changes -- the "
+                          "texture squashing IS the animation",
+                    try_this="open it and watch the fabric gather: the sector "
+                             "resizes, it does not slide aside",
                     provenance="owner anchor 146/147, binding strong, and the "
                                "owner's note with them: a Blood curtain is a "
                                "thin deforming sector, not a pair of leaves",
-                    blocker="COMING SOON",
-                    prefix="curtain",
-                    hand_composed=(
-                        "the whole mechanism: a thin sector that changes "
-                        "width, deforming tile 146. Pre-decided item of the "
-                        "promotion audit that runs after this zoo",),
-                ),
+                    covers=("bloodmap.mechanism.curtain",),
+                    build=stalls.curtain, prefix="curtain",
+                    bay=5 * 1024, depth=5 * 1024,
+                    expect=Expect(sector_type=614, rx_id=303,
+                                  payload_shape="the sector resizes itself",
+                                  wall_tiles=(146,))),
             )),
         # ------------------------------------------------------------------
         Section(
             label="FURNITURE HALL",
             about="one hall of the furniture kinds the pipeline can place, "
                   "each seated the way that thing is actually mounted",
-            skin=TIMBER, clear=int(2.4 * PLAYER_HEIGHT),
+            skin=MASONRY, clear=int(2.4 * PLAYER_HEIGHT),
             hand_composed=(
                 "the hall itself; and the table volumes, which are raised "
                 "sectors assembled here because templates.py's table lives "
@@ -609,9 +640,8 @@ def sections() -> list[Section]:
                     hand_composed=(
                         "the passage: four pipe sectors chained by hand, "
                         "because no constructor owns a service run",
-                        "the sewer grate 502: it carries mask pixels, so by "
-                        "the measured transparency law it cannot go on a "
-                        "floor, and nothing here builds a maskwall panel",),
+),
+                    covers=("bloodmap.aperture.maskwall_panel",),
                     expect=Expect(wall_tiles=(496, 497, 498, 499))),
                 Exhibit(
                     label="SEWER DOOR",
@@ -683,7 +713,7 @@ def sections() -> list[Section]:
             label="TILE MUSEUM",
             about="a gallery wall of the owner's anchor tiles, each lettered "
                   "with the owner's own name for it",
-            skin=STONE, clear=MEDIAN_CLEAR,
+            skin=GALLERY, clear=MEDIAN_CLEAR,
             hand_composed=(
                 "the panel bays: shallow sectors wearing one tile each, with "
                 "no lighting of their own",),

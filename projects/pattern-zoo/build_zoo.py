@@ -8,12 +8,21 @@ it is used. So the zoo is now a spine that branches into **sections**, and a
 section is ONE environment -- a shop, a street, a sewer -- holding the
 exhibits that belong together in it.
 
-Inside a section the exhibits stand in **bays** along its back wall, each as
-wide as that exhibit needs, and each preceded by a **pier** of solid wall
-that carries its label. The label cannot go on the bay's own wall: an
-exhibit is entitled to open all of it -- a doorway, a park, a frontage --
-and letters hung across an opening are refused, correctly. So the pier is
-sized to whichever word it has to carry, and is solid by construction.
+A branch runs **away** from the hub, not alongside it. v3 made each section a
+wide shallow slab hugging the spine for up to forty thousand units, which
+made the "corridor" forty thousand units long and every branch parallel to
+it. Here the hub is short and each branch is a hall running perpendicular
+from it, with its exhibits in **bays** down BOTH long walls.
+
+Each bay is preceded by a **pier** of solid wall carrying its label. The
+label cannot go on the bay's own wall: an exhibit is entitled to open all of
+it -- a doorway, a park, a frontage -- and letters hung across an opening are
+refused, correctly. So the pier is sized to whichever word it has to carry.
+
+The builders are not rotated; the layout is rotated underneath them. Every
+exhibit builder reasons in one frame -- x away from the room into its back
+box, y across the bay -- and `frame.Framed` maps that frame onto whichever
+wall of whichever branch the bay actually sits on.
 
 Nothing is placed by hand: sections and exhibits come from `registry.py` and
 their contents from `stalls.py`, through the constructors that own each
@@ -41,11 +50,15 @@ from bloodmap.planar_layout import PlanarLayout             # noqa: E402
 from bloodmap.texture_align import sprite_tile_extents      # noqa: E402
 
 import registry as registry_module                          # noqa: E402
+from frame import Framed                                    # noqa: E402
 
 U = 1024
 PLAYER_HEIGHT = 16960
 #: The spine's own shell, deliberately plain: the sections wear the materials.
-SPINE_SKIN = (400, 294, 285)
+#: 400 is a multi-storey facade backdrop the campaign uses on 48 wall slots
+#: in 43 maps. It was the spine's material and every room's default, which is
+#: how the zoo came to use it 162 times in one level.
+SPINE_SKIN = (80, 294, 285)
 CORRIDOR_WIDTH = 3 * U
 #: The neck between spine and section, exactly as wide as the mouth. Without
 #: it a section's whole near wall lies on the corridor's and only part of it
@@ -53,8 +66,12 @@ CORRIDOR_WIDTH = 3 * U
 NECK = 768
 MOUTH = 2 * U
 ENTRANCE = 4 * U
-#: Clear air between one section and the next along the spine.
-GAP = 3 * U
+#: Clear air between one branch and the next along the hub. Now that bays sit
+#: on BOTH long walls, every branch reaches its exhibits' depth out to either
+#: side, so two neighbours on the same side of the hub need twice the deepest
+#: back box between them or their sub-rooms overlap. `gap_for` computes it
+#: rather than guessing, because the deepest exhibit changes with the
+#: registry.
 
 FLOOR_Z = 0
 #: How high an exhibit's label sits: above a doorway header at 1.5 player
@@ -62,6 +79,8 @@ FLOOR_Z = 0
 LABEL_HEIGHT_PH = 1.72
 LABEL_SIZE = registry_module.LABEL_SIZE
 PIER = registry_module.PIER
+#: What a sub-room inside an outdoor section gets instead of the sky.
+ROOF = 285
 
 
 def _toward(text, span, size, *, forward):
@@ -84,35 +103,71 @@ def _rect(x0, y0, x1, y1):
     return [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
 
 
-def plan(sections):
-    """Lay the sections along the spine, each at its own frontage.
+def _run_depth(items):
+    return max((item.depth for item in items), default=0)
 
-    Sections alternate sides and advance by their own frontage, so a long
-    gallery takes the room it needs instead of everything shrinking to the
-    smallest.
+
+def gap_between(lower, upper):
+    """Room for two branches' facing back boxes, and no more.
+
+    Only the walls that actually face each other matter: the lower branch's
+    NORTH run and the upper branch's SOUTH run. Taking the deepest exhibit
+    anywhere in the registry instead made every gap 18432 and the hub half as
+    long again as it needed to be.
+    """
+    return (_run_depth(wall_runs(lower)[0])
+            + _run_depth(wall_runs(upper)[1]) + 2 * U)
+
+
+def wall_runs(section):
+    """Split a section's exhibits between its two long walls.
+
+    A hall with exhibits down one side and blank wall down the other is a
+    corridor with decoration. Alternating puts something to look at both
+    ways and halves the branch's length, which is what keeps the hub short.
+    """
+    north, south = [], []
+    for index, item in enumerate(section.exhibits):
+        (north if index % 2 == 0 else south).append(item)
+    return north, south
+
+
+def run_length(items):
+    """How far along a branch one wall's bays and piers reach."""
+    return sum(item.pier() + item.bay for item in items) + PIER
+
+
+def branch_length(section):
+    return max(run_length(run) for run in wall_runs(section)) + ENTRANCE
+
+
+def plan(sections):
+    """Place the branches around a hub, alternating sides.
+
+    Each branch takes its own length outward and only its own WIDTH along
+    the hub, so the hub stays short however long the galleries get.
     """
     placed = []
     cursor = {-1: ENTRANCE, 1: ENTRANCE}
+    previous = {-1: None, 1: None}
     side = -1
     for section in sections:
-        across = section.frontage()
-        centre = cursor[side] + across // 2
+        width = section.standing * 2
+        if previous[side] is not None:
+            cursor[side] += gap_between(previous[side], section)
+        centre = cursor[side] + width // 2
         placed.append((section, side, centre))
-        cursor[side] = centre + across // 2 + GAP
+        cursor[side] = centre + width // 2
+        previous[side] = section
         side = -side
     return placed
 
 
-def _bays(section, centre):
-    """Each exhibit's pier and bay along the section's back wall.
-
-    The pier comes first and carries the label; the bay follows and is the
-    exhibit's to open however it likes.
-    """
-    across = section.frontage()
-    at = centre - across // 2
+def _bays(items, start):
+    """Each exhibit's pier and bay along one wall, in order from the hub."""
+    at = start
     out = []
-    for item in section.exhibits:
+    for item in items:
         pier = item.pier()
         out.append((item, at, at + pier, at + pier, at + pier + item.bay))
         at += pier + item.bay
@@ -122,7 +177,7 @@ def _bays(section, centre):
 def build_level() -> PlanarLayout:
     sections = registry_module.sections()
     placed = plan(sections)
-    length = max(centre + section.frontage() // 2
+    length = max(centre + section.standing
                  for section, _side, centre in placed) + ENTRANCE
 
     #: Seated sprites need their tiles' drawn extents, or an object placed at
@@ -141,19 +196,20 @@ def build_level() -> PlanarLayout:
         "region:spine", _rect(-half, 0, half, length),
         floor_z=FLOOR_Z, ceiling_z=FLOOR_Z - spine_clear,
         wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
-        intent={"purpose": "the spine; every section opens off it"})
+        intent={"purpose": "the hub; every branch runs off it at right "
+                           "angles"})
 
     for section, side, centre in placed:
         name = section.region_prefix()
-        across = section.frontage()
-        deep = section.standing
+        width = section.standing * 2
+        deep = branch_length(section)
         ceiling_z = FLOOR_Z - section.clear
         skin = section.skin
         edge = half if side > 0 else -half
         neck_far = edge + side * NECK
         near, far = neck_far, neck_far + side * deep
         x0, x1 = (near, far) if side > 0 else (far, near)
-        y0, y1 = centre - across // 2, centre + across // 2
+        y0, y1 = centre - width // 2, centre + width // 2
 
         neck_box = ((edge, centre - MOUTH // 2, neck_far, centre + MOUTH // 2)
                     if side > 0 else
@@ -179,49 +235,59 @@ def build_level() -> PlanarLayout:
             a1=(neck_far, centre - MOUTH // 2),
             a2=(neck_far, centre + MOUTH // 2), min_width=U)
 
-        #: The section's name on the corridor wall beside its mouth.
+        #: The branch's name on the hub wall beside its mouth.
         low = (edge, centre + MOUTH // 2)
-        high = (edge, centre + across // 2 - 256)
+        high = (edge, centre + width // 2 - 256)
         sign_a, sign_b = (high, low) if side < 0 else (low, high)
         write_on_wall(layout, f"sign:{name}", "region:spine",
                       a1=sign_a, a2=sign_b, text=section.label,
-                      height_player_heights=1.15, size=64)
+                      height_player_heights=1.15, size=48)
 
-        back_wall = far
-        for item, pier_low, pier_high, bay_low, bay_high in _bays(section,
-                                                                   centre):
-            bx0, bx1 = (near, far) if side > 0 else (far, near)
-            bay = (bx0, bay_low, bx1, bay_high)
-            back_near, back_far = back_wall, back_wall + side * item.depth
-            back = ((back_near, bay_low, back_far, bay_high) if side > 0
-                    else (back_far, bay_low, back_near, bay_high))
-
-            #: The label goes on the PIER beside the bay, not on the bay's
-            #: own wall: an exhibit is entitled to open all of its wall, and
-            #: letters hung across an opening are refused. Ordered the way an
-            #: inward-facing wall is ordered, so they face into the room.
-            a1 = (back_wall, pier_low) if side > 0 else (back_wall, pier_high)
-            a2 = (back_wall, pier_high) if side > 0 else (back_wall, pier_low)
-            #: Justified hard against the bay it names. The pier runs
-            #: low-to-high before the bay, so on the +x side the bay is at
-            #: the far end of the pier wall and on the -x side at the near.
-            span = pier_high - pier_low
-            toward = _toward(item.label, span, LABEL_SIZE, forward=side > 0)
-            write_on_wall(layout, f"label:{item.region_prefix()}", section_id,
-                          a1=a1, a2=a2, text=item.label, t=toward,
-                          height_player_heights=LABEL_HEIGHT_PH,
-                          size=LABEL_SIZE)
-            if item.is_empty():
-                #: An honest gap, lettered under its own name.
-                write_on_wall(layout, f"blocker:{item.region_prefix()}",
-                              section_id, a1=a1, a2=a2, text=item.blocker,
-                              t=_toward(item.blocker, span, LABEL_SIZE,
-                                        forward=side > 0),
-                              height_player_heights=0.85, size=LABEL_SIZE)
-                continue
-            item.build(layout, section_id, bay, back,
-                       floor_z=FLOOR_Z, ceiling_z=ceiling_z, skin=skin,
-                       section_box=(x0, y0, x1, y1))
+        #: Both long walls of the branch. The local frame's +x runs from the
+        #: wall INTO the room, so a bay on the wall at greater y has forward
+        #: -y and one on the lesser-y wall has +y; the builders never learn
+        #: any of it.
+        start = min(near, far) if side > 0 else max(near, far)
+        north, south = wall_runs(section)
+        for run, wall_y, forward in ((north, y1, (0, -1)),
+                                     (south, y0, (0, +1))):
+            for item, pier_low, pier_high, bay_low, bay_high in _bays(
+                    run, ENTRANCE // 2):
+                frame = Framed(layout, origin=(start, wall_y),
+                               forward=forward, across=(side, 0))
+                #: The bay is the strip of branch floor in front of this
+                #: stretch of wall; the back box is beyond the wall, at
+                #: negative local x, which is what `_outward` reads.
+                bay = (0, bay_low, section.standing, bay_high)
+                back = (-item.depth, bay_low, 0, bay_high)
+                span = pier_high - pier_low
+                toward = _toward(item.label, span, LABEL_SIZE, forward=True)
+                #: The pair's ORDER decides which side of the wall the
+                #: letters sit on, and half the frames are reflections.
+                #: Ordered so the letters face INTO the branch: the wall is
+                #: at local x=0 with the room at positive local x.
+                pier_a, pier_b = frame.write_on_wall_pair(
+                    (0, pier_high), (0, pier_low))
+                write_on_wall(layout, f"label:{item.region_prefix()}",
+                              section_id,
+                              a1=pier_a, a2=pier_b,
+                              text=item.label, t=toward,
+                              height_player_heights=LABEL_HEIGHT_PH,
+                              size=LABEL_SIZE)
+                if item.is_empty():
+                    write_on_wall(layout, f"blocker:{item.region_prefix()}",
+                                  section_id,
+                                  a1=pier_a, a2=pier_b,
+                                  text=item.blocker,
+                                  t=_toward(item.blocker, span, LABEL_SIZE,
+                                            forward=True),
+                                  height_player_heights=0.85, size=LABEL_SIZE)
+                    continue
+                item.build(frame, section_id, bay, back,
+                           floor_z=FLOOR_Z, ceiling_z=ceiling_z,
+                           skin=(skin[0], skin[1],
+                                 ROOF if section.outdoor else skin[2]),
+                           section_box=(x0, y0, x1, y1))
 
     layout.set_player_start("region:spine", x=0, y=ENTRANCE // 2, z=FLOOR_Z,
                             angle=512)

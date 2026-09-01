@@ -21,8 +21,16 @@ binding rule:
 * **the representation taxonomy holds.** A tile an exhibit claims as wall
   texture must appear on walls and not as a sprite, and the reverse; a
   concept realized at the wrong level is a build failure, not a style choice.
-* **the mask law holds.** No tile carrying mask pixels may appear on a floor
-  or ceiling. Measured over the campaign: 0 of 28158 non-sky surface slots.
+* **the engine usage laws hold.** The Part-A validators from
+  `bloodmap.rules_blood` run here as a block: the mask law (extended to
+  one-sided walls), the parallax law in both directions, the flat-tile
+  power-of-two law, and the usage-kind table. The first four fail the build;
+  the usage-kind check is a warning tier, because it is derived from 43 maps
+  and an authored map is allowed to be the first to do something.
+* **no tile is leaned on far harder than the campaign leans on it.** Slot
+  correctness is not the whole of usage: every one of the 162 uses of tile
+  400 in v3 was in an attested slot, and 400 is a facade backdrop the
+  campaign puts on 48 wall slots in 43 maps.
 * **every exhibit is lettered.** A label sprite has to exist for each, or an
   exhibit has lost the identity that owner feedback arrives by.
 """
@@ -167,6 +175,15 @@ def check(disk, manifest, graph, exhibit) -> list[str]:
                 f"{exhibit.label}: wanted a mechanism listening on channel "
                 f"{want.rx_id}, found {heard}")
 
+    if want.payload_shape:
+        from bloodmap.effects import payload
+
+        shapes = {payload(disk, sector)["shape"]["shape"] for sector in typed}
+        if want.payload_shape not in shapes:
+            problems.append(
+                f"{exhibit.label}: its payload reads as {sorted(shapes)}, "
+                f"wanted {want.payload_shape!r}")
+
     if want.reads_as:
         objects = {reading["design_object"] for _s, _r, reading in readings}
         if want.reads_as not in objects:
@@ -248,6 +265,50 @@ def floating_sprites(disk, manifest) -> list[str]:
                 f"sprite {index} (tile {picnum}) sits {gap} units off the "
                 f"floor of sector {int(fields['sector'])}")
     return out
+
+
+#: The laws that fail a build, and the one that only warns.
+LAW_RULES = ("mask-tile-off-plain-surfaces", "parallax-wears-a-sky-tile",
+             "sky-tile-is-parallaxed", "flat-tile-power-of-two")
+WARN_RULES = ("tile-sits-in-an-attested-slot",)
+
+
+def usage_laws(disk) -> tuple[list[str], list[str]]:
+    """The Part-A validators, run over the built map. (failures, warnings).
+
+    These are the same `bloodmap.rules_blood` rules the authored-map
+    validation uses, so the zoo cannot pass a gate the rest of the pipeline
+    would fail it on -- which is exactly how v3 shipped eighteen transparency
+    violations inside the exhibit that teaches the transparency law.
+    """
+    try:
+        import bloodmap.rules_blood                      # noqa: F401
+        from bloodmap.rules import RULES
+    except Exception:
+        return [], []
+    failures, warnings = [], []
+    for rule_id, sink in ([(r, failures) for r in LAW_RULES]
+                          + [(r, warnings) for r in WARN_RULES]):
+        rule = RULES.get(rule_id)
+        if rule is None:
+            continue
+        found = rule.check(disk)
+        for violation in found.violations:
+            sink.append(f"{rule_id}: {violation.location} {violation.detail}")
+    return failures, warnings
+
+
+def leaned_on(disk) -> list[str]:
+    """Tiles used far out of proportion to the campaign's own use of them."""
+    try:
+        from bloodmap.usage_kinds import overused
+    except Exception:
+        return []
+    return [
+        f"tile {row['picnum']} is on {row['used']} walls "
+        f"({row['times_the_campaign_rate']}x the campaign's rate; it has "
+        f"{row['campaign_slots']} wall slots in the whole campaign)"
+        for row in overused(disk)]
 
 
 def masked_surfaces(disk) -> list[str]:
@@ -334,7 +395,9 @@ def run(map_path: pathlib.Path = MAP,
     stranded = stranded_sections(disk, manifest, graph)
     masked = masked_surfaces(disk)
     labels = unlettered(disk, manifest)
-    problems.extend(floats + stranded + masked + labels)
+    laws, warnings = usage_laws(disk)
+    leaned = leaned_on(disk)
+    problems.extend(floats + stranded + masked + labels + laws + leaned)
 
     from collections import Counter
     types = Counter(int(s.fields["type"]) for s in disk.sectors)
@@ -348,6 +411,9 @@ def run(map_path: pathlib.Path = MAP,
         "stranded_sections": stranded,
         "masked_surfaces": masked,
         "lettering": labels,
+        "usage_law_failures": laws,
+        "usage_kind_warnings": warnings,
+        "leaned_on": leaned,
         "problems": problems,
         "passed": not problems,
     }
@@ -363,8 +429,11 @@ def main() -> int:
         for line in found:
             print(f"  !! {line}")
     for line in (report["floating_sprites"] + report["stranded_sections"]
-                 + report["masked_surfaces"] + report["lettering"]):
+                 + report["masked_surfaces"] + report["lettering"]
+                 + report["usage_law_failures"] + report["leaned_on"]):
         print(f"  !! {line}")
+    for line in report["usage_kind_warnings"]:
+        print(f"  ?  {line}")
     print("PASS" if report["passed"]
           else f"FAIL: {len(report['problems'])} problems")
     return 0 if report["passed"] else 1

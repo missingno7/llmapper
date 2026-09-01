@@ -32,11 +32,16 @@ refuses, and rightly.
 
 from __future__ import annotations
 
-from bloodmap.aperture import FacadeOpening, facade_run, framed_door
+from bloodmap.aperture import (
+    FacadeOpening, facade_run, framed_door, maskwall_panel,
+)
 from bloodmap.doors import z_motion_door
 from bloodmap.lettering import write_on_wall
 from bloodmap.furniture import furnish, mounting_for, place as furnish_into
-from bloodmap.mechanism import PLAYER_HEIGHT, sliding_gate, turnstile_pair
+from bloodmap.mechanism import (
+    PLAYER_HEIGHT, curtain as mechanism_curtain, planar_door,
+    sliding_gate, turnstile_pair,
+)
 from bloodmap.owner_anchors import load_owner_anchors
 
 U = 1024
@@ -105,6 +110,14 @@ CH_SHELF = 304
 CH_DOUBLE_SLIDE = 307
 CH_PLAIN_SLIDE = 308
 CH_CASKET = 309
+
+#: E1M1 s125 is 128 units deep. A curtain is thin -- that is what lets its
+#: length change read as the fabric gathering.
+CURTAIN_DEPTH = 128
+
+#: The sky, which may only appear with the parallax bit and is the only
+#: thing that may. bloodmap/usage_kinds.py carries the law.
+SKY = 2500
 
 #: `norms-v1.json` shape.median_height: one campaign storey.
 MEDIAN_CLEAR = 33280
@@ -292,9 +305,13 @@ def by_high(back):
 
 #: Habitats. A room beyond a door is what makes opening it worth doing, and
 #: its material says what kind of place the door serves.
-CHAPEL = (400, 294, 285)
-STORE = (452, 294, 285)
-VAULT = (491, 294, 285)
+#: Rooms beyond a door. Chosen from what the campaign builds with, not from
+#: what reads well in a thumbnail: 400 is a multi-storey facade BACKDROP with
+#: 48 wall slots in 43 maps, and using it as a room material is the single
+#: largest tile error the corpus audit found.
+CHAPEL = (281, 294, 285)     # irregular grey masonry, 1012 campaign slots
+STORE = (91, 294, 285)       # brick with a base course, 3126
+VAULT = (491, 294, 285)      # metal plating (owner anchor, weak), 200
 
 
 def push_door(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
@@ -334,7 +351,7 @@ def keyed_door(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     #: from the tile's own extent -- which is exactly what v1 skipped for
     #: the tiles it placed by hand.
     layout.place_on_floor("keyed_door:key", stall,
-                          local=_local(_.get("section_box") or box, box,
+                          local=_local(layout, _.get("section_box") or box, box,
                                        0.35, 0.3, back),
                           type=105, picnum=2552, x_repeat=40, y_repeat=40,
                           cstat=128, status=3, shade=-8)
@@ -660,47 +677,102 @@ def shelf_secret(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
 
 
 def casket(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
-    """E1M1's opening: a slide and a z travel conjugated on ONE sector.
+    """E1M1's casket, through `mechanism.planar_door`.
 
-    The owner's correction is the exhibit. The casket is not a z door: it is
-    four sectors in two pairs, and the sector the player wakes in (s30) is
-    **kSectorSlideMarked AND carries z endpoints** -- which is the attested
-    proof that the two XSECTOR z states are not a type-600 privilege. A verb
-    for the XY motion comes from the type; the z verb is orthogonal and
-    composes on the same sector.
+    The lid opens by moving the BOUNDARY between the hole you are in and the
+    cover beside it: one flagged wall, whose travel re-partitions plan area
+    between the two. `effects.payload_shape` names that arrangement
+    "boundary re-partition" and finds 44 of them across the campaign, so this
+    is a family and not a one-off.
 
-    So this builds the slide through `mechanism.sliding_gate` and then merges
-    z endpoints onto that same sector, exactly as s30 does.
+    The floor also rises as it opens -- the owner's ERGONOMIC-ASSIST motion,
+    which lifts the player out of the coffin and gates nothing. It is the z
+    verb composed on the same 614 sector, which is E1M1's own proof that the
+    two XSECTOR z states are not a type-600 privilege.
 
-    Two things it is NOT, both lettered in the registry as hand-composed:
-    the ROR link (PlanarLayout has no stack link at all), and the
-    boundary-wall area re-partition that is how the real lid works.
+    What is still missing is the room-over-room half, and it is lettered as
+    such: E1M1's is four sectors in two pairs, stack-linked, and PlanarLayout
+    has no stack link at all.
     """
     wall, floor, ceiling = skin
-    header = floor_z - 3 * PLAYER_HEIGHT // 2
-    strip = _gate(layout, stall, box, back, "casket",
-                  floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
-                  channel=CH_CASKET, busy_time=40, depth=768,
-                  frame=2 * U, header_z=header)
-    #: The second verb on the same sector: s30's floor lifts the player so
-    #: they can climb out. The owner calls this ERGONOMIC-ASSIST motion --
-    #: present for the body, not for topology -- so it is not a gating claim.
-    layout.regions["casket:gate"].sector_behavior.update({
-        "off_floor_z": floor_z, "on_floor_z": floor_z - PLAYER_HEIGHT // 2,
-        "off_ceiling_z": ceiling_z, "on_ceiling_z": ceiling_z,
-    })
-    hole = _slice(back, box, REVEAL + 768, 2 * U)
-    hole = (hole[0], strip[1], hole[2], strip[3])
+    out = _outward(back, box)
+    bx0, by0, bx1, by1 = back
+    mid = (by0 + by1) // 2
+    width = 3 * U
+    low, high = mid - width // 2, mid + width // 2
+    near = box[2] if out > 0 else box[0]
+    hole_far = near + out * 3 * U
+    cover_far = hole_far + out * 768
+    hx0, hx1 = min(near, hole_far), max(near, hole_far)
+    cx0, cx1 = min(hole_far, cover_far), max(hole_far, cover_far)
+    planar_door(
+        layout, "casket",
+        hole_region="casket:hole", cover_region="casket:cover",
+        hole_outline=_rect((hx0, low, hx1, high)),
+        cover_outline=_rect((cx0, low, cx1, high)),
+        boundary=((hole_far, low), (hole_far, high)),
+        travel=(out * 3 * U, 0), channel=CH_CASKET,
+        floor_z=floor_z, ceiling_z=ceiling_z,
+        lift_out=PLAYER_HEIGHT // 3, transmits=CH_CASKET + 1,
+        wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
+        declared_zero_exit=True)
+    layout.add_connection("casket:c0", stall, "casket:hole",
+                          a1=(near, low), a2=(near, high), min_width=U // 2)
+    layout.add_connection("casket:c1", "casket:hole", "casket:cover",
+                          a1=(hole_far, low), a2=(hole_far, high),
+                          min_width=U // 2)
+    #: kChannelLevelStart is 7 and fires before the player moves, which is how
+    #: E1M1 opens its casket with a switch nobody can reach.
+    x0, y0, x1, _y1 = box
+    layout.place_on_wall("casket:switch", stall, a1=(x0, y0), a2=(x1, y0),
+                         t=0.5, height_player_heights=0.55,
+                         behavior={"tx_id": CH_CASKET, "command": 1,
+                                   "trigger_push": 1},
+                         **SWITCH)
+
+
+def curtain(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
+    """E1M1's curtain, through `mechanism.curtain`.
+
+    A thin sector whose own LENGTH changes: its two end caps carry opposite
+    payload flags, so one advances while the other retreats and tile 146 is
+    squashed and stretched across its long faces. That deformation is the
+    animation. This project built it twice as sliding leaves, which looks
+    like a gate because it is one.
+    """
+    wall, floor, ceiling = skin
+    out = _outward(back, box)
+    bx0, by0, bx1, by1 = back
+    mid = (by0 + by1) // 2
+    length = 3 * U
+    low, high = mid - length // 2, mid + length // 2
+    near = box[2] if out > 0 else box[0]
+    far = near + out * CURTAIN_DEPTH
+    x0, x1 = min(near, far), max(near, far)
+    mechanism_curtain(
+        layout, "curtain:leaf", _rect((x0, low, x1, high)),
+        near_cap=((x1, low), (x0, low)),
+        far_cap=((x0, high), (x1, high)),
+        travel=(0, length // 2), channel=CH_CURTAIN,
+        floor_z=floor_z, ceiling_z=ceiling_z,
+        floor_picnum=floor, ceiling_picnum=ceiling,
+        declared_zero_exit=True)
+    layout.add_connection("curtain:c0", stall, "curtain:leaf",
+                          a1=(near, low), a2=(near, high), min_width=U // 2)
+    #: A curtain hangs across something worth curtaining off.
+    stage = _slice(back, box, CURTAIN_DEPTH, 2 * U)
+    stage = (stage[0], low, stage[2], high)
     layout.add_region(
-        "casket:hole", _rect(hole),
-        floor_z=floor_z - PLAYER_HEIGHT // 2, ceiling_z=ceiling_z,
+        "curtain:stage", _rect(stage),
+        floor_z=floor_z - PLAYER_HEIGHT // 4, ceiling_z=ceiling_z,
         wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
         declared_zero_exit=True,
-        intent={"purpose": "casket: the hole the lid slides off, one storey "
-                           "down from the cover"})
-    b1, b2 = _far(strip, back, box)
-    layout.add_connection("casket:c1", "casket:gate", "casket:hole",
+        intent={"purpose": "curtain: the alcove it is drawn across"})
+    b1, b2 = _far((x0, low, x1, high), back, box)
+    layout.add_connection("curtain:c1", "curtain:leaf", "curtain:stage",
                           a1=b1, a2=b2, min_width=U // 2)
+    layout.place_on_floor("curtain:statue", "curtain:stage", local=(0.5, 0.5),
+                          **furnish("statue"))
 
 
 # ---------------------------------------------------------------------------
@@ -764,16 +836,24 @@ def dressed_doorway(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
 # assemblies -- volumes and textures, never sprites
 # ---------------------------------------------------------------------------
 
-def _volume(layout, name, box, *, tile, floor_z, rise, ceiling_z):
-    """A solid block of geometry wearing one tile on every face.
+def _volume(layout, name, box, *, tile, floor_z, rise, ceiling_z,
+            ceiling_picnum=285, top_picnum=None):
+    """A solid block of geometry wearing one tile on the faces that show.
 
     This is what a crate is. v1 made them sprites, which is a picture of a
     crate rather than a crate.
+
+    Walls and top only. The campaign attests 452 and 95 on walls and floors
+    -- a crate lid IS a floor you can stand on -- and never on a ceiling, so
+    the underside keeps the room's own. The zoo wore the crate tile on all
+    six faces, which put it in a slot the corpus does not attest.
     """
     layout.add_region(
         name, _rect(box),
         floor_z=floor_z - rise, ceiling_z=ceiling_z,
-        wall_picnum=tile, floor_picnum=tile, ceiling_picnum=tile,
+        wall_picnum=tile,
+        floor_picnum=tile if top_picnum is None else top_picnum,
+        ceiling_picnum=ceiling_picnum,
         declared_zero_exit=True,
         intent={"purpose": f"{name}: a texture-grid volume"})
 
@@ -816,7 +896,7 @@ def shelf_run(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     layout.add_region(
         "shelf:run", _rect(strip),
         floor_z=floor_z - PLAYER_HEIGHT // 2, ceiling_z=ceiling_z,
-        wall_picnum=SHELF, floor_picnum=SHELF, ceiling_picnum=ceiling,
+        wall_picnum=SHELF, floor_picnum=floor, ceiling_picnum=ceiling,
         declared_zero_exit=True,
         intent={"purpose": "shelf run: a shallow sector wearing tile 2026"})
     a1, a2 = _span(box, back)
@@ -879,10 +959,12 @@ def counter(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
         raise ValueError(
             f"counter: footprint {long_side}x{short_side} is not elongated "
             f"enough; the campaign rule wants aspect >= {COUNTER_MIN_ASPECT}")
+    #: Shelf faces on the sides, an ordinary floor on the top: 2026 is a
+    #: wall tile and the campaign never lays it flat.
     layout.add_region(
         "counter:top", _rect(top),
         floor_z=floor_z - COUNTER_RISE, ceiling_z=ceiling_z,
-        wall_picnum=SHELF, floor_picnum=SHELF, ceiling_picnum=ceiling,
+        wall_picnum=SHELF, floor_picnum=floor, ceiling_picnum=ceiling,
         intent={"purpose": "counter: the top, raised the campaign's 8192 -- "
                            "waist band, aspect 2, props on it"})
     layout.add_region(
@@ -957,6 +1039,14 @@ def sewer_wall(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
             #: The technical door face where the passage begins, which is the
             #: seam the exhibit asks you to look for.
             **({"face_picnum": SEWER_DOOR} if index == 0 else {}))
+        #: The grate, in the only slot the campaign ever puts one: the
+        #: over_picnum of a masked two-sided wall. It carries the mask colour,
+        #: so a floor or a plain wall is closed to it by the transparency law
+        #: -- 502 appears as an over_picnum 27 times and on a plain wall never.
+        if index == 1:
+            maskwall_panel(layout, f"sewer:grate{index}", previous, name,
+                           a1=(face, lo), a2=(face, hi),
+                           picnum=SEWER_GRATE, shade=-8, blocking=False)
         at += U + U // 2
         face = face + out * (U + U // 2)
         previous = name
@@ -1000,17 +1090,26 @@ def _sayable(text, width, size):
 
 
 def tile_museum(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
-    """A niche per owner tile, each lettered with the owner's own name.
+    """A niche per owner tile -- each showing that tile WHERE IT BELONGS.
 
-    Strong binding first, because that is the executable half of the rule:
-    a strong tile MAY name what it depicts, and a weak or untested one never
-    may. The names under these panels are therefore the owner's, quoted, not
-    ours -- which is exactly what makes them correctable on the walk.
+    v3's museum was the worst violator of the very rule it exists to teach.
+    It painted every anchor on a wall panel regardless of what kind of tile
+    it was, so a translucent curtain (147), a candelabrum (580), a smoke
+    plume (672) and three kinds of blood (713/731/732) were all rendered as
+    masonry. Six of them carry the mask colour, which the campaign never puts
+    on a one-sided wall in 52422 slots, so the museum shipped eighteen
+    violations of the transparency law while claiming to teach it.
 
-    The niches carry a header so the exhibit's own label can be written on
-    the solid band above them; a panel opened to the ceiling leaves nowhere
-    for the sign, which is how this first failed to build.
+    So each panel now asks the usage-kind table where the campaign actually
+    puts this tile, and shows it there: a wall tile on the niche's walls, a
+    surface tile on its floor, a sprite tile as a sprite standing in it.
+    Strong binding first, because that is the executable half of the owner's
+    rule -- a strong tile MAY name what it depicts, and a weak or untested
+    one never may.
     """
+    from bloodmap.usage_kinds import slots_for, tile_size
+    from bloodmap.placement import repeat_to_fit
+
     wall, floor, ceiling = skin
     anchors = load_owner_anchors()
     strong = sorted(anchors.by_binding("strong"), key=lambda item: item.picnum)
@@ -1018,7 +1117,8 @@ def tile_museum(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     bx0, by0, bx1, by1 = back
     depth = 512
     near = bx0 if out > 0 else bx1 - depth
-    #: A niche is chest-high and headed, not a full-height slot.
+    #: A niche is chest-high and headed, not a full-height slot, so the
+    #: exhibit's own label has solid wall to sit on above it.
     header = floor_z - 5 * PLAYER_HEIGHT // 4
     sill = floor_z - PLAYER_HEIGHT // 3
     shown = strong[:8]
@@ -1027,22 +1127,44 @@ def tile_museum(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     for index, item in enumerate(shown):
         low = by0 + 256 + index * pitch
         high = low + pitch - 256
+        slots = slots_for(item.picnum)
+        best = max(slots, key=slots.get) if slots else "wall_one_sided"
+        name = f"museum:{item.picnum}"
+        #: Where this tile goes, per the campaign, and nowhere else.
+        on_wall = item.picnum if best.startswith("wall") else wall
+        on_floor = item.picnum if best in ("floor", "ceiling") else floor
         layout.add_region(
-            f"museum:{item.picnum}", _rect((near, low, near + depth, high)),
+            name, _rect((near, low, near + depth, high)),
             floor_z=sill, ceiling_z=header,
-            wall_picnum=item.picnum, floor_picnum=floor,
+            wall_picnum=on_wall, floor_picnum=on_floor,
             ceiling_picnum=ceiling, declared_zero_exit=True,
             intent={"purpose": f"tile museum: tile {item.picnum}, "
-                               f"{item.label_en} -- owner, binding strong"})
+                               f"{item.label_en} -- owner, binding strong; "
+                               f"shown in slot {best}, its commonest in the "
+                               f"campaign"})
         layout.add_connection(
-            f"museum:c{index}", stall, f"museum:{item.picnum}",
+            f"museum:c{index}", stall, name,
             a1=(face, low), a2=(face, high), min_width=384)
-        name = _sayable(item.label_en, high - low, 48)
-        if name:
+        if best.startswith("sprite"):
+            size = tile_size(item.picnum) or (64, 64)
+            #: A sprite tile is shown as a sprite. Which alignment it takes
+            #: is the tile's own business, from the same table.
+            cstat = {"sprite_wall": 16, "sprite_floor": 32}.get(best, 0)
+            #: Sized to the niche rather than to a fixed repeat: these are
+            #: whatever the owner graded strong, and a curtain tile is four
+            #: times a candle's height.
+            fit = repeat_to_fit(sill, header, size[1],
+                                fraction=0.8)
+            layout.place_on_floor(
+                f"museum:{item.picnum}:sprite", name, local=(0.5, 0.5),
+                type=0, picnum=item.picnum, cstat=cstat | 128,
+                x_repeat=fit, y_repeat=fit, shade=-8)
+        label = _sayable(item.label_en, high - low, 48)
+        if label:
             a1 = (face, low) if out > 0 else (face, high)
             a2 = (face, high) if out > 0 else (face, low)
             write_on_wall(layout, f"museum:name:{item.picnum}", stall,
-                          a1=a1, a2=a2, text=name,
+                          a1=a1, a2=a2, text=label,
                           height_player_heights=1.45, size=48)
 
 
@@ -1065,27 +1187,36 @@ TABLE_RISE = _TEMPLATES.TABLE_RISE
 TABLE_SIDE = _TEMPLATES.TABLE_SIDE
 
 
-def _local(section_box, box, u, v, back=None):
+def _local(layout, section_box, box, u, v, back=None):
     """A point at (u, v) of the BAY, as a fraction of the SECTION.
 
-    `place_on_floor` takes `local` relative to the region it is placing in,
-    and an exhibit places into the section it stands in -- so a bay-relative
-    fraction handed straight to it lands somewhere else entirely. The
-    graveyard turned up in the light fittings' bay exactly this way.
+    Three transforms in one, each of which was a bug once.
 
-    With `back` given, `u` is measured **from the section's back wall**,
-    which is the only direction an exhibit can reason in: sections alternate
-    sides of the spine, so the bay's own x0 is the back wall on one side and
-    the front wall on the other. Measuring from x0 put a row of mannequins
-    in the camera's face on half the sections.
+    `place_on_floor` takes `local` relative to the region it places into, and
+    an exhibit places into the section it stands in -- so a bay-relative
+    fraction handed straight to it lands somewhere else entirely. The
+    graveyard turned up in the light fittings' bay that way.
+
+    With `back` given, `u` is measured **from the section wall the bay backs
+    onto**, which is the only direction an exhibit can reason in: bays sit on
+    both long walls of a branch, so the bay's own x0 is the wall on one side
+    and the open room on the other. Measuring from x0 put a row of mannequins
+    in the camera's face on half the bays.
+
+    And the builder's frame is not the world's. `layout` is a `frame.Framed`
+    wrapping the real layout, so the local point goes through its transform
+    before it is turned into a fraction of the section's WORLD rectangle --
+    otherwise the fraction is computed on swapped axes and every floor-placed
+    thing lands in another branch.
     """
-    sx0, sy0, sx1, sy1 = section_box
-    if back is not None and _outward(back, box) > 0:
-        x = box[2] - u * (box[2] - box[0])
-    else:
-        x = box[0] + u * (box[2] - box[0])
+    x = (box[2] - u * (box[2] - box[0])) if (
+        back is not None and _outward(back, box) > 0) else (
+        box[0] + u * (box[2] - box[0]))
     y = box[1] + v * (box[3] - box[1])
-    return ((x - sx0) / max(1, sx1 - sx0), (y - sy0) / max(1, sy1 - sy0))
+    point = layout.point((x, y)) if hasattr(layout, "point") else (x, y)
+    sx0, sy0, sx1, sy1 = section_box
+    return ((point[0] - sx0) / max(1, sx1 - sx0),
+            (point[1] - sy0) / max(1, sy1 - sy0))
 
 
 def _bay_wall(box, back):
@@ -1100,12 +1231,16 @@ def _shallow(layout, name, rect, *, tile, floor_z, ceiling_z, purpose,
     The representation rule the owner named: a shelf is a WALL TEXTURE on a
     shallow sector, not a sprite thrown at a wall. v1 shipped the sprite.
     """
+    #: The tile goes on the WALLS and nowhere else. A shelf tile laid on the
+    #: floor of its own recess is the representation error one level down
+    #: from the one this helper exists to prevent: the campaign attests 2026
+    #: and 2635 on walls only, and the usage-kind check now says so.
     layout.add_region(
         name, _rect(rect),
         floor_z=floor_z, ceiling_z=ceiling_z,
         wall_picnum=tile,
-        floor_picnum=floor_picnum if floor_picnum is not None else tile,
-        ceiling_picnum=ceiling_picnum if ceiling_picnum is not None else tile,
+        floor_picnum=floor_picnum if floor_picnum is not None else 294,
+        ceiling_picnum=ceiling_picnum if ceiling_picnum is not None else 285,
         declared_zero_exit=True,
         intent={"purpose": purpose})
 
@@ -1166,7 +1301,7 @@ def _row_on_floor(layout, region, names, box, section_box, back, *, prefix,
     for index, name in enumerate(names):
         t = (index + 0.5) / len(names)
         furnish_into(layout, f"{prefix}:{name}:{index}", region, name,
-                     local=_local(section_box, box, across, t, back))
+                     local=_local(layout, section_box, box, across, t, back))
 
 
 def light_fittings(layout, stall, box, back, *, floor_z, ceiling_z, skin,
@@ -1179,7 +1314,7 @@ def light_fittings(layout, stall, box, back, *, floor_z, ceiling_z, skin,
                      height_player_heights=1.1)
     for index, name in enumerate(("chandelier", "lantern")):
         furnish_into(layout, f"lights:{name}", stall, name,
-                     local=_local(section_box or box, box,
+                     local=_local(layout, section_box or box, box,
                                   0.35, 0.3 + 0.4 * index, back))
 
 
@@ -1194,7 +1329,7 @@ def wall_fittings(layout, stall, box, back, *, floor_z, ceiling_z, skin,
     #: Floor-aligned: it lies flat on the ceiling and cannot hang on a wall.
     #: `furniture.place` is what enforces that, from the tile's own cstat.
     furnish_into(layout, "fittings:ceiling_plate", stall, "ceiling_plate",
-                 local=_local(section_box or box, box, 0.4, 0.5, back))
+                 local=_local(layout, section_box or box, box, 0.4, 0.5, back))
 
 
 def tables(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
@@ -1214,9 +1349,12 @@ def tables(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
         near = (box[2] if out > 0 else box[0]) + out * 512
         x0 = min(near, near + out * TABLE_SIDE)
         x1 = max(near, near + out * TABLE_SIDE)
+        #: The shelf tile on the sides, the room's own floor on the top. A
+        #: table top wearing 2026 puts a wall-only tile on a floor, which the
+        #: campaign never does in 26383 surface slots.
         _volume(layout, f"tables:{index}:top", (x0, low, x1, high),
                 tile=SHELF_TILES[0], floor_z=floor_z, rise=TABLE_RISE,
-                ceiling_z=ceiling_z)
+                ceiling_z=ceiling_z, top_picnum=floor, ceiling_picnum=ceiling)
         layout.add_connection(
             f"tables:{index}:face", f"tables:{index}:alcove",
             f"tables:{index}:top",
@@ -1260,13 +1398,17 @@ def shelf_runs(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
             break
         _shallow(layout, f"shelf_runs:{index}", (near, low, near + depth, high),
                  tile=tile, floor_z=floor_z - PLAYER_HEIGHT // 2,
-                 ceiling_z=ceiling_z, ceiling_picnum=ceiling,
+                 ceiling_z=ceiling_z, floor_picnum=floor,
+                 ceiling_picnum=ceiling,
                  purpose=f"shelf runs: a shallow sector wearing tile {tile}, "
                          f"owner anchor, binding strong")
         face = near if out > 0 else near + depth
+        #: The niche's mouth is a two-sided wall and 2635 is attested only on
+        #: one-sided ones, so the opening wears the room's material.
         layout.add_connection(
             f"shelf_runs:c{index}", stall, f"shelf_runs:{index}",
-            a1=(face, low), a2=(face, high), min_width=384)
+            a1=(face, low), a2=(face, high), min_width=384,
+            face_picnum=wall)
 
 
 def display_row(layout, stall, box, back, *, floor_z, ceiling_z, skin,
@@ -1343,13 +1485,13 @@ def ground(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     layout.add_region(
         "ground:grass", _rect(grass),
         floor_z=floor_z, ceiling_z=ceiling_z,
-        wall_picnum=GRASS, floor_picnum=GRASS, ceiling_picnum=ceiling,
+        wall_picnum=GRASS, floor_picnum=GRASS, ceiling_picnum=SKY,
         parallax_ceiling=True,
         intent={"purpose": "ground: grass, owner anchor 361, binding strong"})
     layout.add_region(
         "ground:dirt", _rect(dirt),
         floor_z=floor_z, ceiling_z=ceiling_z,
-        wall_picnum=DIRT, floor_picnum=DIRT, ceiling_picnum=ceiling,
+        wall_picnum=DIRT, floor_picnum=DIRT, ceiling_picnum=SKY,
         parallax_ceiling=True, declared_zero_exit=True,
         intent={"purpose": "ground: the dirt patch, owner anchor 270"})
     a1, a2 = _span(box, back)
@@ -1365,7 +1507,7 @@ def trees(layout, stall, box, back, *, floor_z, ceiling_z, skin,
     """The four tree kinds, each at its own mined campaign height."""
     for index, name in enumerate(("oak", "elm", "pine", "deadwood")):
         furnish_into(layout, f"trees:{name}", stall, name,
-                     local=_local(section_box or box, box,
+                     local=_local(layout, section_box or box, box,
                                   0.25 + 0.25 * (index % 2),
                                   0.15 + 0.23 * index, back))
 
