@@ -795,7 +795,17 @@ def curtain_spec(
         #: than travel together.
         tip_low = low + int(retracted)
         tip_high = high - int(retracted)
-        jambs = [(low, tip_low, 0x4000), (high, tip_high, 0x8000)]
+        #: WHICH LEAF CARRIES WHICH FLAG IS NOT FREE, and getting it the
+        #: other way round does not mirror the curtain -- it makes both
+        #: leaves travel OUTWARD past their own jambs, so the thing rests
+        #: open and "closing" retracts it out of the doorway entirely.
+        #:
+        #: DOOR-CURTAINSD s2 settles it. Its span runs y -3072 (low) to -1024
+        #: (high) and its marker delta is +960, toward high. The tip at
+        #: y -3008 -- the LOW-end leaf -- carries 0x8000 AGAINST, and the tip
+        #: at -1088 -- the HIGH-end leaf -- carries 0x4000 WITH. With the
+        #: delta pointing high, that is what sends both tips to the middle.
+        jambs = [(low, tip_low, 0x8000), (high, tip_high, 0x4000)]
         #: named for the outline walk below
         closed = [span // 2, span // 2]
 

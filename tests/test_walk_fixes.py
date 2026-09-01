@@ -276,10 +276,10 @@ class ACurtainIsCalibratedForItsClosedSpan(unittest.TestCase):
         from bloodmap.motion import flagged_walls
 
         zoo = _zoo()
-        #: the ONE-leaf curtain specifically. The two-leaf pair beside it
-        #: hangs at 1.67 rather than 2.0 -- inside the attested envelope, but
-        #: the spec derives a two-leaf repeat from span/2 where the swept
-        #: closed length comes out 256 shorter. Recorded, not hidden.
+        #: the ONE-leaf curtain specifically, because the assertion is about
+        #: that dialect. The pair is exact too now -- it read 1.67 while its
+        #: leaves were travelling outward past their own jambs, and 2.0 once
+        #: the flags were the way DOOR-CURTAINSD s2 has them.
         sector_id = next(
             i for i, s in enumerate(zoo.sectors)
             if int(s.fields["type"]) == 614
