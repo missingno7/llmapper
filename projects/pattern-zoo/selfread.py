@@ -287,8 +287,13 @@ def floating_sprites(disk, manifest) -> list[str]:
 
 
 #: The laws that fail a build, and the one that only warns.
+#: `wall-tile-is-drawn-somewhere` is the rendering law (bloodmap.render_slots):
+#: a tile authored on the map's walls must be on screen on SOME band. It was
+#: written to fail on the city's stage curtain, whose fabric sat on flush,
+#: unmasked red walls and drew nowhere; the zoo passes it with zero.
 LAW_RULES = ("mask-tile-off-plain-surfaces", "parallax-wears-a-sky-tile",
-             "sky-tile-is-parallaxed", "flat-tile-power-of-two")
+             "sky-tile-is-parallaxed", "flat-tile-power-of-two",
+             "wall-tile-is-drawn-somewhere")
 WARN_RULES = ("tile-sits-in-an-attested-slot",)
 
 

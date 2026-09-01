@@ -102,6 +102,7 @@ convenient.
 | a recurring unsigned signature family | `patterns.py` (`observe_*` + `_SIGNATURES`) | a new pipeline |
 | what surrounds a labelled anchor, and whether that context means anything | `anchors.py` | `patterns.py` |
 | an architectural structure candidate with parameters and residual (stairs, recesses) | `structures.py` | `relations.py` |
+| which tile the renderer shows on which band of a wall (steps, mask, one-way) | `render_slots.py` | a `next_sector < 0` test in the consumer |
 | a measured, versioned, citable design number | `knowledge/blood/design/*-vN.json` | a constant in the module that needed it |
 | something an author should be able to *write* | a `vocabulary.py` / `prefab.py` constructor | the knowledge store |
 

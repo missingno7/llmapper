@@ -42,7 +42,8 @@ requires local unsigned mines in `work/` (gitignored). The compiled
 | `surface-palettes-v1.json` | surface palettes conditioned on band, with held-out sectors |
 | `switches-v1.json` | switch tiles and the eye heights they sit at |
 | `texture-fit-v1.json` | how textures fit their surfaces, with the engine rules |
-| `usage-kinds-v1.json` | for every picnum, which slots the campaign is ATTESTED to use it in |
+| `usage-kinds-v1.json` | for every picnum, which STORAGE slots the campaign is attested to use it in |
+| `usage-kinds-v2.json` | the same by RENDERED slot -- the bands the engine draws (`bloodmap.render_slots`); wall checks prefer it |
 | `visual-norms-v1.json` | rendered-frame metrics across sampled angles |
 | `wall-sprites-v1.json` | wall-sprite overlap, text geometry and sign composition |
 | `wall-thickness-v1.json` | attested wall thicknesses |
