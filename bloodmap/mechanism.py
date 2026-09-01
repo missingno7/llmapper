@@ -25,6 +25,7 @@ from typing import Any
 
 from . import motion
 from .planar_layout import PlanarLayout
+from .texture_align import natural_x_repeat
 from .player_space import PLAYER_PROFILES
 
 #: Marker tile and mounting. All 308 campaign slide gates use tile 3997 on
@@ -638,6 +639,10 @@ MOTION_MIN_DEPTH = 128
 #: How far a curtain's fabric stands clear of its frame at each end, so
 #: its moving vertices are the frame's wall interiors and not its corners.
 #: DOOR-CURTAINS s3: a 64-wide tab in a 256 doorway, drawn 128 out.
+#: Tile 146 is 32 wide. The fabric's repeat is computed against this rather
+#: than read from the ART, so a constructor stays a pure function of its
+#: arguments; `tile_width` overrides it when the fabric is a different tile.
+CURTAIN_TILE_WIDTH = 32
 CURTAIN_FIN_WIDTH = 64
 CURTAIN_RETRACTED = 128
 CURTAIN_BUSY = 15
@@ -703,6 +708,8 @@ def curtain(
     ceiling_z: int,
     anchored: str = "high",
     fin_width: int = CURTAIN_FIN_WIDTH,
+    tile_width: int = CURTAIN_TILE_WIDTH,
+    frame_picnum: int | None = None,
     retracted: int = CURTAIN_RETRACTED,
     state: int = 0,
     picnum: int = CURTAIN_PICNUM,
@@ -790,10 +797,16 @@ def curtain(
     #: shove arrives from XWALLs on the fabric faces (wired below). Putting
     #: the flag on the sector instead makes the entire doorway a button,
     #: including the frame, which is not what a curtain is.
+    #: Only the FABRIC wears the fabric. DOOR-CURTAINS s3 has eight walls and
+    #: exactly three of them carry tile 146; the doorway's own reveal is the
+    #: room's material. Painting the whole region with the cloth tile put
+    #: curtain on the door frame, which reads as a mistake even when the
+    #: mechanism is right.
     layout.add_region(leaf_region, outline, role="doorway", type=614,
                       floor_z=floor_z, ceiling_z=ceiling_z,
-                      wall_picnum=int(picnum), sector_behavior=behavior,
-                      **region_kwargs)
+                      wall_picnum=int(frame_picnum if frame_picnum is not None
+                                      else picnum),
+                      sector_behavior=behavior, **region_kwargs)
     #: The fin's free END, and only that.
     layout.carry_wall(leaf_region, _pt(tip, f1), _pt(tip, f0), moves="with")
 
@@ -805,6 +818,27 @@ def curtain(
     for edge in fabric:
         motion.wall_button(layout, leaf_region, edge, channel=channel,
                            command=motion.CMD_TOGGLE, receiver_state=state)
+
+    #: THE FABRIC IS CALIBRATED FOR THE CLOSED SPAN, NOT THE DRAWN ONE.
+    #:
+    #: The geometry is saved at the ON pose, so the sides are at their SHORT
+    #: length in the file -- and sizing the texture to that is what left the
+    #: zoo's curtain at 48 times natural stretch when drawn across. A curtain
+    #: is a thing you look at closed; open it is a gathered bundle. So the
+    #: repeat is computed for the closed span, which makes the drape natural
+    #: when shut and SQUASHES it hard as it gathers, which is what cloth
+    #: does.
+    #:
+    #: Natural is `length / x_repeat == 2 * tile_width`
+    #: (`texture_align.NATURAL_TEXEL_SCALE`), and DOOR-CURTAINS agrees to the
+    #: unit: s3 and s53 carry x_repeat 16 over a 1024 closed span on tile 146
+    #: (32 wide), and 1 over their 64-wide free end. s24 is the one exemplar
+    #: that departs, at twice that -- deliberately coarser cloth.
+    closed_span = abs(reach)
+    for edge, span in zip(fabric, (closed_span, int(fin_width), closed_span)):
+        layout.paint_wall(leaf_region, edge[0], edge[1],
+                          picnum=int(picnum),
+                          x_repeat=natural_x_repeat(span, int(tile_width)))
 
     markers = motion.place_markers(
         layout, name.replace(":", "_"), driven_region=leaf_region,

@@ -65,6 +65,63 @@ EMBLEM_NAME = {2540: "skull", 2541: "eye", 2542: "flame",
 #: from kItemKey1 at 100.
 KEY_ITEM_TYPE = {key: 99 + key for key in KEY_EMBLEM}
 
+#: The tile a key PICKUP wears where it lies in the world, which is not the
+#: placard emblem and not a free choice. Mined over the 43 campaign maps: 95
+#: key pickups, six item types, and every single one wears `2452 + type` --
+#: no map ever dresses a key as another key. So the world art is DERIVED from
+#: the item type rather than passed in beside it, which is how the zoo came
+#: to grant the moon key (type 105) while showing the skull key's tile
+#: (2552): the lock opened, and the thing on the floor was the wrong key.
+WORLD_TILE_BASE = 2452
+WORLD_TILE = {key: WORLD_TILE_BASE + kind
+              for key, kind in KEY_ITEM_TYPE.items()}
+
+
+def world_picnum(key: int) -> int:
+    """The tile the pickup for `key` wears on the floor."""
+    if key not in WORLD_TILE:
+        raise KeyError(f"key {key} is not one of {sorted(WORLD_TILE)}")
+    return WORLD_TILE[key]
+
+
+def pickup(key: int, **overrides: int) -> dict[str, int]:
+    """The full sprite record for a key lying in the world.
+
+    Type and picnum are derived together from the key, so they cannot drift
+    apart. A caller that wants different art has to say so explicitly, and a
+    reader can then tell intent from accident.
+    """
+    record = {"type": KEY_ITEM_TYPE[key], "picnum": world_picnum(key),
+              "x_repeat": 40, "y_repeat": 40, "cstat": 128, "status": 3,
+              "shade": -8}
+    record.update(overrides)
+    return record
+
+
+def pickup_art_faults(disk: Any) -> list[str]:
+    """Key pickups whose art does not match the key they grant.
+
+    Readability, not correctness: the lock still opens, so nothing static
+    catches it and nothing crashes. The player picks up a skull key, walks to
+    a door that wants the moon, and cannot tell why it opens.
+    """
+    by_type = {kind: key for key, kind in KEY_ITEM_TYPE.items()}
+    out = []
+    for index, sprite in enumerate(disk.sprites):
+        kind = int(sprite.fields["type"])
+        key = by_type.get(kind)
+        if key is None:
+            continue
+        found = int(sprite.fields["picnum"])
+        want = world_picnum(key)
+        if found != want:
+            out.append(
+                f"sprite {index} grants key {key} (item type {kind}) but "
+                f"wears tile {found}, which is the pickup art for key "
+                f"{by_type.get(found - WORLD_TILE_BASE, '?')}; it should be "
+                f"{want}")
+    return out
+
 #: Wall-aligned (16), one-sided (64), centred (128), stops a hitscan (256).
 #: 125 of the campaign's 200 placards; the other 75 drop the hitscan bit.
 PLACARD_CSTAT = 464

@@ -43,6 +43,29 @@ PANNING_PERIOD = 256
 EVEN_TOLERANCE = 0.08
 
 
+#: Build's horizontal texel scale. A wall wears its tile at NATURAL size when
+#: `length / x_repeat == 2 * tile_width`; measured across the whole DOOR-*
+#: tutorial family, 3440 walls sit exactly there and the next cluster (1286)
+#: is twice as dense. So this is the scale to compute against when a texture
+#: should simply look right.
+NATURAL_TEXEL_SCALE = 2
+
+
+def natural_x_repeat(length: float, tile_width: int, *,
+                     scale: int = NATURAL_TEXEL_SCALE) -> int:
+    """The `x_repeat` that wears `tile_width` at natural size over `length`."""
+    if tile_width <= 0:
+        raise ValueError("tile_width must be positive")
+    return max(1, int(round(abs(length) / (scale * tile_width))))
+
+
+def texel_scale(length: float, tile_width: int, x_repeat: int) -> float:
+    """How stretched a wall's texture is: 2.0 is natural, 4.0 is twice that."""
+    if x_repeat <= 0 or tile_width <= 0:
+        return 0.0
+    return (abs(length) / x_repeat) / tile_width
+
+
 def repeat_span(tile_height: int, y_repeat: int) -> int:
     """Z units covered by one vertical repeat of a wall texture."""
     if tile_height <= 0 or y_repeat <= 0:
