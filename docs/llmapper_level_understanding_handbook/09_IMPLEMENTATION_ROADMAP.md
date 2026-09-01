@@ -2066,6 +2066,106 @@ the light the Link drives -- stage s24, rx 341, amplitude -24, shade 32 -> 8 --
 because `sectorfx.cpp:161-166` scales that by busy at runtime and a static
 render cannot show it moving.
 
+## The rendering law, made a reader, 2026-09-01
+
+Supervisor assignment P2, after a first attempt died mid-run (its work was
+committed untested as `f8f45fa` and is merged here). P1 had already read
+`engine.cpp:4938-4940` correctly and put the conclusion inside
+`conformance.fabric_is_visible`. This finishes the job: **one reader owns
+the law**, `bloodmap/render_slots.py`, and conformance calls it.
+
+### What the engine draws, transcribed and cited
+
+`classicDrawBunches` (`engine.cpp:4498-...`) and the deferred
+`renderDrawMaskedWall` (`:7189`). Vanilla; nothing here is under
+NOONE_EXTENSIONS or gModernMap.
+
+| band | tile | condition | lines |
+| --- | --- | --- | --- |
+| one-sided middle | `picnum` | `nextsector < 0`, ceiling to floor | 4938-4940 |
+| two-sided upper | `picnum` | neighbour's ceiling lower at either end; skipped when both ceilings parallaxed | 4688, 4690, 4720 |
+| two-sided lower | `picnum`, or the PARTNER's under `cstat&2` | neighbour's floor higher at either end; skipped when both floors parallaxed | 4799, 4801, 4832-4833 |
+| masked middle | `over_picnum` | `(cstat&48) == 16` -- masked AND NOT one-way; between `max(ceilings)` and `min(floors)` | 4685-4686, 7217-7218, 7231 |
+| one-way middle | `over_picnum` | `cstat&32`, through the white-wall branch, opaque | 4938-4940 |
+
+Blocking (`cstat&1`) and hitscan (`cstat&64`) draw nothing: neither bit is
+read in the wall pass, they are clip masks (`clip.cpp:1491`, `build.h:225`,
+`:226`). Sky is a SURFACE bit: it removes the two step bands when both
+sectors carry it and does nothing to a white or one-way wall. The mirror is
+a LOAD-TIME edit -- `mirrors.cpp:466-469` forces `CSTAT_WALL_1WAY` on and
+copies 504 into `overpicnum` before anything is drawn -- so the file and the
+running level disagree about the flags, and `render_slots.mirror_pass`
+applies it. The campaign has 8 mirror walls, and the one red one draws a
+`oneway_middle` that reading the file's cstat would miss.
+
+### Two things this reader says that the project had written down wrongly
+
+**E1M1's pelmet is tile 109, not 146.** Walls 1203-1207 (s125, ceiling
+-10240) face s122 whose ceiling is -75776. The neighbour's ceiling is
+*higher*, so on the curtain's side no upper step exists at all (`:4690`).
+The step is on s122's side and its walls 1102-1106 draw their own `picnum`
+109; their `over_picnum` 146 is behind cstat 0x6 and never read. **Tile 146
+on those five walls is drawn nowhere** -- the "attested valance" is an editor
+leftover, and the city curtain's excuse ("accidentally the E1M1 pelmet") was
+an excuse for reproducing the same invisibility. Fixtured.
+
+**DOOR-CURTAINSD s4's pocket dialect shows 1060, not 146.** Walls 28, 32, 37
+and 41 (cstat 0x51) draw `masked_middle 1060` at the full 24576 opening; the
+146 on their `picnum`, and on the flush pocket walls, is never on screen.
+
+### The gate, and the rate that grades it
+
+Three formulations of "a tile authored on a wall is drawn somewhere",
+measured over the 43 campaign maps:
+
+```text
+per wall            28539 / 107785   26.5%   note      wall-draws-its-own-tile
+per sector x tile    4515 /  27104   16.7%   (not registered)
+per map x tile         97 /   1979    4.9%   warning   wall-tile-is-drawn-somewhere  <- THE GATE
+```
+
+Per wall it is the editor's habit -- Build copies the previous wall's picnum
+on insert and nobody clears it -- so a rule there can only ever be a note.
+Per map it separates a leftover (drawn elsewhere in the same map) from a lost
+material (drawn nowhere): E1M1 loses none, E3M4 loses one.
+
+**Fail first, on a real map.** `blood-city-current.MAP` as committed at
+**8c42701**, before P1's rebuild: 6 of 32 authored wall tiles lost, tile 146
+on walls 276-278 among them. The test pulls that blob with `git cat-file` so
+the anchor outlives the fix. After the rebuild: 146 is gone from the list and
+**five tiles remain** -- 68, 93, 203, 1011 (the parlor, church, theatre and
+crypt `Material.opening` fields) and 194 (`sewerkit.MOUTH_TILE`), all on
+flush unmasked doorway thresholds. The curtain's defect, in four more
+districts. Owner queue item 9. The zoo loses zero and now runs the gate as a
+LAW rule.
+
+### usage-kinds by rendered slot
+
+`knowledge/blood/design/usage-kinds-v2.json` sits beside v1 with a diff in
+`reports/blood-usage-kinds-rendered.{json,md}`; `tools/mine_usage_kinds.py`
+is the mine. Tile 146, the test case: v1 said `wall_two_sided 129`; rendered
+that is **71 lower steps, 3 upper steps, 55 drawn nowhere, 0 masked
+middles** (173 + 71 + 3 + 55 = 302 = v1's 173 + 129, exactly). The mask law
+restated by band names the same two tiles the owner already ruled on -- 142
+and 2464 -- out of 79982 opaque band draws. 14 tiles v1 called "attested on
+walls" have no rendered wall slot at all.
+
+`usage_kinds.unattested_uses` judges walls by band when v2 is present, which
+is how the city's 12 tile-202 lower steps became visible to the attested-slot
+warning; surfaces and sprites are unchanged.
+
+### What is still unproven
+
+* Occlusion, room-over-room and the `yax` paths are not modelled: a band that
+  draws is a band the engine would rasterise if nothing stood in front of it.
+* Heights are read in the SAVED pose. A door saved closed whose material only
+  draws when open is reported as it is saved.
+* Slope endpoints use an exact integer square root where the engine uses its
+  `nsqrtasm` table, so a sloped z can differ by a unit; no step decision in
+  any campaign map turned on that unit, but that is a check, not a proof.
+* Polymost (`polymost.cpp:6528`) branches on the same
+  `(nextsectnum < 0) || (wal->cstat&32)`; it was not transcribed line by line.
+
 ## The walk fixes, 2026-09-01
 
 The owner walked the rebuilt zoo. Casket works, lift works, curtains open the

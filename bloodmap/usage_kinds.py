@@ -56,11 +56,20 @@ from typing import Any
 
 KNOWLEDGE = (Path(__file__).resolve().parent.parent / "knowledge" / "blood"
              / "design" / "usage-kinds-v1.json")
+#: The same table by RENDERED slot: where each tile is SEEN rather than
+#: where it is stored. `bloodmap.render_slots` is the reader; the mine is
+#: `tools/mine_usage_kinds.py`. Wall checks prefer this table when it is
+#: present, because a tile stored on a two-sided wall may draw on a step,
+#: in a mask, or nowhere, and v1 could not tell those apart.
+KNOWLEDGE_RENDERED = KNOWLEDGE.with_name("usage-kinds-v2.json")
 
 #: The slots a tile can occupy, as the mine counts them.
 SURFACE_SLOTS = ("floor", "ceiling")
 WALL_SLOTS = ("wall_one_sided", "wall_two_sided")
 SPRITE_SLOTS = ("sprite_face", "sprite_wall", "sprite_floor")
+#: The rendered wall vocabulary (v2): the bands the engine draws.
+RENDERED_WALL_SLOTS = ("one_sided_middle", "two_sided_upper",
+                       "two_sided_lower", "masked_middle", "oneway_middle")
 
 #: Blood's own bits, named so a reader does not have to remember them.
 STAT_PARALLAX = 1
@@ -79,6 +88,16 @@ def load(path: str | Path | None = None) -> dict[str, Any]:
         return json.loads(target.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return {"usage": {}, "sky_family": {"tiles": []}, "tile_sizes": {}}
+
+
+@lru_cache(maxsize=1)
+def load_rendered(path: str | Path | None = None) -> dict[str, Any]:
+    """The rendered-slot table (v2), or an empty one when it is absent."""
+    target = Path(path) if path is not None else KNOWLEDGE_RENDERED
+    try:
+        return json.loads(target.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {"usage": {}}
 
 
 def slots_for(picnum: int, table: dict[str, Any] | None = None) -> dict[str, int]:
@@ -141,7 +160,8 @@ def surface_slot(role: str, stat: int) -> str:
 
 
 def unattested_uses(disk: Any, *, table: dict[str, Any] | None = None,
-                    allow: set[int] | None = None) -> list[dict[str, Any]]:
+                    allow: set[int] | None = None,
+                    rendered: dict[str, Any] | None = None) -> list[dict[str, Any]]:
     """Every place the map puts a tile in a slot the campaign never attests.
 
     A warning, not an error: the corpus is 43 maps and an authored map is
@@ -149,11 +169,18 @@ def unattested_uses(disk: Any, *, table: dict[str, Any] | None = None,
     do it *by accident*, which is what this catches -- shelf goods laid on a
     floor, a facade backdrop used as bulk fill, a sprite tile painted on a
     wall.
+
+    Walls are judged by what they DRAW when the rendered table (v2) is
+    present: each band the engine shows is checked against the rendered
+    slot the campaign attests the tile in. A wall that draws nothing is not
+    this check's business -- that is `wall-tile-is-drawn-somewhere`. With
+    only the v1 table the storage slot is used, as before.
     """
     data = table if table is not None else load()
     if not data.get("usage"):
         return []
     permitted = allow or set()
+    shown = rendered if rendered is not None else load_rendered()
     out = []
     for index, sector in enumerate(disk.sectors):
         fields = sector.fields
@@ -168,6 +195,9 @@ def unattested_uses(disk: Any, *, table: dict[str, Any] | None = None,
                 out.append({"where": f"sector[{index}].{role}",
                             "picnum": picnum, "slot": slot,
                             "attested": sorted(slots_for(picnum, data))})
+    if shown.get("usage"):
+        out.extend(rendered_wall_uses(disk, table=shown, allow=permitted))
+        return out
     for index, wall in enumerate(disk.walls):
         fields = wall.fields
         picnum = int(fields["picnum"])
@@ -180,6 +210,40 @@ def unattested_uses(disk: Any, *, table: dict[str, Any] | None = None,
             out.append({"where": f"wall[{index}]", "picnum": picnum,
                         "slot": slot,
                         "attested": sorted(slots_for(picnum, data))})
+    return out
+
+
+def rendered_wall_uses(disk: Any, *, table: dict[str, Any] | None = None,
+                       allow: set[int] | None = None) -> list[dict[str, Any]]:
+    """Every band a wall draws whose tile the campaign never shows there.
+
+    The rendered-slot form of the wall clause: `bloodmap.render_slots` says
+    which (band, tile) pairs the engine draws for each wall, and each is
+    checked against the v2 table's rendered wall slots. The swapped lower
+    step (cstat&2) is attributed to the tile actually drawn, the partner's,
+    as the mine does.
+    """
+    from .render_slots import render_slots
+
+    data = table if table is not None else load_rendered()
+    if not data.get("usage"):
+        return []
+    permitted = allow or set()
+    out = []
+    for draw in render_slots(disk):
+        for band in draw.bands:
+            if band.tile in permitted:
+                continue
+            known = slots_for(band.tile, data)
+            if not known:
+                continue                  # tile the campaign never uses at all
+            if known.get(band.band, 0) > 0:
+                continue
+            out.append({"where": f"wall[{draw.wall}]", "picnum": band.tile,
+                        "slot": band.band,
+                        "attested": sorted(k for k in known
+                                           if k in RENDERED_WALL_SLOTS
+                                           or not k.startswith(("wall_", "over_")))})
     return out
 
 

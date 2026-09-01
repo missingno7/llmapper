@@ -1418,6 +1418,7 @@ def main() -> int:
     # has been imported, because the registry is populated by that import's
     # side effect -- so "0 diagnostics" was silence, not a clean map.
     import bloodmap.rules_blood            # noqa: F401  (registers the rules)
+    from bloodmap.rules import RULES
     from bloodmap.rules import evaluate as _evaluate_rules
     _diags = _evaluate_rules(disk)
     _by_sev = collections.Counter(d.severity for d in _diags)
@@ -1476,6 +1477,23 @@ def main() -> int:
         "by_severity": dict(_by_sev),
         "by_code": {f"{a}:{b}": c for (a, b), c in _by_code.items()},
     }
+    # The rendering law, called out by name rather than left inside the
+    # diagnostic count.  `bloodmap.render_slots` says which band the engine
+    # draws each wall tile on; a tile the map authors on walls and shows on
+    # no band anywhere is a material that was chosen and then lost.  This is
+    # how the stage curtain's fabric vanished, and the same reading finds the
+    # districts' `opening` tiles on flush doorway thresholds.  It is printed
+    # and recorded, not fatal, because five of those thresholds are still
+    # outstanding -- see reports/owner-review-queue.md.
+    _lost = RULES["wall-tile-is-drawn-somewhere"].check(disk)
+    ctx["manifest"]["lost_wall_tiles"] = {
+        "population": _lost.population,
+        "tiles": [v.location for v in _lost.violations],
+    }
+    print(f"wall tiles drawn nowhere: {len(_lost.violations)} of "
+          f"{_lost.population} authored")
+    for _v in _lost.violations:
+        print(f"    LOST {_v.location} {_v.detail}")
     _lines = ['# Rule registry, at build time', '', '`bloodmap.rules.evaluate`, severities derived from measured campaign', 'violation rates. Requires `bloodmap.rules_blood` to be imported: the', "registry is populated by that import's side effect, so a bare", '`evaluate` returns silence rather than a clean map.', '']
     _lines += [f"- **{d.severity}** `{d.code}` -- {d.message} ({d.location})"
                for d in sorted(_diags, key=lambda d: (d.severity, d.code))]

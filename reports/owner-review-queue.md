@@ -373,7 +373,91 @@ corpus manifest is regenerated and the campaign population is 43 again.
 > **No decision needed** unless you want it deleted outright rather than
 > held, which item 4's answer covers.
 
-## 9. Which map did you see inside out? (2026-09-01)
+## 9. Five city tiles are authored on walls the engine never draws (2026-09-01)
+
+**The finding.** The rendering law (`bloodmap/render_slots.py`,
+`engine.cpp:4686/4690/4801/4938`) says a two-sided wall shows its `picnum`
+only on a step -- where one sector's ceiling is lower or its floor higher
+than the other's -- and reaches its middle band only when masked (cstat 16)
+or one-way (cstat 32). Run over `blood-city-current.MAP`, five authored wall
+tiles are on screen **nowhere in the level**:
+
+```text
+tile   68    walls 124, 127, 134, 170, 172         materials.parlor.opening
+tile   93    9 walls (501, 504, 508, 509, 519 ...)  materials.church.opening
+tile  194    walls 1264, 1316                       sewerkit.MOUTH_TILE
+tile  203    walls 238, 243, 257                    materials.theatre.opening
+tile 1011    walls 510, 512, 513                    materials.crypt.opening
+```
+
+Every one is the same shape. Wall 124, for instance, is sector 14 -> sector
+15 with both ceilings at -20480, both floors at 8192, cstat 0, and the
+partner wall also wearing 68. It is a doorway threshold with no step and no
+mask, so the lining tile chosen for it is never rasterised. This is the stage
+curtain's defect (fixed in wave 1b) repeated in four districts plus the
+sewer, with less conspicuous materials.
+
+The campaign does the same thing on 26.5% of its walls, so *a* wall with an
+unread tile is a habit, not a defect. What is not a habit is a tile that
+appears **nowhere in the map**: 97 of 1979 authored campaign wall tiles,
+4.9%, and E1M1 has none at all.
+
+**The options.**
+
+* **A. Give the threshold a reveal.** Step the doorway's ceiling (or floor)
+  against the room so the lining draws on a real band -- the aperture
+  grammar's own idiom, and what `frame_z_doors` already does for type-600
+  doors. Costs geometry in five places.
+* **B. Mask the threshold wall.** cstat 16 with the lining as `over_picnum`,
+  the DOOR-CURTAINSD s4 pocket dialect. One flag and one field per wall, but
+  a masked wall is a draw-order cost and blocks nothing unless cstat 1 goes
+  on too.
+* **C. Stop authoring the tile.** If the doorway is meant to read as an
+  opening rather than a lining, the `opening` field is decoration that never
+  had anywhere to go; drop it from `Material` and let the room's own wall
+  tile run through.
+
+> **Recommended default: C for the four `Material.opening` tiles, A for the
+> sewer mouth.** The four thresholds are all flush, which says the design
+> never wanted a band there; the tile was chosen because `Material` has a
+> field for it. The sewer mouth (194, E3M3's circular tunnel lining) IS
+> meant to be seen -- it is the pipe's mouth -- so it wants a real reveal.
+> Say the word and either becomes a build change; until then the gate reports
+> the five and the city build prints them by name.
+
+**Why it is not fatal to the build yet.** `wall-tile-is-drawn-somewhere` is
+graded a *warning* (4.9% campaign rate) and the city build prints it rather
+than refusing. The zoo passes it with zero and runs it as a LAW rule. Once
+these five are resolved the city can adopt the same law.
+
+## 10. E1M1's "pelmet" is an editor leftover, not a valance (2026-09-01)
+
+**For information; it corrects something this project wrote down.** The
+supervisor brief and the wave-1b roadmap entry both record E1M1 sector 125's
+walls 1203-1207 -- `picnum` 146 = `over_picnum` 146, cstat 4, two-sided into
+s122 with a 65536-unit ceiling step -- as the campaign's attested way to hang
+a pelmet above a curtain, and the city's curtain was excused partly on the
+grounds that it was "accidentally the E1M1 pelmet".
+
+Read through `render_slots`, tile 146 on those five walls is drawn **nowhere**.
+s125's ceiling is -10240 and s122's is -75776, so the neighbour's ceiling is
+*higher*: from the curtain's side there is no upper step at all
+(`engine.cpp:4690`). The step is on s122's side, and its walls 1102-1106 draw
+their own `picnum` 109, the hall's stone; their `over_picnum` 146 sits behind
+cstat 0x6 (swap + align, no mask bit) and is never read (`:4686`, `:4938`).
+
+The visible fabric in E1M1 is the four one-sided leaves 1200/1201/1209/1210.
+There is no attested pelmet idiom. `conformance.curtain_dialect` still counts
+`pelmet: 5` for s125 because the PORTAL genuinely steps -- that is the
+geometric fact -- but it now measures it through `render_slots` and the
+rendering law is what says the tile on it is not seen.
+
+> **No decision needed.** Fixtured in `tests/test_render_slots.py`
+> (`test_e1m1_pelmet_is_the_auditoriums_tile_not_the_fabric`) so it cannot
+> quietly revert. Flagging it because a future curtain built "like E1M1's
+> pelmet" would be building an invisible one.
+
+## 11. Which map did you see inside out? (2026-09-01)
 
 The supervisor listed four candidate causes for the inside-out sectors you
 reported. P3 closed case (b) -- a neighbour deformed by `DragPoint` that no
