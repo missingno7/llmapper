@@ -312,3 +312,80 @@ class ACurtainIsCalibratedForItsClosedSpan(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TheCurtainsConformanceActuallyRuns(unittest.TestCase):
+    """The repeat law, gated -- and the gate proved able to fail.
+
+    `measure_curtain` was written for the opposed-cap model and routed on the
+    payload shape that model produces. When the constructor was rebuilt to
+    the tutorial's fin, the shape changed and the check silently stopped
+    running: the zoo reported thirteen of thirteen conforming because the
+    curtain was never asked. It is routed on the fabric TILE now, which does
+    not change when the topology does.
+    """
+
+    def test_the_zoo_curtain_conforms(self):
+        from bloodmap.conformance import measure_curtain
+
+        zoo = _zoo()
+        sector = self._curtain(zoo)
+        found = measure_curtain(zoo, sector)
+        self.assertEqual([d.relation for d in found.deviations], [])
+        self.assertEqual(found.measured["flagged_walls"], 1)
+        self.assertEqual(found.measured["motion_set"], [sector])
+
+    def _curtain(self, disk):
+        for index, sector in enumerate(disk.sectors):
+            if int(sector.fields["type"]) != 614:
+                continue
+            start = int(sector.fields["wall_ptr"])
+            count = int(sector.fields["wall_count"])
+            if any(int(disk.walls[i].fields["picnum"]) == 146
+                   for i in range(start, start + count)):
+                return index
+        self.fail("the zoo has no curtain")
+
+    def test_a_fabric_sized_to_the_DRAWN_span_is_caught(self):
+        # The exact defect the owner walked into: the repeat authored for the
+        # gathered bundle the file is saved at, which came out at 48 times
+        # natural stretch when the curtain was drawn across.
+        from bloodmap.conformance import measure_curtain
+
+        zoo = _zoo()
+        sector = self._curtain(zoo)
+        start = int(zoo.sectors[sector].fields["wall_ptr"])
+        count = int(zoo.sectors[sector].fields["wall_count"])
+        for index in range(start, start + count):
+            if int(zoo.walls[index].fields["picnum"]) == 146:
+                zoo.walls[index].fields["x_repeat"] = 1
+        found = measure_curtain(zoo, sector)
+        self.assertTrue(found.deviations)
+        self.assertIn("closed-span texel scale",
+                      [d.relation for d in found.deviations])
+
+    def test_a_curtain_that_deforms_its_room_is_caught(self):
+        from bloodmap.conformance import CURTAIN_TEMPLATE, measure_curtain
+
+        zoo = _zoo()
+        sector = self._curtain(zoo)
+        template = dict(CURTAIN_TEMPLATE)
+        #: pretend the motion reached a neighbour
+        found = measure_curtain(zoo, sector, template)
+        self.assertEqual(found.measured["motion_set"], [sector])
+        self.assertTrue(template["isolated"])
+
+    def test_the_sweep_actually_reaches_the_curtain(self):
+        # The regression that hid all of the above: a construct that dodges
+        # its own check by changing shape.
+        import importlib.util
+        from pathlib import Path
+
+        spec = importlib.util.spec_from_file_location(
+            "_zoo_sweep", Path("projects/pattern-zoo/sweep.py"))
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        zoo = _zoo()
+        sector = self._curtain(zoo)
+        checks = module._for_sector(zoo, sector, "curtain")
+        self.assertIn("measure_curtain", [c.__name__ for c in checks])

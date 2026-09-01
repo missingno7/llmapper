@@ -2,8 +2,8 @@
   "$schema": "llmapper.pattern-zoo-conformance",
   "schema_version": 1,
   "map": "D:/Games/DOS/llmapper/projects/pattern-zoo/level/pattern-zoo.MAP",
-  "constructs_checked": 13,
-  "conforming": 13,
+  "constructs_checked": 14,
+  "conforming": 14,
   "results": [
     {
       "region": "casket:grave",
@@ -41,6 +41,25 @@
         "swept_areas": [
           262144.0,
           4194304.0
+        ]
+      },
+      "deviations": []
+    },
+    {
+      "region": "curtain:leaf",
+      "sector": 16,
+      "construct": "curtain sector 16",
+      "conforms": true,
+      "measured": {
+        "flagged_walls": 1,
+        "motion_set": [
+          16
+        ],
+        "fabric_walls": 3,
+        "closed_texel_scale": [
+          2.0,
+          2.0,
+          2.0
         ]
       },
       "deviations": []

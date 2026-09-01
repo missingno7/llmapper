@@ -28,6 +28,10 @@ from bloodmap.conformance import (                          # noqa: E402
 )
 from bloodmap.format import read_map                        # noqa: E402
 
+#: Owner anchor 146: the curtain fabric. What a curtain wears is stable
+#: across a change of topology, which is why the check is routed on it.
+CURTAIN_TILE = 146
+
 HERE = pathlib.Path(__file__).resolve().parent
 MAP = HERE / "level" / "pattern-zoo.MAP"
 MANIFEST = HERE / "reports" / "build-manifest.json"
@@ -52,7 +56,19 @@ def _for_sector(disk, sector_id, region_name):
         found = payload(disk, sector_id)
         shape = found["shape"]["shape"]
         checks = []
-        if shape == "the sector resizes itself":
+        #: A curtain is a FIN now, so its payload shape is "part of the
+        #: sector travels" -- and routing the curtain check on the old
+        #: "resizes itself" shape meant it stopped running the moment the
+        #: constructor was corrected. The zoo reported 13/13 conforming
+        #: because the curtain was never asked. It is identified by what it
+        #: WEARS instead, which does not change when the topology does.
+        sector = disk.sectors[sector_id]
+        start = int(sector.fields["wall_ptr"])
+        count = int(sector.fields["wall_count"])
+        wears_fabric = any(
+            int(disk.walls[i].fields["picnum"]) == CURTAIN_TILE
+            for i in range(start, start + count))
+        if wears_fabric or shape == "the sector resizes itself":
             checks.append(measure_curtain)
         if shape == "boundary re-partition":
             checks.append(measure_planar_door)

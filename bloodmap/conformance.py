@@ -238,51 +238,122 @@ def _tile_height(picnum: int, default: int = 128) -> int:
 
 #: E1M1 s125: a thin sector whose two end caps carry OPPOSITE flags, so its
 #: own length changes and the texture between them deforms.
+#: DOOR-CURTAINS s3/s24/s53: the tutorial's own fin.
+#:
+#: This template replaces one written from E1M1 s125, which described a pair
+#: of opposed caps -- "two flagged walls carrying opposite flags, so the
+#: sector resizes itself". That is a real Blood arrangement but it is not
+#: what a curtain is, and the consequence was worse than a wrong template:
+#: `measure_curtain` was only reached when a sector's payload shape came back
+#: "the sector resizes itself", so once the constructor was rebuilt to the fin
+#: the check stopped running ENTIRELY. The zoo reported thirteen of thirteen
+#: conforming because the curtain was never asked.
 CURTAIN_TEMPLATE = {
-    "flagged_walls": 2,
-    "opposite_flags": True,
+    "flagged_walls": 1,
+    "shape": "part of the sector travels",
+    "isolated": True,
     "picnum": 146,
-    "source": "E1M1 s125; knowledge/blood/design/owner-anchors-v1.json 146",
+    "fabric_walls": 3,
+    "closed_texel_scale": 2.0,
+    "texel_tolerance": 0.35,
+    "source": ("maps/blood/mechanism/Vanilla/DOOR-CURTAINS.map s3, s24, s53; "
+               "owner-anchors 146"),
 }
 
 
 def measure_curtain(disk: Any, sector_id: int,
                     template: dict[str, Any] | None = None) -> Conformance:
-    """Measure a curtain: edge convergence, and the fabric it deforms.
+    """Measure a curtain against the tutorial: a fin, isolated, hung right.
 
-    The relation that makes a curtain a curtain is that its two flagged walls
-    move TOWARD each other -- one carried with the travel and one against it
-    -- so the sector's extent shrinks. A pair flagged the same way is a
-    sector that slides; a pair flagged opposite ways is one that gathers.
+    Four things make a curtain a curtain, and the fourth is the one that
+    cannot be seen in a static reading at all.
+
+    * it is a FIN -- exactly one flagged wall, the free end of a tab inside
+      the sector's own outline, so the payload is "part of the sector
+      travels" and not a whole leaf sliding;
+    * its motion is ISOLATED: every moved vertex is interior to its own
+      outline, which is what the fin buys and why tutorial curtains never
+      disturb the rooms they hang in;
+    * the fabric wears the fabric tile, on the fin's faces and nowhere else;
+    * and THE REPEAT IS AUTHORED FOR THE CLOSED SPAN. The geometry is saved
+      at the ON pose, so the fabric in the file is the gathered bundle;
+      sizing the texture to what the file shows left this project's curtain
+      at forty-eight times natural stretch when drawn across. Natural is
+      `length / x_repeat == 2 * tile_width`, and DOOR-CURTAINS s3 and s53
+      hold it to the unit on their closed span (x_repeat 16 over 1024 on a
+      32-wide tile). s24 is the one exemplar at twice that -- deliberately
+      coarser cloth -- which is why the tolerance is a band and not an
+      equality.
     """
-    from .effects import payload
+    import math
+
+    from .motion import flagged_walls, motion_set
+    from .motion_sim import blood_poses
+    from .texture_align import texel_scale
 
     wanted = dict(template or CURTAIN_TEMPLATE)
     out = Conformance(construct=f"curtain sector {sector_id}")
-    shape = payload(disk, sector_id)["shape"]
-    out.measured["shape"] = shape.get("shape")
-    out.measured["advancing"] = shape.get("advancing", [])
-    out.measured["retreating"] = shape.get("retreating", [])
-    if shape.get("shape") != "the sector resizes itself":
+
+    flags = flagged_walls(disk, sector_id)
+    out.measured["flagged_walls"] = len(flags)
+    if len(flags) != wanted["flagged_walls"]:
         out.deviations.append(Deviation(
-            "payload shape", "the sector resizes itself", shape.get("shape"),
-            "the two caps must carry opposite flags or nothing gathers"))
-        return out
-    if not (shape.get("advancing") and shape.get("retreating")):
+            "flagged walls", wanted["flagged_walls"], len(flags),
+            "a curtain is a fin: one flagged wall, the tab's free end"))
+
+    try:
+        moves = motion_set(disk, sector_id)["sectors"]
+    except Exception:
+        moves = []
+    out.measured["motion_set"] = moves
+    if wanted.get("isolated") and moves != [sector_id]:
         out.deviations.append(Deviation(
-            "opposite flags", "at least one of each",
-            (shape.get("advancing"), shape.get("retreating"))))
+            "isolation", [sector_id], moves,
+            "the fin keeps every moved vertex inside its own outline; a "
+            "curtain that deforms its room is not built as one"))
 
     sector = disk.sectors[sector_id]
     start = int(sector.fields["wall_ptr"])
     count = int(sector.fields["wall_count"])
-    fabric = {int(disk.walls[i].fields["picnum"])
-              for i in range(start, start + count)}
-    out.measured["picnums"] = sorted(fabric)
-    if wanted["picnum"] not in fabric:
+    fabric_walls = [i for i in range(start, start + count)
+                    if int(disk.walls[i].fields["picnum"]) == wanted["picnum"]]
+    out.measured["fabric_walls"] = len(fabric_walls)
+    if not fabric_walls:
         out.deviations.append(Deviation(
-            "fabric", wanted["picnum"], sorted(fabric),
+            "fabric", wanted["picnum"], sorted(
+                {int(disk.walls[i].fields["picnum"])
+                 for i in range(start, start + count)}),
             "the deformation is only visible on the curtain texture"))
+        return out
+    if len(fabric_walls) != wanted.get("fabric_walls", len(fabric_walls)):
+        out.deviations.append(Deviation(
+            "fabric walls", wanted["fabric_walls"], len(fabric_walls),
+            "only the fin wears the fabric -- the doorway's own reveal is "
+            "the room's material"))
+
+    #: The repeat law, measured on the CLOSED pose.
+    try:
+        closed, _drawn = blood_poses(disk, sector_id)
+    except Exception as exc:
+        out.measured["closed_pose"] = f"unavailable: {exc}"
+        return out
+    width = int(wanted.get("tile_width", 32))
+    scales = []
+    for index in fabric_walls:
+        k = index - start
+        a, b = closed[k], closed[(k + 1) % count]
+        span = math.hypot(b[0] - a[0], b[1] - a[1])
+        scales.append(round(texel_scale(
+            span, width, int(disk.walls[index].fields["x_repeat"])), 2))
+    out.measured["closed_texel_scale"] = scales
+    natural = float(wanted["closed_texel_scale"])
+    slack = float(wanted["texel_tolerance"])
+    stretched = [value for value in scales if abs(value - natural) > slack]
+    if stretched:
+        out.deviations.append(Deviation(
+            "closed-span texel scale", f"{natural} +/- {slack}", stretched,
+            "the fabric is sized for the span it HANGS ACROSS, not for the "
+            "gathered bundle the file is saved at"))
     return out
 
 
