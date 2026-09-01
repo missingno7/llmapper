@@ -793,6 +793,9 @@ class PlanarLayout:
         #: (region_id, edge) -> wall fields written after emit. See
         #: `paint_wall`.
         self.painted: dict[tuple[str, tuple], dict[str, int]] = {}
+        #: XWALL behaviour, keyed the same way. Separate from `painted`
+        #: because these fields need an extra record, not a field poke.
+        self.wired_walls: dict[tuple[str, tuple], dict[str, int]] = {}
         #: driven region -> the regions its motion is allowed to deform.
         #: A mechanism DECLARES its payload and the compile diffs the actual
         #: motion set against it; see `declare_motion`.
@@ -1028,6 +1031,73 @@ class PlanarLayout:
                 "map is saved in, and a moving sector is only in that "
                 "pose for an instant."
                 % (len(report["problems"]), listing))
+
+    def wire_wall(self, region_id: str, a1: Point, a2: Point,
+                  **fields: int) -> None:
+        """Give one wall of a region an XWALL -- make the surface a button.
+
+        The tutorials wire a shove this way rather than with the sector's
+        `trigger_wall_push`: the curtain's three fabric faces each carry an
+        XWALL with `tx_id` on the mechanism's channel, command Toggle and
+        Trigger On Push, and the sector merely RECEIVES that channel
+        (xmapedit.pdf p.239; DOOR-CURTAINS.map s3 walls 38/39/40). Two things
+        come of it -- the button is exactly the surface you touch rather than
+        the whole room, and the mechanism's own single `tx` slot stays free
+        for its downstream effects.
+
+        Named by geometry like `paint_wall` and `carry_wall`, and for the
+        same reason: the compiler may rotate a loop.
+        """
+        if region_id not in self.regions:
+            raise PlanarLayoutError(f"wire_wall: no region {region_id!r}")
+        key = (region_id, _cycle((a1, a2)))
+        self.wired_walls.setdefault(key, {}).update(
+            {k: int(v) for k, v in fields.items()})
+
+    def _apply_wired_walls(self, builder, allocations) -> None:
+        """Wire every wall lying ON the named face, not just a whole edge.
+
+        A button is a SURFACE, and the compiler is free to split that surface
+        into several walls where neighbours meet it. Naming one edge and
+        getting one wall would leave half a curtain face inert, so the
+        segment is matched by containment and each piece is wired.
+        """
+        for (region_id, edge), fields in self.wired_walls.items():
+            hit = self._walls_along(builder, allocations, region_id, edge)
+            if not hit:
+                raise PlanarLayoutError(
+                    f"wire_wall: {region_id!r} has no wall along {edge[0]} to "
+                    f"{edge[1]}; the region's own outline has to contain it")
+            for wall_id in hit:
+                builder.set_behavior("wall", wall_id, **fields)
+
+    def _walls_along(self, builder, allocations, region_id, edge):
+        """Walls of a region whose span lies within the named segment."""
+        allocation = allocations.get(region_id)
+        if allocation is None:
+            raise PlanarLayoutError(f"wire_wall: {region_id!r} built no sector")
+        (ax, ay), (bx, by) = edge
+        dx, dy = bx - ax, by - ay
+        span = dx * dx + dy * dy
+        if not span:
+            return []
+        walls = builder.level.walls
+        found = []
+        for wall_id in allocation.wall_ids:
+            fields = walls[wall_id]["fields"]
+            end = walls[int(fields["point2"])]["fields"]
+            points = ((int(fields["x"]), int(fields["y"])),
+                      (int(end["x"]), int(end["y"])))
+            inside = True
+            for px, py in points:
+                cross = (px - ax) * dy - (py - ay) * dx
+                dot = (px - ax) * dx + (py - ay) * dy
+                if abs(cross) > 1 or dot < -1 or dot > span + 1:
+                    inside = False
+                    break
+            if inside:
+                found.append(wall_id)
+        return found
 
     def _apply_painted_walls(self, builder, allocations) -> None:
         for (region_id, edge), fields in self.painted.items():
@@ -1625,6 +1695,7 @@ class PlanarLayout:
 
         self._apply_carried_walls(builder, allocations)
         self._apply_painted_walls(builder, allocations)
+        self._apply_wired_walls(builder, allocations)
 
         for connection in self.connections.values():
             if not _connection_has_face(connection):

@@ -126,6 +126,18 @@ class Framed:
         return self._layout.carry_wall(region_id, self.point(a1),
                                        self.point(a2), **kwargs)
 
+    def wire_wall(self, region_id, a1, a2, **fields):
+        """A wall button, in bay-local coordinates like everything else.
+
+        Every geometric call has to be listed here explicitly: the proxy
+        forwards unknown attributes UNTRANSFORMED, so a new layout method
+        that takes points silently lands in the wrong place -- which is
+        exactly what happened when `wire_wall` was added and the curtain's
+        three buttons went looking for walls at the origin.
+        """
+        return self._layout.wire_wall(region_id, self.point(a1),
+                                      self.point(a2), **fields)
+
     #: Blood's engine-instruction statnum. A sprite on it is not a thing in
     #: the world and its `angle` is not a facing.
     MARKER_STATNUM = 10

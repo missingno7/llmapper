@@ -319,12 +319,44 @@ def place_markers(layout: Any, name: str, *, driven_region: str,
     return out
 
 
-def drawn_pose(disk: Any, sector_id: int) -> str | None:
-    """Which state the geometry is SAVED at: always "on" in the tutorials.
+def off_pose(disk: Any, sector_id: int) -> list[tuple[int, int]] | None:
+    """Where the sector's outline sits at state OFF: DRAWN MINUS THE DELTA.
 
-    A cross-check rather than an assumption. If a map is drawn at its OFF
-    marker instead, this says so, and whatever reads it can decide whether
-    that was meant.
+    Not a guess and not a convention. `trInit` translates the sector by
+    -65536 of the marker delta, records THAT as the base with
+    `setBaseWallSect`, and only then applies the sector's own busy
+    (triggers.cpp:2224-2245). So the outline saved in the map is the pose at
+    busy 65536 -- state ON -- and the OFF pose is that outline minus the
+    delta, whatever the author believed they were drawing.
+
+    Confirmed to the unit on DOOR-CURTAINS s3: the fin tip is saved at
+    y -1152, the delta is +896, and the base lands on y -2048, which is
+    exactly where the type-3 marker sits.
+    """
+    pair = marker_pair(disk, sector_id)
+    if not pair:
+        return None
+    from .motion_sim import blood_sector_walls
+
+    dx = pair["on"]["x"] - pair["off"]["x"]
+    dy = pair["on"]["y"] - pair["off"]["y"]
+    return [(int(x) - dx, int(y) - dy)
+            for x, y in blood_sector_walls(disk, sector_id)]
+
+
+def marker_convention(disk: Any, sector_id: int) -> str | None:
+    """Whether the author parked the marker pair AT the two poses.
+
+    This used to be called `drawn_pose` and was read as measuring which pose
+    a map is saved in. It cannot: for a SLIDE the engine consumes only the
+    difference between the markers (`x + vc - a4` in TranslateSector), so the
+    pair's absolute position on the grid is free, and a pair parked in the
+    middle of the sector drives it identically to one placed at the poses.
+
+    Both conventions are in the curriculum -- 196 mechanisms place the pair at
+    the two poses, 52 park it elsewhere -- so this reports which one is in
+    use, and nothing more. `"at the poses"` means the reading of the markers
+    as places is meaningful for this sector; `"parked"` means it is not.
     """
     pair = marker_pair(disk, sector_id)
     if not pair:
@@ -339,7 +371,17 @@ def drawn_pose(disk: Any, sector_id: int) -> str | None:
     tip = walls[sorted(flags)[0] - start]
     to_off = abs(tip[0] - pair["off"]["x"]) + abs(tip[1] - pair["off"]["y"])
     to_on = abs(tip[0] - pair["on"]["x"]) + abs(tip[1] - pair["on"]["y"])
-    return "on" if to_on <= to_off else "off"
+    travel = max(abs(pair["travel"][0]), abs(pair["travel"][1])) or 1
+    return "at the poses" if min(to_off, to_on) <= travel // 2 else "parked"
+
+
+def drawn_pose(disk: Any, sector_id: int) -> str | None:
+    """Deprecated: the geometry is ALWAYS the ON pose. See `off_pose`.
+
+    Kept so existing readings do not break, and it now answers what the
+    engine answers rather than what a coordinate comparison suggested.
+    """
+    return "on" if marker_pair(disk, sector_id) else None
 
 
 # ---------------------------------------------------------------------------
@@ -348,6 +390,9 @@ def drawn_pose(disk: Any, sector_id: int) -> str | None:
 
 #: Blood's command verbs, from the XSPRITE/XSECTOR `command` field.
 CMD_OFF, CMD_ON, CMD_STATE, CMD_TOGGLE, CMD_NOT_STATE = 0, 1, 2, 3, 4
+#: kCmdLink: couples state continuously and is sent outside the edge
+#: guards, which is how a combination switch transmits with no edge flag.
+CMD_LINK = 5
 
 #: The routes a mechanism can be worked through, all orthogonal to each other
 #: and to everything else in the grammar.
@@ -426,7 +471,8 @@ def transmitter(*, channel: int, command: int = CMD_TOGGLE,
                 receiver_state: int = 0, push: bool = True,
                 on: bool = True, off: bool = False,
                 wait_time: int | None = SWITCH_WAIT,
-                shootable: bool = False) -> dict[str, int]:
+                shootable: bool = False, relay: bool = False
+                ) -> dict[str, int]:
     """XSPRITE/XWALL fields for the thing that sends the command.
 
     **`trigger_on` is not optional, and this is why nothing worked.** A
@@ -448,10 +494,13 @@ def transmitter(*, channel: int, command: int = CMD_TOGGLE,
     `#TYPE600.MAP` waits 30 tenths and then returns to its rest state, so a
     momentary button fires once per push instead of latching.
     """
-    if not (on or off):
+    if not (on or off) and int(command) != CMD_LINK and not relay:
         raise WiringError(
-            "a transmitter that reports neither its ON nor its OFF edge can "
-            "never send: triggers.cpp gates evSend on triggerOn/triggerOff")
+            "a toggle, one-way or padlock switch that reports neither its ON "
+            "nor its OFF edge can never send: triggers.cpp:100 gates evSend "
+            "on triggerOn/triggerOff. Pass relay=True for a kGenTrigger, "
+            "which sends from its own path, or use command 5 (Link), which "
+            "kSwitchCombo sends outside those guards")
     if not verb_fits_state(command, receiver_state):
         raise WiringError(
             f"a transmitter sending command {command} to a receiver saved at "
@@ -467,6 +516,33 @@ def transmitter(*, channel: int, command: int = CMD_TOGGLE,
         fields["trigger_vector"] = 1
     if wait_time:
         fields["wait_time"] = int(wait_time)
+    return fields
+
+
+def wall_button(layout: Any, region_id: str, edge: tuple, *, channel: int,
+                command: int = CMD_TOGGLE, receiver_state: int = 0,
+                shootable: bool = False) -> dict[str, int]:
+    """Make one wall face the button for a mechanism on `channel`.
+
+    The tutorials' way of wiring a shove, and it is not the sector flag we
+    had been using. `xmapedit.pdf` p.239 gives the recipe for the curtain:
+    press F6 on a curtain face, leave it type 0 Decoration, set TX ID 100,
+    command Toggle, Send When Going ON and Going OFF, Trigger On Push -- and
+    the SECTOR gets only RX 100. DOOR-CURTAINS s3 is exactly that: walls 38,
+    39 and 40 each carry the XWALL, and the whole of s3's XSECTOR is rx 100,
+    two busy times and the marker pair.
+
+    Worth preferring for two reasons beyond fidelity. The button is the
+    surface you actually touch, so a shove on the fabric works and a shove on
+    the door frame does not; and the mechanism's own `tx` slot stays free,
+    which is the difference between a door that can drive a light and one
+    that cannot.
+    """
+    fields = transmitter(channel=channel, command=command,
+                         receiver_state=receiver_state, push=True,
+                         on=True, off=True, wait_time=None,
+                         shootable=shootable)
+    layout.wire_wall(region_id, edge[0], edge[1], **fields)
     return fields
 
 
