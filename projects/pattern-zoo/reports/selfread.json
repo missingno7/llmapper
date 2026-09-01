@@ -3,12 +3,12 @@
   "schema_version": 2,
   "map": "projects/pattern-zoo/level/pattern-zoo.MAP",
   "sector_types": {
-    "0": 74,
+    "0": 75,
     "600": 6,
-    "614": 7,
+    "614": 8,
     "615": 6
   },
-  "claims_checked": 26,
+  "claims_checked": 27,
   "per_exhibit": {
     "PUSH DOOR": [],
     "SWITCHED DOOR": [],
@@ -20,6 +20,7 @@
     "PLAIN SLIDE DOOR": [],
     "DOUBLE ROTATING DOOR": [],
     "SHELF SECRET": [],
+    "CURTAIN PAIR": [],
     "CURTAIN": [],
     "LIGHT FITTINGS": [],
     "WALL FITTINGS": [],

@@ -271,3 +271,85 @@ the state-preview snap the zoo uses.
    is one-sided and the house cannot move.
 2. **State-preview pairs for blood-city**, so a city mechanism gets the same
    OFF/ON read-back the zoo's do.
+
+---
+
+# P1: the curtain family, and why the deviation had a second half
+
+Frames: `reports/looks/stateOFF/frames/` and `reports/looks/stateON/frames/`
+— **the state pair this sheet filed as missing**.
+
+| pose | what it shows |
+| --- | --- |
+| `stateOFF/stage_side` | the fabric **drawn across** the proscenium, at natural scale, filling the walkable band |
+| `stateON/stage_side` | the same view with the leaf **gathered** and the stage open |
+
+## What the deviation actually was
+
+Wave 1b reported the curtain deformed the house and left the template strict.
+Re-reading the engine found the other half:
+
+**`engine.cpp:4938-4940`** — a wall's middle band is drawn from `picnum` only
+when the wall is ONE-SIDED, and from `overpicnum` only when it is two-sided
+AND one-way. A two-sided unmasked wall reaches its middle band through
+neither. The city's fabric was on two-sided unmasked walls with a ceiling
+step, so it drew as a **valance above head height and nothing where a body
+walks**. "Not built as a curtain" also meant "not visible".
+
+The cause of both halves was one thing: the tree idiom carved the fin's own
+outline, so hole and room were the same polygon and all eight walls paired as
+portals. DOOR-CURTAINS s3 cuts the slot as a **notch** whose interior belongs
+to nobody. The house now gives up the doorway rect and the notch stays solid.
+
+```text
+before   motion_set [23, 37]   fabric_visible 0/3
+after    motion_set [37]       fabric_visible 3/3   texel [2.0, 2.0, 2.0]
+```
+
+## The census
+
+43 campaign maps, **39** type-614 sectors wearing 146/147: **26 one-leaf, 12
+two-leaf, 1 three-flag** (E2M1 s95). A first pass said 40 and 13 — the extra
+was a second editor autosave still in the campaign directory, now in the
+holding pen (queue item 8).
+
+## Two templates that would have rejected the tutorial
+
+Both were nearly shipped, and both are the same mistake:
+
+- **"every fabric wall visible"** fails DOOR-CURTAINSD s4 — six fabric walls,
+  two visible, and those two are the masked pocket pair. The rule is at least
+  one **per leaf**.
+- **"texel scale 2.0 ± 0.35"** fails s2 (1.33) and E1M1 (2.83, 4.0). Over 355
+  fabric walls in the originals, 2.0 is the mode (171) but the envelope runs
+  1.0–8.0. The constructor authors the mode; the gate flags the envelope.
+
+## What the Aldermack's curtain now reads as
+
+```text
+leaves 1 | slot void | fabric 3 walls, all one-sided | push on all three
+motion_set [37], no undeclared neighbours
+closed texel scale [2.0, 2.0, 2.0]
+link: command 5 -> stage s24 (rx 341, amplitude -24, shade 32 -> 8)
+conformance: no deviations
+```
+
+**Owner question (queue item 7):** one leaf or two. 5120 is inside the
+attested one-leaf range (max 6400) and 768 beyond the widest two-leaf sector
+the campaign has. Recommended default: leave it at one.
+
+## Zoo
+
+A **CURTAIN PAIR** exhibit beside the one-leaf CURTAIN — two leaves
+converging, tips flagged opposite ways. 33 exhibits, 27 self-read claims,
+15 constructs conforming, 0 errors.
+
+### One imprecision, recorded
+
+The two-leaf repeat is derived from `span/2`, and the swept closed length
+comes out **256 shorter** than that (1280 against 1536 on the zoo's pair), so
+a two-leaf curtain hangs at texel **1.67** rather than the 2.0 mode. It is
+inside the attested envelope (1.0–8.0) and the conformance passes it, so it
+is an imprecision in the derivation rather than a defect in the map — but the
+one-leaf case is exact and this one is not, and that difference has not been
+run down.

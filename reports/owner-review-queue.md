@@ -329,3 +329,46 @@ re-parenting rather than a redrawing.
 
 **Implemented: none. This wave worked only on what does not depend on the
 answer.**
+
+---
+
+## 7. The Aldermack's proscenium: one leaf or two? (2026-09-01)
+
+**The question.** The Aldermack's proscenium spans **5120**. The curtain is
+built with ONE leaf. A theatre curtain is conventionally two, converging.
+
+**The evidence**, measured over the originals (43 campaign maps + the
+DOOR-CURTAIN tutorials, autosave debris excluded):
+
+```text
+one-leaf curtains   n=47   min 1024   median 1024   max 6400
+two-leaf curtains   n=34   min 1024   median 2048   max 4352
+the Aldermack               span 5120
+```
+
+5120 is **inside** the attested one-leaf range and **768 beyond** the widest
+two-leaf sector the campaign contains. So the corpus supports one leaf at
+this span and does not support two.
+
+Against that: E1M1's own curtain -- the one you attested -- is two-leaf, and
+two converging leaves is what a stage curtain looks like.
+
+> **Recommended default: leave it at one leaf.** It is the reading the corpus
+> supports, it is built and green, and the two-leaf dialect is now
+> constructible (`curtain_spec(leaves=2)`) and exhibited in the zoo, so
+> switching later is a one-line change. Say "two" and it becomes two, with
+> the note that the span exceeds anything the campaign does.
+
+## 8. A second autosave was still in the campaign corpus — DONE, for information
+
+`maps/blood/campaign/ASAVE1.map` + `.bak`: a second XMapEdit autosave, of
+different content from the one already in the holding pen, still sitting in
+the campaign directory. Its s125 duplicates E1M1's curtain exactly, so it
+inflated the curtain census from 39 sectors to 40 and the two-leaf count from
+12 to 13.
+
+Moved to `maps/review/ASAVE1-campaign2.map` + `.bak` with a README row; the
+corpus manifest is regenerated and the campaign population is 43 again.
+
+> **No decision needed** unless you want it deleted outright rather than
+> held, which item 4's answer covers.

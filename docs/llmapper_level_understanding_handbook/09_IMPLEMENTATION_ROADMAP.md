@@ -1958,6 +1958,91 @@ instead of firing an edge.
 **The rule that follows: consult maps/blood/mechanism FIRST for any mechanism
 question, and fixture what you consult.**
 
+## The curtain family, and the rendering law, 2026-09-01
+
+Supervisor assignment P1. The wave-1b curtain deviation was right to refuse;
+re-reading the engine around it found that the constructor knew ONE of four
+attested dialects, and that the deviation had a second half nobody could see.
+
+### The census, re-run
+
+43 campaign maps, **39** type-614 sectors wearing 146/147: **26 one flagged
+wall, 12 two, 1 three** (E2M1 s95, not a dialect anything builds). 27 void
+slots, 12 not.
+
+A first pass gave 40 and 13 two-leaf. The extra was
+`maps/blood/campaign/ASAVE1.map` -- a SECOND editor autosave still sitting in
+the campaign directory after the first was pulled, different content, whose
+s125 duplicates E1M1's curtain exactly. Moved to the holding pen. The corpus
+is 43 campaign maps again and the census matches.
+
+### Four dialects, not one
+
+| source | leaves | slot | what it teaches |
+| --- | --- | --- | --- |
+| DOOR-CURTAINS s3 | 1 | void | the tutorial; fabric one-sided, XWALL push |
+| DOOR-CURTAINSD s2 | 2 | void | tips carry OPPOSITE flags, so leaves converge |
+| DOOR-CURTAINSD s4 | 2 | **pocket** | slot is a real sector; pocket-side wall MASKED with over 1060 |
+| E1M1 s125 | 2 | void | a PELMET on a stepped two-sided wall, and a command-5 Link to s124 |
+
+`curtain_spec` takes `leaves` and `slot`; `curtain_dialect` names which one a
+built sector is.
+
+### The rendering law, which the project had never asked
+
+`engine.cpp:4938-4940`: a wall's middle band is drawn from `picnum` only when
+the wall is ONE-SIDED, and from `overpicnum` only when it is two-sided AND
+one-way; otherwise a two-sided wall reaches its middle band only through the
+masked path. **So fabric on a two-sided unmasked wall shows on the step bands
+and nowhere a body walks.**
+
+The city's curtain was exactly that. It had a ceiling step, so its tile drew
+as a valance above head height -- accidentally the E1M1 pelmet -- and nothing
+in the walkable band. "Not built as a curtain" also meant "not visible".
+
+### Why carving the fin was wrong twice over
+
+The tree idiom carved the fin's own outline out of the auditorium, so hole and
+room were the SAME polygon: all eight walls coincided and all eight paired as
+portals. That made the motion drag the house (`DragPoint` walks `nextwall`,
+triggers.cpp:817-854; a flagged wall also drags its `point2` when unflagged,
+:897-910) AND made the fabric two-sided, hence invisible.
+
+DOOR-CURTAINS s3 does it the other way: the slot is a NOTCH and the space
+inside belongs to nobody. So the house gives up the DOORWAY RECT, the fin
+stands inside it, and the notch stays solid void. City s37 now reads
+`motion_set [37]`, `fabric_visible 3/3`, `closed_texel_scale [2.0, 2.0, 2.0]`.
+
+### Two templates that would have rejected the tutorial
+
+Worth recording because both were nearly shipped.
+
+**"every fabric wall must be visible"** fails DOOR-CURTAINSD s4, which has six
+fabric walls and two visible -- the masked pocket pair. The rule is at least
+one PER LEAF.
+
+**"closed texel scale 2.0 +/- 0.35"** fails s2 (1.33) and E1M1 (2.83, 4.0).
+Measured over 355 fabric walls in the originals: 2.0 is the mode by a
+distance (171 of 355) and the attested envelope runs 1.0 to 8.0. The
+constructor authors the mode; the gate flags the envelope. The defect it was
+written for measured 96.
+
+### The closure, walked the engine's way
+
+`motion.drag_closure` follows `nextwall` as `DragPoint` does, rather than
+matching coordinates. On the four originals and the rebuilt city the two
+**agree** -- a negative result worth keeping, since the coordinate reading can
+over-report and never under-reports.
+
+### The city's state preview
+
+Filed as missing in wave 1b and built: `work/_city_state_preview.py` snaps the
+map to each pose and renders the house. OFF shows the fabric drawn across the
+proscenium at natural scale; ON shows it gathered. It also states both ends of
+the light the Link drives -- stage s24, rx 341, amplitude -24, shade 32 -> 8 --
+because `sectorfx.cpp:161-166` scales that by busy at runtime and a static
+render cannot show it moving.
+
 ## The walk fixes, 2026-09-01
 
 The owner walked the rebuilt zoo. Casket works, lift works, curtains open the

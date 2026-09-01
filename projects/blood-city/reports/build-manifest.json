@@ -196,11 +196,12 @@
   },
   "roadways": 3,
   "stage_curtain": {
+    "leaves": 1,
+    "slot": "void",
     "markers": 2,
     "flagged": 1,
     "fabric": 3,
-    "buttons": 3,
-    "arbitration": []
+    "buttons": 3
   },
   "stage_light": {
     "$schema": "llmapper.arbitration",
@@ -373,9 +374,9 @@
   "lighting": {
     "lights": 30,
     "rays_cast": 549489,
-    "surfaces_lit": 778,
+    "surfaces_lit": 780,
     "surfaces_protected": 167,
-    "walls_lit": 687,
+    "walls_lit": 689,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
@@ -490,21 +491,23 @@
     {
       "sector": 37,
       "measured": {
-        "flagged_walls": 1,
+        "leaves": 1,
+        "flag_directions": [
+          1
+        ],
         "motion_set": [
-          23,
           37
         ],
+        "undeclared_neighbours": [],
         "fabric_walls": 3,
+        "fabric_visible": 3,
         "closed_texel_scale": [
           2.0,
           2.0,
           2.0
         ]
       },
-      "deviations": [
-        "isolation: wanted [37], found [23, 37] (the fin keeps every moved vertex inside its own outline; a curtain that deforms its room is not built as one)"
-      ]
+      "deviations": []
     }
   ],
   "rules": {
