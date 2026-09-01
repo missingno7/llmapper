@@ -203,48 +203,52 @@ class ConstructorTest(unittest.TestCase):
         self.assertEqual(CURTAIN_PICNUM, 146)
 
     def test_a_planar_door_flags_exactly_one_wall(self):
+        # The signature changed with the owner's oracle: the construct now
+        # takes ONE footprint and splits it, rather than being handed two
+        # outlines and trusted about the travel between them.
+        # `tests/test_swept_state.py` holds the constructor's full contract;
+        # this keeps the payload-shape reading pinned here beside the others.
+        from bloodmap.effects import payload
         from bloodmap.mechanism import planar_door
 
-        layout = self._layout()
-        planar_door(layout, "casket", hole_region="hole",
-                    cover_region="cover",
-                    hole_outline=[(6144, 1024), (8192, 1024),
-                                  (8192, 3072), (6144, 3072)],
-                    cover_outline=[(8192, 1024), (8704, 1024),
-                                   (8704, 3072), (8192, 3072)],
-                    boundary=((8192, 1024), (8192, 3072)),
-                    travel=(2048, 0), channel=311, floor_z=0,
-                    ceiling_z=-33280, lift_out=6144,
-                    declared_zero_exit=True)
-        layout.add_connection("c0", "room", "hole", a1=(6144, 1024),
-                              a2=(6144, 3072), min_width=512)
-        layout.add_connection("c1", "hole", "cover", a1=(8192, 1024),
-                              a2=(8192, 3072), min_width=512)
+        from bloodmap.planar_layout import PlanarLayout
+
+        # The room stops where the lid ends, so only the LID shares a wall
+        # with it -- the hole beyond is reached through the door, which is
+        # the whole point of the construct.
+        layout = PlanarLayout(name="probe")
+        layout.add_region("room", [(0, 1024), (6144, 1024), (6144, 3072),
+                                   (0, 3072)],
+                          floor_z=0, ceiling_z=-33280)
+        layout.set_player_start("room", x=1024, y=2048, z=0, angle=0)
+        planar_door(layout, "casket",
+                    footprint=(6144, 1024, 8192, 1024 + 2176), axis="y",
+                    split=1024 + 2048, travel=-1920, channel=311,
+                    lid_region="lid", hole_region="hole",
+                    floor_z=0, ceiling_z=-33280,
+                    hole_kwargs={"declared_zero_exit": True})
+        layout.add_connection("c0", "room", "lid", a1=(6144, 1024),
+                              a2=(6144, 1024 + 2048), min_width=512)
         compiled = layout.compile()
         disk = compiled.level.to_disk_map()
-        hole = compiled.allocations["hole"].sector_id
-
-        from bloodmap.effects import payload
-
-        shape = payload(disk, hole)["shape"]
+        shape = payload(disk, compiled.allocations["lid"].sector_id)["shape"]
         self.assertEqual(shape["shape"], "boundary re-partition")
+        self.assertEqual(shape["flagged"], 1)
 
     def test_a_lift_out_composes_a_z_verb_on_the_same_sector(self):
         # E1M1's own proof that the two XSECTOR z states are not a type-600
-        # privilege: s30 is 614 AND carries floor endpoints.
+        # privilege: s30 is 614 AND carries floor endpoints. It goes on the
+        # HOLE, because that is the sector the body stands in.
         from bloodmap.mechanism import planar_door
 
         layout = self._layout()
-        built = planar_door(layout, "casket", hole_region="hole",
-                            cover_region="cover",
-                            hole_outline=[(6144, 1024), (8192, 1024),
-                                          (8192, 3072), (6144, 3072)],
-                            cover_outline=[(8192, 1024), (8704, 1024),
-                                           (8704, 3072), (8192, 3072)],
-                            boundary=((8192, 1024), (8192, 3072)),
-                            travel=(2048, 0), channel=311, floor_z=0,
-                            ceiling_z=-33280, lift_out=6144,
-                            declared_zero_exit=True)
+        built = planar_door(layout, "casket",
+                            footprint=(6144, 1024, 8192, 1024 + 2176),
+                            axis="y", split=1024 + 2048, travel=-1920,
+                            channel=311, lid_region="lid",
+                            hole_region="hole", floor_z=0, ceiling_z=-33280,
+                            motor="hole", lift_out=6144,
+                            hole_kwargs={"declared_zero_exit": True})
         self.assertEqual(built["lift_out"], 6144)
         behavior = layout.regions["hole"].sector_behavior
         self.assertEqual(behavior["on_floor_z"], -6144)
@@ -255,10 +259,9 @@ class ConstructorTest(unittest.TestCase):
 
         layout = self._layout()
         with self.assertRaises(MechanismError):
-            planar_door(layout, "x", hole_region="h", cover_region="c",
-                        hole_outline=[], cover_outline=[],
-                        boundary=((0, 0), (0, 1)), travel=(0, 0),
-                        channel=1, floor_z=0, ceiling_z=-1)
+            planar_door(layout, "x", footprint=(0, 0, 1024, 2176), axis="y",
+                        split=1024, travel=0, channel=1, lid_region="l",
+                        hole_region="h", floor_z=0, ceiling_z=-33280)
 
 
 class CarryWallTest(unittest.TestCase):

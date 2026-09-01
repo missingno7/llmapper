@@ -325,6 +325,42 @@ class GeneratedMapTest(unittest.TestCase):
         self.assertGreater(report["constructs_checked"], 8)
         self.assertEqual(report["deviations"], [])
 
+    def test_no_mechanism_breaks_its_geometry_while_it_moves(self):
+        # The gate the casket defect lived behind. Every other check reads
+        # the pose the map is saved in, and a moving sector is in it for one
+        # instant. `PlanarLayout.compile` refuses a broken one now, so this
+        # asserts the map the suite builds is clean rather than re-deriving
+        # it -- and states the population, which is the useful number.
+        from bloodmap.swept_state import run as swept_run
+
+        report = swept_run(self.disk)
+        self.assertGreater(report["mechanisms"], 8)
+        self.assertEqual(report["problems"], [])
+
+    def test_the_casket_is_built_to_the_owners_oracle(self):
+        from bloodmap.conformance import measure_planar_door
+
+        sectors = {name: allocation.sector_id
+                   for name, allocation in self.compiled.allocations.items()}
+        found = measure_planar_door(self.disk, sectors["casket:hole"])
+        self.assertTrue(found.conforms, found.report())
+        # E1M1's dialect, chosen so the hole can carry the ergonomic assist.
+        self.assertEqual(found.measured["dialect_motor"], "hole")
+        self.assertEqual(found.measured["lid_step"], 1024)
+
+    def test_the_casket_link_lands_a_body_where_it_fell(self):
+        # A stack link is a TRANSLATION AT A PLANE: the marker pair carries
+        # the offset, so the two halves need not overlap in plan -- the
+        # oracle's are five thousand units apart.
+        from bloodmap.reachability import link_pairs
+
+        sectors = {name: allocation.sector_id
+                   for name, allocation in self.compiled.allocations.items()}
+        pairs = [row for row in link_pairs(self.disk)
+                 if sectors["casket:hole"] in row["sectors"]]
+        self.assertEqual(len(pairs), 1)
+        self.assertIn(sectors["casket:grave"], pairs[0]["sectors"])
+
     def test_the_zoo_reads_itself(self):
         # The acceptance gate this rebuild exists for. Every claim in the
         # registry is checked against what `bloodmap.effects` and

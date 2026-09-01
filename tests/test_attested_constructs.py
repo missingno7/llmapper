@@ -18,6 +18,7 @@ signal, because `unittest` reports an unexpected success.
 """
 
 import unittest
+from pathlib import Path
 
 
 def _campaign(stem):
@@ -307,6 +308,138 @@ class TurnstilePairTest(unittest.TestCase):
             self.assertEqual(
                 int(_extra(self.disk.sectors[sector_id])["rx_id"]), 7,
                 f"s{sector_id}")
+
+
+class CasketOracleTest(unittest.TestCase):
+    """maps/blood/mechanism/casket.map: the owner's minimal demonstration.
+
+    Owner-authored evidence, mechanism-tutorial population. It may be cited
+    and fixtured and must never be edited, so every number here is read off
+    it rather than asserted about it.
+
+    Seven sectors demonstrating floor sliding doors uncovering a walkable
+    room-over-room stack, and it teaches two dialects E1M1 does not.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        from bloodmap.format import read_map
+
+        path = Path("maps/blood/mechanism/casket.map")
+        if not path.exists():
+            raise unittest.SkipTest("the oracle map is not present")
+        cls.disk = read_map(path)
+
+    def test_it_is_two_lid_and_hole_pairs(self):
+        # Upper plane s2|s3, lower plane s5|s6. The motors are the LIDS,
+        # which is the dialect E1M1 does not use: there the 614 is the hole.
+        for motor, hole in ((2, 3), (5, 6)):
+            self.assertEqual(int(self.disk.sectors[motor].fields["type"]), 614)
+            self.assertEqual(int(self.disk.sectors[hole].fields["type"]), 0)
+
+    def test_each_motor_re_partitions_its_own_boundary(self):
+        from bloodmap.effects import payload
+
+        for motor, hole in ((2, 3), (5, 6)):
+            shape = payload(self.disk, motor)["shape"]
+            self.assertEqual(shape["shape"], "boundary re-partition")
+            self.assertEqual(shape["re_partitions_with"], hole)
+
+    def test_both_records_of_the_boundary_carry_the_flag(self):
+        # The second dialect: E1M1 flags one side, the oracle flags both.
+        for a, b in ((18, 22), (36, 40)):
+            for wall in (a, b):
+                self.assertTrue(
+                    int(self.disk.walls[wall].fields["cstat"]) & 16384,
+                    f"wall {wall}")
+
+    def test_the_lid_is_a_step_above_the_hole_it_covers(self):
+        # 1024 on the floor above, and mirrored in the ceiling below.
+        self.assertEqual(int(self.disk.sectors[3].fields["floor_z"])
+                         - int(self.disk.sectors[2].fields["floor_z"]), 1024)
+        self.assertEqual(int(self.disk.sectors[5].fields["ceiling_z"])
+                         - int(self.disk.sectors[6].fields["ceiling_z"]), 1024)
+
+    def test_one_channel_syncs_both_planes(self):
+        for motor in (2, 5):
+            self.assertEqual(int(_extra(self.disk.sectors[motor])["rx_id"]),
+                             100)
+
+    def test_the_link_markers_sit_at_the_meeting_planes(self):
+        # 2332 above at exactly s3's floor, 2331 below at exactly s6's
+        # ceiling, data_1-paired, statnum 0.
+        upper, lower = self.disk.sprites[5], self.disk.sprites[6]
+        self.assertEqual(int(upper.fields["picnum"]), 2332)
+        self.assertEqual(int(lower.fields["picnum"]), 2331)
+        self.assertEqual(int(upper.fields["z"]),
+                         int(self.disk.sectors[3].fields["floor_z"]))
+        self.assertEqual(int(lower.fields["z"]),
+                         int(self.disk.sectors[6].fields["ceiling_z"]))
+        for sprite in (upper, lower):
+            self.assertEqual(int(sprite.fields["status"]), 0)
+        self.assertEqual(int(_extra(upper)["data_1"]),
+                         int(_extra(lower)["data_1"]))
+
+    def test_reachability_pairs_the_link(self):
+        from bloodmap.reachability import link_pairs
+
+        pairs = link_pairs(self.disk)
+        self.assertEqual(len(pairs), 1)
+        self.assertEqual(sorted(pairs[0]["sectors"]), [3, 6])
+
+    def test_the_travel_fully_covers_and_the_receiver_is_sized_for_it(self):
+        # The invariant the zoo build violated. Travel 1920 across a 2176
+        # footprint leaves 128 on the far side at each end of the motion.
+        from bloodmap.conformance import travel_of
+
+        for motor in (2, 5):
+            travel = travel_of(self.disk, motor)
+            self.assertIsNotNone(travel)
+            self.assertEqual(max(abs(travel[0]), abs(travel[1])), 1920)
+
+    def test_both_planes_conform_to_the_planar_door_template(self):
+        from bloodmap.conformance import measure_planar_door
+
+        for motor in (2, 5):
+            found = measure_planar_door(self.disk, motor)
+            self.assertTrue(found.conforms, found.report())
+            self.assertEqual(found.measured["dialect_motor"], "lid")
+            self.assertEqual(found.measured["dialect_flags"], "both")
+            self.assertEqual(found.measured["lid_step"], 1024)
+
+    def test_neither_plane_breaks_its_geometry_across_the_travel(self):
+        from bloodmap.swept_state import sweep_sector
+
+        for motor in (2, 5):
+            self.assertTrue(sweep_sector(self.disk, motor).sound)
+
+    def test_the_state_mismatch_is_an_editor_leftover(self):
+        # The roadmap's open question, settled by replay. Both planes are
+        # DRAWN in the same physical pose -- boundary at the on-marker -- but
+        # s2 saves state 1 and s5 saves state 0. `trInit` treats the drawn
+        # geometry as the pose at busy 1, so a state-0 sector displaces
+        # itself by the whole marker separation the moment the level loads.
+        #
+        # Measured: s2 rests where it was drawn; s5 jumps 1920 units. Two
+        # lids on ONE channel, out of step with each other from the first
+        # frame. That is not a dialect, it is a leftover.
+        from bloodmap.motion_sim import blood_sweep, rest_displacement
+
+        moved = {}
+        for motor in (2, 5):
+            frames = blood_sweep(self.disk, motor, steps=8)
+            moved[motor] = round(rest_displacement(self.disk, motor, frames))
+        self.assertEqual(moved[2], 0)
+        self.assertEqual(moved[5], 1920)
+        self.assertEqual(int(_extra(self.disk.sectors[2])["state"]), 1)
+        self.assertEqual(int(_extra(self.disk.sectors[5]).get("state", 0)), 0)
+
+    def test_the_switch_drives_both_planes(self):
+        # One switch, pushed, toggling channel 100.
+        switch = _extra(self.disk.sprites[2])
+        self.assertEqual(int(switch["tx_id"]), 100)
+        self.assertEqual(int(switch["command"]), 3)
+        self.assertTrue(int(switch["trigger_push"]))
 
 
 if __name__ == "__main__":
