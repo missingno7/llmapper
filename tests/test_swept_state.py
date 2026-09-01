@@ -245,5 +245,86 @@ class SweptPreflightTest(unittest.TestCase):
         self.assertIn("travel", message)
 
 
+def _strip_with_thin_neighbour(*, hold_gate_open: bool = True):
+    """A slide-marked strip whose flagged wall is shared with a THIN sector.
+
+    `DragPoint` (triggers.cpp:817-854) sets the vertex for every wall that
+    shares it across `nextwall`, so the thin sector's two near corners ride
+    the motor's boundary. Drawn = ON (busy 1), and the travel is arranged so
+    that at busy 0 -- the rest pose of a state-0 sector, the pose the level
+    LOADS in -- the boundary sits at y 1024, past the thin sector's far wall
+    at 768. The motor itself is fine at every pose (0..1024, winding kept);
+    the neighbour is inside out from the first frame.
+    """
+    from unittest import mock
+
+    from bloodmap.planar_layout import PlanarLayout
+
+    layout = PlanarLayout(name="probe")
+    layout.add_region("motor", [(0, 0), (2048, 0), (2048, 512), (0, 512)],
+                      floor_z=0, ceiling_z=-33280, type=614,
+                      sector_behavior={"rx_id": 300, "busy_time_a": 20,
+                                       "busy_time_b": 20})
+    layout.add_region("thin", [(0, 512), (2048, 512), (2048, 768), (0, 768)],
+                      floor_z=0, ceiling_z=-33280)
+    layout.add_region("room", [(0, 768), (2048, 768), (2048, 3072), (0, 3072)],
+                      floor_z=0, ceiling_z=-33280)
+    layout.set_player_start("room", x=1024, y=2048, z=0, angle=0)
+    layout.add_connection("c0", "motor", "thin", a1=(0, 512), a2=(2048, 512),
+                          min_width=512)
+    layout.add_connection("c1", "thin", "room", a1=(0, 768), a2=(2048, 768),
+                          min_width=512)
+    layout.carry_wall("motor", (0, 512), (2048, 512), moves="with")
+    #: travel = on - off = (0, -512); base = drawn - travel = y 1024.
+    for tag, kind, y in (("off", 3, 1536), ("on", 4, 1024)):
+        layout.add_sprite(f"probe_marker_{tag}", "room", x=1024, y=y, z=0,
+                          type=kind, picnum=3997, status=10, cstat=32896,
+                          x_repeat=64, y_repeat=64, angle=0,
+                          marker_owner="motor")
+    #: The compile-time gate is the thing under test, so build the disk with
+    #: it held open and run the gate by hand.
+    if not hold_gate_open:
+        compiled = layout.compile()
+    else:
+        with mock.patch.object(PlanarLayout, "_preflight_swept",
+                               lambda self, disk: None):
+            compiled = layout.compile()
+    sectors = {name: allocation.sector_id
+               for name, allocation in compiled.allocations.items()}
+    return compiled.level.to_disk_map(), sectors
+
+
+class DragClosureGateTest(unittest.TestCase):
+    """The gate must sweep what DragPoint moves, not just the mover."""
+
+    def test_the_mover_only_sweep_is_blind_to_the_neighbour(self):
+        # Documented on purpose: the mover's own polygon is healthy at every
+        # pose, so any check that looks only at it passes this map.
+        from bloodmap.motion_sim import blood_sweep, sweep_health
+
+        disk, sectors = _strip_with_thin_neighbour()
+        frames = blood_sweep(disk, sectors["motor"], steps=4)
+        self.assertTrue(sweep_health(frames)["healthy"])
+
+    def test_a_neighbour_that_inverts_fails_the_gate(self):
+        # Written to FAIL FIRST: before the closure sweep, `sweep_sector`
+        # reported this map sound.
+        from bloodmap.swept_state import sweep_sector
+
+        disk, sectors = _strip_with_thin_neighbour()
+        found = sweep_sector(disk, sectors["motor"], steps=4)
+        self.assertFalse(found.sound, found.problems)
+        text = " ".join(found.problems)
+        self.assertIn(f"sector {sectors['thin']}", text)
+        self.assertIn("invert", text)
+
+    def test_the_layout_is_refused_at_compile(self):
+        from bloodmap.planar_layout import PlanarLayoutError
+
+        with self.assertRaises(PlanarLayoutError) as caught:
+            _strip_with_thin_neighbour(hold_gate_open=False)
+        self.assertIn("invert", str(caught.exception))
+
+
 if __name__ == "__main__":
     unittest.main()

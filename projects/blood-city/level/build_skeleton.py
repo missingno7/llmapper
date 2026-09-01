@@ -1447,6 +1447,26 @@ def main() -> int:
             for _line in _read["deviations"]:
                 print(f"    DEVIATES {_line}")
 
+    # The swept-state gate over the FINAL disk, DragPoint closure included.
+    # `layout.compile()` ran it before the facade passes split walls, and it
+    # sweeps everything a motion DRAGS (triggers.cpp:817-854 walks nextwall,
+    # so the auditorium's hole loop moves with the curtain's tips). A
+    # neighbour that turns inside out at any pose fails the build here.
+    from bloodmap.swept_state import run as _swept_run
+    _swept = _swept_run(disk)
+    ctx["manifest"]["swept_closure"] = {
+        "mechanisms": _swept["mechanisms"], "sound": _swept["sound"],
+        "deforming_neighbours": _swept["deforming_neighbours"],
+        "problems": _swept["problems"], "notes": _swept["notes"]}
+    print(f"swept closure: {_swept['mechanisms']} mechanisms, "
+          f"{_swept['deforming_neighbours']} deform a neighbour, "
+          f"{len(_swept['problems'])} problem(s)")
+    for _line in _swept["problems"]:
+        print(f"    BREAKS {_line}")
+    if _swept["problems"]:
+        print("FAIL: a mechanism breaks geometry it drags; the map was not written")
+        return 1
+
     print(f"rules: {len(_diags)} diagnostics {dict(_by_sev)}")
     for (_sev, _code), _n in _by_code.most_common():
         if _sev in ("error", "warning"):
