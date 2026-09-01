@@ -800,7 +800,34 @@ primitives — many *design objects* on the same machinery:
   (conditional.py treats links as always-on — a Phase 9 gap), and the
   paired-travel-across-a-link pattern as a recognizable design object.
   *Narrative* — the primitive dressed as waking from a coffin.
-  **Further owner corrections (2026-09-01):** s30's z rise (floor
+  **Owner-authored oracle: `maps/blood/mechanism/casket.map` (2026-09-01)**
+  — a minimal 7-sector demonstration of the same principle (floor sliding
+  doors uncovering a walkable ROR stack), and it teaches two dialects
+  E1M1 does not: the MOTOR may sit on either side of the boundary (here
+  the 614 sectors are the LIDS s2/s5 and the link-bearing holes s3/s6 are
+  plain — role assignment is free, only the flagged boundary matters),
+  and BOTH sides of the boundary wall pair may carry the flag (walls
+  18+22, 36+40) where E1M1 flags one. Also attested: lid thickness as a
+  1024 step between tray and hole; travel = full cover with the tray
+  sized to receive (the invariant the zoo build violated); one channel
+  (rx 100) syncing both planes; link markers 2332/2331 at exactly the
+  meeting planes, data_1-paired, statnum 0. **Answered by replay
+  (2026-09-01): an editor leftover.** Both planes are DRAWN in the same
+  physical pose — boundary at the on-marker — but `trInit` treats the
+  drawn geometry as the pose at busy 1, so a state-0 sector displaces
+  itself by the whole marker separation the instant the level loads.
+  Measured with `motion_sim`: s2 rests where it was drawn (displacement
+  0) and s5 jumps 1920. Two lids on ONE channel, out of step from the
+  first frame. `tests/test_attested_constructs.py` pins both numbers. This map is the primary fixture for the
+  planar-door constructor and the swept-state validation gate, and
+  reading it field-by-field corrected the MOTION MODEL itself:
+  `TranslateSector` drags a flagged wall's own vertex **and its
+  `point2`'s** unless that next wall is flagged too
+  (`triggers.cpp:897-909`), which is how flagging ONE wall translates a
+  whole EDGE. `motion_sim` moved only the flagged vertex, so it sheared
+  every Marked slide instead of sliding it — the oracle's lid came back
+  as a 2228224-unit trapezoid where the engine gives a 2048x128 strip.
+  Every swept measurement taken before that fix was of the wrong shape. s30's z rise (floor
   −20480 → −26624) is NOT part of the lid mechanism — it lifts the player
   so they can jump out. A new category: **ergonomic-assist motion**,
   present for the body, not for topology; a reading that counts it as part
@@ -839,6 +866,23 @@ interaction  three routes, orthogonal to everything else: XSECTOR Push/
 payload dirs editor colors: cstat 16384 = BLUE = travels the marker
              vector; 32768 = GREEN = travels exactly opposite — one
              sector, two opposite-flagged leaves = a double door
+vertex drag  (owner, 2026-09-01, the deepest payload rule) motion moves
+             VERTICES, not walls: a flagged wall carries its two points,
+             and EVERY wall incident on a moved point drags with it (one
+             end stays, one end moves). The true payload is the closure
+             over shared vertices, not the flag set. Consequence:
+             mechanisms need MOTION APERTURES — deliberate wall splits
+             that bound the deformation, exactly as a doorway's jamb
+             isolates the door's texture AND its motion. E1M1's curtain
+             works because the room wall is SPLIT so the fabric's end
+             vertices are its own; the zoo's curtain lacks that seam and
+             deforms the whole room (its markers are also reversed, so
+             rest reads open — two distinct defects). Detection law: for
+             every mechanism, compute the ACTUAL motion set (flags +
+             vertex closure) and diff it against the sentence's DECLARED
+             payload — any extra member is an integration defect even
+             when the geometry stays valid. This check belongs beside
+             the swept-state gate and must run without an owner walk.
 presentation shade/amplitude waves synced to state — the mechanism's
              visual voice, not decoration
 composition  ROR links couple constructs across layers (casket); links
@@ -1663,7 +1707,49 @@ rank  technique                     recurrence  why it is not done here
                                                 wholly inside another, so a
                                                 crate cannot stand in the
                                                 middle of a floor
-10    wall-level interaction route  --          doors.py models the sector
+10    wall-level interaction route  --
+
+Added 2026-09-01 from the owner-requested sweep of PROJECT MAPS (sources
+beyond blood-city; several are MechanismDecl-shaped sentences and should
+land as its first citizens):
+
+```text
+rank  technique                     source & why
+11    WATER LINK pair               reasoned-authoring-v1 candidate_v6 — the
+      (kMarkerUp/LowWater, data1-   repo's reference artifact for links (ROR
+      paired, congruent underwater  debugging diffed against it); a link-
+      volume ELSEWHERE, Underwater  primitive dialect (medium change), and
+      flag; + ripple helper)        the harbor/bay wishlist needs it
+12    PROSCENIUM / stage            l3_theatre — measured law already ("a
+                                    stage under a LOWER ceiling than the
+                                    house; one-max-step rise; 20k arch"),
+                                    owner-approved on the Theatre Row walk;
+                                    the curtain's natural habitat
+13    BREAKABLE GLASS pane          l3_theatre — two-sided gib wall with a
+                                    shop behind; conditional already READS
+                                    kWallGib, nothing writes it; storefronts
+                                    for the city overhaul
+14    STAGED EXPLOSION chain        l3_foundry dock (channel 30) + the
+                                    crack->exploder vocabulary from DNE3L6 —
+                                    an irreversible-spectacle sentence
+15    HATCH link + join-by-faces    vertical-fragment — _hatch_link and the
+      (against/side_of idiom)       against()/side_of() face-joining helpers
+                                    that levelprog's faces should absorb
+16    AMBIENT SOUND placement       setpieces.sound_gizmo + the measured
+                                    blood-wiring-placement heights (0 and
+                                    6400 as the two practices) — promote
+                                    with mined defaults
+17    the VOLUME-ON-FLOOR family    setpieces raised_solid/stepped_solid/
+      (counter, altar, basin,       inset/canopy/stall — blocked on rank 9
+      stall, canopy...)             (free-standing volumes); when rank 9
+                                    lands, this whole family moves into
+                                    bloodmap with it
+```
+
+Synergy note: reports/E2M2-mechanism-patterns.json (fan-out TX/RX, single
+motion gates) has been waiting for "a mechanism view in the catalog" —
+MechanismDecl IS that view; when it lands, the E2M2 compositions become
+sentence templates rather than a stranded report.          doors.py models the sector
       in doors.py                               route; the XWALL one is unread
 11    command-verb reading on the   --          command 5 on E1M1's curtain is
       bus                                       unread by the whole stack
@@ -1862,6 +1948,36 @@ terms.
 ---
 
 # Phase 13 — Design intent + synthesis
+
+**Owner-steered entry point (2026-09-01), from the representation review:
+the missing layer is a shared CONSTRUCT/SENTENCE schema.** The review
+found: BuildIR/native needs no rework (byte-exact contract stays); the
+reading stack parses mechanisms into grammar sentences well; the level
+program tree understands architecture (locality, style provenance) but
+mechanisms are NOT citizens of the tree — they are imperative calls into
+flat PlanarLayout with sector_behavior dicts, and intent exists only as
+~15 free-text `intent={"purpose"}` strings. Reading and writing never
+meet in one schema; self-reading bridges them post-hoc. The rework:
+
+- **MechanismDecl**, a typed node used by BOTH sides: members+roles
+  (lid/hole/link/switch/blade...), primitives with parameters (the
+  four-primitive factoring), wiring (interaction route, channel, command
+  verb), and a TYPED function field — the E1M1 taxonomy (narrative /
+  secret / progression / ambush / furnishing / fixture /
+  ergonomic-assist / workaround) — with evidence for the claim
+  (INTERPRETED discipline: function is asserted from embedding, contents
+  and dressing, never free).
+- Level programs DECLARE mechanisms as tree nodes, compiled down to
+  PlanarLayout behaviors; readers (effects/conditional/assembly) EMIT
+  the same schema from original maps; fixtures, conformance and the zoo
+  self-read become structural equality between the declared and the
+  parsed sentence — the self-correction loop gains one common language,
+  and reading↔writing become symmetric.
+- Scope: a new declaration layer + adapters — NOT an IR rewrite.
+
+Fundamental understanding of mechanisms is what makes intent legible
+(the owner's thesis); this layer is where that intent lives and is
+checked.
 
 Generate from semantic/function/architecture intent, not coordinate soup.
 This must land in the existing source representation: level programs and

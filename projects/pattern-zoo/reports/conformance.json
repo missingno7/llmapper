@@ -7,13 +7,21 @@
   "results": [
     {
       "region": "casket:hole",
-      "sector": 23,
-      "construct": "planar door sector 23",
+      "sector": 24,
+      "construct": "planar door sector 24",
       "conforms": true,
       "measured": {
         "shape": "boundary re-partition",
         "flagged": 1,
-        "re_partitions_with": 24
+        "re_partitions_with": 23,
+        "step_plane": "floor",
+        "lid_step": 1024,
+        "dialect_motor": "hole",
+        "dialect_flags": "both",
+        "swept_areas": [
+          262144.0,
+          4194304.0
+        ]
       },
       "deviations": []
     },
@@ -96,7 +104,8 @@
         "clear": 32768,
         "bearing_minus_own_angle": [
           90.0
-        ]
+        ],
+        "axis_turn": -8192
       },
       "deviations": []
     },
@@ -126,7 +135,8 @@
         "clear": 32768,
         "bearing_minus_own_angle": [
           90.0
-        ]
+        ],
+        "axis_turn": -8192
       },
       "deviations": []
     },
@@ -190,7 +200,8 @@
         "clear": 32768,
         "bearing_minus_own_angle": [
           90.0
-        ]
+        ],
+        "axis_turn": -8192
       },
       "deviations": []
     },
@@ -220,7 +231,8 @@
         "clear": 32768,
         "bearing_minus_own_angle": [
           90.0
-        ]
+        ],
+        "axis_turn": -8192
       },
       "deviations": []
     },
@@ -250,7 +262,8 @@
         "clear": 32768,
         "bearing_minus_own_angle": [
           90.0
-        ]
+        ],
+        "axis_turn": -8192
       },
       "deviations": []
     },
@@ -280,7 +293,8 @@
         "clear": 32768,
         "bearing_minus_own_angle": [
           90.0
-        ]
+        ],
+        "axis_turn": -8192
       },
       "deviations": []
     },

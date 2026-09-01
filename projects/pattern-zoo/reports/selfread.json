@@ -48,6 +48,10 @@
   "lettering": [],
   "usage_law_failures": [],
   "usage_kind_warnings": [],
+  "swept_geometry": [],
+  "swept_notes": [
+    "sector 16 (type 614): sits 1536 units from its drawn outline at load; either it is authored in the other pose on purpose (Blood's gates are, and say so with `state`) or the state is a leftover"
+  ],
   "leaned_on": [],
   "problems": [],
   "passed": true
