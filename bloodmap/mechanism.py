@@ -468,6 +468,7 @@ def sliding_gate(
     tile_height: int = 128,
     tile_width: int = 128,
     leaf_picnum: int = FENCE_PICNUM,
+    leaves: int = 2,
     busy_time: int = 20,
     pushable: bool = True,
     drawn_shut: bool = True,
@@ -502,12 +503,14 @@ def sliding_gate(
     span = hypot(bx - ax, by - ay)
     if span <= 0:
         raise MechanismError(f"{region_id}: the threshold has no length")
+    if leaves not in (1, 2):
+        raise MechanismError(f"{region_id}: a gate has one leaf or two")
     leaf_x_repeat = leaf_repeat_for(travel, tile_width)
     leaf_width = leaf_x_repeat * tile_width // 4
-    if leaf_width * 2 > span + 1:
+    if leaf_width * leaves > span + 1:
         raise MechanismError(
-            f"{region_id}: two leaves of {leaf_width} do not fit a {span:.0f} opening; "
-            f"reduce travel or widen the threshold")
+            f"{region_id}: {leaves} leaf/leaves of {leaf_width} do not fit a "
+            f"{span:.0f} opening; reduce travel or widen the threshold")
 
     along = _direction((ax, ay), (bx, by))
     ux, uy = (bx - ax) / span, (by - ay) / span
@@ -565,7 +568,16 @@ def sliding_gate(
     # Drawn parted by a further `travel`, so that the rest pose closes them.
     half = leaf_width / 2.0
     drawn = half + travel if drawn_shut else half
-    for name, carry, sign in (("west", CARRY_AGAINST, -1.0), ("east", CARRY_WITH, +1.0)):
+    #: A single leaf covers the whole opening rather than meeting a partner
+    #: in the middle, so it is authored one travel BEFORE the midpoint: a
+    #: CARRY_WITH sprite rests at drawn + T, which puts the rest pose over
+    #: the threshold and the open pose aside. Two leaves is the campaign
+    #: template and stays the default; one is E1M1 s63's plainer form.
+    panels = ((("west", CARRY_AGAINST, -1.0), ("east", CARRY_WITH, +1.0))
+              if leaves == 2 else (("leaf", CARRY_WITH, -1.0),))
+    if leaves == 1:
+        drawn = float(travel)
+    for name, carry, sign in panels:
         layout.add_sprite(
             f"{tag}_leaf_{name}", region_id,
             x=int(round(mid[0] + ux * sign * drawn)),
@@ -587,6 +599,7 @@ def sliding_gate(
         "state_busy": (state, busy),
         "leaf_drawn_offset": drawn,
         "pushable": pushable,
+        "leaves": int(leaves),
     }
 
 
