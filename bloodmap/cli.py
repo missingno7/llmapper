@@ -1824,6 +1824,24 @@ def cmd_oracle_nblood_passage(args: argparse.Namespace) -> int:
     return 0 if report["status"] == "pass" else 1
 
 
+def cmd_contradictions(args) -> int:
+    """Compare what the project's four sources say, and rank what differs."""
+    from .contradictions import QUEUE, run, write
+
+    report = run(args.map)
+    path = write(report, args.output or QUEUE)
+    counts = report["counts"]
+    print(f"{sum(counts.values())} disagreement(s): "
+          f"{counts['conflict']} conflict, {counts['drift']} drift, "
+          f"{counts['open']} open")
+    for item in report["queue"]:
+        print(f"  [{item['kind']:8}] {item['name']}")
+        print(f"             {item['says']}")
+        print(f"             ASK: {item['ask']}")
+    print(f"wrote {path}")
+    return 0
+
+
 def cmd_conditional(args: argparse.Namespace) -> int:
     from .conditional import (
         Action, Held, build_graph, frontier, route_edges, what_becomes_reachable,
@@ -2532,6 +2550,14 @@ def build_parser() -> argparse.ArgumentParser:
                    help="emit the whole trigger-gated progression instead")
     p.add_argument("-o", "--output", help="write JSON report; defaults to stdout")
     p.set_defaults(func=cmd_conditional)
+    p = sub.add_parser(
+        "contradictions",
+        help="cross-layer disagreements, ranked, for confirm/reject by name",
+    )
+    p.add_argument("--map", help="also check a built map's tile use")
+    p.add_argument("-o", "--output",
+                   help="write JSON; defaults to reports/contradictions.json")
+    p.set_defaults(func=cmd_contradictions)
     p = sub.add_parser(
         "knowledge",
         help="what do we know about a tile, a family, a constructor, a sector",

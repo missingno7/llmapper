@@ -1,0 +1,180 @@
+{
+ "$schema": "llmapper.contradictions",
+ "schema_version": 1,
+ "about": "cross-layer disagreements between owner anchors, the usage-kind table, constructor claims and a built map. Each is addressed by name for confirm/reject.",
+ "map": "projects/pattern-zoo/level/pattern-zoo.MAP",
+ "counts": {
+  "conflict": 0,
+  "drift": 7,
+  "open": 3
+ },
+ "queue": [
+  {
+   "name": "tile-144-kind",
+   "kind": "drift",
+   "between": [
+    "owner-anchors",
+    "usage-kinds"
+   ],
+   "says": "the owner reads tile 144 as 'wall' (wooden lattice, used e.g. as windows); the campaign never uses it that way, only sprite_wall",
+   "ask": "is the kind a first-glance label to correct, or is the campaign simply not using it the way it could be?",
+   "detail": {
+    "picnum": 144,
+    "kind": "wall",
+    "attested": {
+     "sprite_wall": 15
+    }
+   }
+  },
+  {
+   "name": "tile-147-kind",
+   "kind": "drift",
+   "between": [
+    "owner-anchors",
+    "usage-kinds"
+   ],
+   "says": "the owner reads tile 147 as 'maskwall' (curtain, translucent variant); the campaign never uses it that way, only sprite_wall",
+   "ask": "is the kind a first-glance label to correct, or is the campaign simply not using it the way it could be?",
+   "detail": {
+    "picnum": 147,
+    "kind": "maskwall",
+    "attested": {
+     "sprite_wall": 7
+    }
+   }
+  },
+  {
+   "name": "tile-464-kind",
+   "kind": "drift",
+   "between": [
+    "owner-anchors",
+    "usage-kinds"
+   ],
+   "says": "the owner reads tile 464 as 'wall' (grate door); the campaign never uses it that way, only sprite_wall",
+   "ask": "is the kind a first-glance label to correct, or is the campaign simply not using it the way it could be?",
+   "detail": {
+    "picnum": 464,
+    "kind": "wall",
+    "attested": {
+     "sprite_wall": 2
+    }
+   }
+  },
+  {
+   "name": "tile-468-kind",
+   "kind": "drift",
+   "between": [
+    "owner-anchors",
+    "usage-kinds"
+   ],
+   "says": "the owner reads tile 468 as 'wall' (vertical ceiling light, unlit); the campaign never uses it that way, only sprite_face",
+   "ask": "is the kind a first-glance label to correct, or is the campaign simply not using it the way it could be?",
+   "detail": {
+    "picnum": 468,
+    "kind": "wall",
+    "attested": {
+     "sprite_face": 20
+    }
+   }
+  },
+  {
+   "name": "tile-469-kind",
+   "kind": "drift",
+   "between": [
+    "owner-anchors",
+    "usage-kinds"
+   ],
+   "says": "the owner reads tile 469 as 'wall' (vertical ceiling light, lit); the campaign never uses it that way, only sprite_face",
+   "ask": "is the kind a first-glance label to correct, or is the campaign simply not using it the way it could be?",
+   "detail": {
+    "picnum": 469,
+    "kind": "wall",
+    "attested": {
+     "sprite_face": 12
+    }
+   }
+  },
+  {
+   "name": "tile-502-kind",
+   "kind": "drift",
+   "between": [
+    "owner-anchors",
+    "usage-kinds"
+   ],
+   "says": "the owner reads tile 502 as 'wall' (sewer grate); the campaign never uses it that way, only over_picnum, sprite_floor, sprite_wall",
+   "ask": "is the kind a first-glance label to correct, or is the campaign simply not using it the way it could be?",
+   "detail": {
+    "picnum": 502,
+    "kind": "wall",
+    "attested": {
+     "over_picnum": 27,
+     "sprite_floor": 28,
+     "sprite_wall": 1
+    }
+   }
+  },
+  {
+   "name": "weakly-named-332",
+   "kind": "drift",
+   "between": [
+    "constructors",
+    "owner-anchors"
+   ],
+   "says": "mechanism.BLADE_PICNUM is tile 332, graded untested: grate/lattice",
+   "ask": "a weak or untested tile may not name what it depicts; is the constructor's use of it right anyway?",
+   "detail": {
+    "picnum": 332,
+    "where": "mechanism.BLADE_PICNUM",
+    "binding": null
+   }
+  },
+  {
+   "name": "gallery-topology-exemption",
+   "kind": "open",
+   "between": [
+    "norms-v1",
+    "the pattern zoo"
+   ],
+   "says": "the zoo measures mean_degree 2.09 against a campaign median of 2.74, and a dead-end fraction of 0.344 against 0.159. Thirty-one exhibits are terminal by construction, so the only way to hit the norm is to add loops that go nowhere",
+   "ask": "accept a documented exemption for gallery-shaped artifacts, rather than gaming the number?",
+   "detail": {
+    "mean_degree": 2.09,
+    "campaign_median": 2.74,
+    "dead_end_fraction": 0.344,
+    "campaign_median_dead_end": 0.159
+   }
+  },
+  {
+   "name": "mask-law-two-sided-exception",
+   "kind": "open",
+   "between": [
+    "usage-kinds",
+    "the mask law"
+   ],
+   "says": "tiles 142 and 2464 carry the mask colour and appear on two-sided walls in 23 of 60839 slots. Nothing else breaks the law anywhere: 0 of 26383 surfaces and 0 of 52422 one-sided walls",
+   "ask": "family or accident? If a family, the law gains a clause for door-leaf faces; if an accident, it gains a rate and two-sided walls come under it too",
+   "detail": {
+    "picnums": [
+     142,
+     2464
+    ],
+    "slots": 23,
+    "of": 60839
+   }
+  },
+  {
+   "name": "unanchored-1044",
+   "kind": "open",
+   "between": [
+    "constructors",
+    "owner-anchors"
+   ],
+   "says": "mechanism.FENCE_PICNUM is tile 1044, which no anchor names",
+   "ask": "what is this tile, in your words?",
+   "detail": {
+    "picnum": 1044,
+    "where": "mechanism.FENCE_PICNUM"
+   }
+  }
+ ]
+}
