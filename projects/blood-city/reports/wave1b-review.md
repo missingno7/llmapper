@@ -1,0 +1,166 @@
+# City Enrichment Wave 1b — review sheet
+
+Frames: `reports/looks/wave1b/frames/` (7, walk order). No game launched.
+Districts touched: **Old Crossing**, **Market Slip**, and every district with
+a shopfront (signage).
+
+Wave 1b was the autonomous continuation. It cleared wave 1's own debt,
+corrected two things wave 1 got wrong, and prepared the seam decision without
+touching it.
+
+---
+
+## What to walk, in order
+
+| # | frame | what to check |
+| --- | --- | --- |
+| 1 | `west_street_road` | the carriageway between its pavements |
+| 2 | `west_street_kerb` | the 2048 kerb, and **now a street lamp standing on the pavement** |
+| 3 | `spur_road` | the spur south carriageway |
+| 4 | `lychgate` | the way in |
+| 5 | `green_in` | turf, not tarmac |
+| 6 | `green_path` | **new** — the dirt path, planting either side. This is the frame that shows the green working |
+| 7 | `green_stones` | **re-aimed** — it faced a mausoleum wall in wave 1 |
+
+---
+
+## Part 0 — the walk-fix four, verified
+
+All four had landed. Verified against the built map rather than assumed:
+
+```text
+crack barrier   1 thing, statnum 4, cstat 722, trigger_impact; 3 exploders   OK
+key law         0 pickup-art faults                                          OK
+shelf secret    leaf sprite wears bookcase front 31, recess 33; 0 secret     OK
+                faults; the level declares its total
+fabric repeat   DOOR-CURTAINS s3 [2.0,2.0,2.0], s53 [2.0,2.0,2.0],           OK
+                s24 [4.0,2.0,4.0] -- the one deliberate outlier
+                zoo curtain closed [2.0,2.0,2.0] open [0.08,2.0,0.08]
+```
+
+**But one of them was not GATED, and finding that out is the point.**
+
+`measure_curtain` was written for the old opposed-cap model and routed on the
+payload shape that model produces. When the curtain was rebuilt to the
+tutorial's fin the shape changed — and the check silently stopped running.
+**The zoo reported 13 of 13 conforming because the curtain was never asked.**
+
+It is rewritten to the fin (one flagged wall, isolated motion, fabric on the
+fin only, and the closed-span repeat within tolerance of natural) and routed
+on the fabric TILE, which does not change when the topology does. The sweep
+now checks **14** constructs, and there is a test that breaks the repeat and
+watches the gate speak.
+
+---
+
+## Part D — wave 1's own follow-ups, all three done
+
+**(1) Slot lattices that respect a notched outline.** Wave 1 laid its lattice
+over the ground's bounding box and dropped 11 of 20 plants, because a green
+with a church and two mausolea in it is mostly not green. The lattice is
+oversampled and filtered against the room's actual outline now, with real
+clearance from every edge.
+
+```text
+wave 1     9 planted, 11 dropped, no path
+wave 1b   13 planted,  7 dropped, path laid
+          (oak, elm, pine, 2 headstones, 5 bushes, 3 straw)
+```
+
+The path took four attempts and each failure was worth keeping:
+
+- straight down the middle of the bounding box, it walks through the church;
+- clear of the solids is not the same as inside the room — the ground's
+  outline is notched, and a strip running past the end of the turf carves a
+  hole through nothing;
+- corner probes one unit inside pass while the strip's edge lies flush
+  against a mausoleum, and a carve sharing an edge with a notch is degenerate
+  — which surfaced, bizarrely, as **the cemetery overlapping a street two
+  districts away**;
+- and the carve must be in the ground's own coordinates. It has no frame of
+  its own, so its local space IS world space; subtracting the bounding-box
+  origin (which the roadways correctly do, because a street room *is* framed)
+  put the hole a district away from the path standing in it.
+
+It is now sampled down its centreline with a real clearance, and nothing
+stands on it.
+
+**(2) A consumer for the lamp slots.** Wave 1 derived them and placed
+nothing. **6 slots, 6 lamps, 0 skipped**, on tile 640 — DWE3M1's
+ground-standing street lamp, the same fixture the light pools use.
+
+**(3) The green_stones pose re-aimed**, and a new `green_path` pose added.
+
+---
+
+## Part A — facade signage
+
+Signage already existed and wrote 15 signs. What it got wrong was **how high**.
+
+`reports/blood-lintel-band.md` measures a campaign sign letter at a median
+**2.536 player heights above the street floor** (n=86, range 1.691–5.132,
+cv 0.33). The city hung its frontages at **1.2–1.5** — below the whole
+measured range, so every shopfront read as a notice rather than as a sign you
+see from down the street. The nine frontages now sit at 2.54.
+
+**A caution about which row of that report gets quoted.** The same table
+gives a median of 0.725 player heights above *the opening's own head*, and
+that is a different, much noisier anchor (cv 0.79 against 0.33). The floor is
+the stable measurement and it is the one used. The brief for this wave asked
+for "~2.5 player heights above the opening's head", which mixes the two.
+
+Interior notices — CRYPT, PUMP HOUSE, STAFF ONLY, OUTFALL, NO EXIT, STAGE
+DOOR — keep 1.3. The evidence is about signs seen from the street; applying
+the street median to a service corridor would put STAFF ONLY two and a half
+bodies up a wall.
+
+15 signs, 114 letters, 0 missing.
+
+---
+
+## Gates
+
+```text
+structural validation   0 errors, 0 warnings
+rules                   97 diagnostics: 96 notes, 1 warning, 0 errors
+zoo sweep               14 constructs (was 13 -- the curtain now runs), all conforming
+budget                  258 sectors, 1680 walls, 428 sprites
+                        walls cap 7000 -- 5320 spare
+frames                  7, fixed-pose, XMapEdit observer
+```
+
+---
+
+## Part E — the seam decision brief
+
+Written, **implemented nothing**, appended to
+[`reports/owner-review-queue.md`](../../../reports/owner-review-queue.md).
+
+Three options quantified: paired half-roads (small, contained, riskiest —
+needs a deferred join, the mechanism that fought the compiler four times in
+wave 1); moving the seams off the centrelines (a data change, not a code
+change, because nothing in the level program is seam-aware today); streets as
+first-class tree nodes (largest, and the only one that also solves the next
+problem). **Recommended: move the seams.**
+
+The measured size of the blocker: **8 of 13 roadable runs sit on a seam**,
+and Theatre Row and Foundry Ward have no roadable run that does not.
+
+---
+
+## Not done
+
+**Part B (storefront glass)** and **Part C (venue presentation chains)** were
+not started. The Aldermack still has no curtains and `l3_theatre`'s gib-wall
+pane is still hand-built.
+
+Nothing is half-built.
+
+---
+
+## For the promotion queue
+
+1. **Storefront glass** (queue rank 13) — still unpromoted.
+2. **The venue presentation chain** — curtain plus a command-5 Link, with the
+   arbiter reporting the collision.
+3. **Paired half-roads or a seam move** — blocked on the owner's answer.

@@ -1,5 +1,10 @@
 # City Enrichment Wave 1 — review sheet
 
+> **Superseded in part by wave 1b.** See
+> [`wave1b-review.md`](wave1b-review.md): the green's planting and its
+> path are rebuilt, the lamp slots are consumed, and the seam decision
+> brief is now in `reports/owner-review-queue.md`.
+
 Two districts touched: **Old Crossing** and **Market Slip**. Frames are in
 walk order under `reports/looks/wave1/frames/`.
 

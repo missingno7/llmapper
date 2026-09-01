@@ -195,22 +195,34 @@
     ]
   },
   "roadways": 3,
+  "street_lamps": {
+    "placed": 6,
+    "skipped": 0,
+    "slots": 6
+  },
   "greens": {
     "cemetery": {
       "ground": "region:gravesend/old_crossing/cemetery/ground",
       "tile": 361,
       "area": 149946368,
-      "paths": [],
-      "planted": {
-        "pine": 1,
-        "headstone_rip": 1,
-        "bush": 4,
-        "straw": 3,
-        "_dropped_into_masonry": 11
-      },
-      "refused": [
-        "path: would run through 3 thing(s) standing on the green"
+      "paths": [
+        [
+          23040,
+          23040,
+          24064,
+          34304
+        ]
       ],
+      "planted": {
+        "oak": 1,
+        "elm": 1,
+        "pine": 1,
+        "headstone_rip": 2,
+        "bush": 5,
+        "straw": 3,
+        "_dropped_into_masonry": 7
+      },
+      "refused": [],
       "solids": [
         [
           26624,
@@ -229,17 +241,108 @@
           26112,
           26624,
           28416
+        ],
+        [
+          23040,
+          23040,
+          24064,
+          34304
+        ]
+      ],
+      "outline": [
+        [
+          20992,
+          22528
+        ],
+        [
+          21504,
+          22016
+        ],
+        [
+          26624,
+          22016
+        ],
+        [
+          26624,
+          22528
+        ],
+        [
+          24576,
+          22528
+        ],
+        [
+          24576,
+          24832
+        ],
+        [
+          26112,
+          24832
+        ],
+        [
+          26624,
+          25344
+        ],
+        [
+          26624,
+          25600
+        ],
+        [
+          26112,
+          26112
+        ],
+        [
+          24576,
+          26112
+        ],
+        [
+          24576,
+          28416
+        ],
+        [
+          26112,
+          28416
+        ],
+        [
+          26624,
+          28928
+        ],
+        [
+          26624,
+          31744
+        ],
+        [
+          31744,
+          31744
+        ],
+        [
+          32256,
+          32256
+        ],
+        [
+          32256,
+          34816
+        ],
+        [
+          31744,
+          35328
+        ],
+        [
+          21504,
+          35328
+        ],
+        [
+          20992,
+          34816
         ]
       ]
     }
   },
   "venue_details": {
-    "wall_details": 12,
+    "wall_details": 13,
     "light_sources": 2,
     "compositions": 4,
     "composed_sprites": 55,
     "skipped": [
-      "theatre:saloon_main:no_room",
       "mall:unit_c:no_room",
       "church:nave:no_room",
       "church:nave:no_room",
@@ -248,11 +351,11 @@
   },
   "door_frames": 13,
   "lighting": {
-    "lights": 24,
-    "rays_cast": 441540,
-    "surfaces_lit": 735,
-    "surfaces_protected": 164,
-    "walls_lit": 647,
+    "lights": 30,
+    "rays_cast": 549489,
+    "surfaces_lit": 774,
+    "surfaces_protected": 166,
+    "walls_lit": 684,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
@@ -277,6 +380,12 @@
       "light:lamp_6",
       "light:lamp_7",
       "light:lamp_8",
+      "light:street_lamp:the_west_street_lamp_0_low",
+      "light:street_lamp:the_west_street_lamp_0_high",
+      "light:street_lamp:the_west_street_lamp_1_low",
+      "light:street_lamp:the_west_street_lamp_1_high",
+      "light:street_lamp:spur_south_lamp_0_low",
+      "light:street_lamp:spur_south_lamp_0_high",
       "light:monument:flame",
       "light:venue:station:hall:0",
       "light:venue:station:hall:1"
@@ -303,6 +412,12 @@
       "light:lamp_6": 2.0,
       "light:lamp_7": 2.0,
       "light:lamp_8": 2.0,
+      "light:street_lamp:the_west_street_lamp_0_low": 2.0,
+      "light:street_lamp:the_west_street_lamp_0_high": 2.0,
+      "light:street_lamp:the_west_street_lamp_1_low": 2.0,
+      "light:street_lamp:the_west_street_lamp_1_high": 2.0,
+      "light:street_lamp:spur_south_lamp_0_low": 2.0,
+      "light:street_lamp:spur_south_lamp_0_high": 2.0,
       "light:monument:flame": 3.0,
       "light:venue:station:hall:0": 2.5,
       "light:venue:station:hall:1": 2.5
@@ -317,6 +432,12 @@
       "light:lamp_6": 0.5,
       "light:lamp_7": 0.5,
       "light:lamp_8": 0.5,
+      "light:street_lamp:the_west_street_lamp_0_low": 0.5,
+      "light:street_lamp:the_west_street_lamp_0_high": 0.5,
+      "light:street_lamp:the_west_street_lamp_1_low": 0.5,
+      "light:street_lamp:the_west_street_lamp_1_high": 0.5,
+      "light:street_lamp:spur_south_lamp_0_low": 0.5,
+      "light:street_lamp:spur_south_lamp_0_high": 0.5,
       "light:monument:flame": 0.6
     }
   },
@@ -329,8 +450,8 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 417,
-    "wall_sprites": 227,
+    "sprites": 428,
+    "wall_sprites": 228,
     "planes": 38,
     "clashing_pairs": 0,
     "sprites_involved": 0,
