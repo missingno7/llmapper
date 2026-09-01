@@ -25,7 +25,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from math import atan2, degrees, hypot
-from typing import Any
+from typing import Any, Sequence
 
 #: Build's angle unit: 2048 to the turn.
 BUILD_TURN = 2048
@@ -238,52 +238,132 @@ def _tile_height(picnum: int, default: int = 128) -> int:
 
 #: E1M1 s125: a thin sector whose two end caps carry OPPOSITE flags, so its
 #: own length changes and the texture between them deforms.
-#: DOOR-CURTAINS s3/s24/s53: the tutorial's own fin.
+#: The curtain family, as the ORIGINALS build it -- four dialects, not one.
 #:
-#: This template replaces one written from E1M1 s125, which described a pair
-#: of opposed caps -- "two flagged walls carrying opposite flags, so the
-#: sector resizes itself". That is a real Blood arrangement but it is not
-#: what a curtain is, and the consequence was worse than a wrong template:
-#: `measure_curtain` was only reached when a sector's payload shape came back
-#: "the sector resizes itself", so once the constructor was rebuilt to the fin
-#: the check stopped running ENTIRELY. The zoo reported thirteen of thirteen
-#: conforming because the curtain was never asked.
+#: An earlier template described a pair of opposed caps and was routed on the
+#: payload shape that produces, so rebuilding the constructor to the fin made
+#: the check stop running. This one is routed on the fabric TILE and accepts
+#: both leaf counts and both slot dialects, because a template that rejects
+#: the tutorial is worse than no template.
 CURTAIN_TEMPLATE = {
-    "flagged_walls": 1,
+    "leaves": (1, 2),
     "shape": "part of the sector travels",
-    "isolated": True,
     "picnum": 146,
-    "fabric_walls": 3,
+    "fabric_per_leaf": 3,
+    #: The closed-span texel scale, measured over 355 fabric walls in the
+    #: originals (43 campaign maps + the DOOR-CURTAIN tutorials, autosave
+    #: debris excluded). 2.0 is the MODE and by a distance -- 171 of 355 --
+    #: and it is what the constructor authors to. It is not a law: the
+    #: attested envelope runs 1.0 to 8.0 (311 of 355), with a long tail to
+    #: 0.05 and 10.0.
+    #:
+    #: An earlier version of this template demanded 2.0 +/- 0.35 and rejected
+    #: DOOR-CURTAINSD s2 (1.33) and E1M1 s125 (2.83 and 4.0). A template that
+    #: rejects the tutorial is worse than no template, so the gate flags the
+    #: ENVELOPE and the constructor keeps the preference. The defect this was
+    #: written for measured 96 -- twelve times outside the envelope.
     "closed_texel_scale": 2.0,
-    "texel_tolerance": 0.35,
-    "source": ("maps/blood/mechanism/Vanilla/DOOR-CURTAINS.map s3, s24, s53; "
-               "owner-anchors 146"),
+    "texel_envelope": (1.0, 8.0),
+    "source": ("maps/blood/mechanism/Vanilla/DOOR-CURTAINS.map s3 (one leaf, "
+               "void); DOOR-CURTAINSD.map s2 (two leaves, void) and s4 (two "
+               "leaves, POCKET); E1M1 s125 (two leaves, void, pelmet, Link)"),
 }
+
+#: `engine.cpp:4938-4940`: the middle band of a wall is drawn from `picnum`
+#: only when the wall is ONE-SIDED, and from `overpicnum` only when it is
+#: two-sided AND one-way (cstat 32); the masked path (cstat 16) is what
+#: reaches a two-sided wall's middle otherwise. So a two-sided, unmasked wall
+#: shows its fabric on the STEP bands and nowhere a body walks.
+MASKED, ONE_WAY = 16, 32
+
+
+def fabric_is_visible(disk: Any, wall_id: int, sector_id: int) -> bool:
+    """Does this fabric wall draw in the band a body walks through?
+
+    The relation the project had no way to ask. A curtain whose fabric sits
+    on a two-sided unmasked wall passes every other gate and shows nothing:
+    the tile is right, the cstat is legal, and the engine draws it only above
+    the head or below the feet.
+    """
+    fields = disk.walls[wall_id].fields
+    if int(fields["next_sector"]) < 0:
+        return True                       # one-sided: the wall IS the fabric
+    cstat = int(fields["cstat"])
+    return bool(cstat & MASKED) or bool(cstat & ONE_WAY)
+
+
+def curtain_dialect(disk: Any, sector_id: int,
+                    tile: int = 146) -> dict[str, Any]:
+    """Name which of the family's dialects this curtain is.
+
+    Four are attested and they differ in ways that change how the thing is
+    built, not just how it looks:
+
+    * **leaves** -- one flagged tip, or two carrying opposite flags.
+    * **slot** -- `void` when the fabric walls are one-sided (the leaf
+      retracts into solid geometry) or `pocket` when they are two-sided into
+      a real sector, which then has to be MASKED to draw at all.
+    * **pelmet** -- fabric on a two-sided wall with a genuine step, which
+      draws above the opening. E1M1 s125's five 1203-1207 walls are this: a
+      valance, not the curtain body.
+    * **link** -- command 5, which couples a light to the curtain's busy
+      instead of switching it at the end of the travel.
+    """
+    from .curriculum import _extra
+    from .motion import flagged_walls
+
+    sector = disk.sectors[sector_id]
+    start = int(sector.fields["wall_ptr"])
+    count = int(sector.fields["wall_count"])
+    extra = _extra(sector)
+    fabric = [i for i in range(start, start + count)
+              if int(disk.walls[i].fields["picnum"]) == tile
+              or int(disk.walls[i].fields.get("over_picnum", 0)) == tile]
+    one_sided = [i for i in fabric
+                 if int(disk.walls[i].fields["next_sector"]) < 0]
+    masked = [i for i in fabric if int(disk.walls[i].fields["cstat"]) & MASKED]
+    pelmet = []
+    for index in fabric:
+        fields = disk.walls[index].fields
+        other = int(fields["next_sector"])
+        if other < 0 or int(fields["cstat"]) & (MASKED | ONE_WAY):
+            continue
+        neighbour = disk.sectors[other].fields
+        if (int(sector.fields["floor_z"]) != int(neighbour["floor_z"])
+                or int(sector.fields["ceiling_z"]) != int(neighbour["ceiling_z"])):
+            pelmet.append(index)
+    return {
+        "leaves": len(flagged_walls(disk, sector_id)),
+        "slot": "void" if one_sided else ("pocket" if masked else "flush"),
+        "fabric_walls": len(fabric), "one_sided": len(one_sided),
+        "masked": len(masked), "pelmet": len(pelmet),
+        "link": int(extra.get("command", 0)) == 5,
+        "push": any(_extra(disk.walls[i]).get("trigger_push") for i in fabric),
+    }
 
 
 def measure_curtain(disk: Any, sector_id: int,
-                    template: dict[str, Any] | None = None) -> Conformance:
-    """Measure a curtain against the tutorial: a fin, isolated, hung right.
+                    template: dict[str, Any] | None = None,
+                    declared: Sequence[int] | None = None) -> Conformance:
+    """Measure a curtain against the originals, in whichever dialect it is.
 
-    Four things make a curtain a curtain, and the fourth is the one that
-    cannot be seen in a static reading at all.
+    Four relations, and the fourth is the one nothing could previously ask.
 
-    * it is a FIN -- exactly one flagged wall, the free end of a tab inside
-      the sector's own outline, so the payload is "part of the sector
-      travels" and not a whole leaf sliding;
-    * its motion is ISOLATED: every moved vertex is interior to its own
-      outline, which is what the fin buys and why tutorial curtains never
-      disturb the rooms they hang in;
-    * the fabric wears the fabric tile, on the fin's faces and nowhere else;
-    * and THE REPEAT IS AUTHORED FOR THE CLOSED SPAN. The geometry is saved
-      at the ON pose, so the fabric in the file is the gathered bundle;
-      sizing the texture to what the file shows left this project's curtain
-      at forty-eight times natural stretch when drawn across. Natural is
-      `length / x_repeat == 2 * tile_width`, and DOOR-CURTAINS s3 and s53
-      hold it to the unit on their closed span (x_repeat 16 over 1024 on a
-      32-wide tile). s24 is the one exemplar at twice that -- deliberately
-      coarser cloth -- which is why the tolerance is a band and not an
-      equality.
+    * **leaves**: one flagged wall or two carrying OPPOSITE flags. Two leaves
+      that both move `with` do not converge, they travel together.
+    * **members**: the motion set is what the construct DECLARED. For a void
+      slot that is the fin alone; for a pocket it is the fin plus its
+      pockets. `DragPoint` walks `nextwall` (triggers.cpp:817-854) and a
+      flagged wall also drags its `point2` when that wall is unflagged
+      (:897-910), so anything sharing a moved vertex moves too.
+    * **fabric is visible**: at least one fabric wall PER LEAF draws in the
+      walkable band. Not every wall -- DOOR-CURTAINSD s4 has six fabric walls
+      and only two of them are visible, the masked pocket-side pair, and a
+      rule demanding all six would reject the tutorial.
+    * **closed-span repeat**: the geometry is saved at the ON pose, so the
+      fabric in the file is the gathered bundle. Natural is
+      `length / x_repeat == 2 * tile_width`; s3 and s53 hold it to the unit
+      and s24 sits at twice it, which is why the tolerance is a band.
     """
     import math
 
@@ -295,28 +375,51 @@ def measure_curtain(disk: Any, sector_id: int,
     out = Conformance(construct=f"curtain sector {sector_id}")
 
     flags = flagged_walls(disk, sector_id)
-    out.measured["flagged_walls"] = len(flags)
-    if len(flags) != wanted["flagged_walls"]:
+    leaves = len(flags)
+    out.measured["leaves"] = leaves
+    out.measured["flag_directions"] = sorted(set(flags.values()))
+    if leaves not in tuple(wanted["leaves"]):
         out.deviations.append(Deviation(
-            "flagged walls", wanted["flagged_walls"], len(flags),
-            "a curtain is a fin: one flagged wall, the tab's free end"))
+            "leaves", wanted["leaves"], leaves,
+            "a curtain has one flagged tip, or two carrying opposite flags"))
+    if leaves == 2 and len(set(flags.values())) != 2:
+        out.deviations.append(Deviation(
+            "opposite flags", "one with and one against",
+            sorted(set(flags.values())),
+            "two leaves that move the same way travel together instead of "
+            "converging"))
 
     try:
         moves = motion_set(disk, sector_id)["sectors"]
     except Exception:
         moves = []
     out.measured["motion_set"] = moves
-    if wanted.get("isolated") and moves != [sector_id]:
-        out.deviations.append(Deviation(
-            "isolation", [sector_id], moves,
-            "the fin keeps every moved vertex inside its own outline; a "
-            "curtain that deforms its room is not built as one"))
+    #: The relation is "the motion set is what the construct DECLARED", so
+    #: it can only be checked when something declared. Flagging an
+    #: undeclared curtain as deviant would reject three of the four
+    #: originals: DOOR-CURTAINSD s4 legitimately moves its two POCKETS, and
+    #: E1M1 s125 moves the room its pelmet walls are shared with. What is
+    #: wrong is not that a neighbour moves -- `DragPoint` walks `nextwall`
+    #: and neighbours always can -- but that one moves nobody declared.
+    if declared is not None:
+        members = sorted(set(declared) | {sector_id})
+        if moves != members:
+            out.deviations.append(Deviation(
+                "members", members, moves,
+                "the motion set is what the construct declared; DragPoint "
+                "walks nextwall (triggers.cpp:817-854), so anything sharing "
+                "a moved vertex moves too"))
+    else:
+        out.measured["undeclared_neighbours"] = [
+            index for index in moves if index != sector_id]
 
     sector = disk.sectors[sector_id]
     start = int(sector.fields["wall_ptr"])
     count = int(sector.fields["wall_count"])
     fabric_walls = [i for i in range(start, start + count)
-                    if int(disk.walls[i].fields["picnum"]) == wanted["picnum"]]
+                    if int(disk.walls[i].fields["picnum"]) == wanted["picnum"]
+                    or int(disk.walls[i].fields.get("over_picnum", 0))
+                    == wanted["picnum"]]
     out.measured["fabric_walls"] = len(fabric_walls)
     if not fabric_walls:
         out.deviations.append(Deviation(
@@ -325,13 +428,18 @@ def measure_curtain(disk: Any, sector_id: int,
                  for i in range(start, start + count)}),
             "the deformation is only visible on the curtain texture"))
         return out
-    if len(fabric_walls) != wanted.get("fabric_walls", len(fabric_walls)):
-        out.deviations.append(Deviation(
-            "fabric walls", wanted["fabric_walls"], len(fabric_walls),
-            "only the fin wears the fabric -- the doorway's own reveal is "
-            "the room's material"))
 
-    #: The repeat law, measured on the CLOSED pose.
+    visible = [i for i in fabric_walls
+               if fabric_is_visible(disk, i, sector_id)]
+    out.measured["fabric_visible"] = len(visible)
+    if len(visible) < max(1, leaves):
+        out.deviations.append(Deviation(
+            "fabric is visible", f"at least {max(1, leaves)} (one per leaf)",
+            len(visible),
+            "engine.cpp:4938-4940 draws a two-sided wall's middle band only "
+            "when it is masked or one-way; unmasked, the fabric shows on the "
+            "step bands and nowhere a body walks"))
+
     try:
         closed, _drawn = blood_poses(disk, sector_id)
     except Exception as exc:
@@ -342,16 +450,18 @@ def measure_curtain(disk: Any, sector_id: int,
     for index in fabric_walls:
         k = index - start
         a, b = closed[k], closed[(k + 1) % count]
-        span = math.hypot(b[0] - a[0], b[1] - a[1])
+        length = math.hypot(b[0] - a[0], b[1] - a[1])
+        if length <= 0:
+            continue
         scales.append(round(texel_scale(
-            span, width, int(disk.walls[index].fields["x_repeat"])), 2))
+            length, width, int(disk.walls[index].fields["x_repeat"])), 2))
     out.measured["closed_texel_scale"] = scales
-    natural = float(wanted["closed_texel_scale"])
-    slack = float(wanted["texel_tolerance"])
-    stretched = [value for value in scales if abs(value - natural) > slack]
+    low, high = wanted["texel_envelope"]
+    stretched = [value for value in scales if not low <= value <= high]
     if stretched:
         out.deviations.append(Deviation(
-            "closed-span texel scale", f"{natural} +/- {slack}", stretched,
+            "closed-span texel scale", f"within [{low}, {high}] (mode 2.0)",
+            stretched,
             "the fabric is sized for the span it HANGS ACROSS, not for the "
             "gathered bundle the file is saved at"))
     return out
