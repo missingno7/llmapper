@@ -811,8 +811,15 @@ primitives — many *design objects* on the same machinery:
   1024 step between tray and hole; travel = full cover with the tray
   sized to receive (the invariant the zoo build violated); one channel
   (rx 100) syncing both planes; link markers 2332/2331 at exactly the
-  meeting planes, data_1-paired, statnum 0. **Answered by replay
-  (2026-09-01): an editor leftover.** Both planes are DRAWN in the same
+  meeting planes, data_1-paired, statnum 0. **Answered, and then answered
+  better (2026-09-01): INTENT, not an editor leftover.** `trInit` translates
+  a moving sector by -65536 of the marker delta and records that as the base
+  (`triggers.cpp:2224-2245`), so the geometry saved in a map is the pose at
+  busy 65536 — state ON — always. A sector declaring `state=1` therefore
+  starts exactly where it was drawn, which is what s2 does and what its
+  author meant. The earlier "leftover" reading came from our own from/to
+  marker model and did not survive the loader. Both planes are DRAWN in the
+  same
   physical pose — boundary at the on-marker — but `trInit` treats the
   drawn geometry as the pose at busy 1, so a state-0 sector displaces
   itself by the whole marker separation the instant the level loads.
@@ -1807,10 +1814,11 @@ rank  technique                     recurrence  why it is not done here
 1     ROR links CONDITIONED by      --          DONE 2026-09-01, and one
       cover position                            expectation it disproved;
                                                 see below
-2     a lift constructor            --          the last mechanism in the zoo
-      (floor-travelling z-motion)               still assembled by hand;
-                                                z_motion_door writes ceiling
-                                                endpoints only
+2     a lift constructor            --          DONE 2026-09-01:
+      (floor-travelling z-motion)               mechanism.lift, built to
+                                                Vanilla/MACHINERY-LIFT.map;
+                                                it needs no markers, because
+                                                the z pair IS the state pair
 3     porch                         10          street anatomy, with kerb
 4     grate/grille placement        9           HALF DONE: maskwall_panel is
                                                 the wall case; a free-standing
@@ -1954,14 +1962,28 @@ question, and fixture what you consult.**
 
 `maps/blood/mechanism/` is a taught course, and it ships with its own
 981-page manual (`xmapedit.pdf`, XMAPEDIT 3rd ed. 2025). 136 maps mined,
-1291 constructs read, 16 laws with detectors, in
-`knowledge/blood/design/mechanism-curriculum-v1.json` and
-`reports/blood-mechanism-curriculum.md`. `Modern/` is deliberately unmined:
-it is the NBlood-extension dialect and mining it as vanilla would put
-extension behaviour into base-engine laws. It is a queued phase.
+1291 constructs read, **17 laws** with detectors. `Modern/` is deliberately
+unmined: it is the NBlood-extension dialect and mining it as vanilla would
+put extension behaviour into base-engine laws. It is a queued phase.
 
-Five of the sixteen laws CORRECT this project rather than extend it, and
+**Six of the seventeen laws CORRECT this project** rather than extend it, and
 three of those correct work from the run immediately before.
+
+Deliverables, so the retrieval surface is findable:
+
+```text
+knowledge/blood/design/mechanism-curriculum-v1.json  facts + laws + evidence
+reports/blood-mechanism-curriculum.md                what it found, readably
+reports/zoo-state-check.json                         every mechanism measured
+                                                     in BOTH states
+reports/owner-prescreen.html                         the phone state sheet
+bloodmap/curriculum.py, curriculum_laws.py           the mine and the laws
+bloodmap/construct.py                                functional ownership
+bloodmap/arbiter.py                                  single-slot arbitration
+tests/test_curriculum.py                             tier-1 fixtures, incl.
+                                                     BADROR as a NEGATIVE
+tests/test_ownership_and_arbitration.py              ownership + the arbiter
+```
 
 **The pose is not a convention, it is what the loader does.** `trInit`
 translates a moving sector by -65536 of the marker delta, records THAT as the
@@ -2189,6 +2211,16 @@ out of BOTH its long walls      side is the two facing runs' depths, not a
 ---
 
 # Phase 11 — Automatic discovery frontier + batched review
+
+**Status, 2026-09-01: the self-correction half is DONE and proven; the
+novelty frontier is OPEN.** What exists and holds: attested-construct
+fixtures, the conformance and swept-state gates, the motion-set check, the
+zoo reading itself back, the contradiction queue, and the batched review page
+(`reports/owner-review-queue.md`). What does not exist: anything that goes
+LOOKING for a pattern nobody has named — every finding so far came from a
+question someone asked. That asymmetry is the phase's remaining work, and it
+is not started.
+
 
 **The authoring-loop law (owner, 2026-09-01):** whenever the AI builds a
 mechanism in a level, it must immediately verify that the built thing

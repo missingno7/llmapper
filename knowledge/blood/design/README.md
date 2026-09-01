@@ -18,6 +18,34 @@ requires local unsigned mines in `work/` (gitignored). The compiled
 | `catalog-v1.json` | versioned hypotheses with original-map occurrences |
 | `door-families-v1.json` | compact campaign door-family / key-emblem retrieval hints |
 | `owner-anchors-v1.json` | owner hand-tagged picnum semantic anchors (probes, not lookup rules); records dual roles (e.g. 1165 wall clock is also a shootable switch) and intact/broken state pairs |
+| `apertures-v1.json` | what an opening IS: leaf plus mediation, reveal dressing, engine facts |
+| `decoration-v1.json` | what counts as decoration, its sizing and density |
+| `e3m8-reference-v1.json` | one target map measured end to end, as a yardstick |
+| `fixtures-v1.json` | fixture tiles attested across Death Wish and the campaign |
+| `keys-v1.json` | key tiles, key-to-tile votes and the placards that signal them |
+| `knowledge-index-v1.json` | the index over these files, by provenance |
+| `layers-v1.json` | stacked space: technique usage, z ambiguity, portal separation |
+| `mechanism-curriculum-v1.json` | the mechanism tutorials mined: constructs, sentences and 17 laws, each with its detector's evidence and its citation |
+| `mechanisms-v1.json` | mechanism shapes: channels per map, objects per channel |
+| `monuments-v1.json` | monuments and their tier rises, in player heights |
+| `norms-v1.json` | design norms with the consensus and the metrics behind them |
+| `overlooks-v1.json` | where a map looks down on itself, and from how high |
+| `patterns-v1.json` | rise bands around big spaces, and the definitions used |
+| `prefabs-v1.json` | small-sector prefab shapes and their kinds |
+| `rules-v1.json` | rule grades: what counts as an error and what as a warning |
+| `run-rhythm-v1.json` | gaps along a run, in plan units and items per unit |
+| `set-pieces-v1.json` | set-piece classes found by examining sectors |
+| `sprite-heights-v1.json` | attested seated heights per sprite tile |
+| `stacks-v1.json` | room-over-room pairs and their families |
+| `storeys-v1.json` | storey structure per map |
+| `surface-items-v1.json` | what stands on surfaces, by source |
+| `surface-palettes-v1.json` | surface palettes conditioned on band, with held-out sectors |
+| `switches-v1.json` | switch tiles and the eye heights they sit at |
+| `texture-fit-v1.json` | how textures fit their surfaces, with the engine rules |
+| `usage-kinds-v1.json` | for every picnum, which slots the campaign is ATTESTED to use it in |
+| `visual-norms-v1.json` | rendered-frame metrics across sampled angles |
+| `wall-sprites-v1.json` | wall-sprite overlap, text geometry and sign composition |
+| `wall-thickness-v1.json` | attested wall thicknesses |
 
 Door implementation families and key-signifier co-occurrence live in
 [`reports/blood-door-families.json`](../../../reports/blood-door-families.json)
