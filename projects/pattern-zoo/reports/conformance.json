@@ -1,0 +1,301 @@
+{
+  "$schema": "llmapper.pattern-zoo-conformance",
+  "schema_version": 1,
+  "map": "D:/Games/DOS/llmapper/projects/pattern-zoo/level/pattern-zoo.MAP",
+  "constructs_checked": 13,
+  "conforming": 13,
+  "results": [
+    {
+      "region": "casket:hole",
+      "sector": 23,
+      "construct": "planar door sector 23",
+      "conforms": true,
+      "measured": {
+        "shape": "boundary re-partition",
+        "flagged": 1,
+        "re_partitions_with": 24
+      },
+      "deviations": []
+    },
+    {
+      "region": "curtain:leaf",
+      "sector": 16,
+      "construct": "curtain sector 16",
+      "conforms": true,
+      "measured": {
+        "shape": "the sector resizes itself",
+        "advancing": [
+          112
+        ],
+        "retreating": [
+          110
+        ],
+        "picnums": [
+          146
+        ]
+      },
+      "deviations": []
+    },
+    {
+      "region": "double_slide:gate",
+      "sector": 11,
+      "construct": "sprite payload sector 11",
+      "conforms": true,
+      "measured": {
+        "leaves": 2,
+        "travel": [
+          -768,
+          0
+        ],
+        "leaf_angle_to_travel": [
+          90
+        ]
+      },
+      "deviations": []
+    },
+    {
+      "region": "plain_slide:gate",
+      "sector": 27,
+      "construct": "sprite payload sector 27",
+      "conforms": true,
+      "measured": {
+        "leaves": 1,
+        "travel": [
+          -512,
+          0
+        ],
+        "leaf_angle_to_travel": [
+          90
+        ]
+      },
+      "deviations": []
+    },
+    {
+      "region": "rotating_door:a",
+      "sector": 14,
+      "construct": "turnstile sector 14",
+      "conforms": true,
+      "measured": {
+        "blades": 4,
+        "axis": [
+          -34730,
+          15872
+        ],
+        "radial_stand_off": [
+          384
+        ],
+        "bearings": [
+          0.0,
+          90.0,
+          180.0,
+          270.0
+        ],
+        "span": [
+          32768
+        ],
+        "clear": 32768,
+        "bearing_minus_own_angle": [
+          90.0
+        ]
+      },
+      "deviations": []
+    },
+    {
+      "region": "rotating_door:b",
+      "sector": 15,
+      "construct": "turnstile sector 15",
+      "conforms": true,
+      "measured": {
+        "blades": 4,
+        "axis": [
+          -37802,
+          15872
+        ],
+        "radial_stand_off": [
+          384
+        ],
+        "bearings": [
+          0.0,
+          90.0,
+          180.0,
+          270.0
+        ],
+        "span": [
+          32768
+        ],
+        "clear": 32768,
+        "bearing_minus_own_angle": [
+          90.0
+        ]
+      },
+      "deviations": []
+    },
+    {
+      "region": "shelf_secret:gate",
+      "sector": 29,
+      "construct": "sprite payload sector 29",
+      "conforms": true,
+      "measured": {
+        "leaves": 2,
+        "travel": [
+          -768,
+          0
+        ],
+        "leaf_angle_to_travel": [
+          90
+        ]
+      },
+      "deviations": []
+    },
+    {
+      "region": "sliding_gate:gate",
+      "sector": 73,
+      "construct": "sprite payload sector 73",
+      "conforms": true,
+      "measured": {
+        "leaves": 2,
+        "travel": [
+          -1024,
+          0
+        ],
+        "leaf_angle_to_travel": [
+          90
+        ]
+      },
+      "deviations": []
+    },
+    {
+      "region": "turnstile_pair:a",
+      "sector": 54,
+      "construct": "turnstile sector 54",
+      "conforms": true,
+      "measured": {
+        "blades": 4,
+        "axis": [
+          20311,
+          46592
+        ],
+        "radial_stand_off": [
+          384
+        ],
+        "bearings": [
+          0.0,
+          90.0,
+          180.0,
+          270.0
+        ],
+        "span": [
+          32768
+        ],
+        "clear": 32768,
+        "bearing_minus_own_angle": [
+          90.0
+        ]
+      },
+      "deviations": []
+    },
+    {
+      "region": "turnstile_pair:b",
+      "sector": 55,
+      "construct": "turnstile sector 55",
+      "conforms": true,
+      "measured": {
+        "blades": 4,
+        "axis": [
+          23383,
+          46592
+        ],
+        "radial_stand_off": [
+          384
+        ],
+        "bearings": [
+          0.0,
+          90.0,
+          180.0,
+          270.0
+        ],
+        "span": [
+          32768
+        ],
+        "clear": 32768,
+        "bearing_minus_own_angle": [
+          90.0
+        ]
+      },
+      "deviations": []
+    },
+    {
+      "region": "turnstile_same:a",
+      "sector": 63,
+      "construct": "turnstile sector 63",
+      "conforms": true,
+      "measured": {
+        "blades": 4,
+        "axis": [
+          24686,
+          27136
+        ],
+        "radial_stand_off": [
+          384
+        ],
+        "bearings": [
+          0.0,
+          90.0,
+          180.0,
+          270.0
+        ],
+        "span": [
+          32768
+        ],
+        "clear": 32768,
+        "bearing_minus_own_angle": [
+          90.0
+        ]
+      },
+      "deviations": []
+    },
+    {
+      "region": "turnstile_same:b",
+      "sector": 64,
+      "construct": "turnstile sector 64",
+      "conforms": true,
+      "measured": {
+        "blades": 4,
+        "axis": [
+          27758,
+          27136
+        ],
+        "radial_stand_off": [
+          384
+        ],
+        "bearings": [
+          0.0,
+          90.0,
+          180.0,
+          270.0
+        ],
+        "span": [
+          32768
+        ],
+        "clear": 32768,
+        "bearing_minus_own_angle": [
+          90.0
+        ]
+      },
+      "deviations": []
+    },
+    {
+      "region": "(whole map)",
+      "sector": null,
+      "construct": "wall sprites",
+      "conforms": true,
+      "measured": {
+        "wall_sprites": 8,
+        "edge_on": 0
+      },
+      "deviations": []
+    }
+  ],
+  "deviations": [],
+  "passed": true
+}
