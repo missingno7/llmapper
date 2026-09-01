@@ -721,6 +721,25 @@ def casket(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     layout.add_connection("casket:c1", "casket:hole", "casket:cover",
                           a1=(hole_far, low), a2=(hole_far, high),
                           min_width=U // 2)
+    #: The room-over-room half, which until now was lettered as a gap.
+    #: E1M1's casket is FOUR sectors in two pairs, one above the other and
+    #: stack-linked so the revealed holes meet through the plane. The grave
+    #: below sits on its own layer, which is what lets it share plan area
+    #: with the hole, and `stack_link` pairs the two marker sprites on their
+    #: XSPRITE data_1 -- on statnum 0, because statnum 10 is culled at load
+    #: and a link built there is a link that does not exist.
+    grave = (hx0 + 512, low + 512, hx1 - 512, high - 512)
+    layout.add_region(
+        "casket:grave", _rect(grave),
+        floor_z=floor_z + MEDIAN_CLEAR, ceiling_z=floor_z,
+        wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
+        layer="under", declared_zero_exit=True,
+        intent={"purpose": "casket: the space below, met through the link"})
+    middle = ((hx0 + hx1) // 2, (low + high) // 2)
+    layout.stack_link(10, "casket:hole", "casket:grave",
+                      upper_at=middle, lower_at=middle,
+                      upper_z=floor_z, lower_z=floor_z + MEDIAN_CLEAR)
+
     #: kChannelLevelStart is 7 and fires before the player moves, which is how
     #: E1M1 opens its casket with a switch nobody can reach.
     x0, y0, x1, _y1 = box

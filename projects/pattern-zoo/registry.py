@@ -349,8 +349,8 @@ def sections() -> list[Section]:
                 Exhibit(
                     label="CASKET",
                     about="a lid that slides aside by MOVING THE BOUNDARY "
-                          "between the hole and the cover, breathing light "
-                          "as it goes",
+                          "between hole and cover, over a room-over-room "
+                          "link, breathing light as it goes",
                     try_this="look up, then walk out; E1M1 opens inside one",
                     provenance="owner-attested E1M1 reading, sectors 28/30 "
                                "(hole, slide-marked, ROR-linked) and 27/29 "
@@ -362,16 +362,18 @@ def sections() -> list[Section]:
                     build=stalls.casket, prefix="casket",
                     bay=5 * 1024, depth=6 * 1024,
                     hand_composed=(
-                        "the room-over-room half: E1M1's casket is four "
-                        "sectors in two pairs, stack-linked and synced, and "
-                        "PlanarLayout has no stack link at all",),
+                        "the SECOND pair: E1M1's casket is four sectors, and "
+                        "this is one pair plus its link. Building both, "
+                        "synced on one channel with the same travel on each "
+                        "side of the plane, is the next step",),
                     #: NOT a trigger claim. A boundary re-partition moves
                     #: geometry without ever opening or closing a portal, so
                     #: `conditional` finds no gated route through it -- which
                     #: is a real gap in the model, filed in the roadmap
                     #: queue, not a defect in the map.
                     expect=Expect(sector_type=614, rx_id=309,
-                                  payload_shape="boundary re-partition")),
+                                  payload_shape="boundary re-partition",
+                                  stack_link=True)),
                 Exhibit(
                     label="DOUBLE SLIDE DOOR",
                     about="one sector, two leaves parting along their own line",

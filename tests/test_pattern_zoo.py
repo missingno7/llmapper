@@ -301,6 +301,30 @@ class GeneratedMapTest(unittest.TestCase):
             else:
                 self.assertIn(picnum, placements.get(name, set()), name)
 
+    def test_every_construct_still_looks_like_its_template(self):
+        # A different question from the self-read. `selfread` asks whether
+        # the claimed mechanism EXISTS and is wired; conformance asks whether
+        # it still LOOKS like the thing it was mined from. The turnstile
+        # passed the first with its blades in a square.
+        import json
+        import tempfile
+
+        from bloodmap.format import write_map
+
+        sweep = _module("sweep")
+        with tempfile.TemporaryDirectory() as directory:
+            map_path = Path(directory) / "zoo.MAP"
+            manifest_path = Path(directory) / "manifest.json"
+            write_map(self.disk, map_path)
+            sectors = {name: allocation.sector_id
+                       for name, allocation
+                       in self.compiled.allocations.items()}
+            manifest_path.write_text(json.dumps({"region_sectors": sectors}),
+                                     encoding="utf-8")
+            report = sweep.run(map_path, manifest_path)
+        self.assertGreater(report["constructs_checked"], 8)
+        self.assertEqual(report["deviations"], [])
+
     def test_the_zoo_reads_itself(self):
         # The acceptance gate this rebuild exists for. Every claim in the
         # registry is checked against what `bloodmap.effects` and

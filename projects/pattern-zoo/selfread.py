@@ -175,6 +175,25 @@ def check(disk, manifest, graph, exhibit) -> list[str]:
                 f"{exhibit.label}: wanted a mechanism listening on channel "
                 f"{want.rx_id}, found {heard}")
 
+    if want.stack_link:
+        from bloodmap.conditional import conditioned_links
+        from bloodmap.reachability import link_pairs
+
+        group = set(sectors)
+        links = [row for row in link_pairs(disk)
+                 if group & {int(x) for x in row["sectors"]}]
+        if not links:
+            problems.append(
+                f"{exhibit.label}: claims a room-over-room link and "
+                f"reachability finds none in sectors {sectors}")
+        else:
+            conditioned = [row for row in conditioned_links(disk)
+                           if group & set(row["sectors"])]
+            if not conditioned:
+                problems.append(
+                    f"{exhibit.label}: its link is not conditioned by any "
+                    f"mechanism, so the frontier treats it as always open")
+
     if want.payload_shape:
         from bloodmap.effects import payload
 
