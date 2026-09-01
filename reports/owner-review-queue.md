@@ -173,3 +173,23 @@ Recorded so the queue is honest about what it stopped asking:
   disagrees with its own declared travel, and the three pairs that look
   identical are rotors turning whole circles — they genuinely end where they
   began.
+
+---
+
+## Resolved 2026-09-01 (owner walk + tile ruling)
+
+- **Item 1 settled, and the recommended default was WRONG on 142:** tile
+  142 is a skull-shaped FIREPLACE maskwall (owner) — not curtain family,
+  nothing to do with 2464; its two-sided uses are the legitimate
+  see-through fireplace mouth. 2464 is an ejected shotgun shell casing,
+  decorative; its two wall slots are mapper accidents. Both are now owner
+  anchors; the mask law keeps two-sided walls out of scope with 142 cited
+  as the legitimate masked case.
+- **Walk results:** casket WORKS; lift WORKS; keyed door works but the
+  key PICKUP art does not match the lock sprite (different key); CRACK
+  BARRIER does not work — the type-408 thing was given switch-style
+  properties (cstat 128, hand trigger_vector) instead of its native thing
+  record (E1M4 sprite 373: cstat 209, thing statnum, transmits on death);
+  SHELF SECRET is unintelligible — reads as a sliding gate with unrelated
+  props instead of a bookshelf that slides (E1M1 s70 blueprint).
+- Items 2, 3, 4, 6 remain open for the owner.
