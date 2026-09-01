@@ -268,6 +268,64 @@ def _owner_materials(disk: Any, wall_ids: Sequence[int],
     return [seen[key] for key in sorted(seen)]
 
 
+#: The payload shapes a Marked slide can have. The first two are named here
+#: for the first time; before this the model could list which walls moved and
+#: not say what the arrangement MEANT.
+SHAPE_BOUNDARY = "boundary re-partition"
+SHAPE_RESIZE = "the sector resizes itself"
+SHAPE_WHOLE = "the whole sector travels"
+SHAPE_PARTIAL = "part of the sector travels"
+SHAPE_NONE = "nothing moves"
+
+
+def payload_shape(disk: Any, sector_id: int, with_walls: list[int],
+                  against_walls: list[int]) -> dict[str, Any]:
+    """What the arrangement of flagged walls MEANS, not just which they are.
+
+    Two shapes matter and neither was expressible before, which is why two
+    whole classes of Blood mechanism could not be read or authored:
+
+    **Boundary re-partition.** Exactly one flagged wall, and it is a portal
+    to a neighbour. Its travel moves the line between this sector and that
+    one, so plan area passes from one to the other: the hole grows as the
+    cover shrinks. E1M1's casket is two of these, and the reason it could
+    never be built out of `sliding_gate` is that a gate moves leaves ACROSS a
+    threshold and this moves the threshold ITSELF.
+
+    **Self-resize.** Two flagged walls with OPPOSITE flags. One advances
+    while the other retreats, so the sector's own extent changes and any
+    texture on the faces between them is squashed and stretched by exactly
+    that much. E1M1's curtain, s125, is this and nothing else -- the
+    deformation IS the animation, which is why reading it as moving sprites
+    produced something that behaved like a gate.
+    """
+    flagged = list(with_walls) + list(against_walls)
+    if not flagged:
+        return {"shape": SHAPE_NONE, "flagged": 0}
+    portals = [w for w in flagged
+               if int(disk.walls[w].fields["next_sector"]) >= 0]
+    if len(flagged) == 1 and portals:
+        neighbour = int(disk.walls[flagged[0]].fields["next_sector"])
+        return {
+            "shape": SHAPE_BOUNDARY, "flagged": 1,
+            "boundary_wall": flagged[0], "re_partitions_with": neighbour,
+            "basis": "one flagged wall, and it is the portal to a neighbour: "
+                     "its travel moves the line between the two sectors",
+        }
+    if with_walls and against_walls:
+        return {
+            "shape": SHAPE_RESIZE, "flagged": len(flagged),
+            "advancing": list(with_walls), "retreating": list(against_walls),
+            "basis": "flagged walls carry OPPOSITE flags, so the sector's own "
+                     "extent changes and the texture between them deforms",
+        }
+    count = int(disk.sectors[sector_id].fields["wall_count"])
+    return {
+        "shape": SHAPE_WHOLE if len(flagged) >= count else SHAPE_PARTIAL,
+        "flagged": len(flagged), "of": count,
+    }
+
+
 def payload(disk: Any, sector_id: int) -> dict[str, Any]:
     """What the motion drags: the sector's own walls, sprites, or both."""
     sector = disk.sectors[sector_id]
@@ -303,6 +361,9 @@ def payload(disk: Any, sector_id: int) -> dict[str, Any]:
         carries = PAYLOAD_NOTHING
     return {
         "carries": carries,
+        #: The SHAPE of the payload, which is a different question from what
+        #: it is made of and is the one the project could not previously ask.
+        "shape": payload_shape(disk, sector_id, with_walls, against_walls),
         #: What the moving parts are *made of*, in the owner's words. A
         #: blade sprite on tile 332 reads "grate/lattice (owner)" in a
         #: report rather than as a bare number, and the label is reproduced

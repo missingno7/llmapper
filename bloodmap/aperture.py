@@ -1004,3 +1004,50 @@ def frame_z_doors(layout: Any, *, art_sizes: Mapping[int, tuple[int, int]],
         door.sector_behavior["on_ceiling_z"] = int(item["head_z"])
         built.append(item)
     return {"doors": built, "skipped": skipped}
+
+#: Blood's opaque-but-see-through wall: block(1) + masked(16) + hitscan(64),
+#: with the visible surface on `over_picnum`. All 523 of the campaign's
+#: masked walls are built this way.
+MASKWALL_CSTAT = 1 | 16 | 64
+
+
+def maskwall_panel(
+    layout: Any,
+    panel_id: str,
+    region_a: str,
+    region_b: str,
+    *,
+    a1: Sequence[int],
+    a2: Sequence[int],
+    picnum: int,
+    shade: int | None = None,
+    blocking: bool = True,
+) -> str:
+    """A grille, grate or grid set into an opening between two rooms.
+
+    The legal home for a cut-out tile. The measured transparency law says a
+    tile carrying the mask colour never appears on a floor, a ceiling, or a
+    one-sided wall's picnum -- 0 of 26383 surface slots and 0 of 52422
+    one-sided wall slots -- because those have nothing behind them and the
+    engine draws the frame buffer through the holes. A masked TWO-SIDED wall
+    does have something behind it, and the campaign puts its cut-outs there:
+    tile 502, the sewer grate, appears as `over_picnum` 27 times and on a
+    plain wall never.
+
+    Without this there is nowhere legal to put a grate at all, which is why
+    the pattern zoo's sewer had its grate lettered as a gap rather than
+    built. `blocking` off makes a grille you can walk through, which is what
+    a decorative screen is.
+    """
+    cstat = MASKWALL_CSTAT if blocking else (16 | 64)
+    layout.add_partition(panel_id, region_a, region_b,
+                         role="masked_partition", a1=tuple(a1), a2=tuple(a2))
+    #: The visible surface lives on the OVERLAY of both faces, which nothing
+    #: in the region or partition spec reaches; `paint_wall` writes it.
+    fields = {"over_picnum": int(picnum), "cstat": cstat}
+    if shade is not None:
+        fields["shade"] = int(shade)
+    for region in (region_a, region_b):
+        layout.paint_wall(region, tuple(a1), tuple(a2), **fields)
+    return panel_id
+

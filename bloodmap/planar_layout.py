@@ -237,6 +237,12 @@ def _connection_has_face(connection: ConnectionSpec) -> bool:
     )
 
 
+#: Build's Marked-slide payload flags, on WALLS. Sprites use their own
+#: 8192/16384 and are dragged regardless of what the walls do.
+WALL_MOVES_WITH = 16384
+WALL_MOVES_AGAINST = 32768
+
+
 def _cycle(points: Sequence[Point]) -> tuple[Point, ...]:
     return tuple((int(x), int(y)) for x, y in points)
 
@@ -479,6 +485,9 @@ class PlacementSpec:
     #: than taken as given, because Blood centres a sprite on its z and a
     #: standing object placed at `floor_z` is buried to the waist.
     seat: str | None = None
+    #: For a marker sprite: the region whose sector this marker controls, when
+    #: that is not the region it stands in.
+    marker_owner: str | None = None
     seat_clearance: int = 0
     #: This sprite is meant to span an opening rather than hang on a wall.
     #:
@@ -774,6 +783,12 @@ class PlanarLayout:
         self.connections: dict[str, ConnectionSpec] = {}
         self.partitions: dict[str, PartitionSpec] = {}
         self.placements: list[PlacementSpec] = []
+        #: (region_id, edge) -> cstat bits the sector's motion drags it by.
+        #: See `carry_wall`.
+        self.carried: dict[tuple[str, tuple], int] = {}
+        #: (region_id, edge) -> wall fields written after emit. See
+        #: `paint_wall`.
+        self.painted: dict[tuple[str, tuple], dict[str, int]] = {}
         #: Declarative illumination, resolved after geometry and sprite seating.
         #: LightBomb only runs when this list is non-empty.
         self.light_sources: list[LightSourceSpec] = []
@@ -895,6 +910,105 @@ class PlanarLayout:
             )
             doors.append(door_id)
         return {"interior": interior_id, "doors": doors, "mass": f"mass:{mass_id}"}
+
+    def paint_wall(self, region_id: str, a1: Point, a2: Point,
+                   **fields: int) -> None:
+        """Set fields on one named wall of a region, after it is emitted.
+
+        `carry_wall` writes a payload flag this way; a masked panel needs to
+        write `over_picnum` and a cstat the same way, because the surface of
+        a see-through wall lives on the overlay and nothing in the region or
+        partition spec reaches it.
+
+        Matched by geometry rather than index, for the same reason
+        `carry_wall` is: the compiler may rotate a loop.
+        """
+        if region_id not in self.regions:
+            raise PlanarLayoutError(f"paint_wall: no region {region_id!r}")
+        key = (region_id, _cycle((a1, a2)))
+        self.painted.setdefault(key, {}).update(
+            {k: int(v) for k, v in fields.items()})
+
+    def _apply_painted_walls(self, builder, allocations) -> None:
+        for (region_id, edge), fields in self.painted.items():
+            wall_id = self._wall_named(builder, allocations, region_id, edge,
+                                       "paint_wall")
+            target = builder.level.walls[wall_id]["fields"]
+            for key, value in fields.items():
+                if key == "cstat":
+                    target["cstat"] = int(target["cstat"]) | int(value)
+                else:
+                    target[key] = int(value)
+
+    def _wall_named(self, builder, allocations, region_id, edge, who):
+        allocation = allocations.get(region_id)
+        if allocation is None:
+            raise PlanarLayoutError(f"{who}: {region_id!r} built no sector")
+        walls = builder.level.walls
+        wanted = {edge, (edge[1], edge[0])}
+        for wall_id in allocation.wall_ids:
+            fields = walls[wall_id]["fields"]
+            end = walls[int(fields["point2"])]["fields"]
+            segment = ((int(fields["x"]), int(fields["y"])),
+                       (int(end["x"]), int(end["y"])))
+            if segment in wanted:
+                return wall_id
+        raise PlanarLayoutError(
+            f"{who}: {region_id!r} has no wall from {edge[0]} to {edge[1]}; "
+            f"the region's own outline has to contain it")
+
+    def _apply_carried_walls(self, builder, allocations) -> None:
+        """OR each carried wall's flags onto the wall that actually got built.
+
+        Matched by geometry rather than by index, because the compiler is free
+        to rotate a loop -- a slope hinge does exactly that -- and a payload
+        flag on the wrong wall is a mechanism that drags the wrong thing.
+        """
+        if not self.carried:
+            return
+        walls = builder.level.walls
+        for (region_id, edge), bits in self.carried.items():
+            allocation = allocations.get(region_id)
+            if allocation is None:
+                raise PlanarLayoutError(
+                    f"carry_wall: {region_id!r} built no sector")
+            hit = self._wall_named(builder, allocations, region_id, edge,
+                                   "carry_wall")
+            fields = walls[hit]["fields"]
+            fields["cstat"] = int(fields["cstat"]) | int(bits)
+
+    def carry_wall(self, region_id: str, a1: Point, a2: Point, *,
+                   moves: str = "with") -> None:
+        """Flag one wall of a region as dragged by that sector's motion.
+
+        Build's Marked slide and rotate types -- 614 and 615 -- translate only
+        the walls a mapper has flagged, and the flag says which way:
+        `cstat & 16384` moves WITH the sector's travel and `& 32768` AGAINST
+        it. (Sprites use their own 8192/16384 and are unaffected by either.)
+
+        This is the payload half of the mechanism grammar, and without it two
+        whole classes of Blood mechanism cannot be authored at all:
+
+        * a **planar door** -- E1M1's casket -- is two sectors sharing one
+          boundary wall, where the moving sector drags ONLY that wall, so the
+          travel re-partitions plan area between hole and cover and the lid
+          slides open;
+        * a **curtain** -- E1M1 s125 -- is a thin sector whose two end caps
+          carry OPPOSITE flags, so one end advances while the other retreats
+          and the sector's own length changes, squashing and stretching the
+          texture on its long faces. That deformation IS the animation.
+
+        The edge is named the way connections name one, by its two endpoints
+        in either order.
+        """
+        key = (region_id, _cycle((a1, a2)))
+        bits = {"with": WALL_MOVES_WITH, "against": WALL_MOVES_AGAINST}
+        if moves not in bits:
+            raise PlanarLayoutError(
+                f"carry_wall: moves is 'with' or 'against', not {moves!r}")
+        if region_id not in self.regions:
+            raise PlanarLayoutError(f"carry_wall: no region {region_id!r}")
+        self.carried[key] = self.carried.get(key, 0) | bits[moves]
 
     def add_connection(
         self,
@@ -1397,6 +1511,9 @@ class PlanarLayout:
                     f"{region.region_id} declares a door_face but owns no portal to show it on"
                 )
 
+        self._apply_carried_walls(builder, allocations)
+        self._apply_painted_walls(builder, allocations)
+
         for connection in self.connections.values():
             if not _connection_has_face(connection):
                 continue
@@ -1537,7 +1654,23 @@ class PlanarLayout:
         # Markers, before anything validates the structure. `dbLoadMap` rebuilds
         # marker0/marker1 from each marker's `owner` and deletes any marker it
         # cannot bind, so this is load-bearing rather than cosmetic.
-        bind_markers(builder.level)
+        #: A marker's `owner` is the sector it CONTROLS, not the one it stands
+        #: in -- 387 of the campaign's markers sit somewhere else, and E1M1's
+        #: casket puts its "to" marker inside the cover, which has no XSECTOR
+        #: at all. `marker_owner` on the placement says which sector it marks.
+        marker_owners = {}
+        for placement in self.placements:
+            owner_region = getattr(placement, "marker_owner", None)
+            if not owner_region:
+                continue
+            sprite_id = placement_sprites.get(placement.placement_id)
+            allocation = allocations.get(owner_region)
+            if sprite_id is None or allocation is None:
+                raise PlanarLayoutError(
+                    f"{placement.placement_id}: marker_owner "
+                    f"{owner_region!r} built no sector")
+            marker_owners[str(sprite_id)] = allocation.sector_id
+        bind_markers(builder.level, owners=marker_owners)
         native_errors = [item for item in validate_map(builder.level.to_disk_map()) if item.severity == "error"]
         if native_errors:
             first = native_errors[0]

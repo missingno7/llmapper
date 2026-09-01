@@ -47,6 +47,10 @@ MARKER_ANGLE = 0
 #: The fence tile the campaign actually uses: 63 placements from 3.64 player
 #: heights up. Tile 1064 appears twice in the whole game, both at 5.82.
 FENCE_PICNUM = 1044
+#: Owner anchor 146, binding strong: the curtain texture. 147 is its
+#: translucent variant and belongs on a maskwall or a sprite, never on a
+#: plain wall -- it carries the mask colour.
+CURTAIN_PICNUM = 146
 
 #: A leaf's mounting: blocking, wall-aligned, one-sided, centred, hitscan.
 #: E1M1's two leaves are exactly 16797 and 8605 -- this plus the carry bit.
@@ -608,3 +612,270 @@ def sliding_gate(
 # to exist before the native structure check runs, and every layout needs it and
 # not just one that calls a constructor from here.
 from .planar_layout import bind_markers  # noqa: E402,F401  (re-export)
+
+# ---------------------------------------------------------------------------
+# the payload family: mechanisms whose point is WHICH WALLS MOVE
+# ---------------------------------------------------------------------------
+
+#: Build's Marked-slide payload flags, on WALLS. `TranslateSector`'s
+#: `bAllWalls` is true only for the unmarked types 616/617, so a 614 or 615
+#: drags exactly the walls a mapper flagged -- 16384 with the travel, 32768
+#: against it. Sprites carry their own 8192/16384 and are dragged regardless.
+WALL_MOVES_WITH = 16384
+WALL_MOVES_AGAINST = 32768
+
+#: E1M1 s125, the curtain, measured: busy 40 out and 25 back, both waves 1.
+CURTAIN_BUSY_OUT, CURTAIN_BUSY_BACK = 40, 25
+#: E1M1 s28/s30, the casket: 40 both ways.
+PLANAR_DOOR_BUSY = 40
+
+
+def _sign(value: int) -> int:
+    return (value > 0) - (value < 0)
+
+
+def _slide_markers(layout, name, region_id, origin, offset, floor_z,
+                   to_region=None):
+    """The from/to marker pair a Marked slide reads its travel out of.
+
+    Types 3 and 4 -- kMarkerOff and kMarkerOn -- on statnum 10, which the
+    engine culls from the world and reads as instructions. The vector between
+    them IS the travel; nothing else states it.
+    """
+    out = []
+    #: The "to" marker frequently lands outside the moving sector -- in E1M1's
+    #: casket it stands inside the COVER -- because the travel is most of the
+    #: sector's own width. `to_region` says where it lives; a marker is on
+    #: statnum 10 and is culled from the world, so which sector holds it
+    #: matters only to the compiler's containment check.
+    for tag, kind, point, where in (
+            ("off", 3, origin, region_id),
+            ("on", 4, (origin[0] + offset[0], origin[1] + offset[1]),
+             to_region or region_id)):
+        out.append(layout.add_sprite(
+            f"{name}_marker_{tag}", where,
+            x=int(point[0]), y=int(point[1]), z=int(floor_z),
+            type=kind, picnum=MARKER_PICNUM, status=MARKER_STATNUM,
+            cstat=MARKER_CSTAT, x_repeat=64, y_repeat=64, angle=MARKER_ANGLE,
+            #: It marks the MOVING sector wherever it happens to stand.
+            marker_owner=region_id))
+    return out
+
+
+def curtain(
+    layout: PlanarLayout,
+    region_id: str,
+    outline: list[tuple[int, int]],
+    *,
+    near_cap: tuple[tuple[int, int], tuple[int, int]],
+    far_cap: tuple[tuple[int, int], tuple[int, int]],
+    travel: tuple[int, int],
+    channel: int,
+    floor_z: int,
+    ceiling_z: int,
+    curtain_picnum: int = CURTAIN_PICNUM,
+    busy_out: int = CURTAIN_BUSY_OUT,
+    busy_back: int = CURTAIN_BUSY_BACK,
+    to_region: str | None = None,
+    **region_kwargs,
+) -> dict:
+    """A curtain: a thin sector whose own LENGTH changes as it opens.
+
+    Not a pair of sliding leaves. E1M1 sector 125 -- the owner's attested
+    example, and every field below is read off it -- is a `kSectorSlideMarked`
+    sector 128 units deep and 4352 long, wearing tile 146 on its long faces,
+    whose two END CAPS carry OPPOSITE payload flags: one 16384 and one 32768.
+
+    One cap therefore advances while the other retreats, so the translation
+    does not move the curtain, it *resizes* it. The texture on the long faces
+    is squashed and stretched by exactly that much, and **that deformation is
+    the animation**. Reading it as moving sprites, which this project did
+    twice, produces something that looks like a gate and behaves like one.
+
+    The rest of s125, kept because it is what the campaign chose: shade waves
+    on both busy phases, 40 tenths out and 25 back -- it closes faster than it
+    opens -- and it both transmits and receives, so a run of curtains chains.
+    """
+    if channel <= 0:
+        raise MechanismError(f"{region_id}: a curtain needs a channel")
+    if travel == (0, 0):
+        raise MechanismError(f"{region_id}: a curtain with no travel is a wall")
+
+    behavior = {
+        "rx_id": int(channel),
+        "busy_time_a": int(busy_out), "busy_time_b": int(busy_back),
+        "busy_wave_a": 1, "busy_wave_b": 1,
+        "trigger_on": 1, "trigger_off": 1,
+        "command": CMD_TOGGLE,
+    }
+    layout.add_region(region_id, outline, role="doorway", type=614,
+                      floor_z=floor_z, ceiling_z=ceiling_z,
+                      wall_picnum=int(curtain_picnum),
+                      sector_behavior=behavior, **region_kwargs)
+
+    #: The two caps, flagged opposite ways. This is the whole mechanism.
+    layout.carry_wall(region_id, near_cap[0], near_cap[1], moves="with")
+    layout.carry_wall(region_id, far_cap[0], far_cap[1], moves="against")
+
+    mid = ((near_cap[0][0] + near_cap[1][0]) // 2,
+           (near_cap[0][1] + near_cap[1][1]) // 2)
+    markers = _slide_markers(layout, region_id.replace(":", "_"), region_id,
+                             mid, travel, floor_z, to_region)
+    return {
+        "region": region_id, "channel": int(channel),
+        "travel": (int(travel[0]), int(travel[1])),
+        "markers": markers,
+        "busy": (int(busy_out), int(busy_back)),
+        "picnum": int(curtain_picnum),
+    }
+
+
+def planar_door(
+    layout: PlanarLayout,
+    name: str,
+    *,
+    hole_region: str,
+    cover_region: str,
+    hole_outline: list[tuple[int, int]],
+    cover_outline: list[tuple[int, int]],
+    boundary: tuple[tuple[int, int], tuple[int, int]],
+    travel: tuple[int, int],
+    channel: int,
+    floor_z: int,
+    ceiling_z: int,
+    cover_floor_z: int | None = None,
+    cover_ceiling_z: int | None = None,
+    lift_out: int = 0,
+    busy_time: int = PLANAR_DOOR_BUSY,
+    transmits: int | None = None,
+    to_region: str | None = None,
+    voice: dict[str, int] | None = None,
+    **region_kwargs,
+) -> dict:
+    """A lid that slides aside by MOVING THE BOUNDARY between two sectors.
+
+    E1M1's casket, which is the owner's attested blueprint and where every
+    number here comes from. Two sectors sit side by side -- a hole you are in
+    and a cover beside it -- and the moving one is `kSectorSlideMarked` with
+    exactly ONE flagged wall: the wall they share. Its travel re-partitions
+    the plan area between them, so the hole grows as the cover shrinks and the
+    lid reads as sliding open.
+
+    Nothing else in the family works this way. A sliding gate moves leaves
+    across a threshold; this moves the threshold itself. The concept the
+    project lacked a name for is **boundary-wall area re-partition**, and it
+    is why the casket could not be built out of `sliding_gate` no matter how
+    the leaves were posed.
+
+    `lift_out` is the other half of s30 and is deliberately separable: the
+    casket's floor also rises 6144 as it opens, which is NOT part of the
+    door. The owner's category for it is ERGONOMIC-ASSIST motion -- it exists
+    to boost the player out of the coffin, not to gate anything -- and a
+    reading that counts it as part of the door's gating misreads the
+    construct. It is written here as the z verb composed on the same sector,
+    which is E1M1's own proof that the two XSECTOR z states are available
+    regardless of sector type.
+
+    What this does NOT build is the room-over-room half. E1M1's casket is
+    four sectors in two pairs, one above the other, stack-linked and synced on
+    one channel so the revealed holes meet through the link. `PlanarLayout`
+    has no stack link at all, so this constructor builds ONE pair -- which is
+    a complete, working planar door -- and the coupling remains unbuildable.
+    """
+    if channel <= 0:
+        raise MechanismError(f"{name}: a planar door needs a channel")
+    if travel == (0, 0):
+        raise MechanismError(f"{name}: a planar door with no travel is a wall")
+
+    behavior = {
+        "rx_id": int(channel),
+        "busy_time_a": int(busy_time), "busy_time_b": int(busy_time),
+        "trigger_on": 1,
+    }
+    if transmits:
+        behavior["tx_id"] = int(transmits)
+        behavior["command"] = CMD_TOGGLE
+    if lift_out:
+        #: The ergonomic assist, on the same sector: a z verb composed with
+        #: the XY one. Endpoints that differ on the FLOOR and agree on the
+        #: ceiling, which is the mirror of a door's.
+        behavior.update({
+            "off_floor_z": int(floor_z), "on_floor_z": int(floor_z - lift_out),
+            "off_ceiling_z": int(ceiling_z), "on_ceiling_z": int(ceiling_z),
+        })
+    layout.add_region(hole_region, hole_outline, role="doorway", type=614,
+                      floor_z=floor_z, ceiling_z=ceiling_z,
+                      sector_behavior=behavior, **region_kwargs)
+    #: The cover carries the mechanism's VOICE: E1M1's s27 breathes light on
+    #: floor, ceiling and walls at once while the lid moves, and s30 -- the
+    #: grave it opens onto -- uses a negative amplitude, so the lid lightens
+    #: as the hole darkens. Presentation synced to state is part of the
+    #: grammar, not decoration, and it is the half a bare geometry
+    #: reconstruction always drops.
+    layout.add_region(cover_region, cover_outline,
+                      floor_z=cover_floor_z if cover_floor_z is not None
+                      else floor_z,
+                      ceiling_z=cover_ceiling_z if cover_ceiling_z is not None
+                      else ceiling_z,
+                      sector_behavior=dict(shade_wave() if voice is None
+                                           else voice),
+                      **region_kwargs)
+    #: The one flagged wall, on the moving sector's side only. E1M1's s28
+    #: flags w221 and its neighbour s27 flags nothing.
+    layout.carry_wall(hole_region, boundary[0], boundary[1], moves="with")
+
+    #: E1M1's marker pair runs from the hole's FAR edge to the shared
+    #: boundary, so the travel is the hole's own width: s30's are 1916 apart
+    #: across a 1920-wide hole, s28's 1912 across 1920. The "from" marker
+    #: therefore stands inside the hole and the "to" marker at the boundary,
+    #: inside the cover -- which is why it needs its own region and why a
+    #: naive `boundary + travel` placement lands outside every sector there is.
+    mid = ((boundary[0][0] + boundary[1][0]) // 2,
+           (boundary[0][1] + boundary[1][1]) // 2)
+    origin = (mid[0] - int(travel[0]), mid[1] - int(travel[1]))
+    #: Nudged off the shared wall, which belongs to neither sector alone.
+    step = (_sign(travel[0]) * 8, _sign(travel[1]) * 8)
+    markers = _slide_markers(
+        layout, name.replace(":", "_"), hole_region, origin,
+        (mid[0] + step[0] - origin[0], mid[1] + step[1] - origin[1]),
+        floor_z, to_region or cover_region)
+    return {
+        "hole": hole_region, "cover": cover_region,
+        "channel": int(channel), "travel": (int(travel[0]), int(travel[1])),
+        "markers": markers, "lift_out": int(lift_out),
+        "room_over_room": False,
+    }
+
+#: E1M1's casket cover, s27: amplitude 2, frequency 5, wave 7, on floor,
+#: ceiling and walls at once. The owner's grammar calls this the mechanism's
+#: VOICE -- presentation synced to state, not decoration.
+def shade_wave(*, amplitude: int = 2, frequency: int = 5, wave: int = 7,
+               always: bool = True, floor: bool = True, ceiling: bool = True,
+               walls: bool = True) -> dict[str, int]:
+    """XSECTOR fields for a sector that breathes light with its state.
+
+    Blood's mechanisms have a visual voice and the campaign uses it
+    constantly -- 21 of this project's own level modules reach for shade by
+    hand. The fields are independent axes, like every other group in the
+    XSECTOR: amplitude and frequency say how much and how fast, `wave`
+    selects the shape, and three flags say which surfaces join in.
+
+    A negative amplitude darkens where a positive one brightens; E1M1's
+    casket cover uses +2 and the hole it opens onto uses -16, so the lid
+    lightens as the grave darkens.
+    """
+    fields = {
+        "amplitude": int(amplitude),
+        "shade_frequency": int(frequency),
+        "shade_wave": int(wave),
+    }
+    if always:
+        fields["shade_always"] = 1
+    if floor:
+        fields["shade_floor"] = 1
+    if ceiling:
+        fields["shade_ceiling"] = 1
+    if walls:
+        fields["shade_walls"] = 1
+    return fields
+
