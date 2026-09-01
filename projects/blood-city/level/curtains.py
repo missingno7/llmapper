@@ -57,6 +57,16 @@ CH_STAGE_LIGHT = 341
 STAGE_AMPLITUDE = -24
 
 
+def _on_rect(point, rect, tol: int = 1) -> bool:
+    """Is this point on the boundary of `rect`?"""
+    x, y = point
+    x0, y0, x1, y1 = rect
+    on_x = abs(x - x0) <= tol or abs(x - x1) <= tol
+    on_y = abs(y - y0) <= tol or abs(y - y1) <= tol
+    inside = x0 - tol <= x <= x1 + tol and y0 - tol <= y <= y1 + tol
+    return inside and (on_x or on_y)
+
+
 def hang(auditorium, district, stage_rect, *, grade: int, clear: int,
          name: str = "stage_curtain"):
     """Cut the proscenium fin out of the auditorium and stand it there.
@@ -87,13 +97,27 @@ def hang(auditorium, district, stage_rect, *, grade: int, clear: int,
     #: error it reported.
     origin = auditorium.world_frame()
     ox, oy = int(getattr(origin, "dx", 0)), int(getattr(origin, "dy", 0))
-    #: and REVERSED. A hole must wind opposite to the outer loop of the room
-    #: standing in it, or the two coincident edges are two same-direction
-    #: walls rather than a portal pair. `carve` normalises by its own rule
-    #: and `curtain_spec` by another; passing the outline as-is left them
-    #: agreeing, which is the one thing they must not do.
-    auditorium.carve([(x - ox, y - oy)
-                      for x, y in reversed(spec["outline"])])
+    #: THE HOLE IS THE DOORWAY, NOT THE FIN.
+    #:
+    #: Carving the fin's own outline is what broke the first build, and it
+    #: broke it twice over. The hole and the room were then the SAME polygon,
+    #: so all eight walls coincided and all eight paired as portals into the
+    #: house -- the slot included. That made the motion drag the auditorium
+    #: (DragPoint walks nextwall, triggers.cpp:817-854) AND made the fabric
+    #: invisible, because a two-sided unmasked wall draws its picnum only on
+    #: the step bands (engine.cpp:4938-4940).
+    #:
+    #: DOOR-CURTAINS s3 does it the other way: the slot is a NOTCH cut out of
+    #: the doorway rect, and the space inside the notch belongs to nobody. Its
+    #: three walls are one-sided (`next -1`), which is why the fabric is the
+    #: wall and draws everywhere a body can see it.
+    #:
+    #: So the house gives up the DOORWAY RECT, the fin stands inside it, and
+    #: the notch is left as solid void.
+    ox0, oy0, ox1, oy1 = (min(opening[0], opening[2]), min(opening[1], opening[3]),
+                          max(opening[0], opening[2]), max(opening[1], opening[3]))
+    auditorium.carve([(ox0 - ox, oy0 - oy), (ox1 - ox, oy0 - oy),
+                      (ox1 - ox, oy1 - oy), (ox0 - ox, oy1 - oy)])
     room = district.room(
         #: EVERY edge is named, not just four. `faces` is a name -> outline
         #: edge index map, and a fin has eight edges: the compass names cover
@@ -114,7 +138,15 @@ def hang(auditorium, district, stage_rect, *, grade: int, clear: int,
     #: meant to be a way through.
     import citytree
 
-    for index in range(len(spec["outline"])):
+    #: Only the DOORWAY's four edges are portals. The notch's three walls
+    #: face the void the notch leaves behind and stay one-sided, which is the
+    #: whole point.
+    doorway_edges = [index for index, point in enumerate(spec["outline"])
+                     if _on_rect(point, (ox0, oy0, ox1, oy1))
+                     and _on_rect(spec["outline"][(index + 1)
+                                                  % len(spec["outline"])],
+                                  (ox0, oy0, ox1, oy1))]
+    for index in doorway_edges:
         citytree.join(room, auditorium, at_a=f"e{index}", at_b="north",
                       connection_id=f"connection:{name}_e{index}")
     return {"spec": spec, "room": room, "name": name,
@@ -129,8 +161,8 @@ def furnish(layout, built, *, stage_region: str, grade: int) -> dict:
     """
     spec = built["spec"]
     region = built["room"].region_id
-    out = {"markers": 0, "flagged": 0, "fabric": 0, "buttons": 0,
-           "arbitration": []}
+    out = {"leaves": spec["leaves"], "slot": spec["slot"], "markers": 0,
+           "flagged": 0, "fabric": 0, "buttons": 0}
 
     #: STATE-ANCHORED markers: type 3 is the position for state OFF and type
     #: 4 for state ON. The geometry is saved at the ON pose and `state`
@@ -145,11 +177,14 @@ def furnish(layout, built, *, stage_region: str, grade: int) -> dict:
             x_repeat=64, y_repeat=64, angle=0)
         out["markers"] += 1
 
-    #: Only the fin's free END is flagged -- that is what makes the payload
-    #: "part of the sector travels" rather than a leaf sliding aside.
-    layout.carry_wall(region, spec["flagged"][0], spec["flagged"][1],
-                      moves="with")
-    out["flagged"] = 1
+    #: Only each leaf's free END is flagged -- that is what makes the payload
+    #: "part of the sector travels" rather than a leaf sliding aside. Two
+    #: leaves carry OPPOSITE flags so they converge instead of travelling
+    #: together.
+    for flag in spec["flagged"]:
+        edge = flag["edge"]
+        layout.carry_wall(region, edge[0], edge[1], moves=flag["moves"])
+        out["flagged"] += 1
 
     #: The fabric, sized for the span it hangs ACROSS.
     for edge, repeat in zip(spec["fabric"], spec["x_repeats"]):
