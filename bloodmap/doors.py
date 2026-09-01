@@ -207,11 +207,41 @@ def _trigger_names(extra: dict[str, Any]) -> list[str]:
     return [name for name in names if extra.get(name)]
 
 
-def _interaction(extra: dict[str, Any], portal_xwalls: list[dict[str, Any]]) -> str:
+def _interaction(extra: dict[str, Any], portal_xwalls: list[dict[str, Any]],
+                 own_xwalls: list[dict[str, Any]] | None = None) -> str:
+    """How a player works this mechanism, from the wall level up.
+
+    `own_xwalls` is every XWALL on a wall the sector OWNS, one-sided walls
+    included, and it is the half that was missing. The engine's use-key
+    raycast reads the hit wall's own XWALL and operates it when `triggerPush`
+    is set (`player.cpp:1637-1641`, cases 0 and 4) -- it never looks at
+    `nextsector` first; the `nextsector >= 0` branch below it is the
+    FALLBACK to the neighbouring sector's `Wallpush`. From there
+    `trTriggerWall` (`triggers.cpp:1865-1884`) reaches `OperateWall`
+    (`:692`), whose default branch calls `SetWallState` (`:112-128`), which
+    sends the wall's `txID` on the state edge.
+
+    So a curtain whose fabric carries a push XWALL transmitting on the
+    channel its own sector receives is worked BY PUSHING THE CURTAIN, and
+    reading it as `remote_rx` sends the player looking for a switch that does
+    not exist. The reader saw only PORTAL walls' XWALLs, and the tutorial's
+    curtains and E1M1 s4 both put theirs on one-sided walls.
+    """
     wp = bool(extra.get("trigger_wall_push"))
     push = bool(extra.get("trigger_push"))
     rx = int(extra.get("rx_id") or 0) > 0
-    xwall_push = any("trigger_push" in item.get("triggers", []) for item in portal_xwalls)
+    own = list(own_xwalls or ())
+    #: A push XWALL is a wall-level route to THIS mechanism when it
+    #: transmits on the channel this sector listens to. One that transmits
+    #: elsewhere is a button that happens to be on this sector's wall, and
+    #: it is not how this thing is worked.
+    channel = int(extra.get("rx_id") or 0)
+    own_push = any(
+        "trigger_push" in item.get("triggers", [])
+        and (not channel or int(item.get("tx_id") or 0) == channel)
+        for item in own)
+    xwall_push = own_push or any(
+        "trigger_push" in item.get("triggers", []) for item in portal_xwalls)
     enter = bool(extra.get("trigger_enter") or extra.get("trigger_proximity") or extra.get("trigger_touch"))
     if wp or xwall_push:
         kind = "wall_push"
@@ -223,7 +253,13 @@ def _interaction(extra: dict[str, Any], portal_xwalls: list[dict[str, Any]]) -> 
         kind = "remote_rx"
     else:
         kind = "unknown"
-    if rx and kind != "remote_rx":
+    #: `+remote` means "and something ELSEWHERE can also work it". A push
+    #: XWALL that transmits on this sector's own rx is not a second route:
+    #: it is how this route reaches the sector at all, because a wall cannot
+    #: move a sector except by sending to it. Calling that `wall_push+remote`
+    #: told a reader there was a switch somewhere as well, which is the
+    #: same wrong answer as `remote_rx` with one more word.
+    if rx and kind != "remote_rx" and not own_push:
         return f"{kind}+remote"
     return kind
 
@@ -305,6 +341,11 @@ def observe_motion_sector(disk: DiskMap, sector_id: int, *, owners: list[int] | 
     on_opening = on_floor - on_ceil
     portals: list[dict[str, Any]] = []
     portal_xwalls: list[dict[str, Any]] = []
+    #: Every XWALL on a wall this sector OWNS, one-sided walls included.
+    #: `portal_xwalls` skipped them, and the wall-level route lives there:
+    #: DOOR-CURTAINS s3, E1M1 s4 and this project's own curtain all put the
+    #: push on a one-sided wall.
+    own_xwalls: list[dict[str, Any]] = []
     portal_points: list[tuple[float, float]] = []
     approach_picnums: Counter = Counter()
     door_wall_picnums: Counter = Counter()
@@ -313,6 +354,17 @@ def observe_motion_sector(disk: DiskMap, sector_id: int, *, owners: list[int] | 
         wall = disk.walls[wall_id]
         next_sector = int(wall.fields["next_sector"])
         picnum = int(wall.fields["picnum"])
+        own = _extra(wall)
+        if own is not None:
+            own_xwalls.append({
+                "wall_id": wall_id,
+                "one_sided": next_sector < 0,
+                "key": int(own.get("key") or 0),
+                "tx_id": int(own.get("tx_id") or 0),
+                "rx_id": int(own.get("rx_id") or 0),
+                "command": int(own.get("command") or 0),
+                "triggers": _trigger_names(own),
+            })
         if next_sector < 0:
             door_wall_picnums[picnum] += 1
             continue
@@ -366,7 +418,7 @@ def observe_motion_sector(disk: DiskMap, sector_id: int, *, owners: list[int] | 
         if pic not in seen_faces:
             seen_faces.add(pic)
             distinct_faces.append(pic)
-    interaction = _interaction(extra, portal_xwalls)
+    interaction = _interaction(extra, portal_xwalls, own_xwalls)
     sprites = _nearby_sprites(
         disk, portal_points or [(0.0, 0.0)],
         floor_z=floor_z,
@@ -403,6 +455,7 @@ def observe_motion_sector(disk: DiskMap, sector_id: int, *, owners: list[int] | 
         "ceiling_picnum": int(sector.fields["ceiling_picnum"]),
         "portals": portals,
         "portal_xwalls": portal_xwalls,
+        "own_xwalls": own_xwalls,
         "approach_picnums": dict(approach_picnums),
         "door_wall_picnums": dict(door_wall_picnums),
         "neighbor_fill_picnums": dict(neighbor_fill),

@@ -351,7 +351,13 @@ def rotate_marker(disk: Any, sector_id: int) -> dict[str, Any] | None:
     """
     extra = _extra(disk.sectors[sector_id])
     index = extra.get("marker_0")
-    if index is None or int(index) >= len(disk.sprites):
+    #: -1 is "no marker", and it was guarded at the top end only. Python
+    #: indexes -1 from the END, so a sector with NO marker read the map's
+    #: last sprite and, if that sprite happened to be a kMarkerAxis, reported
+    #: a pivot and a turn for a mechanism that has neither. In a map with no
+    #: sprites at all it raised instead. Found by `readback.state_pair`
+    #: measuring a lift, which is a z motion and carries no marker.
+    if index is None or not (0 <= int(index) < len(disk.sprites)):
         return None
     sprite = disk.sprites[int(index)]
     if int(sprite.fields["type"]) != MARKER_AXIS:

@@ -324,6 +324,24 @@ def main() -> int:
         print("shop window glass:", report)
 
     disk = compiled.level.to_disk_map()
+
+    #: THE AUTHORING-LOOP LAW, at the build rather than in a separate sweep.
+    #: Every region that declared a mechanism is read back out of the
+    #: finished map and diffed against what it declared -- sector type,
+    #: XSECTOR, declared motion set, the DragPoint closure over the whole
+    #: travel, the fabric's visible band, and the state pair. `glaze` above
+    #: edits compiled walls, so this runs on the disk map AFTER it: the gate
+    #: inside `layout.compile()` never sees a post-compile pass.
+    from bloodmap.readback import read_back, sentences_from_layout
+
+    claims = sentences_from_layout(compiled, layout=layout)
+    checked = read_back(disk, claims, map_name="pattern-zoo.MAP")
+    print(checked.report())
+    if not checked.agrees:
+        print(f"FAIL: {len(checked.differences)} read-back difference(s); "
+              f"the map was not written")
+        return 1
+
     here = pathlib.Path(__file__).resolve().parent
     out = here / "level" / "pattern-zoo.MAP"
     out.parent.mkdir(parents=True, exist_ok=True)

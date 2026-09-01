@@ -2461,6 +2461,187 @@ listed) and a section in `reports/blood-mechanism-curriculum.md`.
 - The 69 `coincident but not chained` vertices are read as unwelded map
   defects on the engine's own logic, but none has been observed tearing.
 
+## Round-trip closure moved to the constructor, 2026-09-01
+
+Supervisor assignment P7. Phase 11 item 3 -- *every constructor's test builds,
+reads back through effects/conditional, and asserts the parse equals the
+grammar sentence the constructor claims* -- was true of the pattern zoo only,
+because the gates lived in `projects/pattern-zoo/sweep.py` and `selfread.py`.
+The city built a curtain that failed conformance and nothing in its build said
+so until P1 added a call by hand.
+
+### One function, and a sentence that is a documented dict
+
+`bloodmap/readback.py`. `read_back(disk, sentences)` takes a built map and the
+sentences it was built from and returns structural equality or typed
+`Difference` records -- facet, wanted, found, and WHICH READER found it, so a
+diff can be re-run rather than believed. Seven readers behind one call:
+`effects.read_mechanism` and `payload`, `conditional.route_edges`,
+`motion_sim.drag_closure` and `closure_health`, `conformance.measure_*`,
+`render_slots`, and the state-pair measurement.
+
+`sentence()` REFUSES an unknown key. A misspelled claim that is silently
+dropped is a gate that measures nothing, which is the failure this module
+exists for; and a claim the source never made is never a difference, or the
+gate starts inventing intent. Facets no reader could measure go in
+`unmeasured` and are printed, never swallowed.
+
+The typed `MechanismDecl` (Phase 13) is deliberately NOT built. The dict's keys
+are what the comparison actually needed, which is the right shape to grow the
+typed layer from.
+
+**The state pair, in memory.** `readback.state_pair` is the measurement behind
+`reports/zoo-state-check.json`, whose generator (`work/_state_check.py`, commit
+929cdc1) wrote out two whole snapped maps and read them both. It needs no
+files: `motion_sim.blood_poses` already transcribes `TranslateSector` and knows
+which frame is OFF for a sector that rests open, and the z pair is in the
+XSECTOR. Four measures -- plan area, headroom, turn, marker travel -- and
+`changes` False is the generator's "NOTHING MEASURABLE CHANGED", with the
+whole-circle rotator exempt because ending where it began IS the mechanism.
+
+### The declared side is DERIVED, not written twice
+
+`sentences_from_layout(compiled, layout=)` reads the sentences off the source
+that built the map: each region's sector type, the XSECTOR its constructor
+asked for, and the payload it declared through `declare_motion`. A second
+hand-written manifest drifts from the source it describes, and then the gate
+compares two stale things.
+
+A curtain is identified by WHAT IT WEARS, not by its region id -- the lesson
+the zoo's sweep paid for, when routing the curtain check on a payload SHAPE
+stopped running the moment the constructor was corrected and the zoo reported
+13/13 conforming because the curtain was never asked.
+
+Worth running on the FINAL disk even though `compile` preflights the motion
+set: the city's facade, lintel and wall-sprite passes edit the compiled level
+AFTER `compile` returns, and the gate inside it saw the geometry before all of
+that.
+
+### The gate fails first, on the real defect
+
+`git show 8c42701:projects/blood-city/level/blood-city-current.MAP` -- the city
+as committed before P1's rebuild -- read back against the sentence its
+constructor claimed:
+
+```text
+PRE-P1   members: wanted [37], found [23, 37]
+             wall 209 of sector 23 shares the moved vertex (25472, 7072)
+             wall 210 of sector 23 shares the moved vertex (25472, 7008)
+         visibility.146.drawn: wanted 3, found 0
+         visibility.146.walkable_band: wanted 1, found 0
+         conformance: fabric is visible -- 0 of 1 per leaf
+CURRENT  all agree; motion_set [37], 146 authored 3 / drawn 3 / walkable 3
+```
+
+Both halves of the defect, and the second is the one nobody could see. Two more
+fail-first fixtures are mis-wired copies of current constructs: a Link receiver
+with `shade_always` set, which `sectorfx.cpp:161-166` makes deaf to busy, and a
+door with an rx that nothing transmits on.
+
+### Coverage, and the rule that keeps it
+
+`tests/test_readback.py`: 35 tests. Ten public constructors build in a minimal
+`PlanarLayout`, read back and assert equality; the two blood-city places from
+the TREE (`turnstiles.pair`/`populate`, `curtains.hang`/`furnish`) do the same
+in a minimal levelprog program, because the level is authored in two dialects
+and a flat-side test proves nothing about the tree side.
+
+`ReadBackRegistry` fails for any public constructor of `mechanism`, `doors`,
+`glass`, `aperture` or `street` with neither a read-back test nor a written
+reason -- the shape of `tests/test_pattern_zoo.ConformanceTest`. 45 public
+callables: 10 covered, 35 skipped with a reason that says what the function
+does INSTEAD of building. Three of those skips are PENDING rather than
+excused -- `aperture.framed_door`, `frame_z_doors` and `facade_run` all need
+ART tile extents to choose a reveal, and this suite has no corpus-free source
+for them. Named so the gap is countable.
+
+Both build scripts now call `read_back` over `sentences_from_layout` and refuse
+the build on a difference: `projects/pattern-zoo/build_zoo.py` after `glaze`
+edits compiled walls, `projects/blood-city/level/build_skeleton.py` after the
+swept gate and after every post-compile pass.
+
+### Two defects the gate found in existing readers
+
+**`motion.rotate_marker` read the wrong sprite for a sector with no marker.**
+`marker_0` is -1 for "no marker" and the guard checked only the top end, so
+Python indexed from the END: a lift -- a z motion, which carries no marker --
+read the map's LAST sprite, and would have reported a pivot and a turn if that
+sprite happened to be a kMarkerAxis. With no sprites at all it raised. Found by
+`state_pair` measuring a lift.
+
+**The interaction reading told a player to find a switch that does not exist.**
+`observe_motion_sector` collected XWALLs from PORTAL walls only, and Blood's
+canonical doors put the push on the sector's own leaf, which is routinely
+one-sided -- `#SLDOOR`, `#SWDOOR`, E1M1 s4, and this project's own
+`mechanism.curtain`. Reproduced on a map built here with no corpus: our curtain
+read `remote_rx`, its three push XWALLs sitting on `next -1` walls.
+
+The engine: `player.cpp:1637-1641` reads the hit wall's own XWALL and operates
+it when `triggerPush` is set, without consulting `nextsector` -- the
+`nextsector >= 0` branch under it is the FALLBACK to the neighbour's
+`Wallpush`. `trTriggerWall` (`triggers.cpp:1865-1884`) then reaches
+`OperateWall` (`:692`), whose default branch calls `SetWallState`
+(`:112-128`), which sends the wall's own `txID` on the state edge.
+
+`observe_motion_sector` now reports `own_xwalls` and routes on it. Over the 43
+campaign maps, 2027 mechanisms, **171 readings change**: 168 `remote_rx` ->
+`wall_push`, and 3 lose a `+remote` suffix that was never a second route --
+that channel is how a wall reaches a sector at all. Owner queue item 12; the
+mined door precedents under `knowledge/` are stale by 8.4% and were not
+re-mined here.
+
+### The three acceptance fixtures
+
+**The wall-level interaction route: PASSES.** `expectedFailure` removed, the
+assertion unchanged. A second fixture asserts the reading it needed -- the push
+XWALLs are on walls s4 owns and transmit on the channel it receives.
+
+**The light link as a facet: still fails, and the missing reader is named.**
+Every field is legible one at a time -- s125 `tx_id 126, command 5`; s124
+`rx_id 126, amplitude -8, shade_always 0, shade_floor 1, shade_walls 1`.
+Nothing in the stack reads a SECTOR's `command` as a verb at all, so
+`read_mechanism` returns eight keys and none is a transmitter-side facet. That
+is prompt P8's deliverable and was left to it rather than half-built here.
+
+**The stack-linked casket: still fails, and it is blocked on a LAYER.**
+`reachability.link_pairs` already reports `{link 10, sectors [28, 30], sprites
+[47, 46]}`; `motion.stack_pairs` reports nothing, because it looks for the
+floor-picnum-504 see-through marking this pair does not carry. What is missing
+is composition: nothing joins a per-sector record to the mechanism across its
+ROR plane, and four sectors in two planes cannot be said by a per-sector record
+at all. Adding a `stack_partner` key to make one test pass would put the
+composition in the wrong place; it belongs in MechanismDecl.
+
+### The twelve rendering errors, restated as what they are
+
+`readback.lost_tiles_as_differences` turns the `wall-tile-is-drawn-somewhere`
+violations into `Difference` records, and the city build prints them as
+`READ-BACK DIFF (non-blocking, owner-queue item 9)` rather than as `LOST` lines
+inside a rule count. They are not a style warning: the map claims a material
+and the engine draws something else, which is exactly the diff the constructors
+should own. Left non-blocking only because five flush doorway thresholds are
+still with the owner; the moment that is decided the list belongs above the
+build's `return 1`, and the comment there says so.
+
+### What is unproven
+
+* **Neither build was run end to end.** `reference/blood` holds no ART in this
+  environment and `PlanarLayout` refuses a seated placement without a tile
+  extent, so `build_zoo.py` and `build_skeleton.py` both stop before they
+  reach the new gate. The gate itself is exercised: 35 tests build and read
+  back through the same call, both tree placers included, and the two SHIPPED
+  maps were read back against the claims every mover makes by construction --
+  20 mechanisms in `pattern-zoo.MAP` and 14 in `blood-city-current.MAP`, all
+  agreeing. What is unproven is the wiring inside the two scripts.
+* The `members` claim is only as good as `declare_motion`. A constructor that
+  declares nothing gets no members check, and several do not declare.
+* `state_pair` reads the z pair the XSECTOR states rather than simulating the
+  travel, so a door whose endpoints are right and whose busy times are zero
+  measures as changing. `trProcessBusy` is not modelled here.
+* The conformance template routing is by construct NAME, and the name comes
+  from the sector type plus the fabric tile. A curtain that wears something
+  else is measured as a plain marked slide.
+
 ## The demonstration maps, and two things they said plainly
 
 `maps/blood/mechanism/` holds thirty-odd official XMapEdit tutorial maps, one

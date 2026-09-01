@@ -231,17 +231,44 @@ class DoubleSlideDoorTest(unittest.TestCase):
         self.assertEqual(pushers, [100] * 4)
         self.assertEqual(int(_extra(self.disk.sectors[4])["rx_id"]), 100)
 
-    @unittest.expectedFailure
     def test_the_wall_level_route_is_read_as_the_interaction(self):
-        # Blueprint: roadmap promotion queue, "wall-level interaction route
-        # in doors.py". `observe_motion_sector` reports 'remote_rx' -- true
-        # of the SECTOR and useless to a player, who is told to find a switch
-        # that does not exist. The route runs through the door's own leaf.
+        # Was `expectedFailure`; CLOSED 2026-09-01 with the assertion
+        # unchanged. `observe_motion_sector` reported 'remote_rx' -- true of
+        # the SECTOR and useless to a player, who was told to find a switch
+        # that does not exist -- because it collected XWALLs from PORTAL
+        # walls only, and s4's push XWALLs are on its own leaf walls.
+        #
+        # The engine reads the hit wall's own XWALL and operates it when
+        # `triggerPush` is set, without looking at `nextsector` first
+        # (`player.cpp:1637-1641`, the wall and masked-wall hit cases; the
+        # `nextsector >= 0` branch under it is the FALLBACK to the
+        # neighbour's `Wallpush`). From there `trTriggerWall`
+        # (`triggers.cpp:1865-1884`) reaches `OperateWall` (`:692`), whose
+        # default branch calls `SetWallState` (`:112-128`), which sends the
+        # wall's own txID on the state edge. So a one-sided wall is pushed
+        # exactly like a portal wall, and `own_xwalls` is now read.
+        #
+        # The `+remote` suffix is withheld when the push transmits on the
+        # sector's OWN rx: that channel is how the wall reaches the sector
+        # at all, not a second route from somewhere else.
         from bloodmap.doors import _wall_owners, observe_motion_sector
 
         record = observe_motion_sector(self.disk, 4,
                                        owners=_wall_owners(self.disk))
         self.assertEqual(record["interaction"], "wall_push")
+
+    def test_the_route_runs_through_the_doors_own_one_sided_leaf(self):
+        # What the reader had to start reading. The push XWALLs are on walls
+        # the sector owns, and they transmit on the channel it receives.
+        from bloodmap.doors import _wall_owners, observe_motion_sector
+
+        record = observe_motion_sector(self.disk, 4,
+                                       owners=_wall_owners(self.disk))
+        pushers = [item for item in record["own_xwalls"]
+                   if "trigger_push" in item["triggers"]]
+        self.assertTrue(pushers)
+        self.assertEqual({item["tx_id"] for item in pushers},
+                         {int(record["rx_id"])})
 
 
 class RoomOverRoomGateTest(unittest.TestCase):

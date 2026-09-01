@@ -1468,6 +1468,27 @@ def main() -> int:
         print("FAIL: a mechanism breaks geometry it drags; the map was not written")
         return 1
 
+    # THE AUTHORING-LOOP LAW, over every mechanism this level declared.  The
+    # curtain check above asks one construct one question; this reads the
+    # FINISHED disk back against what every region declared -- sector type,
+    # XSECTOR, declared motion set, the DragPoint closure over the whole
+    # travel, the fabric's visible band, and the state pair -- and refuses
+    # the build on a difference.  It runs HERE, after the facade passes have
+    # split walls and after the lintel and wall-sprite passes have edited the
+    # compiled level, because the gate inside `layout.compile()` looked at
+    # the geometry before all of that.
+    from bloodmap.readback import lost_tiles_as_differences, read_back
+    from bloodmap.readback import sentences_from_layout
+
+    _claims = sentences_from_layout(compiled, layout=layout)
+    _checked = read_back(disk, _claims, map_name="blood-city-current.MAP")
+    ctx["manifest"]["readback"] = _checked.to_dict()
+    print(_checked.report())
+    if not _checked.agrees:
+        print(f"FAIL: {len(_checked.differences)} read-back difference(s); "
+              f"the map was not written")
+        return 1
+
     print(f"rules: {len(_diags)} diagnostics {dict(_by_sev)}")
     for (_sev, _code), _n in _by_code.most_common():
         if _sev in ("error", "warning"):
@@ -1490,10 +1511,22 @@ def main() -> int:
         "population": _lost.population,
         "tiles": [v.location for v in _lost.violations],
     }
-    print(f"wall tiles drawn nowhere: {len(_lost.violations)} of "
-          f"{_lost.population} authored")
-    for _v in _lost.violations:
-        print(f"    LOST {_v.location} {_v.detail}")
+    # These are READ-BACK DIFFERENCES, not style warnings: the map claims a
+    # material and the engine draws something else.  Printed in the same
+    # vocabulary as every other difference so they cannot be read as one
+    # diagnostic among hundreds -- which is how the stage curtain's fabric
+    # stayed invisible through every gate the project had.  Non-blocking
+    # ONLY because five flush doorway thresholds are still outstanding with
+    # the owner (reports/owner-review-queue.md item 9); the moment that is
+    # decided, this list belongs above the `return 1`.
+    _lost_diffs = lost_tiles_as_differences(_lost, mechanism="(whole map)")
+    ctx["manifest"]["lost_wall_tiles"]["as_readback_differences"] = [
+        str(_d) for _d in _lost_diffs]
+    print(f"READ-BACK DIFF (non-blocking, owner-queue item 9): "
+          f"{len(_lost.violations)} of {_lost.population} authored wall "
+          f"tiles are drawn on no band anywhere")
+    for _d in _lost_diffs:
+        print(f"    DIFF {_d}")
     _lines = ['# Rule registry, at build time', '', '`bloodmap.rules.evaluate`, severities derived from measured campaign', 'violation rates. Requires `bloodmap.rules_blood` to be imported: the', "registry is populated by that import's side effect, so a bare", '`evaluate` returns silence rather than a clean map.', '']
     _lines += [f"- **{d.severity}** `{d.code}` -- {d.message} ({d.location})"
                for d in sorted(_diags, key=lambda d: (d.severity, d.code))]

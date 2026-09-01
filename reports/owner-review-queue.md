@@ -489,3 +489,70 @@ been observed in play.
 > is in both builds and fails first on a fixture; chasing eighteen original-map
 > geometry hairs has no product behind it. If you remember the map and exhibit,
 > say so and the specific one gets read.
+
+
+## 12. 168 campaign mechanisms were being described to you as "find a switch" (2026-09-01)
+
+Reading a mechanism's INTERACTION only looked at XWALLs on the sector's
+PORTAL walls. Blood's canonical doors put the push on the sector's own leaf,
+which is routinely a one-sided wall -- `#SLDOOR` and `#SWDOOR` do it, E1M1 s4
+does it, and this project's own `mechanism.curtain` does it. Every one of those
+read as `remote_rx`: true of the sector, and the wrong answer for a player, who
+is told to look for a switch the level does not contain.
+
+The engine settles it. `player.cpp:1637-1641`: the use raycast reads the hit
+wall's own XWALL and operates it when `triggerPush` is set, without consulting
+`nextsector` -- the `nextsector >= 0` branch under it is the FALLBACK to the
+neighbour's `Wallpush`. `trTriggerWall` (`triggers.cpp:1865-1884`) then reaches
+`OperateWall` (`:692`), whose default branch calls `SetWallState`
+(`:112-128`), which sends the wall's own `txID` on the state edge. So a
+one-sided wall is pushed exactly like a portal wall.
+
+Measured over the 43 campaign maps, 2027 mechanisms:
+
+```text
+                                        before   after
+remote_rx  ("find a switch")              1515    1347
+wall_push  ("push the thing itself")       254     425
+wall_push+remote                           170     167
+171 readings change: 168 remote_rx -> wall_push, 3 lose a spurious +remote
+```
+
+The `+remote` suffix is now withheld when the push transmits on the sector's
+OWN rx: that channel is how a wall reaches a sector at all, not a second route
+from somewhere else. E1M1 s4's owner-attested fixture asserted exactly this and
+was `expectedFailure`; it passes now, with the assertion unchanged.
+
+> **Recommended default: accept, and re-mine the door precedents.** The
+> knowledge under `knowledge/blood/design/` and the mined door reports were
+> written against the old reading, so their interaction histograms are stale by
+> 8.4%. Nothing regenerates them automatically and this agent did not, because
+> re-mining is a separate deliverable with its own report pair. Nothing depends
+> on the stale numbers today.
+
+## 13. The two mechanism facets still unread, and which layer each needs (2026-09-01)
+
+Both are `expectedFailure` fixtures over owner-attested E1M1 constructs, and
+both were re-measured this session rather than assumed.
+
+**The Link that drives a light.** Every field is in the file and legible one at
+a time -- s125 carries `tx_id 126, command 5`, s124 carries `rx_id 126,
+amplitude -8, shade_always 0, shade_floor 1, shade_walls 1`. What is missing is
+that nothing in the stack reads a SECTOR's `command` as a verb at all, so
+`read_mechanism` returns eight keys and not one of them is a transmitter-side
+facet. This is prompt P8's deliverable and was left to it.
+
+**The casket as one construct.** `reachability.link_pairs` already reports
+`{link 10, sectors [28, 30], sprites [47, 46]}`; `motion.stack_pairs` reports
+nothing for them, because it looks for the floor-picnum-504 see-through
+marking and this pair does not carry it. What is missing is the COMPOSITION
+step -- nothing joins a per-sector mechanism record to the mechanism on the
+other side of its ROR plane. A construct that is four sectors in two planes
+cannot be expressed by a per-sector record at all, so this one is genuinely
+blocked on the typed declaration layer (roadmap Phase 13, MechanismDecl:
+members plus roles).
+
+> **Recommended default: leave both open, and do not loosen either fixture.**
+> They are the countable gap. The Link is one prompt away; the casket is a
+> layer away, and inventing a `stack_partner` key on the per-sector record to
+> make one test pass would put the composition in the wrong place.
