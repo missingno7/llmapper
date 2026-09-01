@@ -359,28 +359,29 @@ def place_markers(layout: Any, name: str, *, driven_region: str,
 
 
 def off_pose(disk: Any, sector_id: int) -> list[tuple[int, int]] | None:
-    """Where the sector's outline sits at state OFF: DRAWN MINUS THE DELTA.
+    """The sector's outline at state OFF: busy 0, from the engine's own rule.
 
-    Not a guess and not a convention. `trInit` translates the sector by
-    -65536 of the marker delta, records THAT as the base with
-    `setBaseWallSect`, and only then applies the sector's own busy
-    (triggers.cpp:2224-2245). So the outline saved in the map is the pose at
-    busy 65536 -- state ON -- and the OFF pose is that outline minus the
-    delta, whatever the author believed they were drawing.
+    `trInit` translates a moving sector by -65536 of the marker delta,
+    records THAT as the base with `setBaseWallSect`, and only then applies
+    the sector's own busy (triggers.cpp:2224-2245). So the outline saved in
+    the map is the pose at busy 65536 -- state ON -- and this is the other
+    one.
 
-    Confirmed to the unit on DOOR-CURTAINS s3: the fin tip is saved at
-    y -1152, the delta is +896, and the base lands on y -2048, which is
-    exactly where the type-3 marker sits.
+    It delegates to `blood_poses`, which transcribes `TranslateSector` and
+    knows that a sweep starts at the sector's REST pose -- so a mechanism
+    authored to start open does not get its two states swapped. An earlier
+    version of this function subtracted the delta from every point in the sector, which
+    is right only when the whole sector travels and wrong for every mechanism
+    that deforms -- a curtain's fin moved bodily instead of stretching, so
+    its closed span measured the same as its drawn one and the fabric could
+    never be calibrated.
     """
-    pair = marker_pair(disk, sector_id)
-    if not pair:
-        return None
-    from .motion_sim import blood_sector_walls
+    from .motion_sim import blood_poses
 
-    dx = pair["on"]["x"] - pair["off"]["x"]
-    dy = pair["on"]["y"] - pair["off"]["y"]
-    return [(int(x) - dx, int(y) - dy)
-            for x, y in blood_sector_walls(disk, sector_id)]
+    if not marker_pair(disk, sector_id):
+        return None
+    off, _on = blood_poses(disk, sector_id)
+    return [(int(round(x)), int(round(y))) for x, y in off]
 
 
 def marker_convention(disk: Any, sector_id: int) -> str | None:
@@ -500,6 +501,74 @@ def wiring(*, route: str = "remote", channel: int | None = None,
     return fields
 
 
+#: `eventq.h`: the two system channels a secret uses, and the command range
+#: that carries a NUMBER rather than a verb.
+CHANNEL_SET_TOTAL_SECRETS = 1
+CHANNEL_SECRET_FOUND = 2
+#: `kCmdNumberic = 64`: command 64 means 0, 65 means 1, and so on.
+CMD_NUMERIC_BASE = 64
+
+
+def secret_credit(index: int = 0) -> dict[str, int]:
+    """XSECTOR for a space that counts as a secret when you walk into it.
+
+    `OTHERSECTORSFX-SECRETS.map` s2 and s3, to the field: transmit on channel
+    2 (`kChannelSecretFound`) with the NUMERIC command that carries the
+    secret's index -- 64 is 0, 65 is 1 -- on entering, once, with
+    `dude_lockout` so a wandering monster cannot claim it for you.
+
+    The command is the part that is easy to get wrong, and the zoo did: it
+    sent command 1, which is kCmdOn. The counter wants a number.
+    """
+    return {"tx_id": CHANNEL_SECRET_FOUND,
+            "command": CMD_NUMERIC_BASE + int(index),
+            "trigger_on": 1, "trigger_once": 1, "trigger_enter": 1,
+            "dude_lockout": 1}
+
+
+def secret_total(count: int) -> dict[str, int]:
+    """XSPRITE that tells the level how many secrets it has.
+
+    Without it the tally has nothing to count against. The tutorial's sprite
+    0 does it and so does every one of the campaign maps checked: listen on
+    channel 7 (level start) and transmit the count on channel 1
+    (`kChannelSetTotalSecrets`) as a numeric command.
+    """
+    return {"rx_id": CHANNEL_LEVEL_START,
+            "tx_id": CHANNEL_SET_TOTAL_SECRETS,
+            "command": CMD_NUMERIC_BASE + int(count), "trigger_on": 1}
+
+
+def secret_faults(disk: Any) -> list[str]:
+    """Secrets wired so the counter never hears them."""
+    out = []
+    total = 0
+    credits = 0
+    for kind, items in (("sector", disk.sectors), ("sprite", disk.sprites),
+                        ("wall", disk.walls)):
+        for index, item in enumerate(items):
+            extra = _extra(item)
+            channel = int(extra.get("tx_id", 0) or 0)
+            command = int(extra.get("command", 0) or 0)
+            if channel == CHANNEL_SET_TOTAL_SECRETS:
+                total += 1
+            if channel != CHANNEL_SECRET_FOUND:
+                continue
+            credits += 1
+            if command < CMD_NUMERIC_BASE:
+                out.append(
+                    f"{kind} {index} credits a secret with command "
+                    f"{command}, which is a verb; channel "
+                    f"{CHANNEL_SECRET_FOUND} counts a NUMBER, so it wants "
+                    f"{CMD_NUMERIC_BASE} or above")
+    if credits and not total:
+        out.append(
+            f"{credits} secret(s) are credited but nothing sets the level "
+            f"total on channel {CHANNEL_SET_TOTAL_SECRETS}, so the tally has "
+            f"nothing to count against")
+    return out
+
+
 #: The canonical switch, from `#TYPE600.MAP` and `#MSGBUT.MAP`: type 21 on
 #: picnum 1046, and it springs back after `wait_time` tenths.
 SWITCH_TYPE, SWITCH_PICNUM = 21, 1046
@@ -583,6 +652,115 @@ def wall_button(layout: Any, region_id: str, edge: tuple, *, channel: int,
                          shootable=shootable)
     layout.wire_wall(region_id, edge[0], edge[1], **fields)
     return fields
+
+
+# ---------------------------------------------------------------------------
+# 3b. THINGS THAT BREAK, AND THE BLAST THAT SELLS IT
+# ---------------------------------------------------------------------------
+
+#: `kStatThing`. A thing is not a switch: it transmits when it DIES, so it
+#: must live on the thing statnum or the engine never runs its damage path.
+THING_STATNUM = 4
+#: `kThingWallCrack`, and the tile the tutorials use for it.
+CRACK_TYPE, CRACK_PICNUM = 408, 1127
+#: `#SPR408.MAP` spr0: wall-aligned, one-sided, centred, translucent.
+#: ENVIRONMENT-EXPLODEWALL uses 464 instead -- hitscan-blocking and opaque --
+#: so the two oracles disagree here and the canonical single is preferred.
+CRACK_CSTAT = 722
+#: `kThingObjectExplode`: the puff that makes a breach read as a breach.
+EXPLODER_TYPE, EXPLODER_PICNUM = 459, 908
+#: `kStatDude`... no: the tutorials put exploders on 11 and nothing else.
+EXPLODER_STATNUM = 11
+EXPLODER_CSTAT = 128
+#: #SPR408 staggers three of them by 2, 1, 1 tenths.
+EXPLODER_WAITS = (2, 1, 1)
+
+
+def thing_transmitter(*, channel: int, command: int = CMD_ON,
+                      once: bool = True) -> dict[str, int]:
+    """XSPRITE for a THING that fires when it is destroyed.
+
+    Not `transmitter`, and the difference is why the zoo's crack did nothing.
+    A switch reports a state edge from `SetSpriteState`; a thing reports its
+    own death, and the trigger that carries that is `trigger_impact` --
+    damage landing on it -- not `trigger_vector`, which is a hitscan
+    crossing. `#SPR408.MAP` spr0 is the record, to the field: tx, command 1,
+    Going ON, Going OFF, Once, Impact.
+    """
+    fields = {"tx_id": int(channel), "command": int(command),
+              "trigger_on": 1, "trigger_off": 1, "trigger_impact": 1}
+    if once:
+        fields["trigger_once"] = 1
+    return fields
+
+
+def crack_thing(**overrides: int) -> dict[str, int]:
+    """The full native record for a breakable wall crack.
+
+    Constructors set `status` and `cstat` themselves. Leaving either to a
+    default is how the zoo shipped a type-408 sitting on the default statnum,
+    where the engine's damage path never reaches it: it looked right in every
+    static reading and did nothing at all when shot.
+    """
+    record = {"type": CRACK_TYPE, "picnum": CRACK_PICNUM,
+              "cstat": CRACK_CSTAT, "status": THING_STATNUM,
+              "x_repeat": 64, "y_repeat": 64, "shade": -8}
+    record.update(overrides)
+    return record
+
+
+def exploder(*, channel: int, wait: int = 1, **overrides: int) -> dict[str, int]:
+    """One puff of the cascade that makes a crack BLOW rather than vanish.
+
+    `#SPR408.MAP` places three, all on the crack's own channel, staggered by
+    a tenth or two so the breach comes apart in sequence instead of all at
+    once. Omitting them -- which the zoo did -- leaves a wall that silently
+    disappears, and that is what the owner saw.
+    """
+    record = {"type": EXPLODER_TYPE, "picnum": EXPLODER_PICNUM,
+              "cstat": EXPLODER_CSTAT, "status": EXPLODER_STATNUM,
+              "x_repeat": 4, "y_repeat": 64, "shade": -8,
+              "behavior": {"rx_id": int(channel), "trigger_on": 1,
+                           "wait_time": int(wait)}}
+    record.update(overrides)
+    return record
+
+
+def thing_faults(disk: Any) -> list[str]:
+    """Things wired so they can never fire. A constructor-level error.
+
+    Two ways to build a dead crack, both invisible to every other reading
+    because each field is individually legal:
+
+    * it is not on the THING statnum, so the engine's damage path never
+      reaches it;
+    * it reports `trigger_vector` (a hitscan crossing) instead of
+      `trigger_impact` (damage landing), or reports no trigger at all.
+    """
+    out = []
+    for index, sprite in enumerate(disk.sprites):
+        if int(sprite.fields["type"]) != CRACK_TYPE:
+            continue
+        extra = _extra(sprite)
+        if int(sprite.fields["status"]) != THING_STATNUM:
+            out.append(
+                f"sprite {index} is a type-{CRACK_TYPE} thing on statnum "
+                f"{int(sprite.fields['status'])}, not {THING_STATNUM}: the "
+                f"engine's damage path never reaches it, so it cannot break")
+        if not extra.get("trigger_impact"):
+            out.append(
+                f"sprite {index} is a type-{CRACK_TYPE} thing without "
+                f"trigger_impact"
+                + (" (it has trigger_vector, which is a hitscan crossing, "
+                   "not damage landing)" if extra.get("trigger_vector")
+                   else "")
+                + ": nothing will fire when it is destroyed")
+        if extra.get("tx_id") and not (extra.get("trigger_on")
+                                       or extra.get("trigger_off")):
+            out.append(
+                f"sprite {index} transmits on {int(extra['tx_id'])} but "
+                f"reports no edge")
+    return out
 
 
 def silent_transmitters(disk: Any) -> list[str]:

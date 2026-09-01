@@ -252,6 +252,22 @@ def blood_sweep(level: Any, sector_id: int, *, steps: int = 16) -> list[Polygon]
     return [place(base, rest + (target - rest) * (i / steps)) for i in range(steps + 1)]
 
 
+def blood_poses(level: Any, sector_id: int) -> tuple[Polygon, Polygon]:
+    """The OFF outline and the ON outline, in that order, whatever it rests at.
+
+    `blood_sweep` runs from the sector's REST pose outwards, because that is
+    the order a player sees. So its first frame is busy 0 for a state-0
+    sector and busy 65536 for a state-1 one, and anything that reads
+    `frames[0]` as "OFF" mislabels every mechanism authored to start open.
+    The zoo's two casket lids are exactly that, and their state pair was
+    printed backwards until this existed.
+    """
+    frames = blood_sweep(level, sector_id, steps=1)
+    extra = level.sectors[sector_id].extra
+    rests_on = bool(int(extra.fields.get("state", 0))) if extra else False
+    return (frames[-1], frames[0]) if rests_on else (frames[0], frames[-1])
+
+
 def rest_displacement(level: Any, sector_id: int, frames: Sequence[Polygon]) -> float:
     """How far the sector sits from its authored outline before anything moves.
 
