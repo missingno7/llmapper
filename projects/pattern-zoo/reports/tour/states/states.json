@@ -35,5 +35,10 @@
    "turnstile_same.png"
   ]
  },
- "mechanisms": 15
+ "mechanisms": 15,
+ "same_by_design": {
+  "rotating_door": "turns -8192 -- whole circles, so it ends where it started: the two states ARE the same pose",
+  "turnstile_pair": "turns -8192 -- whole circles, so it ends where it started: the two states ARE the same pose",
+  "turnstile_same": "turns -8192 -- whole circles, so it ends where it started: the two states ARE the same pose"
+ }
 }

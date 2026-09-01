@@ -1,0 +1,792 @@
+{
+ "$schema": "llmapper.zoo-state-check",
+ "schema_version": 1,
+ "about": "each mechanism measured in both states, from the snapped maps -- not from frames",
+ "mechanisms": 19,
+ "changed": 19,
+ "inert": [],
+ "disagreements": [],
+ "rows": [
+  {
+   "sector": 4,
+   "exhibit": "push_door",
+   "type": 600,
+   "off": {
+    "area": 1048576.0,
+    "headroom": 0,
+    "narrowest_portal": 2048.0,
+    "sprites": {}
+   },
+   "on": {
+    "area": 1048576.0,
+    "headroom": 25440,
+    "narrowest_portal": 2048.0,
+    "sprites": {}
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 25440,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": null,
+   "turn": null,
+   "disagreements": [],
+   "verdict": "headroom 0 -> 25440"
+  },
+  {
+   "sector": 7,
+   "exhibit": "keyed_door",
+   "type": 600,
+   "off": {
+    "area": 1048576.0,
+    "headroom": 0,
+    "narrowest_portal": 2048.0,
+    "sprites": {}
+   },
+   "on": {
+    "area": 1048576.0,
+    "headroom": 25440,
+    "narrowest_portal": 2048.0,
+    "sprites": {}
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 25440,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": null,
+   "turn": null,
+   "disagreements": [],
+   "verdict": "headroom 0 -> 25440"
+  },
+  {
+   "sector": 9,
+   "exhibit": "crack",
+   "type": 600,
+   "off": {
+    "area": 1179648.0,
+    "headroom": 0,
+    "narrowest_portal": 1536.0,
+    "sprites": {}
+   },
+   "on": {
+    "area": 1179648.0,
+    "headroom": 33280,
+    "narrowest_portal": 1536.0,
+    "sprites": {}
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 33280,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": null,
+   "turn": null,
+   "disagreements": [],
+   "verdict": "headroom 0 -> 33280"
+  },
+  {
+   "sector": 11,
+   "exhibit": "double_slide",
+   "type": 614,
+   "off": {
+    "area": 3145728.0,
+    "headroom": 33280,
+    "narrowest_portal": 3072.0,
+    "sprites": {
+     "66": [
+      -27510,
+      14848
+     ],
+     "67": [
+      -28278,
+      14848
+     ]
+    }
+   },
+   "on": {
+    "area": 3145728.0,
+    "headroom": 33280,
+    "narrowest_portal": 3072.0,
+    "sprites": {
+     "66": [
+      -26742,
+      14848
+     ],
+     "67": [
+      -29046,
+      14848
+     ]
+    }
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 0,
+    "portal": 0.0,
+    "sprite_travel": 768.0
+   },
+   "declared_travel": 768.0,
+   "turn": null,
+   "disagreements": [],
+   "verdict": "2 payload sprite(s) travel 768"
+  },
+  {
+   "sector": 14,
+   "exhibit": "rotating_door",
+   "type": 615,
+   "off": {
+    "area": 4194304.0,
+    "headroom": 32768,
+    "narrowest_portal": 2048.0,
+    "sprites": {
+     "87": [
+      -35114,
+      15872
+     ],
+     "88": [
+      -34346,
+      15872
+     ],
+     "89": [
+      -34730,
+      16256
+     ],
+     "90": [
+      -34730,
+      15488
+     ]
+    }
+   },
+   "on": {
+    "area": 4194304.0,
+    "headroom": 32768,
+    "narrowest_portal": 2048.0,
+    "sprites": {
+     "87": [
+      -35114,
+      15872
+     ],
+     "88": [
+      -34346,
+      15872
+     ],
+     "89": [
+      -34730,
+      16256
+     ],
+     "90": [
+      -34730,
+      15488
+     ]
+    }
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 0,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": null,
+   "turn": -8192,
+   "disagreements": [],
+   "verdict": "identical by design: turns -8192, whole circles, so both states are the same pose"
+  },
+  {
+   "sector": 15,
+   "exhibit": "rotating_door",
+   "type": 615,
+   "off": {
+    "area": 4194304.0,
+    "headroom": 32768,
+    "narrowest_portal": 2048.0,
+    "sprites": {
+     "92": [
+      -38186,
+      15872
+     ],
+     "93": [
+      -37418,
+      15872
+     ],
+     "94": [
+      -37802,
+      16256
+     ],
+     "95": [
+      -37802,
+      15488
+     ]
+    }
+   },
+   "on": {
+    "area": 4194304.0,
+    "headroom": 32768,
+    "narrowest_portal": 2048.0,
+    "sprites": {
+     "92": [
+      -38186,
+      15872
+     ],
+     "93": [
+      -37418,
+      15872
+     ],
+     "94": [
+      -37802,
+      16256
+     ],
+     "95": [
+      -37802,
+      15488
+     ]
+    }
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 0,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": null,
+   "turn": -8192,
+   "disagreements": [],
+   "verdict": "identical by design: turns -8192, whole circles, so both states are the same pose"
+  },
+  {
+   "sector": 16,
+   "exhibit": "curtain",
+   "type": 614,
+   "off": {
+    "area": 589824.0,
+    "headroom": 33280,
+    "narrowest_portal": 3072.0,
+    "sprites": {}
+   },
+   "on": {
+    "area": 778240.0,
+    "headroom": 33280,
+    "narrowest_portal": 3072.0,
+    "sprites": {}
+   },
+   "changed": {
+    "area": 188416.0,
+    "headroom": 0,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": 2944.0,
+   "turn": null,
+   "disagreements": [],
+   "verdict": "area 589824 -> 778240"
+  },
+  {
+   "sector": 19,
+   "exhibit": "switched_door",
+   "type": 600,
+   "off": {
+    "area": 1048576.0,
+    "headroom": 0,
+    "narrowest_portal": 2048.0,
+    "sprites": {}
+   },
+   "on": {
+    "area": 1048576.0,
+    "headroom": 25440,
+    "narrowest_portal": 2048.0,
+    "sprites": {}
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 25440,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": null,
+   "turn": null,
+   "disagreements": [],
+   "verdict": "headroom 0 -> 25440"
+  },
+  {
+   "sector": 21,
+   "exhibit": "lift",
+   "type": 600,
+   "off": {
+    "area": 6291456.0,
+    "headroom": 66560,
+    "narrowest_portal": 3072.0,
+    "sprites": {}
+   },
+   "on": {
+    "area": 6291456.0,
+    "headroom": 33280,
+    "narrowest_portal": 3072.0,
+    "sprites": {}
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": -33280,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": null,
+   "turn": null,
+   "disagreements": [],
+   "verdict": "headroom 66560 -> 33280"
+  },
+  {
+   "sector": 24,
+   "exhibit": "casket",
+   "type": 614,
+   "off": {
+    "area": 262144.0,
+    "headroom": 33280,
+    "narrowest_portal": 2048.0,
+    "sprites": {}
+   },
+   "on": {
+    "area": 4194304.0,
+    "headroom": 27136,
+    "narrowest_portal": 2048.0,
+    "sprites": {}
+   },
+   "changed": {
+    "area": 3932160.0,
+    "headroom": -6144,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": 1920.0,
+   "turn": null,
+   "disagreements": [],
+   "verdict": "headroom 33280 -> 27136; area 262144 -> 4194304"
+  },
+  {
+   "sector": 26,
+   "exhibit": "casket",
+   "type": 614,
+   "off": {
+    "area": 262144.0,
+    "headroom": 33280,
+    "narrowest_portal": 2048.0,
+    "sprites": {}
+   },
+   "on": {
+    "area": 4194304.0,
+    "headroom": 33280,
+    "narrowest_portal": 2048.0,
+    "sprites": {}
+   },
+   "changed": {
+    "area": 3932160.0,
+    "headroom": 0,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": 1920.0,
+   "turn": null,
+   "disagreements": [],
+   "verdict": "area 262144 -> 4194304"
+  },
+  {
+   "sector": 28,
+   "exhibit": "plain_slide",
+   "type": 614,
+   "off": {
+    "area": 1572864.0,
+    "headroom": 33280,
+    "narrowest_portal": 2048.0,
+    "sprites": {
+     "156": [
+      -27527,
+      3456
+     ]
+    }
+   },
+   "on": {
+    "area": 1572864.0,
+    "headroom": 33280,
+    "narrowest_portal": 2048.0,
+    "sprites": {
+     "156": [
+      -28039,
+      3456
+     ]
+    }
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 0,
+    "portal": 0.0,
+    "sprite_travel": 512.0
+   },
+   "declared_travel": 512.0,
+   "turn": null,
+   "disagreements": [],
+   "verdict": "1 payload sprite(s) travel 512"
+  },
+  {
+   "sector": 30,
+   "exhibit": "shelf_secret",
+   "type": 614,
+   "off": {
+    "area": 2359296.0,
+    "headroom": 33280,
+    "narrowest_portal": 3072.0,
+    "sprites": {
+     "170": [
+      -35426,
+      3456
+     ],
+     "171": [
+      -36194,
+      3456
+     ]
+    }
+   },
+   "on": {
+    "area": 2359296.0,
+    "headroom": 33280,
+    "narrowest_portal": 3072.0,
+    "sprites": {
+     "170": [
+      -34658,
+      3456
+     ],
+     "171": [
+      -36962,
+      3456
+     ]
+    }
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 0,
+    "portal": 0.0,
+    "sprite_travel": 768.0
+   },
+   "declared_travel": 768.0,
+   "turn": null,
+   "disagreements": [],
+   "verdict": "2 payload sprite(s) travel 768"
+  },
+  {
+   "sector": 55,
+   "exhibit": "turnstile_pair",
+   "type": 615,
+   "off": {
+    "area": 4194304.0,
+    "headroom": 32768,
+    "narrowest_portal": 2048.0,
+    "sprites": {
+     "356": [
+      20695,
+      46592
+     ],
+     "357": [
+      19927,
+      46592
+     ],
+     "358": [
+      20311,
+      46976
+     ],
+     "359": [
+      20311,
+      46208
+     ]
+    }
+   },
+   "on": {
+    "area": 4194304.0,
+    "headroom": 32768,
+    "narrowest_portal": 2048.0,
+    "sprites": {
+     "356": [
+      20695,
+      46592
+     ],
+     "357": [
+      19927,
+      46592
+     ],
+     "358": [
+      20311,
+      46976
+     ],
+     "359": [
+      20311,
+      46208
+     ]
+    }
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 0,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": null,
+   "turn": -8192,
+   "disagreements": [],
+   "verdict": "identical by design: turns -8192, whole circles, so both states are the same pose"
+  },
+  {
+   "sector": 56,
+   "exhibit": "turnstile_pair",
+   "type": 615,
+   "off": {
+    "area": 4194304.0,
+    "headroom": 32768,
+    "narrowest_portal": 2048.0,
+    "sprites": {
+     "361": [
+      23767,
+      46592
+     ],
+     "362": [
+      22999,
+      46592
+     ],
+     "363": [
+      23383,
+      46976
+     ],
+     "364": [
+      23383,
+      46208
+     ]
+    }
+   },
+   "on": {
+    "area": 4194304.0,
+    "headroom": 32768,
+    "narrowest_portal": 2048.0,
+    "sprites": {
+     "361": [
+      23767,
+      46592
+     ],
+     "362": [
+      22999,
+      46592
+     ],
+     "363": [
+      23383,
+      46976
+     ],
+     "364": [
+      23383,
+      46208
+     ]
+    }
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 0,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": null,
+   "turn": -8192,
+   "disagreements": [],
+   "verdict": "identical by design: turns -8192, whole circles, so both states are the same pose"
+  },
+  {
+   "sector": 64,
+   "exhibit": "turnstile_same",
+   "type": 615,
+   "off": {
+    "area": 4194304.0,
+    "headroom": 32768,
+    "narrowest_portal": 2048.0,
+    "sprites": {
+     "396": [
+      25070,
+      27136
+     ],
+     "397": [
+      24302,
+      27136
+     ],
+     "398": [
+      24686,
+      26752
+     ],
+     "399": [
+      24686,
+      27520
+     ]
+    }
+   },
+   "on": {
+    "area": 4194304.0,
+    "headroom": 32768,
+    "narrowest_portal": 2048.0,
+    "sprites": {
+     "396": [
+      25070,
+      27136
+     ],
+     "397": [
+      24302,
+      27136
+     ],
+     "398": [
+      24686,
+      26752
+     ],
+     "399": [
+      24686,
+      27520
+     ]
+    }
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 0,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": null,
+   "turn": -8192,
+   "disagreements": [],
+   "verdict": "identical by design: turns -8192, whole circles, so both states are the same pose"
+  },
+  {
+   "sector": 65,
+   "exhibit": "turnstile_same",
+   "type": 615,
+   "off": {
+    "area": 4194304.0,
+    "headroom": 32768,
+    "narrowest_portal": 2048.0,
+    "sprites": {
+     "401": [
+      28142,
+      27136
+     ],
+     "402": [
+      27374,
+      27136
+     ],
+     "403": [
+      27758,
+      26752
+     ],
+     "404": [
+      27758,
+      27520
+     ]
+    }
+   },
+   "on": {
+    "area": 4194304.0,
+    "headroom": 32768,
+    "narrowest_portal": 2048.0,
+    "sprites": {
+     "401": [
+      28142,
+      27136
+     ],
+     "402": [
+      27374,
+      27136
+     ],
+     "403": [
+      27758,
+      26752
+     ],
+     "404": [
+      27758,
+      27520
+     ]
+    }
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 0,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": null,
+   "turn": -8192,
+   "disagreements": [],
+   "verdict": "identical by design: turns -8192, whole circles, so both states are the same pose"
+  },
+  {
+   "sector": 74,
+   "exhibit": "sliding_gate",
+   "type": 614,
+   "off": {
+    "area": 4194304.0,
+    "headroom": 33280,
+    "narrowest_portal": 4096.0,
+    "sprites": {
+     "443": [
+      -15753,
+      61952
+     ],
+     "444": [
+      -16777,
+      61952
+     ]
+    }
+   },
+   "on": {
+    "area": 4194304.0,
+    "headroom": 33280,
+    "narrowest_portal": 4096.0,
+    "sprites": {
+     "443": [
+      -14729,
+      61952
+     ],
+     "444": [
+      -17801,
+      61952
+     ]
+    }
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 0,
+    "portal": 0.0,
+    "sprite_travel": 1024.0
+   },
+   "declared_travel": 1024.0,
+   "turn": null,
+   "disagreements": [],
+   "verdict": "2 payload sprite(s) travel 1024"
+  },
+  {
+   "sector": 76,
+   "exhibit": "sewer_door",
+   "type": 600,
+   "off": {
+    "area": 1048576.0,
+    "headroom": 0,
+    "narrowest_portal": 2048.0,
+    "sprites": {}
+   },
+   "on": {
+    "area": 1048576.0,
+    "headroom": 25440,
+    "narrowest_portal": 2048.0,
+    "sprites": {}
+   },
+   "changed": {
+    "area": 0.0,
+    "headroom": 25440,
+    "portal": 0.0,
+    "sprite_travel": 0.0
+   },
+   "declared_travel": null,
+   "turn": null,
+   "disagreements": [],
+   "verdict": "headroom 0 -> 25440"
+  }
+ ]
+}
