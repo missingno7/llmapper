@@ -90,11 +90,22 @@ def sweep_sector(disk: Any, sector_id: int, *, steps: int = 16) -> SweptFinding:
                 f"way, so it is inside out from here on")
             break
     for index, value in enumerate(signed):
-        if abs(value) < MIN_AREA:
-            found.problems.append(
-                f"step {index}/{steps}: area collapses to {abs(value):.0f}, "
-                f"under one player width squared")
-            break
+        if abs(value) >= MIN_AREA:
+            continue
+        #: A curtain drawn fully across has no interior left, and
+        #: DOOR-CURTAINS s24 does exactly that at its OFF pose. That is a
+        #: closed door, not a broken sector -- so a collapse is only a fault
+        #: when it happens PART WAY through, where nothing is meant to be
+        #: shut.
+        if index in (0, steps):
+            found.notes.append(
+                f"step {index}/{steps}: closes to {abs(value):.0f} of area, "
+                f"which is a mechanism that shuts completely")
+            continue
+        found.problems.append(
+            f"step {index}/{steps}: area collapses to {abs(value):.0f} part "
+            f"way through the travel, under one player width squared")
+        break
     for index, frame in enumerate(frames):
         crossings = self_intersections(frame)
         if crossings:
@@ -105,11 +116,44 @@ def sweep_sector(disk: Any, sector_id: int, *, steps: int = 16) -> SweptFinding:
 
     displacement = rest_displacement(disk, sector_id, frames)
     if displacement > REST_TOLERANCE:
-        found.notes.append(
-            f"sits {displacement:.0f} units from its drawn outline at load; "
-            f"either it is authored in the other pose on purpose (Blood's "
-            f"gates are, and say so with `state`) or the state is a leftover")
+        #: Displacing at load is the NORMAL case, not a smell. Markers are
+        #: state-anchored: the mapper draws the geometry at the ON pose and
+        #: `state` says which marker it snaps to, so a state-0 sector moves
+        #: the whole marker separation the instant the level starts. That is
+        #: how a curtain drawn open comes up closed. It is only worth saying
+        #: out loud when the displacement does NOT match the separation,
+        #: because then the two disagree about something.
+        expected = _marker_separation(disk, sector_id)
+        drawn = _drawn_pose(disk, sector_id)
+        consistent = (expected is not None
+                      and abs(displacement - expected) <= REST_TOLERANCE
+                      and drawn == "on")
+        if not consistent:
+            found.notes.append(
+                f"sits {displacement:.0f} units from its drawn outline at "
+                f"load, which is not its {expected} marker separation drawn "
+                f"at {drawn!r}: the geometry and the state disagree")
     return found
+
+
+def _marker_separation(disk: Any, sector_id: int) -> float | None:
+    from math import hypot
+
+    from .motion import marker_pair
+
+    pair = marker_pair(disk, sector_id)
+    if not pair:
+        return None
+    return hypot(pair["travel"][0], pair["travel"][1])
+
+
+def _drawn_pose(disk: Any, sector_id: int) -> str | None:
+    from .motion import drawn_pose
+
+    try:
+        return drawn_pose(disk, sector_id)
+    except Exception:
+        return None
 
 
 def polygon_area_signed(polygon: Iterable[Any]) -> float:

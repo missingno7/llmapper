@@ -266,7 +266,10 @@ def marker_pair(disk: Any, sector_id: int) -> dict[str, Any] | None:
                "angle": int(b["angle"])},
         "travel": (int(b["x"]) - int(a["x"]), int(b["y"]) - int(a["y"])),
         "turn": int(b["angle"]) - int(a["angle"]),
-        "rests_at": "on" if int(extra.get("state", 0)) else "off",
+        #: Not "where it rests on its way somewhere" -- which STATE it is
+        #: in. The two marker positions ARE the two states.
+        "state": 1 if int(extra.get("state", 0)) else 0,
+        "at": "on" if int(extra.get("state", 0)) else "off",
     }
 
 
@@ -276,21 +279,31 @@ def place_markers(layout: Any, name: str, *, driven_region: str,
                   on_region: str | None = None,
                   z: int = 0, off_z: int | None = None,
                   on_z: int | None = None, turn: int = 0) -> list[str]:
-    """Build a from/to pair for a driven sector.
+    """The pair that anchors a motion's two STATES.
 
-    `owner` is the sector a marker CONTROLS, not the one it stands in --
-    E1M1's casket puts its "on" marker inside the cover, which has no XSECTOR
-    at all, and `dbLoadMap` deletes any marker whose owner names none. So the
-    two regions are separable and both markers are owned by the driven one.
+    **Markers are state-anchored, not journey-anchored.** Settled against
+    `maps/blood/mechanism/Vanilla/DOOR-CURTAINS.map`, three exemplars to the
+    coordinate: type 3 is the position FOR STATE OFF and type 4 the position
+    FOR STATE ON. There is no "from" and no "to" and no rest marker -- rest
+    is whatever `state` says.
 
-    The angle is a MOTION PARAMETER, not a facing: for a Marked slide the
-    engine interpolates off-angle to on-angle and rotates the dragged walls
-    by the result. Leave it at zero for a pure translation.
+    The mapper DRAWS the geometry at the ON pose. Every tutorial curtain's
+    fabric hem is saved exactly at its type-4 marker: s3's fin tip sits at
+    y -1152 and its marker 337 sits at y -1152, while marker 336 (OFF) is
+    away at -2048 where the fabric will be when it is drawn across. `state`
+    then decides which of the two the sector snaps to at load, and a state-0
+    sector displaces itself by the whole separation the instant the level
+    starts -- which is not a bug, it is how a curtain drawn open comes up
+    closed.
+
+    Modelling this as a journey with a rest end was wrong in both directions
+    and is why the pattern zoo's curtains ran backwards.
+
+    `owner` is still the sector CONTROLLED rather than the one a marker
+    stands in, and `dbLoadMap` deletes any marker whose owner names no
+    XSECTOR.
     """
     out = []
-    #: Each marker's z follows the sector it STANDS in, which need not be
-    #: the driven one: a lid is a step above its hole, and a marker at the
-    #: hole's floor is outside the lid's range entirely.
     for tag, kind, at, where, at_z in (
             ("off", MARKER_OFF, off_at, off_region or driven_region,
              z if off_z is None else off_z),
@@ -304,6 +317,29 @@ def place_markers(layout: Any, name: str, *, driven_region: str,
             angle=int(turn) if tag == "on" else 0,
             marker_owner=driven_region))
     return out
+
+
+def drawn_pose(disk: Any, sector_id: int) -> str | None:
+    """Which state the geometry is SAVED at: always "on" in the tutorials.
+
+    A cross-check rather than an assumption. If a map is drawn at its OFF
+    marker instead, this says so, and whatever reads it can decide whether
+    that was meant.
+    """
+    pair = marker_pair(disk, sector_id)
+    if not pair:
+        return None
+    from .motion_sim import blood_sector_walls
+
+    walls = blood_sector_walls(disk, sector_id)
+    flags = flagged_walls(disk, sector_id)
+    if not flags or not walls:
+        return None
+    start = int(disk.sectors[sector_id].fields["wall_ptr"])
+    tip = walls[sorted(flags)[0] - start]
+    to_off = abs(tip[0] - pair["off"]["x"]) + abs(tip[1] - pair["off"]["y"])
+    to_on = abs(tip[0] - pair["on"]["x"]) + abs(tip[1] - pair["on"]["y"])
+    return "on" if to_on <= to_off else "off"
 
 
 # ---------------------------------------------------------------------------
