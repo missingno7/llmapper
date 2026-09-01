@@ -767,6 +767,13 @@ def curtain(
     behavior.update(motion.wiring(route=route, channel=channel,
                                   command=motion.CMD_TOGGLE,
                                   receiver_state=1))
+    #: And pushable directly, which is how the canonical doors are
+    #: worked: `#SLDOOR.MAP` and `#SWDOOR.MAP` carry `trigger_wall_push`
+    #: on the sector and have no switch at all, and E1M1's curtain puts
+    #: XWALLs on its own fabric transmitting to itself. A curtain you
+    #: cannot push is a curtain you have to find a button for.
+    behavior.update({"trigger_push": 1, "trigger_wall_push": 1,
+                     "trigger_on": 1, "trigger_off": 1})
     #: The aperture, read off E1M1 s125 wall by wall. The fabric is not a
     #: rectangle: it is a strip whose MIDDLE is recessed deeper than its two
     #: ends, and the flagged caps are the two steps between. The room meets
@@ -859,6 +866,7 @@ def planar_door(
     floor_z: int,
     ceiling_z: int,
     lid_step: int = PLANAR_LID_STEP,
+    plane: str = "floor",
     motor: str = "lid",
     flags: str = "both",
     busy_time: int = PLANAR_DOOR_BUSY,
@@ -924,6 +932,8 @@ def planar_door(
                 f"{high - low}-unit footprint, under the {MOTION_MIN_DEPTH} "
                 f"a body needs. Widen the footprint or shorten the travel")
 
+    if plane not in ("floor", "ceiling"):
+        raise MechanismError(f"{name}: plane is 'floor' or 'ceiling'")
     lid_first = int(travel) < 0
     def _rect(a: int, b: int) -> list[tuple[int, int]]:
         if axis == "x":
@@ -932,7 +942,18 @@ def planar_door(
 
     lid_span = (low, rest) if lid_first else (rest, high)
     hole_span = (rest, high) if lid_first else (low, rest)
-    lid_floor = int(floor_z) - int(lid_step)
+    #: A casket is TWO of these, one above the other: a lid in the upper
+    #: room's FLOOR and its mirror in the lower room's CEILING, on one
+    #: channel so the two openings appear together. The oracle's s2/s3 is the
+    #: floor plane and s5/s6 the ceiling plane, and the lid's 1024 step goes
+    #: on whichever surface the plane names -- s2's floor is 1024 above s3's,
+    #: s5's ceiling 1024 below s6's.
+    if plane == "floor":
+        lid_floor, lid_ceiling = int(floor_z) - int(lid_step), int(ceiling_z)
+        hole_floor, hole_ceiling = int(floor_z), int(ceiling_z)
+    else:
+        lid_floor, lid_ceiling = int(floor_z), int(ceiling_z) + int(lid_step)
+        hole_floor, hole_ceiling = int(floor_z), int(ceiling_z)
 
     #: Saved COVERED and rested there, so the lid is shut when you arrive.
     behavior = {
@@ -961,13 +982,13 @@ def planar_door(
     layout.add_region(
         lid_region, _rect(*lid_span), role="doorway",
         type=614 if motor == "lid" else 0,
-        floor_z=lid_floor, ceiling_z=ceiling_z,
+        floor_z=lid_floor, ceiling_z=lid_ceiling,
         **({"sector_behavior": behavior} if motor == "lid" else {}),
         **common, **(lid_kwargs or {}))
     layout.add_region(
         hole_region, _rect(*hole_span), role="doorway",
         type=614 if motor == "hole" else 0,
-        floor_z=int(floor_z), ceiling_z=ceiling_z,
+        floor_z=hole_floor, ceiling_z=hole_ceiling,
         **({"sector_behavior": behavior} if motor == "hole" else {}),
         **common, **(hole_kwargs or {}))
 
@@ -988,7 +1009,7 @@ def planar_door(
         return lid_region if lid_span[0] <= along <= lid_span[1] else hole_region
 
     def _floor_of(region: str) -> int:
-        return lid_floor if region == lid_region else int(floor_z)
+        return lid_floor if region == lid_region else hole_floor
 
     off_where, on_where = _holds(opened), _holds(rest)
     markers = motion.place_markers(
@@ -1004,7 +1025,7 @@ def planar_door(
         "flags": flags, "markers": markers, "lift_out": int(lift_out),
         "hole_always": hole_span,
         "link_anchor": _point((hole_span[0] + hole_span[1]) // 2),
-        "rests": "covered",
+        "rests": "covered", "plane": plane,
         #: The two halves share the boundary, so both are in the motion set
         #: by construction and both are declared.
         "declared_motion": [lid_region, hole_region],
