@@ -199,6 +199,75 @@ class MotionSetFinding:
         return not self.undeclared
 
 
+def drag_closure(disk: Any, sector_id: int) -> dict[str, Any]:
+    """Which walls `DragPoint` actually moves, walked the way the engine does.
+
+    `motion_set` finds the moved walls by COORDINATE coincidence, which is a
+    good approximation and not what the engine does. `DragPoint`
+    (triggers.cpp:817-854) walks the `nextwall` ring from the dragged wall:
+
+        vb = nWall
+        do { if (wall[vb].nextwall >= 0) { vb = wall[wall[vb].nextwall].point2;
+             ... } } while (vb != nWall)
+
+    -- it follows the red-wall links, so it moves every wall that SHARES THE
+    VERTEX THROUGH THE LINK GRAPH. Two walls can sit on the same coordinate
+    without being linked (a T-junction, or two rooms that merely touch), and
+    linked walls always share a coordinate. So the coordinate reading can
+    over-report and never under-reports, and where the two disagree the
+    nextwall walk is the truth.
+    """
+    start = int(disk.sectors[sector_id].fields["wall_ptr"])
+    count = int(disk.sectors[sector_id].fields["wall_count"])
+    flagged = flagged_walls(disk, sector_id)
+    owners = wall_owners(disk)
+
+    def ring(wall_id: int) -> list[int]:
+        """Every wall DragPoint touches, from this one."""
+        seen, current = [wall_id], wall_id
+        guard = 0
+        while guard < 64:
+            guard += 1
+            nxt = int(disk.walls[current].fields["next_wall"])
+            if nxt < 0:
+                break
+            current = int(disk.walls[nxt].fields["point2"])
+            if current == wall_id or current in seen:
+                break
+            seen.append(current)
+        return seen
+
+    moved: set[int] = set()
+    for wall_id in flagged:
+        moved.update(ring(wall_id))
+        #: a flagged wall also drags its point2's vertex when that wall is
+        #: itself unflagged (triggers.cpp:902-909)
+        nxt = int(disk.walls[wall_id].fields["point2"])
+        if not int(disk.walls[nxt].fields["cstat"]) & CARRY:
+            moved.update(ring(nxt))
+    sectors = sorted({owners[w] for w in moved if w in owners})
+    return {"walls": sorted(moved), "sectors": sectors,
+            "flagged": sorted(flagged),
+            "basis": "triggers.cpp:817-854 DragPoint walks nextwall; "
+                     ":902-909 a flagged wall drags its point2 too"}
+
+
+def closure_disagreement(disk: Any, sector_id: int) -> dict[str, Any]:
+    """Where the coordinate reading and the nextwall walk differ."""
+    by_link = drag_closure(disk, sector_id)
+    try:
+        by_coord = motion_set(disk, sector_id)
+    except Exception as exc:
+        return {"error": str(exc)}
+    link, coord = set(by_link["sectors"]), set(by_coord["sectors"])
+    return {
+        "by_nextwall": sorted(link), "by_coordinate": sorted(coord),
+        "coordinate_only": sorted(coord - link),
+        "nextwall_only": sorted(link - coord),
+        "agree": link == coord,
+    }
+
+
 def check_motion_set(disk: Any, sector_id: int, declared: Iterable[int],
                      owners: dict[int, int] | None = None) -> MotionSetFinding:
     """Diff the actual motion set against the sentence's declared payload.
