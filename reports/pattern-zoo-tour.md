@@ -51,22 +51,25 @@ geometry audit          11 zero_exit_gameplay_sector, every one a shut
                         the source and the point of the exhibit
 NBlood load/spawn       **pass** -- the map loads and the player spawns
 observer                31 exhibits rendered, 0 refused
+state preview           15 mechanisms in both poses, snapped by the marker law
 ```
 
 ## What to try first
 
-1. **PUSH DOOR** (doors and mechanisms) -- open it. In v1 this did
-   nothing at all. If it rises, the other five type-600 sectors are
-   built the same way and the whole v1 failure class is closed.
-2. **CASKET** -- the owner's own correction, built: a slide and a z
-   travel conjugated on ONE sector. Check the z motion reads as the
-   ergonomic lift-out and not as part of the gating.
+1. **CASKET** -- stand on the lid and hit the switch. It should toggle
+   (it sent a bare ON to a sector already ON before, and did nothing),
+   both planes should move together so the ceiling below opens as the
+   floor above does, and the hole should be SEEN through, not just
+   fallen through.
+2. **CURTAIN** -- push the fabric itself, and the switch. It rests
+   CLOSED now and opening gathers it; it ran backwards before. The room
+   around it must not move at all.
 3. **TURNSTILE PAIR** (street) -- walk into it. Whether a body passes a
    turning rotor is the pipeline's longest-standing unproven claim.
-4. **SHOP** as a whole -- the section is the claim. Does it read as a
+4. **Any other switch** -- all five in the zoo were silent until this
+   run. PUSH DOOR, SWITCHED DOOR, SHELF SECRET are the others.
+5. **SHOP** as a whole -- the section is the claim. Does it read as a
    shop, or as four exhibits in a room?
-5. **STRONG BINDING** (tile museum) -- read the owner's own names back
-   off the panels and correct any that are wrong.
 
 ## DOORS AND MECHANISMS
 
@@ -86,6 +89,10 @@ a z-motion door used from the room outside it.
 
 ![PUSH DOOR](projects/pattern-zoo/reports/tour/observation/frames/push_door.png)
 
+| state OFF | state ON |
+| --- | --- |
+| ![PUSH DOOR off](projects/pattern-zoo/reports/tour/states/off/frames/push_door.png) | ![PUSH DOOR on](projects/pattern-zoo/reports/tour/states/on/frames/push_door.png) |
+
 ### SWITCHED DOOR
 
 the same motion, worked from a switch across the room.
@@ -97,6 +104,10 @@ the same motion, worked from a switch across the room.
 
 ![SWITCHED DOOR](projects/pattern-zoo/reports/tour/observation/frames/switched_door.png)
 
+| state OFF | state ON |
+| --- | --- |
+| ![SWITCHED DOOR off](projects/pattern-zoo/reports/tour/states/off/frames/switched_door.png) | ![SWITCHED DOOR on](projects/pattern-zoo/reports/tour/states/on/frames/switched_door.png) |
+
 ### KEYED DOOR
 
 a door that wants the moon key, which lies in the room.
@@ -106,6 +117,10 @@ a door that wants the moon key, which lies in the room.
 - **read back as:** 1 sector(s) of type 600, read as a changes what fits through, requiring key 6
 
 ![KEYED DOOR](projects/pattern-zoo/reports/tour/observation/frames/keyed_door.png)
+
+| state OFF | state ON |
+| --- | --- |
+| ![KEYED DOOR off](projects/pattern-zoo/reports/tour/states/off/frames/keyed_door.png) | ![KEYED DOOR on](projects/pattern-zoo/reports/tour/states/on/frames/keyed_door.png) |
 
 ### LIFT
 
@@ -118,6 +133,10 @@ a floor that carries a body between two storeys, with a landing worth arriving a
 
 ![LIFT](projects/pattern-zoo/reports/tour/observation/frames/lift.png)
 
+| state OFF | state ON |
+| --- | --- |
+| ![LIFT off](projects/pattern-zoo/reports/tour/states/off/frames/lift.png) | ![LIFT on](projects/pattern-zoo/reports/tour/states/on/frames/lift.png) |
+
 ### CRACK BARRIER
 
 a breach in a load-bearing wall, opened once by shooting it.
@@ -128,6 +147,10 @@ a breach in a load-bearing wall, opened once by shooting it.
 - **hand-composed:** the load-bearing wall the breach interrupts is plain masonry; no constructor owns a damaged-wall habitat -- promotion candidate
 
 ![CRACK BARRIER](projects/pattern-zoo/reports/tour/observation/frames/crack.png)
+
+| state OFF | state ON |
+| --- | --- |
+| ![CRACK BARRIER off](projects/pattern-zoo/reports/tour/states/off/frames/crack.png) | ![CRACK BARRIER on](projects/pattern-zoo/reports/tour/states/on/frames/crack.png) |
 
 ### CASKET
 
@@ -141,6 +164,10 @@ a lid that slides aside by MOVING THE BOUNDARY between hole and cover, over a ro
 
 ![CASKET](projects/pattern-zoo/reports/tour/observation/frames/casket.png)
 
+| state OFF | state ON |
+| --- | --- |
+| ![CASKET off](projects/pattern-zoo/reports/tour/states/off/frames/casket.png) | ![CASKET on](projects/pattern-zoo/reports/tour/states/on/frames/casket.png) |
+
 ### DOUBLE SLIDE DOOR
 
 one sector, two leaves parting along their own line.
@@ -152,6 +179,10 @@ one sector, two leaves parting along their own line.
 
 ![DOUBLE SLIDE DOOR](projects/pattern-zoo/reports/tour/observation/frames/double_slide.png)
 
+| state OFF | state ON |
+| --- | --- |
+| ![DOUBLE SLIDE DOOR off](projects/pattern-zoo/reports/tour/states/off/frames/double_slide.png) | ![DOUBLE SLIDE DOOR on](projects/pattern-zoo/reports/tour/states/on/frames/double_slide.png) |
+
 ### PLAIN SLIDE DOOR
 
 a single leaf sliding aside, the load-bearing kind.
@@ -161,6 +192,10 @@ a single leaf sliding aside, the load-bearing kind.
 - **read back as:** 1 sector(s) of type 614
 
 ![PLAIN SLIDE DOOR](projects/pattern-zoo/reports/tour/observation/frames/plain_slide.png)
+
+| state OFF | state ON |
+| --- | --- |
+| ![PLAIN SLIDE DOOR off](projects/pattern-zoo/reports/tour/states/off/frames/plain_slide.png) | ![PLAIN SLIDE DOOR on](projects/pattern-zoo/reports/tour/states/on/frames/plain_slide.png) |
 
 ### DOUBLE ROTATING DOOR
 
@@ -173,6 +208,10 @@ two rotating leaves chained on one channel.
 
 ![DOUBLE ROTATING DOOR](projects/pattern-zoo/reports/tour/observation/frames/rotating_door.png)
 
+| state OFF | state ON |
+| --- | --- |
+| ![DOUBLE ROTATING DOOR off](projects/pattern-zoo/reports/tour/states/off/frames/rotating_door.png) | ![DOUBLE ROTATING DOOR on](projects/pattern-zoo/reports/tour/states/on/frames/rotating_door.png) |
+
 ### SHELF SECRET
 
 a shelf that slides aside and is the way into a secret.
@@ -183,16 +222,24 @@ a shelf that slides aside and is the way into a secret.
 
 ![SHELF SECRET](projects/pattern-zoo/reports/tour/observation/frames/shelf_secret.png)
 
+| state OFF | state ON |
+| --- | --- |
+| ![SHELF SECRET off](projects/pattern-zoo/reports/tour/states/off/frames/shelf_secret.png) | ![SHELF SECRET on](projects/pattern-zoo/reports/tour/states/on/frames/shelf_secret.png) |
+
 ### CURTAIN
 
-a thin sector whose own LENGTH changes -- the texture squashing IS the animation.
+an internal FIN drawn across its own doorway -- the fabric stretching IS the animation.
 
 - **try:** open it and watch the fabric gather: the sector resizes, it does not slide aside
 - **from:** owner anchor 146/147, binding strong, and the owner's note with them: a Blood curtain is a thin deforming sector, not a pair of leaves
-- **read back as:** 1 sector(s) of type 614, listening on channel 303, whose payload is 'the sector resizes itself', tiles 146 worn as wall texture, not thrown as sprites
+- **read back as:** 1 sector(s) of type 614, listening on channel 303, whose payload is 'part of the sector travels', tiles 146 worn as wall texture, not thrown as sprites
 - **covers:** bloodmap.mechanism.curtain
 
 ![CURTAIN](projects/pattern-zoo/reports/tour/observation/frames/curtain.png)
+
+| state OFF | state ON |
+| --- | --- |
+| ![CURTAIN off](projects/pattern-zoo/reports/tour/states/off/frames/curtain.png) | ![CURTAIN on](projects/pattern-zoo/reports/tour/states/on/frames/curtain.png) |
 
 ## FURNITURE HALL
 
@@ -335,6 +382,10 @@ two counter-rotating drums flanking a public way in.
 
 ![TURNSTILE PAIR](projects/pattern-zoo/reports/tour/observation/frames/turnstile_pair.png)
 
+| state OFF | state ON |
+| --- | --- |
+| ![TURNSTILE PAIR off](projects/pattern-zoo/reports/tour/states/off/frames/turnstile_pair.png) | ![TURNSTILE PAIR on](projects/pattern-zoo/reports/tour/states/on/frames/turnstile_pair.png) |
+
 ### TURNSTILE SAME WAY
 
 the same pair turning the same way, the DNE3L6 variant.
@@ -344,6 +395,10 @@ the same pair turning the same way, the DNE3L6 variant.
 - **read back as:** 2 sector(s) of type 615
 
 ![TURNSTILE SAME WAY](projects/pattern-zoo/reports/tour/observation/frames/turnstile_same.png)
+
+| state OFF | state ON |
+| --- | --- |
+| ![TURNSTILE SAME WAY off](projects/pattern-zoo/reports/tour/states/off/frames/turnstile_same.png) | ![TURNSTILE SAME WAY on](projects/pattern-zoo/reports/tour/states/on/frames/turnstile_same.png) |
 
 ## SEWER AND TECH
 
@@ -373,6 +428,10 @@ the technical door face, on a working z-motion door.
 
 ![SEWER DOOR](projects/pattern-zoo/reports/tour/observation/frames/sewer_door.png)
 
+| state OFF | state ON |
+| --- | --- |
+| ![SEWER DOOR off](projects/pattern-zoo/reports/tour/states/off/frames/sewer_door.png) | ![SEWER DOOR on](projects/pattern-zoo/reports/tour/states/on/frames/sewer_door.png) |
+
 ### SLIDING GATE
 
 two leaves parting into the jambs, serving the passage.
@@ -382,6 +441,10 @@ two leaves parting into the jambs, serving the passage.
 - **read back as:** 1 sector(s) of type 614, listening on channel 302
 
 ![SLIDING GATE](projects/pattern-zoo/reports/tour/observation/frames/sliding_gate.png)
+
+| state OFF | state ON |
+| --- | --- |
+| ![SLIDING GATE off](projects/pattern-zoo/reports/tour/states/off/frames/sliding_gate.png) | ![SLIDING GATE on](projects/pattern-zoo/reports/tour/states/on/frames/sliding_gate.png) |
 
 ## PARK
 
@@ -442,10 +505,15 @@ the tiles the owner graded strong: these may name what they depict.
 - The map is generated evidence of nothing. It shows what the
   constructors build; it is never mined and never scored against the
   corpus.
-- **There is no room-over-room anywhere in the zoo**, so the ROR
-  visibility budget is not exercised. `PlanarLayout` has no stack link
-  at all, which is why the CASKET is the slide-plus-z half of E1M1's
-  and not the four-sector construct.
+- The state pairs are SNAPPED poses, not the game running: they show
+  where the geometry sits at OFF and at ON, which is what the marker
+  law determines. They say nothing about speed, sound or interruption.
+- A floor mechanism does not show in either frame. The casket's lid is
+  beyond the bay's own wall, so no camera in the aisle reaches it --
+  that one has to be walked.
+- The ROR visibility budget is still not exercised: the zoo has one
+  stack link, so two ROR volumes are never in view at once by luck
+  rather than by design.
 - The self-read checks that each claimed mechanism *exists and is wired*
   as claimed. It cannot check that a body fits through one; only you
   walking it can, which is what the tour is for.

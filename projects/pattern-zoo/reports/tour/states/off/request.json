@@ -1,0 +1,163 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "work/zoo-off.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/projects/pattern-zoo/reports/tour/states/off",
+ "width": 480,
+ "height": 360,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "push_door",
+   "x": -8633,
+   "y": 12630,
+   "z": -12720,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 2,
+   "screenshot": true
+  },
+  {
+   "id": "keyed_door",
+   "x": -14589,
+   "y": 12630,
+   "z": -12720,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 2,
+   "screenshot": true
+  },
+  {
+   "id": "crack",
+   "x": -20963,
+   "y": 12630,
+   "z": -12720,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 2,
+   "screenshot": true
+  },
+  {
+   "id": "double_slide",
+   "x": -27894,
+   "y": 12630,
+   "z": -12720,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 2,
+   "screenshot": true
+  },
+  {
+   "id": "rotating_door",
+   "x": -36266,
+   "y": 12630,
+   "z": -12720,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 2,
+   "screenshot": true
+  },
+  {
+   "id": "curtain",
+   "x": -43853,
+   "y": 12630,
+   "z": -12720,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 2,
+   "screenshot": true
+  },
+  {
+   "id": "switched_door",
+   "x": -9190,
+   "y": 5802,
+   "z": -12720,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 2,
+   "screenshot": true
+  },
+  {
+   "id": "lift",
+   "x": -14311,
+   "y": 5802,
+   "z": -12720,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 2,
+   "screenshot": true
+  },
+  {
+   "id": "casket",
+   "x": -20735,
+   "y": 5802,
+   "z": -38160,
+   "angle": 1536,
+   "horiz": 260,
+   "sector": 2,
+   "screenshot": true
+  },
+  {
+   "id": "plain_slide",
+   "x": -28551,
+   "y": 5802,
+   "z": -12720,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 2,
+   "screenshot": true
+  },
+  {
+   "id": "shelf_secret",
+   "x": -35810,
+   "y": 5802,
+   "z": -12720,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 2,
+   "screenshot": true
+  },
+  {
+   "id": "turnstile_pair",
+   "x": 21847,
+   "y": 42326,
+   "z": -12720,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 49,
+   "screenshot": true
+  },
+  {
+   "id": "turnstile_same",
+   "x": 26222,
+   "y": 31402,
+   "z": -12720,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 49,
+   "screenshot": true
+  },
+  {
+   "id": "sliding_gate",
+   "x": -16265,
+   "y": 59734,
+   "z": -12720,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 68,
+   "screenshot": true
+  },
+  {
+   "id": "sewer_door",
+   "x": -8772,
+   "y": 52906,
+   "z": -12720,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 68,
+   "screenshot": true
+  }
+ ]
+}

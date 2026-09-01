@@ -1,0 +1,39 @@
+{
+ "poses": {
+  "off": [
+   "casket.png",
+   "crack.png",
+   "curtain.png",
+   "double_slide.png",
+   "keyed_door.png",
+   "lift.png",
+   "plain_slide.png",
+   "push_door.png",
+   "rotating_door.png",
+   "sewer_door.png",
+   "shelf_secret.png",
+   "sliding_gate.png",
+   "switched_door.png",
+   "turnstile_pair.png",
+   "turnstile_same.png"
+  ],
+  "on": [
+   "casket.png",
+   "crack.png",
+   "curtain.png",
+   "double_slide.png",
+   "keyed_door.png",
+   "lift.png",
+   "plain_slide.png",
+   "push_door.png",
+   "rotating_door.png",
+   "sewer_door.png",
+   "shelf_secret.png",
+   "sliding_gate.png",
+   "switched_door.png",
+   "turnstile_pair.png",
+   "turnstile_same.png"
+  ]
+ },
+ "mechanisms": 15
+}

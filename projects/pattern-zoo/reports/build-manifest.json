@@ -877,7 +877,7 @@
     },
     {
       "label": "CURTAIN",
-      "about": "a thin sector whose own LENGTH changes -- the texture squashing IS the animation",
+      "about": "an internal FIN drawn across its own doorway -- the fabric stretching IS the animation",
       "try": "open it and watch the fabric gather: the sector resizes, it does not slide aside",
       "provenance": "owner anchor 146/147, binding strong, and the owner's note with them: a Blood curtain is a thin deforming sector, not a pair of leaves",
       "empty": false,
@@ -888,7 +888,7 @@
         "bloodmap.mechanism.curtain"
       ],
       "hand_composed": [],
-      "expect_summary": "1 sector(s) of type 614, listening on channel 303, whose payload is 'the sector resizes itself', tiles 146 worn as wall texture, not thrown as sprites",
+      "expect_summary": "1 sector(s) of type 614, listening on channel 303, whose payload is 'part of the sector travels', tiles 146 worn as wall texture, not thrown as sprites",
       "bay": 5120,
       "depth": 5120,
       "prefix": "curtain"
