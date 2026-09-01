@@ -38,7 +38,7 @@ from bloodmap.aperture import (
 from bloodmap.doors import z_motion_door
 from bloodmap.lettering import write_on_wall
 from bloodmap.furniture import furnish, mounting_for, place as furnish_into
-from bloodmap import motion
+from bloodmap import keys, motion
 from bloodmap.mechanism import (
     PLAYER_HEIGHT, curtain as mechanism_curtain,
     lift as mechanism_lift, planar_door,
@@ -141,7 +141,10 @@ CH_SECRET = 2
 SWITCH = dict(type=motion.SWITCH_TYPE, picnum=motion.SWITCH_PICNUM,
               cstat=464, x_repeat=40, y_repeat=40, shade=-8)
 #: kThingWallCrack: shot open, transmits once.
-CRACK = dict(type=408, picnum=1127, x_repeat=32, y_repeat=32, cstat=128, status=4)
+#: The full native record, from `maps/blood/mechanism/#SPR408.MAP` spr0 --
+#: statnum and cstat included, because a thing left on a default statnum is
+#: a thing the engine's damage path never reaches.
+CRACK = motion.crack_thing()
 
 #: A blade tile is 512 tall and has to meet both surfaces, so a rotor's clear
 #: height is a whole number of them.
@@ -353,6 +356,11 @@ def switched_door(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
                          **SWITCH)
 
 
+#: The moon. The lock, the placard and the pickup all read from this one
+#: number, so there is nothing to keep in step by hand.
+KEYED_DOOR_KEY = 6
+
+
 def keyed_door(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     # `_` carries section_box; the key stands in this bay, not in the hall.
     #: Key 6 is the moon, which is what E1M4 sector 295 wears.
@@ -360,15 +368,17 @@ def keyed_door(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     _z_door(layout, stall, box, back, "keyed_door",
             floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
             beyond="the vault the moon key opens", beyond_skin=VAULT,
-            interaction="direct", key=6, open_time=8)
+            interaction="direct", key=KEYED_DOOR_KEY, open_time=8)
     #: A key lies on the floor at hip height, and `place_on_floor` seats it
     #: from the tile's own extent -- which is exactly what v1 skipped for
     #: the tiles it placed by hand.
+    #: Type AND art derived together from the key, so they cannot drift.
+    #: This exhibit granted the moon key while wearing the skull key's tile:
+    #: the lock opened, and the thing on the floor was a different key.
     layout.place_on_floor("keyed_door:key", stall,
                           local=_local(layout, _.get("section_box") or box, box,
                                        0.35, 0.3, back),
-                          type=105, picnum=2552, x_repeat=40, y_repeat=40,
-                          cstat=128, status=3, shade=-8)
+                          **keys.pickup(KEYED_DOOR_KEY))
 
 
 def lift(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
@@ -468,12 +478,23 @@ def crack_barrier(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
                           a1=(leaf_far, low), a2=(leaf_far, high),
                           min_width=U // 2)
     f1, f2 = _facing(box, back)
+    #: A THING, not a switch. It fires when it is destroyed, so the trigger
+    #: is `trigger_impact` -- damage landing -- and not `trigger_vector`,
+    #: which is a hitscan crossing. That one field is why it did nothing.
     layout.place_on_wall("crack:sprite", stall, a1=f1, a2=f2, t=0.5,
                          height_player_heights=0.7,
-                         behavior=motion.transmitter(
-                             channel=CH_CRACK, push=False, shootable=True,
-                             wait_time=None),
+                         behavior=motion.thing_transmitter(channel=CH_CRACK),
                          **CRACK)
+    #: And the cascade the zoo omitted entirely: three exploders on the
+    #: crack's own channel, staggered, so the breach BLOWS instead of
+    #: silently vanishing. Without them the wall just stops existing.
+    for index, (wait, along) in enumerate(zip(motion.EXPLODER_WAITS,
+                                              (0.35, 0.5, 0.65))):
+        puff = motion.exploder(channel=CH_CRACK, wait=wait)
+        behavior = puff.pop("behavior")
+        layout.place_on_wall(f"crack:blast{index}", stall, a1=f1, a2=f2,
+                             t=along, height_player_heights=0.7,
+                             behavior=behavior, **puff)
 
 
 # ---------------------------------------------------------------------------
@@ -614,15 +635,44 @@ def sliding_gate_stall(layout, stall, box, back, *, floor_z, ceiling_z, skin, **
           channel=CH_GATE, busy_time=20)
 
 
+#: Owner anchors: tiles 31, 32 and 33 are all "bookcase front". The leaf
+#: wears one and the recess around it wears another, so the moving section
+#: reads as one bay of a run of shelving rather than as a panel.
+BOOKCASE_LEAF, BOOKCASE_SURROUND = 31, 33
+
+#: This exhibit is the level's only secret, and it is secret index 0.
+SECRET_INDEX = 0
+
+
 def shelf_secret(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
+    """A BOOKSHELF that slides aside, per the E1M1 s70 blueprint.
+
+    Rebuilt after the owner walked it and could not tell what it was: it had
+    been a generic two-leaf sliding gate standing in a plain recess with
+    unrelated props beside it, which reads as a gate, because that is what it
+    was.
+
+    Three things make it a bookshelf instead. It is ONE leaf, not two parting
+    ones -- a bookcase slides aside, it does not open like gates. The leaf
+    wears an owner-anchored bookcase front and the recess around it wears
+    another, so it sits in a run of shelving and the moving bay is one of
+    them. And the space behind is credited as a SECRET, which is what a
+    bookcase that moves is always hiding.
+
+    E1M1's own is sector 70: a slide whose whole sector travels, dressed with
+    wall sprites for the books, resting at state 1 with a shade wave. Ours
+    keeps the shape and the dressing; the shade wave is the campaign's
+    flourish and is left out.
+    """
     wall, floor, ceiling = skin
-    #: Framed, so the shelf is narrower than the wall it sits in -- which is
-    #: what makes it read as a shelf rather than as a moving wall, and leaves
-    #: solid masonry for the switch that opens it.
+    nook = (BOOKCASE_SURROUND, floor, ceiling)
+    #: Framed and shelved: the recess is the library nook, and the shelf is
+    #: the bay of it that moves.
     strip = _gate(layout, stall, box, back, "shelf_secret",
-                  floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
+                  floor_z=floor_z, ceiling_z=ceiling_z, skin=nook,
                   channel=CH_SHELF, busy_time=20, depth=768, pushable=False,
-                  frame=3 * U,
+                  frame=3 * U, leaves=1,
+                  leaf=dict(leaf_picnum=BOOKCASE_LEAF),
                   header_z=floor_z - 3 * PLAYER_HEIGHT // 2)
     #: As wide as the gate it hides behind, not as wide as the bay: a room
     #: wider than its own doorway meets the wall either side over stretches
@@ -634,10 +684,10 @@ def shelf_secret(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
         floor_z=floor_z, ceiling_z=ceiling_z,
         wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
         declared_zero_exit=True,
-        sector_behavior={"tx_id": CH_SECRET, "command": 1,
-                         "trigger_on": 1,
-                         "trigger_enter": 1, "trigger_once": 1},
-        intent={"purpose": "shelf secret: the secret the shelf hides"})
+        #: The tutorial's own record. It sent command 1 before, which is
+        #: kCmdOn -- a verb, where the counter wants a NUMBER.
+        sector_behavior=motion.secret_credit(SECRET_INDEX),
+        intent={"purpose": "shelf secret: the secret behind the bookcase"})
     b1, b2 = _far(strip, back, box)
     layout.add_connection("shelf_secret:c1", "shelf_secret:gate",
                           "shelf_secret:secret", a1=b1, a2=b2, min_width=U // 2)
@@ -765,7 +815,7 @@ def curtain(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
         layout, "curtain", opening=(x0, low, x1, high), axis="y",
         channel=CH_CURTAIN, leaf_region="curtain:leaf",
         floor_z=floor_z, ceiling_z=ceiling_z, anchored="high",
-        floor_picnum=floor, ceiling_picnum=ceiling,
+        frame_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
         declared_zero_exit=True)
     layout.declare_motion("curtain:leaf", [])
     layout.add_connection("curtain:c0", stall, "curtain:leaf",
@@ -1143,8 +1193,18 @@ def tile_museum(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
         slots = slots_for(item.picnum)
         best = max(slots, key=slots.get) if slots else "wall_one_sided"
         name = f"museum:{item.picnum}"
-        #: Where this tile goes, per the campaign, and nowhere else.
-        on_wall = item.picnum if best.startswith("wall") else wall
+        #: A tile attested only on TWO-SIDED walls, or as the masked overlay
+        #: of one, cannot go on the niche's walls: three of the four are
+        #: one-sided and painting them breaks the very law this exhibit
+        #: teaches. The owner's 2026-09-01 ruling put tile 142 -- the skull
+        #: fireplace maskwall, whose two-sided uses are the legitimate
+        #: see-through mouth -- into the strong-binding set, and the museum
+        #: promptly shipped three violations of its own rule. Such a tile
+        #: belongs on the niche's OPENING, as a masked panel, which is the
+        #: only two-sided wall it has.
+        as_overlay = best in ("wall_two_sided", "over_picnum")
+        on_wall = (item.picnum if best.startswith("wall") and not as_overlay
+                   else wall)
         on_floor = item.picnum if best in ("floor", "ceiling") else floor
         layout.add_region(
             name, _rect((near, low, near + depth, high)),
@@ -1158,6 +1218,11 @@ def tile_museum(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
         layout.add_connection(
             f"museum:c{index}", stall, name,
             a1=(face, low), a2=(face, high), min_width=384)
+        if as_overlay:
+            maskwall_panel(layout, f"museum:{item.picnum}:panel",
+                           stall, name,
+                           a1=(face, low), a2=(face, high),
+                           picnum=item.picnum, blocking=False)
         if best.startswith("sprite"):
             size = tile_size(item.picnum) or (64, 64)
             #: A sprite tile is shown as a sprite. Which alignment it takes

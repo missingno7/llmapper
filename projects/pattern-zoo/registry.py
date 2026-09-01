@@ -43,6 +43,10 @@ from typing import Any, Callable
 
 #: Campaign median clear height, `norms-v1.json` `shape.median_height`:
 #: 33280 units, 1.96 player heights.
+#: How many secrets the level credits. The SHELF SECRET is the only one,
+#: and a level has to declare its total or the tally counts against nothing.
+SECRETS = 1
+
 MEDIAN_CLEAR = 33280
 PLAYER_HEIGHT = 16960
 
@@ -336,7 +340,11 @@ def sections() -> list[Section]:
                     label="CRACK BARRIER",
                     about="a breach in a load-bearing wall, opened once by "
                           "shooting it",
-                    try_this="shoot the crack; it opens once and stays open",
+                    try_this="SHOOT the crack: it should blow, with three "
+                             "staggered puffs, and the breach opens once and "
+                             "stays open. It did nothing at all before -- it "
+                             "had been given a switch's wiring instead of a "
+                             "thing's",
                     provenance="E1M4 sectors 276 and 277, flush at rest; "
                                "kThingWallCrack transmits once",
                     build=stalls.crack_barrier, prefix="crack",
@@ -404,12 +412,20 @@ def sections() -> list[Section]:
                     expect=Expect(sector_type=615, count=2)),
                 Exhibit(
                     label="SHELF SECRET",
-                    about="a shelf that slides aside and is the way into a "
-                          "secret",
-                    try_this="find what opens it, then step behind the shelf",
-                    provenance="owner-attested E1M1 sector 70; the secret "
-                               "sector transmits on channel 2, "
-                               "kChannelSecretFound",
+                    about="a BOOKCASE in a run of shelving that slides aside, "
+                          "and the secret room behind it",
+                    try_this="press the switch on the masonry to the left of "
+                             "the shelving, then walk into the gap the "
+                             "bookcase leaves -- the room behind is the "
+                             "level's one secret and should be credited as "
+                             "you enter",
+                    provenance="owner-attested E1M1 sector 70 (one sliding "
+                               "sector dressed as a bookcase); tiles 31/33 "
+                               "are owner anchors, 'bookcase front'; the "
+                               "secret credit is Vanilla/"
+                               "OTHERSECTORSFX-SECRETS.map s2 -- channel 2, "
+                               "kChannelSecretFound, with the NUMERIC command "
+                               "that carries the secret's index",
                     build=stalls.shelf_secret, prefix="shelf_secret",
                     bay=5 * 1024, depth=6 * 1024,
                     expect=Expect(sector_type=614, rx_id=304)),
@@ -417,8 +433,10 @@ def sections() -> list[Section]:
                     label="CURTAIN",
                     about="an internal FIN drawn across its own doorway -- "
                           "the fabric stretching IS the animation",
-                    try_this="open it and watch the fabric gather: the sector "
-                             "resizes, it does not slide aside",
+                    try_this="push the CLOTH (not the frame) and watch the "
+                             "fabric gather: closed it hangs at natural "
+                             "scale, and opening squashes the texture hard, "
+                             "which is what cloth does",
                     provenance="owner anchor 146/147, binding strong, and the "
                                "owner's note with them: a Blood curtain is a "
                                "thin deforming sector, not a pair of leaves",

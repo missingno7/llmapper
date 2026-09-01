@@ -46,6 +46,7 @@ from bloodmap.format import write_map                       # noqa: E402
 from bloodmap.lettering import (                            # noqa: E402
     drawn_width, text_width, write_on_wall,
 )
+from bloodmap import motion                                 # noqa: E402
 from bloodmap.planar_layout import PlanarLayout             # noqa: E402
 from bloodmap.texture_align import sprite_tile_extents      # noqa: E402
 
@@ -289,6 +290,14 @@ def build_level() -> PlanarLayout:
                                  ROOF if section.outdoor else skin[2]),
                            section_box=(x0, y0, x1, y1))
 
+    #: The level has to say how many secrets it holds, or the tally has
+    #: nothing to count against. Every campaign map checked does this and the
+    #: zoo did not: a sprite listening on level-start that transmits the count
+    #: as a numeric command on channel 1.
+    layout.add_sprite("secret:total", "region:spine",
+                      x=0, y=ENTRANCE // 2 + 256, z=FLOOR_Z,
+                      type=0, picnum=0, cstat=32768, status=0,
+                      behavior=motion.secret_total(registry_module.SECRETS))
     layout.set_player_start("region:spine", x=0, y=ENTRANCE // 2, z=FLOOR_Z,
                             angle=512)
     return layout
