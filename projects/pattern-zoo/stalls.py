@@ -40,7 +40,8 @@ from bloodmap.lettering import write_on_wall
 from bloodmap.furniture import furnish, mounting_for, place as furnish_into
 from bloodmap import motion
 from bloodmap.mechanism import (
-    PLAYER_HEIGHT, curtain as mechanism_curtain, planar_door,
+    PLAYER_HEIGHT, curtain as mechanism_curtain,
+    lift as mechanism_lift, planar_door,
     sliding_gate, turnstile_pair,
 )
 from bloodmap.owner_anchors import load_owner_anchors
@@ -379,9 +380,11 @@ def lift(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     into a lit upper room dressed as somewhere to be -- which is how the
     campaign's lifts sit, serving a floor rather than a ceiling.
 
-    The mechanism itself is **hand-composed**: `doors.z_motion_door` writes
-    ceiling endpoints, and a lift travels its *floor*. See the completion
-    report's promotion candidates.
+    The mechanism is `mechanism.lift` now, promoted out of this file and
+    built to `Vanilla/MACHINERY-LIFT.map`. It carries no markers: the
+    vertical keeps its state pair in the XSECTOR -- `off_floor_z`/
+    `on_floor_z`, and the ceiling's own pair -- chosen by the same `state`
+    that chooses between markers in the horizontal.
     """
     wall, floor, ceiling = skin
     #: A shaft is two campaign-median storeys, and it rises ABOVE the
@@ -391,19 +394,11 @@ def lift(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     ceiling_z = floor_z - 2 * storey
     platform = _slice(back, box, 0, 2 * U)
     landing = _slice(back, box, 2 * U, 3 * U)
-    layout.add_region(
-        "lift:platform", _rect(platform),
-        type=Z_MOTION,
-        floor_z=floor_z, ceiling_z=ceiling_z,
+    mechanism_lift(
+        layout, "lift", footprint=platform, region="lift:platform",
+        low_z=floor_z, high_z=floor_z - storey, ceiling_z=ceiling_z,
+        busy_up=20, busy_down=20, route="wall_push",
         wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
-        sector_behavior={
-            "busy_time_a": 20, "busy_time_b": 20,
-            #: A *floor* z-motion: the two endpoints differ on floor_z and
-            #: agree on ceiling_z, the mirror of a door's.
-            "off_floor_z": floor_z, "on_floor_z": floor_z - storey,
-            "off_ceiling_z": ceiling_z, "on_ceiling_z": ceiling_z,
-            "trigger_push": 1, "trigger_wall_push": 1,
-        },
         intent={"purpose": "lift: its floor travels a whole storey"})
     #: The upper room, a storey up: its own material, its own light, and
     #: something standing in it. This is the half that makes the ride read.

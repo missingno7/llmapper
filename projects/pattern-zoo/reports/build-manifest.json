@@ -753,14 +753,15 @@
       "label": "LIFT",
       "about": "a floor that carries a body between two storeys, with a landing worth arriving at",
       "try": "ride it up, step off, and look back down",
-      "provenance": "reports/blood-effects-motion.md; E1M3 sector 241, whose floor endpoints are exactly its neighbours'",
+      "provenance": "Vanilla/MACHINERY-LIFT.map s2, the basic exemplar of twenty-odd differing one field at a time; E1M3 sector 241, whose floor endpoints are exactly its neighbours'",
       "empty": false,
       "blocker": null,
       "section": "DOORS AND MECHANISMS",
       "room_over_room": false,
-      "covers": [],
+      "covers": [
+        "bloodmap.mechanism.lift"
+      ],
       "hand_composed": [
-        "the mechanism itself: a floor-travelling z-motion. doors.z_motion_door writes CEILING endpoints only, so no constructor owns a lift",
         "the upper room that makes the ride worth taking"
       ],
       "expect_summary": "1 sector(s) of type 600, read as a carries a body between levels",

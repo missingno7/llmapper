@@ -322,14 +322,13 @@ def sections() -> list[Section]:
                     about="a floor that carries a body between two storeys, "
                           "with a landing worth arriving at",
                     try_this="ride it up, step off, and look back down",
-                    provenance="reports/blood-effects-motion.md; E1M3 sector "
-                               "241, whose floor endpoints are exactly its "
-                               "neighbours'",
+                    provenance="Vanilla/MACHINERY-LIFT.map s2, the basic "
+                               "exemplar of twenty-odd differing one field at "
+                               "a time; E1M3 sector 241, whose floor "
+                               "endpoints are exactly its neighbours'",
+                    covers=("bloodmap.mechanism.lift",),
                     build=stalls.lift, prefix="lift", depth=8 * 1024,
                     hand_composed=(
-                        "the mechanism itself: a floor-travelling z-motion. "
-                        "doors.z_motion_door writes CEILING endpoints only, "
-                        "so no constructor owns a lift",
                         "the upper room that makes the ride worth taking",),
                     expect=Expect(sector_type=600,
                                   reads_as="carries a body between levels")),
