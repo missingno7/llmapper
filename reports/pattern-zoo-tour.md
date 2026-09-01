@@ -28,7 +28,7 @@ that reading finds. A dead map fails the build.
 ```text
 map            projects/pattern-zoo/level/pattern-zoo.MAP
 built from     projects/pattern-zoo/registry.py (generated, never hand-placed)
-size           92 sectors, 504 walls, 557 sprites
+size           92 sectors, 504 walls, 559 sprites
 sections       7
 exhibits       31, of which 1 are honest EMPTY
 live sectors   6 x type 600, 7 x type 614, 6 x type 615
@@ -146,7 +146,7 @@ a floor that carries a body between two storeys, with a landing worth arriving a
 
 a breach in a load-bearing wall, opened once by shooting it.
 
-- **try:** shoot the crack; it opens once and stays open
+- **try:** SHOOT the crack: it should blow, with three staggered puffs, and the breach opens once and stays open. It did nothing at all before -- it had been given a switch's wiring instead of a thing's
 - **from:** E1M4 sectors 276 and 277, flush at rest; kThingWallCrack transmits once
 - **read back as:** 1 sector(s) of type 600, worked by a shot, listening on channel 301, one-way
 - **hand-composed:** the load-bearing wall the breach interrupts is plain masonry; no constructor owns a damaged-wall habitat -- promotion candidate
@@ -219,10 +219,10 @@ two rotating leaves chained on one channel.
 
 ### SHELF SECRET
 
-a shelf that slides aside and is the way into a secret.
+a BOOKCASE in a run of shelving that slides aside, and the secret room behind it.
 
-- **try:** find what opens it, then step behind the shelf
-- **from:** owner-attested E1M1 sector 70; the secret sector transmits on channel 2, kChannelSecretFound
+- **try:** press the switch on the masonry to the left of the shelving, then walk into the gap the bookcase leaves -- the room behind is the level's one secret and should be credited as you enter
+- **from:** owner-attested E1M1 sector 70 (one sliding sector dressed as a bookcase); tiles 31/33 are owner anchors, 'bookcase front'; the secret credit is Vanilla/OTHERSECTORSFX-SECRETS.map s2 -- channel 2, kChannelSecretFound, with the NUMERIC command that carries the secret's index
 - **read back as:** 1 sector(s) of type 614, listening on channel 304
 
 ![SHELF SECRET](projects/pattern-zoo/reports/tour/observation/frames/shelf_secret.png)
@@ -235,7 +235,7 @@ a shelf that slides aside and is the way into a secret.
 
 an internal FIN drawn across its own doorway -- the fabric stretching IS the animation.
 
-- **try:** open it and watch the fabric gather: the sector resizes, it does not slide aside
+- **try:** push the CLOTH (not the frame) and watch the fabric gather: closed it hangs at natural scale, and opening squashes the texture hard, which is what cloth does
 - **from:** owner anchor 146/147, binding strong, and the owner's note with them: a Blood curtain is a thin deforming sector, not a pair of leaves
 - **read back as:** 1 sector(s) of type 614, listening on channel 303, whose payload is 'part of the sector travels', tiles 146 worn as wall texture, not thrown as sprites
 - **covers:** bloodmap.mechanism.curtain

@@ -147,7 +147,7 @@
       "construct": "sprite payload sector 30",
       "conforms": true,
       "measured": {
-        "leaves": 2,
+        "leaves": 1,
         "travel": [
           -768,
           0
@@ -305,7 +305,7 @@
       "construct": "wall sprites",
       "conforms": true,
       "measured": {
-        "wall_sprites": 9,
+        "wall_sprites": 10,
         "edge_on": 0
       },
       "deviations": []

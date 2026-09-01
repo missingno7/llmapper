@@ -1958,6 +1958,90 @@ instead of firing an edge.
 **The rule that follows: consult maps/blood/mechanism FIRST for any mechanism
 question, and fixture what you consult.**
 
+## The walk fixes, 2026-09-01
+
+The owner walked the rebuilt zoo. Casket works, lift works, curtains open the
+right way. Three mechanisms were still wrong and one was merely ugly, and all
+four were diagnosed against the ISOLATED tutorials rather than embedded
+campaign cases -- the owner's rule, and it paid: a tutorial shows one
+mechanism with nothing else in the way.
+
+**A crack is a THING, not a switch.** `#SPR408.MAP` spr0 is the record: type
+408, tile 1127, cstat 722, on the THING statnum 4, transmitting on Impact --
+damage landing -- and not on Vector, which is a hitscan crossing. The zoo had
+given it a switch's wiring, so it never fired. It had also omitted the part
+that makes a breach read as one: a CASCADE of three type-459 exploders (tile
+908, statnum 11) on the crack's own channel, staggered 2/1/1, plus the
+type-600 sectors that collapse on the same channel. Without them a wall does
+not blow, it silently stops existing. `motion.crack_thing`, `thing_transmitter`
+and `exploder` build the whole record, and `thing_faults` makes a type-408
+without the thing statnum or without impact triggering a constructor-level
+error.
+
+ENVIRONMENT-EXPLODEWALL is the second oracle and it DIFFERS in four fields:
+cstat 464 rather than 722, no Once on the crack, exploders with no
+`trigger_on` and a wider 0/3/6 stagger. The owner's queue also cites E1M4
+sprite 373 at cstat 209. Three sources, three cstats -- the isolated single is
+preferred, and the difference is fixtured so it stays a known fact.
+
+**A key pickup must wear the key it grants.** Mined over the 43 campaign maps:
+95 key pickups, six item types, and every one wears `2452 + type`. No map ever
+dresses a key as another key. The zoo granted the moon key (type 105) and
+placed the SKULL key's tile (2552): the lock opened and the thing on the floor
+was the wrong key. `keys.world_picnum` and `keys.pickup` derive art and type
+together so they cannot drift, and `keys.pickup_art_faults` is the
+readability check.
+
+**A secret is credited with a NUMBER.** `OTHERSECTORSFX-SECRETS.map`:
+`kChannelSecretFound` is 2 and `kCmdNumberic` is 64, so command 64 means
+secret 0 and 65 means secret 1. The zoo sent command 1 -- kCmdOn, a verb --
+and nothing declared the level total on channel 1, which every campaign map
+checked does. `motion.secret_credit`, `secret_total` and `secret_faults`.
+
+**A curtain is calibrated for its CLOSED span.** Measured across the whole
+DOOR-* family, natural texel scale is `length / x_repeat == 2 * tile_width`
+-- 3440 walls sit exactly there. DOOR-CURTAINS s3 and s53 carry x_repeat 16
+over a 1024 CLOSED span on tile 146 (32 wide), which is natural to the unit;
+s24 is the one exemplar at twice that. Because the geometry is saved at the
+ON pose, sizing the fabric to what the file shows is sizing it to the gathered
+bundle: ours came out at texel scale 96, forty-eight times natural. Now the
+repeat is computed from the OFF span, so the drape is natural shut and
+squashes to 0.08 open, which is what cloth does. Also: only the three FABRIC
+walls wear the fabric now -- the tutorial's s3 is eight walls and exactly
+three carry tile 146, and we had put curtain on the door frame.
+
+### Two bugs the texture work turned up
+
+**`off_pose` was translating the whole sector.** It subtracted the marker
+delta from every point instead of moving only the motion set, which is right
+only when the whole sector travels. A fin moved bodily instead of stretching,
+so its closed span measured the same as its drawn one and the fabric could
+not be calibrated at all. It delegates to the sweep now.
+
+**A sweep starts at the REST pose, not at busy 0.** `blood_sweep` runs from
+where the sector rests outwards, so `frames[0]` is busy 65536 for a state-1
+sector. Everything reading `frames[0]` as "OFF" printed such a mechanism
+backwards, and the zoo's two casket lids are exactly that. `motion_sim.
+blood_poses` returns (OFF, ON) whatever it rests at, and the state preview and
+state check now use it.
+
+### The mask law's scope has a reason now
+
+The owner ruled on both tiles. 142 is a skull-shaped FIREPLACE maskwall --
+not curtain family despite the 140s run -- and its two-sided uses are the
+legitimate see-through mouth, which is exactly the masked-overlay case the law
+permits. 2464 is an ejected shell casing and its two slots are accidents. The
+implementation does not change; the reasoning does, from "23 slots is too few
+to name a family" to a ruling. The rule text, the usage-kinds docstring and
+`tests/test_usage_laws.py` carry it.
+
+That ruling immediately broke something else, which is the useful part: the
+new strong anchors put 142 into the tile museum's strong-binding set, and the
+museum paints niche walls without distinguishing one-sided from two-sided --
+so the exhibit that teaches the transparency law shipped three violations of
+it. A tile attested only on two-sided walls now goes on the niche's OPENING as
+a `maskwall_panel`, which is the only two-sided wall a niche has.
+
 ## The curriculum, mined, 2026-09-01
 
 `maps/blood/mechanism/` is a taught course, and it ships with its own
