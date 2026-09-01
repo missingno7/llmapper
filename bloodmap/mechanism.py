@@ -784,18 +784,27 @@ def curtain(
     behavior.update(motion.wiring(route=route, channel=channel,
                                   command=motion.CMD_TOGGLE,
                                   receiver_state=int(state)))
-    #: Pushable in its own right AS WELL as wired: DOOR-CURTAINS s3 carries
-    #: rx 100 and the tutorial's doors carry `trigger_wall_push`, and the two
-    #: routes are orthogonal -- a curtain answers a switch and answers a
-    #: shove.
-    behavior.update({"trigger_push": 1, "trigger_wall_push": 1,
-                     "trigger_on": 1, "trigger_off": 1})
+    #: NOT pushable through the sector. A commit of mine claimed
+    #: DOOR-CURTAINS s3 carries `trigger_wall_push`; it does not. The whole of
+    #: s3's XSECTOR is rx 100, two busy times and the marker pair, and the
+    #: shove arrives from XWALLs on the fabric faces (wired below). Putting
+    #: the flag on the sector instead makes the entire doorway a button,
+    #: including the frame, which is not what a curtain is.
     layout.add_region(leaf_region, outline, role="doorway", type=614,
                       floor_z=floor_z, ceiling_z=ceiling_z,
                       wall_picnum=int(picnum), sector_behavior=behavior,
                       **region_kwargs)
     #: The fin's free END, and only that.
     layout.carry_wall(leaf_region, _pt(tip, f1), _pt(tip, f0), moves="with")
+
+    #: The three fabric faces become the buttons, as in the tutorial: the two
+    #: sides of the tab and its free end. A shove on the cloth opens it; a
+    #: shove on the door frame does nothing, which is right.
+    fabric = ((_pt(a1, f1), _pt(tip, f1)), (_pt(tip, f1), _pt(tip, f0)),
+              (_pt(tip, f0), _pt(a1, f0)))
+    for edge in fabric:
+        motion.wall_button(layout, leaf_region, edge, channel=channel,
+                           command=motion.CMD_TOGGLE, receiver_state=state)
 
     markers = motion.place_markers(
         layout, name.replace(":", "_"), driven_region=leaf_region,
@@ -1023,3 +1032,93 @@ def shade_wave(*, amplitude: int = 2, frequency: int = 5, wave: int = 7,
         fields["shade_walls"] = 1
     return fields
 
+
+#: MACHINERY-LIFT s2, the basic exemplar: fifteen tenths each way, and it is
+#: pushable through the sector because a lift is a floor you stand on.
+LIFT_BUSY = 15
+
+
+def lift(
+    layout: PlanarLayout,
+    name: str,
+    *,
+    footprint: tuple[int, int, int, int],
+    region: str,
+    low_z: int,
+    high_z: int,
+    ceiling_z: int,
+    channel: int | None = None,
+    state: int = 0,
+    starts: str = "low",
+    busy_up: int = LIFT_BUSY,
+    busy_down: int = LIFT_BUSY,
+    route: str = "push",
+    key: int | None = None,
+    wait: int | None = None,
+    **region_kwargs,
+) -> dict:
+    """A floor that travels between two heights on a state.
+
+    Queue rank 2, built to `maps/blood/mechanism/Vanilla/MACHINERY-LIFT.map`,
+    which is twenty-odd lifts differing one field at a time.
+
+    The vertical is the same shape as the horizontal, and that is the whole
+    idea: a z-moving sector carries `off_floor_z`/`on_floor_z` exactly as a
+    slide carries a marker pair, and `state` chooses between them at load the
+    same way (`ZTranslateSector` runs from the same busy that `trInit` set
+    from `state`). So a lift needs no markers at all -- the pair IS in the
+    XSECTOR -- and `starts` says which end it is found at.
+
+    Unlike a curtain, a lift IS pushed through its sector: s2 carries
+    `trigger_push` and `trigger_wall_push` itself. That is not inconsistency,
+    it is what the two things are. You shove a curtain's cloth, so the cloth
+    is the button; you stand on a lift and press, so the sector is.
+
+    `wait` gives the self-returning lift of s4 -- a wait and a retrigger, so
+    it comes back down on its own -- and `key` the locked lift of s5.
+    """
+    if starts not in ("low", "high"):
+        raise MechanismError(f"{name}: starts is 'low' or 'high'")
+    if state not in (0, 1):
+        raise MechanismError(f"{name}: state is 0 or 1")
+    low_z, high_z = int(low_z), int(high_z)
+    if low_z <= high_z:
+        raise MechanismError(
+            f"{name}: low_z {low_z} must be BELOW high_z {high_z}; Build z "
+            f"grows downward, so the low floor is the larger number")
+    if int(ceiling_z) >= high_z:
+        raise MechanismError(
+            f"{name}: the ceiling at {ceiling_z} is not above the raised "
+            f"floor at {high_z}; the lift would arrive inside it")
+    #: `state` picks the pose, so which z is OFF depends on which end it
+    #: starts at -- exactly the marker pair's rule, one dimension over.
+    at_off = low_z if starts == "low" else high_z
+    at_on = high_z if starts == "low" else low_z
+    behavior = {
+        "off_floor_z": at_off, "on_floor_z": at_on,
+        "off_ceiling_z": int(ceiling_z), "on_ceiling_z": int(ceiling_z),
+        "busy_time_a": int(busy_up), "busy_time_b": int(busy_down),
+        "state": int(state), "busy": 65536 if state else 0,
+    }
+    behavior.update(motion.wiring(route=route, channel=channel,
+                                  command=motion.CMD_TOGGLE,
+                                  receiver_state=int(state), key=key,
+                                  locked=key is not None))
+    if wait:
+        behavior.update({"wait_time_a": int(wait), "retrigger_a": 1})
+    x0, y0, x1, y1 = (int(v) for v in footprint)
+    outline = [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
+    if _signed_area(outline) < 0:
+        outline.reverse()
+    layout.add_region(region, outline, role="platform",
+                      type=600, floor_z=at_off if not state else at_on,
+                      ceiling_z=int(ceiling_z), sector_behavior=behavior,
+                      **region_kwargs)
+    return {
+        "region": region, "channel": channel, "travel": abs(low_z - high_z),
+        "rests_at": starts if not state else
+                    ("high" if starts == "low" else "low"),
+        "low_z": low_z, "high_z": high_z, "state": int(state),
+        #: A z motion deforms nothing in plan, so its motion set is itself.
+        "declared_motion": [region],
+    }
