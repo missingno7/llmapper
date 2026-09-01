@@ -17,7 +17,20 @@ ART transparency colour, which is not the translucency cstat bit -- never
 appears on a floor, a ceiling, or a one-sided wall's picnum. Measured: 0 of
 26383 non-parallax surface slots and 0 of 52422 one-sided wall slots, over 43
 campaign maps. Two tiles break it on *two-sided* walls across 23 of 60839
-slots, which is too few to name a family, so the rule leaves those alone.
+slots, and the rule leaves two-sided walls alone -- originally because 23 was
+too few to name a family, and now because the owner has ruled on both tiles
+(2026-09-01) and neither wants a family:
+
+* **142 is a skull-shaped FIREPLACE maskwall**, not curtain family despite
+  sitting in the 140s run beside 146 and 147. Its two-sided uses are the
+  legitimate see-through fireplace mouth -- exactly what a masked two-sided
+  wall is FOR, so the law is right to permit it.
+* **2464 is an ejected shotgun shell casing**, decorative, and its two
+  two-sided slots are mapper accidents rather than a pattern.
+
+So the scope is not a hedge around unexplained data any more: a mask tile on
+a two-sided wall is the masked-overlay case the engine provides, and a mask
+tile on a floor, a ceiling or a one-sided wall is still an error.
 
 **The parallax law, both directions.** A parallaxed surface wears a tile from
 the sky family; a sky-family tile on a surface carries the parallax bit. The

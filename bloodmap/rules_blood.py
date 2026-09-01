@@ -982,8 +982,13 @@ register(Rule(
         "over_picnum of a masked two-sided wall, where there IS something "
         "behind it. Measured over the campaign: 0 of 26383 non-parallax "
         "surface slots and 0 of 52422 one-sided wall slots. Exactly two "
-        "tiles break it on two-sided walls, over 23 of 60839 slots, which is "
-        "why this rule leaves those alone"),
+        "tiles appear on two-sided walls, over 23 of 60839 slots, and the "
+        "owner has ruled on both (2026-09-01): 142 is a skull-shaped "
+        "FIREPLACE maskwall whose two-sided uses are the legitimate "
+        "see-through fireplace mouth -- the masked-overlay case this rule "
+        "deliberately permits -- and 2464 is an ejected shell casing whose "
+        "two slots are mapper accidents. Neither is a curtain family, so the "
+        "scope stays where it is for a reason rather than for want of data"),
     source=(
         "NBlood/source/build/src/engine.cpp:2902 ceilscan and :3000 florscan "
         "call the opaque hline path; transmaskwallscan (:3362) is reached "

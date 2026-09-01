@@ -293,3 +293,51 @@ class CarryWallTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TheMaskLawsTwoSidedScopeIsRuled(unittest.TestCase):
+    """The owner settled both tiles, so the scope has a reason now.
+
+    Previously the rule left two-sided walls alone because 23 slots of 60839
+    were too few to name a family. That was a hedge around unexplained data.
+    The owner ruled on 2026-09-01 and the hedge became a reason: 142 is a
+    skull-shaped FIREPLACE maskwall whose two-sided uses are the legitimate
+    see-through fireplace mouth, which is precisely what a masked two-sided
+    wall is for; 2464 is an ejected shell casing and its two slots are
+    accidents. Neither is curtain family.
+    """
+
+    def _anchor(self, picnum):
+        import json
+        from pathlib import Path
+
+        path = Path("knowledge/blood/design/owner-anchors-v1.json")
+        if not path.exists():
+            self.skipTest("owner anchors absent")
+        payload = json.loads(path.read_text(encoding="utf-8", errors="replace"))
+        for anchor in payload["anchors"]:
+            if int(anchor.get("picnum", -1)) == picnum:
+                return anchor
+        self.fail(f"tile {picnum} has no owner anchor")
+
+    def test_142_is_a_fireplace_maskwall_and_not_curtain_family(self):
+        anchor = self._anchor(142)
+        self.assertEqual(anchor["kind"], "maskwall")
+        self.assertIn("fireplace", anchor["label_en"].lower())
+        self.assertIn("NOT curtain family", anchor["notes"])
+
+    def test_2464_is_decorative_and_its_wall_slots_are_accidents(self):
+        anchor = self._anchor(2464)
+        self.assertEqual(anchor["kind"], "sprite")
+        self.assertIn("accident", anchor["notes"].lower())
+
+    def test_the_rule_still_forbids_mask_tiles_on_plain_surfaces(self):
+        # The ruling narrows nothing: only two-sided walls were ever out of
+        # scope, and that is the masked-overlay case the engine provides.
+        import bloodmap.rules_blood                       # noqa: F401
+        from bloodmap.rules import RULES
+
+        rule = RULES["mask-tile-off-plain-surfaces"]
+        self.assertIn("one-sided wall", rule.statement)
+        self.assertIn("fireplace", rule.because)
+        self.assertIn("accident", rule.because)
