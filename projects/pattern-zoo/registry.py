@@ -275,13 +275,18 @@ def exhibits() -> list[Exhibit]:
             label="CURTAIN",
             about="a slide used as furnishing, not as a way through",
             try_this="open it; nothing behind it was ever closed off",
-            provenance="owner-attested E1M1 reading, sector 125. Its tile has "
-                       "no owner binding, which is why the dressing plane "
-                       "cannot name it -- reports/blood-role-v2.md",
+            provenance="owner-attested E1M1 reading, sector 125; the leaves "
+                       "wear owner anchor 146, curtain texture, graded strong",
             build=stalls.curtain, skin=TIMBER,
             prefix="curtain",
             hand_composed=(
-                          "a proscenium for the curtain to hang in; hand-composed as a framed opening",),
+                          "a proscenium for the curtain to hang in, "
+                          "hand-composed as a framed opening",
+                          "the curtain MECHANISM: this is a two-leaf slide "
+                          "wearing tile 146. The owner's anchor note says a "
+                          "Blood curtain is a thin sector whose WIDTH "
+                          "changes, deforming the texture as it opens, and "
+                          "no constructor builds one",),
             expect=Expect(sector_type=614)),
         Exhibit(
             label="SHELF SECRET",

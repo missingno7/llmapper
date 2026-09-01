@@ -179,9 +179,9 @@ the player start as a mechanism: a lid that lifts.
 a slide used as furnishing, not as a way through.
 
 - **try:** open it; nothing behind it was ever closed off
-- **from:** owner-attested E1M1 reading, sector 125. Its tile has no owner binding, which is why the dressing plane cannot name it -- reports/blood-role-v2.md
+- **from:** owner-attested E1M1 reading, sector 125; the leaves wear owner anchor 146, curtain texture, graded strong
 - **read back as:** 1 sector(s) of type 614
-- **hand-composed dressing:** a proscenium for the curtain to hang in; hand-composed as a framed opening -- promotion candidate
+- **hand-composed dressing:** a proscenium for the curtain to hang in, hand-composed as a framed opening; the curtain MECHANISM: this is a two-leaf slide wearing tile 146. The owner's anchor note says a Blood curtain is a thin sector whose WIDTH changes, deforming the texture as it opens, and no constructor builds one -- promotion candidate
 - **room:** 33280 clear (1.96 player heights), 5120 x 5120
 - **sector:** 45
 

@@ -46,6 +46,9 @@ CRATE_LARGE_TILE, CRATE_LARGE_SIDE, CRATE_LARGE_RISE = 95, 2048, 32768
 CRATE_BROKEN_TILE = 462
 
 #: Owner anchors, by the owner's number.
+#: 146 is the curtain texture (strong binding), 32x128 -- a narrow vertical
+#: strip, which is why it needs its own repeat rather than the fence's.
+CURTAIN_TILE, CURTAIN_TILE_W, CURTAIN_TILE_H = 146, 32, 128
 BLADE = 332
 JAMB_RAIL, THRESHOLD = 195, 200
 GRASS, DIRT = 361, 270
@@ -480,7 +483,7 @@ def turnstile_same_way(layout, stall, box, back, *, floor_z, ceiling_z,
 
 def _gate(layout, stall, box, back, name, *, floor_z, ceiling_z, skin,
           channel, busy_time, depth=U, pushable=True,
-          frame=None, header_z=None):
+          frame=None, header_z=None, leaf=None):
     """A sliding gate in the back strip, built by mechanism.sliding_gate.
 
     `frame` cuts a proscenium first -- a narrower opening with jambs and a
@@ -511,6 +514,7 @@ def _gate(layout, stall, box, back, name, *, floor_z, ceiling_z, skin,
     threshold = ((middle, centre - span // 2), (middle, centre + span // 2))
     sliding_gate(layout, f"{name}:gate", _rect(strip),
                  threshold=threshold, travel=span // 2,
+                 **(leaf or {}),
                  channel=channel, busy_time=busy_time, pushable=pushable,
                  floor_z=floor_z, ceiling_z=ceiling_z,
                  wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling)
@@ -547,7 +551,10 @@ def curtain(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     strip = _gate(layout, stall, box, back, "curtain",
                   floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
                   channel=CH_CURTAIN, busy_time=40, depth=768,
-                  frame=3 * U, header_z=header)
+                  frame=3 * U, header_z=header,
+                  leaf={"leaf_picnum": CURTAIN_TILE,
+                        "tile_width": CURTAIN_TILE_W,
+                        "tile_height": CURTAIN_TILE_H})
     stage = _slice(back, box, REVEAL + 768, 2 * U)
     layout.add_region(
         "curtain:stage", _rect(stage),
