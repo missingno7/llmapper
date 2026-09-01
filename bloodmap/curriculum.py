@@ -48,6 +48,38 @@ SPRITE_ROLES = {
 #: Sector types that carry a marker pair and physically move in plan.
 SWEPT = motion.MOVING_TYPES
 
+#: The tutorials the mechanism subsystem is built on: mined AND fixtured.
+#: Named here rather than in the script that runs the mine, because the
+#: fixtures assert against this list and a test may not depend on a scratch
+#: file.
+TIER1 = (
+    "DOOR-CEILING.map", "DOOR-CLOSET.map", "DOOR-COMBIDOORS.map",
+    "DOOR-CURTAINS.map", "DOOR-CURTAINSD.map", "DOOR-PATHDOOR.map",
+    "DOOR-PORTCULLIS.map", "DOOR-ROTATEGATE.map", "DOOR-ROTATING.map",
+    "DOOR-SLIDING.map", "DOOR-SLIDINGD.map", "DOOR-SLIDINGGATE.map",
+    "DOOR-SLIDINGGATED.map", "DOOR-SWINGING.map", "DOOR-SWINGINGD.map",
+    "DOOR-SWINGINGGATE.map", "DOOR-SWINGINGGATED.map", "DOOR-3DSLIDEDOOR.map",
+    "MACHINERY-LIFT.map", "MACHINERY-SLIFT.map", "MACHINERY-STEPSLIFT.map",
+    "MACHINERY-CONVEYOR.map", "MACHINERY-ESCALATOR.map", "MACHINERY-GEAR.map",
+    "MACHINERY-PISTON.map", "MACHINERY-2SLIDES.map", "MACHINERY-LEVER.map",
+    "MACHINERY-SLEVER.map", "MACHINERY-3DBUTTON.map", "MACHINERY-TELEPORT.map",
+    "STACKS3DSPACES.map", "STACKS3DSPACES-ROR1.map", "STACKS3DSPACES-ROR2.map",
+    "STACKS3DSPACES-BADROR.map",
+)
+
+#: Mined into knowledge; fixtured only where the rework touches them.
+TIER2_PREFIXES = ("ENVIRONMENT-", "WALL-", "WALLS-", "SPRITE-", "LIGHTING-",
+                  "TRAP-", "MODELLING-", "OTHERSECTORSFX-")
+
+
+def tier(name: str) -> str:
+    """Which tier a tutorial belongs to."""
+    if name in TIER1:
+        return "1"
+    if name.startswith(TIER2_PREFIXES):
+        return "2"
+    return "3"
+
 #: The XSECTOR fields that are SINGLE-SLOT: one of each per sector, and so the
 #: thing compositions collide over. `state`/`busy` are the state machine.
 SLOTS = {

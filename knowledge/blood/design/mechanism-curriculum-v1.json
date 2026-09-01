@@ -1217,8 +1217,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s2 type 614, the sector resizes itself, markers 1312 apart along x, drawn at off, rests at OFF, answered by channel 100, shoved through 6 wall button(s), carries 3 sprite(s), deforms 3 sectors",
-     "drawn_at": "off",
+     "sentence": "s2 type 614, the sector resizes itself, markers 1312 apart along x, pair at the poses, rests at OFF, answered by channel 100, shoved through 6 wall button(s), carries 3 sprite(s), deforms 3 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 100"
      ],
@@ -1257,8 +1257,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s24 type 614, the sector resizes itself, markers 1536 apart along y, drawn at on, rests at OFF, answered by channel 101, carries 3 sprite(s), deforms 3 sectors",
-     "drawn_at": "on",
+     "sentence": "s24 type 614, the sector resizes itself, markers 1536 apart along y, pair parked, rests at OFF, answered by channel 101, carries 3 sprite(s), deforms 3 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 101"
      ],
@@ -3369,8 +3369,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s17 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at OFF, answered by channel 100, carries 3 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s17 type 616, the whole sector travels, markers 1024 apart along y, pair at the poses, rests at OFF, answered by channel 100, carries 3 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 100"
      ],
@@ -3400,8 +3400,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s18 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at OFF, answered by channel 101, carries 3 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s18 type 616, the whole sector travels, markers 1024 apart along y, pair at the poses, rests at OFF, answered by channel 101, carries 3 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 101"
      ],
@@ -3431,8 +3431,8 @@
      "slots": [
       "state"
      ],
-     "sentence": "s19 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at ON, answered by a shove, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s19 type 616, the whole sector travels, markers 1024 apart along y, pair parked, rests at ON, answered by a shove, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "a shove"
      ],
@@ -3459,8 +3459,8 @@
      "type": 616,
      "shape": "the whole sector travels",
      "slots": [],
-     "sentence": "s20 type 616, the whole sector travels, markers 1024 apart along y, drawn at off, rests at OFF, answered by a shove, carries 3 sprite(s), deforms 2 sectors",
-     "drawn_at": "off",
+     "sentence": "s20 type 616, the whole sector travels, markers 1024 apart along y, pair at the poses, rests at OFF, answered by a shove, carries 3 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "a shove"
      ],
@@ -3490,8 +3490,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s21 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at OFF, answered by channel 102, carries 3 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s21 type 616, the whole sector travels, markers 1024 apart along y, pair at the poses, rests at OFF, answered by channel 102, carries 3 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -3522,8 +3522,8 @@
       "rx",
       "tx"
      ],
-     "sentence": "s22 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at OFF, answered by channel 103, carries 3 sprite(s), drives s15, s16, deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s22 type 616, the whole sector travels, markers 1024 apart along y, pair at the poses, rests at OFF, answered by channel 103, carries 3 sprite(s), drives s15, s16, deforms 2 sectors",
+     "drawn_at": "at the poses",
      "drives": [
       15,
       16
@@ -3557,8 +3557,8 @@
      "slots": [
       "key"
      ],
-     "sentence": "s23 type 616, the whole sector travels, markers 1024 apart along y, drawn at off, rests at OFF, answered by a shove, carries 3 sprite(s), deforms 2 sectors",
-     "drawn_at": "off",
+     "sentence": "s23 type 616, the whole sector travels, markers 1024 apart along y, pair at the poses, rests at OFF, answered by a shove, carries 3 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "a shove"
      ],
@@ -3603,8 +3603,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s44 type 616, the whole sector travels, markers 1024 apart along x, drawn at off, rests at OFF, answered by a shove, channel 117, shoved through 3 wall button(s), carries 3 sprite(s), deforms 2 sectors",
-     "drawn_at": "off",
+     "sentence": "s44 type 616, the whole sector travels, markers 1024 apart along x, pair at the poses, rests at OFF, answered by a shove, channel 117, shoved through 3 wall button(s), carries 3 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "a shove",
       "channel 117"
@@ -3642,8 +3642,8 @@
       "state",
       "key"
      ],
-     "sentence": "s45 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at ON, answered by a shove, channel 106, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s45 type 616, the whole sector travels, markers 1024 apart along y, pair parked, rests at ON, answered by a shove, channel 106, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "a shove",
       "channel 106"
@@ -3675,8 +3675,8 @@
       "state",
       "key"
      ],
-     "sentence": "s46 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at ON, answered by a shove, channel 105, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s46 type 616, the whole sector travels, markers 1024 apart along y, pair parked, rests at ON, answered by a shove, channel 105, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "a shove",
       "channel 105"
@@ -3707,8 +3707,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s47 type 616, the whole sector travels, markers 512 apart along y, drawn at on, rests at ON, answered by channel 111, carries 3 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s47 type 616, the whole sector travels, markers 512 apart along y, pair parked, rests at ON, answered by channel 111, carries 3 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 111"
      ],
@@ -3740,8 +3740,8 @@
       "state",
       "key"
      ],
-     "sentence": "s48 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at ON, answered by a shove, channel 109, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s48 type 616, the whole sector travels, markers 1024 apart along y, pair parked, rests at ON, answered by a shove, channel 109, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "a shove",
       "channel 109"
@@ -3769,8 +3769,8 @@
      "type": 616,
      "shape": "the whole sector travels",
      "slots": [],
-     "sentence": "s49 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at OFF, answered by a shove, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s49 type 616, the whole sector travels, markers 1024 apart along y, pair parked, rests at OFF, answered by a shove, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "a shove"
      ],
@@ -3801,8 +3801,8 @@
       "state",
       "key"
      ],
-     "sentence": "s50 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at ON, answered by a shove, channel 110, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s50 type 616, the whole sector travels, markers 1024 apart along y, pair parked, rests at ON, answered by a shove, channel 110, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "a shove",
       "channel 110"
@@ -3848,8 +3848,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s52 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at ON, answered by channel 116, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s52 type 616, the whole sector travels, markers 1024 apart along y, pair parked, rests at ON, answered by channel 116, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 116"
      ],
@@ -3878,8 +3878,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s63 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at OFF, answered by channel 125, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s63 type 616, the whole sector travels, markers 1024 apart along y, pair parked, rests at OFF, answered by channel 125, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 125"
      ],
@@ -3909,8 +3909,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s76 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at ON, answered by channel 121, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s76 type 616, the whole sector travels, markers 1024 apart along y, pair parked, rests at ON, answered by channel 121, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 121"
      ],
@@ -3940,8 +3940,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s77 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at ON, answered by channel 122, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s77 type 616, the whole sector travels, markers 1024 apart along y, pair parked, rests at ON, answered by channel 122, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 122"
      ],
@@ -3971,8 +3971,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s78 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at ON, answered by channel 123, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s78 type 616, the whole sector travels, markers 1024 apart along y, pair parked, rests at ON, answered by channel 123, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 123"
      ],
@@ -4003,8 +4003,8 @@
       "state",
       "key"
      ],
-     "sentence": "s79 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at ON, answered by a shove, channel 138, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s79 type 616, the whole sector travels, markers 1024 apart along y, pair parked, rests at ON, answered by a shove, channel 138, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "a shove",
       "channel 138"
@@ -4035,8 +4035,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s80 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at ON, answered by channel 124, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s80 type 616, the whole sector travels, markers 1024 apart along y, pair parked, rests at ON, answered by channel 124, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 124"
      ],
@@ -4063,8 +4063,8 @@
      "type": 616,
      "shape": "the whole sector travels",
      "slots": [],
-     "sentence": "s83 type 616, the whole sector travels, markers 1024 apart along y, drawn at on, rests at OFF, answered by a shove, carries 3 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s83 type 616, the whole sector travels, markers 1024 apart along y, pair at the poses, rests at OFF, answered by a shove, carries 3 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "a shove"
      ],
@@ -5143,8 +5143,8 @@
       "rx",
       "tx"
      ],
-     "sentence": "s2 type 614, the sector resizes itself, markers 1408 apart along x, drawn at on, rests at OFF, answered by channel 100, carries 3 sprite(s), drives s6, s7",
-     "drawn_at": "on",
+     "sentence": "s2 type 614, the sector resizes itself, markers 1408 apart along x, pair parked, rests at OFF, answered by channel 100, carries 3 sprite(s), drives s6, s7",
+     "drawn_at": "parked",
      "drives": [
       6,
       7
@@ -5277,8 +5277,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s3 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 100, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s3 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 100, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 100"
      ],
@@ -5312,8 +5312,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s6 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 103, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s6 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 103, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 103"
      ],
@@ -5348,8 +5348,8 @@
       "rx",
       "key"
      ],
-     "sentence": "s8 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 104, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s8 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 104, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 104"
      ],
@@ -5383,8 +5383,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s10 type 614, boundary re-partition, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 101, carries 4 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s10 type 614, boundary re-partition, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 101, carries 4 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 101"
      ],
@@ -5415,8 +5415,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s15 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 102, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s15 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 102, carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -5445,8 +5445,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s17 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 105, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s17 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 105, carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 105"
      ],
@@ -5475,8 +5475,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s19 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 107, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s19 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 107, carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 107"
      ],
@@ -5519,8 +5519,8 @@
       "rx",
       "tx"
      ],
-     "sentence": "s21 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 108, shoved through 3 wall button(s), carries 3 sprite(s), drives s20",
-     "drawn_at": "on",
+     "sentence": "s21 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 108, shoved through 3 wall button(s), carries 3 sprite(s), drives s20",
+     "drawn_at": "at the poses",
      "drives": [
       20
      ],
@@ -5557,8 +5557,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s24 type 614, part of the sector travels, markers 896 apart along x, drawn at on, rests at OFF, answered by channel 109, shoved through 2 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s24 type 614, part of the sector travels, markers 896 apart along x, pair at the poses, rests at OFF, answered by channel 109, shoved through 2 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 109"
      ],
@@ -5606,8 +5606,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s32 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 111, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s32 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 111, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 111"
      ],
@@ -5641,8 +5641,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s34 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 110, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s34 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 110, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 110"
      ],
@@ -5676,8 +5676,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s36 type 614, part of the sector travels, markers 576 apart along y, drawn at on, rests at OFF, answered by channel 125, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s36 type 614, part of the sector travels, markers 576 apart along y, pair at the poses, rests at OFF, answered by channel 125, carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 125"
      ],
@@ -5706,8 +5706,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s38 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 119, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s38 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 119, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 119"
      ],
@@ -5741,8 +5741,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s40 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 124, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s40 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 124, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 124"
      ],
@@ -5776,8 +5776,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s42 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 114, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s42 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 114, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 114"
      ],
@@ -5826,8 +5826,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s53 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 126, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s53 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 126, carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 126"
      ],
@@ -5856,8 +5856,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s55 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 131, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s55 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 131, carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 131"
      ],
@@ -5886,8 +5886,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s57 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 133, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s57 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 133, carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 133"
      ],
@@ -5916,8 +5916,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s59 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 135, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s59 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 135, carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 135"
      ],
@@ -5946,8 +5946,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s61 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 136, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s61 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 136, carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 136"
      ],
@@ -5976,8 +5976,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s63 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 129, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s63 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 129, carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 129"
      ],
@@ -6006,8 +6006,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s65 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 146, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s65 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 146, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 146"
      ],
@@ -7525,8 +7525,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s2 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 100, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s2 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 100, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 100"
      ],
@@ -7563,8 +7563,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s4 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 101, carries 4 sprite(s), deforms 3 sectors",
-     "drawn_at": "off",
+     "sentence": "s4 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 101, carries 4 sprite(s), deforms 3 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 101"
      ],
@@ -7596,8 +7596,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s8 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 102, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s8 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 102, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 102"
      ],
@@ -7634,8 +7634,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s10 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 103, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s10 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 103, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 103"
      ],
@@ -7672,8 +7672,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s12 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 104, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s12 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 104, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 104"
      ],
@@ -7702,8 +7702,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s14 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 106, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s14 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 106, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 106"
      ],
@@ -7732,8 +7732,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s16 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 107, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s16 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 107, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 107"
      ],
@@ -7776,8 +7776,8 @@
       "rx",
       "tx"
      ],
-     "sentence": "s18 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 105, shoved through 6 wall button(s), carries 3 sprite(s), drives s17",
-     "drawn_at": "off",
+     "sentence": "s18 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 105, shoved through 6 wall button(s), carries 3 sprite(s), drives s17",
+     "drawn_at": "parked",
      "drives": [
       17
      ],
@@ -7817,8 +7817,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s32 type 614, the sector resizes itself, markers 896 apart along x, drawn at off, rests at OFF, answered by channel 109, shoved through 4 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s32 type 614, the sector resizes itself, markers 896 apart along x, pair parked, rests at OFF, answered by channel 109, shoved through 4 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 109"
      ],
@@ -7868,8 +7868,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s36 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 111, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s36 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 111, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 111"
      ],
@@ -7906,8 +7906,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s38 type 614, the sector resizes itself, markers 896 apart along y, drawn at off, rests at OFF, answered by channel 110, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s38 type 614, the sector resizes itself, markers 896 apart along y, pair parked, rests at OFF, answered by channel 110, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 110"
      ],
@@ -7944,8 +7944,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s40 type 614, the sector resizes itself, markers 640 apart along y, drawn at off, rests at OFF, answered by channel 125, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s40 type 614, the sector resizes itself, markers 640 apart along y, pair parked, rests at OFF, answered by channel 125, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 125"
      ],
@@ -7974,8 +7974,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s42 type 614, the sector resizes itself, markers 640 apart along y, drawn at on, rests at OFF, answered by channel 126, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s42 type 614, the sector resizes itself, markers 640 apart along y, pair at the poses, rests at OFF, answered by channel 126, carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 126"
      ],
@@ -8004,8 +8004,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s44 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 119, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s44 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 119, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 119"
      ],
@@ -8042,8 +8042,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s46 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 124, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s46 type 614, the sector resizes itself, markers 960 apart along y, pair at the poses, rests at OFF, answered by channel 124, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 124"
      ],
@@ -8080,8 +8080,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s48 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 114, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s48 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 114, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 114"
      ],
@@ -8133,8 +8133,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s53 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 136, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s53 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 136, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 136"
      ],
@@ -8163,8 +8163,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s55 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 135, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s55 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 135, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 135"
      ],
@@ -8193,8 +8193,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s57 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 133, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s57 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 133, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 133"
      ],
@@ -8223,8 +8223,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s59 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 131, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s59 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 131, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 131"
      ],
@@ -8253,8 +8253,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s61 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 146, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s61 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 146, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 146"
      ],
@@ -8291,8 +8291,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s63 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 129, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s63 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 129, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 129"
      ],
@@ -12239,8 +12239,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s7 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 103, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s7 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, answered by channel 103, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 103"
      ],
@@ -12274,8 +12274,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s9 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 102, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s9 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, answered by channel 102, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 102"
      ],
@@ -12309,8 +12309,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s12 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 101, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s12 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, answered by channel 101, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 101"
      ],
@@ -12344,8 +12344,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s14 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 100, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s14 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, answered by channel 100, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 100"
      ],
@@ -12379,8 +12379,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s15 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 104, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s15 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, answered by channel 104, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 104"
      ],
@@ -12409,8 +12409,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s17 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 105, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s17 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, answered by channel 105, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 105"
      ],
@@ -12439,8 +12439,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s19 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 106, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s19 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, answered by channel 106, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 106"
      ],
@@ -12470,8 +12470,8 @@
       "rx",
       "tx"
      ],
-     "sentence": "s21 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 107, shoved through 3 wall button(s), carries 3 sprite(s), drives s22",
-     "drawn_at": "on",
+     "sentence": "s21 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, answered by channel 107, shoved through 3 wall button(s), carries 3 sprite(s), drives s22",
+     "drawn_at": "parked",
      "drives": [
       22
      ],
@@ -12521,8 +12521,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s23 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 110, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s23 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, answered by channel 110, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 110"
      ],
@@ -12556,8 +12556,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s25 type 614, part of the sector travels, markers 896 apart along y, drawn at off, rests at OFF, answered by channel 111, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s25 type 614, part of the sector travels, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 111, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 111"
      ],
@@ -12591,8 +12591,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s28 type 614, part of the sector travels, markers 448 apart along y, drawn at on, rests at OFF, answered by channel 113, carries 5 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s28 type 614, part of the sector travels, markers 448 apart along y, pair parked, rests at OFF, answered by channel 113, carries 5 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 113"
      ],
@@ -12623,8 +12623,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s30 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 128, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s30 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, answered by channel 128, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 128"
      ],
@@ -12658,8 +12658,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s32 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 124, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s32 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, answered by channel 124, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 124"
      ],
@@ -12693,8 +12693,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s34 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 120, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s34 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, answered by channel 120, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 120"
      ],
@@ -12728,8 +12728,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s37 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 117, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s37 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, answered by channel 117, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 117"
      ],
@@ -12763,8 +12763,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s41 type 614, part of the sector travels, markers 1024 apart along x, drawn at on, rests at OFF, answered by channel 109, shoved through 2 wall button(s), carries 3 sprite(s), deforms 3 sectors",
-     "drawn_at": "on",
+     "sentence": "s41 type 614, part of the sector travels, markers 1024 apart along x, pair parked, rests at OFF, answered by channel 109, shoved through 2 wall button(s), carries 3 sprite(s), deforms 3 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 109"
      ],
@@ -12800,8 +12800,8 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s43 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, floor -2048 -> 8192; ceiling -6144 -> -16384, answered by channel 112, shoved through 5 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s43 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, floor -2048 -> 8192; ceiling -6144 -> -16384, answered by channel 112, shoved through 5 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "z_pair": {
       "off_floor_z": -2048,
       "on_floor_z": 8192,
@@ -12873,8 +12873,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s49 type 614, part of the sector travels, markers 1792 apart along y, drawn at on, rests at OFF, answered by channel 115, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s49 type 614, part of the sector travels, markers 1792 apart along y, pair parked, rests at OFF, answered by channel 115, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 115"
      ],
@@ -12903,8 +12903,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s59 type 614, part of the sector travels, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 143, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s59 type 614, part of the sector travels, markers 896 apart along y, pair parked, rests at OFF, answered by channel 143, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 143"
      ],
@@ -12933,8 +12933,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s64 type 614, part of the sector travels, markers 960 apart along y, drawn at on, rests at OFF, answered by channel 145, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s64 type 614, part of the sector travels, markers 960 apart along y, pair parked, rests at OFF, answered by channel 145, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 145"
      ],
@@ -12963,8 +12963,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s69 type 614, part of the sector travels, markers 960 apart along y, drawn at on, rests at OFF, answered by channel 146, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s69 type 614, part of the sector travels, markers 960 apart along y, pair parked, rests at OFF, answered by channel 146, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 146"
      ],
@@ -12993,8 +12993,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s73 type 614, part of the sector travels, markers 960 apart along y, drawn at on, rests at OFF, answered by channel 129, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s73 type 614, part of the sector travels, markers 960 apart along y, pair parked, rests at OFF, answered by channel 129, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 129"
      ],
@@ -13023,8 +13023,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s77 type 614, part of the sector travels, markers 960 apart along y, drawn at on, rests at OFF, answered by channel 130, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s77 type 614, part of the sector travels, markers 960 apart along y, pair parked, rests at OFF, answered by channel 130, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 130"
      ],
@@ -13053,8 +13053,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s82 type 614, part of the sector travels, markers 960 apart along y, drawn at on, rests at OFF, answered by channel 144, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s82 type 614, part of the sector travels, markers 960 apart along y, pair parked, rests at OFF, answered by channel 144, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 144"
      ],
@@ -14698,8 +14698,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s3 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 100, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s3 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 100, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 100"
      ],
@@ -14736,8 +14736,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s8 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 101, shoved through 6 wall button(s), carries 4 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s8 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 101, shoved through 6 wall button(s), carries 4 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 101"
      ],
@@ -14775,8 +14775,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s12 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 102, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s12 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 102, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 102"
      ],
@@ -14813,8 +14813,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s16 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 104, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s16 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 104, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 104"
      ],
@@ -14851,8 +14851,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s21 type 614, the sector resizes itself, markers 640 apart along x, drawn at on, rests at OFF, answered by channel 112, shoved through 4 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s21 type 614, the sector resizes itself, markers 640 apart along x, pair parked, rests at OFF, answered by channel 112, shoved through 4 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 112"
      ],
@@ -14887,8 +14887,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s26 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 105, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s26 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 105, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 105"
      ],
@@ -14917,8 +14917,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s30 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 106, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s30 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 106, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 106"
      ],
@@ -14947,8 +14947,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s34 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 107, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s34 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 107, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 107"
      ],
@@ -15005,8 +15005,8 @@
       "tx",
       "shade wave"
      ],
-     "sentence": "s38 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 108, shoved through 6 wall button(s), carries 3 sprite(s), drives s35, s36",
-     "drawn_at": "off",
+     "sentence": "s38 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 108, shoved through 6 wall button(s), carries 3 sprite(s), drives s35, s36",
+     "drawn_at": "parked",
      "drives": [
       35,
       36
@@ -15047,8 +15047,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s42 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 110, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s42 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 110, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 110"
      ],
@@ -15086,8 +15086,8 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s46 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, ceiling 8192 -> -16384, answered by channel 111, shoved through 8 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s46 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, ceiling 8192 -> -16384, answered by channel 111, shoved through 8 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "z_pair": {
       "off_floor_z": 8192,
       "on_floor_z": 8192,
@@ -15132,8 +15132,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s50 type 614, the sector resizes itself, markers 256 apart along y, drawn at off, rests at OFF, answered by channel 113, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s50 type 614, the sector resizes itself, markers 256 apart along y, pair parked, rests at OFF, answered by channel 113, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 113"
      ],
@@ -15162,8 +15162,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s55 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 117, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s55 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 117, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 117"
      ],
@@ -15200,8 +15200,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s63 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 123, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s63 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 123, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 123"
      ],
@@ -15238,8 +15238,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s67 type 614, the sector resizes itself, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 121, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s67 type 614, the sector resizes itself, markers 896 apart along y, pair at the poses, rests at OFF, answered by channel 121, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 121"
      ],
@@ -15306,8 +15306,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s72 type 614, the sector resizes itself, markers 768 apart along y, drawn at off, rests at OFF, answered by channel 122, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s72 type 614, the sector resizes itself, markers 768 apart along y, pair parked, rests at OFF, answered by channel 122, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 122"
      ],
@@ -15336,8 +15336,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s78 type 614, the sector resizes itself, markers 960 apart along y, drawn at on, rests at OFF, answered by channel 143, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s78 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 143, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 143"
      ],
@@ -15366,8 +15366,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s83 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 132, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s83 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 132, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 132"
      ],
@@ -15396,8 +15396,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s87 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 128, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s87 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 128, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 128"
      ],
@@ -15426,8 +15426,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s91 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 129, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s91 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 129, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 129"
      ],
@@ -15456,8 +15456,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s95 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 126, carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s95 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 126, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 126"
      ],
@@ -15486,8 +15486,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s100 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 141, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s100 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 141, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 141"
      ],
@@ -15524,8 +15524,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s116 type 614, the sector resizes itself, markers 960 apart along y, drawn at off, rests at OFF, answered by channel 146, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s116 type 614, the sector resizes itself, markers 960 apart along y, pair parked, rests at OFF, answered by channel 146, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 146"
      ],
@@ -17593,7 +17593,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s1 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 100, carries 3 sprite(s)",
+     "sentence": "s1 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 100, carries 3 sprite(s)",
      "driven_by": [
       "channel 100"
      ],
@@ -17619,7 +17619,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s5 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 102, carries 3 sprite(s)",
+     "sentence": "s5 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 102, carries 3 sprite(s)",
      "driven_by": [
       "channel 102"
      ],
@@ -17645,7 +17645,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s7 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 103, carries 3 sprite(s)",
+     "sentence": "s7 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 103, carries 3 sprite(s)",
      "driven_by": [
       "channel 103"
      ],
@@ -17672,7 +17672,7 @@
       "state",
       "key"
      ],
-     "sentence": "s9 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 104, carries 3 sprite(s)",
+     "sentence": "s9 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 104, carries 3 sprite(s)",
      "driven_by": [
       "channel 104"
      ],
@@ -17713,7 +17713,7 @@
       "tx",
       "state"
      ],
-     "sentence": "s11 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 107, carries 3 sprite(s), drives s10",
+     "sentence": "s11 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 107, carries 3 sprite(s), drives s10",
      "drives": [
       10
      ],
@@ -17742,7 +17742,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s13 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 106, carries 3 sprite(s)",
+     "sentence": "s13 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 106, carries 3 sprite(s)",
      "driven_by": [
       "channel 106"
      ],
@@ -17768,7 +17768,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s15 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 105, carries 3 sprite(s)",
+     "sentence": "s15 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 105, carries 3 sprite(s)",
      "driven_by": [
       "channel 105"
      ],
@@ -17795,7 +17795,7 @@
       "state",
       "key"
      ],
-     "sentence": "s17 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 101, carries 3 sprite(s)",
+     "sentence": "s17 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 101, carries 3 sprite(s)",
      "driven_by": [
       "channel 101"
      ],
@@ -17822,7 +17822,7 @@
       "state",
       "key"
      ],
-     "sentence": "s21 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 110, carries 3 sprite(s)",
+     "sentence": "s21 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 110, carries 3 sprite(s)",
      "driven_by": [
       "channel 110"
      ],
@@ -17848,7 +17848,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s23 type 614, nothing moves, markers 960 apart along x, drawn at an unclear pose, rests at ON, answered by channel 112, carries 5 sprite(s)",
+     "sentence": "s23 type 614, nothing moves, markers 960 apart along x, pair unplaceable, rests at ON, answered by channel 112, carries 5 sprite(s)",
      "driven_by": [
       "channel 112"
      ],
@@ -17876,7 +17876,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s26 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 113, carries 3 sprite(s)",
+     "sentence": "s26 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 113, carries 3 sprite(s)",
      "driven_by": [
       "channel 113"
      ],
@@ -17902,7 +17902,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s31 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 111, carries 3 sprite(s)",
+     "sentence": "s31 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 111, carries 3 sprite(s)",
      "driven_by": [
       "channel 111"
      ],
@@ -17927,7 +17927,7 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s33 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at OFF, answered by channel 125, carries 3 sprite(s)",
+     "sentence": "s33 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at OFF, answered by channel 125, carries 3 sprite(s)",
      "driven_by": [
       "channel 125"
      ],
@@ -17983,7 +17983,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s40 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at ON, answered by channel 123, carries 3 sprite(s)",
+     "sentence": "s40 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at ON, answered by channel 123, carries 3 sprite(s)",
      "driven_by": [
       "channel 123"
      ],
@@ -18009,7 +18009,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s43 type 614, nothing moves, markers 1792 apart along y, drawn at an unclear pose, rests at ON, answered by channel 126, carries 3 sprite(s)",
+     "sentence": "s43 type 614, nothing moves, markers 1792 apart along y, pair unplaceable, rests at ON, answered by channel 126, carries 3 sprite(s)",
      "driven_by": [
       "channel 126"
      ],
@@ -18035,7 +18035,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s45 type 614, nothing moves, markers 448 apart along y, drawn at an unclear pose, rests at ON, answered by channel 120, carries 4 sprite(s)",
+     "sentence": "s45 type 614, nothing moves, markers 448 apart along y, pair unplaceable, rests at ON, answered by channel 120, carries 4 sprite(s)",
      "driven_by": [
       "channel 120"
      ],
@@ -18061,7 +18061,7 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s51 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at OFF, answered by channel 137, carries 3 sprite(s)",
+     "sentence": "s51 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at OFF, answered by channel 137, carries 3 sprite(s)",
      "driven_by": [
       "channel 137"
      ],
@@ -18087,7 +18087,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s56 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at ON, answered by channel 128, carries 3 sprite(s)",
+     "sentence": "s56 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at ON, answered by channel 128, carries 3 sprite(s)",
      "driven_by": [
       "channel 128"
      ],
@@ -18113,7 +18113,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s57 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at ON, answered by channel 150, carries 3 sprite(s)",
+     "sentence": "s57 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at ON, answered by channel 150, carries 3 sprite(s)",
      "driven_by": [
       "channel 150"
      ],
@@ -18139,7 +18139,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s58 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at ON, answered by channel 151, carries 3 sprite(s)",
+     "sentence": "s58 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at ON, answered by channel 151, carries 3 sprite(s)",
      "driven_by": [
       "channel 151"
      ],
@@ -18165,7 +18165,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s59 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at ON, answered by channel 129, carries 3 sprite(s)",
+     "sentence": "s59 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at ON, answered by channel 129, carries 3 sprite(s)",
      "driven_by": [
       "channel 129"
      ],
@@ -18191,7 +18191,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s61 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at ON, answered by channel 132, carries 3 sprite(s)",
+     "sentence": "s61 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at ON, answered by channel 132, carries 3 sprite(s)",
      "driven_by": [
       "channel 132"
      ],
@@ -19442,7 +19442,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s1 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 100, carries 4 sprite(s)",
+     "sentence": "s1 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 100, carries 4 sprite(s)",
      "driven_by": [
       "channel 100"
      ],
@@ -19469,7 +19469,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s7 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 101, carries 4 sprite(s)",
+     "sentence": "s7 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 101, carries 4 sprite(s)",
      "driven_by": [
       "channel 101"
      ],
@@ -19496,7 +19496,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s9 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 102, carries 4 sprite(s)",
+     "sentence": "s9 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 102, carries 4 sprite(s)",
      "driven_by": [
       "channel 102"
      ],
@@ -19523,7 +19523,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s11 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 103, carries 4 sprite(s)",
+     "sentence": "s11 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 103, carries 4 sprite(s)",
      "driven_by": [
       "channel 103"
      ],
@@ -19550,7 +19550,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s13 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 104, carries 4 sprite(s)",
+     "sentence": "s13 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 104, carries 4 sprite(s)",
      "driven_by": [
       "channel 104"
      ],
@@ -19577,7 +19577,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s15 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 105, carries 4 sprite(s)",
+     "sentence": "s15 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 105, carries 4 sprite(s)",
      "driven_by": [
       "channel 105"
      ],
@@ -19604,7 +19604,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s17 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 106, carries 4 sprite(s)",
+     "sentence": "s17 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 106, carries 4 sprite(s)",
      "driven_by": [
       "channel 106"
      ],
@@ -19646,7 +19646,7 @@
       "tx",
       "state"
      ],
-     "sentence": "s19 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 107, carries 4 sprite(s), drives s18",
+     "sentence": "s19 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 107, carries 4 sprite(s), drives s18",
      "drives": [
       18
      ],
@@ -19676,7 +19676,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s24 type 614, nothing moves, markers 896 apart along x, drawn at an unclear pose, rests at ON, answered by channel 109, carries 8 sprite(s)",
+     "sentence": "s24 type 614, nothing moves, markers 896 apart along x, pair unplaceable, rests at ON, answered by channel 109, carries 8 sprite(s)",
      "driven_by": [
       "channel 109"
      ],
@@ -19707,7 +19707,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s30 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at ON, answered by channel 119, carries 4 sprite(s)",
+     "sentence": "s30 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at ON, answered by channel 119, carries 4 sprite(s)",
      "driven_by": [
       "channel 119"
      ],
@@ -19734,7 +19734,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s33 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 127, carries 4 sprite(s)",
+     "sentence": "s33 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 127, carries 4 sprite(s)",
      "driven_by": [
       "channel 127"
      ],
@@ -19761,7 +19761,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s36 type 614, nothing moves, markers 384 apart along y, drawn at an unclear pose, rests at ON, answered by channel 120, carries 7 sprite(s)",
+     "sentence": "s36 type 614, nothing moves, markers 384 apart along y, pair unplaceable, rests at ON, answered by channel 120, carries 7 sprite(s)",
      "driven_by": [
       "channel 120"
      ],
@@ -19806,7 +19806,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s40 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at ON, answered by channel 117, carries 4 sprite(s)",
+     "sentence": "s40 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at ON, answered by channel 117, carries 4 sprite(s)",
      "driven_by": [
       "channel 117"
      ],
@@ -19848,7 +19848,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s44 type 614, nothing moves, markers 960 apart along y, drawn at an unclear pose, rests at ON, answered by channel 114, carries 4 sprite(s)",
+     "sentence": "s44 type 614, nothing moves, markers 960 apart along y, pair unplaceable, rests at ON, answered by channel 114, carries 4 sprite(s)",
      "driven_by": [
       "channel 114"
      ],
@@ -19874,7 +19874,7 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s46 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at OFF, answered by channel 110, carries 4 sprite(s)",
+     "sentence": "s46 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at OFF, answered by channel 110, carries 4 sprite(s)",
      "driven_by": [
       "channel 110"
      ],
@@ -19901,7 +19901,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s48 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at ON, answered by channel 116, carries 4 sprite(s)",
+     "sentence": "s48 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at ON, answered by channel 116, carries 4 sprite(s)",
      "driven_by": [
       "channel 116"
      ],
@@ -19927,7 +19927,7 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s51 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at OFF, answered by channel 123, carries 4 sprite(s)",
+     "sentence": "s51 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at OFF, answered by channel 123, carries 4 sprite(s)",
      "driven_by": [
       "channel 123"
      ],
@@ -19954,7 +19954,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s53 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at ON, answered by channel 126, carries 4 sprite(s)",
+     "sentence": "s53 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at ON, answered by channel 126, carries 4 sprite(s)",
      "driven_by": [
       "channel 126"
      ],
@@ -19981,7 +19981,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s55 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at ON, answered by channel 125, carries 4 sprite(s)",
+     "sentence": "s55 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at ON, answered by channel 125, carries 4 sprite(s)",
      "driven_by": [
       "channel 125"
      ],
@@ -20008,7 +20008,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s57 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at ON, answered by channel 130, carries 4 sprite(s)",
+     "sentence": "s57 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at ON, answered by channel 130, carries 4 sprite(s)",
      "driven_by": [
       "channel 130"
      ],
@@ -20035,7 +20035,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s59 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at ON, answered by channel 145, carries 4 sprite(s)",
+     "sentence": "s59 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at ON, answered by channel 145, carries 4 sprite(s)",
      "driven_by": [
       "channel 145"
      ],
@@ -20062,7 +20062,7 @@
       "rx",
       "state"
      ],
-     "sentence": "s61 type 614, nothing moves, markers 896 apart along y, drawn at an unclear pose, rests at ON, answered by channel 134, carries 4 sprite(s)",
+     "sentence": "s61 type 614, nothing moves, markers 896 apart along y, pair unplaceable, rests at ON, answered by channel 134, carries 4 sprite(s)",
      "driven_by": [
       "channel 134"
      ],
@@ -31175,8 +31175,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s4 type 614, the sector resizes itself, markers 896 apart along x, drawn at off, rests at OFF, answered by channel 100, shoved through 4 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s4 type 614, the sector resizes itself, markers 896 apart along x, pair parked, rests at OFF, answered by channel 100, shoved through 4 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 100"
      ],
@@ -31289,8 +31289,8 @@
       "rx",
       "shade wave"
      ],
-     "sentence": "s22 type 614, boundary re-partition, markers 1912 apart along x, drawn at on, rests at OFF, answered by channel 102, carries 4 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s22 type 614, boundary re-partition, markers 1912 apart along x, pair at the poses, rests at OFF, answered by channel 102, carries 4 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -31326,8 +31326,8 @@
       "shade wave",
       "z pair"
      ],
-     "sentence": "s24 type 614, boundary re-partition, markers 1916 apart along x, drawn at on, rests at OFF, floor -20480 -> -26624, answered by channel 102, carries 7 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s24 type 614, boundary re-partition, markers 1916 apart along x, pair at the poses, rests at OFF, floor -20480 -> -26624, answered by channel 102, carries 7 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "z_pair": {
       "off_floor_z": -20480,
       "on_floor_z": -26624,
@@ -31608,7 +31608,7 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s54 type 614, nothing moves, markers 1024 apart along x, drawn at an unclear pose, rests at OFF, a z pair that does not travel, answered by channel 101, carries 21 sprite(s)",
+     "sentence": "s54 type 614, nothing moves, markers 1024 apart along x, pair unplaceable, rests at OFF, a z pair that does not travel, answered by channel 101, carries 21 sprite(s)",
      "z_pair": {
       "off_floor_z": 28672,
       "on_floor_z": 28672,
@@ -31831,8 +31831,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s69 type 616, the whole sector travels, markers 1283 apart along y, drawn at on, rests at OFF, answered by channel 107, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s69 type 616, the whole sector travels, markers 1283 apart along y, pair parked, rests at OFF, answered by channel 107, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 107"
      ],
@@ -31913,8 +31913,8 @@
       "rx",
       "tx"
      ],
-     "sentence": "s86 type 614, the sector resizes itself, markers 2112 apart along y, drawn at on, rests at OFF, answered by channel 125, shoved through 6 wall button(s), carries 3 sprite(s), drives s85, deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s86 type 614, the sector resizes itself, markers 2112 apart along y, pair at the poses, rests at OFF, answered by channel 125, shoved through 6 wall button(s), carries 3 sprite(s), drives s85, deforms 2 sectors",
+     "drawn_at": "at the poses",
      "drives": [
       85
      ],
@@ -32188,8 +32188,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s126 type 614, part of the sector travels, markers 896 apart along x, drawn at on, rests at OFF, answered by channel 176, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s126 type 614, part of the sector travels, markers 896 apart along x, pair parked, rests at OFF, answered by channel 176, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 176"
      ],
@@ -32432,8 +32432,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s150 type 614, part of the sector travels, markers 960 apart along x, drawn at on, rests at OFF, answered by channel 186, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s150 type 614, part of the sector travels, markers 960 apart along x, pair parked, rests at OFF, answered by channel 186, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 186"
      ],
@@ -32526,8 +32526,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s163 type 614, the sector resizes itself, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 174, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s163 type 614, the sector resizes itself, markers 896 apart along y, pair parked, rests at OFF, answered by channel 174, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 174"
      ],
@@ -32564,8 +32564,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s166 type 614, the sector resizes itself, markers 896 apart along x, drawn at off, rests at OFF, answered by channel 115, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s166 type 614, the sector resizes itself, markers 896 apart along x, pair parked, rests at OFF, answered by channel 115, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 115"
      ],
@@ -32745,8 +32745,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s178 type 614, part of the sector travels, markers 960 apart along x, drawn at on, rests at OFF, answered by channel 187, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s178 type 614, part of the sector travels, markers 960 apart along x, pair parked, rests at OFF, answered by channel 187, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 187"
      ],
@@ -32780,8 +32780,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s179 type 614, part of the sector travels, markers 960 apart along x, drawn at on, rests at OFF, answered by channel 116, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s179 type 614, part of the sector travels, markers 960 apart along x, pair parked, rests at OFF, answered by channel 116, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 116"
      ],
@@ -32865,8 +32865,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s186 type 616, the whole sector travels, markers 1792 apart along y, drawn at off, rests at OFF, answered by push, a shove, channel 177, carries 3 sprite(s), deforms 2 sectors",
-     "drawn_at": "off",
+     "sentence": "s186 type 616, the whole sector travels, markers 1792 apart along y, pair parked, rests at OFF, answered by push, a shove, channel 177, carries 3 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "push",
       "a shove",
@@ -32953,8 +32953,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s192 type 614, part of the sector travels, markers 960 apart along y, drawn at on, rests at OFF, answered by channel 188, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s192 type 614, part of the sector travels, markers 960 apart along y, pair parked, rests at OFF, answered by channel 188, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 188"
      ],
@@ -33328,8 +33328,8 @@
       "rx",
       "shade wave"
      ],
-     "sentence": "s224 type 614, part of the sector travels, markers 1792 apart along y, drawn at on, rests at OFF, answered by push, a shove, channel 177, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s224 type 614, part of the sector travels, markers 1792 apart along y, pair parked, rests at OFF, answered by push, a shove, channel 177, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "push",
       "a shove",
@@ -37941,8 +37941,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s4 type 614, the sector resizes itself, markers 896 apart along x, drawn at off, rests at OFF, answered by channel 100, shoved through 4 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s4 type 614, the sector resizes itself, markers 896 apart along x, pair parked, rests at OFF, answered by channel 100, shoved through 4 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 100"
      ],
@@ -38055,8 +38055,8 @@
       "rx",
       "shade wave"
      ],
-     "sentence": "s22 type 614, boundary re-partition, markers 1912 apart along x, drawn at on, rests at OFF, answered by channel 102, carries 4 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s22 type 614, boundary re-partition, markers 1912 apart along x, pair at the poses, rests at OFF, answered by channel 102, carries 4 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -38092,8 +38092,8 @@
       "shade wave",
       "z pair"
      ],
-     "sentence": "s24 type 614, boundary re-partition, markers 1916 apart along x, drawn at on, rests at OFF, floor -20480 -> -26624, answered by channel 102, carries 7 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s24 type 614, boundary re-partition, markers 1916 apart along x, pair at the poses, rests at OFF, floor -20480 -> -26624, answered by channel 102, carries 7 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "z_pair": {
       "off_floor_z": -20480,
       "on_floor_z": -26624,
@@ -38374,7 +38374,7 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s54 type 614, nothing moves, markers 1024 apart along x, drawn at an unclear pose, rests at OFF, a z pair that does not travel, answered by channel 101, carries 21 sprite(s)",
+     "sentence": "s54 type 614, nothing moves, markers 1024 apart along x, pair unplaceable, rests at OFF, a z pair that does not travel, answered by channel 101, carries 21 sprite(s)",
      "z_pair": {
       "off_floor_z": 28672,
       "on_floor_z": 28672,
@@ -38597,8 +38597,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s69 type 616, the whole sector travels, markers 1283 apart along y, drawn at on, rests at OFF, answered by channel 107, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s69 type 616, the whole sector travels, markers 1283 apart along y, pair parked, rests at OFF, answered by channel 107, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 107"
      ],
@@ -38679,8 +38679,8 @@
       "rx",
       "tx"
      ],
-     "sentence": "s86 type 614, the sector resizes itself, markers 2112 apart along y, drawn at on, rests at OFF, answered by channel 125, shoved through 6 wall button(s), carries 3 sprite(s), drives s85, deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s86 type 614, the sector resizes itself, markers 2112 apart along y, pair at the poses, rests at OFF, answered by channel 125, shoved through 6 wall button(s), carries 3 sprite(s), drives s85, deforms 2 sectors",
+     "drawn_at": "at the poses",
      "drives": [
       85
      ],
@@ -38954,8 +38954,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s126 type 614, part of the sector travels, markers 896 apart along x, drawn at on, rests at OFF, answered by channel 176, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s126 type 614, part of the sector travels, markers 896 apart along x, pair parked, rests at OFF, answered by channel 176, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 176"
      ],
@@ -39210,8 +39210,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s150 type 614, part of the sector travels, markers 960 apart along x, drawn at on, rests at OFF, answered by channel 186, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s150 type 614, part of the sector travels, markers 960 apart along x, pair parked, rests at OFF, answered by channel 186, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 186"
      ],
@@ -39304,8 +39304,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s163 type 614, the sector resizes itself, markers 896 apart along y, drawn at on, rests at OFF, answered by channel 174, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s163 type 614, the sector resizes itself, markers 896 apart along y, pair parked, rests at OFF, answered by channel 174, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 174"
      ],
@@ -39342,8 +39342,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s166 type 614, the sector resizes itself, markers 896 apart along x, drawn at off, rests at OFF, answered by channel 115, shoved through 6 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "off",
+     "sentence": "s166 type 614, the sector resizes itself, markers 896 apart along x, pair parked, rests at OFF, answered by channel 115, shoved through 6 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 115"
      ],
@@ -39523,8 +39523,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s178 type 614, part of the sector travels, markers 960 apart along x, drawn at on, rests at OFF, answered by channel 187, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s178 type 614, part of the sector travels, markers 960 apart along x, pair parked, rests at OFF, answered by channel 187, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 187"
      ],
@@ -39558,8 +39558,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s179 type 614, part of the sector travels, markers 960 apart along x, drawn at on, rests at OFF, answered by channel 116, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s179 type 614, part of the sector travels, markers 960 apart along x, pair parked, rests at OFF, answered by channel 116, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 116"
      ],
@@ -39644,8 +39644,8 @@
       "rx",
       "shade wave"
      ],
-     "sentence": "s186 type 616, the whole sector travels, markers 1792 apart along y, drawn at off, rests at OFF, answered by push, a shove, channel 177, carries 3 sprite(s), deforms 2 sectors",
-     "drawn_at": "off",
+     "sentence": "s186 type 616, the whole sector travels, markers 1792 apart along y, pair parked, rests at OFF, answered by push, a shove, channel 177, carries 3 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "push",
       "a shove",
@@ -39732,8 +39732,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s192 type 614, part of the sector travels, markers 960 apart along y, drawn at on, rests at OFF, answered by channel 188, shoved through 3 wall button(s), carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s192 type 614, part of the sector travels, markers 960 apart along y, pair parked, rests at OFF, answered by channel 188, shoved through 3 wall button(s), carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 188"
      ],
@@ -40107,8 +40107,8 @@
       "rx",
       "shade wave"
      ],
-     "sentence": "s224 type 614, part of the sector travels, markers 1792 apart along y, drawn at on, rests at OFF, answered by push, a shove, channel 177, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s224 type 614, part of the sector travels, markers 1792 apart along y, pair parked, rests at OFF, answered by push, a shove, channel 177, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "push",
       "a shove",
@@ -45084,8 +45084,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s16 type 614, boundary re-partition, markers 2544 apart along y, drawn at on, rests at ON, answered by channel 145, carries 2 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s16 type 614, boundary re-partition, markers 2544 apart along y, pair at the poses, rests at ON, answered by channel 145, carries 2 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45117,8 +45117,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s17 type 614, boundary re-partition, markers 2158 apart along y, drawn at on, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s17 type 614, boundary re-partition, markers 2158 apart along y, pair at the poses, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45149,8 +45149,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s18 type 614, boundary re-partition, markers 2544 apart along x, drawn at on, rests at ON, answered by channel 145, carries 2 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s18 type 614, boundary re-partition, markers 2544 apart along x, pair at the poses, rests at ON, answered by channel 145, carries 2 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45182,8 +45182,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s19 type 614, boundary re-partition, markers 2158 apart along x, drawn at on, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s19 type 614, boundary re-partition, markers 2158 apart along x, pair at the poses, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45223,8 +45223,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s21 type 614, boundary re-partition, markers 2544 apart along y, drawn at on, rests at ON, answered by channel 145, carries 2 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s21 type 614, boundary re-partition, markers 2544 apart along y, pair at the poses, rests at ON, answered by channel 145, carries 2 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45256,8 +45256,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s22 type 614, boundary re-partition, markers 2158 apart along y, drawn at on, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s22 type 614, boundary re-partition, markers 2158 apart along y, pair at the poses, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45288,8 +45288,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s23 type 614, boundary re-partition, markers 2158 apart along x, drawn at on, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s23 type 614, boundary re-partition, markers 2158 apart along x, pair at the poses, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45320,8 +45320,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s24 type 614, boundary re-partition, markers 2538 apart along x, drawn at on, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s24 type 614, boundary re-partition, markers 2538 apart along x, pair at the poses, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45352,8 +45352,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s25 type 614, boundary re-partition, markers 2544 apart along x, drawn at on, rests at ON, answered by channel 145, carries 2 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s25 type 614, boundary re-partition, markers 2544 apart along x, pair at the poses, rests at ON, answered by channel 145, carries 2 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45385,8 +45385,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s26 type 614, boundary re-partition, markers 2158 apart along x, drawn at on, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s26 type 614, boundary re-partition, markers 2158 apart along x, pair at the poses, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45417,8 +45417,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s27 type 614, boundary re-partition, markers 2158 apart along x, drawn at on, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s27 type 614, boundary re-partition, markers 2158 apart along x, pair at the poses, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45449,8 +45449,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s28 type 614, boundary re-partition, markers 2544 apart along x, drawn at on, rests at ON, answered by channel 145, carries 2 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s28 type 614, boundary re-partition, markers 2544 apart along x, pair at the poses, rests at ON, answered by channel 145, carries 2 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45482,8 +45482,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s29 type 614, boundary re-partition, markers 2544 apart along y, drawn at on, rests at ON, answered by channel 145, carries 2 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s29 type 614, boundary re-partition, markers 2544 apart along y, pair at the poses, rests at ON, answered by channel 145, carries 2 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45515,8 +45515,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s30 type 614, boundary re-partition, markers 2156 apart along y, drawn at on, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s30 type 614, boundary re-partition, markers 2156 apart along y, pair at the poses, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45547,8 +45547,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s31 type 614, boundary re-partition, markers 2158 apart along y, drawn at on, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s31 type 614, boundary re-partition, markers 2158 apart along y, pair at the poses, rests at ON, answered by channel 145, carries 1 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45579,8 +45579,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s32 type 614, boundary re-partition, markers 2544 apart along y, drawn at on, rests at ON, answered by channel 145, carries 2 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s32 type 614, boundary re-partition, markers 2544 apart along y, pair at the poses, rests at ON, answered by channel 145, carries 2 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 145"
      ],
@@ -45860,8 +45860,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s0 type 616, the whole sector travels, markers 4864 apart along y, drawn at off, rests at OFF, answered by channel 101, carries 3 sprite(s), deforms 2 sectors",
-     "drawn_at": "off",
+     "sentence": "s0 type 616, the whole sector travels, markers 4864 apart along y, pair parked, rests at OFF, answered by channel 101, carries 3 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 101"
      ],
@@ -45892,8 +45892,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s1 type 616, the whole sector travels, markers 5376 apart along y, drawn at off, rests at ON, answered by channel 102, carries 1 sprite(s), deforms 4 sectors",
-     "drawn_at": "off",
+     "sentence": "s1 type 616, the whole sector travels, markers 5376 apart along y, pair at the poses, rests at ON, answered by channel 102, carries 1 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -45924,8 +45924,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s2 type 616, the whole sector travels, markers 5376 apart along y, drawn at off, rests at ON, answered by channel 102, carries 1 sprite(s), deforms 4 sectors",
-     "drawn_at": "off",
+     "sentence": "s2 type 616, the whole sector travels, markers 5376 apart along y, pair at the poses, rests at ON, answered by channel 102, carries 1 sprite(s), deforms 4 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -45956,8 +45956,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s3 type 616, the whole sector travels, markers 5376 apart along y, drawn at off, rests at ON, answered by channel 102, carries 1 sprite(s), deforms 5 sectors",
-     "drawn_at": "off",
+     "sentence": "s3 type 616, the whole sector travels, markers 5376 apart along y, pair at the poses, rests at ON, answered by channel 102, carries 1 sprite(s), deforms 5 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -45989,8 +45989,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s4 type 616, the whole sector travels, markers 9088 apart along x, drawn at on, rests at ON, answered by channel 102, carries 2 sprite(s), deforms 5 sectors",
-     "drawn_at": "on",
+     "sentence": "s4 type 616, the whole sector travels, markers 9088 apart along x, pair parked, rests at ON, answered by channel 102, carries 2 sprite(s), deforms 5 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 102"
      ],
@@ -46262,8 +46262,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s45 type 614, the sector resizes itself, markers 2048 apart along x, drawn at off, rests at ON, answered by channel 109, carries 15 sprite(s), deforms 3 sectors",
-     "drawn_at": "off",
+     "sentence": "s45 type 614, the sector resizes itself, markers 2048 apart along x, pair parked, rests at ON, answered by channel 109, carries 15 sprite(s), deforms 3 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 109"
      ],
@@ -48328,8 +48328,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s2 type 616, the whole sector travels, markers 11776 apart along y, drawn at on, rests at OFF, answered by channel 100, deforms 5 sectors",
-     "drawn_at": "on",
+     "sentence": "s2 type 616, the whole sector travels, markers 11776 apart along y, pair at the poses, rests at OFF, answered by channel 100, deforms 5 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 100"
      ],
@@ -48357,8 +48357,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s3 type 616, the whole sector travels, markers 11776 apart along y, drawn at on, rests at OFF, answered by channel 100, deforms 5 sectors",
-     "drawn_at": "on",
+     "sentence": "s3 type 616, the whole sector travels, markers 11776 apart along y, pair at the poses, rests at OFF, answered by channel 100, deforms 5 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 100"
      ],
@@ -48386,8 +48386,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s4 type 616, the whole sector travels, markers 11776 apart along y, drawn at on, rests at OFF, answered by channel 100, deforms 5 sectors",
-     "drawn_at": "on",
+     "sentence": "s4 type 616, the whole sector travels, markers 11776 apart along y, pair at the poses, rests at OFF, answered by channel 100, deforms 5 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 100"
      ],
@@ -48415,8 +48415,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s5 type 616, the whole sector travels, markers 11776 apart along y, drawn at on, rests at OFF, answered by channel 100, deforms 5 sectors",
-     "drawn_at": "on",
+     "sentence": "s5 type 616, the whole sector travels, markers 11776 apart along y, pair at the poses, rests at OFF, answered by channel 100, deforms 5 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 100"
      ],
@@ -48444,8 +48444,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s6 type 616, the whole sector travels, markers 11776 apart along y, drawn at on, rests at OFF, answered by channel 100, deforms 7 sectors",
-     "drawn_at": "on",
+     "sentence": "s6 type 616, the whole sector travels, markers 11776 apart along y, pair at the poses, rests at OFF, answered by channel 100, deforms 7 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 100"
      ],
@@ -48475,8 +48475,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s7 type 616, the whole sector travels, markers 11776 apart along y, drawn at on, rests at OFF, answered by channel 100, deforms 7 sectors",
-     "drawn_at": "on",
+     "sentence": "s7 type 616, the whole sector travels, markers 11776 apart along y, pair at the poses, rests at OFF, answered by channel 100, deforms 7 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 100"
      ],
@@ -48506,8 +48506,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s8 type 616, the whole sector travels, markers 11776 apart along y, drawn at on, rests at OFF, answered by channel 100, deforms 7 sectors",
-     "drawn_at": "on",
+     "sentence": "s8 type 616, the whole sector travels, markers 11776 apart along y, pair at the poses, rests at OFF, answered by channel 100, deforms 7 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 100"
      ],
@@ -48537,8 +48537,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s9 type 616, the whole sector travels, markers 11776 apart along y, drawn at on, rests at OFF, answered by channel 100, deforms 7 sectors",
-     "drawn_at": "on",
+     "sentence": "s9 type 616, the whole sector travels, markers 11776 apart along y, pair at the poses, rests at OFF, answered by channel 100, deforms 7 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 100"
      ],
@@ -48568,8 +48568,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s10 type 616, the whole sector travels, markers 11776 apart along y, drawn at on, rests at OFF, answered by channel 100, carries 10 sprite(s), deforms 9 sectors",
-     "drawn_at": "on",
+     "sentence": "s10 type 616, the whole sector travels, markers 11776 apart along y, pair at the poses, rests at OFF, answered by channel 100, carries 10 sprite(s), deforms 9 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 100"
      ],
@@ -48717,8 +48717,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s0 type 616, the whole sector travels, markers 5888 apart along x, drawn at on, rests at ON, answered by channel 101, carries 4 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s0 type 616, the whole sector travels, markers 5888 apart along x, pair at the poses, rests at ON, answered by channel 101, carries 4 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 101"
      ],
@@ -48751,8 +48751,8 @@
       "tx",
       "state"
      ],
-     "sentence": "s1 type 614, part of the sector travels, markers 2304 apart along y, drawn at on, rests at ON, answered by channel 100, shoved through 1 wall button(s), carries 3 sprite(s), drives s0, deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s1 type 614, part of the sector travels, markers 2304 apart along y, pair parked, rests at ON, answered by channel 100, shoved through 1 wall button(s), carries 3 sprite(s), drives s0, deforms 2 sectors",
+     "drawn_at": "parked",
      "drives": [
       0
      ],
@@ -48872,7 +48872,7 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s1 type 614, nothing moves, markers 192 apart along y, drawn at an unclear pose, rests at OFF, answered by channel 100, carries 3 sprite(s)",
+     "sentence": "s1 type 614, nothing moves, markers 192 apart along y, pair unplaceable, rests at OFF, answered by channel 100, carries 3 sprite(s)",
      "driven_by": [
       "channel 100"
      ],
@@ -49817,8 +49817,8 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s25 type 614, boundary re-partition, markers 510 apart along y, drawn at on, rests at OFF, floor 0 -> 4096, answered by channel 101, carries 2 sprite(s), deforms 4 sectors",
-     "drawn_at": "on",
+     "sentence": "s25 type 614, boundary re-partition, markers 510 apart along y, pair parked, rests at OFF, floor 0 -> 4096, answered by channel 101, carries 2 sprite(s), deforms 4 sectors",
+     "drawn_at": "parked",
      "z_pair": {
       "off_floor_z": 0,
       "on_floor_z": 4096,
@@ -49856,8 +49856,8 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s26 type 614, part of the sector travels, markers 512 apart along y, drawn at on, rests at OFF, floor 4096 -> 8192, answered by channel 101, carries 2 sprite(s), deforms 5 sectors",
-     "drawn_at": "on",
+     "sentence": "s26 type 614, part of the sector travels, markers 512 apart along y, pair parked, rests at OFF, floor 4096 -> 8192, answered by channel 101, carries 2 sprite(s), deforms 5 sectors",
+     "drawn_at": "parked",
      "z_pair": {
       "off_floor_z": 4096,
       "on_floor_z": 8192,
@@ -49896,8 +49896,8 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s27 type 614, part of the sector travels, markers 512 apart along y, drawn at on, rests at OFF, floor 8192 -> 12288, answered by channel 101, carries 2 sprite(s), deforms 5 sectors",
-     "drawn_at": "on",
+     "sentence": "s27 type 614, part of the sector travels, markers 512 apart along y, pair parked, rests at OFF, floor 8192 -> 12288, answered by channel 101, carries 2 sprite(s), deforms 5 sectors",
+     "drawn_at": "parked",
      "z_pair": {
       "off_floor_z": 8192,
       "on_floor_z": 12288,
@@ -49936,8 +49936,8 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s28 type 614, part of the sector travels, markers 512 apart along y, drawn at on, rests at OFF, floor 12288 -> 16384, answered by channel 101, carries 2 sprite(s), deforms 5 sectors",
-     "drawn_at": "on",
+     "sentence": "s28 type 614, part of the sector travels, markers 512 apart along y, pair parked, rests at OFF, floor 12288 -> 16384, answered by channel 101, carries 2 sprite(s), deforms 5 sectors",
+     "drawn_at": "parked",
      "z_pair": {
       "off_floor_z": 12288,
       "on_floor_z": 16384,
@@ -49976,8 +49976,8 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s29 type 614, part of the sector travels, markers 512 apart along y, drawn at on, rests at OFF, floor 16384 -> 20480, answered by channel 101, carries 2 sprite(s), deforms 5 sectors",
-     "drawn_at": "on",
+     "sentence": "s29 type 614, part of the sector travels, markers 512 apart along y, pair parked, rests at OFF, floor 16384 -> 20480, answered by channel 101, carries 2 sprite(s), deforms 5 sectors",
+     "drawn_at": "parked",
      "z_pair": {
       "off_floor_z": 16384,
       "on_floor_z": 20480,
@@ -50016,8 +50016,8 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s30 type 614, part of the sector travels, markers 512 apart along y, drawn at on, rests at OFF, floor 20480 -> 24576, answered by channel 101, carries 2 sprite(s), deforms 5 sectors",
-     "drawn_at": "on",
+     "sentence": "s30 type 614, part of the sector travels, markers 512 apart along y, pair parked, rests at OFF, floor 20480 -> 24576, answered by channel 101, carries 2 sprite(s), deforms 5 sectors",
+     "drawn_at": "parked",
      "z_pair": {
       "off_floor_z": 20480,
       "on_floor_z": 24576,
@@ -50056,8 +50056,8 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s31 type 614, part of the sector travels, markers 512 apart along y, drawn at on, rests at OFF, floor 24576 -> 28672, answered by channel 101, carries 2 sprite(s), deforms 5 sectors",
-     "drawn_at": "on",
+     "sentence": "s31 type 614, part of the sector travels, markers 512 apart along y, pair parked, rests at OFF, floor 24576 -> 28672, answered by channel 101, carries 2 sprite(s), deforms 5 sectors",
+     "drawn_at": "parked",
      "z_pair": {
       "off_floor_z": 24576,
       "on_floor_z": 28672,
@@ -50096,8 +50096,8 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s34 type 614, part of the sector travels, markers 504 apart along y, drawn at on, rests at OFF, floor 28672 -> 32768, answered by channel 101, carries 2 sprite(s), deforms 5 sectors",
-     "drawn_at": "on",
+     "sentence": "s34 type 614, part of the sector travels, markers 504 apart along y, pair parked, rests at OFF, floor 28672 -> 32768, answered by channel 101, carries 2 sprite(s), deforms 5 sectors",
+     "drawn_at": "parked",
      "z_pair": {
       "off_floor_z": 28672,
       "on_floor_z": 32768,
@@ -50870,8 +50870,8 @@
      "slots": [
       "tx"
      ],
-     "sentence": "s5 type 616, the whole sector travels, markers 256 apart along y, drawn at on, rests at OFF, answered by push, a shove, carries 2 sprite(s), drives s8, deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s5 type 616, the whole sector travels, markers 256 apart along y, pair at the poses, rests at OFF, answered by push, a shove, carries 2 sprite(s), drives s8, deforms 2 sectors",
+     "drawn_at": "at the poses",
      "drives": [
       8
      ],
@@ -57696,8 +57696,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s10 type 616, the whole sector travels, markers 3776 apart along x, drawn at on, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s10 type 616, the whole sector travels, markers 3776 apart along x, pair at the poses, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -57725,8 +57725,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s11 type 616, the whole sector travels, markers 3776 apart along x, drawn at on, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s11 type 616, the whole sector travels, markers 3776 apart along x, pair at the poses, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -57754,8 +57754,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s12 type 616, the whole sector travels, markers 3776 apart along x, drawn at on, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s12 type 616, the whole sector travels, markers 3776 apart along x, pair at the poses, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -57783,8 +57783,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s13 type 616, the whole sector travels, markers 3776 apart along x, drawn at on, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s13 type 616, the whole sector travels, markers 3776 apart along x, pair at the poses, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -57812,8 +57812,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s14 type 616, the whole sector travels, markers 3776 apart along x, drawn at on, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s14 type 616, the whole sector travels, markers 3776 apart along x, pair at the poses, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -57841,8 +57841,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s15 type 616, the whole sector travels, markers 3776 apart along x, drawn at on, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s15 type 616, the whole sector travels, markers 3776 apart along x, pair at the poses, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -57870,8 +57870,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s16 type 616, the whole sector travels, markers 3776 apart along x, drawn at on, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s16 type 616, the whole sector travels, markers 3776 apart along x, pair at the poses, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -57899,8 +57899,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s17 type 616, the whole sector travels, markers 3776 apart along x, drawn at on, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s17 type 616, the whole sector travels, markers 3776 apart along x, pair at the poses, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -57928,8 +57928,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s18 type 616, the whole sector travels, markers 3776 apart along x, drawn at on, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s18 type 616, the whole sector travels, markers 3776 apart along x, pair at the poses, rests at OFF, answered by channel 102, carries 1 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "channel 102"
      ],
@@ -58132,8 +58132,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s4 type 614, part of the sector travels, markers 960 apart along y, drawn at on, rests at OFF, answered by channel 101, carries 3 sprite(s)",
-     "drawn_at": "on",
+     "sentence": "s4 type 614, part of the sector travels, markers 960 apart along y, pair parked, rests at OFF, answered by channel 101, carries 3 sprite(s)",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 101"
      ],
@@ -65244,7 +65244,7 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s12 type 614, nothing moves, markers 480 apart along y, drawn at an unclear pose, rests at OFF, answered by channel 7, carries 4 sprite(s)",
+     "sentence": "s12 type 614, nothing moves, markers 480 apart along y, pair unplaceable, rests at OFF, answered by channel 7, carries 4 sprite(s)",
      "driven_by": [
       "channel 7"
      ],
@@ -66361,8 +66361,8 @@
       "rx",
       "state"
      ],
-     "sentence": "s4 type 614, the sector resizes itself, markers 3072 apart along x, drawn at off, rests at ON, answered by channel 100, carries 4 sprite(s), deforms 3 sectors",
-     "drawn_at": "off",
+     "sentence": "s4 type 614, the sector resizes itself, markers 3072 apart along x, pair parked, rests at ON, answered by channel 100, carries 4 sprite(s), deforms 3 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 100"
      ],
@@ -66577,8 +66577,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s2 type 614, the sector resizes itself, markers 512 apart along x, drawn at on, rests at OFF, answered by channel 100, carries 2 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s2 type 614, the sector resizes itself, markers 512 apart along x, pair parked, rests at OFF, answered by channel 100, carries 2 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 100"
      ],
@@ -66607,8 +66607,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s4 type 614, the sector resizes itself, markers 768 apart along x, drawn at on, rests at OFF, answered by channel 100, carries 2 sprite(s), deforms 3 sectors",
-     "drawn_at": "on",
+     "sentence": "s4 type 614, the sector resizes itself, markers 768 apart along x, pair parked, rests at OFF, answered by channel 100, carries 2 sprite(s), deforms 3 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 100"
      ],
@@ -66638,8 +66638,8 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s6 type 614, the sector resizes itself, markers 256 apart along x, drawn at on, rests at OFF, answered by channel 100, carries 2 sprite(s), deforms 3 sectors",
-     "drawn_at": "on",
+     "sentence": "s6 type 614, the sector resizes itself, markers 256 apart along x, pair parked, rests at OFF, answered by channel 100, carries 2 sprite(s), deforms 3 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "channel 100"
      ],
@@ -67103,8 +67103,8 @@
       "tx",
       "state"
      ],
-     "sentence": "s1 type 616, the whole sector travels, markers 21504 apart along y, drawn at on, rests at ON, answered by entering, deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s1 type 616, the whole sector travels, markers 21504 apart along y, pair at the poses, rests at ON, answered by entering, deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "entering"
      ],
@@ -68332,7 +68332,7 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s0 type 613, nothing moves, markers 0 apart along x, drawn at an unclear pose, rests at OFF, answered by channel 100, shoved through 4 wall button(s), carries 1 sprite(s)",
+     "sentence": "s0 type 613, nothing moves, markers 0 apart along x, pair unplaceable, rests at OFF, answered by channel 100, shoved through 4 wall button(s), carries 1 sprite(s)",
      "driven_by": [
       "channel 100"
      ],
@@ -68502,8 +68502,8 @@
      "slots": [
       "tx"
      ],
-     "sentence": "s1 type 616, the whole sector travels, markers 1792 apart along x, drawn at on, rests at OFF, answered by a shove, carries 1 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s1 type 616, the whole sector travels, markers 1792 apart along x, pair parked, rests at OFF, answered by a shove, carries 1 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "a shove"
      ],
@@ -68531,8 +68531,8 @@
      "slots": [
       "tx"
      ],
-     "sentence": "s2 type 616, the whole sector travels, markers 1792 apart along x, drawn at on, rests at OFF, answered by a shove, carries 1 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s2 type 616, the whole sector travels, markers 1792 apart along x, pair at the poses, rests at OFF, answered by a shove, carries 1 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "driven_by": [
       "a shove"
      ],
@@ -69380,8 +69380,8 @@
      "slots": [
       "tx"
      ],
-     "sentence": "s1 type 617, the whole sector travels, markers 0 apart along x, drawn at on, rests at OFF, answered by a shove, carries 1 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s1 type 617, the whole sector travels, markers 0 apart along x, pair parked, rests at OFF, answered by a shove, carries 1 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "a shove"
      ],
@@ -69409,8 +69409,8 @@
      "slots": [
       "tx"
      ],
-     "sentence": "s2 type 617, the whole sector travels, markers 0 apart along x, drawn at on, rests at OFF, answered by a shove, carries 1 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s2 type 617, the whole sector travels, markers 0 apart along x, pair parked, rests at OFF, answered by a shove, carries 1 sprite(s), deforms 2 sectors",
+     "drawn_at": "parked",
      "driven_by": [
       "a shove"
      ],
@@ -69697,7 +69697,7 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s1 type 613, nothing moves, markers 1536 apart along y, drawn at an unclear pose, rests at OFF, answered by channel 101, carries 1 sprite(s)",
+     "sentence": "s1 type 613, nothing moves, markers 1536 apart along y, pair unplaceable, rests at OFF, answered by channel 101, carries 1 sprite(s)",
      "driven_by": [
       "channel 101"
      ],
@@ -69771,8 +69771,8 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s1 type 616, the whole sector travels, markers 3584 apart along x, drawn at on, rests at OFF, a z pair that does not travel, answered by channel 100, carries 1 sprite(s), deforms 2 sectors",
-     "drawn_at": "on",
+     "sentence": "s1 type 616, the whole sector travels, markers 3584 apart along x, pair at the poses, rests at OFF, a z pair that does not travel, answered by channel 100, carries 1 sprite(s), deforms 2 sectors",
+     "drawn_at": "at the poses",
      "z_pair": {
       "off_floor_z": 23552,
       "on_floor_z": 23552,
