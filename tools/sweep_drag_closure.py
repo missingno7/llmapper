@@ -28,7 +28,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from bloodmap.format import read_map                        # noqa: E402
-from bloodmap.motion_sim import closure_health             # noqa: E402
+from bloodmap.motion_sim import SWEEP_GRAZE, closure_health  # noqa: E402
 from bloodmap.patterns import corpus_root, list_corpus_maps  # noqa: E402
 
 SWEPT_TYPES = (614, 615, 616, 617)
@@ -105,6 +105,9 @@ def sweep_map(path: pathlib.Path, population: str, *, steps: int) -> list[dict[s
                 for r in health["loops"] if r["own"] and r["self_intersecting_steps"]],
             "crossings": health["crossings"][:4],
             "crossing_count": len(health["crossings"]),
+            #: What the graze tolerance removed. Counted, never invisible.
+            "grazing_crossings": health["grazing_crossings"],
+            "grazing_loops": len(health["grazing_loops"]),
             "disagreements": [
                 {"kind": d["kind"], "vertex": d["vertex"], "walls": d["walls"],
                  "sectors": d["sectors"]}
@@ -142,6 +145,12 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "isolated": sum(1 for r in swept if r["isolated"]),
         "neighbour_loops_touched": sum(r["neighbour_loops"] for r in swept),
         "assembly_loops_touched": sum(r["assembly_loops"] for r in swept),
+        #: The tolerance's own account of itself.
+        "graze_tolerance": SWEEP_GRAZE,
+        "mechanisms_with_a_graze": sum(
+            1 for r in swept if r["grazing_crossings"] or r["grazing_loops"]),
+        "grazing_crossings": sum(r["grazing_crossings"] for r in swept),
+        "grazing_loops": sum(r["grazing_loops"] for r in swept),
         #: Candidates, not defects: a hub several mechanisms drag is only
         #: whole when they all travel, and this sweeps one at a time.
         "assembly_loops_breaking_swept_alone": sorted({
@@ -267,6 +276,10 @@ def markdown(report: dict[str, Any]) -> str:
                      f"neighbour self-intersects {len(s['neighbour_self_intersects']):3d}   "
                      f"mover inverts/folds {len(s['mover_inverts_or_folds']):3d}   "
                      f"cuts standing geometry {len(s['cuts_standing_geometry']):3d}")
+        lines.append(f"{'':11s} under the {s['graze_tolerance']:g}-unit graze "
+                     f"tolerance: {s['grazing_loops']} loop-poses and "
+                     f"{s['grazing_crossings']} crossing(s), on "
+                     f"{s['mechanisms_with_a_graze']} mechanism(s)")
         lines.append(f"{'':11s} assembly hubs that break swept ALONE "
                      f"{len(s['assembly_loops_breaking_swept_alone']):3d} "
                      f"(candidates, not defects)")

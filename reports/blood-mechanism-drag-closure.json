@@ -21,6 +21,10 @@
     "isolated": 109,
     "neighbour_loops_touched": 176,
     "assembly_loops_touched": 132,
+    "graze_tolerance": 16.0,
+    "mechanisms_with_a_graze": 5,
+    "grazing_crossings": 38,
+    "grazing_loops": 2,
     "assembly_loops_breaking_swept_alone": [
      "MACHINERY-1WAYVEHICLE.map s1 loop 0 (dragged by [4, 5, 6])",
      "MACHINERY-1WAYVEHICLE.map s1 loop 0 (dragged by [4, 6, 9])",
@@ -41,7 +45,7 @@
     "mover_inverts_or_folds": [],
     "cuts_standing_geometry": [
      "DOOR-ROTATEGATE.map s0 (type 615): 11 crossing(s), first wall 38 of s0 through wall 11 of s0 at step 9",
-     "MODELLING-BASICS.map s141 (type 617): 4 crossing(s), first wall 867 of s140 through wall 609 of s106 at step 1"
+     "MODELLING-BASICS.map s141 (type 617): 2 crossing(s), first wall 867 of s140 through wall 609 of s106 at step 2"
     ],
     "closure_disagreements": {
      "mechanisms": 4,
@@ -617,13 +621,11 @@
       141
      ],
      "neighbour_loops": 1,
-     "crossing_count": 4,
+     "crossing_count": 2,
      "problems": [
-      "step 1/16: wall 867 of sector 140 cuts through wall 609 of sector 106, which this mechanism does not move -- it sweeps through standing geometry",
-      "step 1/16: wall 879 of sector 141 cuts through wall 609 of sector 106, which this mechanism does not move -- it sweeps through standing geometry",
-      "step 2/16: wall 867 of sector 140 cuts through wall 609 of sector 106, which this mechanism does not move -- it sweeps through standing geometry"
-     ],
-     "problems_total": 4
+      "step 2/16: wall 867 of sector 140 cuts through wall 609 of sector 106, which this mechanism does not move -- it sweeps through standing geometry",
+      "step 2/16: wall 879 of sector 141 cuts through wall 609 of sector 106, which this mechanism does not move -- it sweeps through standing geometry"
+     ]
     },
     {
      "map": "TRAP-WALLTRAP.map",
@@ -716,6 +718,10 @@
     "isolated": 200,
     "neighbour_loops_touched": 383,
     "assembly_loops_touched": 215,
+    "graze_tolerance": 16.0,
+    "mechanisms_with_a_graze": 106,
+    "grazing_crossings": 449,
+    "grazing_loops": 90,
     "assembly_loops_breaking_swept_alone": [
      "E1M2.MAP s7 loop 0 (dragged by [7, 34])",
      "E1M2.MAP s8 loop 0 (dragged by [8, 34])",
@@ -879,11 +885,11 @@
      "E1M1.MAP s87 (type 614): 18 crossing(s), first wall 744 of s87 through wall 383 of s54 at step 3",
      "E1M2.MAP s12 (type 617): 44 crossing(s), first wall 114 of s12 through wall 1475 of s196 at step 6",
      "E1M2.MAP s291 (type 614): 58 crossing(s), first wall 2208 of s288 through wall 2249 of s291 at step 5",
-     "E1M3.MAP s124 (type 617): 38 crossing(s), first wall 761 of s124 through wall 877 of s139 at step 0",
+     "E1M3.MAP s124 (type 617): 36 crossing(s), first wall 761 of s124 through wall 877 of s139 at step 0",
      "E1M3.MAP s127 (type 614): 10 crossing(s), first wall 801 of s127 through wall 1032 of s160 at step 0",
      "E1M3.MAP s187 (type 614): 24 crossing(s), first wall 1193 of s186 through wall 1676 of s272 at step 0",
      "E1M3.MAP s190 (type 614): 46 crossing(s), first wall 1207 of s189 through wall 1671 of s271 at step 0",
-     "E1M3.MAP s197 (type 614): 24 crossing(s), first wall 1251 of s196 through wall 1600 of s261 at step 0",
+     "E1M3.MAP s197 (type 614): 21 crossing(s), first wall 1251 of s196 through wall 1600 of s261 at step 0",
      "E1M3.MAP s200 (type 614): 62 crossing(s), first wall 1264 of s199 through wall 1660 of s271 at step 0",
      "E1M6.MAP s309 (type 614): 10 crossing(s), first wall 3149 of s309 through wall 5116 of s525 at step 0",
      "E1M6.MAP s387 (type 614): 4 crossing(s), first wall 3851 of s387 through wall 3115 of s305 at step 0",
@@ -892,23 +898,23 @@
      "E2M3.MAP s87 (type 617): 2 crossing(s), first wall 705 of s87 through wall 728 of s91 at step 0",
      "E2M5.MAP s74 (type 617): 26 crossing(s), first wall 436 of s74 through wall 5738 of s651 at step 0",
      "E2M5.MAP s80 (type 617): 36 crossing(s), first wall 458 of s80 through wall 4067 of s478 at step 0",
-     "E2M5.MAP s95 (type 615): 111 crossing(s), first wall 540 of s95 through wall 769 of s118 at step 0",
-     "E2M5.MAP s96 (type 615): 118 crossing(s), first wall 549 of s96 through wall 136 of s21 at step 0",
+     "E2M5.MAP s95 (type 615): 106 crossing(s), first wall 540 of s95 through wall 769 of s118 at step 0",
+     "E2M5.MAP s96 (type 615): 114 crossing(s), first wall 549 of s96 through wall 136 of s21 at step 0",
      "E2M5.MAP s197 (type 617): 24 crossing(s), first wall 1264 of s197 through wall 5586 of s633 at step 0",
-     "E2M5.MAP s228 (type 617): 16 crossing(s), first wall 1465 of s228 through wall 6517 of s752 at step 0",
+     "E2M5.MAP s228 (type 617): 14 crossing(s), first wall 1465 of s228 through wall 6517 of s752 at step 0",
      "E2M5.MAP s418 (type 617): 62 crossing(s), first wall 3245 of s418 through wall 6245 of s710 at step 0",
      "E2M5.MAP s509 (type 614): 38 crossing(s), first wall 4401 of s509 through wall 5719 of s649 at step 0",
-     "E2M5.MAP s621 (type 617): 28 crossing(s), first wall 5510 of s621 through wall 5531 of s623 at step 1",
-     "E2M5.MAP s693 (type 617): 38 crossing(s), first wall 6036 of s693 through wall 5908 of s676 at step 0",
+     "E2M5.MAP s621 (type 617): 26 crossing(s), first wall 5509 of s621 through wall 5531 of s623 at step 2",
+     "E2M5.MAP s693 (type 617): 34 crossing(s), first wall 6036 of s693 through wall 5908 of s676 at step 0",
      "E2M5.MAP s706 (type 617): 2 crossing(s), first wall 6116 of s706 through wall 2759 of s356 at step 1",
      "E2M5.MAP s709 (type 617): 54 crossing(s), first wall 6196 of s709 through wall 3968 of s467 at step 0",
      "E2M6.MAP s80 (type 617): 30 crossing(s), first wall 476 of s80 through wall 1068 of s140 at step 4",
      "E2M6.MAP s81 (type 617): 36 crossing(s), first wall 478 of s81 through wall 1068 of s140 at step 4",
-     "E2M6.MAP s83 (type 617): 58 crossing(s), first wall 509 of s83 through wall 1058 of s140 at step 0",
+     "E2M6.MAP s83 (type 617): 52 crossing(s), first wall 509 of s83 through wall 1058 of s140 at step 0",
      "E2M6.MAP s86 (type 617): 48 crossing(s), first wall 521 of s86 through wall 1039 of s135 at step 0",
      "E2M6.MAP s111 (type 617): 16 crossing(s), first wall 709 of s111 through wall 923 of s116 at step 1",
      "E2M6.MAP s112 (type 615): 17 crossing(s), first wall 751 of s112 through wall 923 of s116 at step 0",
-     "E2M6.MAP s114 (type 617): 108 crossing(s), first wall 761 of s114 through wall 694 of s110 at step 0",
+     "E2M6.MAP s114 (type 617): 104 crossing(s), first wall 761 of s114 through wall 694 of s110 at step 0",
      "E2M6.MAP s115 (type 617): 36 crossing(s), first wall 818 of s115 through wall 692 of s110 at step 0",
      "E2M6.MAP s116 (type 615): 23 crossing(s), first wall 831 of s116 through wall 691 of s110 at step 0",
      "E2M6.MAP s124 (type 614): 5 crossing(s), first wall 968 of s124 through wall 1488 of s192 at step 0",
@@ -925,15 +931,15 @@
      "E3M1.MAP s375 (type 614): 8 crossing(s), first wall 2406 of s375 through wall 1573 of s239 at step 0",
      "E3M2.MAP s112 (type 614): 4 crossing(s), first wall 856 of s112 through wall 3500 of s473 at step 0",
      "E3M2.MAP s159 (type 614): 28 crossing(s), first wall 1157 of s159 through wall 2828 of s400 at step 0",
-     "E3M3.MAP s0 (type 615): 54 crossing(s), first wall 24 of s1 through wall 7 of s0 at step 2",
+     "E3M3.MAP s0 (type 615): 30 crossing(s), first wall 44 of s6 through wall 0 of s0 at step 2",
      "E3M3.MAP s20 (type 614): 56 crossing(s), first wall 140 of s20 through wall 1734 of s255 at step 0",
-     "E3M3.MAP s263 (type 615): 56 crossing(s), first wall 26 of s1 through wall 4 of s0 at step 3",
+     "E3M3.MAP s263 (type 615): 52 crossing(s), first wall 26 of s1 through wall 4 of s0 at step 3",
      "E3M4.MAP s139 (type 614): 10 crossing(s), first wall 939 of s139 through wall 592 of s101 at step 0",
      "E3M4.MAP s140 (type 614): 10 crossing(s), first wall 972 of s140 through wall 592 of s101 at step 0",
      "E3M4.MAP s141 (type 614): 27 crossing(s), first wall 985 of s141 through wall 1620 of s218 at step 0",
      "E3M4.MAP s145 (type 614): 16 crossing(s), first wall 1048 of s145 through wall 2485 of s328 at step 0",
      "E3M4.MAP s175 (type 616): 12 crossing(s), first wall 1243 of s175 through wall 517 of s91 at step 0",
-     "E3M5.MAP s1 (type 614): 22 crossing(s), first wall 12 of s1 through wall 277 of s24 at step 0",
+     "E3M5.MAP s1 (type 614): 21 crossing(s), first wall 12 of s1 through wall 277 of s24 at step 0",
      "E3M5.MAP s29 (type 615): 22 crossing(s), first wall 352 of s29 through wall 1092 of s141 at step 2",
      "E3M5.MAP s36 (type 614): 22 crossing(s), first wall 255 of s22 through wall 1880 of s241 at step 2",
      "E3M5.MAP s59 (type 616): 20 crossing(s), first wall 521 of s51 through wall 1360 of s175 at step 11",
@@ -948,11 +954,11 @@
      "E4M2.MAP s31 (type 617): 4 crossing(s), first wall 159 of s31 through wall 99 of s18 at step 0",
      "E4M2.MAP s34 (type 617): 4 crossing(s), first wall 205 of s34 through wall 84 of s16 at step 6",
      "E4M2.MAP s36 (type 617): 13 crossing(s), first wall 213 of s36 through wall 84 of s16 at step 7",
-     "E4M2.MAP s37 (type 617): 23 crossing(s), first wall 217 of s37 through wall 88 of s17 at step 0",
+     "E4M2.MAP s37 (type 617): 22 crossing(s), first wall 217 of s37 through wall 88 of s17 at step 0",
      "E4M2.MAP s38 (type 617): 1 crossing(s), first wall 222 of s38 through wall 1287 of s207 at step 4",
-     "E4M2.MAP s39 (type 617): 396 crossing(s), first wall 173 of s33 through wall 1301 of s210 at step 0",
+     "E4M2.MAP s39 (type 617): 362 crossing(s), first wall 173 of s33 through wall 1301 of s210 at step 0",
      "E4M2.MAP s152 (type 614): 30 crossing(s), first wall 940 of s152 through wall 1001 of s164 at step 0",
-     "E4M2.MAP s201 (type 615): 87 crossing(s), first wall 1230 of s200 through wall 1232 of s200 at step 0",
+     "E4M2.MAP s201 (type 615): 42 crossing(s), first wall 1262 of s201 through wall 1301 of s210 at step 0",
      "E4M2.MAP s238 (type 614): 10 crossing(s), first wall 1512 of s238 through wall 53 of s10 at step 0",
      "E6M1.MAP s76 (type 617): 32 crossing(s), first wall 563 of s75 through wall 676 of s91 at step 0",
      "E6M1.MAP s80 (type 616): 20 crossing(s), first wall 591 of s79 through wall 567 of s75 at step 6",
@@ -1398,7 +1404,7 @@
       125
      ],
      "neighbour_loops": 1,
-     "crossing_count": 38,
+     "crossing_count": 36,
      "problems": [
       "step 0/16: wall 761 of sector 124 cuts through wall 877 of sector 139, which this mechanism does not move -- it sweeps through standing geometry",
       "step 0/16: wall 763 of sector 124 cuts through wall 877 of sector 139, which this mechanism does not move -- it sweeps through standing geometry",
@@ -1497,7 +1503,7 @@
       198
      ],
      "neighbour_loops": 2,
-     "crossing_count": 24,
+     "crossing_count": 21,
      "problems": [
       "step 0/16: wall 1251 of sector 196 cuts through wall 1600 of sector 261, which this mechanism does not move -- it sweeps through standing geometry",
       "step 0/16: wall 1252 of sector 196 cuts through wall 1600 of sector 261, which this mechanism does not move -- it sweeps through standing geometry",
@@ -3859,7 +3865,7 @@
        ]
       }
      ],
-     "crossing_count": 111,
+     "crossing_count": 106,
      "disagreements": [
       {
        "kind": "coincident but not chained",
@@ -3928,7 +3934,7 @@
        ]
       }
      ],
-     "crossing_count": 118,
+     "crossing_count": 114,
      "disagreements": [
       {
        "kind": "coincident but not chained",
@@ -4059,7 +4065,7 @@
       229
      ],
      "neighbour_loops": 1,
-     "crossing_count": 16,
+     "crossing_count": 14,
      "disagreements": [
       {
        "kind": "coincident but not chained",
@@ -4199,11 +4205,11 @@
       622
      ],
      "neighbour_loops": 1,
-     "crossing_count": 28,
+     "crossing_count": 26,
      "problems": [
-      "step 1/16: wall 5510 of sector 621 cuts through wall 5531 of sector 623, which this mechanism does not move -- it sweeps through standing geometry",
-      "step 1/16: wall 5513 of sector 622 cuts through wall 5531 of sector 623, which this mechanism does not move -- it sweeps through standing geometry",
-      "step 2/16: wall 5509 of sector 621 cuts through wall 5531 of sector 623, which this mechanism does not move -- it sweeps through standing geometry"
+      "step 2/16: wall 5509 of sector 621 cuts through wall 5531 of sector 623, which this mechanism does not move -- it sweeps through standing geometry",
+      "step 2/16: wall 5514 of sector 622 cuts through wall 5531 of sector 623, which this mechanism does not move -- it sweeps through standing geometry",
+      "step 3/16: wall 5509 of sector 621 cuts through wall 5531 of sector 623, which this mechanism does not move -- it sweeps through standing geometry"
      ],
      "problems_total": 8
     },
@@ -4227,7 +4233,7 @@
        ]
       }
      ],
-     "crossing_count": 38,
+     "crossing_count": 34,
      "problems": [
       "step 0/16: loop 0 of sector 694, which this mechanism drags through wall(s) [6036, 6037, 6038, 6039] crosses itself (1 new wall pair(s))",
       "step 0/16: wall 6036 of sector 693 cuts through wall 5908 of sector 676, which this mechanism does not move -- it sweeps through standing geometry",
@@ -4315,7 +4321,7 @@
       188
      ],
      "neighbour_loops": 1,
-     "crossing_count": 58,
+     "crossing_count": 52,
      "problems": [
       "step 0/16: wall 509 of sector 83 cuts through wall 1058 of sector 140, which this mechanism does not move -- it sweeps through standing geometry",
       "step 0/16: wall 511 of sector 83 cuts through wall 1058 of sector 140, which this mechanism does not move -- it sweeps through standing geometry",
@@ -4424,7 +4430,7 @@
       116
      ],
      "assembly_loops": 1,
-     "crossing_count": 108,
+     "crossing_count": 104,
      "problems": [
       "step 0/16: wall 761 of sector 114 cuts through wall 694 of sector 110, which this mechanism does not move -- it sweeps through standing geometry",
       "step 0/16: wall 771 of sector 114 cuts through wall 694 of sector 110, which this mechanism does not move -- it sweeps through standing geometry",
@@ -5787,7 +5793,7 @@
        ]
       }
      ],
-     "crossing_count": 54,
+     "crossing_count": 30,
      "problems": [
       "step 2/16: loop 0 of sector 1, which this mechanism drags through wall(s) [21, 22] crosses itself (1 new wall pair(s))",
       "step 2/16: loop 0 of sector 2, which this mechanism drags through wall(s) [20, 21] crosses itself (1 new wall pair(s))",
@@ -6059,7 +6065,7 @@
        ]
       }
      ],
-     "crossing_count": 56,
+     "crossing_count": 52,
      "problems": [
       "step 2/16: loop 0 of sector 1, which this mechanism drags through wall(s) [1834, 1835] crosses itself (1 new wall pair(s))",
       "step 2/16: loop 0 of sector 2, which this mechanism drags through wall(s) [1835, 1836] crosses itself (1 new wall pair(s))",
@@ -6190,7 +6196,7 @@
       1
      ],
      "isolated": true,
-     "crossing_count": 22,
+     "crossing_count": 21,
      "problems": [
       "step 0/16: wall 12 of sector 1 cuts through wall 277 of sector 24, which this mechanism does not move -- it sweeps through standing geometry",
       "step 0/16: wall 14 of sector 1 cuts through wall 277 of sector 24, which this mechanism does not move -- it sweeps through standing geometry",
@@ -7777,7 +7783,7 @@
        "folds": true
       }
      ],
-     "crossing_count": 23,
+     "crossing_count": 22,
      "problems": [
       "step 0/16: wall 217 of sector 37 cuts through wall 88 of sector 17, which this mechanism does not move -- it sweeps through standing geometry",
       "step 1/16: wall 1530 of sector 239 cuts through wall 87 of sector 17, which this mechanism does not move -- it sweeps through standing geometry",
@@ -7848,7 +7854,7 @@
       38
      ],
      "assembly_loops": 2,
-     "crossing_count": 396,
+     "crossing_count": 362,
      "problems": [
       "step 0/16: wall 173 of sector 33 cuts through wall 1301 of sector 210, which this mechanism does not move -- it sweeps through standing geometry",
       "step 0/16: wall 175 of sector 33 cuts through wall 1389 of sector 221, which this mechanism does not move -- it sweeps through standing geometry",
@@ -7936,7 +7942,7 @@
        ]
       }
      ],
-     "crossing_count": 87,
+     "crossing_count": 42,
      "problems": [
       "step 0/16: loop 0 of sector 200, which this mechanism drags through wall(s) [1254, 1256] inverts -- its outline winds the other way, so it is inside out at that pose",
       "step 0/16: loop 0 of sector 200, which this mechanism drags through wall(s) [1254, 1256] crosses itself (5 new wall pair(s))",

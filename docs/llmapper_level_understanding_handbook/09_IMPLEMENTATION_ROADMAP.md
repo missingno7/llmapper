@@ -2323,6 +2323,15 @@ other; the campaign's 27 folding neighbour loops split at 13.69 vs 19.98 units,
 and `SWEEP_GRAZE = 16.0` sits in the gap -- also the right order for the
 model's own rounded marker angle (~1.6 units at a 1024 radius).
 
+The two-leaf finding landed while this was being written and it is the right
+warning: a number inside a widened envelope was the only trace of a mechanism
+running backwards. So this tolerance accounts for itself. Every loop carries
+`grazing_steps`, every crossing its `depth` and a `graze` flag,
+`closure_health` returns `graze_tolerance` / `grazing_loops` /
+`grazing_crossings`, and the census prints them beside the findings (2
+loop-poses and 38 crossings in the course, 90 and 449 in the campaign). Set it
+to 0 and every graze becomes a fold; a test asserts that flip still happens.
+
 ### Numbers
 
 429 swept mechanisms in the vanilla course (138 maps), 648 in the campaign (43).

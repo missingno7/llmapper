@@ -226,6 +226,58 @@ class GrazeTest(unittest.TestCase):
         self.assertEqual(self_intersections(shallow, min_depth=SWEEP_GRAZE), [])
 
 
+class TheToleranceReportsWhatItDropsTest(unittest.TestCase):
+    """A tolerance that swallows its findings has already cost this repo once.
+
+    The two-leaf curtain ran backwards for a whole session and the only
+    visible trace was a texel number sitting comfortably inside a widened
+    envelope (roadmap, 2026-09-01). `SWEEP_GRAZE` is a noise floor rather
+    than an envelope, but it removes findings all the same, so everything it
+    removes is counted and named.
+    """
+
+    def test_a_grazing_crossing_is_marked_not_dropped(self):
+        from bloodmap.motion_sim import closure_health
+        from bloodmap.format import read_map
+        from bloodmap.patterns import list_corpus_maps
+
+        found = [e for e in list_corpus_maps(population="blood-campaign")
+                 if e.path.stem.upper() == "E1M8"]
+        if not found:
+            self.skipTest("E1M8 is not in the corpus")
+        disk = read_map(found[0].path)
+        # s18 is a 617 rotor hinged on s20's wall: it grazes at one pose of
+        # sixteen by 13.7 units, which is the case the tolerance exists for.
+        health = closure_health(disk, 18, steps=16)
+        self.assertEqual(health["graze_tolerance"], 16.0)
+        self.assertIn((20, 0), health["grazing_loops"])
+        row = next(r for r in health["loops"] if r["sector"] == 20)
+        self.assertEqual(row["grazing_steps"], [1])
+        self.assertEqual(row["self_intersecting_steps"], [])
+        self.assertTrue(health["healthy"], health["problems"])
+
+    def test_dropping_the_tolerance_makes_the_same_pose_a_problem(self):
+        # The falsification handle: a reviewer who doubts 16 can set it to 0
+        # and see every graze become a fold. If this ever stops flipping, the
+        # tolerance has stopped being a tolerance.
+        from unittest import mock
+
+        from bloodmap import motion_sim
+        from bloodmap.format import read_map
+        from bloodmap.patterns import list_corpus_maps
+
+        found = [e for e in list_corpus_maps(population="blood-campaign")
+                 if e.path.stem.upper() == "E1M8"]
+        if not found:
+            self.skipTest("E1M8 is not in the corpus")
+        disk = read_map(found[0].path)
+        with mock.patch.object(motion_sim, "SWEEP_GRAZE", 0.0):
+            health = motion_sim.closure_health(disk, 18, steps=16)
+        row = next(r for r in health["loops"] if r["sector"] == 20)
+        self.assertEqual(row["self_intersecting_steps"], [1])
+        self.assertFalse(health["healthy"])
+
+
 class AssemblyTest(unittest.TestCase):
     """A hub several mechanisms drag cannot be judged one mechanism at a time.
 

@@ -901,7 +901,7 @@ def closure_crossings(level: Any, swept: ClosureSweep,
                 #: static wall crosses it by a unit at small angles, and that
                 #: is the rounded marker angle, not the map.
                 depth = crossing_depth(a, b, c, d)
-                if depth < SWEEP_GRAZE:
+                if not depth:
                     continue
                 found.append({
                     "step": step, "wall": wall_id,
@@ -909,6 +909,10 @@ def closure_crossings(level: Any, swept: ClosureSweep,
                     "static_wall": other,
                     "static_sector": owners.get(other, -1),
                     "depth": round(depth, 1),
+                    #: Below the tolerance this is a hinge poking past the
+                    #: wall it turns on, not a sweep through it. Kept in the
+                    #: list and marked, never dropped: see `grazing_steps`.
+                    "graze": depth < SWEEP_GRAZE,
                 })
                 break
     return found
@@ -1008,6 +1012,17 @@ def closure_health(level: Any, sector_id: int, *, steps: int = 16,
         folds = [step for step, frame in enumerate(frames)
                  if set(self_intersections(frame, min_depth=SWEEP_GRAZE))
                  - drawn_folds]
+        #: What the tolerance DROPPED, reported rather than swallowed. The
+        #: repository has already been bitten once by a number sitting
+        #: comfortably inside a tolerance being the only trace of a mechanism
+        #: running backwards (see the two-leaf curtain, roadmap 2026-09-01),
+        #: so a graze is counted and named even though it is not a problem: a
+        #: loop that starts grazing where it did not is a signal, and a
+        #: reviewer can lower SWEEP_GRAZE and re-run to see them all.
+        grazes = [step for step, frame in enumerate(frames)
+                  if set(self_intersections(frame))
+                  - set(self_intersections(frame, min_depth=SWEEP_GRAZE))
+                  - set(self_intersections(drawn_poly))]
         dragged_through = sorted({moved[w]["driver"] for w in walls if w in moved})
         #: The assembly test: does another mechanism drag any of the walls
         #: this one drags in this loop? If so the loop is a shared hub and
@@ -1027,6 +1042,7 @@ def closure_health(level: Any, sector_id: int, *, steps: int = 16,
             "areas": [round(value, 1) for value in signed],
             "inverted_steps": inverted,
             "self_intersecting_steps": folds,
+            "grazing_steps": grazes,
         }
         loops.append(row)
         where = (f"loop {index} of sector {sector}"
@@ -1066,11 +1082,19 @@ def closure_health(level: Any, sector_id: int, *, steps: int = 16,
                 if hit["static_sector"] in co_movers
                 or hit["wall"] in shared or hit["static_wall"] in shared]
     excluded = {id(hit) for hit in assembly}
-    crossings = [hit for hit in all_crossings if id(hit) not in excluded]
+    judged = [hit for hit in all_crossings if id(hit) not in excluded]
+    grazing_crossings = [hit for hit in judged if hit["graze"]]
+    crossings = [hit for hit in judged if not hit["graze"]]
     if assembly:
         notes.append(
             f"{len(assembly)} wall crossing(s) involve geometry another "
             f"mechanism drags too -- not judged one mechanism at a time")
+    if grazing_crossings:
+        deepest = max(hit["depth"] for hit in grazing_crossings)
+        notes.append(
+            f"{len(grazing_crossings)} wall crossing(s) under the "
+            f"{SWEEP_GRAZE:g}-unit graze tolerance (deepest {deepest}): a "
+            f"hinge poking past the wall it turns on, not a sweep through it")
     for hit in crossings[:8]:
         problems.append(
             f"step {hit['step']}/{steps}: wall {hit['wall']} of sector "
@@ -1093,6 +1117,13 @@ def closure_health(level: Any, sector_id: int, *, steps: int = 16,
         "loops": loops,
         "crossings": crossings,
         "assembly_crossings": len(assembly),
+        #: Everything the graze tolerance removed, counted so it is never
+        #: invisible: folds by step per loop are in each loop's
+        #: `grazing_steps`, and these are the wall crossings.
+        "graze_tolerance": SWEEP_GRAZE,
+        "grazing_crossings": len(grazing_crossings),
+        "grazing_loops": sorted({(row["sector"], row["loop"])
+                                 for row in loops if row["grazing_steps"]}),
         "disagreements": swept.closure["disagreements"],
         "problems": problems,
         "notes": notes,

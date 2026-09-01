@@ -480,6 +480,18 @@ over many steps. `SWEEP_GRAZE = 16.0` sits in that gap. It is also the right
 order for the model's own error -- the interpolated marker angle is rounded to
 a whole Build unit, about 1.6 units of position at a 1024-unit radius.
 
+**The tolerance reports what it drops.** This repository has already lost a
+session to a number sitting comfortably inside a widened envelope being the
+only visible trace of a two-leaf curtain running backwards. So nothing is
+silently swallowed: each loop carries `grazing_steps`, each crossing carries
+its `depth` and a `graze` flag, `closure_health` returns `graze_tolerance`,
+`grazing_loops` and `grazing_crossings`, and a graze becomes a `note`. The
+census prints the account beside the findings -- 2 loop-poses and 38 crossings
+on 5 curriculum mechanisms, 90 and 449 on 106 campaign ones. A reviewer who
+doubts 16 sets it to 0 and every graze becomes a fold;
+`test_dropping_the_tolerance_makes_the_same_pose_a_problem` asserts that flip
+still happens, so the tolerance cannot quietly stop being one.
+
 ### The inside-out candidates
 
 The owner reported seeing inside-out sectors. Case (b) of the supervisor's four
