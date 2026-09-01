@@ -87,12 +87,12 @@
         "fabric_walls": 6,
         "fabric_visible": 6,
         "closed_texel_scale": [
-          1.67,
           2.0,
-          1.67,
-          1.67,
           2.0,
-          1.67
+          2.0,
+          2.0,
+          2.0,
+          2.0
         ]
       },
       "deviations": []
