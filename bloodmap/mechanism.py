@@ -627,7 +627,13 @@ WALL_MOVES_AGAINST = 32768
 #: E1M1 s125, the curtain, measured: busy 40 out and 25 back, both waves 1.
 CURTAIN_BUSY_OUT, CURTAIN_BUSY_BACK = 40, 25
 #: E1M1 s28/s30, the casket: 40 both ways.
-PLANAR_DOOR_BUSY = 40
+PLANAR_DOOR_BUSY = 50
+#: The oracle's lid thickness: the tray sits one step above the hole.
+PLANAR_LID_STEP = 1024
+#: Neither side of the split may end the motion thinner than a body.
+PLANAR_MIN_DEPTH = 128
+#: One player width; the opening a body needs.
+BODY_WIDTH = 384
 
 
 def _sign(value: int) -> int:
@@ -734,116 +740,225 @@ def planar_door(
     layout: PlanarLayout,
     name: str,
     *,
-    hole_region: str,
-    cover_region: str,
-    hole_outline: list[tuple[int, int]],
-    cover_outline: list[tuple[int, int]],
-    boundary: tuple[tuple[int, int], tuple[int, int]],
-    travel: tuple[int, int],
+    footprint: tuple[int, int, int, int],
+    axis: str,
+    split: int,
+    travel: int,
     channel: int,
+    lid_region: str,
+    hole_region: str,
     floor_z: int,
     ceiling_z: int,
-    cover_floor_z: int | None = None,
-    cover_ceiling_z: int | None = None,
-    lift_out: int = 0,
+    lid_step: int = PLANAR_LID_STEP,
+    motor: str = "lid",
+    flags: str = "both",
+    drawn_covered: bool = True,
     busy_time: int = PLANAR_DOOR_BUSY,
     transmits: int | None = None,
-    to_region: str | None = None,
-    voice: dict[str, int] | None = None,
+    lift_out: int = 0,
+    lid_kwargs: dict | None = None,
+    hole_kwargs: dict | None = None,
     **region_kwargs,
 ) -> dict:
-    """A lid that slides aside by MOVING THE BOUNDARY between two sectors.
+    """A floor that slides aside to uncover the hole you drop through.
 
-    E1M1's casket, which is the owner's attested blueprint and where every
-    number here comes from. Two sectors sit side by side -- a hole you are in
-    and a cover beside it -- and the moving one is `kSectorSlideMarked` with
-    exactly ONE flagged wall: the wall they share. Its travel re-partitions
-    the plan area between them, so the hole grows as the cover shrinks and the
-    lid reads as sliding open.
+    **The owner's definition, from `maps/blood/mechanism/casket.map`.** One
+    footprint, SPLIT by a sliding boundary into a LID and a HOLE. The lid
+    slides to cover or reveal the hole, and the hole is the passage -- it
+    carries the room-over-room link down to the space below. There is no
+    pocket hidden inside a bigger room: the revealed hole IS the way through.
 
-    Nothing else in the family works this way. A sliding gate moves leaves
-    across a threshold; this moves the threshold itself. The concept the
-    project lacked a name for is **boundary-wall area re-partition**, and it
-    is why the casket could not be built out of `sliding_gate` no matter how
-    the leaves were posed.
+    Two dialects, both legal, and the grammar fixes neither:
 
-    `lift_out` is the other half of s30 and is deliberately separable: the
-    casket's floor also rises 6144 as it opens, which is NOT part of the
-    door. The owner's category for it is ERGONOMIC-ASSIST motion -- it exists
-    to boost the player out of the coffin, not to gate anything -- and a
-    reading that counts it as part of the door's gating misreads the
-    construct. It is written here as the z verb composed on the same sector,
-    which is E1M1's own proof that the two XSECTOR z states are available
-    regardless of sector type.
+    * **which side is the motor.** The oracle puts the 614 on the LID (s2,
+      s5) and leaves the link-bearing holes plain; E1M1's casket puts it on
+      the HOLE (s28, s30) and leaves the covers plain. `motor` selects, and
+      the default is the oracle's.
+    * **how many sides of the boundary carry the flag.** The oracle flags
+      both (walls 18+22, 36+40); E1M1 flags one. `flags` selects, and the
+      default is the oracle's.
 
-    What this does NOT build is the room-over-room half. E1M1's casket is
-    four sectors in two pairs, one above the other, stack-linked and synced on
-    one channel so the revealed holes meet through the link. `PlanarLayout`
-    has no stack link at all, so this constructor builds ONE pair -- which is
-    a complete, working planar door -- and the coupling remains unbuildable.
+    What the grammar DOES fix is the split-and-slide of the boundary and the
+    link in the revealed hole. Everything else here is derived or clamped
+    rather than trusted, because the zoo shipped a casket whose caller asked
+    for a travel of 3072 into a cover 768 deep: the boundary swept 2304 units
+    past the far wall and turned that sector inside out, and every static
+    validator passed it because they all check the pose the map is SAVED in.
+
+    So: the markers are placed FROM the boundary's rest position TO its open
+    position, both derived here; and the travel is refused if it would leave
+    either side of the split thinner than a body at either end of the motion.
     """
+    if axis not in ("x", "y"):
+        raise MechanismError(f"{name}: axis is 'x' or 'y', not {axis!r}")
+    if motor not in ("lid", "hole"):
+        raise MechanismError(f"{name}: motor is 'lid' or 'hole'")
+    if flags not in ("one", "both"):
+        raise MechanismError(f"{name}: flags is 'one' or 'both'")
     if channel <= 0:
         raise MechanismError(f"{name}: a planar door needs a channel")
-    if travel == (0, 0):
+    if not travel:
         raise MechanismError(f"{name}: a planar door with no travel is a wall")
 
-    behavior = {
+    x0, y0, x1, y1 = (int(v) for v in footprint)
+    low, high = (x0, x1) if axis == "x" else (y0, y1)
+    if not low < int(split) < high:
+        raise MechanismError(
+            f"{name}: the split at {split} is outside the footprint "
+            f"{low}..{high}; the boundary has to divide it")
+
+    #: The two poses of the boundary. `drawn_covered` says which one the map
+    #: is authored in -- the oracle draws the covered pose and declares
+    #: state 1, which is what makes it rest there instead of jumping a full
+    #: travel the moment the level loads.
+    rest = int(split)
+    opened = rest + int(travel)
+    if not low < opened < high:
+        raise MechanismError(
+            f"{name}: travel {travel} carries the boundary from {rest} to "
+            f"{opened}, outside the footprint {low}..{high}. The sector "
+            f"receiving it would invert")
+    for pose, where in ((rest, "covered"), (opened, "open")):
+        if min(pose - low, high - pose) < PLANAR_MIN_DEPTH:
+            raise MechanismError(
+                f"{name}: in its {where} pose the split at {pose} leaves "
+                f"{min(pose - low, high - pose)} units on one side of a "
+                f"{high - low}-unit footprint, under the {PLANAR_MIN_DEPTH} "
+                f"a body needs. Widen the footprint or shorten the travel")
+
+    #: The lid lies on the far side of the boundary from the hole. Which end
+    #: of the footprint each occupies follows from the travel's sign: the lid
+    #: is the side that SHRINKS as the door opens.
+    lid_first = int(travel) < 0
+    def _rect(a: int, b: int) -> list[tuple[int, int]]:
+        if axis == "x":
+            return [(a, y0), (b, y0), (b, y1), (a, y1)]
+        return [(x0, a), (x1, a), (x1, b), (x0, b)]
+
+    lid_span = (low, rest) if lid_first else (rest, high)
+    hole_span = (rest, high) if lid_first else (low, rest)
+
+    #: The lid reads as a tray one step above the hole it covers: the
+    #: oracle's step is 1024, and it is what makes the open hole read as
+    #: somewhere to drop into rather than as a change of floor colour.
+    lid_floor = int(floor_z) - int(lid_step)
+    common = dict(region_kwargs)
+    motor_behavior = {
         "rx_id": int(channel),
         "busy_time_a": int(busy_time), "busy_time_b": int(busy_time),
-        "trigger_on": 1,
+        "state": 1 if drawn_covered else 0,
+        "busy": 65536 if drawn_covered else 0,
     }
     if transmits:
-        behavior["tx_id"] = int(transmits)
-        behavior["command"] = CMD_TOGGLE
+        motor_behavior["tx_id"] = int(transmits)
+        motor_behavior["command"] = CMD_TOGGLE
     if lift_out:
-        #: The ergonomic assist, on the same sector: a z verb composed with
-        #: the XY one. Endpoints that differ on the FLOOR and agree on the
-        #: ceiling, which is the mirror of a door's.
-        behavior.update({
-            "off_floor_z": int(floor_z), "on_floor_z": int(floor_z - lift_out),
-            "off_ceiling_z": int(ceiling_z), "on_ceiling_z": int(ceiling_z),
+        #: E1M1 s30's other half, and deliberately separable: the floor rises
+        #: as the door opens, to boost the player out of the hole. The owner's
+        #: category is ERGONOMIC-ASSIST motion -- present for the body, not
+        #: for topology -- so a reading that counts it as part of the door's
+        #: gating misreads the construct. It only makes sense on the sector
+        #: the body is standing in, which is why it is refused on the lid.
+        if motor != "hole":
+            raise MechanismError(
+                f"{name}: lift_out raises the floor the player stands on, so "
+                f"it belongs on the hole; this door's motor is the lid")
+        motor_behavior.update({
+            "off_floor_z": int(floor_z),
+            "on_floor_z": int(floor_z) - int(lift_out),
+            "off_ceiling_z": int(ceiling_z),
+            "on_ceiling_z": int(ceiling_z),
         })
-    layout.add_region(hole_region, hole_outline, role="doorway", type=614,
-                      floor_z=floor_z, ceiling_z=ceiling_z,
-                      sector_behavior=behavior, **region_kwargs)
-    #: The cover carries the mechanism's VOICE: E1M1's s27 breathes light on
-    #: floor, ceiling and walls at once while the lid moves, and s30 -- the
-    #: grave it opens onto -- uses a negative amplitude, so the lid lightens
-    #: as the hole darkens. Presentation synced to state is part of the
-    #: grammar, not decoration, and it is the half a bare geometry
-    #: reconstruction always drops.
-    layout.add_region(cover_region, cover_outline,
-                      floor_z=cover_floor_z if cover_floor_z is not None
-                      else floor_z,
-                      ceiling_z=cover_ceiling_z if cover_ceiling_z is not None
-                      else ceiling_z,
-                      sector_behavior=dict(shade_wave() if voice is None
-                                           else voice),
-                      **region_kwargs)
-    #: The one flagged wall, on the moving sector's side only. E1M1's s28
-    #: flags w221 and its neighbour s27 flags nothing.
-    layout.carry_wall(hole_region, boundary[0], boundary[1], moves="with")
 
-    #: E1M1's marker pair runs from the hole's FAR edge to the shared
-    #: boundary, so the travel is the hole's own width: s30's are 1916 apart
-    #: across a 1920-wide hole, s28's 1912 across 1920. The "from" marker
-    #: therefore stands inside the hole and the "to" marker at the boundary,
-    #: inside the cover -- which is why it needs its own region and why a
-    #: naive `boundary + travel` placement lands outside every sector there is.
-    mid = ((boundary[0][0] + boundary[1][0]) // 2,
-           (boundary[0][1] + boundary[1][1]) // 2)
-    origin = (mid[0] - int(travel[0]), mid[1] - int(travel[1]))
-    #: Nudged off the shared wall, which belongs to neither sector alone.
-    step = (_sign(travel[0]) * 8, _sign(travel[1]) * 8)
-    markers = _slide_markers(
-        layout, name.replace(":", "_"), hole_region, origin,
-        (mid[0] + step[0] - origin[0], mid[1] + step[1] - origin[1]),
-        floor_z, to_region or cover_region)
+    layout.add_region(
+        lid_region, _rect(*lid_span), role="doorway",
+        type=614 if motor == "lid" else 0,
+        floor_z=lid_floor, ceiling_z=ceiling_z,
+        **({"sector_behavior": motor_behavior} if motor == "lid" else {}),
+        **common, **(lid_kwargs or {}))
+    layout.add_region(
+        hole_region, _rect(*hole_span), role="doorway",
+        type=614 if motor == "hole" else 0,
+        floor_z=int(floor_z), ceiling_z=ceiling_z,
+        **({"sector_behavior": motor_behavior} if motor == "hole" else {}),
+        **common, **(hole_kwargs or {}))
+
+    #: The boundary, as an edge of the footprint at the split.
+    if axis == "x":
+        edge = ((rest, y0), (rest, y1))
+    else:
+        edge = ((x0, rest), (x1, rest))
+    driver = lid_region if motor == "lid" else hole_region
+    passenger = hole_region if motor == "lid" else lid_region
+    #: The boundary is a PORTAL, not a wall: it is the line the two halves
+    #: of one footprint share, and in the oracle both records carry a
+    #: `next_sector`. A caller cannot forget to make it one because a caller
+    #: is not asked to.
+    layout.add_connection(f"{name}:boundary", lid_region, hole_region,
+                          a1=edge[0], a2=edge[1], min_width=BODY_WIDTH)
+    layout.carry_wall(driver, edge[0], edge[1], moves="with")
+    if flags == "both":
+        #: The oracle flags both records of the pair. Only the motor's
+        #: actually translates -- `TranslateSector` runs on one sector -- but
+        #: the pair shares vertices, so the flag on the passenger records the
+        #: author's intent that the boundary belongs to both.
+        layout.carry_wall(passenger, edge[0], edge[1], moves="with")
+
+    #: Markers from the boundary's REST pose to its OPEN pose, derived here.
+    #: A caller cannot get this wrong because a caller is not asked.
+    def _point(at: int) -> tuple[int, int]:
+        across = ((y0 + y1) // 2) if axis == "x" else ((x0 + x1) // 2)
+        return (at, across) if axis == "x" else (across, at)
+
+    #: Marker 0 is kMarkerOff and marker 1 kMarkerOn, and the engine's
+    #: `trInit` treats the DRAWN geometry as the pose at busy 1 -- so the
+    #: pair runs from the OFF pose to the ON pose, and the drawn pose is
+    #: whichever of the two `state` names. The oracle draws its lid covering
+    #: the hole and declares state 1, so its markers run open -> covered:
+    #: s2's are at y -512 (open) and y -2432 (covered, where it is drawn).
+    #: Placing them the other way round makes the sector jump a full travel
+    #: the instant the level loads.
+    off_along = opened if drawn_covered else rest
+    on_along = rest if drawn_covered else opened
+    off_at, on_at = _point(off_along), _point(on_along)
+
+    #: A marker has to STAND inside some sector's drawn outline, and the
+    #: motor's may be the thin half: with the motor on the hole, the hole is
+    #: 128 deep when drawn and the open-pose marker does not fit in it. E1M1
+    #: does the same thing -- s30's "on" marker stands in the COVER, s29 --
+    #: because `owner` is the sector a marker CONTROLS, not the one it
+    #: occupies. So each marker goes wherever it lands and both are owned by
+    #: the motor.
+    def _holds(along: int) -> str:
+        inside_lid = (lid_span[0] <= along <= lid_span[1])
+        return lid_region if inside_lid else hole_region
+
+    def _floor_of(region: str) -> int:
+        return lid_floor if region == lid_region else int(floor_z)
+
+    markers = []
+    for tag, kind, at, along in (("off", 3, off_at, off_along),
+                                 ("on", 4, on_at, on_along)):
+        where = _holds(along)
+        markers.append(layout.add_sprite(
+            f"{name.replace(':', '_')}_marker_{tag}", where,
+            x=int(at[0]), y=int(at[1]), z=_floor_of(where),
+            type=kind, picnum=MARKER_PICNUM, status=MARKER_STATNUM,
+            cstat=MARKER_CSTAT, x_repeat=64, y_repeat=64,
+            angle=MARKER_ANGLE, marker_owner=driver))
     return {
-        "hole": hole_region, "cover": cover_region,
-        "channel": int(channel), "travel": (int(travel[0]), int(travel[1])),
-        "markers": markers, "lift_out": int(lift_out),
-        "room_over_room": False,
+        "lid": lid_region, "hole": hole_region, "motor": driver,
+        "channel": int(channel), "axis": axis,
+        "rest": rest, "opened": opened, "travel": int(travel),
+        "footprint": (low, high), "lid_step": int(lid_step),
+        "flags": flags, "markers": markers, "lift_out": int(lift_out),
+        #: Where the link goes. The hole is smallest in its DRAWN pose, so
+        #: that span is the strip that is hole in every pose -- the only
+        #: place a link marker is always inside the sector it belongs to.
+        #: The oracle puts its 2332 in exactly that strip of s3.
+        "hole_always": hole_span,
+        "link_anchor": _point((hole_span[0] + hole_span[1]) // 2),
+        "drawn_covered": bool(drawn_covered),
     }
 
 #: E1M1's casket cover, s27: amplitude 2, frequency 5, wave 7, on floor,

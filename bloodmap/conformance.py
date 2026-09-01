@@ -40,6 +40,11 @@ TURNSTILE_TEMPLATE = {
     "radial_stand_off": 384,
     "angular_spacing_degrees": 90.0,
     "span_fraction_of_clear": 1.0,
+    #: The axis marker's ANGLE is the turn the rotor makes per period, not a
+    #: facing -- E1M4's two rotors and DWE1M9's both use -8192, four whole
+    #: turns. It is a motion parameter, so anything that treats it as a
+    #: direction and rotates it changes how fast the rotor spins.
+    "axis_turn": -8192,
     "source": "E1M4 151/314, DWE1M9 61/64; reports/blood-turnstile-build.md",
 }
 
@@ -86,6 +91,16 @@ def _sector_sprites(disk: Any, sector_id: int, picnum: int) -> list[Any]:
             if int(s.fields["sector"]) == sector_id
             and int(s.fields["picnum"]) == picnum
             and int(s.fields["status"]) != 10]
+
+
+def _axis_sprite(disk: Any, sector_id: int):
+    for sprite in disk.sprites:
+        fields = sprite.fields
+        if (int(fields["sector"]) == sector_id
+                and int(fields["status"]) == 10
+                and int(fields["type"]) == 5):
+            return sprite
+    return None
 
 
 def _axis_marker(disk: Any, sector_id: int) -> tuple[int, int] | None:
@@ -184,6 +199,16 @@ def measure_turnstile(disk: Any, sector_id: int, *, blade_picnum: int = 332,
             "a vane extends across its own face; blades whose bearing is not "
             "perpendicular to their angle form a square, not a cross"))
 
+    axis_sprite = _axis_sprite(disk, sector_id)
+    if axis_sprite is not None and "axis_turn" in wanted:
+        turn = int(axis_sprite.fields["angle"])
+        out.measured["axis_turn"] = turn
+        if turn != wanted["axis_turn"]:
+            out.deviations.append(Deviation(
+                "axis turn", wanted["axis_turn"], turn,
+                "the axis marker's angle is how far the rotor turns per "
+                "period, not a direction it faces"))
+
     if clear and set(spans) != {clear}:
         out.deviations.append(Deviation(
             "span", clear, sorted(set(spans)),
@@ -271,13 +296,23 @@ PLANAR_DOOR_TEMPLATE = {
 
 def measure_planar_door(disk: Any, sector_id: int,
                         template: dict[str, Any] | None = None) -> Conformance:
-    """Measure a planar door: one flagged wall, and it is the boundary.
+    """Measure a planar door against the owner-authored oracle.
 
-    Plus the relation the roadmap's blueprint names and a single sector
-    cannot show on its own -- the same travel on both sides of the plane --
-    which `measure_planar_pair` checks when there are two.
+    `maps/blood/mechanism/casket.map` is the definition: ONE footprint split
+    by a sliding boundary into a LID and a HOLE, the lid sliding to cover or
+    reveal the hole that carries the link. Two dialects are legal and this
+    accepts both -- the motor may sit on either side of the boundary (the
+    oracle drives the lid, E1M1 drives the hole) and either one or both
+    records of the boundary pair may carry the flag (the oracle flags both,
+    E1M1 one). What it does NOT accept is a travel the receiving side cannot
+    take, which is what the zoo shipped: a boundary sweeping 2304 units past
+    the far wall of a 768-deep cover, inverting it.
+
+    The invariant is checked by SWEEPING, not by reading the rest pose, since
+    the rest pose is exactly where the defect is invisible.
     """
     from .effects import payload
+    from .swept_state import sweep_sector
 
     out = Conformance(construct=f"planar door sector {sector_id}")
     shape = payload(disk, sector_id)["shape"]
@@ -286,10 +321,53 @@ def measure_planar_door(disk: Any, sector_id: int,
     if shape.get("shape") != "boundary re-partition":
         out.deviations.append(Deviation(
             "payload shape", "boundary re-partition", shape.get("shape"),
-            "exactly one flagged wall, and it must be the portal to the "
-            "cover: the travel moves the line between the two sectors"))
+            "exactly one flagged wall on the motor, and it must be the "
+            "portal to the other half of the footprint"))
         return out
-    out.measured["re_partitions_with"] = shape.get("re_partitions_with")
+    partner = shape.get("re_partitions_with")
+    out.measured["re_partitions_with"] = partner
+
+    #: Which dialect. Both are legal; the measurement records which.
+    #: The step is on whichever surface the two halves differ in. The
+    #: oracle's upper plane is a lid in the FLOOR -- s2 33792, s3 34816 --
+    #: and its lower plane the mirror of that in the CEILING, s5 -33792
+    #: against s6 -34816. Reading only floors calls the lower lid a hole.
+    motor = disk.sectors[sector_id].fields
+    other = disk.sectors[partner].fields
+    floor_step = int(motor["floor_z"]) - int(other["floor_z"])
+    ceiling_step = int(other["ceiling_z"]) - int(motor["ceiling_z"])
+    if abs(ceiling_step) > abs(floor_step):
+        step, plane = ceiling_step, "ceiling"
+    else:
+        step, plane = floor_step, "floor"
+    out.measured["step_plane"] = plane
+    out.measured["lid_step"] = abs(step)
+    #: The lid is the side that stands PROUD of the hole: its floor is
+    #: higher, or in the mirrored plane its ceiling is lower.
+    out.measured["dialect_motor"] = "lid" if step < 0 else "hole"
+    if abs(step) == 0:
+        out.measured["dialect_motor"] = "flush"
+        out.deviations.append(Deviation(
+            "lid step", "a step between the two halves",
+            "the halves are flush",
+            "the oracle's lid is a tray one 1024 step above the hole it "
+            "covers, which is what makes the open hole read as somewhere to "
+            "drop into rather than a change of floor colour"))
+    boundary = int(shape["boundary_wall"])
+    twin = int(disk.walls[boundary].fields["next_wall"])
+    both = (twin >= 0
+            and int(disk.walls[twin].fields["cstat"]) & (16384 | 32768) != 0)
+    out.measured["dialect_flags"] = "both" if both else "one"
+
+    #: The invariant the rest pose cannot show.
+    swept = sweep_sector(disk, sector_id)
+    out.measured["swept_areas"] = [swept.areas[0], swept.areas[-1]]         if swept.areas else []
+    for line in swept.problems:
+        out.deviations.append(Deviation(
+            "the motion stays inside the footprint", "no inversion, no "
+            "collapse, no crossing", line,
+            "the travel has to leave a usable sector on BOTH sides at BOTH "
+            "ends; the oracle's 1920 into a 2176 footprint leaves 128"))
     return out
 
 
