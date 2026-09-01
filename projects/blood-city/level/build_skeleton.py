@@ -25,6 +25,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
+from bloodmap import motion
 from bloodmap.format import write_map
 from bloodmap.levelprog import Frame, LevelProgram, RECT_FACES, Style
 from bloodmap.roomoverroom import (
@@ -341,9 +342,12 @@ def build():
         streets[district] = room
         district_of[district] = assembly
 
+
     # ---- carved areas: the cemetery as a walled, gated ground -------------
     gates = []
     grounds = {}
+    green_reports = {}
+    ctx_greens = {}
     for area in data["areas"]:
         if not area.get("carved"):
             continue
@@ -369,6 +373,24 @@ def build():
             intent={"kind": area["kind"], "district": area["district"]},
         )
         grounds[area["id"]] = ground
+        # ---- the green ---------------------------------------------------
+        # The cemetery was a flat empty floor wearing tile 352 -- the ROADWAY
+        # tile -- behind a lychgate. `park.green` makes it turf, cuts the
+        # trodden path across it as its own dirt surface, and `park.plant`
+        # fills slots derived from the ground's own size. E1M1's cemetery is
+        # the grammar: an enclosed green you enter through a gate.
+        if area["kind"] == "cemetery":
+            import park
+
+            green_report, green_box, green_area = park.green(
+                city, ground, district=district_of[area["district"]],
+                grade=GRADE,
+                solids=[tuple(int(v * PU) for v in rect) for rect in
+                        ([b["rect"] for b in data["blocks"]
+                          if b.get("inside_area") == area["id"]]
+                         + list(area.get("attached_masses", [])))])
+            green_reports[area["id"]] = (green_report, green_box, green_area)
+            ctx_greens[area["id"]] = (green_report, green_box, green_area)
         ax0, ay0, ax1, ay1 = (int(v * PU) for v in area["rect"])
         wall_units = int(wall_t * PU)
         # Two bays wide, on the bay grid, so the gate lands between the
@@ -879,6 +901,7 @@ def build():
                    angle=1536)
     ctx["street_regions"] = {room.region_id: name
                              for name, room in streets.items()}
+    ctx["greens"] = ctx_greens
     ctx["light_pools"] = ctx_pools
     ctx["market_dressing"] = market_dressing
     ctx["market_street"] = market_st
@@ -895,6 +918,30 @@ def build():
         "market_furniture": len(market_dressing["street_joined"]),
         "monument_tiers": len(market_dressing.get("monument_rooms", {})),
     }
+
+    # ---- street anatomy: pavement, carriageway, kerb ---------------------
+    # LAST, deliberately. The district street was one open region at one
+    # level wearing one tile; `streets.lay` gives each run of the
+    # circulation graph a carriageway dropped a measured kerb below the
+    # pavement it keeps -- E3M1's grammar, tile 352 at 2048 down. Running it
+    # here means every other claim on the street -- light pools, the grate
+    # kerb, market furniture, the venue thresholds -- is already carved, and
+    # a road is cut around them rather than through them. A road that has to
+    # yield to a lamp post is the correct precedence: the pavement was there
+    # first.
+    import streets as street_anatomy
+    from resolution import WIDTH_UNITS
+
+    blocks_by_district = collections.defaultdict(list)
+    for block in data["blocks"]:
+        if not block.get("inside_area"):
+            blocks_by_district[block["district"]].append(block)
+    ctx["manifest"]["streets"] = street_anatomy.lay(
+        city, data, WIDTH_UNITS, DISTRICT_BOUNDS, streets, district_of,
+        grade=GRADE, street_sky=STREET_SKY,
+        blocks_by_district=blocks_by_district, unit=PU)
+    ctx["manifest"]["roadways"] = len(ctx["manifest"]["streets"]["laid"])
+
     return city, stack_links, gates, ctx, dressing
 
 
@@ -961,7 +1008,12 @@ def main() -> int:
         "progression:secret_count", ctx["sewer_rooms"]["stash"],
         local=(0.5, 0.5), height_player_heights=0.5,
         type=0, picnum=0, cstat=129, status=0, x_repeat=64, y_repeat=64,
-        behavior={"tx_id": 1, "command": 64 + 2})   # stash + flooded branch
+        # `motion.secret_total` rather than the fields by hand: this one was
+        # missing `trigger_on`, so `SetSpriteState` never called evSend for it
+        # and the count was never actually declared -- the player would never
+        # have been told a secret was found. The rule caught it; the helper
+        # cannot forget it.
+        behavior=motion.secret_total(2))            # stash + flooded branch
     # A flame in every light pool.  Three tiles were measured before this
     # one was chosen, and the measurements decided it:
     #   908  -- E3M1 puts it in streets 154 times, but a type census shows
@@ -1110,6 +1162,23 @@ def main() -> int:
     if _supermarket_rooms:
         print("supermarket:", l3_market.dress_supermarket(
             layout, _supermarket_rooms))
+
+    # ---- plant the green -------------------------------------------------
+    # The ground is turf now; this is what stands on it. Every position comes
+    # from a slot derived from the ground's own footprint, so a bigger green
+    # is a fuller one and nothing is written out by hand.
+    import park
+
+    for area_id, (green_report, green_box, green_area) in ctx.get(
+            "greens", {}).items():
+        planted = park.plant(layout, green_report["ground"], green_box,
+                             green_area, prefix=f"green:{area_id}",
+                             solids=green_report.get("solids", ()))
+        green_report["planted"] = planted
+        print(f"green {area_id}:", planted, green_report["refused"])
+    ctx["manifest"]["greens"] = {
+        area_id: report for area_id, (report, _b, _a)
+        in ctx.get("greens", {}).items()}
 
     import signage
     sign_rooms = {}

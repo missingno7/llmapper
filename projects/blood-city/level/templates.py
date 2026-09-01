@@ -503,7 +503,13 @@ def supermarket(space, *, material, grade: int, host_clear: int,
     shelf_end = y1 - 2 * fixtures.PEDESTAL.depth
     bank_specs = (
         (x0 + 1536, x0 + 2560, y0 + 1024, shelf_end - 1024, 2026, 24576),
-        (x0 + 4096, x0 + 5120, y0 + 1024, shelf_end, 2635, 20480),
+        # 2026 rather than 2635, which is the same owner-anchored "shelf"
+        # but attested on two-sided walls (8 slots) where 2635 is attested
+        # only on one-sided ones. A raised solid's faces ARE two-sided -- the
+        # bank is a sector inside the room -- so 2635 here was eight
+        # attested-slot errors. Repeating 2026 at a different rise reads as a
+        # second bank of the same shelving, which is what a shop has.
+        (x0 + 4096, x0 + 5120, y0 + 1024, shelf_end, 2026, 20480),
         (x0 + 6656, x0 + 7680, y0 + 1024, shelf_end - 1024, 202, 24576),
     )
     racks = []
