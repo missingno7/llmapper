@@ -28,7 +28,7 @@ that reading finds. A dead map fails the build.
 ```text
 map            projects/pattern-zoo/level/pattern-zoo.MAP
 built from     projects/pattern-zoo/registry.py (generated, never hand-placed)
-size           90 sectors, 492 walls, 552 sprites
+size           91 sectors, 496 walls, 554 sprites
 sections       7
 exhibits       31, of which 1 are honest EMPTY
 live sectors   6 x type 600, 6 x type 614, 6 x type 615
@@ -131,12 +131,12 @@ a breach in a load-bearing wall, opened once by shooting it.
 
 ### CASKET
 
-a lid that slides aside by MOVING THE BOUNDARY between the hole and the cover, breathing light as it goes.
+a lid that slides aside by MOVING THE BOUNDARY between hole and cover, over a room-over-room link, breathing light as it goes.
 
 - **try:** look up, then walk out; E1M1 opens inside one
 - **from:** owner-attested E1M1 reading, sectors 28/30 (hole, slide-marked, ROR-linked) and 27/29 (cover). Each slide sector moves exactly ONE flagged wall, and that wall is the hole/cover boundary
-- **read back as:** 1 sector(s) of type 614, listening on channel 309, whose payload is 'boundary re-partition'
-- **hand-composed:** the room-over-room half: E1M1's casket is four sectors in two pairs, stack-linked and synced, and PlanarLayout has no stack link at all -- promotion candidate
+- **read back as:** 1 sector(s) of type 614, listening on channel 309, whose payload is 'boundary re-partition', stack-linked across a room-over-room plane
+- **hand-composed:** the SECOND pair: E1M1's casket is four sectors, and this is one pair plus its link. Building both, synced on one channel with the same travel on each side of the plane, is the next step -- promotion candidate
 - **covers:** bloodmap.mechanism.planar_door, bloodmap.mechanism.shade_wave
 
 ![CASKET](projects/pattern-zoo/reports/tour/observation/frames/casket.png)

@@ -1640,17 +1640,9 @@ Queued, ranked by recurrence x cost. Recurrence is how many
 
 ```text
 rank  technique                     recurrence  why it is not done here
-1     ROR links CONDITIONED by      --          PRE-DECIDED and BLOCKED.
-      cover position                            PlanarLayout has no stack
-                                                link at all, so there is no
-                                                ROR anywhere to exercise it
-                                                on, and the casket showed a
-                                                deeper gap first: conditional
-                                                cannot see a boundary
-                                                re-partition as a topology
-                                                change either, because the
-                                                portal never opens or shuts.
-                                                Both want one piece of work
+1     ROR links CONDITIONED by      --          DONE 2026-09-01, and one
+      cover position                            expectation it disproved;
+                                                see below
 2     a lift constructor            --          the last mechanism in the zoo
       (floor-travelling z-motion)               still assembled by hand;
                                                 z_motion_door writes ceiling
@@ -1681,6 +1673,33 @@ rank  technique                     recurrence  why it is not done here
 a `vocabulary` constructor, for the reasons its own report gives: the second
 half of the admission rule -- a compact parameter set reproducing held-out
 examples -- has never been run.
+
+## Rank 1, done 2026-09-01 -- and one thing it disproved
+
+`PlanarLayout.stack_link` builds a room-over-room pair: two marker sprites,
+types 11 and 12, matched on their XSPRITE `data_1`, on **statnum 0** because
+statnum 10 is culled at load and a link built there is a link that does not
+exist. Making a link declares the plan overlap it necessarily has, which is
+otherwise refused. `reachability.link_pairs` finds the result.
+
+`conditional.conditioned_links` and `repartition_edges` close the two model
+gaps together. A stack link one of whose sectors is a boundary re-partition
+mover is no longer treated as always open: it becomes a conditional edge
+gated on that mechanism's channel, with its cause chain. That is what makes a
+planar door a topology change at all -- it has no portal that opens or shuts,
+so every route through one had been invisible, and the zoo's casket could
+claim no trigger.
+
+**And the framing it disproved.** The expected picture was that at rest the
+cover lies ACROSS the link and no body passes, and that opening the lid
+uncovers it. E1M1's own casket does not do that: on BOTH halves the link
+marker sits deep inside the hole, well clear of the band the boundary wall
+sweeps. So `covered_at_rest` is measured and REPORTED, and the edge is gated
+on the structural fact instead -- that one side of the link is a
+re-partitioning mover, so the plan area the link plane sits in changes hands.
+The intuitive story is not what those fields say, and the code records the
+measurement rather than forcing the story onto it.
+
 
 ## The paid-for build gotchas
 
@@ -1752,16 +1771,80 @@ loop into standing machinery:
    the data, the system reports the discrepancy with evidence and lets
    the review decide; it never silently accepts either side.
 
-## Gap (new work)
+## DONE, 2026-09-01: the self-correction half
 
-Ranked candidate queue with novelty/coverage/uncertainty, and batched
-review actions (confirm / reject / split / show counterexamples) that
-propagate. Review is a queue, never a blocking gate (project norm).
+Owner-steered and proven. **PARTIALLY done overall** — the discovery
+frontier is untouched and said so below.
 
-## Exit criteria
+**Template conformance** (`bloodmap/conformance.py`,
+`projects/pattern-zoo/sweep.py`). Every constructor promoted from a mined
+template gets a check that rebuilds it, measures it with the same relational
+miners that produced the template, and diffs. Relations, not absolutes:
+angular spacing about an axis, radial stand-off, span as a fraction of clear
+height — so a legitimate rescale passes and a rotation that forgot the angles
+does not.
 
-The user no longer needs to manually enumerate most concepts to
-investigate.
+It was written to fail first, and it did. The owner walked v3 and found the
+turnstile's four blades in a SQUARE instead of a cross; the check reproduced
+that from the built map, and the campaign's own rotors (E1M4 151/314) passed
+it, which is what calibrated it. Then the sweep found the rest:
+
+```text
+what the sweep caught, before the fix        10 deviations, 10 constructs
+  6 rotors        blades in a square         the owner's report
+  4 sliding gates leaves edge-on to their    NOT owner-reported: found by
+                  own travel                 the machinery
+one root cause    frame.Framed rotated sprite POSITIONS and not their ANGLES
+```
+
+Four gates had shipped leaves that slid edge-on and stopped nothing. That is
+the "many similar oddities" the owner suspected, found automatically, and it
+is the argument for the whole mechanism: every one of those passed structural
+validation, the usage laws, the self-reading gate, byte-exact round trip, an
+NBlood load smoke and thirty-one renders.
+
+**Attested-construct fixtures** (`tests/test_attested_constructs.py`). Twenty-
+one assertions parsing the ORIGINAL campaign maps, turning owner knowledge
+into regression armor: the casket's four sectors, its boundary re-partitions
+and ergonomic z-assist and voice; the curtain's elastic payload, its
+push-the-fabric wall route and its command-5 light link to s124; s4's rigid
+double slide worked from its own leaf walls; s65/s90's synced ROR pair with a
+sprite-only payload; E1M4's counter-rotating turnstiles. Three facets the
+model still cannot produce are `expectedFailure` with their blueprint
+reference, so the gap is countable rather than absent — and an
+expectedFailure that starts passing reports as an unexpected success.
+
+**Contradiction mining, minimum viable** (`bloodmap/contradictions.py`,
+`llmapper contradictions`). One command comparing the four places this
+project keeps the same facts — owner anchors, the usage-kind table,
+constructor claims, a built map — ranked conflict / drift / open, each item
+named for confirm or reject. It independently surfaced the tile-502 drift a
+human found by hand last run, and it carries the two questions measurement
+could not settle.
+
+## STILL OPEN: the discovery frontier
+
+Ranking candidates by novelty, coverage and uncertainty over community
+mining, and batched review actions that PROPAGATE (confirm / reject / split /
+show counterexamples changing downstream state). None of that is built. The
+queue here is a comparison of what is already written down, not a search for
+what is not. The exit criterion — the user no longer needs to enumerate most
+concepts manually — is NOT met.
+
+## Two items awaiting the owner, not the machine
+
+Both are in the contradiction queue by name, and both are the owner's call by
+construction:
+
+* **`mask-law-two-sided-exception`** — tiles 142 and 2464 break the mask law
+  on two-sided walls in 23 of 60839 slots, against a clean zero everywhere
+  else. Family or accident decides whether the law gains a door-leaf clause
+  or a rate.
+* **`gallery-topology-exemption`** — the zoo measures mean_degree 2.09
+  against a campaign median of 2.74, and dead-ends 0.344 against 0.159.
+  Thirty-one exhibits are terminal by construction; the only way to hit the
+  norm is loops that go nowhere. The proposal is a documented exemption for
+  gallery-shaped artifacts rather than gaming the number.
 
 ---
 
