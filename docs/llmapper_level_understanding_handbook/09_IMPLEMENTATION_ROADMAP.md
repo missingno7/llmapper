@@ -866,6 +866,17 @@ interaction  three routes, orthogonal to everything else: XSECTOR Push/
 payload dirs editor colors: cstat 16384 = BLUE = travels the marker
              vector; 32768 = GREEN = travels exactly opposite — one
              sector, two opposite-flagged leaves = a double door
+state+verb   (owner, 2026-09-01) a command must fit the receiver's STATE:
+             a mechanism saved at state ON receiving command ON is a
+             no-op — the zoo casket shipped exactly that (state 1, switch
+             sending only 1) and "did not work". Authoring rule: wire
+             TOGGLE unless the intent needs a directed verb; reading
+             rule: a trigger whose command cannot change the receiver's
+             state is a detectable defect.
+see-through  a walkable ROR stack is SEEN THROUGH only with floor picnum
+             504 or floorstat & 0x180 (mirrors.cpp IsRorSector; already
+             used in blood-city, forgotten in the zoo) — the view is a
+             separate property from the warp, one more independent axis.
 vertex drag  (owner, 2026-09-01, the deepest payload rule) motion moves
              VERTICES, not walls: a flagged wall carries its two points,
              and EVERY wall incident on a moved point drags with it (one
@@ -912,6 +923,53 @@ structured panel-by-panel against it, each field source-cited and its
 campaign usage measured — an axis the campaign never touches is still
 part of the language.
 ```
+
+**MEDIATION ELEMENTS (owner, 2026-09-01) — a first-class concept that
+unifies threads the plan has been nibbling at separately** (the aperture
+grammar's "leaf plus mediation", the motion apertures, chapter 04's
+negative space, the kerb): a mediation is anything that JOINS an element
+to its surroundings while SEPARATING them correctly. The taxonomy, each
+kind with checkable functions:
+
+```text
+FRAME      guides motion and isolates it: the door jamb (195+200) that
+           makes a leaf slide where intended; the casket tray's edges
+SEAT       sets an object into a surface and bounds materials: the
+           flowerpot for the flower, the plinth for the statue
+HOLDER     the surrounding sectors that hold a pane: the shopfront's
+           glass carried by its own reveal sectors
+JUNCTION   joins two zone materials with a readable edge: the kerb
+           between sidewalk and roadway
+SEAM       bounds deformation: the wall splits that keep a curtain's
+           motion out of the room (the motion aperture)
+CLEARANCE  reserved volume with a function: a revolving door must have
+           room to swing and must NOT collide with neighbouring
+           geometry; a drawer's pull-out; a counter's workspace
+```
+
+**PREFAB SLOTS (owner, 2026-09-01 — a principle offered loosely, NOT to
+be forced everywhere yet):** mediation composes with a slot mechanism. A
+host element exposes a bounded sequence of SLOTS whose capacity derives
+from its own dimensions — a corridor's length yields so many lamp/wall
+slots, a facade's width yields bays (the 1024 bay grid IS this), a shelf
+yields goods positions — and prefabs fill slots. A slot-filling prefab
+may itself be a mediation hosting further slots: the planter (SEAT
+toward the corridor) carries a row of flower slots. The reading side
+already measures the counterpart (repeats_along, run-rhythm, lamp
+service intervals, the E6M1 display row), so declared slots would be
+checkable against mined rhythm. Per the smallest-useful-abstraction
+guardrail: adopt it where a real case demands (corridor dressing, facade
+bays, shelf stocking), not as a universal scheme.
+
+Representation rule: every constructor OWNS its mediations — they are
+part of the construct, never the caller's afterthought — and every
+mediation's function is checkable: FRAME/SEAM by the motion-set gate,
+CLEARANCE by a swept-volume-vs-surroundings check (the swept-state gate
+validates the construct's own geometry; clearance extends it to what the
+sweep must not touch), SEAT/HOLDER/JUNCTION by the usage-kind and
+readability critics. In MechanismDecl (Phase 13), mediations are typed
+members alongside lid/hole/switch, so a sentence declares not only what
+moves but what seats, bounds and receives it.
 
 A construct (casket, furnace, turnstile pair) is a *sentence* in this
 language: several sectors conjugating different verbs on a shared bus.
@@ -1787,6 +1845,59 @@ The intuitive story is not what those fields say, and the code records the
 measurement rather than forcing the story onto it.
 
 
+## The motion machinery, factored, 2026-09-01
+
+`bloodmap/motion.py` holds the four primitives every Blood motion mechanism
+is composed from, each separately readable, separately buildable and
+separately fixtured. `mechanism.planar_door` and `mechanism.curtain` are thin
+compositions that add only composition facts. The point is not tidiness: a
+grammar factored this way can read and build combinations nobody has named.
+
+```text
+1 MARKED-WALL MOTION  flags -> moved POINTS -> the vertex closure.
+                      `motion_set` is the closure and it spans sectors,
+                      because dragpoint (engine.cpp:13071) walks every wall
+                      around a moved vertex. payload_shape names the three
+                      arrangements: re-partition, self-resize, rigid
+2 MOTION MARKERS      the from/to pair; `owner` is the sector CONTROLLED,
+                      not the one it stands in; `state` says which pose the
+                      map is drawn in and a state-0 sector jumps at load
+3 CONTROL WIRING      route (push / wall-push / wall-button / remote /
+                      level_start / keyed) orthogonal to the verb, and the
+                      VERB IS CHECKED against the receiver's state
+4 ROR STACK           link pair 2332/2331 on statnum 0, data_1-paired, a
+                      TRANSLATION AT A PLANE -- and see-through as its own
+                      property, floor picnum 504 (mirrors.cpp IsRorSector)
+```
+
+**What the factoring corrected.** The isolation discipline is NOT universal,
+and measuring it said so. E1M1's curtain is isolated -- its motion reaches
+only itself and the alcove behind -- because the deformation runs along a
+face the player looks at, and the fabric is a RECESSED BULGE in a strip whose
+unmoved shoulders carry the room-facing wall. E1M1's casket is NOT isolated:
+s28 drags one wall each of sectors 1 and 2, s30 one each of 67 and 68,
+because a floor boundary sliding across a room meets that room's walls at its
+ends and nobody sees it. So the gate checks a construct against what it
+DECLARED rather than against a blanket rule, and `declare_motion` is how a
+constructor says what it means to touch.
+
+## The two gates that were missing
+
+Both were written first, watched fail on the zoo as it stood, and only then
+satisfied.
+
+**Swept-state** steps every mechanism's full travel through `motion_sim` and
+checks for inversion, collapse and wall crossings at each step. It caught the
+casket's cover sweeping 2304 units past its own far wall.
+
+**Motion-set conformance** computes the actual motion set and diffs it
+against the declared payload, naming the wall and the shared vertex it drags
+through. It caught the curtain deforming the section room: the fabric's
+moving vertices were the ROOM's corners.
+
+Both run in `PlanarLayout.compile` and in the zoo's own gate, alongside a
+whole-map sweep for wirings whose command cannot change their receiver.
+
 ## The paid-for build gotchas
 
 Each of these cost a failed build at least once. They are properties of
@@ -1829,6 +1940,18 @@ out of BOTH its long walls      side is the two facing runs' depths, not a
 ---
 
 # Phase 11 — Automatic discovery frontier + batched review
+
+**The authoring-loop law (owner, 2026-09-01):** whenever the AI builds a
+mechanism in a level, it must immediately verify that the built thing
+does what was INTENDED — read it back through the understanding stack
+and compare against the declared sentence (self-read: it exists and
+fires; swept-state: valid through the whole travel; motion-set: only the
+declared payload moves; intent: the function claim holds in the
+embedding). A mismatch is always a finding: either a bug in the level or
+a bug in this project's constructors, readers, or grammar — and both
+kinds are wins. Building without this read-back is not finished work.
+This is why intent must be declarable (MechanismDecl, Phase 13): a
+comparison needs both sides in one language.
 
 **Owner steering (2026-09-01): the mining system must be built to
 self-correct and expose its own errors.** The working example is the
@@ -1948,6 +2071,24 @@ terms.
 ---
 
 # Phase 13 — Design intent + synthesis
+
+**PREREQUISITE (systemic review, 2026-09-01): ONE source language.** The
+level is currently authored in TWO dialects — the levelprog tree
+(blood-city, vertical-fragment, e2m3-decompiled) and flat PlanarLayout
+(pattern-zoo, facade-pilot, reasoned-authoring) — and the constructors
+are split BY dialect: mechanism.py and the facade builders speak flat,
+templates/setpieces speak tree. Measured symptoms: promotion-queue ranks
+8 and 9, blood-city's turnstiles.py hand-adapting a spec because the
+builder targets the other stack, and the zoo being written in the
+dialect without locality, style provenance, or an intent tree. Fix
+before MechanismDecl (or it gets implemented twice): the TREE is the
+only source language; PlanarLayout is demoted to compiler IR — output of
+the tree, never hand-authored; constructors re-homed to tree nodes; the
+zoo and facade-pilot rewritten as the proving migration. Alongside: the
+source layer should speak DERIVED units (player heights, steps, bays)
+with the compiler doing Build conversion — the 16:1 z anisotropy has
+burned this project repeatedly and raw numbers in source are where it
+hides.
 
 **Owner-steered entry point (2026-09-01), from the representation review:
 the missing layer is a shared CONSTRUCT/SENTENCE schema.** The review
