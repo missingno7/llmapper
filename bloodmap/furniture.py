@@ -137,6 +137,67 @@ def furnish(name: str, art_sizes: dict[int, tuple[int, int]] | None = None,
     return out
 
 
+_ART_SIZES: dict[int, tuple[int, int]] | None = None
+
+
+def _art_sizes() -> dict[int, tuple[int, int]]:
+    """picnum -> (width, height) from the game ART, read once."""
+    global _ART_SIZES
+    if _ART_SIZES is None:
+        try:
+            from .vocabulary import art_sizes_from_directory
+
+            _ART_SIZES = art_sizes_from_directory("reference/blood")
+        except Exception:
+            _ART_SIZES = {}
+    return _ART_SIZES
+
+
+def mounting_for(name: str) -> str:
+    """Where a named thing is meant to be mounted: floor, wall or ceiling.
+
+    The canonical alignment state is a property of the *thing*, not of the
+    caller's convenience. A lantern hangs; a plaque is on a wall; an urn
+    stands. Placing one through the wrong seat draws it wrongly, which the
+    pattern zoo shipped twice before this existed.
+    """
+    try:
+        return FURNITURE[name].mounting
+    except KeyError:
+        raise FurnitureError(
+            f"nothing named {name!r}; known: {', '.join(sorted(FURNITURE))}"
+        ) from None
+
+
+def place(layout: Any, placement_id: str, region_id: str, name: str,
+          *, art_sizes: dict[int, tuple[int, int]] | None = None,
+          **kwargs: Any) -> str:
+    """Put a named thing in a region, seated the way that thing is mounted.
+
+    Dispatches to the layout's own `place_on_floor` / `place_on_wall` /
+    `place_on_ceiling`, so a caller cannot seat a hanging lantern on a floor
+    or lay a wall plaque on a counter. `mounting == "free"` has no seat and
+    is refused here rather than guessed at.
+    """
+    mounting = mounting_for(name)
+    #: Without ART sizes `furnish` cannot turn a campaign height into
+    #: repeats, so everything comes out at the default repeat and a
+    #: 0.97-player-height heap of straw is drawn the same size as a
+    #: 2.82-height oak. Read them once and cache, and fall back to the
+    #: default only where the ART is genuinely absent.
+    if art_sizes is None:
+        art_sizes = _art_sizes()
+    fields = furnish(name, art_sizes, **kwargs.pop("overrides", {}))
+    if mounting == "floor":
+        return layout.place_on_floor(placement_id, region_id, **fields, **kwargs)
+    if mounting == "wall":
+        return layout.place_on_wall(placement_id, region_id, **fields, **kwargs)
+    if mounting == "ceiling":
+        return layout.place_on_ceiling(placement_id, region_id, **fields, **kwargs)
+    raise FurnitureError(
+        f"{name}: mounting {mounting!r} has no seat; place it explicitly")
+
+
 def wet_only() -> set[int]:
     """Tiles that belong under water and nowhere else."""
     return {f.picnum for f in FURNITURE.values() if f.habitat == "wet"}
@@ -191,3 +252,21 @@ _define(Furniture("tomb", 706, 1 | 128 | 256, "floor", habitat="dry", shade=8))
 # -- the garden -------------------------------------------------------------
 _define(Furniture("statue", 536, 1 | 128 | 256, "floor", habitat="dry", shade=4))
 _define(Furniture("urn", 537, 1 | 128 | 256, "floor", shade=8))
+_define(Furniture("straw", 515, 1 | 128 | 256, "floor", habitat="dry", shade=8,
+                  note="owner-named in the pattern-zoo specification, "
+                       "2026-09-01: a loose tangle of straw. Campaign median "
+                       "height 0.97 player heights, so it is a heap you walk "
+                       "round, not a scatter underfoot"))
+
+# -- shop fittings ----------------------------------------------------------
+_define(Furniture("mannequin", 2377, 1 | 128 | 256, "floor", habitat="dry",
+                  shade=-4, height=1.0,
+                  note="owner anchor 2377, binding STRONG, so the name is the "
+                       "owner's. The height is NOT campaign-measured -- the "
+                       "tile has no median in mined sprite heights, so 1.0 "
+                       "player heights is asserted from what the tile depicts "
+                       "(a standing human figure, 40x97 in ART) and is the "
+                       "one number here that no map backs. Aspect stays 1.0: "
+                       "the ART tile already carries the figure's "
+                       "proportions, and skewing the repeats on top of them "
+                       "drew three flagpoles"))

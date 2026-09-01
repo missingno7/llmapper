@@ -116,11 +116,17 @@ class FurnitureTests(unittest.TestCase):
 
         self.assertEqual(sorted(wet_only()), [546, 660, 664, 668])
 
-    def test_things_are_drawn_square_but_a_fence_leaf_is_not(self):
+    def test_things_are_drawn_square_unless_they_say_why_not(self):
         from bloodmap.furniture import FURNITURE
 
-        skewed = [n for n, f in FURNITURE.items() if f.aspect != 1.0]
-        self.assertEqual(skewed, ["grille"])
+        # Square is the default because most of these tiles are. A skewed
+        # entry is a claim about that tile's own proportions, so it has to
+        # carry the reason with it rather than sit in a list here that goes
+        # stale the next time the catalogue grows.
+        skewed = {n: f for n, f in FURNITURE.items() if f.aspect != 1.0}
+        self.assertIn("grille", skewed)
+        for name, item in skewed.items():
+            self.assertTrue(item.note.strip(), name)
 
 
 @unittest.skipUnless(V5.exists() and V6.exists(), "both maps must be built")
