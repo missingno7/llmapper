@@ -372,3 +372,36 @@ corpus manifest is regenerated and the campaign population is 43 again.
 
 > **No decision needed** unless you want it deleted outright rather than
 > held, which item 4's answer covers.
+
+## 9. Which map did you see inside out? (2026-09-01)
+
+The supervisor listed four candidate causes for the inside-out sectors you
+reported. P3 closed case (b) -- a neighbour deformed by `DragPoint` that no
+gate swept -- and the answer is that the vanilla curriculum has **none**: zero
+inverting and zero self-crossing neighbours across 429 taught mechanisms. The
+campaign has one inversion and eighteen folds, all of them in ORIGINAL maps,
+none of them anything we built:
+
+```text
+inverts   E4M2 s201 (615) -> s200, inside out at 11 of 17 poses, the
+                              load pose included
+folds     E2M5 s95/s96 -> s708 - 15 of 17 poses
+          E2M5 s521/s522 -> s525 - 13 of 17
+          E3M3 s0/s263 -> s1..s12, s13 -> s14 - about 10 of 17
+          E3M1 s66 -> s71 - 6 of 17
+          plus ten shallower ones, one or two poses each
+```
+
+Neither build has any: the zoo sweeps clean and the city's curtain is isolated
+since P1 rebuilt it as a doorway. So if what you saw was in OUR maps, it was an
+older build, and case (b) is now gated; if it was in a Blood level, E4M2 and
+E2M5 are where to look.
+
+The measurement is a transcription of `TranslateSector`, not the engine, and it
+rounds the marker angle where the engine rounds coordinates. None of these has
+been observed in play.
+
+> **Recommended default: treat these as noted-and-gated and move on.** The gate
+> is in both builds and fails first on a fixture; chasing eighteen original-map
+> geometry hairs has no product behind it. If you remember the map and exhibit,
+> say so and the specific one gets read.

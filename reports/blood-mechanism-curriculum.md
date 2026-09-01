@@ -399,6 +399,152 @@ What a mechanism's payload does, counted over every swept sector in the course.
     2  sector type 619
 ```
 
+## The DragPoint closure, swept (2026-09-01)
+
+`motion-crosses-storage-boundaries-by-default` said a mechanism deforming its
+neighbours is the normal case. The swept-state gate then swept the mover's own
+polygon and called every neighbour static, so it was blind to exactly that
+case. `motion_sim.closure_sweep` now moves every vertex `DragPoint` moves and
+`closure_health` judges every LOOP the closure touches -- the mover's own and
+each neighbour's -- for inversion against its drawn winding, self-intersection,
+and crossing a wall the motion does not move.
+
+Engine basis, read this session: `NBlood/source/blood/src/triggers.cpp:817-854`
+(`DragPoint` walks `nextwall` forward through each partner's `point2`, and when
+that walk meets a one-sided wall it restarts and goes the other way through
+`lastwall().nextwall`); `:897-910` and `:912-926` (a flagged wall drags its
+`point2`'s vertex too, when that wall carries no flag of its own; 32768 does it
+in reverse); `NBlood/source/build/src/engine.cpp:13227` (`lastwall`). The
+`gModernMap` branch inside `TranslateSector` (`:874-878`, `sprDy`) is about
+reverse-flagged SPRITES, not walls, so the vanilla and modern wall paths are
+the same code and this is the vanilla reading.
+
+### The census
+
+`python -m tools.sweep_drag_closure` (16 steps), over the vanilla course
+(`maps/blood/mechanism/*.map` primers + `Vanilla/`, 138 maps; `Modern/`
+excluded) and the 43 campaign maps. Nothing generated is mined.
+
+```text
+                                      curriculum   campaign
+maps                                         138         43
+swept mechanisms (types 614-617)             429        648
+  614 / 615 / 616 / 617              198/77/50/104  308/41/88/211
+deform a neighbour                           199        412
+  ... a neighbour that does not move         192        363
+  ... in a co-moving assembly                 39        110
+ISOLATED -- the fin technique                109        200
+judgeable neighbour loops touched            176        383
+assembly loops, not judged                   132        215
+neighbour loop inverts at some pose            0          1
+neighbour loop crosses itself                  0         18
+the MOVER's own loop inverts or folds          0          4
+cuts a wall it does not move                   2         89
+```
+
+**Isolation is a minority technique and a deliberate one.** 109 of 429 in the
+course, 200 of 648 in the campaign: roughly one mechanism in four keeps its
+motion to itself. Every other one reshapes something else on purpose, which is
+why "the motion set is bigger than the sector" was never the right defect.
+
+**The tutorials are clean and the campaign is not.** Zero neighbour inversions
+and zero neighbour folds across 429 taught mechanisms, against 1 and 18 in the
+campaign; 2 crossings against 89. The isolated lesson maps are built to a
+precision the shipped levels are not, which is the argument for diagnosing
+against them.
+
+### An assembly cannot be judged one mechanism at a time
+
+The first run of this census reported 10 inverting and 72 self-crossing
+neighbours and was wrong about most of them. `TranslateSector` runs per
+mechanism, but every mechanism on a channel runs in the same tick, each
+re-placing the shared vertices from its own base -- so a loop whose moved walls
+two mechanisms drag is only whole when both have travelled. E1M4's rotor ring
+(s321-s329 around the hub s352) and E3M2's fifteen-sector boat around s16 are
+that shape, and swept singly each spoke turns the hub inside out.
+
+`co_driven_walls` finds them per WALL, not per sector, and `closure_health`
+reports such a loop in `notes` and never in `problems`. 132 curriculum loops
+and 215 campaign loops are excluded this way; 127 campaign and 13 curriculum
+hubs would break if judged alone, and they are listed in the JSON as
+candidates, not defects.
+
+### Grazes are not folds
+
+A 617 rotor hinges on a vertex OF the room it turns in, so at a small angle its
+leaf tip crosses that room's wall a hair past the corner. `crossing_depth`
+measures how far into each other two crossing segments reach, and the campaign's
+27 self-crossing neighbour loops split cleanly on it: eleven top out at 13.69
+units and appear at one step of sixteen, the rest start at 19.98 and run to 707
+over many steps. `SWEEP_GRAZE = 16.0` sits in that gap. It is also the right
+order for the model's own error -- the interpolated marker angle is rounded to
+a whole Build unit, about 1.6 units of position at a 1024-unit radius.
+
+### The inside-out candidates
+
+The owner reported seeing inside-out sectors. Case (b) of the supervisor's four
+-- a neighbour deformed by `DragPoint` that no gate swept -- has exactly one
+campaign instance under this reading:
+
+```text
+E4M2.MAP s201 (type 615) drags s200 loop 0, which is inverted at 11 of 17
+  poses, INCLUDING busy 0 -- the pose the level loads in. Its signed area
+  runs -390562 -> +128418 over the travel and the drawn pose is +128418,
+  so it is wound the wrong way for two thirds of the motion and right only
+  at the end. The same mechanism folds its own loop 1 at three poses.
+```
+
+Four movers break their OWN loop: `E1M2 s34` (614), `E1M3 s183` (615),
+`E4M2 s201` (615), `E6M3 s76` (614).
+
+Eighteen campaign mechanisms fold a neighbour past the graze tolerance, and the
+persistent ones -- the ones that stay folded over most of the travel -- are:
+
+```text
+E2M5  s95, s96  (615) -> s708 loop 1     15-16 of 17 poses
+E2M5  s521, s522 (617) -> s525 loop 0    13 of 17
+E3M1  s66 (617) -> s71 loop 0             6 of 17
+E3M3  s0, s263 (615) -> s1..s12 loop 0    9-10 of 17 each
+E3M3  s13 (615) -> s14 loop 0            10 of 17
+E4M2  s201 (615) -> s200 loop 0          14 of 17
+```
+
+These are candidates for the owner's sighting, not verdicts: the model rounds
+the marker angle where the engine rounds coordinates, and none of them has been
+seen in the engine. Full per-mechanism evidence is in
+`reports/blood-mechanism-drag-closure.json`.
+
+### The two closures agreed, and one of them was short
+
+`motion.drag_closure` (nextwall) and `motion.motion_set` (coordinate
+coincidence) agree on every mechanism the P1 run checked, and the census
+extends that: over 1077 mechanisms the coordinate reading reaches MORE sectors
+than the chain on 69 of them (66 campaign, 3 curriculum) and fewer on none --
+which is the predicted direction, since linked walls always share a coordinate
+and coincident walls need not be linked. Those 69 are `coincident but not
+chained` vertices: a wall sits on the moved point with no `nextwall` pairing
+reaching it, so the engine leaves it behind and the motion tears the map open
+there. 186 such vertices over 108 campaign mechanisms, 11 over 4 curriculum
+ones (`DOOR-SLIDING` s41, `DOOR-SLIDINGD` s67, `DOOR-SWINGINGD` s35,
+`TRAP-WALLTRAP` s4).
+
+There were two implementations of the walk and they were not the same. The
+short one in `motion.py` walked the ring forward only; `DragPoint`'s forward
+walk STOPS at a one-sided wall and then goes round the other way. A fin beside
+a void slot is precisely that case -- the mechanism this project builds most.
+`motion_sim` owns the walk now and `motion.drag_closure` delegates to it.
+
+### Where the gate runs
+
+`bloodmap.swept_state.run` sweeps the closure for every mechanism in a built
+map, and both builds call it: `projects/pattern-zoo/sweep.py` reports it beside
+the template conformance, and `projects/blood-city/level/build_skeleton.py`
+refuses to write the map on a problem. The fail-first fixture is
+`tests/test_swept_state._strip_with_thin_neighbour`: a slide-marked strip whose
+flagged wall is shared with a thin sector that is inside out at busy 0. The
+mover's own polygon is healthy at every pose, so the previous gate passed it
+(`test_the_mover_only_sweep_is_blind_to_the_neighbour` keeps that on record).
+
 ## Editor debris
 
 `ASAVE1.map` and `ASAVE1.bak` in `maps/blood/mechanism/` are XMAPEDIT autosave

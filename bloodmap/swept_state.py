@@ -21,6 +21,17 @@ level loads -- and asks at every step:
   room it does not move is the fault the rotors were always suspected of and
   nothing ever checked.
 
+What it sweeps is the `DragPoint` CLOSURE, not the mover's polygon. The
+engine never moves a polygon: `TranslateSector` drags vertices, and
+`DragPoint` (triggers.cpp:817-854) sets each one for every wall that shares
+it across `nextwall` -- so a flagged wall shared with a neighbour deforms the
+neighbour, and the curriculum says that is the normal case. The first
+version of this gate swept only the mover and called every neighbour static;
+it passed a strip whose thin neighbour was inside out from the moment the
+level loaded (`tests/test_swept_state.py::DragClosureGateTest`). Now every
+loop with a moved vertex is checked for inversion and self-crossing, and the
+static set is exactly the walls whose endpoints do not move.
+
 A check this file used to make and no longer does: whether the sector sits
 away from its drawn outline at rest. That is not measurable. `trInit` derives
 the base FROM the markers -- base = drawn minus delta -- so a state-0 sector
@@ -36,7 +47,8 @@ from dataclasses import dataclass, field
 from typing import Any, Iterable
 
 from .motion_sim import (
-    blood_sweep, polygon_area, rest_displacement, self_intersections,
+    blood_sweep, closure_health, polygon_area, rest_displacement,
+    self_intersections,
 )
 
 #: The four horizontally-moving Blood sector types.
@@ -60,6 +72,10 @@ class SweptFinding:
     areas: list[float] = field(default_factory=list)
     problems: list[str] = field(default_factory=list)
     notes: list[str] = field(default_factory=list)
+    #: The DragPoint closure: which sectors the motion deforms besides the
+    #: mover, the loops it touched, and where nextwall and coordinates
+    #: disagree about who shares a vertex.
+    closure: dict[str, Any] = field(default_factory=dict)
 
     @property
     def sound(self) -> bool:
@@ -117,65 +133,54 @@ def sweep_sector(disk: Any, sector_id: int, *, steps: int = 16) -> SweptFinding:
                 f"a degenerate loop the renderer cannot draw")
             break
 
-    found.problems.extend(_clearance(disk, sector_id, frames))
+    found.problems.extend(_closure(disk, sector_id, found, steps=steps))
     return found
 
 
-def _segments(points: list[Any]) -> list[tuple[Any, Any]]:
-    return [(points[i], points[(i + 1) % len(points)])
-            for i in range(len(points))]
+def _closure(disk: Any, sector_id: int, found: SweptFinding,
+             *, steps: int) -> list[str]:
+    """Everything the motion drags, swept: neighbours, and the static set.
 
+    `closure_health` walks `nextwall` as `DragPoint` does, so the loops it
+    returns are the ones the engine actually deforms. Three kinds of problem
+    come back: a dragged loop (the mover's own or a neighbour's) that inverts
+    against its DRAWN winding, one that crosses itself, and a moving wall
+    that properly crosses a wall whose endpoints do not move -- the check
+    the rotors never had. The mover's own inversion and self-crossing are
+    already reported above against its first frame, so only its neighbours'
+    are added here.
 
-def _crosses(a1, a2, b1, b2) -> bool:
-    """Do two segments properly cross? Touching at an endpoint does not."""
-    def side(p, q, r):
-        value = ((q[0] - p[0]) * (r[1] - p[1])
-                 - (q[1] - p[1]) * (r[0] - p[0]))
-        return (value > 1e-9) - (value < -1e-9)
-
-    d1, d2 = side(a1, a2, b1), side(a1, a2, b2)
-    d3, d4 = side(b1, b2, a1), side(b1, b2, a2)
-    return d1 * d2 < 0 and d3 * d4 < 0
-
-
-def _clearance(disk: Any, sector_id: int, frames: list[Any]) -> list[str]:
-    """Does the swept outline cut through geometry it does not move?
-
-    The check the rotors never had. A mechanism may deform the sectors it
-    declares -- that is the normal case in the tutorials -- but a wall
-    belonging to a sector OUTSIDE its motion set is static, and an outline
-    that crosses one is a mechanism travelling through a room.
-
-    Only proper crossings count: a moving wall sharing an endpoint with a
-    static one is a hinge, which is how most of these are built.
+    A vertex that coincides with the moved one but is not chained to it is
+    not a problem for the gate -- the engine simply leaves it behind -- but it
+    is a map defect, and it is recorded as a note.
     """
-    from .motion import motion_set, sector_walls
-
     try:
-        moving = set(motion_set(disk, sector_id)["sectors"])
-    except Exception:
-        moving = {sector_id}
-    static = []
-    for other in range(len(disk.sectors)):
-        if other in moving:
+        health = closure_health(disk, sector_id, steps=steps)
+    except Exception as exc:                        # pragma: no cover
+        return [f"cannot sweep the drag closure: {exc}"]
+    found.closure = {
+        "sectors": health["sectors"],
+        "neighbours": health["neighbours"],
+        "coincidence_sectors": health["coincidence_sectors"],
+        "co_movers": health["co_movers"],
+        "isolated": health["isolated"],
+        "moved_walls": health["moved_walls"],
+        "loops": [(row["sector"], row["loop"]) for row in health["loops"]],
+        "disagreements": health["disagreements"],
+    }
+    found.notes.extend(health["notes"])
+    for item in health["disagreements"]:
+        found.notes.append(
+            f"vertex ({item['vertex'][0]}, {item['vertex'][1]}) is "
+            f"{item['kind']}: {item['why']}")
+    problems: list[str] = []
+    for line in health["problems"]:
+        own = (f"loop 0 of sector {sector_id} " in line
+               and "drags through" not in line)
+        if own and ("inverts" in line or "crosses itself" in line):
             continue
-        for wall_id in sector_walls(disk, other):
-            fields = disk.walls[wall_id].fields
-            end = disk.walls[int(fields["point2"])].fields
-            static.append(((int(fields["x"]), int(fields["y"])),
-                           (int(end["x"]), int(end["y"])), other, wall_id))
-    if not static:
-        return []
-    for index, frame in enumerate(frames):
-        for a1, a2 in _segments(list(frame)):
-            for b1, b2, other, wall_id in static:
-                if _crosses(a1, a2, b1, b2):
-                    return [
-                        f"step {index}/{len(frames) - 1}: the outline cuts "
-                        f"through wall {wall_id} of sector {other}, which "
-                        f"this mechanism does not move -- it sweeps through "
-                        f"standing geometry"]
-    return []
+        problems.append(line)
+    return problems
 
 
 def polygon_area_signed(polygon: Iterable[Any]) -> float:
@@ -203,10 +208,12 @@ def run(disk: Any, *, steps: int = 16) -> dict[str, Any]:
         "steps": steps,
         "problems": problems,
         "notes": notes,
+        "deforming_neighbours": sum(
+            1 for item in findings if item.closure.get("neighbours")),
         "per_sector": [
             {"sector": item.sector, "type": item.type_id,
              "areas": item.areas, "problems": item.problems,
-             "notes": item.notes}
+             "notes": item.notes, "closure": item.closure}
             for item in findings],
         "passed": not problems,
     }

@@ -78,6 +78,21 @@ def _for_sector(disk, sector_id, region_name):
     return []
 
 
+def swept_closure(disk) -> dict:
+    """Every mechanism swept through its travel, DragPoint closure included."""
+    from bloodmap.swept_state import run as swept_run
+
+    report = swept_run(disk)
+    return {"region": "(whole map)", "sector": None,
+            "construct": "swept drag closure",
+            "conforms": report["passed"],
+            "measured": {"mechanisms": report["mechanisms"],
+                         "sound": report["sound"],
+                         "deforming_neighbours": report["deforming_neighbours"],
+                         "notes": report["notes"]},
+            "deviations": list(report["problems"])}
+
+
 def run(map_path: pathlib.Path = MAP,
         manifest_path: pathlib.Path = MANIFEST) -> dict:
     disk = read_map(map_path)
@@ -108,6 +123,15 @@ def run(map_path: pathlib.Path = MAP,
                     "measured": across.measured,
                     "deviations": [str(d) for d in across.deviations]})
     deviations.extend(f"(whole map): {d}" for d in across.deviations)
+    #: And the poses the map is not saved in, over everything each motion
+    #: DRAGS. `swept_state.run` walks the DragPoint closure (nextwall, as
+    #: triggers.cpp:817-854 does), so a neighbour that inverts while the
+    #: exhibit itself stays sound is a deviation here, not a surprise in
+    #: the engine. The self-reading gate runs the same sweep; this puts it
+    #: in the conformance report beside the templates.
+    swept = swept_closure(disk)
+    results.append(swept)
+    deviations.extend(f"(swept closure): {d}" for d in swept["deviations"])
 
     return {
         "$schema": "llmapper.pattern-zoo-conformance", "schema_version": 1,

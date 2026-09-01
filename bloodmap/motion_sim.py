@@ -27,10 +27,17 @@ makes the comparison meaningful instead of a sign convention argument.
 from __future__ import annotations
 
 import math
-from typing import Any, Iterable, Sequence
+from dataclasses import dataclass
+from typing import Any, Iterable, Mapping, Sequence
 
 from .duke import DukeDiskMap
 from .duke_motion import rotate_rise_bridge, sliding_door, stretch_bridge, swinging_door
+#: `motion` is the reading side of the same engine routine and imports nothing
+#: from this package at module scope, so this direction is the safe one: the
+#: flag constants and the wall->sector map have exactly one definition, there.
+from .motion import (
+    CARRY, MOVES_AGAINST, MOVES_EVERY_WALL, MOVES_WITH, wall_owners,
+)
 
 Point = tuple[float, float]
 Polygon = list[Point]
@@ -144,12 +151,46 @@ def duke_sweep(duke: DukeDiskMap, effector_index: int, *, steps: int = 16) -> li
     raise ValueError(f"SE{lotag} in ST{sector_tag} is not a modelled moving sector")
 
 
-def blood_sweep(level: Any, sector_id: int, *, steps: int = 16) -> list[Polygon]:
-    """Wall positions across a Blood moving sector's whole travel.
+@dataclass
+class Travel:
+    """`TranslateSector`'s eight marker arguments plus where the sector rests.
 
-    Transcribes ``TranslateSector`` for the four moving types, including the
-    ``bAllWalls`` split: 616/617 move every wall, 614/615 move only walls
-    flagged ``cstat & 16384`` (forward) or ``& 32768`` (reverse).
+    ``(a4, a5)`` is the pivot, ``(a6, a7, a8)`` the OFF position and angle,
+    ``(a9, a10, a11)`` the ON position and angle; ``rest`` is the busy the
+    sector sits at when the level loads (``xsector.state``), and the travel
+    runs from ``rest`` to ``1 - rest``.
+    """
+
+    a4: float
+    a5: float
+    a6: float
+    a7: float
+    a8: float
+    a9: float
+    a10: float
+    a11: float
+    rest: float
+
+    def place(self, point: Point, sign: float, busy: float) -> Point:
+        """One base point, moved as `TranslateSector` moves it at `busy`."""
+        vc = self.a6 + (self.a9 - self.a6) * busy
+        v8 = self.a7 + (self.a10 - self.a7) * busy
+        vbp = self.a8 + (self.a11 - self.a8) * busy
+        moved = point
+        if vbp:
+            moved = rotate_about(point, round(sign * vbp), (self.a4, self.a5))
+        return (moved[0] + sign * (vc - self.a4), moved[1] + sign * (v8 - self.a5))
+
+    def busies(self, steps: int) -> list[float]:
+        target = 1.0 - self.rest
+        return [self.rest + (target - self.rest) * (i / steps) for i in range(steps + 1)]
+
+
+def blood_travel(level: Any, sector_id: int) -> Travel:
+    """Read a moving sector's markers into the arguments `trInit` passes.
+
+    Raises ``ValueError`` for a sector that does not move horizontally or has
+    no markers, exactly as `blood_sweep` always has.
     """
     sector = level.sectors[sector_id]
     kind = int(sector.fields["type"])
@@ -158,9 +199,6 @@ def blood_sweep(level: Any, sector_id: int, *, steps: int = 16) -> list[Polygon]
     if sector.extra is None:
         raise ValueError(f"sector {sector_id} has no XSECTOR")
     extra = sector.extra.fields
-    walls = blood_sector_walls(level, sector_id)
-    start = int(sector.fields["wall_ptr"])
-    all_walls = kind in (616, 617)
 
     # Sprite 0 is a real sprite, so an unset marker is -1 rather than 0. Marker
     # angles are read raw: Blood interpolates 0 -> ang linearly, so the sign is
@@ -181,75 +219,54 @@ def blood_sweep(level: Any, sector_id: int, *, steps: int = 16) -> list[Polygon]
         a4, a5 = float(m0["x"]), float(m0["y"])
         a6, a7, a8 = a4, a5, float(int(m0["angle"]))
         a9, a10, a11 = float(m1["x"]), float(m1["y"]), float(int(m1["angle"]))
-
-    #: A flagged wall drags its OWN vertex and its `point2`'s -- unless that
-    #: next wall is itself flagged, in which case it moves under its own
-    #: sign. `triggers.cpp:902` and `:917`:
-    #:
-    #:     if (wall[nWall].cstat&16384) {
-    #:         DragPoint(nWall, ...);
-    #:         if ((wall[v10].cstat&49152) == 0) DragPoint(v10, ...);
-    #:
-    #: That propagation is how flagging ONE wall translates a whole EDGE,
-    #: and without it the model shears every Marked slide instead of sliding
-    #: it: the oracle's lid came back as a trapezoid of 2228224 units where
-    #: the engine gives a 2048x128 strip. Every conclusion drawn from a swept
-    #: area before this was measuring the wrong shape.
-    CARRY = 16384 | 32768
-
-    def _signs() -> list[float]:
-        out: list[float | None] = [None] * len(walls)
-        for index in range(len(walls)):
-            cstat = int(level.walls[start + index].fields["cstat"])
-            if all_walls:
-                out[index] = 1.0
-                continue
-            if cstat & 16384:
-                out[index] = 1.0
-            elif cstat & 32768:
-                out[index] = -1.0
-        if not all_walls:
-            for index in range(len(walls)):
-                cstat = int(level.walls[start + index].fields["cstat"])
-                if not cstat & CARRY:
-                    continue
-                sign = 1.0 if cstat & 16384 else -1.0
-                nxt = int(level.walls[start + index].fields["point2"]) - start
-                if not 0 <= nxt < len(walls):
-                    continue
-                if int(level.walls[start + nxt].fields["cstat"]) & CARRY:
-                    continue
-                out[nxt] = sign
-        return [0.0 if value is None else value for value in out]
-
-    signs = _signs()
-
-    def place(source: Polygon, busy: float) -> Polygon:
-        vc = a6 + (a9 - a6) * busy
-        v8 = a7 + (a10 - a7) * busy
-        vbp = a8 + (a11 - a8) * busy
-        frame: Polygon = []
-        for index, point in enumerate(source):
-            sign = signs[index]
-            if not sign:
-                frame.append(point)
-                continue
-            moved = point
-            if vbp:
-                moved = rotate_about(point, round(sign * vbp), (a4, a5))
-            frame.append((moved[0] + sign * (vc - a4), moved[1] + sign * (v8 - a5)))
-        return frame
-
-    # trInit does not treat the authored geometry as the resting pose. It runs
-    # TranslateSector once at busy = -65536 -- a full travel *backwards* --
-    # calls setBaseWallSect to make that the reference, and only then moves to
-    # the sector's real busy. So the coordinates in the MAP are the pose at
-    # busy = 1, and a sector left at state 0 displaces itself by the whole
-    # marker separation the moment the level loads.
-    base = place(walls, -1.0)
     rest = 1.0 if int(extra.get("state", 0)) else 0.0
-    target = 1.0 - rest
-    return [place(base, rest + (target - rest) * (i / steps)) for i in range(steps + 1)]
+    return Travel(a4, a5, a6, a7, a8, a9, a10, a11, rest)
+
+
+def blood_sweep(level: Any, sector_id: int, *, steps: int = 16,
+                by_loop: bool = False) -> list[Polygon] | dict[tuple[int, int], list[Polygon]]:
+    """Wall positions across a Blood moving sector's whole travel.
+
+    Transcribes ``TranslateSector`` for the four moving types, including the
+    ``bAllWalls`` split: 616/617 move every wall, 614/615 move only walls
+    flagged ``cstat & 16384`` (forward) or ``& 32768`` (reverse).
+
+    The default return is ``steps + 1`` polygons of the mover's OWN walls in
+    sector order, which is what every existing caller reads. With
+    ``by_loop=True`` it returns frames for EVERY loop the motion touches,
+    keyed ``(sector, loop_index)`` -- the mover's loops and every neighbour
+    loop `DragPoint` deforms -- because the engine moves vertices, not the
+    mover's polygon, and a neighbour can invert while the mover stays sound.
+    Both come from one simulation (`closure_sweep`), so they cannot disagree.
+
+    A flagged wall drags its OWN vertex and its `point2`'s -- unless that
+    next wall is itself flagged, in which case it moves under its own
+    sign. `triggers.cpp:902` and `:917`:
+
+        if (wall[nWall].cstat&16384) {
+            DragPoint(nWall, ...);
+            if ((wall[v10].cstat&49152) == 0) DragPoint(v10, ...);
+
+    That propagation is how flagging ONE wall translates a whole EDGE,
+    and without it the model shears every Marked slide instead of sliding
+    it: the oracle's lid came back as a trapezoid of 2228224 units where
+    the engine gives a 2048x128 strip. Every conclusion drawn from a swept
+    area before this was measuring the wrong shape.
+
+    trInit does not treat the authored geometry as the resting pose. It runs
+    TranslateSector once at busy = -65536 -- a full travel *backwards* --
+    calls setBaseWallSect to make that the reference, and only then moves to
+    the sector's real busy. So the coordinates in the MAP are the pose at
+    busy = 1, and a sector left at state 0 displaces itself by the whole
+    marker separation the moment the level loads.
+    """
+    swept = closure_sweep(level, sector_id, steps=steps)
+    if by_loop:
+        return swept.loops
+    fields = level.sectors[sector_id].fields
+    start = int(fields["wall_ptr"])
+    own = range(start, start + int(fields["wall_count"]))
+    return [[swept.position(step, wall) for wall in own] for step in range(steps + 1)]
 
 
 def blood_poses(level: Any, sector_id: int) -> tuple[Polygon, Polygon]:
@@ -319,13 +336,52 @@ def segments_cross(p1: Point, p2: Point, p3: Point, p4: Point, *, eps: float = 1
     return (d1 > 0) != (d2 > 0) and (d3 > 0) != (d4 > 0)
 
 
-def self_intersections(polygon: Sequence[Point]) -> list[tuple[int, int]]:
+def crossing_depth(p1: Point, p2: Point, p3: Point, p4: Point) -> float:
+    """How far INTO each other two crossing segments reach, in map units.
+
+    The measure is the distance from the crossing point to the nearer end of
+    whichever segment is grazed more shallowly. It answers the question a
+    tolerance needs to ask: is this two walls passing through each other, or
+    a hinge whose tip pokes a unit past the wall it turns on?
+
+    A rotor's leaf pivots on a vertex of the room it is set into, so at a
+    small angle its swept tip crosses that room's wall a hair beyond the
+    corner. In the engine those coordinates are integers; here the marker
+    angle is rounded to a whole Build unit (`rotate_about`), which at a
+    1024-unit radius is worth about 1.6 units of position. Both are noise at
+    this scale, and both look exactly like a fold to `self_intersections`.
+
+    Returns 0.0 when the segments do not properly cross.
+    """
+    if not segments_cross(p1, p2, p3, p4):
+        return 0.0
+    d1 = _orient(p3, p4, p1)
+    d2 = _orient(p3, p4, p2)
+    if d1 == d2:                                        # pragma: no cover
+        return 0.0
+    t = d1 / (d1 - d2)
+    hit = (p1[0] + t * (p2[0] - p1[0]), p1[1] + t * (p2[1] - p1[1]))
+    reach = []
+    for a, b in ((p1, p2), (p3, p4)):
+        reach.append(min(math.hypot(hit[0] - a[0], hit[1] - a[1]),
+                         math.hypot(hit[0] - b[0], hit[1] - b[1])))
+    return min(reach)
+
+
+def self_intersections(polygon: Sequence[Point], *,
+                       min_depth: float = 0.0) -> list[tuple[int, int]]:
     """Non-adjacent wall pairs of one sector that cross.
 
     A sector whose own outline crosses itself is not a sector any more: Build's
     renderer and clipper both assume a simple loop.  A door that folds through
     itself partway through its travel will do visible and physical damage even
     though the map file validates.
+
+    ``min_depth`` (map units) drops crossings shallower than that -- see
+    `crossing_depth`. The default 0 keeps every one, which is what the
+    static callers want; the swept gate passes `SWEEP_GRAZE` instead, because
+    a rotor hinged ON a wall grazes it by a unit at small angles and that is
+    the model's own rounding, not the map's geometry.
     """
     segments = _segments(polygon)
     count = len(segments)
@@ -334,8 +390,11 @@ def self_intersections(polygon: Sequence[Point]) -> list[tuple[int, int]]:
         for j in range(i + 1, count):
             if j == i or (j + 1) % count == i or (i + 1) % count == j:
                 continue
-            if segments_cross(*segments[i], *segments[j]):
-                found.append((i, j))
+            if not segments_cross(*segments[i], *segments[j]):
+                continue
+            if min_depth and crossing_depth(*segments[i], *segments[j]) < min_depth:
+                continue
+            found.append((i, j))
     return found
 
 
@@ -359,12 +418,34 @@ def point_in_polygon(point: Point, polygon: Sequence[Point]) -> bool:
     return inside
 
 
-def sweep_health(frames: Sequence[Polygon], *, static: Iterable[Polygon] = ()) -> dict[str, Any]:
+def sweep_health(frames: Sequence[Polygon] | Mapping[tuple[int, int], Sequence[Polygon]],
+                 *, static: Iterable[Polygon] = ()) -> dict[str, Any]:
     """Geometric problems a moving sector develops over its travel.
 
     ``static`` is the set of outlines the mover must not run through -- in
     practice the sectors around it that do not move with it.
+
+    Given the by-loop mapping `blood_sweep(..., by_loop=True)` returns, every
+    loop is evaluated and the report carries a ``loops`` list keyed by
+    ``(sector, loop)`` with ``healthy`` false if ANY of them folds, inverts
+    against its first frame, or collides. `closure_health` is the fuller
+    check: it knows the drawn winding and the exact static set.
     """
+    if isinstance(frames, Mapping):
+        per_loop = []
+        for key, loop_frames in frames.items():
+            one = sweep_health(loop_frames, static=static)
+            signed = [polygon_area(frame) for frame in loop_frames]
+            one["inverted_steps"] = [
+                step for step, value in enumerate(signed)
+                if signed[0] and value and (value > 0) != (signed[0] > 0)]
+            one["healthy"] = one["healthy"] and not one["inverted_steps"]
+            one["sector"], one["loop"] = key
+            per_loop.append(one)
+        return {
+            "loops": per_loop,
+            "healthy": all(one["healthy"] for one in per_loop),
+        }
     static_list = list(static)
     folds: list[int] = []
     collisions: list[dict[str, int]] = []
@@ -428,4 +509,592 @@ def compare_sweeps(duke_frames: Sequence[Polygon], blood_frames: Sequence[Polygo
         "relative_error": round(peak / travel, 4) if travel else None,
         "worst": worst,
         "samples": len(deviations),
+    }
+
+
+# ---------------------------------------------------------------------------
+# The DragPoint closure: what a motion moves besides the mover's own polygon
+# ---------------------------------------------------------------------------
+#
+# `TranslateSector` never moves a polygon. It calls `DragPoint` per VERTEX,
+# and `DragPoint` (triggers.cpp:817-854) sets that vertex for every wall that
+# shares it, found by walking `nextwall` -- forward through each neighbour's
+# `point2`, and if that walk hits a one-sided wall, backward again from the
+# start through `lastwall().nextwall` (engine.cpp:13227). So a flagged wall
+# shared with a neighbour deforms the neighbour, and the curriculum says that
+# is the NORMAL case (motion-crosses-storage-boundaries-by-default). A gate
+# that sweeps only the mover cannot see a neighbour turning inside out.
+#
+# None of this sits under NOONE_EXTENSIONS: the only `gModernMap` branch in
+# `TranslateSector` (triggers.cpp:874-878, `sprDy`) concerns reverse-flagged
+# SPRITES, not walls, and is left alone here.
+
+#: `TranslateSector`'s wall payload flags (triggers.cpp:897 and :912) and the
+#: `bAllWalls` types (:881). `motion` owns these names -- one definition, so a
+#: correction to either module cannot leave the other reading a stale flag.
+CARRY_FLAGS = CARRY
+ALL_WALL_TYPES = MOVES_EVERY_WALL
+
+#: How deep a wall crossing must be, in map units, before the swept gate calls
+#: it a fold rather than a graze (`crossing_depth`).
+#:
+#: Measured, not chosen. Over the 27 campaign neighbour loops that crossed
+#: themselves at ANY pose with no tolerance, the deepest crossing of each
+#: falls into two groups with a gap between them: eleven loops top out at
+#: 13.69 units and appear at ONE step of sixteen (E1M4 s163, E1M8 s20 and
+#: s286, E4M1 s108, E2M5 s572 ...) -- all of them a 617 rotor hinged on a
+#: vertex OF the room it turns in, whose leaf tip crosses that room's wall a
+#: hair past the corner; the rest start at 19.98 and run to 707, and persist
+#: over many steps (E3M3 s1, E4M2 s200, E2M5 s708). 16 sits in the gap.
+#:
+#: It is also the right order for the model's own error: `Travel.place`
+#: rounds the interpolated marker angle to a whole Build unit, worth about
+#: 1.6 units of position at a 1024-unit radius, and the engine's own
+#: coordinates are integers.
+SWEEP_GRAZE = 16.0
+
+
+def _wall_field(level: Any, wall_id: int, key: str) -> int:
+    return int(level.walls[wall_id].fields[key])
+
+
+def sector_loops(level: Any, sector_id: int) -> list[list[int]]:
+    """Each loop of a sector as its wall ids in `point2` order, first loop first.
+
+    Build's convention (and this project's `construction.py:124`) is that the
+    first loop is the outer boundary and the rest are holes.
+    """
+    fields = level.sectors[sector_id].fields
+    start = int(fields["wall_ptr"])
+    end = start + int(fields["wall_count"])
+    seen: set[int] = set()
+    loops: list[list[int]] = []
+    for wall_id in range(start, end):
+        if wall_id in seen:
+            continue
+        loop: list[int] = []
+        current = wall_id
+        while current not in seen and start <= current < end:
+            seen.add(current)
+            loop.append(current)
+            current = _wall_field(level, current, "point2")
+        loops.append(loop)
+    return loops
+
+
+def last_wall(level: Any, wall_id: int) -> int:
+    """Build's `lastwall` (engine.cpp:13227-13248): the wall whose point2 is this.
+
+    Tries the wall just before first, then walks `point2` around the loop;
+    returns the argument unchanged if nothing closes on it (the engine does).
+    """
+    if wall_id > 0 and _wall_field(level, wall_id - 1, "point2") == wall_id:
+        return wall_id - 1
+    current = wall_id
+    for _ in range(len(level.walls)):
+        following = _wall_field(level, current, "point2")
+        if following == wall_id:
+            return current
+        current = following
+    return wall_id
+
+
+def drag_chain(level: Any, wall_id: int) -> list[int]:
+    """The walls whose vertex `DragPoint(wall_id, x, y)` sets, in engine order.
+
+    A transcription of triggers.cpp:817-854, `vsi` guard included:
+
+        wall[nWall] = (x, y)
+        vb = nWall
+        do {
+            if (wall[vb].nextwall >= 0) {            // forward around the vertex
+                vb = wall[wall[vb].nextwall].point2; wall[vb] = (x, y)
+            } else {                                 // hit a one-sided wall:
+                vb = nWall;                          // go the other way round
+                do {
+                    if (wall[lastwall(vb)].nextwall >= 0) {
+                        vb = wall[lastwall(vb)].nextwall; wall[vb] = (x, y)
+                    } else break;
+                } while (vb != nWall && --vsi > 0);
+                break;
+            }
+        } while (vb != nWall && --vsi > 0);
+
+    The walk is over `nextwall`, never over coordinates: a wall that merely
+    sits on the same point but is not paired to the fan is NOT moved, which
+    is what `drag_closure` reports as a disagreement.
+    """
+    def nextwall(w: int) -> int:
+        return _wall_field(level, w, "next_wall")
+
+    chain = [wall_id]
+    vsi = len(level.walls)
+    vb = wall_id
+    while True:
+        if nextwall(vb) >= 0:
+            vb = _wall_field(level, nextwall(vb), "point2")
+            chain.append(vb)
+        else:
+            vb = wall_id
+            while True:
+                before = last_wall(level, vb)
+                if nextwall(before) >= 0:
+                    vb = nextwall(before)
+                    chain.append(vb)
+                else:
+                    break
+                vsi -= 1
+                if vb == wall_id or vsi <= 0:
+                    break
+            break
+        vsi -= 1
+        if vb == wall_id or vsi <= 0:
+            break
+    ordered: list[int] = []
+    for item in chain:
+        if item not in ordered:
+            ordered.append(item)
+    return ordered
+
+
+def drag_drivers(level: Any, sector_id: int) -> list[tuple[int, float, str]]:
+    """``(wall, sign, why)`` for every `DragPoint` call, in the order made.
+
+    616/617 (`bAllWalls`, triggers.cpp:881-888) drag every wall forward.
+    614/615 (:892-927) drag a 16384 wall forward and a 32768 wall backward,
+    and each also drags its `point2` under the same sign when that wall
+    carries no flag of its own (:902, :917). A wall with both flags takes the
+    16384 branch, as the engine's `continue` makes it.
+    """
+    fields = level.sectors[sector_id].fields
+    start = int(fields["wall_ptr"])
+    every = int(fields["type"]) in ALL_WALL_TYPES
+    out: list[tuple[int, float, str]] = []
+    for wall_id in range(start, start + int(fields["wall_count"])):
+        if every:
+            out.append((wall_id, 1.0, "bAllWalls"))
+            continue
+        cstat = _wall_field(level, wall_id, "cstat")
+        if cstat & MOVES_WITH:
+            sign, why = 1.0, "cstat 16384"
+        elif cstat & MOVES_AGAINST:
+            sign, why = -1.0, "cstat 32768"
+        else:
+            continue
+        out.append((wall_id, sign, why))
+        following = _wall_field(level, wall_id, "point2")
+        if not _wall_field(level, following, "cstat") & CARRY_FLAGS:
+            out.append((following, sign, f"point2 of {wall_id}"))
+    return out
+
+
+def drag_closure(level: Any, sector_id: int) -> dict[str, Any]:
+    """Every (wall, vertex) `DragPoint` would move for this sector's motion.
+
+    ``drivers`` are the `DragPoint` calls in engine order, each with the walls
+    its `nextwall` walk reaches (``chain``) and, beside it, the walls that
+    merely share the vertex's coordinates (``coincident``). Where the two
+    differ the map is defective in one of two ways, and both are reported in
+    ``disagreements``:
+
+    * ``coincident but not chained`` -- a wall sits on the moved point but is
+      not paired into the fan, so the engine leaves it behind and the motion
+      tears the map open at that vertex (an unwelded vertex);
+    * ``chained but not coincident`` -- `nextwall` pairs a wall that does not
+      actually start at the vertex, so the drag snaps it there (a broken
+      pairing).
+
+    ``moved`` is the union in last-writer-wins order, ``loops`` the
+    ``(sector, loop_index)`` keys of every loop with a moved vertex.
+    """
+    owners = wall_owners(level)
+    by_vertex: dict[tuple[int, int], list[int]] = {}
+    for wall_id, wall in enumerate(level.walls):
+        key = (int(wall.fields["x"]), int(wall.fields["y"]))
+        by_vertex.setdefault(key, []).append(wall_id)
+
+    drivers: list[dict[str, Any]] = []
+    moved: dict[int, dict[str, Any]] = {}
+    disagreements: list[dict[str, Any]] = []
+    for wall_id, sign, why in drag_drivers(level, sector_id):
+        vertex = (_wall_field(level, wall_id, "x"), _wall_field(level, wall_id, "y"))
+        chain = drag_chain(level, wall_id)
+        coincident = sorted(by_vertex.get(vertex, []))
+        unchained = sorted(set(coincident) - set(chain))
+        apart = [w for w in chain
+                 if (_wall_field(level, w, "x"), _wall_field(level, w, "y")) != vertex]
+        row = {
+            "wall": wall_id, "sign": sign, "why": why,
+            "vertex": [vertex[0], vertex[1]],
+            "chain": chain,
+            "chain_sectors": sorted({owners.get(w, -1) for w in chain}),
+            "coincident": coincident,
+            "coincident_sectors": sorted({owners.get(w, -1) for w in coincident}),
+            "unchained_coincident": unchained,
+            "chained_apart": apart,
+        }
+        drivers.append(row)
+        for member in chain:
+            moved[member] = {"driver": wall_id, "sign": sign}
+        if unchained:
+            disagreements.append({
+                "kind": "coincident but not chained", "driver": wall_id,
+                "vertex": [vertex[0], vertex[1]], "walls": unchained,
+                "sectors": sorted({owners.get(w, -1) for w in unchained}),
+                "why": f"wall(s) {unchained} sit on ({vertex[0]}, {vertex[1]}) "
+                       f"but no nextwall pairing reaches them from wall "
+                       f"{wall_id}, so the engine leaves them behind",
+            })
+        if apart:
+            disagreements.append({
+                "kind": "chained but not coincident", "driver": wall_id,
+                "vertex": [vertex[0], vertex[1]], "walls": apart,
+                "sectors": sorted({owners.get(w, -1) for w in apart}),
+                "why": f"nextwall pairing reaches wall(s) {apart} from wall "
+                       f"{wall_id} although they do not start at "
+                       f"({vertex[0]}, {vertex[1]}); DragPoint snaps them there",
+            })
+
+    sectors = sorted({owners.get(w, -1) for w in moved})
+    loops: list[tuple[int, int]] = []
+    loop_walls: dict[tuple[int, int], list[int]] = {}
+    for sector in sectors:
+        if sector < 0:
+            continue
+        for index, walls in enumerate(sector_loops(level, sector)):
+            if any(w in moved for w in walls):
+                loops.append((sector, index))
+                loop_walls[(sector, index)] = walls
+    coincidence_sectors = sorted({s for row in drivers for s in row["coincident_sectors"]})
+    return {
+        "sector": sector_id,
+        "type": int(level.sectors[sector_id].fields["type"]),
+        "all_walls": int(level.sectors[sector_id].fields["type"]) in ALL_WALL_TYPES,
+        "drivers": drivers,
+        "moved": moved,
+        "walls": sorted(moved),
+        "sectors": sectors,
+        "coincidence_sectors": coincidence_sectors,
+        "loops": loops,
+        "loop_walls": loop_walls,
+        "disagreements": disagreements,
+        "basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; "
+                 ":897-910 a 16384 wall drags its point2 when that wall is "
+                 "unflagged; :912-926 a 32768 wall does the same in reverse",
+    }
+
+
+@dataclass
+class ClosureSweep:
+    """One mechanism's travel, applied to every vertex `DragPoint` moves."""
+
+    sector: int
+    steps: int
+    busy: list[float]
+    closure: dict[str, Any]
+    #: Per step, moved wall -> where its vertex is.
+    positions: list[dict[int, Point]]
+    #: Every loop with a moved vertex, keyed (sector, loop_index).
+    loops: dict[tuple[int, int], list[Polygon]]
+    loop_walls: dict[tuple[int, int], list[int]]
+    drawn: dict[int, Point]
+
+    def position(self, step: int, wall_id: int) -> Point:
+        return self.positions[step].get(wall_id, self.drawn[wall_id])
+
+
+def closure_sweep(level: Any, sector_id: int, *, steps: int = 16) -> ClosureSweep:
+    """Step a mechanism through its travel and move everything it drags.
+
+    Each driver's base is its drawn vertex run backwards a full travel --
+    the `trInit` rebase -- and at every step each chained wall is set to its
+    driver's position, exactly as `DragPoint` assigns absolute coordinates
+    rather than offsets. `setBaseWallSect` (triggers.cpp:2144-2151) records
+    the base for the MOVER's walls only, so a neighbour has no base of its
+    own: it is wherever the vertex it shares was last put.
+    """
+    travel = blood_travel(level, sector_id)
+    closure = drag_closure(level, sector_id)
+    drawn: dict[int, Point] = {
+        wall_id: (float(wall.fields["x"]), float(wall.fields["y"]))
+        for wall_id, wall in enumerate(level.walls)
+    }
+    drivers = [(row["wall"], row["sign"], row["chain"]) for row in closure["drivers"]]
+    base = {wall_id: travel.place(drawn[wall_id], sign, -1.0) for wall_id, sign, _ in drivers}
+    busies = travel.busies(steps)
+    positions: list[dict[int, Point]] = []
+    for busy in busies:
+        frame: dict[int, Point] = {}
+        for wall_id, sign, chain in drivers:
+            point = travel.place(base[wall_id], sign, busy)
+            for member in chain:
+                frame[member] = point
+        positions.append(frame)
+    loops = {
+        key: [[positions[step].get(w, drawn[w]) for w in walls] for step in range(steps + 1)]
+        for key, walls in closure["loop_walls"].items()
+    }
+    return ClosureSweep(sector=sector_id, steps=steps, busy=busies, closure=closure,
+                        positions=positions, loops=loops,
+                        loop_walls=dict(closure["loop_walls"]), drawn=drawn)
+
+
+def _bbox(points: Iterable[Point]) -> tuple[float, float, float, float]:
+    xs, ys = zip(*points)
+    return (min(xs), min(ys), max(xs), max(ys))
+
+
+def _boxes_touch(a: tuple[float, float, float, float],
+                 b: tuple[float, float, float, float]) -> bool:
+    return not (a[2] < b[0] or b[2] < a[0] or a[3] < b[1] or b[3] < a[1])
+
+
+def closure_crossings(level: Any, swept: ClosureSweep,
+                      *, owners: dict[int, int] | None = None) -> list[dict[str, Any]]:
+    """Moving walls that properly cross walls the motion does not move.
+
+    A wall MOVES if either of its endpoints does (its own vertex or its
+    `point2`'s). Everything else is static, at its drawn coordinates -- and
+    that is now exact, where the mover-only gate had to guess the static set
+    by whole sectors. Touching at an endpoint is a hinge and does not count.
+    """
+    owners = owners if owners is not None else wall_owners(level)
+    moved = set(swept.closure["walls"])
+    moving = sorted({w for w in moved} | {
+        w for w in range(len(level.walls))
+        if _wall_field(level, w, "point2") in moved
+    })
+    if not moving:
+        return []
+    swept_points = [swept.position(step, w) for w in moving for step in range(swept.steps + 1)]
+    swept_points += [swept.position(step, _wall_field(level, w, "point2"))
+                     for w in moving for step in range(swept.steps + 1)]
+    window = _bbox(swept_points)
+    moving_set = set(moving)
+    static: list[tuple[int, Point, Point]] = []
+    for wall_id in range(len(level.walls)):
+        if wall_id in moving_set:
+            continue
+        end_id = _wall_field(level, wall_id, "point2")
+        a, b = swept.drawn[wall_id], swept.drawn[end_id]
+        if _boxes_touch(window, _bbox((a, b))):
+            static.append((wall_id, a, b))
+    #: Baseline: pairs that already cross in the DRAWN pose are the map's
+    #: own hairline overlaps (E1M1 s55 has one at its door notch), not
+    #: something the motion did. Only crossings the travel CREATES count.
+    already: set[tuple[int, int]] = set()
+    for wall_id in moving:
+        a = swept.drawn[wall_id]
+        b = swept.drawn[_wall_field(level, wall_id, "point2")]
+        for other, c, d in static:
+            if segments_cross(a, b, c, d):
+                already.add((wall_id, other))
+    found: list[dict[str, Any]] = []
+    for step in range(swept.steps + 1):
+        for wall_id in moving:
+            a = swept.position(step, wall_id)
+            b = swept.position(step, _wall_field(level, wall_id, "point2"))
+            for other, c, d in static:
+                if (wall_id, other) in already:
+                    continue
+                #: Same graze tolerance as the fold check: a leaf hinged ON a
+                #: static wall crosses it by a unit at small angles, and that
+                #: is the rounded marker angle, not the map.
+                depth = crossing_depth(a, b, c, d)
+                if depth < SWEEP_GRAZE:
+                    continue
+                found.append({
+                    "step": step, "wall": wall_id,
+                    "sector": owners.get(wall_id, -1),
+                    "static_wall": other,
+                    "static_sector": owners.get(other, -1),
+                    "depth": round(depth, 1),
+                })
+                break
+    return found
+
+
+def horizontal_movers(level: Any) -> list[int]:
+    """Every sector `TranslateSector` can move, in id order.
+
+    613 is in `motion.MOVING_TYPES` but never reaches `TranslateSector`, so it
+    is not here: `blood_sweep` refuses it.
+    """
+    return [index for index, sector in enumerate(level.sectors)
+            if int(sector.fields["type"]) in (614, 615, 616, 617)
+            and sector.extra is not None]
+
+
+def co_driven_walls(level: Any, sector_id: int,
+                    *, movers: Sequence[int] | None = None) -> dict[int, list[int]]:
+    """Walls that some OTHER mechanism in this map also drags, wall -> movers.
+
+    A hub loop that several mechanisms drag is the assembly case, and a
+    one-mechanism-at-a-time sweep cannot judge it: the engine runs every
+    mover's `TranslateSector` in the same tick, each re-placing the shared
+    vertices from its own base, so the loop is only whole when they all
+    travel. E1M4's eight-sector wheel around s352 and E3M2's fifteen-sector
+    boat around s16 are exactly this, and swept singly each of them turns the
+    hub inside out. The gate reports those and refuses to call them defects.
+    """
+    movers = horizontal_movers(level) if movers is None else list(movers)
+    out: dict[int, list[int]] = {}
+    for other in movers:
+        if other == sector_id:
+            continue
+        try:
+            walls = drag_closure(level, other)["walls"]
+        except (ValueError, KeyError, IndexError):
+            continue
+        for wall_id in walls:
+            out.setdefault(wall_id, []).append(other)
+    return out
+
+
+def closure_health(level: Any, sector_id: int, *, steps: int = 16,
+                   movers: Sequence[int] | None = None) -> dict[str, Any]:
+    """Geometric problems ANYTHING the motion drags develops over the travel.
+
+    For every loop with a moved vertex -- the mover's own and every
+    neighbour's -- the signed area at each step is compared with the DRAWN
+    pose's winding (the pose the map was validated in), and the loop is
+    checked for self-intersection; and every moving wall is checked against
+    every static one for a proper crossing. ``problems`` is the list a gate
+    should refuse on; ``disagreements`` are the closure's own map defects.
+
+    Two kinds of neighbour are reported but never counted as problems,
+    because one mechanism at a time is the wrong frame for them:
+
+    * a CO-MOVER, a neighbour that is itself a 614-617 sector -- the engine
+      drags its shared vertices here and then its own `TranslateSector`
+      re-places them from its own base;
+    * a CO-DRIVEN loop, a neighbour loop whose moved walls another mechanism
+      in the same map drags too -- the assembly hub above.
+
+    Both are in ``notes`` with the sectors that share them, so a report can
+    still list them as candidates. ``movers`` overrides the auto-detected set
+    of other mechanisms (pass ``()`` to judge the sector in isolation).
+    """
+    swept = closure_sweep(level, sector_id, steps=steps)
+    owners = wall_owners(level)
+    shared = co_driven_walls(level, sector_id, movers=movers)
+    loops: list[dict[str, Any]] = []
+    problems: list[str] = []
+    notes: list[str] = []
+    moved = swept.closure["moved"]
+    #: A neighbour that is itself a horizontal mover is a CO-MOVER: the
+    #: engine drags its shared vertices here and then its own
+    #: `TranslateSector` re-places them from its own base, so where they end
+    #: up depends on both mechanisms' busy. One mechanism at a time cannot
+    #: judge it (E1M4's eight-sector wheel, E3M2's boat), so its loops are
+    #: reported but never counted as problems.
+    co_movers = sorted(
+        s for s in swept.closure["sectors"]
+        if s != sector_id
+        and int(level.sectors[s].fields["type"]) in (614, 615, 616, 617)
+        and level.sectors[s].extra is not None)
+    for key, frames in swept.loops.items():
+        sector, index = key
+        walls = swept.loop_walls[key]
+        drawn_poly = [swept.drawn[w] for w in walls]
+        drawn_area = polygon_area(drawn_poly)
+        #: Baseline against the DRAWN loop: an original may already cross
+        #: itself by a hair (E1M1 s55's door notch does), and that is the
+        #: map's property, not the motion's.
+        drawn_folds = set(self_intersections(drawn_poly, min_depth=SWEEP_GRAZE))
+        signed = [polygon_area(frame) for frame in frames]
+        inverted = [step for step, value in enumerate(signed)
+                    if drawn_area and value and (value > 0) != (drawn_area > 0)]
+        folds = [step for step, frame in enumerate(frames)
+                 if set(self_intersections(frame, min_depth=SWEEP_GRAZE))
+                 - drawn_folds]
+        dragged_through = sorted({moved[w]["driver"] for w in walls if w in moved})
+        #: The assembly test: does another mechanism drag any of the walls
+        #: this one drags in this loop? If so the loop is a shared hub and
+        #: the single-mechanism sweep is measuring a pose the engine never
+        #: shows.
+        also_driven = sorted({other for w in walls if w in moved
+                              for other in shared.get(w, ())})
+        row = {
+            "sector": sector, "loop": index, "own": sector == sector_id,
+            "co_mover": sector in co_movers,
+            "co_driven_by": also_driven,
+            "walls": len(walls),
+            "moved_walls": sum(1 for w in walls if w in moved),
+            "dragged_by_walls": dragged_through,
+            "area_drawn": round(drawn_area, 1),
+            "drawn_self_intersecting": bool(drawn_folds),
+            "areas": [round(value, 1) for value in signed],
+            "inverted_steps": inverted,
+            "self_intersecting_steps": folds,
+        }
+        loops.append(row)
+        where = (f"loop {index} of sector {sector}"
+                 + ("" if sector == sector_id
+                    else f", which this mechanism drags through wall(s) {dragged_through}"))
+        if sector in co_movers:
+            if inverted or folds:
+                notes.append(
+                    f"{where} is itself a mover (type "
+                    f"{int(level.sectors[sector].fields['type'])}); swept alone it "
+                    f"would invert at {inverted[:3]} / fold at {folds[:3]}, but "
+                    f"its own travel re-places those vertices -- not judged")
+            continue
+        if also_driven and sector != sector_id:
+            if inverted or folds:
+                notes.append(
+                    f"{where} is a hub that sector(s) {also_driven} drag too; "
+                    f"swept by this mechanism ALONE it would invert at "
+                    f"{inverted[:3]} / fold at {folds[:3]}, but the engine moves "
+                    f"the assembly together -- not judged one mechanism at a time")
+            continue
+        if inverted:
+            problems.append(
+                f"step {inverted[0]}/{steps}: {where} inverts -- its outline "
+                f"winds the other way, so it is inside out at that pose")
+        if folds:
+            fresh = set(self_intersections(frames[folds[0]],
+                                          min_depth=SWEEP_GRAZE)) - drawn_folds
+            problems.append(
+                f"step {folds[0]}/{steps}: {where} crosses itself "
+                f"({len(fresh)} new wall pair(s))")
+    #: Same exclusion for the crossing check. A wall either end of which
+    #: another mechanism drags belongs to the assembly, and where it sits
+    #: partway through ONE mover's travel is not a pose the engine shows.
+    all_crossings = closure_crossings(level, swept, owners=owners)
+    assembly = [hit for hit in all_crossings
+                if hit["static_sector"] in co_movers
+                or hit["wall"] in shared or hit["static_wall"] in shared]
+    excluded = {id(hit) for hit in assembly}
+    crossings = [hit for hit in all_crossings if id(hit) not in excluded]
+    if assembly:
+        notes.append(
+            f"{len(assembly)} wall crossing(s) involve geometry another "
+            f"mechanism drags too -- not judged one mechanism at a time")
+    for hit in crossings[:8]:
+        problems.append(
+            f"step {hit['step']}/{steps}: wall {hit['wall']} of sector "
+            f"{hit['sector']} cuts through wall {hit['static_wall']} of sector "
+            f"{hit['static_sector']}, which this mechanism does not move -- it "
+            f"sweeps through standing geometry")
+    return {
+        "sector": sector_id,
+        "type": swept.closure["type"],
+        "steps": steps,
+        "moved_walls": len(swept.closure["walls"]),
+        "sectors": swept.closure["sectors"],
+        "coincidence_sectors": swept.closure["coincidence_sectors"],
+        "neighbours": [s for s in swept.closure["sectors"] if s != sector_id],
+        "co_movers": co_movers,
+        #: Neighbour loops another mechanism drags too: reported, not judged.
+        "co_driven_sectors": sorted({row["sector"] for row in loops
+                                     if row["co_driven_by"] and not row["own"]}),
+        "isolated": swept.closure["sectors"] == [sector_id],
+        "loops": loops,
+        "crossings": crossings,
+        "assembly_crossings": len(assembly),
+        "disagreements": swept.closure["disagreements"],
+        "problems": problems,
+        "notes": notes,
+        "healthy": not problems,
     }

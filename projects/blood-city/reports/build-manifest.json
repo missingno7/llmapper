@@ -510,6 +510,13 @@
       "deviations": []
     }
   ],
+  "swept_closure": {
+    "mechanisms": 1,
+    "sound": 1,
+    "deforming_neighbours": 0,
+    "problems": [],
+    "notes": []
+  },
   "rules": {
     "total": 97,
     "by_severity": {

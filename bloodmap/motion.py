@@ -216,40 +216,25 @@ def drag_closure(disk: Any, sector_id: int) -> dict[str, Any]:
     linked walls always share a coordinate. So the coordinate reading can
     over-report and never under-reports, and where the two disagree the
     nextwall walk is the truth.
+
+    The walk itself lives in `motion_sim.drag_closure`, which is the one
+    implementation: the sweep needs the per-driver SIGN and the loops the
+    chains land in, and a second transcription that only needed the wall set
+    drifted from it in exactly the way that matters -- it walked the ring
+    forward only, and `DragPoint`'s forward walk STOPS at a one-sided wall
+    and then goes round the other way through `lastwall` (triggers.cpp:836-848,
+    engine.cpp:13227). A fin beside a void slot is precisely that case, so the
+    short version under-reported the closure of the mechanism this project
+    builds most.
     """
-    start = int(disk.sectors[sector_id].fields["wall_ptr"])
-    count = int(disk.sectors[sector_id].fields["wall_count"])
-    flagged = flagged_walls(disk, sector_id)
-    owners = wall_owners(disk)
+    from .motion_sim import drag_closure as _closure
 
-    def ring(wall_id: int) -> list[int]:
-        """Every wall DragPoint touches, from this one."""
-        seen, current = [wall_id], wall_id
-        guard = 0
-        while guard < 64:
-            guard += 1
-            nxt = int(disk.walls[current].fields["next_wall"])
-            if nxt < 0:
-                break
-            current = int(disk.walls[nxt].fields["point2"])
-            if current == wall_id or current in seen:
-                break
-            seen.append(current)
-        return seen
-
-    moved: set[int] = set()
-    for wall_id in flagged:
-        moved.update(ring(wall_id))
-        #: a flagged wall also drags its point2's vertex when that wall is
-        #: itself unflagged (triggers.cpp:902-909)
-        nxt = int(disk.walls[wall_id].fields["point2"])
-        if not int(disk.walls[nxt].fields["cstat"]) & CARRY:
-            moved.update(ring(nxt))
-    sectors = sorted({owners[w] for w in moved if w in owners})
-    return {"walls": sorted(moved), "sectors": sectors,
-            "flagged": sorted(flagged),
-            "basis": "triggers.cpp:817-854 DragPoint walks nextwall; "
-                     ":902-909 a flagged wall drags its point2 too"}
+    full = _closure(disk, sector_id)
+    return {"walls": full["walls"], "sectors": full["sectors"],
+            "flagged": sorted(flagged_walls(disk, sector_id)),
+            "loops": full["loops"],
+            "disagreements": full["disagreements"],
+            "basis": full["basis"]}
 
 
 def closure_disagreement(disk: Any, sector_id: int) -> dict[str, Any]:
