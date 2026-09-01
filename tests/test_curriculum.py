@@ -179,6 +179,40 @@ class CombinationSwitchesSendOutsideTheGuards(unittest.TestCase):
             self.assertNotIn("trigger_off", extra)
 
 
+class ARotatorIsReadTheOtherWayRound(unittest.TestCase):
+    """One marker, and both its fields mean the opposite of a slide's."""
+
+    def test_the_marker_is_the_pivot_and_carries_the_turn(self):
+        from bloodmap.motion import rotate_marker
+
+        spin = rotate_marker(_map("DOOR-ROTATING.map"), 4)
+        self.assertEqual(spin["pivot"], (2048, -3584))
+        self.assertEqual(spin["turn"], 8192)
+
+    def test_a_whole_circle_returns_to_where_it_was_drawn(self):
+        # `RotatePoint` masks with 2047, so 20480 is ten revolutions and the
+        # gear ends where it started. That is what a gear IS.
+        from bloodmap.motion import rotate_marker
+
+        gear = rotate_marker(_map("MACHINERY-GEAR.map"), 1)
+        self.assertTrue(gear["turns_full_circles"])
+        self.assertEqual(gear["net_heading"], 0)
+        self.assertEqual(gear["turn"] // 2048, 10)
+
+    def test_a_half_circle_is_a_real_swing(self):
+        from bloodmap.motion import rotate_marker
+
+        swing = rotate_marker(_map("MACHINERY-GEAR.map"), 3)
+        self.assertFalse(swing["turns_full_circles"])
+        self.assertEqual(abs(swing["turn"]), 1024)
+
+    def test_a_slide_has_no_axis_marker(self):
+        # The two readings must not be applied to each other.
+        from bloodmap.motion import rotate_marker
+
+        self.assertIsNone(rotate_marker(_map("DOOR-CURTAINS.map"), 3))
+
+
 class BadRorIsRejected(unittest.TestCase):
     """The negative fixture. A reading that passes it is wrong."""
 

@@ -131,6 +131,7 @@ class Construct:
     slots: list[str] = field(default_factory=list)
     drives: list[int] = field(default_factory=list)
     driven_by: list[str] = field(default_factory=list)
+    rotation: dict[str, Any] | None = None
     buttons: list[int] = field(default_factory=list)
     carried_sprites: list[int] = field(default_factory=list)
     sentence: str = ""
@@ -139,7 +140,7 @@ class Construct:
         out: dict[str, Any] = {
             "sector": self.sector, "type": self.type_id, "shape": self.shape,
             "slots": self.slots, "sentence": self.sentence}
-        for name in ("drawn_at", "z_pair", "drives", "driven_by",
+        for name in ("drawn_at", "z_pair", "rotation", "drives", "driven_by",
                      "motion_sectors", "flagged", "buttons",
                      "carried_sprites"):
             value = getattr(self, name)
@@ -252,6 +253,12 @@ def sentence(construct: Construct) -> str:
                 f"ceiling {pair['off_ceiling_z']} -> {pair['on_ceiling_z']}")
         parts.append("; ".join(moves) if moves
                      else "a z pair that does not travel")
+    if construct.rotation:
+        spin = construct.rotation
+        parts.append(
+            f"turns {spin['turn']} about {spin['pivot']}"
+            + (" -- whole circles, so it returns to where it was drawn"
+               if spin["turns_full_circles"] else ""))
     if construct.driven_by:
         parts.append("answered by " + ", ".join(construct.driven_by))
     if construct.buttons:
@@ -395,6 +402,10 @@ def mine_map(path: str | Path) -> Reading:
         construct = Construct(sector=index, type_id=type_id, extra=extra)
         construct.slots = slots_used(extra)
         construct.z_pair = z_pair(extra)
+        if type_id in (613, 615, 617):
+            spin = motion.rotate_marker(disk, index)
+            if spin:
+                construct.rotation = spin
         if type_id in SWEPT:
             try:
                 pair = motion.marker_pair(disk, index)

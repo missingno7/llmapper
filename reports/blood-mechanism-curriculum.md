@@ -14,9 +14,9 @@ reported as unsupported rather than quietly kept.
 maps mined          136  (tier 1: 34, tier 2: 43, other: 59)
 constructs read     1291
 swept mechanisms    256
-laws                16  (6 from the engine, 3 from the manual, 7 measured)
+laws                17  (6 from the engine, 3 from the manual, 8 measured)
 laws unsupported    0
-corrections to us   5
+corrections to us   6
 excluded            Modern/ -- the NBlood-extension dialect, a separate phase
 ```
 
@@ -42,6 +42,17 @@ For a SLIDE, the marker pair contributes only its difference. `TranslateSector` 
 
 - NBlood/source/blood/src/triggers.cpp:879-928 (TranslateSector: x + vc - a4)
 - xmapedit.pdf p.240: the arrow's tail is the OFF position and its point the ON position
+
+
+### a-rotate-marker-angle-is-a-total-turn
+
+That angle is a TOTAL TURN, not a final heading. `RotatePoint` masks it with 2047, so a marker angle that is a whole number of full circles spins the sector all the way round and returns it to where it was drawn -- a gear or a fan, not a door. Thirteen of the curriculum's fifteen rotator markers are exact multiples of 2048; MACHINERY-GEAR turns 20480, which is ten revolutions.
+
+**We had:** Nothing in the stack read a rotator's marker at all. `marker_pair` wants two markers, a rotator has one, and so 180 rotators across the curriculum mined with no motion data and ten of them raised inside the sweep. `motion.rotate_marker` reads the pivot and the turn.
+
+- MACHINERY-GEAR.map s1: turn 20480 about (-4051, -473)
+- MACHINERY-GEAR.map s3: turn -1024, half a circle, a real swing
+- DOOR-ROTATING.map s4: turn 8192 on channel 7 (level start) with a wave and a retrigger -- something that spins forever
 
 
 ### a-transmitter-must-declare-an-edge
@@ -81,7 +92,8 @@ A mechanism deforming more than its own sector is the NORMAL case in the curricu
 | --- | --- | --- |
 | `drawn-geometry-is-the-on-pose` | engine | engine-cited, nothing to count |
 | `slide-markers-are-a-vector-not-two-places` | engine | 206 place the pair at the two poses |
-| `a-rotate-marker-is-the-pivot-and-carries-the-angle` | engine | engine-cited, nothing to count |
+| `a-rotate-marker-is-the-pivot-and-carries-the-angle` | engine | 185 citations |
+| `a-rotate-marker-angle-is-a-total-turn` | derived | 185 citations |
 | `state-becomes-busy-at-load` | engine | engine-cited, nothing to count |
 | `a-path-sector-fails-silently` | engine | engine-cited, nothing to count |
 | `a-transmitter-must-declare-an-edge` | engine | 1124 switches checked, 6 silent |
@@ -129,6 +141,35 @@ A ROTATE has one marker and reads it differently from a slide: its x/y are the P
 - NBlood/source/blood/src/triggers.cpp:2229-2231 (the single-marker call passes a8=0, a11=pMark1->ang)
 - NBlood/source/blood/src/triggers.cpp:889-905 (RotatePoint about a4,a5)
 
+
+```text
+DOOR-COMBIDOORS.map s6 turns 512
+DOOR-COMBIDOORS.map s7 turns -512
+DOOR-ROTATEGATE.map s0 turns -512
+DOOR-ROTATING.map s4 turns 8192 (whole circles)
+DOOR-SWINGING.map s12 turns -512
+DOOR-SWINGING.map s13 turns -512
+... and 179 more
+```
+
+### a-rotate-marker-angle-is-a-total-turn
+
+That angle is a TOTAL TURN, not a final heading. `RotatePoint` masks it with 2047, so a marker angle that is a whole number of full circles spins the sector all the way round and returns it to where it was drawn -- a gear or a fan, not a door. Thirteen of the curriculum's fifteen rotator markers are exact multiples of 2048; MACHINERY-GEAR turns 20480, which is ten revolutions.
+
+- MACHINERY-GEAR.map s1: turn 20480 about (-4051, -473)
+- MACHINERY-GEAR.map s3: turn -1024, half a circle, a real swing
+- DOOR-ROTATING.map s4: turn 8192 on channel 7 (level start) with a wave and a retrigger -- something that spins forever
+
+
+```text
+DOOR-COMBIDOORS.map s6 turns 512
+DOOR-COMBIDOORS.map s7 turns -512
+DOOR-ROTATEGATE.map s0 turns -512
+DOOR-ROTATING.map s4 turns 8192 (whole circles)
+DOOR-SWINGING.map s12 turns -512
+DOOR-SWINGING.map s13 turns -512
+... and 179 more
+```
 
 ### state-becomes-busy-at-load
 

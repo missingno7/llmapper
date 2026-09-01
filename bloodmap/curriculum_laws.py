@@ -110,6 +110,19 @@ def _wall_buttons(readings: list[Reading]) -> list[str]:
     return out
 
 
+def _rotations(readings: list[Reading]) -> list[str]:
+    out = []
+    for reading in readings:
+        for construct in reading.constructs:
+            spin = construct.rotation
+            if not spin:
+                continue
+            out.append(
+                f"{reading.name} s{construct.sector} turns {spin['turn']}"
+                + (" (whole circles)" if spin["turns_full_circles"] else ""))
+    return out
+
+
 def _relays(readings: list[Reading]) -> list[str]:
     out = []
     for reading in readings:
@@ -236,6 +249,30 @@ LAWS: list[Law] = [
                "single-marker call passes a8=0, a11=pMark1->ang)",
                "NBlood/source/blood/src/triggers.cpp:889-905 (RotatePoint "
                "about a4,a5)"],
+        detect=_rotations,
+    ),
+    Law(
+        id="a-rotate-marker-angle-is-a-total-turn",
+        grade="derived",
+        statement=(
+            "That angle is a TOTAL TURN, not a final heading. `RotatePoint` "
+            "masks it with 2047, so a marker angle that is a whole number of "
+            "full circles spins the sector all the way round and returns it "
+            "to where it was drawn -- a gear or a fan, not a door. Thirteen "
+            "of the curriculum's fifteen rotator markers are exact multiples "
+            "of 2048; MACHINERY-GEAR turns 20480, which is ten revolutions."),
+        cites=["MACHINERY-GEAR.map s1: turn 20480 about (-4051, -473)",
+               "MACHINERY-GEAR.map s3: turn -1024, half a circle, a real "
+               "swing",
+               "DOOR-ROTATING.map s4: turn 8192 on channel 7 (level start) "
+               "with a wave and a retrigger -- something that spins forever"],
+        detect=_rotations,
+        corrects=(
+            "Nothing in the stack read a rotator's marker at all. "
+            "`marker_pair` wants two markers, a rotator has one, and so 180 "
+            "rotators across the curriculum mined with no motion data and ten "
+            "of them raised inside the sweep. `motion.rotate_marker` reads "
+            "the pivot and the turn."),
     ),
     Law(
         id="state-becomes-busy-at-load",

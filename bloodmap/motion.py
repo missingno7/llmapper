@@ -273,6 +273,45 @@ def marker_pair(disk: Any, sector_id: int) -> dict[str, Any] | None:
     }
 
 
+MARKER_AXIS = 5
+#: Build's full circle. `RotatePoint` masks the angle with 2047, so a marker
+#: angle that is a multiple of this turns all the way round and comes back.
+FULL_CIRCLE = 2048
+
+
+def rotate_marker(disk: Any, sector_id: int) -> dict[str, Any] | None:
+    """The single marker a ROTATE reads, which is nothing like a slide's pair.
+
+    A slide consumes only the DIFFERENCE between two markers and ignores
+    where they sit. A rotate has one marker and consumes it the other way
+    round: its x/y are the PIVOT that `RotatePoint` turns the sector about --
+    absolute position mattering -- and its `ang` is the turn, interpolated
+    from 0 (triggers.cpp:2230, the single-marker `TranslateSector` call
+    passing a8=0 and a11=pMark1->ang).
+
+    And `ang` is a TOTAL TURN, not a final heading. `RotatePoint` masks with
+    2047, so a marker angle that is a whole number of full circles rotates
+    the sector all the way round and returns it to where it was drawn: a
+    gear, not a door. Thirteen of the curriculum's fifteen rotator markers
+    are exact multiples of 2048.
+    """
+    extra = _extra(disk.sectors[sector_id])
+    index = extra.get("marker_0")
+    if index is None or int(index) >= len(disk.sprites):
+        return None
+    sprite = disk.sprites[int(index)]
+    if int(sprite.fields["type"]) != MARKER_AXIS:
+        return None
+    turn = int(sprite.fields["angle"])
+    return {
+        "pivot": (int(sprite.fields["x"]), int(sprite.fields["y"])),
+        "turn": turn,
+        "turns_full_circles": turn % FULL_CIRCLE == 0 and turn != 0,
+        "net_heading": turn % FULL_CIRCLE,
+        "sprite": int(index),
+    }
+
+
 def place_markers(layout: Any, name: str, *, driven_region: str,
                   off_at: tuple[int, int], on_at: tuple[int, int],
                   off_region: str | None = None,

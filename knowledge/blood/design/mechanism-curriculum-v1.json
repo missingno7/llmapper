@@ -14,7 +14,7 @@
  "totals": {
   "constructs": 1291,
   "swept_mechanisms": 256,
-  "laws": 16
+  "laws": 17
  },
  "laws": [
   {
@@ -60,8 +60,47 @@
     "NBlood/source/blood/src/triggers.cpp:2229-2231 (the single-marker call passes a8=0, a11=pMark1->ang)",
     "NBlood/source/blood/src/triggers.cpp:889-905 (RotatePoint about a4,a5)"
    ],
-   "evidence": [],
-   "evidence_count": 0
+   "evidence": [
+    "DOOR-COMBIDOORS.map s6 turns 512",
+    "DOOR-COMBIDOORS.map s7 turns -512",
+    "DOOR-ROTATEGATE.map s0 turns -512",
+    "DOOR-ROTATING.map s4 turns 8192 (whole circles)",
+    "DOOR-SWINGING.map s12 turns -512",
+    "DOOR-SWINGING.map s13 turns -512",
+    "DOOR-SWINGING.map s14 turns -512",
+    "DOOR-SWINGING.map s15 turns -512",
+    "DOOR-SWINGING.map s16 turns -512",
+    "DOOR-SWINGING.map s17 turns -512",
+    "DOOR-SWINGING.map s21 turns 512",
+    "DOOR-SWINGING.map s27 turns 512"
+   ],
+   "evidence_count": 185
+  },
+  {
+   "id": "a-rotate-marker-angle-is-a-total-turn",
+   "statement": "That angle is a TOTAL TURN, not a final heading. `RotatePoint` masks it with 2047, so a marker angle that is a whole number of full circles spins the sector all the way round and returns it to where it was drawn -- a gear or a fan, not a door. Thirteen of the curriculum's fifteen rotator markers are exact multiples of 2048; MACHINERY-GEAR turns 20480, which is ten revolutions.",
+   "grade": "derived",
+   "cites": [
+    "MACHINERY-GEAR.map s1: turn 20480 about (-4051, -473)",
+    "MACHINERY-GEAR.map s3: turn -1024, half a circle, a real swing",
+    "DOOR-ROTATING.map s4: turn 8192 on channel 7 (level start) with a wave and a retrigger -- something that spins forever"
+   ],
+   "evidence": [
+    "DOOR-COMBIDOORS.map s6 turns 512",
+    "DOOR-COMBIDOORS.map s7 turns -512",
+    "DOOR-ROTATEGATE.map s0 turns -512",
+    "DOOR-ROTATING.map s4 turns 8192 (whole circles)",
+    "DOOR-SWINGING.map s12 turns -512",
+    "DOOR-SWINGING.map s13 turns -512",
+    "DOOR-SWINGING.map s14 turns -512",
+    "DOOR-SWINGING.map s15 turns -512",
+    "DOOR-SWINGING.map s16 turns -512",
+    "DOOR-SWINGING.map s17 turns -512",
+    "DOOR-SWINGING.map s21 turns 512",
+    "DOOR-SWINGING.map s27 turns 512"
+   ],
+   "evidence_count": 185,
+   "corrects": "Nothing in the stack read a rotator's marker at all. `marker_pair` wants two markers, a rotator has one, and so 180 rotators across the curriculum mined with no motion data and ten of them raised inside the sweep. `motion.rotate_marker` reads the pivot and the turn."
   },
   {
    "id": "state-becomes-busy-at-load",
@@ -5177,7 +5216,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s6 type 617, the whole sector travels, answered by channel 101, deforms 2 sectors",
+     "sentence": "s6 type 617, the whole sector travels, turns 512 about (2048, -7169), answered by channel 101, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       2048,
+       -7169
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 3
+     },
      "driven_by": [
       "channel 101"
      ],
@@ -5194,7 +5243,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s7 type 617, the whole sector travels, answered by channel 101, deforms 2 sectors",
+     "sentence": "s7 type 617, the whole sector travels, turns -512 about (-2048, -7169), answered by channel 101, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2048,
+       -7169
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 5
+     },
      "driven_by": [
       "channel 101"
      ],
@@ -12099,7 +12158,17 @@
       "rx",
       "state"
      ],
-     "sentence": "s0 type 615, the sector resizes itself, answered by channel 100, shoved through 4 wall button(s)",
+     "sentence": "s0 type 615, the sector resizes itself, turns -512 about (64, -5520), answered by channel 100, shoved through 4 wall button(s)",
+     "rotation": {
+      "pivot": [
+       64,
+       -5520
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 1
+     },
      "driven_by": [
       "channel 100"
      ],
@@ -12197,7 +12266,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s4 type 615, nothing moves, answered by channel 7",
+     "sentence": "s4 type 615, nothing moves, turns 8192 about (2048, -3584) -- whole circles, so it returns to where it was drawn, answered by channel 7",
+     "rotation": {
+      "pivot": [
+       2048,
+       -3584
+      ],
+      "turn": 8192,
+      "turns_full_circles": true,
+      "net_heading": 0,
+      "sprite": 4
+     },
      "driven_by": [
       "channel 7"
      ]
@@ -21532,7 +21611,17 @@
      "type": 617,
      "shape": "the whole sector travels",
      "slots": [],
-     "sentence": "s12 type 617, the whole sector travels, answered by a shove, deforms 2 sectors",
+     "sentence": "s12 type 617, the whole sector travels, turns -512 about (-2046, 4096), answered by a shove, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2046,
+       4096
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 290
+     },
      "driven_by": [
       "a shove"
      ],
@@ -21547,7 +21636,17 @@
      "type": 617,
      "shape": "the whole sector travels",
      "slots": [],
-     "sentence": "s13 type 617, the whole sector travels, answered by a shove, deforms 2 sectors",
+     "sentence": "s13 type 617, the whole sector travels, turns -512 about (-2046, -2048), answered by a shove, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2046,
+       -2048
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 8
+     },
      "driven_by": [
       "a shove"
      ],
@@ -21564,7 +21663,17 @@
      "slots": [
       "key"
      ],
-     "sentence": "s14 type 617, the whole sector travels, answered by a shove, deforms 2 sectors",
+     "sentence": "s14 type 617, the whole sector travels, turns -512 about (-2046, -5120), answered by a shove, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2046,
+       -5120
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 21
+     },
      "driven_by": [
       "a shove"
      ],
@@ -21581,7 +21690,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s15 type 617, the whole sector travels, answered by channel 101, deforms 2 sectors",
+     "sentence": "s15 type 617, the whole sector travels, turns -512 about (4094, 2304), answered by channel 101, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4094,
+       2304
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 22
+     },
      "driven_by": [
       "channel 101"
      ],
@@ -21598,7 +21717,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s16 type 617, the whole sector travels, answered by channel 102, deforms 2 sectors",
+     "sentence": "s16 type 617, the whole sector travels, turns -512 about (4094, -1024), answered by channel 102, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4094,
+       -1024
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 46
+     },
      "driven_by": [
       "channel 102"
      ],
@@ -21615,7 +21744,17 @@
      "slots": [
       "tx"
      ],
-     "sentence": "s17 type 617, the whole sector travels, answered by a shove, drives s10, s11, deforms 2 sectors",
+     "sentence": "s17 type 617, the whole sector travels, turns -512 about (4094, -4096), answered by a shove, drives s10, s11, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4094,
+       -4096
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 50
+     },
      "drives": [
       10,
       11
@@ -21636,7 +21775,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s21 type 617, the whole sector travels, answered by channel 104, shoved through 1 wall button(s), deforms 2 sectors",
+     "sentence": "s21 type 617, the whole sector travels, turns 512 about (1536, -8194), answered by channel 104, shoved through 1 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       1536,
+       -8194
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 51
+     },
      "driven_by": [
       "channel 104"
      ],
@@ -21657,7 +21806,17 @@
       "rx",
       "key"
      ],
-     "sentence": "s27 type 617, the whole sector travels, answered by a shove, channel 128, deforms 2 sectors",
+     "sentence": "s27 type 617, the whole sector travels, turns 512 about (-2046, -10240), answered by a shove, channel 128, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2046,
+       -10240
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 189
+     },
      "driven_by": [
       "a shove",
       "channel 128"
@@ -21676,7 +21835,17 @@
       "rx",
       "key"
      ],
-     "sentence": "s28 type 617, the whole sector travels, answered by a shove, channel 110, deforms 2 sectors",
+     "sentence": "s28 type 617, the whole sector travels, turns -512 about (-2046, -17408), answered by a shove, channel 110, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2046,
+       -17408
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 190
+     },
      "driven_by": [
       "a shove",
       "channel 110"
@@ -21692,7 +21861,17 @@
      "type": 617,
      "shape": "the whole sector travels",
      "slots": [],
-     "sentence": "s36 type 617, the whole sector travels, answered by a shove, deforms 2 sectors",
+     "sentence": "s36 type 617, the whole sector travels, turns -1024 about (-1982, -14337), answered by a shove, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -1982,
+       -14337
+      ],
+      "turn": -1024,
+      "turns_full_circles": false,
+      "net_heading": 1024,
+      "sprite": 99
+     },
      "driven_by": [
       "a shove"
      ],
@@ -21707,7 +21886,17 @@
      "type": 617,
      "shape": "the whole sector travels",
      "slots": [],
-     "sentence": "s37 type 617, the whole sector travels, answered by a shove, deforms 2 sectors",
+     "sentence": "s37 type 617, the whole sector travels, turns 512 about (4095, -13312), answered by a shove, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4095,
+       -13312
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 115
+     },
      "driven_by": [
       "a shove"
      ],
@@ -21725,7 +21914,17 @@
       "rx",
       "key"
      ],
-     "sentence": "s46 type 617, the whole sector travels, answered by a shove, channel 106, deforms 2 sectors",
+     "sentence": "s46 type 617, the whole sector travels, turns 512 about (4094, -11264), answered by a shove, channel 106, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4094,
+       -11264
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 188
+     },
      "driven_by": [
       "a shove",
       "channel 106"
@@ -21743,7 +21942,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s47 type 617, the whole sector travels, answered by channel 111, deforms 2 sectors",
+     "sentence": "s47 type 617, the whole sector travels, turns -512 about (4094, -16384), answered by channel 111, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4094,
+       -16384
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 192
+     },
      "driven_by": [
       "channel 111"
      ],
@@ -21760,7 +21969,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s54 type 617, the whole sector travels, answered by channel 100, deforms 2 sectors",
+     "sentence": "s54 type 617, the whole sector travels, turns -512 about (4094, 5120), answered by channel 100, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4094,
+       5120
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 331
+     },
      "driven_by": [
       "channel 100"
      ],
@@ -21777,7 +21996,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s55 type 615, part of the sector travels, answered by channel 116, shoved through 4 wall button(s), deforms 2 sectors",
+     "sentence": "s55 type 615, part of the sector travels, turns -512 about (-2046, 1024), answered by channel 116, shoved through 4 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2046,
+       1024
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 226
+     },
      "driven_by": [
       "channel 116"
      ],
@@ -21830,7 +22059,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s66 type 617, the whole sector travels, answered by channel 132, deforms 2 sectors",
+     "sentence": "s66 type 617, the whole sector travels, turns -512 about (-5122, -19968), answered by channel 132, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -5122,
+       -19968
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 114
+     },
      "driven_by": [
       "channel 132"
      ],
@@ -21847,7 +22086,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s69 type 617, the whole sector travels, answered by channel 113, deforms 2 sectors",
+     "sentence": "s69 type 617, the whole sector travels, turns -512 about (-14334, -17408), answered by channel 113, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -14334,
+       -17408
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 117
+     },
      "driven_by": [
       "channel 113"
      ],
@@ -21865,7 +22114,17 @@
       "rx",
       "key"
      ],
-     "sentence": "s70 type 617, the whole sector travels, answered by a shove, channel 123, deforms 2 sectors",
+     "sentence": "s70 type 617, the whole sector travels, turns -512 about (-14334, -14336), answered by a shove, channel 123, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -14334,
+       -14336
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 118
+     },
      "driven_by": [
       "a shove",
       "channel 123"
@@ -21884,7 +22143,17 @@
       "rx",
       "key"
      ],
-     "sentence": "s75 type 617, the whole sector travels, answered by a shove, channel 115, deforms 2 sectors",
+     "sentence": "s75 type 617, the whole sector travels, turns -512 about (-14336, -11265), answered by a shove, channel 115, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -14336,
+       -11265
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 193
+     },
      "driven_by": [
       "a shove",
       "channel 115"
@@ -21902,7 +22171,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s84 type 617, the whole sector travels, answered by channel 131, deforms 2 sectors",
+     "sentence": "s84 type 617, the whole sector travels, turns 512 about (-8195, -17407), answered by channel 131, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -8195,
+       -17407
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 329
+     },
      "driven_by": [
       "channel 131"
      ],
@@ -21919,7 +22198,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s85 type 617, the whole sector travels, answered by channel 134, deforms 2 sectors",
+     "sentence": "s85 type 617, the whole sector travels, turns 512 about (-8194, -14336), answered by channel 134, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -8194,
+       -14336
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 333
+     },
      "driven_by": [
       "channel 134"
      ],
@@ -21936,7 +22225,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s86 type 617, the whole sector travels, answered by channel 135, deforms 2 sectors",
+     "sentence": "s86 type 617, the whole sector travels, turns 512 about (-8194, -11264), answered by channel 135, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -8194,
+       -11264
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 334
+     },
      "driven_by": [
       "channel 135"
      ],
@@ -21953,7 +22252,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s87 type 617, the whole sector travels, answered by channel 130, deforms 2 sectors",
+     "sentence": "s87 type 617, the whole sector travels, turns 512 about (-8194, -8192), answered by channel 130, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -8194,
+       -8192
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 296
+     },
      "driven_by": [
       "channel 130"
      ],
@@ -21971,7 +22280,17 @@
       "rx",
       "key"
      ],
-     "sentence": "s92 type 617, the whole sector travels, answered by a shove, channel 136, deforms 2 sectors",
+     "sentence": "s92 type 617, the whole sector travels, turns 512 about (-14593, -8192), answered by a shove, channel 136, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -14593,
+       -8192
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 355
+     },
      "driven_by": [
       "a shove",
       "channel 136"
@@ -23094,7 +23413,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s12 type 617, the whole sector travels, answered by channel 100, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s12 type 617, the whole sector travels, turns -512 about (-2047, 3072), answered by channel 100, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2047,
+       3072
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 206
+     },
      "driven_by": [
       "channel 100"
      ],
@@ -23121,7 +23450,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s13 type 617, the whole sector travels, answered by channel 103, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s13 type 617, the whole sector travels, turns -512 about (-2046, -5121), answered by channel 103, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2046,
+       -5121
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 333
+     },
      "driven_by": [
       "channel 103"
      ],
@@ -23149,7 +23488,17 @@
       "rx",
       "key"
      ],
-     "sentence": "s14 type 617, the whole sector travels, answered by a shove, channel 104, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s14 type 617, the whole sector travels, turns -512 about (-2046, -9216), answered by a shove, channel 104, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2046,
+       -9216
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 332
+     },
      "driven_by": [
       "a shove",
       "channel 104"
@@ -23177,7 +23526,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s15 type 617, the whole sector travels, answered by channel 106, deforms 2 sectors",
+     "sentence": "s15 type 617, the whole sector travels, turns -512 about (4095, 1024), answered by channel 106, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4095,
+       1024
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 209
+     },
      "driven_by": [
       "channel 106"
      ],
@@ -23194,7 +23553,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s16 type 617, the whole sector travels, answered by channel 107, deforms 2 sectors",
+     "sentence": "s16 type 617, the whole sector travels, turns -512 about (4095, -3072), answered by channel 107, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4095,
+       -3072
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 210
+     },
      "driven_by": [
       "channel 107"
      ],
@@ -23212,7 +23581,17 @@
       "rx",
       "tx"
      ],
-     "sentence": "s17 type 617, the whole sector travels, answered by a shove, channel 108, shoved through 8 wall button(s), drives s10, s11, deforms 2 sectors",
+     "sentence": "s17 type 617, the whole sector travels, turns -512 about (4095, -7166), answered by a shove, channel 108, shoved through 8 wall button(s), drives s10, s11, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4095,
+       -7166
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 211
+     },
      "drives": [
       10,
       11
@@ -23244,7 +23623,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s24 type 617, the whole sector travels, answered by channel 105, deforms 2 sectors",
+     "sentence": "s24 type 617, the whole sector travels, turns -512 about (4095, 5120), answered by channel 105, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4095,
+       5120
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 212
+     },
      "driven_by": [
       "channel 105"
      ],
@@ -23268,7 +23657,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s30 type 617, the whole sector travels, answered by channel 100, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s30 type 617, the whole sector travels, turns 512 about (-2047, 5120), answered by channel 100, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2047,
+       5120
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 213
+     },
      "driven_by": [
       "channel 100"
      ],
@@ -23302,7 +23701,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s32 type 615, part of the sector travels, answered by channel 102, deforms 2 sectors",
+     "sentence": "s32 type 615, part of the sector travels, turns -512 about (-2046, -1024), answered by channel 102, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2046,
+       -1024
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 214
+     },
      "driven_by": [
       "channel 102"
      ],
@@ -23320,7 +23729,17 @@
       "rx",
       "tx"
      ],
-     "sentence": "s33 type 615, part of the sector travels, answered by channel 101, shoved through 8 wall button(s), drives s32, deforms 2 sectors",
+     "sentence": "s33 type 615, part of the sector travels, turns 512 about (-2044, 1025), answered by channel 101, shoved through 8 wall button(s), drives s32, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2044,
+       1025
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 215
+     },
      "drives": [
       32
      ],
@@ -23350,7 +23769,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s34 type 617, the whole sector travels, answered by channel 105, deforms 2 sectors",
+     "sentence": "s34 type 617, the whole sector travels, turns 512 about (4097, 3072), answered by channel 105, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4097,
+       3072
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 216
+     },
      "driven_by": [
       "channel 105"
      ],
@@ -23367,7 +23796,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s35 type 617, the whole sector travels, answered by channel 106, deforms 3 sectors",
+     "sentence": "s35 type 617, the whole sector travels, turns 512 about (4096, -1024), answered by channel 106, deforms 3 sectors",
+     "rotation": {
+      "pivot": [
+       4096,
+       -1024
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 321
+     },
      "driven_by": [
       "channel 106"
      ],
@@ -23385,7 +23824,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s36 type 617, the whole sector travels, answered by channel 107, deforms 2 sectors",
+     "sentence": "s36 type 617, the whole sector travels, turns 512 about (4095, -5120), answered by channel 107, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4095,
+       -5120
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 217
+     },
      "driven_by": [
       "channel 107"
      ],
@@ -23402,7 +23851,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s37 type 617, the whole sector travels, answered by a shove, channel 108, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s37 type 617, the whole sector travels, turns 512 about (4095, -9214), answered by a shove, channel 108, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4095,
+       -9214
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 218
+     },
      "driven_by": [
       "a shove",
       "channel 108"
@@ -23437,7 +23896,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s48 type 617, the whole sector travels, answered by channel 144, deforms 2 sectors",
+     "sentence": "s48 type 617, the whole sector travels, turns -512 about (-8196, -14336), answered by channel 144, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -8196,
+       -14336
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 393
+     },
      "driven_by": [
       "channel 144"
      ],
@@ -23454,7 +23923,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s49 type 617, the whole sector travels, answered by channel 120, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s49 type 617, the whole sector travels, turns 512 about (-14333, -14337), answered by channel 120, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -14333,
+       -14337
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 250
+     },
      "driven_by": [
       "channel 120"
      ],
@@ -23481,7 +23960,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s50 type 617, the whole sector travels, answered by channel 147, deforms 2 sectors",
+     "sentence": "s50 type 617, the whole sector travels, turns -512 about (-8194, -18432), answered by channel 147, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -8194,
+       -18432
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 384
+     },
      "driven_by": [
       "channel 147"
      ],
@@ -23498,7 +23987,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s54 type 617, the whole sector travels, answered by channel 148, deforms 2 sectors",
+     "sentence": "s54 type 617, the whole sector travels, turns -512 about (-8193, -10241), answered by channel 148, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -8193,
+       -10241
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 400
+     },
      "driven_by": [
       "channel 148"
      ],
@@ -23515,7 +24014,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s56 type 617, the whole sector travels, answered by channel 148, deforms 2 sectors",
+     "sentence": "s56 type 617, the whole sector travels, turns 512 about (-8193, -12289), answered by channel 148, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -8193,
+       -12289
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 399
+     },
      "driven_by": [
       "channel 148"
      ],
@@ -23532,7 +24041,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s57 type 617, the whole sector travels, answered by channel 144, deforms 2 sectors",
+     "sentence": "s57 type 617, the whole sector travels, turns 512 about (-8194, -16384), answered by channel 144, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -8194,
+       -16384
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 392
+     },
      "driven_by": [
       "channel 144"
      ],
@@ -23549,7 +24068,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s58 type 617, the whole sector travels, answered by channel 120, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s58 type 617, the whole sector travels, turns -512 about (-14333, -16385), answered by channel 120, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -14333,
+       -16385
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 249
+     },
      "driven_by": [
       "channel 120"
      ],
@@ -23576,7 +24105,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s59 type 617, the whole sector travels, answered by channel 147, deforms 2 sectors",
+     "sentence": "s59 type 617, the whole sector travels, turns 512 about (-8194, -20480), answered by channel 147, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -8194,
+       -20480
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 383
+     },
      "driven_by": [
       "channel 147"
      ],
@@ -23593,7 +24132,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s60 type 617, the whole sector travels, answered by channel 113, deforms 2 sectors",
+     "sentence": "s60 type 617, the whole sector travels, turns 512 about (-14334, -22529), answered by channel 113, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -14334,
+       -22529
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 402
+     },
      "driven_by": [
       "channel 113"
      ],
@@ -23610,7 +24159,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s61 type 617, the whole sector travels, answered by channel 113, deforms 2 sectors",
+     "sentence": "s61 type 617, the whole sector travels, turns -512 about (-14334, -24577), answered by channel 113, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -14334,
+       -24577
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 401
+     },
      "driven_by": [
       "channel 113"
      ],
@@ -23659,7 +24218,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s70 type 617, the whole sector travels, answered by channel 141, deforms 2 sectors",
+     "sentence": "s70 type 617, the whole sector travels, turns 512 about (-5121, -28672), answered by channel 141, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -5121,
+       -28672
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 227
+     },
      "driven_by": [
       "channel 141"
      ],
@@ -23676,7 +24245,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s71 type 617, the whole sector travels, answered by channel 141, deforms 2 sectors",
+     "sentence": "s71 type 617, the whole sector travels, turns -512 about (-5121, -26624), answered by channel 141, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -5121,
+       -26624
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 228
+     },
      "driven_by": [
       "channel 141"
      ],
@@ -23693,7 +24272,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s75 type 617, the whole sector travels, answered by channel 138, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s75 type 617, the whole sector travels, turns -512 about (-14335, -20480), answered by channel 138, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -14335,
+       -20480
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 319
+     },
      "driven_by": [
       "channel 138"
      ],
@@ -23720,7 +24309,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s76 type 617, the whole sector travels, answered by channel 138, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s76 type 617, the whole sector travels, turns 512 about (-14335, -18432), answered by channel 138, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -14335,
+       -18432
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 320
+     },
      "driven_by": [
       "channel 138"
      ],
@@ -23755,7 +24354,17 @@
       "rx",
       "key"
      ],
-     "sentence": "s84 type 617, the whole sector travels, answered by a shove, channel 104, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s84 type 617, the whole sector travels, turns 512 about (-2046, -7168), answered by a shove, channel 104, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2046,
+       -7168
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 208
+     },
      "driven_by": [
       "a shove",
       "channel 104"
@@ -23783,7 +24392,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s85 type 617, the whole sector travels, answered by channel 103, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s85 type 617, the whole sector travels, turns 512 about (-2047, -3072), answered by channel 103, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2047,
+       -3072
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 207
+     },
      "driven_by": [
       "channel 103"
      ],
@@ -23810,7 +24429,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s86 type 617, the whole sector travels, answered by channel 124, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s86 type 617, the whole sector travels, turns 512 about (-2046, -14337), answered by channel 124, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2046,
+       -14337
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 334
+     },
      "driven_by": [
       "channel 124"
      ],
@@ -23837,7 +24466,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s87 type 617, the whole sector travels, answered by channel 124, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s87 type 617, the whole sector travels, turns -512 about (-2046, -16385), answered by channel 124, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2046,
+       -16385
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 314
+     },
      "driven_by": [
       "channel 124"
      ],
@@ -23864,7 +24503,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s88 type 617, the whole sector travels, answered by channel 117, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s88 type 617, the whole sector travels, turns 1024 about (-1982, -18433), answered by channel 117, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -1982,
+       -18433
+      ],
+      "turn": 1024,
+      "turns_full_circles": false,
+      "net_heading": 1024,
+      "sprite": 335
+     },
      "driven_by": [
       "channel 117"
      ],
@@ -23891,7 +24540,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s89 type 617, the whole sector travels, answered by channel 117, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s89 type 617, the whole sector travels, turns -1024 about (-1982, -20481), answered by channel 117, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -1982,
+       -20481
+      ],
+      "turn": -1024,
+      "turns_full_circles": false,
+      "net_heading": 1024,
+      "sprite": 225
+     },
      "driven_by": [
       "channel 117"
      ],
@@ -23918,7 +24577,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s90 type 617, the whole sector travels, answered by channel 129, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s90 type 617, the whole sector travels, turns 512 about (-2047, -22528), answered by channel 129, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2047,
+       -22528
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 336
+     },
      "driven_by": [
       "channel 129"
      ],
@@ -23945,7 +24614,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s91 type 617, the whole sector travels, answered by channel 129, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s91 type 617, the whole sector travels, turns -512 about (-2047, -24576), answered by channel 129, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -2047,
+       -24576
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 315
+     },
      "driven_by": [
       "channel 129"
      ],
@@ -23973,7 +24652,17 @@
       "rx",
       "tx"
      ],
-     "sentence": "s92 type 617, the whole sector travels, answered by channel 114, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s92 type 617, the whole sector travels, turns -512 about (4095, -24574), answered by channel 114, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4095,
+       -24574
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 337
+     },
      "driven_by": [
       "channel 114"
      ],
@@ -24001,7 +24690,17 @@
       "rx",
       "tx"
      ],
-     "sentence": "s93 type 617, the whole sector travels, answered by channel 114, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s93 type 617, the whole sector travels, turns 512 about (4094, -22527), answered by channel 114, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4094,
+       -22527
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 222
+     },
      "driven_by": [
       "channel 114"
      ],
@@ -24028,7 +24727,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s94 type 617, the whole sector travels, answered by channel 116, deforms 2 sectors",
+     "sentence": "s94 type 617, the whole sector travels, turns 512 about (4095, -20480), answered by channel 116, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4095,
+       -20480
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 338
+     },
      "driven_by": [
       "channel 116"
      ],
@@ -24045,7 +24754,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s95 type 617, the whole sector travels, answered by channel 116, deforms 2 sectors",
+     "sentence": "s95 type 617, the whole sector travels, turns -512 about (4095, -18432), answered by channel 116, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4095,
+       -18432
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 224
+     },
      "driven_by": [
       "channel 116"
      ],
@@ -24063,7 +24782,17 @@
       "rx",
       "tx"
      ],
-     "sentence": "s96 type 617, the whole sector travels, answered by a shove, channel 112, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s96 type 617, the whole sector travels, turns 512 about (4095, -16384), answered by a shove, channel 112, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4095,
+       -16384
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 339
+     },
      "driven_by": [
       "a shove",
       "channel 112"
@@ -24092,7 +24821,17 @@
       "rx",
       "tx"
      ],
-     "sentence": "s97 type 617, the whole sector travels, answered by a shove, channel 112, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s97 type 617, the whole sector travels, turns -512 about (4095, -14336), answered by a shove, channel 112, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       4095,
+       -14336
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 324
+     },
      "driven_by": [
       "a shove",
       "channel 112"
@@ -24120,7 +24859,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s98 type 617, the whole sector travels, answered by channel 110, shoved through 4 wall button(s), deforms 2 sectors",
+     "sentence": "s98 type 617, the whole sector travels, turns -512 about (0, -12290), answered by channel 110, shoved through 4 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       0,
+       -12290
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 340
+     },
      "driven_by": [
       "channel 110"
      ],
@@ -24143,7 +24892,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s99 type 617, the whole sector travels, answered by channel 110, shoved through 4 wall button(s), deforms 2 sectors",
+     "sentence": "s99 type 617, the whole sector travels, turns 512 about (2048, -12290), answered by channel 110, shoved through 4 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       2048,
+       -12290
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 219
+     },
      "driven_by": [
       "channel 110"
      ],
@@ -24166,7 +24925,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s103 type 617, the whole sector travels, answered by channel 142, deforms 2 sectors",
+     "sentence": "s103 type 617, the whole sector travels, turns 512 about (-8194, -24577), answered by channel 142, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -8194,
+       -24577
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 370
+     },
      "driven_by": [
       "channel 142"
      ],
@@ -24183,7 +24952,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s104 type 617, the whole sector travels, answered by channel 142, deforms 2 sectors",
+     "sentence": "s104 type 617, the whole sector travels, turns -512 about (-8194, -22529), answered by channel 142, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -8194,
+       -22529
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 367
+     },
      "driven_by": [
       "channel 142"
      ],
@@ -24200,7 +24979,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s116 type 617, the whole sector travels, answered by channel 150, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s116 type 617, the whole sector travels, turns 512 about (-14593, -12288), answered by channel 150, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -14593,
+       -12288
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 419
+     },
      "driven_by": [
       "channel 150"
      ],
@@ -24227,7 +25016,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s117 type 617, the whole sector travels, answered by channel 150, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s117 type 617, the whole sector travels, turns -512 about (-14593, -10240), answered by channel 150, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -14593,
+       -10240
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 418
+     },
      "driven_by": [
       "channel 150"
      ],
@@ -26888,7 +27687,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s44 type 615, nothing moves, answered by channel 129",
+     "sentence": "s44 type 615, nothing moves, turns -512 about (-2046, 1024), answered by channel 129",
+     "rotation": {
+      "pivot": [
+       -2046,
+       1024
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 206
+     },
      "driven_by": [
       "channel 129"
      ]
@@ -26900,7 +27709,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s49 type 615, nothing moves, answered by channel 116",
+     "sentence": "s49 type 615, nothing moves, turns -512 about (-2045, 4096), answered by channel 116",
+     "rotation": {
+      "pivot": [
+       -2045,
+       4096
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 289
+     },
      "driven_by": [
       "channel 116"
      ]
@@ -26912,7 +27731,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s50 type 615, nothing moves, answered by channel 130",
+     "sentence": "s50 type 615, nothing moves, turns -512 about (-2046, -2047), answered by channel 130",
+     "rotation": {
+      "pivot": [
+       -2046,
+       -2047
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 265
+     },
      "driven_by": [
       "channel 130"
      ]
@@ -26924,7 +27753,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s51 type 615, nothing moves, answered by channel 131",
+     "sentence": "s51 type 615, nothing moves, turns -512 about (-2046, -5121), answered by channel 131",
+     "rotation": {
+      "pivot": [
+       -2046,
+       -5121
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 271
+     },
      "driven_by": [
       "channel 131"
      ]
@@ -26937,7 +27776,17 @@
       "rx",
       "key"
      ],
-     "sentence": "s52 type 615, nothing moves, answered by channel 104",
+     "sentence": "s52 type 615, nothing moves, turns 512 about (1535, -8193), answered by channel 104",
+     "rotation": {
+      "pivot": [
+       1535,
+       -8193
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 267
+     },
      "driven_by": [
       "channel 104"
      ]
@@ -26950,7 +27799,17 @@
       "rx",
       "tx"
      ],
-     "sentence": "s53 type 615, nothing moves, answered by channel 103, drives s10, s11",
+     "sentence": "s53 type 615, nothing moves, turns 512 about (4094, -5122), answered by channel 103, drives s10, s11",
+     "rotation": {
+      "pivot": [
+       4094,
+       -5122
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 270
+     },
      "drives": [
       10,
       11
@@ -26966,7 +27825,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s54 type 615, nothing moves, answered by push, a shove, channel 102",
+     "sentence": "s54 type 615, nothing moves, turns 512 about (4094, -2046), answered by push, a shove, channel 102",
+     "rotation": {
+      "pivot": [
+       4094,
+       -2046
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 280
+     },
      "driven_by": [
       "push",
       "a shove",
@@ -26980,7 +27849,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s55 type 615, nothing moves, answered by push, a shove, channel 101",
+     "sentence": "s55 type 615, nothing moves, turns 512 about (4094, 1281), answered by push, a shove, channel 101",
+     "rotation": {
+      "pivot": [
+       4094,
+       1281
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 282
+     },
      "driven_by": [
       "push",
       "a shove",
@@ -26994,7 +27873,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s56 type 615, nothing moves, answered by channel 100",
+     "sentence": "s56 type 615, nothing moves, turns 512 about (4093, 4096), answered by channel 100",
+     "rotation": {
+      "pivot": [
+       4093,
+       4096
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 284
+     },
      "driven_by": [
       "channel 100"
      ]
@@ -27006,7 +27895,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s57 type 615, nothing moves, answered by channel 135",
+     "sentence": "s57 type 615, nothing moves, turns 512 about (4094, -11264), answered by channel 135",
+     "rotation": {
+      "pivot": [
+       4094,
+       -11264
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 288
+     },
      "driven_by": [
       "channel 135"
      ]
@@ -27019,7 +27918,17 @@
       "rx",
       "state"
      ],
-     "sentence": "s58 type 615, nothing moves, answered by channel 133",
+     "sentence": "s58 type 615, nothing moves, turns 512 about (4094, -14335), answered by channel 133",
+     "rotation": {
+      "pivot": [
+       4094,
+       -14335
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 291
+     },
      "driven_by": [
       "channel 133"
      ]
@@ -27031,7 +27940,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s59 type 615, nothing moves, answered by channel 111",
+     "sentence": "s59 type 615, nothing moves, turns 512 about (4095, -17410), answered by channel 111",
+     "rotation": {
+      "pivot": [
+       4095,
+       -17410
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 292
+     },
      "driven_by": [
       "channel 111"
      ]
@@ -27043,7 +27962,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s60 type 615, nothing moves, answered by channel 136",
+     "sentence": "s60 type 615, nothing moves, turns 512 about (-2046, -10239), answered by channel 136",
+     "rotation": {
+      "pivot": [
+       -2046,
+       -10239
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 299
+     },
      "driven_by": [
       "channel 136"
      ]
@@ -27055,7 +27984,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s61 type 615, nothing moves, answered by channel 137",
+     "sentence": "s61 type 615, nothing moves, turns -1024 about (-2047, -14336), answered by channel 137",
+     "rotation": {
+      "pivot": [
+       -2047,
+       -14336
+      ],
+      "turn": -1024,
+      "turns_full_circles": false,
+      "net_heading": 1024,
+      "sprite": 301
+     },
      "driven_by": [
       "channel 137"
      ]
@@ -27067,7 +28006,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s62 type 615, nothing moves, answered by channel 138",
+     "sentence": "s62 type 615, nothing moves, turns -512 about (-2047, -17408), answered by channel 138",
+     "rotation": {
+      "pivot": [
+       -2047,
+       -17408
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 309
+     },
      "driven_by": [
       "channel 138"
      ]
@@ -27109,7 +28058,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s70 type 615, nothing moves, answered by channel 112",
+     "sentence": "s70 type 615, nothing moves, turns 512 about (-5376, -20992), answered by channel 112",
+     "rotation": {
+      "pivot": [
+       -5376,
+       -20992
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 335
+     },
      "driven_by": [
       "channel 112"
      ]
@@ -27121,7 +28080,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s81 type 615, nothing moves, answered by channel 139",
+     "sentence": "s81 type 615, nothing moves, turns -512 about (-14336, -11264), answered by channel 139",
+     "rotation": {
+      "pivot": [
+       -14336,
+       -11264
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 378
+     },
      "driven_by": [
       "channel 139"
      ]
@@ -27133,7 +28102,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s82 type 615, nothing moves, answered by channel 140",
+     "sentence": "s82 type 615, nothing moves, turns -512 about (-14336, -14336), answered by channel 140",
+     "rotation": {
+      "pivot": [
+       -14336,
+       -14336
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 313
+     },
      "driven_by": [
       "channel 140"
      ]
@@ -27145,7 +28124,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s83 type 615, nothing moves, answered by channel 113",
+     "sentence": "s83 type 615, nothing moves, turns -512 about (-14336, -17408), answered by channel 113",
+     "rotation": {
+      "pivot": [
+       -14336,
+       -17408
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 361
+     },
      "driven_by": [
       "channel 113"
      ]
@@ -27158,12 +28147,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s84 type 615, nothing moves, a z pair that does not travel, answered by channel 143",
+     "sentence": "s84 type 615, nothing moves, a z pair that does not travel, turns 512 about (-8192, -17408), answered by channel 143",
      "z_pair": {
       "off_floor_z": 8192,
       "on_floor_z": 8192,
       "off_ceiling_z": -24576,
       "on_ceiling_z": -24576
+     },
+     "rotation": {
+      "pivot": [
+       -8192,
+       -17408
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 398
      },
      "driven_by": [
       "channel 143"
@@ -27177,12 +28176,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s85 type 615, nothing moves, a z pair that does not travel, answered by channel 145",
+     "sentence": "s85 type 615, nothing moves, a z pair that does not travel, turns 512 about (-8192, -14336), answered by channel 145",
      "z_pair": {
       "off_floor_z": 8192,
       "on_floor_z": 8192,
       "off_ceiling_z": -24576,
       "on_ceiling_z": -24576
+     },
+     "rotation": {
+      "pivot": [
+       -8192,
+       -14336
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 399
      },
      "driven_by": [
       "channel 145"
@@ -27196,12 +28205,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s86 type 615, nothing moves, a z pair that does not travel, answered by channel 147",
+     "sentence": "s86 type 615, nothing moves, a z pair that does not travel, turns 512 about (-8192, -11264), answered by channel 147",
      "z_pair": {
       "off_floor_z": 8192,
       "on_floor_z": 8192,
       "off_ceiling_z": -24576,
       "on_ceiling_z": -24576
+     },
+     "rotation": {
+      "pivot": [
+       -8192,
+       -11264
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 400
      },
      "driven_by": [
       "channel 147"
@@ -27215,12 +28234,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s87 type 615, nothing moves, a z pair that does not travel, answered by channel 142",
+     "sentence": "s87 type 615, nothing moves, a z pair that does not travel, turns 512 about (-8192, -8192), answered by channel 142",
      "z_pair": {
       "off_floor_z": 8192,
       "on_floor_z": 8192,
       "off_ceiling_z": -24576,
       "on_ceiling_z": -24576
+     },
+     "rotation": {
+      "pivot": [
+       -8192,
+       -8192
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 417
      },
      "driven_by": [
       "channel 142"
@@ -27233,7 +28262,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s93 type 615, nothing moves, answered by channel 150",
+     "sentence": "s93 type 615, nothing moves, turns -512 about (-14336, -8192), answered by channel 150",
+     "rotation": {
+      "pivot": [
+       -14336,
+       -8192
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 418
+     },
      "driven_by": [
       "channel 150"
      ]
@@ -28874,7 +29913,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s22 type 615, nothing moves, answered by channel 101",
+     "sentence": "s22 type 615, nothing moves, turns -512 about (-2047, -1025), answered by channel 101",
+     "rotation": {
+      "pivot": [
+       -2047,
+       -1025
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 253
+     },
      "driven_by": [
       "channel 101"
      ]
@@ -28886,7 +29935,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s23 type 615, nothing moves, answered by channel 101",
+     "sentence": "s23 type 615, nothing moves, turns 512 about (-2047, 1024), answered by channel 101",
+     "rotation": {
+      "pivot": [
+       -2047,
+       1024
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 171
+     },
      "driven_by": [
       "channel 101"
      ]
@@ -28930,7 +29989,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s49 type 615, nothing moves, answered by channel 100",
+     "sentence": "s49 type 615, nothing moves, turns -512 about (-2047, 3072), answered by channel 100",
+     "rotation": {
+      "pivot": [
+       -2047,
+       3072
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 265
+     },
      "driven_by": [
       "channel 100"
      ]
@@ -28942,7 +30011,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s50 type 615, nothing moves, answered by channel 100",
+     "sentence": "s50 type 615, nothing moves, turns 512 about (-2047, 5120), answered by channel 100",
+     "rotation": {
+      "pivot": [
+       -2047,
+       5120
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 257
+     },
      "driven_by": [
       "channel 100"
      ]
@@ -28954,7 +30033,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s51 type 615, nothing moves, answered by channel 102",
+     "sentence": "s51 type 615, nothing moves, turns 512 about (-2047, -3072), answered by channel 102",
+     "rotation": {
+      "pivot": [
+       -2047,
+       -3072
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 259
+     },
      "driven_by": [
       "channel 102"
      ]
@@ -28966,7 +30055,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s52 type 615, nothing moves, answered by channel 102",
+     "sentence": "s52 type 615, nothing moves, turns -512 about (-2047, -5120), answered by channel 102",
+     "rotation": {
+      "pivot": [
+       -2047,
+       -5120
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 258
+     },
      "driven_by": [
       "channel 102"
      ]
@@ -28978,7 +30077,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s53 type 615, nothing moves, answered by channel 103",
+     "sentence": "s53 type 615, nothing moves, turns -512 about (-2047, -9216), answered by channel 103",
+     "rotation": {
+      "pivot": [
+       -2047,
+       -9216
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 261
+     },
      "driven_by": [
       "channel 103"
      ]
@@ -28990,7 +30099,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s54 type 615, nothing moves, answered by channel 103",
+     "sentence": "s54 type 615, nothing moves, turns 512 about (-2047, -7168), answered by channel 103",
+     "rotation": {
+      "pivot": [
+       -2047,
+       -7168
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 260
+     },
      "driven_by": [
       "channel 103"
      ]
@@ -29002,7 +30121,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s55 type 615, nothing moves, answered by channel 104",
+     "sentence": "s55 type 615, nothing moves, turns -512 about (4096, 5120), answered by channel 104",
+     "rotation": {
+      "pivot": [
+       4096,
+       5120
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 266
+     },
      "driven_by": [
       "channel 104"
      ]
@@ -29014,7 +30143,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s56 type 615, nothing moves, answered by channel 104",
+     "sentence": "s56 type 615, nothing moves, turns 512 about (4096, 3072), answered by channel 104",
+     "rotation": {
+      "pivot": [
+       4096,
+       3072
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 275
+     },
      "driven_by": [
       "channel 104"
      ]
@@ -29026,7 +30165,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s57 type 615, nothing moves, answered by channel 105",
+     "sentence": "s57 type 615, nothing moves, turns 512 about (4096, -1024), answered by channel 105",
+     "rotation": {
+      "pivot": [
+       4096,
+       -1024
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 270
+     },
      "driven_by": [
       "channel 105"
      ]
@@ -29038,7 +30187,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s58 type 615, nothing moves, answered by channel 105",
+     "sentence": "s58 type 615, nothing moves, turns -512 about (4096, 1024), answered by channel 105",
+     "rotation": {
+      "pivot": [
+       4096,
+       1024
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 271
+     },
      "driven_by": [
       "channel 105"
      ]
@@ -29050,7 +30209,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s59 type 615, nothing moves, answered by channel 106",
+     "sentence": "s59 type 615, nothing moves, turns 512 about (4096, -5120), answered by channel 106",
+     "rotation": {
+      "pivot": [
+       4096,
+       -5120
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 279
+     },
      "driven_by": [
       "channel 106"
      ]
@@ -29062,7 +30231,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s60 type 615, nothing moves, answered by channel 106",
+     "sentence": "s60 type 615, nothing moves, turns -512 about (4096, -3072), answered by channel 106",
+     "rotation": {
+      "pivot": [
+       4096,
+       -3072
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 284
+     },
      "driven_by": [
       "channel 106"
      ]
@@ -29075,7 +30254,17 @@
       "rx",
       "tx"
      ],
-     "sentence": "s61 type 615, nothing moves, answered by channel 107, drives s10, s11",
+     "sentence": "s61 type 615, nothing moves, turns -512 about (4096, -7168), answered by channel 107, drives s10, s11",
+     "rotation": {
+      "pivot": [
+       4096,
+       -7168
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 292
+     },
      "drives": [
       10,
       11
@@ -29092,7 +30281,17 @@
       "rx",
       "tx"
      ],
-     "sentence": "s62 type 615, nothing moves, answered by channel 107, drives s10, s11",
+     "sentence": "s62 type 615, nothing moves, turns 512 about (4096, -9216), answered by channel 107, drives s10, s11",
+     "rotation": {
+      "pivot": [
+       4096,
+       -9216
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 280
+     },
      "drives": [
       10,
       11
@@ -29108,7 +30307,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s63 type 615, nothing moves, answered by channel 109",
+     "sentence": "s63 type 615, nothing moves, turns 512 about (-14336, -22528), answered by channel 109",
+     "rotation": {
+      "pivot": [
+       -14336,
+       -22528
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 285
+     },
      "driven_by": [
       "channel 109"
      ]
@@ -29120,7 +30329,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s64 type 615, nothing moves, answered by channel 109",
+     "sentence": "s64 type 615, nothing moves, turns -512 about (-14336, -24576), answered by channel 109",
+     "rotation": {
+      "pivot": [
+       -14336,
+       -24576
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 289
+     },
      "driven_by": [
       "channel 109"
      ]
@@ -29132,7 +30351,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s65 type 615, nothing moves, answered by channel 112",
+     "sentence": "s65 type 615, nothing moves, turns 512 about (4096, -16384), answered by channel 112",
+     "rotation": {
+      "pivot": [
+       4096,
+       -16384
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 321
+     },
      "driven_by": [
       "channel 112"
      ]
@@ -29144,7 +30373,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s66 type 615, nothing moves, answered by channel 112",
+     "sentence": "s66 type 615, nothing moves, turns -512 about (4096, -14336), answered by channel 112",
+     "rotation": {
+      "pivot": [
+       4096,
+       -14336
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 296
+     },
      "driven_by": [
       "channel 112"
      ]
@@ -29156,7 +30395,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s67 type 615, nothing moves, answered by channel 120",
+     "sentence": "s67 type 615, nothing moves, turns -512 about (-14336, -16384), answered by channel 120",
+     "rotation": {
+      "pivot": [
+       -14336,
+       -16384
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 306
+     },
      "driven_by": [
       "channel 120"
      ]
@@ -29168,7 +30417,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s68 type 615, nothing moves, answered by channel 120",
+     "sentence": "s68 type 615, nothing moves, turns 512 about (-14336, -14336), answered by channel 120",
+     "rotation": {
+      "pivot": [
+       -14336,
+       -14336
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 404
+     },
      "driven_by": [
       "channel 120"
      ]
@@ -29180,7 +30439,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s69 type 615, nothing moves, answered by channel 124",
+     "sentence": "s69 type 615, nothing moves, turns 512 about (-2048, -14336), answered by channel 124",
+     "rotation": {
+      "pivot": [
+       -2048,
+       -14336
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 307
+     },
      "driven_by": [
       "channel 124"
      ]
@@ -29192,7 +30461,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s70 type 615, nothing moves, answered by channel 124",
+     "sentence": "s70 type 615, nothing moves, turns -512 about (-2048, -16384), answered by channel 124",
+     "rotation": {
+      "pivot": [
+       -2048,
+       -16384
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 308
+     },
      "driven_by": [
       "channel 124"
      ]
@@ -29204,7 +30483,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s71 type 615, nothing moves, answered by channel 129",
+     "sentence": "s71 type 615, nothing moves, turns -512 about (-2048, -24576), answered by channel 129",
+     "rotation": {
+      "pivot": [
+       -2048,
+       -24576
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 309
+     },
      "driven_by": [
       "channel 129"
      ]
@@ -29216,7 +30505,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s72 type 615, nothing moves, answered by channel 129",
+     "sentence": "s72 type 615, nothing moves, turns 512 about (-2048, -22528), answered by channel 129",
+     "rotation": {
+      "pivot": [
+       -2048,
+       -22528
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 310
+     },
      "driven_by": [
       "channel 129"
      ]
@@ -29228,7 +30527,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s73 type 615, nothing moves, answered by channel 117",
+     "sentence": "s73 type 615, nothing moves, turns -1024 about (-2044, -20483), answered by channel 117",
+     "rotation": {
+      "pivot": [
+       -2044,
+       -20483
+      ],
+      "turn": -1024,
+      "turns_full_circles": false,
+      "net_heading": 1024,
+      "sprite": 312
+     },
      "driven_by": [
       "channel 117"
      ]
@@ -29240,7 +30549,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s74 type 615, nothing moves, answered by channel 117",
+     "sentence": "s74 type 615, nothing moves, turns 1024 about (-2048, -18432), answered by channel 117",
+     "rotation": {
+      "pivot": [
+       -2048,
+       -18432
+      ],
+      "turn": 1024,
+      "turns_full_circles": false,
+      "net_heading": 1024,
+      "sprite": 311
+     },
      "driven_by": [
       "channel 117"
      ]
@@ -29252,7 +30571,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s75 type 615, nothing moves, answered by channel 116",
+     "sentence": "s75 type 615, nothing moves, turns 512 about (4096, -24576), answered by channel 116",
+     "rotation": {
+      "pivot": [
+       4096,
+       -24576
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 317
+     },
      "driven_by": [
       "channel 116"
      ]
@@ -29264,7 +30593,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s76 type 615, nothing moves, answered by channel 116",
+     "sentence": "s76 type 615, nothing moves, turns -512 about (4084, -22531), answered by channel 116",
+     "rotation": {
+      "pivot": [
+       4084,
+       -22531
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 316
+     },
      "driven_by": [
       "channel 116"
      ]
@@ -29276,7 +30615,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s77 type 615, nothing moves, answered by channel 138",
+     "sentence": "s77 type 615, nothing moves, turns -512 about (-14335, -20481), answered by channel 138",
+     "rotation": {
+      "pivot": [
+       -14335,
+       -20481
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 335
+     },
      "driven_by": [
       "channel 138"
      ]
@@ -29288,7 +30637,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s78 type 615, nothing moves, answered by channel 138",
+     "sentence": "s78 type 615, nothing moves, turns 512 about (-14336, -18432), answered by channel 138",
+     "rotation": {
+      "pivot": [
+       -14336,
+       -18432
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 332
+     },
      "driven_by": [
       "channel 138"
      ]
@@ -29301,7 +30660,17 @@
       "rx",
       "state"
      ],
-     "sentence": "s81 type 615, nothing moves, answered by channel 115",
+     "sentence": "s81 type 615, nothing moves, turns -512 about (4092, -18434), answered by channel 115",
+     "rotation": {
+      "pivot": [
+       4092,
+       -18434
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 339
+     },
      "driven_by": [
       "channel 115"
      ]
@@ -29314,7 +30683,17 @@
       "rx",
       "state"
      ],
-     "sentence": "s82 type 615, nothing moves, answered by channel 115",
+     "sentence": "s82 type 615, nothing moves, turns 512 about (4093, -20482), answered by channel 115",
+     "rotation": {
+      "pivot": [
+       4093,
+       -20482
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 338
+     },
      "driven_by": [
       "channel 115"
      ]
@@ -29326,7 +30705,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s88 type 615, nothing moves, answered by channel 113",
+     "sentence": "s88 type 615, nothing moves, turns -512 about (0, -12288), answered by channel 113",
+     "rotation": {
+      "pivot": [
+       0,
+       -12288
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 360
+     },
      "driven_by": [
       "channel 113"
      ]
@@ -29338,7 +30727,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s89 type 615, nothing moves, answered by channel 113",
+     "sentence": "s89 type 615, nothing moves, turns 512 about (2048, -12288), answered by channel 113",
+     "rotation": {
+      "pivot": [
+       2048,
+       -12288
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 361
+     },
      "driven_by": [
       "channel 113"
      ]
@@ -29350,7 +30749,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s91 type 615, nothing moves, answered by channel 110",
+     "sentence": "s91 type 615, nothing moves, turns -512 about (-4608, -26624), answered by channel 110",
+     "rotation": {
+      "pivot": [
+       -4608,
+       -26624
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 145
+     },
      "driven_by": [
       "channel 110"
      ]
@@ -29362,7 +30771,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s92 type 615, nothing moves, answered by channel 110",
+     "sentence": "s92 type 615, nothing moves, turns 512 about (-4608, -28672), answered by channel 110",
+     "rotation": {
+      "pivot": [
+       -4608,
+       -28672
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 144
+     },
      "driven_by": [
       "channel 110"
      ]
@@ -29375,12 +30794,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s102 type 615, nothing moves, a z pair that does not travel, answered by channel 148",
+     "sentence": "s102 type 615, nothing moves, a z pair that does not travel, turns 512 about (-8192, -12288), answered by channel 148",
      "z_pair": {
       "off_floor_z": 8192,
       "on_floor_z": 8192,
       "off_ceiling_z": -24576,
       "on_ceiling_z": -24576
+     },
+     "rotation": {
+      "pivot": [
+       -8192,
+       -12288
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 426
      },
      "driven_by": [
       "channel 148"
@@ -29394,12 +30823,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s103 type 615, nothing moves, a z pair that does not travel, answered by channel 145",
+     "sentence": "s103 type 615, nothing moves, a z pair that does not travel, turns -512 about (-8192, -14336), answered by channel 145",
      "z_pair": {
       "off_floor_z": 8192,
       "on_floor_z": 8192,
       "off_ceiling_z": -24576,
       "on_ceiling_z": -24576
+     },
+     "rotation": {
+      "pivot": [
+       -8192,
+       -14336
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 427
      },
      "driven_by": [
       "channel 145"
@@ -29413,12 +30852,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s104 type 615, nothing moves, a z pair that does not travel, answered by channel 145",
+     "sentence": "s104 type 615, nothing moves, a z pair that does not travel, turns 512 about (-8192, -16384), answered by channel 145",
      "z_pair": {
       "off_floor_z": 8192,
       "on_floor_z": 8192,
       "off_ceiling_z": -24576,
       "on_ceiling_z": -24576
+     },
+     "rotation": {
+      "pivot": [
+       -8192,
+       -16384
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 428
      },
      "driven_by": [
       "channel 145"
@@ -29432,12 +30881,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s105 type 615, nothing moves, a z pair that does not travel, answered by channel 142",
+     "sentence": "s105 type 615, nothing moves, a z pair that does not travel, turns -512 about (-8192, -18432), answered by channel 142",
      "z_pair": {
       "off_floor_z": 8192,
       "on_floor_z": 8192,
       "off_ceiling_z": -24576,
       "on_ceiling_z": -24576
+     },
+     "rotation": {
+      "pivot": [
+       -8192,
+       -18432
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 429
      },
      "driven_by": [
       "channel 142"
@@ -29451,12 +30910,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s106 type 615, nothing moves, a z pair that does not travel, answered by channel 142",
+     "sentence": "s106 type 615, nothing moves, a z pair that does not travel, turns 512 about (-8192, -20480), answered by channel 142",
      "z_pair": {
       "off_floor_z": 8192,
       "on_floor_z": 8192,
       "off_ceiling_z": -24576,
       "on_ceiling_z": -24576
+     },
+     "rotation": {
+      "pivot": [
+       -8192,
+       -20480
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 430
      },
      "driven_by": [
       "channel 142"
@@ -29470,12 +30939,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s107 type 615, nothing moves, a z pair that does not travel, answered by channel 143",
+     "sentence": "s107 type 615, nothing moves, a z pair that does not travel, turns -512 about (-8192, -22528), answered by channel 143",
      "z_pair": {
       "off_floor_z": 8192,
       "on_floor_z": 8192,
       "off_ceiling_z": -24576,
       "on_ceiling_z": -24576
+     },
+     "rotation": {
+      "pivot": [
+       -8192,
+       -22528
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 431
      },
      "driven_by": [
       "channel 143"
@@ -29489,12 +30968,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s108 type 615, nothing moves, a z pair that does not travel, answered by channel 143",
+     "sentence": "s108 type 615, nothing moves, a z pair that does not travel, turns 512 about (-8192, -24576), answered by channel 143",
      "z_pair": {
       "off_floor_z": 8192,
       "on_floor_z": 8192,
       "off_ceiling_z": -24576,
       "on_ceiling_z": -24576
+     },
+     "rotation": {
+      "pivot": [
+       -8192,
+       -24576
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 432
      },
      "driven_by": [
       "channel 143"
@@ -29508,12 +30997,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s112 type 615, nothing moves, a z pair that does not travel, answered by channel 148",
+     "sentence": "s112 type 615, nothing moves, a z pair that does not travel, turns -512 about (-8192, -10240), answered by channel 148",
      "z_pair": {
       "off_floor_z": 8192,
       "on_floor_z": 8192,
       "off_ceiling_z": -24576,
       "on_ceiling_z": -24576
+     },
+     "rotation": {
+      "pivot": [
+       -8192,
+       -10240
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 433
      },
      "driven_by": [
       "channel 148"
@@ -29526,7 +31025,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s114 type 615, nothing moves, answered by channel 147",
+     "sentence": "s114 type 615, nothing moves, turns -512 about (-14592, -10240), answered by channel 147",
+     "rotation": {
+      "pivot": [
+       -14592,
+       -10240
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 444
+     },
      "driven_by": [
       "channel 147"
      ]
@@ -29538,7 +31047,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s115 type 615, nothing moves, answered by channel 147",
+     "sentence": "s115 type 615, nothing moves, turns 512 about (-14593, -12287), answered by channel 147",
+     "rotation": {
+      "pivot": [
+       -14593,
+       -12287
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 445
+     },
      "driven_by": [
       "channel 147"
      ]
@@ -31262,7 +32781,17 @@
      "slots": [
       "state"
      ],
-     "sentence": "s20 type 617, the whole sector travels, answered by a shove, deforms 2 sectors",
+     "sentence": "s20 type 617, the whole sector travels, turns -512 about (768, 28160), answered by a shove, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       768,
+       28160
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 32
+     },
      "driven_by": [
       "a shove"
      ],
@@ -31485,7 +33014,17 @@
       "rx",
       "tx"
      ],
-     "sentence": "s44 type 617, the whole sector travels, answered by channel 105, shoved through 8 wall button(s), drives s38, s39, s45, s49, deforms 2 sectors",
+     "sentence": "s44 type 617, the whole sector travels, turns -512 about (9728, 36608), answered by channel 105, shoved through 8 wall button(s), drives s38, s39, s45, s49, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       9728,
+       36608
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 488
+     },
      "drives": [
       38,
       39,
@@ -31518,7 +33057,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s45 type 617, the whole sector travels, answered by channel 106, deforms 2 sectors",
+     "sentence": "s45 type 617, the whole sector travels, turns 512 about (11776, 36608), answered by channel 106, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       11776,
+       36608
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 489
+     },
      "driven_by": [
       "channel 106"
      ],
@@ -32499,7 +34048,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s157 type 617, the whole sector travels, answered by channel 179, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s157 type 617, the whole sector travels, turns -512 about (6912, 30978), answered by channel 179, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       6912,
+       30978
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 594
+     },
      "driven_by": [
       "channel 179"
      ],
@@ -33106,7 +34665,17 @@
       "rx",
       "tx"
      ],
-     "sentence": "s204 type 617, the whole sector travels, answered by channel 179, shoved through 8 wall button(s), drives s156, deforms 2 sectors",
+     "sentence": "s204 type 617, the whole sector travels, turns 512 about (5120, 30978), answered by channel 179, shoved through 8 wall button(s), drives s156, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       5120,
+       30978
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 593
+     },
      "drives": [
       156
      ],
@@ -38028,7 +39597,17 @@
      "slots": [
       "state"
      ],
-     "sentence": "s20 type 617, the whole sector travels, answered by a shove, deforms 2 sectors",
+     "sentence": "s20 type 617, the whole sector travels, turns -512 about (768, 28160), answered by a shove, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       768,
+       28160
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 32
+     },
      "driven_by": [
       "a shove"
      ],
@@ -38251,7 +39830,17 @@
       "rx",
       "tx"
      ],
-     "sentence": "s44 type 617, the whole sector travels, answered by channel 105, shoved through 8 wall button(s), drives s38, s39, s45, s49, deforms 2 sectors",
+     "sentence": "s44 type 617, the whole sector travels, turns -512 about (9728, 36608), answered by channel 105, shoved through 8 wall button(s), drives s38, s39, s45, s49, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       9728,
+       36608
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 486
+     },
      "drives": [
       38,
       39,
@@ -38284,7 +39873,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s45 type 617, the whole sector travels, answered by channel 106, deforms 2 sectors",
+     "sentence": "s45 type 617, the whole sector travels, turns 512 about (11776, 36608), answered by channel 106, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       11776,
+       36608
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 487
+     },
      "driven_by": [
       "channel 106"
      ],
@@ -39277,7 +40876,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s157 type 617, the whole sector travels, answered by channel 179, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s157 type 617, the whole sector travels, turns -512 about (6912, 30978), answered by channel 179, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       6912,
+       30978
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 592
+     },
      "driven_by": [
       "channel 179"
      ],
@@ -39885,7 +41494,17 @@
       "rx",
       "tx"
      ],
-     "sentence": "s204 type 617, the whole sector travels, answered by channel 179, shoved through 8 wall button(s), drives s156, deforms 2 sectors",
+     "sentence": "s204 type 617, the whole sector travels, turns 512 about (5120, 30978), answered by channel 179, shoved through 8 wall button(s), drives s156, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       5120,
+       30978
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 591
+     },
      "drives": [
       156
      ],
@@ -50227,7 +51846,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s1 type 617, the whole sector travels, answered by channel 100, deforms 2 sectors",
+     "sentence": "s1 type 617, the whole sector travels, turns 20480 about (-4051, -473) -- whole circles, so it returns to where it was drawn, answered by channel 100, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -4051,
+       -473
+      ],
+      "turn": 20480,
+      "turns_full_circles": true,
+      "net_heading": 0,
+      "sprite": 11
+     },
      "driven_by": [
       "channel 100"
      ],
@@ -50245,12 +51874,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s3 type 617, the whole sector travels, a z pair that does not travel, answered by channel 101, deforms 2 sectors",
+     "sentence": "s3 type 617, the whole sector travels, a z pair that does not travel, turns -1024 about (9143, -9985), answered by channel 101, deforms 2 sectors",
      "z_pair": {
       "off_floor_z": 2048,
       "on_floor_z": 2048,
       "off_ceiling_z": -57344,
       "on_ceiling_z": -57344
+     },
+     "rotation": {
+      "pivot": [
+       9143,
+       -9985
+      ],
+      "turn": -1024,
+      "turns_full_circles": false,
+      "net_heading": 1024,
+      "sprite": 33
      },
      "driven_by": [
       "channel 101"
@@ -50271,12 +51910,22 @@
       "state",
       "z pair"
      ],
-     "sentence": "s4 type 617, the whole sector travels, a z pair that does not travel, answered by channel 101, drives s7, s8, deforms 2 sectors",
+     "sentence": "s4 type 617, the whole sector travels, a z pair that does not travel, turns 4096 about (10368, -6482) -- whole circles, so it returns to where it was drawn, answered by channel 101, drives s7, s8, deforms 2 sectors",
      "z_pair": {
       "off_floor_z": 2048,
       "on_floor_z": 2048,
       "off_ceiling_z": -57344,
       "on_ceiling_z": -57344
+     },
+     "rotation": {
+      "pivot": [
+       10368,
+       -6482
+      ],
+      "turn": 4096,
+      "turns_full_circles": true,
+      "net_heading": 0,
+      "sprite": 34
      },
      "drives": [
       7,
@@ -50299,12 +51948,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s7 type 617, the whole sector travels, a z pair that does not travel, answered by channel 102, deforms 2 sectors",
+     "sentence": "s7 type 617, the whole sector travels, a z pair that does not travel, turns -4096 about (13321, -9461) -- whole circles, so it returns to where it was drawn, answered by channel 102, deforms 2 sectors",
      "z_pair": {
       "off_floor_z": 2048,
       "on_floor_z": 2048,
       "off_ceiling_z": -57344,
       "on_ceiling_z": -57344
+     },
+     "rotation": {
+      "pivot": [
+       13321,
+       -9461
+      ],
+      "turn": -4096,
+      "turns_full_circles": true,
+      "net_heading": 0,
+      "sprite": 35
      },
      "driven_by": [
       "channel 102"
@@ -50323,12 +51982,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s8 type 617, the whole sector travels, a z pair that does not travel, answered by channel 102, deforms 2 sectors",
+     "sentence": "s8 type 617, the whole sector travels, a z pair that does not travel, turns -4096 about (11977, -2741) -- whole circles, so it returns to where it was drawn, answered by channel 102, deforms 2 sectors",
      "z_pair": {
       "off_floor_z": 2048,
       "on_floor_z": 2048,
       "off_ceiling_z": -57344,
       "on_ceiling_z": -57344
+     },
+     "rotation": {
+      "pivot": [
+       11977,
+       -2741
+      ],
+      "turn": -4096,
+      "turns_full_circles": true,
+      "net_heading": 0,
+      "sprite": 36
      },
      "driven_by": [
       "channel 102"
@@ -50348,12 +52017,22 @@
       "tx",
       "z pair"
      ],
-     "sentence": "s9 type 617, the whole sector travels, a z pair that does not travel, answered by channel 101, drives s10, deforms 2 sectors",
+     "sentence": "s9 type 617, the whole sector travels, a z pair that does not travel, turns -4096 about (14336, -5824) -- whole circles, so it returns to where it was drawn, answered by channel 101, drives s10, deforms 2 sectors",
      "z_pair": {
       "off_floor_z": 2048,
       "on_floor_z": 2048,
       "off_ceiling_z": -57344,
       "on_ceiling_z": -57344
+     },
+     "rotation": {
+      "pivot": [
+       14336,
+       -5824
+      ],
+      "turn": -4096,
+      "turns_full_circles": true,
+      "net_heading": 0,
+      "sprite": 37
      },
      "drives": [
       10
@@ -50375,12 +52054,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s10 type 617, the whole sector travels, a z pair that does not travel, answered by channel 103, deforms 2 sectors",
+     "sentence": "s10 type 617, the whole sector travels, a z pair that does not travel, turns 4096 about (16192, -3904) -- whole circles, so it returns to where it was drawn, answered by channel 103, deforms 2 sectors",
      "z_pair": {
       "off_floor_z": 2048,
       "on_floor_z": 2048,
       "off_ceiling_z": -57344,
       "on_ceiling_z": -57344
+     },
+     "rotation": {
+      "pivot": [
+       16192,
+       -3904
+      ],
+      "turn": 4096,
+      "turns_full_circles": true,
+      "net_heading": 0,
+      "sprite": 38
      },
      "driven_by": [
       "channel 103"
@@ -50416,7 +52105,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s13 type 617, the whole sector travels, answered by channel 104, deforms 2 sectors",
+     "sentence": "s13 type 617, the whole sector travels, turns 20480 about (-4051, -3545) -- whole circles, so it returns to where it was drawn, answered by channel 104, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -4051,
+       -3545
+      ],
+      "turn": 20480,
+      "turns_full_circles": true,
+      "net_heading": 0,
+      "sprite": 121
+     },
      "driven_by": [
       "channel 104"
      ],
@@ -50433,7 +52132,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s17 type 617, the whole sector travels, answered by channel 105, deforms 2 sectors",
+     "sentence": "s17 type 617, the whole sector travels, turns 20480 about (-4051, -6617) -- whole circles, so it returns to where it was drawn, answered by channel 105, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -4051,
+       -6617
+      ],
+      "turn": 20480,
+      "turns_full_circles": true,
+      "net_heading": 0,
+      "sprite": 122
+     },
      "driven_by": [
       "channel 105"
      ],
@@ -50450,7 +52159,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s18 type 617, the whole sector travels, answered by channel 106, deforms 2 sectors",
+     "sentence": "s18 type 617, the whole sector travels, turns 20480 about (-4051, -9689) -- whole circles, so it returns to where it was drawn, answered by channel 106, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       -4051,
+       -9689
+      ],
+      "turn": 20480,
+      "turns_full_circles": true,
+      "net_heading": 0,
+      "sprite": 123
+     },
      "driven_by": [
       "channel 106"
      ],
@@ -50481,7 +52200,17 @@
       "rx",
       "tx"
      ],
-     "sentence": "s21 type 617, the whole sector travels, answered by channel 108, drives s20, deforms 2 sectors",
+     "sentence": "s21 type 617, the whole sector travels, turns 2048 about (2093, -473) -- whole circles, so it returns to where it was drawn, answered by channel 108, drives s20, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       2093,
+       -473
+      ],
+      "turn": 2048,
+      "turns_full_circles": true,
+      "net_heading": 0,
+      "sprite": 137
+     },
      "drives": [
       20
      ],
@@ -50501,7 +52230,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s22 type 617, the whole sector travels, answered by channel 100, deforms 2 sectors",
+     "sentence": "s22 type 617, the whole sector travels, turns 20480 about (2093, -3545) -- whole circles, so it returns to where it was drawn, answered by channel 100, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       2093,
+       -3545
+      ],
+      "turn": 20480,
+      "turns_full_circles": true,
+      "net_heading": 0,
+      "sprite": 138
+     },
      "driven_by": [
       "channel 100"
      ],
@@ -50518,7 +52257,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s23 type 617, the whole sector travels, answered by channel 110, deforms 2 sectors",
+     "sentence": "s23 type 617, the whole sector travels, turns 20480 about (2093, -6617) -- whole circles, so it returns to where it was drawn, answered by channel 110, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       2093,
+       -6617
+      ],
+      "turn": 20480,
+      "turns_full_circles": true,
+      "net_heading": 0,
+      "sprite": 139
+     },
      "driven_by": [
       "channel 110"
      ],
@@ -54901,7 +56650,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s2 type 613, boundary re-partition, answered by channel 100, deforms 2 sectors",
+     "sentence": "s2 type 613, boundary re-partition, turns 256 about (0, -2112), answered by channel 100, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       0,
+       -2112
+      ],
+      "turn": 256,
+      "turns_full_circles": false,
+      "net_heading": 256,
+      "sprite": 5
+     },
      "driven_by": [
       "channel 100"
      ],
@@ -54918,7 +56677,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s3 type 613, boundary re-partition, answered by channel 100, deforms 2 sectors",
+     "sentence": "s3 type 613, boundary re-partition, turns 256 about (0, -2112), answered by channel 100, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       0,
+       -2112
+      ],
+      "turn": 256,
+      "turns_full_circles": false,
+      "net_heading": 256,
+      "sprite": 4
+     },
      "driven_by": [
       "channel 100"
      ],
@@ -60435,7 +62204,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s62 type 617, the whole sector travels, answered by channel 100, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s62 type 617, the whole sector travels, turns 512 about (37377, -25600), answered by channel 100, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       37377,
+       -25600
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 242
+     },
      "driven_by": [
       "channel 100"
      ],
@@ -60462,7 +62241,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s63 type 617, the whole sector travels, answered by channel 100, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s63 type 617, the whole sector travels, turns -512 about (37377, -27648), answered by channel 100, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       37377,
+       -27648
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 243
+     },
      "driven_by": [
       "channel 100"
      ],
@@ -60489,7 +62278,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s71 type 617, the whole sector travels, answered by channel 101, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s71 type 617, the whole sector travels, turns -512 about (45313, -27648), answered by channel 101, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       45313,
+       -27648
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 244
+     },
      "driven_by": [
       "channel 101"
      ],
@@ -60516,7 +62315,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s72 type 617, the whole sector travels, answered by channel 101, shoved through 8 wall button(s), deforms 2 sectors",
+     "sentence": "s72 type 617, the whole sector travels, turns 512 about (45313, -25600), answered by channel 101, shoved through 8 wall button(s), deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       45313,
+       -25600
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 245
+     },
      "driven_by": [
       "channel 101"
      ],
@@ -60541,7 +62350,17 @@
      "type": 617,
      "shape": "the whole sector travels",
      "slots": [],
-     "sentence": "s141 type 617, the whole sector travels, answered by push, a shove, deforms 2 sectors",
+     "sentence": "s141 type 617, the whole sector travels, turns 512 about (39938, -22784), answered by push, a shove, deforms 2 sectors",
+     "rotation": {
+      "pivot": [
+       39938,
+       -22784
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 246
+     },
      "driven_by": [
       "push",
       "a shove"
@@ -66395,12 +68214,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s5 type 617, the whole sector travels, ceiling 0 -> 27648, answered by channel 101, deforms 2 sectors",
+     "sentence": "s5 type 617, the whole sector travels, ceiling 0 -> 27648, turns 512 about (96, -11200), answered by channel 101, deforms 2 sectors",
      "z_pair": {
       "off_floor_z": 32768,
       "on_floor_z": 32768,
       "off_ceiling_z": 0,
       "on_ceiling_z": 27648
+     },
+     "rotation": {
+      "pivot": [
+       96,
+       -11200
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 9
      },
      "driven_by": [
       "channel 101"
@@ -66419,12 +68248,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s6 type 617, the whole sector travels, ceiling 0 -> 27648, answered by channel 101, deforms 2 sectors",
+     "sentence": "s6 type 617, the whole sector travels, ceiling 0 -> 27648, turns -512 about (-96, -11200), answered by channel 101, deforms 2 sectors",
      "z_pair": {
       "off_floor_z": 32768,
       "on_floor_z": 32768,
       "off_ceiling_z": 0,
       "on_ceiling_z": 27648
+     },
+     "rotation": {
+      "pivot": [
+       -96,
+       -11200
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 8
      },
      "driven_by": [
       "channel 101"
@@ -68332,7 +70171,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s0 type 613, nothing moves, markers 0 apart along x, pair unplaceable, rests at OFF, answered by channel 100, shoved through 4 wall button(s), carries 1 sprite(s)",
+     "sentence": "s0 type 613, nothing moves, markers 0 apart along x, pair unplaceable, rests at OFF, turns -512 about (32128, 32128), answered by channel 100, shoved through 4 wall button(s), carries 1 sprite(s)",
+     "rotation": {
+      "pivot": [
+       32128,
+       32128
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 0
+     },
      "driven_by": [
       "channel 100"
      ],
@@ -69380,8 +71229,18 @@
      "slots": [
       "tx"
      ],
-     "sentence": "s1 type 617, the whole sector travels, markers 0 apart along x, pair parked, rests at OFF, answered by a shove, carries 1 sprite(s), deforms 2 sectors",
+     "sentence": "s1 type 617, the whole sector travels, markers 0 apart along x, pair parked, rests at OFF, turns 512 about (31744, 31744), answered by a shove, carries 1 sprite(s), deforms 2 sectors",
      "drawn_at": "parked",
+     "rotation": {
+      "pivot": [
+       31744,
+       31744
+      ],
+      "turn": 512,
+      "turns_full_circles": false,
+      "net_heading": 512,
+      "sprite": 1
+     },
      "driven_by": [
       "a shove"
      ],
@@ -69409,8 +71268,18 @@
      "slots": [
       "tx"
      ],
-     "sentence": "s2 type 617, the whole sector travels, markers 0 apart along x, pair parked, rests at OFF, answered by a shove, carries 1 sprite(s), deforms 2 sectors",
+     "sentence": "s2 type 617, the whole sector travels, markers 0 apart along x, pair parked, rests at OFF, turns -512 about (33792, 31744), answered by a shove, carries 1 sprite(s), deforms 2 sectors",
      "drawn_at": "parked",
+     "rotation": {
+      "pivot": [
+       33792,
+       31744
+      ],
+      "turn": -512,
+      "turns_full_circles": false,
+      "net_heading": 1536,
+      "sprite": 0
+     },
      "driven_by": [
       "a shove"
      ],
@@ -69697,7 +71566,17 @@
      "slots": [
       "rx"
      ],
-     "sentence": "s1 type 613, nothing moves, markers 1536 apart along y, pair unplaceable, rests at OFF, answered by channel 101, carries 1 sprite(s)",
+     "sentence": "s1 type 613, nothing moves, markers 1536 apart along y, pair unplaceable, rests at OFF, turns 128 about (30208, 31232), answered by channel 101, carries 1 sprite(s)",
+     "rotation": {
+      "pivot": [
+       30208,
+       31232
+      ],
+      "turn": 128,
+      "turns_full_circles": false,
+      "net_heading": 128,
+      "sprite": 2
+     },
      "driven_by": [
       "channel 101"
      ],
@@ -69849,12 +71728,22 @@
       "rx",
       "z pair"
      ],
-     "sentence": "s1 type 617, a z pair that does not travel, answered by channel 100",
+     "sentence": "s1 type 617, a z pair that does not travel, turns 1024 about (30208, 30720), answered by channel 100",
      "z_pair": {
       "off_floor_z": 23552,
       "on_floor_z": 23552,
       "off_ceiling_z": -8192,
       "on_ceiling_z": -8192
+     },
+     "rotation": {
+      "pivot": [
+       30208,
+       30720
+      ],
+      "turn": 1024,
+      "turns_full_circles": false,
+      "net_heading": 1024,
+      "sprite": 1
      },
      "driven_by": [
       "channel 100"
