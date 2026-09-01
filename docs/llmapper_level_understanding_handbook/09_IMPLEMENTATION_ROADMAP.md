@@ -848,7 +848,26 @@ verbs        sector type selects the XY motion (slide/rotate/path/...);
 payload      wall cstat flags (16384/32768) and sprite flags select what
              moves; 616/617 drag every wall, 614/615 only flagged ones;
              a payload can be sprites alone (E1M1 s65's gate)
-parameters   markers give from/to (types 3/4) or axis+angle (type 5)
+parameters   MARKERS ARE STATE-ANCHORED, NOT JOURNEY-ANCHORED (settled
+             2026-09-01 against DOOR-CURTAINS.map, three exemplars to
+             the coordinate): type 3 = the position FOR STATE OFF,
+             type 4 = the position FOR STATE ON, axis+angle = type 5.
+             The mapper DRAWS the geometry at the ON pose (every
+             tutorial curtain's fabric hem is saved exactly at its
+             type-4 marker), and the XSECTOR `state` field decides where
+             it snaps at load. "Rest" is not a marker concept — it is
+             whatever `state` says. Our earlier from/to model was wrong
+             both ways and is why the zoo curtains ran backwards; it
+             also resolves the oracle map's s2 state=1 "mystery" — drawn
+             at ON, meant to start there. Bonus from the same map: the
+             tutorial curtain's fabric is an internal FIN with its own
+             vertices (the seam built into the sector's own outline),
+             which is why tutorial curtains never deform their rooms.
+             maps/blood/mechanism/ (Vanilla/ + Modern/) is a goldmine of
+             such single-mechanism tutorials — fixture them as they are
+             consulted. And the owner's state-preview idea: the XMapEdit
+             observer can render a mechanism's OFF and ON poses for a
+             visual state check — the components already exist.
 control bus  TX/RX channels + COMMAND VERBS (off/on/toggle/lock/unlock/
              ...) — a lever TXing Lock locks a door, it does not open it;
              reading every TX->RX as "operates" loses the verb. System
@@ -877,6 +896,49 @@ see-through  a walkable ROR stack is SEEN THROUGH only with floor picnum
              504 or floorstat & 0x180 (mirrors.cpp IsRorSector; already
              used in blood-city, forgotten in the zoo) — the view is a
              separate property from the warp, one more independent axis.
+influence    (owner, 2026-09-01) A MECHANISM'S SENTENCE INCLUDES ITS
+             EFFECT NETWORK — what it connects to and influences (the
+             curtain whose room brightens via command-5 Link, the door
+             that TXs onward). And the network competes for FINITE
+             single-slot resources: a sector carries ONE XSECTOR — one
+             rx, one tx, one state machine, one shade wave, one marker
+             pair, one type; a wall one XWALL; a sprite one XSPRITE.
+             Compositions therefore COLLIDE, and the answer is never
+             "the door is impossible because the neighbour cannot take
+             the light change" — it is a DECISION, made and reported:
+             (a) SPLIT a sector to mint a new resource carrier (the
+             lightpools pattern blood-city already uses), (b) insert a
+             RELAY (a wired sprite carrying the extra channel hop),
+             (c) REROUTE channels, or (d) DEGRADE the secondary effect
+             under an intent hierarchy — mechanism function outranks
+             mediation, mediation outranks presentation; the primary
+             never blocks on the secondary. Every such decision is a
+             reported finding per the authoring-loop law, and conflict
+             DETECTION (two claims on one resource slot) is a gate-level
+             check like ownership conflicts.
+ownership    (owner hypothesis, 2026-09-01, confirmed by the accumulated
+             cases) WALL OWNERSHIP IS TWOFOLD. Storage ownership is
+             fixed by Build (each wall in exactly one sector's array; a
+             boundary exists twice as a red-wall twin pair). FUNCTIONAL
+             ownership — whose wall it is for a mechanism's purposes —
+             is NOT fixed: it depends on the mechanism type and intent.
+             Evidence: E1M1's curtain stretches walls stored in s125 AND
+             their twins stored in the room; the casket's boundary wall
+             functionally belongs to the four-sector construct; s65's
+             functional payload is sprites; the tutorial's fabric fin is
+             storage deliberately RESHAPED to match intended functional
+             ownership (own vertices for the fabric). Our code assumed
+             single ownership (spatial._owners, regions owning their
+             walls) — a root cause of the zoo's integration defects.
+             Consequences: a construct is a SUBGRAPH over sectors, walls,
+             vertices and sprites that may cross storage boundaries;
+             MechanismDecl members claim walls/vertices by ROLE across
+             sectors; the motion-set closure is the computed functional
+             ownership and the declared claims must match it; two
+             constructs claiming one vertex with different motions is a
+             detectable conflict; and constructors build storage topology
+             (fins, seams, splits) TO SERVE declared functional
+             ownership — never the other way round.
 vertex drag  (owner, 2026-09-01, the deepest payload rule) motion moves
              VERTICES, not walls: a flagged wall carries its two points,
              and EVERY wall incident on a moved point drags with it (one
@@ -1844,6 +1906,49 @@ re-partitioning mover, so the plan area the link plane sits in changes hands.
 The intuitive story is not what those fields say, and the code records the
 measurement rather than forcing the story onto it.
 
+
+## DOOR-CURTAINS, and what a curtain actually is, 2026-09-01
+
+`maps/blood/mechanism/Vanilla/` is a second tutorial folder -- one
+single-mechanism map per file, DOOR-SLIDING, DOOR-SWINGING, DOOR-ROTATING,
+DOOR-PORTCULLIS and the rest -- and DOOR-CURTAINS.map alone carries
+twenty-five curtain exemplars. It settles two things this project had wrong.
+
+**Markers are state-anchored, and that is now the primitive.** Type 3 is the
+position FOR STATE OFF, type 4 the position FOR STATE ON; the mapper draws
+the geometry at the ON pose and `state` decides which one it snaps to at
+load. There is no from/to journey and no rest marker. Verified to the
+coordinate on s3, s6 and s8, and `motion.drawn_pose` confirms every moving
+sector in the map -- and both planes of the oracle casket -- is saved at its
+ON pose. Consequences:
+
+* a state-0 sector displacing itself by the whole marker separation at load
+  is the NORMAL case, not a smell. It is how a curtain drawn open comes up
+  closed, and the swept gate now says so only when the displacement and the
+  separation DISAGREE;
+* the oracle's s2 state=1 is not a mystery and not a leftover: drawn at ON,
+  meant to start there;
+* our from/to model was wrong in both directions, which is why the zoo's
+  curtains ran backwards.
+
+**A curtain is an internal FIN.** s3 is eight walls: the four sides of the
+doorway, then the outline runs back along the anchored edge and out into a
+narrow tab -- 64 wide of a 256 opening, centred -- whose free END is the one
+flagged wall. Drawing it across stretches the tab's two sides. Because every
+moved vertex is interior to the sector's own outline, the isolation seam is
+PART OF THE SECTOR and nothing outside can deform: `motion_set` returns
+exactly `[s]` for s3, s24 and s53. Not a thin separate sector, and not the
+pair of opposed caps we built from E1M1 s125 -- that is a different, double
+arrangement, and the basic form is one fin.
+
+Also demonstrated there, one sector each and all fixtured: s6 self-closing on
+`wait_time`, s8 keyed, s24 the same law drawing along x instead of y, and s21
+driving a light on **command 5** -- kCmdLink, which `SetSpriteState` excludes
+from its evSend guards precisely because it couples state continuously
+instead of firing an edge.
+
+**The rule that follows: consult maps/blood/mechanism FIRST for any mechanism
+question, and fixture what you consult.**
 
 ## The demonstration maps, and two things they said plainly
 
