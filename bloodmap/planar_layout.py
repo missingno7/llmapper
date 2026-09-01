@@ -977,6 +977,22 @@ class PlanarLayout:
         self.painted.setdefault(key, {}).update(
             {k: int(v) for k, v in fields.items()})
 
+    def _preflight_swept(self, disk) -> None:
+        """Refuse a layout whose mechanisms break their own geometry."""
+        try:
+            from .swept_state import run as swept_run
+        except Exception:
+            return
+        report = swept_run(disk)
+        if report["problems"]:
+            listing = "\n  " + "\n  ".join(report["problems"])
+            raise PlanarLayoutError(
+                "%d mechanism(s) break their geometry somewhere in "
+                "their travel:%s\nEvery other check reads the pose the "
+                "map is saved in, and a moving sector is only in that "
+                "pose for an instant."
+                % (len(report["problems"]), listing))
+
     def _apply_painted_walls(self, builder, allocations) -> None:
         for (region_id, edge), fields in self.painted.items():
             wall_id = self._wall_named(builder, allocations, region_id, edge,
@@ -1772,6 +1788,11 @@ class PlanarLayout:
         )
         try:
             construction_preflight(diagnostics)
+            #: And the poses the map is NOT saved in. Everything above reads
+            #: the rest pose; a moving sector is in it for one instant, and a
+            #: travel that inverts the sector receiving it is invisible until
+            #: something steps the motion.
+            self._preflight_swept(builder.level.to_disk_map())
         except AuthoredGeometryError as exc:
             raise PlanarLayoutError(str(exc)) from exc
         owners = [-1] * len(builder.level.walls)

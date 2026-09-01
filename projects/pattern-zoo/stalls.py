@@ -115,6 +115,11 @@ CH_CASKET = 309
 #: length change read as the fabric gathering.
 CURTAIN_DEPTH = 128
 
+#: The oracle's lid: 2048 of a 2176 footprint at rest, 128 when open.
+CASKET_LID = 2048
+#: The ergonomic assist, E1M1 s30's category: it boosts the body out.
+CASKET_ASSIST = 6144
+
 #: The sky, which may only appear with the parallax bit and is the only
 #: thing that may. bloodmap/usage_kinds.py carries the law.
 SKY = 2500
@@ -604,41 +609,6 @@ def sliding_gate_stall(layout, stall, box, back, *, floor_z, ceiling_z, skin, **
           channel=CH_GATE, busy_time=20)
 
 
-def curtain(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
-    """A curtain hung in a timber proscenium, with a stage behind it.
-
-    The owner's rule: a curtain hangs in a doorway or a proscenium, never on
-    open masonry. So the opening is framed and narrower than the wall, and
-    what it hides is a small lit stage -- the thing a curtain is drawn across.
-    """
-    wall, floor, ceiling = skin
-    header = floor_z - 3 * PLAYER_HEIGHT // 2
-    strip = _gate(layout, stall, box, back, "curtain",
-                  floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
-                  channel=CH_CURTAIN, busy_time=40, depth=768,
-                  frame=3 * U, header_z=header,
-                  leaf={"leaf_picnum": CURTAIN_TILE,
-                        "tile_width": CURTAIN_TILE_W,
-                        "tile_height": CURTAIN_TILE_H})
-    stage = _slice(back, box, REVEAL + 768, 2 * U)
-    layout.add_region(
-        "curtain:stage", _rect(stage),
-        floor_z=floor_z - PLAYER_HEIGHT // 4, ceiling_z=ceiling_z,
-        wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
-        declared_zero_exit=True,
-        intent={"purpose": "curtain: the stage it is drawn across"})
-    b1, b2 = _far(strip, back, box)
-    layout.add_connection("curtain:c1", "curtain:gate", "curtain:stage",
-                          a1=b1, a2=b2, min_width=U // 2)
-    layout.place_on_floor("curtain:statue", "curtain:stage", local=(0.5, 0.5),
-                          **furnish("statue"))
-    sx0, sy0, sx1, sy1 = stage
-    for index, t in enumerate((0.25, 0.75)):
-        layout.place_on_wall(f"curtain:sconce:{index}", "curtain:stage",
-                             a1=(sx1, sy1), a2=(sx0, sy1), t=t,
-                             height_player_heights=1.2, **furnish("sconce"))
-
-
 def shelf_secret(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     wall, floor, ceiling = skin
     #: Framed, so the shelf is narrower than the wall it sits in -- which is
@@ -677,77 +647,94 @@ def shelf_secret(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
 
 
 def casket(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
-    """E1M1's casket, through `mechanism.planar_door`.
+    """A lid you stand on, that slides aside and drops you into the stack.
 
-    The lid opens by moving the BOUNDARY between the hole you are in and the
-    cover beside it: one flagged wall, whose travel re-partitions plan area
-    between the two. `effects.payload_shape` names that arrangement
-    "boundary re-partition" and finds 44 of them across the campaign, so this
-    is a family and not a one-off.
+    Built to `maps/blood/mechanism/casket.map`, the owner's oracle: ONE
+    footprint SPLIT by a sliding boundary into a LID and a HOLE, the lid a
+    step above the hole it covers, and the hole carrying the room-over-room
+    link down to the space below. The revealed hole IS the passage; there is
+    no pocket hidden inside a bigger room.
 
-    The floor also rises as it opens -- the owner's ERGONOMIC-ASSIST motion,
-    which lifts the player out of the coffin and gates nothing. It is the z
-    verb composed on the same 614 sector, which is E1M1's own proof that the
-    two XSECTOR z states are not a type-600 privilege.
+    v3 got the motion onto the wrong sector and placed it the wrong way: a
+    travel of 3072 into a cover only 768 deep, so the boundary swept 2304
+    units past the cover's far wall and turned it inside out. Every static
+    validator passed it, because they all read the pose the map is SAVED in
+    and a moving sector is in that pose for one instant. `swept_state` is the
+    gate that catches it now, and the constructor derives and clamps what the
+    caller used to be trusted with.
 
-    What is still missing is the room-over-room half, and it is lettered as
-    such: E1M1's is four sectors in two pairs, stack-linked, and PlanarLayout
-    has no stack link at all.
+    The E1M1 dialect is chosen over the oracle's for one reason: the motor
+    goes on the HOLE, which is the sector the player is standing in, so it
+    can carry the ergonomic-assist lift that raises the floor and boosts you
+    back out. On the lid that would lift nothing.
     """
     wall, floor, ceiling = skin
     out = _outward(back, box)
     bx0, by0, bx1, by1 = back
     mid = (by0 + by1) // 2
-    width = 3 * U
+    width = 2 * U
     low, high = mid - width // 2, mid + width // 2
     near = box[2] if out > 0 else box[0]
-    hole_far = near + out * 3 * U
-    cover_far = hole_far + out * 768
-    hx0, hx1 = min(near, hole_far), max(near, hole_far)
-    cx0, cx1 = min(hole_far, cover_far), max(hole_far, cover_far)
-    planar_door(
+    #: The oracle's proportions: a 2176 footprint travelled 1920, which
+    #: leaves 128 on the far side at each end of the motion.
+    span, travel = 2176, 1920
+    far = near + out * span
+    fx0, fx1 = min(near, far), max(near, far)
+    #: The lid is the half against the room, so the visitor walks onto it.
+    #: `travel` is signed along +x, and the constructor works out which half
+    #: is which from that sign.
+    #: The lid is always the half touching the room, so which end of the
+    #: footprint it occupies flips with the branch's side -- and with it the
+    #: sign of the travel, since the constructor reads the lid off that sign.
+    rest = fx0 + CASKET_LID if out > 0 else fx1 - CASKET_LID
+    built = planar_door(
         layout, "casket",
-        hole_region="casket:hole", cover_region="casket:cover",
-        hole_outline=_rect((hx0, low, hx1, high)),
-        cover_outline=_rect((cx0, low, cx1, high)),
-        boundary=((hole_far, low), (hole_far, high)),
-        travel=(out * 3 * U, 0), channel=CH_CASKET,
+        footprint=(fx0, low, fx1, high), axis="x", split=rest,
+        travel=(-travel if out > 0 else travel),
+        channel=CH_CASKET, lid_region="casket:lid",
+        hole_region="casket:hole",
         floor_z=floor_z, ceiling_z=ceiling_z,
-        lift_out=PLAYER_HEIGHT // 3, transmits=CH_CASKET + 1,
+        motor="hole", flags="both",
+        lift_out=CASKET_ASSIST, transmits=CH_CASKET + 1,
         wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
-        declared_zero_exit=True)
-    layout.add_connection("casket:c0", stall, "casket:hole",
+        hole_kwargs={"declared_zero_exit": True})
+    #: On to the lid from the room. The lid is a step up, which is what makes
+    #: the open hole read as somewhere to drop into.
+    layout.add_connection("casket:c0", stall, "casket:lid",
                           a1=(near, low), a2=(near, high), min_width=U // 2)
-    layout.add_connection("casket:c1", "casket:hole", "casket:cover",
-                          a1=(hole_far, low), a2=(hole_far, high),
-                          min_width=U // 2)
-    #: The room-over-room half, which until now was lettered as a gap.
-    #: E1M1's casket is FOUR sectors in two pairs, one above the other and
-    #: stack-linked so the revealed holes meet through the plane. The grave
-    #: below sits on its own layer, which is what lets it share plan area
-    #: with the hole, and `stack_link` pairs the two marker sprites on their
-    #: XSPRITE data_1 -- on statnum 0, because statnum 10 is culled at load
-    #: and a link built there is a link that does not exist.
-    grave = (hx0 + 512, low + 512, hx1 - 512, high - 512)
+
+    #: The stack. A Blood room-over-room link is a TRANSLATION AT A PLANE,
+    #: not two rooms stacked in plan: the marker pair defines the offset
+    #: applied when a body crosses, so the two halves may sit anywhere. The
+    #: oracle's are five thousand units apart in y -- s3 up at -2496 and s6
+    #: down at -7872 -- and that is why neither needs a layer or a declared
+    #: overlap. This one puts the space below just beyond the footprint.
+    shift = out * (span + 512)
+    gx0, gx1 = fx0 + shift, fx1 + shift
     layout.add_region(
-        "casket:grave", _rect(grave),
+        "casket:grave", _rect((min(gx0, gx1), low, max(gx0, gx1), high)),
         floor_z=floor_z + MEDIAN_CLEAR, ceiling_z=floor_z,
         wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
-        layer="under", declared_zero_exit=True,
-        intent={"purpose": "casket: the space below, met through the link"})
-    middle = ((hx0 + hx1) // 2, (low + high) // 2)
+        declared_zero_exit=True,
+        intent={"purpose": "casket: the stack below, met through the link"})
+    #: The marker pair carries the offset. Upper at the hole's own anchor --
+    #: the strip that is hole in every pose -- and lower at the point that
+    #: corresponds to it, so a body arrives where it fell.
+    anchor = built["link_anchor"]
     layout.stack_link(10, "casket:hole", "casket:grave",
-                      upper_at=middle, lower_at=middle,
+                      upper_at=anchor, lower_at=(anchor[0] + shift, anchor[1]),
                       upper_z=floor_z, lower_z=floor_z + MEDIAN_CLEAR)
 
-    #: kChannelLevelStart is 7 and fires before the player moves, which is how
-    #: E1M1 opens its casket with a switch nobody can reach.
+    #: One switch on the wall, pushed, toggling the channel both halves hear
+    #: -- the oracle's arrangement, and E1M1 opens its casket the same way
+    #: except that its switch is on kChannelLevelStart and unreachable.
     x0, y0, x1, _y1 = box
     layout.place_on_wall("casket:switch", stall, a1=(x0, y0), a2=(x1, y0),
                          t=0.5, height_player_heights=0.55,
                          behavior={"tx_id": CH_CASKET, "command": 1,
                                    "trigger_push": 1},
                          **SWITCH)
+    return built
 
 
 def curtain(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):

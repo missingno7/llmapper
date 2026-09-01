@@ -317,6 +317,23 @@ def usage_laws(disk) -> tuple[list[str], list[str]]:
     return failures, warnings
 
 
+def swept_geometry(disk) -> tuple[list[str], list[str]]:
+    """Every mechanism stepped through its whole travel. (failures, notes).
+
+    The gate the casket defect lived behind. Everything else here -- and
+    every static validator in the project -- reads the pose the map is SAVED
+    in, and a moving sector is in that pose for one instant of its life. The
+    zoo shipped a boundary that swept 2304 units past the far wall of the
+    sector receiving it, and nothing noticed.
+    """
+    try:
+        from bloodmap.swept_state import run as swept_run
+    except Exception:
+        return [], []
+    report = swept_run(disk)
+    return list(report["problems"]), list(report["notes"])
+
+
 def leaned_on(disk) -> list[str]:
     """Tiles used far out of proportion to the campaign's own use of them."""
     try:
@@ -416,7 +433,9 @@ def run(map_path: pathlib.Path = MAP,
     labels = unlettered(disk, manifest)
     laws, warnings = usage_laws(disk)
     leaned = leaned_on(disk)
-    problems.extend(floats + stranded + masked + labels + laws + leaned)
+    swept, swept_notes = swept_geometry(disk)
+    problems.extend(floats + stranded + masked + labels + laws + leaned
+                    + swept)
 
     from collections import Counter
     types = Counter(int(s.fields["type"]) for s in disk.sectors)
@@ -432,6 +451,8 @@ def run(map_path: pathlib.Path = MAP,
         "lettering": labels,
         "usage_law_failures": laws,
         "usage_kind_warnings": warnings,
+        "swept_geometry": swept,
+        "swept_notes": swept_notes,
         "leaned_on": leaned,
         "problems": problems,
         "passed": not problems,
@@ -449,9 +470,10 @@ def main() -> int:
             print(f"  !! {line}")
     for line in (report["floating_sprites"] + report["stranded_sections"]
                  + report["masked_surfaces"] + report["lettering"]
-                 + report["usage_law_failures"] + report["leaned_on"]):
+                 + report["usage_law_failures"] + report["leaned_on"]
+                 + report["swept_geometry"]):
         print(f"  !! {line}")
-    for line in report["usage_kind_warnings"]:
+    for line in report["usage_kind_warnings"] + report["swept_notes"]:
         print(f"  ?  {line}")
     print("PASS" if report["passed"]
           else f"FAIL: {len(report['problems'])} problems")
