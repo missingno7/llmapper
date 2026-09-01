@@ -182,19 +182,58 @@ def blood_sweep(level: Any, sector_id: int, *, steps: int = 16) -> list[Polygon]
         a6, a7, a8 = a4, a5, float(int(m0["angle"]))
         a9, a10, a11 = float(m1["x"]), float(m1["y"]), float(int(m1["angle"]))
 
+    #: A flagged wall drags its OWN vertex and its `point2`'s -- unless that
+    #: next wall is itself flagged, in which case it moves under its own
+    #: sign. `triggers.cpp:902` and `:917`:
+    #:
+    #:     if (wall[nWall].cstat&16384) {
+    #:         DragPoint(nWall, ...);
+    #:         if ((wall[v10].cstat&49152) == 0) DragPoint(v10, ...);
+    #:
+    #: That propagation is how flagging ONE wall translates a whole EDGE,
+    #: and without it the model shears every Marked slide instead of sliding
+    #: it: the oracle's lid came back as a trapezoid of 2228224 units where
+    #: the engine gives a 2048x128 strip. Every conclusion drawn from a swept
+    #: area before this was measuring the wrong shape.
+    CARRY = 16384 | 32768
+
+    def _signs() -> list[float]:
+        out: list[float | None] = [None] * len(walls)
+        for index in range(len(walls)):
+            cstat = int(level.walls[start + index].fields["cstat"])
+            if all_walls:
+                out[index] = 1.0
+                continue
+            if cstat & 16384:
+                out[index] = 1.0
+            elif cstat & 32768:
+                out[index] = -1.0
+        if not all_walls:
+            for index in range(len(walls)):
+                cstat = int(level.walls[start + index].fields["cstat"])
+                if not cstat & CARRY:
+                    continue
+                sign = 1.0 if cstat & 16384 else -1.0
+                nxt = int(level.walls[start + index].fields["point2"]) - start
+                if not 0 <= nxt < len(walls):
+                    continue
+                if int(level.walls[start + nxt].fields["cstat"]) & CARRY:
+                    continue
+                out[nxt] = sign
+        return [0.0 if value is None else value for value in out]
+
+    signs = _signs()
+
     def place(source: Polygon, busy: float) -> Polygon:
         vc = a6 + (a9 - a6) * busy
         v8 = a7 + (a10 - a7) * busy
         vbp = a8 + (a11 - a8) * busy
         frame: Polygon = []
         for index, point in enumerate(source):
-            cstat = int(level.walls[start + index].fields["cstat"])
-            forward = bool(cstat & 16384)
-            reverse = bool(cstat & 32768)
-            if not all_walls and not forward and not reverse:
+            sign = signs[index]
+            if not sign:
                 frame.append(point)
                 continue
-            sign = -1.0 if (not all_walls and reverse) else 1.0
             moved = point
             if vbp:
                 moved = rotate_about(point, round(sign * vbp), (a4, a5))
