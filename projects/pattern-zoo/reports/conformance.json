@@ -179,8 +179,8 @@
     },
     {
       "region": "sliding_gate:gate",
-      "sector": 74,
-      "construct": "sprite payload sector 74",
+      "sector": 75,
+      "construct": "sprite payload sector 75",
       "conforms": true,
       "measured": {
         "leaves": 2,
@@ -196,8 +196,8 @@
     },
     {
       "region": "turnstile_pair:a",
-      "sector": 55,
-      "construct": "turnstile sector 55",
+      "sector": 56,
+      "construct": "turnstile sector 56",
       "conforms": true,
       "measured": {
         "blades": 4,
@@ -227,8 +227,8 @@
     },
     {
       "region": "turnstile_pair:b",
-      "sector": 56,
-      "construct": "turnstile sector 56",
+      "sector": 57,
+      "construct": "turnstile sector 57",
       "conforms": true,
       "measured": {
         "blades": 4,
@@ -258,8 +258,8 @@
     },
     {
       "region": "turnstile_same:a",
-      "sector": 64,
-      "construct": "turnstile sector 64",
+      "sector": 65,
+      "construct": "turnstile sector 65",
       "conforms": true,
       "measured": {
         "blades": 4,
@@ -289,8 +289,8 @@
     },
     {
       "region": "turnstile_same:b",
-      "sector": 65,
-      "construct": "turnstile sector 65",
+      "sector": 66,
+      "construct": "turnstile sector 66",
       "conforms": true,
       "measured": {
         "blades": 4,

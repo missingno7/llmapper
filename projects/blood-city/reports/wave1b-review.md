@@ -164,3 +164,110 @@ Nothing is half-built.
 2. **The venue presentation chain** — curtain plus a command-5 Link, with the
    arbiter reporting the collision.
 3. **Paired half-roads or a seam move** — blocked on the owner's answer.
+
+---
+
+# Continuation: Parts B and C
+
+Frames: `reports/looks/wave1c/frames/` (3).
+
+## Part B — storefront glass, promoted
+
+`projects/blood-city/level/glass.py` had the E6M1 recipe read to the field
+and had been glazing Gravesend for phases. It was **city-local**, so no other
+project could call it and the zoo's conformance rule could not bind it.
+
+Now `bloodmap/glass.py`, with:
+
+- **the HOLDER mediation** — `holder(inside, outside, span)`. A window is a
+  relationship between two rooms, not a property of a wall, and one room
+  cannot hold a pane. Glazing a one-sided wall gives a translucent pier;
+  `glaze` reports `skipped_solid` rather than quietly doing nothing.
+- **`pane_faults`** — the two ways a pane dies silently. Without an XWALL it
+  is permanent (NBlood needs `wall.extra > 0` before it even looks at
+  `triggerVector`); on a one-sided wall it has nothing behind it.
+- **`breaks_to`** — what a cstat becomes after the break, so a map's
+  post-break topology is readable without running the engine. kWallGib is
+  the one mechanism in Blood that REOPENS a blocked wall.
+
+**A zoo exhibit came with it**: SHOP WINDOW, in the SHOP section — a display
+box with two urns and a pane between it and the bay. 2 panes (both sides of
+the pair, which is what `trTriggerWall` clears), 3 solid walls correctly
+skipped, 0 faults.
+
+**And the conformance rule was not binding either new module.**
+`COVERED_MODULES` in `tests/test_pattern_zoo.py` is an explicit tuple, and
+`bloodmap.glass` and `bloodmap.street` were not in it — so a promotion could
+land with nothing holding it to anything. Both are added; `street`'s
+functions carry honest skip reasons (the zoo is a gallery of bays with no
+street runs and no district seams, so there is nothing for a carriageway to
+be laid on — its exhibit is Gravesend's own west street).
+
+City: 24 panes, 0 faults. Zoo: 26 self-read claims, 14 constructs conforming,
+0 errors.
+
+## Part C — the Aldermack's curtain
+
+Built, wired, and **it reports one deviation against the tutorial**, which is
+the authoring-loop law doing its job.
+
+The city speaks the levelprog tree and `mechanism.curtain` speaks
+PlanarLayout, so this follows `turnstiles.py`: a new `mechanism.curtain_spec`
+returns the FACTS — outline, fabric edges, flagged edge, marker points and
+the closed-span repeats — and `level/curtains.py` builds the geometry in the
+tree, then furnishes on the compiled layout.
+
+```text
+markers  2      state-anchored: type 3 for OFF, type 4 for ON
+flagged  1      the fin's free end, and only that
+fabric   3      the tab's two sides and its end
+buttons  3      an XWALL on each cloth face, as the tutorial wires a shove
+closed texel scale  [2.0, 2.0, 2.0]   -- exactly natural
+```
+
+**The fabric law holds to the unit.** The repeat is authored for the CLOSED
+span, so the drape reads naturally drawn across and squashes as it gathers.
+
+**The deviation, reported by the city's own build output:**
+
+```text
+curtain s37: motion_set [23, 37]
+    DEVIATES isolation: wanted [37], found [23, 37]
+```
+
+The fin is cut as an ISLAND in the auditorium floor, so all eight of its
+walls are shared with the house — including the tab's, where
+DOOR-CURTAINS s3 has its tab walls ONE-SIDED. The motion therefore drags the
+auditorium's hole along with it. That is geometrically consistent (the hole
+tracks the fin exactly, and the swept gate passes 1/1 sound with 0 problems)
+but it is **not how a curtain is built**: the tutorial's hangs in a wall
+opening with solid ends, so nothing outside it can move at all.
+
+The template was NOT loosened to make this pass. Relocating the curtain into
+the wall between stage-side and house-side is the fix, and it is filed below.
+
+**The command-5 Link is wired**: the curtain transmits on channel 341 with
+`CMD_LINK`, the stage receives it as a shade wave. kCmdLink is sent outside
+`SetSpriteState`'s edge guards precisely because it couples state
+continuously — the light tracks the curtain rather than switching when it
+finishes. The arbiter was asked before the link was wired and reported **no
+collision**: the curtain's rx and tx are different slots, and the stage's
+shade wave is a different sector.
+
+**On the frames:** `curtain_close` shows the fin at its SAVED pose, which is
+ON — gathered to one side as a narrow ribbon. That is correct. The closed
+pose is the one you see in game with `state` 0, and seeing it here would need
+the state-preview snap the zoo uses.
+
+## Still not done
+
+- The curtain's isolation deviation (above).
+- A state-preview pair for the city's mechanisms, the way the zoo has one.
+- The seam decision remains with the owner.
+
+## For the promotion queue
+
+1. **Set the Aldermack's curtain in a wall, not in the floor** — so its tab
+   is one-sided and the house cannot move.
+2. **State-preview pairs for blood-city**, so a city mechanism gets the same
+   OFF/ON read-back the zoo's do.

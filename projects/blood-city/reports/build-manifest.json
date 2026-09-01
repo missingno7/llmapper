@@ -195,6 +195,26 @@
     ]
   },
   "roadways": 3,
+  "stage_curtain": {
+    "markers": 2,
+    "flagged": 1,
+    "fabric": 3,
+    "buttons": 3,
+    "arbitration": []
+  },
+  "stage_light": {
+    "$schema": "llmapper.arbitration",
+    "schema_version": 1,
+    "decisions": [],
+    "lines": [],
+    "degraded": [],
+    "wired": {
+      "channel": 341,
+      "command": 5,
+      "from": "region:gravesend/theatre_row/aldermack/stage_curtain",
+      "to": "region:gravesend/theatre_row/aldermack/auditorium/house/stage"
+    }
+  },
   "street_lamps": {
     "placed": 6,
     "skipped": 0,
@@ -353,9 +373,9 @@
   "lighting": {
     "lights": 30,
     "rays_cast": 549489,
-    "surfaces_lit": 774,
-    "surfaces_protected": 166,
-    "walls_lit": 684,
+    "surfaces_lit": 778,
+    "surfaces_protected": 167,
+    "walls_lit": 687,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
@@ -450,7 +470,7 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 428,
+    "sprites": 430,
     "wall_sprites": 228,
     "planes": 38,
     "clashing_pairs": 0,
@@ -466,6 +486,27 @@
       "lintel": 14
     }
   },
+  "curtain_conformance": [
+    {
+      "sector": 37,
+      "measured": {
+        "flagged_walls": 1,
+        "motion_set": [
+          23,
+          37
+        ],
+        "fabric_walls": 3,
+        "closed_texel_scale": [
+          2.0,
+          2.0,
+          2.0
+        ]
+      },
+      "deviations": [
+        "isolation: wanted [37], found [23, 37] (the fin keeps every moved vertex inside its own outline; a curtain that deforms its room is not built as one)"
+      ]
+    }
+  ],
   "rules": {
     "total": 97,
     "by_severity": {
