@@ -93,6 +93,29 @@ class SingleHomeTests(unittest.TestCase):
             self.assertNotIn("NON_VISIBLE_CATEGORIES = ", source,
                              f"{module}.py must not keep its own copy")
 
+    def test_the_rendering_law_has_exactly_one_reader(self):
+        """Which band the engine draws which tile on lives in
+        `render_slots.py` and nowhere else. It was first written as three
+        lines inside `conformance.fabric_is_visible` -- a cstat test with no
+        heights in it -- which is how the E1M1 "pelmet" was recorded as a
+        drawn valance when the step is on the other sector's side."""
+        from bloodmap import render_slots
+
+        self.assertTrue(callable(render_slots.draws_in_walkable_band))
+        self.assertTrue(callable(render_slots.draws_on_a_step))
+        source = (PACKAGE / "conformance.py").read_text(encoding="utf-8")
+        self.assertIn("draws_in_walkable_band", source)
+        for copy in ("cstat & MASKED) or bool(cstat & ONE_WAY",
+                     'ceiling_z"]) != int(neighbour["ceiling_z"]'):
+            self.assertNotIn(copy, source,
+                             "conformance.py must ask render_slots, not "
+                             "re-derive the rendering law from the flags")
+
+    def test_the_rendering_law_reader_stays_a_leaf(self):
+        """A transcription of `engine.cpp`'s wall pass depends on nothing in
+        the package: it must stay citable and testable on a hand-built map."""
+        self.assertEqual(module_level_imports("render_slots"), set())
+
     def test_sector_kinds_are_decided_in_reachability(self):
         from bloodmap import reachability
 

@@ -274,22 +274,31 @@ CURTAIN_TEMPLATE = {
 #: two-sided AND one-way (cstat 32); the masked path (cstat 16) is what
 #: reaches a two-sided wall's middle otherwise. So a two-sided, unmasked wall
 #: shows its fabric on the STEP bands and nowhere a body walks.
+#:
+#: The whole law lives in `bloodmap.render_slots`, which reads the two
+#: sectors' heights as well as the flags; these two constants stay here only
+#: because `curtain_dialect` names a dialect by the raw bit.
 MASKED, ONE_WAY = 16, 32
 
 
-def fabric_is_visible(disk: Any, wall_id: int, sector_id: int) -> bool:
+def fabric_is_visible(disk: Any, wall_id: int, sector_id: int,
+                      draws: Any = None) -> bool:
     """Does this fabric wall draw in the band a body walks through?
 
     The relation the project had no way to ask. A curtain whose fabric sits
     on a two-sided unmasked wall passes every other gate and shows nothing:
     the tile is right, the cstat is legal, and the engine draws it only above
     the head or below the feet.
+
+    One reader owns the rendering law: `render_slots.draws_in_walkable_band`.
+    This delegates rather than re-deciding from the flags, which also buys
+    the two cases a flag test cannot see -- a masked wall between sectors
+    whose ceilings and floors leave no opening draws nothing, and neither
+    does a one-sided wall in a zero-height sector.
     """
-    fields = disk.walls[wall_id].fields
-    if int(fields["next_sector"]) < 0:
-        return True                       # one-sided: the wall IS the fabric
-    cstat = int(fields["cstat"])
-    return bool(cstat & MASKED) or bool(cstat & ONE_WAY)
+    from .render_slots import draws_in_walkable_band
+
+    return draws_in_walkable_band(disk, wall_id, draws)
 
 
 def curtain_dialect(disk: Any, sector_id: int,
@@ -303,14 +312,23 @@ def curtain_dialect(disk: Any, sector_id: int,
     * **slot** -- `void` when the fabric walls are one-sided (the leaf
       retracts into solid geometry) or `pocket` when they are two-sided into
       a real sector, which then has to be MASKED to draw at all.
-    * **pelmet** -- fabric on a two-sided wall with a genuine step, which
-      draws above the opening. E1M1 s125's five 1203-1207 walls are this: a
-      valance, not the curtain body.
+    * **pelmet** -- fabric on a two-sided wall where the PORTAL steps, so
+      there is a band above (or below) the opening rather than across it.
+      E1M1 s125's five 1203-1207 walls are this. Measured through
+      `render_slots`, not by comparing the two sectors' `ceiling_z`, which
+      is a copy of the rendering law and gets it wrong under a slope. The
+      reader also settles which side draws the step, and for E1M1 it is not
+      this one: s122's ceiling is 65536 above s125's, so the step is on the
+      hall's side and wears the hall's tile 109. Those five walls' 146 is
+      drawn nowhere -- the "valance" is an editor leftover. Counted here
+      because the geometry IS a pelmet's; `wall-tile-is-drawn-somewhere` is
+      what says the tile on it is not seen.
     * **link** -- command 5, which couples a light to the curtain's busy
       instead of switching it at the end of the travel.
     """
     from .curriculum import _extra
     from .motion import flagged_walls
+    from .render_slots import draws_on_a_step, render_slots
 
     sector = disk.sectors[sector_id]
     start = int(sector.fields["wall_ptr"])
@@ -322,15 +340,15 @@ def curtain_dialect(disk: Any, sector_id: int,
     one_sided = [i for i in fabric
                  if int(disk.walls[i].fields["next_sector"]) < 0]
     masked = [i for i in fabric if int(disk.walls[i].fields["cstat"]) & MASKED]
+    draws = render_slots(disk)
     pelmet = []
     for index in fabric:
         fields = disk.walls[index].fields
-        other = int(fields["next_sector"])
-        if other < 0 or int(fields["cstat"]) & (MASKED | ONE_WAY):
+        if int(fields["next_sector"]) < 0:
             continue
-        neighbour = disk.sectors[other].fields
-        if (int(sector.fields["floor_z"]) != int(neighbour["floor_z"])
-                or int(sector.fields["ceiling_z"]) != int(neighbour["ceiling_z"])):
+        if int(fields["cstat"]) & (MASKED | ONE_WAY):
+            continue
+        if draws_on_a_step(disk, index, draws, either_side=True):
             pelmet.append(index)
     return {
         "leaves": len(flagged_walls(disk, sector_id)),
@@ -429,8 +447,11 @@ def measure_curtain(disk: Any, sector_id: int,
             "the deformation is only visible on the curtain texture"))
         return out
 
+    from .render_slots import render_slots as _render_slots
+
+    _draws = _render_slots(disk)
     visible = [i for i in fabric_walls
-               if fabric_is_visible(disk, i, sector_id)]
+               if fabric_is_visible(disk, i, sector_id, _draws)]
     out.measured["fabric_visible"] = len(visible)
     if len(visible) < max(1, leaves):
         out.deviations.append(Deviation(

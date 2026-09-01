@@ -140,7 +140,24 @@ class CandidateTests(unittest.TestCase):
     #: `candidate_v7.py` emits it, so it did not come from the generator and
     #: is not this run's to rewrite -- a shipped artifact of another project
     #: gets reported, not silently patched.
-    KNOWN = {("transmitter-reports-an-edge", "sprite 290")}
+    #: Four more, found 2026-09-01 when `tile-sits-in-an-attested-slot`
+    #: started judging walls by the BAND the engine draws rather than the
+    #: field the tile is stored in (`bloodmap.render_slots`,
+    #: `knowledge/blood/design/usage-kinds-v2.json`). Walls 577, 579, 593 and
+    #: 595 are a masked pair between sectors 76 and 77, cstat 0x51
+    #: (block+masked+hitscan) with `over_picnum` **110** -- the bulk wall
+    #: stone, which the campaign draws 2513 times as a white wall, 574 times
+    #: on an upper step and 513 on a lower one, and **never once** as a
+    #: masked middle. Blood builds masked panes out of doors, grates and
+    #: glass (266, 330, 463, 502 ...); this one is made of the wall. The
+    #: storage vocabulary could not see it at all: it checked `picnum` on
+    #: walls and never looked at `over_picnum`. Reported, not patched --
+    #: candidate-v7 is another project's shipped artifact.
+    KNOWN = {("transmitter-reports-an-edge", "sprite 290"),
+             ("tile-sits-in-an-attested-slot", "wall[577]"),
+             ("tile-sits-in-an-attested-slot", "wall[579]"),
+             ("tile-sits-in-an-attested-slot", "wall[593]"),
+             ("tile-sits-in-an-attested-slot", "wall[595]")}
 
     def test_the_candidate_breaks_no_engine_law(self):
         from bloodmap import rules_blood            # noqa: F401

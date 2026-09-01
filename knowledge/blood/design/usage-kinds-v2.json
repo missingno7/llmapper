@@ -6,7 +6,7 @@
  "maps": 43,
  "about": "For every picnum, which RENDERED slots the campaign is attested to show it in and how often. A slot is a band the engine draws: one_sided_middle (picnum of a white wall), two_sided_upper and two_sided_lower (picnum on the ceiling / floor step of a red wall, the lower one swapped to the partner's picnum under cstat&2), masked_middle (over_picnum of a cstat&16 wall), oneway_middle (over_picnum of a cstat&32 wall), floor, ceiling, floor_parallax, ceiling_parallax, sprite_face, sprite_wall, sprite_floor. Two counts beside them are NOT slots: wall_undrawn (the authored picnum is on screen nowhere from either side) and over_unread (an over_picnum the engine never reads). v1 counted where a tile is STORED; this counts where it is SEEN, so a tile the campaign only ever stores on invisible walls has no rendered wall slot at all.",
  "how": "bloodmap.render_slots over the campaign through the corpus registry, plus the ART for tile sizes and mask ratios. tools/mine_usage_kinds.py; reports/blood-usage-kinds-rendered.json carries the full mine and the diff against v1.",
- "engine": "NBlood/source/build/src/engine.cpp:4685 (masked deferral), :4688-4724 (upper step), :4799-4836 (lower step and the cstat&2 swap), :4938-4940 (white and one-way walls), :7214-7231 (masked middle); mirrors.cpp:37,466-469 (the mirror tile bypass)",
+ "engine": "NBlood/source/build/src/engine.cpp:4686 (masked deferral), :4688-4724 (upper step), :4799-4836 (lower step and the cstat&2 swap), :4938-4940 (white and one-way walls), :7217-7231 (masked middle); mirrors.cpp:37,466-469 (the mirror tile bypass)",
  "sky_family": {
   "tiles": [
    2500,
@@ -78,7 +78,7 @@
   "masked_middle": 519,
   "one_sided_middle": 51560,
   "one_sided_walls": 52422,
-  "oneway_middle": 33,
+  "oneway_middle": 34,
   "over_unread": 2626,
   "sprite_face": 19860,
   "sprite_floor": 1232,
@@ -86,7 +86,7 @@
   "two_sided_lower": 16633,
   "two_sided_upper": 11789,
   "two_sided_walls": 60839,
-  "wall_undrawn": 29188
+  "wall_undrawn": 29187
  },
  "usage": {
   "-1": {
@@ -2624,7 +2624,7 @@
    "ceiling": 52,
    "floor": 51,
    "one_sided_middle": 7,
-   "wall_undrawn": 1
+   "oneway_middle": 1
   },
   "505": {
    "sprite_face": 15

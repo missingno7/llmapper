@@ -62,9 +62,9 @@
   "flat-tile-power-of-two": {
    "rule": "flat-tile-power-of-two",
    "maps": 43,
-   "population": 0,
-   "violations": 0,
-   "rate": 0.0,
+   "population": 26383,
+   "violations": 7,
+   "rate": 0.00027,
    "severity": "error",
    "statement": "a floor or ceiling tile must have power-of-two sides",
    "source": "NBlood/source/build/src/tiles.cpp:281 tileUpdatePicSiz"
@@ -142,7 +142,7 @@
   "mask-tile-off-plain-surfaces": {
    "rule": "mask-tile-off-plain-surfaces",
    "maps": 43,
-   "population": 0,
+   "population": 78805,
    "violations": 0,
    "rate": 0.0,
    "severity": "error",

@@ -32,15 +32,20 @@ The law, for a wall seen from its own sector:
   `twal = (wal->cstat&2) ? &wall[wal->nextwall] : wal;
   setup_globals_wall1(twal, twal->picnum)` -- cstat bit 2 swaps in the
   PARTNER wall's picnum. Both floors parallaxed skips it (`:4799`).
-* **masked middle**: `over_picnum`, only when `(cstat&48) == 16` (`:4685`
-  `maskwall[maskwallcnt++] = z`), drawn later by `renderDrawMaskedWall`
+* **masked middle**: `over_picnum`, only when `(cstat&48) == 16` -- masked
+  AND NOT one-way (`:4685-4686` `if ((wal->cstat&48) == 16)
+  maskwall[maskwallcnt++] = z`), drawn later by `renderDrawMaskedWall`
   between the lower of the two ceilings and the higher of the two floors --
-  `:7214-7215` `z1 = max(nsec->ceilingz, sec->ceilingz); z2 =
+  `:7217-7218` `z1 = max(nsec->ceilingz, sec->ceilingz); z2 =
   min(nsec->floorz, sec->floorz)`, `:7231` `setup_globals_wall1(wal,
   wal->overpicnum)`.
 * **one-way middle**: `over_picnum`, when `cstat&32`, through the same
   branch as a one-sided wall (`:4938-4940`), after the steps have been
-  drawn; it is opaque and occupies the middle band between the steps.
+  drawn. `wallscan` there runs from `uplc` to `dplc` -- this sector's own
+  ceiling and floor -- but `umost`/`dmost` were already pushed in by the two
+  steps (`:4728-4740`, `:4847-4853`), so what survives is the middle band
+  between them. One-way beats masked: a wall carrying both bits fails
+  `(cstat&48) == 16` and never reaches the masked list.
 * **blocking (cstat&1) and hitscan (cstat&64) draw nothing.** Neither bit
   is read anywhere in the wall pass. They are clip masks: `clip.cpp:1491`
   `dawalclipmask = (cliptype & 65535)` with `build.h:225` `CLIPMASK0 =
@@ -51,10 +56,19 @@ The law, for a wall seen from its own sector:
   `picnum` is `kMirrorTile` (504, `:37`) gets `cstat |= CSTAT_WALL_1WAY` and
   `overpicnum = kMirrorTile` at level start, so the game turns it into a
   one-way wall and renders the reflection through it; a wall whose
-  `overpicnum` is 504 with a stack type is a room-over-room link (`:442`).
-  The mirror tile is therefore exempt from any "must draw" rule.
+  `overpicnum` is 504 with a stack XWALL type is a room-over-room link and
+  gets the same bit (`:442-451`). This reader applies the first transform
+  (`mirror_pass`, folded into `wall_draw`) because it changes the band: the
+  campaign's one two-sided 504 wall draws an `oneway_middle`, not nothing.
+  The stack case needs the XWALL type and is left to `bloodmap.layers`. The
+  mirror tile is exempt from any "must draw" rule either way.
+* **the sky**: parallax is a SURFACE bit, not a wall one. It removes the two
+  step bands when BOTH sectors carry it (`:4688`, `:4799`) and does nothing
+  at all to a one-sided or one-way wall, which draws its full height under
+  an open sky. So "sky wall" is not a band; the sky tiles are simply exempt
+  from a must-draw rule, as the mirror tile is.
 * **slopes**: endpoint heights come from `getzsofslopeptr`
-  (`engine.cpp:14333-14352`): `z += scale(heinum, j, i)` with `j` the
+  (`engine.cpp:14333-14354`): `z += scale(heinum, j, i)` with `j` the
   perpendicular distance from the sector's first wall and `i` the first
   wall's length, applied only when stat bit 2 is set. Blood runs with
   `enginecompatibilitymode = ENGINE_19960925` (`blood.cpp:1890`) so the
@@ -226,6 +240,24 @@ def _sloped(disk: Any, sector_index: int) -> bool:
 # the wall pass
 # ---------------------------------------------------------------------------
 
+def mirror_pass(picnum: int, over: int, cstat: int) -> tuple[int, int]:
+    """The one load-time edit Blood makes to a wall before it is ever drawn.
+
+    `mirrors.cpp:466-469` (`InitMirrors`, vanilla -- not under
+    NOONE_EXTENSIONS): a wall whose `picnum` is `kMirrorTile` (504, `:37`)
+    has `CSTAT_WALL_1WAY` forced on and `overpicnum` set to 504, so the file
+    and the running level disagree about the wall's flags. Returns the
+    (over_picnum, cstat) the renderer actually sees.
+
+    The sibling transform at `:442-451` -- `overpicnum == 504` on a
+    `kWallStack` XWALL -- also forces the bit, but it needs the wall's XWALL
+    type, which this reader does not take; `bloodmap.layers` owns stacks.
+    """
+    if picnum == MIRROR_TILE:
+        return MIRROR_TILE, cstat | CSTAT_ONE_WAY
+    return over, cstat
+
+
 def wall_draw(disk: Any, wall_index: int,
               owners: dict[int, int] | None = None) -> WallDraw:
     """What the engine draws for one wall, seen from its own sector.
@@ -240,9 +272,9 @@ def wall_draw(disk: Any, wall_index: int,
     end = disk.walls[int(wall["point2"])].fields
     x0, y0 = int(wall["x"]), int(wall["y"])
     x1, y1 = int(end["x"]), int(end["y"])
-    cstat = int(wall["cstat"])
     picnum = int(wall["picnum"])
-    over = int(wall["over_picnum"])
+    over, cstat = mirror_pass(picnum, int(wall["over_picnum"]),
+                              int(wall["cstat"]))
     next_sector = int(wall["next_sector"])
     next_wall = int(wall["next_wall"])
 
@@ -321,20 +353,20 @@ def wall_draw(disk: Any, wall_index: int,
             skipped.append("one-way middle: the opening between the two "
                            "sectors has no height")
     elif cstat & CSTAT_MASKED:
-        # engine.cpp:4685 defers it; :7214-7231 draws overpicnum there.
+        # engine.cpp:4686 defers it; :7217-7231 draws overpicnum there.
         if open_middle:
             bands.append(Band(MASKED_MIDDLE, over,
                               "masked wall: over_picnum between the lower "
                               "ceiling and the higher floor "
-                              "(engine.cpp:4685, 7214-7231)",
+                              "(engine.cpp:4686, 7217-7231)",
                               wall_index, "over_picnum", top, bottom))
         else:
             skipped.append("masked middle: the opening between the two "
-                           "sectors has no height (engine.cpp:7214-7215)")
+                           "sectors has no height (engine.cpp:7217-7218)")
     else:
         skipped.append("middle: neither masked (cstat&16) nor one-way "
                        "(cstat&32), so the opening is see-through and "
-                       "over_picnum is never read (engine.cpp:4685, 4938)")
+                       "over_picnum is never read (engine.cpp:4686, 4938)")
     return WallDraw(wall_index, sector_index, next_sector, next_wall, picnum,
                     over, cstat, tuple(bands), tuple(skipped), sloped)
 
@@ -361,13 +393,65 @@ def bands_of_pair(draws: list[WallDraw], wall_index: int) -> list[Band]:
 def bands_showing_picnum(draws: list[WallDraw], wall_index: int) -> list[Band]:
     """Where, on either side, the wall's authored picnum is on screen.
 
-    By tile VALUE: the partner drawing the same tile on its own step counts,
-    because that is how the campaign's pelmets are built -- E1M1 walls
-    1203-1207 wear 146 on the side that draws nothing while their partners
-    1102-1106 draw 146 on the 65536-unit ceiling step above the curtain.
+    By tile VALUE, not by which field it was read from, and over BOTH sides
+    of the portal. That is deliberately the generous reading: a step is a
+    single visible band and either partner may be the one the engine takes
+    its tile from (the `cstat&2` swap, `engine.cpp:4832-4833`, makes that
+    explicit), so a wall whose tile appears on the pair's step has been seen.
+
+    It is generous enough to have overturned a claim this project had
+    written down. The E1M1 s125 "pelmet" -- walls 1203-1207, `picnum` 146 =
+    `over_picnum` 146, cstat 4, two-sided into s122 -- was recorded as the
+    attested way to hang a valance on a step. It is not: s125's ceiling is
+    -10240 and s122's is -75776, so the neighbour's ceiling is HIGHER and
+    there is no upper step on s125's side at all (`:4690`). The step is on
+    s122's side, and its walls 1102-1106 draw their own `picnum` 109, the
+    hall's stone. Tile 146 on those five walls is drawn nowhere. The pelmet
+    is an editor leftover, and this reader is what says so.
     """
     picnum = draws[wall_index].picnum
     return [b for b in bands_of_pair(draws, wall_index) if b.tile == picnum]
+
+
+#: The bands a standing body can see straight ahead: the whole height of a
+#: one-sided wall, and the two ways a two-sided wall reaches its middle.
+WALKABLE_BANDS = (ONE_SIDED_MIDDLE, MASKED_MIDDLE, ONEWAY_MIDDLE)
+#: The two step bands, which are above the head or below the feet of the
+#: opening rather than across it.
+STEP_BANDS = (TWO_SIDED_UPPER, TWO_SIDED_LOWER)
+
+
+def draws_in_walkable_band(disk: Any, wall_index: int,
+                           draws: list[WallDraw] | None = None) -> bool:
+    """Does this wall draw across the opening, rather than above or below it?
+
+    The relation `conformance.fabric_is_visible` asks of a curtain: a fabric
+    wall that is one-sided IS the fabric, a masked or one-way one hangs
+    across the gap, and an unmasked two-sided one shows only on the step
+    bands -- above the head or under the feet -- however right its tile is.
+    One reader owns it, and this is the reader.
+    """
+    found = draws if draws is not None else render_slots(disk)
+    return any(b.band in WALKABLE_BANDS for b in found[wall_index].bands)
+
+
+def draws_on_a_step(disk: Any, wall_index: int,
+                    draws: list[WallDraw] | None = None, *,
+                    either_side: bool = False) -> bool:
+    """Does an upper or lower step band exist at this wall?
+
+    What makes a wall a pelmet rather than a curtain: a genuine height
+    difference with its neighbour. `either_side` asks whether the PORTAL
+    steps at all, which is the geometric question and the one
+    `conformance.curtain_dialect` wants; the default asks whether the step
+    is drawn on this wall's own side, which is the question about whether
+    THIS wall's tile is what appears there. E1M1 s125 separates them: the
+    portal steps 65536 units, and the side that draws it is the hall's.
+    """
+    found = draws if draws is not None else render_slots(disk)
+    bands = (bands_of_pair(found, wall_index) if either_side
+             else found[wall_index].bands)
+    return any(b.band in STEP_BANDS for b in bands)
 
 
 def bands_sourced_from(draws: list[WallDraw], wall_index: int) -> list[Band]:

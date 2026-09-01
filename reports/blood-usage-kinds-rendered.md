@@ -18,8 +18,8 @@ sector:
 | one-sided middle | `picnum` | `nextsector < 0`; ceiling to floor | 4938-4940 `setup_globals_wall1(wal, (nextsectnum < 0) ? wal->picnum : wal->overpicnum)` |
 | two-sided upper step | `picnum` | neighbour's ceiling LOWER at either end; skipped when `(cz[2] <= cz[0]) && (cz[3] <= cz[1])`; skipped when both ceilings parallaxed | 4688, 4690, 4720 |
 | two-sided lower step | `picnum`, or the PARTNER's picnum under `cstat&2` | neighbour's floor HIGHER at either end; skipped when `(fz[2] >= fz[0]) && (fz[3] >= fz[1])`; skipped when both floors parallaxed | 4799, 4801, 4832-4833 `twal = (wal->cstat&2) ? &wall[wal->nextwall] : wal` |
-| masked middle | `over_picnum` | `(cstat&48) == 16`; deferred, then drawn between the lower ceiling and the higher floor: `z1 = max(nsec->ceilingz, sec->ceilingz); z2 = min(nsec->floorz, sec->floorz)` | 4685, 7214-7215, 7231 |
-| one-way middle | `over_picnum` | `cstat&32`, through the white-wall branch, opaque, after the steps | 4938-4940 |
+| masked middle | `over_picnum` | `(cstat&48) == 16` -- masked AND NOT one-way; deferred, then drawn between the lower ceiling and the higher floor: `z1 = max(nsec->ceilingz, sec->ceilingz); z2 = min(nsec->floorz, sec->floorz)` | 4685-4686, 7217-7218, 7231 |
+| one-way middle | `over_picnum` | `cstat&32`, through the white-wall branch, opaque; `wallscan` runs `uplc`..`dplc` (this sector's own ceiling and floor) but the two steps have already pushed `umost`/`dmost` in (:4728-4740 and :4847-4853), so what survives is the middle | 4938-4940 |
 
 **Blocking (cstat&1) and hitscan (cstat&64) draw nothing.** Neither bit is
 read in the wall pass; they are clip masks -- `clip.cpp:1491 dawalclipmask =
@@ -36,11 +36,16 @@ sky family is `{2500, 3491, 3678}` (derived, `usage-kinds` `sky_family`).
 **The mirror bypass.** `NBlood/source/blood/src/mirrors.cpp:37
 kMirrorTile 504`; `:466-469` a wall whose picnum is 504 gets `cstat |=
 CSTAT_WALL_1WAY` and `overpicnum = kMirrorTile` at level start, so the game
-turns it into a one-way wall and draws the reflection through it; `:442-455`
-a wall whose over_picnum is 504 with a stack type is a room-over-room link.
+turns it into a one-way wall and draws the reflection through it; `:442-451`
+a wall whose over_picnum is 504 on a `kWallStack` XWALL gets the same bit and
+is a room-over-room link. `render_slots.mirror_pass` applies the first
+transform, because it changes the band: the campaign stores 504 on 8 walls,
+7 white and 1 red, and that red one draws a `oneway_middle` that a reading of
+the file's cstat alone would miss. The stack case needs the XWALL type and is
+left to `bloodmap.layers`.
 
 **Slopes.** Endpoint heights come from `getzsofslopeptr`
-(`engine.cpp:14333-14352`): `z += scale(heinum, j, i)` with `j` the
+(`engine.cpp:14333-14354`): `z += scale(heinum, j, i)` with `j` the
 perpendicular distance from the sector's first wall and `i` that wall's
 length, only when stat bit 2 is set. Blood runs
 `enginecompatibilitymode = ENGINE_19960925` (`blood.cpp:1890`) so the EDUKE32
@@ -55,20 +60,23 @@ Polymost (`polymost.cpp:6528`) branches on the same
 ## 2. What the campaign does with the invisible band
 
 Census over 113261 campaign walls (`render_slots.undrawn_walls`, exempting
-sky, mirror and tile 0):
+sky, mirror and tile 0). Re-measured 2026-09-01 with the ART present:
 
 ```text
 walls                                          113261
-  one-sided                                     52415   every one draws its picnum
-  two-sided                                     60838
-red walls whose picnum draws nowhere on the pair, by VALUE
-  (its own bands, or the partner drawing the same tile)     28539   47% of red walls, 25% of all
-    partner wears a different tile                          16100
-      ... and the pair draws SOMETHING (a step in the other tile)   12560
-      ... and the pair draws nothing at all (flush, unmasked)        3540
-    partner wears the same tile                             11578
-    no partner (nextwall -1 on a red wall)                    861
-red walls carrying an over_picnum the engine never reads      2626
+  one-sided                                     52422
+    ... drawing their picnum                    51560
+    ... drawing nothing (zero-height sector)      862
+  two-sided                                     60839
+walls whose picnum draws nowhere on the pair, by VALUE
+  (its own bands, or the partner drawing the same tile)     28539   of 107785 non-exempt, 26.5%
+    two-sided                                               27678
+      partner wears a different tile                        16100
+        ... and the pair draws SOMETHING (a step in the other tile)  12560
+        ... and the pair draws nothing at all (flush, unmasked)       3540
+      partner wears the same tile                           11578
+    one-sided in a zero-height sector                         861
+two-sided walls carrying an over_picnum the engine never reads  2626
 ```
 
 So an authored picnum on an invisible band is the editor's habit, not a
@@ -79,8 +87,8 @@ nobody clears it. Tile 110 leads with 1657 undrawn walls, 5 has 1406, 80 has
 Three formulations of "a tile authored on a wall is drawn somewhere", rated:
 
 ```text
-per wall            28539 / 113253   25.2%   note      (registered: wall-draws-its-own-tile)
-per sector x tile    4317 /  27104   15.9%   note      (not registered)
+per wall            28539 / 107785   26.5%   note      (registered: wall-draws-its-own-tile)
+per sector x tile    4515 /  27104   16.7%   note      (not registered)
 per map x tile         97 /   1979    4.9%   warning   (registered: wall-tile-is-drawn-somewhere -- THE GATE)
 ```
 
@@ -89,9 +97,12 @@ The per-map form is the statement taken literally -- the tile is on screen
 from a lost material (drawn nowhere). E1M1 has 0 lost tiles; E3M4 has 1
 (tile 80, weathered stone, on invisible walls only).
 
-## 3. Fail first: the city, then the zoo
+## 3. Fail first: the city before the curtain rebuild, then after, then the zoo
 
-`projects/blood-city/level/blood-city-current.MAP` as committed at 8c42701:
+The fail-first fixture is a REAL map, not a reduction: the city as committed
+at **8c42701**, before P1 rebuilt the proscenium. `tests/test_rendering_law.py`
+reads it back out of the object store with `git cat-file` so the anchor
+outlives the fix.
 
 ```text
 wall-tile-is-drawn-somewhere    6 of 32 authored wall tiles lost
@@ -102,10 +113,29 @@ wall-tile-is-drawn-somewhere    6 of 32 authored wall tiles lost
   tile 203   walls 240, 245, 259
   tile 1011  walls 512, 514, 515
 wall-draws-its-own-tile         341 of 1696 walls (20%), 276-278 among them
-tile-sits-in-an-attested-slot   12 new warnings under the rendered vocabulary:
-  tile 202 on two_sided_lower x12 (walls 300-307, 1106-1109); the campaign
-  shows 202 on one_sided_middle only
 ```
+
+And the SAME map after P1's rebuild (`blood-city-current.MAP` at e0cb075):
+
+```text
+wall-tile-is-drawn-somewhere    5 of 32 authored wall tiles lost
+  tile 146   GONE -- the fin is one-sided now and draws a one_sided_middle
+  tile 68    walls 124, 127, 134, 170, 172
+  tile 93    9 walls (501, 504, 508, 509, 519, 533 ...)
+  tile 194   walls 1264, 1316
+  tile 203   walls 238, 243, 257
+  tile 1011  walls 510, 512, 513
+wall-draws-its-own-tile         338 of 1694 walls (20%)
+```
+
+**The five survivors are one defect, not five.** 68, 93, 203 and 1011 are the
+`opening` field of `materials.py`'s parlor, church, theatre and crypt
+Materials, and 194 is `sewerkit.MOUTH_TILE`. Every one sits on a flush,
+unmasked two-sided threshold -- wall 124 for instance is s14 -> s15 with both
+ceilings at -20480 and both floors at 8192, cstat 0, partner also wearing 68.
+The city paints a doorway lining on the portal wall of a doorway that has no
+step, so the lining is never on screen; the curtain was the same mistake with
+a more visible material. Recorded in `reports/owner-review-queue.md`.
 
 Sector 37 itself: walls 276-278 wear 146, two-sided into sector 23, cstat 0
 (277 carries the 0x4000 move flag), sector 37 ceiling -16384 against sector
@@ -113,10 +143,10 @@ Sector 37 itself: walls 276-278 wear 146, two-sided into sector 23, cstat 0
 exists; the auditorium's partner walls 204-211 draw THEIR picnum 119 on a
 27908-unit upper step. The fabric is on screen nowhere in the level.
 
-`projects/pattern-zoo/level/pattern-zoo.MAP`: 0 of 22 tiles lost; 101 of
-510 walls carry an undrawn picnum (the habit, at the campaign's rate); 0
-rendered-slot warnings. The zoo's self-read gate now runs
-`wall-tile-is-drawn-somewhere` as a LAW rule and passes.
+`projects/pattern-zoo/level/pattern-zoo.MAP`: 0 of 22 tiles lost; 103 of
+528 walls carry an undrawn picnum (the habit, at the campaign's rate). The
+zoo's self-read gate now runs `wall-tile-is-drawn-somewhere` as a LAW rule
+and passes with zero.
 
 ## 4. Tile 146, the test case
 
@@ -132,6 +162,9 @@ masked_middle        0     the campaign never masks 146
 over_unread         10     over_picnum 146 on walls that never read it (E1M1 1102-1106, cstat 0x6)
 ```
 
+173 + 71 + 3 + 55 = 302 = v1's `wall_one_sided 173 + wall_two_sided 129`, so
+the redistribution is exact and nothing is double counted.
+
 So of the 129 two-sided uses, 74 are step bands and 55 draw nothing; none is
 a masked middle. Two corrections to the brief's reading of the fixtures:
 
@@ -142,21 +175,26 @@ a masked middle. Two corrections to the brief's reading of the fixtures:
   their own picnum 109 (s122's wall stone); their over_picnum 146 sits
   behind cstat 0x6 (swap + align, no mask) and is never read. The visible
   fabric in E1M1 is the one-sided leaves 1200/1201/1209/1210.
-* **DOOR-CURTAINSD s4's pocket dialect shows tile 1060, not 146.** The
-  pocket-side walls 28/32/37/41 (cstat 0x51) draw `masked_middle 1060` at
-  full opening height (24576); their picnum 146, and the 146 on the flush
-  pocket walls 26/27/33/34, is never on screen. The curriculum, not the
+* **DOOR-CURTAINSD s4's pocket dialect shows tile 1060, not 146.** Verified
+  wall by wall: 28 and 32 (s4 side) and 37 and 41 (the pockets' side) carry
+  cstat 0x51 and draw `masked_middle 1060` at the full opening height
+  24576; their picnum 146, and the 146 on the flush pocket walls
+  26/27/33/34/36/39/42/43, is never on screen. So the pocket dialect's
+  visible cloth is 1060 and its 146 is storage. The curriculum, not the
   campaign, so it is precedent for the reader, not a campaign count.
 
 ## 5. The mask law, restated by band
 
-With the ART read (`reference/blood`): 78 of 3590 mask-carrying tiles appear
-on some wall band; on the OPAQUE bands (one_sided_middle, two_sided_upper,
+With the ART read (`reference/blood`, 3585 tiles carrying more than 5%
+mask): only **11** of them are drawn on any wall band in the campaign at
+all, and on the OPAQUE bands (one_sided_middle, two_sided_upper,
 two_sided_lower) exactly two -- 142 (4 upper, 8 lower) and 2464 (5 upper) --
-the same two the owner has already ruled on. Every other mask tile on a wall
-is in a masked middle (58, 104, 330, 331, 463, 465, 466, 502, 1066) or a
-one-way middle. The band formulation is the one the engine implements; v1's
-"two-sided" clause conflated the step (opaque) with the mask (see-through).
+the same two the owner has already ruled on. The other nine (58, 104, 330,
+331, 463, 465, 466, 502, 1066) are in masked or one-way middles, which is
+where a see-through tile belongs. 79982 opaque band draws, 12 of them a
+mask tile: 0.015%. The band formulation is the one the engine implements;
+v1's "two-sided" clause conflated the step (opaque) with the mask
+(see-through).
 
 ## 6. What the rendered vocabulary changes downstream
 
@@ -169,6 +207,20 @@ one-way middle. The band formulation is the one the engine implements; v1's
   2536, 2537. Under v1 they were "attested on walls"; under v2 they have no
   rendered wall slot, so an authored map using them on a visible wall now
   gets the attested-slot warning it should always have had.
+* The storage vocabulary never looked at `over_picnum` on a wall at all --
+  it checked `picnum` and the slot was "one-sided or two-sided". The band
+  vocabulary checks the overlay wherever the engine reads it, and the first
+  thing that found is in `projects/reasoned-authoring-v1`: candidate-v7
+  walls 577, 579, 593, 595 are a masked pair (cstat 0x51) between sectors 76
+  and 77 whose `over_picnum` is **110**, the bulk wall stone. The campaign
+  draws 110 as a white wall 2513 times, on an upper step 574 and a lower one
+  513, and **never once** as a masked middle: its masked panes are doors,
+  grates and glass (266 x232, 330, 463, 502). Waived by name in
+  `tests/test_rules.py` -- another project's shipped artifact is reported,
+  not patched.
+* Opacity is NOT what separates a masked middle: 326 of the campaign's 519
+  masked-middle draws wear a fully opaque tile (266 alone is 232 of them).
+  The finding above is about tile 110 specifically, not about see-through.
 
 ## 7. Limits
 
@@ -178,5 +230,13 @@ one-way middle. The band formulation is the one the engine implements; v1's
 * The reader does not model occlusion, room-over-room, or the
   `yax` paths; a band that draws is a band the engine would rasterise if
   nothing stood in front of it.
-* The per-wall habit rule produces 341 notes on the city; it is registered
-  for diagnosis, and its severity says it is not a law.
+* The per-wall habit rule produces 338 notes on the current city; it is
+  registered for diagnosis, and its severity says it is not a law.
+* The load-time mirror transform is modelled for `picnum == 504`
+  (`mirrors.cpp:466-469`) but NOT for the stack form at `:442-451`, which
+  needs the wall's XWALL type. A room-over-room link wall therefore reads as
+  whatever its file cstat says.
+* Polymost's own wall pass (`polymost.cpp:6528`) branches on the same
+  `(nextsectnum < 0) || (wal->cstat&32)` and was spot-checked, not
+  transcribed. If the two renderers disagree anywhere, this reader follows
+  classic.

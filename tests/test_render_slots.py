@@ -2,7 +2,7 @@
 
 Hand-built minimal maps, one per case the engine's wall pass distinguishes,
 so a change to `bloodmap.render_slots` that stops agreeing with
-`engine.cpp:4685-4940` and `:7214-7231` fails here by name. The corpus
+`engine.cpp:4685-4940` and `:7217-7231` fails here by name. The corpus
 fixtures at the end are the two curtains the reader was written against.
 """
 
@@ -15,8 +15,9 @@ from bloodmap.format import SECTOR_FIELDS, SPRITE_FIELDS, WALL_FIELDS
 from bloodmap.model import DiskMap, DiskObject
 from bloodmap.render_slots import (
     CSTAT_MASKED, CSTAT_ONE_WAY, CSTAT_SWAP_BOTTOM, MASKED_MIDDLE,
-    ONE_SIDED_MIDDLE, ONEWAY_MIDDLE, TWO_SIDED_LOWER, TWO_SIDED_UPPER,
-    bands_showing_picnum, bands_sourced_from, render_slots, surface_z,
+    MIRROR_TILE, ONE_SIDED_MIDDLE, ONEWAY_MIDDLE, TWO_SIDED_LOWER,
+    TWO_SIDED_UPPER, bands_showing_picnum, bands_sourced_from,
+    draws_in_walkable_band, draws_on_a_step, render_slots, surface_z,
     undrawn_walls,
 )
 
@@ -173,7 +174,7 @@ class MaskedAndOneWayTest(unittest.TestCase):
         self.assertEqual(_bands(disk, 7), [(MASKED_MIDDLE, 502)])
         band = found[1].bands[0]
         self.assertEqual(band.field, "over_picnum")
-        # engine.cpp:7214-7215: lower ceiling to higher floor.
+        # engine.cpp:7217-7218: lower ceiling to higher floor.
         self.assertEqual((band.top, band.bottom),
                          ((CEILING, CEILING), (FLOOR, FLOOR)))
         # The picnum is still authored and still on screen nowhere.
@@ -204,7 +205,7 @@ class MaskedAndOneWayTest(unittest.TestCase):
         self.assertEqual(_bands(disk, 7), [])
 
     def test_one_way_beats_masked(self):
-        # engine.cpp:4685 `(cstat&48) == 16` -- a wall with both bits is
+        # engine.cpp:4685-4686 `(cstat&48) == 16` -- a wall with both bits is
         # drawn as one-way in the solid pass, never deferred as a mask.
         disk = _pair(shared_cstat=CSTAT_ONE_WAY | CSTAT_MASKED, shared_over=502)
         self.assertEqual(_bands(disk, 1), [(ONEWAY_MIDDLE, 502)])
@@ -314,6 +315,70 @@ class CorpusCurtainsTest(unittest.TestCase):
                              [(MASKED_MIDDLE, 1060, 24576)])
             self.assertEqual(found[wall].picnum, 146)
             self.assertEqual(bands_showing_picnum(found, wall), [])
+
+
+class WalkableBandTest(unittest.TestCase):
+    """The relation `conformance.fabric_is_visible` asks, owned here.
+
+    One reader for the rendering law: conformance used to decide it from the
+    cstat bits alone, which cannot see a masked wall between two sectors that
+    leave no opening, nor a white wall in a sector with no height.
+    """
+
+    def test_a_white_wall_is_walkable_and_is_not_a_step(self):
+        s, w = _box([(0, 0), (1024, 0), (1024, 1024), (0, 1024)], 0, 146)
+        disk = _map([s], w)
+        self.assertTrue(draws_in_walkable_band(disk, 0))
+        self.assertFalse(draws_on_a_step(disk, 0))
+
+    def test_a_flush_unmasked_red_wall_is_not_walkable(self):
+        disk = _pair(left_picnum=146)
+        self.assertFalse(draws_in_walkable_band(disk, 1))
+
+    def test_a_masked_wall_is_walkable_and_a_one_way_one_too(self):
+        for cstat in (CSTAT_MASKED, CSTAT_ONE_WAY):
+            disk = _pair(shared_cstat=cstat, shared_over=146)
+            self.assertTrue(draws_in_walkable_band(disk, 1), cstat)
+
+    def test_a_masked_wall_across_no_opening_is_not_walkable(self):
+        # The case a cstat test cannot see: the neighbour's floor is at our
+        # ceiling, so `z2 - z1` is zero and renderDrawMaskedWall has nothing
+        # to scan (engine.cpp:7217-7218).
+        disk = _pair(right={"floor_z": CEILING, "ceiling_z": CEILING - 4096},
+                     shared_cstat=CSTAT_MASKED, shared_over=146)
+        self.assertFalse(draws_in_walkable_band(disk, 1))
+
+    def test_a_step_is_a_step_on_one_side_and_a_portal_step_on_both(self):
+        # E1M1 s125 in miniature: the step exists, and the side that draws
+        # it is the one whose own ceiling is the lower.
+        disk = _pair(left={"ceiling_z": -32768})
+        self.assertTrue(draws_on_a_step(disk, 1))
+        self.assertFalse(draws_on_a_step(disk, 7))
+        self.assertTrue(draws_on_a_step(disk, 7, either_side=True))
+        self.assertFalse(draws_in_walkable_band(disk, 1))
+
+
+class MirrorTest(unittest.TestCase):
+    """mirrors.cpp:466-469 edits the wall before anything is drawn."""
+
+    def test_a_red_mirror_wall_draws_a_one_way_middle(self):
+        # The file says cstat 0, no over_picnum; the running level says
+        # one-way with over_picnum 504. Without the transform this wall
+        # would read as "draws nothing" -- and the campaign has exactly one
+        # of them.
+        disk = _pair(left_picnum=MIRROR_TILE)
+        found = render_slots(disk)
+        self.assertEqual(_bands(disk, 1), [(ONEWAY_MIDDLE, MIRROR_TILE)])
+        self.assertEqual(found[1].cstat, CSTAT_ONE_WAY)
+        self.assertEqual(found[1].over_picnum, MIRROR_TILE)
+        self.assertEqual(_bands(disk, 7), [])
+
+    def test_a_white_mirror_wall_still_draws_its_picnum(self):
+        # nextsectnum < 0 wins the ternary at :4940 whatever the bit says.
+        s, w = _box([(0, 0), (1024, 0), (1024, 1024), (0, 1024)], 0,
+                    MIRROR_TILE)
+        disk = _map([s], w)
+        self.assertEqual(_bands(disk, 0), [(ONE_SIDED_MIDDLE, MIRROR_TILE)])
 
 
 if __name__ == "__main__":

@@ -237,9 +237,9 @@ def main(argv: list[str] | None = None) -> int:
             "tools/mine_usage_kinds.py; reports/blood-usage-kinds-rendered.json "
             "carries the full mine and the diff against v1."),
         "engine": (
-            "NBlood/source/build/src/engine.cpp:4685 (masked deferral), "
+            "NBlood/source/build/src/engine.cpp:4686 (masked deferral), "
             ":4688-4724 (upper step), :4799-4836 (lower step and the cstat&2 "
-            "swap), :4938-4940 (white and one-way walls), :7214-7231 (masked "
+            "swap), :4938-4940 (white and one-way walls), :7217-7231 (masked "
             "middle); mirrors.cpp:37,466-469 (the mirror tile bypass)"),
         "sky_family": previous.get("sky_family", {"tiles": [2500, 3491, 3678]}),
         "mask_law_rendered": report["mask_law_rendered"],

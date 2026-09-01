@@ -1110,8 +1110,16 @@ register(Rule(
         "be the first to do something. What it is not allowed to do is do it "
         "by accident, which is what this catches: shelf goods laid on a "
         "floor, a sprite cut-out painted on a wall, a facade backdrop used "
-        "as bulk fill. An owner anchor's dual_role note is the override"),
-    source="knowledge/blood/design/usage-kinds-v1.json, 43 campaign maps",
+        "as bulk fill. An owner anchor's dual_role note is the override. "
+        "Walls are judged by the BAND the engine draws (usage-kinds-v2, "
+        "bloodmap.render_slots) when that table is present: a tile stored on "
+        "a two-sided wall may show on a step, in a mask, or nowhere, and the "
+        "storage vocabulary could not tell those apart. A wall that draws "
+        "nothing is not this rule's business -- wall-tile-is-drawn-somewhere "
+        "owns that"),
+    source=("knowledge/blood/design/usage-kinds-v2.json (walls, by rendered "
+            "band) and usage-kinds-v1.json (surfaces and sprites), 43 "
+            "campaign maps"),
     scope="sector",
     check=_tiles_sit_in_attested_slots,
 ))

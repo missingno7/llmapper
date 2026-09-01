@@ -1,11 +1,13 @@
 """The rendering law as a gate, and the usage table re-mined by what is seen.
 
-Written to FAIL FIRST: the fixture is the city's stage curtain as committed
-in `projects/blood-city/level/blood-city-current.MAP` (sector 37, walls
-276-278: fabric 146 on unmasked two-sided walls whose neighbour's ceiling is
-higher and whose floors are flush), reduced to a two-box map so the test
-outlives the curtain's rebuild. The corpus map itself is checked too, and
-skipped once the defect is gone.
+Written to FAIL FIRST on a defect that has since been fixed, which is why
+the fixture is the map as it was COMMITTED rather than the map on disk:
+`projects/blood-city/level/blood-city-current.MAP` at **8c42701**, sector 37
+walls 276-278, fabric 146 on unmasked two-sided walls whose neighbour's
+ceiling is higher and whose floors are flush. `_map_at_revision` pulls that
+blob out of the object store with `git cat-file`, so the anchor outlives
+P1's rebuild instead of quietly standing down. The same defect is also built
+by hand as a two-box map, so the gate is testable without git.
 """
 
 from __future__ import annotations
@@ -33,8 +35,13 @@ def _stage_and_house(fabric=146, house=119, *, house_ceiling=-40960,
     """The Aldermack's proscenium, reduced.
 
     Sector 0 is the curtain sector (ceiling -16384, floor 8192), sector 1
-    the auditorium (ceiling -40960, same floor). The shared wall is 1 (stage
-    side, wearing the fabric) and 7 (house side, wearing the house tile).
+    the auditorium (ceiling -40960, same floor). Every wall of both boxes
+    wears the HOUSE tile; only the shared wall -- 1 on the stage side, 7 on
+    the house side -- wears the fabric, because the defect under test is a
+    material that exists nowhere else in the map. (An earlier draft of this
+    fixture painted the whole stage box with the fabric, which made the
+    stage's three white walls draw it and the map-scoped gate rightly saw
+    nothing wrong.)
     """
     def box(points, ptr, picnum, ceiling):
         walls = [_record(WALL_FIELDS, x=x, y=y, point2=ptr + (i + 1) % 4,
@@ -45,19 +52,48 @@ def _stage_and_house(fabric=146, house=119, *, house_ceiling=-40960,
                          ceiling_z=ceiling, floor_z=8192)
         return sector, walls
 
-    s0, w0 = box([(0, 0), (1024, 0), (1024, 2048), (0, 2048)], 0, fabric,
+    s0, w0 = box([(0, 0), (1024, 0), (1024, 2048), (0, 2048)], 0, house,
                  stage_ceiling)
     s1, w1 = box([(1024, 0), (4096, 0), (4096, 2048), (1024, 2048)], 4, house,
                  house_ceiling)
+    w0[1].fields.update(picnum=fabric)
     if not one_sided:
         cstat = 16 if masked else 0
         w0[1].fields.update(next_wall=7, next_sector=1, cstat=cstat,
                             over_picnum=fabric if masked else 0)
         w1[3].fields.update(next_wall=1, next_sector=0, cstat=cstat,
-                            over_picnum=fabric if masked else 0)
+                            over_picnum=0)
     return DiskMap(version=7, header={}, extra_header=None, sky_offsets=[],
                    sectors=[s0, s1], walls=w0 + w1, sprites=[],
                    source_crc32=0, source_size=0)
+
+
+def _map_at_revision(case, revision, path):
+    """A map as it was committed, read without touching the working tree.
+
+    The fail-first fixture has to outlive the fix. `git cat-file` gives the
+    blob straight from the object store; when git or the revision is not
+    there (a source export, a shallow clone) the test stands down rather
+    than passing vacuously.
+    """
+    import subprocess
+    import tempfile
+
+    from bloodmap.format import read_map
+
+    try:
+        blob = subprocess.run(["git", "cat-file", "blob", revision + ":" + path],
+                              cwd=ROOT, stdout=subprocess.PIPE,
+                              stderr=subprocess.DEVNULL, check=True).stdout
+    except (OSError, subprocess.CalledProcessError):
+        case.skipTest(revision + ":" + path + " is not in this checkout")
+    with tempfile.NamedTemporaryFile(suffix=".MAP", delete=False) as handle:
+        handle.write(blob)
+        name = handle.name
+    try:
+        return read_map(name)
+    finally:
+        Path(name).unlink(missing_ok=True)
 
 
 class FailFirstTest(unittest.TestCase):
@@ -100,24 +136,34 @@ class FailFirstTest(unittest.TestCase):
             _stage_and_house(house_ceiling=-16384, stage_ceiling=-40960))
         self.assertEqual(found.violations, ())
 
-    def test_the_committed_city_curtain_is_caught(self):
-        # Sector 37 walls 276-278 as committed. Once the curtain is rebuilt
-        # the fixture above carries the defect and this test stands down.
-        if not CITY.exists():
-            self.skipTest("no city build")
-        from bloodmap.format import read_map
-
-        disk = read_map(CITY)
-        walls = [disk.walls[w].fields for w in (276, 277, 278)]
-        defect = all(int(f["picnum"]) == 146 and int(f["next_sector"]) >= 0
-                     and not int(f["cstat"]) & 48 for f in walls)
-        if not defect:
-            self.skipTest("the city curtain no longer carries the defect")
+    def test_the_city_as_committed_before_the_curtain_rebuild_is_caught(self):
+        # The real fail-first, and a real map rather than a reduction:
+        # blood-city-current.MAP as committed at 8c42701, before P1 rebuilt
+        # the proscenium. Sector 37 walls 276-278 wear 146, two-sided into
+        # sector 23, cstat 0 (277 carries the 0x4000 move flag), s37 ceiling
+        # -16384 against s23's -40960 with flush floors at 8192. Neither
+        # step exists on the curtain's side and neither bit reaches the
+        # middle, so the fabric is on screen nowhere in the level.
+        disk = _map_at_revision(
+            self, "8c42701", "projects/blood-city/level/blood-city-current.MAP")
         found = self.rules["wall-tile-is-drawn-somewhere"].check(disk)
         self.assertIn("tile[146]", [v.location for v in found.violations])
         per_wall = self.rules["wall-draws-its-own-tile"].check(disk)
         flagged = {v.location for v in per_wall.violations}
         self.assertTrue({"wall[276]", "wall[277]", "wall[278]"} <= flagged)
+
+    def test_the_rebuilt_city_curtain_passes_the_same_gate(self):
+        # And the fix is visible to the same gate: P1's one-sided fin puts
+        # 146 in a one_sided_middle, so the map no longer loses the tile.
+        # Five OTHER tiles are still lost -- the districts' `opening`
+        # materials on flush doorway thresholds -- which is the finding this
+        # rule was built to make and is in the owner review queue.
+        if not CITY.exists():
+            self.skipTest("no city build")
+        from bloodmap.format import read_map
+
+        found = self.rules["wall-tile-is-drawn-somewhere"].check(read_map(CITY))
+        self.assertNotIn("tile[146]", [v.location for v in found.violations])
 
     def test_both_rules_are_registered_with_an_engine_source(self):
         for rule_id in ("wall-draws-its-own-tile", "wall-tile-is-drawn-somewhere"):
@@ -128,7 +174,7 @@ class FailFirstTest(unittest.TestCase):
     def test_the_gate_is_graded_as_a_warning_and_the_habit_as_a_note(self):
         # Measured 2026-09-01 over 43 campaign maps: 97 of 1979 authored
         # wall tiles are drawn nowhere in their map (4.9%); per wall it is
-        # 28539 of 113253 (25%). The grades file is where severity lives.
+        # 28539 of 107785 (26.5%). The grades file is where severity lives.
         from bloodmap.rules import load_grades
 
         grades = load_grades()
@@ -174,14 +220,23 @@ class RenderedUsageTableTest(unittest.TestCase):
         self.assertTrue(attested(502, "masked_middle", self.table))
         self.assertFalse(attested(502, "one_sided_middle", self.table))
 
-    def test_the_mirror_tile_is_never_a_drawn_wall_overlay(self):
-        # mirrors.cpp turns picnum 504 into a one-way overlay at load; the
-        # map itself stores it as a white wall's picnum.
+    def test_the_mirror_tile_is_read_through_its_load_time_transform(self):
+        # mirrors.cpp:466-469 forces CSTAT_WALL_1WAY on and copies 504 into
+        # overpicnum before anything is drawn, so the file and the running
+        # level disagree about the flags. The campaign stores 504 on eight
+        # walls: seven white ones, which draw it either way, and ONE red one
+        # (E2M2), which draws a one-way middle only because of that
+        # transform. Reading the file's cstat alone would say "drawn
+        # nowhere" and the must-draw gate would have to special-case it.
+        from bloodmap.render_slots import CSTAT_ONE_WAY, MIRROR_TILE, mirror_pass
         from bloodmap.usage_kinds import slots_for
 
+        self.assertEqual(mirror_pass(MIRROR_TILE, 0, 0),
+                         (MIRROR_TILE, CSTAT_ONE_WAY))
+        self.assertEqual(mirror_pass(109, 0, 0), (0, 0))
         slots = slots_for(504, self.table)
         self.assertEqual(slots.get("one_sided_middle"), 7)
-        self.assertNotIn("oneway_middle", slots)
+        self.assertEqual(slots.get("oneway_middle"), 1)
 
     def test_the_mask_law_restated_by_band_names_the_same_two_tiles(self):
         law = self.table["mask_law_rendered"]
@@ -207,7 +262,7 @@ class RenderedUsageTableTest(unittest.TestCase):
 
         # 502 on a flush, unmasked red wall draws nowhere: no band, no
         # finding here; wall-tile-is-drawn-somewhere owns that.
-        disk = _stage_and_house(fabric=502, house=502, house_ceiling=-16384)
+        disk = _stage_and_house(fabric=502, house_ceiling=-16384)
         self.assertEqual(rendered_wall_uses(disk, table=self.table), [])
 
 
@@ -218,7 +273,7 @@ class SchemaTest(unittest.TestCase):
         data = json.loads(V2.read_text(encoding="utf-8"))
         self.assertEqual(data["grade"], "DERIVED")
         self.assertIn("v1 counted where a tile is STORED", data["about"])
-        self.assertIn("engine.cpp:4685", data["engine"])
+        self.assertIn("engine.cpp:4686", data["engine"])
 
 
 if __name__ == "__main__":

@@ -30,7 +30,7 @@
   "masked_middle": 519,
   "one_sided_middle": 51560,
   "one_sided_walls": 52422,
-  "oneway_middle": 33,
+  "oneway_middle": 34,
   "over_unread": 2626,
   "sprite_face": 19860,
   "sprite_floor": 1232,
@@ -38,7 +38,7 @@
   "two_sided_lower": 16633,
   "two_sided_upper": 11789,
   "two_sided_walls": 60839,
-  "wall_undrawn": 29188
+  "wall_undrawn": 29187
  },
  "mask_law_rendered": {
   "statement": "a mask-coloured tile is never drawn on an opaque band: one_sided_middle, two_sided_upper, two_sided_lower",
@@ -2984,7 +2984,7 @@
    "ceiling": 52,
    "floor": 51,
    "one_sided_middle": 7,
-   "wall_undrawn": 1
+   "oneway_middle": 1
   },
   "505": {
    "sprite_face": 15
@@ -28505,7 +28505,7 @@
    },
    "rendered": {
     "one_sided_middle": 7,
-    "wall_undrawn": 1
+    "oneway_middle": 1
    }
   },
   "510": {

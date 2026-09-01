@@ -195,7 +195,11 @@ def save_grades(grades: dict[str, Grade], path: Path | str = GRADES_FILE) -> Non
             for rule_id, g in sorted(grades.items())
         },
     }
-    out.write_text(json.dumps(document, indent=1) + "\n", encoding="utf-8")
+    # newline="\n": the grades file is a committed artifact and every other
+    # knowledge writer in the project pins LF, so a regrade on Windows must
+    # not rewrite all 313 lines as a line-ending change.
+    out.write_text(json.dumps(document, indent=1) + "\n", encoding="utf-8",
+                   newline="\n")
 
 
 def load_grades(path: Path | str = GRADES_FILE) -> dict[str, Grade]:
