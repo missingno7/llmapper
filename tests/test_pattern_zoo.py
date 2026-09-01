@@ -38,7 +38,8 @@ except Exception:
 
 #: Modules whose public constructors the zoo is answerable for.
 COVERED_MODULES = ("bloodmap.mechanism", "bloodmap.vocabulary",
-                   "bloodmap.doors", "bloodmap.aperture")
+                   "bloodmap.doors", "bloodmap.aperture",
+                   "bloodmap.furniture", "bloodmap.owner_anchors")
 
 
 def public_constructors():
@@ -66,7 +67,26 @@ class RegistryTest(unittest.TestCase):
         self.exhibits = registry.exhibits()
 
     def test_the_zoo_has_exhibits(self):
-        self.assertGreater(len(self.exhibits), 15)
+        self.assertGreater(len(self.exhibits), 25)
+
+    def test_no_two_exhibits_demonstrate_the_same_constructor(self):
+        # The owner found repeats in v1. Two exhibits covering one
+        # constructor is two chances to letter the same thing.
+        seen = {}
+        for item in self.exhibits:
+            for name in item.covers:
+                self.assertNotIn(name, seen,
+                                 f"{item.label} and {seen.get(name)} both "
+                                 f"claim {name}")
+                seen[name] = item.label
+
+    def test_a_hand_composed_habitat_says_what_it_hand_composed(self):
+        # The habitat is itself a claim about correct usage. Where one was
+        # assembled by hand rather than by a constructor that owns it, the
+        # registry has to name it, so the promotion audit picks it up.
+        for item in self.exhibits:
+            for note in item.hand_composed:
+                self.assertGreater(len(note), 20, item.label)
 
     def test_every_label_is_unique(self):
         # Owner feedback arrives by label, so two exhibits sharing one would
@@ -141,6 +161,43 @@ class ConformanceTest(unittest.TestCase):
 
 
 @unittest.skipUnless(HAVE_ZOO, "the pattern-zoo project is not present")
+class SectionTest(unittest.TestCase):
+    """v3's shape: sections, not a corridor of cells."""
+
+    def setUp(self):
+        self.sections = registry.sections()
+
+    def test_the_zoo_is_made_of_sections(self):
+        self.assertGreaterEqual(len(self.sections), 5)
+        for section in self.sections:
+            self.assertTrue(section.exhibits, section.label)
+
+    def test_a_section_with_no_exhibits_is_refused(self):
+        with self.assertRaises(ValueError):
+            registry.Section(label="EMPTY", about="a", skin=(1, 2, 3),
+                             exhibits=())
+
+    def test_every_pier_can_carry_its_own_label(self):
+        # A clipped label is how an exhibit loses the identity that owner
+        # feedback arrives by, so the pier is sized from the word.
+        for item in registry.exhibits():
+            self.assertGreaterEqual(item.pier(), registry.min_bay(item.label),
+                                    item.label)
+            if item.blocker:
+                self.assertGreaterEqual(item.pier(),
+                                        registry.min_bay(item.blocker),
+                                        item.label)
+
+    def test_every_section_is_at_least_the_campaign_median_height(self):
+        # v1 gave every stall 1.5 player heights and the owner walked it and
+        # found the facades had no room to be facades. The campaign median is
+        # 33280 -- 1.96 heights -- from norms-v1 shape.median_height.
+        for section in self.sections:
+            self.assertGreaterEqual(section.clear, registry.MEDIAN_CLEAR,
+                                    section.label)
+
+
+@unittest.skipUnless(HAVE_ZOO, "the pattern-zoo project is not present")
 class GeneratedMapTest(unittest.TestCase):
     """The map is generated, and the generation is what is tested."""
 
@@ -153,69 +210,26 @@ class GeneratedMapTest(unittest.TestCase):
         cls.build = build
 
     def test_it_compiles_to_a_map(self):
-        self.assertGreater(len(self.disk.sectors), 40)
-        self.assertGreater(len(self.disk.sprites), 50)
+        self.assertGreater(len(self.disk.sectors), 60)
+        self.assertGreater(len(self.disk.sprites), 200)
 
-    def test_every_exhibit_got_a_stall(self):
+    def test_every_section_got_a_room(self):
         regions = set(self.layout.regions)
+        for section in registry.sections():
+            self.assertIn(f"section:{section.region_prefix()}", regions,
+                          section.label)
+
+    def test_every_exhibit_got_a_label_sprite(self):
+        placed = {p.placement_id for p in self.layout.placements}
         for item in registry.exhibits():
-            name = item.label.lower().replace(" ", "_")
-            self.assertIn(f"stall:{name}", regions, item.label)
+            #: `write_on_wall` numbers one placement per letter.
+            wanted = f"label:{item.region_prefix()}"
+            self.assertTrue(
+                any(pid.startswith(wanted) for pid in placed), item.label)
 
     def test_the_player_starts_at_the_entrance(self):
         self.assertIsNotNone(self.layout.player_start)
         self.assertEqual(self.layout.player_start.region_id, "region:spine")
-
-    def test_two_room_over_room_exhibits_are_kept_apart(self):
-        # Two ROR volumes in view at once make the renderer draw both. The
-        # E1M1 lesson: the budget is why one sector there does two jobs.
-        placed = self.build.plan(registry.exhibits())
-        ror = [(centre, side) for item, side, centre in placed
-               if item.room_over_room]
-        for index, (centre, side) in enumerate(ror):
-            for other, other_side in ror[index + 1:]:
-                if side != other_side:
-                    continue
-                self.assertGreaterEqual(abs(centre - other),
-                                        self.build.ROR_SEPARATION)
-
-    def test_every_room_is_at_least_the_campaign_median_height(self):
-        # v1 gave every stall 1.5 player heights and the owner walked it and
-        # found the facades had no room to be facades. The campaign median is
-        # 33280 -- 1.96 heights -- from norms-v1 shape.median_height.
-        for item in registry.exhibits():
-            self.assertGreaterEqual(item.clear, registry.MEDIAN_CLEAR,
-                                    item.label)
-
-    def test_no_two_exhibits_demonstrate_the_same_mechanism(self):
-        # The owner found repeats in v1. Two stalls covering one constructor
-        # is two chances to letter the same thing.
-        seen = {}
-        for item in registry.exhibits():
-            for name in item.covers:
-                self.assertNotIn(name, seen,
-                                 f"{item.label} and {seen.get(name)} both "
-                                 f"claim {name}")
-                seen[name] = item.label
-
-    def test_a_stall_that_hand_composed_its_habitat_says_so(self):
-        # The habitat is itself a claim about correct usage. Where one was
-        # assembled by hand rather than by a constructor that owns it, that
-        # is a promotion candidate and the registry has to name it, so the
-        # promotion audit can pick it up instead of rediscovering it.
-        for item in registry.exhibits():
-            for note in item.hand_composed:
-                self.assertGreater(len(note), 20, item.label)
-
-    def test_the_doors_are_real_sectors_and_not_decorated_dicts(self):
-        # The v1 failure in one assertion: every door claimed a type-600
-        # sector, and the map had none, because a hand-written XSECTOR dict
-        # on a type-0 sector is inert.
-        types = {int(sector.fields["type"]) for sector in self.disk.sectors}
-        wanted = {item.expect.sector_type for item in registry.exhibits()
-                  if item.expect.sector_type is not None}
-        self.assertTrue(wanted)
-        self.assertEqual(sorted(wanted - types), [])
 
     def test_the_map_round_trips_through_the_format(self):
         import tempfile
@@ -231,11 +245,33 @@ class GeneratedMapTest(unittest.TestCase):
 
     def test_the_crates_are_crates_and_not_a_mossy_rock(self):
         # 459 is a moss-grown rock. A build once shipped it as a crate.
-        # In v2 a crate is a sector volume, so the tile is on a *wall*.
+        # In v3 a crate is a sector volume, so the tile is on a *wall*.
         walls = {int(wall.fields["picnum"]) for wall in self.disk.walls}
         sprites = {int(s.fields["picnum"]) for s in self.disk.sprites}
         self.assertIn(452, walls)
         self.assertNotIn(459, walls | sprites)
+
+    def test_the_doors_are_real_sectors_and_not_decorated_dicts(self):
+        # The v1 failure in one assertion: every door claimed a type-600
+        # sector, and the map had none, because a hand-written XSECTOR dict
+        # on a type-0 sector is inert.
+        types = {int(sector.fields["type"]) for sector in self.disk.sectors}
+        wanted = {item.expect.sector_type for item in registry.exhibits()
+                  if item.expect.sector_type is not None}
+        self.assertTrue(wanted)
+        self.assertEqual(sorted(wanted - types), [])
+
+    def test_the_tile_museum_shows_only_tiles_the_owner_graded_strong(self):
+        # The binding rule, executable: strong may name, weak and untested
+        # never may. A museum panel is a shallow *sector* wearing the tile.
+        from bloodmap.owner_anchors import load_owner_anchors
+
+        anchors = load_owner_anchors()
+        shown = {int(region.wall_picnum)
+                 for name, region in self.layout.regions.items()
+                 if name.startswith("museum:")}
+        self.assertTrue(shown)
+        self.assertTrue(shown <= set(anchors.naming_picnums()))
 
     def test_the_zoo_reads_itself(self):
         # The acceptance gate this rebuild exists for. Every claim in the
@@ -254,31 +290,26 @@ class GeneratedMapTest(unittest.TestCase):
             manifest_path = Path(directory) / "manifest.json"
             write_map(self.disk, map_path)
             sectors = {name: allocation.sector_id
-                       for name, allocation in self.compiled.allocations.items()}
-            seated = sorted(
-                self.compiled.placement_sprites[placement.placement_id]
-                for placement in self.layout.placements
-                if placement.seat == "floor"
-                and placement.placement_id in self.compiled.placement_sprites)
+                       for name, allocation
+                       in self.compiled.allocations.items()}
+            seated = sorted({
+                self.compiled.placement_sprites[p.placement_id]
+                for p in self.layout.placements
+                if p.seat == "floor"
+                and p.placement_id in self.compiled.placement_sprites})
+            letters = sorted({
+                self.compiled.placement_sprites[p.placement_id]
+                for p in self.layout.placements
+                if (p.placement_id.startswith(("label:", "sign:", "blocker:"))
+                    and p.placement_id in self.compiled.placement_sprites)})
             manifest_path.write_text(json.dumps({
                 "region_sectors": sectors,
-                "floor_seated_sprites": seated}), encoding="utf-8")
+                "floor_seated_sprites": seated,
+                "letter_sprites": letters}), encoding="utf-8")
             report = selfread.run(map_path, manifest_path)
-        self.assertGreater(report["claims_checked"], 8)
+        self.assertGreater(report["claims_checked"], 15)
         self.assertEqual(report["problems"], [])
 
-    def test_the_tile_museum_shows_only_tiles_the_owner_graded_strong(self):
-        # The binding rule, executable: strong may name, weak and untested
-        # never may. In v2 a museum panel is a shallow *sector* wearing the
-        # tile, not a sprite of it, so the claim is on the wall.
-        from bloodmap.owner_anchors import load_owner_anchors
-
-        anchors = load_owner_anchors()
-        shown = {int(region.wall_picnum)
-                 for name, region in self.layout.regions.items()
-                 if name.startswith("museum:")}
-        self.assertTrue(shown)
-        self.assertTrue(shown <= set(anchors.naming_picnums()))
 
 if __name__ == "__main__":
     unittest.main()

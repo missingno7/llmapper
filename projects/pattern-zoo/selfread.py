@@ -11,12 +11,20 @@ registry entry's `expect` is checked against what that reading finds. A label
 that claims a push door has to produce a z-motion mechanism whose cause is a
 push. A dead map fails here.
 
-Two further checks, for the other things the owner found by walking:
+Five further checks, one per thing the owner found by walking or named as a
+binding rule:
 
 * **nothing floats.** Every sprite the layout seated on a floor is checked
   against its sector's floor and its tile's drawn extent.
-* **nothing is stranded.** Every stall has to be reachable from the player
-  start, or an exhibit exists that nobody can visit.
+* **nothing is stranded.** Every section has to be reachable from the player
+  start, or a whole environment exists that nobody can visit.
+* **the representation taxonomy holds.** A tile an exhibit claims as wall
+  texture must appear on walls and not as a sprite, and the reverse; a
+  concept realized at the wrong level is a build failure, not a style choice.
+* **the mask law holds.** No tile carrying mask pixels may appear on a floor
+  or ceiling. Measured over the campaign: 0 of 28158 non-sky surface slots.
+* **every exhibit is lettered.** A label sprite has to exist for each, or an
+  exhibit has lost the identity that owner feedback arrives by.
 """
 
 from __future__ import annotations
@@ -31,9 +39,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
-from bloodmap.conditional import (                          # noqa: E402
-    build_graph, design_role, route_edges,
-)
+from bloodmap.conditional import build_graph, route_edges    # noqa: E402
 from bloodmap.doors import _wall_owners, observe_motion_sector  # noqa: E402
 from bloodmap.effects import read_mechanism                 # noqa: E402
 from bloodmap.format import read_map                        # noqa: E402
@@ -45,6 +51,9 @@ HERE = pathlib.Path(__file__).resolve().parent
 MAP = HERE / "level" / "pattern-zoo.MAP"
 MANIFEST = HERE / "reports" / "build-manifest.json"
 
+#: Letters are wall sprites too, and they are not exhibits.
+LETTER_TILES = range(3808, 3834)
+
 
 def _relative(path: pathlib.Path) -> str:
     """The path as the repo sees it, or as given when it is outside."""
@@ -54,16 +63,58 @@ def _relative(path: pathlib.Path) -> str:
         return str(path).replace("\\", "/")
 
 
-def _extra(item: Any) -> dict:
-    payload = getattr(item, "extra", None)
-    return payload.fields if payload is not None and hasattr(payload, "fields") else {}
-
-
 def exhibit_sectors(manifest: dict, prefix: str) -> list[int]:
     """Every sector the named exhibit built, by region-id prefix."""
     return sorted(
         sector for name, sector in manifest["region_sectors"].items()
         if name == prefix or name.startswith(prefix + ":"))
+
+
+_WALL_SECTOR: dict[int, int] = {}
+
+
+def _wall_sector(disk, wall_index: int) -> int:
+    """Which sector owns a wall, cached across the whole read."""
+    if not _WALL_SECTOR:
+        for sector_id, sector in enumerate(disk.sectors):
+            first = int(sector.fields["wall_ptr"])
+            for offset in range(int(sector.fields["wall_count"])):
+                _WALL_SECTOR[first + offset] = sector_id
+    return _WALL_SECTOR.get(wall_index, -1)
+
+
+def _taxonomy(disk, sectors, exhibit) -> list[str]:
+    """Whether each concept was realized at the level it is meant to be.
+
+    The owner's rule, made checkable: a shelf is a WALL TEXTURE on shallow
+    sectors and a mannequin is a SPRITE, and swapping them is a build
+    failure. v1 shipped the shelf as a sprite and the crates as sprites, and
+    every static gate it faced passed.
+
+    Checked inside the exhibit's own sectors, so one exhibit's crate tile
+    cannot satisfy another exhibit's claim.
+    """
+    problems = []
+    group = set(sectors)
+    on_walls = {int(wall.fields["picnum"])
+                for index, wall in enumerate(disk.walls)
+                if _wall_sector(disk, index) in group}
+    as_sprites = {int(s.fields["picnum"]) for s in disk.sprites}
+    for tile in exhibit.expect.wall_tiles:
+        if tile not in on_walls:
+            problems.append(
+                f"{exhibit.label}: tile {tile} is claimed as wall texture and "
+                f"is on no wall of its own sectors {sorted(group)}")
+        if tile in as_sprites:
+            problems.append(
+                f"{exhibit.label}: tile {tile} is claimed as wall texture but "
+                f"was also thrown somewhere as a sprite")
+    for tile in exhibit.expect.sprite_tiles:
+        if tile not in as_sprites:
+            problems.append(
+                f"{exhibit.label}: tile {tile} is claimed as a sprite and is "
+                f"not one")
+    return problems
 
 
 def check(disk, manifest, graph, exhibit) -> list[str]:
@@ -73,24 +124,28 @@ def check(disk, manifest, graph, exhibit) -> list[str]:
         return []
     prefix = exhibit.region_prefix()
     sectors = exhibit_sectors(manifest, prefix)
-    if not sectors:
-        return [f"{exhibit.label}: built no sector under {prefix!r}"]
-
     problems: list[str] = []
+
+    if want.wall_tiles or want.sprite_tiles:
+        problems.extend(_taxonomy(disk, sectors, exhibit))
+    if want.sector_type is None:
+        return problems
+    if not sectors:
+        return problems + [f"{exhibit.label}: built no sector under {prefix!r}"]
+
     owners = _wall_owners(disk)
     typed = [s for s in sectors
              if int(disk.sectors[s].fields["type"]) == want.sector_type]
-    if want.sector_type is not None:
-        if len(typed) < want.count:
-            found = sorted({int(disk.sectors[s].fields["type"]) for s in sectors})
-            problems.append(
-                f"{exhibit.label}: wanted {want.count} sector(s) of type "
-                f"{want.sector_type}, found {len(typed)} among types {found}")
-            return problems
+    if len(typed) < want.count:
+        found = sorted({int(disk.sectors[s].fields["type"]) for s in sectors})
+        problems.append(
+            f"{exhibit.label}: wanted {want.count} sector(s) of type "
+            f"{want.sector_type}, found {len(typed)} among types {found}")
+        return problems
 
     #: The reading, from the map rather than from the source that built it.
     readings = []
-    for sector in typed or sectors:
+    for sector in typed:
         record = observe_motion_sector(disk, sector, owners=owners)
         if record is None:
             continue
@@ -135,12 +190,14 @@ def check(disk, manifest, graph, exhibit) -> list[str]:
                     f"{exhibit.label}: its causes are {sorted(triggers)}, "
                     f"wanted a {want.trigger!r}")
             if want.requires_key and not any(
-                    route["requires_key"] == want.requires_key for route in routes):
+                    route["requires_key"] == want.requires_key
+                    for route in routes):
                 keys = sorted({route["requires_key"] for route in routes})
                 problems.append(
                     f"{exhibit.label}: wanted key {want.requires_key}, "
                     f"routes require {keys}")
-            if want.irreversible and not any(route["irreversible"] for route in routes):
+            if want.irreversible and not any(route["irreversible"]
+                                             for route in routes):
                 problems.append(
                     f"{exhibit.label}: wanted a one-way route; none of its "
                     f"routes is irreversible")
@@ -154,9 +211,9 @@ def floating_sprites(disk, manifest) -> list[str]:
     no ART extent, so the seating fell back to a guess and nothing complained.
 
     Only floor-seated placements are checked, from the build manifest: a face
-    sprite hung deliberately up a wall -- the crack, the switches -- is
-    indistinguishable from a failed seating in the finished MAP, and flagging
-    those would make the check cry wolf until nobody read it.
+    sprite hung deliberately up a wall -- the crack, the switches, the letters
+    -- is indistinguishable from a failed seating in the finished MAP, and
+    flagging those would make the check cry wolf until nobody read it.
     """
     from bloodmap.effects import STEP_UP
     from bloodmap.placement import sprite_extent
@@ -193,22 +250,75 @@ def floating_sprites(disk, manifest) -> list[str]:
     return out
 
 
-def stranded_stalls(disk, manifest, graph) -> list[str]:
-    """Stalls no body can reach from the player start."""
+def masked_surfaces(disk) -> list[str]:
+    """The transparency law, enforced: no mask tile on a floor or ceiling.
+
+    Owner-stated and measured the same day: of 3590 tiles carrying mask
+    pixels above 5%, exactly zero appear on any of the campaign's 28158
+    non-sky floor/ceiling slots across 43 maps. Parallax surfaces are exempt
+    because the sky is not sampled this way at all.
+    """
+    try:
+        from bloodmap.art import read_art_directory, transparency_stats
+        tiles = read_art_directory("reference/blood")
+    except Exception:
+        return []
+    masked = set()
+    for picnum, tile in tiles.items():
+        try:
+            stats = transparency_stats(tile)
+        except Exception:
+            continue
+        if stats.get("has_mask") and float(stats["transparent_ratio"]) > 0.05:
+            masked.add(int(picnum))
+    out = []
+    for index, sector in enumerate(disk.sectors):
+        fields = sector.fields
+        for role, stat_key, pic_key in (
+                ("floor", "floor_stat", "floor_picnum"),
+                ("ceiling", "ceiling_stat", "ceiling_picnum")):
+            if int(fields[stat_key]) & 1:
+                continue                       # parallax: not sampled
+            picnum = int(fields[pic_key])
+            if picnum in masked:
+                out.append(
+                    f"sector {index}: tile {picnum} carries mask pixels and "
+                    f"is on its {role}; the campaign never does this")
+    return out
+
+
+def unlettered(disk, manifest) -> list[str]:
+    """Labels that are missing, or that landed as something else."""
+    letters = set(manifest.get("letter_sprites", []))
+    if not letters:
+        return ["the build recorded no label sprites at all"]
+    out = []
+    for index in sorted(letters):
+        picnum = int(disk.sprites[index].fields["picnum"])
+        if picnum not in LETTER_TILES:
+            out.append(f"sprite {index} is recorded as a letter but wears "
+                       f"tile {picnum}, which is not a letter tile")
+    return out
+
+
+def stranded_sections(disk, manifest, graph) -> list[str]:
+    """Environments no body can reach from the player start."""
     held = graph.everything_worked()
     reached = graph.reachable(held)
     out = []
     for name, sector in sorted(manifest["region_sectors"].items()):
-        if not name.startswith("stall:"):
+        if not name.startswith("section:"):
             continue
         if sector not in reached:
-            out.append(f"{name} (sector {sector}) is not reachable from the start")
+            out.append(f"{name} (sector {sector}) is not reachable from the "
+                       f"start")
     return out
 
 
 def run(map_path: pathlib.Path = MAP,
         manifest_path: pathlib.Path = MANIFEST) -> dict[str, Any]:
     """Read the built map back and report every claim it fails to support."""
+    _WALL_SECTOR.clear()
     disk = read_map(map_path)
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     graph = build_graph(disk)
@@ -221,20 +331,23 @@ def run(map_path: pathlib.Path = MAP,
         per_exhibit[exhibit.label] = found
         problems.extend(found)
     floats = floating_sprites(disk, manifest)
-    stranded = stranded_stalls(disk, manifest, graph)
-    problems.extend(floats)
-    problems.extend(stranded)
+    stranded = stranded_sections(disk, manifest, graph)
+    masked = masked_surfaces(disk)
+    labels = unlettered(disk, manifest)
+    problems.extend(floats + stranded + masked + labels)
 
     from collections import Counter
     types = Counter(int(s.fields["type"]) for s in disk.sectors)
     return {
-        "$schema": "llmapper.pattern-zoo-selfread", "schema_version": 1,
+        "$schema": "llmapper.pattern-zoo-selfread", "schema_version": 2,
         "map": _relative(map_path),
         "sector_types": {str(k): v for k, v in sorted(types.items())},
         "claims_checked": sum(1 for e in exhibits if not e.expect.is_empty()),
         "per_exhibit": per_exhibit,
         "floating_sprites": floats,
-        "stranded_stalls": stranded,
+        "stranded_sections": stranded,
+        "masked_surfaces": masked,
+        "lettering": labels,
         "problems": problems,
         "passed": not problems,
     }
@@ -246,13 +359,14 @@ def main() -> int:
         json.dumps(report, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(f"sector types: {report['sector_types']}")
     print(f"claims checked: {report['claims_checked']}")
-    for label, found in report["per_exhibit"].items():
-        if found:
-            for line in found:
-                print(f"  !! {line}")
-    for line in report["floating_sprites"] + report["stranded_stalls"]:
+    for found in report["per_exhibit"].values():
+        for line in found:
+            print(f"  !! {line}")
+    for line in (report["floating_sprites"] + report["stranded_sections"]
+                 + report["masked_surfaces"] + report["lettering"]):
         print(f"  !! {line}")
-    print("PASS" if report["passed"] else f"FAIL: {len(report['problems'])} problems")
+    print("PASS" if report["passed"]
+          else f"FAIL: {len(report['problems'])} problems")
     return 0 if report["passed"] else 1
 
 
