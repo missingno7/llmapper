@@ -193,3 +193,139 @@ Recorded so the queue is honest about what it stopped asking:
   SHELF SECRET is unintelligible — reads as a sliding gate with unrelated
   props instead of a bookshelf that slides (E1M1 s70 blueprint).
 - Items 2, 3, 4, 6 remain open for the owner.
+
+---
+
+# The seam decision — a brief, 2026-09-01
+
+**Nothing here has been implemented. This is analysis so the decision can be
+made over numbers.**
+
+## The blocker, in one line
+
+Gravesend draws its district seams **down street centrelines**. So a main
+street belongs half to each side of the seam, and neither half is wide enough
+for a carriageway plus its two pavements. Street anatomy therefore cannot be
+laid on those runs at all.
+
+**The measured size of it: 8 of the 13 roadable runs sit on a seam.**
+
+```text
+Theatre_Row_street_west   Theatre_Row_street_east   the_avenue_north
+the_avenue_mid            the_avenue_south          market_street_west
+market_street_mid         market_street_east
+```
+
+Wave 1 laid 3 carriageways, all on the 5 runs that do NOT touch a seam. Two
+districts — **Theatre Row and Foundry Ward — get no roadway at all** until
+this is settled, because every roadable run they have is a seam run.
+
+---
+
+## Option A — paired half-roads across the seam
+
+Each district lays its own half of the carriageway and the two halves are
+joined to each other across the seam.
+
+**What must become seam-aware:** the road layer only. `streets.lay` gains a
+second pass that matches half-roads by seam and span, and pairs them to each
+other instead of to their own street.
+
+**Call sites:** `DISTRICT_BOUNDS` is read in **11 places**; only the one in
+`streets.lay` would change. Nothing else in the level program needs to know.
+
+**The measured fact you cannot see from prose:** the pairing has to happen
+between two rooms that do not exist at the same moment — a run is laid
+district by district — so `lay` needs a deferred join, and a deferred join is
+the mechanism that already caused the `same-direction coincident atomic
+segments` failure four times in wave 1. This is the cheapest option to
+*describe* and the one most likely to fight the compiler.
+
+**Cost: small and contained. Risk: the highest of the three.**
+
+---
+
+## Option B — move the seams off the centrelines
+
+Redraw district boundaries to run down the middle of blocks, so each street
+belongs wholly to one district.
+
+**L1 contract rows that change:** the 4 district bound rows, and the
+re-parenting of the masses they cross — **2 blocks each for Theatre Row, Old
+Crossing and Foundry Ward, 3 for Market Slip**. 9 blocks total, every one of
+which changes owner or keeps it by a new rule.
+
+**Who inherits each boundary street** becomes a decision per street rather
+than an accident of arithmetic: 8 streets, each needing an owner.
+
+**The measured fact:** `DISTRICT_BOUNDS` is read in 11 places and 8 things
+reference district street regions by name. All of them would keep working —
+the bounds simply hold different numbers — so this is a **data change, not a
+code change**. Nothing in the level program is seam-aware today, which is
+exactly why moving the seams costs so little.
+
+**Cost: the plan edit and one rebuild. Risk: low. It invalidates the
+district-level norm comparisons until they are re-baselined.**
+
+---
+
+## Option C — streets as first-class parts of the tree
+
+A street stops being a leftover region owned by a district and becomes its
+own node, with districts owning only their blocks.
+
+**What the plan gains:** a street is addressable — "what is on Theatre Row"
+gets an answer, which is the same failure the city tree fixed for venues.
+Roadways, pavements, lamps and signs all hang off the street rather than off
+whichever district happened to contain them.
+
+**What it loses:** style inheritance. A district's facade material currently
+reaches its street through containment; a street that is nobody's child needs
+its register stated or inherited by a new rule.
+
+**Nodes:** 13 exist; 18 edges become 18 street nodes, so the tree grows by
+**18 assemblies plus their rooms** — roughly a doubling of the top two
+levels.
+
+**The measured fact:** the conformance check at `conformance.py:142` asserts
+that *every district's street region plus the cemetery and gate rooms join
+one at-grade component*. Under C that row stops making sense as written and
+has to be restated over street nodes — so the conformance diff is not
+cosmetic, it is one of the checks that has actually caught a regression
+before (light pools joining the street network).
+
+**Cost: the largest. Risk: moderate. It is the only option that also solves
+the *next* problem.**
+
+---
+
+## What the future costs, per option
+
+The rail spur and the harbor (wave 2) both add street runs.
+`the_rail_spur` is already refused for an unrelated reason — its carriageway
+**would run through the gatehouse** — and the harbor will add quay runs along
+the water's edge, which is a district boundary by nature.
+
+```text
+option   cost now         cost per future street
+A        small            small, but each new seam run is a new pairing
+B        one plan edit    zero -- a street belongs to one district by then
+C        large            zero, and the street is addressable
+```
+
+---
+
+## Recommendation
+
+**Option B.** It is a data change rather than a code change — nothing in the
+level program is seam-aware today, so moving the numbers costs almost
+nothing — and it makes every future street free. Option A is cheapest to
+write and most likely to fight the compiler; Option C is the right long-term
+shape and too large to do as a side effect of laying roads.
+
+If B is chosen, C stays available and gets cheaper: with streets already
+belonging to one district each, promoting them to their own nodes is a
+re-parenting rather than a redrawing.
+
+**Implemented: none. This wave worked only on what does not depend on the
+answer.**
