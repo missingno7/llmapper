@@ -416,8 +416,8 @@ def sections() -> list[Section]:
                     expect=Expect(sector_type=614, rx_id=304)),
                 Exhibit(
                     label="CURTAIN",
-                    about="a thin sector whose own LENGTH changes -- the "
-                          "texture squashing IS the animation",
+                    about="an internal FIN drawn across its own doorway -- "
+                          "the fabric stretching IS the animation",
                     try_this="open it and watch the fabric gather: the sector "
                              "resizes, it does not slide aside",
                     provenance="owner anchor 146/147, binding strong, and the "
@@ -427,7 +427,7 @@ def sections() -> list[Section]:
                     build=stalls.curtain, prefix="curtain",
                     bay=5 * 1024, depth=5 * 1024,
                     expect=Expect(sector_type=614, rx_id=303,
-                                  payload_shape="the sector resizes itself",
+                                  payload_shape="part of the sector travels",
                                   wall_tiles=(146,))),
             )),
         # ------------------------------------------------------------------

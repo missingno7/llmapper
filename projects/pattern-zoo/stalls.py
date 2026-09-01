@@ -114,6 +114,8 @@ CH_CASKET = 309
 
 #: E1M1 s125 is 128 units deep. A curtain is thin -- that is what lets its
 #: length change read as the fabric gathering.
+#: The doorway the fabric hangs in. DOOR-CURTAINS s3 is 256 thick.
+CURTAIN_DOORWAY = 256
 CURTAIN_DEPTH = 128
 
 #: The oracle's lid: 2048 of a 2176 footprint at rest, 128 when open.
@@ -739,68 +741,59 @@ def casket(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     return built
 
 def curtain(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
-    """E1M1's curtain, through `mechanism.curtain`.
+    """A curtain, to `Vanilla/DOOR-CURTAINS.map`.
 
-    Three defects the owner found in game, all fixed by the composition
-    rather than by this builder:
+    The fabric is an internal FIN in the doorway's own outline: a narrow tab
+    hanging from one edge, whose free end is the single flagged wall. Drawing
+    it across stretches the tab's two sides, and because every moved vertex
+    is interior to this sector nothing outside it can deform -- which is why
+    the tutorial's curtains never disturb their rooms and the zoo's did.
 
-    * the markers ran the wrong way, so rest read OPEN and "opening"
-      stretched the fabric apart. `mechanism.curtain` places them
-      closed-to-open and saves the leaf at state 1 so drawn IS rest.
-    * there was no motion aperture, so the fabric's moving vertices were the
-      SECTION ROOM's corners and pushing the curtain deformed the room.
-      The composition insets the fabric from its frame by a seam at each end,
-      which puts the moved vertices in the middle of the frame's walls.
-    * the wiring sent a directed verb. It is TOGGLE now, checked against the
-      state the leaf is saved in.
+    It rests CLOSED. Markers are state-anchored -- type 3 is the OFF
+    position, type 4 the ON position, and the geometry is drawn at ON -- so
+    with state 0 the fabric snaps across the doorway at load. The zoo had
+    that pair backwards and its curtains ran the wrong way.
     """
     wall, floor, ceiling = skin
     out = _outward(back, box)
     bx0, by0, bx1, by1 = back
     mid = (by0 + by1) // 2
-    length = 3 * U
-    low, high = mid - length // 2, mid + length // 2
+    width = 3 * U
+    low, high = mid - width // 2, mid + width // 2
     near = box[2] if out > 0 else box[0]
-    far = near + out * CURTAIN_DEPTH
+    far = near + out * CURTAIN_DOORWAY
     x0, x1 = min(near, far), max(near, far)
 
-    #: The strip's near face meets the room over its FULL length -- its
-    #: corners are outside the recess and never move. The stage behind meets
-    #: the recessed far face, and IS dragged, exactly as E1M1's alcove s124
-    #: is; that is declared rather than pretended away.
+    #: The doorway: thin in the direction you walk through it, wide across.
+    #: The fabric draws along y, so the fin hangs from the high edge.
     built = mechanism_curtain(
-        layout, "curtain", frame=(x0, low, x1, high), axis="y",
-        travel=2 * U, channel=CH_CURTAIN, leaf_region="curtain:leaf",
-        floor_z=floor_z, ceiling_z=ceiling_z,
-        host_side="low" if out > 0 else "high",
-        floor_picnum=floor, ceiling_picnum=ceiling)
+        layout, "curtain", opening=(x0, low, x1, high), axis="y",
+        channel=CH_CURTAIN, leaf_region="curtain:leaf",
+        floor_z=floor_z, ceiling_z=ceiling_z, anchored="high",
+        floor_picnum=floor, ceiling_picnum=ceiling,
+        declared_zero_exit=True)
+    layout.declare_motion("curtain:leaf", [])
     layout.add_connection("curtain:c0", stall, "curtain:leaf",
                           a1=(near, low), a2=(near, high), min_width=384)
 
     #: What a curtain is drawn across.
-    stage = _slice(back, box, CURTAIN_DEPTH, 2 * U)
-    stage = (stage[0], built["fabric_span"][0], stage[2],
-             built["fabric_span"][1])
+    stage = _slice(back, box, CURTAIN_DOORWAY, 2 * U)
+    stage = (stage[0], low, stage[2], high)
     layout.add_region(
         "curtain:stage", _rect(stage),
         floor_z=floor_z - PLAYER_HEIGHT // 4, ceiling_z=ceiling_z,
         wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
         declared_zero_exit=True,
         intent={"purpose": "curtain: the alcove it is drawn across"})
-    fa, fb = built["fabric_span"]
-    face = built["far_face"]
     layout.add_connection("curtain:c1", "curtain:leaf", "curtain:stage",
-                          a1=(face, fa), a2=(face, fb), min_width=384)
-    layout.declare_motion("curtain:leaf", ["curtain:stage"])
+                          a1=(far, low), a2=(far, high), min_width=384)
     layout.place_on_floor("curtain:statue", "curtain:stage", local=(0.5, 0.5),
                           **furnish("statue"))
-    #: Push the fabric itself, as E1M1 does: four of s125's own walls carry
-    #: XWALLs transmitting on the channel the sector receives on.
+    #: A switch as well as the fabric itself, since this is an exhibit.
     f1, f2 = _facing(box, back)
     layout.place_on_wall("curtain:switch", stall, a1=f1, a2=f2, t=0.2,
                          height_player_heights=0.55,
-                         behavior=motion.transmitter(
-                             channel=CH_CURTAIN, receiver_state=1),
+                         behavior=motion.transmitter(channel=CH_CURTAIN),
                          **SWITCH)
     return built
 
