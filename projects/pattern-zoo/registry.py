@@ -1,56 +1,129 @@
 """The Pattern Zoo's exhibit registry.
 
-Every pattern, mechanism and constructor the pipeline has learned stands here
-as one entry. The map is **generated from this list** -- no geometry is placed
-by hand anywhere in this project -- so the zoo stays current by the registry
-staying current, and a conformance test fails when a public constructor has
-neither an exhibit nor a written reason to be skipped.
+v2. The owner walked v1 and it failed conceptually: **no mechanism worked.**
+The map had zero type-600 sectors, because the stalls hand-assembled XSECTOR
+dictionaries and never set the sector *type* -- and XSECTOR data on a type-0
+sector does nothing. The only live machinery in v1 was the rotors, and they
+were live because `mechanism.turnstile` sets its own type.
 
-Owner feedback arrives **by label**, so `label` is a stable identity, not a
-caption. Changing one loses the thread of corrections attached to it.
+Three rules come out of that, and they are what this file is shaped by.
 
-Labels are drawn with `lettering.write_on_wall`, whose alphabet is A-Z and
-space only. Keep them short: a stall wall is 4096 units and a size-64 letter
-is about 93 wide.
+**One: every exhibit is built by the code that owns the concept.** A door is
+`doors.z_motion_door` with `type=600`; a rotor is `mechanism.turnstile`; a
+crate is a sector volume wearing a `templates` crate module; a frontage is
+`aperture.facade_run`. Where no owning constructor exists the stall is an
+honest **EMPTY** exhibit with the gap lettered on its wall -- never a
+hand-rolled imitation. v1's crates were sprites, its shelf run was a sprite on
+a wall, its mannequins floated: three depictions that passed a render and
+failed a player.
+
+**Two: each room is sized for what it shows.** v1's stalls were a grid of
+equal boxes 1.5 player heights high; the campaign median is 33280 units,
+1.96 heights (`norms-v1.json` `shape.median_height`). A lift needs two
+storeys. A facade needs street scale and somewhere to stand back and look.
+
+**Three: the zoo reads itself.** Every entry carries `expect` -- what
+`bloodmap.effects` and `bloodmap.conditional` must find in the built map for
+the claim on the wall to be true. Renders and load smoke both passed on a dead
+map; only reading the map back catches that.
+
+Owner feedback arrives **by label**, so `label` is a stable identity. Changing
+one retires an exhibit and starts another.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Callable, Sequence
+from typing import Any, Callable
 
-#: Everything a stall needs, and nothing about where it sits -- the generator
-#: decides that.
-Builder = Callable[..., None]
+#: Campaign median clear height, `norms-v1.json` `shape.median_height`:
+#: 33280 units, 1.96 player heights. The default a room gets when the exhibit
+#: does not need otherwise.
+MEDIAN_CLEAR = 33280
+
+
+@dataclass(frozen=True)
+class Expect:
+    """What the understanding stack must find for the label to be true.
+
+    Checked against the *built map* by `selfread.py`, not against the source
+    that built it. That is the whole point: v1's source looked like doors.
+    """
+
+    #: The sector type the exhibit's mechanism must carry, if any.
+    sector_type: int | None = None
+    #: A trigger kind `conditional.design_role` must report among its causes.
+    trigger: str = ""
+    #: What `effects.design_object` must read the mechanism as.
+    reads_as: str = ""
+    #: The route must require this key number.
+    requires_key: int = 0
+    #: The route must be one-way.
+    irreversible: bool = False
+    #: The mechanism must listen on this channel.
+    rx_id: int | None = None
+    #: At least this many sectors of `sector_type` in the stall's own group.
+    count: int = 1
+
+    def summary(self) -> str:
+        """What the self-read had to find, in words, for the tour sheet."""
+        parts = []
+        if self.sector_type is not None:
+            parts.append(f"{self.count} sector(s) of type {self.sector_type}")
+        if self.reads_as:
+            parts.append(f"read as a {self.reads_as}")
+        if self.trigger:
+            parts.append(f"worked by a {self.trigger}")
+        if self.rx_id is not None:
+            parts.append(f"listening on channel {self.rx_id}")
+        if self.requires_key:
+            parts.append(f"requiring key {self.requires_key}")
+        if self.irreversible:
+            parts.append("one-way")
+        return ", ".join(parts)
+
+    def is_empty(self) -> bool:
+        return (self.sector_type is None and not self.trigger
+                and not self.reads_as and not self.requires_key
+                and not self.irreversible and self.rx_id is None)
 
 
 @dataclass(frozen=True)
 class Exhibit:
     """One stall."""
 
-    #: Stable identity. Owner corrections are filed against it, so treat a
-    #: rename as retiring one exhibit and adding another.
+    #: Stable identity. Owner corrections are filed against it.
     label: str
-    #: What the visitor is looking at, in a sentence.
     about: str
-    #: What the owner should do here. The whole point of a playable zoo.
     try_this: str
-    #: Which report, phase or owner note this came from.
     provenance: str
-    #: The constructor or template it demonstrates, by dotted name. Used by
-    #: the conformance test to tell which public constructors are covered.
+    #: Dotted names of the constructors this stall demonstrates.
     covers: tuple[str, ...] = ()
-    #: Builds the stall's contents. `None` means an EMPTY stall, and
-    #: `blocker` then says why -- an honest gap is an exhibit too.
-    build: Builder | None = None
+    #: Builds the stall's contents. `None` is an EMPTY stall and `blocker`
+    #: then says what is missing.
+    build: Callable[..., Any] | None = None
     blocker: str = ""
-    #: Room-over-room exhibits carry a visibility cost: two ROR volumes must
-    #: not be in view at once. The generator keeps these apart.
+    #: Clear height in map units. The campaign median unless the exhibit
+    #: needs otherwise.
+    clear: int = MEDIAN_CLEAR
+    #: Room footprint in map units, (across, deep).
+    size: tuple[int, int] = (5120, 5120)
+    #: Wall / floor / ceiling tiles, from the exhibit's own material family.
+    skin: tuple[int, int, int] = (400, 294, 285)
+    #: What the understanding stack must find.
+    expect: Expect = field(default_factory=Expect)
+    #: Room-over-room exhibits carry a visibility cost.
     room_over_room: bool = False
+    #: Region-id prefix the exhibit's own sectors carry, for the self-read.
+    #: Defaults to the label, lowercased with spaces as underscores.
+    prefix: str = ""
+    #: Habitat dressing this stall had to hand-compose because no constructor
+    #: owns it yet. The owner's rule: a habitat is itself a claim about
+    #: correct usage, so where one is assembled by hand rather than by an
+    #: owning constructor, that is a promotion candidate and is named here.
+    hand_composed: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
-        if not self.label.strip():
-            raise ValueError("an exhibit needs a label")
         allowed = set("ABCDEFGHIJKLMNOPQRSTUVWXYZ ")
         bad = sorted(set(self.label) - allowed)
         if bad:
@@ -61,196 +134,285 @@ class Exhibit:
             raise ValueError(
                 f"exhibit {self.label!r} builds nothing and gives no blocker; "
                 "an empty stall has to say what is missing")
+        if self.build is None and not self.expect.is_empty():
+            raise ValueError(
+                f"exhibit {self.label!r} is empty but claims something for the "
+                "self-read to find")
 
     def is_empty(self) -> bool:
         return self.build is None
 
+    def region_prefix(self) -> str:
+        return self.prefix or self.label.lower().replace(" ", "_")
+
 
 def exhibits() -> list[Exhibit]:
-    """The v1 zoo, in tour order."""
+    """The v2 zoo, in tour order."""
     import stalls
 
+    #: Owner-anchor material families. A stall wears the family of the thing
+    #: it shows, not one gallery skin.
+    STONE = (400, 294, 285)
+    BRICK = (90, 294, 285)
+    TIMBER = (156, 294, 285)
+    SEWER = (496, 294, 285)
+    STREET = (1097, 756, 3491)
+    PARK = (400, 361, 3491)
+    CRATE = (452, 294, 285)
+
     return [
-        # -- doors, the z-motion family ----------------------------------
+        # -- the z-motion door family, each with a distinct interaction ----
         Exhibit(
             label="PUSH DOOR",
             about="a z-motion door opened by pushing its own wall",
-            try_this="walk up to it and press use on the door face",
-            provenance="doors.z_motion_door; reports/blood-door-families.md",
+            try_this="press use on the door face; it should rise",
+            provenance="doors.z_motion_door(interaction='direct'), which sets "
+                       "the busy times a bare endpoints dict leaves at zero",
             covers=("bloodmap.doors.z_motion_door",
                     "bloodmap.doors.xsector_direct_use"),
-            build=stalls.push_door),
+            build=stalls.push_door, skin=STONE,
+            expect=Expect(sector_type=600, trigger="push",
+                          reads_as="changes what fits through")),
         Exhibit(
             label="SWITCHED DOOR",
-            about="the same door, worked from a switch across the stall",
+            about="the same motion, worked from a switch across the room",
             try_this="press the switch on the side wall, not the door",
-            provenance="doors.xsector_remote_rx; reports/blood-effects-switches.md",
+            provenance="doors.z_motion_door(interaction='remote'); "
+                       "reports/blood-effects-switches.md",
             covers=("bloodmap.doors.xsector_remote_rx",),
-            build=stalls.switched_door),
+            build=stalls.switched_door, skin=BRICK,
+            expect=Expect(sector_type=600, trigger="switch", rx_id=300,
+                          reads_as="changes what fits through")),
         Exhibit(
             label="KEYED DOOR",
-            about="a door with a key emblem; the key lies in the stall",
-            try_this="try the door first, then take the key and try again",
-            provenance="doors.KEY_TYPES + knowledge/blood/design/keys-v1.json; "
-                       "E1M4 sector 295 wears the moon emblem",
-            covers=("bloodmap.doors.z_motion_endpoints",),
-            build=stalls.keyed_door),
+            about="a door that wants the moon key, which lies in the room",
+            try_this="try the door, then take the key and try again",
+            provenance="doors.z_motion_door(key=6); E1M4 sector 295 wears the "
+                       "moon emblem; knowledge/blood/design/keys-v1.json",
+            build=stalls.keyed_door, skin=STONE,
+            expect=Expect(sector_type=600, requires_key=6,
+                          reads_as="changes what fits through")),
         Exhibit(
             label="LIFT",
             about="a floor that carries a body between two standing levels",
-            try_this="ride it up, then step off and look down",
-            provenance="reports/blood-effects-motion.md; E1M3 sector 241",
-            build=stalls.lift),
+            try_this="ride it up, step off, and look back down",
+            provenance="reports/blood-effects-motion.md; E1M3 sector 241, "
+                       "whose floor endpoints are exactly its neighbours'",
+            build=stalls.lift, skin=STONE,
+            #: Two storeys: a lift that fits under a median ceiling is not a
+            #: lift, it is a step.
+            clear=2 * MEDIAN_CLEAR, size=(5120, 7168),
+            prefix="lift",
+            hand_composed=(
+                          "the mechanism itself: a floor-travelling z-motion, because doors.z_motion_door writes ceiling endpoints only",
+                          "the upper room that makes the ride worth taking: material, light and two props placed by hand",),
+            expect=Expect(sector_type=600,
+                          reads_as="carries a body between levels")),
         Exhibit(
             label="CRACK BARRIER",
-            about="a wall that opens once, when shot, and never closes",
-            try_this="shoot the crack; the way behind it stays open",
-            provenance="reports/blood-conditional-topology.md; "
-                       "E1M4 sprite 373 on channel 119",
-            build=stalls.crack_barrier),
+            about="a wall that opens once, when shot, and never closes again",
+            try_this="shoot the crack; what it opens stays open",
+            provenance="reports/blood-conditional-topology.md; E1M4 sprite 373 "
+                       "on channel 119, listeners flush at rest",
+            build=stalls.crack_barrier, skin=BRICK,
+            prefix="crack",
+            hand_composed=(
+                          "the load-bearing wall the breach interrupts is plain masonry; no constructor owns a damaged-wall habitat",),
+            expect=Expect(sector_type=600, trigger="shot", irreversible=True,
+                          rx_id=301)),
 
-        # -- the rotating-door family ------------------------------------
+        # -- the rotating family ------------------------------------------
         Exhibit(
             label="TURNSTILE PAIR",
-            about="two counter-rotating four-vane rotors, E1M4's spin rate",
+            about="two counter-rotating four-vane rotors at E1M4's spin rate",
             try_this="WALK THROUGH IT. this settles the parked passage question",
             provenance="mechanism.turnstile_pair; reports/blood-rotating-doors.md; "
                        "passage unproven -- reports/blood-passage-oracle.md",
             covers=("bloodmap.mechanism.turnstile_pair",),
-            build=stalls.turnstile_pair_stall),
+            build=stalls.turnstile_pair_stall, skin=STONE,
+            clear=MEDIAN_CLEAR, size=(7168, 6144),
+            prefix="turnstile_pair",
+            hand_composed=(
+                          "a public forecourt for the pair to flank, as E1M4's carnival entry does",),
+            expect=Expect(sector_type=615, rx_id=7, count=2)),
         Exhibit(
             label="TURNSTILE SAME WAY",
             about="the DNE3L6 variant: both rotors turning the same way",
             try_this="walk through and compare with the pair next door",
-            provenance="reports/blood-rotating-doors.md; DNE3L6 sectors 3 and 11",
+            provenance="mechanism.turnstile_pair(counter_rotating=False); "
+                       "DNE3L6 sectors 3 and 11",
             covers=("bloodmap.mechanism.turnstile",),
-            build=stalls.turnstile_same_way),
+            build=stalls.turnstile_same_way, skin=STONE,
+            clear=MEDIAN_CLEAR, size=(7168, 6144),
+            prefix="turnstile_same",
+            expect=Expect(sector_type=615, rx_id=7, count=2)),
         Exhibit(
             label="SLIDING GATE",
-            about="a gate that slides rather than turning",
-            try_this="watch which way it goes and try to follow it",
-            provenance="mechanism.sliding_gate",
+            about="two leaves that part along their own line into the jambs",
+            try_this="press it and watch where the leaves go",
+            provenance="mechanism.sliding_gate, built to the campaign template",
             covers=("bloodmap.mechanism.sliding_gate",),
-            build=stalls.sliding_gate_stall),
+            build=stalls.sliding_gate_stall, skin=STONE,
+            prefix="sliding_gate",
+            hand_composed=(
+                          "the yard the gate closes off: a plain stone room, "
+                          "not a courtyard with anything in it",),
+            expect=Expect(sector_type=614)),
 
-        # -- E1M1 blueprints, owner-attested -----------------------------
+        # -- owner-attested E1M1 blueprints --------------------------------
         Exhibit(
             label="CASKET",
-            about="the player start as a mechanism: slide, stack link and z at once",
-            try_this="look up, then walk out; this is E1M1's opening shot",
-            provenance="owner-attested E1M1 reading, sectors 30 and 28, "
-                       "stack link 10; roadmap Phase 8 note",
+            about="the player start as a mechanism: a lid that lifts",
+            try_this="look up, then walk out; E1M1 opens inside one of these",
+            provenance="owner-attested E1M1 reading, sectors 30 and 28. The "
+                       "full casket is slide, stack link and z at once; this "
+                       "is its z half, which is as far as one constructor goes",
+            build=stalls.casket, skin=STONE, clear=MEDIAN_CLEAR,
             room_over_room=True,
-            build=stalls.casket),
-        Exhibit(
-            label="DOUBLE SLIDE DOOR",
-            about="one sector carrying both leaves, parting in opposite directions",
-            try_this="stand in the middle and watch both halves go",
-            provenance="owner-attested E1M1 reading, sector 4",
-            build=stalls.double_slide_door),
-        Exhibit(
-            label="DOUBLE ROTATE DOOR",
-            about="two rotating leaves chained by channel, one firing the next",
-            try_this="press once and watch the second leaf follow",
-            provenance="owner-attested E1M1 reading, sectors 50 and 51 "
-                       "(rx 105 -> tx 106 -> rx 106)",
-            build=stalls.double_rotate_door),
+            prefix="casket",
+            expect=Expect(sector_type=600)),
         Exhibit(
             label="CURTAIN",
-            about="a slide used as furnishing rather than as a way through",
-            try_this="open it; nothing beyond it was closed off",
+            about="a slide used as furnishing, not as a way through",
+            try_this="open it; nothing behind it was ever closed off",
             provenance="owner-attested E1M1 reading, sector 125. Its tile has "
                        "no owner binding, which is why the dressing plane "
                        "cannot name it -- reports/blood-role-v2.md",
-            build=stalls.curtain),
+            build=stalls.curtain, skin=TIMBER,
+            prefix="curtain",
+            hand_composed=(
+                          "a proscenium for the curtain to hang in; hand-composed as a framed opening",),
+            expect=Expect(sector_type=614)),
         Exhibit(
             label="SHELF SECRET",
-            about="a shelf that slides aside and is a secret entrance",
-            try_this="find what opens it, then look behind the shelf",
-            provenance="owner-attested E1M1 reading, sector 70",
-            build=stalls.shelf_secret),
-        Exhibit(
-            label="STACK LINK",
-            about="room over room: two floors in one place",
-            try_this="walk the lower floor, then the upper, and look down",
-            provenance="reachability.link_pairs; owner note on the ROR "
-                       "visibility budget -- two volumes must not be in view "
-                       "at once",
-            room_over_room=True,
-            build=None,
-            blocker="NEEDS A SECOND ROR VOLUME OUT OF SIGHT OF THE CASKET"),
+            about="a shelf that slides aside and is the way into a secret",
+            try_this="find what opens it, then step behind the shelf",
+            provenance="owner-attested E1M1 reading, sector 70; the secret "
+                       "sector transmits on channel 2, kChannelSecretFound",
+            build=stalls.shelf_secret, skin=TIMBER,
+            prefix="shelf_secret",
+            expect=Expect(sector_type=614, rx_id=304)),
 
-        # -- apertures and facades ---------------------------------------
+        # -- apertures and frontage ---------------------------------------
         Exhibit(
-            label="FACADE NARROW",
-            about="a street frontage at its narrow width, with its lettered sign",
-            try_this="stand back in the corridor and read the sign",
+            label="FACADE",
+            about="a street frontage with its bays, reveal and lettered sign",
+            try_this="stand back across the street and read the sign",
             provenance="aperture.facade_run; reports/blood-facade-build.md",
             covers=("bloodmap.aperture.facade_run",),
-            build=stalls.facade_narrow),
-        Exhibit(
-            label="FACADE WIDE",
-            about="the same grammar at the wide width",
-            try_this="compare the bay rhythm with the narrow one",
-            provenance="aperture.facade_run; reports/blood-facade-grammar.md",
-            build=stalls.facade_wide),
+            build=stalls.facade, skin=STREET,
+            #: Street scale, and room to stand back: a frontage you cannot
+            #: step away from is a wall.
+            clear=3 * MEDIAN_CLEAR // 2, size=(9216, 8192),
+            expect=Expect()),
         Exhibit(
             label="DRESSED DOORWAY",
-            about="a doorway wearing jamb rail and threshold",
-            try_this="look down at the threshold and along the jambs",
-            provenance="owner anchors 195 (metal rail) and 200 (threshold); "
-                       "reports/blood-facade-grammar.md",
-            build=stalls.dressed_doorway),
+            about="an opening wearing its jamb rail and threshold",
+            try_this="look down at the threshold and up along the jambs",
+            provenance="aperture.framed_door; owner anchors 195 (metal rail) "
+                       "and 200 (riveted threshold)",
+            covers=("bloodmap.aperture.framed_door",),
+            build=stalls.dressed_doorway, skin=STONE,
+            size=(5120, 6144),
+            prefix="dressed",
+            expect=Expect(sector_type=600, trigger="push")),
 
-        # -- assemblies ---------------------------------------------------
-        Exhibit(
-            label="COUNTER",
-            about="a counter with the working clearance behind it",
-            try_this="try to stand behind the counter; the gap is measured",
-            provenance="reports/blood-assembly-counters.json",
-            build=stalls.counter),
+        # -- assemblies, as volumes and textures rather than sprites -------
         Exhibit(
             label="CRATE STACK",
-            about="crates built from the owner's tiles: intact, broken, large",
-            try_this="check these are crates and not mossy rocks",
-            provenance="owner anchors 452 / 462 / 95; a build once shipped "
-                       "tile 459, a moss-grown rock, as a crate",
-            build=stalls.crate_stack),
+            about="crates as what they are: sector volumes wearing crate art",
+            try_this="walk round them and climb one; they are geometry",
+            provenance="templates.SMALL_CRATE and LARGE_CRATE -- 452 at a "
+                       "1024 module, 95 at 2048. v1 made these sprites. "
+                       "459 is a moss-grown rock, not a crate",
+            build=stalls.crate_stack, skin=CRATE,
+            prefix="crate",
+            hand_composed=(
+                          "a stockroom around the crates",),
+            expect=Expect()),
         Exhibit(
             label="SHELF RUN",
-            about="a run of wall shelves, the owner's strong-binding tile",
-            try_this="look along the run; the tile is 2026",
-            provenance="owner anchor 2026 (wall shelf, strong binding)",
-            build=stalls.shelf_run),
-        Exhibit(
-            label="MANNEQUIN ROW",
-            about="three mannequins in a display row",
-            try_this="the tile binds its meaning almost always -- does it here",
-            provenance="owner anchor 2377 (mannequin, strong binding); "
-                       "reports/blood-contrast-shelf-vs-crate.json",
-            build=stalls.mannequin_row),
-
-        # -- materials ----------------------------------------------------
+            about="a shelf as a shallow sector wearing the shelf texture",
+            try_this="look along it; the depth is geometry, not a sprite",
+            provenance="owner anchor 2026 (wall shelf, strong binding); the "
+                       "E6M1 shop kit. v1 hung this on a wall as one sprite",
+            build=stalls.shelf_run, skin=TIMBER,
+            prefix="shelf",
+            hand_composed=(
+                          "a shop room around the shelf run",),
+            expect=Expect()),
         Exhibit(
             label="PARK CORNER",
-            about="grass and dirt with trees",
-            try_this="walk the grass and look at where it meets the dirt",
-            provenance="owner anchors 361 (grass, strong) and 270 (dirt); "
-                       "furniture.py park vocabulary",
-            build=stalls.park_corner),
+            about="grass and dirt with trees standing on the ground",
+            try_this="check the trees meet the grass and do not float",
+            provenance="furniture.furnish, which knows each tile's campaign "
+                       "height; owner anchors 361 (grass, strong) and 270",
+            build=stalls.park_corner, skin=PARK,
+            clear=2 * MEDIAN_CLEAR, size=(6144, 6144),
+            prefix="park",
+            hand_composed=(
+                          "outdoor ground cover beyond one grass and one dirt sector",),
+            expect=Expect()),
+        Exhibit(
+            label="COUNTER",
+            about="a shop counter, to the campaign's own five-clause rule",
+            try_this="try to reach the working side from the front; the "
+                     "clearance is measured, not decorative",
+            provenance="reports/blood-assembly-counters.json, 384 mined "
+                       "bundles: waist-band rise 4096-8192, aspect >= 2, "
+                       "props on top, one host neighbour, asymmetric access. "
+                       "E1M1 sector 80 is the worked example",
+            build=stalls.counter, skin=TIMBER,
+            size=(5 * 1024, 6 * 1024),
+            prefix="counter",
+            hand_composed=(
+                          "the shop around the counter: shelf-tiled walls and "
+                          "three props, assembled here rather than by a "
+                          "constructor that owns shops",)),
         Exhibit(
             label="SEWER WALL",
-            about="the sewer kit: pipe walls and a technical door",
-            try_this="look for the seam between the pipe run and the door",
-            provenance="reports/anchor-sewer-kit.json; owner anchors 496-502",
-            build=stalls.sewer_wall),
+            about="the sewer kit as a wet service passage you duck along",
+            try_this="follow the pipe run and find the seam where the "
+                     "technical door face starts it",
+            provenance="reports/anchor-sewer-kit.json, mined by role: pipe "
+                       "walls 496-499, door 500, light 501, grate 502",
+            build=stalls.sewer_wall, skin=SEWER,
+            size=(5 * 1024, 8 * 1024),
+            prefix="sewer",
+            hand_composed=(
+                          "the passage itself: four pipe sectors chained by "
+                          "hand, because no constructor owns a service run",)),
         Exhibit(
             label="TILE MUSEUM",
-            about="the owner's strong-binding tiles, each with its name",
-            try_this="read the names and correct any that are wrong",
-            provenance="knowledge/blood/design/owner-anchors-v1.json, "
-                       "binding strong",
-            build=stalls.tile_museum),
+            about="the owner's strong-binding tiles, each on its own panel",
+            try_this="read the panels and correct any tile that is wrong",
+            provenance="knowledge/blood/design/owner-anchors-v1.json, the 15 "
+                       "tiles graded strong",
+            build=stalls.tile_museum, skin=STONE, size=(7168, 4096),
+            prefix="museum",
+            hand_composed=(
+                          "panel bays with their own lighting",),
+            expect=Expect()),
+
+        # -- honest gaps ---------------------------------------------------
+        Exhibit(
+            label="SPRITE BRIDGE",
+            about="composing solid flat sprites into a walkable volume",
+            try_this="nothing yet; this stall is the gap itself",
+            provenance="owner-named gap, 2026-09-01: the sprite-bridge "
+                       "technique has no constructor in the repository",
+            build=None,
+            blocker="NO CONSTRUCTOR OWNS THIS YET",
+            skin=STONE),
+        Exhibit(
+            label="STACK LINK",
+            about="room over room: two floors standing in one place",
+            try_this="nothing yet; see the casket for the other ROR exhibit",
+            provenance="reachability.link_pairs; the owner's ROR visibility "
+                       "budget -- two volumes must not be in view at once",
+            build=None,
+            blocker="NEEDS A SECOND ROR VOLUME",
+            skin=STONE, room_over_room=True, size=(6144, 5120)),
     ]
 
 
@@ -282,10 +444,16 @@ SKIP: dict[str, str] = {
         "a helper: turns degrees into a Build angle",
     "bloodmap.vocabulary.stamp_alignment":
         "a helper: works out a surface's alignment bits",
+    "bloodmap.vocabulary.stamp":
+        "places a prefab; every stall that needs one uses it",
+    "bloodmap.vocabulary.staircase":
+        "PENDING: deserves a stall of its own in v3",
+    "bloodmap.vocabulary.recess":
+        "PENDING: deserves a stall of its own in v3",
     "bloodmap.doors.z_motion_endpoints":
-        "covered by KEYED DOOR, which builds its endpoints with it",
+        "the endpoints half of z_motion_door, which every door stall uses",
     "bloodmap.doors.observe_motion_sector":
-        "a reading of an existing map, not a constructor",
+        "a reading of an existing map, and the one the self-read gate uses",
     "bloodmap.doors.mine_map":
         "mining, not construction",
     "bloodmap.doors.mine_directory":
@@ -303,12 +471,6 @@ SKIP: dict[str, str] = {
     "bloodmap.doors.door_affordance_report":
         "reports what a compiled layout's doors afford; a reading over a "
         "built map rather than something to stand in front of",
-    "bloodmap.vocabulary.stamp":
-        "places a prefab; every stall that needs one uses it",
-    "bloodmap.vocabulary.staircase":
-        "PENDING: deserves a stall of its own in v2",
-    "bloodmap.vocabulary.recess":
-        "PENDING: deserves a stall of its own in v2",
     "bloodmap.aperture.facade_of":
         "reads a facade off an existing map; a reading, not a constructor",
     "bloodmap.aperture.audit":
@@ -318,11 +480,9 @@ SKIP: dict[str, str] = {
     "bloodmap.aperture.snap_leaf":
         "a helper: rounds a leaf to whole tile repeats",
     "bloodmap.aperture.pierce":
-        "PENDING: the raw opening cut, shown dressed by DRESSED DOORWAY; "
-        "deserves its own undressed stall in v2",
-    "bloodmap.aperture.framed_door":
-        "PENDING: a framed door needs a stall of its own in v2",
+        "the raw opening cut; DRESSED DOORWAY shows it dressed, which is the "
+        "form the campaign actually builds",
     "bloodmap.aperture.frame_z_doors":
-        "PENDING: frames a whole map's z-doors at once; a pass over a "
-        "layout rather than one exhibit",
+        "frames a whole map's z-doors at once; a pass over a layout rather "
+        "than one exhibit",
 }
