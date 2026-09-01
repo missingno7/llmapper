@@ -544,7 +544,11 @@ def sliding_gate(
                       ceiling_z=ceiling_z, floor_z=floor_z,
                       sector_behavior=behavior, **region_kwargs)
 
-    tag = region_id.split(":")[-1]
+    #: The whole region id, not its last segment: three exhibits named their
+    #: gate regions `<exhibit>:gate` and the short tag made all three build
+    #: sprites called `gate_leaf_west`, so two of the three gates silently
+    #: had no leaves at all. Region ids are unique; their tails are not.
+    tag = region_id
     for name, kind, offset in (("off", 3, 0.0), ("on", 4, float(travel))):
         layout.add_sprite(
             f"{tag}_marker_{name}", region_id,
