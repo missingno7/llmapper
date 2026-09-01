@@ -173,26 +173,27 @@ class ConstructorTest(unittest.TestCase):
         layout.set_player_start("room", x=1024, y=1024, z=0, angle=0)
         return layout
 
-    def test_a_curtain_flags_its_two_caps_opposite_ways(self):
-        # The construct moved to `bloodmap.motion`'s factoring and its
-        # signature changed with it; `tests/test_motion_primitives.py` holds
-        # the contract. What is pinned HERE is the reading, beside the other
-        # payload shapes: two flagged caps with opposite signs.
+    def test_a_curtain_flags_only_its_fins_free_end(self):
+        # Corrected against Vanilla/DOOR-CURTAINS.map: the basic curtain is
+        # an internal FIN with ONE flagged wall -- its free end -- which
+        # reads as "part of the sector travels". The opposed-cap pair I had
+        # modelled from E1M1 s125 is a different, double arrangement.
+        # `tests/test_door_curtains.py` holds the full contract.
         from bloodmap.mechanism import curtain
-        from bloodmap.motion import payload_shape
+        from bloodmap.motion import flagged_walls, payload_shape
 
         layout = self._layout()
-        curtain(layout, "cur", frame=(6144, 1024, 6272, 1024 + 4096),
-                axis="y", travel=1024, channel=310, leaf_region="leaf",
-                floor_z=0, ceiling_z=-33280, host_side="low")
+        curtain(layout, "cur", opening=(6144, 1024, 6400, 5120), axis="y",
+                channel=310, leaf_region="leaf", floor_z=0, ceiling_z=-33280,
+                declared_zero_exit=True)
         layout.add_connection("c", "room", "leaf", a1=(6144, 1024),
-                              a2=(6144, 1024 + 4096), min_width=512)
+                              a2=(6144, 5120), min_width=512)
         compiled = layout.compile()
         disk = compiled.level.to_disk_map()
-        shape = payload_shape(disk, compiled.allocations["leaf"].sector_id)
-        self.assertEqual(shape["shape"], "the sector resizes itself")
-        self.assertTrue(shape["advancing"])
-        self.assertTrue(shape["retreating"])
+        sector_id = compiled.allocations["leaf"].sector_id
+        self.assertEqual(len(flagged_walls(disk, sector_id)), 1)
+        self.assertEqual(payload_shape(disk, sector_id)["shape"],
+                         "part of the sector travels")
 
     def test_a_curtain_wears_the_owners_curtain_tile(self):
         from bloodmap.mechanism import CURTAIN_PICNUM

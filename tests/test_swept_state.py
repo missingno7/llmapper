@@ -88,15 +88,31 @@ class SweptGateTest(unittest.TestCase):
         self.assertTrue(any("invert" in line or "collapse" in line
                             or "crossing" in line for line in found.problems))
 
-    def test_a_sector_displaced_at_load_is_reported_not_failed(self):
-        # Both readings are legal -- Blood's gates are authored in the open
-        # pose on purpose -- so only the author can say which was meant.
+    def test_displacing_at_load_is_normal_and_not_reported(self):
+        # Corrected by the marker law. Markers are state-anchored and the
+        # geometry is drawn at ON, so a state-0 sector moves the whole
+        # separation the instant the level loads -- that is how a curtain
+        # drawn open comes up closed, not a smell. The oracle's s5 does
+        # exactly this and the gate stays quiet about it.
         from bloodmap.swept_state import sweep_sector
 
         found = sweep_sector(_oracle(), 5)
         self.assertTrue(found.sound)
+        self.assertEqual(found.notes, [])
+
+    def test_a_state_that_disagrees_with_the_geometry_is_reported(self):
+        # What IS worth saying: a displacement that is not the marker
+        # separation, because then the drawn pose and the state disagree
+        # about something.
+        from bloodmap.swept_state import sweep_sector
+
+        disk = _oracle()
+        #: Drag the ON marker away from the geometry: the sector is no longer
+        #: drawn at either pose, so nothing agrees.
+        disk.sprites[3].fields["y"] = int(disk.sprites[3].fields["y"]) + 3000
+        found = sweep_sector(disk, 5)
         self.assertTrue(found.notes)
-        self.assertIn("1920", " ".join(found.notes))
+        self.assertIn("disagree", " ".join(found.notes))
 
 
 class PlanarDoorConstructorTest(unittest.TestCase):

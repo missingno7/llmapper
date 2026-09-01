@@ -118,15 +118,17 @@ class MotionMarkerTest(unittest.TestCase):
         self.assertEqual(found["travel"], (0, -1920))
         self.assertEqual(found["turn"], 0)
 
-    def test_state_says_which_pose_the_map_is_drawn_in(self):
-        # `trInit` reads the drawn geometry as the pose at busy 1, so a
-        # state-0 sector displaces itself by the whole marker separation the
-        # instant the level loads.
-        from bloodmap.motion import marker_pair
+    def test_state_says_which_marker_the_sector_is_at(self):
+        # Corrected: the two marker positions ARE the two states, so `state`
+        # names one of them. It is not "where it rests on a journey".
+        from bloodmap.motion import drawn_pose, marker_pair
 
         disk = _oracle()
-        self.assertEqual(marker_pair(disk, 2)["rests_at"], "on")
-        self.assertEqual(marker_pair(disk, 5)["rests_at"], "off")
+        self.assertEqual(marker_pair(disk, 2)["at"], "on")
+        self.assertEqual(marker_pair(disk, 5)["at"], "off")
+        # And both are DRAWN at their ON pose, which is the law.
+        self.assertEqual(drawn_pose(disk, 2), "on")
+        self.assertEqual(drawn_pose(disk, 5), "on")
 
     def test_a_marker_may_stand_where_it_does_not_belong(self):
         # `owner` is the sector a marker CONTROLS. E1M1's casket puts its
@@ -232,34 +234,44 @@ class CompositionTest(unittest.TestCase):
         layout.set_player_start("room", x=1024, y=1024, z=0, angle=0)
         return layout
 
-    def test_a_curtain_rests_closed(self):
+    def _curtain(self, layout, **overrides):
         from bloodmap.mechanism import curtain
 
+        kwargs = dict(opening=(0, 3072, 2048, 4096), axis="x", channel=200,
+                      leaf_region="leaf", floor_z=0, ceiling_z=-33280,
+                      declared_zero_exit=True)
+        kwargs.update(overrides)
+        return curtain(layout, "cur", **kwargs)
+
+    def test_a_curtain_rests_closed(self):
+        # Markers are state-anchored and the geometry is drawn at ON, so a
+        # state-0 curtain comes up with its fabric drawn across. The
+        # tutorial's twenty-five exemplars all do this.
         layout = self._layout()
-        built = curtain(layout, "cur", frame=(0, 3072, 4096, 3072 + 128),
-                        axis="x", travel=1024, channel=200,
-                        leaf_region="leaf", floor_z=0, ceiling_z=-33280,
-                        host_side="low")
+        built = self._curtain(layout)
         self.assertEqual(built["rests"], "closed")
-        self.assertEqual(layout.regions["leaf"].sector_behavior["state"], 1)
+        self.assertEqual(layout.regions["leaf"].sector_behavior["state"], 0)
 
     def test_a_curtain_declares_only_its_own_fabric(self):
-        from bloodmap.mechanism import curtain
-
+        # The fin's moved vertices are interior to its own outline, so the
+        # seam is part of the sector and nothing else can be dragged.
         layout = self._layout()
-        built = curtain(layout, "cur", frame=(0, 3072, 4096, 3072 + 128),
-                        axis="x", travel=1024, channel=200,
-                        leaf_region="leaf", floor_z=0, ceiling_z=-33280)
+        built = self._curtain(layout)
         self.assertEqual(built["declared_motion"], ["leaf"])
 
-    def test_a_curtain_whose_caps_would_meet_is_refused(self):
-        from bloodmap.mechanism import MechanismError, curtain
+    def test_a_fin_with_nothing_to_draw_over_is_refused(self):
+        from bloodmap.mechanism import MechanismError
 
         layout = self._layout()
         with self.assertRaises(MechanismError):
-            curtain(layout, "cur", frame=(0, 3072, 4096, 3072 + 128),
-                    axis="x", travel=8192, channel=200, leaf_region="leaf",
-                    floor_z=0, ceiling_z=-33280)
+            self._curtain(layout, retracted=8192)
+
+    def test_a_fin_too_fat_for_its_doorway_is_refused(self):
+        from bloodmap.mechanism import MechanismError
+
+        layout = self._layout()
+        with self.assertRaises(MechanismError):
+            self._curtain(layout, fin_width=4096)
 
     def test_a_planar_door_rests_covered_and_toggles(self):
         from bloodmap.mechanism import planar_door
