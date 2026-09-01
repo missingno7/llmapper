@@ -828,7 +828,9 @@ def build():
 
     # ---- L3: Theatre Row's venues (the entertainment district) ----------
     import l3_theatre
-    theatre_rooms, door_levers = l3_theatre.build(district_of['theatre_row'], theatre_st)
+    theatre_rooms, door_levers, stage_curtain = l3_theatre.build(
+        district_of['theatre_row'], theatre_st)
+    ctx_stage_curtain = stage_curtain
 
     # ---- L3: Market Slip's public space (the district the player starts
     # in), furnished from its own L1 `furnish` slots ------------------------
@@ -901,6 +903,7 @@ def build():
                    angle=1536)
     ctx["street_regions"] = {room.region_id: name
                              for name, room in streets.items()}
+    ctx["stage_curtain"] = ctx_stage_curtain
     ctx["greens"] = ctx_greens
     ctx["light_pools"] = ctx_pools
     ctx["market_dressing"] = market_dressing
@@ -998,6 +1001,23 @@ def main() -> int:
     for spec in stack_links:
         build_stack_link(layout, spec, SEWER_CITY_D,
                          see_through=spec["see_through"])
+
+    # ---- the Aldermack's curtain: markers, flags, fabric, and the link ----
+    # A second pass, the way `turnstiles.populate` is: the fin is carved in
+    # the tree and furnished once its walls exist.
+    import curtains as stage_curtains
+
+    curtain = ctx.get("stage_curtain")
+    if curtain is not None:
+        ctx["manifest"]["stage_curtain"] = stage_curtains.furnish(
+            layout, curtain, stage_region=curtain.get("stage_region"),
+            grade=GRADE)
+        if curtain.get("stage_region"):
+            ctx["manifest"]["stage_light"] = stage_curtains.link_stage_light(
+                layout, curtain, stage_region=curtain["stage_region"])
+        print("stage curtain:", ctx["manifest"]["stage_curtain"])
+        print("stage light:",
+              ctx["manifest"].get("stage_light", {}).get("lines"))
     import l3_foundry
     l3_foundry.sprinkle(layout, ctx, dressing)
     # Declare the secret count.  A `secret=True` region emits the campaign's
@@ -1402,6 +1422,31 @@ def main() -> int:
     _diags = _evaluate_rules(disk)
     _by_sev = collections.Counter(d.severity for d in _diags)
     _by_code = collections.Counter((d.severity, d.code) for d in _diags)
+    # The authoring-loop law: read every mechanism back through the same
+    # conformance the zoo uses and compare it against what it was meant to
+    # be. A deviation is a finding about the level or about our template, and
+    # both get reported rather than papered over.
+    from bloodmap.conformance import measure_curtain
+
+    _curtains = []
+    for _index, _sector in enumerate(disk.sectors):
+        if int(_sector.fields["type"]) != 614:
+            continue
+        _start = int(_sector.fields["wall_ptr"])
+        _count = int(_sector.fields["wall_count"])
+        if not any(int(disk.walls[w].fields["picnum"]) == 146
+                   for w in range(_start, _start + _count)):
+            continue
+        _found = measure_curtain(disk, _index)
+        _curtains.append({"sector": _index, "measured": _found.measured,
+                          "deviations": [str(d) for d in _found.deviations]})
+    if _curtains:
+        ctx["manifest"]["curtain_conformance"] = _curtains
+        for _read in _curtains:
+            print(f"curtain s{_read['sector']}: {_read['measured']}")
+            for _line in _read["deviations"]:
+                print(f"    DEVIATES {_line}")
+
     print(f"rules: {len(_diags)} diagnostics {dict(_by_sev)}")
     for (_sev, _code), _n in _by_code.most_common():
         if _sev in ("error", "warning"):

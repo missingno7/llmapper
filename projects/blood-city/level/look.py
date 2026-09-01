@@ -93,6 +93,17 @@ POSE_SETS = {
                          "across the turf toward the mausolea, where the "
                          "headstones and bushes are"),
     },
+    #: Wave 1b's additions: the shop glass and the Aldermack's curtain.
+    "wave1c": {
+        "auditorium": (22.5, 9.5, 22.5, 6.0, LEVEL,
+                       "the Aldermack house, facing the stage: the curtain "
+                       "hangs across the proscenium"),
+        "curtain_close": (22.5, 8.0, 22.5, 6.5, LEVEL,
+                          "at the curtain -- the fabric should read at "
+                          "natural scale, drawn across"),
+        "stage_side": (21.0, 8.2, 24.5, 6.8, LEVEL,
+                       "along the proscenium from the house's west side"),
+    },
     "fresh2": {
         "canteen_door": (51.9, 16.4, 51.9, 13.5, LEVEL, "the canteen door from the yard"),
         "dock": (50.0, 18.0, 48.5, 18.0, LEVEL, "the loading dock alcove"),
