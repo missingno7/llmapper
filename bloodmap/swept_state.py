@@ -17,14 +17,17 @@ level loads -- and asks at every step:
 * has it **inverted**? Signed area changing sign means the loop wound the
   other way: the sector turned inside out.
 * has it **collapsed**? Area at or near zero is a sector with no inside.
-* does it **displace at rest**? A sector that is not where it was drawn the
-  instant the level loads is either authored in the other pose deliberately
-  -- Blood's gates are, and say so with `state` -- or is an editor leftover.
+* does it **have clearance**? A mechanism that sweeps through the wall of a
+  room it does not move is the fault the rotors were always suspected of and
+  nothing ever checked.
 
-The last one is reported rather than failed, because both readings are legal
-and only the author knows which was meant. The oracle map is the worked
-example: its two planes are drawn in the same physical pose and declare
-opposite states, so one of them jumps 1920 units at load.
+A check this file used to make and no longer does: whether the sector sits
+away from its drawn outline at rest. That is not measurable. `trInit` derives
+the base FROM the markers -- base = drawn minus delta -- so a state-0 sector
+displaces by the marker separation by construction, and the two can never
+disagree. The test that was supposed to catch a disagreement had to move a
+marker to provoke one, which moved the separation with it. A check that
+cannot fail proves nothing, so it is gone.
 """
 
 from __future__ import annotations
@@ -114,46 +117,65 @@ def sweep_sector(disk: Any, sector_id: int, *, steps: int = 16) -> SweptFinding:
                 f"a degenerate loop the renderer cannot draw")
             break
 
-    displacement = rest_displacement(disk, sector_id, frames)
-    if displacement > REST_TOLERANCE:
-        #: Displacing at load is the NORMAL case, not a smell. Markers are
-        #: state-anchored: the mapper draws the geometry at the ON pose and
-        #: `state` says which marker it snaps to, so a state-0 sector moves
-        #: the whole marker separation the instant the level starts. That is
-        #: how a curtain drawn open comes up closed. It is only worth saying
-        #: out loud when the displacement does NOT match the separation,
-        #: because then the two disagree about something.
-        expected = _marker_separation(disk, sector_id)
-        drawn = _drawn_pose(disk, sector_id)
-        consistent = (expected is not None
-                      and abs(displacement - expected) <= REST_TOLERANCE
-                      and drawn == "on")
-        if not consistent:
-            found.notes.append(
-                f"sits {displacement:.0f} units from its drawn outline at "
-                f"load, which is not its {expected} marker separation drawn "
-                f"at {drawn!r}: the geometry and the state disagree")
+    found.problems.extend(_clearance(disk, sector_id, frames))
     return found
 
 
-def _marker_separation(disk: Any, sector_id: int) -> float | None:
-    from math import hypot
-
-    from .motion import marker_pair
-
-    pair = marker_pair(disk, sector_id)
-    if not pair:
-        return None
-    return hypot(pair["travel"][0], pair["travel"][1])
+def _segments(points: list[Any]) -> list[tuple[Any, Any]]:
+    return [(points[i], points[(i + 1) % len(points)])
+            for i in range(len(points))]
 
 
-def _drawn_pose(disk: Any, sector_id: int) -> str | None:
-    from .motion import drawn_pose
+def _crosses(a1, a2, b1, b2) -> bool:
+    """Do two segments properly cross? Touching at an endpoint does not."""
+    def side(p, q, r):
+        value = ((q[0] - p[0]) * (r[1] - p[1])
+                 - (q[1] - p[1]) * (r[0] - p[0]))
+        return (value > 1e-9) - (value < -1e-9)
+
+    d1, d2 = side(a1, a2, b1), side(a1, a2, b2)
+    d3, d4 = side(b1, b2, a1), side(b1, b2, a2)
+    return d1 * d2 < 0 and d3 * d4 < 0
+
+
+def _clearance(disk: Any, sector_id: int, frames: list[Any]) -> list[str]:
+    """Does the swept outline cut through geometry it does not move?
+
+    The check the rotors never had. A mechanism may deform the sectors it
+    declares -- that is the normal case in the tutorials -- but a wall
+    belonging to a sector OUTSIDE its motion set is static, and an outline
+    that crosses one is a mechanism travelling through a room.
+
+    Only proper crossings count: a moving wall sharing an endpoint with a
+    static one is a hinge, which is how most of these are built.
+    """
+    from .motion import motion_set, sector_walls
 
     try:
-        return drawn_pose(disk, sector_id)
+        moving = set(motion_set(disk, sector_id)["sectors"])
     except Exception:
-        return None
+        moving = {sector_id}
+    static = []
+    for other in range(len(disk.sectors)):
+        if other in moving:
+            continue
+        for wall_id in sector_walls(disk, other):
+            fields = disk.walls[wall_id].fields
+            end = disk.walls[int(fields["point2"])].fields
+            static.append(((int(fields["x"]), int(fields["y"])),
+                           (int(end["x"]), int(end["y"])), other, wall_id))
+    if not static:
+        return []
+    for index, frame in enumerate(frames):
+        for a1, a2 in _segments(list(frame)):
+            for b1, b2, other, wall_id in static:
+                if _crosses(a1, a2, b1, b2):
+                    return [
+                        f"step {index}/{len(frames) - 1}: the outline cuts "
+                        f"through wall {wall_id} of sector {other}, which "
+                        f"this mechanism does not move -- it sweeps through "
+                        f"standing geometry"]
+    return []
 
 
 def polygon_area_signed(polygon: Iterable[Any]) -> float:
