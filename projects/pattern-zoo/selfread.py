@@ -341,10 +341,13 @@ def wiring_verbs(disk) -> list[str]:
     cannot be operated at all -- which is what the zoo's casket was.
     """
     try:
-        from bloodmap.motion import no_op_wirings
+        from bloodmap.motion import no_op_wirings, silent_transmitters
     except Exception:
         return []
-    return no_op_wirings(disk)
+    #: Two ways a control route can be dead, and the zoo shipped both. A
+    #: SILENT sender never calls evSend at all because it reports neither
+    #: edge; a NO-OP sender sends a command the receiver's state ignores.
+    return silent_transmitters(disk) + no_op_wirings(disk)
 
 
 def leaned_on(disk) -> list[str]:

@@ -131,7 +131,12 @@ MEDIAN_CLEAR = 33280
 CH_SECRET = 2
 
 #: A switch as the campaign builds one.
-SWITCH = dict(type=20, picnum=1070, cstat=464, x_repeat=40, y_repeat=40, shade=-8)
+#: The canonical switch, from `#TYPE600.MAP` and `#MSGBUT.MAP`: type 21 on
+#: picnum 1046. Its wiring comes from `motion.transmitter`, which sets the
+#: `trigger_on` the engine gates evSend on -- without it a switch flips its
+#: own state and sends nothing, which is what every switch in this zoo did.
+SWITCH = dict(type=motion.SWITCH_TYPE, picnum=motion.SWITCH_PICNUM,
+              cstat=464, x_repeat=40, y_repeat=40, shade=-8)
 #: kThingWallCrack: shot open, transmits once.
 CRACK = dict(type=408, picnum=1127, x_repeat=32, y_repeat=32, cstat=128, status=4)
 
@@ -340,8 +345,8 @@ def switched_door(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     layout.place_on_wall("switched_door:switch", stall,
                          a1=a1, a2=a2, t=0.15,
                          height_player_heights=0.55,
-                         behavior={"tx_id": CH_SWITCHED_DOOR, "command": 1,
-                                   "trigger_push": 1},
+                         behavior=motion.transmitter(
+                             channel=CH_SWITCHED_DOOR),
                          **SWITCH)
 
 
@@ -468,7 +473,9 @@ def crack_barrier(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     f1, f2 = _facing(box, back)
     layout.place_on_wall("crack:sprite", stall, a1=f1, a2=f2, t=0.5,
                          height_player_heights=0.7,
-                         behavior={"tx_id": CH_CRACK, "command": 1},
+                         behavior=motion.transmitter(
+                             channel=CH_CRACK, push=False, shootable=True,
+                             wait_time=None),
                          **CRACK)
 
 
@@ -631,6 +638,7 @@ def shelf_secret(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
         wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
         declared_zero_exit=True,
         sector_behavior={"tx_id": CH_SECRET, "command": 1,
+                         "trigger_on": 1,
                          "trigger_enter": 1, "trigger_once": 1},
         intent={"purpose": "shelf secret: the secret the shelf hides"})
     b1, b2 = _far(strip, back, box)
@@ -642,32 +650,32 @@ def shelf_secret(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     layout.place_on_wall("shelf_secret:switch", stall,
                          a1=a1, a2=a2, t=0.12,
                          height_player_heights=0.55,
-                         behavior={"tx_id": CH_SHELF, "command": 1,
-                                   "trigger_push": 1},
+                         behavior=motion.transmitter(channel=CH_SHELF),
                          **SWITCH)
 
 
 def casket(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
-    """A lid you stand on, that slides aside and drops you into the stack.
+    """A lid in the floor above and its mirror in the ceiling below.
 
-    Built to `maps/blood/mechanism/casket.map`. Four defects the owner found,
-    each fixed at the level it belongs to:
+    Built to `maps/blood/mechanism/casket.map`, and it takes FOUR sectors in
+    TWO planes, which is the part this project kept dropping:
 
-    * the travel ran 3072 into a cover 768 deep, so the boundary swept past
-      the cover's far wall and inverted it. `mechanism.planar_door` derives
-      and clamps that now, and the swept gate would catch it anyway.
-    * the motor sat on the wrong sector and the arrangement was a pocket in a
-      bigger room. It is ONE footprint SPLIT into lid and hole, per the
-      oracle, and the revealed hole IS the passage.
-    * it was saved at state ON with a switch sending command ON -- a no-op by
-      the state+verb rule, which is why it could not be operated at all. The
-      wiring primitive refuses that combination at construction time.
-    * the stack had no see-through floor, so the link worked and the floor
-      looked solid. `motion.build_stack_link` sets picnum 504.
+        upper   s2 lid (614, floor 33792, tile 97) | s3 hole (floor 34816,
+                floor tile 504 -- you look DOWN through it)
+        lower   s5 lid (614, ceiling -33792)       | s6 hole (ceiling -34816,
+                ceiling tile 504 -- you look UP through it)
 
-    E1M1's dialect rather than the oracle's -- motor on the HOLE -- because
-    that is the sector the body stands in, so it can carry the ergonomic
-    assist that boosts you back out.
+    Both lids are on ONE channel with the same travel, so the two openings
+    appear together and the ceiling below mimics the floor above. Building
+    only the upper plane, as this did, leaves a hole in the floor with an
+    unbroken ceiling under it: the link warps you into a room whose roof
+    never opened.
+
+    The switch is the canonical one -- `#TYPE600.MAP`'s type 21 on picnum
+    1046 -- and its wiring comes from `motion.transmitter`, which sets the
+    `trigger_on` that `triggers.cpp` gates evSend on. Without that flag a
+    switch flips its own state and sends nothing, which is why this exhibit
+    "did nothing" when pushed.
     """
     wall, floor, ceiling = skin
     out = _outward(back, box)
@@ -680,13 +688,15 @@ def casket(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     far = near + out * span
     fx0, fx1 = min(near, far), max(near, far)
     rest = fx0 + CASKET_LID if out > 0 else fx1 - CASKET_LID
+    signed = -travel if out > 0 else travel
+
+    #: The upper plane: a lid in the floor you stand on.
     built = planar_door(
         layout, "casket",
         footprint=(fx0, low, fx1, high), axis="x", split=rest,
-        travel=(-travel if out > 0 else travel),
-        channel=CH_CASKET, lid_region="casket:lid",
-        hole_region="casket:hole",
-        floor_z=floor_z, ceiling_z=ceiling_z,
+        travel=signed, channel=CH_CASKET,
+        lid_region="casket:lid", hole_region="casket:hole",
+        floor_z=floor_z, ceiling_z=ceiling_z, plane="floor",
         motor="hole", flags="both", route="remote",
         lift_out=CASKET_ASSIST, transmits=CH_CASKET + 1,
         wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
@@ -695,25 +705,31 @@ def casket(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     layout.add_connection("casket:c0", stall, "casket:lid",
                           a1=(near, low), a2=(near, high), min_width=U // 2)
 
-    #: The stack below. A link is a TRANSLATION AT A PLANE -- the marker pair
-    #: carries the offset -- so the two halves need not overlap in plan; the
-    #: oracle's are five thousand units apart in y.
+    #: The lower plane, the same footprint one storey down and mirrored into
+    #: the ceiling, on the SAME channel so the two move together.
     shift = out * (span + 512)
     gx0, gx1 = fx0 + shift, fx1 + shift
-    layout.add_region(
-        "casket:grave", _rect((min(gx0, gx1), low, max(gx0, gx1), high)),
-        floor_z=floor_z + MEDIAN_CLEAR, ceiling_z=floor_z,
+    lower_floor = floor_z + MEDIAN_CLEAR
+    below = planar_door(
+        layout, "casket:below",
+        footprint=(min(gx0, gx1), low, max(gx0, gx1), high), axis="x",
+        split=rest + shift, travel=signed, channel=CH_CASKET,
+        lid_region="casket:under", hole_region="casket:grave",
+        floor_z=lower_floor, ceiling_z=floor_z, plane="ceiling",
+        motor="hole", flags="both", route="remote",
         wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
-        declared_zero_exit=True,
-        intent={"purpose": "casket: the stack below, met through the link"})
+        lid_kwargs={"declared_zero_exit": True},
+        hole_kwargs={"declared_zero_exit": True})
+    layout.declare_motion("casket:grave", ["casket:under"])
+
+    #: The link joins the two HOLES, at the plane they meet on: the upper
+    #: hole's floor and the lower hole's ceiling, both wearing 504.
     anchor = built["link_anchor"]
     motion.build_stack_link(
         layout, 10, upper_region="casket:hole", lower_region="casket:grave",
         upper_at=anchor, lower_at=(anchor[0] + shift, anchor[1]),
-        upper_z=floor_z, lower_z=floor_z + MEDIAN_CLEAR, see_through=True)
+        upper_z=floor_z, lower_z=floor_z, see_through=True)
 
-    #: TOGGLE, so it cycles. The verb is checked against the state the motor
-    #: is saved in, which is what the zoo's ON-to-ON switch failed.
     x0, y0, x1, _y1 = box
     layout.place_on_wall("casket:switch", stall, a1=(x0, y0), a2=(x1, y0),
                          t=0.5, height_player_heights=0.55,
