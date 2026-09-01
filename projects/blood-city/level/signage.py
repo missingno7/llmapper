@@ -36,39 +36,61 @@ import wallplane
 #: DWE puts on POWER PLANT; `department` is MEDLAB and OPERATIONS; `breach`
 #: is WALL BREACH and CONTROL ROOM.
 #:
-#: Height 1.4 puts a fascia just above a doorway; 0.9 is eye level.
+#: HOW HIGH A SIGN HANGS, and it was wrong across the board until now.
+#:
+#: `reports/blood-lintel-band.md` measured it: a campaign sign letter sits a
+#: median **2.536 player heights above the street floor** (n=86, range
+#: 1.691 to 5.132, cv 0.33). This city hung its signs at 1.2 to 1.5 -- below
+#: the whole measured range, so every frontage read as a shopfront notice
+#: rather than as a sign you see from down the street.
+#:
+#: Worth being careful about which row of that report is being quoted. The
+#: same table gives a median of 0.725 player heights above THE OPENING'S OWN
+#: HEAD, which is a different anchor and a much noisier one (cv 0.79). The
+#: floor is the stable measurement and it is the one used here.
+#:
+#: It is an authoring PREFERENCE, not a law: the range is wide, and a sign
+#: with a reason to sit lower says so where it is listed.
+SIGN_HEIGHT_PH = 2.54
+#: An INTERIOR notice is not a frontage and the measurement does not cover
+#: it: the lintel band was measured on signs seen from the street. A crypt
+#: door, a staff door and a pump-house plate are read from a few feet away,
+#: so they keep the height they had. Applying the street median to them
+#: indiscriminately would put STAFF ONLY two and a half bodies up a service
+#: corridor.
+NOTICE_HEIGHT_PH = 1.3
 SIGNS = [
     # --- Theatre Row: the commercial frontages ---------------------------
     # A marquee cycles its colours; E1M4 FORTUNES is the corpus's one
     # regular cycle and the only place this pattern is attested.
-    ("aldermack", "theatre:aldermack_foyer", "south", "ALDERMACK", "fortune", 1.5),
-    ("saloon", "theatre:saloon_main", "east", "WHISKEY", "banner", 1.3),
+    ("aldermack", "theatre:aldermack_foyer", "south", "ALDERMACK", "fortune", SIGN_HEIGHT_PH),
+    ("saloon", "theatre:saloon_main", "east", "WHISKEY", "banner", SIGN_HEIGHT_PH),
     # A shooting gallery is a fairground attraction, so it gets the
     # fairground's lettering: E1M4's ROTTEN CANDY tracking and jitter.
-    ("parlor", "theatre:parlor_gallery", "east", "SHOOTING", "carnival", 1.3),
-    ("pawn", "theatre:pawn_shop", "west", "PAWN", "fascia", 1.3),
+    ("parlor", "theatre:parlor_gallery", "east", "SHOOTING", "carnival", SIGN_HEIGHT_PH),
+    ("pawn", "theatre:pawn_shop", "west", "PAWN", "fascia", SIGN_HEIGHT_PH),
     ("backstage", "theatre:aldermack_backstage", "north", "STAGE DOOR",
-     "notice", 1.2),
+     "notice", NOTICE_HEIGHT_PH),
     # --- the church -------------------------------------------------------
     # The nave's name is written by `venue_detail.COMPOSITIONS` instead --
     # under the hanging it belongs to, rather than as a loose word competing
     # with it for the room's ONE solid wall.  Two passes writing the same
     # word on the same wall is how it came to be written behind a 2,048 x
     # 32,768 tapestry in the first place.
-    ("crypt", "church:crypt_stair", "east", "CRYPT", "notice", 1.2),
+    ("crypt", "church:crypt_stair", "east", "CRYPT", "notice", NOTICE_HEIGHT_PH),
     # --- the works and its station ---------------------------------------
-    ("station", "station:cellar", "north", "PUMP HOUSE", "works", 1.2),
+    ("station", "station:cellar", "north", "PUMP HOUSE", "works", NOTICE_HEIGHT_PH),
     # --- the Arcade.  DukCity names roughly ten uses per map on its walls;
     # Gravesend had five venues in the whole city, which is the gap that
     # reading Duke's signage exposed.  Each unit says what it is.
-    ("apothecary", "mall:unit_b", "north", "APOTHECARY", "fascia", 1.3),
-    ("ironmonger", "mall:unit_c", "north", "IRONMONGER", "banner", 1.3),
-    ("bookseller", "mall:unit_e", "south", "BOOKS", "fascia", 1.3),
-    ("tobacco", "mall:unit_f", "south", "TOBACCO", "fascia", 1.3),
-    ("mallservice", "mall:service", "east", "STAFF ONLY", "department", 1.2),
+    ("apothecary", "mall:unit_b", "north", "APOTHECARY", "fascia", SIGN_HEIGHT_PH),
+    ("ironmonger", "mall:unit_c", "north", "IRONMONGER", "banner", SIGN_HEIGHT_PH),
+    ("bookseller", "mall:unit_e", "south", "BOOKS", "fascia", SIGN_HEIGHT_PH),
+    ("tobacco", "mall:unit_f", "south", "TOBACCO", "fascia", SIGN_HEIGHT_PH),
+    ("mallservice", "mall:service", "east", "STAFF ONLY", "department", NOTICE_HEIGHT_PH),
     # --- the sewer: the words that tell you where you are -----------------
-    ("outfall", "sewer:pump_room", "north", "OUTFALL", "breach", 1.2),
-    ("annex", "sewer:east_annex", "east", "NO EXIT", "breach", 1.2),
+    ("outfall", "sewer:pump_room", "north", "OUTFALL", "breach", NOTICE_HEIGHT_PH),
+    ("annex", "sewer:east_annex", "east", "NO EXIT", "breach", NOTICE_HEIGHT_PH),
 ]
 
 
@@ -78,7 +100,7 @@ SIGNS = [
 #: door.  (region key, segment, text, palette, height)
 STREET_SIGNS = [
     ("street:market_slip", ((39936, 46592), (39936, 48128)),
-     "THE ARCADE", "fascia", 1.6),
+     "THE ARCADE", "fascia", SIGN_HEIGHT_PH),
 ]
 
 
