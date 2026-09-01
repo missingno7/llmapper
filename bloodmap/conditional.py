@@ -1329,6 +1329,9 @@ def build_graph(disk: Any, *, owners: Sequence[int] | None = None,
         #: a wall. Added before the base is built so the base refuses it as
         #: a portal and the edge puts it back with its cause chain.
         edges = edges + gib_wall_edges(disk, transmitters(disk))
+    #: And a room-over-room link a cover lies across is conditional too,
+    #: though no portal ever opens: the geometry moves out from under it.
+    edges = edges + repartition_edges(disk)
     gated = {edge.sectors for edge in edges}
     graph, reach = _directed_base(disk, gated, base=base)
     blocked = blocking_crossings(disk)
@@ -1449,3 +1452,138 @@ LIMITATIONS = (
     "Whether a body can *survive* a crossing is not asked. A long fall is a "
     "way down.",
 )
+
+# ---------------------------------------------------------------------------
+# geometry that moves without a portal opening
+# ---------------------------------------------------------------------------
+
+def _swept_band(disk: Any, sector_id: int) -> tuple[tuple, tuple, tuple] | None:
+    """The strip a boundary wall crosses between its rest and open poses.
+
+    A planar door does not open a portal. Its one flagged wall TRAVELS, and
+    the plan area between the two poses changes hands: at rest it belongs to
+    the cover, open it belongs to the hole. That strip is what this returns,
+    as (wall_a, wall_b, travel).
+    """
+    from .effects import motion_markers, payload
+
+    shape = payload(disk, sector_id)["shape"]
+    if shape.get("shape") != "boundary re-partition":
+        return None
+    wall_id = int(shape["boundary_wall"])
+    wall = disk.walls[wall_id].fields
+    end = disk.walls[int(wall["point2"])].fields
+    markers = motion_markers(disk, sector_id)
+    if not markers:
+        return None
+    off, on = markers.get("marker_0"), markers.get("marker_1")
+    if not off or not on:
+        return None
+    travel = (int(on["x"]) - int(off["x"]), int(on["y"]) - int(off["y"]))
+    if travel == (0, 0):
+        return None
+    return ((int(wall["x"]), int(wall["y"])),
+            (int(end["x"]), int(end["y"])), travel)
+
+
+def _inside_band(point, a, b, travel) -> bool:
+    """Whether a point lies in the parallelogram the wall sweeps."""
+    edge = (b[0] - a[0], b[1] - a[1])
+    #: Solve point - a = u*edge + v*travel, and ask for both in [0, 1].
+    det = edge[0] * travel[1] - edge[1] * travel[0]
+    if det == 0:
+        return False
+    dx, dy = point[0] - a[0], point[1] - a[1]
+    u = (dx * travel[1] - dy * travel[0]) / det
+    v = (edge[0] * dy - edge[1] * dx) / det
+    return -0.05 <= u <= 1.05 and -0.05 <= v <= 1.05
+
+
+def conditioned_links(disk: Any, reach: Any = None) -> list[dict[str, Any]]:
+    """Stack links whose passability depends on a moving cover.
+
+    `conditional` treated every stack link as always on, which is right for
+    almost all of them and wrong for the one the campaign opens with. E1M1's
+    casket is two ROR-linked holes, each with a lid: the plan area on either
+    side of the link plane is re-partitioned as the boundary travels, so
+    whether a body can pass is a question about the mechanism's state and not
+    a constant.
+
+    The condition is STRUCTURAL: a link is conditioned when one of its two
+    sectors is a boundary re-partition mover, because that sector's own
+    extent changes and the link plane sits inside it. That is defensible from
+    the fields and is what gates the edge.
+
+    `covered_at_rest` is reported and NOT relied on. It asks the further
+    geometric question -- does the link marker stand in the band the boundary
+    sweeps -- and on E1M1's own casket the answer is no for both halves: the
+    markers sit deep inside the holes, well clear of the swept strip. So the
+    intuitive picture, a lid sliding off a grave to uncover the link, is not
+    what those fields say, and this records the measurement rather than
+    forcing the story onto it.
+    """
+    reach = reach if reach is not None else analyze_reachability(disk)
+    out = []
+    for record in reach.links:
+        upper, lower = (int(x) for x in record["sectors"])
+        for sector_id, sprite_index in zip((upper, lower), record["sprites"]):
+            band = _swept_band(disk, sector_id)
+            if band is None:
+                continue
+            fields = disk.sprites[int(sprite_index)].fields
+            point = (int(fields["x"]), int(fields["y"]))
+            extra = _extra(disk.sectors[sector_id])
+            out.append({
+                "link_id": record["link_id"],
+                "sectors": [upper, lower],
+                "re_partitioned_by": sector_id,
+                "channel": int(extra.get("rx_id") or 0),
+                "covered_at_rest": _inside_band(point, *band),
+                "basis": "one side of the link is a boundary re-partition "
+                         "mover, so the plan area the link plane sits in "
+                         "changes hands as it travels",
+            })
+            break
+    return out
+
+
+def repartition_edges(disk: Any, wires: dict[int, list] | None = None
+                      ) -> list[ConditionalEdge]:
+    """A boundary re-partition is a topology change, though nothing opens.
+
+    The gap the casket exposed. `conditional` looks for portals that open or
+    shut, and a planar door has neither: its portal to the cover is walkable
+    throughout and the geometry moves underneath it. Every route through one
+    was therefore invisible, and the casket's exhibit could claim no trigger.
+
+    What actually changes is which sectors the swept band belongs to, and
+    what that uncovers. This emits the crossing between the two sides of a
+    conditioned stack link, gated on the channel that moves the boundary.
+    """
+    from .doors import _wall_owners, observe_motion_sector
+
+    wires = wires if wires is not None else transmitters(disk)
+    owners = _wall_owners(disk)
+    out = []
+    for record in conditioned_links(disk):
+        mover = record["re_partitioned_by"]
+        seen = observe_motion_sector(disk, mover, owners=owners)
+        causes = _causes_for(seen, wires) if seen else []
+        upper, lower = record["sectors"]
+        out.append(ConditionalEdge(
+            sectors=(upper, lower),
+            mechanism=mover,
+            mechanism_kind="sector",
+            enabling_state="on",
+            verdict="conditional" if causes else "uncaused",
+            delta={
+                "kind": "a stack link re-partitioned by a planar door",
+                "link_id": record["link_id"],
+                "channel": record["channel"],
+                "covered_at_rest": record["covered_at_rest"],
+                "basis": record["basis"],
+            },
+            causes=list(causes),
+        ))
+    return out
+

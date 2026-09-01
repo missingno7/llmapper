@@ -242,6 +242,10 @@ def _connection_has_face(connection: ConnectionSpec) -> bool:
 WALL_MOVES_WITH = 16384
 WALL_MOVES_AGAINST = 32768
 
+#: Blood's room-over-room marker pair: kMarkerUpStack above and
+#: kMarkerLowStack below, matched on their XSPRITE `data_1`.
+STACK_UPPER, STACK_LOWER = 11, 12
+
 
 def _cycle(points: Sequence[Point]) -> tuple[Point, ...]:
     return tuple((int(x), int(y)) for x, y in points)
@@ -910,6 +914,50 @@ class PlanarLayout:
             )
             doors.append(door_id)
         return {"interior": interior_id, "doors": doors, "mass": f"mass:{mass_id}"}
+
+    def stack_link(self, link_id: int, upper_region: str, lower_region: str,
+                   *, upper_at: Point, lower_at: Point,
+                   upper_z: int | None = None,
+                   lower_z: int | None = None) -> tuple[str, str]:
+        """Link two regions vertically: room-over-room.
+
+        Blood joins two sectors across a horizontal plane with a PAIR of
+        marker sprites carrying the same `data_1`, one from the upper family
+        and one from the lower. `warpInit` pairs them by that key, and the
+        renderer then draws the lower space through the upper's floor.
+
+        Two things this gets right that cost the project a shipped map each.
+        The markers go on **statnum 0**, not the 10 that every other marker
+        uses: statnum 10 is culled at load, so a link built on it is a link
+        that does not exist. And they carry an XSPRITE, because `data_1` is
+        an XSPRITE field and a marker without one has no key to pair on.
+
+        Returns the two placement ids.
+        """
+        for region in (upper_region, lower_region):
+            if region not in self.regions:
+                raise PlanarLayoutError(f"stack_link: no region {region!r}")
+        #: 11 and 12 by name, not the first of the families: 6/7 are water
+        #: and 9/10 goo, and picking one of those makes a link that pairs and
+        #: then floods. E1M1's casket uses 11 above and 12 below, cstat 128.
+        upper_type, lower_type = STACK_UPPER, STACK_LOWER
+        #: Two rooms one above the other necessarily share plan area, which
+        #: every other pair of regions is refused for. The link IS the
+        #: declaration, so making one declares it.
+        self.declare_special(upper_region, lower_region, "stack")
+        made = []
+        for tag, region, kind, point, z in (
+                ("upper", upper_region, upper_type, upper_at, upper_z),
+                ("lower", lower_region, lower_type, lower_at, lower_z)):
+            spec = self.regions[region]
+            default_z = (spec.floor_z if z is None else z)
+            made.append(self.add_sprite(
+                f"link:{link_id}:{tag}", region,
+                x=int(point[0]), y=int(point[1]), z=int(default_z),
+                type=int(kind), picnum=0, status=0, cstat=128,
+                x_repeat=64, y_repeat=64, angle=0,
+                behavior={"data_1": int(link_id)}))
+        return (made[0], made[1])
 
     def paint_wall(self, region_id: str, a1: Point, a2: Point,
                    **fields: int) -> None:
