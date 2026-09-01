@@ -25,7 +25,11 @@ constructors make, since they receive this proxy as their `layout`.
 
 from __future__ import annotations
 
+from math import atan2, cos, pi, sin
 from typing import Any
+
+#: Build's angle unit: 2048 to the turn.
+BUILD_TURN = 2048
 
 
 class Framed:
@@ -60,6 +64,24 @@ class Framed:
     def points(self, seq):
         return [self.point(p) for p in seq]
 
+    def angle(self, value: int) -> int:
+        """A Build angle, turned the way this frame turns.
+
+        A frame that moves a sprite's POSITION and leaves its ANGLE alone
+        breaks every construct whose meaning is the relation between the two.
+        The turnstile is the worked example: its four blades are two vanes,
+        each extending PERPENDICULAR to its own face normal, and rotating
+        only the positions turned the cross into a square. Nothing else
+        noticed -- not validation, not the usage laws, not the self-reading
+        gate, not thirty-one renders -- and the owner saw it immediately.
+        """
+        radians = int(value) % BUILD_TURN * 2.0 * pi / BUILD_TURN
+        dx, dy = cos(radians), sin(radians)
+        wx = self._forward[0] * dx + self._across[0] * dy
+        wy = self._forward[1] * dx + self._across[1] * dy
+        turned = atan2(wy, wx) * BUILD_TURN / (2.0 * pi)
+        return int(round(turned)) % BUILD_TURN
+
     def box(self, b) -> tuple[int, int, int, int]:
         """A local rectangle, as a world rectangle in min/max order."""
         corners = self.points(((b[0], b[1]), (b[2], b[1]),
@@ -89,6 +111,13 @@ class Framed:
             a1=self.point(a1) if a1 is not None else None,
             a2=self.point(a2) if a2 is not None else None, **kwargs)
 
+    def stack_link(self, link_id, upper_region, lower_region, *,
+                   upper_at, lower_at, **kwargs):
+        return self._layout.stack_link(
+            link_id, upper_region, lower_region,
+            upper_at=self.point(upper_at), lower_at=self.point(lower_at),
+            **kwargs)
+
     def paint_wall(self, region_id, a1, a2, **fields):
         return self._layout.paint_wall(region_id, self.point(a1),
                                        self.point(a2), **fields)
@@ -99,8 +128,15 @@ class Framed:
 
     def add_sprite(self, placement_id, region_id, *, x, y, **kwargs):
         wx, wy = self.point((x, y))
+        if "angle" in kwargs:
+            kwargs["angle"] = self.angle(kwargs["angle"])
         return self._layout.add_sprite(placement_id, region_id, x=wx, y=wy,
                                        **kwargs)
+
+    def place_on_floor(self, placement_id, region_id, **kwargs):
+        if "angle" in kwargs:
+            kwargs["angle"] = self.angle(kwargs["angle"])
+        return self._layout.place_on_floor(placement_id, region_id, **kwargs)
 
     def _oriented(self, a1, a2):
         """The world pair whose off-wall normal points where the local one did.
