@@ -913,7 +913,20 @@ campaign's usage measured against it.
   workaround, and a slide mechanism whose moved subject is *sprites*, not
   its own walls.
 - **sector 99** — slides away and rats run out: an *ambush/flavor reveal*.
-- **sector 125** — a *curtain* that opens (slide as soft furnishing).
+- **the curtain — full anatomy (owner 2026-09-01, wall ids verified
+  exactly):** motor = s125 (slide-marked, markers 291/292); moving walls
+  1200 (BLUE) and 1210 (GREEN) travel TOWARD each other; unflagged
+  curtain walls 1201/1209/1183 STRETCH as the flagged endpoints migrate —
+  the squash/stretch of texture 146 IS the animation. No sprites, no z.
+  Interaction: XWALLs on the fabric walls (tx 125 → own rx, Toggle,
+  trigger_push) — push the curtain anywhere. And s125 TXs 126 with
+  command 5 (Link) to s124's shade amplitude: **the room's light follows
+  the curtain's busy value continuously** — a three-layer sentence
+  (motion → bus → presentation). General rule this teaches: door vs
+  curtain is the SAME verb with different PAYLOAD TOPOLOGY — flag the
+  whole leaf group and it translates rigidly (s4); flag only the leading
+  edges and the neighbours deform elastically. Rigid vs elastic is a
+  flagging pattern, not a mechanism type.
 - **sector 63** — a plain standalone sliding door.
 - **sector 70** — a shelf that is a *secret entrance*, sliding aside.
 - **the furnace** — sector 88 is only the interior; the whole crematorium
@@ -1475,6 +1488,22 @@ Two rules came out of it, and both are now enforced by the suite:
 The one-line version, for anything else the pipeline ever ships to a player:
 **depictions pass renders and fail players.**
 
+## What v3 taught, 2026-09-01: the knowledge was already here
+
+The owner's verdict on v3 was that the knowledge existed in this repo -- in
+the campaign corpus, in blood-city, in owner-anchors -- and the build neither
+consumed nor enforced it. The corpus audit bears that out precisely. Every
+tile error the zoo shipped was already answerable from a table nobody had
+compiled: 400 is a facade backdrop the owner had labelled, 2026 is a shelf the
+campaign only ever hangs on walls, 502 is a grate that appears 27 times as an
+over_picnum and never on a floor.
+
+So the fix is not more knowledge, it is **plumbing**: the usage-kind table is
+mined once, stored in knowledge, read by a validator, and run by the zoo's own
+gate. A build can no longer pass a gate the rest of the pipeline would fail it
+on -- which is exactly how v3 shipped eighteen transparency violations inside
+the exhibit that teaches the transparency law.
+
 A third rule arrived with the rebuild and is enforced by review rather than by
 test: a stall is a **habitat**, not a box. Its size, material and dressing are
 derived from that mechanism's own mined evidence and constitute a claim about
@@ -1517,6 +1546,142 @@ surface slots -- and that check caught two violations in this very build: the
 tile museum wearing sprite tiles on its panel floors, and the sewer grate laid
 underfoot.
 
+## Engine usage laws, 2026-09-01
+
+Four laws about **where a tile may go**, each sourced in the engine, measured
+on the campaign, and registered in `bloodmap.rules_blood` so authored-map
+validation and the zoo's self-reading gate both enforce them. Grades are in
+`knowledge/blood/design/rules-v1.json`; the table they read is
+`knowledge/blood/design/usage-kinds-v1.json`.
+
+```text
+mask-tile-off-plain-surfaces     0 / 78805   engine.cpp:2902 ceilscan,
+  a mask-coloured tile never goes on a floor, a ceiling, or a one-sided
+  wall's picnum. Those have nothing behind them, so the engine draws the
+  frame buffer through the holes. 0 of 26383 non-parallax surface slots and
+  0 of 52422 one-sided wall slots. TWO tiles break it on two-sided walls
+  across 23 of 60839 slots -- 142 and 2464 -- which is where the owner's
+  suspected door-leaf exception lives and is too few to name a family, so
+  the rule leaves two-sided walls alone.
+
+parallax-wears-a-sky-tile        0 / 1775    usage-kinds sky_family
+  a parallaxed surface wears a tile from the sky family, which is DERIVED
+  and turns out to be exactly three: 2500, 3491, 3678. They are backdrops
+  rather than skies -- 3678 is a dark rock face used as a cavern roof 363
+  times -- and all three are 64x400.
+
+sky-tile-is-parallaxed           5 / 1780    tiles.cpp:281 tileUpdatePicSiz
+  and the mirror: a sky tile on a surface carries the bit. Without it the
+  strip is sampled through picsiz as 64x256. The campaign slips 5 times.
+
+tile-sits-in-an-attested-slot    tautological, and useful anyway
+  a tile goes in a slot the campaign is attested to use it in. Its grade is
+  0 BY CONSTRUCTION, because the table is mined from the corpus it is graded
+  against -- so the number means nothing and the rule is a WARNING tier. Its
+  value is entirely on authored maps, where it caught shelf goods laid on a
+  floor, crate tiles on a ceiling, and six sprite cut-outs painted on walls.
+```
+
+**The aspect law already existed and was already enforced.** The owner's list
+had it as a fourth violation; `flat-tile-power-of-two` has been in
+`rules_blood` and in `PlanarLayout._validate_flat_tiles` all along, and the
+zoo -- which builds through PlanarLayout -- never broke it. The finding is
+that it INTERLOCKS with parallax: all three sky tiles are 64x400, so a sky
+tile on an ordinary ceiling is wrong twice, and the aspect law's exemption
+for parallax surfaces is not a loophole but the other half of the same fact.
+
+**Slot correctness is not the whole of usage.** `usage_kinds.overused`
+compares a map's share of each wall tile against the campaign's. Tile 400 is
+a multi-storey facade backdrop with 48 wall slots in 43 maps; the zoo made it
+the default gallery wall and used it 162 times in one level -- 786x the
+campaign rate, every use in an attested slot, every one passing the
+usage-kind check. That is the crudest possible instrument and it found the
+largest error in the build.
+
+## Two payload shapes the model could not name
+
+`effects.payload_shape` reads what the ARRANGEMENT of flagged walls means,
+where before the model could only list which walls moved. Measured over the
+campaign's 659 swept sectors:
+
+```text
+340  nothing moves                sprite payload, or an unmarked type
+154  part of the sector travels   E1M1 s63, the plain slide door
+104  the sector resizes itself    OPPOSITE flags: one end advances while the
+                                  other retreats, so the sector's own extent
+                                  changes and the texture between deforms.
+                                  E1M1 s125 is the curtain; s4 is a two-leaf
+                                  door built the same way
+ 44  boundary re-partition        ONE flagged wall, and it is the portal to a
+                                  neighbour: its travel moves the line
+                                  between two sectors, so plan area passes
+                                  from one to the other. E1M1 s28 and s30 are
+                                  the casket
+ 17  the whole sector travels
+```
+
+Both named shapes are now constructors: `mechanism.curtain` and
+`mechanism.planar_door`, each built from E1M1's own fields rather than from
+memory. `PlanarLayout.carry_wall` is what made them possible -- until it
+existed there was no way to say which walls a Marked slide drags, and two
+whole classes of Blood mechanism could not be authored at all.
+
+## Promotion queue, 2026-09-01
+
+Promoted in this run, each with a zoo exhibit the conformance test holds it
+to: the four usage laws above; `PlanarLayout.carry_wall` and `paint_wall`;
+`mechanism.curtain` (CURTAIN); `mechanism.planar_door` (CASKET);
+`mechanism.shade_wave` (CASKET, on the cover); `aperture.maskwall_panel`
+(SEWER AND TECH, which had its grate lettered as a gap until this existed);
+`effects.payload_shape`; `furniture.place` and `furniture.mounting_for`.
+
+Queued, ranked by recurrence x cost. Recurrence is how many
+`projects/blood-city/level/*.py` modules reach for the technique by hand.
+
+```text
+rank  technique                     recurrence  why it is not done here
+1     ROR links CONDITIONED by      --          PRE-DECIDED and BLOCKED.
+      cover position                            PlanarLayout has no stack
+                                                link at all, so there is no
+                                                ROR anywhere to exercise it
+                                                on, and the casket showed a
+                                                deeper gap first: conditional
+                                                cannot see a boundary
+                                                re-partition as a topology
+                                                change either, because the
+                                                portal never opens or shuts.
+                                                Both want one piece of work
+2     a lift constructor            --          the last mechanism in the zoo
+      (floor-travelling z-motion)               still assembled by hand;
+                                                z_motion_door writes ceiling
+                                                endpoints only
+3     porch                         10          street anatomy, with kerb
+4     grate/grille placement        9           HALF DONE: maskwall_panel is
+                                                the wall case; a free-standing
+                                                grille sprite is not
+5     jamb dressing 195 + 200       5           the reveal is built by hand in
+                                                every door exhibit
+6     kerb                          5           needs street anatomy first
+7     a service run                 --          four pipe sectors chained by
+                                                hand in the zoo
+8     shop fittings on PlanarLayout --          templates.py owns them on the
+                                                levelprog stack and cannot be
+                                                called from a PlanarLayout
+9     free-standing volumes         --          PlanarLayout refuses a region
+                                                wholly inside another, so a
+                                                crate cannot stand in the
+                                                middle of a floor
+10    wall-level interaction route  --          doors.py models the sector
+      in doors.py                               route; the XWALL one is unread
+11    command-verb reading on the   --          command 5 on E1M1's curtain is
+      bus                                       unread by the whole stack
+```
+
+**Not promoted on purpose.** `aperture.facade_run` stays a helper rather than
+a `vocabulary` constructor, for the reasons its own report gives: the second
+half of the admission rule -- a compact parameter set reproducing held-out
+examples -- has never been run.
+
 ## The paid-for build gotchas
 
 Each of these cost a failed build at least once. They are properties of
@@ -1545,11 +1710,47 @@ CENTRE                          dispatches on the tile's own mounting
 placement ids must be unique    `placement_sprites` is a dict; three gates
 across the whole map            named `<x>:gate` all produced `gate_leaf_west`
                                 and two of them became unfindable
+a marker's OWNER is the sector  E1M1's casket puts its "to" marker inside the
+it controls, not the one it     cover, which has no XSECTOR at all; the loader
+stands in                       deletes any marker whose owner names none
+half of four axis frames are    a reflection reverses a loop's winding AND the
+REFLECTIONS, not rotations      side a wall sprite offsets to; transport the
+                                local normal rather than reasoning about signs
+a branch's back boxes reach     so the gap between two branches on the same
+out of BOTH its long walls      side is the two facing runs' depths, not a
+                                constant
 ```
 
 ---
 
 # Phase 11 — Automatic discovery frontier + batched review
+
+**Owner steering (2026-09-01): the mining system must be built to
+self-correct and expose its own errors.** The working example is the
+curtain verification of the same day: an owner claim (sector id, wall
+ids, motion story) was checked field-by-field against the map, one id
+discrepancy surfaced honestly (motor is s125, s124 is the lit room), and
+a new rule fell out (rigid vs elastic payload topology). Generalize that
+loop into standing machinery:
+
+1. **Attested-construct fixtures** — every owner-attested construct
+   (casket s27-s30, curtain s124/125, door s4, the s65/s90 workaround,
+   the turnstiles) is a permanent test: the reading stack must parse the
+   real map into the expected grammar sentence, and any model change
+   that breaks a parse fails the suite. Owner knowledge becomes
+   regression armor, not prose.
+2. **Contradiction mining** — cross-layer consistency checks over the
+   knowledge index: owner anchors vs the corpus usage-kind table vs
+   constructor claims vs bundle views. Disagreements are ranked into the
+   review queue as first-class frontier items — a contradiction is a
+   discovery.
+3. **Round-trip closure** — every constructor's test builds, reads back
+   through effects/conditional, and asserts the parse equals the grammar
+   sentence the constructor claims (the zoo's self-reading gate,
+   generalized to unit scale).
+4. **Owner claims as probes** — when an owner statement disagrees with
+   the data, the system reports the discrepancy with evidence and lets
+   the review decide; it never silently accepts either side.
 
 ## Gap (new work)
 

@@ -28,16 +28,16 @@ that reading finds. A dead map fails the build.
 ```text
 map            projects/pattern-zoo/level/pattern-zoo.MAP
 built from     projects/pattern-zoo/registry.py (generated, never hand-placed)
-size           89 sectors, 486 walls, 552 sprites
+size           90 sectors, 492 walls, 552 sprites
 sections       7
-exhibits       31, of which 2 are honest EMPTY
-live sectors   6 x type 600, 5 x type 614, 6 x type 615
+exhibits       31, of which 1 are honest EMPTY
+live sectors   6 x type 600, 6 x type 614, 6 x type 615
 ```
 
 ## Verification
 
 ```text
-the zoo reads itself    24 claims checked, 0 unsupported
+the zoo reads itself    25 claims checked, 0 unsupported
   representation          tiles claimed as wall texture are on walls and
                           not thrown as sprites, and the reverse
   the transparency law    no mask-carrying tile on any floor or ceiling
@@ -131,12 +131,13 @@ a breach in a load-bearing wall, opened once by shooting it.
 
 ### CASKET
 
-the player start as a mechanism: a lid that slides aside across a room-over-room plane.
+a lid that slides aside by MOVING THE BOUNDARY between the hole and the cover, breathing light as it goes.
 
 - **try:** look up, then walk out; E1M1 opens inside one
 - **from:** owner-attested E1M1 reading, sectors 28/30 (hole, slide-marked, ROR-linked) and 27/29 (cover). Each slide sector moves exactly ONE flagged wall, and that wall is the hole/cover boundary
-- **read back as:** 1 sector(s) of type 614, stack-linked across a room-over-room plane
-- **hand-composed:** boundary-wall area re-partition: the lid works by a flagged wall moving the line between hole and cover, and no constructor expresses that -- promotion candidate
+- **read back as:** 1 sector(s) of type 614, listening on channel 309, whose payload is 'boundary re-partition'
+- **hand-composed:** the room-over-room half: E1M1's casket is four sectors in two pairs, stack-linked and synced, and PlanarLayout has no stack link at all -- promotion candidate
+- **covers:** bloodmap.mechanism.planar_door, bloodmap.mechanism.shade_wave
 
 ![CASKET](projects/pattern-zoo/reports/tour/observation/frames/casket.png)
 
@@ -182,14 +183,14 @@ a shelf that slides aside and is the way into a secret.
 
 ![SHELF SECRET](projects/pattern-zoo/reports/tour/observation/frames/shelf_secret.png)
 
-### CURTAIN  *(EMPTY)*
+### CURTAIN
 
-a thin sector whose WIDTH changes -- the texture squashing IS the animation.
+a thin sector whose own LENGTH changes -- the texture squashing IS the animation.
 
-- **try:** nothing yet: read the wall and tell us if the description matches what you know
+- **try:** open it and watch the fabric gather: the sector resizes, it does not slide aside
 - **from:** owner anchor 146/147, binding strong, and the owner's note with them: a Blood curtain is a thin deforming sector, not a pair of leaves
-- **lettered on the wall:** COMING SOON
-- **hand-composed:** the whole mechanism: a thin sector that changes width, deforming tile 146. Pre-decided item of the promotion audit that runs after this zoo -- promotion candidate
+- **read back as:** 1 sector(s) of type 614, listening on channel 303, whose payload is 'the sector resizes itself', tiles 146 worn as wall texture, not thrown as sprites
+- **covers:** bloodmap.mechanism.curtain
 
 ![CURTAIN](projects/pattern-zoo/reports/tour/observation/frames/curtain.png)
 
@@ -357,7 +358,8 @@ a passage you duck along, four pipe tiles down it.
 - **try:** the clear height is deliberately below the campaign median; that is what a service run is
 - **from:** reports/anchor-sewer-kit.json, role pipe_walls: tiles 496 to 499
 - **read back as:** tiles 496/497/498/499 worn as wall texture, not thrown as sprites
-- **hand-composed:** the passage: four pipe sectors chained by hand, because no constructor owns a service run; the sewer grate 502: it carries mask pixels, so by the measured transparency law it cannot go on a floor, and nothing here builds a maskwall panel -- promotion candidate
+- **hand-composed:** the passage: four pipe sectors chained by hand, because no constructor owns a service run -- promotion candidate
+- **covers:** bloodmap.aperture.maskwall_panel
 
 ![PIPE RUN](projects/pattern-zoo/reports/tour/observation/frames/sewer.png)
 
