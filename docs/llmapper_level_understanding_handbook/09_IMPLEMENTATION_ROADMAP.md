@@ -2034,6 +2034,29 @@ matching coordinates. On the four originals and the rebuilt city the two
 **agree** -- a negative result worth keeping, since the coordinate reading can
 over-report and never under-reports.
 
+### The 256 was a mechanism running backwards
+
+Reported first as an imprecision: the two-leaf repeat derived from `span/2`
+= 1536 while the swept closed length measured 1280, leaving the pair at texel
+1.67 instead of the 2.0 mode. Inside the attested envelope, so every gate
+passed it.
+
+It was not an imprecision. **Both leaves were travelling OUTWARD.** Each tip
+began 128 inside the doorway and ended 1280 past its own jamb: the pair
+rested OPEN and "closing" retracted it out of the opening. The 256 was the
+two retractions.
+
+Which leaf carries which flag is not free. DOOR-CURTAINSD s2: span y -3072
+(low) to -1024 (high), marker delta +960 toward high, LOW-end tip `0x8000`
+AGAINST and HIGH-end tip `0x4000` WITH. Ours had them swapped. Corrected,
+both tips close to exactly midspan, `closed_len` is span/2 as the derivation
+always assumed, and the texel scale is 2.0 on all six fabric walls.
+
+The lesson is about the gates, not the flags: a number sitting comfortably
+inside a tolerance was the only visible trace of a mechanism that worked
+backwards. `tests/test_attested_constructs` now asserts the two tips MEET,
+and meet at midspan rather than at a jamb.
+
 ### The city's state preview
 
 Filed as missing in wave 1b and built: `work/_city_state_preview.py` snaps the

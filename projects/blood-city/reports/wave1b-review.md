@@ -344,12 +344,29 @@ A **CURTAIN PAIR** exhibit beside the one-leaf CURTAIN — two leaves
 converging, tips flagged opposite ways. 33 exhibits, 27 self-read claims,
 15 constructs conforming, 0 errors.
 
-### One imprecision, recorded
+### The "imprecision" was a defect, and the number found it
 
-The two-leaf repeat is derived from `span/2`, and the swept closed length
-comes out **256 shorter** than that (1280 against 1536 on the zoo's pair), so
-a two-leaf curtain hangs at texel **1.67** rather than the 2.0 mode. It is
-inside the attested envelope (1.0–8.0) and the conformance passes it, so it
-is an imprecision in the derivation rather than a defect in the map — but the
-one-leaf case is exact and this one is not, and that difference has not been
-run down.
+This sheet first recorded the two-leaf repeat as an imprecision: derived from
+`span/2` = 1536 while the swept closed length measured 1280, leaving the pair
+at texel 1.67 instead of 2.0. Inside the attested envelope, so every gate
+passed it.
+
+**It was not an imprecision. The two leaves were travelling OUTWARD.**
+
+Measuring where each tip actually goes: the west leaf's tip sat 128 inside
+the doorway and moved to 1280 *past its own jamb*, and the east leaf did the
+same in the other direction. The pair rested OPEN and "closing" retracted it
+out of the opening entirely. The 256 was the two retractions, not a pocket
+mouth.
+
+The cause is which leaf carries which flag, and it is not free.
+DOOR-CURTAINSD s2 settles it: its span runs y −3072 (low) to −1024 (high),
+its marker delta is +960 toward high, and the LOW-end tip carries `0x8000`
+AGAINST while the HIGH-end tip carries `0x4000` WITH. Ours had them the other
+way round. Swapped, both tips close to exactly midspan, `closed_len` is 1536
+= span/2 as the derivation always assumed, and the texel scale is **2.0 on
+all six fabric walls**.
+
+Worth stating plainly: a number that sat inside a tolerance was the only
+visible trace of a mechanism that worked backwards. The envelope check
+passed it, the conformance passed it, and the swept gate passed it.

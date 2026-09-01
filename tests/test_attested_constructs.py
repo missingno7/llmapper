@@ -570,3 +570,47 @@ class FabricHasToBeVisible(unittest.TestCase):
         disk = read_map("maps/blood/mechanism/Vanilla/DOOR-CURTAINS.map")
         for wall_id in (38, 39, 40):
             self.assertTrue(fabric_is_visible(disk, wall_id, 3))
+
+    def test_two_leaves_meet_in_the_middle(self):
+        # The regression this class exists for. Which leaf carries which flag
+        # is not free: with them swapped both tips travel OUTWARD past their
+        # own jambs, so the curtain rests open and "closing" retracts it out
+        # of the doorway. Nothing caught that -- the swept gate passed, the
+        # conformance passed, and the only trace was a texel scale of 1.67
+        # sitting comfortably inside the attested envelope.
+        import math
+        from pathlib import Path
+
+        from bloodmap.format import read_map
+        from bloodmap.motion_sim import blood_poses
+
+        zoo = Path("projects/pattern-zoo/level/pattern-zoo.MAP")
+        if not zoo.exists():
+            self.skipTest("the zoo is not built")
+        disk = read_map(zoo)
+        from bloodmap.motion import flagged_walls
+
+        pair = next(i for i, s in enumerate(disk.sectors)
+                    if int(s.fields["type"]) == 614
+                    and len(flagged_walls(disk, i)) == 2)
+        closed, drawn = blood_poses(disk, pair)
+        xs = [p[0] for p in drawn] + [p[1] for p in drawn]
+        start = int(disk.sectors[pair].fields["wall_ptr"])
+        count = int(disk.sectors[pair].fields["wall_count"])
+        tips = [k for k in range(count)
+                if int(disk.walls[start + k].fields["cstat"]) & 0xC000]
+        self.assertEqual(len(tips), 2)
+        #: Both tips end at the same place ALONG THE DRAW AXIS -- they meet.
+        #: Across the doorway they stay a fin-width apart, which is what two
+        #: leaves touching edge to edge looks like.
+        drawn_xs = [p[0] for p in drawn]
+        drawn_ys = [p[1] for p in drawn]
+        along = 0 if (max(drawn_xs) - min(drawn_xs)) > (max(drawn_ys)
+                                                        - min(drawn_ys)) else 1
+        first, second = closed[tips[0]], closed[tips[1]]
+        self.assertAlmostEqual(first[along], second[along], delta=2,
+                               msg="the two leaves do not meet")
+        #: and the meeting point is the middle of the span, not a jamb
+        span_low, span_high = min(drawn_xs if along == 0 else drawn_ys),             max(drawn_xs if along == 0 else drawn_ys)
+        self.assertAlmostEqual(first[along], (span_low + span_high) / 2.0,
+                               delta=2)
