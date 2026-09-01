@@ -1095,6 +1095,52 @@ def main() -> int:
                               light_height_player_heights=0.5,
                               emits_light=True,
                               **props.fields(props.STREET_LAMP))
+    # ---- street lamps into the derived slots -----------------------------
+    # Wave 1 derived lamp positions from run length and placed nothing in
+    # them; the slots were computed, reported and ignored. Same fixture as
+    # the light-pool lamps -- tile 640, DWE3M1's ground-standing street lamp
+    # -- but positioned by the street constructor rather than by a pool: one
+    # per mined service interval along each roaded run, inset half a pavement
+    # band so none overhangs the kerb.
+    #
+    # A slot is only used if it lands in a sector at all. A run's pavement is
+    # not guaranteed to be there -- the road may have been cut around a light
+    # pool or a threshold -- and a lamp in the void is worse than no lamp.
+    lamp_slots = ctx["manifest"].get("streets", {}).get("lamp_slots", [])
+    laid = ctx["manifest"].get("streets", {}).get("laid", [])
+    district_of_run = {row["run"]: row["district"] for row in laid}
+    street_of = {district: region_id
+                 for region_id, district in ctx["street_regions"].items()}
+    placed_lamps, skipped_lamps = 0, 0
+    for slot in lamp_slots:
+        run = slot["id"].split(":")[0]
+        district = district_of_run.get(run)
+        region_id = street_of.get(district)
+        if region_id is None:
+            skipped_lamps += 1
+            continue
+        bounds = DISTRICT_BOUNDS[district]
+        local = ((slot["x"] - bounds[0]) / (bounds[2] - bounds[0]),
+                 (slot["y"] - bounds[1]) / (bounds[3] - bounds[1]))
+        if not (0.0 <= local[0] <= 1.0 and 0.0 <= local[1] <= 1.0):
+            skipped_lamps += 1
+            continue
+        try:
+            layout.place_on_floor(
+                f"light:street_lamp:{slot['id'].replace(':', '_')}", region_id,
+                local=local,
+                height_player_heights=props.height_of(props.STREET_LAMP),
+                light_intensity=lightpools.LAMP_INTENSITY,
+                light_height_player_heights=0.5, emits_light=True,
+                **props.fields(props.STREET_LAMP))
+            placed_lamps += 1
+        except Exception:
+            skipped_lamps += 1
+    ctx["manifest"]["street_lamps"] = {"placed": placed_lamps,
+                                       "skipped": skipped_lamps,
+                                       "slots": len(lamp_slots)}
+    print("street lamps:", ctx["manifest"]["street_lamps"])
+
     # Grime, last of the sprite passes so it fills whatever the district
     # modules left bare.  Sprites per sector was 0.60 against a campaign
     # 1.60-4.06; a room with one cultist and one flame in it reads as built
@@ -1173,7 +1219,8 @@ def main() -> int:
             "greens", {}).items():
         planted = park.plant(layout, green_report["ground"], green_box,
                              green_area, prefix=f"green:{area_id}",
-                             solids=green_report.get("solids", ()))
+                             solids=green_report.get("solids", ()),
+                             outline=green_report.get("outline"))
         green_report["planted"] = planted
         print(f"green {area_id}:", planted, green_report["refused"])
     ctx["manifest"]["greens"] = {

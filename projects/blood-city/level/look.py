@@ -86,8 +86,12 @@ POSE_SETS = {
                      "the lychgate from the west street"),
         "green_in": (22.0, 28.0, 28.0, 28.0, LEVEL,
                      "inside the green: turf, not tarmac"),
-        "green_stones": (26.0, 31.0, 26.0, 25.0, LEVEL,
-                         "the headstones and the planting"),
+        "green_path": (23.9, 33.0, 23.9, 24.0, LEVEL,
+                       "on the dirt path, looking north along it -- the "
+                       "planting stands either side"),
+        "green_stones": (22.5, 30.0, 25.5, 27.0, LEVEL,
+                         "across the turf toward the mausolea, where the "
+                         "headstones and bushes are"),
     },
     "fresh2": {
         "canteen_door": (51.9, 16.4, 51.9, 13.5, LEVEL, "the canteen door from the yard"),
