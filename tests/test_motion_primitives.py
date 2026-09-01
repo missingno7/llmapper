@@ -121,14 +121,23 @@ class MotionMarkerTest(unittest.TestCase):
     def test_state_says_which_marker_the_sector_is_at(self):
         # Corrected: the two marker positions ARE the two states, so `state`
         # names one of them. It is not "where it rests on a journey".
-        from bloodmap.motion import drawn_pose, marker_pair
+        from bloodmap.motion import marker_pair, off_pose
+        from bloodmap.motion_sim import blood_sector_walls
 
         disk = _oracle()
         self.assertEqual(marker_pair(disk, 2)["at"], "on")
         self.assertEqual(marker_pair(disk, 5)["at"], "off")
-        # And both are DRAWN at their ON pose, which is the law.
-        self.assertEqual(drawn_pose(disk, 2), "on")
-        self.assertEqual(drawn_pose(disk, 5), "on")
+        # The saved outline IS the ON pose -- trInit rebases by the whole
+        # marker delta before recording the base -- so the OFF pose is the
+        # drawn outline minus that delta, and nothing needs to be inferred
+        # from where the markers happen to sit.
+        for sector_id in (2, 5):
+            drawn = blood_sector_walls(disk, sector_id)
+            travel = marker_pair(disk, sector_id)["travel"]
+            self.assertEqual(
+                off_pose(disk, sector_id),
+                [(x - travel[0], y - travel[1]) for x, y in drawn],
+                f"s{sector_id}")
 
     def test_a_marker_may_stand_where_it_does_not_belong(self):
         # `owner` is the sector a marker CONTROLS. E1M1's casket puts its

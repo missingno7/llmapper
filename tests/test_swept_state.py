@@ -100,19 +100,28 @@ class SweptGateTest(unittest.TestCase):
         self.assertTrue(found.sound)
         self.assertEqual(found.notes, [])
 
-    def test_a_state_that_disagrees_with_the_geometry_is_reported(self):
-        # What IS worth saying: a displacement that is not the marker
-        # separation, because then the drawn pose and the state disagree
-        # about something.
+    def test_the_oracle_has_clearance(self):
+        # The owner's own map, which is the thing that must stay quiet.
+        from bloodmap.swept_state import sweep_sector
+
+        self.assertTrue(sweep_sector(_oracle(), 5).sound)
+
+    def test_a_mechanism_that_sweeps_through_a_room_is_caught(self):
+        # The check the rotors never had. Push the ON marker far enough that
+        # the travel carries the moving outline across a wall of a sector the
+        # mechanism does not move; before this check, that passed everything.
         from bloodmap.swept_state import sweep_sector
 
         disk = _oracle()
-        #: Drag the ON marker away from the geometry: the sector is no longer
-        #: drawn at either pose, so nothing agrees.
-        disk.sprites[3].fields["y"] = int(disk.sprites[3].fields["y"]) + 3000
+        #: The mover sits in its own room at y -5760..-7808, and the hall
+        #: above it ends at y -4096. Reverse and lengthen the travel so the
+        #: base lands inside that hall: the outline then crosses the hall's
+        #: wall part way through, and the hall is not in the motion set.
+        disk.sprites[3].fields["y"] = -9888
         found = sweep_sector(disk, 5)
-        self.assertTrue(found.notes)
-        self.assertIn("disagree", " ".join(found.notes))
+        self.assertFalse(found.sound)
+        self.assertIn("sweeps through standing geometry",
+                      " ".join(found.problems))
 
 
 class PlanarDoorConstructorTest(unittest.TestCase):
