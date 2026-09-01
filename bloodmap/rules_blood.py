@@ -1117,6 +1117,105 @@ register(Rule(
 ))
 
 
+def _drawn_exemptions() -> set[int]:
+    """Tiles that bypass the wall pass on purpose, plus the editor's blank."""
+    from .render_slots import SKY_FAMILY
+    from .usage_kinds import sky_family
+
+    return (sky_family() or set(SKY_FAMILY)) | {MIRROR_TILE, 0}
+
+
+def _walls_draw_their_own_tile(disk) -> Finding:
+    from .render_slots import render_slots, undrawn_walls
+
+    exempt = _drawn_exemptions()
+    draws = render_slots(disk)
+    population = sum(1 for d in draws if d.picnum not in exempt)
+    found = undrawn_walls(disk, draws=draws, exempt=exempt)
+    out = []
+    for item in found:
+        pair = ", ".join(f"{band} {tile}" for band, tile in item["pair_draws"])
+        out.append(Violation(
+            f"wall[{item['wall']}]",
+            f"tile {item['picnum']} is drawn on no band from either side "
+            f"(sector {item['sector']} -> {item['next_sector']}; the pair "
+            f"draws {pair or 'nothing'}; partner wears "
+            f"{item['partner_picnum']})"))
+    return Finding(population, tuple(out))
+
+
+register(Rule(
+    id="wall-draws-its-own-tile",
+    statement=(
+        "a wall's picnum is drawn on some band, from one side or the other"),
+    because=(
+        "the engine draws bands, not fields. A two-sided wall's picnum "
+        "shows only on its upper step (where the neighbour's ceiling is "
+        "lower, engine.cpp:4690-4720) or its lower step (where the "
+        "neighbour's floor is higher, :4801-4833, swapped to the partner's "
+        "picnum under cstat&2); the middle shows over_picnum and only when "
+        "masked or one-way (:4685, :4938). A flush, unmasked red wall "
+        "therefore draws nothing on either side, whatever it wears. The "
+        "campaign leaves a tile on such walls a quarter of the time -- the "
+        "editor copies the previous wall's picnum on insert and nobody "
+        "clears it -- so this is a habit, not a law, and the gate is "
+        "wall-tile-is-drawn-somewhere. Sky tiles, the mirror tile and 0 "
+        "are exempt: the first two bypass the wall pass by design"),
+    source="NBlood/source/build/src/engine.cpp:4690 classicDrawBunches",
+    scope="wall",
+    check=_walls_draw_their_own_tile,
+))
+
+
+def _wall_tiles_are_drawn_somewhere(disk) -> Finding:
+    from .render_slots import render_slots
+
+    exempt = _drawn_exemptions()
+    draws = render_slots(disk)
+    drawn = {band.tile for draw in draws for band in draw.bands}
+    authored: dict[int, list[int]] = {}
+    for draw in draws:
+        if draw.picnum in exempt:
+            continue
+        authored.setdefault(draw.picnum, []).append(draw.wall)
+    out = []
+    for picnum, walls in sorted(authored.items()):
+        if picnum in drawn:
+            continue
+        shown = ", ".join(str(w) for w in walls[:6])
+        more = f" and {len(walls) - 6} more" if len(walls) > 6 else ""
+        reasons = sorted({r.split(" (")[0] for w in walls
+                          for r in draws[w].skipped})
+        out.append(Violation(
+            f"tile[{picnum}]",
+            f"authored on {len(walls)} wall(s) ({shown}{more}) and drawn on "
+            f"no band anywhere in the map; {'; '.join(reasons)}"))
+    return Finding(len(authored), tuple(out))
+
+
+register(Rule(
+    id="wall-tile-is-drawn-somewhere",
+    statement=(
+        "a tile authored on a map's walls is on screen somewhere in that map"),
+    because=(
+        "a tile chosen for a wall was chosen to be seen. When every wall "
+        "wearing it is a flush, unmasked red wall -- no step on either side, "
+        "no mask bit -- the engine never reads the field (engine.cpp:4690, "
+        ":4801, :4685, :4938) and the material is absent from the level "
+        "however deliberately it was authored. This is how the city's stage "
+        "curtain lost its fabric: tile 146 on unmasked two-sided walls whose "
+        "neighbour's ceiling is higher and whose floors are flush, so the "
+        "auditorium draws its own stone on the step above and the walkable "
+        "band is see-through. Per wall the campaign does this constantly "
+        "(editor leftovers on invisible walls), which is why the population "
+        "here is the map's distinct authored tiles: a leftover is drawn "
+        "elsewhere in the same map, a lost material is not"),
+    source="NBlood/source/build/src/engine.cpp:4690 classicDrawBunches",
+    scope="map",
+    check=_wall_tiles_are_drawn_somewhere,
+))
+
+
 def _transmitters_report_an_edge(disk) -> Finding:
     from .motion import silent_transmitters
 

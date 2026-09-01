@@ -62,9 +62,9 @@
   "flat-tile-power-of-two": {
    "rule": "flat-tile-power-of-two",
    "maps": 43,
-   "population": 26383,
-   "violations": 7,
-   "rate": 0.00027,
+   "population": 0,
+   "violations": 0,
+   "rate": 0.0,
    "severity": "error",
    "statement": "a floor or ceiling tile must have power-of-two sides",
    "source": "NBlood/source/build/src/tiles.cpp:281 tileUpdatePicSiz"
@@ -142,7 +142,7 @@
   "mask-tile-off-plain-surfaces": {
    "rule": "mask-tile-off-plain-surfaces",
    "maps": 43,
-   "population": 78805,
+   "population": 0,
    "violations": 0,
    "rate": 0.0,
    "severity": "error",
@@ -288,6 +288,26 @@
    "severity": "warning",
    "statement": "the mass between two rooms is at least 128 units thick",
    "source": "corpus"
+  },
+  "wall-draws-its-own-tile": {
+   "rule": "wall-draws-its-own-tile",
+   "maps": 43,
+   "population": 107785,
+   "violations": 28539,
+   "rate": 0.26478,
+   "severity": "note",
+   "statement": "a wall's picnum is drawn on some band, from one side or the other",
+   "source": "NBlood/source/build/src/engine.cpp:4690 classicDrawBunches"
+  },
+  "wall-tile-is-drawn-somewhere": {
+   "rule": "wall-tile-is-drawn-somewhere",
+   "maps": 43,
+   "population": 1979,
+   "violations": 97,
+   "rate": 0.04901,
+   "severity": "warning",
+   "statement": "a tile authored on a map's walls is on screen somewhere in that map",
+   "source": "NBlood/source/build/src/engine.cpp:4690 classicDrawBunches"
   }
  }
 }
