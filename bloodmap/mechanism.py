@@ -696,6 +696,76 @@ def _signed_area(points) -> float:
     return total / 2.0
 
 
+def curtain_spec(
+    *,
+    opening: tuple[int, int, int, int],
+    axis: str,
+    anchored: str = "high",
+    fin_width: int = CURTAIN_FIN_WIDTH,
+    retracted: int = CURTAIN_RETRACTED,
+    tile_width: int = CURTAIN_TILE_WIDTH,
+) -> dict:
+    """The FACTS of a curtain fin: outline, fabric edges, markers, repeats.
+
+    Separated from `curtain` for the same reason `turnstile_spec` is
+    separated from `turnstile`: a project that speaks the levelprog TREE
+    cannot call a PlanarLayout constructor, and blood-city speaks the tree.
+    Without this it would have to re-derive the fin -- which is how two
+    curtains come to disagree about what a curtain is.
+
+    Everything here is geometry and numbers. Nothing is placed.
+    """
+    if axis not in ("x", "y"):
+        raise MechanismError(f"axis is 'x' or 'y', not {axis!r}")
+    if anchored not in ("low", "high"):
+        raise MechanismError("anchored is 'low' or 'high'")
+    x0, y0, x1, y1 = (int(v) for v in opening)
+    if axis == "y":
+        a0, a1, c0, c1 = y0, y1, x0, x1
+    else:
+        a0, a1, c0, c1 = x0, x1, y0, y1
+    if anchored == "low":
+        a0, a1 = a1, a0
+    reach = a0 - a1
+    if abs(reach) <= abs(int(retracted)):
+        raise MechanismError(
+            f"the fin is drawn {retracted} into an opening only {abs(reach)} "
+            f"across; there is nothing for it to draw over")
+    if abs(c1 - c0) <= int(fin_width):
+        raise MechanismError(
+            f"a {fin_width}-wide fin does not fit a {abs(c1 - c0)}-thick "
+            f"doorway")
+    step = 1 if reach > 0 else -1
+    tip = a1 + step * int(retracted)
+    middle = (c0 + c1) // 2
+    f0, f1 = middle - int(fin_width) // 2, middle + int(fin_width) // 2
+
+    def _pt(along: int, across: int) -> tuple[int, int]:
+        return (across, along) if axis == "y" else (along, across)
+
+    outline = [_pt(a1, c0), _pt(a0, c0), _pt(a0, c1), _pt(a1, c1),
+               _pt(a1, f1), _pt(tip, f1), _pt(tip, f0), _pt(a1, f0)]
+    if _signed_area(outline) < 0:
+        outline.reverse()
+    closed_span = abs(reach)
+    return {
+        "outline": outline,
+        #: the fin's two sides and its free end, in that order
+        "fabric": ((_pt(a1, f1), _pt(tip, f1)),
+                   (_pt(tip, f1), _pt(tip, f0)),
+                   (_pt(tip, f0), _pt(a1, f0))),
+        #: only the free end is flagged: it is what drags the fabric across
+        "flagged": (_pt(tip, f1), _pt(tip, f0)),
+        "off_at": _pt(a0, middle), "on_at": _pt(tip, middle),
+        "closed_span": closed_span,
+        #: the repeat is authored for the CLOSED span, not the drawn one
+        "x_repeats": (natural_x_repeat(closed_span, int(tile_width)),
+                      natural_x_repeat(int(fin_width), int(tile_width)),
+                      natural_x_repeat(closed_span, int(tile_width))),
+        "anchored_at": a1, "tip_drawn_at": tip, "closed_at": a0,
+    }
+
+
 def curtain(
     layout: PlanarLayout,
     name: str,

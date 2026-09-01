@@ -386,10 +386,31 @@ def build(district, theatre_st):
     # mined class is authored through that class: `raised_solid` is the
     # idiom, and the rise defaults come from the class, not from here.
     # Each venue's fittings come from a template that knows what it places.
-    templates.theatre_house(
+    house = templates.theatre_house(
         rooms["aldermack_auditorium"], material=INTERIORS["theatre"],
         grade=GRADE, host_clear=ROOM_HEIGHT["aldermack_auditorium"],
         stage_clear=STAGE_CLEAR, rows=3)
+    # The curtain across the proscenium. A theatre whose stage has no curtain
+    # is a room with a step in it, and the Aldermack is the district's
+    # landmark -- so it gets the mechanism, not a painted stripe.
+    import curtains
+
+    ax0, ay0, ax1, _ay1 = next(
+        (x0, y0, x1, y1) for name, x0, y0, x1, y1, _k, _n in ROOMS
+        if name == "aldermack_auditorium")
+    stage_rect = (ax0 + templates.HOUSE_MARGIN,
+                  ay0 + templates.STAGE_INSET,
+                  ax1 - templates.HOUSE_MARGIN,
+                  ay0 + templates.STAGE_INSET + templates.STAGE_DEPTH)
+    curtain = curtains.hang(
+        rooms["aldermack_auditorium"], venue_nodes["aldermack"], stage_rect,
+        grade=GRADE, clear=STAGE_CLEAR)
+    #: The stage is what the curtain's light follows, so the link needs its
+    #: region. It is a raised solid under the house node, named by whoever
+    #: built it -- which is the point of naming things.
+    curtain["stage_region"] = next(
+        (room.region_id for room in citytree.rooms_under(house)
+         if room.node_id == "stage"), None)
     templates.box_office(
         rooms["aldermack_foyer"], material=INTERIORS["theatre"],
         grade=GRADE, host_clear=ROOM_HEIGHT["aldermack_foyer"])
@@ -404,7 +425,7 @@ def build(district, theatre_st):
     templates.bar(rooms["saloon_main"], material=INTERIORS["saloon"],
                   grade=GRADE, host_clear=ROOM_H)
 
-    return rooms, levers
+    return rooms, levers, curtain
 
 
 #: Who is in here, and what is worth finding.  Cultists hold the venues
