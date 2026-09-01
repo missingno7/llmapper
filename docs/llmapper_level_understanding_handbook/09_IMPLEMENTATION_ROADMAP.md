@@ -784,11 +784,62 @@ owner-supplied, start/links verified against the map).** The campaign's
 opening is a showcase of themed realizations of the slide/rotate/ROR
 primitives — many *design objects* on the same machinery:
 
-- **the casket** — the player start (sector 30, kMarkerSPStart) IS a
-  kSectorSlideMarked sector, ROR-paired via stack link_id 10 with sector 28
-  (also slide, rx 102, shade wave); the opening lid is slide + link + z
-  change, and sector 30 TXs 103 onward. *Narrative* — the primitive dressed
-  as waking from a coffin.
+- **the casket** — CORRECTED (owner, 2026-09-01; every field verified): a
+  FOUR-sector construct, two pairs. Hole sides: s28 (upper) + s30 (lower,
+  the player start), both kSectorSlideMarked, ROR-linked (link 10, sprites
+  47/46). Cover sides: s27 + s29, plain sectors. Each slide sector moves
+  exactly ONE flagged wall (cstat 16384) — s28's wall 221 against s27,
+  s30's wall 229 against s29 — and that wall is the hole/cover BOUNDARY:
+  its travel re-partitions plan area between the two, sliding the lid
+  open. The same travel vector runs on both sides of the ROR plane
+  (markers 42→43 Δx −1916, 44→45 Δx −1912; the "to" markers stand inside
+  the cover sectors), synced on rx 102, so the revealed holes meet through
+  the link. Owner's category: a **sliding ceiling/floor door** — planar
+  motion gating a VERTICAL crossing. Three concepts our stack lacks:
+  boundary-wall area re-partition, ROR links CONDITIONED by cover position
+  (conditional.py treats links as always-on — a Phase 9 gap), and the
+  paired-travel-across-a-link pattern as a recognizable design object.
+  *Narrative* — the primitive dressed as waking from a coffin.
+  **Further owner corrections (2026-09-01):** s30's z rise (floor
+  −20480 → −26624) is NOT part of the lid mechanism — it lifts the player
+  so they can jump out. A new category: **ergonomic-assist motion**,
+  present for the body, not for topology; a reading that counts it as part
+  of the door's gating misreads the construct. And the z endpoints are
+  NOT a type-600 privilege: the two z states are available on other
+  sector types too, so rotation or translation composes freely with z
+  travel — the casket's s30 (614 + z) is the attested proof.
+
+**The owner's constitution for this whole track (2026-09-01): Blood has a
+LANGUAGE of mechanisms — more sophisticated than Duke3D's — and the goal
+is to understand the language, never to slavishly copy examples.** The
+grammar as currently understood:
+
+```text
+verbs        sector type selects the XY motion (slide/rotate/path/...);
+             the XSECTOR z endpoints are an ORTHOGONAL z verb available
+             regardless of type — verbs compose on one sector
+payload      wall cstat flags (16384/32768) and sprite flags select what
+             moves; 616/617 drag every wall, 614/615 only flagged ones;
+             a payload can be sprites alone (E1M1 s65's gate)
+parameters   markers give from/to (types 3/4) or axis+angle (type 5)
+control bus  TX/RX channels + commands; system channels (level_start...);
+             tense/aspect = trigger_once / retrigger / interruptable /
+             busy waves; chaining (s50→s51) and fan-out are sentences
+presentation shade/amplitude waves synced to state — the mechanism's
+             visual voice, not decoration
+composition  ROR links couple constructs across layers (casket); links
+             can be CONDITIONED by cover position; ROR carries a global
+             visibility budget authors design around
+access       keys/locks gate the control bus, not the geometry
+ergonomics   small motions exist for the player's body (the casket
+             lift-out), not for topology — a separate reading category
+```
+
+A construct (casket, furnace, turnstile pair) is a *sentence* in this
+language: several sectors conjugating different verbs on a shared bus.
+Understanding means parsing sentences into the grammar; copying means
+memorizing one sentence. Every mechanism deliverable is judged against
+this.
 - **the crypt arc** — sector 26, kSectorRotate with a 20-wall arc,
   trigger_wall_push, dude_lockout: a curved wall revealing a *secret*.
 - **the double sliding door out of the crypt** — sector 4 (one
@@ -1333,6 +1384,46 @@ keeps the zoo current: **future constructor promotions must add an exhibit.**
 
 Labels are unique and stable, because owner feedback arrives by label name.
 Tour sheet: `reports/pattern-zoo-tour.md`.
+
+## What v1 taught, 2026-09-01
+
+The owner walked v1 and it failed **conceptually**. Not one door worked. Every
+exhibit had hand-assembled its own `sector_behavior` dict and never set the
+sector *type*, so the map contained **zero type-600 sectors** and the XSECTOR
+data sat on type-0 sectors, which the engine ignores entirely. Alongside that:
+mannequins floated (a floor sprite's z is its *centre*), the shelf run was a
+sprite thrown at a wall (a shelf is a wall texture on shallow sectors), crates
+were sprites (a crate is a sector volume wearing crate textures), and every
+stall was 1.5 player heights against a campaign median of 1.96, so the facades
+had no room to be facades.
+
+v1 passed structural validation, byte-exact round trip, an NBlood load smoke
+and twenty-four renders. **Every gate it passed was a gate about depiction.**
+
+Two rules came out of it, and both are now enforced by the suite:
+
+1. **A showcase is assembled from the constructors that own each concept**, or
+   it is an honest EMPTY stall with the gap lettered on the wall. Re-deriving a
+   mechanism from parts inside an exhibit is how the type came to be missing.
+2. **It is verified by the understanding stack reading it back.**
+   `projects/pattern-zoo/selfread.py` reads the built map with
+   `bloodmap.effects` and `bloodmap.conditional` -- the same code that reads the
+   campaign -- and checks every registry claim against what that reading finds:
+   the sector type, the design object, the trigger, the channel, the key. A
+   dead map fails the build. Two further checks catch what the owner found by
+   walking: nothing the builder seated on a floor may hang off it, and no stall
+   may be unreachable from the start.
+
+The one-line version, for anything else the pipeline ever ships to a player:
+**depictions pass renders and fail players.**
+
+A third rule arrived with the rebuild and is enforced by review rather than by
+test: a stall is a **habitat**, not a box. Its size, material and dressing are
+derived from that mechanism's own mined evidence and constitute a claim about
+correct usage. Where a habitat needs a technique no constructor owns, the
+honest-empty rule applies to the *dressing* too: the mechanism is built in a
+plainer room and the gap is recorded in the registry's `hand_composed` field,
+which the tour sheet prints as a promotion candidate.
 
 ---
 

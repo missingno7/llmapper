@@ -1,42 +1,137 @@
 {
   "$schema": "llmapper.pattern-zoo-build",
-  "schema_version": 1,
-  "stall_sectors": {
-    "stall:push_door": 2,
-    "stall:switched_door": 6,
-    "stall:keyed_door": 10,
-    "stall:lift": 14,
-    "stall:crack_barrier": 18,
-    "stall:turnstile_pair": 22,
-    "stall:turnstile_same_way": 26,
-    "stall:sliding_gate": 30,
-    "stall:casket": 33,
-    "stall:double_slide_door": 36,
-    "stall:double_rotate_door": 39,
-    "stall:curtain": 43,
-    "stall:shelf_secret": 46,
-    "stall:stack_link": 50,
-    "stall:facade_narrow": 52,
-    "stall:facade_wide": 55,
-    "stall:dressed_doorway": 58,
-    "stall:counter": 61,
-    "stall:crate_stack": 65,
-    "stall:shelf_run": 67,
-    "stall:mannequin_row": 69,
-    "stall:park_corner": 71,
-    "stall:sewer_wall": 75,
-    "stall:tile_museum": 78
-  },
+  "schema_version": 2,
   "map": "projects/pattern-zoo/level/pattern-zoo.MAP",
-  "sectors": 79,
-  "walls": 424,
-  "sprites": 255,
+  "sectors": 99,
+  "walls": 538,
+  "sprites": 307,
+  "region_sectors": {
+    "region:spine": 0,
+    "neck:push_door": 1,
+    "stall:push_door": 2,
+    "push_door:reveal": 3,
+    "push_door:leaf": 4,
+    "push_door:room": 5,
+    "neck:switched_door": 6,
+    "stall:switched_door": 7,
+    "switched_door:reveal": 8,
+    "switched_door:leaf": 9,
+    "switched_door:room": 10,
+    "neck:keyed_door": 11,
+    "stall:keyed_door": 12,
+    "keyed_door:reveal": 13,
+    "keyed_door:leaf": 14,
+    "keyed_door:room": 15,
+    "neck:lift": 16,
+    "stall:lift": 17,
+    "lift:platform": 18,
+    "lift:landing": 19,
+    "neck:crack_barrier": 20,
+    "stall:crack_barrier": 21,
+    "crack:leaf": 22,
+    "crack:room": 23,
+    "neck:turnstile_pair": 24,
+    "stall:turnstile_pair": 25,
+    "turnstile_pair:0:alcove": 26,
+    "turnstile_pair:1:alcove": 27,
+    "turnstile_pair:a": 28,
+    "turnstile_pair:b": 29,
+    "turnstile_pair:concourse": 30,
+    "neck:turnstile_same_way": 31,
+    "stall:turnstile_same_way": 32,
+    "turnstile_same:0:alcove": 33,
+    "turnstile_same:1:alcove": 34,
+    "turnstile_same:a": 35,
+    "turnstile_same:b": 36,
+    "turnstile_same:concourse": 37,
+    "neck:sliding_gate": 38,
+    "stall:sliding_gate": 39,
+    "sliding_gate:gate": 40,
+    "neck:casket": 41,
+    "stall:casket": 42,
+    "casket:box": 43,
+    "neck:curtain": 44,
+    "stall:curtain": 45,
+    "curtain:reveal": 46,
+    "curtain:gate": 47,
+    "curtain:stage": 48,
+    "neck:shelf_secret": 49,
+    "stall:shelf_secret": 50,
+    "shelf_secret:gate": 51,
+    "shelf_secret:secret": 52,
+    "neck:facade": 53,
+    "stall:facade": 54,
+    "region:facade:interior": 55,
+    "region:facade:reveal:00": 56,
+    "neck:dressed_doorway": 57,
+    "stall:dressed_doorway": 58,
+    "dressed:door": 59,
+    "dressed:behind": 60,
+    "dressed:door_frame_near": 61,
+    "dressed:door_frame_far": 62,
+    "neck:crate_stack": 63,
+    "stall:crate_stack": 64,
+    "crate:0:alcove": 65,
+    "crate:0:block": 66,
+    "crate:1:alcove": 67,
+    "crate:1:block": 68,
+    "neck:shelf_run": 69,
+    "stall:shelf_run": 70,
+    "shelf:run": 71,
+    "neck:park_corner": 72,
+    "stall:park_corner": 73,
+    "park:grass": 74,
+    "park:dirt": 75,
+    "neck:counter": 76,
+    "stall:counter": 77,
+    "counter:top": 78,
+    "counter:behind": 79,
+    "neck:sewer_wall": 80,
+    "stall:sewer_wall": 81,
+    "sewer:alcove": 82,
+    "sewer:run0": 83,
+    "sewer:run1": 84,
+    "sewer:run2": 85,
+    "sewer:run3": 86,
+    "neck:tile_museum": 87,
+    "stall:tile_museum": 88,
+    "museum:146": 89,
+    "museum:147": 90,
+    "museum:361": 91,
+    "museum:580": 92,
+    "museum:672": 93,
+    "museum:713": 94,
+    "neck:sprite_bridge": 95,
+    "stall:sprite_bridge": 96,
+    "neck:stack_link": 97,
+    "stall:stack_link": 98
+  },
+  "floor_seated_sprites": [
+    30,
+    35,
+    36,
+    113,
+    114,
+    130,
+    131,
+    132,
+    148,
+    149,
+    203,
+    204,
+    205,
+    213,
+    214,
+    215,
+    225,
+    228
+  ],
   "exhibits": [
     {
       "label": "PUSH DOOR",
       "about": "a z-motion door opened by pushing its own wall",
-      "try": "walk up to it and press use on the door face",
-      "provenance": "doors.z_motion_door; reports/blood-door-families.md",
+      "try": "press use on the door face; it should rise",
+      "provenance": "doors.z_motion_door(interaction='direct'), which sets the busy times a bare endpoints dict leaves at zero",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
@@ -44,59 +139,122 @@
         "bloodmap.doors.z_motion_door",
         "bloodmap.doors.xsector_direct_use"
       ],
+      "hand_composed": [],
+      "expect_summary": "1 sector(s) of type 600, read as a changes what fits through, worked by a push",
+      "clear": 33280,
+      "size": [
+        5120,
+        5120
+      ],
+      "skin": [
+        400,
+        294,
+        285
+      ],
       "sector": 2
     },
     {
       "label": "SWITCHED DOOR",
-      "about": "the same door, worked from a switch across the stall",
+      "about": "the same motion, worked from a switch across the room",
       "try": "press the switch on the side wall, not the door",
-      "provenance": "doors.xsector_remote_rx; reports/blood-effects-switches.md",
+      "provenance": "doors.z_motion_door(interaction='remote'); reports/blood-effects-switches.md",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
       "covers": [
         "bloodmap.doors.xsector_remote_rx"
       ],
-      "sector": 6
+      "hand_composed": [],
+      "expect_summary": "1 sector(s) of type 600, read as a changes what fits through, worked by a switch, listening on channel 300",
+      "clear": 33280,
+      "size": [
+        5120,
+        5120
+      ],
+      "skin": [
+        90,
+        294,
+        285
+      ],
+      "sector": 7
     },
     {
       "label": "KEYED DOOR",
-      "about": "a door with a key emblem; the key lies in the stall",
-      "try": "try the door first, then take the key and try again",
-      "provenance": "doors.KEY_TYPES + knowledge/blood/design/keys-v1.json; E1M4 sector 295 wears the moon emblem",
+      "about": "a door that wants the moon key, which lies in the room",
+      "try": "try the door, then take the key and try again",
+      "provenance": "doors.z_motion_door(key=6); E1M4 sector 295 wears the moon emblem; knowledge/blood/design/keys-v1.json",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
-      "covers": [
-        "bloodmap.doors.z_motion_endpoints"
+      "covers": [],
+      "hand_composed": [],
+      "expect_summary": "1 sector(s) of type 600, read as a changes what fits through, requiring key 6",
+      "clear": 33280,
+      "size": [
+        5120,
+        5120
       ],
-      "sector": 10
+      "skin": [
+        400,
+        294,
+        285
+      ],
+      "sector": 12
     },
     {
       "label": "LIFT",
       "about": "a floor that carries a body between two standing levels",
-      "try": "ride it up, then step off and look down",
-      "provenance": "reports/blood-effects-motion.md; E1M3 sector 241",
+      "try": "ride it up, step off, and look back down",
+      "provenance": "reports/blood-effects-motion.md; E1M3 sector 241, whose floor endpoints are exactly its neighbours'",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
       "covers": [],
-      "sector": 14
+      "hand_composed": [
+        "the mechanism itself: a floor-travelling z-motion, because doors.z_motion_door writes ceiling endpoints only",
+        "the upper room that makes the ride worth taking: material, light and two props placed by hand"
+      ],
+      "expect_summary": "1 sector(s) of type 600, read as a carries a body between levels",
+      "clear": 66560,
+      "size": [
+        5120,
+        7168
+      ],
+      "skin": [
+        400,
+        294,
+        285
+      ],
+      "sector": 17
     },
     {
       "label": "CRACK BARRIER",
-      "about": "a wall that opens once, when shot, and never closes",
-      "try": "shoot the crack; the way behind it stays open",
-      "provenance": "reports/blood-conditional-topology.md; E1M4 sprite 373 on channel 119",
+      "about": "a wall that opens once, when shot, and never closes again",
+      "try": "shoot the crack; what it opens stays open",
+      "provenance": "reports/blood-conditional-topology.md; E1M4 sprite 373 on channel 119, listeners flush at rest",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
       "covers": [],
-      "sector": 18
+      "hand_composed": [
+        "the load-bearing wall the breach interrupts is plain masonry; no constructor owns a damaged-wall habitat"
+      ],
+      "expect_summary": "1 sector(s) of type 600, worked by a shot, listening on channel 301, one-way",
+      "clear": 33280,
+      "size": [
+        5120,
+        5120
+      ],
+      "skin": [
+        90,
+        294,
+        285
+      ],
+      "sector": 21
     },
     {
       "label": "TURNSTILE PAIR",
-      "about": "two counter-rotating four-vane rotors, E1M4's spin rate",
+      "about": "two counter-rotating four-vane rotors at E1M4's spin rate",
       "try": "WALK THROUGH IT. this settles the parked passage question",
       "provenance": "mechanism.turnstile_pair; reports/blood-rotating-doors.md; passage unproven -- reports/blood-passage-oracle.md",
       "empty": false,
@@ -105,104 +263,149 @@
       "covers": [
         "bloodmap.mechanism.turnstile_pair"
       ],
-      "sector": 22
+      "hand_composed": [
+        "a public forecourt for the pair to flank, as E1M4's carnival entry does"
+      ],
+      "expect_summary": "2 sector(s) of type 615, listening on channel 7",
+      "clear": 33280,
+      "size": [
+        7168,
+        6144
+      ],
+      "skin": [
+        400,
+        294,
+        285
+      ],
+      "sector": 25
     },
     {
       "label": "TURNSTILE SAME WAY",
       "about": "the DNE3L6 variant: both rotors turning the same way",
       "try": "walk through and compare with the pair next door",
-      "provenance": "reports/blood-rotating-doors.md; DNE3L6 sectors 3 and 11",
+      "provenance": "mechanism.turnstile_pair(counter_rotating=False); DNE3L6 sectors 3 and 11",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
       "covers": [
         "bloodmap.mechanism.turnstile"
       ],
-      "sector": 26
+      "hand_composed": [],
+      "expect_summary": "2 sector(s) of type 615, listening on channel 7",
+      "clear": 33280,
+      "size": [
+        7168,
+        6144
+      ],
+      "skin": [
+        400,
+        294,
+        285
+      ],
+      "sector": 32
     },
     {
       "label": "SLIDING GATE",
-      "about": "a gate that slides rather than turning",
-      "try": "watch which way it goes and try to follow it",
-      "provenance": "mechanism.sliding_gate",
+      "about": "two leaves that part along their own line into the jambs",
+      "try": "press it and watch where the leaves go",
+      "provenance": "mechanism.sliding_gate, built to the campaign template",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
       "covers": [
         "bloodmap.mechanism.sliding_gate"
       ],
-      "sector": 30
+      "hand_composed": [
+        "the yard the gate closes off: a plain stone room, not a courtyard with anything in it"
+      ],
+      "expect_summary": "1 sector(s) of type 614",
+      "clear": 33280,
+      "size": [
+        5120,
+        5120
+      ],
+      "skin": [
+        400,
+        294,
+        285
+      ],
+      "sector": 39
     },
     {
       "label": "CASKET",
-      "about": "the player start as a mechanism: slide, stack link and z at once",
-      "try": "look up, then walk out; this is E1M1's opening shot",
-      "provenance": "owner-attested E1M1 reading, sectors 30 and 28, stack link 10; roadmap Phase 8 note",
+      "about": "the player start as a mechanism: a lid that lifts",
+      "try": "look up, then walk out; E1M1 opens inside one of these",
+      "provenance": "owner-attested E1M1 reading, sectors 30 and 28. The full casket is slide, stack link and z at once; this is its z half, which is as far as one constructor goes",
       "empty": false,
       "blocker": null,
       "room_over_room": true,
       "covers": [],
-      "sector": 33
-    },
-    {
-      "label": "DOUBLE SLIDE DOOR",
-      "about": "one sector carrying both leaves, parting in opposite directions",
-      "try": "stand in the middle and watch both halves go",
-      "provenance": "owner-attested E1M1 reading, sector 4",
-      "empty": false,
-      "blocker": null,
-      "room_over_room": false,
-      "covers": [],
-      "sector": 36
-    },
-    {
-      "label": "DOUBLE ROTATE DOOR",
-      "about": "two rotating leaves chained by channel, one firing the next",
-      "try": "press once and watch the second leaf follow",
-      "provenance": "owner-attested E1M1 reading, sectors 50 and 51 (rx 105 -> tx 106 -> rx 106)",
-      "empty": false,
-      "blocker": null,
-      "room_over_room": false,
-      "covers": [],
-      "sector": 39
+      "hand_composed": [],
+      "expect_summary": "1 sector(s) of type 600",
+      "clear": 33280,
+      "size": [
+        5120,
+        5120
+      ],
+      "skin": [
+        400,
+        294,
+        285
+      ],
+      "sector": 42
     },
     {
       "label": "CURTAIN",
-      "about": "a slide used as furnishing rather than as a way through",
-      "try": "open it; nothing beyond it was closed off",
+      "about": "a slide used as furnishing, not as a way through",
+      "try": "open it; nothing behind it was ever closed off",
       "provenance": "owner-attested E1M1 reading, sector 125. Its tile has no owner binding, which is why the dressing plane cannot name it -- reports/blood-role-v2.md",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
       "covers": [],
-      "sector": 43
+      "hand_composed": [
+        "a proscenium for the curtain to hang in; hand-composed as a framed opening"
+      ],
+      "expect_summary": "1 sector(s) of type 614",
+      "clear": 33280,
+      "size": [
+        5120,
+        5120
+      ],
+      "skin": [
+        156,
+        294,
+        285
+      ],
+      "sector": 45
     },
     {
       "label": "SHELF SECRET",
-      "about": "a shelf that slides aside and is a secret entrance",
-      "try": "find what opens it, then look behind the shelf",
-      "provenance": "owner-attested E1M1 reading, sector 70",
+      "about": "a shelf that slides aside and is the way into a secret",
+      "try": "find what opens it, then step behind the shelf",
+      "provenance": "owner-attested E1M1 reading, sector 70; the secret sector transmits on channel 2, kChannelSecretFound",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
       "covers": [],
-      "sector": 46
-    },
-    {
-      "label": "STACK LINK",
-      "about": "room over room: two floors in one place",
-      "try": "walk the lower floor, then the upper, and look down",
-      "provenance": "reachability.link_pairs; owner note on the ROR visibility budget -- two volumes must not be in view at once",
-      "empty": true,
-      "blocker": "NEEDS A SECOND ROR VOLUME OUT OF SIGHT OF THE CASKET",
-      "room_over_room": true,
-      "covers": [],
+      "hand_composed": [],
+      "expect_summary": "1 sector(s) of type 614, listening on channel 304",
+      "clear": 33280,
+      "size": [
+        5120,
+        5120
+      ],
+      "skin": [
+        156,
+        294,
+        285
+      ],
       "sector": 50
     },
     {
-      "label": "FACADE NARROW",
-      "about": "a street frontage at its narrow width, with its lettered sign",
-      "try": "stand back in the corridor and read the sign",
+      "label": "FACADE",
+      "about": "a street frontage with its bays, reveal and lettered sign",
+      "try": "stand back across the street and read the sign",
       "provenance": "aperture.facade_run; reports/blood-facade-build.md",
       "empty": false,
       "blocker": null,
@@ -210,106 +413,240 @@
       "covers": [
         "bloodmap.aperture.facade_run"
       ],
-      "sector": 52
-    },
-    {
-      "label": "FACADE WIDE",
-      "about": "the same grammar at the wide width",
-      "try": "compare the bay rhythm with the narrow one",
-      "provenance": "aperture.facade_run; reports/blood-facade-grammar.md",
-      "empty": false,
-      "blocker": null,
-      "room_over_room": false,
-      "covers": [],
-      "sector": 55
+      "hand_composed": [],
+      "expect_summary": "",
+      "clear": 49920,
+      "size": [
+        9216,
+        8192
+      ],
+      "skin": [
+        1097,
+        756,
+        3491
+      ],
+      "sector": 54
     },
     {
       "label": "DRESSED DOORWAY",
-      "about": "a doorway wearing jamb rail and threshold",
-      "try": "look down at the threshold and along the jambs",
-      "provenance": "owner anchors 195 (metal rail) and 200 (threshold); reports/blood-facade-grammar.md",
+      "about": "an opening wearing its jamb rail and threshold",
+      "try": "look down at the threshold and up along the jambs",
+      "provenance": "aperture.framed_door; owner anchors 195 (metal rail) and 200 (riveted threshold)",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
-      "covers": [],
+      "covers": [
+        "bloodmap.aperture.framed_door"
+      ],
+      "hand_composed": [],
+      "expect_summary": "1 sector(s) of type 600, worked by a push",
+      "clear": 33280,
+      "size": [
+        5120,
+        6144
+      ],
+      "skin": [
+        400,
+        294,
+        285
+      ],
       "sector": 58
     },
     {
-      "label": "COUNTER",
-      "about": "a counter with the working clearance behind it",
-      "try": "try to stand behind the counter; the gap is measured",
-      "provenance": "reports/blood-assembly-counters.json",
-      "empty": false,
-      "blocker": null,
-      "room_over_room": false,
-      "covers": [],
-      "sector": 61
-    },
-    {
       "label": "CRATE STACK",
-      "about": "crates built from the owner's tiles: intact, broken, large",
-      "try": "check these are crates and not mossy rocks",
-      "provenance": "owner anchors 452 / 462 / 95; a build once shipped tile 459, a moss-grown rock, as a crate",
+      "about": "crates as what they are: sector volumes wearing crate art",
+      "try": "walk round them and climb one; they are geometry",
+      "provenance": "templates.SMALL_CRATE and LARGE_CRATE -- 452 at a 1024 module, 95 at 2048. v1 made these sprites. 459 is a moss-grown rock, not a crate",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
       "covers": [],
-      "sector": 65
+      "hand_composed": [
+        "a stockroom around the crates"
+      ],
+      "expect_summary": "",
+      "clear": 33280,
+      "size": [
+        5120,
+        5120
+      ],
+      "skin": [
+        452,
+        294,
+        285
+      ],
+      "sector": 64
     },
     {
       "label": "SHELF RUN",
-      "about": "a run of wall shelves, the owner's strong-binding tile",
-      "try": "look along the run; the tile is 2026",
-      "provenance": "owner anchor 2026 (wall shelf, strong binding)",
+      "about": "a shelf as a shallow sector wearing the shelf texture",
+      "try": "look along it; the depth is geometry, not a sprite",
+      "provenance": "owner anchor 2026 (wall shelf, strong binding); the E6M1 shop kit. v1 hung this on a wall as one sprite",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
       "covers": [],
-      "sector": 67
-    },
-    {
-      "label": "MANNEQUIN ROW",
-      "about": "three mannequins in a display row",
-      "try": "the tile binds its meaning almost always -- does it here",
-      "provenance": "owner anchor 2377 (mannequin, strong binding); reports/blood-contrast-shelf-vs-crate.json",
-      "empty": false,
-      "blocker": null,
-      "room_over_room": false,
-      "covers": [],
-      "sector": 69
+      "hand_composed": [
+        "a shop room around the shelf run"
+      ],
+      "expect_summary": "",
+      "clear": 33280,
+      "size": [
+        5120,
+        5120
+      ],
+      "skin": [
+        156,
+        294,
+        285
+      ],
+      "sector": 70
     },
     {
       "label": "PARK CORNER",
-      "about": "grass and dirt with trees",
-      "try": "walk the grass and look at where it meets the dirt",
-      "provenance": "owner anchors 361 (grass, strong) and 270 (dirt); furniture.py park vocabulary",
+      "about": "grass and dirt with trees standing on the ground",
+      "try": "check the trees meet the grass and do not float",
+      "provenance": "furniture.furnish, which knows each tile's campaign height; owner anchors 361 (grass, strong) and 270",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
       "covers": [],
-      "sector": 71
+      "hand_composed": [
+        "outdoor ground cover beyond one grass and one dirt sector"
+      ],
+      "expect_summary": "",
+      "clear": 66560,
+      "size": [
+        6144,
+        6144
+      ],
+      "skin": [
+        400,
+        361,
+        3491
+      ],
+      "sector": 73
+    },
+    {
+      "label": "COUNTER",
+      "about": "a shop counter, to the campaign's own five-clause rule",
+      "try": "try to reach the working side from the front; the clearance is measured, not decorative",
+      "provenance": "reports/blood-assembly-counters.json, 384 mined bundles: waist-band rise 4096-8192, aspect >= 2, props on top, one host neighbour, asymmetric access. E1M1 sector 80 is the worked example",
+      "empty": false,
+      "blocker": null,
+      "room_over_room": false,
+      "covers": [],
+      "hand_composed": [
+        "the shop around the counter: shelf-tiled walls and three props, assembled here rather than by a constructor that owns shops"
+      ],
+      "expect_summary": "",
+      "clear": 33280,
+      "size": [
+        5120,
+        6144
+      ],
+      "skin": [
+        156,
+        294,
+        285
+      ],
+      "sector": 77
     },
     {
       "label": "SEWER WALL",
-      "about": "the sewer kit: pipe walls and a technical door",
-      "try": "look for the seam between the pipe run and the door",
-      "provenance": "reports/anchor-sewer-kit.json; owner anchors 496-502",
+      "about": "the sewer kit as a wet service passage you duck along",
+      "try": "follow the pipe run and find the seam where the technical door face starts it",
+      "provenance": "reports/anchor-sewer-kit.json, mined by role: pipe walls 496-499, door 500, light 501, grate 502",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
       "covers": [],
-      "sector": 75
+      "hand_composed": [
+        "the passage itself: four pipe sectors chained by hand, because no constructor owns a service run"
+      ],
+      "expect_summary": "",
+      "clear": 33280,
+      "size": [
+        5120,
+        8192
+      ],
+      "skin": [
+        496,
+        294,
+        285
+      ],
+      "sector": 81
     },
     {
       "label": "TILE MUSEUM",
-      "about": "the owner's strong-binding tiles, each with its name",
-      "try": "read the names and correct any that are wrong",
-      "provenance": "knowledge/blood/design/owner-anchors-v1.json, binding strong",
+      "about": "the owner's strong-binding tiles, each on its own panel",
+      "try": "read the panels and correct any tile that is wrong",
+      "provenance": "knowledge/blood/design/owner-anchors-v1.json, the 15 tiles graded strong",
       "empty": false,
       "blocker": null,
       "room_over_room": false,
       "covers": [],
-      "sector": 78
+      "hand_composed": [
+        "panel bays with their own lighting"
+      ],
+      "expect_summary": "",
+      "clear": 33280,
+      "size": [
+        7168,
+        4096
+      ],
+      "skin": [
+        400,
+        294,
+        285
+      ],
+      "sector": 88
+    },
+    {
+      "label": "SPRITE BRIDGE",
+      "about": "composing solid flat sprites into a walkable volume",
+      "try": "nothing yet; this stall is the gap itself",
+      "provenance": "owner-named gap, 2026-09-01: the sprite-bridge technique has no constructor in the repository",
+      "empty": true,
+      "blocker": "NO CONSTRUCTOR OWNS THIS YET",
+      "room_over_room": false,
+      "covers": [],
+      "hand_composed": [],
+      "expect_summary": "",
+      "clear": 33280,
+      "size": [
+        5120,
+        5120
+      ],
+      "skin": [
+        400,
+        294,
+        285
+      ],
+      "sector": 96
+    },
+    {
+      "label": "STACK LINK",
+      "about": "room over room: two floors standing in one place",
+      "try": "nothing yet; see the casket for the other ROR exhibit",
+      "provenance": "reachability.link_pairs; the owner's ROR visibility budget -- two volumes must not be in view at once",
+      "empty": true,
+      "blocker": "NEEDS A SECOND ROR VOLUME",
+      "room_over_room": true,
+      "covers": [],
+      "hand_composed": [],
+      "expect_summary": "",
+      "clear": 33280,
+      "size": [
+        6144,
+        5120
+      ],
+      "skin": [
+        400,
+        294,
+        285
+      ],
+      "sector": 98
     }
   ]
 }

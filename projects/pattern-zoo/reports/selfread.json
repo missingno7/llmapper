@@ -1,0 +1,39 @@
+{
+  "$schema": "llmapper.pattern-zoo-selfread",
+  "schema_version": 1,
+  "map": "projects/pattern-zoo/level/pattern-zoo.MAP",
+  "sector_types": {
+    "0": 85,
+    "600": 7,
+    "614": 3,
+    "615": 4
+  },
+  "claims_checked": 12,
+  "per_exhibit": {
+    "PUSH DOOR": [],
+    "SWITCHED DOOR": [],
+    "KEYED DOOR": [],
+    "LIFT": [],
+    "CRACK BARRIER": [],
+    "TURNSTILE PAIR": [],
+    "TURNSTILE SAME WAY": [],
+    "SLIDING GATE": [],
+    "CASKET": [],
+    "CURTAIN": [],
+    "SHELF SECRET": [],
+    "FACADE": [],
+    "DRESSED DOORWAY": [],
+    "CRATE STACK": [],
+    "SHELF RUN": [],
+    "PARK CORNER": [],
+    "COUNTER": [],
+    "SEWER WALL": [],
+    "TILE MUSEUM": [],
+    "SPRITE BRIDGE": [],
+    "STACK LINK": []
+  },
+  "floating_sprites": [],
+  "stranded_stalls": [],
+  "problems": [],
+  "passed": true
+}
