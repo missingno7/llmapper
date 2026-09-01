@@ -334,6 +334,19 @@ def swept_geometry(disk) -> tuple[list[str], list[str]]:
     return list(report["problems"]), list(report["notes"])
 
 
+def wiring_verbs(disk) -> list[str]:
+    """Commands that cannot change the receiver they are aimed at.
+
+    The state+verb rule. Individually valid fields, and a mechanism that
+    cannot be operated at all -- which is what the zoo's casket was.
+    """
+    try:
+        from bloodmap.motion import no_op_wirings
+    except Exception:
+        return []
+    return no_op_wirings(disk)
+
+
 def leaned_on(disk) -> list[str]:
     """Tiles used far out of proportion to the campaign's own use of them."""
     try:
@@ -434,8 +447,9 @@ def run(map_path: pathlib.Path = MAP,
     laws, warnings = usage_laws(disk)
     leaned = leaned_on(disk)
     swept, swept_notes = swept_geometry(disk)
+    verbs = wiring_verbs(disk)
     problems.extend(floats + stranded + masked + labels + laws + leaned
-                    + swept)
+                    + swept + verbs)
 
     from collections import Counter
     types = Counter(int(s.fields["type"]) for s in disk.sectors)
@@ -452,6 +466,7 @@ def run(map_path: pathlib.Path = MAP,
         "usage_law_failures": laws,
         "usage_kind_warnings": warnings,
         "swept_geometry": swept,
+        "wiring_verbs": verbs,
         "swept_notes": swept_notes,
         "leaned_on": leaned,
         "problems": problems,
@@ -471,7 +486,7 @@ def main() -> int:
     for line in (report["floating_sprites"] + report["stranded_sections"]
                  + report["masked_surfaces"] + report["lettering"]
                  + report["usage_law_failures"] + report["leaned_on"]
-                 + report["swept_geometry"]):
+                 + report["swept_geometry"] + report["wiring_verbs"]):
         print(f"  !! {line}")
     for line in report["usage_kind_warnings"] + report["swept_notes"]:
         print(f"  ?  {line}")

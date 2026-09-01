@@ -38,6 +38,7 @@ from bloodmap.aperture import (
 from bloodmap.doors import z_motion_door
 from bloodmap.lettering import write_on_wall
 from bloodmap.furniture import furnish, mounting_for, place as furnish_into
+from bloodmap import motion
 from bloodmap.mechanism import (
     PLAYER_HEIGHT, curtain as mechanism_curtain, planar_door,
     sliding_gate, turnstile_pair,
@@ -649,24 +650,24 @@ def shelf_secret(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
 def casket(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     """A lid you stand on, that slides aside and drops you into the stack.
 
-    Built to `maps/blood/mechanism/casket.map`, the owner's oracle: ONE
-    footprint SPLIT by a sliding boundary into a LID and a HOLE, the lid a
-    step above the hole it covers, and the hole carrying the room-over-room
-    link down to the space below. The revealed hole IS the passage; there is
-    no pocket hidden inside a bigger room.
+    Built to `maps/blood/mechanism/casket.map`. Four defects the owner found,
+    each fixed at the level it belongs to:
 
-    v3 got the motion onto the wrong sector and placed it the wrong way: a
-    travel of 3072 into a cover only 768 deep, so the boundary swept 2304
-    units past the cover's far wall and turned it inside out. Every static
-    validator passed it, because they all read the pose the map is SAVED in
-    and a moving sector is in that pose for one instant. `swept_state` is the
-    gate that catches it now, and the constructor derives and clamps what the
-    caller used to be trusted with.
+    * the travel ran 3072 into a cover 768 deep, so the boundary swept past
+      the cover's far wall and inverted it. `mechanism.planar_door` derives
+      and clamps that now, and the swept gate would catch it anyway.
+    * the motor sat on the wrong sector and the arrangement was a pocket in a
+      bigger room. It is ONE footprint SPLIT into lid and hole, per the
+      oracle, and the revealed hole IS the passage.
+    * it was saved at state ON with a switch sending command ON -- a no-op by
+      the state+verb rule, which is why it could not be operated at all. The
+      wiring primitive refuses that combination at construction time.
+    * the stack had no see-through floor, so the link worked and the floor
+      looked solid. `motion.build_stack_link` sets picnum 504.
 
-    The E1M1 dialect is chosen over the oracle's for one reason: the motor
-    goes on the HOLE, which is the sector the player is standing in, so it
-    can carry the ergonomic-assist lift that raises the floor and boosts you
-    back out. On the lid that would lift nothing.
+    E1M1's dialect rather than the oracle's -- motor on the HOLE -- because
+    that is the sector the body stands in, so it can carry the ergonomic
+    assist that boosts you back out.
     """
     wall, floor, ceiling = skin
     out = _outward(back, box)
@@ -675,17 +676,9 @@ def casket(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     width = 2 * U
     low, high = mid - width // 2, mid + width // 2
     near = box[2] if out > 0 else box[0]
-    #: The oracle's proportions: a 2176 footprint travelled 1920, which
-    #: leaves 128 on the far side at each end of the motion.
     span, travel = 2176, 1920
     far = near + out * span
     fx0, fx1 = min(near, far), max(near, far)
-    #: The lid is the half against the room, so the visitor walks onto it.
-    #: `travel` is signed along +x, and the constructor works out which half
-    #: is which from that sign.
-    #: The lid is always the half touching the room, so which end of the
-    #: footprint it occupies flips with the branch's side -- and with it the
-    #: sign of the travel, since the constructor reads the lid off that sign.
     rest = fx0 + CASKET_LID if out > 0 else fx1 - CASKET_LID
     built = planar_door(
         layout, "casket",
@@ -694,21 +687,17 @@ def casket(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
         channel=CH_CASKET, lid_region="casket:lid",
         hole_region="casket:hole",
         floor_z=floor_z, ceiling_z=ceiling_z,
-        motor="hole", flags="both",
+        motor="hole", flags="both", route="remote",
         lift_out=CASKET_ASSIST, transmits=CH_CASKET + 1,
         wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
         hole_kwargs={"declared_zero_exit": True})
-    #: On to the lid from the room. The lid is a step up, which is what makes
-    #: the open hole read as somewhere to drop into.
+    layout.declare_motion("casket:hole", ["casket:lid"])
     layout.add_connection("casket:c0", stall, "casket:lid",
                           a1=(near, low), a2=(near, high), min_width=U // 2)
 
-    #: The stack. A Blood room-over-room link is a TRANSLATION AT A PLANE,
-    #: not two rooms stacked in plan: the marker pair defines the offset
-    #: applied when a body crosses, so the two halves may sit anywhere. The
-    #: oracle's are five thousand units apart in y -- s3 up at -2496 and s6
-    #: down at -7872 -- and that is why neither needs a layer or a declared
-    #: overlap. This one puts the space below just beyond the footprint.
+    #: The stack below. A link is a TRANSLATION AT A PLANE -- the marker pair
+    #: carries the offset -- so the two halves need not overlap in plan; the
+    #: oracle's are five thousand units apart in y.
     shift = out * (span + 512)
     gx0, gx1 = fx0 + shift, fx1 + shift
     layout.add_region(
@@ -717,34 +706,37 @@ def casket(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
         wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
         declared_zero_exit=True,
         intent={"purpose": "casket: the stack below, met through the link"})
-    #: The marker pair carries the offset. Upper at the hole's own anchor --
-    #: the strip that is hole in every pose -- and lower at the point that
-    #: corresponds to it, so a body arrives where it fell.
     anchor = built["link_anchor"]
-    layout.stack_link(10, "casket:hole", "casket:grave",
-                      upper_at=anchor, lower_at=(anchor[0] + shift, anchor[1]),
-                      upper_z=floor_z, lower_z=floor_z + MEDIAN_CLEAR)
+    motion.build_stack_link(
+        layout, 10, upper_region="casket:hole", lower_region="casket:grave",
+        upper_at=anchor, lower_at=(anchor[0] + shift, anchor[1]),
+        upper_z=floor_z, lower_z=floor_z + MEDIAN_CLEAR, see_through=True)
 
-    #: One switch on the wall, pushed, toggling the channel both halves hear
-    #: -- the oracle's arrangement, and E1M1 opens its casket the same way
-    #: except that its switch is on kChannelLevelStart and unreachable.
+    #: TOGGLE, so it cycles. The verb is checked against the state the motor
+    #: is saved in, which is what the zoo's ON-to-ON switch failed.
     x0, y0, x1, _y1 = box
     layout.place_on_wall("casket:switch", stall, a1=(x0, y0), a2=(x1, y0),
                          t=0.5, height_player_heights=0.55,
-                         behavior={"tx_id": CH_CASKET, "command": 1,
-                                   "trigger_push": 1},
+                         behavior=motion.transmitter(
+                             channel=CH_CASKET, receiver_state=1),
                          **SWITCH)
     return built
-
 
 def curtain(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     """E1M1's curtain, through `mechanism.curtain`.
 
-    A thin sector whose own LENGTH changes: its two end caps carry opposite
-    payload flags, so one advances while the other retreats and tile 146 is
-    squashed and stretched across its long faces. That deformation is the
-    animation. This project built it twice as sliding leaves, which looks
-    like a gate because it is one.
+    Three defects the owner found in game, all fixed by the composition
+    rather than by this builder:
+
+    * the markers ran the wrong way, so rest read OPEN and "opening"
+      stretched the fabric apart. `mechanism.curtain` places them
+      closed-to-open and saves the leaf at state 1 so drawn IS rest.
+    * there was no motion aperture, so the fabric's moving vertices were the
+      SECTION ROOM's corners and pushing the curtain deformed the room.
+      The composition insets the fabric from its frame by a seam at each end,
+      which puts the moved vertices in the middle of the frame's walls.
+    * the wiring sent a directed verb. It is TOGGLE now, checked against the
+      state the leaf is saved in.
     """
     wall, floor, ceiling = skin
     out = _outward(back, box)
@@ -755,35 +747,46 @@ def curtain(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     near = box[2] if out > 0 else box[0]
     far = near + out * CURTAIN_DEPTH
     x0, x1 = min(near, far), max(near, far)
-    mechanism_curtain(
-        layout, "curtain:leaf", _rect((x0, low, x1, high)),
-        near_cap=((x1, low), (x0, low)),
-        far_cap=((x0, high), (x1, high)),
-        travel=(0, length // 2), channel=CH_CURTAIN,
+
+    #: The strip's near face meets the room over its FULL length -- its
+    #: corners are outside the recess and never move. The stage behind meets
+    #: the recessed far face, and IS dragged, exactly as E1M1's alcove s124
+    #: is; that is declared rather than pretended away.
+    built = mechanism_curtain(
+        layout, "curtain", frame=(x0, low, x1, high), axis="y",
+        travel=2 * U, channel=CH_CURTAIN, leaf_region="curtain:leaf",
         floor_z=floor_z, ceiling_z=ceiling_z,
-        floor_picnum=floor, ceiling_picnum=ceiling,
-        declared_zero_exit=True)
+        host_side="low" if out > 0 else "high",
+        floor_picnum=floor, ceiling_picnum=ceiling)
     layout.add_connection("curtain:c0", stall, "curtain:leaf",
-                          a1=(near, low), a2=(near, high), min_width=U // 2)
-    #: A curtain hangs across something worth curtaining off.
+                          a1=(near, low), a2=(near, high), min_width=384)
+
+    #: What a curtain is drawn across.
     stage = _slice(back, box, CURTAIN_DEPTH, 2 * U)
-    stage = (stage[0], low, stage[2], high)
+    stage = (stage[0], built["fabric_span"][0], stage[2],
+             built["fabric_span"][1])
     layout.add_region(
         "curtain:stage", _rect(stage),
         floor_z=floor_z - PLAYER_HEIGHT // 4, ceiling_z=ceiling_z,
         wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
         declared_zero_exit=True,
         intent={"purpose": "curtain: the alcove it is drawn across"})
-    b1, b2 = _far((x0, low, x1, high), back, box)
+    fa, fb = built["fabric_span"]
+    face = built["far_face"]
     layout.add_connection("curtain:c1", "curtain:leaf", "curtain:stage",
-                          a1=b1, a2=b2, min_width=U // 2)
+                          a1=(face, fa), a2=(face, fb), min_width=384)
+    layout.declare_motion("curtain:leaf", ["curtain:stage"])
     layout.place_on_floor("curtain:statue", "curtain:stage", local=(0.5, 0.5),
                           **furnish("statue"))
-
-
-# ---------------------------------------------------------------------------
-# apertures -- aperture.py owns these
-# ---------------------------------------------------------------------------
+    #: Push the fabric itself, as E1M1 does: four of s125's own walls carry
+    #: XWALLs transmitting on the channel the sector receives on.
+    f1, f2 = _facing(box, back)
+    layout.place_on_wall("curtain:switch", stall, a1=f1, a2=f2, t=0.2,
+                         height_player_heights=0.55,
+                         behavior=motion.transmitter(
+                             channel=CH_CURTAIN, receiver_state=1),
+                         **SWITCH)
+    return built
 
 def facade(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     """A street frontage, built by the facade constructor itself."""
