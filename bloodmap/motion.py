@@ -380,17 +380,82 @@ def wiring(*, route: str = "remote", channel: int | None = None,
     return fields
 
 
+#: The canonical switch, from `#TYPE600.MAP` and `#MSGBUT.MAP`: type 21 on
+#: picnum 1046, and it springs back after `wait_time` tenths.
+SWITCH_TYPE, SWITCH_PICNUM = 21, 1046
+SWITCH_WAIT = 30
+
+
 def transmitter(*, channel: int, command: int = CMD_TOGGLE,
-                receiver_state: int = 0, push: bool = True) -> dict[str, int]:
-    """XSPRITE/XWALL fields for the thing that sends the command."""
+                receiver_state: int = 0, push: bool = True,
+                on: bool = True, off: bool = False,
+                wait_time: int | None = SWITCH_WAIT,
+                shootable: bool = False) -> dict[str, int]:
+    """XSPRITE/XWALL fields for the thing that sends the command.
+
+    **`trigger_on` is not optional, and this is why nothing worked.** A
+    transmitter does not send because it has a `tx_id` and a `command`; it
+    sends because its state CHANGED in a direction it was told to report:
+
+        triggers.cpp:100  if (pXSprite->txID) {
+                              if (command != kCmdLink && pXSprite->triggerOn
+                                  && pXSprite->state)  evSend(...);
+                              if (command != kCmdLink && pXSprite->triggerOff
+                                  && !pXSprite->state) evSend(...);
+
+    With neither flag set, pushing a switch flips its own state and sends
+    NOTHING. The pattern zoo's casket and curtain switches were wired exactly
+    that way -- valid `tx_id`, valid `command`, valid `trigger_push` -- and
+    both did nothing at all when the owner pushed them.
+
+    `wait_time` is the other half of the canonical switch: every switch in
+    `#TYPE600.MAP` waits 30 tenths and then returns to its rest state, so a
+    momentary button fires once per push instead of latching.
+    """
+    if not (on or off):
+        raise WiringError(
+            "a transmitter that reports neither its ON nor its OFF edge can "
+            "never send: triggers.cpp gates evSend on triggerOn/triggerOff")
     if not verb_fits_state(command, receiver_state):
         raise WiringError(
             f"a transmitter sending command {command} to a receiver saved at "
             f"state {receiver_state} is a no-op")
     fields = {"tx_id": int(channel), "command": int(command)}
+    if on:
+        fields["trigger_on"] = 1
+    if off:
+        fields["trigger_off"] = 1
     if push:
         fields["trigger_push"] = 1
+    if shootable:
+        fields["trigger_vector"] = 1
+    if wait_time:
+        fields["wait_time"] = int(wait_time)
     return fields
+
+
+def silent_transmitters(disk: Any) -> list[str]:
+    """Senders that can never send, because no edge is reported.
+
+    The check that would have caught both of the zoo's dead switches without
+    anyone walking the map.
+    """
+    out = []
+    for index, sprite in enumerate(disk.sprites):
+        extra = _extra(sprite)
+        channel = int(extra.get("tx_id") or 0)
+        if not channel or "command" not in extra:
+            continue
+        if int(extra["command"]) == 5:
+            continue                      # kCmdLink never evSends
+        if int(extra.get("trigger_on", 0)) or int(extra.get("trigger_off", 0)):
+            continue
+        out.append(
+            f"sprite {index} carries tx_id {channel} and command "
+            f"{int(extra['command'])} but reports neither its ON nor its OFF "
+            f"edge, so triggers.cpp never calls evSend for it: pushing it "
+            f"does nothing")
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -408,10 +473,16 @@ ROR_FLOOR_PICNUM = 504
 ROR_FLOOR_STAT = 0x180
 
 
-def is_see_through(disk: Any, sector_id: int) -> bool:
+def is_see_through(disk: Any, sector_id: int, *,
+                   surface: str = "floor") -> bool:
+    """Whether you can look through this sector's floor -- or its ceiling.
+
+    An upper stack sector is seen down through its FLOOR and a lower one up
+    through its CEILING, and `#STACK.MAP` marks both.
+    """
     fields = disk.sectors[sector_id].fields
-    return (int(fields["floor_picnum"]) == ROR_FLOOR_PICNUM
-            or bool(int(fields["floor_stat"]) & ROR_FLOOR_STAT))
+    return (int(fields[f"{surface}_picnum"]) == ROR_FLOOR_PICNUM
+            or bool(int(fields[f"{surface}_stat"]) & ROR_FLOOR_STAT))
 
 
 def stack_pairs(disk: Any) -> list[dict[str, Any]]:
@@ -436,7 +507,9 @@ def stack_pairs(disk: Any) -> list[dict[str, Any]]:
                     "link_id": key,
                     "upper": up_sector, "lower": low_sector,
                     "sprites": [up_sprite, low_sprite],
-                    "see_through": is_see_through(disk, up_sector),
+                    "see_through": (is_see_through(disk, up_sector)
+                                    and is_see_through(disk, low_sector,
+                                                       surface="ceiling")),
                     "offset": (
                         int(disk.sprites[low_sprite].fields["x"])
                         - int(disk.sprites[up_sprite].fields["x"]),
@@ -459,8 +532,14 @@ def build_stack_link(layout: Any, link_id: int, *, upper_region: str,
     `see_through` sets the upper sector's floor to picnum 504, which is the
     half the pattern zoo forgot: the link worked and the floor looked solid.
     """
+    #: BOTH halves, and that is not symmetry for its own sake: `#STACK.MAP`
+    #: puts 504 on the upper sector's FLOOR (you look down through it) and on
+    #: the lower sector's CEILING (you look up through it), and the oracle
+    #: casket does the same on s3 and s6. Setting only the upper leaves the
+    #: view from below looking at a solid ceiling.
     if see_through:
         layout.regions[upper_region].floor_picnum = ROR_FLOOR_PICNUM
+        layout.regions[lower_region].ceiling_picnum = ROR_FLOOR_PICNUM
     made = []
     for tag, region, kind, at, z in (
             ("upper", upper_region, STACK_UPPER, upper_at, upper_z),

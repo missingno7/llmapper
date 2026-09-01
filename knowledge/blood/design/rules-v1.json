@@ -259,6 +259,16 @@
    "statement": "a tile goes in a slot the campaign is attested to use it in",
    "source": "knowledge/blood/design/usage-kinds-v1.json, 43 campaign maps"
   },
+  "transmitter-reports-an-edge": {
+   "rule": "transmitter-reports-an-edge",
+   "maps": 43,
+   "population": 2234,
+   "violations": 13,
+   "rate": 0.00582,
+   "severity": "error",
+   "statement": "a sprite that transmits must report its ON or its OFF edge",
+   "source": "NBlood/source/blood/src/triggers.cpp:100 SetSpriteState"
+  },
   "two-sided-wall-is-reciprocal": {
    "rule": "two-sided-wall-is-reciprocal",
    "maps": 43,

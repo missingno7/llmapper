@@ -1110,3 +1110,41 @@ register(Rule(
     scope="sector",
     check=_tiles_sit_in_attested_slots,
 ))
+
+
+def _transmitters_report_an_edge(disk) -> Finding:
+    from .motion import silent_transmitters
+
+    population = 0
+    for sprite in disk.sprites:
+        extra = _extra_of(sprite)
+        if int(extra.get("tx_id") or 0) and "command" in extra:
+            population += 1
+    found = silent_transmitters(disk)
+    return Finding(population, tuple(
+        Violation(line.split(" carries")[0], line) for line in found))
+
+
+def _extra_of(item):
+    payload = getattr(item, "extra", None)
+    if payload is None:
+        return {}
+    return payload.fields if hasattr(payload, "fields") else {}
+
+
+register(Rule(
+    id="transmitter-reports-an-edge",
+    statement=(
+        "a sprite that transmits must report its ON or its OFF edge"),
+    because=(
+        "a transmitter does not send because it has a tx_id and a command. "
+        "SetSpriteState calls evSend only inside `if (pXSprite->triggerOn && "
+        "pXSprite->state)` or the triggerOff mirror, so a switch with "
+        "neither flag flips its own state and sends nothing at all. Every "
+        "field on it is individually valid and no static reading of the "
+        "finished map can tell -- the pattern zoo shipped five such switches "
+        "and the owner found them by pushing each one"),
+    source="NBlood/source/blood/src/triggers.cpp:100 SetSpriteState",
+    scope="sprite",
+    check=_transmitters_report_an_edge,
+))
