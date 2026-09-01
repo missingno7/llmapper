@@ -28,7 +28,7 @@ that reading finds. A dead map fails the build.
 ```text
 map            projects/pattern-zoo/level/pattern-zoo.MAP
 built from     projects/pattern-zoo/registry.py (generated, never hand-placed)
-size           91 sectors, 496 walls, 554 sprites
+size           91 sectors, 500 walls, 555 sprites
 sections       7
 exhibits       31, of which 1 are honest EMPTY
 live sectors   6 x type 600, 6 x type 614, 6 x type 615

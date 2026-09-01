@@ -33,10 +33,10 @@
       "measured": {
         "shape": "the sector resizes itself",
         "advancing": [
-          112
+          113
         ],
         "retreating": [
-          110
+          111
         ],
         "picnums": [
           146
@@ -304,7 +304,7 @@
       "construct": "wall sprites",
       "conforms": true,
       "measured": {
-        "wall_sprites": 8,
+        "wall_sprites": 9,
         "edge_on": 0
       },
       "deviations": []
