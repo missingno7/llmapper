@@ -263,15 +263,43 @@ class GeneratedMapTest(unittest.TestCase):
 
     def test_the_tile_museum_shows_only_tiles_the_owner_graded_strong(self):
         # The binding rule, executable: strong may name, weak and untested
-        # never may. A museum panel is a shallow *sector* wearing the tile.
+        # never may.
         from bloodmap.owner_anchors import load_owner_anchors
 
         anchors = load_owner_anchors()
-        shown = {int(region.wall_picnum)
-                 for name, region in self.layout.regions.items()
-                 if name.startswith("museum:")}
+        shown = {int(name.split(":")[1])
+                 for name in self.layout.regions
+                 if name.startswith("museum:") and name.count(":") == 1}
         self.assertTrue(shown)
         self.assertTrue(shown <= set(anchors.naming_picnums()))
+
+    def test_the_tile_museum_shows_each_tile_where_it_belongs(self):
+        # v3's museum was the worst violator of the rule it exists to teach:
+        # it painted sprite cut-outs onto wall panels, shipping eighteen
+        # transparency-law violations. Each panel now has to show its tile in
+        # the slot the campaign actually uses it in.
+        from bloodmap.usage_kinds import slots_for
+
+        placements = {}
+        for placement in self.layout.placements:
+            placements.setdefault(placement.region_id, set()).add(
+                int(placement.picnum))
+        for name, region in self.layout.regions.items():
+            if not name.startswith("museum:") or name.count(":") != 1:
+                continue
+            picnum = int(name.split(":")[1])
+            slots = slots_for(picnum)
+            if not slots:
+                continue
+            best = max(slots, key=slots.get)
+            where = {"wall": int(region.wall_picnum),
+                     "floor": int(region.floor_picnum)}
+            if best.startswith("wall"):
+                self.assertEqual(where["wall"], picnum, name)
+            elif best in ("floor", "ceiling"):
+                self.assertEqual(where["floor"], picnum, name)
+            else:
+                self.assertIn(picnum, placements.get(name, set()), name)
 
     def test_the_zoo_reads_itself(self):
         # The acceptance gate this rebuild exists for. Every claim in the
