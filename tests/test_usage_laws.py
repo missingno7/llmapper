@@ -174,26 +174,25 @@ class ConstructorTest(unittest.TestCase):
         return layout
 
     def test_a_curtain_flags_its_two_caps_opposite_ways(self):
+        # The construct moved to `bloodmap.motion`'s factoring and its
+        # signature changed with it; `tests/test_motion_primitives.py` holds
+        # the contract. What is pinned HERE is the reading, beside the other
+        # payload shapes: two flagged caps with opposite signs.
         from bloodmap.mechanism import curtain
+        from bloodmap.motion import payload_shape
 
         layout = self._layout()
-        curtain(layout, "cur",
-                [(6144, 1024), (6272, 1024), (6272, 5120), (6144, 5120)],
-                near_cap=((6272, 1024), (6144, 1024)),
-                far_cap=((6144, 5120), (6272, 5120)),
-                travel=(0, 2048), channel=310, floor_z=0, ceiling_z=-33280,
-                declared_zero_exit=True)
-        layout.add_connection("c", "room", "cur", a1=(6144, 1024),
-                              a2=(6144, 5120), min_width=512)
+        curtain(layout, "cur", frame=(6144, 1024, 6272, 1024 + 4096),
+                axis="y", travel=1024, channel=310, leaf_region="leaf",
+                floor_z=0, ceiling_z=-33280, host_side="low")
+        layout.add_connection("c", "room", "leaf", a1=(6144, 1024),
+                              a2=(6144, 1024 + 4096), min_width=512)
         compiled = layout.compile()
         disk = compiled.level.to_disk_map()
-        sector = disk.sectors[compiled.allocations["cur"].sector_id]
-        start = int(sector.fields["wall_ptr"])
-        flags = [int(disk.walls[i].fields["cstat"]) & (16384 | 32768)
-                 for i in range(start, start + int(sector.fields["wall_count"]))]
-        self.assertIn(16384, flags)
-        self.assertIn(32768, flags)
-        self.assertEqual(int(sector.fields["type"]), 614)
+        shape = payload_shape(disk, compiled.allocations["leaf"].sector_id)
+        self.assertEqual(shape["shape"], "the sector resizes itself")
+        self.assertTrue(shape["advancing"])
+        self.assertTrue(shape["retreating"])
 
     def test_a_curtain_wears_the_owners_curtain_tile(self):
         from bloodmap.mechanism import CURTAIN_PICNUM
