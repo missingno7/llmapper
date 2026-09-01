@@ -1,335 +1,449 @@
 # Pattern Zoo -- the tour sheet
 
 Every pattern, mechanism and constructor the pipeline has learned, one
-labelled exhibit each, in the order you walk them. Pre-screen here, then
-play the map and send corrections **by label** -- the labels are stable
-identities and a rename loses the thread of corrections attached to one.
+labelled exhibit each, grouped into the environments they belong to.
+Pre-screen here, then play the map and send corrections **by label** --
+the labels are stable identities and a rename loses the thread of
+corrections attached to one.
 
-**v2.** You walked v1 and found that nothing worked: every door was a
-hand-written XSECTOR dict on a type-0 sector, which the engine ignores
-entirely. Every gate v1 passed was a gate about *depiction*. So v2 is
-assembled only by the constructors that own each concept, and the
-acceptance gate is that **the zoo reads itself**: the map is read back
-with `bloodmap.effects` and `bloodmap.conditional` -- the same code that
-reads the campaign -- and every claim below is checked against what that
-reading finds. A dead map fails the build.
+**v3.** Two rejections shaped this. v1 failed because *nothing worked*:
+every door was a hand-written XSECTOR dict on a type-0 sector, which the
+engine ignores, and it passed validation, round trip, load smoke and
+twenty-four renders anyway. v2 fixed the mechanisms and failed on shape:
+a corridor of one-exhibit cells is not a gallery, and a mechanism in a
+generic box says nothing about how it is used.
 
-Each stall is also a **habitat**: its size, material and dressing are
-chosen to demonstrate how that mechanism sits where the campaign uses it.
-The habitat is itself a claim, and is meant to be judged as one.
+So the zoo is now a spine that branches into **sections**, and a section
+is one environment holding the exhibits that belong together in it. The
+SHOP is E6M1's shop re-expressed through our own constructors. Inside a
+section each exhibit has a **bay**, and a **pier** of solid wall beside
+it carrying its name -- the label cannot go on the bay's own wall,
+because an exhibit is entitled to open all of it.
+
+The acceptance gate is that **the zoo reads itself**: the map is read
+back with `bloodmap.effects` and `bloodmap.conditional` -- the same code
+that reads the campaign -- and every claim below is checked against what
+that reading finds. A dead map fails the build.
 
 ```text
 map            projects/pattern-zoo/level/pattern-zoo.MAP
 built from     projects/pattern-zoo/registry.py (generated, never hand-placed)
-size           99 sectors, 538 walls, 307 sprites
-exhibits       21, of which 2 are honest EMPTY stalls
-live sectors   7 x type 600, 3 x type 614, 4 x type 615
+size           89 sectors, 486 walls, 552 sprites
+sections       7
+exhibits       31, of which 2 are honest EMPTY
+live sectors   6 x type 600, 5 x type 614, 6 x type 615
 ```
 
 ## Verification
 
 ```text
-the zoo reads itself    12 claims checked, 0 unsupported
+the zoo reads itself    24 claims checked, 0 unsupported
+  representation          tiles claimed as wall texture are on walls and
+                          not thrown as sprites, and the reverse
+  the transparency law    no mask-carrying tile on any floor or ceiling
+  seating                 nothing the builder seated on a floor is off it
+  lettering               every exhibit has its label sprites
+  reachability            every section reachable from the start
 structural validation   0 errors, 0 warnings
 round trip              byte-exact
-geometry audit          9 zero_exit_gameplay_sector, every one a shut door
-                        leaf or the room it hides -- declared in the source
-                        and the point of the exhibit
+geometry audit          11 zero_exit_gameplay_sector, every one a shut
+                        door leaf or the room it hides -- declared in
+                        the source and the point of the exhibit
 NBlood load/spawn       **pass** -- the map loads and the player spawns
-observer                21 stalls rendered, 0 refused
+observer                31 exhibits rendered, 0 refused
 ```
 
 ## What to try first
 
-1. **PUSH DOOR** -- open it. In v1 this did nothing at all; it is the
-   single most important thing to confirm, and if it works the other six
-   type-600 sectors are built the same way.
-2. **LIFT** -- ride it, then look at what is up there. The habitat rule
-   says a lift needs a destination; judge whether that upper room is one.
-3. **TURNSTILE PAIR** -- walk into it. Passage through a rotating door is
-   the pipeline's longest-standing unproven claim; ten seconds of you
-   walking settles it.
-4. **COUNTER** -- try to reach the working side from the front. The
-   clearance is the campaign's own mined rule, not a guess.
-5. **CRATE STACK** -- check these are crates. A build once shipped tile
-   459, a moss-grown rock, as a crate.
+1. **PUSH DOOR** (doors and mechanisms) -- open it. In v1 this did
+   nothing at all. If it rises, the other five type-600 sectors are
+   built the same way and the whole v1 failure class is closed.
+2. **CASKET** -- the owner's own correction, built: a slide and a z
+   travel conjugated on ONE sector. Check the z motion reads as the
+   ergonomic lift-out and not as part of the gating.
+3. **TURNSTILE PAIR** (street) -- walk into it. Whether a body passes a
+   turning rotor is the pipeline's longest-standing unproven claim.
+4. **SHOP** as a whole -- the section is the claim. Does it read as a
+   shop, or as four exhibits in a room?
+5. **STRONG BINDING** (tile museum) -- read the owner's own names back
+   off the panels and correct any that are wrong.
 
-## The exhibits
+## DOORS AND MECHANISMS
 
-### 1. PUSH DOOR
+the gallery: the z-motion door family, a lift, a shot-open breach, and the E1M1 blueprints the owner attested.
 
-a z-motion door opened by pushing its own wall.
+- **room:** 33280 clear (1.96 player heights)
+- **hand-composed:** the gallery hall itself: a plain ashlar room, because no constructor owns a gallery
+
+### PUSH DOOR
+
+a z-motion door used from the room outside it.
 
 - **try:** press use on the door face; it should rise
-- **from:** doors.z_motion_door(interaction='direct'), which sets the busy times a bare endpoints dict leaves at zero
+- **from:** doors.z_motion_door(interaction='direct'). It sets Push AND Wallpush together and says why: a shut z-door has zero height, so the player stands in the hall and Wallpush is what fires
 - **read back as:** 1 sector(s) of type 600, read as a changes what fits through, worked by a push
 - **covers:** bloodmap.doors.z_motion_door, bloodmap.doors.xsector_direct_use
-- **room:** 33280 clear (1.96 player heights), 5120 x 5120
-- **sector:** 2
 
 ![PUSH DOOR](projects/pattern-zoo/reports/tour/observation/frames/push_door.png)
 
-### 2. SWITCHED DOOR
+### SWITCHED DOOR
 
 the same motion, worked from a switch across the room.
 
 - **try:** press the switch on the side wall, not the door
-- **from:** doors.z_motion_door(interaction='remote'); reports/blood-effects-switches.md
+- **from:** doors.z_motion_door(interaction='remote') and xsector_remote_rx; reports/blood-effects-switches.md
 - **read back as:** 1 sector(s) of type 600, read as a changes what fits through, worked by a switch, listening on channel 300
 - **covers:** bloodmap.doors.xsector_remote_rx
-- **room:** 33280 clear (1.96 player heights), 5120 x 5120
-- **sector:** 7
 
 ![SWITCHED DOOR](projects/pattern-zoo/reports/tour/observation/frames/switched_door.png)
 
-### 3. KEYED DOOR
+### KEYED DOOR
 
 a door that wants the moon key, which lies in the room.
 
 - **try:** try the door, then take the key and try again
 - **from:** doors.z_motion_door(key=6); E1M4 sector 295 wears the moon emblem; knowledge/blood/design/keys-v1.json
 - **read back as:** 1 sector(s) of type 600, read as a changes what fits through, requiring key 6
-- **room:** 33280 clear (1.96 player heights), 5120 x 5120
-- **sector:** 12
 
 ![KEYED DOOR](projects/pattern-zoo/reports/tour/observation/frames/keyed_door.png)
 
-### 4. LIFT
+### LIFT
 
-a floor that carries a body between two standing levels.
+a floor that carries a body between two storeys, with a landing worth arriving at.
 
 - **try:** ride it up, step off, and look back down
 - **from:** reports/blood-effects-motion.md; E1M3 sector 241, whose floor endpoints are exactly its neighbours'
 - **read back as:** 1 sector(s) of type 600, read as a carries a body between levels
-- **hand-composed dressing:** the mechanism itself: a floor-travelling z-motion, because doors.z_motion_door writes ceiling endpoints only; the upper room that makes the ride worth taking: material, light and two props placed by hand -- promotion candidate
-- **room:** 66560 clear (3.92 player heights), 5120 x 7168
-- **sector:** 17
+- **hand-composed:** the mechanism itself: a floor-travelling z-motion. doors.z_motion_door writes CEILING endpoints only, so no constructor owns a lift; the upper room that makes the ride worth taking -- promotion candidate
 
 ![LIFT](projects/pattern-zoo/reports/tour/observation/frames/lift.png)
 
-### 5. CRACK BARRIER
+### CRACK BARRIER
 
-a wall that opens once, when shot, and never closes again.
+a breach in a load-bearing wall, opened once by shooting it.
 
-- **try:** shoot the crack; what it opens stays open
-- **from:** reports/blood-conditional-topology.md; E1M4 sprite 373 on channel 119, listeners flush at rest
+- **try:** shoot the crack; it opens once and stays open
+- **from:** E1M4 sectors 276 and 277, flush at rest; kThingWallCrack transmits once
 - **read back as:** 1 sector(s) of type 600, worked by a shot, listening on channel 301, one-way
-- **hand-composed dressing:** the load-bearing wall the breach interrupts is plain masonry; no constructor owns a damaged-wall habitat -- promotion candidate
-- **room:** 33280 clear (1.96 player heights), 5120 x 5120
-- **sector:** 21
+- **hand-composed:** the load-bearing wall the breach interrupts is plain masonry; no constructor owns a damaged-wall habitat -- promotion candidate
 
-![CRACK BARRIER](projects/pattern-zoo/reports/tour/observation/frames/crack_barrier.png)
+![CRACK BARRIER](projects/pattern-zoo/reports/tour/observation/frames/crack.png)
 
-### 6. TURNSTILE PAIR
+### CASKET
 
-two counter-rotating four-vane rotors at E1M4's spin rate.
+the player start as a mechanism: a lid that slides aside across a room-over-room plane.
 
-- **try:** WALK THROUGH IT. this settles the parked passage question
-- **from:** mechanism.turnstile_pair; reports/blood-rotating-doors.md; passage unproven -- reports/blood-passage-oracle.md
-- **read back as:** 2 sector(s) of type 615, listening on channel 7
-- **hand-composed dressing:** a public forecourt for the pair to flank, as E1M4's carnival entry does -- promotion candidate
-- **covers:** bloodmap.mechanism.turnstile_pair
-- **room:** 33280 clear (1.96 player heights), 7168 x 6144
-- **sector:** 25
-
-![TURNSTILE PAIR](projects/pattern-zoo/reports/tour/observation/frames/turnstile_pair.png)
-
-### 7. TURNSTILE SAME WAY
-
-the DNE3L6 variant: both rotors turning the same way.
-
-- **try:** walk through and compare with the pair next door
-- **from:** mechanism.turnstile_pair(counter_rotating=False); DNE3L6 sectors 3 and 11
-- **read back as:** 2 sector(s) of type 615, listening on channel 7
-- **covers:** bloodmap.mechanism.turnstile
-- **room:** 33280 clear (1.96 player heights), 7168 x 6144
-- **sector:** 32
-
-![TURNSTILE SAME WAY](projects/pattern-zoo/reports/tour/observation/frames/turnstile_same_way.png)
-
-### 8. SLIDING GATE
-
-two leaves that part along their own line into the jambs.
-
-- **try:** press it and watch where the leaves go
-- **from:** mechanism.sliding_gate, built to the campaign template
-- **read back as:** 1 sector(s) of type 614
-- **hand-composed dressing:** the yard the gate closes off: a plain stone room, not a courtyard with anything in it -- promotion candidate
-- **covers:** bloodmap.mechanism.sliding_gate
-- **room:** 33280 clear (1.96 player heights), 5120 x 5120
-- **sector:** 39
-
-![SLIDING GATE](projects/pattern-zoo/reports/tour/observation/frames/sliding_gate.png)
-
-### 9. CASKET
-
-the player start as a mechanism: a lid that lifts.
-
-- **try:** look up, then walk out; E1M1 opens inside one of these
-- **from:** owner-attested E1M1 reading, sectors 30 and 28. The full casket is slide, stack link and z at once; this is its z half, which is as far as one constructor goes
-- **read back as:** 1 sector(s) of type 600
-- **room-over-room:** placed clear of the other ROR exhibit, so no two ROR volumes are in view at once
-- **room:** 33280 clear (1.96 player heights), 5120 x 5120
-- **sector:** 42
+- **try:** look up, then walk out; E1M1 opens inside one
+- **from:** owner-attested E1M1 reading, sectors 28/30 (hole, slide-marked, ROR-linked) and 27/29 (cover). Each slide sector moves exactly ONE flagged wall, and that wall is the hole/cover boundary
+- **read back as:** 1 sector(s) of type 614, stack-linked across a room-over-room plane
+- **hand-composed:** boundary-wall area re-partition: the lid works by a flagged wall moving the line between hole and cover, and no constructor expresses that -- promotion candidate
 
 ![CASKET](projects/pattern-zoo/reports/tour/observation/frames/casket.png)
 
-### 10. CURTAIN
+### DOUBLE SLIDE DOOR
 
-a slide used as furnishing, not as a way through.
+one sector, two leaves parting along their own line.
 
-- **try:** open it; nothing behind it was ever closed off
-- **from:** owner-attested E1M1 reading, sector 125; the leaves wear owner anchor 146, curtain texture, graded strong
+- **try:** push it and watch where the leaves go
+- **from:** owner-attested E1M1 sector 4; mechanism.sliding_gate built to the campaign template
 - **read back as:** 1 sector(s) of type 614
-- **hand-composed dressing:** a proscenium for the curtain to hang in, hand-composed as a framed opening; the curtain MECHANISM: this is a two-leaf slide wearing tile 146. The owner's anchor note says a Blood curtain is a thin sector whose WIDTH changes, deforming the texture as it opens, and no constructor builds one -- promotion candidate
-- **room:** 33280 clear (1.96 player heights), 5120 x 5120
-- **sector:** 45
+- **covers:** bloodmap.mechanism.sliding_gate
 
-![CURTAIN](projects/pattern-zoo/reports/tour/observation/frames/curtain.png)
+![DOUBLE SLIDE DOOR](projects/pattern-zoo/reports/tour/observation/frames/double_slide.png)
 
-### 11. SHELF SECRET
+### PLAIN SLIDE DOOR
+
+a single leaf sliding aside, the load-bearing kind.
+
+- **try:** open it and step through; nothing is dressed up
+- **from:** owner-attested E1M1 sector 63. Its two portals are 512 apart on the SAME side, which is why the cheap blocking test almost never fires
+- **read back as:** 1 sector(s) of type 614
+
+![PLAIN SLIDE DOOR](projects/pattern-zoo/reports/tour/observation/frames/plain_slide.png)
+
+### DOUBLE ROTATING DOOR
+
+two rotating leaves chained on one channel.
+
+- **try:** work one leaf; the other answers on the chain
+- **from:** owner-attested E1M1 sectors 50 and 51: s50 transmits to s51, which is a sentence in the control-bus grammar, not two doors
+- **read back as:** 2 sector(s) of type 615
+- **covers:** bloodmap.mechanism.turnstile
+
+![DOUBLE ROTATING DOOR](projects/pattern-zoo/reports/tour/observation/frames/rotating_door.png)
+
+### SHELF SECRET
 
 a shelf that slides aside and is the way into a secret.
 
 - **try:** find what opens it, then step behind the shelf
-- **from:** owner-attested E1M1 reading, sector 70; the secret sector transmits on channel 2, kChannelSecretFound
+- **from:** owner-attested E1M1 sector 70; the secret sector transmits on channel 2, kChannelSecretFound
 - **read back as:** 1 sector(s) of type 614, listening on channel 304
-- **room:** 33280 clear (1.96 player heights), 5120 x 5120
-- **sector:** 50
 
 ![SHELF SECRET](projects/pattern-zoo/reports/tour/observation/frames/shelf_secret.png)
 
-### 12. FACADE
+### CURTAIN  *(EMPTY)*
 
-a street frontage with its bays, reveal and lettered sign.
+a thin sector whose WIDTH changes -- the texture squashing IS the animation.
 
-- **try:** stand back across the street and read the sign
-- **from:** aperture.facade_run; reports/blood-facade-build.md
-- **covers:** bloodmap.aperture.facade_run
-- **room:** 49920 clear (2.94 player heights), 9216 x 8192
-- **sector:** 54
+- **try:** nothing yet: read the wall and tell us if the description matches what you know
+- **from:** owner anchor 146/147, binding strong, and the owner's note with them: a Blood curtain is a thin deforming sector, not a pair of leaves
+- **lettered on the wall:** COMING SOON
+- **hand-composed:** the whole mechanism: a thin sector that changes width, deforming tile 146. Pre-decided item of the promotion audit that runs after this zoo -- promotion candidate
 
-![FACADE](projects/pattern-zoo/reports/tour/observation/frames/facade.png)
+![CURTAIN](projects/pattern-zoo/reports/tour/observation/frames/curtain.png)
 
-### 13. DRESSED DOORWAY
+## FURNITURE HALL
 
-an opening wearing its jamb rail and threshold.
+one hall of the furniture kinds the pipeline can place, each seated the way that thing is actually mounted.
 
-- **try:** look down at the threshold and up along the jambs
-- **from:** aperture.framed_door; owner anchors 195 (metal rail) and 200 (riveted threshold)
-- **read back as:** 1 sector(s) of type 600, worked by a push
-- **covers:** bloodmap.aperture.framed_door
-- **room:** 33280 clear (1.96 player heights), 5120 x 6144
-- **sector:** 58
+- **room:** 40704 clear (2.40 player heights)
+- **hand-composed:** the hall itself; and the table volumes, which are raised sectors assembled here because templates.py's table lives on the levelprog stack and cannot be called from a PlanarLayout
 
-![DRESSED DOORWAY](projects/pattern-zoo/reports/tour/observation/frames/dressed_doorway.png)
+### LIGHT FITTINGS
 
-### 14. CRATE STACK
+the four light kinds, each on the surface it hangs from.
 
-crates as what they are: sector volumes wearing crate art.
+- **try:** look up: the chandelier and lantern hang, the torch and sconce are on the wall
+- **from:** furniture.py, whose mounting field is mined from the campaign: a torch is drawn fullbright in 89% of its 150 uses because it is on fire
+- **read back as:** tiles 506/510/641/1701 placed as sprites
+- **covers:** bloodmap.furniture.furnish, bloodmap.furniture.place, bloodmap.furniture.mounting_for
 
-- **try:** walk round them and climb one; they are geometry
-- **from:** templates.SMALL_CRATE and LARGE_CRATE -- 452 at a 1024 module, 95 at 2048. v1 made these sprites. 459 is a moss-grown rock, not a crate
-- **hand-composed dressing:** a stockroom around the crates -- promotion candidate
-- **room:** 33280 clear (1.96 player heights), 5120 x 5120
-- **sector:** 64
+![LIGHT FITTINGS](projects/pattern-zoo/reports/tour/observation/frames/lights.png)
 
-![CRATE STACK](projects/pattern-zoo/reports/tour/observation/frames/crate_stack.png)
+### WALL FITTINGS
 
-### 15. SHELF RUN
+plaque, plank and ceiling plate: mounted things that are not lights.
 
-a shelf as a shallow sector wearing the shelf texture.
+- **try:** the ceiling plate is floor-aligned and lies flat; it cannot hang on a wall and furniture.py refuses to try
+- **from:** furniture.py mounting rules; the alignment state is a property of the tile, not of the caller
+- **read back as:** tiles 68/795/915 placed as sprites
 
-- **try:** look along it; the depth is geometry, not a sprite
-- **from:** owner anchor 2026 (wall shelf, strong binding); the E6M1 shop kit. v1 hung this on a wall as one sprite
-- **hand-composed dressing:** a shop room around the shelf run -- promotion candidate
-- **room:** 33280 clear (1.96 player heights), 5120 x 5120
-- **sector:** 70
+![WALL FITTINGS](projects/pattern-zoo/reports/tour/observation/frames/wall_fittings.png)
 
-![SHELF RUN](projects/pattern-zoo/reports/tour/observation/frames/shelf_run.png)
+### TABLES
 
-### 16. PARK CORNER
+tables as raised sector volumes at the campaign rise, not as sprites.
 
-grass and dirt with trees standing on the ground.
+- **try:** walk up to one: it is geometry, and you can stand on it
+- **from:** projects/blood-city/level/templates.py TABLE_RISE = 0.30 player heights, TABLE_SIDE 1024
 
-- **try:** check the trees meet the grass and do not float
-- **from:** furniture.furnish, which knows each tile's campaign height; owner anchors 361 (grass, strong) and 270
-- **hand-composed dressing:** outdoor ground cover beyond one grass and one dirt sector -- promotion candidate
-- **room:** 66560 clear (3.92 player heights), 6144 x 6144
-- **sector:** 73
+![TABLES](projects/pattern-zoo/reports/tour/observation/frames/tables.png)
 
-![PARK CORNER](projects/pattern-zoo/reports/tour/observation/frames/park_corner.png)
+### GRAVEYARD
 
-### 17. COUNTER
+the headstone and tomb set, seated on their own campaign heights.
 
-a shop counter, to the campaign's own five-clause rule.
+- **try:** check nothing floats and nothing is buried
+- **from:** furniture.py graveyard entries; every height is the mined campaign median for that tile
+- **read back as:** tiles 701/703/704/706 placed as sprites
 
-- **try:** try to reach the working side from the front; the clearance is measured, not decorative
-- **from:** reports/blood-assembly-counters.json, 384 mined bundles: waist-band rise 4096-8192, aspect >= 2, props on top, one host neighbour, asymmetric access. E1M1 sector 80 is the worked example
-- **hand-composed dressing:** the shop around the counter: shelf-tiled walls and three props, assembled here rather than by a constructor that owns shops -- promotion candidate
-- **room:** 33280 clear (1.96 player heights), 5120 x 6144
-- **sector:** 77
+![GRAVEYARD](projects/pattern-zoo/reports/tour/observation/frames/graveyard.png)
 
-![COUNTER](projects/pattern-zoo/reports/tour/observation/frames/counter.png)
+### SPRITE BRIDGE  *(EMPTY)*
 
-### 18. SEWER WALL
+composing flat sprites into a solid volume you can walk across.
 
-the sewer kit as a wet service passage you duck along.
-
-- **try:** follow the pipe run and find the seam where the technical door face starts it
-- **from:** reports/anchor-sewer-kit.json, mined by role: pipe walls 496-499, door 500, light 501, grate 502
-- **hand-composed dressing:** the passage itself: four pipe sectors chained by hand, because no constructor owns a service run -- promotion candidate
-- **room:** 33280 clear (1.96 player heights), 5120 x 8192
-- **sector:** 81
-
-![SEWER WALL](projects/pattern-zoo/reports/tour/observation/frames/sewer_wall.png)
-
-### 19. TILE MUSEUM
-
-the owner's strong-binding tiles, each on its own panel.
-
-- **try:** read the panels and correct any tile that is wrong
-- **from:** knowledge/blood/design/owner-anchors-v1.json, the 15 tiles graded strong
-- **hand-composed dressing:** panel bays with their own lighting -- promotion candidate
-- **room:** 33280 clear (1.96 player heights), 7168 x 4096
-- **sector:** 88
-
-![TILE MUSEUM](projects/pattern-zoo/reports/tour/observation/frames/tile_museum.png)
-
-### 20. SPRITE BRIDGE  *(EMPTY)*
-
-composing solid flat sprites into a walkable volume.
-
-- **try:** nothing yet; this stall is the gap itself
-- **from:** owner-named gap, 2026-09-01: the sprite-bridge technique has no constructor in the repository
-- **blocked by:** NO CONSTRUCTOR OWNS THIS YET
-- **room:** 33280 clear (1.96 player heights), 5120 x 5120
-- **sector:** 96
+- **try:** nothing yet: this is the technique we do not have, lettered where it would stand
+- **from:** owner-named gap. Flat floor-aligned sprites composed into a walkable volume is a technique the pipeline cannot express
+- **lettered on the wall:** NO CONSTRUCTOR OWNS THIS YET
 
 ![SPRITE BRIDGE](projects/pattern-zoo/reports/tour/observation/frames/sprite_bridge.png)
 
-### 21. STACK LINK  *(EMPTY)*
+## SHOP
 
-room over room: two floors standing in one place.
+E6M1's shop re-expressed through our constructors: counter, shelf runs, crate stock and a display row.
 
-- **try:** nothing yet; see the casket for the other ROR exhibit
-- **from:** reachability.link_pairs; the owner's ROR visibility budget -- two volumes must not be in view at once
-- **blocked by:** NEEDS A SECOND ROR VOLUME
-- **room-over-room:** placed clear of the other ROR exhibit, so no two ROR volumes are in view at once
-- **room:** 33280 clear (1.96 player heights), 6144 x 5120
-- **sector:** 98
+- **room:** 33280 clear (1.96 player heights)
+- **hand-composed:** the shop room itself: worn facade tile 202 on the walls, which is a material choice and not a constructor
 
-![STACK LINK](projects/pattern-zoo/reports/tour/observation/frames/stack_link.png)
+### REGISTER
+
+a counter with the working clearance behind it.
+
+- **try:** try to reach the working side from the front; the clearance is measured, not decorative
+- **from:** reports/blood-assembly-counters.json, 384 mined bundles: waist-band rise 4096-8192, aspect at least 2, props on top, asymmetric access. E1M1 sector 80 is the worked example
+
+![REGISTER](projects/pattern-zoo/reports/tour/observation/frames/register.png)
+
+### SHELF RUNS
+
+shelves as WALL TEXTURE on shallow sectors, in the three shop tiles.
+
+- **try:** a shelf is not a sprite: walk along and see them as geometry
+- **from:** owner anchors 2026 and 2635, both strong binding, plus 202. E6M1's shop kit
+- **read back as:** tiles 2026/2635 worn as wall texture, not thrown as sprites
+
+![SHELF RUNS](projects/pattern-zoo/reports/tour/observation/frames/shelf_runs.png)
+
+### CRATE STACK
+
+crates as sector VOLUMES wearing the crate modules.
+
+- **try:** check these are crates, and that you can climb the small ones
+- **from:** projects/blood-city/level/templates.py SMALL_CRATE (452, 1024 side, 16384 rise) and LARGE_CRATE (95, 2048, 32768). 459 is a moss-grown rock and a build once shipped it as a crate
+- **read back as:** tiles 452/95 worn as wall texture, not thrown as sprites
+- **hand-composed:** the crate VOLUMES: the modules are imported from templates.py, but its _crate_block builds on the levelprog space stack, so the volumes themselves are assembled here on PlanarLayout; a free-standing crate in the middle of the floor is not expressible at all: PlanarLayout refuses a region wholly inside another, so these stand against a wall -- promotion candidate
+
+![CRATE STACK](projects/pattern-zoo/reports/tour/observation/frames/crate.png)
+
+### DISPLAY ROW
+
+three mannequins, standing on the floor they are seated to.
+
+- **try:** check they stand on the ground; in v1 they floated
+- **from:** owner anchor 2377, binding strong. Its height is the one number here no campaign map backs: the tile has no mined median
+- **read back as:** tiles 2377 placed as sprites
+
+![DISPLAY ROW](projects/pattern-zoo/reports/tour/observation/frames/display.png)
+
+## STREET
+
+outdoor scale under sky: the frontage at two widths and the turnstiles that admit you to somewhere public.
+
+- **room:** 67840 clear (4.00 player heights), open sky
+- **hand-composed:** street anatomy: there is no kerb, no roadway and no gutter, because no constructor owns them and no owner anchor grades a road surface. The ground here is the gallery's own floor tile, which is the honest placeholder rather than a guess
+
+### FACADE NARROW
+
+a six-bay frontage with two openings and a sign.
+
+- **try:** stand back and read it; then compare it with the wide one
+- **from:** reports/blood-facade-build.md: one wall tile across the run in 98% of 131 campaign multi-opening facades; bay 1024; reveal 256
+- **covers:** bloodmap.aperture.facade_run
+
+![FACADE NARROW](projects/pattern-zoo/reports/tour/observation/frames/facade_narrow.png)
+
+### FACADE WIDE
+
+the same frontage at ten bays and three openings.
+
+- **try:** every relationship should survive the width change; only the counts differ
+- **from:** reports/blood-facade-build.md width invariance: header, sill, reveal and sign seat are shared datums across both widths
+
+![FACADE WIDE](projects/pattern-zoo/reports/tour/observation/frames/facade_wide.png)
+
+### TURNSTILE PAIR
+
+two counter-rotating drums flanking a public way in.
+
+- **try:** walk into it. Whether a body passes a turning rotor is the pipeline's longest unproven claim
+- **from:** reports/blood-turnstile-build.md; E1M4's carnival entry at period 255, four blades on tile 332, each spanning its rotor exactly
+- **read back as:** 2 sector(s) of type 615
+- **covers:** bloodmap.mechanism.turnstile_pair
+
+![TURNSTILE PAIR](projects/pattern-zoo/reports/tour/observation/frames/turnstile_pair.png)
+
+### TURNSTILE SAME WAY
+
+the same pair turning the same way, the DNE3L6 variant.
+
+- **try:** compare the two: counter-rotating is E1M4's, same-way is the community precedent
+- **from:** reports/blood-turnstile-build.md; the community variant is precedent, never convention
+- **read back as:** 2 sector(s) of type 615
+
+![TURNSTILE SAME WAY](projects/pattern-zoo/reports/tour/observation/frames/turnstile_same.png)
+
+## SEWER AND TECH
+
+a wet service passage: the sewer kit by the role each tile was mined under.
+
+- **room:** 33280 clear (1.96 player heights)
+
+### PIPE RUN
+
+a passage you duck along, four pipe tiles down it.
+
+- **try:** the clear height is deliberately below the campaign median; that is what a service run is
+- **from:** reports/anchor-sewer-kit.json, role pipe_walls: tiles 496 to 499
+- **read back as:** tiles 496/497/498/499 worn as wall texture, not thrown as sprites
+- **hand-composed:** the passage: four pipe sectors chained by hand, because no constructor owns a service run; the sewer grate 502: it carries mask pixels, so by the measured transparency law it cannot go on a floor, and nothing here builds a maskwall panel -- promotion candidate
+
+![PIPE RUN](projects/pattern-zoo/reports/tour/observation/frames/sewer.png)
+
+### SEWER DOOR
+
+the technical door face, on a working z-motion door.
+
+- **try:** open it; the face is tile 500 and the mechanism is the same one the stone doors use
+- **from:** reports/anchor-sewer-kit.json role sewer_door: tile 500. The mechanism is doors.z_motion_door
+- **read back as:** 1 sector(s) of type 600, worked by a push
+
+![SEWER DOOR](projects/pattern-zoo/reports/tour/observation/frames/sewer_door.png)
+
+### SLIDING GATE
+
+two leaves parting into the jambs, serving the passage.
+
+- **try:** press it and watch where the leaves go; they rest shut and are drawn open
+- **from:** mechanism.sliding_gate. A gate is authored in its OPEN pose and rests shut, which is what both campaign two-leaf gates do
+- **read back as:** 1 sector(s) of type 614, listening on channel 302
+
+![SLIDING GATE](projects/pattern-zoo/reports/tour/observation/frames/sliding_gate.png)
+
+## PARK
+
+outdoors under sky: the ground vocabulary and the things that grow in it.
+
+- **room:** 67840 clear (4.00 player heights), open sky
+
+### GROUND
+
+grass and dirt, the two-tile ground vocabulary.
+
+- **try:** the seam between them is where a path would go
+- **from:** owner anchor 361 (grass, strong: dominant floor of E1M1's open-sky sectors, 35 of 66 uses under sky) with 270 dirt
+- **read back as:** tiles 361/270 worn as wall texture, not thrown as sprites
+- **hand-composed:** ground cover beyond two sectors: no constructor owns a path or a planted bed -- promotion candidate
+
+![GROUND](projects/pattern-zoo/reports/tour/observation/frames/ground.png)
+
+### TREES
+
+the four tree kinds, each at its own campaign height.
+
+- **try:** an oak is 2.82 player heights and a pine is not; check they differ
+- **from:** furniture.py growing things; every height is the mined campaign median for that tile
+- **read back as:** tiles 541/542/543/547 placed as sprites
+
+![TREES](projects/pattern-zoo/reports/tour/observation/frames/trees.png)
+
+### STRAW
+
+a heap of straw, at the height the campaign draws it.
+
+- **try:** 0.97 player heights: a heap you walk round, not a scatter underfoot
+- **from:** tile 515, owner-named in the zoo specification. Campaign median height 0.97; the anchor file grades it untested, so the name here is the owner's and not ours
+- **read back as:** tiles 515 placed as sprites
+
+![STRAW](projects/pattern-zoo/reports/tour/observation/frames/straw.png)
+
+## TILE MUSEUM
+
+a gallery wall of the owner's anchor tiles, each lettered with the owner's own name for it.
+
+- **room:** 33280 clear (1.96 player heights)
+- **hand-composed:** the panel bays: shallow sectors wearing one tile each, with no lighting of their own
+
+### STRONG BINDING
+
+the tiles the owner graded strong: these may name what they depict.
+
+- **try:** read the names and correct any that are wrong
+- **from:** knowledge/blood/design/owner-anchors-v1.json, binding strong. Weak and untested tiles never name -- that rule is executable in owner_anchors.may_name
+- **covers:** bloodmap.owner_anchors.load_owner_anchors, bloodmap.owner_anchors.owner_label
+
+![STRONG BINDING](projects/pattern-zoo/reports/tour/observation/frames/museum.png)
 
 ## Limitations
 
 - The map is generated evidence of nothing. It shows what the
   constructors build; it is never mined and never scored against the
   corpus.
-- **CASKET** shows the z half of E1M1's casket. The full one is slide,
-  stack link and z at once, and no single constructor reaches that.
-- **SPRITE BRIDGE** and **STACK LINK** are EMPTY stalls with their gaps
-  lettered on the wall. An honest gap is an exhibit too.
+- **There is no room-over-room anywhere in the zoo**, so the ROR
+  visibility budget is not exercised. `PlanarLayout` has no stack link
+  at all, which is why the CASKET is the slide-plus-z half of E1M1's
+  and not the four-sector construct.
 - The self-read checks that each claimed mechanism *exists and is wired*
   as claimed. It cannot check that a body fits through one; only you
   walking it can, which is what the tour is for.

@@ -822,17 +822,51 @@ payload      wall cstat flags (16384/32768) and sprite flags select what
              moves; 616/617 drag every wall, 614/615 only flagged ones;
              a payload can be sprites alone (E1M1 s65's gate)
 parameters   markers give from/to (types 3/4) or axis+angle (type 5)
-control bus  TX/RX channels + commands; system channels (level_start...);
-             tense/aspect = trigger_once / retrigger / interruptable /
-             busy waves; chaining (s50→s51) and fan-out are sentences
+control bus  TX/RX channels + COMMAND VERBS (off/on/toggle/lock/unlock/
+             ...) — a lever TXing Lock locks a door, it does not open it;
+             reading every TX->RX as "operates" loses the verb. System
+             channels (level_start...); tense/aspect = trigger_once /
+             retrigger / interruptable / busy waves; chaining (s50→s51)
+             and fan-out are sentences
+interaction  three routes, orthogonal to everything else: XSECTOR Push/
+             Wallpush; remote RX; and XWALL triggers ON THE PAYLOAD WALLS
+             themselves TXing to their own sector's RX (E1M1 s4, verified:
+             both leaves' walls carry tx 100 / Toggle / trigger_push while
+             the sector has no push at all — the walls are the buttons,
+             the sector is the motor). doors.py reads only portal XWALLs,
+             so this third route is currently MISREAD as remote-only — a
+             known model defect to fix.
+payload dirs editor colors: cstat 16384 = BLUE = travels the marker
+             vector; 32768 = GREEN = travels exactly opposite — one
+             sector, two opposite-flagged leaves = a double door
 presentation shade/amplitude waves synced to state — the mechanism's
              visual voice, not decoration
 composition  ROR links couple constructs across layers (casket); links
              can be CONDITIONED by cover position; ROR carries a global
              visibility budget authors design around
-access       keys/locks gate the control bus, not the geometry
+access       keys/locks gate the control bus, not the geometry; "Player
+             only" (dude_lockout) excludes enemies — why E1M1's secret
+             arc s26 carries it
+voice        a SOUND QUARTET per mechanism: Off→On + its stopping,
+             On→Off + its stopping — the mechanism's audio feedback for
+             each direction and interruption; half its readability
+bus timing   "send at ON/OFF" chooses WHEN in the transition the TX
+             fires — chains can wait for arrival or fire immediately
+hazards      Crush, DamageType, Depth/Underwater (medium) — a lift that
+             crushes is one checkbox away from one that carries
+ambient      CONTINUOUS MOTION (bob floor/ceiling, rotate, Theta, always)
+             — perpetual motion WITHOUT the bus, a different class from
+             rx-7 self-retriggering rotors; plus MOTION FX texture
+             panning (conveyors, currents), wind, drag
+light color  color lights / pal2 per surface
 ergonomics   small motions exist for the player's body (the casket
              lift-out), not for topology — a separate reading category
+
+The XMapEdit sector dialog IS the documented property surface (owner
+screenshots, 2026-09-01): the property-model deliverable should be
+structured panel-by-panel against it, each field source-cited and its
+campaign usage measured — an axis the campaign never touches is still
+part of the language.
 ```
 
 A construct (casket, furnace, turnstile pair) is a *sentence* in this
@@ -840,6 +874,30 @@ language: several sectors conjugating different verbs on a shared bus.
 Understanding means parsing sentences into the grammar; copying means
 memorizing one sentence. Every mechanism deliverable is judged against
 this.
+
+**Properties are independent axes (owner, 2026-09-01; verified against
+NBlood db.h).** A sector/wall/sprite's TYPE is only one property among
+many, and the rest are orthogonal: XSPRITE carries identity-independent
+trigger capabilities (Push/Vector/Impact/Pickup/Touch/Sight/Proximity —
+any sprite with an XSPRITE can transmit; a switch's picnum toggle is its
+type's behavior, its triggering is separate wiring), the bus
+(txID/rxID/command/on/off), timing (busyTime/waitTime/restState/
+Interruptable/wave), once-ness (triggerOnce/Decoupled), access
+(key/locked/lockMsg), launch filters (skill and game-mode bits!), and
+data1-4. XSECTOR likewise: two z states, markers, payload flags, shade
+wave — all independent, all combinable.
+
+**Mandate: ground the property model in the sources and documentation,
+not in mined examples alone.** NBlood source (db.h structs, triggers.cpp
+dispatch — read-only, the submodule is never touched) and the XMapEdit
+manual (maps/blood/mechanism/xmapedit.pdf; reference/blood/xmpdocs/ for
+art/qav/seq) are the authorities. Mining then measures which corner of
+the language the campaign actually speaks — it never defines the
+language. The precedent is established: blood_types.py cites
+common_game.h, motion_sim transcribes TranslateSector, the payload rule
+came from triggers.cpp. The missing deliverable is the systematic
+PROPERTY MODEL: every XSECTOR/XWALL/XSPRITE axis, source-cited, with the
+campaign's usage measured against it.
 - **the crypt arc** — sector 26, kSectorRotate with a 20-wall arc,
   trigger_wall_push, dude_lockout: a curved wall revealing a *secret*.
 - **the double sliding door out of the crypt** — sector 4 (one
@@ -1424,6 +1482,70 @@ correct usage. Where a habitat needs a technique no constructor owns, the
 honest-empty rule applies to the *dressing* too: the mechanism is built in a
 plainer room and the gap is recorded in the registry's `hand_composed` field,
 which the tour sheet prints as a promotion candidate.
+
+## What v2 taught, 2026-09-01: sections
+
+The owner walked v2 and rejected its **shape**. The mechanisms worked, and it
+was still wrong: a corridor of one-exhibit cells is not a gallery, and a
+mechanism shown in a generic box says nothing about how it is used. The
+habitat rule had been applied one room at a time, which is too small a unit
+for it to mean anything.
+
+v3 is therefore built out of **sections**. A section is one environment --
+a shop, a street, a sewer, a park -- holding the several exhibits that belong
+together in it, and the section is the habitat claim. The SHOP section is
+E6M1's shop re-expressed through our own constructors, which is also what
+functional zoning (Phase 6) looks like when it is built rather than read.
+
+Two structural facts fell out of building it, and both are general:
+
+**A label cannot go on the wall of the thing it names.** An exhibit is
+entitled to open all of its own wall -- a doorway, a park, a frontage -- and
+letters hung across an opening are refused, correctly. So every bay is
+preceded by a **pier** of solid wall, sized from the word it has to carry and
+one unit wider so the label can be justified hard against the bay it names.
+Centred on a tight pier, a label reads as belonging to either neighbour.
+
+**The representation taxonomy is checkable, and worth checking.** A concept
+realized at the wrong level is a build failure, not a style choice: a shelf is
+wall texture on shallow sectors, a crate is a sector volume, a mannequin is a
+sprite, a grate is a maskwall panel. `selfread.py` now asserts, per exhibit,
+that a tile claimed as wall texture is on that exhibit's own walls and is not
+thrown anywhere as a sprite. It also enforces the owner's **transparency law**
+-- no mask-carrying tile on any floor or ceiling, 0 of 28158 campaign non-sky
+surface slots -- and that check caught two violations in this very build: the
+tile museum wearing sprite tiles on its panel floors, and the sewer grate laid
+underfoot.
+
+## The paid-for build gotchas
+
+Each of these cost a failed build at least once. They are properties of
+`PlanarLayout` and the Blood constructors, not of the zoo.
+
+```text
+sub-rooms go in a BACK BOX      a region wholly inside another is a
+                                containment the layout refuses, and rightly:
+                                neither side of that boundary can be a portal
+a feature narrower than the     leaves the rest of the shared stretch
+wall needs a NECK               coincident and unpaired; the corridor makes
+                                the same move onto every room
+a room may not be wider than    its near wall then meets the wall either side
+its own doorway                 over stretches that are neither portal nor
+                                solid
+a gate sector must be WIDER     the leaves retract past the ends of the
+than its threshold              opening into the jambs
+a rotor's clear height is a     a blade spans its rotor exactly, top on the
+whole number of blade tiles     ceiling and bottom on the floor; a height that
+                                is not is refused rather than filled
+a sprite may not span an        wall sprites are checked against the z range
+opening                         each wall is open over, so a sign goes above
+                                a header, never across a mouth
+a floor sprite's z is its       seating goes through `furniture.place`, which
+CENTRE                          dispatches on the tile's own mounting
+placement ids must be unique    `placement_sprites` is a dict; three gates
+across the whole map            named `<x>:gate` all produced `gate_leaf_west`
+                                and two of them became unfindable
+```
 
 ---
 
