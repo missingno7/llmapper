@@ -933,3 +933,180 @@ register(Rule(
     scope="sprite",
     check=_exit_switch_wears_the_exit_tile,
 ))
+
+
+# ---------------------------------------------------------------------------
+# usage laws: where a tile may go
+# ---------------------------------------------------------------------------
+
+def _mask_tiles_stay_off_plain_surfaces(disk) -> Finding:
+    from .usage_kinds import CSTAT_MASKED, STAT_PARALLAX, masked_tiles
+
+    masked = masked_tiles()
+    if not masked:
+        return Finding(0, ())
+    population = 0
+    out = []
+    for index, sector in enumerate(disk.sectors):
+        fields = sector.fields
+        for role in ("floor", "ceiling"):
+            if int(fields[f"{role}_stat"]) & STAT_PARALLAX:
+                continue                  # a sky is not sampled this way
+            population += 1
+            picnum = int(fields[f"{role}_picnum"])
+            if picnum in masked:
+                out.append(Violation(f"sector[{index}].{role}",
+                                     f"tile {picnum} carries the mask colour"))
+    for index, wall in enumerate(disk.walls):
+        fields = wall.fields
+        if int(fields["next_sector"]) >= 0:
+            continue                      # two-sided: 23 attested exceptions
+        population += 1
+        picnum = int(fields["picnum"])
+        if picnum in masked:
+            out.append(Violation(f"wall[{index}]",
+                                 f"tile {picnum} carries the mask colour"))
+    return Finding(population, tuple(out))
+
+
+register(Rule(
+    id="mask-tile-off-plain-surfaces",
+    statement=(
+        "a tile carrying the mask colour never goes on a floor, a ceiling, "
+        "or a one-sided wall's picnum"),
+    because=(
+        "the mask colour is palette index 255, which the ART uses to mean "
+        "see-through. Floors, ceilings and one-sided walls have nothing "
+        "behind them, so the engine draws whatever was last in the buffer "
+        "through the holes. A cut-out belongs to a sprite or to the "
+        "over_picnum of a masked two-sided wall, where there IS something "
+        "behind it. Measured over the campaign: 0 of 26383 non-parallax "
+        "surface slots and 0 of 52422 one-sided wall slots. Exactly two "
+        "tiles break it on two-sided walls, over 23 of 60839 slots, which is "
+        "why this rule leaves those alone"),
+    source=(
+        "NBlood/source/build/src/engine.cpp:2902 ceilscan and :3000 florscan "
+        "call the opaque hline path; transmaskwallscan (:3362) is reached "
+        "only for masked two-sided walls. "
+        "knowledge/blood/design/owner-anchors-v1.json reading_guide."
+        "transparency"),
+    scope="sector",
+    check=_mask_tiles_stay_off_plain_surfaces,
+))
+
+
+def _parallax_wears_a_sky_tile(disk) -> Finding:
+    from .usage_kinds import STAT_PARALLAX, sky_family
+
+    family = sky_family()
+    if not family:
+        return Finding(0, ())
+    population = 0
+    out = []
+    for index, sector in enumerate(disk.sectors):
+        fields = sector.fields
+        for role in ("floor", "ceiling"):
+            if not int(fields[f"{role}_stat"]) & STAT_PARALLAX:
+                continue
+            population += 1
+            picnum = int(fields[f"{role}_picnum"])
+            if picnum not in family:
+                out.append(Violation(
+                    f"sector[{index}].{role}",
+                    f"parallaxed but wears tile {picnum}, which the campaign "
+                    f"never parallaxes"))
+    return Finding(population, tuple(out))
+
+
+register(Rule(
+    id="parallax-wears-a-sky-tile",
+    statement="a parallaxed surface wears a tile from the sky family",
+    because=(
+        "the parallax bit tells the engine to draw the tile as an infinitely "
+        "distant backdrop scrolling with the view instead of as a surface at "
+        "a z. A tile drawn that way has to be built for it -- the campaign's "
+        "three are all 64x400 strips -- and an ordinary 64x64 ceiling tile "
+        "smeared across the sky is the glitch this catches. The family is "
+        "derived rather than assumed: every tile the campaign ever "
+        "parallaxes, which is 2500, 3491 and 3678"),
+    source=(
+        "NBlood/source/build/src/engine.cpp parallaxtype handling; "
+        "knowledge/blood/design/usage-kinds-v1.json sky_family, "
+        "1768 parallaxed campaign surfaces"),
+    scope="sector",
+    check=_parallax_wears_a_sky_tile,
+))
+
+
+def _sky_tiles_are_parallaxed(disk) -> Finding:
+    from .usage_kinds import STAT_PARALLAX, sky_family
+
+    family = sky_family()
+    if not family:
+        return Finding(0, ())
+    population = 0
+    out = []
+    for index, sector in enumerate(disk.sectors):
+        fields = sector.fields
+        for role in ("floor", "ceiling"):
+            picnum = int(fields[f"{role}_picnum"])
+            if picnum not in family:
+                continue
+            population += 1
+            if not int(fields[f"{role}_stat"]) & STAT_PARALLAX:
+                out.append(Violation(
+                    f"sector[{index}].{role}",
+                    f"sky tile {picnum} without the parallax bit"))
+    return Finding(population, tuple(out))
+
+
+register(Rule(
+    id="sky-tile-is-parallaxed",
+    statement="a sky-family tile on a surface carries the parallax bit",
+    because=(
+        "without the bit the sky is sampled as an ordinary surface through "
+        "picsiz, and all three sky tiles are 64x400 -- so the flat-tile "
+        "power-of-two law rejects them anyway and the engine draws 64x256 of "
+        "the strip. The two laws interlock: a sky tile on an ordinary "
+        "ceiling is wrong twice. The campaign does it 5 times in 1028, all "
+        "with 2500"),
+    source=(
+        "NBlood/source/build/src/tiles.cpp:281 tileUpdatePicSiz with "
+        "engine.cpp:2951 ceilscan; knowledge/blood/design/usage-kinds-v1.json "
+        "sky_family.used_without_parallax"),
+    scope="sector",
+    check=_sky_tiles_are_parallaxed,
+))
+
+
+def _tiles_sit_in_attested_slots(disk) -> Finding:
+    from .usage_kinds import load, unattested_uses
+
+    table = load()
+    if not table.get("usage"):
+        return Finding(0, ())
+    population = (len(disk.sectors) * 2) + len(disk.walls)
+    found = unattested_uses(disk, table=table)
+    return Finding(population, tuple(
+        Violation(item["where"],
+                  f"tile {item['picnum']} in {item['slot']}; the campaign "
+                  f"attests it only in {', '.join(item['attested'])}")
+        for item in found))
+
+
+register(Rule(
+    id="tile-sits-in-an-attested-slot",
+    statement=(
+        "a tile goes in a slot the campaign is attested to use it in"),
+    because=(
+        "this is the representation taxonomy as a measurement rather than an "
+        "opinion. It says where each tile HAS been seen, never where it MAY "
+        "go -- 43 maps is a small corpus and an authored map is allowed to "
+        "be the first to do something. What it is not allowed to do is do it "
+        "by accident, which is what this catches: shelf goods laid on a "
+        "floor, a sprite cut-out painted on a wall, a facade backdrop used "
+        "as bulk fill. An owner anchor's dual_role note is the override"),
+    source="knowledge/blood/design/usage-kinds-v1.json, 43 campaign maps",
+    scope="sector",
+    check=_tiles_sit_in_attested_slots,
+))

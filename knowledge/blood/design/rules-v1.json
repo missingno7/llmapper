@@ -139,6 +139,16 @@
    "statement": "a marker sprite's owner must name a sector that has an XSECTOR",
    "source": "NBlood/source/blood/src/db.cpp:680 PropagateMarkerReferences"
   },
+  "mask-tile-off-plain-surfaces": {
+   "rule": "mask-tile-off-plain-surfaces",
+   "maps": 43,
+   "population": 78805,
+   "violations": 0,
+   "rate": 0.0,
+   "severity": "error",
+   "statement": "a tile carrying the mask colour never goes on a floor, a ceiling, or a one-sided wall's picnum",
+   "source": "NBlood/source/build/src/engine.cpp:2902 ceilscan and :3000 florscan call the opaque hline path; transmaskwallscan (:3362) is reached only for masked two-sided walls. knowledge/blood/design/owner-anchors-v1.json reading_guide.transparency"
+  },
   "masked-wall-not-faking-stone": {
    "rule": "masked-wall-not-faking-stone",
    "maps": 43,
@@ -169,6 +179,16 @@
    "statement": "a way through is at least one standing body tall",
    "source": "NBlood/source/blood/src/db.h:325 GetSpriteExtents"
   },
+  "parallax-wears-a-sky-tile": {
+   "rule": "parallax-wears-a-sky-tile",
+   "maps": 43,
+   "population": 1775,
+   "violations": 0,
+   "rate": 0.0,
+   "severity": "error",
+   "statement": "a parallaxed surface wears a tile from the sky family",
+   "source": "NBlood/source/build/src/engine.cpp parallaxtype handling; knowledge/blood/design/usage-kinds-v1.json sky_family, 1768 parallaxed campaign surfaces"
+  },
   "pressed-switch-is-in-reach": {
    "rule": "pressed-switch-is-in-reach",
    "maps": 43,
@@ -188,6 +208,16 @@
    "severity": "error",
    "statement": "a sector open to the sky must hold its ceiling at least as high as any roofed neighbour's",
    "source": "NBlood/source/build/src/engine.cpp:4688"
+  },
+  "sky-tile-is-parallaxed": {
+   "rule": "sky-tile-is-parallaxed",
+   "maps": 43,
+   "population": 1780,
+   "violations": 5,
+   "rate": 0.00281,
+   "severity": "error",
+   "statement": "a sky-family tile on a surface carries the parallax bit",
+   "source": "NBlood/source/build/src/tiles.cpp:281 tileUpdatePicSiz with engine.cpp:2951 ceilscan; knowledge/blood/design/usage-kinds-v1.json sky_family.used_without_parallax"
   },
   "sprite-drawn-square": {
    "rule": "sprite-drawn-square",
@@ -218,6 +248,16 @@
    "severity": "note",
    "statement": "a small sector joining an open space to a roofed one usually takes the roof",
    "source": "corpus"
+  },
+  "tile-sits-in-an-attested-slot": {
+   "rule": "tile-sits-in-an-attested-slot",
+   "maps": 43,
+   "population": 141419,
+   "violations": 0,
+   "rate": 0.0,
+   "severity": "error",
+   "statement": "a tile goes in a slot the campaign is attested to use it in",
+   "source": "knowledge/blood/design/usage-kinds-v1.json, 43 campaign maps"
   },
   "two-sided-wall-is-reciprocal": {
    "rule": "two-sided-wall-is-reciprocal",
