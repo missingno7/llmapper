@@ -169,14 +169,53 @@ class GeneratedMapTest(unittest.TestCase):
     def test_two_room_over_room_exhibits_are_kept_apart(self):
         # Two ROR volumes in view at once make the renderer draw both. The
         # E1M1 lesson: the budget is why one sector there does two jobs.
-        placed = self.build._place_exhibits(registry.exhibits())
-        ror = [(row, side) for item, row, side in placed if item.room_over_room]
-        for index, (row, side) in enumerate(ror):
-            for other_row, other_side in ror[index + 1:]:
+        placed = self.build.plan(registry.exhibits())
+        ror = [(centre, side) for item, side, centre in placed
+               if item.room_over_room]
+        for index, (centre, side) in enumerate(ror):
+            for other, other_side in ror[index + 1:]:
                 if side != other_side:
                     continue
-                distance = abs(row - other_row) * self.build.STALL_PITCH
-                self.assertGreaterEqual(distance, self.build.ROR_SEPARATION)
+                self.assertGreaterEqual(abs(centre - other),
+                                        self.build.ROR_SEPARATION)
+
+    def test_every_room_is_at_least_the_campaign_median_height(self):
+        # v1 gave every stall 1.5 player heights and the owner walked it and
+        # found the facades had no room to be facades. The campaign median is
+        # 33280 -- 1.96 heights -- from norms-v1 shape.median_height.
+        for item in registry.exhibits():
+            self.assertGreaterEqual(item.clear, registry.MEDIAN_CLEAR,
+                                    item.label)
+
+    def test_no_two_exhibits_demonstrate_the_same_mechanism(self):
+        # The owner found repeats in v1. Two stalls covering one constructor
+        # is two chances to letter the same thing.
+        seen = {}
+        for item in registry.exhibits():
+            for name in item.covers:
+                self.assertNotIn(name, seen,
+                                 f"{item.label} and {seen.get(name)} both "
+                                 f"claim {name}")
+                seen[name] = item.label
+
+    def test_a_stall_that_hand_composed_its_habitat_says_so(self):
+        # The habitat is itself a claim about correct usage. Where one was
+        # assembled by hand rather than by a constructor that owns it, that
+        # is a promotion candidate and the registry has to name it, so the
+        # promotion audit can pick it up instead of rediscovering it.
+        for item in registry.exhibits():
+            for note in item.hand_composed:
+                self.assertGreater(len(note), 20, item.label)
+
+    def test_the_doors_are_real_sectors_and_not_decorated_dicts(self):
+        # The v1 failure in one assertion: every door claimed a type-600
+        # sector, and the map had none, because a hand-written XSECTOR dict
+        # on a type-0 sector is inert.
+        types = {int(sector.fields["type"]) for sector in self.disk.sectors}
+        wanted = {item.expect.sector_type for item in registry.exhibits()
+                  if item.expect.sector_type is not None}
+        self.assertTrue(wanted)
+        self.assertEqual(sorted(wanted - types), [])
 
     def test_the_map_round_trips_through_the_format(self):
         import tempfile
@@ -192,19 +231,54 @@ class GeneratedMapTest(unittest.TestCase):
 
     def test_the_crates_are_crates_and_not_a_mossy_rock(self):
         # 459 is a moss-grown rock. A build once shipped it as a crate.
-        picnums = {int(sprite.fields["picnum"]) for sprite in self.disk.sprites}
-        self.assertIn(452, picnums)
-        self.assertNotIn(459, picnums)
+        # In v2 a crate is a sector volume, so the tile is on a *wall*.
+        walls = {int(wall.fields["picnum"]) for wall in self.disk.walls}
+        sprites = {int(s.fields["picnum"]) for s in self.disk.sprites}
+        self.assertIn(452, walls)
+        self.assertNotIn(459, walls | sprites)
+
+    def test_the_zoo_reads_itself(self):
+        # The acceptance gate this rebuild exists for. Every claim in the
+        # registry is checked against what `bloodmap.effects` and
+        # `bloodmap.conditional` find when they read the built map -- the
+        # same code that reads the campaign. v1 passed validation, round
+        # trip, load smoke and twenty-four renders with every door dead.
+        import json
+        import tempfile
+
+        from bloodmap.format import write_map
+
+        selfread = _module("selfread")
+        with tempfile.TemporaryDirectory() as directory:
+            map_path = Path(directory) / "zoo.MAP"
+            manifest_path = Path(directory) / "manifest.json"
+            write_map(self.disk, map_path)
+            sectors = {name: allocation.sector_id
+                       for name, allocation in self.compiled.allocations.items()}
+            seated = sorted(
+                self.compiled.placement_sprites[placement.placement_id]
+                for placement in self.layout.placements
+                if placement.seat == "floor"
+                and placement.placement_id in self.compiled.placement_sprites)
+            manifest_path.write_text(json.dumps({
+                "region_sectors": sectors,
+                "floor_seated_sprites": seated}), encoding="utf-8")
+            report = selfread.run(map_path, manifest_path)
+        self.assertGreater(report["claims_checked"], 8)
+        self.assertEqual(report["problems"], [])
 
     def test_the_tile_museum_shows_only_tiles_the_owner_graded_strong(self):
+        # The binding rule, executable: strong may name, weak and untested
+        # never may. In v2 a museum panel is a shallow *sector* wearing the
+        # tile, not a sprite of it, so the claim is on the wall.
         from bloodmap.owner_anchors import load_owner_anchors
 
         anchors = load_owner_anchors()
-        shown = {int(placement.picnum) for placement in self.layout.placements
-                 if placement.placement_id.startswith("museum:")}
+        shown = {int(region.wall_picnum)
+                 for name, region in self.layout.regions.items()
+                 if name.startswith("museum:")}
         self.assertTrue(shown)
         self.assertTrue(shown <= set(anchors.naming_picnums()))
-
 
 if __name__ == "__main__":
     unittest.main()
