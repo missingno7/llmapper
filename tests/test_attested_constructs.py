@@ -444,3 +444,129 @@ class CasketOracleTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TheCurtainFamilyHasFourDialects(unittest.TestCase):
+    """One constructor knew one of them; the originals build four.
+
+    Measured over the 43 campaign maps plus the DOOR-CURTAIN tutorials
+    (autosave debris excluded): 39 type-614 sectors wear tile 146/147, of
+    which 26 carry one flagged wall, 12 carry two, and one -- E2M1 s95 --
+    carries three and is not a dialect anything builds.
+    """
+
+    def _dialect(self, path, sector_id):
+        from pathlib import Path
+
+        from bloodmap.conformance import curtain_dialect
+        from bloodmap.format import read_map
+
+        if not Path(path).exists():
+            self.skipTest(f"{path} is not present")
+        return curtain_dialect(read_map(path), sector_id)
+
+    def test_one_leaf_void_is_the_tutorial(self):
+        # DOOR-CURTAINS s3: three fabric walls, all one-sided, XWALL push on
+        # each. The slot is a NOTCH whose interior belongs to nobody.
+        found = self._dialect(
+            "maps/blood/mechanism/Vanilla/DOOR-CURTAINS.map", 3)
+        self.assertEqual(found["leaves"], 1)
+        self.assertEqual(found["slot"], "void")
+        self.assertEqual((found["fabric_walls"], found["one_sided"]), (3, 3))
+        self.assertTrue(found["push"])
+
+    def test_two_leaves_converge_from_both_jambs(self):
+        # DOOR-CURTAINSD s2: six fabric walls in two groups of three, tips
+        # carrying OPPOSITE flags so the leaves approach each other.
+        from bloodmap.format import read_map
+        from bloodmap.motion import flagged_walls
+
+        found = self._dialect(
+            "maps/blood/mechanism/Vanilla/DOOR-CURTAINSD.map", 2)
+        self.assertEqual(found["leaves"], 2)
+        self.assertEqual(found["slot"], "void")
+        self.assertEqual(found["one_sided"], 6)
+        flags = flagged_walls(
+            read_map("maps/blood/mechanism/Vanilla/DOOR-CURTAINSD.map"), 2)
+        self.assertEqual(sorted(set(flags.values())), [-1, 1],
+                         "two leaves that move the same way do not converge")
+
+    def test_the_pocket_dialect_masks_its_fabric(self):
+        # DOOR-CURTAINSD s4: the slot is a real sector, so the fabric wall is
+        # two-sided -- and a two-sided wall's middle band is only reached
+        # when it is masked. Two of its six fabric walls carry cstat 16 with
+        # over_picnum 1060, and those two are the only ones you can see.
+        from bloodmap.format import read_map
+
+        found = self._dialect(
+            "maps/blood/mechanism/Vanilla/DOOR-CURTAINSD.map", 4)
+        self.assertEqual((found["leaves"], found["slot"]), (2, "pocket"))
+        self.assertEqual(found["one_sided"], 0)
+        self.assertEqual(found["masked"], 2)
+        disk = read_map("maps/blood/mechanism/Vanilla/DOOR-CURTAINSD.map")
+        for wall_id in (28, 32):
+            fields = disk.walls[wall_id].fields
+            self.assertEqual(int(fields["over_picnum"]), 1060)
+            self.assertEqual(int(fields["cstat"]), 81)
+
+    def test_e1m1_carries_a_pelmet_and_drives_a_light(self):
+        # The owner-attested one: two one-sided tips, five two-sided walls on
+        # a real ceiling step wearing 146 as picnum AND overpicnum -- the
+        # valance above the opening -- and a command-5 Link to s124.
+        from bloodmap.curriculum import _extra
+        from bloodmap.format import read_map
+
+        found = self._dialect("maps/blood/campaign/E1M1.MAP", 125)
+        self.assertEqual(found["leaves"], 2)
+        self.assertEqual(found["one_sided"], 4)
+        self.assertEqual(found["pelmet"], 5)
+        self.assertTrue(found["link"])
+        disk = read_map("maps/blood/campaign/E1M1.MAP")
+        extra = _extra(disk.sectors[125])
+        self.assertEqual(int(extra["command"]), 5)
+        self.assertEqual(int(extra["tx_id"]), 126)
+        self.assertEqual(int(_extra(disk.sectors[124])["rx_id"]), 126)
+
+    def test_every_original_passes_the_conformance(self):
+        # The check that matters most about a template: it must not reject
+        # the thing it was derived from. An earlier one demanded a texel
+        # scale of 2.0 +/- 0.35 and rejected two of these four.
+        from pathlib import Path
+
+        from bloodmap.conformance import measure_curtain
+        from bloodmap.format import read_map
+
+        for path, sector_id in (
+                ("maps/blood/mechanism/Vanilla/DOOR-CURTAINS.map", 3),
+                ("maps/blood/mechanism/Vanilla/DOOR-CURTAINSD.map", 2),
+                ("maps/blood/mechanism/Vanilla/DOOR-CURTAINSD.map", 4),
+                ("maps/blood/campaign/E1M1.MAP", 125)):
+            if not Path(path).exists():
+                continue
+            found = measure_curtain(read_map(path), sector_id)
+            self.assertEqual([d.relation for d in found.deviations], [],
+                             f"{path} s{sector_id}")
+
+
+class FabricHasToBeVisible(unittest.TestCase):
+    """engine.cpp:4938-4940, which the project had no way to ask about."""
+
+    def test_a_two_sided_unmasked_wall_shows_nothing_in_the_walkable_band(self):
+        from bloodmap.conformance import fabric_is_visible
+        from bloodmap.format import read_map
+
+        disk = read_map("maps/blood/mechanism/Vanilla/DOOR-CURTAINSD.map")
+        #: s4's masked pocket walls are visible; its plain two-sided ones
+        #: are not, and the tutorial is content with two of six.
+        self.assertTrue(fabric_is_visible(disk, 28, 4))
+        self.assertTrue(fabric_is_visible(disk, 32, 4))
+        self.assertFalse(fabric_is_visible(disk, 26, 4))
+        self.assertFalse(fabric_is_visible(disk, 33, 4))
+
+    def test_a_one_sided_wall_is_always_visible(self):
+        from bloodmap.conformance import fabric_is_visible
+        from bloodmap.format import read_map
+
+        disk = read_map("maps/blood/mechanism/Vanilla/DOOR-CURTAINS.map")
+        for wall_id in (38, 39, 40):
+            self.assertTrue(fabric_is_visible(disk, wall_id, 3))
