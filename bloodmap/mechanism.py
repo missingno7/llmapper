@@ -23,6 +23,7 @@ from __future__ import annotations
 from math import atan2, hypot, pi
 from typing import Any
 
+from . import motion
 from .planar_layout import PlanarLayout
 from .player_space import PLAYER_PROFILES
 
@@ -632,6 +633,16 @@ PLANAR_DOOR_BUSY = 50
 PLANAR_LID_STEP = 1024
 #: Neither side of the split may end the motion thinner than a body.
 PLANAR_MIN_DEPTH = 128
+#: Shared by every composition: no half of a motion may end thinner.
+MOTION_MIN_DEPTH = 128
+#: How far a curtain's fabric stands clear of its frame at each end, so
+#: its moving vertices are the frame's wall interiors and not its corners.
+CURTAIN_SEAM = 256
+#: Owner anchor 195: the inside faces of jambs, which is what a seam is.
+#: E1M1 s125: the strip is 128 deep and its shoulders 64, so the fabric
+#: is recessed 64 behind the ends that hold it.
+CURTAIN_DEPTH = 128
+CURTAIN_SHOULDER = 64
 #: One player width; the opening a body needs.
 BODY_WIDTH = 384
 
@@ -668,71 +679,169 @@ def _slide_markers(layout, name, region_id, origin, offset, floor_z,
     return out
 
 
+def _signed_area(points) -> float:
+    total = 0.0
+    for index, (x, y) in enumerate(points):
+        nx, ny = points[(index + 1) % len(points)]
+        total += x * ny - nx * y
+    return total / 2.0
+
+
 def curtain(
     layout: PlanarLayout,
-    region_id: str,
-    outline: list[tuple[int, int]],
+    name: str,
     *,
-    near_cap: tuple[tuple[int, int], tuple[int, int]],
-    far_cap: tuple[tuple[int, int], tuple[int, int]],
-    travel: tuple[int, int],
+    frame: tuple[int, int, int, int],
+    axis: str,
+    travel: int,
     channel: int,
+    leaf_region: str,
     floor_z: int,
     ceiling_z: int,
-    curtain_picnum: int = CURTAIN_PICNUM,
+    seam: int = CURTAIN_SEAM,
+    picnum: int = CURTAIN_PICNUM,
+    depth: int = CURTAIN_DEPTH,
+    shoulder_depth: int = CURTAIN_SHOULDER,
+    host_side: str = "low",
     busy_out: int = CURTAIN_BUSY_OUT,
     busy_back: int = CURTAIN_BUSY_BACK,
-    to_region: str | None = None,
+    route: str = "wall_button",
     **region_kwargs,
 ) -> dict:
-    """A curtain: a thin sector whose own LENGTH changes as it opens.
+    """A curtain: a thin sector whose own LENGTH changes as it gathers.
 
-    Not a pair of sliding leaves. E1M1 sector 125 -- the owner's attested
-    example, and every field below is read off it -- is a `kSectorSlideMarked`
-    sector 128 units deep and 4352 long, wearing tile 146 on its long faces,
-    whose two END CAPS carry OPPOSITE payload flags: one 16384 and one 32768.
+    Composition of the four primitives, adding only what composition decides.
 
-    One cap therefore advances while the other retreats, so the translation
-    does not move the curtain, it *resizes* it. The texture on the long faces
-    is squashed and stretched by exactly that much, and **that deformation is
-    the animation**. Reading it as moving sprites, which this project did
-    twice, produces something that looks like a gate and behaves like one.
+    * **marked-wall motion** -- the two end caps carry OPPOSITE flags, so one
+      advances while the other retreats and the sector's own extent shrinks.
+      `motion.payload_shape` calls that "the sector resizes itself" and finds
+      104 of them across the campaign. The texture on the long faces is
+      squashed by exactly that much, and the deformation IS the animation.
+    * **motion markers** -- from the CLOSED pose to the OPEN pose, so the
+      curtain rests closed and opening gathers it. The zoo shipped them the
+      other way round: rest read open and "opening" stretched the fabric.
+    * **control wiring** -- `route`, with the verb checked against the state
+      the leaf is saved in.
+    * no ROR.
 
-    The rest of s125, kept because it is what the campaign chose: shade waves
-    on both busy phases, 40 tenths out and 25 back -- it closes faster than it
-    opens -- and it both transmits and receives, so a run of curtains chains.
+    The composition fact this adds is the MOTION APERTURE. The leaf is built
+    `seam` units clear of its frame at each end, so its moving vertices are
+    interior points of the frame's walls rather than the frame's corners. Any
+    wall incident on a moved vertex is dragged -- `dragpoint` walks the whole
+    fan -- so without that inset the deformation reaches whatever the frame
+    is cut into. E1M1's curtain has the seam and reaches only its own alcove;
+    the zoo's did not and deformed the corners of the room.
     """
-    if channel <= 0:
-        raise MechanismError(f"{region_id}: a curtain needs a channel")
-    if travel == (0, 0):
-        raise MechanismError(f"{region_id}: a curtain with no travel is a wall")
+    if axis not in ("x", "y"):
+        raise MechanismError(f"{name}: axis is 'x' or 'y', not {axis!r}")
+    if not travel:
+        raise MechanismError(f"{name}: a curtain with no travel is a wall")
+    x0, y0, x1, y1 = (int(v) for v in frame)
+    low, high = (x0, x1) if axis == "x" else (y0, y1)
+    span = high - low
+    inner_low, inner_high = low + int(seam), high - int(seam)
+    if inner_high - inner_low < 2 * BODY_WIDTH:
+        raise MechanismError(
+            f"{name}: a {span}-unit frame with {seam}-unit seams leaves "
+            f"{inner_high - inner_low} for the fabric, under two body widths")
+    #: Each cap travels half, toward the other, so the pair closes `travel`.
+    reach = abs(int(travel)) // 2
+    if reach * 2 >= (inner_high - inner_low) - MOTION_MIN_DEPTH:
+        raise MechanismError(
+            f"{name}: the two caps would close {reach * 2} of a "
+            f"{inner_high - inner_low}-unit fabric, leaving under "
+            f"{MOTION_MIN_DEPTH}; shorten the travel")
 
+    def _rect(a: int, b: int) -> list[tuple[int, int]]:
+        if axis == "x":
+            return [(a, y0), (b, y0), (b, y1), (a, y1)]
+        return [(x0, a), (x1, a), (x1, b), (x0, b)]
+
+    #: Saved CLOSED, and rested there: `trInit` reads the drawn geometry as
+    #: the pose at busy 1, so `state` 1 is what makes drawn == rest.
     behavior = {
-        "rx_id": int(channel),
         "busy_time_a": int(busy_out), "busy_time_b": int(busy_back),
         "busy_wave_a": 1, "busy_wave_b": 1,
-        "trigger_on": 1, "trigger_off": 1,
-        "command": CMD_TOGGLE,
+        "state": 1, "busy": 65536,
     }
-    layout.add_region(region_id, outline, role="doorway", type=614,
+    behavior.update(motion.wiring(route=route, channel=channel,
+                                  command=motion.CMD_TOGGLE,
+                                  receiver_state=1))
+    #: The aperture, read off E1M1 s125 wall by wall. The fabric is not a
+    #: rectangle: it is a strip whose MIDDLE is recessed deeper than its two
+    #: ends, and the flagged caps are the two steps between. The room meets
+    #: the strip along its full-length near face, whose corners are outside
+    #: the recess and therefore never move; the caps and the far face are
+    #: interior to the leaf's own outline.
+    #:
+    #:     s125:  (14848,18432)-(14848,22784)  near face, room side, unmoved
+    #:            (14912,22784)-(14912,22720)  shoulder, unmoved
+    #:            (14976,22720)                CAP, cstat 16384
+    #:            (14976,18496)                far face
+    #:            (14912,18496)                CAP, cstat 32768
+    #:
+    #: Three of those four moved vertices sit on one-sided walls with no
+    #: neighbour at all. That is what a motion aperture IS, and it is why
+    #: pushing E1M1's curtain does not deform the room around it.
+    def _pt(along: int, deep: int) -> tuple[int, int]:
+        return (deep, along) if axis == "y" else (along, deep)
+
+    #: Which end of the depth axis the room is on. Branches alternate sides
+    #: of a hub, so this cannot be assumed: get it wrong and the recess opens
+    #: away from the room and its far face lands on the room's wall.
+    span_low = x0 if axis == "y" else y0
+    span_high = x1 if axis == "y" else y1
+    if host_side not in ("low", "high"):
+        raise MechanismError(f"{name}: host_side is 'low' or 'high'")
+    step = 1 if host_side == "low" else -1
+    near_face = span_low if host_side == "low" else span_high
+    shoulder = near_face + step * int(shoulder_depth)
+    far_face = near_face + step * int(depth)
+    outline = [
+        _pt(low, near_face), _pt(high, near_face),
+        _pt(high, shoulder), _pt(inner_high, shoulder),
+        _pt(inner_high, far_face), _pt(inner_low, far_face),
+        _pt(inner_low, shoulder), _pt(low, shoulder),
+    ]
+    #: Build wants an outer loop clockwise in screen space; which way the
+    #: eight points come out depends on the axis, so it is measured rather
+    #: than assumed.
+    if _signed_area(outline) < 0:
+        outline.reverse()
+    layout.add_region(leaf_region, outline, role="doorway", type=614,
                       floor_z=floor_z, ceiling_z=ceiling_z,
-                      wall_picnum=int(curtain_picnum),
-                      sector_behavior=behavior, **region_kwargs)
+                      wall_picnum=int(picnum), sector_behavior=behavior,
+                      **region_kwargs)
 
-    #: The two caps, flagged opposite ways. This is the whole mechanism.
-    layout.carry_wall(region_id, near_cap[0], near_cap[1], moves="with")
-    layout.carry_wall(region_id, far_cap[0], far_cap[1], moves="against")
+    #: The two caps, flagged opposite ways -- the whole mechanism. They close
+    #: toward each other, so the fabric gathers rather than sliding aside.
+    layout.carry_wall(leaf_region, _pt(inner_high, shoulder),
+                      _pt(inner_high, far_face), moves="with")
+    layout.carry_wall(leaf_region, _pt(inner_low, far_face),
+                      _pt(inner_low, shoulder), moves="against")
 
-    mid = ((near_cap[0][0] + near_cap[1][0]) // 2,
-           (near_cap[0][1] + near_cap[1][1]) // 2)
-    markers = _slide_markers(layout, region_id.replace(":", "_"), region_id,
-                             mid, travel, floor_z, to_region)
+    across = ((y0 + y1) // 2) if axis == "x" else ((x0 + x1) // 2)
+    def _point(at: int) -> tuple[int, int]:
+        return (at, across) if axis == "x" else (across, at)
+    centre = (low + high) // 2
+
+    #: Markers: CLOSED -> OPEN. The caps travel toward each other, so the
+    #: vector is the amount ONE cap moves.
+    markers = motion.place_markers(
+        layout, name.replace(":", "_"), driven_region=leaf_region,
+        off_at=_point(centre), on_at=_point(centre - reach), z=int(floor_z))
     return {
-        "region": region_id, "channel": int(channel),
-        "travel": (int(travel[0]), int(travel[1])),
-        "markers": markers,
-        "busy": (int(busy_out), int(busy_back)),
-        "picnum": int(curtain_picnum),
+        "leaf": leaf_region, "channel": int(channel),
+        "frame": (low, high), "fabric": (inner_low, inner_high),
+        "seam": int(seam), "reach": reach, "markers": markers,
+        "rests": "closed",
+        #: The span the host may open onto. Wider, and the host's own walls
+        #: meet the fabric's moving ends.
+        "opening": (low, high),
+        "fabric_span": (inner_low, inner_high),
+        "far_face": far_face,
+        #: Nothing but the fabric moves, which is what the seam buys.
+        "declared_motion": [leaf_region],
     }
 
 
@@ -752,42 +861,38 @@ def planar_door(
     lid_step: int = PLANAR_LID_STEP,
     motor: str = "lid",
     flags: str = "both",
-    drawn_covered: bool = True,
     busy_time: int = PLANAR_DOOR_BUSY,
     transmits: int | None = None,
     lift_out: int = 0,
+    route: str = "remote",
     lid_kwargs: dict | None = None,
     hole_kwargs: dict | None = None,
     **region_kwargs,
 ) -> dict:
     """A floor that slides aside to uncover the hole you drop through.
 
-    **The owner's definition, from `maps/blood/mechanism/casket.map`.** One
-    footprint, SPLIT by a sliding boundary into a LID and a HOLE. The lid
-    slides to cover or reveal the hole, and the hole is the passage -- it
-    carries the room-over-room link down to the space below. There is no
-    pocket hidden inside a bigger room: the revealed hole IS the way through.
+    The owner's definition, from `maps/blood/mechanism/casket.map`: ONE
+    footprint SPLIT by a sliding boundary into a LID and a HOLE. The lid
+    slides to cover or reveal the hole, and the hole is the passage.
 
-    Two dialects, both legal, and the grammar fixes neither:
+    Composition of the same four primitives:
 
-    * **which side is the motor.** The oracle puts the 614 on the LID (s2,
-      s5) and leaves the link-bearing holes plain; E1M1's casket puts it on
-      the HOLE (s28, s30) and leaves the covers plain. `motor` selects, and
-      the default is the oracle's.
-    * **how many sides of the boundary carry the flag.** The oracle flags
-      both (walls 18+22, 36+40); E1M1 flags one. `flags` selects, and the
-      default is the oracle's.
+    * **marked-wall motion** -- one flagged wall, and it is the boundary the
+      two halves share, so the travel re-partitions plan area between them.
+      `flags` chooses whether one or both records of the pair carry it; the
+      oracle flags both and E1M1 flags one, and both are legal.
+    * **motion markers** -- from the boundary's REST pose to its OPEN pose,
+      derived here. Each is placed in whichever half actually contains it,
+      because with the motor on the hole the hole is thin when drawn.
+    * **control wiring** -- `route` and the verb, checked against the state
+      the motor is saved in. The zoo shipped a motor saved ON with a switch
+      sending ON: valid fields, no-op mechanism.
+    * **ROR stack** -- the caller links the revealed hole, see-through.
 
-    What the grammar DOES fix is the split-and-slide of the boundary and the
-    link in the revealed hole. Everything else here is derived or clamped
-    rather than trusted, because the zoo shipped a casket whose caller asked
-    for a travel of 3072 into a cover 768 deep: the boundary swept 2304 units
-    past the far wall and turned that sector inside out, and every static
-    validator passed it because they all check the pose the map is SAVED in.
-
-    So: the markers are placed FROM the boundary's rest position TO its open
-    position, both derived here; and the travel is refused if it would leave
-    either side of the split thinner than a body at either end of the motion.
+    Composition facts, derived or clamped and never trusted from a caller:
+    the split must divide the footprint; the travel must land the boundary
+    inside it; and neither half may end the motion thinner than a body. The
+    zoo asked for 3072 into a cover 768 deep and the cover inverted.
     """
     if axis not in ("x", "y"):
         raise MechanismError(f"{name}: axis is 'x' or 'y', not {axis!r}")
@@ -795,8 +900,6 @@ def planar_door(
         raise MechanismError(f"{name}: motor is 'lid' or 'hole'")
     if flags not in ("one", "both"):
         raise MechanismError(f"{name}: flags is 'one' or 'both'")
-    if channel <= 0:
-        raise MechanismError(f"{name}: a planar door needs a channel")
     if not travel:
         raise MechanismError(f"{name}: a planar door with no travel is a wall")
 
@@ -806,11 +909,6 @@ def planar_door(
         raise MechanismError(
             f"{name}: the split at {split} is outside the footprint "
             f"{low}..{high}; the boundary has to divide it")
-
-    #: The two poses of the boundary. `drawn_covered` says which one the map
-    #: is authored in -- the oracle draws the covered pose and declares
-    #: state 1, which is what makes it rest there instead of jumping a full
-    #: travel the moment the level loads.
     rest = int(split)
     opened = rest + int(travel)
     if not low < opened < high:
@@ -819,16 +917,13 @@ def planar_door(
             f"{opened}, outside the footprint {low}..{high}. The sector "
             f"receiving it would invert")
     for pose, where in ((rest, "covered"), (opened, "open")):
-        if min(pose - low, high - pose) < PLANAR_MIN_DEPTH:
+        if min(pose - low, high - pose) < MOTION_MIN_DEPTH:
             raise MechanismError(
                 f"{name}: in its {where} pose the split at {pose} leaves "
                 f"{min(pose - low, high - pose)} units on one side of a "
-                f"{high - low}-unit footprint, under the {PLANAR_MIN_DEPTH} "
+                f"{high - low}-unit footprint, under the {MOTION_MIN_DEPTH} "
                 f"a body needs. Widen the footprint or shorten the travel")
 
-    #: The lid lies on the far side of the boundary from the hole. Which end
-    #: of the footprint each occupies follows from the travel's sign: the lid
-    #: is the side that SHRINKS as the door opens.
     lid_first = int(travel) < 0
     def _rect(a: int, b: int) -> list[tuple[int, int]]:
         if axis == "x":
@@ -837,128 +932,82 @@ def planar_door(
 
     lid_span = (low, rest) if lid_first else (rest, high)
     hole_span = (rest, high) if lid_first else (low, rest)
-
-    #: The lid reads as a tray one step above the hole it covers: the
-    #: oracle's step is 1024, and it is what makes the open hole read as
-    #: somewhere to drop into rather than as a change of floor colour.
     lid_floor = int(floor_z) - int(lid_step)
-    common = dict(region_kwargs)
-    motor_behavior = {
-        "rx_id": int(channel),
+
+    #: Saved COVERED and rested there, so the lid is shut when you arrive.
+    behavior = {
         "busy_time_a": int(busy_time), "busy_time_b": int(busy_time),
-        "state": 1 if drawn_covered else 0,
-        "busy": 65536 if drawn_covered else 0,
+        "state": 1, "busy": 65536,
     }
+    behavior.update(motion.wiring(route=route, channel=channel,
+                                  command=motion.CMD_TOGGLE,
+                                  receiver_state=1))
     if transmits:
-        motor_behavior["tx_id"] = int(transmits)
-        motor_behavior["command"] = CMD_TOGGLE
+        behavior["tx_id"] = int(transmits)
+        behavior["command"] = motion.CMD_TOGGLE
     if lift_out:
-        #: E1M1 s30's other half, and deliberately separable: the floor rises
-        #: as the door opens, to boost the player out of the hole. The owner's
-        #: category is ERGONOMIC-ASSIST motion -- present for the body, not
-        #: for topology -- so a reading that counts it as part of the door's
-        #: gating misreads the construct. It only makes sense on the sector
-        #: the body is standing in, which is why it is refused on the lid.
         if motor != "hole":
             raise MechanismError(
                 f"{name}: lift_out raises the floor the player stands on, so "
                 f"it belongs on the hole; this door's motor is the lid")
-        motor_behavior.update({
+        behavior.update({
             "off_floor_z": int(floor_z),
             "on_floor_z": int(floor_z) - int(lift_out),
             "off_ceiling_z": int(ceiling_z),
             "on_ceiling_z": int(ceiling_z),
         })
 
+    common = dict(region_kwargs)
     layout.add_region(
         lid_region, _rect(*lid_span), role="doorway",
         type=614 if motor == "lid" else 0,
         floor_z=lid_floor, ceiling_z=ceiling_z,
-        **({"sector_behavior": motor_behavior} if motor == "lid" else {}),
+        **({"sector_behavior": behavior} if motor == "lid" else {}),
         **common, **(lid_kwargs or {}))
     layout.add_region(
         hole_region, _rect(*hole_span), role="doorway",
         type=614 if motor == "hole" else 0,
         floor_z=int(floor_z), ceiling_z=ceiling_z,
-        **({"sector_behavior": motor_behavior} if motor == "hole" else {}),
+        **({"sector_behavior": behavior} if motor == "hole" else {}),
         **common, **(hole_kwargs or {}))
 
-    #: The boundary, as an edge of the footprint at the split.
-    if axis == "x":
-        edge = ((rest, y0), (rest, y1))
-    else:
-        edge = ((x0, rest), (x1, rest))
+    edge = ((rest, y0), (rest, y1)) if axis == "x" else ((x0, rest), (x1, rest))
     driver = lid_region if motor == "lid" else hole_region
     passenger = hole_region if motor == "lid" else lid_region
-    #: The boundary is a PORTAL, not a wall: it is the line the two halves
-    #: of one footprint share, and in the oracle both records carry a
-    #: `next_sector`. A caller cannot forget to make it one because a caller
-    #: is not asked to.
     layout.add_connection(f"{name}:boundary", lid_region, hole_region,
                           a1=edge[0], a2=edge[1], min_width=BODY_WIDTH)
     layout.carry_wall(driver, edge[0], edge[1], moves="with")
     if flags == "both":
-        #: The oracle flags both records of the pair. Only the motor's
-        #: actually translates -- `TranslateSector` runs on one sector -- but
-        #: the pair shares vertices, so the flag on the passenger records the
-        #: author's intent that the boundary belongs to both.
         layout.carry_wall(passenger, edge[0], edge[1], moves="with")
 
-    #: Markers from the boundary's REST pose to its OPEN pose, derived here.
-    #: A caller cannot get this wrong because a caller is not asked.
+    across = ((y0 + y1) // 2) if axis == "x" else ((x0 + x1) // 2)
     def _point(at: int) -> tuple[int, int]:
-        across = ((y0 + y1) // 2) if axis == "x" else ((x0 + x1) // 2)
         return (at, across) if axis == "x" else (across, at)
 
-    #: Marker 0 is kMarkerOff and marker 1 kMarkerOn, and the engine's
-    #: `trInit` treats the DRAWN geometry as the pose at busy 1 -- so the
-    #: pair runs from the OFF pose to the ON pose, and the drawn pose is
-    #: whichever of the two `state` names. The oracle draws its lid covering
-    #: the hole and declares state 1, so its markers run open -> covered:
-    #: s2's are at y -512 (open) and y -2432 (covered, where it is drawn).
-    #: Placing them the other way round makes the sector jump a full travel
-    #: the instant the level loads.
-    off_along = opened if drawn_covered else rest
-    on_along = rest if drawn_covered else opened
-    off_at, on_at = _point(off_along), _point(on_along)
-
-    #: A marker has to STAND inside some sector's drawn outline, and the
-    #: motor's may be the thin half: with the motor on the hole, the hole is
-    #: 128 deep when drawn and the open-pose marker does not fit in it. E1M1
-    #: does the same thing -- s30's "on" marker stands in the COVER, s29 --
-    #: because `owner` is the sector a marker CONTROLS, not the one it
-    #: occupies. So each marker goes wherever it lands and both are owned by
-    #: the motor.
     def _holds(along: int) -> str:
-        inside_lid = (lid_span[0] <= along <= lid_span[1])
-        return lid_region if inside_lid else hole_region
+        return lid_region if lid_span[0] <= along <= lid_span[1] else hole_region
 
     def _floor_of(region: str) -> int:
         return lid_floor if region == lid_region else int(floor_z)
 
-    markers = []
-    for tag, kind, at, along in (("off", 3, off_at, off_along),
-                                 ("on", 4, on_at, on_along)):
-        where = _holds(along)
-        markers.append(layout.add_sprite(
-            f"{name.replace(':', '_')}_marker_{tag}", where,
-            x=int(at[0]), y=int(at[1]), z=_floor_of(where),
-            type=kind, picnum=MARKER_PICNUM, status=MARKER_STATNUM,
-            cstat=MARKER_CSTAT, x_repeat=64, y_repeat=64,
-            angle=MARKER_ANGLE, marker_owner=driver))
+    off_where, on_where = _holds(opened), _holds(rest)
+    markers = motion.place_markers(
+        layout, name.replace(":", "_"), driven_region=driver,
+        off_at=_point(opened), on_at=_point(rest),
+        off_region=off_where, on_region=on_where,
+        off_z=_floor_of(off_where), on_z=_floor_of(on_where))
     return {
         "lid": lid_region, "hole": hole_region, "motor": driver,
         "channel": int(channel), "axis": axis,
         "rest": rest, "opened": opened, "travel": int(travel),
         "footprint": (low, high), "lid_step": int(lid_step),
         "flags": flags, "markers": markers, "lift_out": int(lift_out),
-        #: Where the link goes. The hole is smallest in its DRAWN pose, so
-        #: that span is the strip that is hole in every pose -- the only
-        #: place a link marker is always inside the sector it belongs to.
-        #: The oracle puts its 2332 in exactly that strip of s3.
         "hole_always": hole_span,
         "link_anchor": _point((hole_span[0] + hole_span[1]) // 2),
-        "drawn_covered": bool(drawn_covered),
+        "rests": "covered",
+        #: The two halves share the boundary, so both are in the motion set
+        #: by construction and both are declared.
+        "declared_motion": [lid_region, hole_region],
     }
 
 #: E1M1's casket cover, s27: amplitude 2, frequency 5, wave 7, on floor,

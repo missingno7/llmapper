@@ -793,6 +793,10 @@ class PlanarLayout:
         #: (region_id, edge) -> wall fields written after emit. See
         #: `paint_wall`.
         self.painted: dict[tuple[str, tuple], dict[str, int]] = {}
+        #: driven region -> the regions its motion is allowed to deform.
+        #: A mechanism DECLARES its payload and the compile diffs the actual
+        #: motion set against it; see `declare_motion`.
+        self.declared_motion: dict[str, list[str]] = {}
         #: Declarative illumination, resolved after geometry and sprite seating.
         #: LightBomb only runs when this list is non-empty.
         self.light_sources: list[LightSourceSpec] = []
@@ -977,6 +981,38 @@ class PlanarLayout:
         self.painted.setdefault(key, {}).update(
             {k: int(v) for k, v in fields.items()})
 
+    def _preflight_motion_set(self, disk, allocations) -> None:
+        """Diff each mechanism's ACTUAL motion set against what it declared."""
+        if not self.declared_motion:
+            return
+        try:
+            from .motion import check_motion_set, wall_owners
+        except Exception:
+            return
+        owners = wall_owners(disk)
+        by_sector = {}
+        for region_id, allowed in self.declared_motion.items():
+            allocation = allocations.get(region_id)
+            if allocation is None:
+                continue
+            by_sector[allocation.sector_id] = [
+                allocations[name].sector_id for name in allowed
+                if name in allocations]
+        problems = []
+        for sector_id, allowed in by_sector.items():
+            found = check_motion_set(disk, sector_id, allowed, owners)
+            for item in found.undeclared:
+                problems.append(
+                    f"sector {sector_id}: {item['why']}")
+        if problems:
+            listing = "\n  " + "\n  ".join(problems)
+            raise PlanarLayoutError(
+                "%d wall(s) are dragged by a motion that did not declare "
+                "them:%s\nMotion moves vertices, so every wall incident on a "
+                "moved point comes with it. Add a seam -- split the wall so "
+                "the mechanism's moving vertices are its own."
+                % (len(problems), listing))
+
     def _preflight_swept(self, disk) -> None:
         """Refuse a layout whose mechanisms break their own geometry."""
         try:
@@ -1040,6 +1076,18 @@ class PlanarLayout:
                                    "carry_wall")
             fields = walls[hit]["fields"]
             fields["cstat"] = int(fields["cstat"]) | int(bits)
+
+    def declare_motion(self, driven_region: str,
+                       regions: Sequence[str]) -> None:
+        """Say which regions a mechanism's motion is allowed to deform.
+
+        Motion moves VERTICES, and every wall incident on a moved vertex is
+        dragged in whatever sector happens to share it. A construct that
+        declares its payload can therefore be checked against what it really
+        touches, and anything extra is an integration defect even when the
+        geometry is valid at every step of the travel.
+        """
+        self.declared_motion[driven_region] = list(regions)
 
     def carry_wall(self, region_id: str, a1: Point, a2: Point, *,
                    moves: str = "with") -> None:
@@ -1792,7 +1840,9 @@ class PlanarLayout:
             #: the rest pose; a moving sector is in it for one instant, and a
             #: travel that inverts the sector receiving it is invisible until
             #: something steps the motion.
-            self._preflight_swept(builder.level.to_disk_map())
+            disk_for_motion = builder.level.to_disk_map()
+            self._preflight_swept(disk_for_motion)
+            self._preflight_motion_set(disk_for_motion, allocations)
         except AuthoredGeometryError as exc:
             raise PlanarLayoutError(str(exc)) from exc
         owners = [-1] * len(builder.level.walls)
