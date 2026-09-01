@@ -126,9 +126,20 @@ class Framed:
         return self._layout.carry_wall(region_id, self.point(a1),
                                        self.point(a2), **kwargs)
 
+    #: Blood's engine-instruction statnum. A sprite on it is not a thing in
+    #: the world and its `angle` is not a facing.
+    MARKER_STATNUM = 10
+
     def add_sprite(self, placement_id, region_id, *, x, y, **kwargs):
         wx, wy = self.point((x, y))
-        if "angle" in kwargs:
+        #: A MARKER's angle is a parameter of the motion, not a direction it
+        #: faces: for a Marked slide `TranslateSector` interpolates marker0's
+        #: angle to marker1's and ROTATES the dragged walls by the result, and
+        #: for a rotate it is the turn itself. Turning it with the frame
+        #: therefore injects a ninety-degree spin into every slid sector --
+        #: which is what the swept gate caught in the casket, whose hole came
+        #: out with zero area from the first frame.
+        if "angle" in kwargs and int(kwargs.get("status", 0)) != self.MARKER_STATNUM:
             kwargs["angle"] = self.angle(kwargs["angle"])
         return self._layout.add_sprite(placement_id, region_id, x=wx, y=wy,
                                        **kwargs)
