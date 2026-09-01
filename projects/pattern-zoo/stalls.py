@@ -1,4 +1,12 @@
-"""What goes inside each stall, built by the code that owns the concept.
+"""What stands in each bay, built by the code that owns the concept.
+
+v3. Every builder takes `(layout, section, bay, back, *, floor_z, ceiling_z,
+skin)`: the section region it stands in, the strip of section floor in front
+of its stretch of the section's back wall, and the box beyond that wall where
+its own sub-rooms go. Sub-rooms go in the back box because a region wholly
+inside another is a containment the planar layout refuses -- correctly, since
+neither side of that boundary can be a portal.
+
 
 v2. Every function here either calls an owning constructor or does not exist;
 where a concept has no constructor the registry carries an EMPTY stall
@@ -26,7 +34,8 @@ from __future__ import annotations
 
 from bloodmap.aperture import FacadeOpening, facade_run, framed_door
 from bloodmap.doors import z_motion_door
-from bloodmap.furniture import furnish
+from bloodmap.lettering import write_on_wall
+from bloodmap.furniture import furnish, mounting_for, place as furnish_into
 from bloodmap.mechanism import PLAYER_HEIGHT, sliding_gate, turnstile_pair
 from bloodmap.owner_anchors import load_owner_anchors
 
@@ -35,14 +44,34 @@ U = 1024
 #: Blood's own sector types, so a reader can see which is which.
 Z_MOTION = 600
 
-#: Crate modules, from `projects/blood-city/level/templates.py`: tile 452 on a
-#: 1024 module rising 16384, tile 95 on 2048 rising 32768. Reproduced here
-#: rather than imported because that file sits on the levelprog stack and this
-#: zoo is a PlanarLayout; the numbers are the module's, not this file's.
+#: The crate and table modules come from the file that owns them --
+#: `projects/blood-city/level/templates.py` -- rather than being transcribed
+#: here. Transcribed numbers go stale silently; imported ones cannot. That
+#: file sits on the levelprog stack and imports its neighbours by bare name,
+#: so its directory goes on the path before it is loaded.
+def _templates():
+    import pathlib
+    import sys
+
+    here = (pathlib.Path(__file__).resolve().parents[2]
+            / "projects" / "blood-city" / "level")
+    if str(here) not in sys.path:
+        sys.path.append(str(here))
+    import templates
+
+    return templates
+
+
+_TEMPLATES = _templates()
 #: 452 is not 459 -- 459 is a moss-grown rock, and a market hall of rock faces
-#: was what confusing them produced once.
-CRATE_SMALL_TILE, CRATE_SMALL_SIDE, CRATE_SMALL_RISE = 452, 1024, 16384
-CRATE_LARGE_TILE, CRATE_LARGE_SIDE, CRATE_LARGE_RISE = 95, 2048, 32768
+#: was what confusing them produced once. `templates.py` carries that warning
+#: beside the module, which is the other reason to read it from there.
+CRATE_SMALL_TILE = _TEMPLATES.SMALL_CRATE.tile
+CRATE_SMALL_SIDE = _TEMPLATES.SMALL_CRATE.side
+CRATE_SMALL_RISE = _TEMPLATES.SMALL_CRATE.rise
+CRATE_LARGE_TILE = _TEMPLATES.LARGE_CRATE.tile
+CRATE_LARGE_SIDE = _TEMPLATES.LARGE_CRATE.side
+CRATE_LARGE_RISE = _TEMPLATES.LARGE_CRATE.rise
 CRATE_BROKEN_TILE = 462
 
 #: Owner anchors, by the owner's number.
@@ -73,6 +102,12 @@ CH_CRACK = 301
 CH_GATE = 302
 CH_CURTAIN = 303
 CH_SHELF = 304
+CH_DOUBLE_SLIDE = 307
+CH_PLAIN_SLIDE = 308
+CH_CASKET = 309
+
+#: `norms-v1.json` shape.median_height: one campaign storey.
+MEDIAN_CLEAR = 33280
 #: kChannelSecretFound: entering a sector that transmits on it scores a secret.
 CH_SECRET = 2
 
@@ -276,9 +311,11 @@ def switched_door(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
             floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
             beyond="the store the switch serves", beyond_skin=STORE,
             interaction="remote", rx_id=CH_SWITCHED_DOOR, open_time=8)
-    x0, y0, x1, _y1 = box
+    #: On the section's back wall, in this bay, beside the door. A bay's
+    #: side edges are interior lines, not walls, so nothing can hang on them.
+    a1, a2 = _facing(box, back)
     layout.place_on_wall("switched_door:switch", stall,
-                         a1=(x0, y0), a2=(x1, y0), t=0.3,
+                         a1=a1, a2=a2, t=0.15,
                          height_player_heights=0.55,
                          behavior={"tx_id": CH_SWITCHED_DOOR, "command": 1,
                                    "trigger_push": 1},
@@ -286,6 +323,7 @@ def switched_door(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
 
 
 def keyed_door(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
+    # `_` carries section_box; the key stands in this bay, not in the hall.
     #: Key 6 is the moon, which is what E1M4 sector 295 wears.
     """A locked way into a vault: what a key is for."""
     _z_door(layout, stall, box, back, "keyed_door",
@@ -295,7 +333,9 @@ def keyed_door(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     #: A key lies on the floor at hip height, and `place_on_floor` seats it
     #: from the tile's own extent -- which is exactly what v1 skipped for
     #: the tiles it placed by hand.
-    layout.place_on_floor("keyed_door:key", stall, local=(0.3, 0.35),
+    layout.place_on_floor("keyed_door:key", stall,
+                          local=_local(_.get("section_box") or box, box,
+                                       0.35, 0.3, back),
                           type=105, picnum=2552, x_repeat=40, y_repeat=40,
                           cstat=128, status=3, shade=-8)
 
@@ -314,7 +354,11 @@ def lift(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     report's promotion candidates.
     """
     wall, floor, ceiling = skin
-    storey = (floor_z - ceiling_z) // 2
+    #: A shaft is two campaign-median storeys, and it rises ABOVE the
+    #: gallery's own ceiling -- which is what a lift shaft does. Deriving the
+    #: storey from the room it opens off gave a landing half a body high.
+    storey = MEDIAN_CLEAR
+    ceiling_z = floor_z - 2 * storey
     platform = _slice(back, box, 0, 2 * U)
     landing = _slice(back, box, 2 * U, 3 * U)
     layout.add_region(
@@ -410,7 +454,7 @@ def crack_barrier(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
 # ---------------------------------------------------------------------------
 
 def _rotor_pair(layout, stall, box, back, name, *, floor_z, ceiling_z, skin,
-                counter_rotating):
+                counter_rotating, concourse=True):
     """Two rotor drums flanking a gap, built by mechanism.turnstile_pair.
 
     Each drum reaches the room through its own short alcove, because a drum
@@ -446,6 +490,9 @@ def _rotor_pair(layout, stall, box, back, name, *, floor_z, ceiling_z, skin,
             f"{name}:c{index}", f"{name}:{index}:alcove",
             f"{name}:{'ab'[index]}",
             a1=(face, low), a2=(face, low + drum), min_width=U // 2)
+
+    if not concourse:
+        return built
 
     #: The habitat. E1M4's carnival entry is what turnstiles are *for*: they
     #: flank the way into somewhere public, and the concourse beyond is the
@@ -483,7 +530,7 @@ def turnstile_same_way(layout, stall, box, back, *, floor_z, ceiling_z,
 
 def _gate(layout, stall, box, back, name, *, floor_z, ceiling_z, skin,
           channel, busy_time, depth=U, pushable=True,
-          frame=None, header_z=None, leaf=None):
+          frame=None, header_z=None, leaf=None, leaves=2):
     """A sliding gate in the back strip, built by mechanism.sliding_gate.
 
     `frame` cuts a proscenium first -- a narrower opening with jambs and a
@@ -516,6 +563,7 @@ def _gate(layout, stall, box, back, name, *, floor_z, ceiling_z, skin,
                  threshold=threshold, travel=span // 2,
                  **(leaf or {}),
                  channel=channel, busy_time=busy_time, pushable=pushable,
+                 leaves=leaves,
                  floor_z=floor_z, ceiling_z=ceiling_z,
                  wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling)
     if frame is None:
@@ -576,10 +624,19 @@ def curtain(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
 
 def shelf_secret(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     wall, floor, ceiling = skin
+    #: Framed, so the shelf is narrower than the wall it sits in -- which is
+    #: what makes it read as a shelf rather than as a moving wall, and leaves
+    #: solid masonry for the switch that opens it.
     strip = _gate(layout, stall, box, back, "shelf_secret",
                   floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
-                  channel=CH_SHELF, busy_time=20, depth=768, pushable=False)
-    secret = _slice(back, box, 768, 2 * U)
+                  channel=CH_SHELF, busy_time=20, depth=768, pushable=False,
+                  frame=3 * U,
+                  header_z=floor_z - 3 * PLAYER_HEIGHT // 2)
+    #: As wide as the gate it hides behind, not as wide as the bay: a room
+    #: wider than its own doorway meets the wall either side over stretches
+    #: that are neither portal nor solid, which the compiler refuses.
+    secret = _slice(back, box, REVEAL + 768, 2 * U)
+    secret = (secret[0], strip[1], secret[2], strip[3])
     layout.add_region(
         "shelf_secret:secret", _rect(secret),
         floor_z=floor_z, ceiling_z=ceiling_z,
@@ -591,9 +648,11 @@ def shelf_secret(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     b1, b2 = _far(strip, back, box)
     layout.add_connection("shelf_secret:c1", "shelf_secret:gate",
                           "shelf_secret:secret", a1=b1, a2=b2, min_width=U // 2)
-    x0, y0, x1, _y1 = box
+    #: On the section's own back wall in this bay, clear of the shelf. A
+    #: bay's side edges are interior lines, not walls.
+    a1, a2 = _facing(box, back)
     layout.place_on_wall("shelf_secret:switch", stall,
-                         a1=(x0, y0), a2=(x1, y0), t=0.3,
+                         a1=a1, a2=a2, t=0.12,
                          height_player_heights=0.55,
                          behavior={"tx_id": CH_SHELF, "command": 1,
                                    "trigger_push": 1},
@@ -601,21 +660,47 @@ def shelf_secret(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
 
 
 def casket(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
-    """E1M1's opening, as far as one constructor reaches: the lid, in z."""
+    """E1M1's opening: a slide and a z travel conjugated on ONE sector.
+
+    The owner's correction is the exhibit. The casket is not a z door: it is
+    four sectors in two pairs, and the sector the player wakes in (s30) is
+    **kSectorSlideMarked AND carries z endpoints** -- which is the attested
+    proof that the two XSECTOR z states are not a type-600 privilege. A verb
+    for the XY motion comes from the type; the z verb is orthogonal and
+    composes on the same sector.
+
+    So this builds the slide through `mechanism.sliding_gate` and then merges
+    z endpoints onto that same sector, exactly as s30 does.
+
+    Two things it is NOT, both lettered in the registry as hand-composed:
+    the ROR link (PlanarLayout has no stack link at all), and the
+    boundary-wall area re-partition that is how the real lid works.
+    """
     wall, floor, ceiling = skin
-    lid = _narrow(_slice(back, box, 0, 2 * U), U)
+    header = floor_z - 3 * PLAYER_HEIGHT // 2
+    strip = _gate(layout, stall, box, back, "casket",
+                  floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
+                  channel=CH_CASKET, busy_time=40, depth=768,
+                  frame=2 * U, header_z=header)
+    #: The second verb on the same sector: s30's floor lifts the player so
+    #: they can climb out. The owner calls this ERGONOMIC-ASSIST motion --
+    #: present for the body, not for topology -- so it is not a gating claim.
+    layout.regions["casket:gate"].sector_behavior.update({
+        "off_floor_z": floor_z, "on_floor_z": floor_z - PLAYER_HEIGHT // 2,
+        "off_ceiling_z": ceiling_z, "on_ceiling_z": ceiling_z,
+    })
+    hole = _slice(back, box, REVEAL + 768, 2 * U)
+    hole = (hole[0], strip[1], hole[2], strip[3])
     layout.add_region(
-        "casket:box", _rect(lid),
-        type=Z_MOTION,
-        floor_z=floor_z, ceiling_z=floor_z - PLAYER_HEIGHT,
+        "casket:hole", _rect(hole),
+        floor_z=floor_z - PLAYER_HEIGHT // 2, ceiling_z=ceiling_z,
         wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
-        sector_behavior=z_motion_door(floor_z, ceiling_z,
-                                      interaction="direct", open_time=40),
-        intent={"purpose": "casket: the lid, as a z motion"})
-    x0, y0, x1, y1 = lid
-    face = x0 if _outward(back, box) > 0 else x1
-    layout.add_connection("casket:c0", stall, "casket:box",
-                          a1=(face, y0), a2=(face, y1), min_width=U // 2)
+        declared_zero_exit=True,
+        intent={"purpose": "casket: the hole the lid slides off, one storey "
+                           "down from the cover"})
+    b1, b2 = _far(strip, back, box)
+    layout.add_connection("casket:c1", "casket:gate", "casket:hole",
+                          a1=b1, a2=b2, min_width=U // 2)
 
 
 # ---------------------------------------------------------------------------
@@ -813,14 +898,15 @@ def counter(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     b1, b2 = _far(top, back, box)
     layout.add_connection("counter:c1", "counter:top", "counter:behind",
                           a1=b1, a2=b2, min_width=U // 2)
-    #: The props the rule asks for, seated by `furniture.furnish`.
-    #: Short props only: the counter top is a waist-high shelf with the room's
-    #: ceiling still over it, so what stands on it has to fit in what is left.
-    for index, (name, local) in enumerate((("urn", (0.5, 0.2)),
-                                           ("plaque", (0.5, 0.5)),
-                                           ("urn", (0.5, 0.8)))):
-        layout.place_on_floor(f"counter:prop:{index}", "counter:top",
-                              local=local, **furnish(name))
+    #: The props the campaign rule asks for, placed through `furniture.place`
+    #: so each is seated the way that thing is mounted. Short props only: the
+    #: counter top is a waist-high shelf with the room's ceiling still over
+    #: it, so what stands on it has to fit in what is left -- and no wall
+    #: fitting, because a plaque laid flat on a counter drew a gore splatter
+    #: across the shelves the one time this placed one by hand.
+    for index, local in enumerate(((0.5, 0.2), (0.5, 0.5), (0.5, 0.8))):
+        furnish_into(layout, f"counter:prop:{index}", "counter:top", "urn",
+                     local=local)
 
 
 def sewer_wall(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
@@ -857,7 +943,10 @@ def sewer_wall(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
             name, _rect(run),
             floor_z=floor_z, ceiling_z=low_ceiling,
             wall_picnum=pipe,
-            floor_picnum=SEWER_GRATE if index % 2 else floor,
+            #: NOT the grate: 502 carries mask pixels, and the measured law
+            #: is that no such tile appears on any campaign floor or ceiling.
+            #: A grate is a maskwall panel, and nothing here owns one.
+            floor_picnum=floor,
             ceiling_picnum=ceiling,
             declared_zero_exit=index == len(SEWER_PIPE) - 1,
             intent={"purpose": f"sewer wall: pipe run {index}, tile {pipe} "
@@ -889,28 +978,401 @@ def sewer_wall(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
             shade=-32)
 
 
+def _sayable(text, width, size):
+    """The owner's name for a tile, in the alphabet the sign font has.
+
+    A-Z and space only, and short enough for the panel it goes under. The
+    owner's labels carry slashes, commas and Czech, none of which the
+    campaign's letter tiles can draw, so this keeps whole words and stops.
+    """
+    from bloodmap.lettering import drawn_width, text_width
+
+    allowed = set("ABCDEFGHIJKLMNOPQRSTUVWXYZ ")
+    cleaned = "".join(c if c in allowed else " " for c in text.upper())
+    words = cleaned.split()
+    out = ""
+    for word in words:
+        trial = (out + " " + word).strip()
+        if text_width(trial, size) + drawn_width(size) > width:
+            break
+        out = trial
+    return out
+
+
 def tile_museum(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
-    """One panel per strong-binding owner tile, each a shallow sector."""
+    """A niche per owner tile, each lettered with the owner's own name.
+
+    Strong binding first, because that is the executable half of the rule:
+    a strong tile MAY name what it depicts, and a weak or untested one never
+    may. The names under these panels are therefore the owner's, quoted, not
+    ours -- which is exactly what makes them correctable on the walk.
+
+    The niches carry a header so the exhibit's own label can be written on
+    the solid band above them; a panel opened to the ceiling leaves nowhere
+    for the sign, which is how this first failed to build.
+    """
     wall, floor, ceiling = skin
     anchors = load_owner_anchors()
     strong = sorted(anchors.by_binding("strong"), key=lambda item: item.picnum)
+    out = _outward(back, box)
     bx0, by0, bx1, by1 = back
     depth = 512
-    near = bx0 if _outward(back, box) > 0 else bx1 - depth
-    shown = strong[:6]
-    height = (by1 - by0 - 512) // max(1, len(shown))
+    near = bx0 if out > 0 else bx1 - depth
+    #: A niche is chest-high and headed, not a full-height slot.
+    header = floor_z - 5 * PLAYER_HEIGHT // 4
+    sill = floor_z - PLAYER_HEIGHT // 3
+    shown = strong[:8]
+    pitch = (by1 - by0 - 512) // max(1, len(shown))
+    face = near if out > 0 else near + depth
     for index, item in enumerate(shown):
-        low = by0 + 256 + index * height
-        panel = (near, low + 64, near + depth, low + height - 64)
+        low = by0 + 256 + index * pitch
+        high = low + pitch - 256
         layout.add_region(
-            f"museum:{item.picnum}", _rect(panel),
-            floor_z=floor_z, ceiling_z=ceiling_z,
+            f"museum:{item.picnum}", _rect((near, low, near + depth, high)),
+            floor_z=sill, ceiling_z=header,
             wall_picnum=item.picnum, floor_picnum=floor,
             ceiling_picnum=ceiling, declared_zero_exit=True,
-            intent={"purpose": f"tile museum: {item.label_en} "
-                               f"(owner, strong binding)"})
-        face = near if _outward(back, box) > 0 else near + depth
+            intent={"purpose": f"tile museum: tile {item.picnum}, "
+                               f"{item.label_en} -- owner, binding strong"})
         layout.add_connection(
             f"museum:c{index}", stall, f"museum:{item.picnum}",
-            a1=(face, low + 64), a2=(face, low + height - 64),
-            min_width=384)
+            a1=(face, low), a2=(face, high), min_width=384)
+        name = _sayable(item.label_en, high - low, 48)
+        if name:
+            a1 = (face, low) if out > 0 else (face, high)
+            a2 = (face, high) if out > 0 else (face, low)
+            write_on_wall(layout, f"museum:name:{item.picnum}", stall,
+                          a1=a1, a2=a2, text=name,
+                          height_player_heights=1.45, size=48)
+
+
+# ---------------------------------------------------------------------------
+# v3 builders: the sections
+# ---------------------------------------------------------------------------
+
+#: The shop kit, owner anchors. 2026 and 2635 are both graded STRONG for
+#: "shelf", so both may be named; 202 is a weak-binding worn facade texture
+#: and is used as material only.
+SHELF_TILES = (2026, 2635)
+SHOP_WORN = 202
+
+#: Channels the v3 exhibits add.
+CH_ROTOR_CHAIN = 305
+CH_SEWER_DOOR = 306
+
+#: Read from `templates.py` too: 0.30 player heights on a 1024 side.
+TABLE_RISE = _TEMPLATES.TABLE_RISE
+TABLE_SIDE = _TEMPLATES.TABLE_SIDE
+
+
+def _local(section_box, box, u, v, back=None):
+    """A point at (u, v) of the BAY, as a fraction of the SECTION.
+
+    `place_on_floor` takes `local` relative to the region it is placing in,
+    and an exhibit places into the section it stands in -- so a bay-relative
+    fraction handed straight to it lands somewhere else entirely. The
+    graveyard turned up in the light fittings' bay exactly this way.
+
+    With `back` given, `u` is measured **from the section's back wall**,
+    which is the only direction an exhibit can reason in: sections alternate
+    sides of the spine, so the bay's own x0 is the back wall on one side and
+    the front wall on the other. Measuring from x0 put a row of mannequins
+    in the camera's face on half the sections.
+    """
+    sx0, sy0, sx1, sy1 = section_box
+    if back is not None and _outward(back, box) > 0:
+        x = box[2] - u * (box[2] - box[0])
+    else:
+        x = box[0] + u * (box[2] - box[0])
+    y = box[1] + v * (box[3] - box[1])
+    return ((x - sx0) / max(1, sx1 - sx0), (y - sy0) / max(1, sy1 - sy0))
+
+
+def _bay_wall(box, back):
+    """The section's back wall across this bay, ordered to offset inward."""
+    return _facing(box, back)
+
+
+def _shallow(layout, name, rect, *, tile, floor_z, ceiling_z, purpose,
+             floor_picnum=None, ceiling_picnum=None):
+    """A shallow sector wearing one tile: how a shelf or a panel is built.
+
+    The representation rule the owner named: a shelf is a WALL TEXTURE on a
+    shallow sector, not a sprite thrown at a wall. v1 shipped the sprite.
+    """
+    layout.add_region(
+        name, _rect(rect),
+        floor_z=floor_z, ceiling_z=ceiling_z,
+        wall_picnum=tile,
+        floor_picnum=floor_picnum if floor_picnum is not None else tile,
+        ceiling_picnum=ceiling_picnum if ceiling_picnum is not None else tile,
+        declared_zero_exit=True,
+        intent={"purpose": purpose})
+
+
+# -- the doors gallery ------------------------------------------------------
+
+def double_slide_door(layout, stall, box, back, *, floor_z, ceiling_z, skin,
+                      **_):
+    """E1M1 s4: one sector, two leaves parting along their own line."""
+    _gate(layout, stall, box, back, "double_slide",
+          floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
+          channel=CH_DOUBLE_SLIDE, busy_time=20)
+
+
+def plain_slide_door(layout, stall, box, back, *, floor_z, ceiling_z, skin,
+                     **_):
+    """E1M1 s63: a single leaf, the load-bearing kind, in a framed opening.
+
+    The owner's reading calls this one *more* load-bearing than the double
+    rotating door built as the way on, which is why it is not dressed up.
+    """
+    header = floor_z - 3 * PLAYER_HEIGHT // 2
+    _gate(layout, stall, box, back, "plain_slide",
+          floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
+          channel=CH_PLAIN_SLIDE, busy_time=20, depth=768,
+          frame=2 * U, header_z=header, leaves=1)
+
+
+def double_rotating_door(layout, stall, box, back, *, floor_z, ceiling_z,
+                         skin, **_):
+    """E1M1 s50 and s51: two rotating leaves chained on one channel.
+
+    The chain is the point. s50 transmits to s51, so working one leaf makes
+    the other answer -- a sentence in the control-bus grammar rather than two
+    doors that happen to sit together.
+    """
+    built = _rotor_pair(layout, stall, box, back, "rotating_door",
+                        floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
+                        counter_rotating=True, concourse=False)
+    #: The chain: the first leaf transmits on the channel the second hears.
+    layout.regions["rotating_door:a"].sector_behavior.update(
+        {"tx_id": CH_ROTOR_CHAIN, "command": 1})
+    layout.regions["rotating_door:b"].sector_behavior.update(
+        {"rx_id": CH_ROTOR_CHAIN})
+    return built
+
+
+# -- the furniture hall -----------------------------------------------------
+
+def _row_on_floor(layout, region, names, box, section_box, back, *, prefix,
+                  across=0.35):
+    """A row of floor-standing things across a bay, each at its own height.
+
+    `across` is the fraction of the bay's depth measured FROM THE BACK WALL,
+    so the row stands against the back of its own bay rather than out in the
+    aisle where a visitor walks into it.
+    """
+    for index, name in enumerate(names):
+        t = (index + 0.5) / len(names)
+        furnish_into(layout, f"{prefix}:{name}:{index}", region, name,
+                     local=_local(section_box, box, across, t, back))
+
+
+def light_fittings(layout, stall, box, back, *, floor_z, ceiling_z, skin,
+                   section_box=None, **_):
+    """The four light kinds, each on the surface that thing hangs from."""
+    a1, a2 = _bay_wall(box, back)
+    for index, name in enumerate(("torch", "sconce")):
+        furnish_into(layout, f"lights:{name}", stall, name,
+                     a1=a1, a2=a2, t=0.25 + 0.5 * index,
+                     height_player_heights=1.1)
+    for index, name in enumerate(("chandelier", "lantern")):
+        furnish_into(layout, f"lights:{name}", stall, name,
+                     local=_local(section_box or box, box,
+                                  0.35, 0.3 + 0.4 * index, back))
+
+
+def wall_fittings(layout, stall, box, back, *, floor_z, ceiling_z, skin,
+                  section_box=None, **_):
+    """Mounted things that are not lights, each in its own alignment state."""
+    a1, a2 = _bay_wall(box, back)
+    for index, name in enumerate(("plaque", "plank")):
+        furnish_into(layout, f"fittings:{name}", stall, name,
+                     a1=a1, a2=a2, t=0.3 + 0.4 * index,
+                     height_player_heights=0.9)
+    #: Floor-aligned: it lies flat on the ceiling and cannot hang on a wall.
+    #: `furniture.place` is what enforces that, from the tile's own cstat.
+    furnish_into(layout, "fittings:ceiling_plate", stall, "ceiling_plate",
+                 local=_local(section_box or box, box, 0.4, 0.5, back))
+
+
+def tables(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
+    """Tables as raised volumes at the campaign rise, not as sprites."""
+    wall, floor, ceiling = skin
+    out = _outward(back, box)
+    bx0, by0, bx1, by1 = back
+    at = 512
+    for index in range(2):
+        low = by0 + at
+        high = low + TABLE_SIDE
+        if high > by1 - 256:
+            break
+        _alcove(layout, stall, box, back, f"tables:{index}",
+                low=low, high=high, depth=512, skin=skin,
+                floor_z=floor_z, ceiling_z=ceiling_z)
+        near = (box[2] if out > 0 else box[0]) + out * 512
+        x0 = min(near, near + out * TABLE_SIDE)
+        x1 = max(near, near + out * TABLE_SIDE)
+        _volume(layout, f"tables:{index}:top", (x0, low, x1, high),
+                tile=SHELF_TILES[0], floor_z=floor_z, rise=TABLE_RISE,
+                ceiling_z=ceiling_z)
+        layout.add_connection(
+            f"tables:{index}:face", f"tables:{index}:alcove",
+            f"tables:{index}:top",
+            a1=(near, low), a2=(near, high), min_width=384)
+        at += TABLE_SIDE + 1024
+
+
+def graveyard(layout, stall, box, back, *, floor_z, ceiling_z, skin,
+              section_box=None, **_):
+    """The headstone set, each seated on its own mined campaign height."""
+    _row_on_floor(layout, stall,
+                  ("headstone_rip", "headstone_cross", "headstone_flame",
+                   "tomb"), box, section_box or box, back,
+                  prefix="graveyard")
+
+
+# -- the shop ---------------------------------------------------------------
+
+def register(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
+    """A shop counter, to the campaign's own five-clause rule for one."""
+    counter(layout, stall, box, back, floor_z=floor_z, ceiling_z=ceiling_z,
+            skin=skin)
+
+
+def shelf_runs(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
+    """Two shelf runs, each a shallow sector wearing a shelf tile.
+
+    Both tiles are owner anchors graded STRONG for "shelf", so both may be
+    named. They are worn as wall texture; v1 threw one at a wall as a sprite.
+    """
+    wall, floor, ceiling = skin
+    out = _outward(back, box)
+    bx0, by0, bx1, by1 = back
+    depth = 512
+    near = bx0 if out > 0 else bx1 - depth
+    span = (by1 - by0 - 1536) // len(SHELF_TILES)
+    for index, tile in enumerate(SHELF_TILES):
+        low = by0 + 512 + index * (span + 256)
+        high = low + span
+        if high > by1 - 256:
+            break
+        _shallow(layout, f"shelf_runs:{index}", (near, low, near + depth, high),
+                 tile=tile, floor_z=floor_z - PLAYER_HEIGHT // 2,
+                 ceiling_z=ceiling_z, ceiling_picnum=ceiling,
+                 purpose=f"shelf runs: a shallow sector wearing tile {tile}, "
+                         f"owner anchor, binding strong")
+        face = near if out > 0 else near + depth
+        layout.add_connection(
+            f"shelf_runs:c{index}", stall, f"shelf_runs:{index}",
+            a1=(face, low), a2=(face, high), min_width=384)
+
+
+def display_row(layout, stall, box, back, *, floor_z, ceiling_z, skin,
+                section_box=None, **_):
+    """Three mannequins, standing on the floor they are seated to."""
+    _row_on_floor(layout, stall, ("mannequin",) * 3, box,
+                  section_box or box, back, prefix="display",
+                  across=0.3)
+
+
+# -- the street -------------------------------------------------------------
+
+def _facade(layout, stall, box, back, name, *, floor_z, ceiling_z, skin,
+            bays, openings, sign):
+    """One frontage through aperture.facade_run, at a given width."""
+    wall, floor, ceiling = skin
+    out = _outward(back, box)
+    bx0, by0, bx1, by1 = back
+    edge = box[2] if out > 0 else box[0]
+    run = bays * U
+    low = (by0 + by1) // 2 - run // 2
+    a1, a2 = ((edge, low), (edge, low + run))
+    if out < 0:
+        a1, a2 = a2, a1
+    return facade_run(
+        layout, name, host_region=stall, a1=a1, a2=a2, depth=4 * U,
+        openings=[FacadeOpening(bay=b, bays=n,
+                                sign=sign if index == 0 else None)
+                  for index, (b, n) in enumerate(openings)],
+        wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
+        header_z=floor_z - 40960, sill_z=floor_z - 1024,
+        jamb_picnum=JAMB_RAIL)
+
+
+def facade_narrow(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
+    """The six-bay frontage: two openings, one sign."""
+    _facade(layout, stall, box, back, "facade_narrow",
+            floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
+            bays=6, openings=((1, 1), (3, 1)), sign="SHOP")
+
+
+def facade_wide(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
+    """The same frontage at ten bays: three openings, the datums unchanged."""
+    _facade(layout, stall, box, back, "facade_wide",
+            floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
+            bays=10, openings=((1, 1), (3, 1), (6, 2)), sign="WIDE")
+
+
+# -- the sewer --------------------------------------------------------------
+
+def pipe_run(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
+    """A wet service passage you duck along, four pipe tiles down it."""
+    sewer_wall(layout, stall, box, back, floor_z=floor_z,
+               ceiling_z=ceiling_z, skin=skin)
+
+
+def sewer_door(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
+    """The technical door face on a working z-motion door."""
+    _z_door(layout, stall, box, back, "sewer_door",
+            floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
+            jamb=SEWER_DOOR, threshold=THRESHOLD,
+            beyond="the plant room the passage serves",
+            beyond_skin=(SEWER_PIPE[2], 294, 285),
+            interaction="direct", open_time=8)
+
+
+# -- the park ---------------------------------------------------------------
+
+def ground(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
+    """Grass and dirt: the two-tile ground vocabulary, with a seam."""
+    wall, floor, ceiling = skin
+    grass = _slice(back, box, 0, 2 * U)
+    dirt = _slice(back, box, 2 * U, U + U // 2)
+    layout.add_region(
+        "ground:grass", _rect(grass),
+        floor_z=floor_z, ceiling_z=ceiling_z,
+        wall_picnum=GRASS, floor_picnum=GRASS, ceiling_picnum=ceiling,
+        parallax_ceiling=True,
+        intent={"purpose": "ground: grass, owner anchor 361, binding strong"})
+    layout.add_region(
+        "ground:dirt", _rect(dirt),
+        floor_z=floor_z, ceiling_z=ceiling_z,
+        wall_picnum=DIRT, floor_picnum=DIRT, ceiling_picnum=ceiling,
+        parallax_ceiling=True, declared_zero_exit=True,
+        intent={"purpose": "ground: the dirt patch, owner anchor 270"})
+    a1, a2 = _span(box, back)
+    layout.add_connection("ground:c0", stall, "ground:grass",
+                          a1=a1, a2=a2, min_width=U // 2)
+    b1, b2 = _far(grass, back, box)
+    layout.add_connection("ground:c1", "ground:grass", "ground:dirt",
+                          a1=b1, a2=b2, min_width=U // 2)
+
+
+def trees(layout, stall, box, back, *, floor_z, ceiling_z, skin,
+          section_box=None, **_):
+    """The four tree kinds, each at its own mined campaign height."""
+    for index, name in enumerate(("oak", "elm", "pine", "deadwood")):
+        furnish_into(layout, f"trees:{name}", stall, name,
+                     local=_local(section_box or box, box,
+                                  0.25 + 0.25 * (index % 2),
+                                  0.15 + 0.23 * index, back))
+
+
+def straw(layout, stall, box, back, *, floor_z, ceiling_z, skin,
+          section_box=None, **_):
+    """A heap of straw at the height the campaign draws it."""
+    _row_on_floor(layout, stall, ("straw",) * 2, box,
+                  section_box or box, back, prefix="straw",
+                  across=0.35)
