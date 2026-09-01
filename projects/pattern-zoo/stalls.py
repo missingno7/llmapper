@@ -109,6 +109,7 @@ CH_SWITCHED_DOOR = 300
 CH_CRACK = 301
 CH_GATE = 302
 CH_CURTAIN = 303
+CH_CURTAIN_PAIR = 311
 CH_SHELF = 304
 CH_DOUBLE_SLIDE = 307
 CH_PLAIN_SLIDE = 308
@@ -700,6 +701,48 @@ def shelf_secret(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
                          height_player_heights=0.55,
                          behavior=motion.transmitter(channel=CH_SHELF),
                          **SWITCH)
+
+
+def curtain_pair(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
+    """TWO leaves converging from both jambs -- the other half of the family.
+
+    `DOOR-CURTAINSD.map` s2, and 12 of the campaign's 39 curtains. The tips
+    carry OPPOSITE flags, which is the whole difference: `0x4000` moves with
+    the travel and `0x8000` against it, so the leaves approach each other
+    instead of travelling together. A pair flagged the same way is a curtain
+    that slides sideways as one piece.
+    """
+    wall, floor, ceiling = skin
+    out = _outward(back, box)
+    bx0, by0, bx1, by1 = back
+    mid = (by0 + by1) // 2
+    width = 3 * U
+    low, high = mid - width // 2, mid + width // 2
+    near = box[2] if out > 0 else box[0]
+    far = near + out * CURTAIN_DOORWAY
+    x0, x1 = min(near, far), max(near, far)
+
+    built = mechanism_curtain(
+        layout, "curtain_pair", opening=(x0, low, x1, high), axis="y",
+        channel=CH_CURTAIN_PAIR, leaf_region="curtain_pair:leaf",
+        floor_z=floor_z, ceiling_z=ceiling_z, leaves=2,
+        frame_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
+        declared_zero_exit=True)
+    layout.declare_motion("curtain_pair:leaf", [])
+    layout.add_connection("curtain_pair:c0", stall, "curtain_pair:leaf",
+                          a1=(near, low), a2=(near, high), min_width=384)
+    stage = _slice(back, box, CURTAIN_DOORWAY, 2 * U)
+    stage = (stage[0], low, stage[2], high)
+    layout.add_region(
+        "curtain_pair:behind", _rect(stage),
+        floor_z=floor_z - PLAYER_HEIGHT // 4, ceiling_z=ceiling_z,
+        wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
+        declared_zero_exit=True,
+        intent={"purpose": "two-leaf curtain: what the pair is drawn across"})
+    layout.add_connection("curtain_pair:c1", "curtain_pair:leaf",
+                          "curtain_pair:behind",
+                          a1=(far, low), a2=(far, high), min_width=384)
+    return built
 
 
 def casket(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):

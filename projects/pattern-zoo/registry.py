@@ -430,6 +430,21 @@ def sections() -> list[Section]:
                     bay=5 * 1024, depth=6 * 1024,
                     expect=Expect(sector_type=614, rx_id=304)),
                 Exhibit(
+                    label="CURTAIN PAIR",
+                    about="TWO leaves converging from both jambs -- the "
+                          "other half of the curtain family",
+                    try_this="push the cloth and watch the two leaves come "
+                             "TOWARD each other. Their tips carry opposite "
+                             "flags; a pair flagged the same way would slide "
+                             "sideways as one piece",
+                    provenance="Vanilla/DOOR-CURTAINSD.map s2, and 12 of the "
+                               "campaign's 39 type-614 sectors wearing "
+                               "146/147 (26 are one-leaf, 1 is E2M1 s95 with "
+                               "three flags)",
+                    build=stalls.curtain_pair, prefix="curtain_pair",
+                    bay=5 * 1024, depth=5 * 1024,
+                    expect=Expect(sector_type=614, rx_id=311)),
+                Exhibit(
                     label="CURTAIN",
                     about="an internal FIN drawn across its own doorway -- "
                           "the fabric stretching IS the animation",
