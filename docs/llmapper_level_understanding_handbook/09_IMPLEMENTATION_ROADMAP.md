@@ -1950,6 +1950,106 @@ instead of firing an edge.
 **The rule that follows: consult maps/blood/mechanism FIRST for any mechanism
 question, and fixture what you consult.**
 
+## The curriculum, mined, 2026-09-01
+
+`maps/blood/mechanism/` is a taught course, and it ships with its own
+981-page manual (`xmapedit.pdf`, XMAPEDIT 3rd ed. 2025). 136 maps mined,
+1291 constructs read, 16 laws with detectors, in
+`knowledge/blood/design/mechanism-curriculum-v1.json` and
+`reports/blood-mechanism-curriculum.md`. `Modern/` is deliberately unmined:
+it is the NBlood-extension dialect and mining it as vanilla would put
+extension behaviour into base-engine laws. It is a queued phase.
+
+Five of the sixteen laws CORRECT this project rather than extend it, and
+three of those correct work from the run immediately before.
+
+**The pose is not a convention, it is what the loader does.** `trInit`
+translates a moving sector by -65536 of the marker delta, records THAT as the
+base with `setBaseWallSect`, and only then applies the sector's own busy
+(triggers.cpp:2224-2245). So the outline saved in a map is the pose at busy
+65536 -- state ON -- always, whatever the author believed they were drawing,
+and the OFF pose is the drawn outline minus the delta. Confirmed to the unit
+on DOOR-CURTAINS s3. `motion.off_pose` computes it and `motion.drawn_pose` is
+deprecated to a constant.
+
+**A slide reads only the difference between its markers.** `TranslateSector`
+moves each base point by `interpolate(m1, m2, busy) - m1`, so the pair's
+absolute position on the grid is free -- 196 of the curriculum's mechanisms
+place the pair at the two poses and 52 park it elsewhere, and both drive the
+sector identically. The old `drawn_pose` compared a moved vertex against the
+markers' absolute coordinates and called the answer a pose; for the 52 it was
+measuring noise. It is now `marker_convention`, which reports which
+convention is in use and claims nothing more. A ROTATE is different and must
+not be read the same way: its single marker is the PIVOT, absolute position
+mattering, and its `ang` is the ON angle interpolated from 0.
+
+**The button is the surface you touch.** The tutorials do not wire a shove
+with the sector's `trigger_wall_push`. They put an XWALL on each face you are
+meant to push -- type 0 Decoration, tx on the mechanism's channel, Toggle,
+Trigger On Push -- and the sector merely RECEIVES (manual p.239;
+DOOR-CURTAINS s3 walls 38/39/40, whose sector's entire XSECTOR is rx 100, two
+busy times and the marker pair). A commit of mine claimed s3 carries
+`trigger_wall_push`. It does not. `motion.wall_button` and
+`PlanarLayout.wire_wall` build it the tutorial's way, and the payoff is
+twofold: the button is the cloth rather than the whole doorway, and the
+mechanism's one `tx` slot stays free for its downstream effects.
+
+**The edge rule binds switches, not senders.** `SetSpriteState` gates
+`evSend` on triggerOn/triggerOff, so a toggle, one-way or padlock switch with
+neither flag sends nothing -- but a kSwitchCombo sends from its own arm of
+`OperateSprite`, `if (command == kCmdLink && txID > 0)`, outside those guards,
+and kGenTrigger relays and sector-sound sprites transmit by other paths
+entirely. `motion.transmitter` refused all of them, which would have refused
+the tutorial's own relay. The curriculum's six edgeless switches are all
+combination switches on command 5, exactly as the source predicts.
+
+**Motion crossing a storage boundary is the NORM.** 94 of the curriculum's
+swept mechanisms deform more than their own sector, because `dragpoint` moves
+a vertex for every wall incident on it. We treated that as pathology to be
+engineered away. The isolation FIN -- every moved vertex interior to the
+sector's own outline -- is a deliberate construction for when a room must not
+be disturbed, and the same map slides other curtains straight into their
+neighbours where it does not matter. What matters is not whether a motion
+crosses a boundary but whether the construct DECLARED it, which is what
+`construct.check_declared_motion` now asks.
+
+Two more worth keeping. A **path sector fails silently**: `InitPath` prints a
+system message and returns when no marker matches its `data`, leaving a
+typed, wired, motionless sector. And **z motion is state-anchored in exactly
+the same shape as the horizontal** -- `off_floor_z`/`on_floor_z` and the
+ceiling's own pair, chosen by the same `state` -- which is why
+`mechanism.lift` needs no markers at all.
+
+### What a broken ROR looks like
+
+STACKS3DSPACES-BADROR is shipped as a negative example and a reading that
+passes it is wrong. The manual's rules (p.364-365) are congruent halves, 504
+on both facing planes, markers pegged to those planes and not floating,
+`data_1` pairing the links, never two links visible at once, and no
+over-complicated link sector. BADROR passes the first four. What separates it
+is the last: its two link sectors are the only CONCAVE ones among the working
+examples, ten-wall outer loops with the alcoves cut into the boundary, where
+ROR1 and ROR2 keep four- and six-wall convex outer loops and put their
+complexity in inner loops.
+
+That check is a RISK, not a rule, and it is reported as one: `STACKS3DSPACES`
+itself has two concave link sectors and ships as a working example. The
+honest statement is that concavity separates BADROR from the two maps built
+to demonstrate correctness, and not from everything.
+
+### A gate that could not fail, removed
+
+`swept_state` used to report a mechanism sitting away from its drawn outline
+at load. Under the engine law that is not measurable: the base is DERIVED
+from the markers, so a state-0 sector displaces by the marker separation by
+construction and the two can never disagree. The test that was meant to catch
+a disagreement had to move a marker to provoke one, which moved the
+separation with it. It is replaced by a **clearance** check that does fail:
+at every step of the travel, does the moving outline properly cross a wall
+belonging to a sector OUTSIDE the motion set? That is a mechanism sweeping
+through standing geometry, the fault the rotors were always suspected of and
+nothing ever checked.
+
 ## The demonstration maps, and two things they said plainly
 
 `maps/blood/mechanism/` holds thirty-odd official XMapEdit tutorial maps, one
