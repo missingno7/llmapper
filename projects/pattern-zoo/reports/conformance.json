@@ -2,9 +2,29 @@
   "$schema": "llmapper.pattern-zoo-conformance",
   "schema_version": 1,
   "map": "D:/Games/DOS/llmapper/projects/pattern-zoo/level/pattern-zoo.MAP",
-  "constructs_checked": 13,
-  "conforming": 13,
+  "constructs_checked": 14,
+  "conforming": 14,
   "results": [
+    {
+      "region": "casket:grave",
+      "sector": 26,
+      "construct": "planar door sector 26",
+      "conforms": true,
+      "measured": {
+        "shape": "boundary re-partition",
+        "flagged": 1,
+        "re_partitions_with": 25,
+        "step_plane": "ceiling",
+        "lid_step": 1024,
+        "dialect_motor": "hole",
+        "dialect_flags": "both",
+        "swept_areas": [
+          262144.0,
+          4194304.0
+        ]
+      },
+      "deviations": []
+    },
     {
       "region": "casket:hole",
       "sector": 24,
@@ -63,8 +83,8 @@
     },
     {
       "region": "plain_slide:gate",
-      "sector": 27,
-      "construct": "sprite payload sector 27",
+      "sector": 28,
+      "construct": "sprite payload sector 28",
       "conforms": true,
       "measured": {
         "leaves": 1,
@@ -142,8 +162,8 @@
     },
     {
       "region": "shelf_secret:gate",
-      "sector": 29,
-      "construct": "sprite payload sector 29",
+      "sector": 30,
+      "construct": "sprite payload sector 30",
       "conforms": true,
       "measured": {
         "leaves": 2,
@@ -159,8 +179,8 @@
     },
     {
       "region": "sliding_gate:gate",
-      "sector": 73,
-      "construct": "sprite payload sector 73",
+      "sector": 74,
+      "construct": "sprite payload sector 74",
       "conforms": true,
       "measured": {
         "leaves": 2,
@@ -176,8 +196,8 @@
     },
     {
       "region": "turnstile_pair:a",
-      "sector": 54,
-      "construct": "turnstile sector 54",
+      "sector": 55,
+      "construct": "turnstile sector 55",
       "conforms": true,
       "measured": {
         "blades": 4,
@@ -207,8 +227,8 @@
     },
     {
       "region": "turnstile_pair:b",
-      "sector": 55,
-      "construct": "turnstile sector 55",
+      "sector": 56,
+      "construct": "turnstile sector 56",
       "conforms": true,
       "measured": {
         "blades": 4,
@@ -238,8 +258,8 @@
     },
     {
       "region": "turnstile_same:a",
-      "sector": 63,
-      "construct": "turnstile sector 63",
+      "sector": 64,
+      "construct": "turnstile sector 64",
       "conforms": true,
       "measured": {
         "blades": 4,
@@ -269,8 +289,8 @@
     },
     {
       "region": "turnstile_same:b",
-      "sector": 64,
-      "construct": "turnstile sector 64",
+      "sector": 65,
+      "construct": "turnstile sector 65",
       "conforms": true,
       "measured": {
         "blades": 4,

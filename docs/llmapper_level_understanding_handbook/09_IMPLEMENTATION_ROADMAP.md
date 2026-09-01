@@ -1845,6 +1845,50 @@ The intuitive story is not what those fields say, and the code records the
 measurement rather than forcing the story onto it.
 
 
+## The demonstration maps, and two things they said plainly
+
+`maps/blood/mechanism/` holds thirty-odd official XMapEdit tutorial maps, one
+mechanism each -- #SLDOOR, #SWDOOR, #STACK, #TYPE600/602/613/616/617,
+#REVDOOR, #ELEVATR, #PATHSEC and the rest -- beside the owner's own
+casket.map. This project had never read one of them, and both defects the
+owner then found by walking are stated outright in the first two opened.
+
+**A transmitter sends because it reports an EDGE, not because it has a
+channel.** `SetSpriteState` calls `evSend` only inside
+
+```c
+    triggers.cpp:100  if (pXSprite->txID) {
+                          if (command != kCmdLink && pXSprite->triggerOn
+                              && pXSprite->state)  evSend(...);
+                          if (command != kCmdLink && pXSprite->triggerOff
+                              && !pXSprite->state) evSend(...);
+```
+
+so a switch with a valid `tx_id`, a valid `command` and a valid
+`trigger_push` but neither edge flag flips its own state and sends NOTHING.
+The pattern zoo shipped five of them. Every field is individually valid, no
+static reading of the finished map can tell, and the owner found them by
+pushing each one. `#TYPE600.MAP`'s canonical switch is type 21 on picnum
+1046 with `trigger_on` and a 30-tenth `wait_time` so it springs back.
+Registered as `transmitter-reports-an-edge`: 13 of 2234 campaign
+transmitters, an error-tier rule.
+
+**And the canonical doors have no switch at all.** #SLDOOR and #SWDOOR carry
+`trigger_wall_push` on the moving SECTOR and no rx_id: you push the door
+itself. The route is orthogonal to the channel, which is what the grammar
+said and what the constructors did not offer.
+
+**A stack is marked on BOTH halves.** #STACK.MAP puts floor picnum 504 on
+the upper sector and ceiling picnum 504 on the lower, and the oracle does the
+same on s3 and s6. Marking only the upper -- which is what the zoo did --
+leaves the view from below looking at a solid ceiling.
+
+**A casket is FOUR sectors in TWO planes.** s2|s3 is a lid in the upper
+room's floor and s5|s6 its mirror in the lower room's ceiling, both on rx 100
+with the same travel, so the ceiling below opens as the floor above does.
+Building only the upper plane leaves a hole in the floor with an unbroken
+ceiling under it, which is what the owner saw.
+
 ## The motion machinery, factored, 2026-09-01
 
 `bloodmap/motion.py` holds the four primitives every Blood motion mechanism
