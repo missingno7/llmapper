@@ -128,16 +128,27 @@ class MotionMarkerTest(unittest.TestCase):
         self.assertEqual(marker_pair(disk, 2)["at"], "on")
         self.assertEqual(marker_pair(disk, 5)["at"], "off")
         # The saved outline IS the ON pose -- trInit rebases by the whole
-        # marker delta before recording the base -- so the OFF pose is the
-        # drawn outline minus that delta, and nothing needs to be inferred
-        # from where the markers happen to sit.
+        # marker delta before recording the base -- so the OFF pose is busy
+        # 0. Only the MOTION SET moves to get there, which is why this asks
+        # the sweep rather than subtracting the delta from every point: the
+        # oracle's lids resize, they do not travel bodily.
+        from bloodmap.motion_sim import blood_poses
+
         for sector_id in (2, 5):
-            drawn = blood_sector_walls(disk, sector_id)
-            travel = marker_pair(disk, sector_id)["travel"]
-            self.assertEqual(
-                off_pose(disk, sector_id),
-                [(x - travel[0], y - travel[1]) for x, y in drawn],
-                f"s{sector_id}")
+            #: `blood_poses` is (OFF, ON) whatever the sector RESTS at. A
+            #: sweep's own first frame is the rest pose, so s2 -- which
+            #: declares state 1 and therefore starts at ON -- would come back
+            #: with its two states swapped if this asked the sweep directly.
+            off, on = blood_poses(disk, sector_id)
+            self.assertEqual(off_pose(disk, sector_id),
+                             [(int(round(x)), int(round(y))) for x, y in off],
+                             f"s{sector_id}")
+            self.assertNotEqual(off, on, f"s{sector_id}")
+            #: the ON pose is the outline as DRAWN, which is the trInit law
+            self.assertEqual([(int(round(x)), int(round(y))) for x, y in on],
+                             [(int(x), int(y))
+                              for x, y in blood_sector_walls(disk, sector_id)],
+                             f"s{sector_id}")
 
     def test_a_marker_may_stand_where_it_does_not_belong(self):
         # `owner` is the sector a marker CONTROLS. E1M1's casket puts its

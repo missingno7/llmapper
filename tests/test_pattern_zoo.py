@@ -294,7 +294,23 @@ class GeneratedMapTest(unittest.TestCase):
             best = max(slots, key=slots.get)
             where = {"wall": int(region.wall_picnum),
                      "floor": int(region.floor_picnum)}
-            if best.startswith("wall"):
+            if best in ("wall_two_sided", "over_picnum"):
+                #: A tile the campaign only ever puts on a TWO-SIDED wall
+                #: cannot go on the niche's walls: three of the four are
+                #: one-sided, so painting them breaks the very law this
+                #: exhibit teaches. It goes on the niche's OPENING as a
+                #: masked panel -- the only two-sided wall a niche has.
+                #: Tile 142 arrived here the moment the owner graded it
+                #: strong, and the museum shipped three violations.
+                self.assertNotEqual(where["wall"], picnum, name)
+                painted = [fields for (region_id, _edge), fields
+                           in self.layout.painted.items()
+                           if region_id == name]
+                self.assertTrue(
+                    any(int(f.get("over_picnum", 0)) == picnum
+                        for f in painted),
+                    f"{name}: no masked panel carries tile {picnum}")
+            elif best.startswith("wall"):
                 self.assertEqual(where["wall"], picnum, name)
             elif best in ("floor", "ceiling"):
                 self.assertEqual(where["floor"], picnum, name)
