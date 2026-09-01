@@ -306,6 +306,23 @@ def build_level() -> PlanarLayout:
 def main() -> int:
     layout = build_level()
     compiled = layout.compile()
+
+    #: Glaze the shop window. The pane is the masked OVERLAY of the wall
+    #: between the display box and the bay, so it can only be applied to a
+    #: compiled wall pair -- which is why this runs here and not in the stall.
+    #: The span is the display box's own footprint, and `glaze` skips
+    #: one-sided walls inside it: a window needs something behind it.
+    from bloodmap import glass
+
+    display = compiled.allocations.get("shop_window:display")
+    if display is not None:
+        walls = [compiled.level.walls[w]["fields"] for w in display.wall_ids]
+        xs = [int(f["x"]) for f in walls]
+        ys = [int(f["y"]) for f in walls]
+        report = glass.glaze(compiled.level,
+                             [(min(xs), min(ys), max(xs), max(ys))])
+        print("shop window glass:", report)
+
     disk = compiled.level.to_disk_map()
     here = pathlib.Path(__file__).resolve().parent
     out = here / "level" / "pattern-zoo.MAP"

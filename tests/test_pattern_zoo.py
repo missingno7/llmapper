@@ -37,9 +37,15 @@ except Exception:
 
 
 #: Modules whose public constructors the zoo is answerable for.
+#: The modules whose public constructors owe the zoo an exhibit. A module
+#: missing from this tuple is a module the conformance rule does not bind,
+#: which is how a promotion can land with nothing holding it to anything --
+#: `bloodmap.glass` was promoted out of the city and this list did not know,
+#: so it was covered by nothing until it was added.
 COVERED_MODULES = ("bloodmap.mechanism", "bloodmap.vocabulary",
                    "bloodmap.doors", "bloodmap.aperture",
-                   "bloodmap.furniture", "bloodmap.owner_anchors")
+                   "bloodmap.furniture", "bloodmap.owner_anchors",
+                   "bloodmap.glass", "bloodmap.street")
 
 
 def public_constructors():

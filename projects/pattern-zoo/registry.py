@@ -537,6 +537,29 @@ def sections() -> list[Section]:
                                "access. E1M1 sector 80 is the worked example",
                     build=stalls.register, prefix="register", bay=4 * 1024),
                 Exhibit(
+                    label="SHOP WINDOW",
+                    about="a shopfront pane you can shoot out, with a "
+                          "display box behind it",
+                    try_this="SHOOT the glass. kWallGib is the one mechanism "
+                             "in Blood that REOPENS a blocked wall -- the "
+                             "pane stops blocking, stops catching shots and "
+                             "stops being drawn, and you can step into the "
+                             "display. Everything else in the engine shuts "
+                             "things",
+                    provenance="E6M1's shop front, read to the field: "
+                               "over_picnum 266 on a two-sided wall, cstat "
+                               "0x00d5, XWALL trigger_vector with data 12. "
+                               "NBlood actor.cpp case 4 -> trTriggerWall "
+                               "kCmdWallImpact clears cstat 1|16|64 on BOTH "
+                               "sides. Promoted out of blood-city's glass.py",
+                    covers=("bloodmap.glass.glaze",),
+                    build=stalls.shop_window, prefix="shop_window",
+                    bay=5 * 1024, depth=5 * 1024,
+                    hand_composed=(
+                        "the display box: a room is a room, and the glass "
+                        "pass glazes the wall between it and the bay",),
+                    expect=Expect(reads_as="a pane that can be shot out")),
+                Exhibit(
                     label="SHELF RUNS",
                     about="shelves as WALL TEXTURE on shallow sectors, in the "
                           "three shop tiles",
@@ -769,9 +792,46 @@ def section_of(label: str) -> Section:
 
 
 SKIP: dict[str, str] = {
+    # --- bloodmap.glass: one exhibit covers `glaze`, the rest are its parts
+    "bloodmap.glass.attach_xwall":
+        "the record-writing half of glaze; a pane without it is the defect "
+        "pane_faults reports, and the exhibit is glazed through glaze itself",
+    "bloodmap.glass.holder":
+        "declares the pane's two sides as a mediation -- a claim about the "
+        "construct, not a thing that stands in a bay",
+    "bloodmap.glass.pane_faults":
+        "a check, not a constructor; it runs over the built zoo",
+    "bloodmap.glass.breaks_to":
+        "answers what a cstat becomes after the break, for reading a map's "
+        "post-break topology without running the engine",
+    # --- bloodmap.street: a street is a district-scale thing -----------------
+    # The zoo is a gallery of bays off a spine. It has no street runs and no
+    # district seams, so there is nothing here for a carriageway to be laid
+    # ON: the exhibit for street anatomy is Gravesend's own west street, in
+    # projects/blood-city/reports/wave1b-review.md. Exhibiting a road in a
+    # corridor of bays would be the "mechanism in a generic box" the owner
+    # rejected the zoo's v2 for.
+    "bloodmap.street.carriageway":
+        "district-scale: the zoo has no street runs to lay one on",
+    "bloodmap.street.sidewalk_for":
+        "a sizing rule behind carriageway",
+    "bloodmap.street.kerb_junction":
+        "declares the kerb as a mediation; a claim, not a thing to build",
+    "bloodmap.street.lamp_slots":
+        "derives positions along a run; the zoo has no runs",
+    "bloodmap.street.porch_slots":
+        "derives porches from a street's doors; district-scale",
+    "bloodmap.street.wants_porch":
+        "the porch threshold rule behind porch_slots",
+    "bloodmap.street.runs_from_plan":
+        "reads a city plan's circulation graph; the zoo has no plan",
     "bloodmap.mechanism.turnstile_spec":
         "the pure-facts function behind turnstile; the stall exercises the "
         "constructor that consumes it",
+    "bloodmap.mechanism.curtain_spec":
+        "the pure-facts function behind curtain; the CURTAIN stall exercises "
+        "the constructor that consumes it, and blood-city's curtains.py is "
+        "the tree-side consumer",
     "bloodmap.mechanism.leaf_repeat_for":
         "a sizing helper, not a thing to stand in front of",
     "bloodmap.mechanism.blade_offset":

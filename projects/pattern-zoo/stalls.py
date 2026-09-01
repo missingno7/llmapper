@@ -39,6 +39,7 @@ from bloodmap.doors import z_motion_door
 from bloodmap.lettering import write_on_wall
 from bloodmap.furniture import furnish, mounting_for, place as furnish_into
 from bloodmap import keys, motion
+from bloodmap.glass import holder as glass_holder
 from bloodmap.mechanism import (
     PLAYER_HEIGHT, curtain as mechanism_curtain,
     lift as mechanism_lift, planar_door,
@@ -1455,6 +1456,58 @@ def register(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
     """A shop counter, to the campaign's own five-clause rule for one."""
     counter(layout, stall, box, back, floor_z=floor_z, ceiling_z=ceiling_z,
             skin=skin)
+
+
+def shop_window(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
+    """A shopfront pane you can shoot out, with goods behind it.
+
+    `bloodmap.glass`, promoted out of the city where it had been glazing
+    Gravesend for several phases. E6M1's own recipe: the glass is the masked
+    OVERLAY of a two-sided wall, and an XWALL with `trigger_vector` is what
+    lets a shot clear the blocking, hitscan and masked bits on both sides.
+
+    The exhibit is the whole construct, not the tile. A pane needs a HOLDER
+    -- two rooms with the wall between them -- because a window is a
+    relationship and not a property: glaze a one-sided wall and you have a
+    translucent pier with nothing behind it. So there is a display box here
+    with something standing in it, and the pane is the wall between the box
+    and the bay you walk in.
+
+    The break is the reason it earns a bay of its own: kWallGib is the ONE
+    mechanism in Blood that reopens a blocked wall. Everything else shuts
+    things.
+    """
+    wall, floor, ceiling = skin
+    out = _outward(back, box)
+    bx0, by0, bx1, by1 = back
+    mid = (by0 + by1) // 2
+    width = 3 * U
+    low, high = mid - width // 2, mid + width // 2
+    #: Measured off the BAY, the way the other back-strip exhibits are: the
+    #: box hangs off the bay's own back edge, so its near face is the wall
+    #: the pane goes in and its far face is not the section's.
+    near = box[2] if out > 0 else box[0]
+    far = near + out * (2 * U)
+    dx0, dx1 = min(near, far), max(near, far)
+
+    #: The display box: what the glass is transparent TO.
+    layout.add_region(
+        "shop_window:display", _rect((dx0, low, dx1, high)),
+        floor_z=floor_z - PLAYER_HEIGHT // 3, ceiling_z=ceiling_z,
+        wall_picnum=wall, floor_picnum=floor, ceiling_picnum=ceiling,
+        declared_zero_exit=True,
+        intent={"purpose": "shop window: the display box behind the pane"})
+    #: The pane itself is the wall between the bay and the box, which the
+    #: glass pass turns into glass after the layout compiles.
+    layout.add_connection("shop_window:c0", stall, "shop_window:display",
+                          a1=(near, low), a2=(near, high), min_width=U)
+    #: and something to look at through it
+    for index, local in enumerate(((0.35, 0.4), (0.65, 0.6))):
+        layout.place_on_floor(f"shop_window:goods{index}",
+                              "shop_window:display", local=local,
+                              **furnish("urn"))
+    return glass_holder("shop_window:display", stall,
+                        (near, low, near + 64, high))
 
 
 def shelf_runs(layout, stall, box, back, *, floor_z, ceiling_z, skin, **_):
