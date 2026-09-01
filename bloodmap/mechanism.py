@@ -637,6 +637,10 @@ PLANAR_MIN_DEPTH = 128
 MOTION_MIN_DEPTH = 128
 #: How far a curtain's fabric stands clear of its frame at each end, so
 #: its moving vertices are the frame's wall interiors and not its corners.
+#: DOOR-CURTAINS s3: a 64-wide tab in a 256 doorway, drawn 128 out.
+CURTAIN_FIN_WIDTH = 64
+CURTAIN_RETRACTED = 128
+CURTAIN_BUSY = 15
 CURTAIN_SEAM = 256
 #: Owner anchor 195: the inside faces of jambs, which is what a seam is.
 #: E1M1 s125: the strip is 128 deep and its shoulders 64, so the fabric
@@ -691,166 +695,121 @@ def curtain(
     layout: PlanarLayout,
     name: str,
     *,
-    frame: tuple[int, int, int, int],
+    opening: tuple[int, int, int, int],
     axis: str,
-    travel: int,
     channel: int,
     leaf_region: str,
     floor_z: int,
     ceiling_z: int,
-    seam: int = CURTAIN_SEAM,
+    anchored: str = "high",
+    fin_width: int = CURTAIN_FIN_WIDTH,
+    retracted: int = CURTAIN_RETRACTED,
+    state: int = 0,
     picnum: int = CURTAIN_PICNUM,
-    depth: int = CURTAIN_DEPTH,
-    shoulder_depth: int = CURTAIN_SHOULDER,
-    host_side: str = "low",
-    busy_out: int = CURTAIN_BUSY_OUT,
-    busy_back: int = CURTAIN_BUSY_BACK,
-    route: str = "wall_button",
+    busy_out: int = CURTAIN_BUSY,
+    busy_back: int = CURTAIN_BUSY,
+    route: str = "remote",
     **region_kwargs,
 ) -> dict:
-    """A curtain: a thin sector whose own LENGTH changes as it gathers.
+    """A curtain: an internal FIN that extends across its own doorway.
 
-    Composition of the four primitives, adding only what composition decides.
+    Built to `maps/blood/mechanism/Vanilla/DOOR-CURTAINS.map`, which is the
+    tutorial for exactly this and settles two things this project had wrong.
 
-    * **marked-wall motion** -- the two end caps carry OPPOSITE flags, so one
-      advances while the other retreats and the sector's own extent shrinks.
-      `motion.payload_shape` calls that "the sector resizes itself" and finds
-      104 of them across the campaign. The texture on the long faces is
-      squashed by exactly that much, and the deformation IS the animation.
-    * **motion markers** -- from the CLOSED pose to the OPEN pose, so the
-      curtain rests closed and opening gathers it. The zoo shipped them the
-      other way round: rest read open and "opening" stretched the fabric.
-    * **control wiring** -- `route`, with the verb checked against the state
-      the leaf is saved in.
-    * no ROR.
+    **The fabric is a FIN inside the sector's own outline**, not a separate
+    thin sector and not a pair of caps closing on each other. s3 is eight
+    walls: the four sides of the doorway, then the outline runs back along
+    the anchored edge into a narrow tab -- 64 wide of a 256 opening, centred
+    -- whose free END is the one flagged wall. Extending it drags that end
+    across the doorway and the tab's two side walls STRETCH, which is the
+    fabric being drawn. Because every vertex that moves is interior to this
+    sector's own outline, nothing outside it can be deformed: the isolation
+    seam is part of the sector, not a split of somebody else's wall.
 
-    The composition fact this adds is the MOTION APERTURE. The leaf is built
-    `seam` units clear of its frame at each end, so its moving vertices are
-    interior points of the frame's walls rather than the frame's corners. Any
-    wall incident on a moved vertex is dragged -- `dragpoint` walks the whole
-    fan -- so without that inset the deformation reaches whatever the frame
-    is cut into. E1M1's curtain has the seam and reaches only its own alcove;
-    the zoo's did not and deformed the corners of the room.
+    **Markers are state-anchored.** Type 3 is the position for state OFF and
+    type 4 for state ON, the geometry is DRAWN at the ON pose, and `state`
+    says which one it snaps to at load. s3's fin tip is saved at y -1152,
+    exactly where its type-4 marker sits, and its type-3 marker is away at
+    -2048 where the fabric will be when drawn across. With `state` 0 -- the
+    tutorial's default, and this one's -- the curtain comes up CLOSED.
+
+    So `retracted` is how far the tab protrudes as DRAWN (open), and the OFF
+    marker is at the far side of the opening (closed). Getting that pair the
+    wrong way round is what ran the zoo's curtains backwards.
     """
     if axis not in ("x", "y"):
         raise MechanismError(f"{name}: axis is 'x' or 'y', not {axis!r}")
-    if not travel:
-        raise MechanismError(f"{name}: a curtain with no travel is a wall")
-    x0, y0, x1, y1 = (int(v) for v in frame)
-    low, high = (x0, x1) if axis == "x" else (y0, y1)
-    span = high - low
-    inner_low, inner_high = low + int(seam), high - int(seam)
-    if inner_high - inner_low < 2 * BODY_WIDTH:
+    if anchored not in ("low", "high"):
+        raise MechanismError(f"{name}: anchored is 'low' or 'high'")
+    if state not in (0, 1):
+        raise MechanismError(f"{name}: state is 0 or 1")
+    x0, y0, x1, y1 = (int(v) for v in opening)
+    #: `along` is the way the fabric draws; `across` is the doorway's own
+    #: thickness, which the fin sits inside.
+    if axis == "y":
+        a0, a1, c0, c1 = y0, y1, x0, x1
+    else:
+        a0, a1, c0, c1 = x0, x1, y0, y1
+    if anchored == "low":
+        a0, a1 = a1, a0
+    #: a1 is now the anchored edge and a0 the far side.
+    reach = a0 - a1
+    if abs(reach) <= abs(int(retracted)):
         raise MechanismError(
-            f"{name}: a {span}-unit frame with {seam}-unit seams leaves "
-            f"{inner_high - inner_low} for the fabric, under two body widths")
-    #: Each cap travels half, toward the other, so the pair closes `travel`.
-    reach = abs(int(travel)) // 2
-    if reach * 2 >= (inner_high - inner_low) - MOTION_MIN_DEPTH:
+            f"{name}: the fin is drawn {retracted} into an opening only "
+            f"{abs(reach)} across; there is nothing for it to draw over")
+    if abs(c1 - c0) <= int(fin_width):
         raise MechanismError(
-            f"{name}: the two caps would close {reach * 2} of a "
-            f"{inner_high - inner_low}-unit fabric, leaving under "
-            f"{MOTION_MIN_DEPTH}; shorten the travel")
+            f"{name}: a {fin_width}-wide fin does not fit a "
+            f"{abs(c1 - c0)}-thick doorway")
+    step = 1 if reach > 0 else -1
+    tip = a1 + step * int(retracted)
+    middle = (c0 + c1) // 2
+    f0, f1 = middle - int(fin_width) // 2, middle + int(fin_width) // 2
 
-    def _rect(a: int, b: int) -> list[tuple[int, int]]:
-        if axis == "x":
-            return [(a, y0), (b, y0), (b, y1), (a, y1)]
-        return [(x0, a), (x1, a), (x1, b), (x0, b)]
+    def _pt(along: int, across: int) -> tuple[int, int]:
+        return (across, along) if axis == "y" else (along, across)
 
-    #: Saved CLOSED, and rested there: `trInit` reads the drawn geometry as
-    #: the pose at busy 1, so `state` 1 is what makes drawn == rest.
+    #: The tutorial's own wall order: round the doorway, then back along the
+    #: anchored edge and out into the tab.
+    outline = [_pt(a1, c0), _pt(a0, c0), _pt(a0, c1), _pt(a1, c1),
+               _pt(a1, f1), _pt(tip, f1), _pt(tip, f0), _pt(a1, f0)]
+    if _signed_area(outline) < 0:
+        outline.reverse()
+
     behavior = {
         "busy_time_a": int(busy_out), "busy_time_b": int(busy_back),
-        "busy_wave_a": 1, "busy_wave_b": 1,
-        "state": 1, "busy": 65536,
+        "state": int(state), "busy": 65536 if state else 0,
     }
     behavior.update(motion.wiring(route=route, channel=channel,
                                   command=motion.CMD_TOGGLE,
-                                  receiver_state=1))
-    #: And pushable directly, which is how the canonical doors are
-    #: worked: `#SLDOOR.MAP` and `#SWDOOR.MAP` carry `trigger_wall_push`
-    #: on the sector and have no switch at all, and E1M1's curtain puts
-    #: XWALLs on its own fabric transmitting to itself. A curtain you
-    #: cannot push is a curtain you have to find a button for.
+                                  receiver_state=int(state)))
+    #: Pushable in its own right AS WELL as wired: DOOR-CURTAINS s3 carries
+    #: rx 100 and the tutorial's doors carry `trigger_wall_push`, and the two
+    #: routes are orthogonal -- a curtain answers a switch and answers a
+    #: shove.
     behavior.update({"trigger_push": 1, "trigger_wall_push": 1,
                      "trigger_on": 1, "trigger_off": 1})
-    #: The aperture, read off E1M1 s125 wall by wall. The fabric is not a
-    #: rectangle: it is a strip whose MIDDLE is recessed deeper than its two
-    #: ends, and the flagged caps are the two steps between. The room meets
-    #: the strip along its full-length near face, whose corners are outside
-    #: the recess and therefore never move; the caps and the far face are
-    #: interior to the leaf's own outline.
-    #:
-    #:     s125:  (14848,18432)-(14848,22784)  near face, room side, unmoved
-    #:            (14912,22784)-(14912,22720)  shoulder, unmoved
-    #:            (14976,22720)                CAP, cstat 16384
-    #:            (14976,18496)                far face
-    #:            (14912,18496)                CAP, cstat 32768
-    #:
-    #: Three of those four moved vertices sit on one-sided walls with no
-    #: neighbour at all. That is what a motion aperture IS, and it is why
-    #: pushing E1M1's curtain does not deform the room around it.
-    def _pt(along: int, deep: int) -> tuple[int, int]:
-        return (deep, along) if axis == "y" else (along, deep)
-
-    #: Which end of the depth axis the room is on. Branches alternate sides
-    #: of a hub, so this cannot be assumed: get it wrong and the recess opens
-    #: away from the room and its far face lands on the room's wall.
-    span_low = x0 if axis == "y" else y0
-    span_high = x1 if axis == "y" else y1
-    if host_side not in ("low", "high"):
-        raise MechanismError(f"{name}: host_side is 'low' or 'high'")
-    step = 1 if host_side == "low" else -1
-    near_face = span_low if host_side == "low" else span_high
-    shoulder = near_face + step * int(shoulder_depth)
-    far_face = near_face + step * int(depth)
-    outline = [
-        _pt(low, near_face), _pt(high, near_face),
-        _pt(high, shoulder), _pt(inner_high, shoulder),
-        _pt(inner_high, far_face), _pt(inner_low, far_face),
-        _pt(inner_low, shoulder), _pt(low, shoulder),
-    ]
-    #: Build wants an outer loop clockwise in screen space; which way the
-    #: eight points come out depends on the axis, so it is measured rather
-    #: than assumed.
-    if _signed_area(outline) < 0:
-        outline.reverse()
     layout.add_region(leaf_region, outline, role="doorway", type=614,
                       floor_z=floor_z, ceiling_z=ceiling_z,
                       wall_picnum=int(picnum), sector_behavior=behavior,
                       **region_kwargs)
+    #: The fin's free END, and only that.
+    layout.carry_wall(leaf_region, _pt(tip, f1), _pt(tip, f0), moves="with")
 
-    #: The two caps, flagged opposite ways -- the whole mechanism. They close
-    #: toward each other, so the fabric gathers rather than sliding aside.
-    layout.carry_wall(leaf_region, _pt(inner_high, shoulder),
-                      _pt(inner_high, far_face), moves="with")
-    layout.carry_wall(leaf_region, _pt(inner_low, far_face),
-                      _pt(inner_low, shoulder), moves="against")
-
-    across = ((y0 + y1) // 2) if axis == "x" else ((x0 + x1) // 2)
-    def _point(at: int) -> tuple[int, int]:
-        return (at, across) if axis == "x" else (across, at)
-    centre = (low + high) // 2
-
-    #: Markers: CLOSED -> OPEN. The caps travel toward each other, so the
-    #: vector is the amount ONE cap moves.
     markers = motion.place_markers(
         layout, name.replace(":", "_"), driven_region=leaf_region,
-        off_at=_point(centre), on_at=_point(centre - reach), z=int(floor_z))
+        off_at=_pt(a0, middle), on_at=_pt(tip, middle), z=int(floor_z))
     return {
         "leaf": leaf_region, "channel": int(channel),
-        "frame": (low, high), "fabric": (inner_low, inner_high),
-        "seam": int(seam), "reach": reach, "markers": markers,
-        "rests": "closed",
-        #: The span the host may open onto. Wider, and the host's own walls
-        #: meet the fabric's moving ends.
-        "opening": (low, high),
-        "fabric_span": (inner_low, inner_high),
-        "far_face": far_face,
-        #: Nothing but the fabric moves, which is what the seam buys.
+        "opening": (min(a0, a1), max(a0, a1)),
+        "fin": (min(f0, f1), max(f0, f1)),
+        "anchored_at": a1, "tip_drawn_at": tip, "closed_at": a0,
+        "state": int(state), "rests": "open" if state else "closed",
+        "markers": markers,
+        #: Every moved vertex is interior to this sector's own outline.
         "declared_motion": [leaf_region],
     }
-
 
 def planar_door(
     layout: PlanarLayout,
