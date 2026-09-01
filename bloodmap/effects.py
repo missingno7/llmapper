@@ -71,10 +71,17 @@ CROUCH_HEIGHT = PLAYER_PROFILES["blood"].crouch_height or PLAYER_HEIGHT
 #: What a marked motion is told to do, and by what.
 #:
 #: `triggers.cpp:TranslateSector` interpolates the sector between two marker
-#: sprites: `marker_0` gives the rest position and angle, `marker_1` the
-#: moved one. A rotate carries one marker and turns about it; a slide
-#: carries two and travels between them.
-MARKER_REST, MARKER_MOVED = "marker_0", "marker_1"
+#: sprites. NOT a rest and a destination -- they are the two STATES.
+#: `marker_0` is the position for state OFF and `marker_1` for state ON, and
+#: `state` alone decides which one the level starts at; there is no journey
+#: and no resting end. A rotate carries one marker and turns about it, and
+#: reads it the other way round: `marker_0`'s x/y are the pivot and its angle
+#: is the whole turn.
+MARKER_OFF, MARKER_ON = "marker_0", "marker_1"
+#: The names this pair used to carry. Kept so nothing outside breaks, but the
+#: model behind them was wrong: they said a mechanism rests at one end and
+#: visits the other.
+MARKER_REST, MARKER_MOVED = MARKER_OFF, MARKER_ON
 
 #: **What actually moves, which is not always the sector's own geometry.**
 #:
@@ -217,7 +224,7 @@ def motion_markers(disk: Any, sector_id: int) -> dict[str, Any]:
     extra = getattr(disk.sectors[sector_id], "extra", None)
     fields = extra.fields if extra is not None and hasattr(extra, "fields") else {}
     out: dict[str, Any] = {}
-    for role in (MARKER_REST, MARKER_MOVED):
+    for role in (MARKER_OFF, MARKER_ON):
         #: `or -1` would throw away sprite 0, which is a real marker in a
         #: real map -- E1M1's sector 65 references sprite 0 as its own.
         raw = fields.get(role)
@@ -394,8 +401,8 @@ def swept_motion(disk: Any, sector_id: int, record: dict[str, Any]
     if type_id not in SLIDE_TYPES and type_id not in ROTATE_TYPES:
         return None
     markers = motion_markers(disk, sector_id)
-    rest = markers.get(MARKER_REST)
-    moved = markers.get(MARKER_MOVED)
+    rest = markers.get(MARKER_OFF)
+    moved = markers.get(MARKER_ON)
     kind = TRANSLATE_XY if type_id in SLIDE_TYPES else ROTATE_ABOUT_AXIS
     out: dict[str, Any] = {
         "effect": kind, "type_id": type_id, "markers": markers,
@@ -403,7 +410,7 @@ def swept_motion(disk: Any, sector_id: int, record: dict[str, Any]
         "period": int(record["busy_time_a"]),
     }
     if rest is None:
-        #: A marked motion with no rest marker cannot be interpolated, so
+        #: A marked motion with no OFF marker cannot be interpolated, so
         #: nothing is claimed about where it goes.
         out["travel"] = None
         out["undriven"] = True
