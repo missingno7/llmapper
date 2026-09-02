@@ -1,0 +1,8 @@
+{"_from": ["sector:254"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:254", "kind": "logic_closet", "sectors": [254], "why": ["13 switches and 3 generators, unreachable"]}
+{"_from": ["sector:351"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:351", "kind": "logic_closet", "sectors": [351], "why": ["6 switches and 1 generators, unreachable"]}
+{"_from": ["sector:355"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:355", "kind": "bare", "sectors": [355], "why": ["no sprite, no XSECTOR: geometry with nothing wired to it"]}
+{"_from": ["sector:356"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:356", "kind": "bare", "sectors": [356], "why": ["no sprite, no XSECTOR: geometry with nothing wired to it"]}
+{"_from": ["sector:357"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:357", "kind": "bare", "sectors": [357], "why": ["no sprite, no XSECTOR: geometry with nothing wired to it"]}
+{"_from": ["sector:358"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:358", "kind": "bare", "sectors": [358], "why": ["no sprite, no XSECTOR: geometry with nothing wired to it"]}
+{"_from": ["sector:359"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:359", "kind": "bare", "sectors": [359], "why": ["no sprite, no XSECTOR: geometry with nothing wired to it"]}
+{"_from": ["sector:360"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:360", "kind": "bare", "sectors": [360], "why": ["no sprite, no XSECTOR: geometry with nothing wired to it"]}

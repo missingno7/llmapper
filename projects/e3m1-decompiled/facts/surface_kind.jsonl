@@ -1,0 +1,382 @@
+{"_from": ["sector:0"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:0", "kind": "end_wall", "record": "sector:0", "why": "outdoor, in a mass of 1 sector(s) that no body can step onto: every one of its 3 edges to the network rises more than the 4096 autostep"}
+{"_from": ["sector:1"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:1", "kind": "pavement", "record": "sector:1", "why": "outdoor ground exactly the measured rise (2048) above the base plane"}
+{"_from": ["sector:2"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:2", "kind": "pavement", "record": "sector:2", "why": "outdoor ground exactly the measured rise (2048) above the base plane"}
+{"_from": ["sector:3"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:3", "kind": "road", "record": "sector:3", "why": "outdoor ground at the network's base plane z=10240, the level its islands stand on"}
+{"_from": ["sector:4"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:4", "kind": "pavement", "record": "sector:4", "why": "outdoor ground exactly the measured rise (2048) above the base plane"}
+{"_from": ["sector:5"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:5", "kind": "pavement", "record": "sector:5", "why": "outdoor ground exactly the measured rise (2048) above the base plane"}
+{"_from": ["sector:6"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:6", "kind": "pavement", "record": "sector:6", "why": "outdoor ground exactly the measured rise (2048) above the base plane"}
+{"_from": ["sector:7"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:7", "kind": "road", "record": "sector:7", "why": "outdoor ground at the network's base plane z=10240, the level its islands stand on"}
+{"_from": ["sector:8"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:8", "kind": "road", "record": "sector:8", "why": "outdoor ground at the network's base plane z=10240, the level its islands stand on"}
+{"_from": ["sector:9"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:9", "kind": "pavement", "record": "sector:9", "why": "outdoor ground exactly the measured rise (2048) above the base plane"}
+{"_from": ["sector:10"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:10", "kind": "solid", "record": "sector:10", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:11"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:11", "kind": "solid", "record": "sector:11", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:12"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:12", "kind": "interior", "record": "sector:12", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:13"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:13", "kind": "interior", "record": "sector:13", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:14"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:14", "kind": "interior", "record": "sector:14", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:15"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:15", "kind": "interior", "record": "sector:15", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:16"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:16", "kind": "interior", "record": "sector:16", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:17"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:17", "kind": "interior", "record": "sector:17", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:18"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:18", "kind": "interior", "record": "sector:18", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:19"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:19", "kind": "interior", "record": "sector:19", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:20"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:20", "kind": "interior", "record": "sector:20", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:21"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:21", "kind": "interior", "record": "sector:21", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:22"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:22", "kind": "interior", "record": "sector:22", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:23"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:23", "kind": "interior", "record": "sector:23", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:24"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:24", "kind": "interior", "record": "sector:24", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:25"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:25", "kind": "interior", "record": "sector:25", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:26"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:26", "kind": "interior", "record": "sector:26", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:27"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:27", "kind": "interior", "record": "sector:27", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:28"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:28", "kind": "interior", "record": "sector:28", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:29"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:29", "kind": "interior", "record": "sector:29", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:30"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:30", "kind": "interior", "record": "sector:30", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:31"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:31", "kind": "interior", "record": "sector:31", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:32"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:32", "kind": "interior", "record": "sector:32", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:33"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:33", "kind": "interior", "record": "sector:33", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:34"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:34", "kind": "interior", "record": "sector:34", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:35"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:35", "kind": "interior", "record": "sector:35", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:36"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:36", "kind": "interior", "record": "sector:36", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:37"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:37", "kind": "interior", "record": "sector:37", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:38"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:38", "kind": "interior", "record": "sector:38", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:39"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:39", "kind": "interior", "record": "sector:39", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:40"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:40", "kind": "interior", "record": "sector:40", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:41"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:41", "kind": "interior", "record": "sector:41", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:42"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:42", "kind": "interior", "record": "sector:42", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:43"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:43", "kind": "interior", "record": "sector:43", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:44"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:44", "kind": "solid", "record": "sector:44", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:45"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:45", "kind": "road", "record": "sector:45", "why": "outdoor ground at the network's base plane z=10240, the level its islands stand on"}
+{"_from": ["sector:46"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:46", "kind": "interior", "record": "sector:46", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:47"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:47", "kind": "interior", "record": "sector:47", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:48"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:48", "kind": "interior", "record": "sector:48", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:49"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:49", "kind": "interior", "record": "sector:49", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:50"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:50", "kind": "interior", "record": "sector:50", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:51"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:51", "kind": "solid", "record": "sector:51", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:52"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:52", "kind": "solid", "record": "sector:52", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:53"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:53", "kind": "interior", "record": "sector:53", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:54"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:54", "kind": "solid", "record": "sector:54", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:55"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:55", "kind": "interior", "record": "sector:55", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:56"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:56", "kind": "interior", "record": "sector:56", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:57"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:57", "kind": "interior", "record": "sector:57", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:58"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:58", "kind": "solid", "record": "sector:58", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:59"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:59", "kind": "solid", "record": "sector:59", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:60"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:60", "kind": "solid", "record": "sector:60", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:61"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:61", "kind": "interior", "record": "sector:61", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:62"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:62", "kind": "interior", "record": "sector:62", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:63"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:63", "kind": "interior", "record": "sector:63", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:64"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:64", "kind": "interior", "record": "sector:64", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:65"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:65", "kind": "outdoor_ground", "record": "sector:65", "why": "outdoor ground at z=6144, neither the base plane nor one measured rise (2048) above it, and reachable"}
+{"_from": ["sector:66"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:66", "kind": "solid", "record": "sector:66", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:67"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:67", "kind": "interior", "record": "sector:67", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:68"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:68", "kind": "interior", "record": "sector:68", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:69"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:69", "kind": "interior", "record": "sector:69", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:70"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:70", "kind": "interior", "record": "sector:70", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:71"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:71", "kind": "interior", "record": "sector:71", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:72"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:72", "kind": "interior", "record": "sector:72", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:73"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:73", "kind": "interior", "record": "sector:73", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:74"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:74", "kind": "interior", "record": "sector:74", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:75"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:75", "kind": "interior", "record": "sector:75", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:76"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:76", "kind": "interior", "record": "sector:76", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:77"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:77", "kind": "interior", "record": "sector:77", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:78"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:78", "kind": "interior", "record": "sector:78", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:79"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:79", "kind": "interior", "record": "sector:79", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:80"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:80", "kind": "interior", "record": "sector:80", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:81"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:81", "kind": "interior", "record": "sector:81", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:82"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:82", "kind": "interior", "record": "sector:82", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:83"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:83", "kind": "interior", "record": "sector:83", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:84"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:84", "kind": "interior", "record": "sector:84", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:85"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:85", "kind": "interior", "record": "sector:85", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:86"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:86", "kind": "interior", "record": "sector:86", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:87"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:87", "kind": "interior", "record": "sector:87", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:88"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:88", "kind": "interior", "record": "sector:88", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:89"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:89", "kind": "solid", "record": "sector:89", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:90"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:90", "kind": "interior", "record": "sector:90", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:91"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:91", "kind": "interior", "record": "sector:91", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:92"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:92", "kind": "interior", "record": "sector:92", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:93"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:93", "kind": "interior", "record": "sector:93", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:94"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:94", "kind": "interior", "record": "sector:94", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:95"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:95", "kind": "interior", "record": "sector:95", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:96"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:96", "kind": "interior", "record": "sector:96", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:97"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:97", "kind": "interior", "record": "sector:97", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:98"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:98", "kind": "interior", "record": "sector:98", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:99"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:99", "kind": "interior", "record": "sector:99", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:100"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:100", "kind": "interior", "record": "sector:100", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:101"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:101", "kind": "interior", "record": "sector:101", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:102"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:102", "kind": "interior", "record": "sector:102", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:103"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:103", "kind": "interior", "record": "sector:103", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:104"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:104", "kind": "interior", "record": "sector:104", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:105"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:105", "kind": "interior", "record": "sector:105", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:106"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:106", "kind": "interior", "record": "sector:106", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:107"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:107", "kind": "interior", "record": "sector:107", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:108"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:108", "kind": "interior", "record": "sector:108", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:109"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:109", "kind": "interior", "record": "sector:109", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:110"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:110", "kind": "interior", "record": "sector:110", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:111"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:111", "kind": "interior", "record": "sector:111", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:112"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:112", "kind": "interior", "record": "sector:112", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:113"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:113", "kind": "interior", "record": "sector:113", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:114"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:114", "kind": "solid", "record": "sector:114", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:115"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:115", "kind": "interior", "record": "sector:115", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:116"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:116", "kind": "interior", "record": "sector:116", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:117"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:117", "kind": "interior", "record": "sector:117", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:118"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:118", "kind": "end_wall", "record": "sector:118", "why": "outdoor, in a mass of 4 sector(s) that no body can step onto: every one of its 5 edges to the network rises more than the 4096 autostep"}
+{"_from": ["sector:119"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:119", "kind": "interior", "record": "sector:119", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:120"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:120", "kind": "interior", "record": "sector:120", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:121"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:121", "kind": "interior", "record": "sector:121", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:122"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:122", "kind": "interior", "record": "sector:122", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:123"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:123", "kind": "interior", "record": "sector:123", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:124"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:124", "kind": "interior", "record": "sector:124", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:125"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:125", "kind": "interior", "record": "sector:125", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:126"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:126", "kind": "interior", "record": "sector:126", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:127"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:127", "kind": "interior", "record": "sector:127", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:128"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:128", "kind": "interior", "record": "sector:128", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:129"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:129", "kind": "interior", "record": "sector:129", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:130"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:130", "kind": "interior", "record": "sector:130", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:131"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:131", "kind": "interior", "record": "sector:131", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:132"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:132", "kind": "interior", "record": "sector:132", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:133"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:133", "kind": "interior", "record": "sector:133", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:134"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:134", "kind": "interior", "record": "sector:134", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:135"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:135", "kind": "interior", "record": "sector:135", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:136"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:136", "kind": "interior", "record": "sector:136", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:137"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:137", "kind": "interior", "record": "sector:137", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:138"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:138", "kind": "interior", "record": "sector:138", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:139"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:139", "kind": "interior", "record": "sector:139", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:140"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:140", "kind": "interior", "record": "sector:140", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:141"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:141", "kind": "interior", "record": "sector:141", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:142"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:142", "kind": "interior", "record": "sector:142", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:143"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:143", "kind": "interior", "record": "sector:143", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:144"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:144", "kind": "interior", "record": "sector:144", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:145"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:145", "kind": "interior", "record": "sector:145", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:146"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:146", "kind": "interior", "record": "sector:146", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:147"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:147", "kind": "interior", "record": "sector:147", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:148"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:148", "kind": "interior", "record": "sector:148", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:149"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:149", "kind": "interior", "record": "sector:149", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:150"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:150", "kind": "interior", "record": "sector:150", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:151"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:151", "kind": "interior", "record": "sector:151", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:152"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:152", "kind": "interior", "record": "sector:152", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:153"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:153", "kind": "interior", "record": "sector:153", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:154"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:154", "kind": "interior", "record": "sector:154", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:155"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:155", "kind": "interior", "record": "sector:155", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:156"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:156", "kind": "interior", "record": "sector:156", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:157"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:157", "kind": "interior", "record": "sector:157", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:158"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:158", "kind": "interior", "record": "sector:158", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:159"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:159", "kind": "pavement", "record": "sector:159", "why": "outdoor ground exactly the measured rise (2048) above the base plane"}
+{"_from": ["sector:160"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:160", "kind": "interior", "record": "sector:160", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:161"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:161", "kind": "interior", "record": "sector:161", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:162"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:162", "kind": "interior", "record": "sector:162", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:163"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:163", "kind": "interior", "record": "sector:163", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:164"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:164", "kind": "interior", "record": "sector:164", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:165"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:165", "kind": "end_wall", "record": "sector:165", "why": "outdoor, in a mass of 4 sector(s) that no body can step onto: every one of its 5 edges to the network rises more than the 4096 autostep"}
+{"_from": ["sector:166"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:166", "kind": "end_wall", "record": "sector:166", "why": "outdoor, in a mass of 4 sector(s) that no body can step onto: every one of its 5 edges to the network rises more than the 4096 autostep"}
+{"_from": ["sector:167"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:167", "kind": "interior", "record": "sector:167", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:168"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:168", "kind": "interior", "record": "sector:168", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:169"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:169", "kind": "interior", "record": "sector:169", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:170"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:170", "kind": "interior", "record": "sector:170", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:171"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:171", "kind": "interior", "record": "sector:171", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:172"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:172", "kind": "end_wall", "record": "sector:172", "why": "outdoor, in a mass of 2 sector(s) that no body can step onto: every one of its 2 edges to the network rises more than the 4096 autostep; it also carries sector type 600, so this is its REST state and layer 5 owns the rest"}
+{"_from": ["sector:173"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:173", "kind": "interior", "record": "sector:173", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:174"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:174", "kind": "end_wall", "record": "sector:174", "why": "outdoor, in a mass of 2 sector(s) that no body can step onto: every one of its 2 edges to the network rises more than the 4096 autostep; it also carries sector type 600, so this is its REST state and layer 5 owns the rest"}
+{"_from": ["sector:175"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:175", "kind": "pavement", "record": "sector:175", "why": "outdoor ground exactly the measured rise (2048) above the base plane"}
+{"_from": ["sector:176"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:176", "kind": "interior", "record": "sector:176", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:177"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:177", "kind": "interior", "record": "sector:177", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:178"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:178", "kind": "interior", "record": "sector:178", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:179"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:179", "kind": "interior", "record": "sector:179", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:180"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:180", "kind": "interior", "record": "sector:180", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:181"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:181", "kind": "interior", "record": "sector:181", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:182"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:182", "kind": "interior", "record": "sector:182", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:183"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:183", "kind": "interior", "record": "sector:183", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:184"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:184", "kind": "interior", "record": "sector:184", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:185"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:185", "kind": "interior", "record": "sector:185", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:186"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:186", "kind": "interior", "record": "sector:186", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:187"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:187", "kind": "interior", "record": "sector:187", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:188"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:188", "kind": "interior", "record": "sector:188", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:189"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:189", "kind": "interior", "record": "sector:189", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:190"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:190", "kind": "interior", "record": "sector:190", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:191"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:191", "kind": "interior", "record": "sector:191", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:192"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:192", "kind": "interior", "record": "sector:192", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:193"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:193", "kind": "interior", "record": "sector:193", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:194"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:194", "kind": "interior", "record": "sector:194", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:195"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:195", "kind": "interior", "record": "sector:195", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:196"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:196", "kind": "interior", "record": "sector:196", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:197"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:197", "kind": "interior", "record": "sector:197", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:198"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:198", "kind": "interior", "record": "sector:198", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:199"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:199", "kind": "interior", "record": "sector:199", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:200"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:200", "kind": "interior", "record": "sector:200", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:201"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:201", "kind": "interior", "record": "sector:201", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:202"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:202", "kind": "interior", "record": "sector:202", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:203"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:203", "kind": "interior", "record": "sector:203", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:204"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:204", "kind": "interior", "record": "sector:204", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:205"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:205", "kind": "interior", "record": "sector:205", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:206"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:206", "kind": "interior", "record": "sector:206", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:207"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:207", "kind": "interior", "record": "sector:207", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:208"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:208", "kind": "interior", "record": "sector:208", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:209"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:209", "kind": "interior", "record": "sector:209", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:210"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:210", "kind": "interior", "record": "sector:210", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:211"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:211", "kind": "interior", "record": "sector:211", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:212"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:212", "kind": "interior", "record": "sector:212", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:213"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:213", "kind": "interior", "record": "sector:213", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:214"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:214", "kind": "interior", "record": "sector:214", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:215"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:215", "kind": "interior", "record": "sector:215", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:216"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:216", "kind": "interior", "record": "sector:216", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:217"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:217", "kind": "interior", "record": "sector:217", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:218"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:218", "kind": "interior", "record": "sector:218", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:219"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:219", "kind": "interior", "record": "sector:219", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:220"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:220", "kind": "interior", "record": "sector:220", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:221"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:221", "kind": "interior", "record": "sector:221", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:222"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:222", "kind": "interior", "record": "sector:222", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:223"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:223", "kind": "interior", "record": "sector:223", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:224"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:224", "kind": "interior", "record": "sector:224", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:225"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:225", "kind": "interior", "record": "sector:225", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:226"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:226", "kind": "interior", "record": "sector:226", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:227"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:227", "kind": "interior", "record": "sector:227", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:228"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:228", "kind": "interior", "record": "sector:228", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:229"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:229", "kind": "interior", "record": "sector:229", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:230"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:230", "kind": "interior", "record": "sector:230", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:231"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:231", "kind": "interior", "record": "sector:231", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:232"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:232", "kind": "interior", "record": "sector:232", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:233"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:233", "kind": "interior", "record": "sector:233", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:234"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:234", "kind": "interior", "record": "sector:234", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:235"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:235", "kind": "pavement", "record": "sector:235", "why": "outdoor ground exactly the measured rise (2048) above the base plane"}
+{"_from": ["sector:236"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:236", "kind": "end_wall", "record": "sector:236", "why": "outdoor, in a mass of 2 sector(s) that no body can step onto: every one of its 1 edges to the network rises more than the 4096 autostep"}
+{"_from": ["sector:237"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:237", "kind": "end_wall", "record": "sector:237", "why": "outdoor, in a mass of 2 sector(s) that no body can step onto: every one of its 1 edges to the network rises more than the 4096 autostep"}
+{"_from": ["sector:238"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:238", "kind": "interior", "record": "sector:238", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:239"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:239", "kind": "interior", "record": "sector:239", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:240"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:240", "kind": "interior", "record": "sector:240", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:241"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:241", "kind": "interior", "record": "sector:241", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:242"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:242", "kind": "interior", "record": "sector:242", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:243"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:243", "kind": "interior", "record": "sector:243", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:244"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:244", "kind": "interior", "record": "sector:244", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:245"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:245", "kind": "interior", "record": "sector:245", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:246"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:246", "kind": "interior", "record": "sector:246", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:247"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:247", "kind": "interior", "record": "sector:247", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:248"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:248", "kind": "interior", "record": "sector:248", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:249"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:249", "kind": "interior", "record": "sector:249", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:250"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:250", "kind": "interior", "record": "sector:250", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:251"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:251", "kind": "interior", "record": "sector:251", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:252"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:252", "kind": "interior", "record": "sector:252", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:253"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:253", "kind": "interior", "record": "sector:253", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:254"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:254", "kind": "interior", "record": "sector:254", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:255"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:255", "kind": "interior", "record": "sector:255", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:256"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:256", "kind": "interior", "record": "sector:256", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:257"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:257", "kind": "interior", "record": "sector:257", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:258"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:258", "kind": "interior", "record": "sector:258", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:259"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:259", "kind": "interior", "record": "sector:259", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:260"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:260", "kind": "interior", "record": "sector:260", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:261"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:261", "kind": "interior", "record": "sector:261", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:262"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:262", "kind": "interior", "record": "sector:262", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:263"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:263", "kind": "interior", "record": "sector:263", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:264"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:264", "kind": "interior", "record": "sector:264", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:265"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:265", "kind": "interior", "record": "sector:265", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:266"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:266", "kind": "interior", "record": "sector:266", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:267"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:267", "kind": "interior", "record": "sector:267", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:268"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:268", "kind": "interior", "record": "sector:268", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:269"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:269", "kind": "interior", "record": "sector:269", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:270"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:270", "kind": "interior", "record": "sector:270", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:271"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:271", "kind": "interior", "record": "sector:271", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:272"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:272", "kind": "interior", "record": "sector:272", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:273"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:273", "kind": "interior", "record": "sector:273", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:274"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:274", "kind": "interior", "record": "sector:274", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:275"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:275", "kind": "interior", "record": "sector:275", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:276"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:276", "kind": "interior", "record": "sector:276", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:277"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:277", "kind": "interior", "record": "sector:277", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:278"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:278", "kind": "interior", "record": "sector:278", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:279"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:279", "kind": "interior", "record": "sector:279", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:280"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:280", "kind": "interior", "record": "sector:280", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:281"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:281", "kind": "interior", "record": "sector:281", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:282"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:282", "kind": "interior", "record": "sector:282", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:283"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:283", "kind": "solid", "record": "sector:283", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:284"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:284", "kind": "interior", "record": "sector:284", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:285"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:285", "kind": "interior", "record": "sector:285", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:286"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:286", "kind": "interior", "record": "sector:286", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:287"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:287", "kind": "interior", "record": "sector:287", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:288"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:288", "kind": "interior", "record": "sector:288", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:289"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:289", "kind": "interior", "record": "sector:289", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:290"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:290", "kind": "interior", "record": "sector:290", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:291"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:291", "kind": "interior", "record": "sector:291", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:292"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:292", "kind": "interior", "record": "sector:292", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:293"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:293", "kind": "interior", "record": "sector:293", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:294"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:294", "kind": "interior", "record": "sector:294", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:295"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:295", "kind": "interior", "record": "sector:295", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:296"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:296", "kind": "interior", "record": "sector:296", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:297"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:297", "kind": "interior", "record": "sector:297", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:298"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:298", "kind": "interior", "record": "sector:298", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:299"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:299", "kind": "interior", "record": "sector:299", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:300"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:300", "kind": "interior", "record": "sector:300", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:301"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:301", "kind": "interior", "record": "sector:301", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:302"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:302", "kind": "interior", "record": "sector:302", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:303"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:303", "kind": "interior", "record": "sector:303", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:304"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:304", "kind": "interior", "record": "sector:304", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:305"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:305", "kind": "interior", "record": "sector:305", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:306"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:306", "kind": "interior", "record": "sector:306", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:307"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:307", "kind": "solid", "record": "sector:307", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:308"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:308", "kind": "interior", "record": "sector:308", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:309"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:309", "kind": "interior", "record": "sector:309", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:310"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:310", "kind": "interior", "record": "sector:310", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:311"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:311", "kind": "interior", "record": "sector:311", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:312"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:312", "kind": "interior", "record": "sector:312", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:313"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:313", "kind": "interior", "record": "sector:313", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:314"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:314", "kind": "interior", "record": "sector:314", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:315"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:315", "kind": "interior", "record": "sector:315", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:316"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:316", "kind": "interior", "record": "sector:316", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:317"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:317", "kind": "interior", "record": "sector:317", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:318"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:318", "kind": "interior", "record": "sector:318", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:319"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:319", "kind": "solid", "record": "sector:319", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:320"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:320", "kind": "interior", "record": "sector:320", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:321"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:321", "kind": "interior", "record": "sector:321", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:322"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:322", "kind": "interior", "record": "sector:322", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:323"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:323", "kind": "interior", "record": "sector:323", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:324"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:324", "kind": "interior", "record": "sector:324", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:325"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:325", "kind": "interior", "record": "sector:325", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:326"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:326", "kind": "interior", "record": "sector:326", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:327"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:327", "kind": "interior", "record": "sector:327", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:328"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:328", "kind": "interior", "record": "sector:328", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:329"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:329", "kind": "interior", "record": "sector:329", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:330"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:330", "kind": "interior", "record": "sector:330", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:331"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:331", "kind": "interior", "record": "sector:331", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:332"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:332", "kind": "interior", "record": "sector:332", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:333"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:333", "kind": "interior", "record": "sector:333", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:334"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:334", "kind": "interior", "record": "sector:334", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:335"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:335", "kind": "solid", "record": "sector:335", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:336"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:336", "kind": "solid", "record": "sector:336", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:337"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:337", "kind": "interior", "record": "sector:337", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:338"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:338", "kind": "solid", "record": "sector:338", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:339"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:339", "kind": "end_wall", "record": "sector:339", "why": "outdoor, in a mass of 1 sector(s) that no body can step onto: every one of its 3 edges to the network rises more than the 4096 autostep"}
+{"_from": ["sector:340"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:340", "kind": "solid", "record": "sector:340", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:341"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:341", "kind": "solid", "record": "sector:341", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:342"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:342", "kind": "solid", "record": "sector:342", "why": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it"}
+{"_from": ["sector:343"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:343", "kind": "end_wall", "record": "sector:343", "why": "outdoor, in a mass of 4 sector(s) that no body can step onto: every one of its 5 edges to the network rises more than the 4096 autostep"}
+{"_from": ["sector:344"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:344", "kind": "interior", "record": "sector:344", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:345"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:345", "kind": "interior", "record": "sector:345", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:346"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:346", "kind": "interior", "record": "sector:346", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:347"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:347", "kind": "interior", "record": "sector:347", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:348"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:348", "kind": "interior", "record": "sector:348", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:349"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:349", "kind": "interior", "record": "sector:349", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:350"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:350", "kind": "interior", "record": "sector:350", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:351"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:351", "kind": "interior", "record": "sector:351", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:352"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:352", "kind": "interior", "record": "sector:352", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:353"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:353", "kind": "interior", "record": "sector:353", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:354"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:354", "kind": "interior", "record": "sector:354", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:355"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:355", "kind": "interior", "record": "sector:355", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:356"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:356", "kind": "interior", "record": "sector:356", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:357"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:357", "kind": "interior", "record": "sector:357", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:358"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:358", "kind": "interior", "record": "sector:358", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:359"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:359", "kind": "interior", "record": "sector:359", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:360"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:360", "kind": "interior", "record": "sector:360", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:361"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:361", "kind": "interior", "record": "sector:361", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:362"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:362", "kind": "interior", "record": "sector:362", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:363"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:363", "kind": "interior", "record": "sector:363", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:364"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:364", "kind": "interior", "record": "sector:364", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:365"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:365", "kind": "interior", "record": "sector:365", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:366"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:366", "kind": "interior", "record": "sector:366", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:367"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:367", "kind": "interior", "record": "sector:367", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:368"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:368", "kind": "interior", "record": "sector:368", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:369"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:369", "kind": "interior", "record": "sector:369", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:370"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:370", "kind": "interior", "record": "sector:370", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:371"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:371", "kind": "interior", "record": "sector:371", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:372"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:372", "kind": "interior", "record": "sector:372", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:373"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:373", "kind": "interior", "record": "sector:373", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:374"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:374", "kind": "interior", "record": "sector:374", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:375"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:375", "kind": "interior", "record": "sector:375", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:376"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:376", "kind": "interior", "record": "sector:376", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:377"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:377", "kind": "interior", "record": "sector:377", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:378"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:378", "kind": "interior", "record": "sector:378", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:379"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:379", "kind": "interior", "record": "sector:379", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:380"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:380", "kind": "interior", "record": "sector:380", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:381"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:381", "kind": "interior", "record": "sector:381", "why": "walkable with a ceiling that is not parallax"}

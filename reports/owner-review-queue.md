@@ -1177,3 +1177,73 @@ through an `extra` attribute and reported E3M1 as having none. It has 133
 XSECTORs, 41 XWALLs and 716 XSPRITEs, and
 `tests/test_read_overlays.test_the_extras_are_read_through_the_key_a_levelir_uses`
 now fails if that is read the wrong way again.
+
+## 30. E3M1 layers 5, 6, 7, 8, and the decompilation as a fact store (P15, 2026-09-02)
+
+The store is `projects/e3m1-decompiled/facts/`, one JSONL per predicate with
+provenance on every derived row; `source/query.py` computes every number any
+report quotes. Node ids are in the layer packs.
+
+**30a. The plan's width class does not say whether it means the carriageway
+or the full width, and E3M1 lands in different classes either way.** Its main
+street is 7.28 pu of carriageway (nearest class AVENUE, residual 0.28) and
+10.78 pu with its pavements (still AVENUE, residual 3.78); its east arm is
+4.00 pu of carriageway (LANE, residual 1.00) and 6.00 with its pavement (ROW,
+residual 0.00). The reader gives both because the plan does not say.
+*Recommended default:* the FULL width. `city_plan`'s grid is a running sum of
+street widths and block columns, and a pavement is part of the street rather
+than of the block — under that reading E3M1's east arm is a ROW exactly, with
+no residual at all. State it in `city_plan.py`. Node `streets`, layer 7.
+
+**30b. A block recovered by connectivity is a whole side of the city.** 23
+blocks; the largest holds 123 sectors in a 14.62 x 12.00 pu envelope, because
+E3M1's masses run together through their interiors. `city_plan`'s block is one
+buildable rectangle.
+*Recommended default:* the reader should cut a mass at its street frontages.
+Named as missing rather than guessed. Node `blocks`, layer 7.
+
+**30c. The schematic costs 12% of the ground at the median and 78% at the
+worst.** Every plan element is a rect and a sector is not: E3M1's ground fills
+its own bounding rectangles 0.882 of the time at the median, 0.219 at the
+worst.
+*Recommended default:* state it rather than bound it, and have the solver's
+own output carry the same number so the two can be compared. Node `level`,
+layer 7.
+
+**30d. Five of E3M1's 136 sentences use a (type, shape, slot) combination the
+taught course never shows** — s41's type 615 with "part of the sector travels"
+and a shade wave, for one. The course teaches 6 lessons of type 615 and 77
+constructs, and 3 of them have that shape; none has that slot set.
+*Recommended default:* a finding, and the interesting one — the course teaches
+each slot alone and the campaign combines them. It belongs in the curriculum's
+own gaps list. Node `sentence:sector:41`, layer 5.
+
+**30e. All three of E3M1's room-over-room stacks carry the same fault: the
+floor marker sits 256 units below the plane it links.** Three of three is a
+convention, not a mistake, and `curriculum.stack_faults` reports it as
+"the floor marker floats".
+*Recommended default:* the fault text should say "256 below, as all three of
+E3M1's are" — a convention the campaign keeps three times out of three is not
+a defect our checker gets to name. Node `kind:room_over_room`, layer 5.
+
+**30f. A chain is one sentence and our writer has no construct that fans out
+like one.** E3M1's biggest is one channel (116) whose two switches tell 159
+records at once; 63 of its 69 channels have receivers.
+*Recommended default:* one sentence per channel, with the fan-out as a
+parameter. Splitting it per receiver would make the collapsing house 159
+mechanisms that happen to share a number. Node `sentence:channel:116`, layer 5.
+
+**30g. Layer 8 refuses 84 of 136 mechanisms and 26 of 36 grouped spaces, and
+names by the curriculum's own file names.** A mechanism is named by the modal
+PREFIX of the lesson files teaching its (type, shape), taken only at a 60%
+majority: 16 sentences come back `door` and 36 are candidates where no prefix
+holds a majority. Places are named only where exactly one measured rule fires:
+4 `stepped_run`, 2 `street`, 4 candidates, 26 refusals.
+*Recommended default:* keep the refusal rate. What is missing is named rather
+than guessed — what distinguishes a Blood interior is its furniture, and the
+prop reader is not wired into this layer. Node `level`, layer 8.
+
+**30h. E3M1's boundary is 16 terminations, 65 records of void and 19 ways
+in.** A residue of zero on the edge classifier is easy, because
+`building_back` catches every one-sided record; the number that measures the
+edge FAMILY is its own share. Node `edge:building_back`, layer 6.

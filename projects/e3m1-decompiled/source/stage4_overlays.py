@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from collections import Counter
 
-from _common import emit_claims, level, write
+from _common import level, write
 from _review import Tree, answers, write_pack
 
 from bloodmap.light_field import MAX_LEVELS, STEP, STEP_ENVELOPE
@@ -161,12 +161,6 @@ def main() -> int:
             "disagreements": _disagreements(islands, light),
         },
     }
-    payload["claims"] = emit_claims(4, _claims(world, islands, light),
-                                    note=("floor_z on every island sector, "
-                                          "floor_shade on every sector the "
-                                          "field's base + k*step reproduces, "
-                                          "and picnum on the kerb records the "
-                                          "islands' own edges carry"))
     payload["review"] = _review(world, islands, light, network)
     payload["owner_marks_read_back"] = answers(4)
     write("overlays.json", payload)

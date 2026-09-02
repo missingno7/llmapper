@@ -16,7 +16,7 @@ from __future__ import annotations
 
 from collections import Counter
 
-from _common import art_sizes, emit_claims, level, write
+from _common import art_sizes, level, write
 from _review import Tree, answers, write_pack
 
 from bloodmap.read_stairs import read_stairs
@@ -188,12 +188,6 @@ def main() -> int:
         },
     }
     payload["stairs"] = stairs
-    payload["claims"] = emit_claims(2, _claims(world, result, owners, stairs),
-                                    note=("the five texture fields of every "
-                                          "record a shared projection "
-                                          "reproduces exactly, and the floor z "
-                                          "of every stair sector its fitted "
-                                          "rise reproduces"))
     payload["review"] = _review(world, result, owners, stairs)
     payload["owner_marks_read_back"] = answers(2)
     write("surfaces.json", payload)

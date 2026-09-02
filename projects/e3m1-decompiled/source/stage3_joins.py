@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from _common import emit_claims, level, write
+from _common import level, write
 from _review import Tree, answers, write_pack
 
 from bloodmap.read_joins import read_joins, summary
@@ -124,11 +124,6 @@ def main() -> int:
                        f"records are interior|interior"),
         "disagreements": payload["disagreements_with_the_measured_facts"],
     }
-    payload["claims"] = emit_claims(3, _claims(world, result, owners),
-                                    note=("picnum where the row's tile class "
-                                          "is the tile the record wears, and "
-                                          "cstat where the row's blocking bit "
-                                          "is the bit it carries"))
     payload["review"] = _review(world, result, owners)
     payload["owner_marks_read_back"] = answers(3)
     write("join-census.json", payload)

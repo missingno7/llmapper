@@ -79,7 +79,6 @@
    "median": 15
   }
  },
- "claims": "17 field claims",
  "disagreements_with_the_measured_facts": [
   {
    "claim": "the light field quantises to base + k*12, and every shadow edge's delta lies in [8, 16]",

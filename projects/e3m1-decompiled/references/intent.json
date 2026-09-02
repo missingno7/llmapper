@@ -1,0 +1,2853 @@
+{
+ "ledger": {
+  "disagreements": [],
+  "explained": 22,
+  "gate": "a name only where a measurement distinguishes: the modal lesson-name prefix for a mechanism, exactly one firing rule for a place. Everything else is refused by name",
+  "population": "136 sentences and 36 grouped spaces",
+  "reader": "bloodmap.read_intent (new)",
+  "residue": 110,
+  "residue_is": "sentences and spaces no measurement names",
+  "residue_percent": 63.95
+ },
+ "mechanisms": {
+  "candidates": [
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:52",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:54",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:58",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:59",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:60",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:80",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:82",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:83",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:105",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:114",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:119",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:126",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:127",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:141",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:143",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:147",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:148",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:151",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:152",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:154",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:172",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:173",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:174",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:181",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:218",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "22 of 53 lesson constructs teaching type 616 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-CLOSET.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-1WAYVEHICLE.map",
+     "MACHINERY-2SLIDES.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-SHOOTRANGE.map"
+    ],
+    "name": "door",
+    "readings": [
+     "door",
+     "machinery",
+     "environment",
+     "e1m1zd1",
+     "e1m1zdf"
+    ],
+    "sentence": "sentence:sector:251",
+    "shape": "the whole sector travels",
+    "share": 0.415,
+    "type": 616,
+    "why": "no prefix holds 60% of the teaching: {'door': 22, 'e1m1zd1': 2, 'e1m1zdf': 2, 'environment': 7, 'machinery': 20}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:281",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:282",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:283",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:307",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:319",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:352",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:354",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "16 of 35 lesson constructs teaching type 618 with this shape come from lessons named ENVIRONMENT-*",
+    "lessons": [
+     "ENVIRONMENT-TORNADO.map",
+     "OTHERSECTORSFX-DAMAGE.map",
+     "OTHERSECTORSFX-DAMAGETYPES.map",
+     "SPRITE-TRAPS.map"
+    ],
+    "name": "environment",
+    "readings": [
+     "environment",
+     "othersectorsfx",
+     "sprite"
+    ],
+    "sentence": "sentence:sector:366",
+    "shape": "(no shape)",
+    "share": 0.457,
+    "type": 618,
+    "why": "no prefix holds 60% of the teaching: {'environment': 16, 'othersectorsfx': 14, 'sprite': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:373",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   },
+   {
+    "basis": "80 of 180 lesson constructs teaching type 600 with this shape come from lessons named MACHINERY-*",
+    "lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-EXPLODEWALL.map",
+     "ENVIRONMENT-ICEBERG.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "MACHINERY-GEAR.map",
+     "MACHINERY-JUMPAD.map",
+     "MACHINERY-LEVER.map",
+     "MACHINERY-LIFT.map",
+     "MACHINERY-MECHSLOPE.map",
+     "MACHINERY-PISTON.map",
+     "MACHINERY-PUZZLE.map",
+     "MACHINERY-SHOOTRANGE.map",
+     "MODELLING-NEWSOS.map",
+     "OTHERSECTORSFX-ENDLEVEL.map",
+     "SPRITE-COUNTDOWN.map",
+     "SPRITE-ENEMIES.map",
+     "SPRITE-SOUNDS.map",
+     "TRAP-DEATHTIMER.map",
+     "TRAP-FLOORTRAP.map",
+     "WALL-MASKWALLTRICK.map",
+     "WALL-MIRRORS.map"
+    ],
+    "name": "machinery",
+    "readings": [
+     "machinery",
+     "door",
+     "e1m1zdf",
+     "e1m1zd1",
+     "sprite",
+     "environment",
+     "wall",
+     "trap",
+     "modelling",
+     "othersectorsfx"
+    ],
+    "sentence": "sentence:sector:374",
+    "shape": "(no shape)",
+    "share": 0.444,
+    "type": 600,
+    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+   }
+  ],
+  "named": [
+   {
+    "basis": "3 of 3 lesson constructs teaching type 615 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-SWINGING.map",
+     "DOOR-SWINGINGD.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:41",
+    "shape": "part of the sector travels",
+    "share": 1.0,
+    "type": 615
+   },
+   {
+    "basis": "71 of 101 lesson constructs teaching type 617 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-COMBIDOORS.map",
+     "DOOR-SWINGING.map",
+     "DOOR-SWINGINGD.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "MACHINERY-GEAR.map",
+     "MODELLING-BASICS.map",
+     "TRAP-WALLTRAP.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:44",
+    "shape": "the whole sector travels",
+    "share": 0.703,
+    "type": 617
+   },
+   {
+    "basis": "71 of 101 lesson constructs teaching type 617 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-COMBIDOORS.map",
+     "DOOR-SWINGING.map",
+     "DOOR-SWINGINGD.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "MACHINERY-GEAR.map",
+     "MODELLING-BASICS.map",
+     "TRAP-WALLTRAP.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:51",
+    "shape": "the whole sector travels",
+    "share": 0.703,
+    "type": 617
+   },
+   {
+    "basis": "71 of 101 lesson constructs teaching type 617 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-COMBIDOORS.map",
+     "DOOR-SWINGING.map",
+     "DOOR-SWINGINGD.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "MACHINERY-GEAR.map",
+     "MODELLING-BASICS.map",
+     "TRAP-WALLTRAP.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:66",
+    "shape": "the whole sector travels",
+    "share": 0.703,
+    "type": 617
+   },
+   {
+    "basis": "48 of 61 lesson constructs teaching type 614 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-3DSLIDEDOOR.map",
+     "DOOR-COMBIDOORS.map",
+     "DOOR-CURTAINSD.map",
+     "DOOR-SLIDINGD.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "TRAP-WALLTRAP.map",
+     "WALL-LIVINGWALL.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:81",
+    "shape": "the sector resizes itself",
+    "share": 0.787,
+    "type": 614
+   },
+   {
+    "basis": "48 of 61 lesson constructs teaching type 614 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-3DSLIDEDOOR.map",
+     "DOOR-COMBIDOORS.map",
+     "DOOR-CURTAINSD.map",
+     "DOOR-SLIDINGD.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "TRAP-WALLTRAP.map",
+     "WALL-LIVINGWALL.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:88",
+    "shape": "the sector resizes itself",
+    "share": 0.787,
+    "type": 614
+   },
+   {
+    "basis": "71 of 101 lesson constructs teaching type 617 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-COMBIDOORS.map",
+     "DOOR-SWINGING.map",
+     "DOOR-SWINGINGD.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "MACHINERY-GEAR.map",
+     "MODELLING-BASICS.map",
+     "TRAP-WALLTRAP.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:89",
+    "shape": "the whole sector travels",
+    "share": 0.703,
+    "type": 617
+   },
+   {
+    "basis": "71 of 101 lesson constructs teaching type 617 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-COMBIDOORS.map",
+     "DOOR-SWINGING.map",
+     "DOOR-SWINGINGD.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "MACHINERY-GEAR.map",
+     "MODELLING-BASICS.map",
+     "TRAP-WALLTRAP.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:160",
+    "shape": "the whole sector travels",
+    "share": 0.703,
+    "type": 617
+   },
+   {
+    "basis": "48 of 61 lesson constructs teaching type 614 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-3DSLIDEDOOR.map",
+     "DOOR-COMBIDOORS.map",
+     "DOOR-CURTAINSD.map",
+     "DOOR-SLIDINGD.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "ENVIRONMENT-SLIDETRICKS.map",
+     "TRAP-WALLTRAP.map",
+     "WALL-LIVINGWALL.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:162",
+    "shape": "the sector resizes itself",
+    "share": 0.787,
+    "type": 614
+   },
+   {
+    "basis": "71 of 101 lesson constructs teaching type 617 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-COMBIDOORS.map",
+     "DOOR-SWINGING.map",
+     "DOOR-SWINGINGD.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "MACHINERY-GEAR.map",
+     "MODELLING-BASICS.map",
+     "TRAP-WALLTRAP.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:207",
+    "shape": "the whole sector travels",
+    "share": 0.703,
+    "type": 617
+   },
+   {
+    "basis": "45 of 66 lesson constructs teaching type 614 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-CURTAINS.map",
+     "DOOR-SLIDING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "MACHINERY-2SLIDES.map",
+     "MACHINERY-ESCALATOR.map",
+     "MACHINERY-SLEVER.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:211",
+    "shape": "part of the sector travels",
+    "share": 0.682,
+    "type": 614
+   },
+   {
+    "basis": "73 of 73 lesson constructs teaching type 615 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-ROTATING.map",
+     "DOOR-SWINGINGGATE.map",
+     "DOOR-SWINGINGGATED.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:216",
+    "shape": "nothing moves",
+    "share": 1.0,
+    "type": 615
+   },
+   {
+    "basis": "45 of 66 lesson constructs teaching type 614 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-CURTAINS.map",
+     "DOOR-SLIDING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "MACHINERY-2SLIDES.map",
+     "MACHINERY-ESCALATOR.map",
+     "MACHINERY-SLEVER.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:226",
+    "shape": "part of the sector travels",
+    "share": 0.682,
+    "type": 614
+   },
+   {
+    "basis": "3 of 3 lesson constructs teaching type 615 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-SWINGING.map",
+     "DOOR-SWINGINGD.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:245",
+    "shape": "part of the sector travels",
+    "share": 1.0,
+    "type": 615
+   },
+   {
+    "basis": "3 of 3 lesson constructs teaching type 615 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-SWINGING.map",
+     "DOOR-SWINGINGD.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:248",
+    "shape": "part of the sector travels",
+    "share": 1.0,
+    "type": 615
+   },
+   {
+    "basis": "45 of 66 lesson constructs teaching type 614 with this shape come from lessons named DOOR-*",
+    "lessons": [
+     "DOOR-CURTAINS.map",
+     "DOOR-SLIDING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map",
+     "MACHINERY-2SLIDES.map",
+     "MACHINERY-ESCALATOR.map",
+     "MACHINERY-SLEVER.map"
+    ],
+    "name": "door",
+    "sentence": "sentence:sector:375",
+    "shape": "part of the sector travels",
+    "share": 0.682,
+    "type": 614
+   }
+  ],
+  "refused": [
+   {
+    "sentence": "sentence:wall:21",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:69",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:407",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:520",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:537",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:610",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:960",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:974",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:1017",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:1023",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:1280",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:1284",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:1430",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:1508",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:1938",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:1942",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:1946",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:wall:1952",
+    "why": "the course teaches no lesson of type 511"
+   },
+   {
+    "sentence": "sentence:stack:0",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:stack:1",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:stack:2",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:100",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:101",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:102",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:103",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:104",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:105",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:106",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:107",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:108",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:109",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:110",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:111",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:112",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:113",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:114",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:115",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:116",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:117",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:118",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:119",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:120",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:121",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:122",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:123",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:124",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:125",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:126",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:128",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:129",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:130",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:131",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:132",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:133",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:134",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:135",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:137",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:138",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:139",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:140",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:141",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:142",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:143",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:144",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:145",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:147",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:148",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:149",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:150",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:151",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:152",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:153",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:154",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:155",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:156",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:157",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:158",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:160",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:161",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:162",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:163",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:164",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:165",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   },
+   {
+    "sentence": "sentence:channel:166",
+    "why": "not a sector type: the course teaches it somewhere other than by type"
+   }
+  ],
+  "rule": "the modal prefix of the lesson names teaching this (type, shape), taken when it holds at least 60% of the teaching"
+ },
+ "owner_marks_read_back": [],
+ "places": {
+  "candidates": [
+   {
+    "bases": [
+     "holds the player start, sector 159",
+     "all 14 of its sectors are on the outdoor street network"
+    ],
+    "readings": [
+     "arrival",
+     "street"
+    ],
+    "space": "assembly:001/space:002",
+    "why": "more than one measured rule fires, and rule order is not evidence"
+   },
+   {
+    "bases": [
+     "contains structure:stepped_run:002",
+     "contains structure:stepped_run:003",
+     "contains structure:stepped_run:004"
+    ],
+    "readings": [
+     "stepped_run",
+     "stepped_run",
+     "stepped_run"
+    ],
+    "space": "assembly:001/space:053",
+    "why": "more than one measured rule fires, and rule order is not evidence"
+   },
+   {
+    "bases": [
+     "contains structure:stepped_run:007",
+     "contains structure:stepped_run:006",
+     "contains structure:stepped_run:005"
+    ],
+    "readings": [
+     "stepped_run",
+     "stepped_run",
+     "stepped_run"
+    ],
+    "space": "assembly:001/space:067",
+    "why": "more than one measured rule fires, and rule order is not evidence"
+   },
+   {
+    "bases": [
+     "contains structure:stepped_run:008",
+     "contains structure:stepped_run:009"
+    ],
+    "readings": [
+     "stepped_run",
+     "stepped_run"
+    ],
+    "space": "assembly:001/space:104",
+    "why": "more than one measured rule fires, and rule order is not evidence"
+   }
+  ],
+  "named": [
+   {
+    "basis": "contains structure:stepped_run:001",
+    "name": "stepped_run",
+    "sectors": [
+     15,
+     16,
+     17,
+     18,
+     19,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35,
+     36,
+     37,
+     38,
+     39,
+     40,
+     41,
+     43,
+     77,
+     78,
+     79,
+     113,
+     249,
+     381
+    ],
+    "space": "assembly:001/space:008"
+   },
+   {
+    "basis": "all 4 of its sectors are on the outdoor street network",
+    "name": "street",
+    "sectors": [
+     118,
+     165,
+     166,
+     343
+    ],
+    "space": "assembly:001/space:050"
+   },
+   {
+    "basis": "contains structure:stepped_run:012",
+    "name": "stepped_run",
+    "sectors": [
+     216,
+     217,
+     219,
+     220,
+     221,
+     222,
+     223,
+     224,
+     225,
+     226,
+     227,
+     238,
+     239,
+     320,
+     321,
+     332,
+     377
+    ],
+    "space": "assembly:001/space:091"
+   },
+   {
+    "basis": "all 2 of its sectors are on the outdoor street network",
+    "name": "street",
+    "sectors": [
+     236,
+     237
+    ],
+    "space": "assembly:001/space:095"
+   },
+   {
+    "basis": "contains structure:stepped_run:010",
+    "name": "stepped_run",
+    "sectors": [
+     317,
+     322,
+     323,
+     324,
+     325,
+     326,
+     328,
+     330
+    ],
+    "space": "assembly:001/space:112"
+   },
+   {
+    "basis": "contains structure:stepped_run:011",
+    "name": "stepped_run",
+    "sectors": [
+     318,
+     327,
+     329,
+     331
+    ],
+    "space": "assembly:001/space:113"
+   }
+  ],
+  "refused": [
+   {
+    "space": "assembly:001/space:006",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:015",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:023",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:025",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:027",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:029",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:037",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:038",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:039",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:043",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:051",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:052",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:058",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:063",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:069",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:073",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:074",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:076",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:077",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:079",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:084",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:096",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:115",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:126",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:134",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   },
+   {
+    "space": "assembly:001/space:135",
+    "why": "no measurement distinguishes it: it is an interior of this map like many others"
+   }
+  ],
+  "rule": "a name only where exactly one measured rule fires; two rules is a candidate, none is a refusal"
+ },
+ "reader": "bloodmap.read_intent (new)",
+ "review": {
+  "hierarchy": "projects\\e3m1-decompiled\\review\\layer8-hierarchy.json",
+  "pack": "projects\\e3m1-decompiled\\review\\layer8.html",
+  "questions": "projects\\e3m1-decompiled\\review\\questions-layer8.json",
+  "sectors_unowned": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   42,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71,
+   72,
+   73,
+   74,
+   75,
+   76,
+   80,
+   81,
+   82,
+   83,
+   84,
+   85,
+   86,
+   87,
+   88,
+   89,
+   90,
+   91,
+   92,
+   93,
+   94,
+   95,
+   96,
+   97,
+   98,
+   99,
+   100,
+   101,
+   102,
+   103,
+   104,
+   105,
+   106,
+   107,
+   108,
+   109,
+   110,
+   111,
+   112,
+   114,
+   115,
+   116,
+   117,
+   119,
+   120,
+   121,
+   122,
+   123,
+   124,
+   125,
+   126,
+   127,
+   128,
+   129,
+   130,
+   131,
+   132,
+   133,
+   134,
+   135,
+   136,
+   137,
+   138,
+   139,
+   140,
+   141,
+   142,
+   143,
+   144,
+   145,
+   146,
+   147,
+   148,
+   149,
+   150,
+   151,
+   152,
+   153,
+   154,
+   155,
+   156,
+   157,
+   158,
+   159,
+   160,
+   161,
+   162,
+   163,
+   164,
+   167,
+   168,
+   169,
+   170,
+   171,
+   172,
+   173,
+   174,
+   175,
+   176,
+   177,
+   178,
+   179,
+   180,
+   181,
+   182,
+   183,
+   184,
+   185,
+   186,
+   187,
+   188,
+   189,
+   190,
+   191,
+   192,
+   193,
+   194,
+   195,
+   196,
+   197,
+   198,
+   199,
+   200,
+   201,
+   202,
+   203,
+   204,
+   205,
+   206,
+   207,
+   208,
+   209,
+   210,
+   211,
+   212,
+   213,
+   214,
+   215,
+   218,
+   228,
+   229,
+   230,
+   231,
+   232,
+   233,
+   234,
+   235,
+   240,
+   241,
+   242,
+   243,
+   244,
+   245,
+   246,
+   247,
+   248,
+   250,
+   251,
+   252,
+   253,
+   254,
+   255,
+   256,
+   257,
+   258,
+   259,
+   260,
+   261,
+   262,
+   263,
+   264,
+   265,
+   266,
+   267,
+   268,
+   269,
+   270,
+   271,
+   272,
+   273,
+   274,
+   275,
+   276,
+   277,
+   278,
+   279,
+   280,
+   281,
+   282,
+   283,
+   284,
+   285,
+   286,
+   287,
+   288,
+   289,
+   290,
+   291,
+   292,
+   293,
+   294,
+   295,
+   296,
+   297,
+   298,
+   299,
+   300,
+   301,
+   302,
+   303,
+   304,
+   305,
+   306,
+   307,
+   308,
+   309,
+   310,
+   311,
+   312,
+   313,
+   314,
+   315,
+   316,
+   319,
+   333,
+   334,
+   335,
+   336,
+   337,
+   338,
+   339,
+   340,
+   341,
+   342,
+   344,
+   345,
+   346,
+   347,
+   348,
+   349,
+   350,
+   351,
+   352,
+   353,
+   354,
+   355,
+   356,
+   357,
+   358,
+   359,
+   360,
+   361,
+   362,
+   363,
+   364,
+   365,
+   366,
+   367,
+   368,
+   369,
+   370,
+   371,
+   372,
+   373,
+   374,
+   375,
+   376,
+   378,
+   379,
+   380
+  ]
+ },
+ "summary": {
+  "mechanisms": {
+   "candidates": 36,
+   "named": 16,
+   "named_percent": 11.76,
+   "population": 136,
+   "refused": 84
+  },
+  "names_by_kind": {
+   "door": 16
+  },
+  "places": {
+   "candidates": 4,
+   "named": 6,
+   "named_percent": 16.67,
+   "population": 36,
+   "refused": 26
+  },
+  "places_by_name": {
+   "stepped_run": 4,
+   "street": 2
+  }
+ }
+}

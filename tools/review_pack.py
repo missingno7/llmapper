@@ -44,7 +44,7 @@ def load_nodes(path: Path) -> list[dict]:
 
 
 def build(map_path: Path, hierarchy: Path, title: str,
-          claims: dict | None = None) -> str:
+          claims: dict | None = None, candidates: dict | None = None) -> str:
     disk = parse_map(map_path.read_bytes())
     nodes = load_nodes(hierarchy)
     xs = [w.fields["x"] for w in disk.walls]
@@ -124,6 +124,29 @@ def build(map_path: Path, hierarchy: Path, title: str,
                 continue
             held[sector].append({"record": kind + ":" + str(index),
                                  "field": name, "claims": rows})
+        # candidates hang off a record id, so they reach a sector the same
+        # way a claim does: a reading that is still ambiguous about a record
+        # belongs in that record's panel, next to what IS settled about it.
+        maybe = {}
+        for key, rows in (candidates or {}).items():
+            if ":" not in key:
+                continue
+            kind, rest = key.split(":", 1)
+            if not rest.isdigit():
+                continue
+            index = int(rest)
+            if kind in ("sector", "xsector"):
+                sector = index
+            elif kind in ("wall", "xwall"):
+                sector = owner_of_wall.get(index)
+            elif kind in ("sprite", "xsprite"):
+                sector = disk.sprites[index].fields["sector"]
+            else:
+                continue
+            if sector is None:
+                continue
+            maybe.setdefault(sector, []).extend(
+                {"about": key, **row} for row in rows)
         names = fields_of("sector")
         for index in range(len(disk.sectors)):
             mine = {row["field"] for row in held[index]
@@ -131,6 +154,7 @@ def build(map_path: Path, hierarchy: Path, title: str,
             facts[index] = {
                 "claims": sorted(held[index],
                                  key=lambda r: (r["record"], r["field"])),
+                "candidates": maybe.get(index, []),
                 "unclaimed_sector_fields": [n for n in names if n not in mine],
             }
     facts_json = json.dumps(facts)
@@ -210,6 +234,9 @@ def main() -> None:
     ap.add_argument("hierarchy")
     ap.add_argument("-o", "--output", required=True)
     ap.add_argument("--title")
+    ap.add_argument("--candidates", help="readings still open on a record, "
+                                          "so the panel can show what is "
+                                          "ambiguous beside what is settled")
     ap.add_argument("--claims", help="the shared (record, field) -> [claims] "
                                      "ledger, so a record's fact panel can "
                                      "list what explains each of its fields "
@@ -218,8 +245,11 @@ def main() -> None:
     map_path, hierarchy = Path(args.map), Path(args.hierarchy)
     claims = (json.loads(Path(args.claims).read_text(encoding="utf-8"))
               if args.claims else None)
+    candidates = (json.loads(Path(args.candidates).read_text(encoding="utf-8"))
+                  if args.candidates else None)
     out = build(map_path, hierarchy,
-                args.title or f"{map_path.stem} review pack", claims)
+                args.title or f"{map_path.stem} review pack", claims,
+                candidates)
     Path(args.output).write_text(out, encoding="utf-8")
     print(args.output)
 

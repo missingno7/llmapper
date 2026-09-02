@@ -1,10 +1,10 @@
-"""Every stage, then the shared ledger, then every stage again.
+"""Build the fact store, query it, then rebuild every stage's review pack.
 
-Twice on purpose. A stage's review pack shows the fact panel of the SHARED
-ledger, and the shared ledger is only complete once every stage has written
-its claims -- so the first pass produces the claims, `ledger.py` merges them,
-and the second pass rebuilds the packs against the merged result. Running a
-stage alone is still valid; its pack is then one merge behind and says so.
+Three steps and the order matters. `build_facts.py` runs every reader and
+stores what it emits; `query.py` answers every number from those files and
+writes the panels the packs read; then each stage runs, so its pack shows the
+fact panel of the WHOLE store rather than of its own layer. Running a stage
+alone is still valid -- its pack is then one build behind.
 
     BLOODMAP_CORPUS=... BLOODMAP_ART=... PYTHONPATH=".;projects/e3m1-decompiled/source" \
         python projects/e3m1-decompiled/source/run_all.py
@@ -45,16 +45,13 @@ def run(name: str, quiet: bool = False) -> None:
 
 
 def main() -> int:
-    print("pass 1: every stage writes its claims")
-    for stage in STAGES:
-        run(stage, quiet=True)
-    print("merging the shared ledger")
-    run("ledger.py")
-    print("pass 2: every stage rebuilds its pack against the merged ledger")
+    print("building the fact store")
+    run("build_facts.py")
+    print("querying it")
+    run("query.py")
+    print("rebuilding every stage's evidence and review pack")
     for stage in STAGES:
         run(stage)
-    print("merging the shared ledger again")
-    run("ledger.py")
     return 0
 
 

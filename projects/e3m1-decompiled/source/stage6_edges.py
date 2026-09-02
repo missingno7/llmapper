@@ -12,7 +12,7 @@ one thing.
 
 from __future__ import annotations
 
-from _common import emit_claims, level, write
+from _common import level, write
 from _review import Tree, answers, write_pack
 
 from bloodmap.read_edges import read_edges, summary
@@ -173,11 +173,6 @@ def main() -> int:
             "disagreements": _disagreements(result),
         },
     }
-    payload["claims"] = emit_claims(
-        6, _claims(world, result),
-        note=("ceiling_z on every backing mass (a mass has no interior) and "
-              "over_picnum on every one-sided record against the void (it "
-              "takes no facade run)"))
     payload["review"] = _review(world, result, kinds)
     payload["owner_marks_read_back"] = answers(6)
     write("edge-chain.json", payload)

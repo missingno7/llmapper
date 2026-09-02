@@ -114,6 +114,9 @@ def write_pack(layer: int, tree: Tree, title: str,
     shared = PROJECT / "claims.json"
     if shared.exists():
         command += ["--claims", str(shared)]
+    maybe = PROJECT / "candidates.json"
+    if maybe.exists():
+        command += ["--candidates", str(maybe)]
     subprocess.run(command, check=True, cwd=str(REPO))
     residue = tree.unowned()
     print(f"  review pack   : {out.relative_to(REPO)} "
