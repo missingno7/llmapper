@@ -635,10 +635,48 @@ is a world point, and both facts hold at once — the bay grid is district-wide
 AND the material crosses every doorway, because they were never in conflict
 except in the per-wall representation.
 
-> **Recommended default: leave the frames winning for now, and make the
-> district frame the next step rather than choosing between the two passes.**
+> **RESOLVED 2026-09-02 (P13): the district frame, and neither pass.**
+> `texture_frame.world_u` gives a run a world u-origin, so the bay grid and
+> the run carry hold together -- 640 of 1694 walls on the world grid against
+> `world_align_facades`'s 607, with continuity rising (bend solid-solid x 91%
+> -> 98%). That function is deleted. `align_headers` stays: it sets cstat 4,
+> which the frame depends on rather than replaces.
+>
+> ~~Recommended default: leave the frames winning for now, and make the
+> district frame the next step rather than choosing between the two passes.~~
 > The frames fixed six classes and cost one, all of them still far above the
 > campaign; and `world_align_facades` is now nearly inert, so deleting it
 > would be tidier than keeping it as a coin-toss. Not deleted here, because it
 > encodes the E3M1 bay-grid observation and that observation should move into
 > the district frame rather than be lost.
+
+## 17. The 8x facades shipped, were rendered, and nobody saw it (2026-09-02)
+
+Between 8b70d51 and f843e2c every framed wall in blood-city and the pattern
+zoo was drawn eight times too narrow -- median 8.00 texels per sixteen world
+units against the campaign's 1.00, on 1634 and 436 walls. It passed the
+continuity gate, the read-back, the conformance sweep and the `>`-invariance
+test, and it was rendered into a before/after sheet and reported as an
+improvement.
+
+The reason is structural rather than careless: **every texture check this
+project had was relative.** Each compares a wall to its neighbour, or a build
+to its own claims, and a uniform error moves both sides together. The
+continuity gate did worse than miss it -- at 8x every `x_repeat` is a multiple
+of 8, so the panning never advances and every join "continues", and the broken
+map scored HIGHER in every class.
+
+`material-is-drawn-at-campaign-size` closes this particular hole. The general
+question is yours: **how much of the rest of the stack is relative in the same
+way?** The conformance templates are ratios; the design-role readings are
+comparisons; `readback` compares a build to what its own constructor said,
+which cannot catch a constructor that is wrong in a consistent way.
+
+> **Recommended default: one absolute, corpus-anchored magnitude check per
+> family of construct, added when that family next gets worked on rather than
+> as a sweep.** A sweep would be guessing at which quantities have a campaign
+> distribution tight enough to gate on; this one was worth having because the
+> corpus turned out to be extraordinarily tight (every map 0.84-1.00). The
+> cheap general rule meanwhile: when a gate is added, ask what it would say
+> about a map where the quantity is uniformly wrong, and if the answer is
+> "nothing", say so in the docstring.

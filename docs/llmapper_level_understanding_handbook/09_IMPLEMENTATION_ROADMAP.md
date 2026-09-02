@@ -3018,6 +3018,180 @@ recess, the pane and the facade run as one thing, and make
 decide the `world_align_facades` overlap, which is the last place two passes
 still want the same field.
 
+## The eight I dropped, 2026-09-02
+
+Supervisor assignment P13, and it is P11's regression. Between 8b70d51 and
+f843e2c every framed wall in both built maps was **eight times too narrow**.
+
+### The formula, and where the eight went
+
+`resolve_run` computed `round(length * texels_per_unit)`. The module's own
+docstring, six hundred lines above it, says `length * texels_per_unit / 8` --
+and it is right, because `x_repeat * 8` is the texel count a wall consumes
+(`AlignWalls`, `xmapedit/src_blood/xmpmaped.cpp:3036`, `xrepeat<<3`).
+`frame_map`'s carry was dimensionally correct, `scale = x_repeat * 8 /
+length`, so round-tripping it through the broken resolver gave `repeat =
+x_repeat * 8` exactly.
+
+The default scale was wrong too. 1/8 texels per unit is two texel steps; the
+campaign's is one, so the natural scale is **1/16**, which puts `x_repeat` at
+`length / 128` for a 64-wide tile. Three places in this repo now agree on that
+figure and did before this module existed: `texture_align.natural_x_repeat`
+(`length / (2 * tile_width)`), `facade_pass.UNITS_PER_TILE_PIXEL` (16), and
+the corpus.
+
+### The measurement, as texels per sixteen world units
+
+`x_repeat * 128 / length`, one Build texel step:
+
+```text
+                       one-sided                two-sided
+campaign, 43 maps      median 1.00 (n=46873)    median 1.00 (n=52801)
+every campaign map     median 0.84 .. 1.00      median 0.93 .. 1.00
+blood-city  fd31d02    median 8.00 (n=533)      median 8.00 (n=1101)
+pattern-zoo fd31d02    median 8.00 (n=273)      median 8.00 (n=163)
+both, after f843e2c    median 1.00              median 1.00
+```
+
+The moving walls `frame_map` refuses to project stayed at 1.00 throughout,
+which is what isolates the fault to the resolver rather than to the build.
+
+### Why every gate passed, and one that scored the defect HIGHER
+
+Not one of this project's texture checks is absolute. Continuity compares a
+wall to its neighbour; read-back compares a build to its own claims;
+conformance compares a construct to a template of ratios; `>`-invariance
+compares the resolver to the editor's accumulator, and the editor accumulates
+whatever repeat the resolver chose. A uniform scale error satisfies all four
+at once.
+
+It is worse than blindness. **At eight times natural the continuity gate
+rewards the defect**: every `x_repeat` is then a multiple of 8, so every wall
+consumes a whole multiple of 64 texels and the panning never advances from
+zero, and every join continues trivially. Resolved on E1M1 at natural against
+8x: `bend solid-portal` 59% -> 77%, `collinear portal-portal` 64% -> 89%,
+`reflex solid-solid` 9% -> 36%, and **not one class falls**. So P11's class
+table was flattered by the bug it shipped, and the numbers below are the
+honest ones. `test_the_relative_gate_SCORES_THE_BROKEN_MAP_HIGHER` pins it.
+
+### The magnitude gate
+
+`material-is-drawn-at-campaign-size`: per wall kind, the median texel step
+must lie in **[0.5, 2.0]** -- twice as wide either side as the campaign's own
+0.84-1.00, because half or double natural is a look a mapper may want and
+eight times is not. Moving walls are excluded **by construct**: a mover's
+length is not a fact about the world, since `TranslateSector` moves the
+flagged end while `x_repeat` stays put.
+
+Fail-first on the two maps exactly as committed at fd31d02 -- four findings,
+all `median 8.00` -- nothing after the fix, **0 of 43 campaign maps flagged**,
+graded 0 of 86, 0.00%, error tier.
+
+### The continuity table, honestly
+
+```text
+                         campaign   pre-P11   P11 (8x)   now
+blood-city
+  bend solid-solid       x 68%        73        95        98
+  bend portal-portal     x 30%        55        93        71
+  bend solid-portal      x 34%        91        83        83
+                         y 61%        31        97        97
+  collinear solid-portal x 80%        94        98        98
+                         y 88%        58        97        97
+  collinear portal-portal x 57%       37        87        68
+pattern-zoo
+  bend solid-solid       x 68%        41        93        91
+  bend solid-portal      y 61%        78        93        93
+  collinear solid-portal x 80%        42        71        71
+                         y 88%        49       100       100
+```
+
+Every class is still far above where P11 found it; the two that read lower
+than the 8x column are the ones the wrap artefact was inflating.
+
+### Notches, which is where both quantities change at once
+
+The owner's point: scale follows wall length and phase follows ceiling
+height, and a notch changes both. `ANotchInAFacade` is a hand-built facade
+4096 long with a 512-deep recess and a doorway, and it asserts each in turn:
+
+* each wall takes the repeat its own length asks for at one shared scale --
+  8, 4, 16, 4, 8;
+* the mouth wall carries a **non-zero** `y_panning` compensating for pegging
+  to the recess ceiling, and every join of the run still continues in y by
+  the editor's own pairwise predicate;
+* zeroing that compensation -- which is what a per-wall pass does -- breaks
+  the phase on **both** sides of it;
+* `cstat 4` pegs a header back to the facade's own ceiling (`GetWallZPeg`,
+  `:3009-3011`). Measured on E3M1: **68 of its 246 header walls carry the bit,
+  27%** -- not the 21-of-35 the brief carried, which is a narrower population
+  than I could reconstruct;
+* a wall with both a top and a bottom step pegs to the **bottom** one, the
+  two-`if`s-not-an-else clause at `:3013-3018`;
+* the ported `>` has nothing to change on the result.
+
+Building that fixture found two more of my own can't-fail checks: the first
+version gave the recess a sill as well as a head, so the top-step case it
+meant to test was really the bottom-step case; and it dropped the recess
+ceiling by exactly 16384, which at `y_repeat` 8 on a 64-high tile is exactly
+one full panning wrap, so the phase assertion passed for free. Both are the
+same mistake as the eight, and both are commented where they were made.
+
+### The district frame, and what it replaced
+
+Owner queue item 16, resolved, and the resolution was that the conflict was
+never real. `world_align_facades` phased every street wall from its own world
+coordinate -- which is what makes a bay grid exist -- and `frame_map` phased
+it from the run. A run whose **u-origin is a world point** does both:
+`texture_frame.world_u` computes it, `frame_map(world_phase=)` takes it, and
+blood-city names its street-front walls.
+
+Measured: the frame puts **640 of 1694 walls on the world bay grid against the
+old pass's 607**, and continuity rises with it (`bend solid-solid` x 91% ->
+98%). So `world_align_facades` is **deleted**, with the measurement in the
+comment that replaces it.
+
+**`align_headers` is NOT deleted**, and the brief expected it to be. It sets
+`cstat 4`, which is what makes a header peg to the facade's own ceiling rather
+than to the step -- the frame *depends* on that bit and does not decide it.
+Deleting it would break the header phase the notch fixture just pinned.
+
+### The shopfront recesses: counted, not carved
+
+Still not done, and now counted at every build rather than left to a report
+nobody re-runs: `glaze`'s report carries `panes_on_the_facade_line`, **4 in
+blood-city and 2 in the zoo**. Turning a span into E6M1's arrangement means
+new regions in `l3_theatre`, `l3_mall` and `l3_market` -- a carve per span,
+portal joins, floor and ceiling z -- and this run had the district frame, the
+magnitude gate and the notch fixture to land first. The prerequisites it was
+waiting on now exist: `recess_spec` for the geometry, the notch fixture for
+the phase across the mouth, and a build-time count that will go to zero when
+it is done.
+
+### What remains unproven
+
+* **The 8x maps were shipped and rendered and nobody saw it**, including me.
+  The renders in P11's own report were of the broken map. Frames are
+  regenerable and gitignored, so what is left is the count -- which is the
+  argument for the magnitude gate being a rule and not a report.
+* Sloped walls still unmodelled; bottom-swapped walls now have a `wall_z_peg`
+  fixture but still no `frame_map` fixture.
+* The recess carve, above.
+* `tools/grade_rules` still globs `maps/blood/*.MAP`, which the corpus reorg
+  emptied; run it with `--maps maps/blood/campaign`.
+
+### Regression tests
+
+`tests/test_texture_frame` is now 31: six absolute scale tests, seven notch
+tests, three magnitude-gate tests including the one that shows continuity
+scoring the broken map higher, and P11's fifteen kept unchanged.
+
+### Next highest-value experiment
+
+Carve one recess -- the theatre's, which is a single span in one module -- and
+watch `panes_on_the_facade_line` go from 4 to 3 with the read-back still
+clean. If that lands, the other five are the same edit.
+
 ## The demonstration maps, and two things they said plainly
 
 `maps/blood/mechanism/` holds thirty-odd official XMapEdit tutorial maps, one
