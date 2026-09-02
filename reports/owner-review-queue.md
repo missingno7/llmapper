@@ -535,12 +535,13 @@ was `expectedFailure`; it passes now, with the assertion unchanged.
 Both are `expectedFailure` fixtures over owner-attested E1M1 constructs, and
 both were re-measured this session rather than assumed.
 
-**The Link that drives a light.** Every field is in the file and legible one at
-a time -- s125 carries `tx_id 126, command 5`, s124 carries `rx_id 126,
-amplitude -8, shade_always 0, shade_floor 1, shade_walls 1`. What is missing is
-that nothing in the stack reads a SECTOR's `command` as a verb at all, so
-`read_mechanism` returns eight keys and not one of them is a transmitter-side
-facet. This is prompt P8's deliverable and was left to it.
+**The Link that drives a light -- CLOSED 2026-09-02 (P8).** Every field was in
+the file and legible one at a time -- s125 `tx_id 126, command 5`, s124 `rx_id
+126, amplitude -8, shade_always 0` -- and what was missing was that nothing in
+the stack read a SECTOR's `command` as a verb. `effects.transmission` now
+does, as a fifth plane on the mechanism record, and the fixture passes with
+its assertion unchanged. E1M1 s125 -> s124 reads *follow me*, continuous,
+floor shade 36 at OFF and 28 at ON.
 
 **The casket as one construct.** `reachability.link_pairs` already reports
 `{link 10, sectors [28, 30], sprites [47, 46]}`; `motion.stack_pairs` reports
@@ -552,7 +553,59 @@ cannot be expressed by a per-sector record at all, so this one is genuinely
 blocked on the typed declaration layer (roadmap Phase 13, MechanismDecl:
 members plus roles).
 
-> **Recommended default: leave both open, and do not loosen either fixture.**
-> They are the countable gap. The Link is one prompt away; the casket is a
-> layer away, and inventing a `stack_partner` key on the per-sector record to
-> make one test pass would put the composition in the wrong place.
+> **Recommended default: the casket stays open, and do not loosen its
+> fixture.** It is now the whole countable gap. Inventing a `stack_partner`
+> key on the per-sector record to make one test pass would put the
+> composition in the wrong place.
+
+## 14. The bot's AGTST test maps are gone — DONE, for information (2026-09-02)
+
+A supervisor cleanup (`git worktree remove --force` on a worktree holding a
+junction to the main checkout) deleted `maps/` and `reference/blood`. The
+corpus was rebuilt byte-exact from on-disk copies against the sha256
+manifests in `reports/` (see `reports/corpus-recovery-2026-09-01.md`), and
+the game directory from `D:\Games\DOS\BLOOD`. **Not recoverable:** the bot's
+`AGTST1`–`AGTST18.map`, `overlap1.map`, the iter27 bot artifacts, your
+`casket.map`, `helix_stairs.map`, `SSFACE.MAP`, `SSHIVE.MAP` and
+`xmapedit.pdf`. `tools/botcorpus.sh` has no maps to run until AGTST is
+re-authored. Two backup mirrors now exist (`D:\Games\DOS\llmapper-corpus-
+backup`, `C:\Users\jiriv\llmapper-corpus-backup`, refreshed by
+`tools\backup_corpus.ps1`) and the agent protocol forbids recursive deletes
+and junctions outright.
+
+> **No decision needed.** If you still have `casket.map` or any AGTST map
+> elsewhere, dropping them into `maps/blood/mechanism/` and
+> `reference/blood/` restores the tests that depend on them.
+
+## 15. Should our own builds REFUSE a Link receiver that cannot answer? (2026-09-02)
+
+Reading the Link as a verb turned up four ways a receiver can sit on the
+channel and be unmoved by it, each with every field individually legal:
+`shade_always 1` (`sectorfx.cpp:166` then never scales the amplitude by busy),
+`amplitude 0` (`InitSectorFX:363` never lists the sector for lighting at all),
+amplitude with none of the three `shade_*` faces set, and `locked`
+(`trMessageSector:1916` drops the Link before it arrives).
+
+Over the 43 campaign maps, **one receiver of 269 is in that state**: E4M2 s33
+-> s200, a marked rotator driving a flicker light whose `shade_always` bit is
+set, while its three fellow listeners on channel 103 all respond. And **eight
+of the 146 Link senders (5.5%) transmit on a channel nobody receives on** --
+E1M3 s307, E1M4 s218, E1M5 s197, E1M8 s109, E2M5 s80, E2M5 s673, E3M2 s45,
+E3M6 s35.
+
+Neither is necessarily a mistake. A light meant to flicker regardless of a
+door is a legitimate thing to want, and a channel left empty is what a cut
+mechanism looks like. Static reading cannot tell either from a slip.
+
+The question is only about **our** output: when `curtains.link_stage_light`
+or any future constructor wires a Link, should the build refuse on a receiver
+that cannot answer?
+
+> **Recommended default: yes for constructed maps, never for mined ones.**
+> In a generated map an inert receiver is always a defect, because the
+> constructor asked for the coupling explicitly; in an original it is
+> evidence, and flagging it would be this project telling Monolith it was
+> wrong. That is the same split the rendering-law reader already uses. It
+> needs a `drives` key on `readback.sentence()` to enforce, which is the next
+> step named in the roadmap section and is NOT built yet -- so today the
+> reading reports and nothing refuses.

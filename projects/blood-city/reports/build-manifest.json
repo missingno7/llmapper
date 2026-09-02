@@ -517,18 +517,714 @@
     "problems": [],
     "notes": []
   },
+  "readback": {
+    "$schema": "llmapper.readback",
+    "schema_version": 1,
+    "map": "blood-city-current.MAP",
+    "sentences": 44,
+    "agrees": true,
+    "differences": [],
+    "unmeasured": [],
+    "measured": [
+      {
+        "name": "region:gravesend/theatre_row/streets/lightpool_avenue_north",
+        "construct": "sector",
+        "sector": 1,
+        "sectors": [
+          1
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/theatre_row/streets/lightpool_forecourt",
+        "construct": "sector",
+        "sector": 2,
+        "sectors": [
+          2
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/theatre_row/saloon/door",
+        "construct": "z_motion_door",
+        "sector": 12,
+        "sectors": [
+          12
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 200,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 12,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/parlor/door",
+        "construct": "z_motion_door",
+        "sector": 21,
+        "sectors": [
+          21
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 201,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 21,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/auditorium/house/stage",
+        "construct": "sector",
+        "sector": 24,
+        "sectors": [
+          24
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 341,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/door",
+        "construct": "z_motion_door",
+        "sector": 33,
+        "sectors": [
+          33
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 202,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 33,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/lobby_door",
+        "construct": "z_motion_door",
+        "sector": 35,
+        "sectors": [
+          35
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 203,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 35,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/stage_curtain",
+        "construct": "curtain",
+        "sector": 37,
+        "sectors": [
+          37
+        ],
+        "sector_type": 614,
+        "wiring": {
+          "rx_id": 340,
+          "tx_id": 341,
+          "command": 5,
+          "state": 0
+        },
+        "closure": {
+          "loops": 1,
+          "problems": [],
+          "notes": [],
+          "graze_tolerance": 16.0,
+          "grazing_loops": []
+        },
+        "visibility": {
+          "146": {
+            "authored": 3,
+            "drawn": 3,
+            "walkable": 3
+          }
+        },
+        "conformance": {
+          "construct": "curtain sector 37",
+          "measured": {
+            "leaves": 1,
+            "flag_directions": [
+              1
+            ],
+            "motion_set": [
+              37
+            ],
+            "undeclared_neighbours": [],
+            "fabric_walls": 3,
+            "fabric_visible": 3,
+            "closed_texel_scale": [
+              2.0,
+              2.0,
+              2.0
+            ]
+          },
+          "deviations": []
+        },
+        "state_pair": {
+          "sector": 37,
+          "type": 614,
+          "measured": [
+            "area",
+            "travel"
+          ],
+          "headroom_change": 0,
+          "area_off": 983040.0,
+          "area_on": 1302528.0,
+          "area_change": 319488.0,
+          "declared_travel": 4992.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/pawn_shop/pawn_door",
+        "construct": "z_motion_door",
+        "sector": 44,
+        "sectors": [
+          44
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 204,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 44,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/old_crossing/streets/lightpool_lychgate",
+        "construct": "sector",
+        "sector": 50,
+        "sectors": [
+          50
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/old_crossing/streets/lightpool_well_square",
+        "construct": "sector",
+        "sector": 51,
+        "sectors": [
+          51
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/old_crossing/st_gallows/avenue_door",
+        "construct": "z_motion_door",
+        "sector": 68,
+        "sectors": [
+          68
+        ],
+        "sector_type": 600,
+        "state_pair": {
+          "sector": 68,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/old_crossing/st_gallows/cemetery_door",
+        "construct": "z_motion_door",
+        "sector": 70,
+        "sectors": [
+          70
+        ],
+        "sector_type": 600,
+        "state_pair": {
+          "sector": 70,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/foundry_ward/streets/lightpool_yard_stair",
+        "construct": "sector",
+        "sector": 77,
+        "sectors": [
+          77
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/foundry_ward/streets/lightpool_yard_gate",
+        "construct": "sector",
+        "sector": 78,
+        "sectors": [
+          78
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/foundry_ward/streets/lightpool_spur_junction",
+        "construct": "sector",
+        "sector": 79,
+        "sectors": [
+          79
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/foundry_ward/yard_grate_mouth",
+        "construct": "sector",
+        "sector": 85,
+        "sectors": [
+          85
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 0,
+          "tx_id": 30,
+          "command": 1,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/foundry_ward/pump_station/door",
+        "construct": "z_motion_door",
+        "sector": 87,
+        "sectors": [
+          87
+        ],
+        "sector_type": 600,
+        "state_pair": {
+          "sector": 87,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/foundry_ward/canteen/door",
+        "construct": "z_motion_door",
+        "sector": 94,
+        "sectors": [
+          94
+        ],
+        "sector_type": 600,
+        "state_pair": {
+          "sector": 94,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/foundry_ward/canteen/side_door",
+        "construct": "z_motion_door",
+        "sector": 96,
+        "sectors": [
+          96
+        ],
+        "sector_type": 600,
+        "state_pair": {
+          "sector": 96,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/market_slip/streets/lightpool_plaza_east",
+        "construct": "sector",
+        "sector": 101,
+        "sectors": [
+          101
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/market_slip/streets/lightpool_quay_gate",
+        "construct": "sector",
+        "sector": 102,
+        "sectors": [
+          102
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/market_slip/gravesend_arcade/entry_door",
+        "construct": "z_motion_door",
+        "sector": 128,
+        "sectors": [
+          128
+        ],
+        "sector_type": 600,
+        "state_pair": {
+          "sector": 128,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/market_slip/gravesend_arcade/service_door",
+        "construct": "z_motion_door",
+        "sector": 130,
+        "sectors": [
+          130
+        ],
+        "sector_type": 600,
+        "state_pair": {
+          "sector": 130,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/market_slip/plaza/fountain/fountain_tier2",
+        "construct": "sector",
+        "sector": 136,
+        "sectors": [
+          136
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/market_slip/quay/river",
+        "construct": "sector",
+        "sector": 141,
+        "sectors": [
+          141
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/market_slip/market_hall/door",
+        "construct": "z_motion_door",
+        "sector": 163,
+        "sectors": [
+          163
+        ],
+        "sector_type": 600,
+        "state_pair": {
+          "sector": 163,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/trunk/junction",
+        "construct": "sector",
+        "sector": 166,
+        "sectors": [
+          166
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/trunk/main_duct",
+        "construct": "sector",
+        "sector": 168,
+        "sectors": [
+          168
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/mouths/yard_grate_mouth_below",
+        "construct": "sector",
+        "sector": 172,
+        "sectors": [
+          172
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/mouths/cellar_pit_mouth_below",
+        "construct": "sector",
+        "sector": 173,
+        "sectors": [
+          173
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/nw_corner",
+        "construct": "sector",
+        "sector": 174,
+        "sectors": [
+          174
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/n_channel",
+        "construct": "sector",
+        "sector": 176,
+        "sectors": [
+          176
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/ne_corner",
+        "construct": "sector",
+        "sector": 177,
+        "sectors": [
+          177
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/se_corner",
+        "construct": "sector",
+        "sector": 184,
+        "sectors": [
+          184
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/s_channel",
+        "construct": "sector",
+        "sector": 185,
+        "sectors": [
+          185
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/sw_corner",
+        "construct": "sector",
+        "sector": 187,
+        "sectors": [
+          187
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/chambers/pump_room",
+        "construct": "sector",
+        "sector": 195,
+        "sectors": [
+          195
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/chambers/silt_trap",
+        "construct": "sector",
+        "sector": 196,
+        "sectors": [
+          196
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/chambers/east_annex",
+        "construct": "sector",
+        "sector": 197,
+        "sectors": [
+          197
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/chambers/flooded",
+        "construct": "sector",
+        "sector": 198,
+        "sectors": [
+          198
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/chambers/station_foot",
+        "construct": "sector",
+        "sector": 199,
+        "sectors": [
+          199
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/necks/west_adit",
+        "construct": "sector",
+        "sector": 200,
+        "sectors": [
+          200
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/necks/neck_cistern",
+        "construct": "sector",
+        "sector": 201,
+        "sectors": [
+          201
+        ],
+        "sector_type": 0
+      }
+    ]
+  },
   "rules": {
-    "total": 97,
+    "total": 452,
     "by_severity": {
-      "note": 96,
-      "warning": 1
+      "note": 434,
+      "warning": 6,
+      "error": 12
     },
     "by_code": {
       "note:sprite-drawn-square": 12,
       "note:floor-aligned-sprite-rests-on-a-surface": 2,
       "note:glass-is-breakable": 24,
       "note:opening-clears-a-standing-body": 58,
-      "warning:wall-between-rooms-is-not-paper": 1
+      "warning:wall-between-rooms-is-not-paper": 1,
+      "error:tile-sits-in-an-attested-slot": 12,
+      "note:wall-draws-its-own-tile": 338,
+      "warning:wall-tile-is-drawn-somewhere": 5
     }
+  },
+  "lost_wall_tiles": {
+    "population": 32,
+    "tiles": [
+      "tile[68]",
+      "tile[93]",
+      "tile[194]",
+      "tile[203]",
+      "tile[1011]"
+    ],
+    "as_readback_differences": [
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[68]: authored on 5 wall(s) (124, 127, 134, 170, 172) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[93]: authored on 9 wall(s) (501, 504, 508, 509, 519, 533 and 3 more) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[194]: authored on 2 wall(s) (1264, 1316) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[203]: authored on 3 wall(s) (238, 243, 257) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[1011]: authored on 3 wall(s) (510, 512, 513) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+    ]
   }
 }
