@@ -128,6 +128,9 @@ def build():
             sorted(surfaces.items()):
         field = build_field(rings, masses, bearing_units=SUN_BEARING)
         absorbed += len(field["absorbed"])
+        report["welded_vertices"] = (report.get("welded_vertices", 0)
+                                     + field["welded_vertices"])
+        report["before_field"] = report.get("before_field", 0) + 1
         #: POST-CONDITION, per surface, before anything is added: the field's
         #: pieces must partition the surface it cut. Area alone is not that
         #: -- it is satisfied by a set that double-counts one region and loses
@@ -209,7 +212,17 @@ def main() -> int:
             sector = compiled.allocations[name].sector_id
             ledger.write(str(sector), "shade", "sun:field", piece.depth * STEP,
                          intent="presentation")
+    lamp = next((compiled.allocations[n].sector_id
+                 for n, p, _s, _z in pieces if p.depth == 0), None)
+    if lamp is not None:
+        ledger.write(str(lamp), "shade", "lamp:0", -6, intent="presentation")
     print("shade channel:", apply_shade_channel(disk, ledger))
+    from collections import Counter
+    shades = Counter()
+    for name, piece, _sid, _z in pieces:
+        sec = compiled.allocations[name].sector_id
+        shades[(piece.depth, int(disk.sectors[sec].fields["floor_shade"]))] += 1
+    print("shade by depth:", dict(sorted(shades.items())))
 
     # --- 4. joins ---------------------------------------------------------
     run.enter("joins")
@@ -220,7 +233,65 @@ def main() -> int:
     applied = joins.apply(disk, kinds, strict=False)
     print("joins:", {k: v for k, v in applied.items() if k != "applied"})
 
+    # --- 5. frames: one projection per run, resolved in closed form -------
     run.enter("frames")
+    from bloodmap.texture_align import wall_art_sizes as _sizes
+    from bloodmap.texture_frame import frame_map
+
+    _art = _sizes("reference/blood")
+    if _art:
+        print("texture frames:", {k: v for k, v
+                                  in frame_map(disk, art_sizes=_art).items()
+                                  if k != "basis"})
+
+    # --- the gates -------------------------------------------------------
+    from bloodmap.overlay import (
+        LIGHT_DOMAIN, declared_vertices, in_domain, vertex_faults)
+    from bloodmap.street_model import sees_the_kerb
+    from bloodmap.texture_align import wall_art_sizes
+    from bloodmap.texture_frame import (
+        auto_align_walls, run_partition, sector_index)
+
+    owners = sector_index(disk)
+    declared = declared_vertices([p.rings for _n, p, _s, _z in pieces])
+    g1 = vertex_faults(disk, declared)
+    print(f"G1 vertex fidelity: {len(declared)} declared, {len(g1)} missing")
+
+    tiles = set()
+    roads = [i for i, sec in enumerate(disk.sectors)
+             if int(sec.fields["floor_picnum"]) == ROAD_TILE]
+    for sector in roads:
+        tiles.update(sees_the_kerb(disk, sector, owners)["kerb_tiles"])
+    print(f"sightline: from {len(roads)} road pieces a body sees "
+          f"{sorted(tiles)}")
+
+    art = wall_art_sizes("reference/blood")
+    moved = 0
+    if art:
+        keys = ("x_repeat", "x_panning", "y_repeat", "y_panning", "cstat")
+        for chain in run_partition(disk, art_sizes=art, owners=owners):
+            before = {w: {k: int(disk.walls[w].fields[k]) for k in keys}
+                      for w in chain}
+            auto_align_walls(disk, chain[0], flags=0x01, art_sizes=art,
+                             owners=owners)
+            moved += sum(1 for w in chain
+                         if any(int(disk.walls[w].fields[k]) != before[w][k]
+                                for k in keys))
+    print(f"frames: the editor would change {moved} wall(s)")
+
+    allowed, refused = in_domain(disk, LIGHT_DOMAIN, range(len(disk.sectors)))
+    print(f"light domain: admits {len(allowed)}, refuses {len(refused)}")
+
+    from bloodmap import rules_blood                              # noqa: F401
+    from bloodmap.rules import RULES
+
+    if art:
+        for rule_id in ("material-is-drawn-at-campaign-size",
+                        "parallax-wears-a-sky-tile"):
+            found = RULES[rule_id].check(disk)
+            print(f"{rule_id}: {len(found.violations)} violation(s)")
+
+    print("dropped PRESENTATION facets:", ledger.dropped_facets() or "none")
     out = HERE / "slice2-streets.MAP"
     write_map(disk, out)
     print(f"wrote {out}: {len(disk.sectors)} sectors, {len(disk.walls)} walls")
