@@ -1,0 +1,71 @@
+{
+ "$schema": "llmapper.residue-ledger",
+ "counts": {
+  "sectors": 382,
+  "sprites": 807,
+  "walls": 2481
+ },
+ "layers": [
+  {
+   "disagreements": [],
+   "evidence": "space-tree.json",
+   "explained": 274,
+   "gate": "the hierarchy's own validator: primary spaces partition every sector exactly once and every node's sources agree with sector ownership (`LevelSource.validate`)",
+   "layer": 1,
+   "name": "space tree",
+   "population": "382 sectors",
+   "reader": "bloodmap.decompiler.decompile_level (reused, unchanged)",
+   "residue": 108,
+   "residue_is": "sectors held only by a singleton space nothing grouped: in the tree, and the tree says nothing about them",
+   "residue_percent": 28.27,
+   "state": "read"
+  },
+  {
+   "evidence": "surfaces.json",
+   "layer": 2,
+   "name": "surfaces and frames",
+   "state": "not yet read"
+  },
+  {
+   "evidence": "join-census.json",
+   "layer": 3,
+   "name": "joins",
+   "state": "not yet read"
+  },
+  {
+   "evidence": "overlays.json",
+   "layer": 4,
+   "name": "overlays: islands, the light field, lamps",
+   "state": "not yet read"
+  },
+  {
+   "evidence": "mechanisms.json",
+   "layer": 5,
+   "name": "mechanisms as sentences",
+   "state": "not yet read"
+  },
+  {
+   "evidence": "edge-chain.json",
+   "layer": 6,
+   "name": "the edge chain",
+   "state": "not yet read"
+  },
+  {
+   "evidence": "plan.json",
+   "layer": 7,
+   "name": "the plan",
+   "state": "not yet read"
+  },
+  {
+   "evidence": "intent.json",
+   "layer": 8,
+   "name": "intent",
+   "state": "not yet read"
+  }
+ ],
+ "layers_read": 1,
+ "measure": "understanding is 100% minus residue, per layer, in that layer's own population; a layer with no evidence file is 'not yet read', which is not zero residue",
+ "of": "E3M1.MAP",
+ "schema_version": 1,
+ "source_crc32": "a6465024"
+}
