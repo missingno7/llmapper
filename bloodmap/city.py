@@ -268,6 +268,27 @@ KEY_TILE_BASE = 2551
 Z_MOTION = 600
 
 
+def _leaf_for(sector_type: int) -> dict:
+    """What the mouth's own record wears, and whether anything drags it.
+
+    A Z-MOTION DOOR DEFORMS NOTHING. It moves its ceiling from one z to
+    another and no point in the map travels, so a wall flagged 0x4000 on one
+    is a claim the mechanism never makes -- and `DragPoint` believes it: the
+    flag walked the ring out of the door, through the vertex the weld made it
+    share with the pavement, and reported a motion set of six walls in three
+    sectors for a thing that moves a plane.
+
+    That was slice 4's one remaining read-back difference, and its cause was
+    not the weld. The leaf stays MASKED and wearing the fabric, because
+    `engine.cpp:4938-4940` draws a two-sided wall's middle band only when it
+    is masked or one-way; it is simply not dragged.
+    """
+    flags = MASKED if int(sector_type) == Z_MOTION else MASKED | DRAG_FORWARD
+    return {"tile": CURTAIN_FABRIC, "flags": flags,
+            "over_picnum": CURTAIN_FABRIC, "faces": joins.PAVEMENT,
+            "drags": bool(flags & DRAG_FORWARD)}
+
+
 def switch(prop_id: str, point: Point, *, tx_id: int, height: int = SWITCH_HEIGHT
            ) -> dict:
     """A wall switch, on the facade beside the thing it works.
@@ -345,10 +366,7 @@ def shell(key: str, rect: Sequence[int], *, wall_thickness: int,
                          room_id=f"interior:{key}", void=_rect(*door),
                          sector_type=sector_type, wiring=wiring,
                          key=gate_key, key_why=key_why,
-                         leaf={"tile": CURTAIN_FABRIC,
-                               "flags": DRAG_FORWARD | MASKED,
-                               "over_picnum": CURTAIN_FABRIC,
-                               "faces": joins.PAVEMENT})
+                         leaf=_leaf_for(sector_type))
     #: THE SWITCH, on the facade beside the mouth -- half a door's width
     #: clear of the jamb, on the pavement the door opens onto.
     props = []

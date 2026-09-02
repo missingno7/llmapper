@@ -3459,6 +3459,40 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### Slice 5, first answer: the weld was not the cause
+
+Slice 4 left one read-back difference per building, `members`, and named the
+weld as its cause: a curtain at a shell's mouth dragging the pavement's walls
+through a shared vertex. **That diagnosis was wrong, and the fixture that was
+going to settle void against pocket was never needed.**
+
+**A Z-motion door deforms nothing.** It moves its ceiling from one z to
+another; no point in the map travels. The leaf carried `0x4000` -- the bit
+that says a wall is DRAGGED -- on a mechanism that drags nothing, and
+`DragPoint` believed it: the walk left the door through the vertex it shares
+with the pavement and reported six walls in three sectors for a thing that
+moves a plane. The flag was a claim the mechanism never makes.
+
+The leaf stays MASKED and wearing the fabric, because `engine.cpp:4938-4940`
+draws a two-sided wall's middle band only when it is masked or one-way. It is
+simply not flagged, and `_leaf_for` flags one only where the sector type
+actually slides.
+
+```text
+read-back   9 sentences, 0 differences, agrees=True
+payload     0 mechanisms claim a deformation they do not make
+Rule 2      9 mechanisms, 0 closures moved
+```
+
+The sentences changed with the correction. A Z-motion door declares no motion
+set -- it has none -- and declares instead the two things it does have: a
+state pair that changes, and the channel it answers. Declaring five records it
+does not deform was the other half of the same mistake.
+
+**The gate, with its absolute reading:** a Z-motion door's motion set is
+EMPTY, read off the built map. The fail-first flags one leaf and the walk
+leaves the mechanism -- more than one sector comes back.
+
 ### Slice 4: one fact store, a street that is as wide as it says, and a door that shuts
 
 #### Two writer defects the readers found, and a row that cited the wrong sectors

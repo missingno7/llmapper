@@ -700,6 +700,30 @@ def main() -> int:
         if not leg.get("built", True):
             print(f"   not built: {leg['leg']!r} -- {leg.get('why', '')}")
 
+    # --- a mechanism deforms what it says it deforms ------------------------
+    #: THE ABSOLUTE READING: a Z-motion door's motion set is EMPTY. It moves a
+    #: plane and no point in the map travels, so a wall flagged 0x4000 on one
+    #: is a claim the mechanism never makes -- and DragPoint believes it.
+    from bloodmap.motion import drag_closure, flagged_walls
+
+    over = []
+    for name, _piece, spec in built.pieces:
+        if not spec.sector_type:
+            continue
+        sector = built.compiled.allocations[name].sector_id
+        dragged = sorted(flagged_walls(disk, sector))
+        closure = drag_closure(disk, sector)
+        if int(spec.sector_type) == city.Z_MOTION and (dragged or
+                                                       closure["walls"]):
+            over.append(f"{spec.surface_id}: a Z-motion door deforms nothing, "
+                        f"and this one flags {len(dragged)} wall(s) and drags "
+                        f"{len(closure['walls'])} in "
+                        f"{len(closure['sectors'])} sector(s)")
+    print(f"payload: {len(over)} mechanism(s) claim a deformation they do not "
+          f"make")
+    for row in over[:3]:
+        print("   -", row)
+
     # --- each building's own sentence, read back ---------------------------
     back = readback_faults(built)
     print(f"read-back: {back['sentences']} sentences, "
@@ -1072,10 +1096,22 @@ def readback_faults(built) -> dict:
         tenants[surface] = fact.attrs.get("tenant")
         start = int(disk.sectors[sector].fields["wall_ptr"])
         count = int(disk.sectors[sector].fields["wall_count"])
-        claims.append(sentence(
-            fact.attrs["construct"], name=surface, sector=sector,
-            sector_type=int(fact.attrs.get("sector_type", 0)),
-            members=list(range(start, start + count))))
+        #: WHAT THE CONSTRUCT ACTUALLY CLAIMS. A Z-motion door deforms
+        #: nothing -- it moves a plane -- so it declares no motion set and
+        #: declares instead the two things it does have: a state pair that
+        #: changes, and the channel it answers.
+        holder = disk.sectors[sector].extra
+        wiring = ({"rx_id": int(holder.fields.get("rx_id", 0))}
+                  if holder is not None
+                  and int(holder.fields.get("rx_id", 0)) else None)
+        claim = dict(name=surface, sector=sector,
+                     sector_type=int(fact.attrs.get("sector_type", 0)),
+                     state={"changes": True})
+        if wiring:
+            claim["wiring"] = wiring
+        if fact.attrs["construct"] != "z_motion_door":
+            claim["members"] = list(range(start, start + count))
+        claims.append(sentence(fact.attrs["construct"], **claim))
     result = read_back(disk, claims, map_name="slice2-streets")
     by_name: dict = {}
     for row in result.differences:

@@ -1406,3 +1406,12 @@ the one to start with.
 manhole, the trunk, the junction and the stair back up. Each carries
 `built: false` with its reason, so an absent leg is a row rather than a
 silence, and the other twelve are checked on the built map and all reachable.
+
+**32a, withdrawn and corrected (P14b, 2026-09-03).** The recommended default
+was a slot, and the diagnosis it rested on was wrong. A Z-motion door deforms
+nothing -- it moves its ceiling, and no point in the map travels -- so the
+`0x4000` on its leaf was a claim the mechanism never makes, and `DragPoint`
+believed it. Unflagged, the read-back agrees on all nine buildings: 9
+sentences, 0 differences. **No slot is needed for a shutter**, and the A/B
+between void and pocket is not this question's; it returns when something in
+this city actually slides.
