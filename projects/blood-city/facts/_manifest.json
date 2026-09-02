@@ -1,0 +1,51 @@
+{
+ "$schema": "llmapper.fact-store",
+ "base_predicates_are_the_corpus": {
+  "which": [
+   "connects",
+   "sector",
+   "sprite",
+   "wall",
+   "xsector",
+   "xsprite",
+   "xwall"
+  ],
+  "why": "these are the map's records verbatim. They are regenerated rather than committed, on the project's standing rule that the corpus is never committed and the command that reproduces it is"
+ },
+ "predicates": {
+  "claims": "an aspect says it determines one field of one record",
+  "fill": "what occupies an opening, in a sector of its own",
+  "frame": "the projection of one surface: origin, scale, phase",
+  "island": "a height island: sectors standing one rise above the ground",
+  "join": "how two surfaces meet at one shared record",
+  "key": "a lock and the key that opens it",
+  "lamp_delta": "one source's contribution to a sector's shade, before it was summed",
+  "link": "a tx -> rx relation between records",
+  "part_of": "a record belongs to a place, in one aspect's hierarchy",
+  "realises": "which records a sentence is made of",
+  "sentence": "one mechanism, read as a sentence",
+  "shade_depth": "how many shadows deep a sector's floor is",
+  "surface": "a set of wall records one projected material would produce",
+  "void": "an opening cut in a holder surface, and the holder it belongs to"
+ },
+ "readers": {
+  "compiler": 2398
+ },
+ "rows": {
+  "claims": 120,
+  "fill": 9,
+  "frame": 744,
+  "island": 19,
+  "join": 1022,
+  "key": 5,
+  "lamp_delta": 14,
+  "link": 9,
+  "part_of": 198,
+  "realises": 9,
+  "sentence": 9,
+  "shade_depth": 184,
+  "surface": 47,
+  "void": 9
+ },
+ "schema_version": 1
+}

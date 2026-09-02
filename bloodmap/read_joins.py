@@ -207,8 +207,17 @@ def surface_kinds(level: Any, *, owners: Sequence[int] | None = None
     #: The base plane is the LOWEST ground -- Blood's z grows downward, so the
     #: base has the GREATEST floor_z -- among the levels that carry real area.
     #: The area floor is what stops a one-sector pit from electing itself.
+    #: WATER, A HORIZON AND A SOLID ARE ALREADY NAMED, and they do not vote.
+    #: A city with a sea on its south edge has more water than street -- 41
+    #: sectors and 1.2 billion square units of it in Gravesend -- so a base
+    #: plane elected by area put the SEA at the bottom of the street network,
+    #: called it the road, and left every pavement and every carriageway
+    #: unnamed. Both the naming below and the election have to respect what
+    #: the first pass already decided.
     by_level: dict[int, float] = defaultdict(float)
     for index in sorted(network):
+        if index in kinds:
+            continue
         by_level[int(_face(level.sectors[index])["floor_z"])] += _area(level, index)
     total_area = sum(by_level.values())
     significant = [z for z, area in by_level.items()
@@ -218,6 +227,8 @@ def surface_kinds(level: Any, *, owners: Sequence[int] | None = None
 
     raised: list[int] = []
     for index in sorted(network):
+        if index in kinds:
+            continue
         here = int(_face(level.sectors[index])["floor_z"])
         if base_z is not None and here == base_z:
             name(index, ROAD, f"outdoor ground at the network's base plane "

@@ -1,14 +1,14 @@
-{"fields":{"delta":-6,"depth":0,"sector":38},"key":["lamp","cemetery:0"],"lod":3,"source":"piece:cemetery#1"}
-{"fields":{"delta":-6,"depth":0,"sector":39},"key":["lamp","col_a/row_1:0"],"lod":3,"source":"piece:col_a/row_1"}
-{"fields":{"delta":-6,"depth":0,"sector":57},"key":["lamp","col_b/row_1:0"],"lod":3,"source":"piece:col_b/row_1"}
-{"fields":{"delta":-6,"depth":0,"sector":75},"key":["lamp","col_c/row_1:0"],"lod":3,"source":"piece:col_c/row_1"}
-{"fields":{"delta":-6,"depth":0,"sector":75},"key":["lamp","col_c/row_1:1"],"lod":3,"source":"piece:col_c/row_1"}
-{"fields":{"delta":-6,"depth":1,"sector":77},"key":["lamp","col_c/row_2:0"],"lod":3,"source":"piece:col_c/row_2#1"}
-{"fields":{"delta":-6,"depth":1,"sector":79},"key":["lamp","col_c/row_2:1"],"lod":3,"source":"piece:col_c/row_2#3"}
-{"fields":{"delta":-6,"depth":2,"sector":40},"key":["lamp","col_a/row_2:0"],"lod":3,"source":"piece:col_a/row_2#0"}
-{"fields":{"delta":-6,"depth":2,"sector":49},"key":["lamp","col_a/row_3:0"],"lod":3,"source":"piece:col_a/row_3#2"}
-{"fields":{"delta":-6,"depth":2,"sector":58},"key":["lamp","col_b/row_2:0"],"lod":3,"source":"piece:col_b/row_2#0"}
-{"fields":{"delta":-6,"depth":2,"sector":67},"key":["lamp","col_b/row_3:0"],"lod":3,"source":"piece:col_b/row_3#2"}
-{"fields":{"delta":-6,"depth":2,"sector":83},"key":["lamp","col_c/row_3:0"],"lod":3,"source":"piece:col_c/row_3#0"}
-{"fields":{"delta":-6,"depth":2,"sector":87},"key":["lamp","market_plaza:0"],"lod":3,"source":"piece:market_plaza#0"}
-{"fields":{"delta":-6,"depth":2,"sector":90},"key":["lamp","works_yard:0"],"lod":3,"source":"piece:works_yard#0"}
+{"_from": ["piece:cemetery#1"], "_layer": 3, "_reader": "compiler", "delta": -6, "depth": 0, "id": "lamp:cemetery:0", "lod": 3, "sector": 38}
+{"_from": ["piece:col_a/row_1"], "_layer": 3, "_reader": "compiler", "delta": -6, "depth": 0, "id": "lamp:col_a/row_1:0", "lod": 3, "sector": 39}
+{"_from": ["piece:col_a/row_2#0"], "_layer": 3, "_reader": "compiler", "delta": -6, "depth": 2, "id": "lamp:col_a/row_2:0", "lod": 3, "sector": 40}
+{"_from": ["piece:col_a/row_3#2"], "_layer": 3, "_reader": "compiler", "delta": -6, "depth": 2, "id": "lamp:col_a/row_3:0", "lod": 3, "sector": 49}
+{"_from": ["piece:col_b/row_1"], "_layer": 3, "_reader": "compiler", "delta": -6, "depth": 0, "id": "lamp:col_b/row_1:0", "lod": 3, "sector": 57}
+{"_from": ["piece:col_b/row_2#0"], "_layer": 3, "_reader": "compiler", "delta": -6, "depth": 2, "id": "lamp:col_b/row_2:0", "lod": 3, "sector": 58}
+{"_from": ["piece:col_b/row_3#2"], "_layer": 3, "_reader": "compiler", "delta": -6, "depth": 2, "id": "lamp:col_b/row_3:0", "lod": 3, "sector": 67}
+{"_from": ["piece:col_c/row_1"], "_layer": 3, "_reader": "compiler", "delta": -6, "depth": 0, "id": "lamp:col_c/row_1:0", "lod": 3, "sector": 75}
+{"_from": ["piece:col_c/row_1"], "_layer": 3, "_reader": "compiler", "delta": -6, "depth": 0, "id": "lamp:col_c/row_1:1", "lod": 3, "sector": 75}
+{"_from": ["piece:col_c/row_2#1"], "_layer": 3, "_reader": "compiler", "delta": -6, "depth": 1, "id": "lamp:col_c/row_2:0", "lod": 3, "sector": 77}
+{"_from": ["piece:col_c/row_2#3"], "_layer": 3, "_reader": "compiler", "delta": -6, "depth": 1, "id": "lamp:col_c/row_2:1", "lod": 3, "sector": 79}
+{"_from": ["piece:col_c/row_3#0"], "_layer": 3, "_reader": "compiler", "delta": -6, "depth": 2, "id": "lamp:col_c/row_3:0", "lod": 3, "sector": 83}
+{"_from": ["piece:market_plaza#0"], "_layer": 3, "_reader": "compiler", "delta": -6, "depth": 2, "id": "lamp:market_plaza:0", "lod": 3, "sector": 87}
+{"_from": ["piece:works_yard#0"], "_layer": 3, "_reader": "compiler", "delta": -6, "depth": 2, "id": "lamp:works_yard:0", "lod": 3, "sector": 90}

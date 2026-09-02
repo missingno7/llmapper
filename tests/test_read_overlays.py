@@ -11,6 +11,7 @@ now a measurement with a number that can come back wrong, and two of them do.
 from __future__ import annotations
 
 import unittest
+from pathlib import Path
 
 
 def _e3m1():
@@ -168,3 +169,42 @@ class TheSun(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class WaterDoesNotVoteForTheBasePlane(unittest.TestCase):
+    """A city with a sea on its south edge has more water than street.
+
+    `surface_kinds` names water, a horizon and a solid before it looks at the
+    street network, and then elected a base plane by area over every sector of
+    that network -- water included. Gravesend has 41 water and shore sectors
+    and 1.2 billion square units of them, so the SEA was elected the base
+    plane, called the road, and every pavement and every carriageway fell
+    through unnamed: 124 outdoor_ground, 41 "road", and 900 join records the
+    table had no row for.
+    """
+
+    def test_e3m1_reads_the_same_as_it_always_did(self):
+        from collections import Counter
+
+        from bloodmap.read_joins import surface_kinds
+
+        kinds = Counter(surface_kinds(_e3m1())["kinds"].values())
+        self.assertEqual(kinds["road"], 4)
+        self.assertEqual(kinds["pavement"], 9)
+
+    def test_a_map_whose_water_outweighs_its_street_still_finds_the_road(self):
+        from collections import Counter
+
+        from bloodmap.format import read_map
+        from bloodmap.read_joins import surface_kinds
+
+        built = Path("projects/blood-city/level/slice2-streets.MAP")
+        if not built.exists():  # pragma: no cover - built artefact absent
+            self.skipTest("the city has not been built")
+        kinds = Counter(surface_kinds(read_map(built).to_level_ir())["kinds"]
+                        .values())
+        self.assertGreater(kinds["road"], 0)
+        self.assertGreater(kinds["pavement"], kinds["road"])
+        self.assertGreater(kinds["water"], 0)
+        self.assertEqual(kinds["outdoor_ground"], 0,
+                         "nothing outdoors should be left unnamed")

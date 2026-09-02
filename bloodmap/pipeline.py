@@ -384,7 +384,7 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
             disk.sectors[sector].fields[key] = value
     report["sectors"] = len(disk.sectors)
     report["walls"] = len(disk.walls)
-    claimed = {fact.fields["surface"] for fact in store.of("sentence")}
+    claimed = {fact.attrs["surface"] for fact in store.of("sentence")}
     for name, _piece, spec in pieces:
         if spec.surface_id not in claimed:
             continue

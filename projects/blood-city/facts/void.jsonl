@@ -1,9 +1,9 @@
-{"fields":{"holder":"shell:col_a/row_1","outline":[[9728,15872],[13824,15872],[13824,16896],[9728,16896]]},"key":["void","door:col_a/row_1"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"holder":"shell:col_a/row_2","outline":[[9728,37376],[13824,37376],[13824,38400],[9728,38400]]},"key":["void","door:col_a/row_2"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"holder":"shell:col_a/row_3","outline":[[9728,52224],[13824,52224],[13824,53248],[9728,53248]]},"key":["void","door:col_a/row_3"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"holder":"shell:col_b/row_1","outline":[[31488,15872],[35584,15872],[35584,16896],[31488,16896]]},"key":["void","door:col_b/row_1"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"holder":"shell:col_b/row_2","outline":[[31488,37376],[35584,37376],[35584,38400],[31488,38400]]},"key":["void","door:col_b/row_2"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"holder":"shell:col_b/row_3","outline":[[31488,52224],[35584,52224],[35584,53248],[31488,53248]]},"key":["void","door:col_b/row_3"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"holder":"shell:col_c/row_1","outline":[[56576,15872],[60672,15872],[60672,16896],[56576,16896]]},"key":["void","door:col_c/row_1"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"holder":"shell:col_c/row_2","outline":[[56576,37376],[60672,37376],[60672,38400],[56576,38400]]},"key":["void","door:col_c/row_2"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"holder":"shell:col_c/row_3","outline":[[59904,52224],[64000,52224],[64000,53248],[59904,53248]]},"key":["void","door:col_c/row_3"],"lod":2,"source":"declaration:curtain"}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "holder": "shell:col_a/row_1", "id": "void:door:col_a/row_1", "lod": 2, "outline": [[9728, 15872], [13824, 15872], [13824, 16896], [9728, 16896]]}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "holder": "shell:col_a/row_2", "id": "void:door:col_a/row_2", "lod": 2, "outline": [[9728, 37376], [13824, 37376], [13824, 38400], [9728, 38400]]}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "holder": "shell:col_a/row_3", "id": "void:door:col_a/row_3", "lod": 2, "outline": [[9728, 52224], [13824, 52224], [13824, 53248], [9728, 53248]]}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "holder": "shell:col_b/row_1", "id": "void:door:col_b/row_1", "lod": 2, "outline": [[31488, 15872], [35584, 15872], [35584, 16896], [31488, 16896]]}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "holder": "shell:col_b/row_2", "id": "void:door:col_b/row_2", "lod": 2, "outline": [[31488, 37376], [35584, 37376], [35584, 38400], [31488, 38400]]}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "holder": "shell:col_b/row_3", "id": "void:door:col_b/row_3", "lod": 2, "outline": [[31488, 52224], [35584, 52224], [35584, 53248], [31488, 53248]]}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "holder": "shell:col_c/row_1", "id": "void:door:col_c/row_1", "lod": 2, "outline": [[56576, 15872], [60672, 15872], [60672, 16896], [56576, 16896]]}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "holder": "shell:col_c/row_2", "id": "void:door:col_c/row_2", "lod": 2, "outline": [[56576, 37376], [60672, 37376], [60672, 38400], [56576, 38400]]}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "holder": "shell:col_c/row_3", "id": "void:door:col_c/row_3", "lod": 2, "outline": [[59904, 52224], [64000, 52224], [64000, 53248], [59904, 53248]]}

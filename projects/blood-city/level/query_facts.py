@@ -49,30 +49,30 @@ def query(store: FactStore) -> dict:
     frames = store.of("frame")
     claims = store.of("claims")
 
-    by_kind = Counter(f.fields["kind"] for f in surfaces)
-    piece_parents = Counter(f.fields["parent"] for f in pieces
+    by_kind = Counter(f.attrs["kind"] for f in surfaces)
+    piece_parents = Counter(f.attrs["parent"] for f in pieces
                             if f.predicate == "part_of"
                             and f.key[0] == "piece")
-    depth_shade = Counter((int(f.fields["depth"]), int(f.fields["shade"]))
+    depth_shade = Counter((int(f.attrs["depth"]), int(f.attrs["shade"]))
                           for f in depths)
-    join_pairs = Counter((f.fields["a"], f.fields["b"]) for f in joins)
-    contributors = Counter(f.fields["owner"] if "owner" in f.fields
+    join_pairs = Counter((f.attrs["a"], f.attrs["b"]) for f in joins)
+    contributors = Counter(f.attrs["owner"] if "owner" in f.fields
                            else f.source for f in claims)
     links = store.of("link")
     keys = store.of("key")
     return {
         "surfaces declared": len(surfaces),
         "openings (void)": len(store.of("void")),
-        "inserts (fill)": Counter(f.fields["kind"] for f in store.of("fill")),
-        "sentences": Counter(f.fields["construct"]
+        "inserts (fill)": Counter(f.attrs["kind"] for f in store.of("fill")),
+        "sentences": Counter(f.attrs["construct"]
                              for f in store.of("sentence")),
         "realised by records": len(store.of("realises")),
         "links declared / realised":
-            (len(links), sum(1 for f in links if f.fields.get("realised"))),
+            (len(links), sum(1 for f in links if f.attrs.get("realised"))),
         "keys declared / realised":
-            (len(keys), sum(1 for f in keys if f.fields.get("realised"))),
+            (len(keys), sum(1 for f in keys if f.attrs.get("realised"))),
         "surfaces by kind": dict(sorted(by_kind.items())),
-        "islands in the plan": Counter(f.fields["kind"]
+        "islands in the plan": Counter(f.attrs["kind"]
                                        for f in islands),
         "pieces": len(pieces),
         "pieces per surface (top 5)": piece_parents.most_common(5),
@@ -80,7 +80,7 @@ def query(store: FactStore) -> dict:
         "join records": len(joins),
         "join pairs": dict(sorted(join_pairs.items())),
         "lamps": len(lamps),
-        "lamp deltas": dict(Counter(int(f.fields["delta"]) for f in lamps)),
+        "lamp deltas": dict(Counter(int(f.attrs["delta"]) for f in lamps)),
         "texture runs": len(frames),
         "shade contributors": dict(sorted(contributors.items())),
         "facts by level": {LEVEL_NAMES[k]: v
@@ -92,12 +92,12 @@ def query(store: FactStore) -> dict:
 def closed_gaps(store: FactStore) -> list:
     """The three of slice 2i, answered from the store rather than the map."""
     surfaces = [f for f in store.of("surface")]
-    pavements = [f for f in surfaces if f.fields["kind"] == "pavement"]
+    pavements = [f for f in surfaces if f.attrs["kind"] == "pavement"]
     depths = store.of("shade_depth")
     lamps = store.of("lamp_delta")
-    levels = sorted({int(f.fields["depth"]) for f in depths})
+    levels = sorted({int(f.attrs["depth"]) for f in depths})
     unrealised = [f for f in store.of("link") + store.of("key")
-                  if not f.fields.get("realised")]
+                  if not f.attrs.get("realised")]
     return [
         f"mission wiring: {len(unrealised)} declaration(s) carry "
         f"realised: false with their reason, so an unrealised link is a ROW "

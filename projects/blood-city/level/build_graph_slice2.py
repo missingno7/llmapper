@@ -531,12 +531,12 @@ def main() -> int:
 
     # --- the shells, and the shadow they must not have moved ---------------
     shadowless = compile_city(emission(shells=False))
-    before = {f.source: int(f.fields["depth"])
+    before = {f.sources[0]: int(f.attrs["depth"])
               for f in shadowless.store.of("shade_depth")
-              if f.source.startswith("piece:plane")}
-    after = {f.source: int(f.fields["depth"])
+              if f.sources and f.sources[0].startswith("piece:plane")}
+    after = {f.sources[0]: int(f.attrs["depth"])
              for f in built.store.of("shade_depth")
-             if f.source.startswith("piece:plane")}
+             if f.sources and f.sources[0].startswith("piece:plane")}
     moved = sorted(k for k in set(before) | set(after)
                    if before.get(k) != after.get(k))
     print(f"shells: {len(g['shells'])} built; the ground plane's field is "
@@ -849,7 +849,7 @@ def mission_faults(built) -> dict:
     if not isinstance(everything, set):
         everything = at_rest
 
-    sentences = {fact.fields["sentence"]: int(fact.fields["sector"])
+    sentences = {fact.attrs["sentence"]: int(fact.attrs["sector"])
                  for fact in built.store.of("realises")}
     rooms = {spec.surface_id: built.compiled.allocations[name].sector_id
              for name, _piece, spec in built.pieces
@@ -869,9 +869,9 @@ def mission_faults(built) -> dict:
         "rooms": len(rooms),
         "rooms unreached": shut,
         "links declared": len(links),
-        "links realised": sum(1 for f in links if f.fields.get("realised")),
+        "links realised": sum(1 for f in links if f.attrs.get("realised")),
         "keys declared": len(keys),
-        "keys realised": sum(1 for f in keys if f.fields.get("realised")),
+        "keys realised": sum(1 for f in keys if f.attrs.get("realised")),
     }
 
 

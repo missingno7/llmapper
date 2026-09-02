@@ -1,9 +1,9 @@
-{"fields":{"construct":"curtain","sector_type":614,"surface":"door:col_a/row_1"},"key":["sentence","door:col_a/row_1"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"construct":"curtain","sector_type":614,"surface":"door:col_a/row_2"},"key":["sentence","door:col_a/row_2"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"construct":"curtain","sector_type":614,"surface":"door:col_a/row_3"},"key":["sentence","door:col_a/row_3"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"construct":"curtain","sector_type":614,"surface":"door:col_b/row_1"},"key":["sentence","door:col_b/row_1"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"construct":"curtain","sector_type":614,"surface":"door:col_b/row_2"},"key":["sentence","door:col_b/row_2"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"construct":"curtain","sector_type":614,"surface":"door:col_b/row_3"},"key":["sentence","door:col_b/row_3"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"construct":"curtain","sector_type":614,"surface":"door:col_c/row_1"},"key":["sentence","door:col_c/row_1"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"construct":"curtain","sector_type":614,"surface":"door:col_c/row_2"},"key":["sentence","door:col_c/row_2"],"lod":2,"source":"declaration:curtain"}
-{"fields":{"construct":"curtain","sector_type":614,"surface":"door:col_c/row_3"},"key":["sentence","door:col_c/row_3"],"lod":2,"source":"declaration:curtain"}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "construct": "curtain", "id": "sentence:door:col_a/row_1", "lod": 2, "sector_type": 614, "surface": "door:col_a/row_1"}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "construct": "curtain", "id": "sentence:door:col_a/row_2", "lod": 2, "sector_type": 614, "surface": "door:col_a/row_2"}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "construct": "curtain", "id": "sentence:door:col_a/row_3", "lod": 2, "sector_type": 614, "surface": "door:col_a/row_3"}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "construct": "curtain", "id": "sentence:door:col_b/row_1", "lod": 2, "sector_type": 614, "surface": "door:col_b/row_1"}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "construct": "curtain", "id": "sentence:door:col_b/row_2", "lod": 2, "sector_type": 614, "surface": "door:col_b/row_2"}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "construct": "curtain", "id": "sentence:door:col_b/row_3", "lod": 2, "sector_type": 614, "surface": "door:col_b/row_3"}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "construct": "curtain", "id": "sentence:door:col_c/row_1", "lod": 2, "sector_type": 614, "surface": "door:col_c/row_1"}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "construct": "curtain", "id": "sentence:door:col_c/row_2", "lod": 2, "sector_type": 614, "surface": "door:col_c/row_2"}
+{"_from": ["declaration:curtain"], "_layer": 2, "_reader": "compiler", "construct": "curtain", "id": "sentence:door:col_c/row_3", "lod": 2, "sector_type": 614, "surface": "door:col_c/row_3"}

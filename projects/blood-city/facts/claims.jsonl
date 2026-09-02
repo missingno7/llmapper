@@ -1,120 +1,120 @@
-{"fields":{"channel":"shade","intent":"presentation","region":"0","value":12},"key":["claim","0","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"1","value":24},"key":["claim","1","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"10","value":24},"key":["claim","10","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"11","value":12},"key":["claim","11","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"12","value":12},"key":["claim","12","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"123","value":36},"key":["claim","123","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"124","value":24},"key":["claim","124","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"125","value":12},"key":["claim","125","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"126","value":36},"key":["claim","126","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"127","value":24},"key":["claim","127","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"128","value":12},"key":["claim","128","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"129","value":36},"key":["claim","129","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"13","value":36},"key":["claim","13","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"130","value":24},"key":["claim","130","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"131","value":24},"key":["claim","131","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"132","value":12},"key":["claim","132","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"134","value":12},"key":["claim","134","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"136","value":24},"key":["claim","136","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"137","value":12},"key":["claim","137","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"139","value":24},"key":["claim","139","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"14","value":24},"key":["claim","14","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"140","value":12},"key":["claim","140","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"142","value":36},"key":["claim","142","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"143","value":24},"key":["claim","143","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"144","value":12},"key":["claim","144","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"145","value":36},"key":["claim","145","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"146","value":24},"key":["claim","146","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"147","value":12},"key":["claim","147","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"148","value":36},"key":["claim","148","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"149","value":24},"key":["claim","149","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"15","value":24},"key":["claim","15","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"150","value":24},"key":["claim","150","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"151","value":12},"key":["claim","151","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"153","value":12},"key":["claim","153","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"155","value":24},"key":["claim","155","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"156","value":12},"key":["claim","156","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"158","value":24},"key":["claim","158","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"159","value":12},"key":["claim","159","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"16","value":24},"key":["claim","16","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"161","value":36},"key":["claim","161","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"162","value":24},"key":["claim","162","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"163","value":12},"key":["claim","163","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"164","value":36},"key":["claim","164","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"165","value":24},"key":["claim","165","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"166","value":12},"key":["claim","166","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"167","value":36},"key":["claim","167","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"168","value":24},"key":["claim","168","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"169","value":24},"key":["claim","169","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"17","value":24},"key":["claim","17","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"170","value":12},"key":["claim","170","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"173","value":12},"key":["claim","173","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"176","value":24},"key":["claim","176","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"177","value":12},"key":["claim","177","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"18","value":12},"key":["claim","18","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"180","value":24},"key":["claim","180","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"181","value":12},"key":["claim","181","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"19","value":12},"key":["claim","19","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"2","value":36},"key":["claim","2","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"21","value":12},"key":["claim","21","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"22","value":12},"key":["claim","22","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"25","value":12},"key":["claim","25","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"26","value":24},"key":["claim","26","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"28","value":12},"key":["claim","28","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"3","value":24},"key":["claim","3","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"31","value":12},"key":["claim","31","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"32","value":24},"key":["claim","32","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"34","value":12},"key":["claim","34","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"37","value":12},"key":["claim","37","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"38","value":-6},"key":["claim","38","shade","lamp:cemetery:0"],"lod":1,"source":"lamp:cemetery:0"}
-{"fields":{"channel":"shade","intent":"presentation","region":"39","value":-6},"key":["claim","39","shade","lamp:col_a/row_1:0"],"lod":1,"source":"lamp:col_a/row_1:0"}
-{"fields":{"channel":"shade","intent":"presentation","region":"4","value":24},"key":["claim","4","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"40","value":-6},"key":["claim","40","shade","lamp:col_a/row_2:0"],"lod":1,"source":"lamp:col_a/row_2:0"}
-{"fields":{"channel":"shade","intent":"presentation","region":"40","value":24},"key":["claim","40","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"41","value":12},"key":["claim","41","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"42","value":12},"key":["claim","42","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"43","value":12},"key":["claim","43","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"47","value":36},"key":["claim","47","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"48","value":24},"key":["claim","48","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"49","value":-6},"key":["claim","49","shade","lamp:col_a/row_3:0"],"lod":1,"source":"lamp:col_a/row_3:0"}
-{"fields":{"channel":"shade","intent":"presentation","region":"49","value":24},"key":["claim","49","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"5","value":12},"key":["claim","5","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"50","value":12},"key":["claim","50","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"51","value":12},"key":["claim","51","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"52","value":24},"key":["claim","52","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"53","value":12},"key":["claim","53","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"57","value":-6},"key":["claim","57","shade","lamp:col_b/row_1:0"],"lod":1,"source":"lamp:col_b/row_1:0"}
-{"fields":{"channel":"shade","intent":"presentation","region":"58","value":-6},"key":["claim","58","shade","lamp:col_b/row_2:0"],"lod":1,"source":"lamp:col_b/row_2:0"}
-{"fields":{"channel":"shade","intent":"presentation","region":"58","value":24},"key":["claim","58","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"59","value":12},"key":["claim","59","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"60","value":12},"key":["claim","60","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"61","value":12},"key":["claim","61","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"65","value":36},"key":["claim","65","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"66","value":24},"key":["claim","66","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"67","value":-6},"key":["claim","67","shade","lamp:col_b/row_3:0"],"lod":1,"source":"lamp:col_b/row_3:0"}
-{"fields":{"channel":"shade","intent":"presentation","region":"67","value":24},"key":["claim","67","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"68","value":12},"key":["claim","68","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"69","value":12},"key":["claim","69","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"7","value":36},"key":["claim","7","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"70","value":24},"key":["claim","70","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"71","value":12},"key":["claim","71","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"75","value":-6},"key":["claim","75","shade","lamp:col_c/row_1:0"],"lod":1,"source":"lamp:col_c/row_1:0"}
-{"fields":{"channel":"shade","intent":"presentation","region":"75","value":-6},"key":["claim","75","shade","lamp:col_c/row_1:1"],"lod":1,"source":"lamp:col_c/row_1:1"}
-{"fields":{"channel":"shade","intent":"presentation","region":"76","value":24},"key":["claim","76","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"77","value":-6},"key":["claim","77","shade","lamp:col_c/row_2:0"],"lod":1,"source":"lamp:col_c/row_2:0"}
-{"fields":{"channel":"shade","intent":"presentation","region":"77","value":12},"key":["claim","77","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"78","value":12},"key":["claim","78","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"79","value":-6},"key":["claim","79","shade","lamp:col_c/row_2:1"],"lod":1,"source":"lamp:col_c/row_2:1"}
-{"fields":{"channel":"shade","intent":"presentation","region":"79","value":12},"key":["claim","79","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"8","value":24},"key":["claim","8","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"83","value":-6},"key":["claim","83","shade","lamp:col_c/row_3:0"],"lod":1,"source":"lamp:col_c/row_3:0"}
-{"fields":{"channel":"shade","intent":"presentation","region":"83","value":24},"key":["claim","83","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"84","value":12},"key":["claim","84","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"85","value":12},"key":["claim","85","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"87","value":-6},"key":["claim","87","shade","lamp:market_plaza:0"],"lod":1,"source":"lamp:market_plaza:0"}
-{"fields":{"channel":"shade","intent":"presentation","region":"87","value":24},"key":["claim","87","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"88","value":12},"key":["claim","88","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"9","value":24},"key":["claim","9","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"90","value":-6},"key":["claim","90","shade","lamp:works_yard:0"],"lod":1,"source":"lamp:works_yard:0"}
-{"fields":{"channel":"shade","intent":"presentation","region":"90","value":24},"key":["claim","90","shade","sun:field"],"lod":1,"source":"sun:field"}
-{"fields":{"channel":"shade","intent":"presentation","region":"91","value":12},"key":["claim","91","shade","sun:field"],"lod":1,"source":"sun:field"}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:0:shade:sun:field", "intent": "presentation", "lod": 1, "region": "0", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:1:shade:sun:field", "intent": "presentation", "lod": 1, "region": "1", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:2:shade:sun:field", "intent": "presentation", "lod": 1, "region": "2", "value": 36}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:3:shade:sun:field", "intent": "presentation", "lod": 1, "region": "3", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:4:shade:sun:field", "intent": "presentation", "lod": 1, "region": "4", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:5:shade:sun:field", "intent": "presentation", "lod": 1, "region": "5", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:7:shade:sun:field", "intent": "presentation", "lod": 1, "region": "7", "value": 36}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:8:shade:sun:field", "intent": "presentation", "lod": 1, "region": "8", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:9:shade:sun:field", "intent": "presentation", "lod": 1, "region": "9", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:10:shade:sun:field", "intent": "presentation", "lod": 1, "region": "10", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:11:shade:sun:field", "intent": "presentation", "lod": 1, "region": "11", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:12:shade:sun:field", "intent": "presentation", "lod": 1, "region": "12", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:13:shade:sun:field", "intent": "presentation", "lod": 1, "region": "13", "value": 36}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:14:shade:sun:field", "intent": "presentation", "lod": 1, "region": "14", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:15:shade:sun:field", "intent": "presentation", "lod": 1, "region": "15", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:16:shade:sun:field", "intent": "presentation", "lod": 1, "region": "16", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:17:shade:sun:field", "intent": "presentation", "lod": 1, "region": "17", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:18:shade:sun:field", "intent": "presentation", "lod": 1, "region": "18", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:19:shade:sun:field", "intent": "presentation", "lod": 1, "region": "19", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:21:shade:sun:field", "intent": "presentation", "lod": 1, "region": "21", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:22:shade:sun:field", "intent": "presentation", "lod": 1, "region": "22", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:25:shade:sun:field", "intent": "presentation", "lod": 1, "region": "25", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:26:shade:sun:field", "intent": "presentation", "lod": 1, "region": "26", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:28:shade:sun:field", "intent": "presentation", "lod": 1, "region": "28", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:31:shade:sun:field", "intent": "presentation", "lod": 1, "region": "31", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:32:shade:sun:field", "intent": "presentation", "lod": 1, "region": "32", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:34:shade:sun:field", "intent": "presentation", "lod": 1, "region": "34", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:37:shade:sun:field", "intent": "presentation", "lod": 1, "region": "37", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:40:shade:sun:field", "intent": "presentation", "lod": 1, "region": "40", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:41:shade:sun:field", "intent": "presentation", "lod": 1, "region": "41", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:42:shade:sun:field", "intent": "presentation", "lod": 1, "region": "42", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:43:shade:sun:field", "intent": "presentation", "lod": 1, "region": "43", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:47:shade:sun:field", "intent": "presentation", "lod": 1, "region": "47", "value": 36}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:48:shade:sun:field", "intent": "presentation", "lod": 1, "region": "48", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:49:shade:sun:field", "intent": "presentation", "lod": 1, "region": "49", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:50:shade:sun:field", "intent": "presentation", "lod": 1, "region": "50", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:51:shade:sun:field", "intent": "presentation", "lod": 1, "region": "51", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:52:shade:sun:field", "intent": "presentation", "lod": 1, "region": "52", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:53:shade:sun:field", "intent": "presentation", "lod": 1, "region": "53", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:58:shade:sun:field", "intent": "presentation", "lod": 1, "region": "58", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:59:shade:sun:field", "intent": "presentation", "lod": 1, "region": "59", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:60:shade:sun:field", "intent": "presentation", "lod": 1, "region": "60", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:61:shade:sun:field", "intent": "presentation", "lod": 1, "region": "61", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:65:shade:sun:field", "intent": "presentation", "lod": 1, "region": "65", "value": 36}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:66:shade:sun:field", "intent": "presentation", "lod": 1, "region": "66", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:67:shade:sun:field", "intent": "presentation", "lod": 1, "region": "67", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:68:shade:sun:field", "intent": "presentation", "lod": 1, "region": "68", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:69:shade:sun:field", "intent": "presentation", "lod": 1, "region": "69", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:70:shade:sun:field", "intent": "presentation", "lod": 1, "region": "70", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:71:shade:sun:field", "intent": "presentation", "lod": 1, "region": "71", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:76:shade:sun:field", "intent": "presentation", "lod": 1, "region": "76", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:77:shade:sun:field", "intent": "presentation", "lod": 1, "region": "77", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:78:shade:sun:field", "intent": "presentation", "lod": 1, "region": "78", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:79:shade:sun:field", "intent": "presentation", "lod": 1, "region": "79", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:83:shade:sun:field", "intent": "presentation", "lod": 1, "region": "83", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:84:shade:sun:field", "intent": "presentation", "lod": 1, "region": "84", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:85:shade:sun:field", "intent": "presentation", "lod": 1, "region": "85", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:87:shade:sun:field", "intent": "presentation", "lod": 1, "region": "87", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:88:shade:sun:field", "intent": "presentation", "lod": 1, "region": "88", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:90:shade:sun:field", "intent": "presentation", "lod": 1, "region": "90", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:91:shade:sun:field", "intent": "presentation", "lod": 1, "region": "91", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:123:shade:sun:field", "intent": "presentation", "lod": 1, "region": "123", "value": 36}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:124:shade:sun:field", "intent": "presentation", "lod": 1, "region": "124", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:125:shade:sun:field", "intent": "presentation", "lod": 1, "region": "125", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:126:shade:sun:field", "intent": "presentation", "lod": 1, "region": "126", "value": 36}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:127:shade:sun:field", "intent": "presentation", "lod": 1, "region": "127", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:128:shade:sun:field", "intent": "presentation", "lod": 1, "region": "128", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:129:shade:sun:field", "intent": "presentation", "lod": 1, "region": "129", "value": 36}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:130:shade:sun:field", "intent": "presentation", "lod": 1, "region": "130", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:131:shade:sun:field", "intent": "presentation", "lod": 1, "region": "131", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:132:shade:sun:field", "intent": "presentation", "lod": 1, "region": "132", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:134:shade:sun:field", "intent": "presentation", "lod": 1, "region": "134", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:136:shade:sun:field", "intent": "presentation", "lod": 1, "region": "136", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:137:shade:sun:field", "intent": "presentation", "lod": 1, "region": "137", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:139:shade:sun:field", "intent": "presentation", "lod": 1, "region": "139", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:140:shade:sun:field", "intent": "presentation", "lod": 1, "region": "140", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:142:shade:sun:field", "intent": "presentation", "lod": 1, "region": "142", "value": 36}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:143:shade:sun:field", "intent": "presentation", "lod": 1, "region": "143", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:144:shade:sun:field", "intent": "presentation", "lod": 1, "region": "144", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:145:shade:sun:field", "intent": "presentation", "lod": 1, "region": "145", "value": 36}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:146:shade:sun:field", "intent": "presentation", "lod": 1, "region": "146", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:147:shade:sun:field", "intent": "presentation", "lod": 1, "region": "147", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:148:shade:sun:field", "intent": "presentation", "lod": 1, "region": "148", "value": 36}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:149:shade:sun:field", "intent": "presentation", "lod": 1, "region": "149", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:150:shade:sun:field", "intent": "presentation", "lod": 1, "region": "150", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:151:shade:sun:field", "intent": "presentation", "lod": 1, "region": "151", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:153:shade:sun:field", "intent": "presentation", "lod": 1, "region": "153", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:155:shade:sun:field", "intent": "presentation", "lod": 1, "region": "155", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:156:shade:sun:field", "intent": "presentation", "lod": 1, "region": "156", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:158:shade:sun:field", "intent": "presentation", "lod": 1, "region": "158", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:159:shade:sun:field", "intent": "presentation", "lod": 1, "region": "159", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:161:shade:sun:field", "intent": "presentation", "lod": 1, "region": "161", "value": 36}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:162:shade:sun:field", "intent": "presentation", "lod": 1, "region": "162", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:163:shade:sun:field", "intent": "presentation", "lod": 1, "region": "163", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:164:shade:sun:field", "intent": "presentation", "lod": 1, "region": "164", "value": 36}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:165:shade:sun:field", "intent": "presentation", "lod": 1, "region": "165", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:166:shade:sun:field", "intent": "presentation", "lod": 1, "region": "166", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:167:shade:sun:field", "intent": "presentation", "lod": 1, "region": "167", "value": 36}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:168:shade:sun:field", "intent": "presentation", "lod": 1, "region": "168", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:169:shade:sun:field", "intent": "presentation", "lod": 1, "region": "169", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:170:shade:sun:field", "intent": "presentation", "lod": 1, "region": "170", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:173:shade:sun:field", "intent": "presentation", "lod": 1, "region": "173", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:176:shade:sun:field", "intent": "presentation", "lod": 1, "region": "176", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:177:shade:sun:field", "intent": "presentation", "lod": 1, "region": "177", "value": 12}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:180:shade:sun:field", "intent": "presentation", "lod": 1, "region": "180", "value": 24}
+{"_from": ["sun:field"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:181:shade:sun:field", "intent": "presentation", "lod": 1, "region": "181", "value": 12}
+{"_from": ["lamp:cemetery:0"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:38:shade:lamp:cemetery:0", "intent": "presentation", "lod": 1, "region": "38", "value": -6}
+{"_from": ["lamp:col_a/row_1:0"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:39:shade:lamp:col_a/row_1:0", "intent": "presentation", "lod": 1, "region": "39", "value": -6}
+{"_from": ["lamp:col_a/row_2:0"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:40:shade:lamp:col_a/row_2:0", "intent": "presentation", "lod": 1, "region": "40", "value": -6}
+{"_from": ["lamp:col_a/row_3:0"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:49:shade:lamp:col_a/row_3:0", "intent": "presentation", "lod": 1, "region": "49", "value": -6}
+{"_from": ["lamp:col_b/row_1:0"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:57:shade:lamp:col_b/row_1:0", "intent": "presentation", "lod": 1, "region": "57", "value": -6}
+{"_from": ["lamp:col_b/row_2:0"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:58:shade:lamp:col_b/row_2:0", "intent": "presentation", "lod": 1, "region": "58", "value": -6}
+{"_from": ["lamp:col_b/row_3:0"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:67:shade:lamp:col_b/row_3:0", "intent": "presentation", "lod": 1, "region": "67", "value": -6}
+{"_from": ["lamp:col_c/row_1:0"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:75:shade:lamp:col_c/row_1:0", "intent": "presentation", "lod": 1, "region": "75", "value": -6}
+{"_from": ["lamp:col_c/row_1:1"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:75:shade:lamp:col_c/row_1:1", "intent": "presentation", "lod": 1, "region": "75", "value": -6}
+{"_from": ["lamp:col_c/row_2:0"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:77:shade:lamp:col_c/row_2:0", "intent": "presentation", "lod": 1, "region": "77", "value": -6}
+{"_from": ["lamp:col_c/row_2:1"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:79:shade:lamp:col_c/row_2:1", "intent": "presentation", "lod": 1, "region": "79", "value": -6}
+{"_from": ["lamp:col_c/row_3:0"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:83:shade:lamp:col_c/row_3:0", "intent": "presentation", "lod": 1, "region": "83", "value": -6}
+{"_from": ["lamp:market_plaza:0"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:87:shade:lamp:market_plaza:0", "intent": "presentation", "lod": 1, "region": "87", "value": -6}
+{"_from": ["lamp:works_yard:0"], "_layer": 1, "_reader": "compiler", "channel": "shade", "id": "claim:90:shade:lamp:works_yard:0", "intent": "presentation", "lod": 1, "region": "90", "value": -6}

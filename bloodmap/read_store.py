@@ -80,6 +80,14 @@ PREDICATES: dict[str, str] = {
     "unknown_join": "a shared record whose pair the writer's table has no row for",
     # --- overlays --------------------------------------------------------
     "island": "a height island: sectors standing one rise above the ground",
+    #: Added by the compiler (P14b, slice 4). A void and a fill are two
+    #: different claims about two different records, which is why they are two
+    #: predicates: the void is a hole in a holder and belongs to the holder;
+    #: the fill is what is in it, in a sector of its own with its own frame.
+    "void": "an opening cut in a holder surface, and the holder it belongs to",
+    "fill": "what occupies an opening, in a sector of its own",
+    "lamp_delta": "one source's contribution to a sector's shade, before it "
+                  "was summed",
     "kerb": "the band a road-side record shows at an island's edge",
     "sun": "the level's directional source, as a throw bearing",
     "shade_edge": "a same-z boundary where the floor shade changes",
