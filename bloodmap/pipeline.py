@@ -237,6 +237,28 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
                   kind=row.get("kind", "insert"),
                   opening=row["surface"], room=row.get("room"),
                   sector_type=int(row.get("sector_type", 0)))
+        #: THE MISSION GRAPH, kept apart from the space graph. A `sentence` is
+        #: what a construct claims to be; `realises` is the correspondence
+        #: between that claim and the records that carry it. Neither is a
+        #: `part_of`, and that separation is the point (research 2.3).
+        store.add("sentence", ("sentence", row["surface"]), lod=lod,
+                  source=f"declaration:{row.get('kind', 'insert')}",
+                  construct=row.get("kind", "insert"),
+                  surface=row["surface"],
+                  sector_type=int(row.get("sector_type", 0)))
+        for wiring in row.get("wiring", ()):
+            store.add("link", ("link", row["surface"], wiring.get("channel")),
+                      lod=lod, source=f"declaration:{row['surface']}",
+                      tx_id=wiring.get("tx_id"), rx_id=wiring.get("rx_id"),
+                      channel=wiring.get("channel"),
+                      realised=bool(wiring.get("realised")),
+                      why=wiring.get("why", ""))
+        if row.get("key"):
+            store.add("key", ("key", row["surface"]), lod=lod,
+                      source=f"declaration:{row['surface']}",
+                      key_id=row["key"], gate=row["surface"],
+                      realised=bool(row.get("key_realised")),
+                      why=row.get("key_why", ""))
 
     # --- 3. light ---------------------------------------------------------
     run.enter("light")
@@ -308,6 +330,8 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
                       for row in partition_faults(cut, whole[surface_id]))
     report["partition_faults"] = faults
 
+    #: `realises` needs the records, so it waits until the pieces exist --
+    #: which is exactly why it is a separate predicate from `sentence`.
     for name, piece, spec in pieces:
         store.add("part_of", ("piece", name), lod=spec.lod,
                   source=f"surface:{spec.surface_id}",
@@ -360,6 +384,17 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
             disk.sectors[sector].fields[key] = value
     report["sectors"] = len(disk.sectors)
     report["walls"] = len(disk.walls)
+    claimed = {fact.fields["surface"] for fact in store.of("sentence")}
+    for name, _piece, spec in pieces:
+        if spec.surface_id not in claimed:
+            continue
+        sector = compiled.allocations[name].sector_id
+        start = int(disk.sectors[sector].fields["wall_ptr"])
+        count = int(disk.sectors[sector].fields["wall_count"])
+        store.add("realises", ("realises", spec.surface_id, sector),
+                  lod=spec.lod, source=f"sentence:{spec.surface_id}",
+                  sentence=spec.surface_id, sector=sector,
+                  walls=list(range(start, start + count)))
 
     #: The field's contribution, and the lamps', both as deltas -- LightBomb
     #: is the single summing owner of `floor_shade`.

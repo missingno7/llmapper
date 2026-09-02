@@ -33,6 +33,7 @@ for path in (str(ROOT), str(HERE)):
     if path not in sys.path:
         sys.path.insert(0, path)
 
+from bloodmap import city                                         # noqa: E402
 from bloodmap import joins                                        # noqa: E402
 from bloodmap import street                                       # noqa: E402
 from bloodmap.facts import LEVELS, FactStore                       # noqa: E402
@@ -82,6 +83,11 @@ INTERIOR_BODIES = 3.0
 #: mechanism to `overlay.Domain`, which is what gives the light domain a
 #: denominator at last.
 CURTAIN_TYPE = 614
+#: `city_plan.CHANNELS["citywide_circuit"]["keys_gates"]` is 5.
+KEY_GATES = 5
+#: Where this level's rx ids start. Blood's channels are free integers; a
+#: block of its own keeps the city's wiring out of any prefab's.
+CHANNEL_BASE = 400
 FACADE_STONE = joins.TILE_CLASSES["facade stone"]
 RISE = 2048
 ROAD_Z = GRADE + RISE
@@ -365,13 +371,11 @@ def emission(shells: bool = True, field: bool = True) -> Emission:
     g = geometry()
     if not shells:
         g = dict(g, shells={})
-    surfaces = [SurfaceSpec(
-        surface_id="plane", rings=tuple(g["plane"]), floor_z=ROAD_Z,
-        ceiling_z=_sky(ROAD_Z), floor_tile=ROAD_TILE, ceiling_tile=SKY_TILE,
-        wall_tile=ROAD_WALL_TILE, kind=joins.ROAD)]
+    surfaces = [city.street("plane", g["plane"], floor_z=ROAD_Z,
+                            sky_z=_sky(ROAD_Z), sky_tile=SKY_TILE)]
 
     pavements = dict(g["islands"])
-    pavements["quay_walk"] = _rect(*g["quay_walk"])
+
     for name, rect in g["places"].items():
         pavements[name] = _rect(*rect)
     for name, ring in sorted(pavements.items()):
@@ -381,106 +385,52 @@ def emission(shells: bool = True, field: bool = True) -> Emission:
         hole = g["shells"].get(name)
         rings = ((ring,) if hole is None
                  else (ring, list(reversed(_rect(*hole)))))
-        surfaces.append(SurfaceSpec(
-            surface_id=name, rings=rings, floor_z=ISLAND_Z,
-            ceiling_z=_sky(ISLAND_Z), floor_tile=PAVE_TILE,
-            ceiling_tile=SKY_TILE, wall_tile=PAVE_WALL_TILE,
-            kind=joins.PAVEMENT))
+        surfaces.append(city.island(name, rings, floor_z=ISLAND_Z,
+                                    sky_z=_sky(ISLAND_Z), sky_tile=SKY_TILE))
 
-    #: THE SHELLS, and what a shell is: a FACADE with an OPENING in it, an
-    #: INSERT filling the opening in a sector of its own, and a room behind.
-    #: Not lit: a roof four bodies up is not ground, and cutting it would put
-    #: the street's field on a surface the street cannot see.
+    #: THE SHELLS, through the constructor that names what one is: a FACADE
+    #: with an OPENING in it, an INSERT filling the opening in a sector of its
+    #: own, and a room behind. Not lit: a roof four bodies up is not ground.
     roof_z = ISLAND_Z - SHELL_BODIES * STANDING
-    interior_z = ISLAND_Z - int(INTERIOR_BODIES * STANDING)
-    door_head_z = ISLAND_Z - int(DOOR_HEAD_BODIES * STANDING)
     declarations = []
     for number, (key, rect) in enumerate(sorted(g["shells"].items())):
-        x0, y0, x1, y1 = rect
-        inner = (x0 + WALL_THICKNESS, y0 + WALL_THICKNESS,
-                 x1 - WALL_THICKNESS, y1 - WALL_THICKNESS)
-        #: The mouth is on the SOUTH face, which is the one the sun lights and
-        #: the street sees; `city_plan.ENVELOPES` faces its venues south too.
-        mid = (x0 + x1) // 2
-        door = (mid - DOOR_WIDTH // 2, inner[3], mid + DOOR_WIDTH // 2, y1)
-        #: THE FACADE'S OWN RING: the wall, cut open at the door. Not a
-        #: rectangle with a hole -- the doorway reaches the outside, so the
-        #: room is not enclosed by the wall and the whole thing is one simple
-        #: polygon, a C. Writing it as outer-plus-hole makes the hole TOUCH
-        #: the outer ring at the mouth, which is degenerate and which
-        #: PlanarLayout catches as same-direction coincident segments.
-        #:
-        #: The doorway is a VOID in the facade and the curtain FILLS it; the
-        #: facade's frame crosses the mouth and the curtain's does not, which
-        #: is the one-record-one-frame law.
-        ix0, iy0, ix1, iy1 = inner
-        dx0, dx1 = door[0], door[2]
-        ring = [(x0, y0), (x1, y0), (x1, y1), (dx1, y1), (dx1, iy1),
-                (ix1, iy1), (ix1, iy0), (ix0, iy0), (ix0, iy1),
-                (dx0, iy1), (dx0, y1), (x0, y1)]
-        surfaces.append(SurfaceSpec(
-            surface_id=f"shell:{key}",
-            rings=(ring,),
-            floor_z=roof_z, ceiling_z=_sky(roof_z), floor_tile=ROOF_TILE,
-            ceiling_tile=SKY_TILE,
+        made, declared = city.shell(
+            key, rect, wall_thickness=WALL_THICKNESS, door_width=DOOR_WIDTH,
+            roof_z=roof_z, floor_z=ISLAND_Z,
+            interior_z=ISLAND_Z - int(INTERIOR_BODIES * STANDING),
+            head_z=ISLAND_Z - int(DOOR_HEAD_BODIES * STANDING),
+            sky_z=_sky(roof_z), sky_tile=SKY_TILE,
             wall_tile=FACADE_FAMILY[number % len(FACADE_FAMILY)],
-            kind=joins.FACADE, lit=False))
-        surfaces.append(SurfaceSpec(
-            surface_id=f"interior:{key}", rings=(_rect(*inner),),
-            floor_z=ISLAND_Z, ceiling_z=interior_z,
-            floor_tile=PAVE_TILE, ceiling_tile=ROOF_TILE,
-            wall_tile=FACADE_FAMILY[number % len(FACADE_FAMILY)],
-            kind=joins.INTERIOR, role="interior", parallax_ceiling=False,
-            lit=False, lod=LEVELS["massing"]))
-        surfaces.append(SurfaceSpec(
-            surface_id=f"door:{key}", rings=(_rect(*door),),
-            floor_z=ISLAND_Z, ceiling_z=door_head_z,
-            floor_tile=PAVE_TILE, ceiling_tile=ROOF_TILE,
-            wall_tile=FACADE_FAMILY[number % len(FACADE_FAMILY)],
-            kind=joins.OPENING, role="opening", parallax_ceiling=False,
-            lit=False, lod=LEVELS["facades"], sector_type=CURTAIN_TYPE))
-        declarations.append({
-            "kind": "curtain", "surface": f"door:{key}",
-            "holder": f"shell:{key}", "room": f"interior:{key}",
-            "void": [list(point) for point in _rect(*door)],
-            "sector_type": CURTAIN_TYPE, "lod": LEVELS["facades"]})
+            sector_type=CURTAIN_TYPE,
+            wiring=[{"channel": CHANNEL_BASE + number, "tx_id": 0,
+                     "rx_id": CHANNEL_BASE + number, "realised": False,
+                     "why": "the door carries the rx; no switch or generator "
+                            "carries the matching tx yet"}],
+            gate_key=(number + 1) if number < KEY_GATES else None,
+            key_why="city_plan.CHANNELS gives the citywide circuit five key "
+                    "gates; no key pickup is emitted yet")
+        surfaces.extend(made)
+        declarations.append(declared)
 
-    #: THE END WALLS, in E3M1's dialect: floor 379, parallax sky above,
-    #: blocking faces in the district's facade stone. Not lit, because a
-    #: thing standing at the end of a street is not ground.
-    for name, record in sorted(g["end_walls"].items()):
-        surfaces.append(SurfaceSpec(
-            surface_id=name, rings=(record["outline"],),
-            floor_z=record["floor_z"], ceiling_z=record["ceiling_z"],
-            floor_tile=record["floor_picnum"],
-            ceiling_tile=record["ceiling_picnum"],
-            wall_tile=FACADE_STONE, kind=joins.END_WALL, lit=False))
+    #: THE END WALLS, in E3M1's dialect: 5.8 player heights up, parallax sky
+    #: above, blocking faces in the district's own stone, and no kerb at the
+    #: wall -- a kerb exists only where a road meets a pavement.
+    for name, rect in sorted(g["ends"].items()):
+        surfaces.append(city.end_wall(name, rect, road_floor_z=ROAD_Z,
+                                      standing_height=STANDING,
+                                      sky_tile=SKY_TILE,
+                                      facade_tile=FACADE_STONE))
 
-    #: THE WATERFRONT. The shore stands one walkable step (3072, inside
-    #: Blood's 4096 autostep) below the quay walk, the sea meets it at equal
-    #: z, and the horizon is a zero-height sector at the sea's own z wearing
-    #: the sky tile on BOTH surfaces with the parallax bit on both.
-    water = g["water"]
-    shore_z = ISLAND_Z + SHORE_STEP
-    surfaces.append(SurfaceSpec(
-        surface_id="shore", rings=(_rect(*water["shore"]),), floor_z=shore_z,
-        ceiling_z=_sky(shore_z), floor_tile=SHORE_TILE,
-        ceiling_tile=SKY_TILE, wall_tile=joins.TILE_CLASSES["quay class"],
-        kind=joins.SHORE))
-    surfaces.append(SurfaceSpec(
-        surface_id="sea", rings=(_rect(*water["sea"]),), floor_z=shore_z,
-        ceiling_z=_sky(shore_z), floor_tile=SEA_TILE, ceiling_tile=SKY_TILE,
-        wall_tile=joins.TILE_CLASSES["quay class"], kind=joins.SEA,
-        finish={"floor_pal": joins.SEA_PALETTE},
-        behavior={"pan_floor": 1, "pan_always": 1, "drag": 1,
-                  "pan_velocity": joins.SEA_PAN_VELOCITY,
-                  "pan_angle": joins.SEA_PAN_ANGLE}))
-    surfaces.append(SurfaceSpec(
-        surface_id="horizon", rings=(_rect(*water["horizon"]),),
-        floor_z=shore_z, ceiling_z=shore_z, floor_tile=SKY_TILE,
-        ceiling_tile=SKY_TILE, wall_tile=SKY_TILE,
-        kind=joins.HORIZON, floor_stat=1, lit=False,
-        declared_zero_exit=True))
+    #: THE WATERFRONT, in DWE3M10's dialect and at its measured step: the
+    #: quay walk, the shore one walkable 3072 below it, the sea at the shore's
+    #: own z under palette 10 with pan_floor + pan_always + drag, and a
+    #: zero-height horizon wearing THIS city's sky on both surfaces, because
+    #: one connected outdoor space wears one sky.
+    surfaces.extend(city.waterfront(
+        "", x0=0, x1=g["x"].total, y=g["quay_walk"][3],
+        walk_depth=QUAY_WALK_DEPTH, shore_depth=SHORE_DEPTH,
+        sea_depth=SEA_DEPTH, horizon_depth=HORIZON_DEPTH,
+        pavement_z=ISLAND_Z, sky_z_of=_sky, sky_tile=SKY_TILE))
 
     #: LAMPS, at E3M1's rate over the pavement this city actually has.
     lamps = []
@@ -618,6 +568,14 @@ def main() -> int:
           f"fault(s) at their mouths")
     for row in holes[:3]:
         print("   -", row)
+
+    # --- the mission graph, over the topology it is declared on ------------
+    mission = mission_faults(built)
+    print("mission:", {k: v for k, v in mission.items()
+                       if not isinstance(v, list) or v})
+    print(f"   the plan's circuit has {len(plan.CIRCUIT)} legs; its "
+          f"coordinates are in the 58x56 plan grid and the solve is 72x60, "
+          f"so leg positions are NOT checked against this map")
 
     # --- terminations ------------------------------------------------------
     faults = street.termination_faults(disk, list(g["end_walls"].values()),
@@ -866,6 +824,55 @@ def opening_frame_faults(built) -> list:
             out.append(f"{spec.surface_id}: an insert with {count} records "
                        f"is not a sector of its own")
     return out
+
+
+def mission_faults(built) -> dict:
+    """The mission graph, checked against the topology it is declared over.
+
+    Kept apart from the space graph on purpose (research 2.3): `part_of` and
+    `join` say what is next to what, and `sentence`, `link`, `key` and
+    `realises` say what the level is asking the player to do. This is the
+    correspondence, run in the only direction a compiler can run it -- from
+    the records back to the claim.
+
+    A link whose tx nobody carries is not a failure of the build; it is an
+    unrealised declaration, and it says so in its own row rather than being
+    quietly absent.
+    """
+    from bloodmap.conditional import Held, build_graph
+
+    disk = built.disk
+    graph = build_graph(disk)
+    at_rest = graph.reachable(Held())
+    everything = graph.reachable(graph.everything_worked()) \
+        if hasattr(graph, "everything_worked") else at_rest
+    if not isinstance(everything, set):
+        everything = at_rest
+
+    sentences = {fact.fields["sentence"]: int(fact.fields["sector"])
+                 for fact in built.store.of("realises")}
+    rooms = {spec.surface_id: built.compiled.allocations[name].sector_id
+             for name, _piece, spec in built.pieces
+             if spec.kind == joins.INTERIOR}
+    unreached = sorted(name for name, sector in sentences.items()
+                       if sector not in at_rest)
+    shut = sorted(name for name, sector in rooms.items()
+                  if sector not in at_rest)
+    links = built.store.of("link")
+    keys = built.store.of("key")
+    return {
+        "sectors": len(disk.sectors),
+        "reachable at rest": len(at_rest),
+        "sentences": len(sentences),
+        "sentences reachable": len(sentences) - len(unreached),
+        "sentences unreached": unreached,
+        "rooms": len(rooms),
+        "rooms unreached": shut,
+        "links declared": len(links),
+        "links realised": sum(1 for f in links if f.fields.get("realised")),
+        "keys declared": len(keys),
+        "keys realised": sum(1 for f in keys if f.fields.get("realised")),
+    }
 
 
 if __name__ == "__main__":
