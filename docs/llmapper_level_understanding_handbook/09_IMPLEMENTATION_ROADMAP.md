@@ -3459,6 +3459,180 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### Slice 4: one fact store, a street that is as wide as it says, and a door that shuts
+
+#### Two writer defects the readers found, and a row that cited the wrong sectors
+
+**`kerb_records` took a `ground_outline` and never read it.** Every edge of an
+island got a kerb, so an island's back, the faces it turns to a building's
+interior and the face it presents to an end wall all asked for one: replayed
+over E3M1's three islands it claimed **81 records where the map makes 11**,
+the 70 extra facing 56 edges of void, 18 of interior and 13 of end wall.
+
+Two things had to change, and the second is the reader's. The writer emits one
+record per GROUND edge the island's boundary shares a stretch with, because
+the band goes on the ground's side and the two sides are not split alike --
+E3M1's islands present 7 outline edges to the road and the road answers with
+11 records. And `read_islands` replays EVERY loop: island:001 has two, and all
+four of its road-facing edges are on the shorter one.
+
+**`is_water`'s panning clause never ran on a decompiled level.** It read
+`getattr(sector, "extra", None)`, which is `None` for every `LevelIR` sector.
+On DWE3M10 the old accessor saw **0 of its 22 panning sectors** through a
+LevelIR and all 22 through a DiskMap.
+
+And the pavement|pavement row cited s10/s11 as a path between abutting
+islands. They are masses.
+
+#### One fact store
+
+Queue item 31, decided. `read_store.py` owns the row shape and the predicate
+table; `facts.py` is the compiler's writing end and adds a level of detail and
+the gate that makes one mean something. The row is the reader's --
+`{id, ...attrs, _from, _reader, _layer}` -- with `lod` as an attribute, and the
+LoD gate is a QUERY over it. `void`, `fill` and `lamp_delta` were added to the
+reader's table with a description each, because a compiler predicate the table
+does not have is added there and never invented locally.
+
+**What one store buys, measured.** The city's own facts against the facts P15's
+readers recover from the city's own map, row for row: **2398 declared, 6074
+recovered, 908 ids matching**, and the shape of the disagreement is the
+finding.
+
+```text
+join         1058 declared, 762 recovered, 762 the SAME ID
+shade_depth   191 declared, 146 recovered, 146 the same id
+surface        47 declared, 166 recovered -- different units, not a gap
+unknown_join    0 declared, 296 recovered: joins the writer makes and the
+                reader's table cannot name, every one at a facade, an
+                opening or a room
+residue       919 rows nothing explains
+```
+
+**A reader defect the diff found on its first run.** `surface_kinds` names
+water, a horizon and a solid before it looks at the street network, and then
+elected a base plane BY AREA over every sector of that network, water
+included. Gravesend has 41 water and shore sectors and 1.2 billion square
+units of them, so the SEA was elected the base plane, called the road, and
+every pavement and every carriageway fell through unnamed -- 124
+`outdoor_ground`, 41 "road" and **900** join records with no row. E3M1 reads
+exactly as it did: 4 road, 9 pavement.
+
+#### A width class is the full width
+
+Queue item 30a. `WIDTH_UNITS` means carriageway PLUS pavements, so a gutter's
+solved span is the whole street and the carriageway is what is left. Measured
+on E3M1: nine pavement sectors, median narrow dimension **2048**; four road
+sectors at 4096, 4096, 5120 and 7456. A street that cannot afford both bands
+gets ONE, on its low side, which is what E3M1's east arm is -- 6144 across, as
+4096 of road and one 2048 pavement.
+
+```text
+lane_west     lane     3072 -> 3072    0/0
+lane_north    lane     3072 -> 3072    0/0
+west_street   street   5120 -> 3072    2048/0
+spur          street   5120 -> 3072    2048/0
+market_street street   5120 -> 3072    2048/0
+avenue        avenue   7168 -> 3072    2048/2048
+theatre_row   row      6144 -> 2048    2048/2048
+quay          row      6144 -> 2048    2048/2048
+```
+
+184 sectors / 1042 walls / 14 sprites before, **191 / 1077 / 18** after. The
+level-0 diff is the point of having one store: the fourteen span rows are
+BYTE-IDENTICAL and 18 of the 19 island rings changed, which is exactly and
+only what the decision changed.
+
+#### The circuit is a sequence of surfaces
+
+Queue item 3. A leg is the surfaces a body passes through -- "the avenue
+between Theatre Row and Market Street" survives a re-solve and (35.5, 25) does
+not. 12 of 16 legs built, 0 unreachable; the other four are the sewer and each
+carries `built: false` with its reason.
+
+#### The question the slice was set, and its answer
+
+**Does a construct declared against a room's records survive the compiler's
+passes?** It does -- Rule 2 finds **0 of 9** DragPoint closures moved -- and it
+was not a curtain to begin with, which the read-back said before anything else
+was asked. A sector type with no flagged wall drags nothing:
+`drag_closure` found one wall where the sentence declared five, and
+`conformance.measure_curtain` said "found 0 leaves" and "fabric: wanted 146,
+found [401]". Each door has a LEAF now, flagged and wearing the fabric, and it
+is MASKED because `engine.cpp:4938-4940` draws a two-sided wall's middle band
+only when it is masked or one-way.
+
+**And the Rule 2 gate was measuring the wrong thing.** `DragPoint` moves
+POINTS. The field changes every wall index after the first cut and it changes
+how far a neighbouring wall runs, so comparing indices reports a difference on
+every mechanism and comparing spans reports one wherever a piece was cut
+beside a door. By the vertices it drags: 0 of 9.
+
+**What remains is one difference per building and it is `members`.** A curtain
+at a shell's mouth drags the PAVEMENT's walls through the vertex the weld made
+them share. That is the owner's motion-aperture law arriving from the other
+direction: the mouth needs a jamb, and a welded street has none to give.
+
+#### The mission graph, realised
+
+Nine switches and five keys, and every link and key flips to `realised: true`
+with its evidence read off the built map. The switch is measured -- of the
+campaign's type-20/21 sprites the commonest wall-aligned tile is **1070**, 104
+as kSwitchToggle and 78 as kSwitchOneWay, hung a median 5120 above the floor.
+A chain is ONE sentence with fan-out as a parameter.
+
+**And the door is a shutter.** `kSectorSlideMarked` names its two positions by
+SPRITE INDEX and the sweep validator runs during the compile, before any
+sprite has one: "sector 101 has no marker0", nine times. So the shopfront
+doors are Z-motion shutters, and the construct's NAME changed with them.
+
+That made the mission graph mean something for the first time: with the
+shutters shut **161 of 191** sectors are reachable and every room is not,
+which is what a shut door is; with the mechanisms worked **179** are,
+including all nine rooms and all nine sentences.
+
+#### The shade step is a choice, against a census
+
+Queue item 29a. `read_light.shade_step_envelope` is a census that reports its
+own population, because the number moves with what "the network" means:
+
+```text
+all parallax sectors        365 boundaries, 37 maps, median 12, q 8-16
+largest outdoor component   192 boundaries, 36 maps, median 13, q 9-18.75
+```
+
+A city's street is the second. Gravesend **chooses** 12 and the gate says so
+in those words, and the choice is inside the campaign's middle half.
+
+#### The city
+
+```text
+sectors / walls / sprites   191 / 1077 / 32   (4%, 6%, 0% of the limits)
+                            18 lamps, 9 switches, 5 keys
+surfaces 47  pieces 191  welded 159  slivers 0  partition faults 0
+joins   1058 records, 0 unknown pairs, 270 frame boundaries
+G1      174 declared, 0 missing      the editor would change 0 walls
+facts   2398 over 14 predicates and 4 levels; LoD gate 0
+walk    W1 0, W2 0, W3 0, W4 0
+```
+
+#### What is still unproven
+
+The seven L3 interiors are **not re-parented** -- each is written against the
+old builder's API and is a port of its own. Nothing has walked this map. The
+renders are plan views. And the one read-back difference per building is a
+real defect with a named cause and no fix yet.
+
+#### What slice 5 must answer first
+
+**Whether a leaf can be given a slot.** Everything else in the read-back is
+clean; what is left is that a door's moving vertices are shared with the
+street, and Blood's own answer is a slot -- one-sided fabric retracting into
+solid geometry, so the points that move belong to nothing else. It is a
+geometry change to `city.shell`, it is measurable before it is chosen (a
+pocket needs a sector and a void does not), and until it lands every mechanism
+this compiler builds at a mouth drags its neighbours.
+
 ### Slice 3: the owner's walk, a fact store, and buildings that are there
 
 #### The walk, and why no slice-2 gate caught any of it

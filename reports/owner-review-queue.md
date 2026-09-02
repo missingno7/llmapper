@@ -1316,3 +1316,93 @@ its predicate table carries a description per predicate so a new one cannot
 appear unannounced. The compiler's LoD gate keeps working as a query over
 `_layer`/`lod`. But this is a writer change and it is P14b's to make or
 refuse, so nothing was done to `facts.py` here.
+
+## 32. Slice 4: what the readers found in the writer, and what the writer found in itself (P14b, 2026-09-03)
+
+Every number here is read off `projects/blood-city/level/slice2-streets.MAP`
+or off the campaign, and the four decided questions from
+`projects/blood-city/reports/owner-review-queue.md` are folded in here --
+that file was the wrong one and this is the queue.
+
+**32a. A curtain at a shell's mouth drags the pavement's walls, and a welded
+street has no jamb to give it.** The read-back leaves exactly one difference
+per building and it is `members`: the sentence declares the door's own five
+records and `motion_sim.drag_closure` finds it reaches sectors 35, 99 and 101
+as well, because the weld made the door's corner and the pavement's corner one
+vertex and `DragPoint` walks the ring through it. That is the owner's
+motion-aperture law arriving from the other direction.
+
+*Recommended default:* build the leaf in a SLOT -- Blood's own `void` dialect,
+where the fabric walls are one-sided and the leaf retracts into solid geometry
+-- so the moving vertices belong to nothing else. That is a geometry change to
+`city.shell` and it is the next slice's first job.
+
+*The A/B, and the fixture:* `void` slot (one-sided fabric, retracts into the
+wall) against `pocket` (two-sided into a recess). `tests/test_rule_two.py`
+passes under both -- neither changes which points move, which is the whole
+point of a slot -- and they differ on one reading: a pocket needs a sector of
+its own behind the jamb and a void does not, so the wall count moves and the
+sector count does not. Measure both before choosing.
+
+**32b. The shopfront doors are shutters, not curtains, and the reason is the
+compiler's.** `kSectorSlideMarked` names its two positions by SPRITE INDEX and
+the sweep validator runs during `PlanarLayout.compile`, before any sprite has
+one: "sector 101 has no marker0", nine times. A marked slide needs a
+first-class constructor that declares its markers as part of the layout.
+
+*Recommended default:* keep the Z-motion shutters (type 600, two ceiling
+heights, no markers) and add the marked-slide constructor when a mechanism
+actually needs to slide sideways. The construct's NAME changed with the
+mechanism -- a sentence that says "curtain" about a shutter is worse than a
+shutter.
+
+**32c. The compiler and the readers disagree about 296 joins, all of them at a
+facade, an opening or a room.** With one store the diff is row for row: 1058
+joins declared and 762 recovered with the SAME ID, and the 296 the reader
+cannot name come back as `unknown_join`. The writer's table has FACADE,
+OPENING and INTERIOR rows; `read_joins.surface_kinds` has no kind for a
+facade or an opening, so it names those sectors `interior` or `end_wall` and
+the pair falls through.
+
+*Recommended default:* P15 adds the two kinds to the reader's classifier -- a
+raised mass with a roof tile and a mouth is a facade; a sector between a
+pavement and an interior at the pavement's z is an opening. Reader-side, so
+it is P15's to make.
+
+**32d. A reader defect the diff found on its first run, and it is fixed.**
+`surface_kinds` names water, a horizon and a solid before it looks at the
+street network, and then elected a base plane BY AREA over every sector of
+that network, water included. Gravesend has 41 water and shore sectors and
+1.2 billion square units of them, so the SEA was elected the base plane,
+called the road, and every pavement and carriageway fell through unnamed --
+124 `outdoor_ground`, 41 "road" and 900 unnamed joins. Both the election and
+the naming now respect what the first pass decided; E3M1 reads exactly as it
+did, 4 road and 9 pavement.
+
+**32e. My shade census is not P15's, and the difference is the definition.**
+Over the largest outdoor component I count 192 boundaries in 36 maps, median
+13, quartiles 9 to 18.75; P15 counts 398 records, median 15. Over all outdoor
+sectors I count 365 boundaries, median 12; P15 counts 1496 records, median 12
+-- the medians agree exactly. The difference is the unit (I count a boundary
+once where a pair of sectors may share several walls) and the wave exclusion.
+
+*Recommended default:* the boundary is the unit, because the step is a
+property of a boundary and not of a record, and both censuses state their own
+population so the two can be compared rather than argued about.
+
+**32f. The seven L3 interiors are not re-parented, and each is a port of its
+own.** `l3_church`, `l3_foundry`, `l3_mall`, `l3_market`, `l3_sewer`,
+`l3_shed` and `l3_theatre` are written against the old builder's API --
+`build(city, street, ground, gates)`, `dress(district, ...)` -- and the new
+pipeline takes declarations. The rooms they belong in exist, are named after
+the plan's own venues, and are entered through a real opening behind a
+working door.
+
+*Recommended default:* one module per slice, each with its own read-back
+sentence, so a failure names one building. The church is the smallest and is
+the one to start with.
+
+**32g. Four legs of the circuit are the sewer and are not built.** The
+manhole, the trunk, the junction and the stair back up. Each carries
+`built: false` with its reason, so an absent leg is a row rather than a
+silence, and the other twelve are checked on the built map and all reachable.
