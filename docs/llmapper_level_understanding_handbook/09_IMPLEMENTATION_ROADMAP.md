@@ -3459,6 +3459,61 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### Slice 2d part two: channels, and the order asserted
+
+**Deliverable 4 -- two kinds of channel, and no more.** `bloodmap/channels.py`
+carries one table: `shade` is ADDITIVE; `floor_z`, `ceiling_z`, `sector_type`,
+`mechanism_state`, `frame` and `holder_role` are EXCLUSIVE. No priorities, no
+solver. A channel not in the table raises rather than defaulting to a kind.
+
+`RegionLedger` is P13's `RecordOwner` at region scope. Additive channels
+accumulate; an exclusive channel admits one owner and a second raises **by
+name**, because a refusal that says "conflict" teaches nobody which two passes
+to look at. On an exclusive conflict a PRESENTATION claim yields and is listed
+with its reason; FUNCTION against FUNCTION is an error; the order the two
+claims arrive in does not change the outcome.
+
+**Shade is additive, and LightBomb is its single summing owner.** Four things
+wrote `floor_shade` and nothing said who owned it -- the sun field, a lamp
+pool, a flicker base and a Link-driven wave. That is the same shape as the
+`glaze` / `frame_map` collision, where two passes wrote the same four fields
+on the same 24 records and pass order decided per record: fifteen kept one
+number, nine got the other, nobody chose, and it was invisible until somebody
+diffed. `lightbomb.apply_shade_channel` now reads the ledger and writes the
+sum once; the fail-first asserts four contributions of +12, -6, +3, -4 land as
++5 and that a region nobody wrote to does not move.
+
+Making shade exclusive instead would have dropped every Link-driven light in
+the city, and P8 counted 146 of those in the campaign.
+
+**Deliverable 5 -- the order asserted, not documented.**
+`channels.Compilation` fixes `planes -> declare -> light -> joins -> frames`
+and raises on anything out of order, with the reason: a field running before
+mechanisms are declared cuts a curtain nothing had yet marked uncuttable; the
+joins need the pieces the field makes; the frames need the joins' answer about
+which edges are boundaries.
+
+Every ordering bug this project has had was invisible for one reason -- the
+passes simply ran and the last one won. An order that raises cannot do that.
+
+#### Deliverable 6 is not built
+
+The emitter is not rewritten around `ground_plane` and the whole graph is not
+emitted. So there are no cuts refused in anger, no slivers absorbed in a
+build, no before/after sector and wall counts, no dropped PRESENTATION facets
+from a real map, no waterfront, no read-back and no renders. Everything
+reported above is measured on fixtures and on the slice-1 map.
+
+#### What slice 3 must answer first
+
+**Whether `light_field` and `lightbomb` agree about what a delta is.** The
+field produces a DEPTH (0..3) and `shade_for` turns it into `base + k*12`;
+LightBomb sums DELTAS. Nothing yet converts one to the other, and the obvious
+reading -- that the field contributes `k*12` -- is an assumption I have not
+tested against a built map. Getting it wrong is a whole city one step too
+dark, and it would pass every gate in this slice, because they all check the
+field's shape rather than the shade a sector ends up with.
+
 ### Slice 2d: the light field, and the bug the sun found
 
 **The step, re-measured.** Over the 38 campaign maps with outdoor ground, on

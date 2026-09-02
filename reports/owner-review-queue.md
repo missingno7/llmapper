@@ -905,3 +905,32 @@ exclusive channel raises by name; PRESENTATION claims yield and are listed.
 > arbiter for the genuinely exclusive channels. The alternative, making shade
 > exclusive and letting the sun win, would silently drop every Link-driven
 > light in the city, and P8 measured 146 of those in the campaign.
+
+## 24. Does the field's depth mean twelve, or does it mean base plus twelve?
+    (2026-09-02)
+
+The light field and LightBomb now meet, and I have not tested that they mean
+the same thing by a number.
+
+`light_field` gives each piece a DEPTH -- 0, 1, 2, 3 -- and `shade_for(base,
+k)` turns that into `base + k*12`, an absolute shade. `lightbomb.
+apply_shade_channel` sums DELTAS into a sector's existing `floor_shade`.
+Nothing converts one to the other, and the obvious reading is that a piece at
+depth k contributes `k*12` as its delta, leaving the region's own base where
+it was.
+
+That reading is probably right and it is an assumption. If it is wrong -- if
+the field's base is meant to replace the region's rather than add to it --
+the whole city comes out one step too dark, and **every gate in this slice
+passes anyway**, because they all check the field's shape (levels, bearings,
+step interval) and none checks the shade a sector actually ends up with.
+
+That is the same hole the 8x texture regression went through: relative checks
+all green, one absolute number nobody looked at.
+
+> **Recommended default: make the field contribute `k * 12` and nothing else,
+> and add one absolute gate before the whole graph is built -- a sector known
+> to be in full sun ends at the plan's stated lit base, and one known to be in
+> one shadow ends at base + 12.** Two numbers, read off the built map, checked
+> against the plan. It is the check the P13 regression should have had, and it
+> costs one assertion.
