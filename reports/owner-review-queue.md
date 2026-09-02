@@ -798,3 +798,41 @@ campaign maps and on both Death Wish maps. I have not touched it.
 > if there is not one, the honest position is that Blood does not build that
 > edge and the family has three members, not four. Inventing the row would put
 > a guess into the one table whose whole value is refusing to guess.
+
+## 21. A shadow has to cut a concave ground plane (2026-09-02)
+
+The junction decision resolves one thing and creates another, and it is worth
+seeing before slice 3 runs into it.
+
+The street network is now ONE ground-plane region per connected network, which
+is right -- it is why the three `zero_exit_gameplay_sector` refusals went away,
+and it is why a junction needs no exits of its own. But that region is a
+lattice: concave, twelve vertices for a single crossing and many more for the
+whole graph. `overlay.split_convex` refuses a concave polygon **on purpose**,
+because guessing at a concave cut is the "insert a sector where there is room"
+idiom this whole model replaces.
+
+So a shadow cannot currently cut the plane it is supposed to fall across.
+Three ways out, and they are not equal:
+
+1. **A simple-polygon splitter.** Walk the boundary, insert crossings, rebuild
+   chains, close them along the cut line. About sixty lines, exact in
+   integers, and it handles every case including a cut that leaves several
+   pieces. It is the honest general answer and it is the only one that also
+   serves interiors later.
+2. **Convex decomposition of the plane before cutting.** Cheap for a grid
+   (the strips are already rectangles) but it re-introduces the pieces the
+   junction decision just removed, and the seams between them would need join
+   rows saying "nothing" -- which is exactly the road|road row, so it would
+   work, but the plane stops being one region and the model gets its junction
+   squares back through the side door.
+3. **Do not cut the plane; carry shade per piece another way.** Not available:
+   a Build sector has one floor shade, which is the whole reason overlays
+   exist.
+
+> **Recommended default: write the simple-polygon splitter (1).** It is the
+> only option that keeps the model the supervisor just decided, it is exact,
+> and it is bounded work with an obvious test -- area conservation across the
+> pieces, and the pieces re-joining to the original. Option 2 would land
+> faster and quietly undo the junction fix, which is the kind of trade this
+> project has already paid for twice.

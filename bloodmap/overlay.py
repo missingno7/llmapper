@@ -319,3 +319,84 @@ def kerb_records(island: HeightIsland, ground_id: str,
                     "road/pavement boundary, step 2048 every time"),
         })
     return out
+
+
+# ---------------------------------------------------------------------------
+# a ground plane is one region, and a junction is a place on it
+# ---------------------------------------------------------------------------
+
+def ground_plane(strips: Sequence[Sequence[int]]) -> list[Point]:
+    """The outline of a street network: the union boundary of its strips.
+
+    **A junction is not a thing to declare.** It is where two strips of the
+    same plane meet, and it has no exits of its own -- which is exactly why
+    emitting junction squares as separate regions produced three
+    `zero_exit_gameplay_sector` refusals: a square whose every neighbour was a
+    road piece at the same z still had nothing the compiler would call a way
+    out, because it had been authored as a room rather than as part of the
+    floor it is part of.
+
+    So the plane is emitted WHOLE, concave outline and all -- Build sectors
+    may be concave and `PlanarLayout` accepts one -- and the pieces come from
+    cuts. The kerb is then the boundary between the plane and an island lying
+    on it, and the junction is simply the part of the plane no island covers.
+
+    Traced by walking the union's boundary on the grid the strips imply, so
+    the result is exact and needs no polygon library.
+    """
+    if not strips:
+        raise OverlayError("a ground plane with no strips is not a plane")
+    xs = sorted({int(v) for strip in strips for v in (strip[0], strip[2])})
+    ys = sorted({int(v) for strip in strips for v in (strip[1], strip[3])})
+    filled = set()
+    for column in range(len(xs) - 1):
+        for row in range(len(ys) - 1):
+            cx = (xs[column] + xs[column + 1]) // 2
+            cy = (ys[row] + ys[row + 1]) // 2
+            if any(min(s[0], s[2]) <= cx <= max(s[0], s[2])
+                   and min(s[1], s[3]) <= cy <= max(s[1], s[3])
+                   for s in strips):
+                filled.add((column, row))
+    if not filled:
+        raise OverlayError("the strips cover nothing")
+    return _trace(filled, xs, ys)
+
+
+def _trace(filled: set, xs: Sequence[int], ys: Sequence[int]) -> list[Point]:
+    """Walk the boundary of a set of grid cells, counter-clockwise."""
+    #: every boundary edge, as (from, to) in grid coordinates, oriented so the
+    #: filled cell is on the left
+    edges: dict[tuple[int, int], tuple[int, int]] = {}
+    for column, row in filled:
+        if (column, row - 1) not in filled:
+            edges[(column, row)] = (column + 1, row)
+        if (column + 1, row) not in filled:
+            edges[(column + 1, row)] = (column + 1, row + 1)
+        if (column, row + 1) not in filled:
+            edges[(column + 1, row + 1)] = (column, row + 1)
+        if (column - 1, row) not in filled:
+            edges[(column, row + 1)] = (column, row)
+    if not edges:
+        raise OverlayError("the strips have no boundary")
+    start = min(edges)
+    ring = [start]
+    node = edges[start]
+    seen = {start}
+    while node != start:
+        ring.append(node)
+        seen.add(node)
+        node = edges.get(node)
+        if node is None:
+            raise OverlayError(
+                "the strips do not form one connected plane; emit one ground "
+                "plane per connected network, as the model says")
+    #: A ring that closes is not proof the plane is connected: two separate
+    #: squares each close their own. The plane is one only if walking from
+    #: one boundary vertex reaches every boundary vertex there is.
+    if seen != set(edges):
+        raise OverlayError(
+            f"the strips do not form one connected plane: the boundary walk "
+            f"closed after {len(seen)} of {len(edges)} vertices. Emit one "
+            f"ground plane per connected network, as the model says")
+    points = [(xs[column], ys[row]) for column, row in ring]
+    return _clean(points)

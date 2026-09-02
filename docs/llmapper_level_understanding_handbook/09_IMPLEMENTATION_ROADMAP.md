@@ -3459,6 +3459,73 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### Slice 2b: the table in the compiler, and the junction that is not a room
+
+**Deliverable 1 — the compiler applies the join table.** `joins.apply` walks
+every two-sided record after overlay partitioning, looks up
+`(kind A, kind B, height relation)` and writes what the row says: the band's
+tile class, the cstat bits, and whether the edge is a frame boundary.
+
+Proved on the committed slice-1 map, record by record. Its kerbs were painted
+by hand from `HeightIsland`; running the table over the same map changes
+**nothing** -- 10 shared records, 3 kerb bands on the road side, 0 unknown
+pairs, and a diff over `picnum`, `over_picnum`, `cstat` and all four texture
+fields comes back empty. The four pairs it finds are exactly the four rows it
+should: `road|pavement` both ways, `road|road` at the shadow cut,
+`pavement|pavement` at the same cut.
+
+Fail-first: relabel one sector a kind the table has no row against and
+`apply` raises, naming the pair. Before the compiler consulted the table that
+passed silently, because the record simply kept whatever tile its region
+carried -- which is the mechanism by which Gravesend's kerbs came to wear the
+houses.
+
+**Deliverable 2 — a junction is a place on the plane, not a room.** The
+supervisor's diagnosis was right and the fix is one line of model:
+`overlay.ground_plane` traces the union boundary of a network's strips and
+returns ONE concave outline. `PlanarLayout` takes it; Build sectors may be
+concave; and the junction is then simply the part of the plane no island
+covers, with no exits of its own to declare.
+
+```text
+crossing   12-vertex plane, area exactly 2*W*L - W*W;  5 sectors, 28 walls,
+           8 kerb records, junction square 5120 x 5120 (E3M1 s3's size,
+           and here it is the two strips' widths by construction)
+T           8-vertex plane;                            4 sectors, 20 walls,
+           5 kerb records
+```
+
+**No `zero_exit_gameplay_sector` on either.** Emitting the square as its own
+region had produced three of them across the graph; emitting the plane whole
+produces none, because the thing that had no exits was never a room.
+
+The connectivity check had to be written twice. A ring that closes is not
+proof a plane is connected -- two separate squares each close their own -- so
+`ground_plane` now requires the boundary walk to reach every boundary vertex
+there is, and says which strips did not join.
+
+#### What is still not built
+
+* **The whole graph (deliverable 3) is not built**, and neither are the
+  boundary segments: no shore, no sea, no horizon, no end walls in a map. The
+  emitter must be rewritten around `ground_plane` first -- it still emits
+  per-edge road rectangles and junction squares, which is the model this slice
+  retired.
+* **Shadows do not cut a concave plane.** `split_convex` refuses one, by
+  design, and the whole-graph plane is a lattice. Cutting it needs either a
+  simple-polygon splitter or a decomposition, and that is the first thing
+  deliverable 3 runs into.
+* No read-back, no renders, no norm re-baselining -- all downstream of a
+  compiling whole graph.
+
+#### What slice 3 must answer first
+
+Still not the masses. **How a shadow cuts a concave ground plane**, because
+the whole-graph plane is one region by the model above and `split_convex`
+refuses it. Everything after that -- masses, interiors, mechanisms re-placed
+through their own placers -- builds on a map that does not exist until it is
+answered.
+
 ### The join table and the city's boundary, 2026-09-02 (P14b, continued)
 
 **`bloodmap/joins.py`.** Things are one table; joins are the other. A kerb is

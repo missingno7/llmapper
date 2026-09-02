@@ -213,3 +213,97 @@ class OneSunForTheWholeLevel(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class AGroundPlaneIsOneRegion(unittest.TestCase):
+    """A junction is a place on the plane, not a thing to declare.
+
+    The slice-2 emitter failed `zero_exit_gameplay_sector` at three junction
+    squares because it emitted them as separate regions joined by
+    connections. A square whose every neighbour was a road piece at the same z
+    still had nothing the compiler would call a way out, because it had been
+    authored as a room rather than as part of the floor it is part of.
+    """
+
+    W, L = 5120, 20480
+
+    def _strips(self, kind):
+        a, b = self.L // 2 - self.W // 2, self.L // 2 + self.W // 2
+        if kind == "crossing":
+            return [(a, 0, b, self.L), (0, a, self.L, b)]
+        return [(a, 0, b, self.L), (0, a, a, b)]
+
+    def test_a_crossing_traces_as_one_twelve_sided_plane(self):
+        from bloodmap.overlay import ground_plane, signed_area
+
+        plane = ground_plane(self._strips("crossing"))
+        self.assertEqual(len(plane), 12)
+        #: two strips less the square they share, exactly
+        self.assertEqual(abs(signed_area(plane)),
+                         2 * self.W * self.L - self.W * self.W)
+
+    def test_a_tee_traces_as_one_eight_sided_plane(self):
+        from bloodmap.overlay import ground_plane
+
+        self.assertEqual(len(ground_plane(self._strips("tee"))), 8)
+
+    def test_the_junction_square_is_the_class_widths(self):
+        # E3M1 s3 is 5120 x 5120 where two 5120 roads meet. Here the square is
+        # what the two strips share, so it is their widths by construction --
+        # asserted because a junction sized from anything else would be a
+        # number somebody chose.
+        from bloodmap.overlay import ground_plane, signed_area
+
+        plane = ground_plane(self._strips("crossing"))
+        strips = 2 * self.W * self.L
+        overlap = strips - abs(signed_area(plane))
+        self.assertEqual(overlap, self.W * self.W)
+
+    def test_disconnected_strips_are_refused_with_the_model_named(self):
+        from bloodmap.overlay import OverlayError, ground_plane
+
+        with self.assertRaises(OverlayError) as caught:
+            ground_plane([(0, 0, 1024, 1024), (8192, 8192, 9216, 9216)])
+        self.assertIn("connected network", str(caught.exception))
+
+    def test_a_plane_with_islands_on_it_compiles_with_no_zero_exit(self):
+        # The whole point: emit the plane whole and the junction needs no
+        # exits of its own, because it is not a sector of its own.
+        from bloodmap.overlay import ground_plane
+        from bloodmap.planar_layout import PlanarLayout
+
+        a, b = self.L // 2 - self.W // 2, self.L // 2 + self.W // 2
+        plane = ground_plane(self._strips("crossing"))
+        layout = PlanarLayout(name="junction")
+        layout.add_region("plane", plane, floor_z=10240, ceiling_z=10240 - 196608,
+                          floor_picnum=352, ceiling_picnum=3491, wall_picnum=6,
+                          parallax_ceiling=True, role="street")
+        islands = {"nw": [(0, 0), (a, 0), (a, a), (0, a)],
+                   "ne": [(b, 0), (self.L, 0), (self.L, a), (b, a)],
+                   "sw": [(0, b), (a, b), (a, self.L), (0, self.L)],
+                   "se": [(b, b), (self.L, b), (self.L, self.L), (b, self.L)]}
+        for name, outline in islands.items():
+            layout.add_region(name, outline, floor_z=10240 - 2048,
+                              ceiling_z=10240 - 196608, floor_picnum=4,
+                              ceiling_picnum=3491, wall_picnum=400,
+                              parallax_ceiling=True, role="street")
+            for index, point in enumerate(outline):
+                nxt = outline[(index + 1) % len(outline)]
+                if not _on_ring(plane, point, nxt):
+                    continue
+                layout.add_connection(f"kerb:{name}:{index}", "plane", name,
+                                      role="portal", a1=point, a2=nxt)
+                layout.paint_wall("plane", point, nxt, picnum=6)
+        layout.set_player_start("plane", x=self.L // 2, y=self.L // 2,
+                                z=10240, angle=0)
+        compiled = layout.compile()
+        disk = compiled.level.to_disk_map()
+        self.assertEqual(len(disk.sectors), 5, "one plane and four islands")
+
+
+def _on_ring(ring, a, b):
+    for index, point in enumerate(ring):
+        nxt = ring[(index + 1) % len(ring)]
+        if {tuple(point), tuple(nxt)} == {tuple(a), tuple(b)}:
+            return True
+    return False
