@@ -44,7 +44,7 @@ from typing import Any, Iterable, Sequence
 
 from .overlay import (
     MIN_PIECE_AREA, Cut, OverlayError, cut_by_convex, region_area,
-    signed_area)
+    signed_area, weld)
 
 #: The median shade delta across the campaign's same-z outdoor boundaries.
 STEP = 12
@@ -120,7 +120,8 @@ def shadow_of(mass: Mass, bearing_units: int, per_height: float = 1.0
 def build_field(rings: Sequence[Sequence[tuple[int, int]]],
                 masses: Sequence[Mass], *, bearing_units: int,
                 per_height: float = 1.0, max_levels: int = MAX_LEVELS,
-                min_area: int = MIN_PIECE_AREA) -> dict[str, Any]:
+                min_area: int = MIN_PIECE_AREA,
+                registry: dict | None = None) -> dict[str, Any]:
     """Cut one surface by the sun field of every mass that reaches it.
 
     ONE field per plane, cut once. Each mass's shadow is a convex polygon and
@@ -132,6 +133,12 @@ def build_field(rings: Sequence[Sequence[tuple[int, int]]],
     what makes a lamp inside a shadow resolve itself later without a pairwise
     rule. It is capped at `max_levels - 1` because the corpus stops at four.
     """
+    #: ONE REGISTRY FOR THE WHOLE FIELD. A crossing made by one mass's shadow
+    #: has to be found by a piece another mass's shadow left untouched, so the
+    #: record spans every cut of this surface -- and the caller may pass one
+    #: that spans a whole plane and its islands, which are the same edges seen
+    #: from two sides.
+    registry = {} if registry is None else registry
     pieces = [Piece(rings=[list(ring) for ring in rings], depth=0)]
     absorbed: list[dict[str, Any]] = []
     refused: list[str] = []
@@ -144,7 +151,7 @@ def build_field(rings: Sequence[Sequence[tuple[int, int]]],
         grown: list[Piece] = []
         for piece in pieces:
             inside, outside, notes = cut_by_convex(
-                piece.rings, shadow, min_area=min_area)
+                piece.rings, shadow, min_area=min_area, registry=registry)
             absorbed.extend({**note, "mass": mass.mass_id} for note in notes)
             if not inside:
                 grown.append(piece)
@@ -157,7 +164,14 @@ def build_field(rings: Sequence[Sequence[tuple[int, int]]],
                 grown.append(Piece(rings=region, depth=piece.depth,
                                    sources=list(piece.sources)))
         pieces = grown
+    #: THE WELD, last, over every piece of this surface at once. Until the
+    #: cuts are finished a piece may still be split again, so welding earlier
+    #: would insert points that a later cut then has to re-find.
+    welded, added = weld([piece.rings for piece in pieces], registry)
+    for piece, rings_out in zip(pieces, welded):
+        piece.rings = rings_out
     return {"pieces": pieces, "absorbed": absorbed, "refused": refused,
+            "welded_vertices": added,
             "levels": sorted({piece.depth for piece in pieces})}
 
 
