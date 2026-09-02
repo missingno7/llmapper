@@ -3459,6 +3459,77 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### The join table and the city's boundary, 2026-09-02 (P14b, continued)
+
+**`bloodmap/joins.py`.** Things are one table; joins are the other. A kerb is
+not an object -- it is what the join `road|pavement` looks like -- and four
+things that were separate special cases are now ROWS: P13's holder law, P14's
+kerb, `street.end_wall`'s terminations, and P11/P13's frame continuity.
+
+Eleven rows, each carrying its evidence: the six E3M1 outdoor ones, E6M1's
+shopfront (holder required), `building_back|void`, and the map-edge rows
+below. **A pair with no rule raises**, and the message names the defect it
+exists to stop -- Gravesend's kerbs wore the houses precisely because an
+undescribed join fell through to whatever the region happened to carry.
+
+**`city_plan.BOUNDARY`** states how each side of the city ends: south is the
+waterfront, north and east and west are building backs with end walls where
+the avenue, the spur and the west street's T reach the boundary.
+`building_back_sides()` returns the three with no perimeter lane to build,
+because nothing walks behind a building.
+
+#### Two corrections the corpus made to my own measurements
+
+**Tile 2490 is stone, not water.** The owner said so and the corpus agrees
+exactly: of its 34 campaign sectors, **25 carry floor palette 10 and pan, 8
+carry palette 0 and do not**, one is blue and still. Blood palettises stone to
+make water, so the test is the PALETTE and the behaviour, never the tile.
+`joins.is_water` asks that question.
+
+That corrects my published kerb census in a way worth stating precisely: water
+was contaminating it, but **less than it looked and not where it looked**.
+Excluding water by palette and panning removes **136 of 1046 outdoor step
+records (13%)** -- and 2490 still tops what remains, at 55, **as stone**. So
+the census was not wrong because of water; it was wrong because surface kinds
+are not readable from tiles, which is the thing this table fixes.
+
+**My first chasm measurement was wrong.** I compared each sector to its
+immediate neighbours and found nothing sunk more than 20 player heights.
+Against the city's median floor instead, DWE3M1's deepest sectors sit at z
+526336 against a median of 70656 -- **26.9 player heights down**, inside the
+26-28 the brief states -- wearing rock 274 (5), 270 (2) and 411 (1). The
+measurement was right and the reference frame was mine.
+
+#### The waterfront, measured on DWE3M10
+
+```text
+sea      18 sectors, tile 2490 under palette 10, pan_floor + pan_always,
+         velocity 10 on angle 900, drag set: it carries a body
+horizon  s404 is a ZERO-HEIGHT sector -- floor_z == ceiling_z == 21504 --
+         with tile 3678 on both surfaces and the parallax bit on both,
+         meeting the quay at delta 0. s201 and s202 are the same trick
+shore    the tiles that meet the sea: sand 433 (33), 21 (20), the horizon
+         tile itself (16), 255 (7), 181 (4), concrete 416
+```
+
+#### What is still not built
+
+* **The compiler does not apply the table yet.** The rows exist, the failure
+  is loud, and the tests hold it; wiring it into `PlanarLayout.compile` at
+  every shared edge after overlay partitioning is the next step and it belongs
+  with the slice-2 emitter, which still does not compile.
+* **`enclosure_backdrop` has no row and no precedent.** It is named in
+  `EDGE_KINDS` so the gap is countable, and asking for its row raises. I did
+  not find a corpus map that rings a city with walls and fake masses; a
+  pointer would settle it.
+* **`reachability.classify_offmap` does not raise.** The brief says it raises
+  TypeError on every map; it returns clean results on six campaign maps and on
+  both DWE3M1 and DWE3M10 (`{logic_closet 4, bare 20}` and `{logic_closet 1,
+  sealed 1, bare 20}`). I have not fixed it because I cannot reproduce it.
+* **L2 builds no boundary segments.** `BOUNDARY` is L1 data and the solver
+  reads `building_back_sides()`; nothing emits a shore, a sea or a horizon
+  yet.
+
 ### P14b slice 1 completed; slice 2 NOT landed, 2026-09-02
 
 **(a) The sky.** Slice 1 as committed gave every parallaxed ceiling its own

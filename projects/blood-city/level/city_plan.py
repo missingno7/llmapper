@@ -369,3 +369,50 @@ ENVELOPES = {
 #: which parts of the city are allowed to change size: the plaza, the
 #: cemetery, the works yard and the alleys, and nothing else.
 SLACK_AREAS = ("market_plaza", "cemetery", "works_yard")
+
+
+# --- the boundary: what the city ends with, side by side ------------------
+#
+# A city has to stop, and how it stops is a design decision per side rather
+# than a fallback. The kinds are `bloodmap.joins`'s edge family, three of
+# which are measured in the corpus:
+#
+#   end_wall            E3M1 s0/s339/s343: a raised mass whose floor is the
+#                       wall top (379), sky ceiling, blocking faces
+#   waterfront          DWE3M10: shore at the sea's z, the sea panning
+#                       (pal 10, pan_floor + pan_always, velocity 10, angle
+#                       900, drag), then a horizon sector with floor AND
+#                       ceiling both 3678 and the parallax bit on both
+#   chasm               DWE3M1: the outermost sectors 26-28 player heights
+#                       below the rim, rock tiles
+#   enclosure_backdrop  walls ringing the city with fake masses beyond and no
+#                       interiors -- NO CORPUS PRECEDENT LOCATED YET, so it is
+#                       named here and carries no join row; asking for one
+#                       fails loudly rather than guessing
+#   building_back       the backs of the perimeter buildings ARE the boundary
+#   gate                the way out of the level
+#
+# `building_back` is the one with a consequence for the solve: where the
+# city ends in the backs of its own buildings there is no perimeter lane to
+# build, because nothing walks behind them. The solver drops it.
+BOUNDARY = {
+    "south": [{"kind": "waterfront", "from": "quay_w", "to": "quay_spur",
+               "note": "the quay: shore, sea, horizon (DWE3M10's dialect)"}],
+    "north": [{"kind": "building_back", "from": "nw", "to": "n_ave"},
+              {"kind": "end_wall", "at": "n_ave",
+               "note": "the avenue reaches the boundary and stops"},
+              {"kind": "building_back", "from": "n_ave", "to": "n_spur"},
+              {"kind": "end_wall", "at": "n_spur",
+               "note": "the rail spur stops"}],
+    "east": [{"kind": "building_back", "from": "n_spur", "to": "quay_spur"}],
+    "west": [{"kind": "building_back", "from": "nw", "to": "quay_w"},
+             {"kind": "end_wall", "at": "row_west",
+              "note": "the west street's T against the perimeter"}],
+}
+
+#: Sides whose boundary is the backs of buildings: no perimeter lane is built
+#: there, because nothing walks behind them.
+def building_back_sides():
+    return tuple(side for side, chain in BOUNDARY.items()
+                 if all(segment["kind"] in ("building_back", "end_wall")
+                        for segment in chain))

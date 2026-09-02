@@ -764,3 +764,37 @@ east-west road carries.
 > measured angle), or rotate the city's grid against the sun instead (dearer,
 > and it changes every solved coordinate). Neither is worth doing before the
 > whole graph compiles and the effect can actually be looked at.
+
+## 20. Where does `enclosure_backdrop` come from? (2026-09-02)
+
+The map-edge family has four members. Three are measured:
+
+* **END WALL** — E3M1 s0/s339/s343: a raised mass whose floor is the wall top
+  (379), sky ceiling, blocking faces in the district's stone, 3.86–5.80 player
+  heights up.
+* **CHASM** — DWE3M1: its deepest sectors sit 26.9 player heights below the
+  median floor (z 526336 against 70656), wearing rock 274, 270, 411.
+* **HORIZON OVER WATER** — DWE3M10 s404: a zero-height sector (floor_z ==
+  ceiling_z == 21504) with tile 3678 on both surfaces and the parallax bit on
+  both, meeting the quay at delta 0; the sea itself is 2490 under palette 10,
+  panning at velocity 10 on angle 900 with drag.
+
+**ENCLOSURE WITH BACKDROP is named and has no row**, because I could not find
+a corpus precedent for it: a city ringed by walls with fake masses beyond and
+no interiors behind them. `joins.EDGE_KINDS` carries the name so the gap stays
+countable, and asking for its row raises rather than inventing one.
+
+Two related notes. Tile 2490 is **stone that Blood palettises** — 25 of its 34
+campaign sectors carry palette 10 and pan, 8 carry palette 0 and do not — so
+the water test is the palette and the behaviour, never the tile; that is now
+`joins.is_water`. And `reachability.classify_offmap`, which the brief says
+raises TypeError on every map, **does not**: it returns clean results on six
+campaign maps and on both Death Wish maps. I have not touched it.
+
+> **Recommended default: leave `enclosure_backdrop` without a row until a
+> precedent is named, and give Gravesend's three landward sides END WALLS,
+> which are measured.** The city's boundary chain already says so. If you have
+> a map in mind for the backdrop idiom, name it and the row is an afternoon;
+> if there is not one, the honest position is that Blood does not build that
+> edge and the family has three members, not four. Inventing the row would put
+> a guess into the one table whose whole value is refusing to guess.
