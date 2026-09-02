@@ -44,6 +44,7 @@ BLOODMAP_CORPUS=D:/Games/DOS/llmapper/maps/blood BLOODMAP_ART=D:/Games/DOS/llmap
 | `stage2_surfaces.py` | surfaces and frames | `bloodmap.read_surfaces` (new) | `references/surfaces.json` |
 | `stage3_joins.py` | joins | `bloodmap.read_joins` (new) | `references/join-census.json` |
 | `stage4_overlays.py` | islands, the light field, lamps | `bloodmap.read_islands`, `bloodmap.read_light` (new) | `references/overlays.json` |
+| `stage6_edges.py` | the edge chain | `bloodmap.read_edges` (new) | `references/edge-chain.json` |
 
 `source/run_all.py` runs every stage, merges the ledger, and runs them again --
 a stage's review pack shows the SHARED ledger's fact panel, so the packs are

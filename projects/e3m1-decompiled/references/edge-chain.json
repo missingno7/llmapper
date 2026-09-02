@@ -1,0 +1,1386 @@
+{
+ "boundary_records": [
+  12,
+  13,
+  14,
+  15,
+  16,
+  20,
+  21,
+  22,
+  26,
+  28,
+  29,
+  35,
+  36,
+  37,
+  38,
+  39,
+  40,
+  44,
+  45,
+  46,
+  47,
+  49,
+  62,
+  63,
+  64,
+  222,
+  325,
+  326,
+  327,
+  816,
+  817,
+  818,
+  819,
+  820,
+  821,
+  822,
+  823,
+  824,
+  938,
+  939,
+  940,
+  941,
+  942,
+  943,
+  944,
+  945,
+  946,
+  947,
+  950,
+  955,
+  956,
+  957,
+  958,
+  959,
+  960,
+  961,
+  962,
+  963,
+  964,
+  965,
+  966,
+  967,
+  968,
+  969,
+  970,
+  971,
+  972,
+  973,
+  974,
+  975,
+  977,
+  978,
+  979,
+  980,
+  981,
+  982,
+  983,
+  984,
+  985,
+  986,
+  987,
+  988,
+  1529,
+  1530,
+  1531,
+  1532,
+  1535,
+  1536,
+  1537,
+  1538,
+  1539,
+  1540,
+  1541,
+  1542,
+  1543,
+  1544,
+  1545,
+  1546,
+  1547,
+  1548
+ ],
+ "claims": "64 field claims",
+ "counts": {
+  "backing": 7,
+  "building_back": 58,
+  "end_wall": 16,
+  "interior_doorway": 19
+ },
+ "disagreements_with_the_measured_facts": [
+  {
+   "claim": "reachability.classify_offmap raises TypeError on every map, so the enclosure-with-backdrop member has no reader (decisions section 14)",
+   "reconciled": "the reader works; what is missing is a corpus precedent for an enclosure, and E3M1 is not one",
+   "the_reader_finds": "it returns a classification: 374 sectors reached, 8 off-map, {'bare': 6, 'logic_closet': 2}"
+  },
+  {
+   "claim": "the map edge is a family of five",
+   "reconciled": "the family is right and E3M1 exercises three of it; the other members are attested on DWE3M1 and DWE3M10, as the decisions say",
+   "the_reader_finds": "E3M1 uses ['backing', 'building_back', 'end_wall', 'interior_doorway']: no chasm, no horizon, no waterfront and no enclosure anywhere on its boundary"
+  }
+ ],
+ "ground_sectors": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  45,
+  65,
+  159,
+  175,
+  235
+ ],
+ "kinds": {
+  "12": "building_back",
+  "13": "interior_doorway",
+  "14": "building_back",
+  "15": "interior_doorway",
+  "1529": "end_wall",
+  "1530": "building_back",
+  "1531": "interior_doorway",
+  "1532": "building_back",
+  "1535": "end_wall",
+  "1536": "building_back",
+  "1537": "interior_doorway",
+  "1538": "building_back",
+  "1539": "interior_doorway",
+  "1540": "building_back",
+  "1541": "building_back",
+  "1542": "interior_doorway",
+  "1543": "building_back",
+  "1544": "interior_doorway",
+  "1545": "building_back",
+  "1546": "building_back",
+  "1547": "building_back",
+  "1548": "backing",
+  "16": "building_back",
+  "20": "building_back",
+  "21": "backing",
+  "22": "end_wall",
+  "222": "end_wall",
+  "26": "end_wall",
+  "28": "end_wall",
+  "29": "backing",
+  "325": "building_back",
+  "326": "interior_doorway",
+  "327": "building_back",
+  "35": "building_back",
+  "36": "building_back",
+  "37": "interior_doorway",
+  "38": "building_back",
+  "39": "interior_doorway",
+  "40": "building_back",
+  "44": "building_back",
+  "45": "building_back",
+  "46": "building_back",
+  "47": "end_wall",
+  "49": "end_wall",
+  "62": "building_back",
+  "63": "building_back",
+  "64": "building_back",
+  "816": "end_wall",
+  "817": "building_back",
+  "818": "interior_doorway",
+  "819": "building_back",
+  "820": "building_back",
+  "821": "building_back",
+  "822": "interior_doorway",
+  "823": "building_back",
+  "824": "building_back",
+  "938": "building_back",
+  "939": "building_back",
+  "940": "interior_doorway",
+  "941": "end_wall",
+  "942": "end_wall",
+  "943": "end_wall",
+  "944": "end_wall",
+  "945": "interior_doorway",
+  "946": "building_back",
+  "947": "end_wall",
+  "950": "building_back",
+  "955": "building_back",
+  "956": "building_back",
+  "957": "interior_doorway",
+  "958": "building_back",
+  "959": "building_back",
+  "960": "interior_doorway",
+  "961": "building_back",
+  "962": "building_back",
+  "963": "building_back",
+  "964": "building_back",
+  "965": "building_back",
+  "966": "backing",
+  "967": "backing",
+  "968": "backing",
+  "969": "building_back",
+  "970": "building_back",
+  "971": "building_back",
+  "972": "building_back",
+  "973": "building_back",
+  "974": "interior_doorway",
+  "975": "building_back",
+  "977": "backing",
+  "978": "building_back",
+  "979": "building_back",
+  "980": "building_back",
+  "981": "interior_doorway",
+  "982": "building_back",
+  "983": "building_back",
+  "984": "end_wall",
+  "985": "end_wall",
+  "986": "building_back",
+  "987": "interior_doorway",
+  "988": "building_back"
+ },
+ "ledger": {
+  "disagreements": [
+   {
+    "claim": "reachability.classify_offmap raises TypeError on every map, so the enclosure-with-backdrop member has no reader (decisions section 14)",
+    "reconciled": "the reader works; what is missing is a corpus precedent for an enclosure, and E3M1 is not one",
+    "the_reader_finds": "it returns a classification: 374 sectors reached, 8 off-map, {'bare': 6, 'logic_closet': 2}"
+   },
+   {
+    "claim": "the map edge is a family of five",
+    "reconciled": "the family is right and E3M1 exercises three of it; the other members are attested on DWE3M1 and DWE3M10, as the decisions say",
+    "the_reader_finds": "E3M1 uses ['backing', 'building_back', 'end_wall', 'interior_doorway']: no chasm, no horizon, no waterfront and no enclosure anywhere on its boundary"
+   }
+  ],
+  "explained": 100,
+  "gate": "every record of the ground's own outline given an edge kind from what is on its far side, then chained into segments in Build's point2 order",
+  "population": "100 boundary records",
+  "reader": "bloodmap.read_edges (new)",
+  "residue": 0,
+  "residue_is": "boundary records in no edge class. Zero here is honest but easy: only 16 of 100 records are a member of the edge FAMILY proper; 65 are the void behind a building and 19 are a way in",
+  "residue_percent": 0.0
+ },
+ "offmap": {
+  "by_kind": {
+   "bare": 6,
+   "logic_closet": 2
+  },
+  "components": [
+   {
+    "generators": 3,
+    "kind": "logic_closet",
+    "link_or_warp_markers": 0,
+    "player_areas": 512.0,
+    "reasons": [
+     "13 switches and 3 generators, unreachable"
+    ],
+    "sectors": [
+     254
+    ],
+    "sectors_with_xsector": 0,
+    "sprites": 18,
+    "switches": 13
+   },
+   {
+    "generators": 1,
+    "kind": "logic_closet",
+    "link_or_warp_markers": 0,
+    "player_areas": 113.78,
+    "reasons": [
+     "6 switches and 1 generators, unreachable"
+    ],
+    "sectors": [
+     351
+    ],
+    "sectors_with_xsector": 0,
+    "sprites": 8,
+    "switches": 6
+   },
+   {
+    "generators": 0,
+    "kind": "bare",
+    "link_or_warp_markers": 0,
+    "player_areas": 2.98,
+    "reasons": [
+     "no sprite, no XSECTOR: geometry with nothing wired to it"
+    ],
+    "sectors": [
+     355
+    ],
+    "sectors_with_xsector": 0,
+    "sprites": 0,
+    "switches": 0
+   },
+   {
+    "generators": 0,
+    "kind": "bare",
+    "link_or_warp_markers": 0,
+    "player_areas": 2.25,
+    "reasons": [
+     "no sprite, no XSECTOR: geometry with nothing wired to it"
+    ],
+    "sectors": [
+     356
+    ],
+    "sectors_with_xsector": 0,
+    "sprites": 0,
+    "switches": 0
+   },
+   {
+    "generators": 0,
+    "kind": "bare",
+    "link_or_warp_markers": 0,
+    "player_areas": 0.06,
+    "reasons": [
+     "no sprite, no XSECTOR: geometry with nothing wired to it"
+    ],
+    "sectors": [
+     357
+    ],
+    "sectors_with_xsector": 0,
+    "sprites": 0,
+    "switches": 0
+   },
+   {
+    "generators": 0,
+    "kind": "bare",
+    "link_or_warp_markers": 0,
+    "player_areas": 2.0,
+    "reasons": [
+     "no sprite, no XSECTOR: geometry with nothing wired to it"
+    ],
+    "sectors": [
+     358
+    ],
+    "sectors_with_xsector": 0,
+    "sprites": 0,
+    "switches": 0
+   },
+   {
+    "generators": 0,
+    "kind": "bare",
+    "link_or_warp_markers": 0,
+    "player_areas": 1.92,
+    "reasons": [
+     "no sprite, no XSECTOR: geometry with nothing wired to it"
+    ],
+    "sectors": [
+     359
+    ],
+    "sectors_with_xsector": 0,
+    "sprites": 0,
+    "switches": 0
+   },
+   {
+    "generators": 0,
+    "kind": "bare",
+    "link_or_warp_markers": 0,
+    "player_areas": 1.97,
+    "reasons": [
+     "no sprite, no XSECTOR: geometry with nothing wired to it"
+    ],
+    "sectors": [
+     360
+    ],
+    "sectors_with_xsector": 0,
+    "sprites": 0,
+    "switches": 0
+   }
+  ],
+  "offmap_sectors": [
+   254,
+   351,
+   355,
+   356,
+   357,
+   358,
+   359,
+   360
+  ],
+  "reached": 374,
+  "reader": "reachability.classify_offmap"
+ },
+ "owner_marks_read_back": [],
+ "reader": "bloodmap.read_edges (new; reuses reachability.classify_offmap for the backdrop hunt)",
+ "records_in_the_edge_family_proper": 16,
+ "records_that_are_a_way_in": 19,
+ "records_that_are_the_void_behind_a_building": 65,
+ "residue_records": [],
+ "review": {
+  "hierarchy": "projects\\e3m1-decompiled\\review\\layer6-hierarchy.json",
+  "pack": "projects\\e3m1-decompiled\\review\\layer6.html",
+  "questions": "projects\\e3m1-decompiled\\review\\questions-layer6.json",
+  "sectors_unowned": [
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   61,
+   62,
+   63,
+   64,
+   66,
+   68,
+   69,
+   70,
+   71,
+   72,
+   73,
+   75,
+   76,
+   77,
+   78,
+   79,
+   80,
+   81,
+   82,
+   83,
+   84,
+   85,
+   86,
+   87,
+   88,
+   89,
+   90,
+   91,
+   92,
+   93,
+   94,
+   95,
+   96,
+   97,
+   98,
+   99,
+   100,
+   101,
+   102,
+   103,
+   104,
+   105,
+   106,
+   107,
+   108,
+   109,
+   111,
+   112,
+   113,
+   114,
+   115,
+   116,
+   117,
+   120,
+   121,
+   122,
+   123,
+   124,
+   125,
+   126,
+   127,
+   128,
+   129,
+   130,
+   131,
+   132,
+   133,
+   134,
+   135,
+   136,
+   137,
+   138,
+   139,
+   140,
+   141,
+   142,
+   143,
+   144,
+   145,
+   146,
+   147,
+   148,
+   149,
+   150,
+   151,
+   152,
+   153,
+   154,
+   155,
+   156,
+   157,
+   158,
+   160,
+   161,
+   162,
+   163,
+   164,
+   166,
+   167,
+   168,
+   169,
+   170,
+   171,
+   173,
+   176,
+   177,
+   178,
+   179,
+   180,
+   181,
+   182,
+   183,
+   184,
+   185,
+   186,
+   187,
+   188,
+   189,
+   190,
+   191,
+   192,
+   193,
+   194,
+   195,
+   196,
+   197,
+   198,
+   199,
+   200,
+   201,
+   202,
+   203,
+   204,
+   205,
+   207,
+   208,
+   209,
+   210,
+   211,
+   212,
+   213,
+   214,
+   215,
+   216,
+   217,
+   218,
+   219,
+   220,
+   221,
+   222,
+   223,
+   224,
+   225,
+   226,
+   227,
+   228,
+   229,
+   230,
+   231,
+   232,
+   233,
+   234,
+   236,
+   238,
+   239,
+   240,
+   241,
+   242,
+   243,
+   244,
+   245,
+   246,
+   247,
+   248,
+   249,
+   250,
+   251,
+   252,
+   253,
+   255,
+   256,
+   257,
+   258,
+   259,
+   260,
+   261,
+   262,
+   263,
+   264,
+   265,
+   266,
+   267,
+   268,
+   269,
+   270,
+   271,
+   272,
+   273,
+   274,
+   275,
+   276,
+   277,
+   278,
+   279,
+   280,
+   284,
+   285,
+   286,
+   291,
+   292,
+   293,
+   294,
+   295,
+   296,
+   297,
+   298,
+   299,
+   300,
+   301,
+   302,
+   303,
+   304,
+   305,
+   306,
+   307,
+   308,
+   309,
+   310,
+   311,
+   317,
+   318,
+   319,
+   320,
+   321,
+   322,
+   323,
+   324,
+   325,
+   326,
+   327,
+   328,
+   329,
+   330,
+   331,
+   332,
+   333,
+   334,
+   335,
+   336,
+   337,
+   338,
+   340,
+   341,
+   342,
+   344,
+   345,
+   346,
+   347,
+   348,
+   349,
+   350,
+   353,
+   354,
+   361,
+   362,
+   363,
+   364,
+   365,
+   366,
+   367,
+   368,
+   369,
+   370,
+   371,
+   372,
+   373,
+   374,
+   375,
+   376,
+   377,
+   378,
+   379,
+   380,
+   381
+  ]
+ },
+ "segment_counts": {
+  "backing": 5,
+  "building_back": 33,
+  "end_wall": 12,
+  "interior_doorway": 19
+ },
+ "segments": [
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    12
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    20
+   ]
+  },
+  {
+   "kind": "end_wall",
+   "length": 1,
+   "records": [
+    26
+   ]
+  },
+  {
+   "kind": "end_wall",
+   "length": 1,
+   "records": [
+    28
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 2,
+   "records": [
+    35,
+    36
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 3,
+   "records": [
+    44,
+    45,
+    46
+   ]
+  },
+  {
+   "kind": "end_wall",
+   "length": 1,
+   "records": [
+    49
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 3,
+   "records": [
+    62,
+    63,
+    64
+   ]
+  },
+  {
+   "kind": "end_wall",
+   "length": 1,
+   "records": [
+    222
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    325
+   ]
+  },
+  {
+   "kind": "end_wall",
+   "length": 1,
+   "records": [
+    816
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    950
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 2,
+   "records": [
+    955,
+    956
+   ]
+  },
+  {
+   "kind": "backing",
+   "length": 1,
+   "records": [
+    977
+   ]
+  },
+  {
+   "kind": "end_wall",
+   "length": 1,
+   "records": [
+    1535
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    13
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    14
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    15
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    16
+   ]
+  },
+  {
+   "kind": "backing",
+   "length": 1,
+   "records": [
+    21
+   ]
+  },
+  {
+   "kind": "end_wall",
+   "length": 1,
+   "records": [
+    22
+   ]
+  },
+  {
+   "kind": "backing",
+   "length": 1,
+   "records": [
+    29
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    37
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    38
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    39
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    40
+   ]
+  },
+  {
+   "kind": "end_wall",
+   "length": 1,
+   "records": [
+    47
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    326
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    327
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    817
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    818
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 3,
+   "records": [
+    819,
+    820,
+    821
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    822
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 2,
+   "records": [
+    823,
+    824
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 2,
+   "records": [
+    938,
+    939
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    940
+   ]
+  },
+  {
+   "kind": "end_wall",
+   "length": 4,
+   "records": [
+    941,
+    942,
+    943,
+    944
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    945
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    946
+   ]
+  },
+  {
+   "kind": "end_wall",
+   "length": 1,
+   "records": [
+    947
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    957
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 2,
+   "records": [
+    958,
+    959
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    960
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 5,
+   "records": [
+    961,
+    962,
+    963,
+    964,
+    965
+   ]
+  },
+  {
+   "kind": "backing",
+   "length": 3,
+   "records": [
+    966,
+    967,
+    968
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 5,
+   "records": [
+    969,
+    970,
+    971,
+    972,
+    973
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    974
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    975
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 3,
+   "records": [
+    978,
+    979,
+    980
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    981
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 2,
+   "records": [
+    982,
+    983
+   ]
+  },
+  {
+   "kind": "end_wall",
+   "length": 2,
+   "records": [
+    984,
+    985
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    986
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    987
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    988
+   ]
+  },
+  {
+   "kind": "end_wall",
+   "length": 1,
+   "records": [
+    1529
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    1530
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    1531
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    1532
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    1536
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    1537
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    1538
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    1539
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 2,
+   "records": [
+    1540,
+    1541
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    1542
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 1,
+   "records": [
+    1543
+   ]
+  },
+  {
+   "kind": "interior_doorway",
+   "length": 1,
+   "records": [
+    1544
+   ]
+  },
+  {
+   "kind": "building_back",
+   "length": 3,
+   "records": [
+    1545,
+    1546,
+    1547
+   ]
+  },
+  {
+   "kind": "backing",
+   "length": 1,
+   "records": [
+    1548
+   ]
+  }
+ ],
+ "summary": {
+  "boundary_records": 100,
+  "by_kind": {
+   "backing": 7,
+   "building_back": 58,
+   "end_wall": 16,
+   "interior_doorway": 19
+  },
+  "residue_percent": 0.0,
+  "residue_records": 0,
+  "segments": 69,
+  "segments_by_kind": {
+   "backing": 5,
+   "building_back": 33,
+   "end_wall": 12,
+   "interior_doorway": 19
+  }
+ },
+ "why": {
+  "12": "one-sided: a flat wall against the void, no sector spent behind it",
+  "13": "the far side is sector 206, an interior: this is a way in, not a termination",
+  "14": "one-sided: a flat wall against the void, no sector spent behind it",
+  "15": "the far side is sector 312, an interior: this is a way in, not a termination",
+  "1529": "the far side is sector 237, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "1530": "one-sided: a flat wall against the void, no sector spent behind it",
+  "1531": "the far side is sector 281, an interior: this is a way in, not a termination",
+  "1532": "one-sided: a flat wall against the void, no sector spent behind it",
+  "1535": "the far side is sector 0, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "1536": "one-sided: a flat wall against the void, no sector spent behind it",
+  "1537": "the far side is sector 287, an interior: this is a way in, not a termination",
+  "1538": "one-sided: a flat wall against the void, no sector spent behind it",
+  "1539": "the far side is sector 288, an interior: this is a way in, not a termination",
+  "1540": "one-sided: a flat wall against the void, no sector spent behind it",
+  "1541": "one-sided: a flat wall against the void, no sector spent behind it",
+  "1542": "the far side is sector 289, an interior: this is a way in, not a termination",
+  "1543": "one-sided: a flat wall against the void, no sector spent behind it",
+  "1544": "the far side is sector 290, an interior: this is a way in, not a termination",
+  "1545": "one-sided: a flat wall against the void, no sector spent behind it",
+  "1546": "one-sided: a flat wall against the void, no sector spent behind it",
+  "1547": "one-sided: a flat wall against the void, no sector spent behind it",
+  "1548": "the far side is sector 283, floor_z == ceiling_z: a mass with no interior, the backing nobody sees",
+  "16": "one-sided: a flat wall against the void, no sector spent behind it",
+  "20": "one-sided: a flat wall against the void, no sector spent behind it",
+  "21": "the far side is sector 10, floor_z == ceiling_z: a mass with no interior, the backing nobody sees",
+  "22": "the far side is sector 339, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "222": "the far side is sector 343, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "26": "the far side is sector 339, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "28": "the far side is sector 339, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "29": "the far side is sector 11, floor_z == ceiling_z: a mass with no interior, the backing nobody sees",
+  "325": "one-sided: a flat wall against the void, no sector spent behind it",
+  "326": "the far side is sector 67, an interior: this is a way in, not a termination",
+  "327": "one-sided: a flat wall against the void, no sector spent behind it",
+  "35": "one-sided: a flat wall against the void, no sector spent behind it",
+  "36": "one-sided: a flat wall against the void, no sector spent behind it",
+  "37": "the far side is sector 313, an interior: this is a way in, not a termination",
+  "38": "one-sided: a flat wall against the void, no sector spent behind it",
+  "39": "the far side is sector 314, an interior: this is a way in, not a termination",
+  "40": "one-sided: a flat wall against the void, no sector spent behind it",
+  "44": "one-sided: a flat wall against the void, no sector spent behind it",
+  "45": "one-sided: a flat wall against the void, no sector spent behind it",
+  "46": "one-sided: a flat wall against the void, no sector spent behind it",
+  "47": "the far side is sector 0, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "49": "the far side is sector 0, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "62": "one-sided: a flat wall against the void, no sector spent behind it",
+  "63": "one-sided: a flat wall against the void, no sector spent behind it",
+  "64": "one-sided: a flat wall against the void, no sector spent behind it",
+  "816": "the far side is sector 343, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "817": "one-sided: a flat wall against the void, no sector spent behind it",
+  "818": "the far side is sector 316, an interior: this is a way in, not a termination",
+  "819": "one-sided: a flat wall against the void, no sector spent behind it",
+  "820": "one-sided: a flat wall against the void, no sector spent behind it",
+  "821": "one-sided: a flat wall against the void, no sector spent behind it",
+  "822": "the far side is sector 119, an interior: this is a way in, not a termination",
+  "823": "one-sided: a flat wall against the void, no sector spent behind it",
+  "824": "one-sided: a flat wall against the void, no sector spent behind it",
+  "938": "one-sided: a flat wall against the void, no sector spent behind it",
+  "939": "one-sided: a flat wall against the void, no sector spent behind it",
+  "940": "the far side is sector 282, an interior: this is a way in, not a termination",
+  "941": "the far side is sector 174, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "942": "the far side is sector 172, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "943": "the far side is sector 172, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "944": "the far side is sector 174, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "945": "the far side is sector 282, an interior: this is a way in, not a termination",
+  "946": "one-sided: a flat wall against the void, no sector spent behind it",
+  "947": "the far side is sector 343, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "950": "one-sided: a flat wall against the void, no sector spent behind it",
+  "955": "one-sided: a flat wall against the void, no sector spent behind it",
+  "956": "one-sided: a flat wall against the void, no sector spent behind it",
+  "957": "the far side is sector 315, an interior: this is a way in, not a termination",
+  "958": "one-sided: a flat wall against the void, no sector spent behind it",
+  "959": "one-sided: a flat wall against the void, no sector spent behind it",
+  "960": "the far side is sector 110, an interior: this is a way in, not a termination",
+  "961": "one-sided: a flat wall against the void, no sector spent behind it",
+  "962": "one-sided: a flat wall against the void, no sector spent behind it",
+  "963": "one-sided: a flat wall against the void, no sector spent behind it",
+  "964": "one-sided: a flat wall against the void, no sector spent behind it",
+  "965": "one-sided: a flat wall against the void, no sector spent behind it",
+  "966": "the far side is sector 60, floor_z == ceiling_z: a mass with no interior, the backing nobody sees",
+  "967": "the far side is sector 59, floor_z == ceiling_z: a mass with no interior, the backing nobody sees",
+  "968": "the far side is sector 58, floor_z == ceiling_z: a mass with no interior, the backing nobody sees",
+  "969": "one-sided: a flat wall against the void, no sector spent behind it",
+  "970": "one-sided: a flat wall against the void, no sector spent behind it",
+  "971": "one-sided: a flat wall against the void, no sector spent behind it",
+  "972": "one-sided: a flat wall against the void, no sector spent behind it",
+  "973": "one-sided: a flat wall against the void, no sector spent behind it",
+  "974": "the far side is sector 74, an interior: this is a way in, not a termination",
+  "975": "one-sided: a flat wall against the void, no sector spent behind it",
+  "977": "the far side is sector 11, floor_z == ceiling_z: a mass with no interior, the backing nobody sees",
+  "978": "one-sided: a flat wall against the void, no sector spent behind it",
+  "979": "one-sided: a flat wall against the void, no sector spent behind it",
+  "980": "one-sided: a flat wall against the void, no sector spent behind it",
+  "981": "the far side is sector 352, an interior: this is a way in, not a termination",
+  "982": "one-sided: a flat wall against the void, no sector spent behind it",
+  "983": "one-sided: a flat wall against the void, no sector spent behind it",
+  "984": "the far side is sector 118, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "985": "the far side is sector 165, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "986": "one-sided: a flat wall against the void, no sector spent behind it",
+  "987": "the far side is sector 282, an interior: this is a way in, not a termination",
+  "988": "one-sided: a flat wall against the void, no sector spent behind it"
+ }
+}
