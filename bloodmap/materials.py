@@ -1728,7 +1728,8 @@ def render_occurrence_context_svg(disk: DiskMap, occurrence: dict[str, Any]) -> 
     scale = min((width - 2 * margin) / max(1, max_x - min_x), (height - 2 * margin) / max(1, max_y - min_y))
 
     def xy(x: int, y: int) -> tuple[float, float]:
-        return margin + (x - min_x) * scale, height - margin - (y - min_y) * scale
+        # XMapEdit's orientation: Build +Y is DOWN.
+        return margin + (x - min_x) * scale, margin + (y - min_y) * scale
 
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',

@@ -324,7 +324,13 @@ def render_svg(disk: DiskMap, *, labels: bool = True, selected: tuple[str, int] 
     scale = min(sx, sy)
 
     def xy(x: int, y: int) -> tuple[float, float]:
-        return margin + (x - min_x) * scale, height - margin - (y - min_y) * scale
+        #: XMAPEDIT'S ORIENTATION: +Y IS DOWN. Build stores +Y southward and
+        #: the editor draws it downward, so a vertex with a larger y lands
+        #: LOWER on the page. This used to flip it, which mirrored every plan
+        #: view against the editor the owner reads the map in -- north and
+        #: south swapped, and a sun bearing of 84 degrees pointing the wrong
+        #: way down the page.
+        return margin + (x - min_x) * scale, margin + (y - min_y) * scale
 
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',

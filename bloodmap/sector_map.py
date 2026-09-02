@@ -165,8 +165,8 @@ def render_sector_map(
     )
 
     def xy(x: float, y: float) -> tuple[float, float]:
-        # Match bloodmap.analysis.render_svg: Build +Y is displayed upward.
-        return margin + (x - min_x) * scale, height - margin - (y - min_y) * scale
+        # Match bloodmap.analysis.render_svg, and XMapEdit: Build +Y is DOWN.
+        return margin + (x - min_x) * scale, margin + (y - min_y) * scale
 
     sector_loops = [_loops_for_sector(disk, index) for index in range(len(disk.sectors))]
     labels = [_representative_point(loops) for loops in sector_loops]
