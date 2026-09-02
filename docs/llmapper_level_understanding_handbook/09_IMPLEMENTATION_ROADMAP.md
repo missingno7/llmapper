@@ -3459,6 +3459,82 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### Slice 2d: the light field, and the bug the sun found
+
+**The step, re-measured.** Over the 38 campaign maps with outdoor ground, on
+the 402 same-z outdoor boundaries where the shade changes:
+
+```text
+delta  16: 40    10: 34    12: 33     8: 30     4: 21     6: 20
+median 12.0   mean 14.1   quartiles 8 .. 18   half of all in [8, 16]
+```
+
+**The number 12 is right and the reason given for it is not.** It is the
+MEDIAN, exactly; it is not the mode. The distribution is flat -- the
+commonest value is 16 and takes 9% of the boundaries -- so no value is modal
+in any useful sense, and the gate is therefore the interval [8, 16], where
+half of them lie, rather than a number. `test_the_step_has_no_mode_worth_the_
+name` records that, because a later reader would otherwise assume the
+constant had been derived the way the decision says.
+
+Two more corrections to the decision's premises, both mine to report:
+
+* **four levels is right, at the right floor.** Counting a level as one
+  carrying at least a TENTH of a map's outdoor sectors, the median map uses 3
+  and 81% use 4 or fewer. At a twentieth the count runs to 17, which is noise
+  counted as design -- my first measurement did that and made the cap look
+  unsupported.
+* **the lit base runs wider than 0-30**: the per-map modal outdoor shade spans
+  -128 to 37, with 0 commonest on 12 maps. The stated range covers nearly all
+  of it; -128 is one map and is a fullbright, not a base.
+
+**Deliverable 3 -- the field.** `bloodmap/light_field.py`. Each mass's shadow
+is its outline swept along the sun vector and hulled; the field is built by
+cutting the plane with each shadow through `cut_by_convex`, depth accumulating
+additively and capped at three; the shade is `base + k * 12`. One field per
+plane, cut once, slivers absorbed and reported.
+
+On a crossing plane with two masses: **5 pieces, levels [0, 1], shades 8 and
+20, area conserved exactly, 4 iso-line edges and every one of them at the
+sun's bearing, 18 slivers absorbed.**
+
+#### The bug the sun found in the clipper I had just shipped
+
+`split_polygon` returned **both sides empty** on an oblique cut at the sun's
+bearing. The cause is worth stating in full because it is a class of mistake,
+not a typo: a crossing is computed in rationals and rounded to Build's integer
+grid, and the rounded point is then more than `ON_LINE` off the line it was
+cut on -- the cross product magnifies half a unit of rounding by the segment's
+length. Re-deriving "is this point on the line" from `_side` afterwards
+answered NO, so the chord was never built, the chain dangled, and `_loops`
+discarded it.
+
+**Axis-aligned cuts and a 45-degree one land exactly on integers**, which is
+precisely why the clipper's first six tests passed and the sun's 84 degrees
+did not. The fix is to record which points are crossings rather than re-derive
+it; the regression test cuts the plane at the sun's own bearing and at a
+deliberately awkward slope through a plain square.
+
+I shipped that clipper in ee5705b saying area was conserved on every case.
+It was, on every case I had thought to write.
+
+#### Not built
+
+Deliverables 4 to 6 -- channels and arbitration, the asserted order of
+operations, and the emitter rewritten around `ground_plane` -- are not started.
+So there are no dropped PRESENTATION facets to list, no whole-graph counts,
+no waterfront, no read-back and no renders. The field exists and is gated; it
+has not yet been applied to a map.
+
+#### What slice 3 must answer first
+
+**Deliverable 4, the channel table**, before any of the building. The field
+now writes shade, the joins write picnums, the islands write floor z, and
+nothing yet says who owns what -- which is the same shape as the pass-order
+collision P13 found between `glaze` and `frame_map`, and it will be found the
+same way (by accident, later) unless the ledger is extended to region channels
+first.
+
 ### Slice 2c: domains and the clipper, 2026-09-02
 
 **Deliverable 1 — overlay domains.** An overlay declares the predicate over

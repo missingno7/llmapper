@@ -863,7 +863,15 @@ one map is the same shape of mistake as the continuity threshold and the
 magnitude envelope: a number that looks measured but has a sample of one, and
 both of those had to be re-thresholded once the corpus was actually asked.
 
-> **Recommended default: measure the levels over every campaign map's outdoor
+> **ANSWERED 2026-09-02 (slice 2d), and the decision holds with one premise
+> corrected.** Measured over the 38 campaign maps with outdoor ground: the
+> step's MEDIAN is exactly 12 (not its mode -- the distribution is flat and
+> the commonest value, 16, takes 9%), half of all boundaries lie in [8, 16],
+> and at a ten-per-cent significance floor the median map uses 3 levels with
+> 81% using 4 or fewer. So `base + k*12`, capped at four, is right; "the
+> campaign's modal shadow step" is not how it was arrived at.
+>
+> ~~Recommended default: measure the levels over every campaign map's outdoor
 > street sectors before quantising, and state how many levels the corpus
 > actually uses rather than adopting E3M1's three.** If the corpus turns out
 > to cluster at three, the number is E3M1's and now it is also everyone's; if
@@ -871,3 +879,29 @@ both of those had to be re-thresholded once the corpus was actually asked.
 > light for no reason. Either way the penumbra question answers itself --
 > section 17's "penumbra only where the corpus measurement says so" cannot be
 > settled without this measurement, and I have not made it.
+
+## 23. Who owns a sector's shade? (2026-09-02)
+
+The light field now writes `floor_shade` on every outdoor piece. So do three
+other things already in the build: `lighting.flicker_lit_sectors`, LightBomb's
+own pass, and any Link-driven shade wave a mechanism declares (P8's
+`kCmdLink` receivers -- E1M1 s124, the city's s24).
+
+Nothing says who owns it. That is precisely the shape of the collision P13
+found between `glass.glaze` and `texture_frame.frame_map`, where two passes
+wrote the same four fields and **pass order decided per record** -- fifteen
+panes kept one number and nine got the other, and nobody chose. It was
+invisible until somebody diffed.
+
+Deliverable 4 of this slice is the answer and it is not built: one two-column
+table, channel -> ADDITIVE | EXCLUSIVE, with light additive and floor z,
+sector type, frames and holder roles exclusive; a second writer on an
+exclusive channel raises by name; PRESENTATION claims yield and are listed.
+
+> **Recommended default: build the channel table before anything else writes
+> to a map, and make shade ADDITIVE rather than exclusive.** A shade wave, a
+> lamp pool and the sun are all deltas, so summing them is both the physically
+> right answer and the one that needs no arbitration -- which leaves the
+> arbiter for the genuinely exclusive channels. The alternative, making shade
+> exclusive and letting the sun win, would silently drop every Link-driven
+> light in the city, and P8 measured 146 of those in the campaign.
