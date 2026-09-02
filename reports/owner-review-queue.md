@@ -1525,3 +1525,48 @@ queue for nothing.
 *Recommended default:* as built. The refusal rate is 25 of 36 (69%), which is
 the honest answer for a map whose interiors are furnished with tiles nobody
 has named. Node `level`, E3M1 layer 8.
+
+## 34. The residue curve, and what it says about the readers (P15, 2026-09-03)
+
+All eight layers over 43 campaign maps,
+`projects/campaign-census/references/residue-curve.json`, full table in
+`reports/residue-curve-2026-09-03.md`.
+
+**34a. E6M7 cannot be decompiled, and it is layer 1's reader.**
+`decompiler.decompile_level` raises `KeyError(144)` because `analyze_spatial`
+returns no geometry record for that sector. The census runs the other seven
+layers on it and records `layer1_error` on the row rather than dropping the
+map.
+*Recommended default:* leave it. One map of 43, in a reader that predates this
+work and belongs to the space tree rather than to the street model; fixing
+`analyze_spatial` is its own task with its own fixture. Node `level`, E3M1
+layer 1.
+
+**34b. Layer 2 makes 92-97% of every map's claims, and the curve is
+therefore a wall count.** Surfaces and stairs are the only readers that reach
+a map's bulk; layers 3, 4, 6, 7 and 8 together claim between 9 and 441 fields
+per map against layer 2's thousands. The maps with the MOST street rank
+lowest — E1M3 (17 road sectors), E2M9, E6M8 and E3M1 are four of the five
+lowest street maps — because a street is outdoor sectors whose fields nothing
+claims yet.
+*Recommended default:* report the claimed share per layer and stop treating
+the total as a ranking. The number worth watching for the sleep phase is
+layer 3's, because that is the grammar; and it is 33, 12, 6, 2 and zero
+everywhere else. Node `level`, E3M1 layer 3.
+
+**34c. The second-map rule was ambiguous and the default decided it.** The
+literal ranking gives E1M6, whose whole street is one road sector and four
+kerb records and 96.6% of whose claims are layer 2; ranking without layer 2
+gives E4M8, an 80-sector fragment. Neither is stable under a change to layer
+2. The stated default, **E1M2**, is also the best on the criterion the sleep
+phase needs: it is the only map besides E3M1 where the join table describes
+more than a handful (12 claims), it has the same four road sectors, seven kerb
+records, and 313 sectors against E3M1's 382.
+*Recommended default:* E1M2, as chosen and recorded as a `selection` fact with
+its criterion and the ambiguity that triggered it.
+
+**34d. Only 19 of 43 campaign maps have a street in the model's sense.** 37
+have a base plane, which is the flag "any outdoor ground exists"; 19 have a
+road with an island standing on it and a kerb at the join. The street model's
+population is under half the campaign, which is worth stating before any norm
+derived from it is called Blood's.

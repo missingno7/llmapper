@@ -1,0 +1,2942 @@
+{
+ "chosen": "E1M2",
+ "maps_read": 43,
+ "maps_that_failed": [],
+ "maps_the_join_table_reaches": [
+  {
+   "islands": 3,
+   "kerb_records": 11,
+   "layer3_claims": 33,
+   "map": "E3M1",
+   "road_sectors": 4,
+   "sectors": 382
+  },
+  {
+   "islands": 1,
+   "kerb_records": 7,
+   "layer3_claims": 12,
+   "map": "E1M2",
+   "road_sectors": 4,
+   "sectors": 313
+  },
+  {
+   "islands": 1,
+   "kerb_records": 6,
+   "layer3_claims": 6,
+   "map": "E4M8",
+   "road_sectors": 1,
+   "sectors": 80
+  },
+  {
+   "islands": 2,
+   "kerb_records": 2,
+   "layer3_claims": 2,
+   "map": "E2M6",
+   "road_sectors": 1,
+   "sectors": 237
+  }
+ ],
+ "maps_with_a_street_in_the_models_sense": 19,
+ "maps_with_a_street_network": 37,
+ "population": "blood-campaign",
+ "ranking_among_real_streets": [
+  {
+   "claimed_share": 7.12,
+   "islands": 1,
+   "kerb_records": 4,
+   "map": "E1M6",
+   "road_sectors": 1
+  },
+  {
+   "claimed_share": 6.693,
+   "islands": 1,
+   "kerb_records": 6,
+   "map": "E4M8",
+   "road_sectors": 1
+  },
+  {
+   "claimed_share": 6.373,
+   "islands": 1,
+   "kerb_records": 3,
+   "map": "E6M6",
+   "road_sectors": 2
+  },
+  {
+   "claimed_share": 6.368,
+   "islands": 1,
+   "kerb_records": 1,
+   "map": "E6M7",
+   "road_sectors": 5
+  },
+  {
+   "claimed_share": 6.323,
+   "islands": 2,
+   "kerb_records": 1,
+   "map": "E4M3",
+   "road_sectors": 3
+  },
+  {
+   "claimed_share": 6.156,
+   "islands": 1,
+   "kerb_records": 4,
+   "map": "E4M4",
+   "road_sectors": 4
+  },
+  {
+   "claimed_share": 5.481,
+   "islands": 1,
+   "kerb_records": 15,
+   "map": "E4M5",
+   "road_sectors": 1
+  },
+  {
+   "claimed_share": 5.403,
+   "islands": 3,
+   "kerb_records": 6,
+   "map": "E6M3",
+   "road_sectors": 2
+  },
+  {
+   "claimed_share": 4.82,
+   "islands": 1,
+   "kerb_records": 3,
+   "map": "E6M4",
+   "road_sectors": 3
+  },
+  {
+   "claimed_share": 4.776,
+   "islands": 1,
+   "kerb_records": 1,
+   "map": "E3M2",
+   "road_sectors": 4
+  },
+  {
+   "claimed_share": 4.614,
+   "islands": 2,
+   "kerb_records": 2,
+   "map": "E2M6",
+   "road_sectors": 1
+  },
+  {
+   "claimed_share": 4.613,
+   "islands": 1,
+   "kerb_records": 5,
+   "map": "E2M2",
+   "road_sectors": 1
+  },
+  {
+   "claimed_share": 4.425,
+   "islands": 1,
+   "kerb_records": 3,
+   "map": "E3M4",
+   "road_sectors": 1
+  },
+  {
+   "claimed_share": 4.083,
+   "islands": 1,
+   "kerb_records": 7,
+   "map": "E1M2",
+   "road_sectors": 4
+  },
+  {
+   "claimed_share": 3.776,
+   "islands": 1,
+   "kerb_records": 1,
+   "map": "E1M1",
+   "road_sectors": 4
+  },
+  {
+   "claimed_share": 3.759,
+   "islands": 1,
+   "kerb_records": 5,
+   "map": "E1M8",
+   "road_sectors": 1
+  },
+  {
+   "claimed_share": 3.325,
+   "islands": 3,
+   "kerb_records": 21,
+   "map": "E6M8",
+   "road_sectors": 8
+  },
+  {
+   "claimed_share": 2.7,
+   "islands": 3,
+   "kerb_records": 8,
+   "map": "E2M9",
+   "road_sectors": 2
+  },
+  {
+   "claimed_share": 2.604,
+   "islands": 4,
+   "kerb_records": 12,
+   "map": "E1M3",
+   "road_sectors": 17
+  }
+ ],
+ "ranking_by_the_literal_rule": [
+  "E1M6",
+  "E4M6",
+  "E4M8",
+  "E2M5",
+  "E3M8"
+ ],
+ "rows": [
+  {
+   "claimable_fields": 180310,
+   "claimed_share": 7.12,
+   "counts": {
+    "sector": 526,
+    "sprite": 1134,
+    "wall": 5118,
+    "xsector": 295,
+    "xsprite": 908,
+    "xwall": 30
+   },
+   "fields_with_a_claim": 12838,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 4,
+   "layer1_error": null,
+   "map": "E1M6",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1782,
+     "residue": 133
+    },
+    "2": {
+     "claims": 12397,
+     "facts": 18671,
+     "residue": 2289
+    },
+    "3": {
+     "claims": 0,
+     "facts": 4486,
+     "residue": 1976
+    },
+    "4": {
+     "claims": 3,
+     "facts": 8,
+     "residue": 0
+    },
+    "5": {
+     "claims": 415,
+     "facts": 2549,
+     "residue": 822
+    },
+    "6": {
+     "claims": 23,
+     "facts": 43,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 27,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 281,
+     "residue": 156
+    }
+   },
+   "residue_facts": 5376,
+   "road_sectors": 1,
+   "street_sectors": 2
+  },
+  {
+   "claimable_fields": 130967,
+   "claimed_share": 7.046,
+   "counts": {
+    "sector": 519,
+    "sprite": 695,
+    "wall": 4031,
+    "xsector": 221,
+    "xsprite": 577,
+    "xwall": 17
+   },
+   "fields_with_a_claim": 9228,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E4M6",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1764,
+     "residue": 152
+    },
+    "2": {
+     "claims": 9021,
+     "facts": 13977,
+     "residue": 1976
+    },
+    "3": {
+     "claims": 0,
+     "facts": 4651,
+     "residue": 2066
+    },
+    "4": {
+     "claims": 2,
+     "facts": 6,
+     "residue": 0
+    },
+    "5": {
+     "claims": 196,
+     "facts": 1333,
+     "residue": 570
+    },
+    "6": {
+     "claims": 9,
+     "facts": 21,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 21,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 138,
+     "residue": 54
+    }
+   },
+   "residue_facts": 4818,
+   "road_sectors": 1,
+   "street_sectors": 1
+  },
+  {
+   "claimable_fields": 23551,
+   "claimed_share": 6.73,
+   "counts": {
+    "sector": 59,
+    "sprite": 157,
+    "wall": 704,
+    "xsector": 15,
+    "xsprite": 143,
+    "xwall": 0
+   },
+   "fields_with_a_claim": 1585,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": false,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E2M8",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 195,
+     "residue": 20
+    },
+    "2": {
+     "claims": 1570,
+     "facts": 2435,
+     "residue": 341
+    },
+    "3": {
+     "claims": 0,
+     "facts": 451,
+     "residue": 196
+    },
+    "4": {
+     "claims": 0,
+     "facts": 1,
+     "residue": 0
+    },
+    "5": {
+     "claims": 15,
+     "facts": 248,
+     "residue": 110
+    },
+    "6": {
+     "claims": 0,
+     "facts": 7,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 9,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 28,
+     "residue": 23
+    }
+   },
+   "residue_facts": 690,
+   "road_sectors": 0,
+   "street_sectors": 0
+  },
+  {
+   "claimable_fields": 24458,
+   "claimed_share": 6.693,
+   "counts": {
+    "sector": 80,
+    "sprite": 124,
+    "wall": 848,
+    "xsector": 21,
+    "xsprite": 120,
+    "xwall": 1
+   },
+   "fields_with_a_claim": 1637,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 6,
+   "layer1_error": null,
+   "map": "E4M8",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 288,
+     "residue": 24
+    },
+    "2": {
+     "claims": 1530,
+     "facts": 2490,
+     "residue": 539
+    },
+    "3": {
+     "claims": 6,
+     "facts": 868,
+     "residue": 382
+    },
+    "4": {
+     "claims": 4,
+     "facts": 11,
+     "residue": 1
+    },
+    "5": {
+     "claims": 85,
+     "facts": 396,
+     "residue": 81
+    },
+    "6": {
+     "claims": 12,
+     "facts": 29,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 15,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 50,
+     "residue": 32
+    }
+   },
+   "residue_facts": 1059,
+   "road_sectors": 1,
+   "street_sectors": 2
+  },
+  {
+   "claimable_fields": 130803,
+   "claimed_share": 6.525,
+   "counts": {
+    "sector": 449,
+    "sprite": 754,
+    "wall": 3991,
+    "xsector": 188,
+    "xsprite": 625,
+    "xwall": 26
+   },
+   "fields_with_a_claim": 8535,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": false,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E2M7",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1393,
+     "residue": 119
+    },
+    "2": {
+     "claims": 8122,
+     "facts": 13110,
+     "residue": 2175
+    },
+    "3": {
+     "claims": 0,
+     "facts": 4353,
+     "residue": 1952
+    },
+    "4": {
+     "claims": 0,
+     "facts": 1,
+     "residue": 0
+    },
+    "5": {
+     "claims": 413,
+     "facts": 2131,
+     "residue": 559
+    },
+    "6": {
+     "claims": 0,
+     "facts": 10,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 21,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 208,
+     "residue": 114
+    }
+   },
+   "residue_facts": 4919,
+   "road_sectors": 0,
+   "street_sectors": 0
+  },
+  {
+   "claimable_fields": 203256,
+   "claimed_share": 6.514,
+   "counts": {
+    "sector": 788,
+    "sprite": 1187,
+    "wall": 6796,
+    "xsector": 195,
+    "xsprite": 895,
+    "xwall": 89
+   },
+   "fields_with_a_claim": 13241,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E2M5",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 2471,
+     "residue": 204
+    },
+    "2": {
+     "claims": 12993,
+     "facts": 20857,
+     "residue": 3963
+    },
+    "3": {
+     "claims": 0,
+     "facts": 8260,
+     "residue": 3732
+    },
+    "4": {
+     "claims": 4,
+     "facts": 57,
+     "residue": 29
+    },
+    "5": {
+     "claims": 244,
+     "facts": 2033,
+     "residue": 881
+    },
+    "6": {
+     "claims": 0,
+     "facts": 10,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 16,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 231,
+     "residue": 139
+    }
+   },
+   "residue_facts": 8948,
+   "road_sectors": 1,
+   "street_sectors": 1
+  },
+  {
+   "claimable_fields": 122723,
+   "claimed_share": 6.374,
+   "counts": {
+    "sector": 631,
+    "sprite": 479,
+    "wall": 4300,
+    "xsector": 216,
+    "xsprite": 421,
+    "xwall": 4
+   },
+   "fields_with_a_claim": 7822,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E3M8",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1806,
+     "residue": 97
+    },
+    "2": {
+     "claims": 7514,
+     "facts": 12466,
+     "residue": 2687
+    },
+    "3": {
+     "claims": 0,
+     "facts": 5483,
+     "residue": 2426
+    },
+    "4": {
+     "claims": 2,
+     "facts": 5,
+     "residue": 0
+    },
+    "5": {
+     "claims": 306,
+     "facts": 1490,
+     "residue": 494
+    },
+    "6": {
+     "claims": 0,
+     "facts": 18,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 20,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 142,
+     "residue": 64
+    }
+   },
+   "residue_facts": 5768,
+   "road_sectors": 1,
+   "street_sectors": 1
+  },
+  {
+   "claimable_fields": 100092,
+   "claimed_share": 6.373,
+   "counts": {
+    "sector": 372,
+    "sprite": 537,
+    "wall": 3595,
+    "xsector": 77,
+    "xsprite": 449,
+    "xwall": 2
+   },
+   "fields_with_a_claim": 6379,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 3,
+   "layer1_error": null,
+   "map": "E6M6",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1181,
+     "residue": 106
+    },
+    "2": {
+     "claims": 6206,
+     "facts": 10358,
+     "residue": 2180
+    },
+    "3": {
+     "claims": 0,
+     "facts": 5154,
+     "residue": 2384
+    },
+    "4": {
+     "claims": 5,
+     "facts": 190,
+     "residue": 80
+    },
+    "5": {
+     "claims": 152,
+     "facts": 909,
+     "residue": 452
+    },
+    "6": {
+     "claims": 16,
+     "facts": 28,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 13,
+     "residue": 2
+    },
+    "8": {
+     "claims": 0,
+     "facts": 101,
+     "residue": 57
+    }
+   },
+   "residue_facts": 5261,
+   "road_sectors": 2,
+   "street_sectors": 3
+  },
+  {
+   "claimable_fields": 121892,
+   "claimed_share": 6.368,
+   "counts": {
+    "sector": 472,
+    "sprite": 717,
+    "wall": 3678,
+    "xsector": 176,
+    "xsprite": 572,
+    "xwall": 18
+   },
+   "fields_with_a_claim": 7762,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 1,
+   "layer1_error": "KeyError(144)",
+   "map": "E6M7",
+   "per_layer": {
+    "2": {
+     "claims": 7485,
+     "facts": 11812,
+     "residue": 1883
+    },
+    "3": {
+     "claims": 0,
+     "facts": 4008,
+     "residue": 1754
+    },
+    "4": {
+     "claims": 5,
+     "facts": 78,
+     "residue": 44
+    },
+    "5": {
+     "claims": 224,
+     "facts": 1482,
+     "residue": 575
+    },
+    "6": {
+     "claims": 49,
+     "facts": 95,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 462,
+     "residue": 14
+    },
+    "8": {
+     "claims": 0,
+     "facts": 127,
+     "residue": 66
+    }
+   },
+   "residue_facts": 4336,
+   "road_sectors": 5,
+   "street_sectors": 6
+  },
+  {
+   "claimable_fields": 102157,
+   "claimed_share": 6.323,
+   "counts": {
+    "sector": 471,
+    "sprite": 448,
+    "wall": 3535,
+    "xsector": 167,
+    "xsprite": 367,
+    "xwall": 26
+   },
+   "fields_with_a_claim": 6459,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 2,
+   "kerb_records": 1,
+   "layer1_error": null,
+   "map": "E4M3",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1671,
+     "residue": 137
+    },
+    "2": {
+     "claims": 6246,
+     "facts": 10390,
+     "residue": 2187
+    },
+    "3": {
+     "claims": 0,
+     "facts": 4483,
+     "residue": 2004
+    },
+    "4": {
+     "claims": 22,
+     "facts": 73,
+     "residue": 23
+    },
+    "5": {
+     "claims": 131,
+     "facts": 914,
+     "residue": 462
+    },
+    "6": {
+     "claims": 60,
+     "facts": 123,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 71,
+     "residue": 21
+    },
+    "8": {
+     "claims": 0,
+     "facts": 130,
+     "residue": 82
+    }
+   },
+   "residue_facts": 4916,
+   "road_sectors": 3,
+   "street_sectors": 5
+  },
+  {
+   "claimable_fields": 127807,
+   "claimed_share": 6.288,
+   "counts": {
+    "sector": 429,
+    "sprite": 683,
+    "wall": 3627,
+    "xsector": 283,
+    "xsprite": 545,
+    "xwall": 70
+   },
+   "fields_with_a_claim": 8037,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E1M5",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1477,
+     "residue": 114
+    },
+    "2": {
+     "claims": 7770,
+     "facts": 12077,
+     "residue": 1960
+    },
+    "3": {
+     "claims": 0,
+     "facts": 3801,
+     "residue": 1686
+    },
+    "4": {
+     "claims": 0,
+     "facts": 5,
+     "residue": 2
+    },
+    "5": {
+     "claims": 261,
+     "facts": 1726,
+     "residue": 586
+    },
+    "6": {
+     "claims": 6,
+     "facts": 30,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 29,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 190,
+     "residue": 113
+    }
+   },
+   "residue_facts": 4461,
+   "road_sectors": 1,
+   "street_sectors": 1
+  },
+  {
+   "claimable_fields": 88206,
+   "claimed_share": 6.156,
+   "counts": {
+    "sector": 258,
+    "sprite": 548,
+    "wall": 2746,
+    "xsector": 101,
+    "xsprite": 448,
+    "xwall": 8
+   },
+   "fields_with_a_claim": 5430,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 4,
+   "layer1_error": null,
+   "map": "E4M4",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 950,
+     "residue": 85
+    },
+    "2": {
+     "claims": 5266,
+     "facts": 8495,
+     "residue": 1578
+    },
+    "3": {
+     "claims": 0,
+     "facts": 2932,
+     "residue": 1322
+    },
+    "4": {
+     "claims": 2,
+     "facts": 19,
+     "residue": 4
+    },
+    "5": {
+     "claims": 133,
+     "facts": 893,
+     "residue": 456
+    },
+    "6": {
+     "claims": 29,
+     "facts": 45,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 23,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 94,
+     "residue": 52
+    }
+   },
+   "residue_facts": 3497,
+   "road_sectors": 4,
+   "street_sectors": 5
+  },
+  {
+   "claimable_fields": 30181,
+   "claimed_share": 6.06,
+   "counts": {
+    "sector": 53,
+    "sprite": 219,
+    "wall": 688,
+    "xsector": 40,
+    "xsprite": 209,
+    "xwall": 0
+   },
+   "fields_with_a_claim": 1829,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E1M7",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 203,
+     "residue": 13
+    },
+    "2": {
+     "claims": 1765,
+     "facts": 2561,
+     "residue": 299
+    },
+    "3": {
+     "claims": 0,
+     "facts": 475,
+     "residue": 198
+    },
+    "4": {
+     "claims": 3,
+     "facts": 42,
+     "residue": 20
+    },
+    "5": {
+     "claims": 34,
+     "facts": 369,
+     "residue": 188
+    },
+    "6": {
+     "claims": 27,
+     "facts": 60,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 22,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 35,
+     "residue": 19
+    }
+   },
+   "residue_facts": 737,
+   "road_sectors": 4,
+   "street_sectors": 4
+  },
+  {
+   "claimable_fields": 62323,
+   "claimed_share": 6.025,
+   "counts": {
+    "sector": 271,
+    "sprite": 394,
+    "wall": 1923,
+    "xsector": 17,
+    "xsprite": 350,
+    "xwall": 26
+   },
+   "fields_with_a_claim": 3755,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E6M2",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1018,
+     "residue": 101
+    },
+    "2": {
+     "claims": 3685,
+     "facts": 5986,
+     "residue": 1167
+    },
+    "3": {
+     "claims": 0,
+     "facts": 2543,
+     "residue": 1134
+    },
+    "4": {
+     "claims": 4,
+     "facts": 44,
+     "residue": 16
+    },
+    "5": {
+     "claims": 41,
+     "facts": 528,
+     "residue": 341
+    },
+    "6": {
+     "claims": 25,
+     "facts": 53,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 48,
+     "residue": 12
+    },
+    "8": {
+     "claims": 0,
+     "facts": 59,
+     "residue": 43
+    }
+   },
+   "residue_facts": 2814,
+   "road_sectors": 2,
+   "street_sectors": 2
+  },
+  {
+   "claimable_fields": 90515,
+   "claimed_share": 6.001,
+   "counts": {
+    "sector": 341,
+    "sprite": 456,
+    "wall": 2688,
+    "xsector": 206,
+    "xsprite": 346,
+    "xwall": 52
+   },
+   "fields_with_a_claim": 5432,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E3M5",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1280,
+     "residue": 143
+    },
+    "2": {
+     "claims": 5144,
+     "facts": 8347,
+     "residue": 1596
+    },
+    "3": {
+     "claims": 0,
+     "facts": 2983,
+     "residue": 1321
+    },
+    "4": {
+     "claims": 2,
+     "facts": 5,
+     "residue": 0
+    },
+    "5": {
+     "claims": 282,
+     "facts": 1527,
+     "residue": 328
+    },
+    "6": {
+     "claims": 4,
+     "facts": 24,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 31,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 196,
+     "residue": 115
+    }
+   },
+   "residue_facts": 3503,
+   "road_sectors": 1,
+   "street_sectors": 1
+  },
+  {
+   "claimable_fields": 42951,
+   "claimed_share": 5.974,
+   "counts": {
+    "sector": 147,
+    "sprite": 201,
+    "wall": 1353,
+    "xsector": 74,
+    "xsprite": 199,
+    "xwall": 1
+   },
+   "fields_with_a_claim": 2566,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": false,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E4M7",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 589,
+     "residue": 69
+    },
+    "2": {
+     "claims": 2390,
+     "facts": 4007,
+     "residue": 763
+    },
+    "3": {
+     "claims": 0,
+     "facts": 1683,
+     "residue": 768
+    },
+    "4": {
+     "claims": 0,
+     "facts": 1,
+     "residue": 0
+    },
+    "5": {
+     "claims": 176,
+     "facts": 584,
+     "residue": 199
+    },
+    "6": {
+     "claims": 0,
+     "facts": 10,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 13,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 67,
+     "residue": 27
+    }
+   },
+   "residue_facts": 1826,
+   "road_sectors": 0,
+   "street_sectors": 0
+  },
+  {
+   "claimable_fields": 83920,
+   "claimed_share": 5.761,
+   "counts": {
+    "sector": 340,
+    "sprite": 454,
+    "wall": 2808,
+    "xsector": 91,
+    "xsprite": 369,
+    "xwall": 25
+   },
+   "fields_with_a_claim": 4835,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E2M3",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1143,
+     "residue": 92
+    },
+    "2": {
+     "claims": 4598,
+     "facts": 7921,
+     "residue": 1823
+    },
+    "3": {
+     "claims": 0,
+     "facts": 3908,
+     "residue": 1784
+    },
+    "4": {
+     "claims": 4,
+     "facts": 29,
+     "residue": 13
+    },
+    "5": {
+     "claims": 214,
+     "facts": 1075,
+     "residue": 337
+    },
+    "6": {
+     "claims": 19,
+     "facts": 42,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 27,
+     "residue": 9
+    },
+    "8": {
+     "claims": 0,
+     "facts": 120,
+     "residue": 62
+    }
+   },
+   "residue_facts": 4120,
+   "road_sectors": 1,
+   "street_sectors": 1
+  },
+  {
+   "claimable_fields": 84162,
+   "claimed_share": 5.672,
+   "counts": {
+    "sector": 340,
+    "sprite": 456,
+    "wall": 2555,
+    "xsector": 123,
+    "xsprite": 403,
+    "xwall": 3
+   },
+   "fields_with_a_claim": 4774,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E6M5",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1084,
+     "residue": 98
+    },
+    "2": {
+     "claims": 4445,
+     "facts": 7383,
+     "residue": 1576
+    },
+    "3": {
+     "claims": 0,
+     "facts": 3572,
+     "residue": 1616
+    },
+    "4": {
+     "claims": 5,
+     "facts": 85,
+     "residue": 44
+    },
+    "5": {
+     "claims": 324,
+     "facts": 1352,
+     "residue": 408
+    },
+    "6": {
+     "claims": 0,
+     "facts": 5,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 10,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 130,
+     "residue": 60
+    }
+   },
+   "residue_facts": 3802,
+   "road_sectors": 4,
+   "street_sectors": 4
+  },
+  {
+   "claimable_fields": 80441,
+   "claimed_share": 5.608,
+   "counts": {
+    "sector": 249,
+    "sprite": 507,
+    "wall": 2283,
+    "xsector": 121,
+    "xsprite": 409,
+    "xwall": 23
+   },
+   "fields_with_a_claim": 4511,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": false,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E2M1",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 950,
+     "residue": 104
+    },
+    "2": {
+     "claims": 4287,
+     "facts": 6999,
+     "residue": 1355
+    },
+    "3": {
+     "claims": 0,
+     "facts": 2757,
+     "residue": 1250
+    },
+    "4": {
+     "claims": 9,
+     "facts": 88,
+     "residue": 55
+    },
+    "5": {
+     "claims": 114,
+     "facts": 989,
+     "residue": 364
+    },
+    "6": {
+     "claims": 101,
+     "facts": 172,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 102,
+     "residue": 36
+    },
+    "8": {
+     "claims": 0,
+     "facts": 108,
+     "residue": 56
+    }
+   },
+   "residue_facts": 3220,
+   "road_sectors": 0,
+   "street_sectors": 1
+  },
+  {
+   "claimable_fields": 64056,
+   "claimed_share": 5.481,
+   "counts": {
+    "sector": 252,
+    "sprite": 373,
+    "wall": 2074,
+    "xsector": 50,
+    "xsprite": 324,
+    "xwall": 6
+   },
+   "fields_with_a_claim": 3511,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 15,
+   "layer1_error": null,
+   "map": "E4M5",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 857,
+     "residue": 58
+    },
+    "2": {
+     "claims": 3440,
+     "facts": 5910,
+     "residue": 1318
+    },
+    "3": {
+     "claims": 0,
+     "facts": 2470,
+     "residue": 1066
+    },
+    "4": {
+     "claims": 7,
+     "facts": 67,
+     "residue": 31
+    },
+    "5": {
+     "claims": 42,
+     "facts": 486,
+     "residue": 345
+    },
+    "6": {
+     "claims": 22,
+     "facts": 53,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 13,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 53,
+     "residue": 29
+    }
+   },
+   "residue_facts": 2847,
+   "road_sectors": 1,
+   "street_sectors": 2
+  },
+  {
+   "claimable_fields": 73972,
+   "claimed_share": 5.403,
+   "counts": {
+    "sector": 240,
+    "sprite": 535,
+    "wall": 1672,
+    "xsector": 103,
+    "xsprite": 452,
+    "xwall": 42
+   },
+   "fields_with_a_claim": 3997,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 3,
+   "kerb_records": 6,
+   "layer1_error": null,
+   "map": "E6M3",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 882,
+     "residue": 113
+    },
+    "2": {
+     "claims": 3810,
+     "facts": 5930,
+     "residue": 870
+    },
+    "3": {
+     "claims": 0,
+     "facts": 2008,
+     "residue": 866
+    },
+    "4": {
+     "claims": 4,
+     "facts": 25,
+     "residue": 11
+    },
+    "5": {
+     "claims": 149,
+     "facts": 1108,
+     "residue": 404
+    },
+    "6": {
+     "claims": 34,
+     "facts": 62,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 51,
+     "residue": 1
+    },
+    "8": {
+     "claims": 0,
+     "facts": 124,
+     "residue": 76
+    }
+   },
+   "residue_facts": 2341,
+   "road_sectors": 2,
+   "street_sectors": 5
+  },
+  {
+   "claimable_fields": 177194,
+   "claimed_share": 5.205,
+   "counts": {
+    "sector": 632,
+    "sprite": 965,
+    "wall": 5645,
+    "xsector": 277,
+    "xsprite": 768,
+    "xwall": 42
+   },
+   "fields_with_a_claim": 9223,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E2M4",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 2150,
+     "residue": 191
+    },
+    "2": {
+     "claims": 8962,
+     "facts": 15448,
+     "residue": 3664
+    },
+    "3": {
+     "claims": 0,
+     "facts": 7532,
+     "residue": 3450
+    },
+    "4": {
+     "claims": 21,
+     "facts": 72,
+     "residue": 26
+    },
+    "5": {
+     "claims": 207,
+     "facts": 1816,
+     "residue": 805
+    },
+    "6": {
+     "claims": 33,
+     "facts": 59,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 41,
+     "residue": 23
+    },
+    "8": {
+     "claims": 0,
+     "facts": 211,
+     "residue": 123
+    }
+   },
+   "residue_facts": 8282,
+   "road_sectors": 1,
+   "street_sectors": 1
+  },
+  {
+   "claimable_fields": 65657,
+   "claimed_share": 5.177,
+   "counts": {
+    "sector": 291,
+    "sprite": 322,
+    "wall": 2077,
+    "xsector": 105,
+    "xsprite": 280,
+    "xwall": 13
+   },
+   "fields_with_a_claim": 3399,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E4M2",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1013,
+     "residue": 74
+    },
+    "2": {
+     "claims": 3328,
+     "facts": 5748,
+     "residue": 1311
+    },
+    "3": {
+     "claims": 0,
+     "facts": 2311,
+     "residue": 1010
+    },
+    "4": {
+     "claims": 5,
+     "facts": 20,
+     "residue": 8
+    },
+    "5": {
+     "claims": 35,
+     "facts": 572,
+     "residue": 330
+    },
+    "6": {
+     "claims": 31,
+     "facts": 73,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 216,
+     "residue": 5
+    },
+    "8": {
+     "claims": 0,
+     "facts": 73,
+     "residue": 42
+    }
+   },
+   "residue_facts": 2780,
+   "road_sectors": 4,
+   "street_sectors": 5
+  },
+  {
+   "claimable_fields": 152639,
+   "claimed_share": 4.866,
+   "counts": {
+    "sector": 533,
+    "sprite": 782,
+    "wall": 4145,
+    "xsector": 274,
+    "xsprite": 606,
+    "xwall": 429
+   },
+   "fields_with_a_claim": 7428,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E3M6",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1812,
+     "residue": 206
+    },
+    "2": {
+     "claims": 7122,
+     "facts": 12215,
+     "residue": 2543
+    },
+    "3": {
+     "claims": 0,
+     "facts": 4685,
+     "residue": 2074
+    },
+    "4": {
+     "claims": 2,
+     "facts": 21,
+     "residue": 12
+    },
+    "5": {
+     "claims": 278,
+     "facts": 2295,
+     "residue": 884
+    },
+    "6": {
+     "claims": 26,
+     "facts": 57,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 24,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 224,
+     "residue": 144
+    }
+   },
+   "residue_facts": 5863,
+   "road_sectors": 1,
+   "street_sectors": 1
+  },
+  {
+   "claimable_fields": 130657,
+   "claimed_share": 4.82,
+   "counts": {
+    "sector": 373,
+    "sprite": 912,
+    "wall": 2845,
+    "xsector": 254,
+    "xsprite": 737,
+    "xwall": 115
+   },
+   "fields_with_a_claim": 6298,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 3,
+   "layer1_error": null,
+   "map": "E6M4",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1251,
+     "residue": 113
+    },
+    "2": {
+     "claims": 5881,
+     "facts": 9219,
+     "residue": 1613
+    },
+    "3": {
+     "claims": 0,
+     "facts": 3267,
+     "residue": 1440
+    },
+    "4": {
+     "claims": 6,
+     "facts": 36,
+     "residue": 15
+    },
+    "5": {
+     "claims": 382,
+     "facts": 2196,
+     "residue": 564
+    },
+    "6": {
+     "claims": 29,
+     "facts": 45,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 28,
+     "residue": 2
+    },
+    "8": {
+     "claims": 0,
+     "facts": 221,
+     "residue": 118
+    }
+   },
+   "residue_facts": 3865,
+   "road_sectors": 3,
+   "street_sectors": 4
+  },
+  {
+   "claimable_fields": 145251,
+   "claimed_share": 4.776,
+   "counts": {
+    "sector": 567,
+    "sprite": 906,
+    "wall": 4272,
+    "xsector": 189,
+    "xsprite": 717,
+    "xwall": 20
+   },
+   "fields_with_a_claim": 6937,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 1,
+   "layer1_error": null,
+   "map": "E3M2",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1950,
+     "residue": 168
+    },
+    "2": {
+     "claims": 6528,
+     "facts": 11495,
+     "residue": 2895
+    },
+    "3": {
+     "claims": 0,
+     "facts": 5875,
+     "residue": 2650
+    },
+    "4": {
+     "claims": 2,
+     "facts": 14,
+     "residue": 4
+    },
+    "5": {
+     "claims": 370,
+     "facts": 2093,
+     "residue": 479
+    },
+    "6": {
+     "claims": 37,
+     "facts": 70,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 29,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 266,
+     "residue": 158
+    }
+   },
+   "residue_facts": 6354,
+   "road_sectors": 4,
+   "street_sectors": 5
+  },
+  {
+   "claimable_fields": 61572,
+   "claimed_share": 4.695,
+   "counts": {
+    "sector": 228,
+    "sprite": 405,
+    "wall": 1557,
+    "xsector": 70,
+    "xsprite": 374,
+    "xwall": 11
+   },
+   "fields_with_a_claim": 2891,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E4M9",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 772,
+     "residue": 57
+    },
+    "2": {
+     "claims": 2818,
+     "facts": 4652,
+     "residue": 941
+    },
+    "3": {
+     "claims": 0,
+     "facts": 1768,
+     "residue": 770
+    },
+    "4": {
+     "claims": 2,
+     "facts": 5,
+     "residue": 0
+    },
+    "5": {
+     "claims": 65,
+     "facts": 681,
+     "residue": 341
+    },
+    "6": {
+     "claims": 6,
+     "facts": 19,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 19,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 80,
+     "residue": 59
+    }
+   },
+   "residue_facts": 2168,
+   "road_sectors": 1,
+   "street_sectors": 1
+  },
+  {
+   "claimable_fields": 66409,
+   "claimed_share": 4.614,
+   "counts": {
+    "sector": 237,
+    "sprite": 361,
+    "wall": 1970,
+    "xsector": 115,
+    "xsprite": 312,
+    "xwall": 9
+   },
+   "fields_with_a_claim": 3064,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 2,
+   "kerb_records": 2,
+   "layer1_error": null,
+   "map": "E2M6",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 915,
+     "residue": 99
+    },
+    "2": {
+     "claims": 2849,
+     "facts": 5187,
+     "residue": 1347
+    },
+    "3": {
+     "claims": 2,
+     "facts": 2305,
+     "residue": 998
+    },
+    "4": {
+     "claims": 9,
+     "facts": 39,
+     "residue": 17
+    },
+    "5": {
+     "claims": 162,
+     "facts": 917,
+     "residue": 313
+    },
+    "6": {
+     "claims": 42,
+     "facts": 84,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 19,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 110,
+     "residue": 63
+    }
+   },
+   "residue_facts": 2837,
+   "road_sectors": 1,
+   "street_sectors": 3
+  },
+  {
+   "claimable_fields": 76486,
+   "claimed_share": 4.613,
+   "counts": {
+    "sector": 290,
+    "sprite": 427,
+    "wall": 2267,
+    "xsector": 101,
+    "xsprite": 384,
+    "xwall": 25
+   },
+   "fields_with_a_claim": 3528,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 5,
+   "layer1_error": null,
+   "map": "E2M2",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1078,
+     "residue": 102
+    },
+    "2": {
+     "claims": 3338,
+     "facts": 5941,
+     "residue": 1554
+    },
+    "3": {
+     "claims": 0,
+     "facts": 2686,
+     "residue": 1160
+    },
+    "4": {
+     "claims": 23,
+     "facts": 56,
+     "residue": 8
+    },
+    "5": {
+     "claims": 117,
+     "facts": 930,
+     "residue": 330
+    },
+    "6": {
+     "claims": 51,
+     "facts": 134,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 58,
+     "residue": 3
+    },
+    "8": {
+     "claims": 0,
+     "facts": 117,
+     "residue": 74
+    }
+   },
+   "residue_facts": 3231,
+   "road_sectors": 1,
+   "street_sectors": 8
+  },
+  {
+   "claimable_fields": 89109,
+   "claimed_share": 4.534,
+   "counts": {
+    "sector": 309,
+    "sprite": 519,
+    "wall": 2227,
+    "xsector": 233,
+    "xsprite": 404,
+    "xwall": 18
+   },
+   "fields_with_a_claim": 4040,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E3M3",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 849,
+     "residue": 37
+    },
+    "2": {
+     "claims": 3869,
+     "facts": 6466,
+     "residue": 1416
+    },
+    "3": {
+     "claims": 0,
+     "facts": 2565,
+     "residue": 1128
+    },
+    "4": {
+     "claims": 2,
+     "facts": 5,
+     "residue": 0
+    },
+    "5": {
+     "claims": 169,
+     "facts": 1148,
+     "residue": 556
+    },
+    "6": {
+     "claims": 0,
+     "facts": 8,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 16,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 92,
+     "residue": 51
+    }
+   },
+   "residue_facts": 3188,
+   "road_sectors": 1,
+   "street_sectors": 1
+  },
+  {
+   "claimable_fields": 36772,
+   "claimed_share": 4.506,
+   "counts": {
+    "sector": 142,
+    "sprite": 215,
+    "wall": 1038,
+    "xsector": 57,
+    "xsprite": 185,
+    "xwall": 6
+   },
+   "fields_with_a_claim": 1657,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": false,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E3M7",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 552,
+     "residue": 61
+    },
+    "2": {
+     "claims": 1619,
+     "facts": 2842,
+     "residue": 695
+    },
+    "3": {
+     "claims": 0,
+     "facts": 958,
+     "residue": 408
+    },
+    "4": {
+     "claims": 0,
+     "facts": 1,
+     "residue": 0
+    },
+    "5": {
+     "claims": 38,
+     "facts": 402,
+     "residue": 146
+    },
+    "6": {
+     "claims": 0,
+     "facts": 12,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 18,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 61,
+     "residue": 43
+    }
+   },
+   "residue_facts": 1353,
+   "road_sectors": 0,
+   "street_sectors": 0
+  },
+  {
+   "claimable_fields": 72457,
+   "claimed_share": 4.476,
+   "counts": {
+    "sector": 215,
+    "sprite": 443,
+    "wall": 1757,
+    "xsector": 150,
+    "xsprite": 393,
+    "xwall": 24
+   },
+   "fields_with_a_claim": 3243,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E4M1",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 732,
+     "residue": 54
+    },
+    "2": {
+     "claims": 3133,
+     "facts": 5251,
+     "residue": 1017
+    },
+    "3": {
+     "claims": 0,
+     "facts": 2157,
+     "residue": 964
+    },
+    "4": {
+     "claims": 0,
+     "facts": 17,
+     "residue": 8
+    },
+    "5": {
+     "claims": 101,
+     "facts": 933,
+     "residue": 314
+    },
+    "6": {
+     "claims": 9,
+     "facts": 24,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 20,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 82,
+     "residue": 50
+    }
+   },
+   "residue_facts": 2407,
+   "road_sectors": 2,
+   "street_sectors": 2
+  },
+  {
+   "claimable_fields": 143514,
+   "claimed_share": 4.455,
+   "counts": {
+    "sector": 398,
+    "sprite": 1091,
+    "wall": 3651,
+    "xsector": 186,
+    "xsprite": 804,
+    "xwall": 75
+   },
+   "fields_with_a_claim": 6393,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E1M4",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1514,
+     "residue": 155
+    },
+    "2": {
+     "claims": 6186,
+     "facts": 10506,
+     "residue": 2309
+    },
+    "3": {
+     "claims": 0,
+     "facts": 4340,
+     "residue": 1952
+    },
+    "4": {
+     "claims": 15,
+     "facts": 124,
+     "residue": 50
+    },
+    "5": {
+     "claims": 166,
+     "facts": 1753,
+     "residue": 752
+    },
+    "6": {
+     "claims": 26,
+     "facts": 54,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 27,
+     "residue": 2
+    },
+    "8": {
+     "claims": 0,
+     "facts": 187,
+     "residue": 120
+    }
+   },
+   "residue_facts": 5340,
+   "road_sectors": 1,
+   "street_sectors": 1
+  },
+  {
+   "claimable_fields": 116504,
+   "claimed_share": 4.425,
+   "counts": {
+    "sector": 434,
+    "sprite": 685,
+    "wall": 3309,
+    "xsector": 175,
+    "xsprite": 564,
+    "xwall": 74
+   },
+   "fields_with_a_claim": 5155,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 3,
+   "layer1_error": null,
+   "map": "E3M4",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1542,
+     "residue": 122
+    },
+    "2": {
+     "claims": 4937,
+     "facts": 8860,
+     "residue": 2243
+    },
+    "3": {
+     "claims": 0,
+     "facts": 4408,
+     "residue": 1984
+    },
+    "4": {
+     "claims": 2,
+     "facts": 7,
+     "residue": 1
+    },
+    "5": {
+     "claims": 209,
+     "facts": 1654,
+     "residue": 435
+    },
+    "6": {
+     "claims": 7,
+     "facts": 28,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 16,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 247,
+     "residue": 167
+    }
+   },
+   "residue_facts": 4952,
+   "road_sectors": 1,
+   "street_sectors": 2
+  },
+  {
+   "claimable_fields": 101049,
+   "claimed_share": 4.083,
+   "counts": {
+    "sector": 313,
+    "sprite": 698,
+    "wall": 2469,
+    "xsector": 157,
+    "xsprite": 573,
+    "xwall": 47
+   },
+   "fields_with_a_claim": 4126,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 7,
+   "layer1_error": null,
+   "map": "E1M2",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1221,
+     "residue": 110
+    },
+    "2": {
+     "claims": 3951,
+     "facts": 6811,
+     "residue": 1626
+    },
+    "3": {
+     "claims": 12,
+     "facts": 2807,
+     "residue": 1224
+    },
+    "4": {
+     "claims": 3,
+     "facts": 16,
+     "residue": 7
+    },
+    "5": {
+     "claims": 151,
+     "facts": 1477,
+     "residue": 460
+    },
+    "6": {
+     "claims": 9,
+     "facts": 39,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 34,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 188,
+     "residue": 132
+    }
+   },
+   "residue_facts": 3559,
+   "road_sectors": 4,
+   "street_sectors": 6
+  },
+  {
+   "claimable_fields": 54239,
+   "claimed_share": 3.953,
+   "counts": {
+    "sector": 157,
+    "sprite": 407,
+    "wall": 1133,
+    "xsector": 86,
+    "xsprite": 351,
+    "xwall": 12
+   },
+   "fields_with_a_claim": 2144,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": false,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E6M9",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 444,
+     "residue": 23
+    },
+    "2": {
+     "claims": 2053,
+     "facts": 3417,
+     "residue": 628
+    },
+    "3": {
+     "claims": 0,
+     "facts": 1425,
+     "residue": 634
+    },
+    "4": {
+     "claims": 0,
+     "facts": 1,
+     "residue": 0
+    },
+    "5": {
+     "claims": 91,
+     "facts": 681,
+     "residue": 378
+    },
+    "6": {
+     "claims": 0,
+     "facts": 1,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 2,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 59,
+     "residue": 32
+    }
+   },
+   "residue_facts": 1695,
+   "road_sectors": 0,
+   "street_sectors": 0
+  },
+  {
+   "claimable_fields": 110998,
+   "claimed_share": 3.883,
+   "counts": {
+    "sector": 382,
+    "sprite": 807,
+    "wall": 2481,
+    "xsector": 133,
+    "xsprite": 716,
+    "xwall": 41
+   },
+   "fields_with_a_claim": 4310,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 3,
+   "kerb_records": 11,
+   "layer1_error": null,
+   "map": "E3M1",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1300,
+     "residue": 108
+    },
+    "2": {
+     "claims": 3992,
+     "facts": 6812,
+     "residue": 1650
+    },
+    "3": {
+     "claims": 33,
+     "facts": 3121,
+     "residue": 1320
+    },
+    "4": {
+     "claims": 17,
+     "facts": 85,
+     "residue": 24
+    },
+    "5": {
+     "claims": 206,
+     "facts": 1627,
+     "residue": 397
+    },
+    "6": {
+     "claims": 64,
+     "facts": 141,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 34,
+     "residue": 1
+    },
+    "8": {
+     "claims": 0,
+     "facts": 172,
+     "residue": 109
+    }
+   },
+   "residue_facts": 3609,
+   "road_sectors": 4,
+   "street_sectors": 13
+  },
+  {
+   "claimable_fields": 70401,
+   "claimed_share": 3.776,
+   "counts": {
+    "sector": 155,
+    "sprite": 559,
+    "wall": 1498,
+    "xsector": 101,
+    "xsprite": 451,
+    "xwall": 49
+   },
+   "fields_with_a_claim": 2658,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 1,
+   "layer1_error": null,
+   "map": "E1M1",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 594,
+     "residue": 61
+    },
+    "2": {
+     "claims": 2525,
+     "facts": 4264,
+     "residue": 971
+    },
+    "3": {
+     "claims": 0,
+     "facts": 1643,
+     "residue": 732
+    },
+    "4": {
+     "claims": 2,
+     "facts": 29,
+     "residue": 6
+    },
+    "5": {
+     "claims": 93,
+     "facts": 1067,
+     "residue": 343
+    },
+    "6": {
+     "claims": 38,
+     "facts": 60,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 28,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 121,
+     "residue": 88
+    }
+   },
+   "residue_facts": 2201,
+   "road_sectors": 4,
+   "street_sectors": 5
+  },
+  {
+   "claimable_fields": 129033,
+   "claimed_share": 3.759,
+   "counts": {
+    "sector": 433,
+    "sprite": 863,
+    "wall": 2477,
+    "xsector": 329,
+    "xsprite": 748,
+    "xwall": 16
+   },
+   "fields_with_a_claim": 4850,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 1,
+   "kerb_records": 5,
+   "layer1_error": null,
+   "map": "E1M8",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1323,
+     "residue": 116
+    },
+    "2": {
+     "claims": 4685,
+     "facts": 7643,
+     "residue": 1458
+    },
+    "3": {
+     "claims": 0,
+     "facts": 2869,
+     "residue": 1208
+    },
+    "4": {
+     "claims": 8,
+     "facts": 56,
+     "residue": 23
+    },
+    "5": {
+     "claims": 152,
+     "facts": 1648,
+     "residue": 855
+    },
+    "6": {
+     "claims": 5,
+     "facts": 19,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 26,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 158,
+     "residue": 103
+    }
+   },
+   "residue_facts": 3763,
+   "road_sectors": 1,
+   "street_sectors": 4
+  },
+  {
+   "claimable_fields": 58381,
+   "claimed_share": 3.523,
+   "counts": {
+    "sector": 123,
+    "sprite": 499,
+    "wall": 875,
+    "xsector": 83,
+    "xsprite": 467,
+    "xwall": 14
+   },
+   "fields_with_a_claim": 2057,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E6M1",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 463,
+     "residue": 57
+    },
+    "2": {
+     "claims": 1960,
+     "facts": 3051,
+     "residue": 472
+    },
+    "3": {
+     "claims": 0,
+     "facts": 1185,
+     "residue": 524
+    },
+    "4": {
+     "claims": 12,
+     "facts": 83,
+     "residue": 30
+    },
+    "5": {
+     "claims": 65,
+     "facts": 986,
+     "residue": 264
+    },
+    "6": {
+     "claims": 20,
+     "facts": 33,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 12,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 109,
+     "residue": 88
+    }
+   },
+   "residue_facts": 1435,
+   "road_sectors": 2,
+   "street_sectors": 2
+  },
+  {
+   "claimable_fields": 28123,
+   "claimed_share": 3.325,
+   "counts": {
+    "sector": 85,
+    "sprite": 213,
+    "wall": 578,
+    "xsector": 26,
+    "xsprite": 210,
+    "xwall": 0
+   },
+   "fields_with_a_claim": 935,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 3,
+   "kerb_records": 21,
+   "layer1_error": null,
+   "map": "E6M8",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 243,
+     "residue": 7
+    },
+    "2": {
+     "claims": 830,
+     "facts": 1506,
+     "residue": 309
+    },
+    "3": {
+     "claims": 0,
+     "facts": 627,
+     "residue": 232
+    },
+    "4": {
+     "claims": 15,
+     "facts": 71,
+     "residue": 22
+    },
+    "5": {
+     "claims": 35,
+     "facts": 338,
+     "residue": 200
+    },
+    "6": {
+     "claims": 55,
+     "facts": 90,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 68,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 40,
+     "residue": 28
+    }
+   },
+   "residue_facts": 798,
+   "road_sectors": 8,
+   "street_sectors": 17
+  },
+  {
+   "claimable_fields": 75544,
+   "claimed_share": 2.7,
+   "counts": {
+    "sector": 166,
+    "sprite": 619,
+    "wall": 1628,
+    "xsector": 113,
+    "xsprite": 490,
+    "xwall": 7
+   },
+   "fields_with_a_claim": 2040,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 3,
+   "kerb_records": 8,
+   "layer1_error": null,
+   "map": "E2M9",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 702,
+     "residue": 68
+    },
+    "2": {
+     "claims": 1809,
+     "facts": 3726,
+     "residue": 1222
+    },
+    "3": {
+     "claims": 0,
+     "facts": 2288,
+     "residue": 1040
+    },
+    "4": {
+     "claims": 14,
+     "facts": 60,
+     "residue": 19
+    },
+    "5": {
+     "claims": 192,
+     "facts": 1303,
+     "residue": 397
+    },
+    "6": {
+     "claims": 25,
+     "facts": 65,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 28,
+     "residue": 3
+    },
+    "8": {
+     "claims": 0,
+     "facts": 134,
+     "residue": 55
+    }
+   },
+   "residue_facts": 2804,
+   "road_sectors": 2,
+   "street_sectors": 6
+  },
+  {
+   "claimable_fields": 130195,
+   "claimed_share": 2.604,
+   "counts": {
+    "sector": 329,
+    "sprite": 974,
+    "wall": 2349,
+    "xsector": 262,
+    "xsprite": 807,
+    "xwall": 162
+   },
+   "fields_with_a_claim": 3390,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 4,
+   "kerb_records": 12,
+   "layer1_error": null,
+   "map": "E1M3",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 1157,
+     "residue": 129
+    },
+    "2": {
+     "claims": 2984,
+     "facts": 5728,
+     "residue": 1688
+    },
+    "3": {
+     "claims": 0,
+     "facts": 2811,
+     "residue": 1206
+    },
+    "4": {
+     "claims": 12,
+     "facts": 100,
+     "residue": 33
+    },
+    "5": {
+     "claims": 321,
+     "facts": 2601,
+     "residue": 558
+    },
+    "6": {
+     "claims": 73,
+     "facts": 171,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 115,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 339,
+     "residue": 222
+    }
+   },
+   "residue_facts": 3836,
+   "road_sectors": 17,
+   "street_sectors": 23
+  }
+ ],
+ "rule": "the second map is the one E3M1's readers already explain best among maps with a street network, because the point of a second map is what the two SHARE (research 2.5); the default if ambiguous is E1M2",
+ "selection": {
+  "chosen": "E1M2",
+  "corroboration": "the join table -- the street grammar itself -- describes anything on four maps: E3M1 (33), E1M2 (12), E4M8 (6), E2M6 (2). Excluding E3M1, E1M2 leads by a factor of two, and it is a whole map rather than a fragment",
+  "criterion": "among maps with a street network, the largest claimed share under E3M1's readers; the stated default if that is ambiguous is E1M2",
+  "excluding_layer_2_gives": "E4M8",
+  "the_literal_rule_gives": "E1M6",
+  "why_it_is_ambiguous": "layer 2 makes 92-97% of every map's claims and measures texture runs, not streets, so the two rankings disagree completely: E1M6 by total claimed share, E4M8 without layer 2, and neither is stable under a reader change to layer 2"
+ }
+}
