@@ -208,3 +208,55 @@ class WaterDoesNotVoteForTheBasePlane(unittest.TestCase):
         self.assertGreater(kinds["water"], 0)
         self.assertEqual(kinds["outdoor_ground"], 0,
                          "nothing outdoors should be left unnamed")
+
+
+class TheStepDependsOnWhatTheNetworkMeans(unittest.TestCase):
+    """Queue item 29a, as a reader rather than a constant.
+
+    The campaign's shade step is not one number: measured over every parallax
+    sector it is 12, and over the largest outdoor component alone it is 13,
+    with half the boundaries inside [8, 16] either way. A writer's gate that
+    carries a constant cannot say which it means, and the answer moves by a
+    quarter between them -- so the gate names its network and reads the
+    envelope from here.
+    """
+
+    @staticmethod
+    def _paths():
+        from bloodmap.patterns import list_original_maps
+
+        try:
+            return list_original_maps(population="blood-campaign")[:6]
+        except Exception:  # pragma: no cover - corpus absent
+            raise unittest.SkipTest("the campaign is not in the corpus")
+
+    def test_a_census_reports_its_network_and_its_population(self):
+        from bloodmap.read_light import (
+            NETWORK_LARGEST_COMPONENT, shade_step_envelope)
+
+        found = shade_step_envelope(self._paths(),
+                                    network=NETWORK_LARGEST_COMPONENT)
+        self.assertEqual(found["network"], NETWORK_LARGEST_COMPONENT)
+        self.assertGreater(found["maps"], 0)
+        self.assertIn("records", found)
+        self.assertIn("envelope", found)
+
+    def test_the_two_networks_do_not_have_to_agree(self):
+        from bloodmap.read_light import (
+            NETWORK_ALL_OUTDOOR, NETWORK_LARGEST_COMPONENT,
+            shade_step_envelope)
+
+        paths = self._paths()
+        whole = shade_step_envelope(paths, network=NETWORK_ALL_OUTDOOR)
+        part = shade_step_envelope(paths, network=NETWORK_LARGEST_COMPONENT)
+        self.assertGreaterEqual(whole["records"], part["records"],
+                                "the component is a subset of the outdoors")
+
+    def test_a_wave_drives_its_own_shade_and_is_not_a_boundary(self):
+        from bloodmap.read_light import has_a_light_wave
+
+        level = _e3m1()
+        waves = [index for index, sector in enumerate(level.sectors)
+                 if has_a_light_wave(sector)]
+        self.assertEqual(len(waves), 61,
+                         "E3M1 has 61 sectors that drive their own shade")

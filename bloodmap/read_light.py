@@ -413,3 +413,130 @@ def summary(result: dict[str, Any]) -> dict[str, Any]:
         "observed_deltas": result["step"]["deltas"],
         "fullbright_sprites": result["lamps"]["fullbright_sprites"],
     }
+
+
+# ---------------------------------------------------------------------------
+# the campaign's own step, as a census rather than a constant
+# ---------------------------------------------------------------------------
+
+#: Which sectors count as "the network" when the step is measured. The answer
+#: MOVES with the definition, which is why the gate has to name one:
+#: over every parallax sector the campaign's median delta is 12 and 53% of its
+#: boundaries fall in [8, 16]; over the largest outdoor component alone the
+#: median is 15 and 43% do. A city's street is the second, so that is the
+#: default -- and E3M1's own step, 24 to 26, is outside both.
+NETWORK_ALL_OUTDOOR = "all_outdoor"
+NETWORK_LARGEST_COMPONENT = "largest_outdoor_component"
+
+
+def _outdoor(level: Any) -> set:
+    return {index for index, sector in enumerate(level.sectors)
+            if int(_face(sector)["ceiling_stat"]) & 1}
+
+
+def _largest_outdoor(level: Any, owners: Sequence[int]) -> set:
+    outdoor = _outdoor(level)
+    graph: dict[int, set] = {}
+    for wall_id, wall in enumerate(level.walls):
+        there = int(_face(wall)["next_sector"])
+        if there < 0:
+            continue
+        here = owners[wall_id]
+        if here in outdoor and there in outdoor:
+            graph.setdefault(here, set()).add(there)
+            graph.setdefault(there, set()).add(here)
+    seen: set = set()
+    best: set = set()
+    for start in sorted(outdoor):
+        if start in seen:
+            continue
+        component = {start}
+        stack = [start]
+        seen.add(start)
+        while stack:
+            node = stack.pop()
+            for nxt in graph.get(node, ()):
+                if nxt not in seen:
+                    seen.add(nxt)
+                    stack.append(nxt)
+                    component.add(nxt)
+        if len(component) > len(best):
+            best = component
+    return best
+
+
+def shade_step_envelope(paths: Iterable[Any] | None = None, *,
+                        network: str = NETWORK_LARGEST_COMPONENT,
+                        envelope: tuple[int, int] = (8, 16)) -> dict[str, Any]:
+    """The campaign's shade-step census, over a NAMED network.
+
+    A writer's gate must not carry this as a constant. The number depends on
+    what "the network" means and the two readings differ by a quarter, so the
+    gate says which one it used and reads it from here.
+
+    Returns the median, the quartiles, how many boundaries fall inside the
+    stated envelope, and the population it was measured over.
+    """
+    import statistics
+
+    from .patterns import list_original_maps, read_map
+    from .texture_frame import sector_index
+
+    if paths is None:
+        paths = list_original_maps(population="blood-campaign")
+    #: ONE ENTRY PER BOUNDARY, not per record. A two-sided wall is yielded
+    #: from both sides and a pair of sectors may share several walls; a
+    #: boundary is the thing the step is a property of.
+    deltas: list[int] = []
+    maps = 0
+    for path in paths:
+        try:
+            level = read_map(path)
+        except Exception:  # pragma: no cover - unreadable map
+            continue
+        owners = sector_index(level)
+        members = (_largest_outdoor(level, owners)
+                   if network == NETWORK_LARGEST_COMPONENT else _outdoor(level))
+        if len(members) < 2:
+            continue
+        maps += 1
+        seen_pairs: set = set()
+        for wall_id, wall in enumerate(level.walls):
+            there = int(_face(wall)["next_sector"])
+            if there < 0:
+                continue
+            here = owners[wall_id]
+            if here not in members or there not in members:
+                continue
+            #: A SECTOR THAT DRIVES ITS OWN SHADE IS NOT A SHADOW BOUNDARY.
+            #: `shade_edges` excludes a wave before it measures anything, and
+            #: a census that does not exclude it measures the wave.
+            if (has_a_light_wave(level.sectors[here])
+                    or has_a_light_wave(level.sectors[there])):
+                continue
+            a, b = _face(level.sectors[here]), _face(level.sectors[there])
+            if int(a["floor_z"]) != int(b["floor_z"]):
+                continue
+            pair = (min(here, there), max(here, there))
+            if pair in seen_pairs:
+                continue
+            seen_pairs.add(pair)
+            step = abs(int(a["floor_shade"]) - int(b["floor_shade"]))
+            if step:
+                deltas.append(step)
+    if not deltas:
+        return {"network": network, "maps": maps, "records": 0,
+                "median": None, "envelope": envelope, "inside": 0.0}
+    low, high = envelope
+    inside = sum(1 for value in deltas if low <= value <= high)
+    return {
+        "network": network,
+        "maps": maps,
+        "records": len(deltas),
+        "median": statistics.median(deltas),
+        "quartiles": (statistics.quantiles(deltas, n=4)[0],
+                      statistics.quantiles(deltas, n=4)[2])
+        if len(deltas) > 3 else None,
+        "envelope": envelope,
+        "inside": inside / len(deltas),
+    }

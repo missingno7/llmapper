@@ -614,6 +614,25 @@ def main() -> int:
     for row in wrong[:5]:
         print("   -", row)
 
+    # --- the shade step: a CHOICE, against a reader's census ----------------
+    #: The gate NAMES ITS NETWORK, because the number moves with the
+    #: definition -- that is queue item 29a's whole finding. The envelope
+    #: comes from `read_light.shade_step_envelope`, a census over the
+    #: campaign, and never from a constant here.
+    census = _shade_census()
+    low, high = census["quartiles"]
+    inside = low <= STEP <= high
+    print(f"shade step: Gravesend CHOOSES {STEP}; the campaign's "
+          f"{census['network']} has median {census['median']} over "
+          f"{census['records']} boundaries in {census['maps']} maps, "
+          f"quartiles {low}-{high}, {100 * census['inside']:.0f}% inside "
+          f"{tuple(census['envelope'])} -- the choice is "
+          f"{'inside' if inside else 'OUTSIDE'} the measured range")
+    if not inside:
+        print(f"   - {STEP} is outside {low}-{high}: a choice may be made, "
+              f"and one outside the campaign's own middle half has to be "
+              f"argued for")
+
     # --- the shells, and the shadow they must not have moved ---------------
     shadowless = compile_city(emission(shells=False))
     before = {f.sources[0]: int(f.attrs["depth"])
@@ -797,6 +816,30 @@ def main() -> int:
           f"walls, {len(disk.sprites)} sprites")
     _limits(disk)
     return 0
+
+
+def _shade_census(cache=ROOT / "work/shade_envelope.json") -> dict:
+    """The campaign's step, measured once and kept beside the build.
+
+    A census over 43 maps is not something to re-run on every build, and it
+    is not something to hard-code either: the file records which network was
+    measured and what came back, and deleting it re-measures.
+    """
+    import json
+
+    from bloodmap.read_light import (
+        NETWORK_LARGEST_COMPONENT, shade_step_envelope)
+
+    path = pathlib.Path(cache)
+    if path.exists():
+        found = json.loads(path.read_text(encoding="utf-8"))
+        if found.get("network") == NETWORK_LARGEST_COMPONENT:
+            return found
+    found = shade_step_envelope(network=NETWORK_LARGEST_COMPONENT)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(found, indent=1, default=str),
+                    encoding="utf-8")
+    return found
 
 
 def _waterfront_faults(disk, built) -> list:
