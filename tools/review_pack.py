@@ -208,10 +208,12 @@ aspectSel.onchange=()=>{{const id=aspectSel.value;const keep=id?new Set(byId[id]
 document.querySelectorAll('path.sec').forEach(p=>{{p.style.opacity=(!keep||keep.has(+p.dataset.id))?1:0.12}});}};
 function showFacts(sectorId){{const box=document.getElementById('claims');const f=FACTS[sectorId];
 if(!f){{box.textContent='';return;}}
-let t='claims on sector '+sectorId+' and its walls:\n';
-if(!f.claims.length)t+='  (nothing claims any field of this sector)\n';
-f.claims.forEach(r=>{{r.claims.forEach(c=>{{t+='  '+r.record+'.'+r.field+' = '+JSON.stringify(c.value)+'  [layer '+c.layer+' '+c.owner+']\n    '+c.why+'\n'}})}});
-t+='\nunclaimed fields of the sector record:\n  '+f.unclaimed_sector_fields.join(', ');
+let t='claims on sector '+sectorId+' and its walls:\\n';
+if(!f.claims.length)t+='  (nothing claims any field of this sector)\\n';
+f.claims.forEach(r=>{{r.claims.forEach(c=>{{t+='  '+r.record+'.'+r.field+' = '+JSON.stringify(c.value)+'  [layer '+c.layer+' '+c.owner+']\\n    '+c.why+'\\n'}})}});
+if(f.candidates&&f.candidates.length){{t+='\\ncandidates still open on this record:\\n';
+f.candidates.forEach(c=>{{t+='  '+c.about+': '+(c.readings||[]).join(' | ')+'\\n    '+(c.why||'')+'\\n'}});}}
+t+='\\nunclaimed fields of the sector record:\\n  '+f.unclaimed_sector_fields.join(', ');
 box.textContent=t;box.dataset.sector=sectorId;}}
 document.getElementById('markclaim').onclick=()=>{{const box=document.getElementById('claims');
 const s=box.dataset.sector;if(s===undefined)return;const f=FACTS[s];if(!f)return;

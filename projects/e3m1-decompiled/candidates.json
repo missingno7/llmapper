@@ -1,6 +1,7 @@
 {
- "assembly:001/space:002": [
+ "sector:1": [
   {
+   "about": "assembly:001/space:002",
    "id": "name:assembly:001/space:002",
    "layer": 8,
    "readings": [
@@ -10,54 +11,9 @@
    "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
- "assembly:001/space:053": [
+ "sector:105": [
   {
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "assembly:001/space:067": [
-  {
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "assembly:001/space:104": [
-  {
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "corridor:02": [
-  {
-   "id": "plan:corridor:02",
-   "layer": 7,
-   "readings": [
-    "edge",
-    "junction"
-   ],
-   "why": "long/short is 1.79, inside the ambiguous band [1.2, 2.5]"
-  }
- ],
- "sentence:sector:105": [
-  {
+   "about": "sentence:sector:105",
    "id": "name:sentence:sector:105",
    "layer": 8,
    "readings": [
@@ -75,8 +31,9 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:114": [
+ "sector:114": [
   {
+   "about": "sentence:sector:114",
    "id": "name:sentence:sector:114",
    "layer": 8,
    "readings": [
@@ -94,8 +51,9 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:119": [
+ "sector:119": [
   {
+   "about": "sentence:sector:119",
    "id": "name:sentence:sector:119",
    "layer": 8,
    "readings": [
@@ -113,8 +71,61 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:126": [
+ "sector:122": [
   {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:123": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:124": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:125": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:126": [
+  {
+   "about": "sentence:sector:126",
    "id": "name:sentence:sector:126",
    "layer": 8,
    "readings": [
@@ -132,8 +143,9 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:127": [
+ "sector:127": [
   {
+   "about": "sentence:sector:127",
    "id": "name:sentence:sector:127",
    "layer": 8,
    "readings": [
@@ -151,8 +163,178 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:141": [
+ "sector:128": [
   {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:129": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:130": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:131": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:132": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:133": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:134": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:135": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:136": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:137": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:138": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:139": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:140": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:141": [
+  {
+   "about": "sentence:sector:141",
    "id": "name:sentence:sector:141",
    "layer": 8,
    "readings": [
@@ -168,10 +350,35 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
- "sentence:sector:143": [
+ "sector:142": [
   {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:143": [
+  {
+   "about": "sentence:sector:143",
    "id": "name:sentence:sector:143",
    "layer": 8,
    "readings": [
@@ -187,10 +394,61 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
- "sentence:sector:147": [
+ "sector:144": [
   {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:145": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:146": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:147": [
+  {
+   "about": "sentence:sector:147",
    "id": "name:sentence:sector:147",
    "layer": 8,
    "readings": [
@@ -206,10 +464,22 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
- "sentence:sector:148": [
+ "sector:148": [
   {
+   "about": "sentence:sector:148",
    "id": "name:sentence:sector:148",
    "layer": 8,
    "readings": [
@@ -225,10 +495,48 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
- "sentence:sector:151": [
+ "sector:149": [
   {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:150": [
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:151": [
+  {
+   "about": "sentence:sector:151",
    "id": "name:sentence:sector:151",
    "layer": 8,
    "readings": [
@@ -244,10 +552,22 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
- "sentence:sector:152": [
+ "sector:152": [
   {
+   "about": "sentence:sector:152",
    "id": "name:sentence:sector:152",
    "layer": 8,
    "readings": [
@@ -263,10 +583,35 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
- "sentence:sector:154": [
+ "sector:153": [
   {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:154": [
+  {
+   "about": "sentence:sector:154",
    "id": "name:sentence:sector:154",
    "layer": 8,
    "readings": [
@@ -282,10 +627,47 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
- "sentence:sector:172": [
+ "sector:155": [
   {
+   "about": "assembly:001/space:053",
+   "id": "name:assembly:001/space:053",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:159": [
+  {
+   "about": "assembly:001/space:002",
+   "id": "name:assembly:001/space:002",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:172": [
+  {
+   "about": "sentence:sector:172",
    "id": "name:sentence:sector:172",
    "layer": 8,
    "readings": [
@@ -303,8 +685,9 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:173": [
+ "sector:173": [
   {
+   "about": "sentence:sector:173",
    "id": "name:sentence:sector:173",
    "layer": 8,
    "readings": [
@@ -322,8 +705,9 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:174": [
+ "sector:174": [
   {
+   "about": "sentence:sector:174",
    "id": "name:sentence:sector:174",
    "layer": 8,
    "readings": [
@@ -341,8 +725,60 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:181": [
+ "sector:175": [
   {
+   "about": "assembly:001/space:002",
+   "id": "name:assembly:001/space:002",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:176": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:177": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:178": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:181": [
+  {
+   "about": "sentence:sector:181",
    "id": "name:sentence:sector:181",
    "layer": 8,
    "readings": [
@@ -360,8 +796,73 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:218": [
+ "sector:2": [
   {
+   "about": "assembly:001/space:002",
+   "id": "name:assembly:001/space:002",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:203": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:206": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:208": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:209": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:218": [
+  {
+   "about": "sentence:sector:218",
    "id": "name:sentence:sector:218",
    "layer": 8,
    "readings": [
@@ -379,8 +880,21 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:251": [
+ "sector:235": [
   {
+   "about": "assembly:001/space:002",
+   "id": "name:assembly:001/space:002",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:251": [
+  {
+   "about": "sentence:sector:251",
    "id": "name:sentence:sector:251",
    "layer": 8,
    "readings": [
@@ -393,8 +907,362 @@
    "why": "no prefix holds 60% of the teaching: {'door': 22, 'e1m1zd1': 2, 'e1m1zdf': 2, 'environment': 7, 'machinery': 20}"
   }
  ],
- "sentence:sector:281": [
+ "sector:252": [
   {
+   "about": "sentence:sector:251",
+   "id": "name:sentence:sector:251",
+   "layer": 8,
+   "readings": [
+    "door",
+    "machinery",
+    "environment",
+    "e1m1zd1",
+    "e1m1zdf"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 22, 'e1m1zd1': 2, 'e1m1zdf': 2, 'environment': 7, 'machinery': 20}"
+  }
+ ],
+ "sector:255": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:256": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:257": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:258": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:259": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:260": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:261": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:262": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:263": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:264": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:265": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:266": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:267": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:268": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:269": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:270": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:271": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:272": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:273": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:274": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:275": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:276": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:277": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:278": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:279": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:280": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:281": [
+  {
+   "about": "sentence:sector:281",
    "id": "name:sentence:sector:281",
    "layer": 8,
    "readings": [
@@ -410,10 +1278,22 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
- "sentence:sector:282": [
+ "sector:282": [
   {
+   "about": "sentence:sector:282",
    "id": "name:sentence:sector:282",
    "layer": 8,
    "readings": [
@@ -431,8 +1311,9 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:283": [
+ "sector:283": [
   {
+   "about": "sentence:sector:283",
    "id": "name:sentence:sector:283",
    "layer": 8,
    "readings": [
@@ -450,8 +1331,249 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:307": [
+ "sector:284": [
   {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:285": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:286": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:291": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:292": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:293": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:294": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:295": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:296": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:297": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:298": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:299": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:3": [
+  {
+   "about": "assembly:001/space:002",
+   "id": "name:assembly:001/space:002",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:300": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:301": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:302": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:303": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:304": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:305": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:306": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:307": [
+  {
+   "about": "sentence:sector:307",
    "id": "name:sentence:sector:307",
    "layer": 8,
    "readings": [
@@ -469,8 +1591,57 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:319": [
+ "sector:308": [
   {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:309": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:310": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:311": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:319": [
+  {
+   "about": "sentence:sector:319",
    "id": "name:sentence:sector:319",
    "layer": 8,
    "readings": [
@@ -488,8 +1659,81 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:352": [
+ "sector:344": [
   {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:345": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:346": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:347": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:348": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:350": [
+  {
+   "about": "assembly:001/space:104",
+   "id": "name:assembly:001/space:104",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:352": [
+  {
+   "about": "sentence:sector:352",
    "id": "name:sentence:sector:352",
    "layer": 8,
    "readings": [
@@ -507,8 +1751,9 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:354": [
+ "sector:354": [
   {
+   "about": "sentence:sector:354",
    "id": "name:sentence:sector:354",
    "layer": 8,
    "readings": [
@@ -526,8 +1771,9 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:366": [
+ "sector:366": [
   {
+   "about": "sentence:sector:366",
    "id": "name:sentence:sector:366",
    "layer": 8,
    "readings": [
@@ -538,8 +1784,9 @@
    "why": "no prefix holds 60% of the teaching: {'environment': 16, 'othersectorsfx': 14, 'sprite': 5}"
   }
  ],
- "sentence:sector:373": [
+ "sector:373": [
   {
+   "about": "sentence:sector:373",
    "id": "name:sentence:sector:373",
    "layer": 8,
    "readings": [
@@ -557,8 +1804,9 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:374": [
+ "sector:374": [
   {
+   "about": "sentence:sector:374",
    "id": "name:sentence:sector:374",
    "layer": 8,
    "readings": [
@@ -576,8 +1824,71 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:52": [
+ "sector:375": [
   {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:376": [
+  {
+   "about": "assembly:001/space:067",
+   "id": "name:assembly:001/space:067",
+   "layer": 8,
+   "readings": [
+    "stepped_run",
+    "stepped_run",
+    "stepped_run"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:4": [
+  {
+   "about": "assembly:001/space:002",
+   "id": "name:assembly:001/space:002",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:45": [
+  {
+   "about": "assembly:001/space:002",
+   "id": "name:assembly:001/space:002",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:5": [
+  {
+   "about": "assembly:001/space:002",
+   "id": "name:assembly:001/space:002",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:52": [
+  {
+   "about": "sentence:sector:52",
    "id": "name:sentence:sector:52",
    "layer": 8,
    "readings": [
@@ -595,8 +1906,9 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:54": [
+ "sector:54": [
   {
+   "about": "sentence:sector:54",
    "id": "name:sentence:sector:54",
    "layer": 8,
    "readings": [
@@ -614,8 +1926,9 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:58": [
+ "sector:58": [
   {
+   "about": "sentence:sector:58",
    "id": "name:sentence:sector:58",
    "layer": 8,
    "readings": [
@@ -633,8 +1946,9 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:59": [
+ "sector:59": [
   {
+   "about": "sentence:sector:59",
    "id": "name:sentence:sector:59",
    "layer": 8,
    "readings": [
@@ -652,8 +1966,21 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:60": [
+ "sector:6": [
   {
+   "about": "assembly:001/space:002",
+   "id": "name:assembly:001/space:002",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:60": [
+  {
+   "about": "sentence:sector:60",
    "id": "name:sentence:sector:60",
    "layer": 8,
    "readings": [
@@ -671,8 +1998,55 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:80": [
+ "sector:65": [
   {
+   "about": "assembly:001/space:002",
+   "id": "name:assembly:001/space:002",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:7": [
+  {
+   "about": "corridor:02",
+   "id": "plan:corridor:02",
+   "layer": 7,
+   "readings": [
+    "edge",
+    "junction"
+   ],
+   "why": "long/short is 1.79, inside the ambiguous band [1.2, 2.5]"
+  },
+  {
+   "about": "assembly:001/space:002",
+   "id": "name:assembly:001/space:002",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:8": [
+  {
+   "about": "assembly:001/space:002",
+   "id": "name:assembly:001/space:002",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:80": [
+  {
+   "about": "sentence:sector:80",
    "id": "name:sentence:sector:80",
    "layer": 8,
    "readings": [
@@ -690,8 +2064,9 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:82": [
+ "sector:82": [
   {
+   "about": "sentence:sector:82",
    "id": "name:sentence:sector:82",
    "layer": 8,
    "readings": [
@@ -709,8 +2084,9 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sentence:sector:83": [
+ "sector:83": [
   {
+   "about": "sentence:sector:83",
    "id": "name:sentence:sector:83",
    "layer": 8,
    "readings": [
@@ -728,8 +2104,303 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sun:0": [
+ "sector:9": [
   {
+   "about": "assembly:001/space:002",
+   "id": "name:assembly:001/space:002",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sprite:610": [
+  {
+   "about": "sentence:sector:251",
+   "id": "name:sentence:sector:251",
+   "layer": 8,
+   "readings": [
+    "door",
+    "machinery",
+    "environment",
+    "e1m1zd1",
+    "e1m1zdf"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 22, 'e1m1zd1': 2, 'e1m1zdf': 2, 'environment': 7, 'machinery': 20}"
+  }
+ ],
+ "sprite:612": [
+  {
+   "about": "sentence:sector:251",
+   "id": "name:sentence:sector:251",
+   "layer": 8,
+   "readings": [
+    "door",
+    "machinery",
+    "environment",
+    "e1m1zd1",
+    "e1m1zdf"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 22, 'e1m1zd1': 2, 'e1m1zdf': 2, 'environment': 7, 'machinery': 20}"
+  }
+ ],
+ "wall:11": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:1533": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:17": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:19": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:220": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:24": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:30": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:33": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:34": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:41": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:43": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:51": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:53": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:56": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:59": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:61": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:643": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:65": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:825": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:857": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:949": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun: a tie"
+  }
+ ],
+ "wall:976": [
+  {
+   "about": "sun:0",
    "id": "light:casters",
    "layer": 4,
    "readings": [

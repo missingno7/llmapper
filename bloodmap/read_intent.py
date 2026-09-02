@@ -128,6 +128,7 @@ def name_places(level: Any, spaces: Sequence[dict[str, Any]], *,
                           "sectors": sorted(sectors)})
         else:
             candidates.append({"space": space["id"],
+                               "sectors": sorted(sectors),
                                "readings": [hit["name"] for hit in hits],
                                "bases": [hit["basis"] for hit in hits],
                                "why": "more than one measured rule fires, and "

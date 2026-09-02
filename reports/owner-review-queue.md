@@ -1247,3 +1247,16 @@ prop reader is not wired into this layer. Node `level`, layer 8.
 in.** A residue of zero on the edge classifier is easy, because
 `building_back` catches every one-sided record; the number that measures the
 edge FAMILY is its own share. Node `edge:building_back`, layer 6.
+
+**30i. The review pack's script was dead in every pack for one commit, and
+the tool exited 0 the whole time.** The page is built by one f-string, so a
+JavaScript `\n` has to be spelled with TWO backslashes in the Python source;
+the fact panel and the aspect selector I added used one, the f-string emitted
+a REAL newline into a JavaScript string literal, and the script died at the
+first one — blank tree, inert map, valid-looking HTML. Fixed, and
+`tests/test_review_pack.py` now builds a pack and refuses one whose script has
+a string literal spanning lines, whose JSON constants do not parse, or whose
+`build` has lost the "+Y down. Never flip." orientation.
+*No default needed; recorded because it is the project's own lesson (verify
+the thing, not the call) failing in a new place: a tool that returns HTML is
+not evidence that the HTML runs.*

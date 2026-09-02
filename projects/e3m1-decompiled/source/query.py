@@ -180,13 +180,42 @@ def panels(store: FactStore) -> tuple[dict, dict]:
                             "value": row.attrs["value"],
                             "channel": row.attrs["channel"],
                             "why": row.attrs.get("why", "")})
+    #: A candidate is ABOUT something, and that something is usually not a
+    #: record: `plan:corridor:02`, `name:sentence:sector:105`. The panel is
+    #: per record, so each candidate's sources are followed through the store
+    #: until they land on records -- one hop is enough for everything here,
+    #: and anything that does not resolve is reported against its own id
+    #: rather than dropped.
+    resolve: dict[str, tuple] = {}
+    for predicate, rows in store.rows.items():
+        if predicate in ("candidate", "claims", "residue", "selection"):
+            continue
+        for row in rows:
+            resolve[row.id] = row.sources
+
+    def records_of(name: str) -> list[str]:
+        if name.split(":", 1)[0] in ("sector", "wall", "sprite",
+                                     "xsector", "xwall", "xsprite"):
+            return [name]
+        out = []
+        for source in resolve.get(name, ()):
+            out.extend(records_of(source) if source != name else [])
+        return out or [name]
+
     candidates: dict[str, list] = defaultdict(list)
     for row in store["candidate"]:
-        for source in row.sources or (row.attrs.get("about", ""),):
-            candidates[str(source)].append(
-                {"id": row.id, "layer": row.layer,
-                 "readings": row.attrs.get("readings", []),
-                 "why": row.attrs.get("why", "")})
+        seeds = row.sources or (row.attrs.get("about", ""),)
+        seen = set()
+        for seed in seeds:
+            for record in records_of(str(seed)):
+                if record in seen:
+                    continue
+                seen.add(record)
+                candidates[record].append(
+                    {"about": row.attrs.get("about", row.id),
+                     "id": row.id, "layer": row.layer,
+                     "readings": row.attrs.get("readings", []),
+                     "why": row.attrs.get("why", "")})
     return dict(claims), dict(candidates)
 
 

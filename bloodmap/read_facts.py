@@ -542,7 +542,8 @@ def layer8(mechanisms: dict[str, Any], places: dict[str, Any]) -> list[Fact]:
         out.append(Fact("candidate", f"name:{row['space']}",
                         {"about": row["space"], "readings": row["readings"],
                          "why": row["why"], "bases": row["bases"]},
-                        sources=(row["space"],), reader=reader, layer=8))
+                        sources=tuple(f"sector:{s}" for s in row["sectors"]),
+                        reader=reader, layer=8))
     for row in places["refused"]:
         out.append(Fact("residue", f"intent:{row['space']}",
                         {"about": row["space"], "aspect": "intent",

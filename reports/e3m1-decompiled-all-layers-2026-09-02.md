@@ -169,6 +169,23 @@ refuted by a measurement in the next report.
 | layer 7 | 22 | 11 | 3 |
 | layer 8 | 7 | 313 | 2 |
 
+## The suite
+
+Worktree run, `work/suite-final4.log`:
+
+```text
+Ran 1954 tests in 199.654s
+FAILED (failures=5, errors=4, skipped=267, expected failures=4)
+```
+
+The same nine failures as at layer 4, and all nine are worktree-environment
+rather than regressions: they spell relative `maps/blood/...`,
+`reference/blood` and `NBlood/source/...` paths, which a worktree does not
+have and which the rules forbid junctioning in (`test_attested_constructs`
+x2, `test_curriculum` x3, `test_rules` x2, `test_assembly`,
+`test_pattern_zoo`). Those same five modules in the main checkout, which has
+both directories, give `Ran 125 tests`, `OK (skipped=1, expected failures=1)`.
+
 ## What the next map has to answer
 
 The sleep phase of the research document: decompile a second map, refactor the
