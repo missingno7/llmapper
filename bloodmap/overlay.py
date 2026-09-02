@@ -577,6 +577,61 @@ def in_domain(level: Any, domain: Domain, regions: Iterable[int],
     return allowed, refused
 
 
+#: Rule 2's five: the facts that exclude a region from EVERY overlay. A
+#: region carrying none of them could never have been refused, so counting it
+#: in a refusal statistic is counting the population that was never at risk.
+REFUSAL_FLAGS = ("has_sector_type", "has_moving_wall", "has_stack_marker",
+                 "is_holder", "is_insert")
+
+
+def refusal_denominator(level: Any, domain: Domain, regions: Iterable[int],
+                        owners: Sequence[int] | None = None) -> dict:
+    """How many regions COULD have been refused, beside how many were.
+
+    "The light domain refuses 0" is a green line and an empty one when
+    nothing in the map was ever a candidate. A rate needs its denominator:
+    a mechanism, an insert or a holder is eligible for refusal, and a plain
+    piece of road is not. **Zero refused out of zero eligible is UNTESTED,
+    never green** -- the difference between a rule that held and a rule that
+    was never asked.
+    """
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(level)
+    eligible: list[dict[str, Any]] = []
+    refused: list[dict[str, Any]] = []
+    admitted = 0
+    for sector_id in regions:
+        facts = region_facts(level, sector_id, owners)
+        why = [flag for flag in REFUSAL_FLAGS if facts.get(flag)]
+        if why:
+            eligible.append({"region": sector_id, "flags": why})
+        ok, reason = domain.admits(str(sector_id), facts)
+        if ok:
+            admitted += 1
+        else:
+            refused.append({"region": sector_id, "reason": reason})
+    return {
+        "domain": domain.name,
+        "admitted": admitted,
+        "refused": len(refused),
+        "eligible": len(eligible),
+        "eligible_regions": eligible,
+        "refused_regions": refused,
+        "verdict": "untested" if not eligible else "tested",
+    }
+
+
+def refusal_line(result: dict) -> str:
+    """The manifest line, with the denominator beside the numerator."""
+    verdict = ("UNTESTED: nothing in this map is a mechanism, an insert or a "
+               "holder, so the rule was never asked"
+               if result["verdict"] == "untested" else "tested")
+    return (f"{result['domain']} domain: admits {result['admitted']}, "
+            f"refuses {result['refused']} of {result['eligible']} eligible "
+            f"(mechanisms, inserts, holders) -- {verdict}")
+
+
 # ---------------------------------------------------------------------------
 # the clipper: a half-plane through a polygon with holes
 # ---------------------------------------------------------------------------
