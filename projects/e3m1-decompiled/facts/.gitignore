@@ -1,0 +1,17 @@
+# The BASE facts are the corpus, restated. They are the records of E3M1.MAP
+# verbatim, they are 2.1 MB, and they are byte-reproducible from the map:
+#
+#   PYTHONPATH=".;projects/e3m1-decompiled/source" \
+#       python projects/e3m1-decompiled/source/build_facts.py
+#
+# The project's standing rule is that the corpus is never committed and the
+# command that regenerates it is (provenance.json). The DERIVED facts -- what
+# the readers found, with their provenance -- are the deliverable and are
+# committed.
+sector.jsonl
+wall.jsonl
+sprite.jsonl
+xsector.jsonl
+xwall.jsonl
+xsprite.jsonl
+connects.jsonl

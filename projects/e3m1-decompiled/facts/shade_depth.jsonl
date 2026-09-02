@@ -1,0 +1,8 @@
+{"_from": ["sector:1", "sun:0"], "_layer": 4, "_reader": "bloodmap.read_light", "depth": 0, "id": "sector:1", "record": "sector:1", "shade": 8}
+{"_from": ["sector:5", "sun:0"], "_layer": 4, "_reader": "bloodmap.read_light", "depth": 0, "id": "sector:5", "record": "sector:5", "shade": 8}
+{"_from": ["sector:8", "sun:0"], "_layer": 4, "_reader": "bloodmap.read_light", "depth": 0, "id": "sector:8", "record": "sector:8", "shade": 8}
+{"_from": ["sector:9", "sun:0"], "_layer": 4, "_reader": "bloodmap.read_light", "depth": 0, "id": "sector:9", "record": "sector:9", "shade": 8}
+{"_from": ["sector:3", "sun:0"], "_layer": 4, "_reader": "bloodmap.read_light", "depth": 2, "id": "sector:3", "record": "sector:3", "shade": 32}
+{"_from": ["sector:7", "sun:0"], "_layer": 4, "_reader": "bloodmap.read_light", "depth": 2, "id": "sector:7", "record": "sector:7", "shade": 32}
+{"_from": ["sector:45", "sun:0"], "_layer": 4, "_reader": "bloodmap.read_light", "depth": 2, "id": "sector:45", "record": "sector:45", "shade": 32}
+{"_from": ["sector:236", "sun:0"], "_layer": 4, "_reader": "bloodmap.read_light", "depth": 2, "id": "sector:236", "record": "sector:236", "shade": 32}

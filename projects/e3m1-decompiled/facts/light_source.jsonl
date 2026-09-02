@@ -1,0 +1,8 @@
+{"_from": ["sector:1"], "_layer": 4, "_reader": "bloodmap.read_light", "id": "sector:1", "kind": "fullbright sprites", "record": "sector:1", "tiles": {"2519": 1}}
+{"_from": ["sector:7"], "_layer": 4, "_reader": "bloodmap.read_light", "id": "sector:7", "kind": "fullbright sprites", "record": "sector:7", "tiles": {"2519": 1, "2521": 1}}
+{"_from": ["sector:8"], "_layer": 4, "_reader": "bloodmap.read_light", "id": "sector:8", "kind": "fullbright sprites", "record": "sector:8", "tiles": {"2519": 8, "2521": 3}}
+{"_from": ["sector:45"], "_layer": 4, "_reader": "bloodmap.read_light", "id": "sector:45", "kind": "fullbright sprites", "record": "sector:45", "tiles": {"2519": 4, "2521": 2}}
+{"_from": ["sector:159"], "_layer": 4, "_reader": "bloodmap.read_light", "id": "sector:159", "kind": "fullbright sprites", "record": "sector:159", "tiles": {"2519": 2}}
+{"_from": ["sector:174"], "_layer": 4, "_reader": "bloodmap.read_light", "id": "sector:174", "kind": "fullbright sprites", "record": "sector:174", "tiles": {"2521": 1, "3566": 1}}
+{"_from": ["sector:175"], "_layer": 4, "_reader": "bloodmap.read_light", "id": "sector:175", "kind": "fullbright sprites", "record": "sector:175", "tiles": {"2521": 19}}
+{"_from": ["sector:235"], "_layer": 4, "_reader": "bloodmap.read_light", "id": "sector:235", "kind": "fullbright sprites", "record": "sector:235", "tiles": {"2519": 1, "2521": 2}}

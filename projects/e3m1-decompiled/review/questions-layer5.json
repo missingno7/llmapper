@@ -1,0 +1,23 @@
+{
+ "layer": 5,
+ "questions": [
+  {
+   "node": "sentence:sector:41",
+   "question": "5 of 136 sentences use a (type, shape, slot) combination the taught course never shows -- s41's type 615 with 'part of the sector travels' and a shade wave, for one. Is a combination the course does not teach a finding or a reader artefact?",
+   "recommended_default": "a finding, and the interesting one: the course teaches each slot alone and the campaign combines them. It belongs in the curriculum's own gaps list, not in ours",
+   "evidence": "references/mechanisms.json: sentences[].against_the_course"
+  },
+  {
+   "node": "sentence:channel:116",
+   "question": "E3M1's biggest chain is one channel telling 159 records at once. Our writer has no construct that fans out like that. Should a chain be one sentence, or one sentence per receiver?",
+   "recommended_default": "one sentence: the channel IS the mechanism and its fan-out is a parameter. Splitting it would make the collapsing house 159 mechanisms that happen to share a number",
+   "evidence": "references/mechanisms.json: links"
+  },
+  {
+   "node": "kind:room_over_room",
+   "question": "All three of E3M1's stacks carry the same fault: the floor marker sits 256 units below the plane it links. Three of three is a convention, not a mistake. Is the marker meant to float?",
+   "recommended_default": "yes -- and the fault text should say '256 below, as all three of E3M1's do' rather than 'floats'. A convention the campaign keeps three times out of three is not a defect our checker gets to name",
+   "evidence": "references/mechanisms.json: stacks"
+  }
+ ]
+}

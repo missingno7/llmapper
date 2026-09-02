@@ -1,0 +1,1788 @@
+{
+ "nodes": [
+  {
+   "id": "level",
+   "kind": "level",
+   "name": "E3M1 -- mechanisms as sentences",
+   "parent": null,
+   "children": [
+    "kind:breakable_wall",
+    "kind:room_over_room",
+    "kind:sector_mechanism",
+    "kind:tx_->_rx_chain"
+   ],
+   "sectors": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    199,
+    200,
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    219,
+    220,
+    221,
+    222,
+    223,
+    224,
+    225,
+    226,
+    227,
+    228,
+    229,
+    230,
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255,
+    256,
+    257,
+    258,
+    259,
+    260,
+    261,
+    262,
+    263,
+    264,
+    265,
+    266,
+    267,
+    268,
+    269,
+    270,
+    271,
+    272,
+    273,
+    274,
+    275,
+    276,
+    277,
+    278,
+    279,
+    280,
+    281,
+    282,
+    283,
+    284,
+    285,
+    286,
+    287,
+    288,
+    289,
+    290,
+    291,
+    292,
+    293,
+    294,
+    295,
+    296,
+    297,
+    298,
+    299,
+    300,
+    301,
+    302,
+    303,
+    304,
+    305,
+    306,
+    307,
+    308,
+    309,
+    310,
+    311,
+    312,
+    313,
+    314,
+    315,
+    316,
+    317,
+    318,
+    319,
+    320,
+    321,
+    322,
+    323,
+    324,
+    325,
+    326,
+    327,
+    328,
+    329,
+    330,
+    331,
+    332,
+    333,
+    334,
+    335,
+    336,
+    337,
+    338,
+    339,
+    340,
+    341,
+    342,
+    343,
+    344,
+    345,
+    346,
+    347,
+    348,
+    349,
+    350,
+    351,
+    352,
+    353,
+    354,
+    355,
+    356,
+    357,
+    358,
+    359,
+    360,
+    361,
+    362,
+    363,
+    364,
+    365,
+    366,
+    367,
+    368,
+    369,
+    370,
+    371,
+    372,
+    373,
+    374,
+    375,
+    376,
+    377,
+    378,
+    379,
+    380,
+    381
+   ]
+  },
+  {
+   "id": "kind:breakable_wall",
+   "kind": "mechanism_kind",
+   "name": "breakable wall (18)",
+   "parent": "level",
+   "children": [
+    "sentence:wall:21",
+    "sentence:wall:69",
+    "sentence:wall:407",
+    "sentence:wall:520",
+    "sentence:wall:537",
+    "sentence:wall:610",
+    "sentence:wall:960",
+    "sentence:wall:974",
+    "sentence:wall:1017",
+    "sentence:wall:1023",
+    "sentence:wall:1280",
+    "sentence:wall:1284",
+    "sentence:wall:1430",
+    "sentence:wall:1508",
+    "sentence:wall:1938",
+    "sentence:wall:1942",
+    "sentence:wall:1946",
+    "sentence:wall:1952"
+   ],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:21",
+   "kind": "sentence",
+   "name": "wall:21",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:69",
+   "kind": "sentence",
+   "name": "wall:69",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:407",
+   "kind": "sentence",
+   "name": "wall:407",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:520",
+   "kind": "sentence",
+   "name": "wall:520",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:537",
+   "kind": "sentence",
+   "name": "wall:537",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:610",
+   "kind": "sentence",
+   "name": "wall:610",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:960",
+   "kind": "sentence",
+   "name": "wall:960",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:974",
+   "kind": "sentence",
+   "name": "wall:974",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:1017",
+   "kind": "sentence",
+   "name": "wall:1017",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:1023",
+   "kind": "sentence",
+   "name": "wall:1023",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:1280",
+   "kind": "sentence",
+   "name": "wall:1280",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:1284",
+   "kind": "sentence",
+   "name": "wall:1284",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:1430",
+   "kind": "sentence",
+   "name": "wall:1430",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:1508",
+   "kind": "sentence",
+   "name": "wall:1508",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:1938",
+   "kind": "sentence",
+   "name": "wall:1938",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:1942",
+   "kind": "sentence",
+   "name": "wall:1942",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:1946",
+   "kind": "sentence",
+   "name": "wall:1946",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "sentence:wall:1952",
+   "kind": "sentence",
+   "name": "wall:1952",
+   "parent": "kind:breakable_wall",
+   "children": [],
+   "sectors": []
+  },
+  {
+   "id": "kind:room_over_room",
+   "kind": "mechanism_kind",
+   "name": "room over room (3)",
+   "parent": "level",
+   "children": [
+    "sentence:stack:0",
+    "sentence:stack:1",
+    "sentence:stack:2"
+   ],
+   "sectors": [
+    12,
+    14,
+    85,
+    87,
+    104,
+    109
+   ]
+  },
+  {
+   "id": "sentence:stack:0",
+   "kind": "sentence",
+   "name": "stack:0",
+   "parent": "kind:room_over_room",
+   "children": [],
+   "sectors": [
+    12,
+    14
+   ]
+  },
+  {
+   "id": "sentence:stack:1",
+   "kind": "sentence",
+   "name": "stack:1",
+   "parent": "kind:room_over_room",
+   "children": [],
+   "sectors": [
+    85,
+    87
+   ]
+  },
+  {
+   "id": "sentence:stack:2",
+   "kind": "sentence",
+   "name": "stack:2",
+   "parent": "kind:room_over_room",
+   "children": [],
+   "sectors": [
+    104,
+    109
+   ]
+  },
+  {
+   "id": "kind:sector_mechanism",
+   "kind": "mechanism_kind",
+   "name": "sector mechanism (52)",
+   "parent": "level",
+   "children": [
+    "sentence:sector:41",
+    "sentence:sector:44",
+    "sentence:sector:51",
+    "sentence:sector:52",
+    "sentence:sector:54",
+    "sentence:sector:58",
+    "sentence:sector:59",
+    "sentence:sector:60",
+    "sentence:sector:66",
+    "sentence:sector:80",
+    "sentence:sector:81",
+    "sentence:sector:82",
+    "sentence:sector:83",
+    "sentence:sector:88",
+    "sentence:sector:89",
+    "sentence:sector:105",
+    "sentence:sector:114",
+    "sentence:sector:119",
+    "sentence:sector:126",
+    "sentence:sector:127",
+    "sentence:sector:141",
+    "sentence:sector:143",
+    "sentence:sector:147",
+    "sentence:sector:148",
+    "sentence:sector:151",
+    "sentence:sector:152",
+    "sentence:sector:154",
+    "sentence:sector:160",
+    "sentence:sector:162",
+    "sentence:sector:172",
+    "sentence:sector:173",
+    "sentence:sector:174",
+    "sentence:sector:181",
+    "sentence:sector:207",
+    "sentence:sector:211",
+    "sentence:sector:216",
+    "sentence:sector:218",
+    "sentence:sector:226",
+    "sentence:sector:245",
+    "sentence:sector:248"
+   ],
+   "sectors": [
+    41,
+    43,
+    44,
+    51,
+    52,
+    54,
+    58,
+    59,
+    60,
+    62,
+    64,
+    66,
+    67,
+    71,
+    80,
+    81,
+    82,
+    83,
+    88,
+    89,
+    98,
+    105,
+    114,
+    119,
+    126,
+    127,
+    141,
+    143,
+    147,
+    148,
+    151,
+    152,
+    154,
+    160,
+    162,
+    170,
+    172,
+    173,
+    174,
+    181,
+    207,
+    208,
+    211,
+    216,
+    218,
+    226,
+    245,
+    246,
+    248,
+    249,
+    251,
+    252,
+    281,
+    282,
+    283,
+    307,
+    319,
+    352,
+    354,
+    366,
+    373,
+    374,
+    375,
+    381
+   ]
+  },
+  {
+   "id": "sentence:sector:41",
+   "kind": "sentence",
+   "name": "sector:41",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    41,
+    248,
+    249,
+    381
+   ]
+  },
+  {
+   "id": "sentence:sector:44",
+   "kind": "sentence",
+   "name": "sector:44",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    43,
+    44
+   ]
+  },
+  {
+   "id": "sentence:sector:51",
+   "kind": "sentence",
+   "name": "sector:51",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    51,
+    62,
+    64
+   ]
+  },
+  {
+   "id": "sentence:sector:52",
+   "kind": "sentence",
+   "name": "sector:52",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    52
+   ]
+  },
+  {
+   "id": "sentence:sector:54",
+   "kind": "sentence",
+   "name": "sector:54",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    54
+   ]
+  },
+  {
+   "id": "sentence:sector:58",
+   "kind": "sentence",
+   "name": "sector:58",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    58
+   ]
+  },
+  {
+   "id": "sentence:sector:59",
+   "kind": "sentence",
+   "name": "sector:59",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    59
+   ]
+  },
+  {
+   "id": "sentence:sector:60",
+   "kind": "sentence",
+   "name": "sector:60",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    60
+   ]
+  },
+  {
+   "id": "sentence:sector:66",
+   "kind": "sentence",
+   "name": "sector:66",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    66,
+    67,
+    71
+   ]
+  },
+  {
+   "id": "sentence:sector:80",
+   "kind": "sentence",
+   "name": "sector:80",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    80
+   ]
+  },
+  {
+   "id": "sentence:sector:81",
+   "kind": "sentence",
+   "name": "sector:81",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    81
+   ]
+  },
+  {
+   "id": "sentence:sector:82",
+   "kind": "sentence",
+   "name": "sector:82",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    82
+   ]
+  },
+  {
+   "id": "sentence:sector:83",
+   "kind": "sentence",
+   "name": "sector:83",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    83
+   ]
+  },
+  {
+   "id": "sentence:sector:88",
+   "kind": "sentence",
+   "name": "sector:88",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    88
+   ]
+  },
+  {
+   "id": "sentence:sector:89",
+   "kind": "sentence",
+   "name": "sector:89",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    89,
+    98
+   ]
+  },
+  {
+   "id": "sentence:sector:105",
+   "kind": "sentence",
+   "name": "sector:105",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    105
+   ]
+  },
+  {
+   "id": "sentence:sector:114",
+   "kind": "sentence",
+   "name": "sector:114",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    114
+   ]
+  },
+  {
+   "id": "sentence:sector:119",
+   "kind": "sentence",
+   "name": "sector:119",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    119
+   ]
+  },
+  {
+   "id": "sentence:sector:126",
+   "kind": "sentence",
+   "name": "sector:126",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    126
+   ]
+  },
+  {
+   "id": "sentence:sector:127",
+   "kind": "sentence",
+   "name": "sector:127",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    127
+   ]
+  },
+  {
+   "id": "sentence:sector:141",
+   "kind": "sentence",
+   "name": "sector:141",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    141
+   ]
+  },
+  {
+   "id": "sentence:sector:143",
+   "kind": "sentence",
+   "name": "sector:143",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    143
+   ]
+  },
+  {
+   "id": "sentence:sector:147",
+   "kind": "sentence",
+   "name": "sector:147",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    147
+   ]
+  },
+  {
+   "id": "sentence:sector:148",
+   "kind": "sentence",
+   "name": "sector:148",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    148
+   ]
+  },
+  {
+   "id": "sentence:sector:151",
+   "kind": "sentence",
+   "name": "sector:151",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    151
+   ]
+  },
+  {
+   "id": "sentence:sector:152",
+   "kind": "sentence",
+   "name": "sector:152",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    152
+   ]
+  },
+  {
+   "id": "sentence:sector:154",
+   "kind": "sentence",
+   "name": "sector:154",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    154
+   ]
+  },
+  {
+   "id": "sentence:sector:160",
+   "kind": "sentence",
+   "name": "sector:160",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    160,
+    170
+   ]
+  },
+  {
+   "id": "sentence:sector:162",
+   "kind": "sentence",
+   "name": "sector:162",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    162
+   ]
+  },
+  {
+   "id": "sentence:sector:172",
+   "kind": "sentence",
+   "name": "sector:172",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    172
+   ]
+  },
+  {
+   "id": "sentence:sector:173",
+   "kind": "sentence",
+   "name": "sector:173",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    173
+   ]
+  },
+  {
+   "id": "sentence:sector:174",
+   "kind": "sentence",
+   "name": "sector:174",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    174
+   ]
+  },
+  {
+   "id": "sentence:sector:181",
+   "kind": "sentence",
+   "name": "sector:181",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    181
+   ]
+  },
+  {
+   "id": "sentence:sector:207",
+   "kind": "sentence",
+   "name": "sector:207",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    207,
+    208
+   ]
+  },
+  {
+   "id": "sentence:sector:211",
+   "kind": "sentence",
+   "name": "sector:211",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    211
+   ]
+  },
+  {
+   "id": "sentence:sector:216",
+   "kind": "sentence",
+   "name": "sector:216",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    216
+   ]
+  },
+  {
+   "id": "sentence:sector:218",
+   "kind": "sentence",
+   "name": "sector:218",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    218
+   ]
+  },
+  {
+   "id": "sentence:sector:226",
+   "kind": "sentence",
+   "name": "sector:226",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    226
+   ]
+  },
+  {
+   "id": "sentence:sector:245",
+   "kind": "sentence",
+   "name": "sector:245",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    245,
+    246
+   ]
+  },
+  {
+   "id": "sentence:sector:248",
+   "kind": "sentence",
+   "name": "sector:248",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    41,
+    248,
+    249,
+    381
+   ]
+  },
+  {
+   "id": "kind:tx_->_rx_chain",
+   "kind": "mechanism_kind",
+   "name": "tx -> rx chain (63)",
+   "parent": "level",
+   "children": [
+    "sentence:channel:100",
+    "sentence:channel:101",
+    "sentence:channel:102",
+    "sentence:channel:103",
+    "sentence:channel:104",
+    "sentence:channel:105",
+    "sentence:channel:106",
+    "sentence:channel:107",
+    "sentence:channel:108",
+    "sentence:channel:109",
+    "sentence:channel:110",
+    "sentence:channel:111",
+    "sentence:channel:112",
+    "sentence:channel:113",
+    "sentence:channel:114",
+    "sentence:channel:115",
+    "sentence:channel:116",
+    "sentence:channel:117",
+    "sentence:channel:118",
+    "sentence:channel:119",
+    "sentence:channel:120",
+    "sentence:channel:121",
+    "sentence:channel:122",
+    "sentence:channel:123",
+    "sentence:channel:124",
+    "sentence:channel:125",
+    "sentence:channel:126",
+    "sentence:channel:128",
+    "sentence:channel:129",
+    "sentence:channel:130",
+    "sentence:channel:131",
+    "sentence:channel:132",
+    "sentence:channel:133",
+    "sentence:channel:134",
+    "sentence:channel:135",
+    "sentence:channel:137",
+    "sentence:channel:138",
+    "sentence:channel:139",
+    "sentence:channel:140",
+    "sentence:channel:141"
+   ],
+   "sectors": [
+    1,
+    2,
+    3,
+    7,
+    8,
+    41,
+    45,
+    51,
+    52,
+    53,
+    54,
+    56,
+    57,
+    58,
+    59,
+    60,
+    64,
+    66,
+    67,
+    80,
+    81,
+    82,
+    83,
+    84,
+    88,
+    105,
+    106,
+    109,
+    114,
+    116,
+    117,
+    119,
+    120,
+    121,
+    122,
+    126,
+    127,
+    128,
+    132,
+    135,
+    136,
+    138,
+    141,
+    143,
+    147,
+    148,
+    151,
+    152,
+    154,
+    156,
+    159,
+    162,
+    163,
+    164,
+    171,
+    172,
+    173,
+    174,
+    175,
+    180,
+    181,
+    211,
+    216,
+    218,
+    221,
+    222,
+    223,
+    224,
+    225,
+    226,
+    227,
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    248,
+    254,
+    261,
+    262,
+    263,
+    276,
+    281,
+    282,
+    283,
+    302,
+    303,
+    307,
+    311,
+    319,
+    348,
+    351,
+    352,
+    361,
+    373,
+    374,
+    375,
+    380
+   ]
+  },
+  {
+   "id": "sentence:channel:100",
+   "kind": "sentence",
+   "name": "channel:100",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    45,
+    159,
+    254,
+    351
+   ]
+  },
+  {
+   "id": "sentence:channel:101",
+   "kind": "sentence",
+   "name": "channel:101",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    52,
+    54,
+    56,
+    57
+   ]
+  },
+  {
+   "id": "sentence:channel:102",
+   "kind": "sentence",
+   "name": "channel:102",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    41,
+    248
+   ]
+  },
+  {
+   "id": "sentence:channel:103",
+   "kind": "sentence",
+   "name": "channel:103",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    53,
+    58,
+    59,
+    60,
+    175
+   ]
+  },
+  {
+   "id": "sentence:channel:104",
+   "kind": "sentence",
+   "name": "channel:104",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    51,
+    64
+   ]
+  },
+  {
+   "id": "sentence:channel:105",
+   "kind": "sentence",
+   "name": "channel:105",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    66,
+    67
+   ]
+  },
+  {
+   "id": "sentence:channel:106",
+   "kind": "sentence",
+   "name": "channel:106",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    81,
+    254
+   ]
+  },
+  {
+   "id": "sentence:channel:107",
+   "kind": "sentence",
+   "name": "channel:107",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    254
+   ]
+  },
+  {
+   "id": "sentence:channel:108",
+   "kind": "sentence",
+   "name": "channel:108",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    80,
+    254
+   ]
+  },
+  {
+   "id": "sentence:channel:109",
+   "kind": "sentence",
+   "name": "channel:109",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    80,
+    109,
+    254
+   ]
+  },
+  {
+   "id": "sentence:channel:110",
+   "kind": "sentence",
+   "name": "channel:110",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    82,
+    83,
+    84,
+    254,
+    351
+   ]
+  },
+  {
+   "id": "sentence:channel:111",
+   "kind": "sentence",
+   "name": "channel:111",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    88
+   ]
+  },
+  {
+   "id": "sentence:channel:112",
+   "kind": "sentence",
+   "name": "channel:112",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    254
+   ]
+  },
+  {
+   "id": "sentence:channel:113",
+   "kind": "sentence",
+   "name": "channel:113",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    105,
+    106
+   ]
+  },
+  {
+   "id": "sentence:channel:114",
+   "kind": "sentence",
+   "name": "channel:114",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    114,
+    116,
+    117
+   ]
+  },
+  {
+   "id": "sentence:channel:115",
+   "kind": "sentence",
+   "name": "channel:115",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    254
+   ]
+  },
+  {
+   "id": "sentence:channel:116",
+   "kind": "sentence",
+   "name": "channel:116",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    45,
+    172,
+    173,
+    174,
+    175,
+    282,
+    351
+   ]
+  },
+  {
+   "id": "sentence:channel:117",
+   "kind": "sentence",
+   "name": "channel:117",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    119,
+    159
+   ]
+  },
+  {
+   "id": "sentence:channel:118",
+   "kind": "sentence",
+   "name": "channel:118",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    120,
+    121,
+    122,
+    126,
+    127,
+    380
+   ]
+  },
+  {
+   "id": "sentence:channel:119",
+   "kind": "sentence",
+   "name": "channel:119",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    121,
+    373,
+    374
+   ]
+  },
+  {
+   "id": "sentence:channel:120",
+   "kind": "sentence",
+   "name": "channel:120",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    135,
+    136,
+    138,
+    141,
+    148,
+    151,
+    152,
+    254
+   ]
+  },
+  {
+   "id": "sentence:channel:121",
+   "kind": "sentence",
+   "name": "channel:121",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    141,
+    143
+   ]
+  },
+  {
+   "id": "sentence:channel:122",
+   "kind": "sentence",
+   "name": "channel:122",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    143,
+    148
+   ]
+  },
+  {
+   "id": "sentence:channel:123",
+   "kind": "sentence",
+   "name": "channel:123",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    147,
+    148
+   ]
+  },
+  {
+   "id": "sentence:channel:124",
+   "kind": "sentence",
+   "name": "channel:124",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    147,
+    152
+   ]
+  },
+  {
+   "id": "sentence:channel:125",
+   "kind": "sentence",
+   "name": "channel:125",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    151,
+    152
+   ]
+  },
+  {
+   "id": "sentence:channel:126",
+   "kind": "sentence",
+   "name": "channel:126",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    151,
+    154
+   ]
+  },
+  {
+   "id": "sentence:channel:128",
+   "kind": "sentence",
+   "name": "channel:128",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    122,
+    128,
+    254
+   ]
+  },
+  {
+   "id": "sentence:channel:129",
+   "kind": "sentence",
+   "name": "channel:129",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    162,
+    254
+   ]
+  },
+  {
+   "id": "sentence:channel:130",
+   "kind": "sentence",
+   "name": "channel:130",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    162,
+    163,
+    164
+   ]
+  },
+  {
+   "id": "sentence:channel:131",
+   "kind": "sentence",
+   "name": "channel:131",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    211
+   ]
+  },
+  {
+   "id": "sentence:channel:132",
+   "kind": "sentence",
+   "name": "channel:132",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    254
+   ]
+  },
+  {
+   "id": "sentence:channel:133",
+   "kind": "sentence",
+   "name": "channel:133",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    180,
+    181
+   ]
+  },
+  {
+   "id": "sentence:channel:134",
+   "kind": "sentence",
+   "name": "channel:134",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    218,
+    221,
+    222,
+    223,
+    224,
+    227,
+    238,
+    239
+   ]
+  },
+  {
+   "id": "sentence:channel:135",
+   "kind": "sentence",
+   "name": "channel:135",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    218,
+    221,
+    222,
+    223,
+    224,
+    225,
+    238,
+    239,
+    254,
+    302,
+    303,
+    311
+   ]
+  },
+  {
+   "id": "sentence:channel:137",
+   "kind": "sentence",
+   "name": "channel:137",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    216
+   ]
+  },
+  {
+   "id": "sentence:channel:138",
+   "kind": "sentence",
+   "name": "channel:138",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    45,
+    156,
+    159,
+    175,
+    254
+   ]
+  },
+  {
+   "id": "sentence:channel:139",
+   "kind": "sentence",
+   "name": "channel:139",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    237,
+    319
+   ]
+  },
+  {
+   "id": "sentence:channel:140",
+   "kind": "sentence",
+   "name": "channel:140",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    235,
+    261,
+    262,
+    263,
+    281
+   ]
+  },
+  {
+   "id": "sentence:channel:141",
+   "kind": "sentence",
+   "name": "channel:141",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    237,
+    307
+   ]
+  }
+ ]
+}

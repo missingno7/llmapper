@@ -1079,3 +1079,240 @@ does not separate them -- both would pass. The wall counts would be identical.
 > does separate the options: a crossing rounded 0.6-0.7 units off its
 > edge, which a half-unit containment misses. See section 26 of the
 > decisions document.**
+## 28. E3M1 decompiled, layers 1-3: what the readers found in the writer (P15, 2026-09-02)
+
+The experiment of decisions section 23 on E3M1. Every number below is read
+off `maps/blood/campaign/E3M1.MAP` by a reader in `bloodmap/`, and each
+question names a node id in its layer's review pack
+(`projects/e3m1-decompiled/review/layer<N>.html`). No writer module was
+touched.
+
+**28a. `joins.py`'s pavement|pavement row cites two sectors that are not
+pavement.** The row's evidence reads "E3M1 s10/s11: a pavement-only path
+between abutting islands". Both sectors have `floor_z == ceiling_z == 8192`:
+zero clear height, ceiling tiles 414 and 401. They are solid masses -- Build
+draws nothing inside one and no body stands in it. The ROW is still attested
+(14 pavement|pavement records in E3M1, between the shadow-cut pavement
+bands); only its citation is wrong.
+*Recommended default:* correct the evidence string to name the shadow-cut
+bands, and leave the row. Node `row:pavement|pavement|equal`, layer 3.
+
+**28b. `TILE_CLASSES["facade stone"] = 400` is our choice, not E3M1's.** All
+3 road|end_wall records wear 414 and all 3 block; the 13 pavement|end_wall
+records wear {414: 6, 181: 2, 384: 2, 417: 2, 488: 1}. The kerb row by
+contrast is exact: 11 of 11 road-side records wear tile 6, and none blocks.
+*Recommended default:* keep 400 as Gravesend's choice, record 414 as E3M1's,
+and mine the class over the campaign before either is called a default.
+Node `kind:end_wall`, layer 3.
+
+**28c. Four "end wall" records do not block, and all four face a mover.**
+Sectors 172 and 174 carry sector type 600. The reader classifies them as
+wall-top masses because at rest nothing can step onto them, and the join
+table's blocking clause is then wrong about them and right about the eleven
+static records.
+*Recommended default:* a raised outdoor mass carrying a sector type is a
+mechanism at rest, not an end wall; the reader should name it apart so the
+end-wall row keeps its blocking clause. Node `kind:end_wall`, layer 3.
+
+**28d. E3M1 restarts its materials at corners.** 514 of 1537 same-tile joins
+continue in u (33.4%): 88% of collinear solid-solid joins, 51% of
+solid-solid bends, 15% of solid-portal reflex corners. Only 779 of 2481
+records (31.4%) sit in a shared projection at all. The writer's
+`RUN_BREAK_DEGREES` of 100 carries a run straight through a bend.
+*Recommended default:* change nothing yet -- decide the bend break on a
+campaign-wide census, not on one map. Node `surface:0898`, layer 2.
+
+**28e. The join table describes the street and nothing inside the
+buildings.** 1312 of 1386 two-sided records (94.66%) are pairs with no row,
+and 1122 of those are interior|interior.
+*Recommended default:* that is the table's honest scope; adding indoor rows
+should follow an indoor census. Node `level`, layer 3.
+
+Confirmed, not disagreed: the rise is 2048 on 11 of 11 steps, measured; the
+road is the network's base plane at z 10240 and is recovered without looking
+at tile 352; exactly three end walls are met by a road record, and they are
+s0, s339 and s343.
+
+## 29. E3M1 layer 4, and two defects the readers found in the writer (P15, 2026-09-02)
+
+Every number is read off `maps/blood/campaign/E3M1.MAP` by `bloodmap.read_islands`
+and `bloodmap.read_light`. Node ids are in `projects/e3m1-decompiled/review/layer4.html`.
+
+**29a. E3M1's own shadow step is 24-26, not 12, and 20 of its 22 boundary
+records fall outside the gate's envelope [8, 16].** The map the city's street
+language was read from fails the light gate the writer enforces. What holds:
+the lit base is 8 (as cited) and the field has 3 significant levels (inside
+2-4). What does not: `base + k*12` reproduces only shades 8 and 32; E3M1 also
+uses 14, 24, 34 and 46, and 15 of its 24 street sectors fit no level.
+Re-measured over the campaign myself, two ways, and the definition of the
+network moves the answer: over ALL parallax sectors, 38 maps, 1496 boundary
+records, median 12, 53% inside [8, 16] -- which reproduces decisions section
+21 exactly; over the largest outdoor component only, 398 records, median 15,
+43% inside.
+*Recommended default:* keep 12 and the envelope as CAMPAIGN values, state that
+E3M1 is outside them, and make the gate say which network it means -- the
+number depends on that and the gate does not currently say. Node `field`.
+
+**29b. `overlay.kerb_records` claims 81 kerb records where E3M1 makes 11.**
+Replayed over the three islands the reader recovered, it emits one entry per
+edge of the island's outline and never reads its `ground_outline` argument, so
+it asks for a kerb on the 56 edges facing the void, the 18 facing an interior
+and the 13 facing an end wall. The 11 it gets right are exactly the map's 11,
+all wearing tile 6, none blocking.
+*Recommended default:* `kerb_records` should use the `ground_outline` it
+already takes and emit a record only where the island's edge is also a ground
+edge. A writer change, reported and not made. Node `islands`.
+
+**29c. `joins.is_water`'s panning clause never runs on a decompiled level.**
+It reads `getattr(sector, "extra", None)`, which is `None` for every `LevelIR`
+sector -- they carry the extra under the key `"blood"` -- so only its palette
+clause fires. On DWE3M10, the map the shore and sea rows were mined from, that
+loses 4 of its 22 panning sectors (393-396, palette 0). E3M1 has no water, so
+nothing here depended on it.
+*Recommended default:* give `is_water` the accessor `assembly._x` already has.
+`bloodmap.read_joins.reads_as_water` is the reader-side version and the
+measurement above is what it found.
+
+**29d. The casters are not recovered, and the reader says so.** The sun's
+throw comes back as 479 build units against the cited 478 -- 0.18 degrees, the
+axis from 14 oblique boundaries spanning 82.87-86.42 and the sign unanimous
+(6 far-end boundaries, 6-0). But the test for WHICH mass threw each shadow --
+the shadow's side edge should start at a mass corner up-sun -- is a tie: 8 of
+16 oblique edges have a mass corner at their up-sun end and 8 have one at
+their down-sun end.
+*Recommended default:* report the bearing as recovered and the casters as not.
+Node `depth:0`.
+
+**29e. The wave exclusion is a true zero here.** Sectors whose XSECTOR carries
+`amplitude` or `shade_always` drive their own shade and are excluded from the
+shade-boundary population before anything is measured. E3M1 has 61 of them;
+exactly one (s174) is in the street network and it lies on no same-z shade
+boundary, so the exclusion removes 0 of the 22 shade-edge records and one
+sector from the field's levels. The rule is in place and untested by this map.
+
+Also corrected, in this agent's own work: an earlier pass read Blood extras
+through an `extra` attribute and reported E3M1 as having none. It has 133
+XSECTORs, 41 XWALLs and 716 XSPRITEs, and
+`tests/test_read_overlays.test_the_extras_are_read_through_the_key_a_levelir_uses`
+now fails if that is read the wrong way again.
+
+## 30. E3M1 layers 5, 6, 7, 8, and the decompilation as a fact store (P15, 2026-09-02)
+
+The store is `projects/e3m1-decompiled/facts/`, one JSONL per predicate with
+provenance on every derived row; `source/query.py` computes every number any
+report quotes. Node ids are in the layer packs.
+
+**30a. The plan's width class does not say whether it means the carriageway
+or the full width, and E3M1 lands in different classes either way.** Its main
+street is 7.28 pu of carriageway (nearest class AVENUE, residual 0.28) and
+10.78 pu with its pavements (still AVENUE, residual 3.78); its east arm is
+4.00 pu of carriageway (LANE, residual 1.00) and 6.00 with its pavement (ROW,
+residual 0.00). The reader gives both because the plan does not say.
+*Recommended default:* the FULL width. `city_plan`'s grid is a running sum of
+street widths and block columns, and a pavement is part of the street rather
+than of the block — under that reading E3M1's east arm is a ROW exactly, with
+no residual at all. State it in `city_plan.py`. Node `streets`, layer 7.
+
+**30b. A block recovered by connectivity is a whole side of the city.** 23
+blocks; the largest holds 123 sectors in a 14.62 x 12.00 pu envelope, because
+E3M1's masses run together through their interiors. `city_plan`'s block is one
+buildable rectangle.
+*Recommended default:* the reader should cut a mass at its street frontages.
+Named as missing rather than guessed. Node `blocks`, layer 7.
+
+**30c. The schematic costs 12% of the ground at the median and 78% at the
+worst.** Every plan element is a rect and a sector is not: E3M1's ground fills
+its own bounding rectangles 0.882 of the time at the median, 0.219 at the
+worst.
+*Recommended default:* state it rather than bound it, and have the solver's
+own output carry the same number so the two can be compared. Node `level`,
+layer 7.
+
+**30d. Five of E3M1's 136 sentences use a (type, shape, slot) combination the
+taught course never shows** — s41's type 615 with "part of the sector travels"
+and a shade wave, for one. The course teaches 6 lessons of type 615 and 77
+constructs, and 3 of them have that shape; none has that slot set.
+*Recommended default:* a finding, and the interesting one — the course teaches
+each slot alone and the campaign combines them. It belongs in the curriculum's
+own gaps list. Node `sentence:sector:41`, layer 5.
+
+**30e. All three of E3M1's room-over-room stacks carry the same fault: the
+floor marker sits 256 units below the plane it links.** Three of three is a
+convention, not a mistake, and `curriculum.stack_faults` reports it as
+"the floor marker floats".
+*Recommended default:* the fault text should say "256 below, as all three of
+E3M1's are" — a convention the campaign keeps three times out of three is not
+a defect our checker gets to name. Node `kind:room_over_room`, layer 5.
+
+**30f. A chain is one sentence and our writer has no construct that fans out
+like one.** E3M1's biggest is one channel (116) whose two switches tell 159
+records at once; 63 of its 69 channels have receivers.
+*Recommended default:* one sentence per channel, with the fan-out as a
+parameter. Splitting it per receiver would make the collapsing house 159
+mechanisms that happen to share a number. Node `sentence:channel:116`, layer 5.
+
+**30g. Layer 8 refuses 84 of 136 mechanisms and 26 of 36 grouped spaces, and
+names by the curriculum's own file names.** A mechanism is named by the modal
+PREFIX of the lesson files teaching its (type, shape), taken only at a 60%
+majority: 16 sentences come back `door` and 36 are candidates where no prefix
+holds a majority. Places are named only where exactly one measured rule fires:
+4 `stepped_run`, 2 `street`, 4 candidates, 26 refusals.
+*Recommended default:* keep the refusal rate. What is missing is named rather
+than guessed — what distinguishes a Blood interior is its furniture, and the
+prop reader is not wired into this layer. Node `level`, layer 8.
+
+**30h. E3M1's boundary is 16 terminations, 65 records of void and 19 ways
+in.** A residue of zero on the edge classifier is easy, because
+`building_back` catches every one-sided record; the number that measures the
+edge FAMILY is its own share. Node `edge:building_back`, layer 6.
+
+**30i. The review pack's script was dead in every pack for one commit, and
+the tool exited 0 the whole time.** The page is built by one f-string, so a
+JavaScript `\n` has to be spelled with TWO backslashes in the Python source;
+the fact panel and the aspect selector I added used one, the f-string emitted
+a REAL newline into a JavaScript string literal, and the script died at the
+first one — blank tree, inert map, valid-looking HTML. Fixed, and
+`tests/test_review_pack.py` now builds a pack and refuses one whose script has
+a string literal spanning lines, whose JSON constants do not parse, or whose
+`build` has lost the "+Y down. Never flip." orientation.
+*No default needed; recorded because it is the project's own lesson (verify
+the thing, not the call) failing in a new place: a tool that returns HTML is
+not evidence that the HTML runs.*
+
+## 31. Two fact stores landed on the same day with the same name (P15, 2026-09-02)
+
+`bloodmap/facts.py` arrived on `blood-city-arcade` (9a76dde, "The compiler
+writes its facts beside the map") while a file of the same name was being
+written here for the decompilation. Both implement section 2.1 of
+`RESEARCH-OVERLAPPING-LAYERS-2026-09-02.md`, from opposite ends, and neither
+knew about the other.
+
+**Resolved without touching the writer:** the compiler keeps `facts.py`; the
+reader's is now `bloodmap/read_store.py`, and its docstring says why there are
+two. Nothing of the compiler's was edited and the E3M1 store is byte-identical
+across the rename.
+
+They are not interchangeable:
+
+| | compiler (`facts.py`) | reader (`read_store.py`) |
+| --- | --- | --- |
+| row | `{key, lod, source, fields}` | `{id, ...attrs, _from, _reader, _layer}` |
+| predicates | 14, a closed tuple | 37, declared with what each row is |
+| holds | the declarations a build makes | the map's own records, plus what readers derive |
+| ledger | `claims` | `claims`, `candidate`, `selection`, `conflict`, `residue` |
+| gate | a pass at LoD N leaves every fact below N byte-identical | a claim reproduces its field |
+
+**The question:** should they become one? The argument for is strong and it is
+the project's own: with one store the compiler's facts and the reader's facts
+are diffable directly, and *that diff is the symmetry test of decisions
+section 20* — "decompile, recompile, diff STRUCTURE" becomes "diff two sets of
+rows". Today the two shapes have to be translated before they can be compared
+at all.
+
+*Recommended default:* unify, on the READER's shape, with `lod` added as an
+attribute — it is the superset (it holds base records, and the ledger's four
+extra predicates), its provenance is per-row rather than per-declaration, and
+its predicate table carries a description per predicate so a new one cannot
+appear unannounced. The compiler's LoD gate keeps working as a query over
+`_layer`/`lod`. But this is a writer change and it is P14b's to make or
+refuse, so nothing was done to `facts.py` here.

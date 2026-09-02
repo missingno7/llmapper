@@ -1,0 +1,23 @@
+{
+ "layer": 3,
+ "questions": [
+  {
+   "node": "row:road|pavement|b_above",
+   "question": "The reader recovers 11 road|pavement records and all 11 wear tile 6 with cstat 0 -- the kerb, exactly as the row states. But `joins.TILE_CLASSES` gives `facade stone` as 400 and E3M1's 3 road|end_wall records all wear 414. Is 400 a campaign value or Gravesend's own choice?",
+   "recommended_default": "treat 400 as our CHOICE and 414 as E3M1's, and mine the class over the campaign before either is called a default; the kerb row needs no change",
+   "evidence": "references/join-census.json: band_tiles"
+  },
+  {
+   "node": "kind:end_wall",
+   "question": "Four pavement|end_wall records are not blocking, and all four face sectors 172 and 174, which carry sector type 600 -- they MOVE. Should a raised outdoor mass that carries a sector type be an end wall at all?",
+   "recommended_default": "no: it is a mechanism at rest, and layer 5 owns it. The reader should name it separately so the end-wall row keeps its blocking clause on the 11 records that do stay put",
+   "evidence": "references/join-census.json: cstat_disagreements"
+  },
+  {
+   "node": "level",
+   "question": "1312 of 1386 two-sided records (94.66%) are pairs the table has no row for, and 1122 of them are interior|interior. Is that a gap to fill or the table's honest scope?",
+   "recommended_default": "its scope: the grammar was mined from the street and says so. Adding indoor rows should follow an indoor census, not this one map",
+   "evidence": "references/join-census.json: undescribed"
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "layer": 4,
+ "questions": [
+  {
+   "node": "field",
+   "question": "E3M1's own shadow deltas are {12: 2, 24: 6, 26: 14}, median 26, not 12. 20 of 22 boundary records fall OUTSIDE the gate's envelope [8, 16], so the map the street language was read from fails the gate the writer enforces. Is the envelope wrong, or is E3M1 outside it on purpose?",
+   "recommended_default": "keep the envelope as a campaign envelope and state that E3M1 is outside it: my own re-measurement over 38 campaign maps gives median 12 and 53% inside [8, 16] on all parallax sectors, median 15 and 43% on the largest outdoor component only. The gate should say which network it means",
+   "evidence": "references/overlays.json: light.step, campaign_step"
+  },
+  {
+   "node": "islands",
+   "question": "`overlay.kerb_records` claims 81 kerb records over E3M1's 3 islands and the map makes 11. It emits one entry per outline edge and never reads its `ground_outline` argument, so it asks for a kerb on the 56 edges facing the void too. Should it take the ground's edges, or should the caller filter?",
+   "recommended_default": "`kerb_records` should use `ground_outline` -- it already takes it -- and emit a record only where the island edge is also a ground edge. This is a writer change and is reported, not made",
+   "evidence": "references/overlays.json: islands.islands_the_writer_over_claims"
+  },
+  {
+   "node": "depth:0",
+   "question": "The reader recovers a throw bearing of 479 build units against the project's cited 478, and the sign is unanimous (6 far-end boundaries, {'along the axis': 6, 'against it': 0}). But the corner test is a tie: 8 of 16 oblique edges have a mass corner up-sun and 8 have one down-sun. Is that enough to call the casters recovered?",
+   "recommended_default": "no. The bearing is recovered and the casters are not; the ledger says so rather than naming a caster the geometry does not choose",
+   "evidence": "references/overlays.json: light.casters"
+  }
+ ]
+}
