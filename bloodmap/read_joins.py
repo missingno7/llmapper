@@ -47,7 +47,7 @@ from typing import Any, Iterable, Sequence
 from . import joins
 from .joins import (
     B_ABOVE, END_WALL, EQUAL, HORIZON, JoinError, PAVEMENT, ROAD, SEA, SHORE,
-    TILE_CLASSES, height_relation, is_water, rule,
+    TILE_CLASSES, height_relation, rule,
 )
 from .texture_frame import sector_index
 
@@ -69,6 +69,32 @@ class KindReadError(ValueError):
 
 def _face(item: Any) -> Any:
     return item["fields"] if isinstance(item, dict) else item.fields
+
+
+def _extra(item: Any) -> dict[str, Any] | None:
+    """The Blood extra of a sector, wall or sprite, however it is carried.
+
+    `assembly._x`'s accessor, repeated here because `joins.is_water` does not
+    have it: it reads `getattr(sector, "extra", None)`, which is `None` for
+    every `LevelIR` sector (they carry the extra under the key `"blood"`), so
+    its panning clause never runs on a decompiled level and only its palette
+    clause does. On DWE3M10 -- the map the shore and sea rows were mined from
+    -- that loses 4 of its 22 panning sectors (393-396, palette 0). Reported,
+    not patched: `joins.py` is the writer.
+    """
+    extra = item["blood"] if isinstance(item, dict) else getattr(item, "extra", None)
+    if extra is None:
+        return None
+    return extra["fields"] if isinstance(extra, dict) else extra.fields
+
+
+def reads_as_water(sector: Any) -> bool:
+    """`joins.is_water`'s own two clauses, with an accessor that can see both."""
+    fields = _face(sector)
+    extra = _extra(sector) or {}
+    panning = any(int(extra.get(name, 0)) for name in
+                  ("pan_floor", "pan_always", "pan_velocity", "drag"))
+    return panning or int(fields.get("floor_pal", 0)) in joins.WATER_PALETTES
 
 
 def _area(level: Any, sector_id: int) -> float:
@@ -170,9 +196,10 @@ def surface_kinds(level: Any, *, owners: Sequence[int] | None = None
                                "nothing draws inside and no body stands in it")
         elif int(fields["floor_stat"]) & 1 and int(fields["ceiling_stat"]) & 1:
             name(index, HORIZON, "floor and ceiling both parallax")
-        elif is_water(sector):
-            name(index, WATER, "joins.is_water: a water palette, or panning "
-                               "or drag on the floor")
+        elif reads_as_water(sector):
+            name(index, WATER, "joins.is_water's own test -- a water palette, "
+                               "or panning or drag on the floor -- with an "
+                               "accessor that can see a LevelIR's extra")
 
     network, components = street_network(level, graph)
     rise, steps = measured_rise(level, network, graph)

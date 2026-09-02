@@ -1114,3 +1114,66 @@ Confirmed, not disagreed: the rise is 2048 on 11 of 11 steps, measured; the
 road is the network's base plane at z 10240 and is recovered without looking
 at tile 352; exactly three end walls are met by a road record, and they are
 s0, s339 and s343.
+
+## 29. E3M1 layer 4, and two defects the readers found in the writer (P15, 2026-09-02)
+
+Every number is read off `maps/blood/campaign/E3M1.MAP` by `bloodmap.read_islands`
+and `bloodmap.read_light`. Node ids are in `projects/e3m1-decompiled/review/layer4.html`.
+
+**29a. E3M1's own shadow step is 24-26, not 12, and 20 of its 22 boundary
+records fall outside the gate's envelope [8, 16].** The map the city's street
+language was read from fails the light gate the writer enforces. What holds:
+the lit base is 8 (as cited) and the field has 3 significant levels (inside
+2-4). What does not: `base + k*12` reproduces only shades 8 and 32; E3M1 also
+uses 14, 24, 34 and 46, and 15 of its 24 street sectors fit no level.
+Re-measured over the campaign myself, two ways, and the definition of the
+network moves the answer: over ALL parallax sectors, 38 maps, 1496 boundary
+records, median 12, 53% inside [8, 16] -- which reproduces decisions section
+21 exactly; over the largest outdoor component only, 398 records, median 15,
+43% inside.
+*Recommended default:* keep 12 and the envelope as CAMPAIGN values, state that
+E3M1 is outside them, and make the gate say which network it means -- the
+number depends on that and the gate does not currently say. Node `field`.
+
+**29b. `overlay.kerb_records` claims 81 kerb records where E3M1 makes 11.**
+Replayed over the three islands the reader recovered, it emits one entry per
+edge of the island's outline and never reads its `ground_outline` argument, so
+it asks for a kerb on the 56 edges facing the void, the 18 facing an interior
+and the 13 facing an end wall. The 11 it gets right are exactly the map's 11,
+all wearing tile 6, none blocking.
+*Recommended default:* `kerb_records` should use the `ground_outline` it
+already takes and emit a record only where the island's edge is also a ground
+edge. A writer change, reported and not made. Node `islands`.
+
+**29c. `joins.is_water`'s panning clause never runs on a decompiled level.**
+It reads `getattr(sector, "extra", None)`, which is `None` for every `LevelIR`
+sector -- they carry the extra under the key `"blood"` -- so only its palette
+clause fires. On DWE3M10, the map the shore and sea rows were mined from, that
+loses 4 of its 22 panning sectors (393-396, palette 0). E3M1 has no water, so
+nothing here depended on it.
+*Recommended default:* give `is_water` the accessor `assembly._x` already has.
+`bloodmap.read_joins.reads_as_water` is the reader-side version and the
+measurement above is what it found.
+
+**29d. The casters are not recovered, and the reader says so.** The sun's
+throw comes back as 479 build units against the cited 478 -- 0.18 degrees, the
+axis from 14 oblique boundaries spanning 82.87-86.42 and the sign unanimous
+(6 far-end boundaries, 6-0). But the test for WHICH mass threw each shadow --
+the shadow's side edge should start at a mass corner up-sun -- is a tie: 8 of
+16 oblique edges have a mass corner at their up-sun end and 8 have one at
+their down-sun end.
+*Recommended default:* report the bearing as recovered and the casters as not.
+Node `depth:0`.
+
+**29e. The wave exclusion is a true zero here.** Sectors whose XSECTOR carries
+`amplitude` or `shade_always` drive their own shade and are excluded from the
+shade-boundary population before anything is measured. E3M1 has 61 of them;
+exactly one (s174) is in the street network and it lies on no same-z shade
+boundary, so the exclusion removes 0 of the 22 shade-edge records and one
+sector from the field's levels. The rule is in place and untested by this map.
+
+Also corrected, in this agent's own work: an earlier pass read Blood extras
+through an `extra` attribute and reported E3M1 as having none. It has 133
+XSECTORs, 41 XWALLs and 716 XSPRITEs, and
+`tests/test_read_overlays.test_the_extras_are_read_through_the_key_a_levelir_uses`
+now fails if that is read the wrong way again.

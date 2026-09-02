@@ -104,11 +104,17 @@ def write_pack(layer: int, tree: Tree, title: str,
         json.dumps({"layer": layer, "questions": questions}, indent=1),
         encoding="utf-8")
     out = REVIEW / f"layer{layer}.html"
-    subprocess.run(
-        [sys.executable, str(REPO / "tools" / "review_pack.py"),
-         str(corpus_map_path(MAP_NAME)), str(hierarchy), "-o", str(out),
-         "--title", title],
-        check=True, cwd=str(REPO))
+    command = [sys.executable, str(REPO / "tools" / "review_pack.py"),
+               str(corpus_map_path(MAP_NAME)), str(hierarchy), "-o", str(out),
+               "--title", title]
+    #: The shared ledger, so a record's fact panel lists every claim on its
+    #: fields and every field nothing claims. It is written by `ledger.py`
+    #: from every layer's claims, so on a first run of a layer it may be one
+    #: run behind -- rerun `ledger.py` and then the stage to close that.
+    shared = PROJECT / "claims.json"
+    if shared.exists():
+        command += ["--claims", str(shared)]
+    subprocess.run(command, check=True, cwd=str(REPO))
     residue = tree.unowned()
     print(f"  review pack   : {out.relative_to(REPO)} "
           f"({len(tree.nodes) - 1} nodes, {len(residue)} sectors unowned, "

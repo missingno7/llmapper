@@ -1,0 +1,1295 @@
+{
+ "campaign_step": {
+  "all parallax sectors": {
+   "boundary_records": 1362,
+   "deltas": {
+    "1": 14,
+    "2": 76,
+    "3": 18,
+    "4": 80,
+    "5": 26,
+    "6": 70,
+    "7": 36,
+    "8": 148,
+    "9": 38,
+    "10": 80,
+    "11": 48,
+    "12": 162,
+    "13": 64,
+    "14": 12,
+    "15": 54,
+    "16": 160,
+    "17": 8,
+    "18": 44,
+    "19": 20,
+    "20": 40,
+    "21": 14,
+    "22": 24,
+    "23": 4,
+    "24": 20,
+    "25": 2,
+    "26": 32,
+    "28": 2,
+    "29": 2,
+    "30": 8,
+    "32": 2,
+    "34": 4,
+    "36": 12,
+    "37": 2,
+    "47": 6,
+    "63": 6,
+    "154": 24
+   },
+   "inside_percent": 56.2,
+   "inside_the_envelope": 766,
+   "maps": 38,
+   "mean": 14.9,
+   "median": 12
+  },
+  "the largest outdoor component": {
+   "boundary_records": 362,
+   "deltas": {
+    "1": 4,
+    "2": 8,
+    "3": 2,
+    "4": 28,
+    "5": 2,
+    "6": 34,
+    "7": 4,
+    "8": 20,
+    "9": 8,
+    "10": 32,
+    "11": 2,
+    "12": 28,
+    "13": 8,
+    "15": 10,
+    "16": 56,
+    "17": 2,
+    "18": 26,
+    "20": 20,
+    "22": 22,
+    "24": 12,
+    "26": 28,
+    "47": 6
+   },
+   "inside_percent": 45.3,
+   "inside_the_envelope": 164,
+   "maps": 38,
+   "mean": 14.2,
+   "median": 15
+  }
+ },
+ "claims": "17 field claims",
+ "disagreements_with_the_measured_facts": [
+  {
+   "claim": "the light field quantises to base + k*12, and every shadow edge's delta lies in [8, 16]",
+   "reconciled": "the base is right (8) and the level count is right (3, inside 2-4); the STEP is not. E3M1's is 24-26, twice the campaign median",
+   "the_reader_finds": "E3M1's own deltas are {12: 2, 24: 6, 26: 14}: 20 of 22 boundary records are outside the envelope, and only shades [8, 32] of [8, 14, 24, 32, 34, 46] fit base + k*12"
+  },
+  {
+   "claim": "20 oblique shade edges at ~84 degrees (SUN_BEARING 478)",
+   "reconciled": "the bearing is confirmed to within one build unit. The COUNT is not: 22 shade-boundary records over 24 street sectors here against the cited 44 over 68. No definition of the network reproduces 44/68 -- all parallax sectors gives 22 over 45, parallax plus one ring of neighbours 22 over 76",
+   "the_reader_finds": "16 oblique shade-boundary RECORDS in the street network, 14 of them within [82.87, 86.42] degrees of 84.2; the throw bearing comes back as 479 build units against the cited 478, a difference of 0.18 degrees"
+  },
+  {
+   "claim": "overlay.kerb_records says which records carry the kerb",
+   "reconciled": "the 11 it gets right are exactly the map's 11, all wearing tile 6; the other 70 are edges that face something that is not the road",
+   "the_reader_finds": "replayed over the three recovered islands it claims 81 records; E3M1 makes 11. It iterates the island's outline and never reads its `ground_outline` argument, so it asks for a kerb on every edge facing a building, an interior or the void"
+  }
+ ],
+ "island_summary": {
+  "island_sectors": 9,
+  "islands": 3,
+  "kerb_records_the_map_makes": 11,
+  "kerb_records_the_writer_claims": 81,
+  "kerb_tiles_seen": {
+   "6": 11
+  },
+  "residue_percent": 57.69,
+  "rise": 2048,
+  "steps_that_are_not_islands": 15
+ },
+ "islands": {
+  "base_plane_z": 10240,
+  "island_sectors": [
+   1,
+   2,
+   4,
+   5,
+   6,
+   9,
+   159,
+   175,
+   235
+  ],
+  "islands": [
+   {
+    "boundary_faces": {
+     "end_wall": 3,
+     "interior": 7,
+     "road": 4,
+     "solid": 2,
+     "void": 14
+    },
+    "floor_picnum": 4,
+    "island_id": "island:000",
+    "kerb_tile": 6,
+    "loops": 1,
+    "outline_vertices": 30,
+    "rise": 2048,
+    "road_side_tiles": {
+     "6": 4
+    },
+    "sectors": [
+     1,
+     2,
+     235
+    ]
+   },
+   {
+    "boundary_faces": {
+     "end_wall": 8,
+     "interior": 9,
+     "outdoor_ground": 4,
+     "road": 4,
+     "solid": 5,
+     "void": 30
+    },
+    "floor_picnum": 4,
+    "island_id": "island:001",
+    "kerb_tile": 6,
+    "loops": 2,
+    "outline_vertices": 32,
+    "rise": 2048,
+    "road_side_tiles": {
+     "6": 4
+    },
+    "sectors": [
+     4,
+     5,
+     175
+    ]
+   },
+   {
+    "boundary_faces": {
+     "end_wall": 2,
+     "interior": 2,
+     "road": 3,
+     "void": 12
+    },
+    "floor_picnum": 4,
+    "island_id": "island:002",
+    "kerb_tile": 6,
+    "loops": 1,
+    "outline_vertices": 19,
+    "rise": 2048,
+    "road_side_tiles": {
+     "6": 3
+    },
+    "sectors": [
+     6,
+     9,
+     159
+    ]
+   }
+  ],
+  "islands_the_writer_over_claims": [
+   {
+    "island": "island:000",
+    "outline_edges": 30,
+    "records_the_map_kerbs": 4,
+    "what_the_other_side_is": {
+     "end_wall": 3,
+     "interior": 7,
+     "road": 4,
+     "solid": 2,
+     "void": 14
+    }
+   },
+   {
+    "island": "island:001",
+    "outline_edges": 32,
+    "records_the_map_kerbs": 4,
+    "what_the_other_side_is": {
+     "end_wall": 8,
+     "interior": 9,
+     "outdoor_ground": 4,
+     "road": 4,
+     "solid": 5,
+     "void": 30
+    }
+   },
+   {
+    "island": "island:002",
+    "outline_edges": 19,
+    "records_the_map_kerbs": 3,
+    "what_the_other_side_is": {
+     "end_wall": 2,
+     "interior": 2,
+     "road": 3,
+     "void": 12
+    }
+   }
+  ],
+  "kerb_records_the_map_makes": 11,
+  "kerb_records_the_writer_claims": 81,
+  "kerb_tiles_seen": {
+   "6": 11
+  },
+  "rise": 2048,
+  "steps_that_are_not_islands": {
+   "21504": 1,
+   "33792": 1,
+   "65536": 3,
+   "67584": 1,
+   "98304": 6,
+   "99328": 1,
+   "100352": 2
+  },
+  "steps_that_are_not_islands_count": 15,
+  "walkable_steps_that_are_not_islands": {}
+ },
+ "ledger": {
+  "disagreements": [
+   {
+    "claim": "the light field quantises to base + k*12, and every shadow edge's delta lies in [8, 16]",
+    "reconciled": "the base is right (8) and the level count is right (3, inside 2-4); the STEP is not. E3M1's is 24-26, twice the campaign median",
+    "the_reader_finds": "E3M1's own deltas are {12: 2, 24: 6, 26: 14}: 20 of 22 boundary records are outside the envelope, and only shades [8, 32] of [8, 14, 24, 32, 34, 46] fit base + k*12"
+   },
+   {
+    "claim": "20 oblique shade edges at ~84 degrees (SUN_BEARING 478)",
+    "reconciled": "the bearing is confirmed to within one build unit. The COUNT is not: 22 shade-boundary records over 24 street sectors here against the cited 44 over 68. No definition of the network reproduces 44/68 -- all parallax sectors gives 22 over 45, parallax plus one ring of neighbours 22 over 76",
+    "the_reader_finds": "16 oblique shade-boundary RECORDS in the street network, 14 of them within [82.87, 86.42] degrees of 84.2; the throw bearing comes back as 479 build units against the cited 478, a difference of 0.18 degrees"
+   },
+   {
+    "claim": "overlay.kerb_records says which records carry the kerb",
+    "reconciled": "the 11 it gets right are exactly the map's 11, all wearing tile 6; the other 70 are edges that face something that is not the road",
+    "the_reader_finds": "replayed over the three recovered islands it claims 81 records; E3M1 makes 11. It iterates the island's outline and never reads its `ground_outline` argument, so it asks for a kerb on every edge facing a building, an interior or the void"
+   }
+  ],
+  "explained": 33,
+  "gate": "the recovered islands replayed through overlay.kerb_records and diffed against the records the map actually kerbs; the recovered bearing against the oblique boundaries; every sector's shade against base + k*12",
+  "population": "the street network: 24 sectors, 26 floor steps, 16 oblique shade edges = 66 items",
+  "reader": "bloodmap.read_islands, bloodmap.read_light (new)",
+  "residue": 32,
+  "residue_is": "15 sectors whose shade is not base + k*12, 15 floor steps that are not the island rise, 2 oblique shade edges not at the sun's bearing",
+  "residue_percent": 48.48
+ },
+ "light": {
+  "axis": {
+   "axis_aligned_edges": 6,
+   "axis_degrees": 84.2,
+   "axis_units_mod_half_turn": 479,
+   "cluster_records": 14,
+   "cluster_spread_degrees": [
+    82.87,
+    86.42
+   ],
+   "oblique_edges": 16,
+   "residue_axes": [
+    71.08
+   ],
+   "residue_edges_off_the_bearing": [
+    643,
+    857
+   ]
+  },
+  "casters": {
+   "down_sun_end_is_a_mass_corner": 8,
+   "edges": 16,
+   "neither_end_is": 4,
+   "per_edge": [
+    {
+     "also_at_the_far_end": [],
+     "casts_from": [
+      -1
+     ],
+     "down_sun_corner": [
+      -27136,
+      -8192
+     ],
+     "up_sun_corner": [
+      -27648,
+      -16384
+     ],
+     "wall": 11
+    },
+    {
+     "also_at_the_far_end": [
+      -1
+     ],
+     "casts_from": [
+      11
+     ],
+     "down_sun_corner": [
+      -18944,
+      -21504
+     ],
+     "up_sun_corner": [
+      -19456,
+      -25600
+     ],
+     "wall": 34
+    },
+    {
+     "also_at_the_far_end": [],
+     "casts_from": [
+      -1
+     ],
+     "down_sun_corner": [
+      -20096,
+      -8192
+     ],
+     "up_sun_corner": [
+      -20480,
+      -13312
+     ],
+     "wall": 41
+    },
+    {
+     "also_at_the_far_end": [
+      -1
+     ],
+     "casts_from": [],
+     "down_sun_corner": [
+      -26624,
+      -3072
+     ],
+     "up_sun_corner": [
+      -26720,
+      -4096
+     ],
+     "wall": 43
+    },
+    {
+     "also_at_the_far_end": [],
+     "casts_from": [],
+     "down_sun_corner": [
+      -26720,
+      -4096
+     ],
+     "up_sun_corner": [
+      -27136,
+      -8192
+     ],
+     "wall": 51
+    },
+    {
+     "also_at_the_far_end": [],
+     "casts_from": [],
+     "down_sun_corner": [
+      -26720,
+      -4096
+     ],
+     "up_sun_corner": [
+      -27136,
+      -8192
+     ],
+     "wall": 53
+    },
+    {
+     "also_at_the_far_end": [],
+     "casts_from": [],
+     "down_sun_corner": [
+      -19680,
+      -4096
+     ],
+     "up_sun_corner": [
+      -20096,
+      -8192
+     ],
+     "wall": 59
+    },
+    {
+     "also_at_the_far_end": [
+      -1
+     ],
+     "casts_from": [],
+     "down_sun_corner": [
+      -19456,
+      -2048
+     ],
+     "up_sun_corner": [
+      -19680,
+      -4096
+     ],
+     "wall": 61
+    },
+    {
+     "also_at_the_far_end": [
+      -1
+     ],
+     "casts_from": [],
+     "down_sun_corner": [
+      -26624,
+      -3072
+     ],
+     "up_sun_corner": [
+      -26720,
+      -4096
+     ],
+     "wall": 65
+    },
+    {
+     "also_at_the_far_end": [],
+     "casts_from": [],
+     "down_sun_corner": [
+      -19680,
+      -4096
+     ],
+     "up_sun_corner": [
+      -20096,
+      -8192
+     ],
+     "wall": 220
+    },
+    {
+     "also_at_the_far_end": [
+      118,
+      165
+     ],
+     "casts_from": [
+      -1,
+      118,
+      165,
+      341
+     ],
+     "down_sun_corner": [
+      -3584,
+      -23552
+     ],
+     "up_sun_corner": [
+      -6656,
+      -32512
+     ],
+     "wall": 643
+    },
+    {
+     "also_at_the_far_end": [
+      -1
+     ],
+     "casts_from": [],
+     "down_sun_corner": [
+      -19456,
+      -2048
+     ],
+     "up_sun_corner": [
+      -19680,
+      -4096
+     ],
+     "wall": 825
+    },
+    {
+     "also_at_the_far_end": [
+      118,
+      165
+     ],
+     "casts_from": [
+      -1,
+      118,
+      165,
+      341
+     ],
+     "down_sun_corner": [
+      -3584,
+      -23552
+     ],
+     "up_sun_corner": [
+      -6656,
+      -32512
+     ],
+     "wall": 857
+    },
+    {
+     "also_at_the_far_end": [],
+     "casts_from": [
+      -1
+     ],
+     "down_sun_corner": [
+      -20096,
+      -8192
+     ],
+     "up_sun_corner": [
+      -20480,
+      -13312
+     ],
+     "wall": 949
+    },
+    {
+     "also_at_the_far_end": [
+      -1
+     ],
+     "casts_from": [
+      11
+     ],
+     "down_sun_corner": [
+      -18944,
+      -21504
+     ],
+     "up_sun_corner": [
+      -19456,
+      -25600
+     ],
+     "wall": 976
+    },
+    {
+     "also_at_the_far_end": [],
+     "casts_from": [
+      -1
+     ],
+     "down_sun_corner": [
+      -27136,
+      -8192
+     ],
+     "up_sun_corner": [
+      -27648,
+      -16384
+     ],
+     "wall": 1533
+    }
+   ],
+   "up_sun_end_is_a_mass_corner": 8
+  },
+  "field": {
+   "levels": {
+    "8": {
+     "area_share": 0.237,
+     "sectors": [
+      1,
+      5,
+      8,
+      9
+     ]
+    },
+    "14": {
+     "area_share": 0.0273,
+     "sectors": [
+      339
+     ]
+    },
+    "24": {
+     "area_share": 0.0287,
+     "sectors": [
+      0,
+      237
+     ]
+    },
+    "32": {
+     "area_share": 0.188,
+     "sectors": [
+      3,
+      7,
+      45,
+      236
+     ]
+    },
+    "34": {
+     "area_share": 0.4993,
+     "sectors": [
+      2,
+      4,
+      6,
+      65,
+      159,
+      165,
+      166,
+      172,
+      175,
+      235,
+      343
+     ]
+    },
+    "46": {
+     "area_share": 0.0197,
+     "sectors": [
+      118
+     ]
+    }
+   },
+   "lighter_than_the_base": [],
+   "lit_base": 8,
+   "sectors_that_fit": [
+    1,
+    3,
+    5,
+    7,
+    8,
+    9,
+    45,
+    236
+   ],
+   "sectors_that_fit_no_level": [
+    0,
+    2,
+    4,
+    6,
+    65,
+    118,
+    159,
+    165,
+    166,
+    172,
+    175,
+    235,
+    237,
+    339,
+    343
+   ],
+   "shades_that_fit_base_plus_k_step": {
+    "8": 0,
+    "32": 2
+   },
+   "shades_that_fit_no_level": {
+    "14": 6,
+    "24": 16,
+    "34": 26,
+    "46": 38
+   },
+   "significant_count": 3,
+   "significant_levels": [
+    8,
+    32,
+    34
+   ],
+   "step_assumed": 12,
+   "step_envelope": [
+    8,
+    16
+   ]
+  },
+  "lamps": {
+   "fullbright_by_sector": {
+    "1": {
+     "2519": 1
+    },
+    "7": {
+     "2519": 1,
+     "2521": 1
+    },
+    "8": {
+     "2519": 8,
+     "2521": 3
+    },
+    "45": {
+     "2519": 4,
+     "2521": 2
+    },
+    "159": {
+     "2519": 2
+    },
+    "174": {
+     "2521": 1,
+     "3566": 1
+    },
+    "175": {
+     "2521": 19
+    },
+    "235": {
+     "2519": 1,
+     "2521": 2
+    }
+   },
+   "fullbright_sprites": 46,
+   "sectors_lighter_than_the_base": [],
+   "sectors_with_a_source_and_no_extra_light": [
+    1,
+    7,
+    8,
+    45,
+    159,
+    174,
+    175,
+    235
+   ],
+   "tiles": {
+    "2519": 17,
+    "2521": 28,
+    "3566": 1
+   }
+  },
+  "network": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   45,
+   65,
+   118,
+   159,
+   165,
+   166,
+   172,
+   174,
+   175,
+   235,
+   236,
+   237,
+   339,
+   343
+  ],
+  "sectors_driving_their_own_shade": [
+   174
+  ],
+  "sectors_driving_their_own_shade_in_the_whole_map": [
+   12,
+   14,
+   36,
+   37,
+   38,
+   39,
+   41,
+   46,
+   47,
+   48,
+   55,
+   56,
+   57,
+   64,
+   67,
+   77,
+   78,
+   79,
+   80,
+   82,
+   83,
+   84,
+   85,
+   86,
+   87,
+   102,
+   103,
+   104,
+   106,
+   109,
+   113,
+   114,
+   116,
+   117,
+   119,
+   120,
+   121,
+   123,
+   124,
+   125,
+   163,
+   164,
+   173,
+   174,
+   180,
+   192,
+   193,
+   218,
+   221,
+   222,
+   223,
+   224,
+   227,
+   238,
+   239,
+   248,
+   249,
+   282,
+   378,
+   380,
+   381
+  ],
+  "shade_edge_records": 22,
+  "shade_edge_records_before_excluding_waves": 22,
+  "shade_edge_records_the_wave_exclusion_removes": 0,
+  "sign": {
+   "ballots": [
+    {
+     "dot": 0.995,
+     "vote": "+",
+     "wall": 17
+    },
+    {
+     "dot": 0.995,
+     "vote": "+",
+     "wall": 19
+    },
+    {
+     "dot": 0.995,
+     "vote": "+",
+     "wall": 24
+    },
+    {
+     "dot": 0.995,
+     "vote": "+",
+     "wall": 30
+    },
+    {
+     "dot": 0.995,
+     "vote": "+",
+     "wall": 33
+    },
+    {
+     "dot": 0.995,
+     "vote": "+",
+     "wall": 56
+    }
+   ],
+   "decided": true,
+   "far_end_boundaries": 6,
+   "throw_bearing_degrees": 84.2,
+   "throw_bearing_units": 479,
+   "votes": {
+    "against it": 0,
+    "along the axis": 6
+   }
+  },
+  "step": {
+   "deltas": {
+    "12": 2,
+    "24": 6,
+    "26": 14
+   },
+   "inside_the_campaign_envelope": 2,
+   "median": 26,
+   "outside_it": 20
+  }
+ },
+ "light_summary": {
+  "edges_off_the_bearing": 2,
+  "fullbright_sprites": 46,
+  "lit_base": 8,
+  "oblique_edges": 16,
+  "observed_deltas": {
+   "12": 2,
+   "24": 6,
+   "26": 14
+  },
+  "sectors_driving_their_own_shade": 1,
+  "sectors_that_fit_base_plus_k_step": 8,
+  "sectors_that_fit_no_level": 15,
+  "shade_edge_records": 22,
+  "shade_edge_records_the_wave_exclusion_removes": 0,
+  "significant_levels": 3,
+  "sun_axis_degrees": 84.2,
+  "sun_decided": true,
+  "throw_bearing_units": 479
+ },
+ "owner_marks_read_back": [],
+ "reader": "bloodmap.read_islands and bloodmap.read_light (both new; the islands are replayed through overlay.kerb_records, the writer)",
+ "review": {
+  "hierarchy": "projects\\e3m1-decompiled\\review\\layer4-hierarchy.json",
+  "pack": "projects\\e3m1-decompiled\\review\\layer4.html",
+  "questions": "projects\\e3m1-decompiled\\review\\questions-layer4.json",
+  "sectors_unowned": [
+   0,
+   65,
+   118,
+   165,
+   166,
+   172,
+   174,
+   237,
+   339,
+   343
+  ]
+ },
+ "shade_edges": [
+  {
+   "axis": 86.42,
+   "bearing": 266.42,
+   "end": [
+    -27648,
+    -16384
+   ],
+   "here": 1,
+   "length": 8208.0,
+   "shade_here": 8,
+   "shade_there": 34,
+   "start": [
+    -27136,
+    -8192
+   ],
+   "there": 235,
+   "wall": 11
+  },
+  {
+   "axis": 0.0,
+   "bearing": 0.0,
+   "end": [
+    -26624,
+    -25600
+   ],
+   "here": 1,
+   "length": 1024.0,
+   "shade_here": 8,
+   "shade_there": 34,
+   "start": [
+    -27648,
+    -25600
+   ],
+   "there": 2,
+   "wall": 17
+  },
+  {
+   "axis": 0.0,
+   "bearing": 180.0,
+   "end": [
+    -27648,
+    -25600
+   ],
+   "here": 2,
+   "length": 1024.0,
+   "shade_here": 34,
+   "shade_there": 8,
+   "start": [
+    -26624,
+    -25600
+   ],
+   "there": 1,
+   "wall": 19
+  },
+  {
+   "axis": 0.0,
+   "bearing": 180.0,
+   "end": [
+    -26624,
+    -25600
+   ],
+   "here": 3,
+   "length": 5120.0,
+   "shade_here": 32,
+   "shade_there": 8,
+   "start": [
+    -21504,
+    -25600
+   ],
+   "there": 8,
+   "wall": 24
+  },
+  {
+   "axis": 0.0,
+   "bearing": 180.0,
+   "end": [
+    -21504,
+    -25600
+   ],
+   "here": 4,
+   "length": 2048.0,
+   "shade_here": 34,
+   "shade_there": 8,
+   "start": [
+    -19456,
+    -25600
+   ],
+   "there": 5,
+   "wall": 30
+  },
+  {
+   "axis": 0.0,
+   "bearing": 0.0,
+   "end": [
+    -19456,
+    -25600
+   ],
+   "here": 5,
+   "length": 2048.0,
+   "shade_here": 8,
+   "shade_there": 34,
+   "start": [
+    -21504,
+    -25600
+   ],
+   "there": 4,
+   "wall": 33
+  },
+  {
+   "axis": 82.87,
+   "bearing": 82.87,
+   "end": [
+    -18944,
+    -21504
+   ],
+   "here": 5,
+   "length": 4127.9,
+   "shade_here": 8,
+   "shade_there": 34,
+   "start": [
+    -19456,
+    -25600
+   ],
+   "there": 175,
+   "wall": 34
+  },
+  {
+   "axis": 85.71,
+   "bearing": 85.71,
+   "end": [
+    -20096,
+    -8192
+   ],
+   "here": 5,
+   "length": 5134.4,
+   "shade_here": 8,
+   "shade_there": 34,
+   "start": [
+    -20480,
+    -13312
+   ],
+   "there": 175,
+   "wall": 41
+  },
+  {
+   "axis": 84.64,
+   "bearing": 84.64,
+   "end": [
+    -26624,
+    -3072
+   ],
+   "here": 6,
+   "length": 1028.5,
+   "shade_here": 34,
+   "shade_there": 8,
+   "start": [
+    -26720,
+    -4096
+   ],
+   "there": 9,
+   "wall": 43
+  },
+  {
+   "axis": 84.2,
+   "bearing": 84.2,
+   "end": [
+    -26720,
+    -4096
+   ],
+   "here": 7,
+   "length": 4117.1,
+   "shade_here": 32,
+   "shade_there": 8,
+   "start": [
+    -27136,
+    -8192
+   ],
+   "there": 8,
+   "wall": 51
+  },
+  {
+   "axis": 84.2,
+   "bearing": 264.2,
+   "end": [
+    -27136,
+    -8192
+   ],
+   "here": 8,
+   "length": 4117.1,
+   "shade_here": 8,
+   "shade_there": 32,
+   "start": [
+    -26720,
+    -4096
+   ],
+   "there": 7,
+   "wall": 53
+  },
+  {
+   "axis": 0.0,
+   "bearing": 0.0,
+   "end": [
+    -21504,
+    -25600
+   ],
+   "here": 8,
+   "length": 5120.0,
+   "shade_here": 8,
+   "shade_there": 32,
+   "start": [
+    -26624,
+    -25600
+   ],
+   "there": 3,
+   "wall": 56
+  },
+  {
+   "axis": 84.2,
+   "bearing": 84.2,
+   "end": [
+    -19680,
+    -4096
+   ],
+   "here": 8,
+   "length": 4117.1,
+   "shade_here": 8,
+   "shade_there": 32,
+   "start": [
+    -20096,
+    -8192
+   ],
+   "there": 45,
+   "wall": 59
+  },
+  {
+   "axis": 83.76,
+   "bearing": 83.76,
+   "end": [
+    -19456,
+    -2048
+   ],
+   "here": 9,
+   "length": 2060.2,
+   "shade_here": 8,
+   "shade_there": 34,
+   "start": [
+    -19680,
+    -4096
+   ],
+   "there": 159,
+   "wall": 61
+  },
+  {
+   "axis": 84.64,
+   "bearing": 264.64,
+   "end": [
+    -26720,
+    -4096
+   ],
+   "here": 9,
+   "length": 1028.5,
+   "shade_here": 8,
+   "shade_there": 34,
+   "start": [
+    -26624,
+    -3072
+   ],
+   "there": 6,
+   "wall": 65
+  },
+  {
+   "axis": 84.2,
+   "bearing": 264.2,
+   "end": [
+    -20096,
+    -8192
+   ],
+   "here": 45,
+   "length": 4117.1,
+   "shade_here": 32,
+   "shade_there": 8,
+   "start": [
+    -19680,
+    -4096
+   ],
+   "there": 8,
+   "wall": 220
+  },
+  {
+   "axis": 71.08,
+   "bearing": 71.08,
+   "end": [
+    -3584,
+    -23552
+   ],
+   "here": 118,
+   "length": 9472.0,
+   "shade_here": 46,
+   "shade_there": 34,
+   "start": [
+    -6656,
+    -32512
+   ],
+   "there": 165,
+   "wall": 643
+  },
+  {
+   "axis": 83.76,
+   "bearing": 263.76,
+   "end": [
+    -19680,
+    -4096
+   ],
+   "here": 159,
+   "length": 2060.2,
+   "shade_here": 34,
+   "shade_there": 8,
+   "start": [
+    -19456,
+    -2048
+   ],
+   "there": 9,
+   "wall": 825
+  },
+  {
+   "axis": 71.08,
+   "bearing": 251.08,
+   "end": [
+    -6656,
+    -32512
+   ],
+   "here": 165,
+   "length": 9472.0,
+   "shade_here": 34,
+   "shade_there": 46,
+   "start": [
+    -3584,
+    -23552
+   ],
+   "there": 118,
+   "wall": 857
+  },
+  {
+   "axis": 85.71,
+   "bearing": 265.71,
+   "end": [
+    -20480,
+    -13312
+   ],
+   "here": 175,
+   "length": 5134.4,
+   "shade_here": 34,
+   "shade_there": 8,
+   "start": [
+    -20096,
+    -8192
+   ],
+   "there": 5,
+   "wall": 949
+  },
+  {
+   "axis": 82.87,
+   "bearing": 262.87,
+   "end": [
+    -19456,
+    -25600
+   ],
+   "here": 175,
+   "length": 4127.9,
+   "shade_here": 34,
+   "shade_there": 8,
+   "start": [
+    -18944,
+    -21504
+   ],
+   "there": 5,
+   "wall": 976
+  },
+  {
+   "axis": 86.42,
+   "bearing": 86.42,
+   "end": [
+    -27136,
+    -8192
+   ],
+   "here": 235,
+   "length": 8208.0,
+   "shade_here": 34,
+   "shade_there": 8,
+   "start": [
+    -27648,
+    -16384
+   ],
+   "there": 1,
+   "wall": 1533
+  }
+ ]
+}

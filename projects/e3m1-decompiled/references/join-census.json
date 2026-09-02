@@ -27,6 +27,7 @@
   }
  },
  "base_plane_z": 10240,
+ "claims": "33 field claims",
  "cstat_disagreements": [
   {
    "faced_sector_moves": true,

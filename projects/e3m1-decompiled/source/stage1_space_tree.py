@@ -29,7 +29,7 @@ from __future__ import annotations
 import json
 from collections import Counter
 
-from _common import PROJECT, level, write
+from _common import PROJECT, emit_claims, level, write
 from _review import Tree, answers, write_pack
 
 SINGLETON = "retained as a reviewable singleton"
@@ -128,6 +128,13 @@ def main() -> int:
                        "about them"),
         "disagreements": [],
     }
+    #: THE SPACE TREE CLAIMS NO FIELD, and that is the finding rather than an
+    #: omission. It says which sectors a sensor grouped; it reproduces no
+    #: value of any record, so in the shared (record, field) ledger it owns
+    #: nothing. A hierarchy tells you where you are, not what anything is.
+    payload["claims"] = emit_claims(
+        1, [], note="the space tree reproduces no field of any record: it "
+                    "partitions sectors, and a partition is not a value")
     payload["review"] = _review(payload)
     payload["owner_marks_read_back"] = answers(1)
     write("space-tree.json", payload)

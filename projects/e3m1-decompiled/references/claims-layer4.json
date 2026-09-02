@@ -1,0 +1,159 @@
+{
+ "claims": [
+  {
+   "field": "floor_z",
+   "index": 1,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "island:000",
+   "value": 8192,
+   "why": "a HeightIsland of rise 2048 on the base plane at z 10240"
+  },
+  {
+   "field": "floor_z",
+   "index": 2,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "island:000",
+   "value": 8192,
+   "why": "a HeightIsland of rise 2048 on the base plane at z 10240"
+  },
+  {
+   "field": "floor_z",
+   "index": 235,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "island:000",
+   "value": 8192,
+   "why": "a HeightIsland of rise 2048 on the base plane at z 10240"
+  },
+  {
+   "field": "floor_z",
+   "index": 4,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "island:001",
+   "value": 8192,
+   "why": "a HeightIsland of rise 2048 on the base plane at z 10240"
+  },
+  {
+   "field": "floor_z",
+   "index": 5,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "island:001",
+   "value": 8192,
+   "why": "a HeightIsland of rise 2048 on the base plane at z 10240"
+  },
+  {
+   "field": "floor_z",
+   "index": 175,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "island:001",
+   "value": 8192,
+   "why": "a HeightIsland of rise 2048 on the base plane at z 10240"
+  },
+  {
+   "field": "floor_z",
+   "index": 6,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "island:002",
+   "value": 8192,
+   "why": "a HeightIsland of rise 2048 on the base plane at z 10240"
+  },
+  {
+   "field": "floor_z",
+   "index": 9,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "island:002",
+   "value": 8192,
+   "why": "a HeightIsland of rise 2048 on the base plane at z 10240"
+  },
+  {
+   "field": "floor_z",
+   "index": 159,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "island:002",
+   "value": 8192,
+   "why": "a HeightIsland of rise 2048 on the base plane at z 10240"
+  },
+  {
+   "field": "floor_shade",
+   "index": 1,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "sun:depth0",
+   "value": 8,
+   "why": "the light field at depth 0: 8 + 0*12 = 8, with the sun's throw at 479 build units"
+  },
+  {
+   "field": "floor_shade",
+   "index": 5,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "sun:depth0",
+   "value": 8,
+   "why": "the light field at depth 0: 8 + 0*12 = 8, with the sun's throw at 479 build units"
+  },
+  {
+   "field": "floor_shade",
+   "index": 8,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "sun:depth0",
+   "value": 8,
+   "why": "the light field at depth 0: 8 + 0*12 = 8, with the sun's throw at 479 build units"
+  },
+  {
+   "field": "floor_shade",
+   "index": 9,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "sun:depth0",
+   "value": 8,
+   "why": "the light field at depth 0: 8 + 0*12 = 8, with the sun's throw at 479 build units"
+  },
+  {
+   "field": "floor_shade",
+   "index": 3,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "sun:depth2",
+   "value": 32,
+   "why": "the light field at depth 2: 8 + 2*12 = 32, with the sun's throw at 479 build units"
+  },
+  {
+   "field": "floor_shade",
+   "index": 7,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "sun:depth2",
+   "value": 32,
+   "why": "the light field at depth 2: 8 + 2*12 = 32, with the sun's throw at 479 build units"
+  },
+  {
+   "field": "floor_shade",
+   "index": 45,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "sun:depth2",
+   "value": 32,
+   "why": "the light field at depth 2: 8 + 2*12 = 32, with the sun's throw at 479 build units"
+  },
+  {
+   "field": "floor_shade",
+   "index": 236,
+   "kind": "sector",
+   "layer": 4,
+   "owner": "sun:depth2",
+   "value": 32,
+   "why": "the light field at depth 2: 8 + 2*12 = 32, with the sun's throw at 479 build units"
+  }
+ ],
+ "layer": 4,
+ "note": "floor_z on every island sector, floor_shade on every sector the field's base + k*step reproduces, and picnum on the kerb records the islands' own edges carry"
+}

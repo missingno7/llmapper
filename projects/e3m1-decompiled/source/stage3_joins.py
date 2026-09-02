@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from _common import level, write
+from _common import emit_claims, level, write
 from _review import Tree, answers, write_pack
 
 from bloodmap.read_joins import read_joins, summary
@@ -124,6 +124,11 @@ def main() -> int:
                        f"records are interior|interior"),
         "disagreements": payload["disagreements_with_the_measured_facts"],
     }
+    payload["claims"] = emit_claims(3, _claims(world, result, owners),
+                                    note=("picnum where the row's tile class "
+                                          "is the tile the record wears, and "
+                                          "cstat where the row's blocking bit "
+                                          "is the bit it carries"))
     payload["review"] = _review(world, result, owners)
     payload["owner_marks_read_back"] = answers(3)
     write("join-census.json", payload)
@@ -143,6 +148,41 @@ def main() -> int:
         print(f"    {key:30s} wears {tiles}, {hit}/{seen} the table's tile, "
               f"blocking {census['band_blocking'][key]}")
     return 0
+
+
+def _claims(world, result, owners) -> list[dict]:
+    """What the join table reproduces, field by field.
+
+    Only where the ROW decides the value. A row whose band is `nothing`
+    explains that no band draws -- which is true and is not a field -- so it
+    claims nothing, and the ledger says the table's whole field-level reach in
+    E3M1 is the kerb and the end walls' blocking bit.
+    """
+    from bloodmap import joins
+
+    census = result["census"]
+    rows = []
+    for key, records in census["described_records"].items():
+        a, b, height = key.split("|")
+        rule = joins.rule(a, b, height)
+        wanted = next((value for cls, value in joins.TILE_CLASSES.items()
+                       if cls in rule.a_shows), None)
+        for record in records:
+            face = world.walls[record]["fields"]
+            if wanted is not None and int(face["picnum"]) == wanted:
+                rows.append({
+                    "kind": "wall", "index": record, "field": "picnum",
+                    "owner": f"join:{key}", "value": int(face["picnum"]),
+                    "why": (f"the {key} row shows '{rule.a_shows}' and the "
+                            f"class resolves to tile {wanted}, which is what "
+                            f"this record wears")})
+            if rule.cstat and (int(face["cstat"]) & rule.cstat) == rule.cstat:
+                rows.append({
+                    "kind": "wall", "index": record, "field": "cstat",
+                    "owner": f"join:{key}", "value": int(face["cstat"]),
+                    "why": (f"the {key} row sets cstat {rule.cstat} and this "
+                            f"record carries it")})
+    return rows
 
 
 def _interior_records(census) -> int:

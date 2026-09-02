@@ -16,14 +16,15 @@ from __future__ import annotations
 
 from collections import Counter
 
-from _common import art_sizes, level, write
+from _common import art_sizes, emit_claims, level, write
 from _review import Tree, answers, write_pack
 
+from bloodmap.read_stairs import read_stairs
 from bloodmap.read_surfaces import read_surfaces, summary
 from bloodmap.texture_frame import sector_index, wall_visible
 
 
-def _review(level_ir, result, owners) -> dict:
+def _review(level_ir, result, owners, stairs) -> dict:
     """The pack: one node per surface that spans more than one record.
 
     A surface owns wall records, and the pack colours sectors, so a surface
@@ -47,6 +48,18 @@ def _review(level_ir, result, owners) -> dict:
                      f"{'exact' if item.understood else 'partial'}",
                      f"tile:{tile}",
                      {owners[record] for record in item.records})
+    #: Stairs are STRUCTURES, not mechanisms: E3M1's helix carries no sector
+    #: type on 19 of its 25 sectors and nothing about it moves.
+    tree.add("stairs", "structure",
+             f"stepped runs ({len(stairs['runs'])}, "
+             f"{stairs['runs_with_a_constant_rise']} of constant rise)",
+             tree.root.id, stairs["sectors_in_a_run"])
+    for run in stairs["runs"]:
+        tree.add(run["id"], "stepped_run",
+                 f"{run['id']} x{len(run['sectors'])} rise "
+                 f"{run['fit']['rise']}"
+                 f"{'' if run['fit']['constant_rise'] else ' (not constant)'}",
+                 "stairs", run["sectors"])
     biggest = max((item for group in by_tile.values() for item in group),
                   key=lambda item: len(item.records))
     questions = [
@@ -79,10 +92,48 @@ def _review(level_ir, result, owners) -> dict:
     return write_pack(2, tree, "E3M1 layer 2: surfaces and frames", questions)
 
 
+FRAME_FIELDS = ("picnum", "x_repeat", "x_panning", "y_repeat", "y_panning")
+
+
+def _claims(world, result, owners, stairs) -> list[dict]:
+    """What this layer reproduces, field by field.
+
+    Only records inside a surface of MORE THAN ONE record: a frame fitted to a
+    single record reproduces it for free, and a ledger that counted that would
+    hand the map back to itself and call it understood.
+    """
+    rows = []
+    for surface in result["surfaces"]:
+        if len(surface.records) < 2:
+            continue
+        for record in surface.exact:
+            face = world.walls[record]["fields"]
+            for name in FRAME_FIELDS:
+                rows.append({
+                    "kind": "wall", "index": record, "field": name,
+                    "owner": surface.surface_id, "value": int(face[name]),
+                    "why": (f"one WallRunFrame (tile {surface.frame.tile}, "
+                            f"u0 {surface.frame.u0}, v0 {surface.frame.v0}) "
+                            f"over {len(surface.records)} records replays "
+                            f"through texture_frame.resolve_run to this value")})
+    for run in stairs["runs"]:
+        fit = run["fit"]
+        for index in fit["reproduces"]:
+            rows.append({
+                "kind": "sector", "index": index, "field": "floor_z",
+                "owner": run["id"],
+                "value": int(world.sectors[index]["fields"]["floor_z"]),
+                "why": (f"a stepped run of rise {fit['rise']} from "
+                        f"{fit['origin']}: this floor lands on the fitted "
+                        f"progression")})
+    return rows
+
+
 def main() -> int:
     world = level()
     sizes = art_sizes()
     result = read_surfaces(world, art_sizes=sizes)
+    stairs = read_stairs(world)
     stats = summary(result)
     owners = sector_index(world)
 
@@ -136,7 +187,14 @@ def main() -> int:
             "disagreements": [],
         },
     }
-    payload["review"] = _review(world, result, owners)
+    payload["stairs"] = stairs
+    payload["claims"] = emit_claims(2, _claims(world, result, owners, stairs),
+                                    note=("the five texture fields of every "
+                                          "record a shared projection "
+                                          "reproduces exactly, and the floor z "
+                                          "of every stair sector its fitted "
+                                          "rise reproduces"))
+    payload["review"] = _review(world, result, owners, stairs)
     payload["owner_marks_read_back"] = answers(2)
     write("surfaces.json", payload)
 
@@ -149,6 +207,11 @@ def main() -> int:
           f"{stats['residue_solitary']} solitary + "
           f"{stats['records_mismatched']} mismatched")
     print(f"  breaks             : {stats['breaks']}")
+    print(f"  stepped runs       : {len(stairs['runs'])}, "
+          f"{stairs['runs_with_a_constant_rise']} of constant rise; "
+          f"{len(stairs['sectors_the_fit_reproduces'])} of "
+          f"{len(stairs['sectors_in_a_run'])} sectors reproduced, residual "
+          f"{stairs['sectors_in_the_residual']}")
     print(f"  u continues        : {continued} of {joins} same-tile joins "
           f"({100.0 * continued / joins:.1f}%)")
     for name, row in by_class.items():

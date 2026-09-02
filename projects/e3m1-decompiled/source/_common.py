@@ -52,3 +52,22 @@ def write(name: str, payload: Any) -> pathlib.Path:
 
 def read(name: str) -> Any:
     return json.loads((REFERENCES / name).read_text(encoding="utf-8"))
+
+
+def emit_claims(layer: int, rows: list, note: str = "") -> str:
+    """This layer's share of the shared claim ledger.
+
+    A row is `{kind, index, field, owner, value, why, intent}`; the layer
+    number is added here. `ledger.py` merges every layer's rows into one
+    `(record, field) -> [claims]` ledger, which is the only place a residue
+    number is computed -- a layer that counted its own coverage would be
+    grading its own homework.
+
+    An empty list is a real answer and is written as one: the space tree
+    reproduces no field of any record, and saying so is more useful than
+    inventing a claim for it.
+    """
+    payload = {"layer": int(layer), "note": note,
+               "claims": [{**row, "layer": int(layer)} for row in rows]}
+    write(f"claims-layer{int(layer)}.json", payload)
+    return f"{len(rows)} field claims"
