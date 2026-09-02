@@ -17,7 +17,11 @@ re-run afterwards.
 predicate; base facts are the records as the map stores them; every derived
 fact carries what it came from and the reader that made it. **18 297 rows in
 35 predicates.** Readers are pure functions in `bloodmap`
-(`facts.py`, `read_facts.py`) and the project only orchestrates and stores.
+(`read_store.py`, `read_facts.py`) and the project only orchestrates and
+stores. `bloodmap/facts.py` is the COMPILER's store, which landed the same day
+from the same document; queue item 31 sets out the two shapes and asks whether
+they should become one, and argues that they should because the diff between
+them IS the symmetry test.
 
 * **relations are records** — `join`, `link`, `key`, `stack`, `attachment`,
   `realises`, `part_of`. The space tree is one relation among many, which is
@@ -171,10 +175,10 @@ refuted by a measurement in the next report.
 
 ## The suite
 
-Worktree run, `work/suite-final4.log`:
+Worktree run, `work/suite-final5.log`:
 
 ```text
-Ran 1954 tests in 199.654s
+Ran 1976 tests in 285.465s
 FAILED (failures=5, errors=4, skipped=267, expected failures=4)
 ```
 

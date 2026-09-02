@@ -75,7 +75,9 @@ evidence and review pack, in that order.
 | `stage8_intent.py` | intent | `read_intent` | `references/intent.json` |
 
 Every reader is a pure function in `bloodmap`; `bloodmap/read_facts.py` turns
-each one's result into facts. The project orchestrates and stores, and that is
+each one's result into facts, into `bloodmap/read_store.py` (the reader's
+store -- `bloodmap/facts.py` is the compiler's, and queue item 31 asks whether
+they should become one). The project orchestrates and stores, and that is
 all it does.
 
 ## Review packs

@@ -1260,3 +1260,41 @@ a string literal spanning lines, whose JSON constants do not parse, or whose
 *No default needed; recorded because it is the project's own lesson (verify
 the thing, not the call) failing in a new place: a tool that returns HTML is
 not evidence that the HTML runs.*
+
+## 31. Two fact stores landed on the same day with the same name (P15, 2026-09-02)
+
+`bloodmap/facts.py` arrived on `blood-city-arcade` (9a76dde, "The compiler
+writes its facts beside the map") while a file of the same name was being
+written here for the decompilation. Both implement section 2.1 of
+`RESEARCH-OVERLAPPING-LAYERS-2026-09-02.md`, from opposite ends, and neither
+knew about the other.
+
+**Resolved without touching the writer:** the compiler keeps `facts.py`; the
+reader's is now `bloodmap/read_store.py`, and its docstring says why there are
+two. Nothing of the compiler's was edited and the E3M1 store is byte-identical
+across the rename.
+
+They are not interchangeable:
+
+| | compiler (`facts.py`) | reader (`read_store.py`) |
+| --- | --- | --- |
+| row | `{key, lod, source, fields}` | `{id, ...attrs, _from, _reader, _layer}` |
+| predicates | 14, a closed tuple | 37, declared with what each row is |
+| holds | the declarations a build makes | the map's own records, plus what readers derive |
+| ledger | `claims` | `claims`, `candidate`, `selection`, `conflict`, `residue` |
+| gate | a pass at LoD N leaves every fact below N byte-identical | a claim reproduces its field |
+
+**The question:** should they become one? The argument for is strong and it is
+the project's own: with one store the compiler's facts and the reader's facts
+are diffable directly, and *that diff is the symmetry test of decisions
+section 20* — "decompile, recompile, diff STRUCTURE" becomes "diff two sets of
+rows". Today the two shapes have to be translated before they can be compared
+at all.
+
+*Recommended default:* unify, on the READER's shape, with `lod` added as an
+attribute — it is the superset (it holds base records, and the ledger's four
+extra predicates), its provenance is per-row rather than per-declaration, and
+its predicate table carries a description per predicate so a new one cannot
+appear unannounced. The compiler's LoD gate keeps working as a query over
+`_layer`/`lod`. But this is a writer change and it is P14b's to make or
+refuse, so nothing was done to `facts.py` here.
