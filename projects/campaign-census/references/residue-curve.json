@@ -1,5 +1,5 @@
 {
- "chosen": "E1M2",
+ "chosen": "E4M8",
  "maps_read": 43,
  "maps_that_failed": [],
  "maps_the_join_table_reaches": [
@@ -36,17 +36,10 @@
    "sectors": 237
   }
  ],
- "maps_with_a_street_in_the_models_sense": 19,
- "maps_with_a_street_network": 37,
+ "maps_with_a_street_in_the_models_sense": 16,
+ "maps_with_a_street_network": 36,
  "population": "blood-campaign",
  "ranking_among_real_streets": [
-  {
-   "claimed_share": 7.12,
-   "islands": 1,
-   "kerb_records": 4,
-   "map": "E1M6",
-   "road_sectors": 1
-  },
   {
    "claimed_share": 6.693,
    "islands": 1,
@@ -158,33 +151,19 @@
    "kerb_records": 21,
    "map": "E6M8",
    "road_sectors": 8
-  },
-  {
-   "claimed_share": 2.7,
-   "islands": 3,
-   "kerb_records": 8,
-   "map": "E2M9",
-   "road_sectors": 2
-  },
-  {
-   "claimed_share": 2.604,
-   "islands": 4,
-   "kerb_records": 12,
-   "map": "E1M3",
-   "road_sectors": 17
   }
  ],
  "ranking_by_the_literal_rule": [
-  "E1M6",
-  "E4M6",
   "E4M8",
   "E2M5",
-  "E3M8"
+  "E3M8",
+  "E6M6",
+  "E6M7"
  ],
  "rows": [
   {
    "claimable_fields": 180310,
-   "claimed_share": 7.12,
+   "claimed_share": 7.107,
    "counts": {
     "sector": 526,
     "sprite": 1134,
@@ -193,11 +172,11 @@
     "xsprite": 908,
     "xwall": 30
    },
-   "fields_with_a_claim": 12838,
-   "has_a_street_in_the_models_sense": true,
-   "has_a_street_network": true,
-   "islands": 1,
-   "kerb_records": 4,
+   "fields_with_a_claim": 12814,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": false,
+   "islands": 0,
+   "kerb_records": 0,
    "layer1_error": null,
    "map": "E1M6",
    "per_layer": {
@@ -213,11 +192,11 @@
     },
     "3": {
      "claims": 0,
-     "facts": 4486,
-     "residue": 1976
+     "facts": 4494,
+     "residue": 1984
     },
     "4": {
-     "claims": 3,
+     "claims": 2,
      "facts": 8,
      "residue": 0
     },
@@ -227,28 +206,28 @@
      "residue": 822
     },
     "6": {
-     "claims": 23,
-     "facts": 43,
+     "claims": 0,
+     "facts": 10,
      "residue": 0
     },
     "7": {
      "claims": 0,
-     "facts": 27,
+     "facts": 21,
      "residue": 0
     },
     "8": {
      "claims": 0,
      "facts": 281,
-     "residue": 156
+     "residue": 157
     }
    },
-   "residue_facts": 5376,
-   "road_sectors": 1,
-   "street_sectors": 2
+   "residue_facts": 5385,
+   "road_sectors": 0,
+   "street_sectors": 0
   },
   {
    "claimable_fields": 130967,
-   "claimed_share": 7.046,
+   "claimed_share": 7.038,
    "counts": {
     "sector": 519,
     "sprite": 695,
@@ -257,10 +236,10 @@
     "xsprite": 577,
     "xwall": 17
    },
-   "fields_with_a_claim": 9228,
+   "fields_with_a_claim": 9218,
    "has_a_street_in_the_models_sense": false,
-   "has_a_street_network": true,
-   "islands": 1,
+   "has_a_street_network": false,
+   "islands": 0,
    "kerb_records": 0,
    "layer1_error": null,
    "map": "E4M6",
@@ -281,7 +260,7 @@
      "residue": 2066
     },
     "4": {
-     "claims": 2,
+     "claims": 1,
      "facts": 6,
      "residue": 0
     },
@@ -291,13 +270,13 @@
      "residue": 570
     },
     "6": {
-     "claims": 9,
-     "facts": 21,
+     "claims": 0,
+     "facts": 8,
      "residue": 0
     },
     "7": {
      "claims": 0,
-     "facts": 21,
+     "facts": 18,
      "residue": 0
     },
     "8": {
@@ -307,8 +286,8 @@
     }
    },
    "residue_facts": 4818,
-   "road_sectors": 1,
-   "street_sectors": 1
+   "road_sectors": 0,
+   "street_sectors": 0
   },
   {
    "claimable_fields": 23551,
@@ -346,7 +325,7 @@
     },
     "4": {
      "claims": 0,
-     "facts": 1,
+     "facts": 3,
      "residue": 0
     },
     "5": {
@@ -410,7 +389,7 @@
     },
     "4": {
      "claims": 4,
-     "facts": 11,
+     "facts": 13,
      "residue": 1
     },
     "5": {
@@ -474,7 +453,7 @@
     },
     "4": {
      "claims": 0,
-     "facts": 1,
+     "facts": 3,
      "residue": 0
     },
     "5": {
@@ -602,7 +581,7 @@
     },
     "4": {
      "claims": 2,
-     "facts": 5,
+     "facts": 7,
      "residue": 0
     },
     "5": {
@@ -789,7 +768,7 @@
     },
     "4": {
      "claims": 22,
-     "facts": 73,
+     "facts": 75,
      "residue": 23
     },
     "5": {
@@ -799,13 +778,13 @@
     },
     "6": {
      "claims": 60,
-     "facts": 123,
+     "facts": 125,
      "residue": 0
     },
     "7": {
      "claims": 0,
-     "facts": 71,
-     "residue": 21
+     "facts": 70,
+     "residue": 20
     },
     "8": {
      "claims": 0,
@@ -813,7 +792,7 @@
      "residue": 82
     }
    },
-   "residue_facts": 4916,
+   "residue_facts": 4915,
    "road_sectors": 3,
    "street_sectors": 5
   },
@@ -853,7 +832,7 @@
     },
     "4": {
      "claims": 0,
-     "facts": 5,
+     "facts": 7,
      "residue": 2
     },
     "5": {
@@ -946,70 +925,6 @@
    "street_sectors": 5
   },
   {
-   "claimable_fields": 30181,
-   "claimed_share": 6.06,
-   "counts": {
-    "sector": 53,
-    "sprite": 219,
-    "wall": 688,
-    "xsector": 40,
-    "xsprite": 209,
-    "xwall": 0
-   },
-   "fields_with_a_claim": 1829,
-   "has_a_street_in_the_models_sense": false,
-   "has_a_street_network": true,
-   "islands": 0,
-   "kerb_records": 0,
-   "layer1_error": null,
-   "map": "E1M7",
-   "per_layer": {
-    "1": {
-     "claims": 0,
-     "facts": 203,
-     "residue": 13
-    },
-    "2": {
-     "claims": 1765,
-     "facts": 2561,
-     "residue": 299
-    },
-    "3": {
-     "claims": 0,
-     "facts": 475,
-     "residue": 198
-    },
-    "4": {
-     "claims": 3,
-     "facts": 42,
-     "residue": 20
-    },
-    "5": {
-     "claims": 34,
-     "facts": 369,
-     "residue": 188
-    },
-    "6": {
-     "claims": 27,
-     "facts": 60,
-     "residue": 0
-    },
-    "7": {
-     "claims": 0,
-     "facts": 22,
-     "residue": 0
-    },
-    "8": {
-     "claims": 0,
-     "facts": 35,
-     "residue": 19
-    }
-   },
-   "residue_facts": 737,
-   "road_sectors": 4,
-   "street_sectors": 4
-  },
-  {
    "claimable_fields": 62323,
    "claimed_share": 6.025,
    "counts": {
@@ -1045,7 +960,7 @@
     },
     "4": {
      "claims": 4,
-     "facts": 44,
+     "facts": 46,
      "residue": 16
     },
     "5": {
@@ -1070,6 +985,70 @@
     }
    },
    "residue_facts": 2814,
+   "road_sectors": 2,
+   "street_sectors": 2
+  },
+  {
+   "claimable_fields": 30181,
+   "claimed_share": 6.017,
+   "counts": {
+    "sector": 53,
+    "sprite": 219,
+    "wall": 688,
+    "xsector": 40,
+    "xsprite": 209,
+    "xwall": 0
+   },
+   "fields_with_a_claim": 1816,
+   "has_a_street_in_the_models_sense": false,
+   "has_a_street_network": true,
+   "islands": 0,
+   "kerb_records": 0,
+   "layer1_error": null,
+   "map": "E1M7",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 203,
+     "residue": 13
+    },
+    "2": {
+     "claims": 1765,
+     "facts": 2561,
+     "residue": 299
+    },
+    "3": {
+     "claims": 0,
+     "facts": 497,
+     "residue": 220
+    },
+    "4": {
+     "claims": 3,
+     "facts": 44,
+     "residue": 20
+    },
+    "5": {
+     "claims": 34,
+     "facts": 369,
+     "residue": 188
+    },
+    "6": {
+     "claims": 14,
+     "facts": 39,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 16,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 35,
+     "residue": 20
+    }
+   },
+   "residue_facts": 760,
    "road_sectors": 2,
    "street_sectors": 2
   },
@@ -1109,7 +1088,7 @@
     },
     "4": {
      "claims": 2,
-     "facts": 5,
+     "facts": 7,
      "residue": 0
     },
     "5": {
@@ -1173,7 +1152,7 @@
     },
     "4": {
      "claims": 0,
-     "facts": 1,
+     "facts": 3,
      "residue": 0
     },
     "5": {
@@ -1237,7 +1216,7 @@
     },
     "4": {
      "claims": 4,
-     "facts": 29,
+     "facts": 31,
      "residue": 13
     },
     "5": {
@@ -1301,7 +1280,7 @@
     },
     "4": {
      "claims": 5,
-     "facts": 85,
+     "facts": 87,
      "residue": 44
     },
     "5": {
@@ -1331,7 +1310,7 @@
   },
   {
    "claimable_fields": 80441,
-   "claimed_share": 5.608,
+   "claimed_share": 5.486,
    "counts": {
     "sector": 249,
     "sprite": 507,
@@ -1340,9 +1319,9 @@
     "xsprite": 409,
     "xwall": 23
    },
-   "fields_with_a_claim": 4511,
+   "fields_with_a_claim": 4413,
    "has_a_street_in_the_models_sense": false,
-   "has_a_street_network": false,
+   "has_a_street_network": true,
    "islands": 0,
    "kerb_records": 0,
    "layer1_error": null,
@@ -1365,7 +1344,7 @@
     },
     "4": {
      "claims": 9,
-     "facts": 88,
+     "facts": 90,
      "residue": 55
     },
     "5": {
@@ -1374,14 +1353,14 @@
      "residue": 364
     },
     "6": {
-     "claims": 101,
-     "facts": 172,
+     "claims": 3,
+     "facts": 24,
      "residue": 0
     },
     "7": {
      "claims": 0,
-     "facts": 102,
-     "residue": 36
+     "facts": 34,
+     "residue": 1
     },
     "8": {
      "claims": 0,
@@ -1389,8 +1368,8 @@
      "residue": 56
     }
    },
-   "residue_facts": 3220,
-   "road_sectors": 0,
+   "residue_facts": 3185,
+   "road_sectors": 1,
    "street_sectors": 1
   },
   {
@@ -1557,7 +1536,7 @@
     },
     "4": {
      "claims": 21,
-     "facts": 72,
+     "facts": 74,
      "residue": 26
     },
     "5": {
@@ -1621,7 +1600,7 @@
     },
     "4": {
      "claims": 5,
-     "facts": 20,
+     "facts": 22,
      "residue": 8
     },
     "5": {
@@ -1685,7 +1664,7 @@
     },
     "4": {
      "claims": 2,
-     "facts": 21,
+     "facts": 23,
      "residue": 12
     },
     "5": {
@@ -1749,7 +1728,7 @@
     },
     "4": {
      "claims": 6,
-     "facts": 36,
+     "facts": 38,
      "residue": 15
     },
     "5": {
@@ -1813,7 +1792,7 @@
     },
     "4": {
      "claims": 2,
-     "facts": 14,
+     "facts": 16,
      "residue": 4
     },
     "5": {
@@ -1877,7 +1856,7 @@
     },
     "4": {
      "claims": 2,
-     "facts": 5,
+     "facts": 7,
      "residue": 0
     },
     "5": {
@@ -1941,7 +1920,7 @@
     },
     "4": {
      "claims": 9,
-     "facts": 39,
+     "facts": 41,
      "residue": 17
     },
     "5": {
@@ -2005,7 +1984,7 @@
     },
     "4": {
      "claims": 23,
-     "facts": 56,
+     "facts": 58,
      "residue": 8
     },
     "5": {
@@ -2069,7 +2048,7 @@
     },
     "4": {
      "claims": 2,
-     "facts": 5,
+     "facts": 7,
      "residue": 0
     },
     "5": {
@@ -2133,7 +2112,7 @@
     },
     "4": {
      "claims": 0,
-     "facts": 1,
+     "facts": 3,
      "residue": 0
     },
     "5": {
@@ -2197,7 +2176,7 @@
     },
     "4": {
      "claims": 0,
-     "facts": 17,
+     "facts": 19,
      "residue": 8
     },
     "5": {
@@ -2325,7 +2304,7 @@
     },
     "4": {
      "claims": 2,
-     "facts": 7,
+     "facts": 9,
      "residue": 1
     },
     "5": {
@@ -2389,7 +2368,7 @@
     },
     "4": {
      "claims": 3,
-     "facts": 16,
+     "facts": 18,
      "residue": 7
     },
     "5": {
@@ -2453,7 +2432,7 @@
     },
     "4": {
      "claims": 0,
-     "facts": 1,
+     "facts": 3,
      "residue": 0
     },
     "5": {
@@ -2803,7 +2782,7 @@
   },
   {
    "claimable_fields": 75544,
-   "claimed_share": 2.7,
+   "claimed_share": 2.675,
    "counts": {
     "sector": 166,
     "sprite": 619,
@@ -2812,11 +2791,11 @@
     "xsprite": 490,
     "xwall": 7
    },
-   "fields_with_a_claim": 2040,
-   "has_a_street_in_the_models_sense": true,
+   "fields_with_a_claim": 2021,
+   "has_a_street_in_the_models_sense": false,
    "has_a_street_network": true,
-   "islands": 3,
-   "kerb_records": 8,
+   "islands": 0,
+   "kerb_records": 0,
    "layer1_error": null,
    "map": "E2M9",
    "per_layer": {
@@ -2832,12 +2811,12 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2288,
-     "residue": 1040
+     "facts": 2322,
+     "residue": 1074
     },
     "4": {
-     "claims": 14,
-     "facts": 60,
+     "claims": 10,
+     "facts": 53,
      "residue": 19
     },
     "5": {
@@ -2846,28 +2825,28 @@
      "residue": 397
     },
     "6": {
-     "claims": 25,
-     "facts": 65,
+     "claims": 10,
+     "facts": 30,
      "residue": 0
     },
     "7": {
      "claims": 0,
      "facts": 28,
-     "residue": 3
+     "residue": 1
     },
     "8": {
      "claims": 0,
      "facts": 134,
-     "residue": 55
+     "residue": 56
     }
    },
-   "residue_facts": 2804,
-   "road_sectors": 2,
-   "street_sectors": 6
+   "residue_facts": 2837,
+   "road_sectors": 3,
+   "street_sectors": 3
   },
   {
    "claimable_fields": 130195,
-   "claimed_share": 2.604,
+   "claimed_share": 2.558,
    "counts": {
     "sector": 329,
     "sprite": 974,
@@ -2876,11 +2855,11 @@
     "xsprite": 807,
     "xwall": 162
    },
-   "fields_with_a_claim": 3390,
-   "has_a_street_in_the_models_sense": true,
+   "fields_with_a_claim": 3331,
+   "has_a_street_in_the_models_sense": false,
    "has_a_street_network": true,
-   "islands": 4,
-   "kerb_records": 12,
+   "islands": 0,
+   "kerb_records": 0,
    "layer1_error": null,
    "map": "E1M3",
    "per_layer": {
@@ -2896,12 +2875,12 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2811,
-     "residue": 1206
+     "facts": 2873,
+     "residue": 1268
     },
     "4": {
-     "claims": 12,
-     "facts": 100,
+     "claims": 6,
+     "facts": 92,
      "residue": 33
     },
     "5": {
@@ -2910,14 +2889,14 @@
      "residue": 558
     },
     "6": {
-     "claims": 73,
-     "facts": 171,
+     "claims": 20,
+     "facts": 46,
      "residue": 0
     },
     "7": {
      "claims": 0,
-     "facts": 115,
-     "residue": 0
+     "facts": 39,
+     "residue": 6
     },
     "8": {
      "claims": 0,
@@ -2925,18 +2904,18 @@
      "residue": 222
     }
    },
-   "residue_facts": 3836,
-   "road_sectors": 17,
-   "street_sectors": 23
+   "residue_facts": 3904,
+   "road_sectors": 4,
+   "street_sectors": 4
   }
  ],
  "rule": "the second map is the one E3M1's readers already explain best among maps with a street network, because the point of a second map is what the two SHARE (research 2.5); the default if ambiguous is E1M2",
  "selection": {
-  "chosen": "E1M2",
+  "chosen": "E4M8",
   "corroboration": "the join table -- the street grammar itself -- describes anything on four maps: E3M1 (33), E1M2 (12), E4M8 (6), E2M6 (2). Excluding E3M1, E1M2 leads by a factor of two, and it is a whole map rather than a fragment",
   "criterion": "among maps with a street network, the largest claimed share under E3M1's readers; the stated default if that is ambiguous is E1M2",
   "excluding_layer_2_gives": "E4M8",
-  "the_literal_rule_gives": "E1M6",
-  "why_it_is_ambiguous": "layer 2 makes 92-97% of every map's claims and measures texture runs, not streets, so the two rankings disagree completely: E1M6 by total claimed share, E4M8 without layer 2, and neither is stable under a reader change to layer 2"
+  "the_literal_rule_gives": "E4M8",
+  "why_it_is_ambiguous": "layer 2 makes 92-97% of every map's claims and measures texture runs, not streets, so the two rankings disagree completely: E4M8 by total claimed share, E4M8 without layer 2, and neither is stable under a reader change to layer 2"
  }
 }

@@ -1,0 +1,613 @@
+{
+ "macros_dropped": {},
+ "macros_proposed": {
+  "breakable": {
+   "cause": "construct",
+   "lowers": {
+    "E1M2": 6,
+    "E3M1": 18,
+    "E4M8": 0
+   },
+   "maps_it_lowers": 2,
+   "says": "a wall of type 511 (kWallGib) with the channel it fires and what it opens onto",
+   "signature": "breakable(surface, *, on=, reveals=)",
+   "total": 24,
+   "why_a_macro": "layer 8 refuses to name these because the taught course has no lesson of type 511 at all -- the campaign uses a mechanism its own course omits"
+  },
+  "channel": {
+   "cause": "construct",
+   "lowers": {
+    "E1M2": 72,
+    "E3M1": 41,
+    "E4M8": 8
+   },
+   "maps_it_lowers": 3,
+   "says": "one channel with its transmitters and its receivers as a single construct. The campaign fans a channel out to as many records as it likes; our writer wires one pair",
+   "signature": "channel(number, tx=[...], rx=[...], *, on=, wave=)",
+   "total": 121,
+   "why_a_macro": "the residue is records that transmit or listen on a channel no sentence reaches, which is what a one-pair writer produces"
+  },
+  "dressing": {
+   "cause": "construct",
+   "lowers": {
+    "E1M2": 371,
+    "E3M1": 330,
+    "E4M8": 72
+   },
+   "maps_it_lowers": 3,
+   "says": "a bundle of unwired sprites placed against an anchor -- a table with its bottles, a shelf with its books. The reader that names them already exists (read_intent.named_props and anchors.find_bundles); nothing authors them",
+   "signature": "dressing(anchor, [prop...], *, spread=, facing=)",
+   "total": 773,
+   "why_a_macro": "the residue is one fact per sprite and every sprite is decoration our language cannot place except by absolute coordinate"
+  },
+  "self_lit": {
+   "cause": "construct",
+   "lowers": {
+    "E1M2": 17,
+    "E3M1": 26,
+    "E4M8": 1
+   },
+   "maps_it_lowers": 3,
+   "says": "a sector that lights itself: an XSECTOR carrying a light wave and no motion, no key and no channel",
+   "signature": "self_lit(space, amplitude=, phase=, wave=)",
+   "total": 44,
+   "why_a_macro": "the reader can read it and calls it residue only because it is not a mechanism; it is a lighting construct with no home in the language"
+  },
+  "stair": {
+   "cause": "construct",
+   "lowers": {
+    "E1M2": 102,
+    "E3M1": 219,
+    "E4M8": 0
+   },
+   "maps_it_lowers": 2,
+   "says": "a stepped run as one construct owning every tread and the projection across them, rather than N sectors each fitted its own frame",
+   "signature": "stair(from_, to, *, treads=, width=, clear_height=)",
+   "total": 321,
+   "why_a_macro": "a tread is its own sector, so its side walls have no same-material neighbour and layer 2 cannot attest a frame on any of them"
+  }
+ },
+ "not_macros": {
+  "a surface's own projection": {
+   "cause": "reader",
+   "owner": "the Surface/Frame representation item",
+   "says": "layer 2 cannot attest a frame on a wall with no same-material neighbour, or on one whose neighbour breaks the projection. This is the single largest residue on all three maps and no macro touches it: it is what the tree modelling spaces instead of surfaces costs"
+  },
+  "interior|interior rows": {
+   "cause": "row",
+   "owner": "queue item 32e -- 11 proposed rows, none added",
+   "says": "the join grammar has no row for two interiors meeting, in any of the three height relations. It is the campaign's commonest join and the table is silent on it"
+  },
+  "spaces nothing groups": {
+   "cause": "reader",
+   "owner": "bloodmap.decompiler.decompile_level",
+   "says": "a sector in the tree only so the partition closes. The reader has no perceptual evidence that groups it, and a constructor cannot supply evidence"
+  }
+ },
+ "per_map": [
+  {
+   "layers": {
+    "1": {
+     "by_channel": {},
+     "facts": 1300,
+     "fields_claimed": 0,
+     "name": "space tree",
+     "residue_facts": 108,
+     "share_of_all_fields": 0.0,
+     "state": "read"
+    },
+    "2": {
+     "by_channel": {
+      "floor_z": 97,
+      "frame": 3895
+     },
+     "facts": 6812,
+     "fields_claimed": 3992,
+     "name": "surfaces, frames and structures",
+     "residue_facts": 1650,
+     "share_of_all_fields": 3.596,
+     "state": "read"
+    },
+    "3": {
+     "by_channel": {
+      "frame": 33
+     },
+     "facts": 3121,
+     "fields_claimed": 33,
+     "name": "joins",
+     "residue_facts": 1320,
+     "share_of_all_fields": 0.03,
+     "state": "read"
+    },
+    "4": {
+     "by_channel": {
+      "floor_z": 9,
+      "shade": 8
+     },
+     "facts": 85,
+     "fields_claimed": 17,
+     "name": "overlays: islands, the light field, lamps",
+     "residue_facts": 24,
+     "share_of_all_fields": 0.015,
+     "state": "read"
+    },
+    "5": {
+     "by_channel": {
+      "mechanism_state": 154,
+      "sector_type": 52
+     },
+     "facts": 1627,
+     "fields_claimed": 206,
+     "name": "mechanisms as sentences",
+     "residue_facts": 397,
+     "share_of_all_fields": 0.186,
+     "state": "read"
+    },
+    "6": {
+     "by_channel": {
+      "ceiling_z": 6,
+      "frame": 58
+     },
+     "facts": 141,
+     "fields_claimed": 64,
+     "name": "the edge chain",
+     "residue_facts": 0,
+     "share_of_all_fields": 0.058,
+     "state": "read"
+    },
+    "7": {
+     "by_channel": {},
+     "facts": 34,
+     "fields_claimed": 0,
+     "name": "the plan",
+     "residue_facts": 1,
+     "share_of_all_fields": 0.0,
+     "state": "read"
+    },
+    "8": {
+     "by_channel": {},
+     "facts": 172,
+     "fields_claimed": 0,
+     "name": "intent",
+     "residue_facts": 109,
+     "share_of_all_fields": 0.0,
+     "state": "read"
+    }
+   },
+   "macros": {
+    "breakable": 18,
+    "channel": 41,
+    "dressing": 330,
+    "self_lit": 26,
+    "stair": 219
+   },
+   "map": "E3M1",
+   "residue_facts": 3609
+  },
+  {
+   "layers": {
+    "1": {
+     "by_channel": {},
+     "facts": 1221,
+     "fields_claimed": 0,
+     "name": "space tree",
+     "residue_facts": 110,
+     "share_of_all_fields": 0.0,
+     "state": "read"
+    },
+    "2": {
+     "by_channel": {
+      "floor_z": 46,
+      "frame": 3905
+     },
+     "facts": 6811,
+     "fields_claimed": 3951,
+     "name": "surfaces, frames and structures",
+     "residue_facts": 1626,
+     "share_of_all_fields": 3.91,
+     "state": "read"
+    },
+    "3": {
+     "by_channel": {
+      "frame": 12
+     },
+     "facts": 2807,
+     "fields_claimed": 12,
+     "name": "joins",
+     "residue_facts": 1224,
+     "share_of_all_fields": 0.012,
+     "state": "read"
+    },
+    "4": {
+     "by_channel": {
+      "floor_z": 2,
+      "shade": 1
+     },
+     "facts": 18,
+     "fields_claimed": 3,
+     "name": "overlays: islands, the light field, lamps",
+     "residue_facts": 7,
+     "share_of_all_fields": 0.003,
+     "state": "read"
+    },
+    "5": {
+     "by_channel": {
+      "mechanism_state": 102,
+      "sector_type": 49
+     },
+     "facts": 1477,
+     "fields_claimed": 151,
+     "name": "mechanisms as sentences",
+     "residue_facts": 460,
+     "share_of_all_fields": 0.149,
+     "state": "read"
+    },
+    "6": {
+     "by_channel": {
+      "frame": 9
+     },
+     "facts": 39,
+     "fields_claimed": 9,
+     "name": "the edge chain",
+     "residue_facts": 0,
+     "share_of_all_fields": 0.009,
+     "state": "read"
+    },
+    "7": {
+     "by_channel": {},
+     "facts": 34,
+     "fields_claimed": 0,
+     "name": "the plan",
+     "residue_facts": 0,
+     "share_of_all_fields": 0.0,
+     "state": "read"
+    },
+    "8": {
+     "by_channel": {},
+     "facts": 188,
+     "fields_claimed": 0,
+     "name": "intent",
+     "residue_facts": 132,
+     "share_of_all_fields": 0.0,
+     "state": "read"
+    }
+   },
+   "macros": {
+    "breakable": 6,
+    "channel": 72,
+    "dressing": 371,
+    "self_lit": 17,
+    "stair": 102
+   },
+   "map": "E1M2",
+   "residue_facts": 3559
+  },
+  {
+   "layers": {
+    "1": {
+     "by_channel": {},
+     "facts": 288,
+     "fields_claimed": 0,
+     "name": "space tree",
+     "residue_facts": 24,
+     "share_of_all_fields": 0.0,
+     "state": "read"
+    },
+    "2": {
+     "by_channel": {
+      "frame": 1530
+     },
+     "facts": 2490,
+     "fields_claimed": 1530,
+     "name": "surfaces, frames and structures",
+     "residue_facts": 539,
+     "share_of_all_fields": 6.256,
+     "state": "read"
+    },
+    "3": {
+     "by_channel": {
+      "frame": 6
+     },
+     "facts": 868,
+     "fields_claimed": 6,
+     "name": "joins",
+     "residue_facts": 382,
+     "share_of_all_fields": 0.025,
+     "state": "read"
+    },
+    "4": {
+     "by_channel": {
+      "floor_z": 1,
+      "shade": 3
+     },
+     "facts": 13,
+     "fields_claimed": 4,
+     "name": "overlays: islands, the light field, lamps",
+     "residue_facts": 1,
+     "share_of_all_fields": 0.016,
+     "state": "read"
+    },
+    "5": {
+     "by_channel": {
+      "mechanism_state": 68,
+      "sector_type": 17
+     },
+     "facts": 396,
+     "fields_claimed": 85,
+     "name": "mechanisms as sentences",
+     "residue_facts": 81,
+     "share_of_all_fields": 0.348,
+     "state": "read"
+    },
+    "6": {
+     "by_channel": {
+      "frame": 12
+     },
+     "facts": 29,
+     "fields_claimed": 12,
+     "name": "the edge chain",
+     "residue_facts": 0,
+     "share_of_all_fields": 0.049,
+     "state": "read"
+    },
+    "7": {
+     "by_channel": {},
+     "facts": 15,
+     "fields_claimed": 0,
+     "name": "the plan",
+     "residue_facts": 0,
+     "share_of_all_fields": 0.0,
+     "state": "read"
+    },
+    "8": {
+     "by_channel": {},
+     "facts": 50,
+     "fields_claimed": 0,
+     "name": "intent",
+     "residue_facts": 32,
+     "share_of_all_fields": 0.0,
+     "state": "read"
+    }
+   },
+   "macros": {
+    "channel": 8,
+    "dressing": 72,
+    "self_lit": 1
+   },
+   "map": "E4M8",
+   "residue_facts": 1059
+  }
+ ],
+ "population": [
+  "E3M1",
+  "E1M2",
+  "E4M8"
+ ],
+ "rule": "a macro that lowers residue on fewer than 2 maps is not proposed",
+ "shared_reasons": {
+  "intent: no measurement distinguishes it": {
+   "E1M2": 38,
+   "E3M1": 25,
+   "E4M8": 4,
+   "maps": 3,
+   "total": 67
+  },
+  "intent: not a sector type": {
+   "E1M2": 84,
+   "E3M1": 66,
+   "E4M8": 28,
+   "maps": 3,
+   "total": 178
+  },
+  "intent: the course teaches no lesson of type 511": {
+   "E1M2": 6,
+   "E3M1": 18,
+   "E4M8": 0,
+   "maps": 2,
+   "total": 24
+  },
+  "join: the writer's table has no row for end_wall|interior|b_above": {
+   "E1M2": 3,
+   "E3M1": 1,
+   "E4M8": 0,
+   "maps": 2,
+   "total": 4
+  },
+  "join: the writer's table has no row for end_wall|solid|equal": {
+   "E1M2": 3,
+   "E3M1": 0,
+   "E4M8": 5,
+   "maps": 2,
+   "total": 8
+  },
+  "join: the writer's table has no row for interior|end_wall|b_below": {
+   "E1M2": 3,
+   "E3M1": 1,
+   "E4M8": 0,
+   "maps": 2,
+   "total": 4
+  },
+  "join: the writer's table has no row for interior|interior|b_above": {
+   "E1M2": 294,
+   "E3M1": 279,
+   "E4M8": 89,
+   "maps": 3,
+   "total": 662
+  },
+  "join: the writer's table has no row for interior|interior|b_below": {
+   "E1M2": 294,
+   "E3M1": 279,
+   "E4M8": 89,
+   "maps": 3,
+   "total": 662
+  },
+  "join: the writer's table has no row for interior|interior|equal": {
+   "E1M2": 514,
+   "E3M1": 564,
+   "E4M8": 188,
+   "maps": 3,
+   "total": 1266
+  },
+  "join: the writer's table has no row for interior|pavement|b_below": {
+   "E1M2": 1,
+   "E3M1": 17,
+   "E4M8": 1,
+   "maps": 3,
+   "total": 19
+  },
+  "join: the writer's table has no row for interior|pavement|equal": {
+   "E1M2": 1,
+   "E3M1": 1,
+   "E4M8": 0,
+   "maps": 2,
+   "total": 2
+  },
+  "join: the writer's table has no row for interior|solid|b_above": {
+   "E1M2": 20,
+   "E3M1": 26,
+   "E4M8": 1,
+   "maps": 3,
+   "total": 47
+  },
+  "join: the writer's table has no row for interior|solid|equal": {
+   "E1M2": 2,
+   "E3M1": 7,
+   "E4M8": 1,
+   "maps": 3,
+   "total": 10
+  },
+  "join: the writer's table has no row for pavement|interior|b_above": {
+   "E1M2": 1,
+   "E3M1": 17,
+   "E4M8": 1,
+   "maps": 3,
+   "total": 19
+  },
+  "join: the writer's table has no row for pavement|interior|equal": {
+   "E1M2": 1,
+   "E3M1": 1,
+   "E4M8": 0,
+   "maps": 2,
+   "total": 2
+  },
+  "join: the writer's table has no row for solid|end_wall|equal": {
+   "E1M2": 3,
+   "E3M1": 0,
+   "E4M8": 5,
+   "maps": 2,
+   "total": 8
+  },
+  "join: the writer's table has no row for solid|interior|b_below": {
+   "E1M2": 20,
+   "E3M1": 26,
+   "E4M8": 1,
+   "maps": 3,
+   "total": 47
+  },
+  "join: the writer's table has no row for solid|interior|equal": {
+   "E1M2": 2,
+   "E3M1": 7,
+   "E4M8": 1,
+   "maps": 3,
+   "total": 10
+  },
+  "join: the writer's table has no row for solid|solid|b_above": {
+   "E1M2": 3,
+   "E3M1": 2,
+   "E4M8": 0,
+   "maps": 2,
+   "total": 5
+  },
+  "join: the writer's table has no row for solid|solid|b_below": {
+   "E1M2": 3,
+   "E3M1": 2,
+   "E4M8": 0,
+   "maps": 2,
+   "total": 5
+  },
+  "mechanism: an XSPRITE with no wiring this reader reads": {
+   "E1M2": 371,
+   "E3M1": 330,
+   "E4M8": 72,
+   "maps": 3,
+   "total": 773
+  },
+  "mechanism: carries a light wave and nothing else": {
+   "E1M2": 17,
+   "E3M1": 26,
+   "E4M8": 1,
+   "maps": 3,
+   "total": 44
+  },
+  "mechanism: listens on channel 7 but no sentence names it": {
+   "E1M2": 1,
+   "E3M1": 5,
+   "E4M8": 0,
+   "maps": 2,
+   "total": 6
+  },
+  "mechanism: listens on channel 80 but no sentence names it": {
+   "E1M2": 1,
+   "E3M1": 1,
+   "E4M8": 1,
+   "maps": 3,
+   "total": 3
+  },
+  "mechanism: listens on channel 81 but no sentence names it": {
+   "E1M2": 1,
+   "E3M1": 1,
+   "E4M8": 1,
+   "maps": 3,
+   "total": 3
+  },
+  "mechanism: transmits on channel 2 but no sentence names it": {
+   "E1M2": 6,
+   "E3M1": 10,
+   "E4M8": 1,
+   "maps": 3,
+   "total": 17
+  },
+  "mechanism: transmits on channel 3 but no sentence names it": {
+   "E1M2": 5,
+   "E3M1": 1,
+   "E4M8": 0,
+   "maps": 2,
+   "total": 6
+  },
+  "mechanism: transmits on channel 4 but no sentence names it": {
+   "E1M2": 1,
+   "E3M1": 1,
+   "E4M8": 1,
+   "maps": 3,
+   "total": 3
+  },
+  "mechanism: wired, and no sentence realises it": {
+   "E1M2": 38,
+   "E3M1": 20,
+   "E4M8": 3,
+   "maps": 3,
+   "total": 61
+  },
+  "space: no perceptual-space evidence groups this sector; it is in the tree onl": {
+   "E1M2": 110,
+   "E3M1": 108,
+   "E4M8": 24,
+   "maps": 3,
+   "total": 242
+  },
+  "surface: broken off a same-material neighbour": {
+   "E1M2": 764,
+   "E3M1": 574,
+   "E4M8": 298,
+   "maps": 3,
+   "total": 1636
+  },
+  "surface: no same-material neighbour at all": {
+   "E1M2": 862,
+   "E3M1": 1075,
+   "E4M8": 241,
+   "maps": 3,
+   "total": 2178
+  }
+ }
+}

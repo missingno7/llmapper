@@ -1,0 +1,362 @@
+{
+ "sector:27": [
+  {
+   "about": "sentence:sector:27",
+   "id": "name:sentence:sector:27",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  }
+ ],
+ "sector:28": [
+  {
+   "about": "sentence:sector:28",
+   "id": "name:sentence:sector:28",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  }
+ ],
+ "sector:34": [
+  {
+   "about": "sentence:sector:34",
+   "id": "name:sentence:sector:34",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  }
+ ],
+ "sector:37": [
+  {
+   "about": "sentence:sector:37",
+   "id": "name:sentence:sector:37",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  }
+ ],
+ "sector:39": [
+  {
+   "about": "sentence:sector:39",
+   "id": "name:sentence:sector:39",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  }
+ ],
+ "sector:41": [
+  {
+   "about": "sentence:sector:41",
+   "id": "name:sentence:sector:41",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  }
+ ],
+ "sector:47": [
+  {
+   "about": "sentence:sector:47",
+   "id": "name:sentence:sector:47",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  }
+ ],
+ "sector:48": [
+  {
+   "about": "sentence:sector:48",
+   "id": "name:sentence:sector:48",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  }
+ ],
+ "sector:49": [
+  {
+   "about": "sentence:sector:49",
+   "id": "name:sentence:sector:49",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  }
+ ],
+ "sector:51": [
+  {
+   "about": "sentence:sector:51",
+   "id": "name:sentence:sector:51",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  }
+ ],
+ "sector:52": [
+  {
+   "about": "assembly:001/space:008",
+   "id": "name:assembly:001/space:008",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:56": [
+  {
+   "about": "sentence:sector:56",
+   "id": "name:sentence:sector:56",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "sprite",
+    "e1m1zd1",
+    "e1m1zdf",
+    "wall"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 28, 'e1m1zd1': 2, 'e1m1zdf': 2, 'machinery': 33, 'sprite': 4, 'wall': 1}"
+  }
+ ],
+ "sector:57": [
+  {
+   "about": "sentence:sector:57",
+   "id": "name:sentence:sector:57",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "sprite",
+    "e1m1zd1",
+    "e1m1zdf",
+    "wall"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 28, 'e1m1zd1': 2, 'e1m1zdf': 2, 'machinery': 33, 'sprite': 4, 'wall': 1}"
+  }
+ ],
+ "sector:58": [
+  {
+   "about": "sentence:sector:58",
+   "id": "name:sentence:sector:58",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "sprite",
+    "e1m1zd1",
+    "e1m1zdf",
+    "wall"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 28, 'e1m1zd1': 2, 'e1m1zdf': 2, 'machinery': 33, 'sprite': 4, 'wall': 1}"
+  }
+ ],
+ "sector:59": [
+  {
+   "about": "sentence:sector:59",
+   "id": "name:sentence:sector:59",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "sprite",
+    "e1m1zd1",
+    "e1m1zdf",
+    "wall"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 28, 'e1m1zd1': 2, 'e1m1zdf': 2, 'machinery': 33, 'sprite': 4, 'wall': 1}"
+  }
+ ],
+ "sector:60": [
+  {
+   "about": "sentence:sector:60",
+   "id": "name:sentence:sector:60",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  }
+ ],
+ "sector:61": [
+  {
+   "about": "sentence:sector:61",
+   "id": "name:sentence:sector:61",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  }
+ ],
+ "sector:63": [
+  {
+   "about": "assembly:001/space:008",
+   "id": "name:assembly:001/space:008",
+   "layer": 8,
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "sector:68": [
+  {
+   "about": "sentence:sector:68",
+   "id": "name:sentence:sector:68",
+   "layer": 8,
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  }
+ ],
+ "sun:0": [
+  {
+   "about": "sun:0",
+   "id": "light:casters",
+   "layer": 4,
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "0 of 0 oblique edges have a mass corner up-sun and 0 have one down-sun: a tie"
+  }
+ ]
+}

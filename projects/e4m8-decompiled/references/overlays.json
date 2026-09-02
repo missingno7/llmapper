@@ -1,0 +1,279 @@
+{
+ "campaign_step": {
+  "all parallax sectors": {
+   "boundary_records": 1362,
+   "deltas": {
+    "1": 14,
+    "2": 76,
+    "3": 18,
+    "4": 80,
+    "5": 26,
+    "6": 70,
+    "7": 36,
+    "8": 148,
+    "9": 38,
+    "10": 80,
+    "11": 48,
+    "12": 162,
+    "13": 64,
+    "14": 12,
+    "15": 54,
+    "16": 160,
+    "17": 8,
+    "18": 44,
+    "19": 20,
+    "20": 40,
+    "21": 14,
+    "22": 24,
+    "23": 4,
+    "24": 20,
+    "25": 2,
+    "26": 32,
+    "28": 2,
+    "29": 2,
+    "30": 8,
+    "32": 2,
+    "34": 4,
+    "36": 12,
+    "37": 2,
+    "47": 6,
+    "63": 6,
+    "154": 24
+   },
+   "inside_percent": 56.2,
+   "inside_the_envelope": 766,
+   "maps": 38,
+   "mean": 14.9,
+   "median": 12
+  },
+  "the largest outdoor component": {
+   "boundary_records": 362,
+   "deltas": {
+    "1": 4,
+    "2": 8,
+    "3": 2,
+    "4": 28,
+    "5": 2,
+    "6": 34,
+    "7": 4,
+    "8": 20,
+    "9": 8,
+    "10": 32,
+    "11": 2,
+    "12": 28,
+    "13": 8,
+    "15": 10,
+    "16": 56,
+    "17": 2,
+    "18": 26,
+    "20": 20,
+    "22": 22,
+    "24": 12,
+    "26": 28,
+    "47": 6
+   },
+   "inside_percent": 45.3,
+   "inside_the_envelope": 164,
+   "maps": 38,
+   "mean": 14.2,
+   "median": 15
+  }
+ },
+ "disagreements_with_the_measured_facts": [
+  {
+   "claim": "the sun's bearing is recoverable from the shade boundaries (E3M1's precedent: 20 oblique edges at ~84 degrees, SUN_BEARING 478)",
+   "reconciled": "a level may light its outdoor ground without a directional source, and this one does. Nothing is wrong; the sun is simply not a fact about it",
+   "the_reader_finds": "no oblique shade boundary at all: 0 of this map's 0 same-z shade boundaries are axis-aligned, so there is no direction to read"
+  }
+ ],
+ "island_summary": {
+  "island_sectors": 1,
+  "islands": 1,
+  "kerb_records_the_map_makes": 6,
+  "kerb_records_the_writer_claims": 6,
+  "kerb_tiles_seen": {
+   "340": 6
+  },
+  "residue_percent": 14.29,
+  "rise": 4096,
+  "steps_that_are_not_islands": 1
+ },
+ "islands": {
+  "base_plane_z": 20480,
+  "island_sectors": [
+   63
+  ],
+  "islands": [
+   {
+    "boundary_faces": {
+     "interior": 1,
+     "road": 6,
+     "void": 4
+    },
+    "floor_picnum": 512,
+    "island_id": "island:000",
+    "kerb_tile": 340,
+    "loops": 1,
+    "outline_vertices": 11,
+    "rise": 4096,
+    "road_side_tiles": {
+     "340": 6
+    },
+    "sectors": [
+     63
+    ]
+   }
+  ],
+  "islands_the_writer_over_claims": [],
+  "kerb_records_the_map_makes": 6,
+  "kerb_records_the_writer_claims": 6,
+  "kerb_tiles_seen": {
+   "340": 6
+  },
+  "rise": 4096,
+  "steps_that_are_not_islands": {
+   "44032": 1
+  },
+  "steps_that_are_not_islands_count": 1,
+  "walkable_steps_that_are_not_islands": {}
+ },
+ "ledger": {
+  "disagreements": [
+   {
+    "claim": "the sun's bearing is recoverable from the shade boundaries (E3M1's precedent: 20 oblique edges at ~84 degrees, SUN_BEARING 478)",
+    "reconciled": "a level may light its outdoor ground without a directional source, and this one does. Nothing is wrong; the sun is simply not a fact about it",
+    "the_reader_finds": "no oblique shade boundary at all: 0 of this map's 0 same-z shade boundaries are axis-aligned, so there is no direction to read"
+   }
+  ],
+  "explained": 4,
+  "gate": "the recovered islands replayed through overlay.kerb_records and diffed against the records the map actually kerbs; the recovered bearing against the oblique boundaries; every sector's shade against base + k*12",
+  "population": "the street network: 3 sectors, 2 floor steps, 0 oblique shade edges = 5 items",
+  "reader": "bloodmap.read_islands, bloodmap.read_light (new)",
+  "residue": 1,
+  "residue_is": "0 sectors whose shade is not base + k*12, 1 floor steps that are not the island rise, 0 oblique shade edges not at the sun's bearing",
+  "residue_percent": 20.0
+ },
+ "light": {
+  "axis": {
+   "axis_aligned_edges": 0,
+   "axis_degrees": null,
+   "axis_units_mod_half_turn": null,
+   "cluster_records": 0,
+   "cluster_spread_degrees": null,
+   "oblique_edges": 0,
+   "residue_axes": [],
+   "residue_edges_off_the_bearing": []
+  },
+  "casters": {
+   "down_sun_end_is_a_mass_corner": 0,
+   "edges": 0,
+   "neither_end_is": 0,
+   "per_edge": [],
+   "up_sun_end_is_a_mass_corner": 0
+  },
+  "field": {
+   "levels": {
+    "0": {
+     "area_share": 1.0,
+     "sectors": [
+      43,
+      52,
+      63
+     ]
+    }
+   },
+   "lighter_than_the_base": [],
+   "lit_base": 0,
+   "sectors_that_fit": [
+    43,
+    52,
+    63
+   ],
+   "sectors_that_fit_no_level": [],
+   "shades_that_fit_base_plus_k_step": {
+    "0": 0
+   },
+   "shades_that_fit_no_level": {},
+   "significant_count": 1,
+   "significant_levels": [
+    0
+   ],
+   "step_assumed": 12,
+   "step_envelope": [
+    8,
+    16
+   ]
+  },
+  "lamps": {
+   "fullbright_by_sector": {
+    "63": {
+     "2521": 1
+    }
+   },
+   "fullbright_sprites": 1,
+   "sectors_lighter_than_the_base": [],
+   "sectors_with_a_source_and_no_extra_light": [
+    63
+   ],
+   "tiles": {
+    "2521": 1
+   }
+  },
+  "network": [
+   43,
+   52,
+   63
+  ],
+  "sectors_driving_their_own_shade": [],
+  "sectors_driving_their_own_shade_in_the_whole_map": [
+   54,
+   56,
+   57,
+   58,
+   59,
+   62
+  ],
+  "shade_edge_records": 0,
+  "shade_edge_records_before_excluding_waves": 0,
+  "shade_edge_records_the_wave_exclusion_removes": 0,
+  "sign": {
+   "ballots": [],
+   "decided": false,
+   "far_end_boundaries": 0,
+   "throw_bearing_degrees": null,
+   "throw_bearing_units": null,
+   "votes": {}
+  },
+  "step": {
+   "deltas": {},
+   "inside_the_campaign_envelope": 0,
+   "median": null,
+   "outside_it": 0
+  }
+ },
+ "light_summary": {
+  "edges_off_the_bearing": 0,
+  "fullbright_sprites": 1,
+  "lit_base": 0,
+  "oblique_edges": 0,
+  "observed_deltas": {},
+  "sectors_driving_their_own_shade": 0,
+  "sectors_that_fit_base_plus_k_step": 3,
+  "sectors_that_fit_no_level": 0,
+  "shade_edge_records": 0,
+  "shade_edge_records_the_wave_exclusion_removes": 0,
+  "significant_levels": 1,
+  "sun_axis_degrees": null,
+  "sun_decided": false,
+  "throw_bearing_units": null
+ },
+ "owner_marks_read_back": [],
+ "reader": "bloodmap.read_islands and bloodmap.read_light (both new; the islands are replayed through overlay.kerb_records, the writer)",
+ "review": {
+  "hierarchy": "projects\\e4m8-decompiled\\review\\layer4-hierarchy.json",
+  "pack": "projects\\e4m8-decompiled\\review\\layer4.html",
+  "questions": "projects\\e4m8-decompiled\\review\\questions-layer4.json",
+  "sectors_unowned": []
+ },
+ "shade_edges": []
+}

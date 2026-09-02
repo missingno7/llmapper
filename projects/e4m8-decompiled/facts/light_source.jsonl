@@ -1,0 +1,1 @@
+{"_from": ["sector:63"], "_layer": 4, "_reader": "bloodmap.read_light", "id": "sector:63", "kind": "fullbright sprites", "record": "sector:63", "tiles": {"2521": 1}}

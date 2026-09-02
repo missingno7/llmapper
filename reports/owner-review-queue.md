@@ -1596,3 +1596,76 @@ quartiles [8.0, 16.0], 52.3%.
 *No default needed; recorded because a reader that measures the same thing
 twice is the thing the sleep phase exists to find, and this one was found by
 a rebase rather than by the refactoring pass.*
+
+## 36. The sleep phase over three decompilations (P15, 2026-09-03)
+
+Measured by `projects/campaign-census/source/sleep_phase.py` over E3M1, E1M2
+and E4M8; every number is a query over the three fact stores. Full write-up in
+[reports/sleep-phase-2026-09-03.md](sleep-phase-2026-09-03.md). **No
+constructor has been added to bloodmap — P14b owns `bloodmap/city.py` and this
+is the list.**
+
+**36a. The second-map rule now names E4M8, not E1M2, and I had already
+decompiled E1M2.** Re-running the residue curve under my own step-2 reader
+corrections moved six of 43 rows: item 28c stopped reading a raised outdoor
+mass with a sector type as an island, so E1M3, E1M6, E2M9 and E4M6 lost their
+islands and with them their streets. The street population falls from 19 maps
+to 16, the ambiguity that triggered the stated E1M2 default is gone, and
+"largest claimed share among street maps" gives E4M8 (6.693%) unambiguously.
+I decompiled E4M8 as well rather than discard either reading: E4M8 because the
+rule names it, E1M2 because the join grammar reaches it four times better (12
+layer-3 claims over 313 sectors against 6 over 80).
+*Node:* `projects/e4m8-decompiled/review/layer3.html`, node `level`.
+*Recommended default:* keep all three. The rule was applied and its answer is
+recorded; the extra map cost one afternoon and turned "what did both maps
+need" into "what did three maps from three episodes need", which is a much
+harder question to answer by coincidence.
+
+**36b. `dressing(anchor, [prop…], *, spread=, facing=)` — 773 residue facts,
+all three maps (330 / 371 / 72).** The largest construct gap on every map. The
+readers exist already: `read_intent.named_props` names the props and
+`anchors.find_bundles` groups them. Nothing authors them, because our language
+can place a sprite only by absolute coordinate.
+*Node:* `projects/e1m2-decompiled/review/layer5.html`, node `level`.
+*Recommended default:* build it first. It is the biggest, it has a reader to
+check it against, and it is the only one of the five whose residue is one fact
+per record the player actually sees.
+
+**36c. `stair(from_, to, *, treads=, width=, clear_height=)` — 321 facts, two
+maps (219 / 102 / 0).** A stepped run as one construct owning every tread AND
+the projection across them. The residue it lowers is in **layer 2**, not layer
+1: a tread is its own sector, so its side walls have no same-material
+neighbour and no frame can be attested on any of them. E4M8 has no stepped run
+at all, which is why this is the one macro on two maps rather than three.
+*Node:* `projects/e3m1-decompiled/review/layer2.html`, node `level`.
+*Recommended default:* build it second, and make it a SURFACE owner rather
+than a space group — the whole 321 is surface residue.
+
+**36d. `channel(number, tx=[…], rx=[…], *, on=, wave=)` — 121 facts, all three
+(41 / 72 / 8); `self_lit(space, amplitude=, phase=, wave=)` — 44, all three
+(26 / 17 / 1); `breakable(surface, *, on=, reveals=)` — 24, two maps (18 / 6 /
+0).** Three smaller construct gaps. `channel` is the fan-out our one-pair
+writer cannot express. `self_lit` is a sector the reader reads perfectly and
+files as residue only because it is not a mechanism. `breakable` is kWallGib
+— and layer 8 refuses to name those because **the taught course has no lesson
+of type 511 at all**, a mechanism the campaign uses and its own curriculum
+omits.
+*Node:* `projects/e3m1-decompiled/review/layer5.html`, node `kind:breakable_wall`.
+*Recommended default:* all three, after `dressing` and `stair`. The type-511
+gap in the curriculum is worth a note to whoever maintains the lessons; it is
+not a defect in our reader.
+
+**36e. The two largest residues on all three maps are not macro work, and
+should not be counted as if they were.** 3814 facts are layer 2 unable to
+attest a frame on a wall with no same-material neighbour or on one whose
+neighbour breaks the projection — that is the Surface/Frame representation
+item, and no constructor touches it. 2590 facts are the join table having no
+row for two interiors meeting, in any height relation — that is the 11
+proposed rows of item 32e, still none added. Together they are 78% of the
+8227 residue facts across the three maps, and the five macros above account
+for 1283, or 16%.
+*Node:* `projects/e3m1-decompiled/review/layer2.html`, node `level`.
+*Recommended default:* state the split in any roadmap item that quotes a
+residue number, so "lower the residue" does not become "write more
+constructors". The cheapest large win is the 11 rows; the largest is the
+surface representation.

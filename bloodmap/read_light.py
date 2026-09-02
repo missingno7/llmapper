@@ -138,7 +138,16 @@ def sun_axis(edges: Sequence[dict[str, Any]]) -> dict[str, Any]:
                if min(row["axis"], abs(row["axis"] - 90.0),
                       180.0 - row["axis"]) > AXIS_DEGREES]
     if not oblique:
-        return {"oblique_edges": 0, "axis_degrees": None}
+        #: THE SAME KEYS WHETHER OR NOT ANYTHING WAS FOUND. A reader that
+        #: returns a shorter dict when it finds nothing makes every caller
+        #: guess, and E1M2 -- which has no oblique shade edge at all -- is
+        #: the map that proved it: stage 4 raised KeyError rather than
+        #: reporting a level with no sun.
+        return {"oblique_edges": 0, "axis_degrees": None,
+                "axis_units_mod_half_turn": None, "cluster_records": 0,
+                "cluster_spread_degrees": None,
+                "axis_aligned_edges": len(edges),
+                "residue_edges_off_the_bearing": [], "residue_axes": []}
     ordered = sorted(oblique, key=lambda row: row["axis"])
     total = sum(row["length"] for row in ordered)
     running, median = 0.0, ordered[-1]["axis"]
@@ -366,8 +375,14 @@ def read_light(level: Any, kinds: dict[int, str] | None = None, *,
     edges = shade_edges(level, network, owners, exclude_waves=True)
     with_waves = shade_edges(level, network, owners, exclude_waves=False)
     axis = sun_axis(edges)
+    #: One shape either way, as with `sun_axis`: a map with no oblique shade
+    #: boundary has no sun to read, and saying that with the same keys is what
+    #: lets a caller report "no directional source" instead of raising.
     sign = (sun_sign(edges, axis["axis_degrees"])
-            if axis["axis_degrees"] is not None else {})
+            if axis["axis_degrees"] is not None
+            else {"far_end_boundaries": 0, "votes": {}, "decided": False,
+                  "throw_bearing_degrees": None, "throw_bearing_units": None,
+                  "ballots": []})
     fit = field_levels(level, network, exclude=set(waved))
     throw = sign.get("throw_bearing_degrees")
     return {
@@ -384,10 +399,15 @@ def read_light(level: Any, kinds: dict[int, str] | None = None, *,
         "sign": sign,
         "step": observed_step(edges),
         "field": fit,
+        #: One shape again: with no bearing there is nothing to cast along,
+        #: and an empty census says so with the keys a caller already reads.
         "casters": (casters(level, [row for row in edges
                                     if min(row["axis"], abs(row["axis"] - 90.0),
                                            180.0 - row["axis"]) > AXIS_DEGREES],
-                            throw, kinds) if throw is not None else {}),
+                            throw, kinds) if throw is not None
+                    else {"edges": 0, "up_sun_end_is_a_mass_corner": 0,
+                          "down_sun_end_is_a_mass_corner": 0,
+                          "neither_end_is": 0, "per_edge": []}),
         "lamps": lamps(level, network, fit),
     }
 

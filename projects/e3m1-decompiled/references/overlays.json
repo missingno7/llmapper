@@ -82,25 +82,20 @@
  "disagreements_with_the_measured_facts": [
   {
    "claim": "the light field quantises to base + k*12, and every shadow edge's delta lies in [8, 16]",
-   "reconciled": "the base is right (8) and the level count is right (3, inside 2-4); the STEP is not. E3M1's is 24-26, twice the campaign median",
-   "the_reader_finds": "E3M1's own deltas are {12: 2, 24: 6, 26: 14}: 20 of 22 boundary records are outside the envelope, and only shades [8, 32] of [8, 14, 24, 32, 34, 46] fit base + k*12"
+   "reconciled": "the base is right (8) and the level count is right (3, inside 2-4); the STEP need not be. The campaign's median is 13 over the largest outdoor component, quartiles [9, 18.75]",
+   "the_reader_finds": "this map's own deltas are {12: 2, 24: 6, 26: 14}: 20 of 22 boundary records are outside the envelope, and only shades [8, 32] of [8, 14, 24, 32, 34, 46] fit base + k*12"
   },
   {
-   "claim": "20 oblique shade edges at ~84 degrees (SUN_BEARING 478)",
-   "reconciled": "the bearing is confirmed to within one build unit. The COUNT is not: 22 shade-boundary records over 24 street sectors here against the cited 44 over 68. No definition of the network reproduces 44/68 -- all parallax sectors gives 22 over 45, parallax plus one ring of neighbours 22 over 76",
-   "the_reader_finds": "16 oblique shade-boundary RECORDS in the street network, 14 of them within [82.87, 86.42] degrees of 84.2; the throw bearing comes back as 479 build units against the cited 478, a difference of 0.18 degrees"
-  },
-  {
-   "claim": "overlay.kerb_records says which records carry the kerb",
-   "reconciled": "the 11 it gets right are exactly the map's 11, all wearing tile 6; the other 70 are edges that face something that is not the road",
-   "the_reader_finds": "replayed over the three recovered islands it claims 81 records; E3M1 makes 11. It iterates the island's outline and never reads its `ground_outline` argument, so it asks for a kerb on every edge facing a building, an interior or the void"
+   "claim": "20 oblique shade edges at ~84 degrees (SUN_BEARING 478) -- E3M1's precedent",
+   "reconciled": "compare with 478 where this map is E3M1; elsewhere the bearing is this map's own",
+   "the_reader_finds": "16 oblique shade-boundary RECORDS, 14 of them within [82.87, 86.42] degrees of 84.2; the throw bearing comes back as 479 build units"
   }
  ],
  "island_summary": {
   "island_sectors": 9,
   "islands": 3,
   "kerb_records_the_map_makes": 11,
-  "kerb_records_the_writer_claims": 81,
+  "kerb_records_the_writer_claims": 11,
   "kerb_tiles_seen": {
    "6": 11
   },
@@ -193,47 +188,9 @@
     ]
    }
   ],
-  "islands_the_writer_over_claims": [
-   {
-    "island": "island:000",
-    "outline_edges": 30,
-    "records_the_map_kerbs": 4,
-    "what_the_other_side_is": {
-     "end_wall": 3,
-     "interior": 7,
-     "road": 4,
-     "solid": 2,
-     "void": 14
-    }
-   },
-   {
-    "island": "island:001",
-    "outline_edges": 32,
-    "records_the_map_kerbs": 4,
-    "what_the_other_side_is": {
-     "end_wall": 4,
-     "interior": 9,
-     "mechanism_at_rest": 4,
-     "outdoor_ground": 4,
-     "road": 4,
-     "solid": 5,
-     "void": 30
-    }
-   },
-   {
-    "island": "island:002",
-    "outline_edges": 19,
-    "records_the_map_kerbs": 3,
-    "what_the_other_side_is": {
-     "end_wall": 2,
-     "interior": 2,
-     "road": 3,
-     "void": 12
-    }
-   }
-  ],
+  "islands_the_writer_over_claims": [],
   "kerb_records_the_map_makes": 11,
-  "kerb_records_the_writer_claims": 81,
+  "kerb_records_the_writer_claims": 11,
   "kerb_tiles_seen": {
    "6": 11
   },
@@ -254,18 +211,13 @@
   "disagreements": [
    {
     "claim": "the light field quantises to base + k*12, and every shadow edge's delta lies in [8, 16]",
-    "reconciled": "the base is right (8) and the level count is right (3, inside 2-4); the STEP is not. E3M1's is 24-26, twice the campaign median",
-    "the_reader_finds": "E3M1's own deltas are {12: 2, 24: 6, 26: 14}: 20 of 22 boundary records are outside the envelope, and only shades [8, 32] of [8, 14, 24, 32, 34, 46] fit base + k*12"
+    "reconciled": "the base is right (8) and the level count is right (3, inside 2-4); the STEP need not be. The campaign's median is 13 over the largest outdoor component, quartiles [9, 18.75]",
+    "the_reader_finds": "this map's own deltas are {12: 2, 24: 6, 26: 14}: 20 of 22 boundary records are outside the envelope, and only shades [8, 32] of [8, 14, 24, 32, 34, 46] fit base + k*12"
    },
    {
-    "claim": "20 oblique shade edges at ~84 degrees (SUN_BEARING 478)",
-    "reconciled": "the bearing is confirmed to within one build unit. The COUNT is not: 22 shade-boundary records over 24 street sectors here against the cited 44 over 68. No definition of the network reproduces 44/68 -- all parallax sectors gives 22 over 45, parallax plus one ring of neighbours 22 over 76",
-    "the_reader_finds": "16 oblique shade-boundary RECORDS in the street network, 14 of them within [82.87, 86.42] degrees of 84.2; the throw bearing comes back as 479 build units against the cited 478, a difference of 0.18 degrees"
-   },
-   {
-    "claim": "overlay.kerb_records says which records carry the kerb",
-    "reconciled": "the 11 it gets right are exactly the map's 11, all wearing tile 6; the other 70 are edges that face something that is not the road",
-    "the_reader_finds": "replayed over the three recovered islands it claims 81 records; E3M1 makes 11. It iterates the island's outline and never reads its `ground_outline` argument, so it asks for a kerb on every edge facing a building, an interior or the void"
+    "claim": "20 oblique shade edges at ~84 degrees (SUN_BEARING 478) -- E3M1's precedent",
+    "reconciled": "compare with 478 where this map is E3M1; elsewhere the bearing is this map's own",
+    "the_reader_finds": "16 oblique shade-boundary RECORDS, 14 of them within [82.87, 86.42] degrees of 84.2; the throw bearing comes back as 479 build units"
    }
   ],
   "explained": 33,

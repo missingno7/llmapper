@@ -1,0 +1,23 @@
+{
+ "layer": 5,
+ "questions": [
+  {
+   "node": "sentence:sector:3",
+   "question": "9 of 139 sentences use a (type, shape, slot) combination the taught course never shows -- sector:3, the course teaches this type but not this combination (shape 'nothing moves', slots 'rx'), for one. Is a combination the course does not teach a finding or a reader artefact?",
+   "recommended_default": "a finding, and the interesting one: the course teaches each slot alone and the campaign combines them. It belongs in the curriculum's own gaps list, not in ours",
+   "evidence": "references/mechanisms.json: sentences[].against_the_course"
+  },
+  {
+   "node": "sentence:channel:189",
+   "question": "the biggest chain here is one channel telling 14 records at once. Our writer has no construct that fans out like that. Should a chain be one sentence, or one sentence per receiver?",
+   "recommended_default": "one sentence: the channel IS the mechanism and its fan-out is a parameter. Splitting it would make the collapsing house 159 mechanisms that happen to share a number",
+   "evidence": "references/mechanisms.json: links"
+  },
+  {
+   "node": "kind:room_over_room",
+   "question": "this map has 1 stacks and the checker reports 0 faults on them. E3M1's three all sat 256 units below the plane they link, which `curriculum.stack_faults` now treats as a convention. Do this map's stacks keep it?",
+   "recommended_default": "yes where no fault is reported: silence IS the answer, because the checker only excuses that exact offset and flags every other one",
+   "evidence": "references/mechanisms.json: stacks"
+  }
+ ]
+}

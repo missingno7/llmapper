@@ -1,0 +1,679 @@
+{
+ "nodes": [
+  {
+   "id": "level",
+   "kind": "level",
+   "name": "E4M8 -- mechanisms as sentences",
+   "parent": null,
+   "children": [
+    "kind:sector_mechanism",
+    "kind:tx_->_rx_chain"
+   ],
+   "sectors": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79
+   ]
+  },
+  {
+   "id": "kind:sector_mechanism",
+   "kind": "mechanism_kind",
+   "name": "sector mechanism (17)",
+   "parent": "level",
+   "children": [
+    "sentence:sector:27",
+    "sentence:sector:28",
+    "sentence:sector:34",
+    "sentence:sector:37",
+    "sentence:sector:39",
+    "sentence:sector:41",
+    "sentence:sector:47",
+    "sentence:sector:48",
+    "sentence:sector:49",
+    "sentence:sector:51",
+    "sentence:sector:56",
+    "sentence:sector:57",
+    "sentence:sector:58",
+    "sentence:sector:59",
+    "sentence:sector:60",
+    "sentence:sector:61",
+    "sentence:sector:68"
+   ],
+   "sectors": [
+    27,
+    28,
+    34,
+    37,
+    39,
+    41,
+    47,
+    48,
+    49,
+    51,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    68
+   ]
+  },
+  {
+   "id": "sentence:sector:27",
+   "kind": "sentence",
+   "name": "sector:27",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    27
+   ]
+  },
+  {
+   "id": "sentence:sector:28",
+   "kind": "sentence",
+   "name": "sector:28",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    28
+   ]
+  },
+  {
+   "id": "sentence:sector:34",
+   "kind": "sentence",
+   "name": "sector:34",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    34
+   ]
+  },
+  {
+   "id": "sentence:sector:37",
+   "kind": "sentence",
+   "name": "sector:37",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    37
+   ]
+  },
+  {
+   "id": "sentence:sector:39",
+   "kind": "sentence",
+   "name": "sector:39",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    39
+   ]
+  },
+  {
+   "id": "sentence:sector:41",
+   "kind": "sentence",
+   "name": "sector:41",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    41
+   ]
+  },
+  {
+   "id": "sentence:sector:47",
+   "kind": "sentence",
+   "name": "sector:47",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    47
+   ]
+  },
+  {
+   "id": "sentence:sector:48",
+   "kind": "sentence",
+   "name": "sector:48",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    48
+   ]
+  },
+  {
+   "id": "sentence:sector:49",
+   "kind": "sentence",
+   "name": "sector:49",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    49
+   ]
+  },
+  {
+   "id": "sentence:sector:51",
+   "kind": "sentence",
+   "name": "sector:51",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    51
+   ]
+  },
+  {
+   "id": "sentence:sector:56",
+   "kind": "sentence",
+   "name": "sector:56",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    56
+   ]
+  },
+  {
+   "id": "sentence:sector:57",
+   "kind": "sentence",
+   "name": "sector:57",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    57
+   ]
+  },
+  {
+   "id": "sentence:sector:58",
+   "kind": "sentence",
+   "name": "sector:58",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    58
+   ]
+  },
+  {
+   "id": "sentence:sector:59",
+   "kind": "sentence",
+   "name": "sector:59",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    59
+   ]
+  },
+  {
+   "id": "sentence:sector:60",
+   "kind": "sentence",
+   "name": "sector:60",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    60
+   ]
+  },
+  {
+   "id": "sentence:sector:61",
+   "kind": "sentence",
+   "name": "sector:61",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    61
+   ]
+  },
+  {
+   "id": "sentence:sector:68",
+   "kind": "sentence",
+   "name": "sector:68",
+   "parent": "kind:sector_mechanism",
+   "children": [],
+   "sectors": [
+    68
+   ]
+  },
+  {
+   "id": "kind:tx_->_rx_chain",
+   "kind": "mechanism_kind",
+   "name": "tx -> rx chain (28)",
+   "parent": "level",
+   "children": [
+    "sentence:channel:100",
+    "sentence:channel:101",
+    "sentence:channel:102",
+    "sentence:channel:103",
+    "sentence:channel:104",
+    "sentence:channel:106",
+    "sentence:channel:107",
+    "sentence:channel:108",
+    "sentence:channel:109",
+    "sentence:channel:110",
+    "sentence:channel:111",
+    "sentence:channel:112",
+    "sentence:channel:113",
+    "sentence:channel:114",
+    "sentence:channel:115",
+    "sentence:channel:116",
+    "sentence:channel:117",
+    "sentence:channel:119",
+    "sentence:channel:120",
+    "sentence:channel:121",
+    "sentence:channel:122",
+    "sentence:channel:123",
+    "sentence:channel:124",
+    "sentence:channel:125",
+    "sentence:channel:126",
+    "sentence:channel:127",
+    "sentence:channel:128",
+    "sentence:channel:129"
+   ],
+   "sectors": [
+    18,
+    20,
+    21,
+    27,
+    28,
+    34,
+    37,
+    39,
+    41,
+    45,
+    47,
+    48,
+    49,
+    51,
+    54,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    68,
+    69,
+    70
+   ]
+  },
+  {
+   "id": "sentence:channel:100",
+   "kind": "sentence",
+   "name": "channel:100",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    56,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:101",
+   "kind": "sentence",
+   "name": "channel:101",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    54,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:102",
+   "kind": "sentence",
+   "name": "channel:102",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    59,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:103",
+   "kind": "sentence",
+   "name": "channel:103",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    57,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:104",
+   "kind": "sentence",
+   "name": "channel:104",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    58,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:106",
+   "kind": "sentence",
+   "name": "channel:106",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:107",
+   "kind": "sentence",
+   "name": "channel:107",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:108",
+   "kind": "sentence",
+   "name": "channel:108",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    34,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:109",
+   "kind": "sentence",
+   "name": "channel:109",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    47,
+    48,
+    49,
+    51,
+    62,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:110",
+   "kind": "sentence",
+   "name": "channel:110",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    61,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:111",
+   "kind": "sentence",
+   "name": "channel:111",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    39,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:112",
+   "kind": "sentence",
+   "name": "channel:112",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    41,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:113",
+   "kind": "sentence",
+   "name": "channel:113",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    37,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:114",
+   "kind": "sentence",
+   "name": "channel:114",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    27,
+    28,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:115",
+   "kind": "sentence",
+   "name": "channel:115",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    45,
+    68
+   ]
+  },
+  {
+   "id": "sentence:channel:116",
+   "kind": "sentence",
+   "name": "channel:116",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    20,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:117",
+   "kind": "sentence",
+   "name": "channel:117",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    18,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:119",
+   "kind": "sentence",
+   "name": "channel:119",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    21,
+    69,
+    70
+   ]
+  },
+  {
+   "id": "sentence:channel:120",
+   "kind": "sentence",
+   "name": "channel:120",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:121",
+   "kind": "sentence",
+   "name": "channel:121",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    60,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:122",
+   "kind": "sentence",
+   "name": "channel:122",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    60,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:123",
+   "kind": "sentence",
+   "name": "channel:123",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    62,
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:124",
+   "kind": "sentence",
+   "name": "channel:124",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:125",
+   "kind": "sentence",
+   "name": "channel:125",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:126",
+   "kind": "sentence",
+   "name": "channel:126",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    69
+   ]
+  },
+  {
+   "id": "sentence:channel:127",
+   "kind": "sentence",
+   "name": "channel:127",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    70
+   ]
+  },
+  {
+   "id": "sentence:channel:128",
+   "kind": "sentence",
+   "name": "channel:128",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    21
+   ]
+  },
+  {
+   "id": "sentence:channel:129",
+   "kind": "sentence",
+   "name": "channel:129",
+   "parent": "kind:tx_->_rx_chain",
+   "children": [],
+   "sectors": [
+    21,
+    70
+   ]
+  }
+ ]
+}

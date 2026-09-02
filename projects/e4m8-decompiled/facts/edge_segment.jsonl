@@ -1,0 +1,6 @@
+{"_from": ["wall:560", "wall:561", "wall:562", "wall:563"], "_layer": 6, "_reader": "bloodmap.read_edges", "id": "edge:000", "kind": "building_back", "length": 4, "records": ["wall:560", "wall:561", "wall:562", "wall:563"]}
+{"_from": ["wall:677", "wall:678"], "_layer": 6, "_reader": "bloodmap.read_edges", "id": "edge:001", "kind": "building_back", "length": 2, "records": ["wall:677", "wall:678"]}
+{"_from": ["wall:564", "wall:565", "wall:566"], "_layer": 6, "_reader": "bloodmap.read_edges", "id": "edge:002", "kind": "end_wall", "length": 3, "records": ["wall:564", "wall:565", "wall:566"]}
+{"_from": ["wall:567", "wall:568", "wall:569", "wall:570"], "_layer": 6, "_reader": "bloodmap.read_edges", "id": "edge:003", "kind": "building_back", "length": 4, "records": ["wall:567", "wall:568", "wall:569", "wall:570"]}
+{"_from": ["wall:679"], "_layer": 6, "_reader": "bloodmap.read_edges", "id": "edge:004", "kind": "interior_doorway", "length": 1, "records": ["wall:679"]}
+{"_from": ["wall:680", "wall:681"], "_layer": 6, "_reader": "bloodmap.read_edges", "id": "edge:005", "kind": "building_back", "length": 2, "records": ["wall:680", "wall:681"]}

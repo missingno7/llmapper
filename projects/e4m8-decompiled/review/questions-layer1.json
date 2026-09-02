@@ -1,0 +1,11 @@
+{
+ "layer": 1,
+ "questions": [
+  {
+   "node": "assembly:001",
+   "question": "36 spaces group 274 sectors and 108 sectors are grouped by nothing. Is a singleton space a reading worth keeping in the tree, or should the space tree admit that a sector may belong to no space?",
+   "recommended_default": "keep the singletons in hierarchy.json (the partition is what validates) and keep them out of the review pack and out of the explained count, which is what this layer does",
+   "evidence": "references/space-tree.json: residue_sectors"
+  }
+ ]
+}

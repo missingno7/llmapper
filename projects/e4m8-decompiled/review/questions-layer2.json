@@ -1,0 +1,17 @@
+{
+ "layer": 2,
+ "questions": [
+  {
+   "node": "surface:0038",
+   "question": "the largest recovered surface here spans 12 records of tile 160. Only 31% of the map's records sit in a shared projection at all. Should the writer keep projecting one frame per RUN, or per FLAT FACE? Measured over the 43 campaign maps the answer is the run: 93.7% of collinear solid-solid joins continue, 67.9% of bends and 19.1% of reflex corners.",
+   "recommended_default": "keep the run, and add nothing: RUN_BREAK_DEGREES already stops at 100 degrees, and the reader's census is the evidence for whether a bend break belongs in the writer too. Decide it on the whole campaign, which is now measured: see reports/campaign-census-2026-09-03.md",
+   "evidence": "references/surfaces.json: u_continuity_by_join_class"
+  },
+  {
+   "node": "level",
+   "question": "2481 records, 1075 of them with no same-material neighbour at all. Is a lone record a SURFACE of one, or is it evidence that our surface model does not fit how Blood was authored?",
+   "recommended_default": "count it as residue, as here: a frame fitted to one record reproduces it for free, and calling that understanding is how a coverage report reaches 100%",
+   "evidence": "references/surfaces.json: residue_solitary_records"
+  }
+ ]
+}

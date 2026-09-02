@@ -1,0 +1,600 @@
+{
+ "$schema": "llmapper.residue-ledger",
+ "candidates": [
+  {
+   "_from": [
+    "sun:0"
+   ],
+   "_layer": 4,
+   "_reader": "bloodmap.read_light",
+   "about": "sun:0",
+   "id": "light:casters",
+   "readings": [
+    "the up-sun corner throws each shadow",
+    "the down-sun corner does"
+   ],
+   "why": "0 of 0 oblique edges have a mass corner up-sun and 0 have one down-sun: a tie"
+  },
+  {
+   "_from": [
+    "sentence:sector:27"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:27",
+   "id": "name:sentence:sector:27",
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "_from": [
+    "sentence:sector:28"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:28",
+   "id": "name:sentence:sector:28",
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "_from": [
+    "sentence:sector:34"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:34",
+   "id": "name:sentence:sector:34",
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "_from": [
+    "sentence:sector:37"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:37",
+   "id": "name:sentence:sector:37",
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "_from": [
+    "sentence:sector:39"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:39",
+   "id": "name:sentence:sector:39",
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "_from": [
+    "sentence:sector:41"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:41",
+   "id": "name:sentence:sector:41",
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "_from": [
+    "sentence:sector:47"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:47",
+   "id": "name:sentence:sector:47",
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "_from": [
+    "sentence:sector:48"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:48",
+   "id": "name:sentence:sector:48",
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "_from": [
+    "sentence:sector:49"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:49",
+   "id": "name:sentence:sector:49",
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "_from": [
+    "sentence:sector:51"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:51",
+   "id": "name:sentence:sector:51",
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "_from": [
+    "sentence:sector:56"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:56",
+   "id": "name:sentence:sector:56",
+   "readings": [
+    "machinery",
+    "door",
+    "sprite",
+    "e1m1zd1",
+    "e1m1zdf",
+    "wall"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 28, 'e1m1zd1': 2, 'e1m1zdf': 2, 'machinery': 33, 'sprite': 4, 'wall': 1}"
+  },
+  {
+   "_from": [
+    "sentence:sector:57"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:57",
+   "id": "name:sentence:sector:57",
+   "readings": [
+    "machinery",
+    "door",
+    "sprite",
+    "e1m1zd1",
+    "e1m1zdf",
+    "wall"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 28, 'e1m1zd1': 2, 'e1m1zdf': 2, 'machinery': 33, 'sprite': 4, 'wall': 1}"
+  },
+  {
+   "_from": [
+    "sentence:sector:58"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:58",
+   "id": "name:sentence:sector:58",
+   "readings": [
+    "machinery",
+    "door",
+    "sprite",
+    "e1m1zd1",
+    "e1m1zdf",
+    "wall"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 28, 'e1m1zd1': 2, 'e1m1zdf': 2, 'machinery': 33, 'sprite': 4, 'wall': 1}"
+  },
+  {
+   "_from": [
+    "sentence:sector:59"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:59",
+   "id": "name:sentence:sector:59",
+   "readings": [
+    "machinery",
+    "door",
+    "sprite",
+    "e1m1zd1",
+    "e1m1zdf",
+    "wall"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 28, 'e1m1zd1': 2, 'e1m1zdf': 2, 'machinery': 33, 'sprite': 4, 'wall': 1}"
+  },
+  {
+   "_from": [
+    "sentence:sector:60"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:60",
+   "id": "name:sentence:sector:60",
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "_from": [
+    "sentence:sector:61"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:61",
+   "id": "name:sentence:sector:61",
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "_from": [
+    "sentence:sector:68"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "sentence:sector:68",
+   "id": "name:sentence:sector:68",
+   "readings": [
+    "machinery",
+    "door",
+    "e1m1zdf",
+    "e1m1zd1",
+    "sprite",
+    "environment",
+    "wall",
+    "trap",
+    "modelling",
+    "othersectorsfx"
+   ],
+   "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
+  },
+  {
+   "_from": [
+    "sector:52",
+    "sector:63"
+   ],
+   "_layer": 8,
+   "_reader": "bloodmap.read_intent",
+   "about": "assembly:001/space:008",
+   "bases": [
+    "holds the player start, sector 52",
+    "all 2 of its sectors are on the outdoor street network"
+   ],
+   "id": "name:assembly:001/space:008",
+   "readings": [
+    "arrival",
+    "street"
+   ],
+   "why": "more than one measured rule fires, and rule order is not evidence"
+  }
+ ],
+ "conflicts": [],
+ "corroborated_exclusive_fields": 0,
+ "counts": {
+  "sectors": 80,
+  "sprites": 124,
+  "walls": 848
+ },
+ "layers": {
+  "1": {
+   "by_channel": {},
+   "facts": 288,
+   "fields_claimed": 0,
+   "name": "space tree",
+   "residue_facts": 24,
+   "share_of_all_fields": 0.0,
+   "state": "read"
+  },
+  "2": {
+   "by_channel": {
+    "frame": 1530
+   },
+   "facts": 2490,
+   "fields_claimed": 1530,
+   "name": "surfaces, frames and structures",
+   "residue_facts": 539,
+   "share_of_all_fields": 6.256,
+   "state": "read"
+  },
+  "3": {
+   "by_channel": {
+    "frame": 6
+   },
+   "facts": 868,
+   "fields_claimed": 6,
+   "name": "joins",
+   "residue_facts": 382,
+   "share_of_all_fields": 0.025,
+   "state": "read"
+  },
+  "4": {
+   "by_channel": {
+    "floor_z": 1,
+    "shade": 3
+   },
+   "facts": 13,
+   "fields_claimed": 4,
+   "name": "overlays: islands, the light field, lamps",
+   "residue_facts": 1,
+   "share_of_all_fields": 0.016,
+   "state": "read"
+  },
+  "5": {
+   "by_channel": {
+    "mechanism_state": 68,
+    "sector_type": 17
+   },
+   "facts": 396,
+   "fields_claimed": 85,
+   "name": "mechanisms as sentences",
+   "residue_facts": 81,
+   "share_of_all_fields": 0.348,
+   "state": "read"
+  },
+  "6": {
+   "by_channel": {
+    "frame": 12
+   },
+   "facts": 29,
+   "fields_claimed": 12,
+   "name": "the edge chain",
+   "residue_facts": 0,
+   "share_of_all_fields": 0.049,
+   "state": "read"
+  },
+  "7": {
+   "by_channel": {},
+   "facts": 15,
+   "fields_claimed": 0,
+   "name": "the plan",
+   "residue_facts": 0,
+   "share_of_all_fields": 0.0,
+   "state": "read"
+  },
+  "8": {
+   "by_channel": {},
+   "facts": 50,
+   "fields_claimed": 0,
+   "name": "intent",
+   "residue_facts": 32,
+   "share_of_all_fields": 0.0,
+   "state": "read"
+  }
+ },
+ "measure": "a query over projects/e3m1-decompiled/facts/. Understanding is the share of CLAIMED FIELDS in the shared (record, field) -> [claims] ledger, which is the `claims` predicate; residue and conflict are predicates like any other. No number here is typed.",
+ "of": "E4M8.MAP",
+ "per_record": {
+  "sector": {
+   "best_percent_claimed": 10.5,
+   "median_percent_claimed": 0.0,
+   "records": 80,
+   "records_with_no_claimed_field": 60
+  },
+  "sprite": {
+   "best_percent_claimed": 0.0,
+   "median_percent_claimed": 0.0,
+   "records": 124,
+   "records_with_no_claimed_field": 124
+  },
+  "wall": {
+   "best_percent_claimed": 42.9,
+   "median_percent_claimed": 0.0,
+   "records": 848,
+   "records_with_no_claimed_field": 534
+  }
+ },
+ "predicates": {
+  "attachment": 309,
+  "block": 13,
+  "candidate": 19,
+  "claims": 1637,
+  "condition": 53,
+  "connects": 103,
+  "corridor": 1,
+  "edge_segment": 6,
+  "frame": 56,
+  "island": 1,
+  "join": 18,
+  "light_source": 1,
+  "link": 32,
+  "offmap": 11,
+  "part_of": 264,
+  "plan_edge": 1,
+  "realises": 100,
+  "residue": 1059,
+  "sector": 80,
+  "selection": 1,
+  "sentence": 45,
+  "shade_depth": 3,
+  "sprite": 124,
+  "sun": 1,
+  "surface": 56,
+  "surface_kind": 80,
+  "unknown_join": 382,
+  "wall": 848,
+  "xsector": 21,
+  "xsprite": 120,
+  "xwall": 1
+ },
+ "readers": {
+  "bloodmap.conditional.conditional_edges": 53,
+  "bloodmap.conditional.transmitters": 32,
+  "bloodmap.decompiler.decompile_level": 288,
+  "bloodmap.reachability.classify_offmap": 11,
+  "bloodmap.read_edges": 18,
+  "bloodmap.read_intent": 50,
+  "bloodmap.read_islands": 2,
+  "bloodmap.read_islands+read_light": 4,
+  "bloodmap.read_joins": 868,
+  "bloodmap.read_light": 6,
+  "bloodmap.read_mechanisms": 311,
+  "bloodmap.read_plan": 15,
+  "bloodmap.read_surfaces": 960,
+  "bloodmap.read_surfaces+read_stairs": 1530,
+  "map": 1297,
+  "selection": 1
+ },
+ "residue_by_aspect": {
+  "intent": 32,
+  "island": 1,
+  "join": 382,
+  "mechanism": 81,
+  "space": 24,
+  "surface": 539
+ },
+ "schema_version": 3,
+ "selections": [
+  {
+   "_from": [
+    "light:casters"
+   ],
+   "_layer": 4,
+   "_reader": "selection",
+   "about": "light:casters",
+   "basis": "0 of 0 oblique edges have a mass corner up-sun and 0 have one down-sun: a tie -- so nothing is chosen and the candidate stands",
+   "chosen": null,
+   "criterion": "a caster is chosen when the shadow's side edge starts at a mass corner up-sun MORE OFTEN than down-sun",
+   "id": "select:light:casters"
+  }
+ ],
+ "source_crc32": "92082c8d",
+ "understanding": {
+  "claimable_by_record_kind": {
+   "sector": 1520,
+   "sprite": 2480,
+   "wall": 11872,
+   "xsector": 1596,
+   "xsprite": 6960,
+   "xwall": 30
+  },
+  "claimable_fields": 24458,
+  "fields_with_a_claim": 1637,
+  "residue_fields": 22821,
+  "understood_percent": 6.693
+ }
+}

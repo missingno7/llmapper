@@ -1,0 +1,17 @@
+{
+ "layer": 5,
+ "questions": [
+  {
+   "node": "sentence:sector:56",
+   "question": "4 of 45 sentences use a (type, shape, slot) combination the taught course never shows -- sector:56, the course teaches this type but not this combination (shape '(no shape)', slots 'rx,shade wave,z pair'), for one. Is a combination the course does not teach a finding or a reader artefact?",
+   "recommended_default": "a finding, and the interesting one: the course teaches each slot alone and the campaign combines them. It belongs in the curriculum's own gaps list, not in ours",
+   "evidence": "references/mechanisms.json: sentences[].against_the_course"
+  },
+  {
+   "node": "sentence:channel:101",
+   "question": "the biggest chain here is one channel telling 7 records at once. Our writer has no construct that fans out like that. Should a chain be one sentence, or one sentence per receiver?",
+   "recommended_default": "one sentence: the channel IS the mechanism and its fan-out is a parameter. Splitting it would make the collapsing house 159 mechanisms that happen to share a number",
+   "evidence": "references/mechanisms.json: links"
+  }
+ ]
+}

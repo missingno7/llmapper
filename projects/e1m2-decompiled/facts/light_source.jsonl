@@ -1,0 +1,3 @@
+{"_from": ["sector:235"], "_layer": 4, "_reader": "bloodmap.read_light", "id": "sector:235", "kind": "fullbright sprites", "record": "sector:235", "tiles": {"2521": 1}}
+{"_from": ["sector:237"], "_layer": 4, "_reader": "bloodmap.read_light", "id": "sector:237", "kind": "fullbright sprites", "record": "sector:237", "tiles": {"2521": 1}}
+{"_from": ["sector:238"], "_layer": 4, "_reader": "bloodmap.read_light", "id": "sector:238", "kind": "fullbright sprites", "record": "sector:238", "tiles": {"2521": 1}}

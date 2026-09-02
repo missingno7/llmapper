@@ -1,0 +1,8368 @@
+{
+ "$schema": "llmapper.level-hierarchy-reading-view",
+ "of": "E4M8.MAP",
+ "model": "reviewable primary hierarchy plus overlapping alternatives; never native truth",
+ "primary_root": "level",
+ "limitations": [
+  "names are neutral until semantic review",
+  "navigation connectivity is a static at-rest approximation",
+  "perceptual grouping uses portal/material continuity rather than renderer visibility",
+  "mechanism and experience decomposition are intentionally out of scope",
+  "structures are derived from geometry and overlap the spaces they belong to"
+ ],
+ "structure_recovery": {
+  "model": "derived architectural structures between the perceptual space and the individual sector; geometry only, never authored labels",
+  "coverage": {
+   "sectors": 80,
+   "sectors_in_a_structure": 18,
+   "by_kind": {
+    "stepped_run": 0,
+    "landing": 0,
+    "recess": 5,
+    "overlook": 4,
+    "embedded_shell": 14,
+    "pit": 0
+   }
+  },
+  "limitations": [
+   "detection is static: transient door and lift motion is ignored",
+   "a stepped run is a measured climb, not a claim that the designer drew a staircase",
+   "a recess is a small dead end; whether it reads as an alcove is not measured here",
+   "residual records how far the original is from its own parameters, not whether that matters"
+  ]
+ },
+ "counts": {
+  "level": 1,
+  "assembly": 12,
+  "space": 29,
+  "detail_group": 16,
+  "structure": 13
+ },
+ "nodes": [
+  {
+   "id": "level",
+   "kind": "level",
+   "name": "level",
+   "parent": null,
+   "children": [
+    "assembly:001",
+    "assembly:002",
+    "assembly:003",
+    "assembly:004",
+    "assembly:005",
+    "assembly:006",
+    "assembly:007",
+    "assembly:008",
+    "assembly:009",
+    "assembly:010",
+    "assembly:011",
+    "assembly:012"
+   ],
+   "sectors": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79
+   ],
+   "sprite_count": 124,
+   "wall_count": 848,
+   "basis": [
+    "exact LevelIR object inventory",
+    "whole-level spatial geometry"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 21468.5648,
+    "aabb_player_widths": [
+     215.5,
+     184.0
+    ],
+    "median_clear_height_player_heights": 3.9245
+   },
+   "floor_z_range": [
+    -23552,
+    20480
+   ],
+   "ceiling_z_range": [
+    -106496,
+    0
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 512,
+      "count": 56
+     },
+     {
+      "tile": 0,
+      "count": 11
+     },
+     {
+      "tile": 1029,
+      "count": 4
+     },
+     {
+      "tile": 302,
+      "count": 2
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 286,
+      "count": 20
+     },
+     {
+      "tile": 302,
+      "count": 14
+     },
+     {
+      "tile": 3491,
+      "count": 14
+     },
+     {
+      "tile": 303,
+      "count": 12
+     }
+    ],
+    "wall": [
+     {
+      "tile": 302,
+      "count": 259
+     },
+     {
+      "tile": 160,
+      "count": 150
+     },
+     {
+      "tile": 0,
+      "count": 142
+     },
+     {
+      "tile": 303,
+      "count": 113
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 848
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 1070,
+      "count": 28
+     },
+     {
+      "tile": 2520,
+      "count": 17
+     },
+     {
+      "tile": 2519,
+      "count": 7
+     },
+     {
+      "tile": 548,
+      "count": 4
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001",
+   "kind": "assembly",
+   "name": "assembly_001",
+   "parent": "level",
+   "children": [
+    "assembly:001/space:001",
+    "assembly:001/space:002",
+    "assembly:001/space:003",
+    "assembly:001/space:004",
+    "assembly:001/space:005",
+    "assembly:001/space:006",
+    "assembly:001/space:007",
+    "assembly:001/space:008",
+    "assembly:001/space:009",
+    "assembly:001/space:010",
+    "assembly:001/space:011",
+    "assembly:001/space:012",
+    "assembly:001/space:013",
+    "assembly:001/space:014",
+    "assembly:001/space:015",
+    "assembly:001/space:016",
+    "assembly:001/space:017",
+    "assembly:001/space:018",
+    "structure:recess:001",
+    "structure:recess:002",
+    "structure:recess:003",
+    "structure:recess:004",
+    "structure:recess:005",
+    "structure:embedded_shell:001",
+    "structure:embedded_shell:002",
+    "structure:embedded_shell:003",
+    "structure:embedded_shell:004",
+    "structure:embedded_shell:005",
+    "structure:embedded_shell:006",
+    "structure:embedded_shell:007",
+    "structure:embedded_shell:008"
+   ],
+   "sectors": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68
+   ],
+   "sprite_count": 89,
+   "wall_count": 716,
+   "basis": [
+    "connected component of native portals and explicit native links; transient gating ignored"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 21336.912,
+    "aabb_player_widths": [
+     184.0,
+     184.0
+    ],
+    "median_clear_height_player_heights": 4.1057
+   },
+   "floor_z_range": [
+    -23552,
+    20480
+   ],
+   "ceiling_z_range": [
+    -106496,
+    0
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 512,
+      "count": 56
+     },
+     {
+      "tile": 1029,
+      "count": 4
+     },
+     {
+      "tile": 302,
+      "count": 2
+     },
+     {
+      "tile": 2466,
+      "count": 2
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 286,
+      "count": 20
+     },
+     {
+      "tile": 302,
+      "count": 14
+     },
+     {
+      "tile": 3491,
+      "count": 14
+     },
+     {
+      "tile": 303,
+      "count": 12
+     }
+    ],
+    "wall": [
+     {
+      "tile": 302,
+      "count": 259
+     },
+     {
+      "tile": 160,
+      "count": 150
+     },
+     {
+      "tile": 303,
+      "count": 113
+     },
+     {
+      "tile": 512,
+      "count": 75
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 716
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2520,
+      "count": 17
+     },
+     {
+      "tile": 548,
+      "count": 4
+     },
+     {
+      "tile": 812,
+      "count": 4
+     },
+     {
+      "tile": 2090,
+      "count": 4
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:001",
+   "kind": "space",
+   "name": "space_001_001",
+   "parent": "assembly:001",
+   "children": [
+    "assembly:001/space:001/details"
+   ],
+   "sectors": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    19,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    64,
+    65,
+    66,
+    67
+   ],
+   "sprite_count": 36,
+   "wall_count": 424,
+   "basis": [
+    "perceptual-space intersection with its navigation assembly"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 2288.8311,
+    "aabb_player_widths": [
+     58.6667,
+     50.6667
+    ],
+    "median_clear_height_player_heights": 4.1057
+   },
+   "floor_z_range": [
+    0,
+    12288
+   ],
+   "ceiling_z_range": [
+    -90112,
+    -49152
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 512,
+      "count": 41
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 286,
+      "count": 16
+     },
+     {
+      "tile": 302,
+      "count": 12
+     },
+     {
+      "tile": 303,
+      "count": 12
+     },
+     {
+      "tile": 432,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 302,
+      "count": 220
+     },
+     {
+      "tile": 160,
+      "count": 121
+     },
+     {
+      "tile": 486,
+      "count": 56
+     },
+     {
+      "tile": 512,
+      "count": 13
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 424
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2520,
+      "count": 6
+     },
+     {
+      "tile": 548,
+      "count": 3
+     },
+     {
+      "tile": 812,
+      "count": 3
+     },
+     {
+      "tile": 539,
+      "count": 2
+     }
+    ]
+   },
+   "spatial_candidate": "perceptual_space:0"
+  },
+  {
+   "id": "assembly:001/space:001/details",
+   "kind": "detail_group",
+   "name": "details_001_001",
+   "parent": "assembly:001/space:001",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 36,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 2520,
+      "count": 6
+     },
+     {
+      "tile": 548,
+      "count": 3
+     },
+     {
+      "tile": 812,
+      "count": 3
+     },
+     {
+      "tile": 539,
+      "count": 2
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:002",
+   "kind": "space",
+   "name": "space_001_002",
+   "parent": "assembly:001",
+   "children": [
+    "assembly:001/space:002/details"
+   ],
+   "sectors": [
+    18
+   ],
+   "sprite_count": 1,
+   "wall_count": 16,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 48.9861,
+    "aabb_player_widths": [
+     8.0,
+     8.0
+    ],
+    "median_clear_height_player_heights": 4.5887
+   },
+   "floor_z_range": [
+    4096,
+    4096
+   ],
+   "ceiling_z_range": [
+    -73728,
+    -73728
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 512,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 16
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 16
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 1930,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:002/details",
+   "kind": "detail_group",
+   "name": "details_001_002",
+   "parent": "assembly:001/space:002",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 1,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 1930,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:003",
+   "kind": "space",
+   "name": "space_001_003",
+   "parent": "assembly:001",
+   "children": [
+    "assembly:001/space:003/details"
+   ],
+   "sectors": [
+    20
+   ],
+   "sprite_count": 1,
+   "wall_count": 16,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 48.9861,
+    "aabb_player_widths": [
+     8.0,
+     8.0
+    ],
+    "median_clear_height_player_heights": 4.5887
+   },
+   "floor_z_range": [
+    4096,
+    4096
+   ],
+   "ceiling_z_range": [
+    -73728,
+    -73728
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 512,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 16
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 16
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 1470,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:003/details",
+   "kind": "detail_group",
+   "name": "details_001_003",
+   "parent": "assembly:001/space:003",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 1,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 1470,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:004",
+   "kind": "space",
+   "name": "space_001_004",
+   "parent": "assembly:001",
+   "children": [
+    "assembly:001/space:004/details"
+   ],
+   "sectors": [
+    21,
+    22,
+    23,
+    24
+   ],
+   "sprite_count": 10,
+   "wall_count": 16,
+   "basis": [
+    "perceptual-space intersection with its navigation assembly"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 10.6667,
+    "aabb_player_widths": [
+     8.0,
+     1.3333
+    ],
+    "median_clear_height_player_heights": 3.8642
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    -65536,
+    -65536
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 512,
+      "count": 4
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 286,
+      "count": 4
+     }
+    ],
+    "wall": [
+     {
+      "tile": 160,
+      "count": 12
+     },
+     {
+      "tile": 512,
+      "count": 4
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 16
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2169,
+      "count": 2
+     },
+     {
+      "tile": 0,
+      "count": 1
+     },
+     {
+      "tile": 548,
+      "count": 1
+     },
+     {
+      "tile": 618,
+      "count": 1
+     }
+    ]
+   },
+   "spatial_candidate": "perceptual_space:3"
+  },
+  {
+   "id": "assembly:001/space:004/details",
+   "kind": "detail_group",
+   "name": "details_001_004",
+   "parent": "assembly:001/space:004",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 10,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 2169,
+      "count": 2
+     },
+     {
+      "tile": 0,
+      "count": 1
+     },
+     {
+      "tile": 548,
+      "count": 1
+     },
+     {
+      "tile": 618,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:005",
+   "kind": "space",
+   "name": "space_001_005",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    43
+   ],
+   "sprite_count": 0,
+   "wall_count": 8,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 13084.4444,
+    "aabb_player_widths": [
+     168.0,
+     85.3333
+    ],
+    "median_clear_height_player_heights": 3.8642
+   },
+   "floor_z_range": [
+    -23552,
+    -23552
+   ],
+   "ceiling_z_range": [
+    -89088,
+    -89088
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 512,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 512,
+      "count": 8
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 8
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:006",
+   "kind": "space",
+   "name": "space_001_006",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    44
+   ],
+   "sprite_count": 0,
+   "wall_count": 10,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 4024.8889,
+    "aabb_player_widths": [
+     184.0,
+     114.6667
+    ],
+    "median_clear_height_player_heights": 0.0
+   },
+   "floor_z_range": [
+    -23552,
+    -23552
+   ],
+   "ceiling_z_range": [
+    -23552,
+    -23552
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 512,
+      "count": 10
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 10
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:007",
+   "kind": "space",
+   "name": "space_001_007",
+   "parent": "assembly:001",
+   "children": [
+    "assembly:001/space:007/details"
+   ],
+   "sectors": [
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+   ],
+   "sprite_count": 12,
+   "wall_count": 94,
+   "basis": [
+    "perceptual-space intersection with its navigation assembly"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 348.3308,
+    "aabb_player_widths": [
+     21.3333,
+     28.0
+    ],
+    "median_clear_height_player_heights": 3.9245
+   },
+   "floor_z_range": [
+    0,
+    1024
+   ],
+   "ceiling_z_range": [
+    -98304,
+    -65536
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 512,
+      "count": 3
+     },
+     {
+      "tile": 302,
+      "count": 2
+     },
+     {
+      "tile": 2466,
+      "count": 2
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 512,
+      "count": 5
+     },
+     {
+      "tile": 302,
+      "count": 2
+     }
+    ],
+    "wall": [
+     {
+      "tile": 302,
+      "count": 38
+     },
+     {
+      "tile": 512,
+      "count": 27
+     },
+     {
+      "tile": 2466,
+      "count": 22
+     },
+     {
+      "tile": 2458,
+      "count": 6
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 94
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2520,
+      "count": 4
+     },
+     {
+      "tile": 318,
+      "count": 1
+     },
+     {
+      "tile": 753,
+      "count": 1
+     },
+     {
+      "tile": 812,
+      "count": 1
+     }
+    ]
+   },
+   "spatial_candidate": "perceptual_space:6"
+  },
+  {
+   "id": "assembly:001/space:007/details",
+   "kind": "detail_group",
+   "name": "details_001_007",
+   "parent": "assembly:001/space:007",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 12,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 2520,
+      "count": 4
+     },
+     {
+      "tile": 318,
+      "count": 1
+     },
+     {
+      "tile": 753,
+      "count": 1
+     },
+     {
+      "tile": 812,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:008",
+   "kind": "space",
+   "name": "space_001_008",
+   "parent": "assembly:001",
+   "children": [
+    "assembly:001/space:008/details"
+   ],
+   "sectors": [
+    52,
+    63
+   ],
+   "sprite_count": 13,
+   "wall_count": 28,
+   "basis": [
+    "perceptual-space intersection with its navigation assembly"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 1223.1111,
+    "aabb_player_widths": [
+     58.6667,
+     21.3333
+    ],
+    "median_clear_height_player_heights": 6.4604
+   },
+   "floor_z_range": [
+    16384,
+    20480
+   ],
+   "ceiling_z_range": [
+    -89088,
+    -89088
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 512,
+      "count": 2
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 2
+     }
+    ],
+    "wall": [
+     {
+      "tile": 160,
+      "count": 12
+     },
+     {
+      "tile": 512,
+      "count": 9
+     },
+     {
+      "tile": 340,
+      "count": 7
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 28
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2522,
+      "count": 2
+     },
+     {
+      "tile": 559,
+      "count": 1
+     },
+     {
+      "tile": 2169,
+      "count": 1
+     },
+     {
+      "tile": 2521,
+      "count": 1
+     }
+    ]
+   },
+   "spatial_candidate": "perceptual_space:7"
+  },
+  {
+   "id": "assembly:001/space:008/details",
+   "kind": "detail_group",
+   "name": "details_001_008",
+   "parent": "assembly:001/space:008",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 13,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 2522,
+      "count": 2
+     },
+     {
+      "tile": 559,
+      "count": 1
+     },
+     {
+      "tile": 2169,
+      "count": 1
+     },
+     {
+      "tile": 2521,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:009",
+   "kind": "space",
+   "name": "space_001_009",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    53
+   ],
+   "sprite_count": 0,
+   "wall_count": 21,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 135.5646,
+    "aabb_player_widths": [
+     10.6667,
+     16.0
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 512,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 17
+     },
+     {
+      "tile": 160,
+      "count": 4
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 21
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:010",
+   "kind": "space",
+   "name": "space_001_010",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    54
+   ],
+   "sprite_count": 0,
+   "wall_count": 24,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 6.2246,
+    "aabb_player_widths": [
+     6.6667,
+     6.6667
+    ],
+    "median_clear_height_player_heights": 6.2189
+   },
+   "floor_z_range": [
+    -1024,
+    -1024
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 1006,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 24
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 24
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:011",
+   "kind": "space",
+   "name": "space_001_011",
+   "parent": "assembly:001",
+   "children": [
+    "assembly:001/space:011/details"
+   ],
+   "sectors": [
+    55,
+    60
+   ],
+   "sprite_count": 2,
+   "wall_count": 32,
+   "basis": [
+    "perceptual-space intersection with its navigation assembly"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 23.0997,
+    "aabb_player_widths": [
+     6.0182,
+     6.0
+    ],
+    "median_clear_height_player_heights": 6.3396
+   },
+   "floor_z_range": [
+    0,
+    1024
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 429,
+      "count": 1
+     },
+     {
+      "tile": 512,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 2
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 28
+     },
+     {
+      "tile": 638,
+      "count": 4
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 32
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 829,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   },
+   "spatial_candidate": "perceptual_space:10"
+  },
+  {
+   "id": "assembly:001/space:011/details",
+   "kind": "detail_group",
+   "name": "details_001_011",
+   "parent": "assembly:001/space:011",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 2,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 829,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:012",
+   "kind": "space",
+   "name": "space_001_012",
+   "parent": "assembly:001",
+   "children": [
+    "assembly:001/space:012/details"
+   ],
+   "sectors": [
+    56
+   ],
+   "sprite_count": 2,
+   "wall_count": 3,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 1.0,
+    "aabb_player_widths": [
+     1.0,
+     2.0
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 1029,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 3
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 3
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:012/details",
+   "kind": "detail_group",
+   "name": "details_001_012",
+   "parent": "assembly:001/space:012",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 2,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:013",
+   "kind": "space",
+   "name": "space_001_013",
+   "parent": "assembly:001",
+   "children": [
+    "assembly:001/space:013/details"
+   ],
+   "sectors": [
+    57
+   ],
+   "sprite_count": 2,
+   "wall_count": 3,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 1.0,
+    "aabb_player_widths": [
+     2.0,
+     1.0
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 1029,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 3
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 3
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:013/details",
+   "kind": "detail_group",
+   "name": "details_001_013",
+   "parent": "assembly:001/space:013",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 2,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:014",
+   "kind": "space",
+   "name": "space_001_014",
+   "parent": "assembly:001",
+   "children": [
+    "assembly:001/space:014/details"
+   ],
+   "sectors": [
+    58
+   ],
+   "sprite_count": 2,
+   "wall_count": 3,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 1.0,
+    "aabb_player_widths": [
+     1.0,
+     2.0
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 1029,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 3
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 3
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:014/details",
+   "kind": "detail_group",
+   "name": "details_001_014",
+   "parent": "assembly:001/space:014",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 2,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:015",
+   "kind": "space",
+   "name": "space_001_015",
+   "parent": "assembly:001",
+   "children": [
+    "assembly:001/space:015/details"
+   ],
+   "sectors": [
+    59
+   ],
+   "sprite_count": 2,
+   "wall_count": 3,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 1.0,
+    "aabb_player_widths": [
+     2.0,
+     1.0
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 1029,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 3
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 3
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:015/details",
+   "kind": "detail_group",
+   "name": "details_001_015",
+   "parent": "assembly:001/space:015",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 2,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:016",
+   "kind": "space",
+   "name": "space_001_016",
+   "parent": "assembly:001",
+   "children": [
+    "assembly:001/space:016/details"
+   ],
+   "sectors": [
+    61
+   ],
+   "sprite_count": 1,
+   "wall_count": 4,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 7.1111,
+    "aabb_player_widths": [
+     5.3333,
+     1.3333
+    ],
+    "median_clear_height_player_heights": 0.0
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    0,
+    0
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 512,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 512,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 512,
+      "count": 4
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 4
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:016/details",
+   "kind": "detail_group",
+   "name": "details_001_016",
+   "parent": "assembly:001/space:016",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 1,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:017",
+   "kind": "space",
+   "name": "space_001_017",
+   "parent": "assembly:001",
+   "children": [
+    "assembly:001/space:017/details"
+   ],
+   "sectors": [
+    62
+   ],
+   "sprite_count": 2,
+   "wall_count": 7,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 80.0,
+    "aabb_player_widths": [
+     9.3333,
+     10.6667
+    ],
+    "median_clear_height_player_heights": 5.917
+   },
+   "floor_z_range": [
+    2048,
+    2048
+   ],
+   "ceiling_z_range": [
+    -98304,
+    -98304
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 2461,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 2461,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 273,
+      "count": 7
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 7
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2521,
+      "count": 1
+     },
+     {
+      "tile": 3140,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:017/details",
+   "kind": "detail_group",
+   "name": "details_001_017",
+   "parent": "assembly:001/space:017",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 2,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 2521,
+      "count": 1
+     },
+     {
+      "tile": 3140,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:018",
+   "kind": "space",
+   "name": "space_001_018",
+   "parent": "assembly:001",
+   "children": [
+    "assembly:001/space:018/details"
+   ],
+   "sectors": [
+    68
+   ],
+   "sprite_count": 3,
+   "wall_count": 4,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 2.6667,
+    "aabb_player_widths": [
+     1.3333,
+     2.6667
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    -8192,
+    -8192
+   ],
+   "ceiling_z_range": [
+    -24576,
+    -24576
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 230,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 230,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 2466,
+      "count": 3
+     },
+     {
+      "tile": 302,
+      "count": 1
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 4
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 829,
+      "count": 1
+     },
+     {
+      "tile": 896,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:001/space:018/details",
+   "kind": "detail_group",
+   "name": "details_001_018",
+   "parent": "assembly:001/space:018",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 3,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 829,
+      "count": 1
+     },
+     {
+      "tile": 896,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:002",
+   "kind": "assembly",
+   "name": "assembly_002",
+   "parent": "level",
+   "children": [
+    "assembly:002/space:001"
+   ],
+   "sectors": [
+    69
+   ],
+   "sprite_count": 32,
+   "wall_count": 4,
+   "basis": [
+    "connected component of native portals and explicit native links; transient gating ignored"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 56.8889,
+    "aabb_player_widths": [
+     10.6667,
+     5.3333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 4
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 4
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 1070,
+      "count": 27
+     },
+     {
+      "tile": 2519,
+      "count": 5
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:002/space:001",
+   "kind": "space",
+   "name": "space_002_001",
+   "parent": "assembly:002",
+   "children": [
+    "assembly:002/space:001/details"
+   ],
+   "sectors": [
+    69
+   ],
+   "sprite_count": 32,
+   "wall_count": 4,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 56.8889,
+    "aabb_player_widths": [
+     10.6667,
+     5.3333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 4
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 4
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 1070,
+      "count": 27
+     },
+     {
+      "tile": 2519,
+      "count": 5
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:002/space:001/details",
+   "kind": "detail_group",
+   "name": "details_002_001",
+   "parent": "assembly:002/space:001",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 32,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 1070,
+      "count": 27
+     },
+     {
+      "tile": 2519,
+      "count": 5
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:003",
+   "kind": "assembly",
+   "name": "assembly_003",
+   "parent": "level",
+   "children": [
+    "assembly:003/space:001"
+   ],
+   "sectors": [
+    70
+   ],
+   "sprite_count": 3,
+   "wall_count": 4,
+   "basis": [
+    "connected component of native portals and explicit native links; transient gating ignored"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 42.6667,
+    "aabb_player_widths": [
+     8.0,
+     5.3333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 4
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 4
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 0,
+      "count": 1
+     },
+     {
+      "tile": 1070,
+      "count": 1
+     },
+     {
+      "tile": 2519,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:003/space:001",
+   "kind": "space",
+   "name": "space_003_001",
+   "parent": "assembly:003",
+   "children": [
+    "assembly:003/space:001/details"
+   ],
+   "sectors": [
+    70
+   ],
+   "sprite_count": 3,
+   "wall_count": 4,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 42.6667,
+    "aabb_player_widths": [
+     8.0,
+     5.3333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 4
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 4
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 0,
+      "count": 1
+     },
+     {
+      "tile": 1070,
+      "count": 1
+     },
+     {
+      "tile": 2519,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:003/space:001/details",
+   "kind": "detail_group",
+   "name": "details_003_001",
+   "parent": "assembly:003/space:001",
+   "children": [],
+   "sectors": [],
+   "sprite_count": 3,
+   "wall_count": 0,
+   "basis": [
+    "native sprite placement inside the parent space; semantics remain unreviewed"
+   ],
+   "dominant_assets": {
+    "sprite": [
+     {
+      "tile": 0,
+      "count": 1
+     },
+     {
+      "tile": 1070,
+      "count": 1
+     },
+     {
+      "tile": 2519,
+      "count": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:004",
+   "kind": "assembly",
+   "name": "assembly_004",
+   "parent": "level",
+   "children": [
+    "assembly:004/space:001"
+   ],
+   "sectors": [
+    71
+   ],
+   "sprite_count": 0,
+   "wall_count": 14,
+   "basis": [
+    "connected component of native portals and explicit native links; transient gating ignored"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 3.75,
+    "aabb_player_widths": [
+     2.5,
+     3.0
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 14
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 14
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:004/space:001",
+   "kind": "space",
+   "name": "space_004_001",
+   "parent": "assembly:004",
+   "children": [],
+   "sectors": [
+    71
+   ],
+   "sprite_count": 0,
+   "wall_count": 14,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 3.75,
+    "aabb_player_widths": [
+     2.5,
+     3.0
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 14
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 14
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:005",
+   "kind": "assembly",
+   "name": "assembly_005",
+   "parent": "level",
+   "children": [
+    "assembly:005/space:001"
+   ],
+   "sectors": [
+    72
+   ],
+   "sprite_count": 0,
+   "wall_count": 10,
+   "basis": [
+    "connected component of native portals and explicit native links; transient gating ignored"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 2.5278,
+    "aabb_player_widths": [
+     2.0,
+     3.0
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 10
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 10
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:005/space:001",
+   "kind": "space",
+   "name": "space_005_001",
+   "parent": "assembly:005",
+   "children": [],
+   "sectors": [
+    72
+   ],
+   "sprite_count": 0,
+   "wall_count": 10,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 2.5278,
+    "aabb_player_widths": [
+     2.0,
+     3.0
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 10
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 10
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:006",
+   "kind": "assembly",
+   "name": "assembly_006",
+   "parent": "level",
+   "children": [
+    "assembly:006/space:001"
+   ],
+   "sectors": [
+    73
+   ],
+   "sprite_count": 0,
+   "wall_count": 12,
+   "basis": [
+    "connected component of native portals and explicit native links; transient gating ignored"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 4.25,
+    "aabb_player_widths": [
+     2.3333,
+     2.8333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 12
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 12
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:006/space:001",
+   "kind": "space",
+   "name": "space_006_001",
+   "parent": "assembly:006",
+   "children": [],
+   "sectors": [
+    73
+   ],
+   "sprite_count": 0,
+   "wall_count": 12,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 4.25,
+    "aabb_player_widths": [
+     2.3333,
+     2.8333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 12
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 12
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:007",
+   "kind": "assembly",
+   "name": "assembly_007",
+   "parent": "level",
+   "children": [
+    "assembly:007/space:001"
+   ],
+   "sectors": [
+    74
+   ],
+   "sprite_count": 0,
+   "wall_count": 13,
+   "basis": [
+    "connected component of native portals and explicit native links; transient gating ignored"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 4.9722,
+    "aabb_player_widths": [
+     2.3333,
+     2.8333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 13
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 13
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:007/space:001",
+   "kind": "space",
+   "name": "space_007_001",
+   "parent": "assembly:007",
+   "children": [],
+   "sectors": [
+    74
+   ],
+   "sprite_count": 0,
+   "wall_count": 13,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 4.9722,
+    "aabb_player_widths": [
+     2.3333,
+     2.8333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 13
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 13
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:008",
+   "kind": "assembly",
+   "name": "assembly_008",
+   "parent": "level",
+   "children": [
+    "assembly:008/space:001"
+   ],
+   "sectors": [
+    75
+   ],
+   "sprite_count": 0,
+   "wall_count": 15,
+   "basis": [
+    "connected component of native portals and explicit native links; transient gating ignored"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 3.8889,
+    "aabb_player_widths": [
+     2.1667,
+     2.8333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 15
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 15
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:008/space:001",
+   "kind": "space",
+   "name": "space_008_001",
+   "parent": "assembly:008",
+   "children": [],
+   "sectors": [
+    75
+   ],
+   "sprite_count": 0,
+   "wall_count": 15,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 3.8889,
+    "aabb_player_widths": [
+     2.1667,
+     2.8333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 15
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 15
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:009",
+   "kind": "assembly",
+   "name": "assembly_009",
+   "parent": "level",
+   "children": [
+    "assembly:009/space:001"
+   ],
+   "sectors": [
+    76
+   ],
+   "sprite_count": 0,
+   "wall_count": 19,
+   "basis": [
+    "connected component of native portals and explicit native links; transient gating ignored"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 3.6667,
+    "aabb_player_widths": [
+     2.1667,
+     2.8333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 19
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 19
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:009/space:001",
+   "kind": "space",
+   "name": "space_009_001",
+   "parent": "assembly:009",
+   "children": [],
+   "sectors": [
+    76
+   ],
+   "sprite_count": 0,
+   "wall_count": 19,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 3.6667,
+    "aabb_player_widths": [
+     2.1667,
+     2.8333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 19
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 19
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:010",
+   "kind": "assembly",
+   "name": "assembly_010",
+   "parent": "level",
+   "children": [
+    "assembly:010/space:001"
+   ],
+   "sectors": [
+    77
+   ],
+   "sprite_count": 0,
+   "wall_count": 16,
+   "basis": [
+    "connected component of native portals and explicit native links; transient gating ignored"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 2.625,
+    "aabb_player_widths": [
+     1.6667,
+     2.8333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 16
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 16
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:010/space:001",
+   "kind": "space",
+   "name": "space_010_001",
+   "parent": "assembly:010",
+   "children": [],
+   "sectors": [
+    77
+   ],
+   "sprite_count": 0,
+   "wall_count": 16,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 2.625,
+    "aabb_player_widths": [
+     1.6667,
+     2.8333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 16
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 16
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:011",
+   "kind": "assembly",
+   "name": "assembly_011",
+   "parent": "level",
+   "children": [
+    "assembly:011/space:001"
+   ],
+   "sectors": [
+    78
+   ],
+   "sprite_count": 0,
+   "wall_count": 15,
+   "basis": [
+    "connected component of native portals and explicit native links; transient gating ignored"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 3.8889,
+    "aabb_player_widths": [
+     2.1667,
+     2.8333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 15
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 15
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:011/space:001",
+   "kind": "space",
+   "name": "space_011_001",
+   "parent": "assembly:011",
+   "children": [],
+   "sectors": [
+    78
+   ],
+   "sprite_count": 0,
+   "wall_count": 15,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 3.8889,
+    "aabb_player_widths": [
+     2.1667,
+     2.8333
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 15
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 15
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:012",
+   "kind": "assembly",
+   "name": "assembly_012",
+   "parent": "level",
+   "children": [
+    "assembly:012/space:001"
+   ],
+   "sectors": [
+    79
+   ],
+   "sprite_count": 0,
+   "wall_count": 10,
+   "basis": [
+    "connected component of native portals and explicit native links; transient gating ignored"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 2.5278,
+    "aabb_player_widths": [
+     2.0,
+     3.0
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 10
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 10
+     }
+    ]
+   }
+  },
+  {
+   "id": "assembly:012/space:001",
+   "kind": "space",
+   "name": "space_012_001",
+   "parent": "assembly:012",
+   "children": [],
+   "sectors": [
+    79
+   ],
+   "sprite_count": 0,
+   "wall_count": 10,
+   "basis": [
+    "sector not grouped by current perceptual-space evidence; retained as a reviewable singleton"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 2.5278,
+    "aabb_player_widths": [
+     2.0,
+     3.0
+    ],
+    "median_clear_height_player_heights": 0.966
+   },
+   "floor_z_range": [
+    8192,
+    8192
+   ],
+   "ceiling_z_range": [
+    -8192,
+    -8192
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 0,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 0,
+      "count": 10
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 10
+     }
+    ]
+   }
+  },
+  {
+   "id": "structure:recess:001",
+   "kind": "structure",
+   "name": "001",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    56
+   ],
+   "sprite_count": 2,
+   "wall_count": 3,
+   "basis": [
+    "single open portal, area at or below the host ratio, floor within one step"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 1.0,
+    "aabb_player_widths": [
+     1.0,
+     2.0
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 1029,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 3
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 3
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   },
+   "structure": {
+    "kind": "recess",
+    "parameters": {
+     "area": 147456.0,
+     "depth_ratio": 0.0469,
+     "opening_width": 768.0,
+     "floor_delta": 0,
+     "ceiling_delta": 0,
+     "clear_height": 106496
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:011"
+    ]
+   }
+  },
+  {
+   "id": "structure:recess:002",
+   "kind": "structure",
+   "name": "002",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    57
+   ],
+   "sprite_count": 2,
+   "wall_count": 3,
+   "basis": [
+    "single open portal, area at or below the host ratio, floor within one step"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 1.0,
+    "aabb_player_widths": [
+     2.0,
+     1.0
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 1029,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 3
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 3
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   },
+   "structure": {
+    "kind": "recess",
+    "parameters": {
+     "area": 147456.0,
+     "depth_ratio": 0.0469,
+     "opening_width": 768.0,
+     "floor_delta": 0,
+     "ceiling_delta": 0,
+     "clear_height": 106496
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:011"
+    ]
+   }
+  },
+  {
+   "id": "structure:recess:003",
+   "kind": "structure",
+   "name": "003",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    58
+   ],
+   "sprite_count": 2,
+   "wall_count": 3,
+   "basis": [
+    "single open portal, area at or below the host ratio, floor within one step"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 1.0,
+    "aabb_player_widths": [
+     1.0,
+     2.0
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 1029,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 3
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 3
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   },
+   "structure": {
+    "kind": "recess",
+    "parameters": {
+     "area": 147456.0,
+     "depth_ratio": 0.0469,
+     "opening_width": 768.0,
+     "floor_delta": 0,
+     "ceiling_delta": 0,
+     "clear_height": 106496
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:011"
+    ]
+   }
+  },
+  {
+   "id": "structure:recess:004",
+   "kind": "structure",
+   "name": "004",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    59
+   ],
+   "sprite_count": 2,
+   "wall_count": 3,
+   "basis": [
+    "single open portal, area at or below the host ratio, floor within one step"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 1.0,
+    "aabb_player_widths": [
+     2.0,
+     1.0
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 1029,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 3
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 3
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   },
+   "structure": {
+    "kind": "recess",
+    "parameters": {
+     "area": 147456.0,
+     "depth_ratio": 0.0469,
+     "opening_width": 768.0,
+     "floor_delta": 0,
+     "ceiling_delta": 0,
+     "clear_height": 106496
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:011"
+    ]
+   }
+  },
+  {
+   "id": "structure:recess:005",
+   "kind": "structure",
+   "name": "005",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    60
+   ],
+   "sprite_count": 2,
+   "wall_count": 4,
+   "basis": [
+    "single open portal, area at or below the host ratio, floor within one step"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 1.7778,
+    "aabb_player_widths": [
+     1.3333,
+     1.3333
+    ],
+    "median_clear_height_player_heights": 6.3396
+   },
+   "floor_z_range": [
+    1024,
+    1024
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 429,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 4
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 4
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 829,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   },
+   "structure": {
+    "kind": "recess",
+    "parameters": {
+     "area": 262144.0,
+     "depth_ratio": 0.0834,
+     "opening_width": 512.0,
+     "floor_delta": 1024,
+     "ceiling_delta": 0,
+     "clear_height": 107520
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:011"
+    ]
+   }
+  },
+  {
+   "id": "structure:embedded_shell:001",
+   "kind": "structure",
+   "name": "001",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    47,
+    48,
+    49,
+    51
+   ],
+   "sprite_count": 5,
+   "wall_count": 32,
+   "basis": [
+    "host wall loop encloses the outer loop of other sectors"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 30.0,
+    "aabb_player_widths": [
+     6.6667,
+     4.6667
+    ],
+    "median_clear_height_player_heights": 3.9245
+   },
+   "floor_z_range": [
+    1024,
+    1024
+   ],
+   "ceiling_z_range": [
+    -65536,
+    -65536
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 302,
+      "count": 2
+     },
+     {
+      "tile": 2466,
+      "count": 2
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 512,
+      "count": 4
+     }
+    ],
+    "wall": [
+     {
+      "tile": 512,
+      "count": 18
+     },
+     {
+      "tile": 2466,
+      "count": 8
+     },
+     {
+      "tile": 2458,
+      "count": 4
+     },
+     {
+      "tile": 302,
+      "count": 2
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 32
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2520,
+      "count": 4
+     },
+     {
+      "tile": 2433,
+      "count": 1
+     }
+    ]
+   },
+   "structure": {
+    "kind": "embedded_shell",
+    "parameters": {
+     "footprint": 4423680.0,
+     "contained_sectors": 4,
+     "host_area": 5537792.0,
+     "occupies_host": 0.4441
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:007"
+    ]
+   }
+  },
+  {
+   "id": "structure:embedded_shell:002",
+   "kind": "structure",
+   "name": "002",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    45,
+    46,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60
+   ],
+   "sprite_count": 17,
+   "wall_count": 108,
+   "basis": [
+    "host wall loop encloses the outer loop of other sectors"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 314.0996,
+    "aabb_player_widths": [
+     21.3333,
+     21.3333
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    -1024,
+    1024
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -90112
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 1029,
+      "count": 4
+     },
+     {
+      "tile": 512,
+      "count": 3
+     },
+     {
+      "tile": 429,
+      "count": 1
+     },
+     {
+      "tile": 1006,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 7
+     },
+     {
+      "tile": 302,
+      "count": 2
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 64
+     },
+     {
+      "tile": 302,
+      "count": 36
+     },
+     {
+      "tile": 638,
+      "count": 4
+     },
+     {
+      "tile": 512,
+      "count": 3
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 108
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2520,
+      "count": 5
+     },
+     {
+      "tile": 2090,
+      "count": 4
+     },
+     {
+      "tile": 318,
+      "count": 1
+     },
+     {
+      "tile": 753,
+      "count": 1
+     }
+    ]
+   },
+   "structure": {
+    "kind": "embedded_shell",
+    "parameters": {
+     "footprint": 4913870.0,
+     "contained_sectors": 9,
+     "host_area": 19989810.0,
+     "occupies_host": 0.1973
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:009"
+    ]
+   }
+  },
+  {
+   "id": "structure:embedded_shell:003",
+   "kind": "structure",
+   "name": "003",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    45,
+    53,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60
+   ],
+   "sprite_count": 12,
+   "wall_count": 91,
+   "basis": [
+    "host wall loop encloses the outer loop of other sectors"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 285.2173,
+    "aabb_player_widths": [
+     16.0,
+     18.6667
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    0,
+    1024
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -90112
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 1029,
+      "count": 4
+     },
+     {
+      "tile": 512,
+      "count": 3
+     },
+     {
+      "tile": 429,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 7
+     },
+     {
+      "tile": 302,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 57
+     },
+     {
+      "tile": 302,
+      "count": 25
+     },
+     {
+      "tile": 160,
+      "count": 5
+     },
+     {
+      "tile": 638,
+      "count": 4
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 91
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2520,
+      "count": 5
+     },
+     {
+      "tile": 2090,
+      "count": 4
+     },
+     {
+      "tile": 753,
+      "count": 1
+     },
+     {
+      "tile": 829,
+      "count": 1
+     }
+    ]
+   },
+   "structure": {
+    "kind": "embedded_shell",
+    "parameters": {
+     "footprint": 3996016.0,
+     "contained_sectors": 8,
+     "host_area": 917854.0,
+     "occupies_host": 0.8132
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:010"
+    ]
+   }
+  },
+  {
+   "id": "structure:embedded_shell:004",
+   "kind": "structure",
+   "name": "004",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    54,
+    60
+   ],
+   "sprite_count": 2,
+   "wall_count": 28,
+   "basis": [
+    "host wall loop encloses the outer loop of other sectors"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 8.0024,
+    "aabb_player_widths": [
+     6.6667,
+     6.6667
+    ],
+    "median_clear_height_player_heights": 6.3396
+   },
+   "floor_z_range": [
+    -1024,
+    1024
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 429,
+      "count": 1
+     },
+     {
+      "tile": 1006,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 2
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 28
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 28
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 829,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   },
+   "structure": {
+    "kind": "embedded_shell",
+    "parameters": {
+     "footprint": 262144.0,
+     "contained_sectors": 2,
+     "host_area": 3144048.0,
+     "occupies_host": 0.077
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:011"
+    ]
+   }
+  },
+  {
+   "id": "structure:embedded_shell:005",
+   "kind": "structure",
+   "name": "005",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    56
+   ],
+   "sprite_count": 2,
+   "wall_count": 3,
+   "basis": [
+    "host wall loop encloses the outer loop of other sectors"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 1.0,
+    "aabb_player_widths": [
+     1.0,
+     2.0
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 1029,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 3
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 3
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   },
+   "structure": {
+    "kind": "embedded_shell",
+    "parameters": {
+     "footprint": 147456.0,
+     "contained_sectors": 1,
+     "host_area": 3144048.0,
+     "occupies_host": 0.0448
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:011"
+    ]
+   }
+  },
+  {
+   "id": "structure:embedded_shell:006",
+   "kind": "structure",
+   "name": "006",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    53,
+    57
+   ],
+   "sprite_count": 2,
+   "wall_count": 24,
+   "basis": [
+    "host wall loop encloses the outer loop of other sectors"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 136.5646,
+    "aabb_player_widths": [
+     10.6667,
+     16.0
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 512,
+      "count": 1
+     },
+     {
+      "tile": 1029,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 2
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 20
+     },
+     {
+      "tile": 160,
+      "count": 4
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 24
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   },
+   "structure": {
+    "kind": "embedded_shell",
+    "parameters": {
+     "footprint": 147456.0,
+     "contained_sectors": 2,
+     "host_area": 3144048.0,
+     "occupies_host": 0.0448
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:011"
+    ]
+   }
+  },
+  {
+   "id": "structure:embedded_shell:007",
+   "kind": "structure",
+   "name": "007",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    58
+   ],
+   "sprite_count": 2,
+   "wall_count": 3,
+   "basis": [
+    "host wall loop encloses the outer loop of other sectors"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 1.0,
+    "aabb_player_widths": [
+     1.0,
+     2.0
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -106496
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 1029,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 303,
+      "count": 3
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 3
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   },
+   "structure": {
+    "kind": "embedded_shell",
+    "parameters": {
+     "footprint": 147456.0,
+     "contained_sectors": 1,
+     "host_area": 3144048.0,
+     "occupies_host": 0.0448
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:011"
+    ]
+   }
+  },
+  {
+   "id": "structure:embedded_shell:008",
+   "kind": "structure",
+   "name": "008",
+   "parent": "assembly:001",
+   "children": [],
+   "sectors": [
+    45,
+    59
+   ],
+   "sprite_count": 4,
+   "wall_count": 29,
+   "basis": [
+    "host wall loop encloses the outer loop of other sectors"
+   ],
+   "player_relative": {
+    "footprint_player_areas": 123.553,
+    "aabb_player_widths": [
+     16.0,
+     18.6667
+    ],
+    "median_clear_height_player_heights": 6.2792
+   },
+   "floor_z_range": [
+    0,
+    0
+   ],
+   "ceiling_z_range": [
+    -106496,
+    -90112
+   ],
+   "dominant_assets": {
+    "floor": [
+     {
+      "tile": 512,
+      "count": 1
+     },
+     {
+      "tile": 1029,
+      "count": 1
+     }
+    ],
+    "ceiling": [
+     {
+      "tile": 302,
+      "count": 1
+     },
+     {
+      "tile": 3491,
+      "count": 1
+     }
+    ],
+    "wall": [
+     {
+      "tile": 302,
+      "count": 25
+     },
+     {
+      "tile": 303,
+      "count": 3
+     },
+     {
+      "tile": 160,
+      "count": 1
+     }
+    ],
+    "wall_overlay": [
+     {
+      "tile": 0,
+      "count": 29
+     }
+    ],
+    "sprite": [
+     {
+      "tile": 753,
+      "count": 1
+     },
+     {
+      "tile": 1046,
+      "count": 1
+     },
+     {
+      "tile": 2090,
+      "count": 1
+     },
+     {
+      "tile": 2520,
+      "count": 1
+     }
+    ]
+   },
+   "structure": {
+    "kind": "embedded_shell",
+    "parameters": {
+     "footprint": 147456.0,
+     "contained_sectors": 2,
+     "host_area": 3144048.0,
+     "occupies_host": 0.0448
+    },
+    "residual": {},
+    "attaches_to_spaces": [
+     "assembly:001/space:011"
+    ]
+   }
+  }
+ ],
+ "relations": [
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:0",
+   "wall_refs": [
+    0,
+    4
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:1",
+   "wall_refs": [
+    1,
+    19
+   ],
+   "evidence": {
+    "width": 1536.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:2",
+   "wall_refs": [
+    2,
+    14
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:3",
+   "wall_refs": [
+    3,
+    429
+   ],
+   "evidence": {
+    "width": 1536.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:5",
+   "wall_refs": [
+    5,
+    428
+   ],
+   "evidence": {
+    "width": 1536.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:7",
+   "wall_refs": [
+    7,
+    20
+   ],
+   "evidence": {
+    "width": 1536.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:8",
+   "wall_refs": [
+    8,
+    12
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:9",
+   "wall_refs": [
+    9,
+    17
+   ],
+   "evidence": {
+    "width": 1536.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:11",
+   "wall_refs": [
+    11,
+    431
+   ],
+   "evidence": {
+    "width": 1536.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:13",
+   "wall_refs": [
+    13,
+    430
+   ],
+   "evidence": {
+    "width": 1536.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:15",
+   "wall_refs": [
+    15,
+    18
+   ],
+   "evidence": {
+    "width": 1536.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:16",
+   "wall_refs": [
+    16,
+    33
+   ],
+   "evidence": {
+    "width": 8192.0,
+    "at_rest_opening": 94208,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:21",
+   "wall_refs": [
+    21,
+    66
+   ],
+   "evidence": {
+    "width": 8192.0,
+    "at_rest_opening": 94208,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:004",
+   "source": "portal:23",
+   "wall_refs": [
+    23,
+    211
+   ],
+   "evidence": {
+    "width": 768.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 8192,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:004",
+   "source": "portal:24",
+   "wall_refs": [
+    24,
+    209
+   ],
+   "evidence": {
+    "width": 768.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 8192,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:004",
+   "source": "portal:25",
+   "wall_refs": [
+    25,
+    199
+   ],
+   "evidence": {
+    "width": 768.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 8192,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:004",
+   "source": "portal:26",
+   "wall_refs": [
+    26,
+    205
+   ],
+   "evidence": {
+    "width": 768.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 8192,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:28",
+   "wall_refs": [
+    28,
+    35
+   ],
+   "evidence": {
+    "width": 7680.0,
+    "at_rest_opening": 90112,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:46",
+   "wall_refs": [
+    46,
+    117
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:47",
+   "wall_refs": [
+    47,
+    123
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:48",
+   "wall_refs": [
+    48,
+    125
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:49",
+   "wall_refs": [
+    49,
+    131
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:64",
+   "wall_refs": [
+    64,
+    71
+   ],
+   "evidence": {
+    "width": 7680.0,
+    "at_rest_opening": 90112,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:86",
+   "wall_refs": [
+    86,
+    113
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:87",
+   "wall_refs": [
+    87,
+    111
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:88",
+   "wall_refs": [
+    88,
+    105
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:89",
+   "wall_refs": [
+    89,
+    103
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:100",
+   "wall_refs": [
+    100,
+    104
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:101",
+   "wall_refs": [
+    101,
+    688
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:106",
+   "wall_refs": [
+    106,
+    110
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:107",
+   "wall_refs": [
+    107,
+    689
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:108",
+   "wall_refs": [
+    108,
+    112
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:109",
+   "wall_refs": [
+    109,
+    690
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:115",
+   "wall_refs": [
+    115,
+    691
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:116",
+   "wall_refs": [
+    116,
+    120
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:119",
+   "wall_refs": [
+    119,
+    696
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:121",
+   "wall_refs": [
+    121,
+    695
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:122",
+   "wall_refs": [
+    122,
+    126
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:124",
+   "wall_refs": [
+    124,
+    128
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:127",
+   "wall_refs": [
+    127,
+    694
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:129",
+   "wall_refs": [
+    129,
+    693
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:137",
+   "wall_refs": [
+    137,
+    397
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:002",
+   "source": "portal:138",
+   "wall_refs": [
+    138,
+    164
+   ],
+   "evidence": {
+    "width": 598.547,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:002",
+   "source": "portal:139",
+   "wall_refs": [
+    139,
+    163
+   ],
+   "evidence": {
+    "width": 599.354,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:002",
+   "source": "portal:140",
+   "wall_refs": [
+    140,
+    162
+   ],
+   "evidence": {
+    "width": 599.908,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:002",
+   "source": "portal:141",
+   "wall_refs": [
+    141,
+    161
+   ],
+   "evidence": {
+    "width": 599.527,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:002",
+   "source": "portal:142",
+   "wall_refs": [
+    142,
+    160
+   ],
+   "evidence": {
+    "width": 598.547,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:002",
+   "source": "portal:143",
+   "wall_refs": [
+    143,
+    159
+   ],
+   "evidence": {
+    "width": 599.908,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:002",
+   "source": "portal:144",
+   "wall_refs": [
+    144,
+    158
+   ],
+   "evidence": {
+    "width": 599.908,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:002",
+   "source": "portal:145",
+   "wall_refs": [
+    145,
+    157
+   ],
+   "evidence": {
+    "width": 598.547,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:146",
+   "wall_refs": [
+    146,
+    388
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:002",
+   "to": "assembly:001/space:001",
+   "source": "portal:149",
+   "wall_refs": [
+    149,
+    396
+   ],
+   "evidence": {
+    "width": 599.527,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:002",
+   "to": "assembly:001/space:001",
+   "source": "portal:150",
+   "wall_refs": [
+    150,
+    395
+   ],
+   "evidence": {
+    "width": 599.354,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:002",
+   "to": "assembly:001/space:001",
+   "source": "portal:151",
+   "wall_refs": [
+    151,
+    394
+   ],
+   "evidence": {
+    "width": 599.354,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:002",
+   "to": "assembly:001/space:001",
+   "source": "portal:152",
+   "wall_refs": [
+    152,
+    393
+   ],
+   "evidence": {
+    "width": 599.527,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:002",
+   "to": "assembly:001/space:001",
+   "source": "portal:153",
+   "wall_refs": [
+    153,
+    392
+   ],
+   "evidence": {
+    "width": 598.547,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:002",
+   "to": "assembly:001/space:001",
+   "source": "portal:154",
+   "wall_refs": [
+    154,
+    391
+   ],
+   "evidence": {
+    "width": 599.354,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:002",
+   "to": "assembly:001/space:001",
+   "source": "portal:155",
+   "wall_refs": [
+    155,
+    390
+   ],
+   "evidence": {
+    "width": 599.908,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:002",
+   "to": "assembly:001/space:001",
+   "source": "portal:156",
+   "wall_refs": [
+    156,
+    389
+   ],
+   "evidence": {
+    "width": 599.527,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:170",
+   "wall_refs": [
+    170,
+    343
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:003",
+   "source": "portal:171",
+   "wall_refs": [
+    171,
+    197
+   ],
+   "evidence": {
+    "width": 598.547,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:003",
+   "source": "portal:172",
+   "wall_refs": [
+    172,
+    196
+   ],
+   "evidence": {
+    "width": 599.354,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:003",
+   "source": "portal:173",
+   "wall_refs": [
+    173,
+    195
+   ],
+   "evidence": {
+    "width": 599.908,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:003",
+   "source": "portal:174",
+   "wall_refs": [
+    174,
+    194
+   ],
+   "evidence": {
+    "width": 599.527,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:003",
+   "source": "portal:175",
+   "wall_refs": [
+    175,
+    193
+   ],
+   "evidence": {
+    "width": 598.547,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:003",
+   "source": "portal:176",
+   "wall_refs": [
+    176,
+    192
+   ],
+   "evidence": {
+    "width": 599.908,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:003",
+   "source": "portal:177",
+   "wall_refs": [
+    177,
+    191
+   ],
+   "evidence": {
+    "width": 599.908,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:003",
+   "source": "portal:178",
+   "wall_refs": [
+    178,
+    190
+   ],
+   "evidence": {
+    "width": 598.547,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:179",
+   "wall_refs": [
+    179,
+    334
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:003",
+   "to": "assembly:001/space:001",
+   "source": "portal:182",
+   "wall_refs": [
+    182,
+    342
+   ],
+   "evidence": {
+    "width": 599.527,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:003",
+   "to": "assembly:001/space:001",
+   "source": "portal:183",
+   "wall_refs": [
+    183,
+    341
+   ],
+   "evidence": {
+    "width": 599.354,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:003",
+   "to": "assembly:001/space:001",
+   "source": "portal:184",
+   "wall_refs": [
+    184,
+    340
+   ],
+   "evidence": {
+    "width": 599.354,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:003",
+   "to": "assembly:001/space:001",
+   "source": "portal:185",
+   "wall_refs": [
+    185,
+    339
+   ],
+   "evidence": {
+    "width": 599.527,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:003",
+   "to": "assembly:001/space:001",
+   "source": "portal:186",
+   "wall_refs": [
+    186,
+    338
+   ],
+   "evidence": {
+    "width": 598.547,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:003",
+   "to": "assembly:001/space:001",
+   "source": "portal:187",
+   "wall_refs": [
+    187,
+    337
+   ],
+   "evidence": {
+    "width": 599.354,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:003",
+   "to": "assembly:001/space:001",
+   "source": "portal:188",
+   "wall_refs": [
+    188,
+    336
+   ],
+   "evidence": {
+    "width": 599.908,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:003",
+   "to": "assembly:001/space:001",
+   "source": "portal:189",
+   "wall_refs": [
+    189,
+    335
+   ],
+   "evidence": {
+    "width": 599.527,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:004",
+   "source": "portal:198",
+   "wall_refs": [
+    198,
+    202
+   ],
+   "evidence": {
+    "width": 512.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:004",
+   "source": "portal:200",
+   "wall_refs": [
+    200,
+    208
+   ],
+   "evidence": {
+    "width": 512.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:004",
+   "source": "portal:206",
+   "wall_refs": [
+    206,
+    210
+   ],
+   "evidence": {
+    "width": 512.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:214",
+   "wall_refs": [
+    214,
+    710
+   ],
+   "evidence": {
+    "width": 4525.483,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:223",
+   "wall_refs": [
+    223,
+    365
+   ],
+   "evidence": {
+    "width": 4525.483,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:232",
+   "wall_refs": [
+    232,
+    330
+   ],
+   "evidence": {
+    "width": 4525.483,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:241",
+   "wall_refs": [
+    241,
+    704
+   ],
+   "evidence": {
+    "width": 4525.483,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:250",
+   "wall_refs": [
+    250,
+    288
+   ],
+   "evidence": {
+    "width": 4608.0,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:259",
+   "wall_refs": [
+    259,
+    702
+   ],
+   "evidence": {
+    "width": 4608.0,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:268",
+   "wall_refs": [
+    268,
+    707
+   ],
+   "evidence": {
+    "width": 4608.0,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:277",
+   "wall_refs": [
+    277,
+    286
+   ],
+   "evidence": {
+    "width": 4608.0,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:289",
+   "wall_refs": [
+    289,
+    306
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:290",
+   "wall_refs": [
+    290,
+    304
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:291",
+   "wall_refs": [
+    291,
+    298
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:292",
+   "wall_refs": [
+    292,
+    296
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:293",
+   "wall_refs": [
+    293,
+    297
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:009",
+   "source": "portal:294",
+   "wall_refs": [
+    294,
+    588
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:299",
+   "wall_refs": [
+    299,
+    303
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:009",
+   "source": "portal:300",
+   "wall_refs": [
+    300,
+    589
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:301",
+   "wall_refs": [
+    301,
+    305
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:009",
+   "source": "portal:302",
+   "wall_refs": [
+    302,
+    590
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:009",
+   "source": "portal:308",
+   "wall_refs": [
+    308,
+    591
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 49152,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:309",
+   "wall_refs": [
+    309,
+    327
+   ],
+   "evidence": {
+    "width": 5120.0,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:318",
+   "wall_refs": [
+    318,
+    687
+   ],
+   "evidence": {
+    "width": 5120.0,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:332",
+   "wall_refs": [
+    332,
+    354
+   ],
+   "evidence": {
+    "width": 5120.0,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:345",
+   "wall_refs": [
+    345,
+    682
+   ],
+   "evidence": {
+    "width": 5120.0,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:363",
+   "wall_refs": [
+    363,
+    368
+   ],
+   "evidence": {
+    "width": 5120.0,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:377",
+   "wall_refs": [
+    377,
+    697
+   ],
+   "evidence": {
+    "width": 5120.0,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:386",
+   "wall_refs": [
+    386,
+    408
+   ],
+   "evidence": {
+    "width": 5120.0,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:001",
+   "source": "portal:399",
+   "wall_refs": [
+    399,
+    692
+   ],
+   "evidence": {
+    "width": 5120.0,
+    "at_rest_opening": 69632,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:001",
+   "to": "assembly:001/space:008",
+   "source": "portal:417",
+   "wall_refs": [
+    417,
+    679
+   ],
+   "evidence": {
+    "width": 10240.0,
+    "at_rest_opening": 94208,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:005",
+   "to": "assembly:001/space:008",
+   "source": "portal:442",
+   "wall_refs": [
+    442,
+    565
+   ],
+   "evidence": {
+    "width": 22528.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 44032,
+    "blocking_flag": true
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:005",
+   "to": "assembly:001/space:008",
+   "source": "portal:443",
+   "wall_refs": [
+    443,
+    564
+   ],
+   "evidence": {
+    "width": 8192.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 44032,
+    "blocking_flag": true
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:005",
+   "to": "assembly:001/space:006",
+   "source": "portal:444",
+   "wall_refs": [
+    444,
+    453
+   ],
+   "evidence": {
+    "width": 23552.0,
+    "at_rest_opening": 0,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:005",
+   "to": "assembly:001/space:006",
+   "source": "portal:445",
+   "wall_refs": [
+    445,
+    452
+   ],
+   "evidence": {
+    "width": 32768.0,
+    "at_rest_opening": 0,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:005",
+   "to": "assembly:001/space:006",
+   "source": "portal:446",
+   "wall_refs": [
+    446,
+    451
+   ],
+   "evidence": {
+    "width": 64512.0,
+    "at_rest_opening": 0,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:005",
+   "to": "assembly:001/space:006",
+   "source": "portal:447",
+   "wall_refs": [
+    447,
+    450
+   ],
+   "evidence": {
+    "width": 32768.0,
+    "at_rest_opening": 0,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:005",
+   "to": "assembly:001/space:006",
+   "source": "portal:448",
+   "wall_refs": [
+    448,
+    459
+   ],
+   "evidence": {
+    "width": 18432.0,
+    "at_rest_opening": 0,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:005",
+   "to": "assembly:001/space:008",
+   "source": "portal:449",
+   "wall_refs": [
+    449,
+    566
+   ],
+   "evidence": {
+    "width": 8192.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 44032,
+    "blocking_flag": true
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:007",
+   "to": "assembly:001/space:009",
+   "source": "portal:460",
+   "wall_refs": [
+    460,
+    587
+   ],
+   "evidence": {
+    "width": 5632.0,
+    "at_rest_opening": 90112,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:007",
+   "to": "assembly:001/space:009",
+   "source": "portal:461",
+   "wall_refs": [
+    461,
+    586
+   ],
+   "evidence": {
+    "width": 724.077,
+    "at_rest_opening": 90112,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:007",
+   "to": "assembly:001/space:009",
+   "source": "portal:462",
+   "wall_refs": [
+    462,
+    585
+   ],
+   "evidence": {
+    "width": 3072.0,
+    "at_rest_opening": 90112,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:007",
+   "to": "assembly:001/space:009",
+   "source": "portal:463",
+   "wall_refs": [
+    463,
+    584
+   ],
+   "evidence": {
+    "width": 724.077,
+    "at_rest_opening": 90112,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:007",
+   "to": "assembly:001/space:009",
+   "source": "portal:464",
+   "wall_refs": [
+    464,
+    583
+   ],
+   "evidence": {
+    "width": 5632.0,
+    "at_rest_opening": 90112,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:473",
+   "wall_refs": [
+    473,
+    496
+   ],
+   "evidence": {
+    "width": 6656.0,
+    "at_rest_opening": 90112,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:474",
+   "wall_refs": [
+    474,
+    495
+   ],
+   "evidence": {
+    "width": 724.077,
+    "at_rest_opening": 90112,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:475",
+   "wall_refs": [
+    475,
+    494
+   ],
+   "evidence": {
+    "width": 5120.0,
+    "at_rest_opening": 90112,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:476",
+   "wall_refs": [
+    476,
+    493
+   ],
+   "evidence": {
+    "width": 724.077,
+    "at_rest_opening": 90112,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:477",
+   "wall_refs": [
+    477,
+    492
+   ],
+   "evidence": {
+    "width": 6656.0,
+    "at_rest_opening": 90112,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:486",
+   "wall_refs": [
+    486,
+    537
+   ],
+   "evidence": {
+    "width": 4096.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:007",
+   "to": "assembly:001/space:018",
+   "source": "portal:489",
+   "wall_refs": [
+    489,
+    715
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 16384,
+    "floor_delta": 8192,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:500",
+   "wall_refs": [
+    500,
+    546
+   ],
+   "evidence": {
+    "width": 512.0,
+    "at_rest_opening": 66560,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:501",
+   "wall_refs": [
+    501,
+    533
+   ],
+   "evidence": {
+    "width": 1152.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:502",
+   "wall_refs": [
+    502,
+    532
+   ],
+   "evidence": {
+    "width": 362.039,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:503",
+   "wall_refs": [
+    503,
+    531
+   ],
+   "evidence": {
+    "width": 256.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:504",
+   "wall_refs": [
+    504,
+    530
+   ],
+   "evidence": {
+    "width": 128.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:505",
+   "wall_refs": [
+    505,
+    514
+   ],
+   "evidence": {
+    "width": 1280.0,
+    "at_rest_opening": 66560,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:506",
+   "wall_refs": [
+    506,
+    529
+   ],
+   "evidence": {
+    "width": 286.217,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:507",
+   "wall_refs": [
+    507,
+    528
+   ],
+   "evidence": {
+    "width": 1024.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:508",
+   "wall_refs": [
+    508,
+    527
+   ],
+   "evidence": {
+    "width": 286.217,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:509",
+   "wall_refs": [
+    509,
+    519
+   ],
+   "evidence": {
+    "width": 1280.0,
+    "at_rest_opening": 66560,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:510",
+   "wall_refs": [
+    510,
+    550
+   ],
+   "evidence": {
+    "width": 286.217,
+    "at_rest_opening": 66560,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:511",
+   "wall_refs": [
+    511,
+    549
+   ],
+   "evidence": {
+    "width": 512.0,
+    "at_rest_opening": 66560,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:512",
+   "wall_refs": [
+    512,
+    548
+   ],
+   "evidence": {
+    "width": 512.0,
+    "at_rest_opening": 66560,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:513",
+   "wall_refs": [
+    513,
+    547
+   ],
+   "evidence": {
+    "width": 286.217,
+    "at_rest_opening": 66560,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:515",
+   "wall_refs": [
+    515,
+    525
+   ],
+   "evidence": {
+    "width": 256.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:516",
+   "wall_refs": [
+    516,
+    524
+   ],
+   "evidence": {
+    "width": 362.039,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:517",
+   "wall_refs": [
+    517,
+    523
+   ],
+   "evidence": {
+    "width": 1152.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:518",
+   "wall_refs": [
+    518,
+    551
+   ],
+   "evidence": {
+    "width": 512.0,
+    "at_rest_opening": 66560,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:520",
+   "wall_refs": [
+    520,
+    526
+   ],
+   "evidence": {
+    "width": 128.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:521",
+   "wall_refs": [
+    521,
+    553
+   ],
+   "evidence": {
+    "width": 527.758,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:522",
+   "wall_refs": [
+    522,
+    552
+   ],
+   "evidence": {
+    "width": 256.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:534",
+   "wall_refs": [
+    534,
+    545
+   ],
+   "evidence": {
+    "width": 256.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:535",
+   "wall_refs": [
+    535,
+    544
+   ],
+   "evidence": {
+    "width": 527.758,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:007",
+   "source": "portal:536",
+   "wall_refs": [
+    536,
+    543
+   ],
+   "evidence": {
+    "width": 1536.0,
+    "at_rest_opening": 65536,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:007",
+   "to": "assembly:001/space:016",
+   "source": "portal:540",
+   "wall_refs": [
+    540,
+    663
+   ],
+   "evidence": {
+    "width": 2048.0,
+    "at_rest_opening": 0,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:008",
+   "source": "portal:554",
+   "wall_refs": [
+    554,
+    676
+   ],
+   "evidence": {
+    "width": 2661.827,
+    "at_rest_opening": 105472,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:008",
+   "source": "portal:555",
+   "wall_refs": [
+    555,
+    675
+   ],
+   "evidence": {
+    "width": 2664.208,
+    "at_rest_opening": 105472,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:008",
+   "source": "portal:556",
+   "wall_refs": [
+    556,
+    674
+   ],
+   "evidence": {
+    "width": 2663.307,
+    "at_rest_opening": 105472,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:008",
+   "source": "portal:557",
+   "wall_refs": [
+    557,
+    673
+   ],
+   "evidence": {
+    "width": 2662.316,
+    "at_rest_opening": 105472,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:008",
+   "source": "portal:558",
+   "wall_refs": [
+    558,
+    672
+   ],
+   "evidence": {
+    "width": 2664.208,
+    "at_rest_opening": 105472,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:008",
+   "source": "portal:559",
+   "wall_refs": [
+    559,
+    671
+   ],
+   "evidence": {
+    "width": 2662.608,
+    "at_rest_opening": 105472,
+    "floor_delta": 4096,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:009",
+   "to": "assembly:001/space:010",
+   "source": "portal:571",
+   "wall_refs": [
+    571,
+    614
+   ],
+   "evidence": {
+    "width": 660.261,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:009",
+   "to": "assembly:001/space:010",
+   "source": "portal:572",
+   "wall_refs": [
+    572,
+    613
+   ],
+   "evidence": {
+    "width": 663.268,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:009",
+   "to": "assembly:001/space:010",
+   "source": "portal:573",
+   "wall_refs": [
+    573,
+    612
+   ],
+   "evidence": {
+    "width": 664.641,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:009",
+   "to": "assembly:001/space:010",
+   "source": "portal:574",
+   "wall_refs": [
+    574,
+    611
+   ],
+   "evidence": {
+    "width": 659.294,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:009",
+   "to": "assembly:001/space:010",
+   "source": "portal:575",
+   "wall_refs": [
+    575,
+    610
+   ],
+   "evidence": {
+    "width": 663.268,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:009",
+   "to": "assembly:001/space:010",
+   "source": "portal:576",
+   "wall_refs": [
+    576,
+    609
+   ],
+   "evidence": {
+    "width": 664.901,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:009",
+   "to": "assembly:001/space:010",
+   "source": "portal:577",
+   "wall_refs": [
+    577,
+    608
+   ],
+   "evidence": {
+    "width": 659.553,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:009",
+   "to": "assembly:001/space:010",
+   "source": "portal:578",
+   "wall_refs": [
+    578,
+    607
+   ],
+   "evidence": {
+    "width": 663.268,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:009",
+   "to": "assembly:001/space:010",
+   "source": "portal:579",
+   "wall_refs": [
+    579,
+    606
+   ],
+   "evidence": {
+    "width": 663.935,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:009",
+   "to": "assembly:001/space:010",
+   "source": "portal:580",
+   "wall_refs": [
+    580,
+    605
+   ],
+   "evidence": {
+    "width": 660.519,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:009",
+   "to": "assembly:001/space:010",
+   "source": "portal:581",
+   "wall_refs": [
+    581,
+    604
+   ],
+   "evidence": {
+    "width": 663.268,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:009",
+   "to": "assembly:001/space:010",
+   "source": "portal:582",
+   "wall_refs": [
+    582,
+    615
+   ],
+   "evidence": {
+    "width": 663.675,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:010",
+   "to": "assembly:001/space:011",
+   "source": "portal:592",
+   "wall_refs": [
+    592,
+    640
+   ],
+   "evidence": {
+    "width": 597.399,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:010",
+   "to": "assembly:001/space:011",
+   "source": "portal:593",
+   "wall_refs": [
+    593,
+    639
+   ],
+   "evidence": {
+    "width": 597.516,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:010",
+   "to": "assembly:001/space:011",
+   "source": "portal:594",
+   "wall_refs": [
+    594,
+    638
+   ],
+   "evidence": {
+    "width": 597.716,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:010",
+   "to": "assembly:001/space:011",
+   "source": "portal:595",
+   "wall_refs": [
+    595,
+    637
+   ],
+   "evidence": {
+    "width": 593.529,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:010",
+   "to": "assembly:001/space:011",
+   "source": "portal:596",
+   "wall_refs": [
+    596,
+    636
+   ],
+   "evidence": {
+    "width": 597.516,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:010",
+   "to": "assembly:001/space:011",
+   "source": "portal:597",
+   "wall_refs": [
+    597,
+    635
+   ],
+   "evidence": {
+    "width": 608.599,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:010",
+   "to": "assembly:001/space:011",
+   "source": "portal:598",
+   "wall_refs": [
+    598,
+    634
+   ],
+   "evidence": {
+    "width": 593.334,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:010",
+   "to": "assembly:001/space:011",
+   "source": "portal:599",
+   "wall_refs": [
+    599,
+    633
+   ],
+   "evidence": {
+    "width": 598.214,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:010",
+   "to": "assembly:001/space:011",
+   "source": "portal:600",
+   "wall_refs": [
+    600,
+    632
+   ],
+   "evidence": {
+    "width": 596.491,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:010",
+   "to": "assembly:001/space:011",
+   "source": "portal:601",
+   "wall_refs": [
+    601,
+    643
+   ],
+   "evidence": {
+    "width": 594.3,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:010",
+   "to": "assembly:001/space:011",
+   "source": "portal:602",
+   "wall_refs": [
+    602,
+    642
+   ],
+   "evidence": {
+    "width": 598.214,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:010",
+   "to": "assembly:001/space:011",
+   "source": "portal:603",
+   "wall_refs": [
+    603,
+    641
+   ],
+   "evidence": {
+    "width": 596.231,
+    "at_rest_opening": 105472,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:011",
+   "source": "portal:616",
+   "wall_refs": [
+    616,
+    658
+   ],
+   "evidence": {
+    "width": 512.0,
+    "at_rest_opening": 106496,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:011",
+   "source": "portal:617",
+   "wall_refs": [
+    617,
+    657
+   ],
+   "evidence": {
+    "width": 512.0,
+    "at_rest_opening": 106496,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:011",
+   "source": "portal:618",
+   "wall_refs": [
+    618,
+    656
+   ],
+   "evidence": {
+    "width": 512.0,
+    "at_rest_opening": 106496,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "internal_connection",
+   "within": "assembly:001/space:011",
+   "source": "portal:619",
+   "wall_refs": [
+    619,
+    659
+   ],
+   "evidence": {
+    "width": 512.0,
+    "at_rest_opening": 106496,
+    "floor_delta": 1024,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:011",
+   "to": "assembly:001/space:012",
+   "source": "portal:620",
+   "wall_refs": [
+    620,
+    644
+   ],
+   "evidence": {
+    "width": 768.0,
+    "at_rest_opening": 106496,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:011",
+   "to": "assembly:001/space:012",
+   "source": "portal:621",
+   "wall_refs": [
+    621,
+    646
+   ],
+   "evidence": {
+    "width": 543.058,
+    "at_rest_opening": 106496,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:011",
+   "to": "assembly:001/space:012",
+   "source": "portal:622",
+   "wall_refs": [
+    622,
+    645
+   ],
+   "evidence": {
+    "width": 543.058,
+    "at_rest_opening": 106496,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:011",
+   "to": "assembly:001/space:013",
+   "source": "portal:623",
+   "wall_refs": [
+    623,
+    648
+   ],
+   "evidence": {
+    "width": 543.058,
+    "at_rest_opening": 106496,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:011",
+   "to": "assembly:001/space:013",
+   "source": "portal:624",
+   "wall_refs": [
+    624,
+    647
+   ],
+   "evidence": {
+    "width": 768.0,
+    "at_rest_opening": 106496,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:011",
+   "to": "assembly:001/space:013",
+   "source": "portal:625",
+   "wall_refs": [
+    625,
+    649
+   ],
+   "evidence": {
+    "width": 543.058,
+    "at_rest_opening": 106496,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:011",
+   "to": "assembly:001/space:014",
+   "source": "portal:626",
+   "wall_refs": [
+    626,
+    651
+   ],
+   "evidence": {
+    "width": 543.058,
+    "at_rest_opening": 106496,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:011",
+   "to": "assembly:001/space:014",
+   "source": "portal:627",
+   "wall_refs": [
+    627,
+    650
+   ],
+   "evidence": {
+    "width": 768.0,
+    "at_rest_opening": 106496,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:011",
+   "to": "assembly:001/space:014",
+   "source": "portal:628",
+   "wall_refs": [
+    628,
+    652
+   ],
+   "evidence": {
+    "width": 543.058,
+    "at_rest_opening": 106496,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:011",
+   "to": "assembly:001/space:015",
+   "source": "portal:629",
+   "wall_refs": [
+    629,
+    653
+   ],
+   "evidence": {
+    "width": 768.0,
+    "at_rest_opening": 106496,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:011",
+   "to": "assembly:001/space:015",
+   "source": "portal:630",
+   "wall_refs": [
+    630,
+    655
+   ],
+   "evidence": {
+    "width": 543.058,
+    "at_rest_opening": 106496,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:011",
+   "to": "assembly:001/space:015",
+   "source": "portal:631",
+   "wall_refs": [
+    631,
+    654
+   ],
+   "evidence": {
+    "width": 543.058,
+    "at_rest_opening": 106496,
+    "floor_delta": 0,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "connects",
+   "from": "assembly:001/space:016",
+   "to": "assembly:001/space:017",
+   "source": "portal:661",
+   "wall_refs": [
+    661,
+    670
+   ],
+   "evidence": {
+    "width": 2048.0,
+    "at_rest_opening": 0,
+    "floor_delta": 2048,
+    "blocking_flag": false
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:recess:001",
+   "to": "assembly:001/space:012",
+   "source": "structure:recess:001",
+   "evidence": {
+    "kind": "recess",
+    "sectors": [
+     56
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:recess:002",
+   "to": "assembly:001/space:013",
+   "source": "structure:recess:002",
+   "evidence": {
+    "kind": "recess",
+    "sectors": [
+     57
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:recess:003",
+   "to": "assembly:001/space:014",
+   "source": "structure:recess:003",
+   "evidence": {
+    "kind": "recess",
+    "sectors": [
+     58
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:recess:004",
+   "to": "assembly:001/space:015",
+   "source": "structure:recess:004",
+   "evidence": {
+    "kind": "recess",
+    "sectors": [
+     59
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:recess:005",
+   "to": "assembly:001/space:011",
+   "source": "structure:recess:005",
+   "evidence": {
+    "kind": "recess",
+    "sectors": [
+     60
+    ]
+   }
+  },
+  {
+   "kind": "overlook",
+   "from": "structure:overlook:001",
+   "to": [
+    "assembly:001/space:004"
+   ],
+   "toward": [
+    "assembly:001/space:001"
+   ],
+   "source": "structure:overlook:001",
+   "evidence": {
+    "drop": 8192,
+    "opening_width": 768.0,
+    "upper_area": 393216.0,
+    "lower_area": 50331648.0
+   }
+  },
+  {
+   "kind": "overlook",
+   "from": "structure:overlook:002",
+   "to": [
+    "assembly:001/space:004"
+   ],
+   "toward": [
+    "assembly:001/space:001"
+   ],
+   "source": "structure:overlook:002",
+   "evidence": {
+    "drop": 8192,
+    "opening_width": 768.0,
+    "upper_area": 393216.0,
+    "lower_area": 50331648.0
+   }
+  },
+  {
+   "kind": "overlook",
+   "from": "structure:overlook:003",
+   "to": [
+    "assembly:001/space:004"
+   ],
+   "toward": [
+    "assembly:001/space:001"
+   ],
+   "source": "structure:overlook:003",
+   "evidence": {
+    "drop": 8192,
+    "opening_width": 768.0,
+    "upper_area": 393216.0,
+    "lower_area": 50331648.0
+   }
+  },
+  {
+   "kind": "overlook",
+   "from": "structure:overlook:004",
+   "to": [
+    "assembly:001/space:004"
+   ],
+   "toward": [
+    "assembly:001/space:001"
+   ],
+   "source": "structure:overlook:004",
+   "evidence": {
+    "drop": 8192,
+    "opening_width": 768.0,
+    "upper_area": 393216.0,
+    "lower_area": 50331648.0
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:001",
+   "to": "assembly:001/space:007",
+   "source": "structure:embedded_shell:001",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     47,
+     48,
+     49,
+     51
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:002",
+   "to": "assembly:001/space:007",
+   "source": "structure:embedded_shell:002",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     46,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:002",
+   "to": "assembly:001/space:010",
+   "source": "structure:embedded_shell:002",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     46,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:002",
+   "to": "assembly:001/space:011",
+   "source": "structure:embedded_shell:002",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     46,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:002",
+   "to": "assembly:001/space:012",
+   "source": "structure:embedded_shell:002",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     46,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:002",
+   "to": "assembly:001/space:013",
+   "source": "structure:embedded_shell:002",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     46,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:002",
+   "to": "assembly:001/space:014",
+   "source": "structure:embedded_shell:002",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     46,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:002",
+   "to": "assembly:001/space:015",
+   "source": "structure:embedded_shell:002",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     46,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:003",
+   "to": "assembly:001/space:007",
+   "source": "structure:embedded_shell:003",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     53,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:003",
+   "to": "assembly:001/space:009",
+   "source": "structure:embedded_shell:003",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     53,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:003",
+   "to": "assembly:001/space:011",
+   "source": "structure:embedded_shell:003",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     53,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:003",
+   "to": "assembly:001/space:012",
+   "source": "structure:embedded_shell:003",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     53,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:003",
+   "to": "assembly:001/space:013",
+   "source": "structure:embedded_shell:003",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     53,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:003",
+   "to": "assembly:001/space:014",
+   "source": "structure:embedded_shell:003",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     53,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:003",
+   "to": "assembly:001/space:015",
+   "source": "structure:embedded_shell:003",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     53,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:004",
+   "to": "assembly:001/space:010",
+   "source": "structure:embedded_shell:004",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     54,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:004",
+   "to": "assembly:001/space:011",
+   "source": "structure:embedded_shell:004",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     54,
+     60
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:005",
+   "to": "assembly:001/space:012",
+   "source": "structure:embedded_shell:005",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     56
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:006",
+   "to": "assembly:001/space:009",
+   "source": "structure:embedded_shell:006",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     53,
+     57
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:006",
+   "to": "assembly:001/space:013",
+   "source": "structure:embedded_shell:006",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     53,
+     57
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:007",
+   "to": "assembly:001/space:014",
+   "source": "structure:embedded_shell:007",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     58
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:008",
+   "to": "assembly:001/space:007",
+   "source": "structure:embedded_shell:008",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     59
+    ]
+   }
+  },
+  {
+   "kind": "part_of",
+   "from": "structure:embedded_shell:008",
+   "to": "assembly:001/space:015",
+   "source": "structure:embedded_shell:008",
+   "evidence": {
+    "kind": "embedded_shell",
+    "sectors": [
+     45,
+     59
+    ]
+   }
+  }
+ ]
+}

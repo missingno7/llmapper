@@ -260,3 +260,63 @@ class TheStepDependsOnWhatTheNetworkMeans(unittest.TestCase):
                  if has_a_light_wave(sector)]
         self.assertEqual(len(waves), 61,
                          "E3M1 has 61 sectors that drive their own shade")
+
+
+class AMapWithNoSun(unittest.TestCase):
+    """`read_light` returns one shape whether or not it finds a sun.
+
+    E1M2 has no oblique shade boundary at all, so there is no bearing to
+    recover and `sun_sign` is never called. Before this was pinned, the
+    reader returned `{}` for `sign` and for `casters`, and every caller that
+    reported the throw bearing raised `KeyError` on the first map without a
+    sun. The rule is the one `sun_axis` already follows: the same keys, with
+    the honest answer inside them.
+    """
+
+    @staticmethod
+    def _e1m2():
+        from bloodmap.format import read_map
+        from bloodmap.patterns import list_corpus_maps
+
+        found = [item for item in list_corpus_maps(population="blood-campaign")
+                 if item.path.stem.upper() == "E1M2"]
+        if not found:
+            raise unittest.SkipTest("E1M2 is not in the corpus")
+        return read_map(found[0].path).to_level_ir()
+
+    def setUp(self):
+        from bloodmap.read_light import read_light
+
+        self.result = read_light(self._e1m2())
+
+    def test_it_finds_no_bearing_and_says_so_in_full(self):
+        axis = self.result["axis"]
+        self.assertEqual(axis["oblique_edges"], 0)
+        self.assertIsNone(axis["axis_degrees"])
+        for key in ("cluster_records", "cluster_spread_degrees",
+                    "axis_aligned_edges", "residue_edges_off_the_bearing"):
+            self.assertIn(key, axis)
+
+    def test_the_sign_has_its_keys_and_decides_nothing(self):
+        sign = self.result["sign"]
+        self.assertEqual(sign["far_end_boundaries"], 0)
+        self.assertFalse(sign["decided"])
+        self.assertIsNone(sign["throw_bearing_degrees"])
+        self.assertIsNone(sign["throw_bearing_units"])
+        self.assertEqual(sign["votes"], {})
+
+    def test_the_caster_census_has_its_keys_and_counts_nothing(self):
+        cast = self.result["casters"]
+        self.assertEqual(cast["edges"], 0)
+        self.assertEqual(cast["up_sun_end_is_a_mass_corner"], 0)
+        self.assertEqual(cast["down_sun_end_is_a_mass_corner"], 0)
+        self.assertEqual(cast["neither_end_is"], 0)
+        self.assertEqual(cast["per_edge"], [])
+
+    def test_e3m1_still_finds_one_so_the_shape_is_not_a_blanket(self):
+        from bloodmap.read_light import read_light
+
+        found = read_light(_e3m1())
+        self.assertIsNotNone(found["axis"]["axis_degrees"])
+        self.assertEqual(found["sign"]["throw_bearing_units"], 479)
+        self.assertGreater(found["casters"]["edges"], 0)

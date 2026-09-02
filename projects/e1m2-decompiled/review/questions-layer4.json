@@ -1,0 +1,11 @@
+{
+ "layer": 4,
+ "questions": [
+  {
+   "node": "field",
+   "question": "this map's own shadow deltas are {}, median None, not 12. 0 of 0 boundary records fall OUTSIDE the gate's envelope [8, 16], so the map the street language was read from fails the gate the writer enforces. Is the envelope wrong, or is this map outside it on purpose?",
+   "recommended_default": "keep the envelope as a campaign envelope and state where this map sits in it. The census is read_light.shade_step_envelope: median 13 and quartiles [9, 18.75] over the largest outdoor component, median 12 and [8, 16] over all outdoor. The gate names its network",
+   "evidence": "references/overlays.json: light.step, campaign_step"
+  }
+ ]
+}

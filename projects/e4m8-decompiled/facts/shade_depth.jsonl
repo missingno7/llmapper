@@ -1,0 +1,3 @@
+{"_from": ["sector:43", "sun:0"], "_layer": 4, "_reader": "bloodmap.read_light", "depth": 0, "id": "sector:43", "record": "sector:43", "shade": 0}
+{"_from": ["sector:52", "sun:0"], "_layer": 4, "_reader": "bloodmap.read_light", "depth": 0, "id": "sector:52", "record": "sector:52", "shade": 0}
+{"_from": ["sector:63", "sun:0"], "_layer": 4, "_reader": "bloodmap.read_light", "depth": 0, "id": "sector:63", "record": "sector:63", "shade": 0}

@@ -72,7 +72,7 @@
   },
   {
    "claim": "`joins.py`'s PAVEMENT|PAVEMENT row cites \"E3M1 s10/s11: a pavement-only path between abutting islands\"",
-   "reconciled": "the ROW is still attested -- 14 pavement|pavement records exist in E3M1, between the shadow-cut pavement bands -- but its cited evidence is two sectors that are not pavement at all",
+   "reconciled": "the ROW is still attested -- 14 pavement|pavement records exist here, between the shadow-cut pavement bands -- but its cited evidence is two sectors that are not pavement at all",
    "the_reader_finds": "s10 and s11 have floor_z == ceiling_z == 8192: zero clear height, ceiling tiles 414 and 401, `floor_stat` 2 and 66. They are SOLID MASSES, not paths; no body stands in either"
   },
   {
@@ -107,7 +107,7 @@
    },
    {
     "claim": "`joins.py`'s PAVEMENT|PAVEMENT row cites \"E3M1 s10/s11: a pavement-only path between abutting islands\"",
-    "reconciled": "the ROW is still attested -- 14 pavement|pavement records exist in E3M1, between the shadow-cut pavement bands -- but its cited evidence is two sectors that are not pavement at all",
+    "reconciled": "the ROW is still attested -- 14 pavement|pavement records exist here, between the shadow-cut pavement bands -- but its cited evidence is two sectors that are not pavement at all",
     "the_reader_finds": "s10 and s11 have floor_z == ceiling_z == 8192: zero clear height, ceiling tiles 414 and 401, `floor_stat` 2 and 66. They are SOLID MASSES, not paths; no body stands in either"
    },
    {

@@ -1,0 +1,3925 @@
+{
+ "$schema": "llmapper.level-structures",
+ "schema_version": 1,
+ "model": "derived architectural structures between the perceptual space and the individual sector; geometry only, never authored labels",
+ "player_profile": {
+  "name": "blood",
+  "body_width": 384,
+  "standing_height": 16960,
+  "max_step": 4096
+ },
+ "structures": [
+  {
+   "id": "structure:stepped_run:001",
+   "kind": "stepped_run",
+   "sectors": [
+    47,
+    48,
+    46,
+    45,
+    49,
+    50,
+    44
+   ],
+   "attaches_to": [
+    51,
+    52,
+    59,
+    60,
+    61
+   ],
+   "parameters": {
+    "rises": 6,
+    "treads": 7,
+    "total_rise": 24576,
+    "total_run": 6484.4,
+    "width": 4169.9,
+    "clear_height": 62464
+   },
+   "residual": {
+    "step_rise": {
+     "mean": 4096,
+     "stdev": 0.0,
+     "min": 4096,
+     "max": 4096
+    },
+    "step_run": {
+     "mean": 1253.09,
+     "stdev": 171.67,
+     "min": 1024.0,
+     "max": 1482.63
+    },
+    "portal_width": {
+     "mean": 4169.91,
+     "stdev": 150.15,
+     "min": 3982.43,
+     "max": 4374.53
+    },
+    "uniform_rise": true,
+    "uniform_width": false,
+    "trimmed_terminals": []
+   },
+   "evidence": {
+    "rise_sequence": [
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096
+    ],
+    "step_limit": 4096,
+    "basis": "monotone path in the sub-step rise graph; each tread has exactly one neighbour a short step above and one a short step below",
+    "terminal_area_ratio": 4.0
+   }
+  },
+  {
+   "id": "structure:stepped_run:002",
+   "kind": "stepped_run",
+   "sectors": [
+    101,
+    100,
+    99,
+    98,
+    94,
+    95,
+    97,
+    96,
+    117,
+    116
+   ],
+   "attaches_to": [
+    91,
+    107
+   ],
+   "parameters": {
+    "rises": 9,
+    "treads": 10,
+    "total_rise": 36864,
+    "total_run": 5211.7,
+    "width": 2217.0,
+    "clear_height": 32768
+   },
+   "residual": {
+    "step_rise": {
+     "mean": 4096,
+     "stdev": 0.0,
+     "min": 4096,
+     "max": 4096
+    },
+    "step_run": {
+     "mean": 758.82,
+     "stdev": 120.57,
+     "min": 512.0,
+     "max": 922.05
+    },
+    "portal_width": {
+     "mean": 2217.0,
+     "stdev": 127.6,
+     "min": 2048.0,
+     "max": 2398.51
+    },
+    "uniform_rise": true,
+    "uniform_width": false,
+    "trimmed_terminals": []
+   },
+   "evidence": {
+    "rise_sequence": [
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096
+    ],
+    "step_limit": 4096,
+    "basis": "monotone path in the sub-step rise graph; each tread has exactly one neighbour a short step above and one a short step below",
+    "terminal_area_ratio": 4.0
+   }
+  },
+  {
+   "id": "structure:stepped_run:003",
+   "kind": "stepped_run",
+   "sectors": [
+    135,
+    134,
+    133,
+    132,
+    131,
+    130,
+    129,
+    128
+   ],
+   "attaches_to": [
+    136,
+    232,
+    235
+   ],
+   "parameters": {
+    "rises": 7,
+    "treads": 8,
+    "total_rise": 28672,
+    "total_run": 4906.9,
+    "width": 2217.4,
+    "clear_height": 32768
+   },
+   "residual": {
+    "step_rise": {
+     "mean": 4096,
+     "stdev": 0.0,
+     "min": 4096,
+     "max": 4096
+    },
+    "step_run": {
+     "mean": 896.61,
+     "stdev": 101.29,
+     "min": 722.5,
+     "max": 1061.14
+    },
+    "portal_width": {
+     "mean": 2217.45,
+     "stdev": 138.53,
+     "min": 2052.0,
+     "max": 2458.8
+    },
+    "uniform_rise": true,
+    "uniform_width": false,
+    "trimmed_terminals": []
+   },
+   "evidence": {
+    "rise_sequence": [
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096
+    ],
+    "step_limit": 4096,
+    "basis": "monotone path in the sub-step rise graph; each tread has exactly one neighbour a short step above and one a short step below",
+    "terminal_area_ratio": 4.0
+   }
+  },
+  {
+   "id": "structure:stepped_run:004",
+   "kind": "stepped_run",
+   "sectors": [
+    144,
+    145,
+    146,
+    147,
+    143,
+    142,
+    141,
+    140,
+    139,
+    138,
+    137
+   ],
+   "attaches_to": [
+    1,
+    136,
+    231
+   ],
+   "parameters": {
+    "rises": 10,
+    "treads": 11,
+    "total_rise": 40960,
+    "total_run": 6589.2,
+    "width": 2092.5,
+    "clear_height": 32768
+   },
+   "residual": {
+    "step_rise": {
+     "mean": 4096,
+     "stdev": 0.0,
+     "min": 4096,
+     "max": 4096
+    },
+    "step_run": {
+     "mean": 845.16,
+     "stdev": 154.29,
+     "min": 711.55,
+     "max": 1199.3
+    },
+    "portal_width": {
+     "mean": 2092.51,
+     "stdev": 86.03,
+     "min": 2048.0,
+     "max": 2289.73
+    },
+    "uniform_rise": true,
+    "uniform_width": false,
+    "trimmed_terminals": []
+   },
+   "evidence": {
+    "rise_sequence": [
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096
+    ],
+    "step_limit": 4096,
+    "basis": "monotone path in the sub-step rise graph; each tread has exactly one neighbour a short step above and one a short step below",
+    "terminal_area_ratio": 4.0
+   }
+  },
+  {
+   "id": "structure:stepped_run:005",
+   "kind": "stepped_run",
+   "sectors": [
+    172,
+    174,
+    175,
+    173,
+    178,
+    177,
+    176,
+    171,
+    170,
+    169
+   ],
+   "attaches_to": [
+    156,
+    179
+   ],
+   "parameters": {
+    "rises": 10,
+    "treads": 10,
+    "total_rise": 40960,
+    "total_run": 10307.0,
+    "width": 2061.7,
+    "clear_height": 61440
+   },
+   "residual": {
+    "step_rise": {
+     "mean": 4096,
+     "stdev": 0.0,
+     "min": 4096,
+     "max": 4096
+    },
+    "step_run": {
+     "mean": 1240.75,
+     "stdev": 1699.95,
+     "min": 512.0,
+     "max": 6334.27
+    },
+    "portal_width": {
+     "mean": 2061.67,
+     "stdev": 266.47,
+     "min": 1536.0,
+     "max": 2396.39
+    },
+    "uniform_rise": true,
+    "uniform_width": false,
+    "trimmed_terminals": [
+     179
+    ]
+   },
+   "evidence": {
+    "rise_sequence": [
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096,
+     4096
+    ],
+    "step_limit": 4096,
+    "basis": "monotone path in the sub-step rise graph; each tread has exactly one neighbour a short step above and one a short step below",
+    "terminal_area_ratio": 4.0
+   }
+  },
+  {
+   "id": "structure:landing:001",
+   "kind": "landing",
+   "sectors": [
+    136
+   ],
+   "attaches_to": [
+    135,
+    144
+   ],
+   "parameters": {
+    "area": 1572864.0,
+    "clear_height": 32768,
+    "joins_runs": [
+     "structure:stepped_run:003",
+     "structure:stepped_run:004"
+    ],
+    "open_portals": 4
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "a sector two distinct stepped runs both attach to",
+    "run_rises": [
+     7,
+     10
+    ]
+   }
+  },
+  {
+   "id": "structure:recess:001",
+   "kind": "recess",
+   "sectors": [
+    10
+   ],
+   "attaches_to": [
+    34
+   ],
+   "parameters": {
+    "area": 16695296.0,
+    "depth_ratio": 0.1224,
+    "opening_width": 2816.0,
+    "floor_delta": 0,
+    "ceiling_delta": 6144,
+    "clear_height": 60416
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 136396800.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 616
+   }
+  },
+  {
+   "id": "structure:recess:002",
+   "kind": "recess",
+   "sectors": [
+    22
+   ],
+   "attaches_to": [
+    298
+   ],
+   "parameters": {
+    "area": 294912.0,
+    "depth_ratio": 0.0109,
+    "opening_width": 905.1,
+    "floor_delta": 0,
+    "ceiling_delta": 2048,
+    "clear_height": 66560
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 26988544.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:003",
+   "kind": "recess",
+   "sectors": [
+    33
+   ],
+   "attaches_to": [
+    37
+   ],
+   "parameters": {
+    "area": 2097152.0,
+    "depth_ratio": 0.1991,
+    "opening_width": 2048.0,
+    "floor_delta": 0,
+    "ceiling_delta": 2048,
+    "clear_height": 34816
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 10534912.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:004",
+   "kind": "recess",
+   "sectors": [
+    75
+   ],
+   "attaches_to": [
+    69
+   ],
+   "parameters": {
+    "area": 524288.0,
+    "depth_ratio": 0.1429,
+    "opening_width": 1024.0,
+    "floor_delta": 0,
+    "ceiling_delta": -1024,
+    "clear_height": 33792
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 3670016.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:005",
+   "kind": "recess",
+   "sectors": [
+    108
+   ],
+   "attaches_to": [
+    107
+   ],
+   "parameters": {
+    "area": 1572864.0,
+    "depth_ratio": 0.078,
+    "opening_width": 3072.0,
+    "floor_delta": 0,
+    "ceiling_delta": -1024,
+    "clear_height": 66560
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 20166400.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:006",
+   "kind": "recess",
+   "sectors": [
+    109
+   ],
+   "attaches_to": [
+    107
+   ],
+   "parameters": {
+    "area": 1572864.0,
+    "depth_ratio": 0.078,
+    "opening_width": 3072.0,
+    "floor_delta": 0,
+    "ceiling_delta": -1024,
+    "clear_height": 66560
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 20166400.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:007",
+   "kind": "recess",
+   "sectors": [
+    114
+   ],
+   "attaches_to": [
+    148
+   ],
+   "parameters": {
+    "area": 2097152.0,
+    "depth_ratio": 0.0952,
+    "opening_width": 2048.0,
+    "floor_delta": 0,
+    "ceiling_delta": 0,
+    "clear_height": 133120
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 22020096.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:008",
+   "kind": "recess",
+   "sectors": [
+    115
+   ],
+   "attaches_to": [
+    148
+   ],
+   "parameters": {
+    "area": 2097152.0,
+    "depth_ratio": 0.0952,
+    "opening_width": 2048.0,
+    "floor_delta": 0,
+    "ceiling_delta": 0,
+    "clear_height": 133120
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 22020096.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:009",
+   "kind": "recess",
+   "sectors": [
+    158
+   ],
+   "attaches_to": [
+    179
+   ],
+   "parameters": {
+    "area": 524288.0,
+    "depth_ratio": 0.0303,
+    "opening_width": 1024.0,
+    "floor_delta": 0,
+    "ceiling_delta": -1024,
+    "clear_height": 58368
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 17301504.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:010",
+   "kind": "recess",
+   "sectors": [
+    159
+   ],
+   "attaches_to": [
+    179
+   ],
+   "parameters": {
+    "area": 524288.0,
+    "depth_ratio": 0.0303,
+    "opening_width": 1024.0,
+    "floor_delta": 0,
+    "ceiling_delta": -1024,
+    "clear_height": 58368
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 17301504.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:011",
+   "kind": "recess",
+   "sectors": [
+    160
+   ],
+   "attaches_to": [
+    179
+   ],
+   "parameters": {
+    "area": 524288.0,
+    "depth_ratio": 0.0303,
+    "opening_width": 1024.0,
+    "floor_delta": 0,
+    "ceiling_delta": -1024,
+    "clear_height": 58368
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 17301504.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:012",
+   "kind": "recess",
+   "sectors": [
+    184
+   ],
+   "attaches_to": [
+    180
+   ],
+   "parameters": {
+    "area": 2359296.0,
+    "depth_ratio": 0.2,
+    "opening_width": 4608.0,
+    "floor_delta": 0,
+    "ceiling_delta": -1024,
+    "clear_height": 66560
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 11797010.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:013",
+   "kind": "recess",
+   "sectors": [
+    186
+   ],
+   "attaches_to": [
+    14
+   ],
+   "parameters": {
+    "area": 1540096.0,
+    "depth_ratio": 0.0769,
+    "opening_width": 1557.2,
+    "floor_delta": 0,
+    "ceiling_delta": 0,
+    "clear_height": 56320
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 20024195.5,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:014",
+   "kind": "recess",
+   "sectors": [
+    212
+   ],
+   "attaches_to": [
+    211
+   ],
+   "parameters": {
+    "area": 589824.0,
+    "depth_ratio": 0.1837,
+    "opening_width": 1086.1,
+    "floor_delta": 0,
+    "ceiling_delta": -2048,
+    "clear_height": 40960
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 3211264.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:015",
+   "kind": "recess",
+   "sectors": [
+    214
+   ],
+   "attaches_to": [
+    272
+   ],
+   "parameters": {
+    "area": 540672.0,
+    "depth_ratio": 0.0492,
+    "opening_width": 4224.0,
+    "floor_delta": 0,
+    "ceiling_delta": 8192,
+    "clear_height": 41984
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 10993664.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:016",
+   "kind": "recess",
+   "sectors": [
+    217
+   ],
+   "attaches_to": [
+    257
+   ],
+   "parameters": {
+    "area": 131072.0,
+    "depth_ratio": 0.0107,
+    "opening_width": 724.1,
+    "floor_delta": 0,
+    "ceiling_delta": 20480,
+    "clear_height": 19456
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 12271616.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:017",
+   "kind": "recess",
+   "sectors": [
+    227
+   ],
+   "attaches_to": [
+    161
+   ],
+   "parameters": {
+    "area": 98304.0,
+    "depth_ratio": 0.033,
+    "opening_width": 1536.0,
+    "floor_delta": 0,
+    "ceiling_delta": 24576,
+    "clear_height": 32768
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 2981888.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:018",
+   "kind": "recess",
+   "sectors": [
+    229
+   ],
+   "attaches_to": [
+    179
+   ],
+   "parameters": {
+    "area": 98304.0,
+    "depth_ratio": 0.0057,
+    "opening_width": 1536.0,
+    "floor_delta": 0,
+    "ceiling_delta": 24576,
+    "clear_height": 32768
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 17301504.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:019",
+   "kind": "recess",
+   "sectors": [
+    233
+   ],
+   "attaches_to": [
+    148
+   ],
+   "parameters": {
+    "area": 4194304.0,
+    "depth_ratio": 0.1905,
+    "opening_width": 4096.0,
+    "floor_delta": 0,
+    "ceiling_delta": -1024,
+    "clear_height": 134144
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 22020096.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:020",
+   "kind": "recess",
+   "sectors": [
+    242
+   ],
+   "attaches_to": [
+    239
+   ],
+   "parameters": {
+    "area": 778240.0,
+    "depth_ratio": 0.2278,
+    "opening_width": 1032.0,
+    "floor_delta": 0,
+    "ceiling_delta": 0,
+    "clear_height": 32768
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 3416064.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:021",
+   "kind": "recess",
+   "sectors": [
+    254
+   ],
+   "attaches_to": [
+    253
+   ],
+   "parameters": {
+    "area": 98304.0,
+    "depth_ratio": 0.0649,
+    "opening_width": 452.5,
+    "floor_delta": -1024,
+    "ceiling_delta": 0,
+    "clear_height": 59392
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 1515520.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:022",
+   "kind": "recess",
+   "sectors": [
+    255
+   ],
+   "attaches_to": [
+    252
+   ],
+   "parameters": {
+    "area": 98304.0,
+    "depth_ratio": 0.0649,
+    "opening_width": 452.5,
+    "floor_delta": -1024,
+    "ceiling_delta": 0,
+    "clear_height": 59392
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 1515520.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:023",
+   "kind": "recess",
+   "sectors": [
+    286
+   ],
+   "attaches_to": [
+    291
+   ],
+   "parameters": {
+    "area": 24461312.0,
+    "depth_ratio": 0.1039,
+    "opening_width": 3714.2,
+    "floor_delta": 0,
+    "ceiling_delta": 0,
+    "clear_height": 66560
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 235356160.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 618
+   }
+  },
+  {
+   "id": "structure:recess:024",
+   "kind": "recess",
+   "sectors": [
+    288
+   ],
+   "attaches_to": [
+    291
+   ],
+   "parameters": {
+    "area": 7864320.0,
+    "depth_ratio": 0.0334,
+    "opening_width": 3840.0,
+    "floor_delta": 0,
+    "ceiling_delta": 0,
+    "clear_height": 66560
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 235356160.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:recess:025",
+   "kind": "recess",
+   "sectors": [
+    290
+   ],
+   "attaches_to": [
+    291
+   ],
+   "parameters": {
+    "area": 720896.0,
+    "depth_ratio": 0.0031,
+    "opening_width": 2816.0,
+    "floor_delta": 0,
+    "ceiling_delta": 0,
+    "clear_height": 66560
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 235356160.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 600
+   }
+  },
+  {
+   "id": "structure:recess:026",
+   "kind": "recess",
+   "sectors": [
+    300
+   ],
+   "attaches_to": [
+    299
+   ],
+   "parameters": {
+    "area": 262144.0,
+    "depth_ratio": 0.012,
+    "opening_width": 1086.1,
+    "floor_delta": 0,
+    "ceiling_delta": 47104,
+    "clear_height": 21504
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "single open portal, area at or below the host ratio, floor within one step",
+    "host_area": 21889024.0,
+    "ratio_threshold": 0.25,
+    "sector_type": 0
+   }
+  },
+  {
+   "id": "structure:overlook:001",
+   "kind": "overlook",
+   "sectors": [
+    2
+   ],
+   "attaches_to": [
+    270
+   ],
+   "parameters": {
+    "drop": 17408,
+    "opening_width": 896.0,
+    "upper_area": 573440.0,
+    "lower_area": 49283072.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 33792,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:002",
+   "kind": "overlook",
+   "sectors": [
+    4
+   ],
+   "attaches_to": [
+    21
+   ],
+   "parameters": {
+    "drop": 15360,
+    "opening_width": 1792.0,
+    "upper_area": 458752.0,
+    "lower_area": 35696640.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 35840,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:003",
+   "kind": "overlook",
+   "sectors": [
+    5
+   ],
+   "attaches_to": [
+    14
+   ],
+   "parameters": {
+    "drop": 8192,
+    "opening_width": 1280.0,
+    "upper_area": 491520.0,
+    "lower_area": 20024195.5
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 48128,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:004",
+   "kind": "overlook",
+   "sectors": [
+    7
+   ],
+   "attaches_to": [
+    34
+   ],
+   "parameters": {
+    "drop": 16384,
+    "opening_width": 5120.0,
+    "upper_area": 2883584.0,
+    "lower_area": 136396800.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 50176,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:005",
+   "kind": "overlook",
+   "sectors": [
+    8
+   ],
+   "attaches_to": [
+    34
+   ],
+   "parameters": {
+    "drop": 16384,
+    "opening_width": 5120.0,
+    "upper_area": 2883584.0,
+    "lower_area": 136396800.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 50176,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:006",
+   "kind": "overlook",
+   "sectors": [
+    9
+   ],
+   "attaches_to": [
+    34
+   ],
+   "parameters": {
+    "drop": 16384,
+    "opening_width": 2048.0,
+    "upper_area": 786432.0,
+    "lower_area": 136396800.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 50176,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:007",
+   "kind": "overlook",
+   "sectors": [
+    11
+   ],
+   "attaches_to": [
+    21
+   ],
+   "parameters": {
+    "drop": 15360,
+    "opening_width": 1792.0,
+    "upper_area": 458752.0,
+    "lower_area": 35696640.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 35840,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:008",
+   "kind": "overlook",
+   "sectors": [
+    12
+   ],
+   "attaches_to": [
+    14
+   ],
+   "parameters": {
+    "drop": 16384,
+    "opening_width": 768.0,
+    "upper_area": 393216.0,
+    "lower_area": 20024195.5
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 39936,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:009",
+   "kind": "overlook",
+   "sectors": [
+    13
+   ],
+   "attaches_to": [
+    14
+   ],
+   "parameters": {
+    "drop": 16384,
+    "opening_width": 762.0,
+    "upper_area": 390268.5,
+    "lower_area": 20024195.5
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 39936,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:010",
+   "kind": "overlook",
+   "sectors": [
+    16
+   ],
+   "attaches_to": [
+    14
+   ],
+   "parameters": {
+    "drop": 31744,
+    "opening_width": 2048.0,
+    "upper_area": 1048576.0,
+    "lower_area": 20024195.5
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 24576,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:011",
+   "kind": "overlook",
+   "sectors": [
+    17
+   ],
+   "attaches_to": [
+    14
+   ],
+   "parameters": {
+    "drop": 31744,
+    "opening_width": 2048.0,
+    "upper_area": 1048576.0,
+    "lower_area": 20024195.5
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 24576,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:012",
+   "kind": "overlook",
+   "sectors": [
+    16
+   ],
+   "attaches_to": [
+    15
+   ],
+   "parameters": {
+    "drop": 30720,
+    "opening_width": 512.0,
+    "upper_area": 1048576.0,
+    "lower_area": 524288.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 24576,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:013",
+   "kind": "overlook",
+   "sectors": [
+    17
+   ],
+   "attaches_to": [
+    18
+   ],
+   "parameters": {
+    "drop": 30720,
+    "opening_width": 512.0,
+    "upper_area": 1048576.0,
+    "lower_area": 524288.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 24576,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:014",
+   "kind": "overlook",
+   "sectors": [
+    272
+   ],
+   "attaches_to": [
+    34
+   ],
+   "parameters": {
+    "drop": 14336,
+    "opening_width": 12288.0,
+    "upper_area": 10993664.0,
+    "lower_area": 136396800.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 50176,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:015",
+   "kind": "overlook",
+   "sectors": [
+    35
+   ],
+   "attaches_to": [
+    36
+   ],
+   "parameters": {
+    "drop": 8192,
+    "opening_width": 512.0,
+    "upper_area": 262144.0,
+    "lower_area": 262144.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 20480,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:016",
+   "kind": "overlook",
+   "sectors": [
+    36
+   ],
+   "attaches_to": [
+    37
+   ],
+   "parameters": {
+    "drop": 8192,
+    "opening_width": 512.0,
+    "upper_area": 262144.0,
+    "lower_area": 10534912.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 28672,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:017",
+   "kind": "overlook",
+   "sectors": [
+    38
+   ],
+   "attaches_to": [
+    37
+   ],
+   "parameters": {
+    "drop": 16384,
+    "opening_width": 512.0,
+    "upper_area": 262144.0,
+    "lower_area": 10534912.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 20480,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:018",
+   "kind": "overlook",
+   "sectors": [
+    40
+   ],
+   "attaches_to": [
+    41
+   ],
+   "parameters": {
+    "drop": 6144,
+    "opening_width": 256.0,
+    "upper_area": 65536.0,
+    "lower_area": 98304.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 30720,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:019",
+   "kind": "overlook",
+   "sectors": [
+    40
+   ],
+   "attaches_to": [
+    42
+   ],
+   "parameters": {
+    "drop": 6144,
+    "opening_width": 512.0,
+    "upper_area": 65536.0,
+    "lower_area": 229376.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 30720,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:020",
+   "kind": "overlook",
+   "sectors": [
+    40
+   ],
+   "attaches_to": [
+    43
+   ],
+   "parameters": {
+    "drop": 6144,
+    "opening_width": 256.0,
+    "upper_area": 65536.0,
+    "lower_area": 98304.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 30720,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:021",
+   "kind": "overlook",
+   "sectors": [
+    40
+   ],
+   "attaches_to": [
+    278
+   ],
+   "parameters": {
+    "drop": 14336,
+    "opening_width": 64.0,
+    "upper_area": 65536.0,
+    "lower_area": 17825792.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 30720,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:022",
+   "kind": "overlook",
+   "sectors": [
+    41
+   ],
+   "attaches_to": [
+    277
+   ],
+   "parameters": {
+    "drop": 8192,
+    "opening_width": 286.2,
+    "upper_area": 98304.0,
+    "lower_area": 32768.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 36864,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:023",
+   "kind": "overlook",
+   "sectors": [
+    41
+   ],
+   "attaches_to": [
+    278
+   ],
+   "parameters": {
+    "drop": 8192,
+    "opening_width": 320.0,
+    "upper_area": 98304.0,
+    "lower_area": 17825792.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 36864,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:024",
+   "kind": "overlook",
+   "sectors": [
+    42
+   ],
+   "attaches_to": [
+    278
+   ],
+   "parameters": {
+    "drop": 8192,
+    "opening_width": 512.0,
+    "upper_area": 229376.0,
+    "lower_area": 17825792.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 36864,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:025",
+   "kind": "overlook",
+   "sectors": [
+    43
+   ],
+   "attaches_to": [
+    278
+   ],
+   "parameters": {
+    "drop": 8192,
+    "opening_width": 320.0,
+    "upper_area": 98304.0,
+    "lower_area": 17825792.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 36864,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:026",
+   "kind": "overlook",
+   "sectors": [
+    43
+   ],
+   "attaches_to": [
+    279
+   ],
+   "parameters": {
+    "drop": 8192,
+    "opening_width": 286.2,
+    "upper_area": 98304.0,
+    "lower_area": 32768.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 36864,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:027",
+   "kind": "overlook",
+   "sectors": [
+    58
+   ],
+   "attaches_to": [
+    49
+   ],
+   "parameters": {
+    "drop": 7168,
+    "opening_width": 724.1,
+    "upper_area": 458752.0,
+    "lower_area": 5046272.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 49152,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:028",
+   "kind": "overlook",
+   "sectors": [
+    57
+   ],
+   "attaches_to": [
+    50
+   ],
+   "parameters": {
+    "drop": 11264,
+    "opening_width": 724.1,
+    "upper_area": 458752.0,
+    "lower_area": 5046272.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 49152,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:029",
+   "kind": "overlook",
+   "sectors": [
+    76
+   ],
+   "attaches_to": [
+    62
+   ],
+   "parameters": {
+    "drop": 35840,
+    "opening_width": 2048.0,
+    "upper_area": 532480.0,
+    "lower_area": 12058889.5
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 29696,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:030",
+   "kind": "overlook",
+   "sectors": [
+    106
+   ],
+   "attaches_to": [
+    62
+   ],
+   "parameters": {
+    "drop": 35840,
+    "opening_width": 2048.0,
+    "upper_area": 532480.0,
+    "lower_area": 12058889.5
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 29696,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:031",
+   "kind": "overlook",
+   "sectors": [
+    67
+   ],
+   "attaches_to": [
+    68
+   ],
+   "parameters": {
+    "drop": 8192,
+    "opening_width": 1536.0,
+    "upper_area": 393216.0,
+    "lower_area": 2752512.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 24576,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:032",
+   "kind": "overlook",
+   "sectors": [
+    83
+   ],
+   "attaches_to": [
+    82
+   ],
+   "parameters": {
+    "drop": 5120,
+    "opening_width": 6144.0,
+    "upper_area": 786432.0,
+    "lower_area": 2752512.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 122880,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:033",
+   "kind": "overlook",
+   "sectors": [
+    83
+   ],
+   "attaches_to": [
+    84
+   ],
+   "parameters": {
+    "drop": 5120,
+    "opening_width": 6144.0,
+    "upper_area": 786432.0,
+    "lower_area": 2752512.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 122880,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:034",
+   "kind": "overlook",
+   "sectors": [
+    83
+   ],
+   "attaches_to": [
+    92
+   ],
+   "parameters": {
+    "drop": 9216,
+    "opening_width": 128.0,
+    "upper_area": 786432.0,
+    "lower_area": 65863680.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 121856,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:035",
+   "kind": "overlook",
+   "sectors": [
+    86
+   ],
+   "attaches_to": [
+    85
+   ],
+   "parameters": {
+    "drop": 5120,
+    "opening_width": 6144.0,
+    "upper_area": 786432.0,
+    "lower_area": 2752512.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 122880,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:036",
+   "kind": "overlook",
+   "sectors": [
+    86
+   ],
+   "attaches_to": [
+    87
+   ],
+   "parameters": {
+    "drop": 5120,
+    "opening_width": 6144.0,
+    "upper_area": 786432.0,
+    "lower_area": 2752512.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 122880,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:037",
+   "kind": "overlook",
+   "sectors": [
+    86
+   ],
+   "attaches_to": [
+    92
+   ],
+   "parameters": {
+    "drop": 9216,
+    "opening_width": 128.0,
+    "upper_area": 786432.0,
+    "lower_area": 65863680.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 121856,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:038",
+   "kind": "overlook",
+   "sectors": [
+    102
+   ],
+   "attaches_to": [
+    207
+   ],
+   "parameters": {
+    "drop": 7168,
+    "opening_width": 3584.0,
+    "upper_area": 1376256.0,
+    "lower_area": 28049408.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 25600,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:039",
+   "kind": "overlook",
+   "sectors": [
+    271
+   ],
+   "attaches_to": [
+    105
+   ],
+   "parameters": {
+    "drop": 20480,
+    "opening_width": 4096.0,
+    "upper_area": 54525952.0,
+    "lower_area": 8388608.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 50176,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:040",
+   "kind": "overlook",
+   "sectors": [
+    126
+   ],
+   "attaches_to": [
+    127
+   ],
+   "parameters": {
+    "drop": 77824,
+    "opening_width": 12288.0,
+    "upper_area": 25165824.0,
+    "lower_area": 29884416.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 68608,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:041",
+   "kind": "overlook",
+   "sectors": [
+    201
+   ],
+   "attaches_to": [
+    126
+   ],
+   "parameters": {
+    "drop": 11264,
+    "opening_width": 768.0,
+    "upper_area": 98304.0,
+    "lower_area": 25165824.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 26624,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:042",
+   "kind": "overlook",
+   "sectors": [
+    203
+   ],
+   "attaches_to": [
+    126
+   ],
+   "parameters": {
+    "drop": 12288,
+    "opening_width": 768.0,
+    "upper_area": 98304.0,
+    "lower_area": 25165824.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 25600,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:043",
+   "kind": "overlook",
+   "sectors": [
+    205
+   ],
+   "attaches_to": [
+    126
+   ],
+   "parameters": {
+    "drop": 12288,
+    "opening_width": 768.0,
+    "upper_area": 98304.0,
+    "lower_area": 25165824.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 25600,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:044",
+   "kind": "overlook",
+   "sectors": [
+    151
+   ],
+   "attaches_to": [
+    257
+   ],
+   "parameters": {
+    "drop": 7168,
+    "opening_width": 1024.0,
+    "upper_area": 237568.0,
+    "lower_area": 12271616.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 32768,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:045",
+   "kind": "overlook",
+   "sectors": [
+    153
+   ],
+   "attaches_to": [
+    257
+   ],
+   "parameters": {
+    "drop": 7168,
+    "opening_width": 1536.0,
+    "upper_area": 786432.0,
+    "lower_area": 12271616.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 32768,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:046",
+   "kind": "overlook",
+   "sectors": [
+    162
+   ],
+   "attaches_to": [
+    165
+   ],
+   "parameters": {
+    "drop": 8192,
+    "opening_width": 512.0,
+    "upper_area": 786432.0,
+    "lower_area": 229376.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 49152,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:047",
+   "kind": "overlook",
+   "sectors": [
+    166
+   ],
+   "attaches_to": [
+    162
+   ],
+   "parameters": {
+    "drop": 11264,
+    "opening_width": 1024.0,
+    "upper_area": 262144.0,
+    "lower_area": 786432.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 37888,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:048",
+   "kind": "overlook",
+   "sectors": [
+    167
+   ],
+   "attaches_to": [
+    162
+   ],
+   "parameters": {
+    "drop": 11264,
+    "opening_width": 512.0,
+    "upper_area": 131072.0,
+    "lower_area": 786432.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 37888,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:049",
+   "kind": "overlook",
+   "sectors": [
+    162
+   ],
+   "attaches_to": [
+    168
+   ],
+   "parameters": {
+    "drop": 8192,
+    "opening_width": 1536.0,
+    "upper_area": 786432.0,
+    "lower_area": 1729539.5
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 49152,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:050",
+   "kind": "overlook",
+   "sectors": [
+    224
+   ],
+   "attaches_to": [
+    164
+   ],
+   "parameters": {
+    "drop": 5120,
+    "opening_width": 512.0,
+    "upper_area": 57344.0,
+    "lower_area": 9088402.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 26624,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:051",
+   "kind": "overlook",
+   "sectors": [
+    226
+   ],
+   "attaches_to": [
+    164
+   ],
+   "parameters": {
+    "drop": 7168,
+    "opening_width": 320.0,
+    "upper_area": 40960.0,
+    "lower_area": 9088402.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 22528,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:052",
+   "kind": "overlook",
+   "sectors": [
+    167
+   ],
+   "attaches_to": [
+    165
+   ],
+   "parameters": {
+    "drop": 19456,
+    "opening_width": 256.0,
+    "upper_area": 131072.0,
+    "lower_area": 229376.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 37888,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:053",
+   "kind": "overlook",
+   "sectors": [
+    166
+   ],
+   "attaches_to": [
+    168
+   ],
+   "parameters": {
+    "drop": 19456,
+    "opening_width": 256.0,
+    "upper_area": 262144.0,
+    "lower_area": 1729539.5
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 37888,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:054",
+   "kind": "overlook",
+   "sectors": [
+    202
+   ],
+   "attaches_to": [
+    179
+   ],
+   "parameters": {
+    "drop": 7168,
+    "opening_width": 768.0,
+    "upper_area": 98304.0,
+    "lower_area": 17301504.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 25600,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:055",
+   "kind": "overlook",
+   "sectors": [
+    204
+   ],
+   "attaches_to": [
+    179
+   ],
+   "parameters": {
+    "drop": 7168,
+    "opening_width": 768.0,
+    "upper_area": 98304.0,
+    "lower_area": 17301504.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 25600,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:056",
+   "kind": "overlook",
+   "sectors": [
+    206
+   ],
+   "attaches_to": [
+    179
+   ],
+   "parameters": {
+    "drop": 7168,
+    "opening_width": 768.0,
+    "upper_area": 98304.0,
+    "lower_area": 17301504.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 25600,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:057",
+   "kind": "overlook",
+   "sectors": [
+    181
+   ],
+   "attaches_to": [
+    180
+   ],
+   "parameters": {
+    "drop": 32768,
+    "opening_width": 1024.0,
+    "upper_area": 1572864.0,
+    "lower_area": 11797010.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 32768,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:058",
+   "kind": "overlook",
+   "sectors": [
+    182
+   ],
+   "attaches_to": [
+    180
+   ],
+   "parameters": {
+    "drop": 32768,
+    "opening_width": 1024.0,
+    "upper_area": 524288.0,
+    "lower_area": 11797010.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 32768,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:059",
+   "kind": "overlook",
+   "sectors": [
+    181
+   ],
+   "attaches_to": [
+    183
+   ],
+   "parameters": {
+    "drop": 31744,
+    "opening_width": 512.0,
+    "upper_area": 1572864.0,
+    "lower_area": 524288.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 32768,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:060",
+   "kind": "overlook",
+   "sectors": [
+    182
+   ],
+   "attaches_to": [
+    183
+   ],
+   "parameters": {
+    "drop": 31744,
+    "opening_width": 512.0,
+    "upper_area": 524288.0,
+    "lower_area": 524288.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 32768,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:061",
+   "kind": "overlook",
+   "sectors": [
+    187
+   ],
+   "attaches_to": [
+    188
+   ],
+   "parameters": {
+    "drop": 6144,
+    "opening_width": 2318.2,
+    "upper_area": 1769472.0,
+    "lower_area": 3358720.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 51200,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:062",
+   "kind": "overlook",
+   "sectors": [
+    188
+   ],
+   "attaches_to": [
+    189
+   ],
+   "parameters": {
+    "drop": 10240,
+    "opening_width": 1987.1,
+    "upper_area": 3358720.0,
+    "lower_area": 2818048.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 45056,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:063",
+   "kind": "overlook",
+   "sectors": [
+    192
+   ],
+   "attaches_to": [
+    188
+   ],
+   "parameters": {
+    "drop": 9216,
+    "opening_width": 1144.9,
+    "upper_area": 860160.0,
+    "lower_area": 3358720.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 48128,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:064",
+   "kind": "overlook",
+   "sectors": [
+    189
+   ],
+   "attaches_to": [
+    190
+   ],
+   "parameters": {
+    "drop": 7168,
+    "opening_width": 1583.3,
+    "upper_area": 2818048.0,
+    "lower_area": 2359296.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 46080,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:065",
+   "kind": "overlook",
+   "sectors": [
+    190
+   ],
+   "attaches_to": [
+    194
+   ],
+   "parameters": {
+    "drop": 10240,
+    "opening_width": 1619.1,
+    "upper_area": 2359296.0,
+    "lower_area": 2416640.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 41984,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:066",
+   "kind": "overlook",
+   "sectors": [
+    196
+   ],
+   "attaches_to": [
+    192
+   ],
+   "parameters": {
+    "drop": 5120,
+    "opening_width": 1408.0,
+    "upper_area": 4636672.0,
+    "lower_area": 860160.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 43008,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:067",
+   "kind": "overlook",
+   "sectors": [
+    197
+   ],
+   "attaches_to": [
+    270
+   ],
+   "parameters": {
+    "drop": 20480,
+    "opening_width": 640.0,
+    "upper_area": 245760.0,
+    "lower_area": 49283072.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 30720,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:068",
+   "kind": "overlook",
+   "sectors": [
+    197
+   ],
+   "attaches_to": [
+    302
+   ],
+   "parameters": {
+    "drop": 5120,
+    "opening_width": 768.0,
+    "upper_area": 245760.0,
+    "lower_area": 11010048.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 30720,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:069",
+   "kind": "overlook",
+   "sectors": [
+    198
+   ],
+   "attaches_to": [
+    270
+   ],
+   "parameters": {
+    "drop": 18432,
+    "opening_width": 640.0,
+    "upper_area": 229376.0,
+    "lower_area": 49283072.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 29696,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:070",
+   "kind": "overlook",
+   "sectors": [
+    199
+   ],
+   "attaches_to": [
+    270
+   ],
+   "parameters": {
+    "drop": 19456,
+    "opening_width": 512.0,
+    "upper_area": 114688.0,
+    "lower_area": 49283072.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 35840,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:071",
+   "kind": "overlook",
+   "sectors": [
+    208
+   ],
+   "attaches_to": [
+    207
+   ],
+   "parameters": {
+    "drop": 5120,
+    "opening_width": 3072.0,
+    "upper_area": 1179648.0,
+    "lower_area": 28049408.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 93184,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:072",
+   "kind": "overlook",
+   "sectors": [
+    209
+   ],
+   "attaches_to": [
+    207
+   ],
+   "parameters": {
+    "drop": 10240,
+    "opening_width": 128.0,
+    "upper_area": 393216.0,
+    "lower_area": 28049408.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 88064,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:073",
+   "kind": "overlook",
+   "sectors": [
+    209
+   ],
+   "attaches_to": [
+    208
+   ],
+   "parameters": {
+    "drop": 5120,
+    "opening_width": 3072.0,
+    "upper_area": 393216.0,
+    "lower_area": 1179648.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 88064,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:074",
+   "kind": "overlook",
+   "sectors": [
+    210
+   ],
+   "attaches_to": [
+    211
+   ],
+   "parameters": {
+    "drop": 8192,
+    "opening_width": 1536.0,
+    "upper_area": 1916928.0,
+    "lower_area": 3211264.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 22528,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:075",
+   "kind": "overlook",
+   "sectors": [
+    210
+   ],
+   "attaches_to": [
+    278
+   ],
+   "parameters": {
+    "drop": 10240,
+    "opening_width": 1810.2,
+    "upper_area": 1916928.0,
+    "lower_area": 17825792.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 22528,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:076",
+   "kind": "overlook",
+   "sectors": [
+    243
+   ],
+   "attaches_to": [
+    245
+   ],
+   "parameters": {
+    "drop": 8192,
+    "opening_width": 1920.0,
+    "upper_area": 376832.0,
+    "lower_area": 1720320.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 23552,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:077",
+   "kind": "overlook",
+   "sectors": [
+    243
+   ],
+   "attaches_to": [
+    250
+   ],
+   "parameters": {
+    "drop": 6144,
+    "opening_width": 2048.0,
+    "upper_area": 376832.0,
+    "lower_area": 9461760.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 23552,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:078",
+   "kind": "overlook",
+   "sectors": [
+    248
+   ],
+   "attaches_to": [
+    244
+   ],
+   "parameters": {
+    "drop": 17408,
+    "opening_width": 832.0,
+    "upper_area": 919552.0,
+    "lower_area": 16130048.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 27648,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:079",
+   "kind": "overlook",
+   "sectors": [
+    249
+   ],
+   "attaches_to": [
+    244
+   ],
+   "parameters": {
+    "drop": 27648,
+    "opening_width": 512.0,
+    "upper_area": 394240.0,
+    "lower_area": 16130048.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 19456,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:080",
+   "kind": "overlook",
+   "sectors": [
+    252
+   ],
+   "attaches_to": [
+    244
+   ],
+   "parameters": {
+    "drop": 6144,
+    "opening_width": 1999.4,
+    "upper_area": 1515520.0,
+    "lower_area": 16130048.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 60416,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:081",
+   "kind": "overlook",
+   "sectors": [
+    253
+   ],
+   "attaches_to": [
+    244
+   ],
+   "parameters": {
+    "drop": 6144,
+    "opening_width": 1999.4,
+    "upper_area": 1515520.0,
+    "lower_area": 16130048.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 60416,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:082",
+   "kind": "overlook",
+   "sectors": [
+    256
+   ],
+   "attaches_to": [
+    244
+   ],
+   "parameters": {
+    "drop": 7168,
+    "opening_width": 1792.0,
+    "upper_area": 884736.0,
+    "lower_area": 16130048.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 26624,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:083",
+   "kind": "overlook",
+   "sectors": [
+    249
+   ],
+   "attaches_to": [
+    248
+   ],
+   "parameters": {
+    "drop": 10240,
+    "opening_width": 974.8,
+    "upper_area": 394240.0,
+    "lower_area": 919552.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 17408,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:084",
+   "kind": "overlook",
+   "sectors": [
+    249
+   ],
+   "attaches_to": [
+    251
+   ],
+   "parameters": {
+    "drop": 10240,
+    "opening_width": 320.0,
+    "upper_area": 394240.0,
+    "lower_area": 1245184.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 19456,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:overlook:085",
+   "kind": "overlook",
+   "sectors": [
+    256
+   ],
+   "attaches_to": [
+    270
+   ],
+   "parameters": {
+    "drop": 9216,
+    "opening_width": 1664.0,
+    "upper_area": 884736.0,
+    "lower_area": 49283072.0
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "open portal whose floor delta exceeds one player step",
+    "at_rest_opening": 26624,
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:embedded_shell:001",
+   "kind": "embedded_shell",
+   "sectors": [
+    6
+   ],
+   "attaches_to": [
+    5
+   ],
+   "parameters": {
+    "footprint": 163840.0,
+    "contained_sectors": 1,
+    "host_area": 491520.0,
+    "occupies_host": 0.25
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:002",
+   "kind": "embedded_shell",
+   "sectors": [
+    186,
+    191,
+    196
+   ],
+   "attaches_to": [
+    14
+   ],
+   "parameters": {
+    "footprint": 1540096.0,
+    "contained_sectors": 3,
+    "host_area": 20024195.5,
+    "occupies_host": 0.0714
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 5
+   }
+  },
+  {
+   "id": "structure:embedded_shell:003",
+   "kind": "embedded_shell",
+   "sectors": [
+    12
+   ],
+   "attaches_to": [
+    14
+   ],
+   "parameters": {
+    "footprint": 393216.0,
+    "contained_sectors": 1,
+    "host_area": 20024195.5,
+    "occupies_host": 0.0193
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 2,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:004",
+   "kind": "embedded_shell",
+   "sectors": [
+    13
+   ],
+   "attaches_to": [
+    14
+   ],
+   "parameters": {
+    "footprint": 390268.5,
+    "contained_sectors": 1,
+    "host_area": 20024195.5,
+    "occupies_host": 0.0191
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 3,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:005",
+   "kind": "embedded_shell",
+   "sectors": [
+    7,
+    8,
+    9
+   ],
+   "attaches_to": [
+    34
+   ],
+   "parameters": {
+    "footprint": 37486592.0,
+    "contained_sectors": 3,
+    "host_area": 136396800.0,
+    "occupies_host": 0.2156
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 8
+   }
+  },
+  {
+   "id": "structure:embedded_shell:006",
+   "kind": "embedded_shell",
+   "sectors": [
+    10
+   ],
+   "attaches_to": [
+    34
+   ],
+   "parameters": {
+    "footprint": 16695296.0,
+    "contained_sectors": 1,
+    "host_area": 136396800.0,
+    "occupies_host": 0.1091
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 3,
+    "vertices": 12
+   }
+  },
+  {
+   "id": "structure:embedded_shell:007",
+   "kind": "embedded_shell",
+   "sectors": [
+    33
+   ],
+   "attaches_to": [
+    37
+   ],
+   "parameters": {
+    "footprint": 2097152.0,
+    "contained_sectors": 1,
+    "host_area": 10534912.0,
+    "occupies_host": 0.166
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:008",
+   "kind": "embedded_shell",
+   "sectors": [
+    39
+   ],
+   "attaches_to": [
+    37
+   ],
+   "parameters": {
+    "footprint": 65536.0,
+    "contained_sectors": 1,
+    "host_area": 10534912.0,
+    "occupies_host": 0.0062
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 2,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:009",
+   "kind": "embedded_shell",
+   "sectors": [
+    75
+   ],
+   "attaches_to": [
+    69
+   ],
+   "parameters": {
+    "footprint": 524288.0,
+    "contained_sectors": 1,
+    "host_area": 3670016.0,
+    "occupies_host": 0.125
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:010",
+   "kind": "embedded_shell",
+   "sectors": [
+    113
+   ],
+   "attaches_to": [
+    88
+   ],
+   "parameters": {
+    "footprint": 1048576.0,
+    "contained_sectors": 1,
+    "host_area": 1507328.0,
+    "occupies_host": 0.4103
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:011",
+   "kind": "embedded_shell",
+   "sectors": [
+    82,
+    83,
+    84
+   ],
+   "attaches_to": [
+    92
+   ],
+   "parameters": {
+    "footprint": 6291456.0,
+    "contained_sectors": 3,
+    "host_area": 65863680.0,
+    "occupies_host": 0.0872
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 8
+   }
+  },
+  {
+   "id": "structure:embedded_shell:012",
+   "kind": "embedded_shell",
+   "sectors": [
+    85,
+    86,
+    87
+   ],
+   "attaches_to": [
+    92
+   ],
+   "parameters": {
+    "footprint": 6291456.0,
+    "contained_sectors": 3,
+    "host_area": 65863680.0,
+    "occupies_host": 0.0872
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 2,
+    "vertices": 8
+   }
+  },
+  {
+   "id": "structure:embedded_shell:013",
+   "kind": "embedded_shell",
+   "sectors": [
+    109
+   ],
+   "attaches_to": [
+    107
+   ],
+   "parameters": {
+    "footprint": 1572864.0,
+    "contained_sectors": 1,
+    "host_area": 20166400.0,
+    "occupies_host": 0.0724
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:014",
+   "kind": "embedded_shell",
+   "sectors": [
+    108
+   ],
+   "attaches_to": [
+    107
+   ],
+   "parameters": {
+    "footprint": 1572864.0,
+    "contained_sectors": 1,
+    "host_area": 20166400.0,
+    "occupies_host": 0.0724
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 2,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:015",
+   "kind": "embedded_shell",
+   "sectors": [
+    218
+   ],
+   "attaches_to": [
+    111
+   ],
+   "parameters": {
+    "footprint": 1048576.0,
+    "contained_sectors": 1,
+    "host_area": 3145728.0,
+    "occupies_host": 0.25
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:016",
+   "kind": "embedded_shell",
+   "sectors": [
+    122
+   ],
+   "attaches_to": [
+    121
+   ],
+   "parameters": {
+    "footprint": 1048576.0,
+    "contained_sectors": 1,
+    "host_area": 2097152.0,
+    "occupies_host": 0.3333
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:017",
+   "kind": "embedded_shell",
+   "sectors": [
+    233
+   ],
+   "attaches_to": [
+    148
+   ],
+   "parameters": {
+    "footprint": 4194304.0,
+    "contained_sectors": 1,
+    "host_area": 22020096.0,
+    "occupies_host": 0.16
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:018",
+   "kind": "embedded_shell",
+   "sectors": [
+    152
+   ],
+   "attaches_to": [
+    151
+   ],
+   "parameters": {
+    "footprint": 286720.0,
+    "contained_sectors": 1,
+    "host_area": 237568.0,
+    "occupies_host": 0.5469
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:019",
+   "kind": "embedded_shell",
+   "sectors": [
+    159
+   ],
+   "attaches_to": [
+    179
+   ],
+   "parameters": {
+    "footprint": 524288.0,
+    "contained_sectors": 1,
+    "host_area": 17301504.0,
+    "occupies_host": 0.0294
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:020",
+   "kind": "embedded_shell",
+   "sectors": [
+    160
+   ],
+   "attaches_to": [
+    179
+   ],
+   "parameters": {
+    "footprint": 524288.0,
+    "contained_sectors": 1,
+    "host_area": 17301504.0,
+    "occupies_host": 0.0294
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 2,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:021",
+   "kind": "embedded_shell",
+   "sectors": [
+    158
+   ],
+   "attaches_to": [
+    179
+   ],
+   "parameters": {
+    "footprint": 524288.0,
+    "contained_sectors": 1,
+    "host_area": 17301504.0,
+    "occupies_host": 0.0294
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 3,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:022",
+   "kind": "embedded_shell",
+   "sectors": [
+    184
+   ],
+   "attaches_to": [
+    180
+   ],
+   "parameters": {
+    "footprint": 2359296.0,
+    "contained_sectors": 1,
+    "host_area": 11797010.0,
+    "occupies_host": 0.1667
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:023",
+   "kind": "embedded_shell",
+   "sectors": [
+    186,
+    191
+   ],
+   "attaches_to": [
+    196
+   ],
+   "parameters": {
+    "footprint": 1540096.0,
+    "contained_sectors": 2,
+    "host_area": 4636672.0,
+    "occupies_host": 0.2493
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 5
+   }
+  },
+  {
+   "id": "structure:embedded_shell:024",
+   "kind": "embedded_shell",
+   "sectors": [
+    212
+   ],
+   "attaches_to": [
+    211
+   ],
+   "parameters": {
+    "footprint": 589824.0,
+    "contained_sectors": 1,
+    "host_area": 3211264.0,
+    "occupies_host": 0.1552
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:025",
+   "kind": "embedded_shell",
+   "sectors": [
+    242
+   ],
+   "attaches_to": [
+    239
+   ],
+   "parameters": {
+    "footprint": 778240.0,
+    "contained_sectors": 1,
+    "host_area": 3416064.0,
+    "occupies_host": 0.1855
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 8
+   }
+  },
+  {
+   "id": "structure:embedded_shell:026",
+   "kind": "embedded_shell",
+   "sectors": [
+    245
+   ],
+   "attaches_to": [
+    243
+   ],
+   "parameters": {
+    "footprint": 1720320.0,
+    "contained_sectors": 1,
+    "host_area": 376832.0,
+    "occupies_host": 0.8203
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:027",
+   "kind": "embedded_shell",
+   "sectors": [
+    253,
+    254
+   ],
+   "attaches_to": [
+    244
+   ],
+   "parameters": {
+    "footprint": 1613824.0,
+    "contained_sectors": 2,
+    "host_area": 16130048.0,
+    "occupies_host": 0.091
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 6
+   }
+  },
+  {
+   "id": "structure:embedded_shell:028",
+   "kind": "embedded_shell",
+   "sectors": [
+    252,
+    255
+   ],
+   "attaches_to": [
+    244
+   ],
+   "parameters": {
+    "footprint": 1613824.0,
+    "contained_sectors": 2,
+    "host_area": 16130048.0,
+    "occupies_host": 0.091
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 2,
+    "vertices": 6
+   }
+  },
+  {
+   "id": "structure:embedded_shell:029",
+   "kind": "embedded_shell",
+   "sectors": [
+    255
+   ],
+   "attaches_to": [
+    252
+   ],
+   "parameters": {
+    "footprint": 98304.0,
+    "contained_sectors": 1,
+    "host_area": 1515520.0,
+    "occupies_host": 0.0609
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 12
+   }
+  },
+  {
+   "id": "structure:embedded_shell:030",
+   "kind": "embedded_shell",
+   "sectors": [
+    254
+   ],
+   "attaches_to": [
+    253
+   ],
+   "parameters": {
+    "footprint": 98304.0,
+    "contained_sectors": 1,
+    "host_area": 1515520.0,
+    "occupies_host": 0.0609
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 12
+   }
+  },
+  {
+   "id": "structure:embedded_shell:031",
+   "kind": "embedded_shell",
+   "sectors": [
+    155
+   ],
+   "attaches_to": [
+    257
+   ],
+   "parameters": {
+    "footprint": 57344.0,
+    "contained_sectors": 1,
+    "host_area": 12271616.0,
+    "occupies_host": 0.0047
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:032",
+   "kind": "embedded_shell",
+   "sectors": [
+    154
+   ],
+   "attaches_to": [
+    257
+   ],
+   "parameters": {
+    "footprint": 57344.0,
+    "contained_sectors": 1,
+    "host_area": 12271616.0,
+    "occupies_host": 0.0047
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 2,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:033",
+   "kind": "embedded_shell",
+   "sectors": [
+    2,
+    197,
+    198,
+    199,
+    301,
+    302
+   ],
+   "attaches_to": [
+    270
+   ],
+   "parameters": {
+    "footprint": 29360128.0,
+    "contained_sectors": 6,
+    "host_area": 49283072.0,
+    "occupies_host": 0.3733
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 22
+   }
+  },
+  {
+   "id": "structure:embedded_shell:034",
+   "kind": "embedded_shell",
+   "sectors": [
+    214
+   ],
+   "attaches_to": [
+    272
+   ],
+   "parameters": {
+    "footprint": 540672.0,
+    "contained_sectors": 1,
+    "host_area": 10993664.0,
+    "occupies_host": 0.0469
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:035",
+   "kind": "embedded_shell",
+   "sectors": [
+    118,
+    119,
+    120
+   ],
+   "attaches_to": [
+    278
+   ],
+   "parameters": {
+    "footprint": 1048576.0,
+    "contained_sectors": 3,
+    "host_area": 17825792.0,
+    "occupies_host": 0.0556
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 12
+   }
+  },
+  {
+   "id": "structure:embedded_shell:036",
+   "kind": "embedded_shell",
+   "sectors": [
+    305
+   ],
+   "attaches_to": [
+    291
+   ],
+   "parameters": {
+    "footprint": 39321600.0,
+    "contained_sectors": 1,
+    "host_area": 235356160.0,
+    "occupies_host": 0.1432
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 6
+   }
+  },
+  {
+   "id": "structure:embedded_shell:037",
+   "kind": "embedded_shell",
+   "sectors": [
+    286
+   ],
+   "attaches_to": [
+    291
+   ],
+   "parameters": {
+    "footprint": 24461312.0,
+    "contained_sectors": 1,
+    "host_area": 235356160.0,
+    "occupies_host": 0.0941
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 2,
+    "vertices": 12
+   }
+  },
+  {
+   "id": "structure:embedded_shell:038",
+   "kind": "embedded_shell",
+   "sectors": [
+    288
+   ],
+   "attaches_to": [
+    291
+   ],
+   "parameters": {
+    "footprint": 7864320.0,
+    "contained_sectors": 1,
+    "host_area": 235356160.0,
+    "occupies_host": 0.0323
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 3,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:039",
+   "kind": "embedded_shell",
+   "sectors": [
+    290
+   ],
+   "attaches_to": [
+    291
+   ],
+   "parameters": {
+    "footprint": 720896.0,
+    "contained_sectors": 1,
+    "host_area": 235356160.0,
+    "occupies_host": 0.0031
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 4,
+    "vertices": 4
+   }
+  },
+  {
+   "id": "structure:embedded_shell:040",
+   "kind": "embedded_shell",
+   "sectors": [
+    3,
+    4,
+    11,
+    21
+   ],
+   "attaches_to": [
+    298
+   ],
+   "parameters": {
+    "footprint": 60469248.0,
+    "contained_sectors": 4,
+    "host_area": 26988544.0,
+    "occupies_host": 0.6914
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 1,
+    "vertices": 18
+   }
+  },
+  {
+   "id": "structure:embedded_shell:041",
+   "kind": "embedded_shell",
+   "sectors": [
+    22
+   ],
+   "attaches_to": [
+    298
+   ],
+   "parameters": {
+    "footprint": 360448.0,
+    "contained_sectors": 1,
+    "host_area": 26988544.0,
+    "occupies_host": 0.0132
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "host wall loop encloses the outer loop of other sectors",
+    "host_loop_index": 2,
+    "vertices": 5
+   }
+  },
+  {
+   "id": "structure:pit:001",
+   "kind": "pit",
+   "sectors": [
+    194
+   ],
+   "attaches_to": [
+    190
+   ],
+   "parameters": {
+    "area": 2416640.0,
+    "depth": 10240,
+    "exits": 1,
+    "clear_height": 52224
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "every open neighbour's floor is more than one step above this one",
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:pit:002",
+   "kind": "pit",
+   "sectors": [
+    244
+   ],
+   "attaches_to": [
+    248,
+    249,
+    252,
+    253,
+    256
+   ],
+   "parameters": {
+    "area": 16130048.0,
+    "depth": 6144,
+    "exits": 5,
+    "clear_height": 66560
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "every open neighbour's floor is more than one step above this one",
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:pit:003",
+   "kind": "pit",
+   "sectors": [
+    245
+   ],
+   "attaches_to": [
+    243
+   ],
+   "parameters": {
+    "area": 1720320.0,
+    "depth": 8192,
+    "exits": 1,
+    "clear_height": 31744
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "every open neighbour's floor is more than one step above this one",
+    "step_limit": 4096
+   }
+  },
+  {
+   "id": "structure:pit:004",
+   "kind": "pit",
+   "sectors": [
+    246
+   ],
+   "attaches_to": [
+    247
+   ],
+   "parameters": {
+    "area": 688128.0,
+    "depth": 16384,
+    "exits": 1,
+    "clear_height": 29696
+   },
+   "residual": {},
+   "evidence": {
+    "basis": "every open neighbour's floor is more than one step above this one",
+    "step_limit": 4096
+   }
+  }
+ ],
+ "coverage": {
+  "sectors": 313,
+  "sectors_in_a_structure": 160,
+  "by_kind": {
+   "stepped_run": 46,
+   "landing": 1,
+   "recess": 26,
+   "overlook": 62,
+   "embedded_shell": 58,
+   "pit": 4
+  }
+ },
+ "limitations": [
+  "detection is static: transient door and lift motion is ignored",
+  "a stepped run is a measured climb, not a claim that the designer drew a staircase",
+  "a recess is a small dead end; whether it reads as an alcove is not measured here",
+  "residual records how far the original is from its own parameters, not whether that matters"
+ ]
+}

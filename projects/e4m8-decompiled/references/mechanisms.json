@@ -1,0 +1,3698 @@
+{
+ "conditional_census": {
+  "conditional": 51,
+  "inert_no_cause": 0,
+  "irreversible": 0,
+  "keyed": 0,
+  "never": 2,
+  "scoped_out_no_reading": 0,
+  "swept_mechanisms": 0,
+  "swept_recorded_but_not_gated": 0,
+  "wired": 17,
+  "z_motion_mechanisms": 17
+ },
+ "conditions": [
+  {
+   "causes": [
+    "sprite:38",
+    "sprite:39"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 27,
+   "requires_key": 0,
+   "sectors": [
+    27,
+    29
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:38",
+    "sprite:39"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 27,
+   "requires_key": 0,
+   "sectors": [
+    29,
+    27
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:38",
+    "sprite:39"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 27,
+   "requires_key": 0,
+   "sectors": [
+    27,
+    66
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:38",
+    "sprite:39"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 27,
+   "requires_key": 0,
+   "sectors": [
+    66,
+    27
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:38",
+    "sprite:39"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 28,
+   "requires_key": 0,
+   "sectors": [
+    28,
+    29
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:38",
+    "sprite:39"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 28,
+   "requires_key": 0,
+   "sectors": [
+    29,
+    28
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:38",
+    "sprite:39"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 28,
+   "requires_key": 0,
+   "sectors": [
+    28,
+    67
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:38",
+    "sprite:39"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 28,
+   "requires_key": 0,
+   "sectors": [
+    67,
+    28
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:36",
+    "sprite:98"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 34,
+   "requires_key": 0,
+   "sectors": [
+    34,
+    35
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:36",
+    "sprite:98"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 34,
+   "requires_key": 0,
+   "sectors": [
+    35,
+    34
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:36",
+    "sprite:98"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 34,
+   "requires_key": 0,
+   "sectors": [
+    34,
+    64
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:36",
+    "sprite:98"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 34,
+   "requires_key": 0,
+   "sectors": [
+    64,
+    34
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:101",
+    "sprite:113"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 37,
+   "requires_key": 0,
+   "sectors": [
+    37,
+    36
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:101",
+    "sprite:113"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 37,
+   "requires_key": 0,
+   "sectors": [
+    36,
+    37
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:101",
+    "sprite:113"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 37,
+   "requires_key": 0,
+   "sectors": [
+    37,
+    64
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:101",
+    "sprite:113"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 37,
+   "requires_key": 0,
+   "sectors": [
+    64,
+    37
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:37",
+    "sprite:99"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 39,
+   "requires_key": 0,
+   "sectors": [
+    39,
+    38
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:37",
+    "sprite:99"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 39,
+   "requires_key": 0,
+   "sectors": [
+    38,
+    39
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:37",
+    "sprite:99"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 39,
+   "requires_key": 0,
+   "sectors": [
+    39,
+    65
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:37",
+    "sprite:99"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 39,
+   "requires_key": 0,
+   "sectors": [
+    65,
+    39
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:35",
+    "sprite:100"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 41,
+   "requires_key": 0,
+   "sectors": [
+    41,
+    40
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:35",
+    "sprite:100"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 41,
+   "requires_key": 0,
+   "sectors": [
+    40,
+    41
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:35",
+    "sprite:100"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 41,
+   "requires_key": 0,
+   "sectors": [
+    41,
+    65
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:35",
+    "sprite:100"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 41,
+   "requires_key": 0,
+   "sectors": [
+    65,
+    41
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:24"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 47,
+   "requires_key": 0,
+   "sectors": [
+    48,
+    47
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:24"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 47,
+   "requires_key": 0,
+   "sectors": [
+    50,
+    47
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:24"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 47,
+   "requires_key": 0,
+   "sectors": [
+    51,
+    47
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:24"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 48,
+   "requires_key": 0,
+   "sectors": [
+    47,
+    48
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:24"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 48,
+   "requires_key": 0,
+   "sectors": [
+    49,
+    48
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:24"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 48,
+   "requires_key": 0,
+   "sectors": [
+    50,
+    48
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:24"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 48,
+   "requires_key": 0,
+   "sectors": [
+    51,
+    48
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:24"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 49,
+   "requires_key": 0,
+   "sectors": [
+    48,
+    49
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:24"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 49,
+   "requires_key": 0,
+   "sectors": [
+    50,
+    49
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:24"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 49,
+   "requires_key": 0,
+   "sectors": [
+    51,
+    49
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:24"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 51,
+   "requires_key": 0,
+   "sectors": [
+    47,
+    51
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:24"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 51,
+   "requires_key": 0,
+   "sectors": [
+    48,
+    51
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:24"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 51,
+   "requires_key": 0,
+   "sectors": [
+    49,
+    51
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:24"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 51,
+   "requires_key": 0,
+   "sectors": [
+    50,
+    51
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:4"
+   ],
+   "enabling_state": "off",
+   "irreversible": false,
+   "mechanism": 56,
+   "requires_key": 0,
+   "sectors": [
+    56,
+    55
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:4"
+   ],
+   "enabling_state": "off",
+   "irreversible": false,
+   "mechanism": 56,
+   "requires_key": 0,
+   "sectors": [
+    55,
+    56
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:1"
+   ],
+   "enabling_state": "off",
+   "irreversible": false,
+   "mechanism": 57,
+   "requires_key": 0,
+   "sectors": [
+    57,
+    55
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:1"
+   ],
+   "enabling_state": "off",
+   "irreversible": false,
+   "mechanism": 57,
+   "requires_key": 0,
+   "sectors": [
+    55,
+    57
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:6"
+   ],
+   "enabling_state": "off",
+   "irreversible": false,
+   "mechanism": 58,
+   "requires_key": 0,
+   "sectors": [
+    58,
+    55
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:6"
+   ],
+   "enabling_state": "off",
+   "irreversible": false,
+   "mechanism": 58,
+   "requires_key": 0,
+   "sectors": [
+    55,
+    58
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:5"
+   ],
+   "enabling_state": "off",
+   "irreversible": false,
+   "mechanism": 59,
+   "requires_key": 0,
+   "sectors": [
+    59,
+    55
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:5"
+   ],
+   "enabling_state": "off",
+   "irreversible": false,
+   "mechanism": 59,
+   "requires_key": 0,
+   "sectors": [
+    55,
+    59
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:107",
+    "sector:60"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 60,
+   "requires_key": 0,
+   "sectors": [
+    55,
+    60
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:3"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 61,
+   "requires_key": 0,
+   "sectors": [
+    61,
+    50
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:3"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 61,
+   "requires_key": 0,
+   "sectors": [
+    50,
+    61
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:3"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 61,
+   "requires_key": 0,
+   "sectors": [
+    61,
+    62
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:3"
+   ],
+   "enabling_state": "on",
+   "irreversible": false,
+   "mechanism": 61,
+   "requires_key": 0,
+   "sectors": [
+    62,
+    61
+   ],
+   "verdict": "conditional"
+  },
+  {
+   "causes": [
+    "sprite:53"
+   ],
+   "enabling_state": "none",
+   "irreversible": false,
+   "mechanism": 68,
+   "requires_key": 0,
+   "sectors": [
+    68,
+    46
+   ],
+   "verdict": "never"
+  },
+  {
+   "causes": [
+    "sprite:53"
+   ],
+   "enabling_state": "none",
+   "irreversible": false,
+   "mechanism": 68,
+   "requires_key": 0,
+   "sectors": [
+    46,
+    68
+   ],
+   "verdict": "never"
+  }
+ ],
+ "curriculum": {
+  "600": {
+   "constructs": 180,
+   "lessons": 23
+  },
+  "602": {
+   "constructs": 70,
+   "lessons": 12
+  },
+  "604": {
+   "constructs": 10,
+   "lessons": 6
+  },
+  "612": {
+   "constructs": 42,
+   "lessons": 11
+  },
+  "613": {
+   "constructs": 2,
+   "lessons": 1
+  },
+  "614": {
+   "constructs": 197,
+   "lessons": 19
+  },
+  "615": {
+   "constructs": 77,
+   "lessons": 6
+  },
+  "616": {
+   "constructs": 63,
+   "lessons": 8
+  },
+  "617": {
+   "constructs": 101,
+   "lessons": 8
+  },
+  "618": {
+   "constructs": 35,
+   "lessons": 4
+  },
+  "619": {
+   "constructs": 1,
+   "lessons": 1
+  }
+ },
+ "keys": [],
+ "ledger": {
+  "disagreements": [],
+  "explained": 61,
+  "gate": "every record carrying an XSECTOR, XWALL or XSPRITE either realised by a sentence or named as residue; each sentence checked against the lessons of its type",
+  "population": "142 wired records (133 XSECTOR, 41 XWALL, 716 XSPRITE)",
+  "reader": "bloodmap.read_mechanisms (new)",
+  "residue": 81,
+  "residue_is": "wired records no sentence realises",
+  "residue_percent": 57.04
+ },
+ "links": [
+  {
+   "channel": 2,
+   "from": [
+    "sprite:52"
+   ],
+   "to": [],
+   "triggers": [
+    "pickup"
+   ]
+  },
+  {
+   "channel": 4,
+   "from": [
+    "sprite:106",
+    "sprite:108"
+   ],
+   "to": [],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 100,
+   "from": [
+    "sprite:4"
+   ],
+   "to": [
+    "sector:56",
+    "sprite:3",
+    "sprite:24"
+   ],
+   "triggers": [
+    "push"
+   ]
+  },
+  {
+   "channel": 101,
+   "from": [
+    "sprite:86"
+   ],
+   "to": [
+    "sector:54",
+    "sprite:2",
+    "sprite:8",
+    "sprite:23",
+    "sprite:63",
+    "sprite:85",
+    "sprite:97"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 102,
+   "from": [
+    "sprite:5"
+   ],
+   "to": [
+    "sector:59"
+   ],
+   "triggers": [
+    "push"
+   ]
+  },
+  {
+   "channel": 103,
+   "from": [
+    "sprite:1"
+   ],
+   "to": [
+    "sector:57"
+   ],
+   "triggers": [
+    "push"
+   ]
+  },
+  {
+   "channel": 104,
+   "from": [
+    "sprite:6"
+   ],
+   "to": [
+    "sector:58"
+   ],
+   "triggers": [
+    "push"
+   ]
+  },
+  {
+   "channel": 105,
+   "from": [
+    "sprite:23"
+   ],
+   "to": [],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 106,
+   "from": [
+    "sprite:8"
+   ],
+   "to": [
+    "sprite:9"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 107,
+   "from": [
+    "sprite:2"
+   ],
+   "to": [
+    "sprite:109"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 108,
+   "from": [
+    "sprite:36",
+    "sprite:98"
+   ],
+   "to": [
+    "sector:34"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 109,
+   "from": [
+    "sprite:24"
+   ],
+   "to": [
+    "sector:47",
+    "sector:48",
+    "sector:49",
+    "sector:51",
+    "sprite:104"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 110,
+   "from": [
+    "sprite:3"
+   ],
+   "to": [
+    "sector:61"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 111,
+   "from": [
+    "sprite:37",
+    "sprite:99"
+   ],
+   "to": [
+    "sector:39"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 112,
+   "from": [
+    "sprite:35",
+    "sprite:100"
+   ],
+   "to": [
+    "sector:41"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 113,
+   "from": [
+    "sprite:101",
+    "sprite:113"
+   ],
+   "to": [
+    "sector:37"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 114,
+   "from": [
+    "sprite:38",
+    "sprite:39"
+   ],
+   "to": [
+    "sector:27",
+    "sector:28"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 115,
+   "from": [
+    "sprite:53"
+   ],
+   "to": [
+    "sector:68"
+   ],
+   "triggers": [
+    "shot"
+   ]
+  },
+  {
+   "channel": 116,
+   "from": [
+    "sprite:31"
+   ],
+   "to": [
+    "sprite:35"
+   ],
+   "triggers": [
+    "kill"
+   ]
+  },
+  {
+   "channel": 117,
+   "from": [
+    "sprite:32"
+   ],
+   "to": [
+    "sprite:36",
+    "sprite:37",
+    "sprite:38"
+   ],
+   "triggers": [
+    "kill"
+   ]
+  },
+  {
+   "channel": 118,
+   "from": [
+    "sprite:33"
+   ],
+   "to": [],
+   "triggers": [
+    "kill"
+   ]
+  },
+  {
+   "channel": 119,
+   "from": [
+    "sprite:11"
+   ],
+   "to": [
+    "sprite:57",
+    "sprite:113",
+    "sprite:123"
+   ],
+   "triggers": [
+    "shot"
+   ]
+  },
+  {
+   "channel": 120,
+   "from": [
+    "sprite:63",
+    "sprite:85"
+   ],
+   "to": [
+    "sprite:1",
+    "sprite:4",
+    "sprite:5",
+    "sprite:6"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 121,
+   "from": [
+    "sector:60"
+   ],
+   "to": [
+    "sprite:86"
+   ],
+   "triggers": [
+    "push"
+   ]
+  },
+  {
+   "channel": 122,
+   "from": [
+    "sprite:107"
+   ],
+   "to": [
+    "sector:60"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 123,
+   "from": [
+    "sprite:22"
+   ],
+   "to": [
+    "sprite:108",
+    "sprite:111"
+   ],
+   "triggers": [
+    "kill"
+   ]
+  },
+  {
+   "channel": 124,
+   "from": [
+    "sprite:111"
+   ],
+   "to": [
+    "sprite:110"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 125,
+   "from": [
+    "sprite:97"
+   ],
+   "to": [
+    "sprite:7"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 126,
+   "from": [
+    "sprite:34"
+   ],
+   "to": [
+    "sprite:112"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 127,
+   "from": [
+    "sprite:114"
+   ],
+   "to": [
+    "sprite:115"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  },
+  {
+   "channel": 128,
+   "from": [
+    "sprite:122"
+   ],
+   "to": [
+    "sprite:11"
+   ],
+   "triggers": [
+    "shot"
+   ]
+  },
+  {
+   "channel": 129,
+   "from": [
+    "sprite:123"
+   ],
+   "to": [
+    "sprite:122"
+   ],
+   "triggers": [
+    "switch"
+   ]
+  }
+ ],
+ "owner_marks_read_back": [],
+ "reader": "bloodmap.read_mechanisms (new; reuses curriculum.mine_map for the sentence and conditional.* for the wiring)",
+ "realises": {
+  "sentence:channel:100": [
+   "sprite:4",
+   "sector:56",
+   "sprite:3",
+   "sprite:24"
+  ],
+  "sentence:channel:101": [
+   "sprite:86",
+   "sector:54",
+   "sprite:2",
+   "sprite:8",
+   "sprite:23",
+   "sprite:63",
+   "sprite:85",
+   "sprite:97"
+  ],
+  "sentence:channel:102": [
+   "sprite:5",
+   "sector:59"
+  ],
+  "sentence:channel:103": [
+   "sprite:1",
+   "sector:57"
+  ],
+  "sentence:channel:104": [
+   "sprite:6",
+   "sector:58"
+  ],
+  "sentence:channel:106": [
+   "sprite:8",
+   "sprite:9"
+  ],
+  "sentence:channel:107": [
+   "sprite:2",
+   "sprite:109"
+  ],
+  "sentence:channel:108": [
+   "sprite:36",
+   "sprite:98",
+   "sector:34"
+  ],
+  "sentence:channel:109": [
+   "sprite:24",
+   "sector:47",
+   "sector:48",
+   "sector:49",
+   "sector:51",
+   "sprite:104"
+  ],
+  "sentence:channel:110": [
+   "sprite:3",
+   "sector:61"
+  ],
+  "sentence:channel:111": [
+   "sprite:37",
+   "sprite:99",
+   "sector:39"
+  ],
+  "sentence:channel:112": [
+   "sprite:35",
+   "sprite:100",
+   "sector:41"
+  ],
+  "sentence:channel:113": [
+   "sprite:101",
+   "sprite:113",
+   "sector:37"
+  ],
+  "sentence:channel:114": [
+   "sprite:38",
+   "sprite:39",
+   "sector:27",
+   "sector:28"
+  ],
+  "sentence:channel:115": [
+   "sprite:53",
+   "sector:68"
+  ],
+  "sentence:channel:116": [
+   "sprite:31",
+   "sprite:35"
+  ],
+  "sentence:channel:117": [
+   "sprite:32",
+   "sprite:36",
+   "sprite:37",
+   "sprite:38"
+  ],
+  "sentence:channel:119": [
+   "sprite:11",
+   "sprite:57",
+   "sprite:113",
+   "sprite:123"
+  ],
+  "sentence:channel:120": [
+   "sprite:63",
+   "sprite:85",
+   "sprite:1",
+   "sprite:4",
+   "sprite:5",
+   "sprite:6"
+  ],
+  "sentence:channel:121": [
+   "sector:60",
+   "sprite:86"
+  ],
+  "sentence:channel:122": [
+   "sprite:107",
+   "sector:60"
+  ],
+  "sentence:channel:123": [
+   "sprite:22",
+   "sprite:108",
+   "sprite:111"
+  ],
+  "sentence:channel:124": [
+   "sprite:111",
+   "sprite:110"
+  ],
+  "sentence:channel:125": [
+   "sprite:97",
+   "sprite:7"
+  ],
+  "sentence:channel:126": [
+   "sprite:34",
+   "sprite:112"
+  ],
+  "sentence:channel:127": [
+   "sprite:114",
+   "sprite:115"
+  ],
+  "sentence:channel:128": [
+   "sprite:122",
+   "sprite:11"
+  ],
+  "sentence:channel:129": [
+   "sprite:123",
+   "sprite:122"
+  ],
+  "sentence:sector:27": [
+   "sector:27"
+  ],
+  "sentence:sector:28": [
+   "sector:28"
+  ],
+  "sentence:sector:34": [
+   "sector:34"
+  ],
+  "sentence:sector:37": [
+   "sector:37"
+  ],
+  "sentence:sector:39": [
+   "sector:39"
+  ],
+  "sentence:sector:41": [
+   "sector:41"
+  ],
+  "sentence:sector:47": [
+   "sector:47"
+  ],
+  "sentence:sector:48": [
+   "sector:48"
+  ],
+  "sentence:sector:49": [
+   "sector:49"
+  ],
+  "sentence:sector:51": [
+   "sector:51"
+  ],
+  "sentence:sector:56": [
+   "sector:56"
+  ],
+  "sentence:sector:57": [
+   "sector:57"
+  ],
+  "sentence:sector:58": [
+   "sector:58"
+  ],
+  "sentence:sector:59": [
+   "sector:59"
+  ],
+  "sentence:sector:60": [
+   "sector:60"
+  ],
+  "sentence:sector:61": [
+   "sector:61"
+  ],
+  "sentence:sector:68": [
+   "sector:68"
+  ]
+ },
+ "residue": [
+  {
+   "record": "sector:45",
+   "why": "wired, and no sentence realises it"
+  },
+  {
+   "record": "sector:53",
+   "why": "wired, and no sentence realises it"
+  },
+  {
+   "record": "sector:62",
+   "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
+  },
+  {
+   "record": "wall:208",
+   "why": "wired, and no sentence realises it"
+  },
+  {
+   "record": "sprite:10",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:13",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:15",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:17",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:18",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:19",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:20",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:21",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:25",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:26",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:27",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:28",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:29",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:30",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:33",
+   "why": "transmits on channel 118 but no sentence names it"
+  },
+  {
+   "record": "sprite:40",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:41",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:42",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:43",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:44",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:45",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:46",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:47",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:48",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:49",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:50",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:51",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:52",
+   "why": "transmits on channel 2 but no sentence names it"
+  },
+  {
+   "record": "sprite:54",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:55",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:56",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:58",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:59",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:60",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:61",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:62",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:64",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:65",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:66",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:67",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:68",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:69",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:70",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:71",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:72",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:73",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:74",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:75",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:76",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:77",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:78",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:79",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:80",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:81",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:82",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:83",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:84",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:87",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:88",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:89",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:90",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:91",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:92",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:93",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:94",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:95",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:96",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:102",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:103",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:105",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:106",
+   "why": "transmits on channel 4 but no sentence names it"
+  },
+  {
+   "record": "sprite:116",
+   "why": "listens on channel 81 but no sentence names it: an effect nothing in the model produces"
+  },
+  {
+   "record": "sprite:117",
+   "why": "listens on channel 80 but no sentence names it: an effect nothing in the model produces"
+  },
+  {
+   "record": "sprite:118",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:119",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:120",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  },
+  {
+   "record": "sprite:121",
+   "why": "an XSPRITE with no wiring this reader reads: a pickup, a dude or a decoration carrying its own state"
+  }
+ ],
+ "review": {
+  "hierarchy": "projects\\e4m8-decompiled\\review\\layer5-hierarchy.json",
+  "pack": "projects\\e4m8-decompiled\\review\\layer5.html",
+  "questions": "projects\\e4m8-decompiled\\review\\questions-layer5.json",
+  "sectors_unowned": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   19,
+   22,
+   23,
+   24,
+   25,
+   26,
+   29,
+   30,
+   31,
+   32,
+   33,
+   35,
+   36,
+   38,
+   40,
+   42,
+   43,
+   44,
+   46,
+   50,
+   52,
+   53,
+   55,
+   63,
+   64,
+   65,
+   66,
+   67,
+   71,
+   72,
+   73,
+   74,
+   75,
+   76,
+   77,
+   78,
+   79
+  ]
+ },
+ "sentences": [
+  {
+   "against_the_course": {
+    "constructs_taught": 180,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map"
+    ],
+    "lessons": 23,
+    "shape_taught": 180,
+    "slots_taught": 107,
+    "verdict": "the course shows this shape and this slot set"
+   },
+   "id": "sentence:sector:27",
+   "kind": "sector mechanism",
+   "sentence": "s27 type 600, ceiling 4096 -> -65536, answered by channel 114",
+   "shape": "",
+   "slots": [
+    "rx",
+    "z pair"
+   ],
+   "type": 600,
+   "z_pair": {
+    "off_ceiling_z": 4096,
+    "off_floor_z": 4096,
+    "on_ceiling_z": -65536,
+    "on_floor_z": 4096
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 180,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map"
+    ],
+    "lessons": 23,
+    "shape_taught": 180,
+    "slots_taught": 107,
+    "verdict": "the course shows this shape and this slot set"
+   },
+   "id": "sentence:sector:28",
+   "kind": "sector mechanism",
+   "sentence": "s28 type 600, ceiling 4096 -> -65536, answered by channel 114",
+   "shape": "",
+   "slots": [
+    "rx",
+    "z pair"
+   ],
+   "type": 600,
+   "z_pair": {
+    "off_ceiling_z": 4096,
+    "off_floor_z": 4096,
+    "on_ceiling_z": -65536,
+    "on_floor_z": 4096
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 180,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map"
+    ],
+    "lessons": 23,
+    "shape_taught": 180,
+    "slots_taught": 107,
+    "verdict": "the course shows this shape and this slot set"
+   },
+   "id": "sentence:sector:34",
+   "kind": "sector mechanism",
+   "sentence": "s34 type 600, ceiling 4096 -> -65536, answered by channel 108",
+   "shape": "",
+   "slots": [
+    "rx",
+    "z pair"
+   ],
+   "type": 600,
+   "z_pair": {
+    "off_ceiling_z": 4096,
+    "off_floor_z": 4096,
+    "on_ceiling_z": -65536,
+    "on_floor_z": 4096
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 180,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map"
+    ],
+    "lessons": 23,
+    "shape_taught": 180,
+    "slots_taught": 107,
+    "verdict": "the course shows this shape and this slot set"
+   },
+   "id": "sentence:sector:37",
+   "kind": "sector mechanism",
+   "sentence": "s37 type 600, ceiling 4096 -> -65536, answered by channel 113",
+   "shape": "",
+   "slots": [
+    "rx",
+    "z pair"
+   ],
+   "type": 600,
+   "z_pair": {
+    "off_ceiling_z": 4096,
+    "off_floor_z": 4096,
+    "on_ceiling_z": -65536,
+    "on_floor_z": 4096
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 180,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map"
+    ],
+    "lessons": 23,
+    "shape_taught": 180,
+    "slots_taught": 107,
+    "verdict": "the course shows this shape and this slot set"
+   },
+   "id": "sentence:sector:39",
+   "kind": "sector mechanism",
+   "sentence": "s39 type 600, ceiling 4096 -> -65536, answered by channel 111",
+   "shape": "",
+   "slots": [
+    "rx",
+    "z pair"
+   ],
+   "type": 600,
+   "z_pair": {
+    "off_ceiling_z": 4096,
+    "off_floor_z": 4096,
+    "on_ceiling_z": -65536,
+    "on_floor_z": 4096
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 180,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map"
+    ],
+    "lessons": 23,
+    "shape_taught": 180,
+    "slots_taught": 107,
+    "verdict": "the course shows this shape and this slot set"
+   },
+   "id": "sentence:sector:41",
+   "kind": "sector mechanism",
+   "sentence": "s41 type 600, ceiling 4096 -> -65536, answered by channel 112",
+   "shape": "",
+   "slots": [
+    "rx",
+    "z pair"
+   ],
+   "type": 600,
+   "z_pair": {
+    "off_ceiling_z": 4096,
+    "off_floor_z": 4096,
+    "on_ceiling_z": -65536,
+    "on_floor_z": 4096
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 180,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map"
+    ],
+    "lessons": 23,
+    "shape_taught": 180,
+    "slots_taught": 107,
+    "verdict": "the course shows this shape and this slot set"
+   },
+   "id": "sentence:sector:47",
+   "kind": "sector mechanism",
+   "sentence": "s47 type 600, floor -16384 -> 1024, answered by channel 109",
+   "shape": "",
+   "slots": [
+    "rx",
+    "z pair"
+   ],
+   "type": 600,
+   "z_pair": {
+    "off_ceiling_z": -65536,
+    "off_floor_z": -16384,
+    "on_ceiling_z": -65536,
+    "on_floor_z": 1024
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 180,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map"
+    ],
+    "lessons": 23,
+    "shape_taught": 180,
+    "slots_taught": 107,
+    "verdict": "the course shows this shape and this slot set"
+   },
+   "id": "sentence:sector:48",
+   "kind": "sector mechanism",
+   "sentence": "s48 type 600, floor -8192 -> 1024, answered by channel 109",
+   "shape": "",
+   "slots": [
+    "rx",
+    "z pair"
+   ],
+   "type": 600,
+   "z_pair": {
+    "off_ceiling_z": -65536,
+    "off_floor_z": -8192,
+    "on_ceiling_z": -65536,
+    "on_floor_z": 1024
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 180,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map"
+    ],
+    "lessons": 23,
+    "shape_taught": 180,
+    "slots_taught": 107,
+    "verdict": "the course shows this shape and this slot set"
+   },
+   "id": "sentence:sector:49",
+   "kind": "sector mechanism",
+   "sentence": "s49 type 600, floor -16384 -> 1024, answered by channel 109",
+   "shape": "",
+   "slots": [
+    "rx",
+    "z pair"
+   ],
+   "type": 600,
+   "z_pair": {
+    "off_ceiling_z": -65536,
+    "off_floor_z": -16384,
+    "on_ceiling_z": -65536,
+    "on_floor_z": 1024
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 180,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map"
+    ],
+    "lessons": 23,
+    "shape_taught": 180,
+    "slots_taught": 107,
+    "verdict": "the course shows this shape and this slot set"
+   },
+   "id": "sentence:sector:51",
+   "kind": "sector mechanism",
+   "sentence": "s51 type 600, floor -47104 -> 1024, answered by channel 109",
+   "shape": "",
+   "slots": [
+    "rx",
+    "z pair"
+   ],
+   "type": 600,
+   "z_pair": {
+    "off_ceiling_z": -65536,
+    "off_floor_z": -47104,
+    "on_ceiling_z": -65536,
+    "on_floor_z": 1024
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 70,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "DOOR-PORTCULLIS.map",
+     "E1M1ZD1.map"
+    ],
+    "lessons": 12,
+    "shape_taught": 70,
+    "slots_taught": 0,
+    "verdict": "the course teaches this type but not this combination (shape '(no shape)', slots 'rx,shade wave,z pair')"
+   },
+   "id": "sentence:sector:56",
+   "kind": "sector mechanism",
+   "sentence": "s56 type 602, floor 0 -> -106496, answered by channel 100",
+   "shape": "",
+   "slots": [
+    "rx",
+    "shade wave",
+    "z pair"
+   ],
+   "type": 602,
+   "z_pair": {
+    "off_ceiling_z": -106496,
+    "off_floor_z": 0,
+    "on_ceiling_z": -106496,
+    "on_floor_z": -106496
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 70,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "DOOR-PORTCULLIS.map",
+     "E1M1ZD1.map"
+    ],
+    "lessons": 12,
+    "shape_taught": 70,
+    "slots_taught": 0,
+    "verdict": "the course teaches this type but not this combination (shape '(no shape)', slots 'rx,shade wave,z pair')"
+   },
+   "id": "sentence:sector:57",
+   "kind": "sector mechanism",
+   "sentence": "s57 type 602, floor 0 -> -106496, answered by channel 103",
+   "shape": "",
+   "slots": [
+    "rx",
+    "shade wave",
+    "z pair"
+   ],
+   "type": 602,
+   "z_pair": {
+    "off_ceiling_z": -106496,
+    "off_floor_z": 0,
+    "on_ceiling_z": -106496,
+    "on_floor_z": -106496
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 70,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "DOOR-PORTCULLIS.map",
+     "E1M1ZD1.map"
+    ],
+    "lessons": 12,
+    "shape_taught": 70,
+    "slots_taught": 0,
+    "verdict": "the course teaches this type but not this combination (shape '(no shape)', slots 'rx,shade wave,z pair')"
+   },
+   "id": "sentence:sector:58",
+   "kind": "sector mechanism",
+   "sentence": "s58 type 602, floor 0 -> -106496, answered by channel 104",
+   "shape": "",
+   "slots": [
+    "rx",
+    "shade wave",
+    "z pair"
+   ],
+   "type": 602,
+   "z_pair": {
+    "off_ceiling_z": -106496,
+    "off_floor_z": 0,
+    "on_ceiling_z": -106496,
+    "on_floor_z": -106496
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 70,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "DOOR-PORTCULLIS.map",
+     "E1M1ZD1.map"
+    ],
+    "lessons": 12,
+    "shape_taught": 70,
+    "slots_taught": 0,
+    "verdict": "the course teaches this type but not this combination (shape '(no shape)', slots 'rx,shade wave,z pair')"
+   },
+   "id": "sentence:sector:59",
+   "kind": "sector mechanism",
+   "sentence": "s59 type 602, floor 0 -> -106496, answered by channel 102",
+   "shape": "",
+   "slots": [
+    "rx",
+    "shade wave",
+    "z pair"
+   ],
+   "type": 602,
+   "z_pair": {
+    "off_ceiling_z": -106496,
+    "off_floor_z": 0,
+    "on_ceiling_z": -106496,
+    "on_floor_z": -106496
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 180,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map"
+    ],
+    "lessons": 23,
+    "shape_taught": 180,
+    "slots_taught": 8,
+    "verdict": "the course shows this shape and this slot set"
+   },
+   "id": "sentence:sector:60",
+   "kind": "sector mechanism",
+   "sentence": "s60 type 600, floor -32768 -> 1024, answered by push, a shove, channel 122",
+   "shape": "",
+   "slots": [
+    "rx",
+    "tx",
+    "z pair"
+   ],
+   "type": 600,
+   "z_pair": {
+    "off_ceiling_z": -106496,
+    "off_floor_z": -32768,
+    "on_ceiling_z": -106496,
+    "on_floor_z": 1024
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 180,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map"
+    ],
+    "lessons": 23,
+    "shape_taught": 180,
+    "slots_taught": 107,
+    "verdict": "the course shows this shape and this slot set"
+   },
+   "id": "sentence:sector:61",
+   "kind": "sector mechanism",
+   "sentence": "s61 type 600, ceiling 0 -> -65536, answered by channel 110",
+   "shape": "",
+   "slots": [
+    "rx",
+    "z pair"
+   ],
+   "type": 600,
+   "z_pair": {
+    "off_ceiling_z": 0,
+    "off_floor_z": 0,
+    "on_ceiling_z": -65536,
+    "on_floor_z": 0
+   }
+  },
+  {
+   "against_the_course": {
+    "constructs_taught": 180,
+    "consulted": true,
+    "example_lessons": [
+     "DOOR-CEILING.map",
+     "E1M1ZD1.map",
+     "E1M1ZDF.map"
+    ],
+    "lessons": 23,
+    "shape_taught": 180,
+    "slots_taught": 107,
+    "verdict": "the course shows this shape and this slot set"
+   },
+   "id": "sentence:sector:68",
+   "kind": "sector mechanism",
+   "sentence": "s68 type 600, ceiling -8192 -> -24576, answered by channel 115",
+   "shape": "",
+   "slots": [
+    "rx",
+    "z pair"
+   ],
+   "type": 600,
+   "z_pair": {
+    "off_ceiling_z": -8192,
+    "off_floor_z": -8192,
+    "on_ceiling_z": -24576,
+    "on_floor_z": -8192
+   }
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:100",
+   "kind": "tx -> rx chain",
+   "receivers": 3,
+   "sentence": "channel 100: sprite:4 (push) tells 3 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:101",
+   "kind": "tx -> rx chain",
+   "receivers": 7,
+   "sentence": "channel 101: sprite:86 (switch) tells 7 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:102",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 102: sprite:5 (push) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:103",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 103: sprite:1 (push) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:104",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 104: sprite:6 (push) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:106",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 106: sprite:8 (switch) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:107",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 107: sprite:2 (switch) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:108",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 108: sprite:36, sprite:98 (switch) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:109",
+   "kind": "tx -> rx chain",
+   "receivers": 5,
+   "sentence": "channel 109: sprite:24 (switch) tells 5 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:110",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 110: sprite:3 (switch) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:111",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 111: sprite:37, sprite:99 (switch) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:112",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 112: sprite:35, sprite:100 (switch) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:113",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 113: sprite:101, sprite:113 (switch) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:114",
+   "kind": "tx -> rx chain",
+   "receivers": 2,
+   "sentence": "channel 114: sprite:38, sprite:39 (switch) tells 2 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:115",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 115: sprite:53 (shot) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:116",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 116: sprite:31 (kill) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:117",
+   "kind": "tx -> rx chain",
+   "receivers": 3,
+   "sentence": "channel 117: sprite:32 (kill) tells 3 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:119",
+   "kind": "tx -> rx chain",
+   "receivers": 3,
+   "sentence": "channel 119: sprite:11 (shot) tells 3 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:120",
+   "kind": "tx -> rx chain",
+   "receivers": 4,
+   "sentence": "channel 120: sprite:63, sprite:85 (switch) tells 4 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:121",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 121: sector:60 (push) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:122",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 122: sprite:107 (switch) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:123",
+   "kind": "tx -> rx chain",
+   "receivers": 2,
+   "sentence": "channel 123: sprite:22 (kill) tells 2 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:124",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 124: sprite:111 (switch) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:125",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 125: sprite:97 (switch) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:126",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 126: sprite:34 (switch) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:127",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 127: sprite:114 (switch) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:128",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 128: sprite:122 (shot) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  },
+  {
+   "against_the_course": {
+    "consulted": true,
+    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
+   },
+   "id": "sentence:channel:129",
+   "kind": "tx -> rx chain",
+   "receivers": 1,
+   "sentence": "channel 129: sprite:123 (switch) tells 1 record(s)",
+   "shape": "a chain",
+   "slots": [
+    "tx",
+    "rx"
+   ],
+   "type": null
+  }
+ ],
+ "stacks": [],
+ "summary": {
+  "by_kind": {
+   "sector mechanism": 17,
+   "tx -> rx chain": 28
+  },
+  "conditions": 53,
+  "inventory": {
+   "records_with_a_key": {
+    "sector": 0,
+    "sprite": 0,
+    "total": 0,
+    "wall": 0
+   },
+   "records_with_rx": {
+    "sector": 18,
+    "sprite": 41,
+    "total": 59,
+    "wall": 0
+   },
+   "records_with_tx": {
+    "sector": 1,
+    "sprite": 38,
+    "total": 39,
+    "wall": 0
+   },
+   "sector_types": {
+    "600": 13,
+    "602": 4
+   },
+   "sectors_with_a_light_wave": 6,
+   "sectors_with_shade_always": 1,
+   "wall_types": {},
+   "xsector": 21,
+   "xsprite": 120,
+   "xwall": 1
+  },
+  "keys": 0,
+  "links": 32,
+  "records_a_sentence_realises": 61,
+  "residue_percent": 57.04,
+  "residue_records": 81,
+  "sentences": 45,
+  "stacks": 0,
+  "wired_records": 142
+ },
+ "wall_buttons": {},
+ "wiring": {
+  "channels": {
+   "100": {
+    "rx": [
+     {
+      "id": 56,
+      "kind": "sector"
+     },
+     {
+      "id": 3,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     },
+     {
+      "id": 24,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [],
+      "id": 4,
+      "kind": "sprite",
+      "role": "generator: trigger (a relay)"
+     }
+    ]
+   },
+   "101": {
+    "rx": [
+     {
+      "id": 54,
+      "kind": "sector"
+     },
+     {
+      "id": 2,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     },
+     {
+      "id": 8,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     },
+     {
+      "id": 23,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     },
+     {
+      "id": 63,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     },
+     {
+      "id": 85,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     },
+     {
+      "id": 97,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 86,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ]
+   },
+   "102": {
+    "rx": [
+     {
+      "id": 59,
+      "kind": "sector"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [],
+      "id": 5,
+      "kind": "sprite",
+      "role": "generator: trigger (a relay)"
+     }
+    ]
+   },
+   "103": {
+    "rx": [
+     {
+      "id": 57,
+      "kind": "sector"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [],
+      "id": 1,
+      "kind": "sprite",
+      "role": "generator: trigger (a relay)"
+     }
+    ]
+   },
+   "104": {
+    "rx": [
+     {
+      "id": 58,
+      "kind": "sector"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [],
+      "id": 6,
+      "kind": "sprite",
+      "role": "generator: trigger (a relay)"
+     }
+    ]
+   },
+   "105": {
+    "rx": [],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 23,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     }
+    ]
+   },
+   "106": {
+    "rx": [
+     {
+      "id": 9,
+      "kind": "sprite",
+      "role": "type 711"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 8,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ]
+   },
+   "107": {
+    "rx": [
+     {
+      "id": 109,
+      "kind": "sprite",
+      "role": "type 711"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 2,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ]
+   },
+   "108": {
+    "rx": [
+     {
+      "id": 34,
+      "kind": "sector"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 36,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     },
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 98,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ]
+   },
+   "109": {
+    "rx": [
+     {
+      "id": 47,
+      "kind": "sector"
+     },
+     {
+      "id": 48,
+      "kind": "sector"
+     },
+     {
+      "id": 49,
+      "kind": "sector"
+     },
+     {
+      "id": 51,
+      "kind": "sector"
+     },
+     {
+      "id": 104,
+      "kind": "sprite",
+      "role": "ambient sound"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 24,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     }
+    ]
+   },
+   "110": {
+    "rx": [
+     {
+      "id": 61,
+      "kind": "sector"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 3,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     }
+    ]
+   },
+   "111": {
+    "rx": [
+     {
+      "id": 39,
+      "kind": "sector"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 37,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     },
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 99,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ]
+   },
+   "112": {
+    "rx": [
+     {
+      "id": 41,
+      "kind": "sector"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 35,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     },
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 100,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ]
+   },
+   "113": {
+    "rx": [
+     {
+      "id": 37,
+      "kind": "sector"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 101,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     },
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 113,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     }
+    ]
+   },
+   "114": {
+    "rx": [
+     {
+      "id": 27,
+      "kind": "sector"
+     },
+     {
+      "id": 28,
+      "kind": "sector"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 38,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     },
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 39,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ]
+   },
+   "115": {
+    "rx": [
+     {
+      "id": 68,
+      "kind": "sector"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 53,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     }
+    ]
+   },
+   "116": {
+    "rx": [
+     {
+      "id": 35,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 31,
+      "kind": "sprite",
+      "role": "type 207"
+     }
+    ]
+   },
+   "117": {
+    "rx": [
+     {
+      "id": 36,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     },
+     {
+      "id": 37,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     },
+     {
+      "id": 38,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 32,
+      "kind": "sprite",
+      "role": "type 216"
+     }
+    ]
+   },
+   "118": {
+    "rx": [],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 33,
+      "kind": "sprite",
+      "role": "type 227"
+     }
+    ]
+   },
+   "119": {
+    "rx": [
+     {
+      "id": 57,
+      "kind": "sprite",
+      "role": "generator: sound"
+     },
+     {
+      "id": 113,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     },
+     {
+      "id": 123,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 11,
+      "kind": "sprite",
+      "role": "type 0"
+     }
+    ]
+   },
+   "120": {
+    "rx": [
+     {
+      "id": 1,
+      "kind": "sprite",
+      "role": "generator: trigger (a relay)"
+     },
+     {
+      "id": 4,
+      "kind": "sprite",
+      "role": "generator: trigger (a relay)"
+     },
+     {
+      "id": 5,
+      "kind": "sprite",
+      "role": "generator: trigger (a relay)"
+     },
+     {
+      "id": 6,
+      "kind": "sprite",
+      "role": "generator: trigger (a relay)"
+     }
+    ],
+    "tx": [
+     {
+      "command": 0,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 63,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     },
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 85,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ]
+   },
+   "121": {
+    "rx": [
+     {
+      "id": 86,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on"
+      ],
+      "id": 60,
+      "kind": "sector"
+     }
+    ]
+   },
+   "122": {
+    "rx": [
+     {
+      "id": 60,
+      "kind": "sector"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 107,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ]
+   },
+   "123": {
+    "rx": [
+     {
+      "id": 108,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     },
+     {
+      "id": 111,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 22,
+      "kind": "sprite",
+      "role": "type 229"
+     }
+    ]
+   },
+   "124": {
+    "rx": [
+     {
+      "id": 110,
+      "kind": "sprite",
+      "role": "type 711"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 111,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     }
+    ]
+   },
+   "125": {
+    "rx": [
+     {
+      "id": 7,
+      "kind": "sprite",
+      "role": "type 711"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 97,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     }
+    ]
+   },
+   "126": {
+    "rx": [
+     {
+      "id": 112,
+      "kind": "sprite",
+      "role": "type 711"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 34,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     }
+    ]
+   },
+   "127": {
+    "rx": [
+     {
+      "id": 115,
+      "kind": "sprite",
+      "role": "type 711"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 114,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ]
+   },
+   "128": {
+    "rx": [
+     {
+      "id": 11,
+      "kind": "sprite",
+      "role": "type 0"
+     }
+    ],
+    "tx": [
+     {
+      "command": 1,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 122,
+      "kind": "sprite",
+      "role": "type 416"
+     }
+    ]
+   },
+   "129": {
+    "rx": [
+     {
+      "id": 122,
+      "kind": "sprite",
+      "role": "type 416"
+     }
+    ],
+    "tx": [
+     {
+      "command": 3,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 123,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ]
+   },
+   "2": {
+    "rx": [],
+    "tx": [
+     {
+      "command": 64,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 52,
+      "kind": "sprite",
+      "role": "type 117"
+     }
+    ]
+   },
+   "4": {
+    "rx": [],
+    "tx": [
+     {
+      "command": 0,
+      "edges": [
+       "trigger_on",
+       "trigger_off"
+      ],
+      "id": 106,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     },
+     {
+      "command": 1,
+      "edges": [
+       "trigger_off"
+      ],
+      "id": 108,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ]
+   },
+   "7": {
+    "rx": [
+     {
+      "id": 34,
+      "kind": "sprite",
+      "role": "switch: one-way"
+     }
+    ],
+    "tx": []
+   },
+   "8": {
+    "rx": [
+     {
+      "id": 39,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     },
+     {
+      "id": 98,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     },
+     {
+      "id": 99,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     },
+     {
+      "id": 100,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     },
+     {
+      "id": 101,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     },
+     {
+      "id": 107,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     },
+     {
+      "id": 114,
+      "kind": "sprite",
+      "role": "switch: toggle"
+     }
+    ],
+    "tx": []
+   },
+   "80": {
+    "rx": [
+     {
+      "id": 117,
+      "kind": "sprite",
+      "role": "type 145"
+     }
+    ],
+    "tx": []
+   },
+   "81": {
+    "rx": [
+     {
+      "id": 116,
+      "kind": "sprite",
+      "role": "type 146"
+     }
+    ],
+    "tx": []
+   }
+  },
+  "dangling_rx": [
+   8,
+   80,
+   81
+  ],
+  "dangling_tx": [
+   105,
+   118
+  ]
+ }
+}
