@@ -147,6 +147,15 @@ def _rows() -> tuple[JoinRule, ...]:
                  evidence="DWE3M10: the shore meets the sea at equal z and "
                           "neither record draws; the sea carries its own "
                           "panning frame"),
+        JoinRule(SHORE, PAVEMENT, B_ABOVE, a_shows="lower band, quay class",
+                 frame="independent",
+                 evidence="DWE3M10 s120/s403: the shore's landward neighbour "
+                          "stands above it and the band is on the SHORE side "
+                          "-- 4 records step 35840 to tile 255 and 2 to tile "
+                          "21 wearing 55/28 with two of them blocking, and "
+                          "one gentle record steps 3072 to tile 21 wearing 28 "
+                          "and does not block. 3072 is inside Blood's 4096 "
+                          "autostep, so the gentle case is the walkable one"),
         JoinRule(SEA, HORIZON, EQUAL, frame="independent",
                  evidence="DWE3M10 s404: floor AND ceiling both tile 3678 "
                           "with the parallax bit on both, a zero-height "
@@ -255,6 +264,10 @@ HORIZON_TILE = 3678
 #: What the shore wears where it meets the sea, by frequency: sand 433 (33),
 #: 21 (20), the horizon tile itself (16), 255 (7), 181 (4), concrete 416.
 SHORE_TILES = (433, 21, 255, 181, 416)
+#: The shore stands below the quay by one walkable step. DWE3M10's gentle
+#: case is 3072, which is inside Blood's 4096 autostep; its other seven
+#: records step 35840, which is a quay wall rather than a shore.
+SHORE_STEP = 3072
 #: The chasm: rock, and a depth. DWE3M1's floor spread is 30.6 player heights
 #: and its outermost floor sits 26.9 below the median.
 CHASM_TILES = (274, 270, 411)
@@ -271,6 +284,10 @@ TILE_CLASSES = {
     "kerb class": 6,
     "facade stone": 400,
     "rock": 274,
+    #: DWE3M10's shore-side band where the land stands above the sand: 28 on
+    #: 3 records and 55 on 4, so the class has two members and 28 is the one
+    #: the gentle, walkable step wears.
+    "quay class": 28,
 }
 
 

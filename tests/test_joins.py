@@ -258,3 +258,97 @@ class TheCompilerAppliesTheTable(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TheShoreMeetsTheQuay(unittest.TestCase):
+    """The row the waterfront needed, and it is not the one the brief named.
+
+    "The shore at pavement level" would want a PAVEMENT|SHORE row at EQUAL,
+    and DWE3M10 does not attest one: every landward record of its shore steps
+    UP, seven of them by 35840 (a quay wall) and one by 3072 (a walkable
+    step, inside Blood's 4096 autostep). So the row is B_ABOVE and the band
+    is on the shore's own side.
+    """
+
+    def test_the_row_exists_and_puts_the_band_on_the_shore(self):
+        from bloodmap import joins
+
+        found = joins.rule(joins.SHORE, joins.PAVEMENT, joins.B_ABOVE)
+        self.assertIn("quay class", found.a_shows)
+        self.assertEqual(found.b_shows, joins.NOTHING)
+        self.assertIn("DWE3M10", found.evidence)
+
+    def test_it_reads_the_same_from_the_pavement_side(self):
+        from bloodmap import joins
+
+        found = joins.rule(joins.PAVEMENT, joins.SHORE, joins.B_BELOW)
+        self.assertIn("quay class", found.b_shows)
+        self.assertEqual(found.a_shows, joins.NOTHING)
+
+    def test_the_step_is_inside_blood_s_autostep(self):
+        from bloodmap import joins
+        from bloodmap.player_space import player_profile
+
+        self.assertLessEqual(joins.SHORE_STEP,
+                             player_profile("blood").max_step)
+
+    def test_the_shore_at_equal_z_is_still_a_loud_failure(self):
+        # The row that was asked for and is not attested. Asking for it must
+        # raise rather than fall through to whichever tile a region carried.
+        from bloodmap import joins
+
+        with self.assertRaises(joins.JoinError):
+            joins.rule(joins.PAVEMENT, joins.SHORE, joins.EQUAL)
+
+
+class APlazaMayStandInAStreet(unittest.TestCase):
+    """`ground_plane_rings` holes: an island whose street runs through it.
+
+    The nine blocks a lattice encloses are holes by not being covered. A
+    plaza let into a street is a hole that has to be said, and both kinds
+    come out of the tracer identically -- an island is an island however it
+    came to be one.
+    """
+
+    STRIPS = [(0, 0, 4096, 16384), (0, 0, 16384, 4096),
+              (12288, 0, 16384, 16384), (0, 12288, 16384, 16384)]
+
+    def test_without_holes_the_lattice_has_its_one_block(self):
+        from bloodmap.overlay import ground_plane_rings
+
+        self.assertEqual([len(r) for r in ground_plane_rings(self.STRIPS)],
+                         [4, 4])
+
+    def test_a_hole_in_a_strip_becomes_a_ring_of_its_own(self):
+        from bloodmap.overlay import ground_plane_rings
+
+        rings = ground_plane_rings(self.STRIPS,
+                                   holes=[(1024, 1024, 3072, 3072)])
+        self.assertEqual(len(rings), 3)
+
+    def test_the_hole_s_area_leaves_the_plane(self):
+        from bloodmap.overlay import ground_plane_rings, region_area
+
+        whole = region_area(ground_plane_rings(self.STRIPS))
+        holed = region_area(ground_plane_rings(
+            self.STRIPS, holes=[(1024, 1024, 3072, 3072)]))
+        self.assertEqual(whole - holed, 2048 * 2048)
+
+    def test_a_hole_that_severs_the_plane_is_refused(self):
+        # Connectivity is a question about the cells, and it is still asked.
+        from bloodmap.overlay import OverlayError, ground_plane_rings
+
+        with self.assertRaises(OverlayError) as caught:
+            ground_plane_rings(self.STRIPS,
+                               holes=[(0, 6144, 4096, 8192),
+                                      (12288, 6144, 16384, 8192)])
+        self.assertIn("connected", str(caught.exception))
+
+    def test_one_cut_in_a_ring_lattice_does_not_sever_it(self):
+        # A ring road survives a single blockage: you go the other way round.
+        # The end walls rely on exactly this.
+        from bloodmap.overlay import ground_plane_rings
+
+        rings = ground_plane_rings(self.STRIPS,
+                                   holes=[(0, 6144, 4096, 8192)])
+        self.assertGreaterEqual(len(rings), 1)

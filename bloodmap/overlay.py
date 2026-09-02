@@ -429,23 +429,36 @@ def _trace(filled: set, xs, ys) -> list:
     return rings
 
 
-def ground_plane_rings(strips) -> list:
+def ground_plane_rings(strips, holes: Sequence[Sequence[int]] = ()) -> list:
     """The whole plane: its outer ring, then one hole per enclosed block.
 
     A street grid encloses its blocks, so the plane is a polygon WITH HOLES
     and the islands stand in them. `split_polygon` pairs chords over all rings
     at once, so nothing downstream needs a special case for them.
+
+    `holes` are rectangles the strips cover and the plane does NOT: a plaza
+    standing in a street, an end wall blocking a street's mouth, a cemetery
+    let into the kerb line. The nine blocks a lattice encloses are holes
+    already, by not being covered; these are the ones that have to be said,
+    because their street runs through them. Both kinds come out of `_trace`
+    identically, which is the point -- an island is an island however it came
+    to be one.
     """
-    xs = sorted({int(v) for strip in strips for v in (strip[0], strip[2])})
-    ys = sorted({int(v) for strip in strips for v in (strip[1], strip[3])})
+    rects = list(strips) + list(holes)
+    xs = sorted({int(v) for strip in rects for v in (strip[0], strip[2])})
+    ys = sorted({int(v) for strip in rects for v in (strip[1], strip[3])})
+
+    def covers(rect, cx, cy):
+        return (min(rect[0], rect[2]) <= cx <= max(rect[0], rect[2])
+                and min(rect[1], rect[3]) <= cy <= max(rect[1], rect[3]))
+
     filled = set()
     for column in range(len(xs) - 1):
         for row in range(len(ys) - 1):
             cx = (xs[column] + xs[column + 1]) // 2
             cy = (ys[row] + ys[row + 1]) // 2
-            if any(min(s[0], s[2]) <= cx <= max(s[0], s[2])
-                   and min(s[1], s[3]) <= cy <= max(s[1], s[3])
-                   for s in strips):
+            if any(covers(s, cx, cy) for s in strips) and not any(
+                    covers(h, cx, cy) for h in holes):
                 filled.add((column, row))
     if not filled:
         raise OverlayError("the strips cover nothing")
