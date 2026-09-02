@@ -55,6 +55,27 @@ def _claim(record: str, name: str, value: Any, *, layer: int, owner: str,
 # layer 1: the space tree, as `part_of` facts
 # ---------------------------------------------------------------------------
 
+def _sectors_of(node: dict[str, Any]) -> list[int]:
+    """A node's sectors, in either shape the project produces.
+
+    `decompiler.decompile_level` nests them under `sources`;
+    `tools/decompile_project`'s reading view flattens them to `sectors`. The
+    census runs the readers on maps that have no project directory, so it
+    hands over the first shape and the stages hand over the second.
+    """
+    if "sectors" in node:
+        return list(node["sectors"])
+    return list(node.get("sources", {}).get("sectors", ()))
+
+
+def _basis_of(node: dict[str, Any]) -> list[str]:
+    """Why a node exists, in either shape: flat `basis`, or nested under
+    `provenance`."""
+    if "basis" in node:
+        return list(node["basis"])
+    return list((node.get("provenance") or {}).get("basis") or [])
+
+
 def layer1(level: Any, hierarchy: dict[str, Any]) -> list[Fact]:
     """A hierarchy is a set of `part_of` facts, not a tree object.
 
@@ -72,11 +93,11 @@ def layer1(level: Any, hierarchy: dict[str, Any]) -> list[Fact]:
                          "aspect": "space", "kind": node["kind"],
                          "grouped_by_evidence": not any(
                              "reviewable singleton" in basis
-                             for basis in node.get("basis", [])),
-                         "basis": node.get("basis", [])},
-                        sources=_ids(SECTOR, node["sectors"]),
+                             for basis in _basis_of(node)),
+                         "basis": _basis_of(node)},
+                        sources=_ids(SECTOR, _sectors_of(node)),
                         reader=reader, layer=1))
-        for sector in node["sectors"]:
+        for sector in _sectors_of(node):
             out.append(Fact("part_of", f"space:{node['id']}:sector:{sector}",
                             {"child": f"sector:{sector}", "parent": node["id"],
                              "aspect": "space", "kind": "member"},
@@ -85,9 +106,9 @@ def layer1(level: Any, hierarchy: dict[str, Any]) -> list[Fact]:
     residue = [node for node in hierarchy["nodes"]
                if node["kind"] == "space" and any(
                    "reviewable singleton" in basis
-                   for basis in node.get("basis", []))]
+                   for basis in _basis_of(node))]
     for node in residue:
-        for sector in node["sectors"]:
+        for sector in _sectors_of(node):
             out.append(Fact("residue", f"space:sector:{sector}",
                             {"about": f"sector:{sector}", "aspect": "space",
                              "why": "no perceptual-space evidence groups this "
