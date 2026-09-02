@@ -82,7 +82,12 @@ INTERIOR_BODIES = 3.0
 #: kSectorSlideMarked, the curtain's own type. A region carrying one is a
 #: mechanism to `overlay.Domain`, which is what gives the light domain a
 #: denominator at last.
-CURTAIN_TYPE = 614
+#: A SHUTTER, not a curtain. kSectorSlideMarked names its two positions by
+#: sprite index and the sweep validator runs before a sprite has one, so the
+#: shopfront doors are Z-motion shutters (600) -- two ceiling heights and no
+#: markers. The construct's NAME changes with it; a sentence that says
+#: "curtain" about a shutter is worse than a shutter.
+CURTAIN_TYPE = 600
 #: `city_plan.CHANNELS["citywide_circuit"]["keys_gates"]` is 5.
 KEY_GATES = 5
 #: Where this level's rx ids start. Blood's channels are free integers; a
@@ -961,10 +966,18 @@ def mission_faults(built) -> dict:
     disk = built.disk
     graph = build_graph(disk)
     at_rest = graph.reachable(Held())
-    everything = graph.reachable(graph.everything_worked()) \
-        if hasattr(graph, "everything_worked") else at_rest
-    if not isinstance(everything, set):
-        everything = at_rest
+    #: A DOOR YOU CAN OPEN IS NOT AN OBSTACLE. With the shutters shut at
+    #: rest every room is unreachable, which is what a shut door means;
+    #: the question the mission graph asks is whether a body who works
+    #: the level's mechanisms can get there.
+    everything = at_rest
+    if hasattr(graph, "everything_worked"):
+        try:
+            found = graph.reachable(graph.everything_worked())
+        except Exception:
+            found = None
+        if isinstance(found, set):
+            everything = found
 
     sentences = {fact.attrs["sentence"]: int(fact.attrs["sector"])
                  for fact in built.store.of("realises")}
@@ -972,14 +985,15 @@ def mission_faults(built) -> dict:
              for name, _piece, spec in built.pieces
              if spec.kind == joins.INTERIOR}
     unreached = sorted(name for name, sector in sentences.items()
-                       if sector not in at_rest)
+                       if sector not in everything)
     shut = sorted(name for name, sector in rooms.items()
-                  if sector not in at_rest)
+                  if sector not in everything)
     links = built.store.of("link")
     keys = built.store.of("key")
     return {
         "sectors": len(disk.sectors),
         "reachable at rest": len(at_rest),
+        "reachable with the mechanisms worked": len(everything),
         "sentences": len(sentences),
         "sentences reachable": len(sentences) - len(unreached),
         "sentences unreached": unreached,

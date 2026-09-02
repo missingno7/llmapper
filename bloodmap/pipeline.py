@@ -249,10 +249,15 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
                   tenant_basis=row.get("tenant_basis", ""),
                   sector_type=int(row.get("sector_type", 0)))
         for wiring in row.get("wiring", ()):
+            #: A CHAIN IS ONE SENTENCE, WITH FAN-OUT AS A PARAMETER (owner
+            #: queue item 30f). One channel, one link row, and how many
+            #: receivers answer it is a number on that row -- not one row per
+            #: receiver, which would make a chain look like a crowd.
             store.add("link", ("link", row["surface"], wiring.get("channel")),
                       lod=lod, source=f"declaration:{row['surface']}",
                       tx_id=wiring.get("tx_id"), rx_id=wiring.get("rx_id"),
                       channel=wiring.get("channel"),
+                      fan_out=int(wiring.get("fan_out", 1)),
                       realised=bool(wiring.get("realised")),
                       why=wiring.get("why", ""))
         if row.get("key"):
@@ -415,6 +420,81 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
                 {"surface": row["surface"], "wall": wall_id,
                  "tile": int(leaf["tile"])})
             break
+
+    #: PROPS: a switch on the facade beside its door, a key where the circuit
+    #: passes. Each is placed the way a lamp is -- on the piece its point
+    #: falls in, snapped to a wall if it mounts on one -- and each may carry
+    #: an XSPRITE, which is what makes a tx a tx.
+    placed_props: list = []
+    #: MARKERS FIRST, because a mechanism's XSECTOR names them by SPRITE
+    #: INDEX and the index does not exist until the sprite does.
+    for row in emission.declarations:
+        markers = row.get("markers")
+        if not markers:
+            continue
+        name = next((n for n, _p, spec in pieces
+                     if spec.surface_id == row["surface"]), None)
+        if name is None:
+            continue
+        sector = compiled.allocations[name].sector_id
+        floor = next(spec.floor_z for n, _p, spec in pieces if n == name)
+        holder = disk.sectors[sector].extra
+        for marker in markers:
+            where = _piece_at(pieces, marker["point"]) or name
+            index = _place_prop(
+                disk, compiled.allocations[where].sector_id,
+                {**marker, "tile": 0, "cstat": 0, "shade": 0,
+                 "statnum": 0, "mount": "free"}, floor)
+            if holder is not None:
+                holder.fields[marker["slot"]] = index
+            placed_props.append({"prop": marker["prop_id"], "sprite": index,
+                                 "sector": sector, "region": where,
+                                 "tile": 0})
+    for row in emission.declarations:
+        for prop in row.get("props", ()):
+            name = _piece_at(pieces, prop["point"])
+            if name is None:
+                report.setdefault("props_off_surface", []).append(
+                    prop["prop_id"])
+                continue
+            sector = compiled.allocations[name].sector_id
+            floor = next(spec.floor_z for n, _p, spec in pieces if n == name)
+            index = _place_prop(disk, sector, prop, floor)
+            placed_props.append({"prop": prop["prop_id"], "sprite": index,
+                                 "sector": sector, "region": name,
+                                 "tile": prop["tile"]})
+    report["props"] = placed_props
+
+    #: REALISED, OR NOT, AND WHY. A link is realised when a placed sprite
+    #: carries the tx and the mechanism's own XSECTOR carries the matching rx;
+    #: a key is realised when the pickup is in the map and the gate asks for
+    #: it. Anything else keeps `realised: false` with its reason, because an
+    #: unrealised declaration is a row and not an absence.
+    landed = {row["prop"] for row in placed_props}
+    sectors_by_surface = {spec.surface_id: compiled.allocations[name].sector_id
+                          for name, _piece, spec in pieces}
+    for fact in store.of("link"):
+        surface = fact.id.split(":", 1)[1].rsplit(":", 1)[0]
+        sector = sectors_by_surface.get(surface)
+        holder = disk.sectors[sector].extra if sector is not None else None
+        rx = int(holder.fields.get("rx_id", 0)) if holder is not None else 0
+        switch_id = f"switch:{surface.split(':', 1)[-1]}"
+        if switch_id in landed and rx and rx == int(fact.attrs["channel"]):
+            fact.attrs["realised"] = True
+            fact.attrs["why"] = (
+                f"sprite {switch_id} carries tx {rx} and sector {sector} "
+                f"carries the matching rx")
+    for fact in store.of("key"):
+        surface = fact.attrs["gate"]
+        sector = sectors_by_surface.get(surface)
+        holder = disk.sectors[sector].extra if sector is not None else None
+        wanted = int(holder.fields.get("key", 0)) if holder is not None else 0
+        pickup = f"key:{surface.split(':', 1)[-1]}"
+        if pickup in landed and wanted == int(fact.attrs["key_id"]):
+            fact.attrs["realised"] = True
+            fact.attrs["why"] = (
+                f"pickup {pickup} is in the map and sector {sector} asks for "
+                f"key {wanted}")
 
     claimed = {fact.attrs["surface"] for fact in store.of("sentence")}
     for name, _piece, spec in pieces:
@@ -595,6 +675,60 @@ def _piece_at(pieces, point):
         if _point_in(piece.rings, tuple(point)):
             return name
     return None
+
+
+def _place_prop(disk: Any, sector: int, prop: dict, floor_z: int) -> int:
+    """A declared sprite, on the sector its point falls in. Returns its index.
+
+    `xsprite` is what separates a prop from decoration: a switch with no
+    XSPRITE carries no tx and works nothing, and a key with none is a picture
+    of a key.
+    """
+    from .format import SPRITE_FIELDS, XSPRITE_SCHEMA
+    from .model import DiskObject, PackedExtra
+
+    x, y, angle = int(prop["point"][0]), int(prop["point"][1]), 0
+    if prop.get("mount") == "wall":
+        x, y, angle = _against_a_wall(disk, sector, (x, y))
+    fields = {name: 0 for name, _code in SPRITE_FIELDS}
+    fields.update({
+        "x": x, "y": y, "angle": angle,
+        "z": int(floor_z) - int(prop.get("height", 0)),
+        "sector": int(sector), "picnum": int(prop["tile"]),
+        "shade": int(prop.get("shade", -8)),
+        "type": int(prop.get("sprite_type", 0)),
+        "initial_type": int(prop.get("sprite_type", 0)),
+        "cstat": int(prop.get("cstat", 0)),
+        "status": int(prop.get("statnum", 0)),
+        "clipdist": 32, "x_repeat": 64, "y_repeat": 64,
+        "owner": -1, "index": len(disk.sprites), "extra": -1,
+    })
+    extra = None
+    if prop.get("xsprite"):
+        used = {int(_fields_of(item)["extra"]) for item in disk.sprites
+                if int(_fields_of(item)["extra"]) > 0}
+        identity = 1
+        while identity in used:
+            identity += 1
+        fields["extra"] = identity
+        packed = {name: 0 for name, _bits, _signed in XSPRITE_SCHEMA}
+        packed.update(reference=len(disk.sprites), target=-1, burn_source=-1)
+        packed.update({key: int(value)
+                       for key, value in prop["xsprite"].items()})
+        #: THE TAIL IS PART OF THE SIZE. A map's extra header states how many
+        #: bytes an XSPRITE takes -- 56 here, and the schema encodes 52 -- and
+        #: the writer refuses a record that does not fill it. The four spare
+        #: bytes are opaque and are written as zeros.
+        header = getattr(disk, "extra_header", None)
+        wanted = int(getattr(header, "xsprite_size", 0) or 0)
+        tail = bytes(max(0, wanted - 52))
+        extra = PackedExtra(kind="XSPRITE", fields=packed, opaque_tail=tail)
+    disk.sprites.append(DiskObject(fields=fields, extra=extra))
+    return len(disk.sprites) - 1
+
+
+def _fields_of(item: Any) -> dict:
+    return item["fields"] if isinstance(item, dict) else item.fields
 
 
 def _place_lamp(disk: Any, sector: int, lamp: Lamp, floor_z: int) -> None:

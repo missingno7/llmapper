@@ -181,7 +181,7 @@ def facade(surface_id: str, rect: Sequence[int], inner: Sequence[int],
 def opening(surface_id: str, rect: Sequence[int], *, floor_z: int,
             head_z: int, wall_tile: int, floor_tile: int = PAVEMENT_TILE,
             ceiling_tile: int = ROOF_TILE, sector_type: int = 0,
-            lod: int = 2) -> SurfaceSpec:
+            lod: int = 2, behavior: dict | None = None) -> SurfaceSpec:
     """A void in a facade, as a sector of its own.
 
     P13's law, and the reason this is a sector rather than a wall band: a
@@ -194,7 +194,8 @@ def opening(surface_id: str, rect: Sequence[int], *, floor_z: int,
         ceiling_z=int(head_z), floor_tile=int(floor_tile),
         ceiling_tile=int(ceiling_tile), wall_tile=int(wall_tile),
         kind=joins.OPENING, role="opening", parallax_ceiling=False,
-        lit=False, lod=int(lod), sector_type=int(sector_type))
+        lit=False, lod=int(lod), sector_type=int(sector_type),
+        behavior=dict(behavior or {}))
 
 
 def room(surface_id: str, rect: Sequence[int], *, floor_z: int,
@@ -242,6 +243,57 @@ def insert(surface: str, *, holder: str, room_id: str, void: Sequence,
             "leaf": dict(leaf) if leaf else None}
 
 
+#: THE SWITCH, measured. Of the campaign's 20/21 switch sprites the commonest
+#: wall-aligned tile is 1070 -- 104 as kSwitchToggle and 78 as kSwitchOneWay
+#: -- and they hang a median 5120 above their floor, which is 0.30 of a body.
+SWITCH_TILE = 1070
+SWITCH_TYPE = 20
+SWITCH_HEIGHT = 5120
+#: THE KEYS. Blood's five key pickups are types 100..104 wearing 2552..2556,
+#: and its sixth is 105/2557; the campaign uses them 29, 11, 19, 10 and 8
+#: times. Key n is type 99 + n.
+KEY_TYPE_BASE = 99
+KEY_TILE_BASE = 2551
+#: A MARKED SLIDE NAMES ITS TWO POSITIONS BY SPRITE INDEX, and a sprite has
+#: no index until the layout has compiled -- but the sweep validator runs
+#: DURING that compile and refuses a 614 with no marker0. `kSectorSlideMarked`
+#: therefore needs a first-class constructor that declares its markers as part
+#: of the layout, which this pipeline does not yet have.
+#:
+#: A street door that RISES needs no markers: type 600, kSectorZMotion, with
+#: its two ceiling heights. So a shopfront's door is a shutter, and the
+#: construct changes name honestly rather than the mechanism being faked.
+#: `doors.z_motion_door` is the campaign-backed behaviour, five tenths of a
+#: second each way.
+Z_MOTION = 600
+
+
+def switch(prop_id: str, point: Point, *, tx_id: int, height: int = SWITCH_HEIGHT
+           ) -> dict:
+    """A wall switch, on the facade beside the thing it works.
+
+    It carries the tx; the mechanism carries the matching rx. Until both
+    exist the link is a declaration and says so.
+    """
+    return {"prop_id": str(prop_id), "point": (int(point[0]), int(point[1])),
+            "tile": SWITCH_TILE, "sprite_type": SWITCH_TYPE, "cstat": MASKED,
+            "shade": -8, "height": int(height), "mount": "wall",
+            "xsprite": {"tx_id": int(tx_id), "trigger_push": 1,
+                        "command": 1, "state": 0}}
+
+
+def key_pickup(prop_id: str, point: Point, *, key: int,
+               height: int = 0) -> dict:
+    """One of Blood's five keys, on the floor where the circuit passes."""
+    if not 1 <= int(key) <= 6:
+        raise ValueError(f"Blood has six keys; {key} is not one of them")
+    return {"prop_id": str(prop_id), "point": (int(point[0]), int(point[1])),
+            "tile": KEY_TILE_BASE + int(key),
+            "sprite_type": KEY_TYPE_BASE + int(key), "cstat": 0,
+            "shade": -8, "height": int(height), "mount": "free",
+            "statnum": 3, "xsprite": {"key": int(key)}}
+
+
 def shell(key: str, rect: Sequence[int], *, wall_thickness: int,
           door_width: int, roof_z: int, floor_z: int, interior_z: int,
           head_z: int, sky_z: int, sky_tile: int, wall_tile: int,
@@ -257,19 +309,39 @@ def shell(key: str, rect: Sequence[int], *, wall_thickness: int,
              x1 - wall_thickness, y1 - wall_thickness)
     mid = (x0 + x1) // 2
     door = (mid - door_width // 2, inner[3], mid + door_width // 2, y1)
+    #: THE DOOR CARRIES THE RX. A mechanism that answers a channel says so in
+    #: its own XSECTOR; without that the switch's tx reaches nobody, and the
+    #: link is a sentence about two things that have never met.
+    channel = next((int(row.get("rx_id") or row.get("channel") or 0)
+                    for row in wiring), 0)
+    from .doors import z_motion_door
+
+    behavior = {}
+    if sector_type == Z_MOTION:
+        behavior = z_motion_door(
+            int(floor_z), int(head_z),
+            interaction="both" if channel else "direct",
+            rx_id=channel or None, key=gate_key)
+    elif channel:
+        behavior = {"rx_id": channel}
+        if gate_key:
+            behavior["key"] = int(gate_key)
     surfaces = [
         facade(f"shell:{key}", (x0, y0, x1, y1), inner, door, roof_z=roof_z,
                sky_z=sky_z, sky_tile=sky_tile, wall_tile=wall_tile),
         room(f"interior:{key}", inner, floor_z=floor_z, ceiling_z=interior_z,
              wall_tile=wall_tile),
         opening(f"door:{key}", door, floor_z=floor_z, head_z=head_z,
-                wall_tile=wall_tile, sector_type=sector_type),
+                wall_tile=wall_tile, sector_type=sector_type,
+                behavior=behavior),
     ]
     #: THE LEAF. A sector type alone is not a curtain: `drag_closure` finds
     #: nothing to drag and `conformance.measure_curtain` says so in two
     #: sentences -- "found 0 leaves" and "fabric: wanted 146". The leaf is the
     #: record at the mouth, flagged and wearing the fabric.
     declaration = insert(f"door:{key}", holder=f"shell:{key}",
+                         kind="z_motion_door" if sector_type == Z_MOTION
+                         else "curtain",
                          room_id=f"interior:{key}", void=_rect(*door),
                          sector_type=sector_type, wiring=wiring,
                          key=gate_key, key_why=key_why,
@@ -277,4 +349,20 @@ def shell(key: str, rect: Sequence[int], *, wall_thickness: int,
                                "flags": DRAG_FORWARD | MASKED,
                                "over_picnum": CURTAIN_FABRIC,
                                "faces": joins.PAVEMENT})
+    #: THE SWITCH, on the facade beside the mouth -- half a door's width
+    #: clear of the jamb, on the pavement the door opens onto.
+    props = []
+    if channel:
+        props.append(switch(f"switch:{key}",
+                            (door[2] + door_width // 2, y1 - 1),
+                            tx_id=channel))
+    #: THE KEY, out on the circuit rather than beside the lock. A key at its
+    #: own door is a formality; the point of a gate is that the key is
+    #: somewhere else.
+    if gate_key:
+        props.append(key_pickup(f"key:{key}",
+                                ((x0 + x1) // 2, y1 + 3 * 1024),
+                                key=int(gate_key)))
+    if props:
+        declaration["props"] = props
     return surfaces, declaration
