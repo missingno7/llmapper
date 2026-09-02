@@ -3284,6 +3284,153 @@ Carve one recess -- the theatre's, which is a single span in one module -- and
 watch `panes_on_the_facade_line` go from 4 to 3 with the read-back still
 clean. If that lands, the other five are the same edit.
 
+## The ground-plane city: the layers under it, 2026-09-02
+
+Supervisor assignment P14. **The L2 rebuild is NOT done** -- see "What this
+run did not do" below, which is most of it. What is done is the three layers
+the rebuild stands on, each measured, tested and landed on its own: the grid
+solver, partition overlays, and the sun.
+
+### E3M1, re-measured
+
+Every number below is read off the map, not carried forward:
+
+```text
+road       tile 352, z 10240, four strips: 7456x21504, 18048x4096,
+           7328x4096, 5120x5120 (the crossing)
+pavement   tile 4, z 8192 on 13 of 14; bands 512 x2, 1024 x1, 2048 x6,
+           2560 x1
+kerb       tile 6 on 11 of 11 road-side records at a road/pavement
+           boundary, step exactly -2048 every time
+sky        33 of 68 street sectors (48%)
+shade      8 on nine sectors, 34 on seventeen, 32 on three, 24 on seven
+shadow     112 shade boundaries inside the street: 60 axis-aligned, 20
+edges      oblique, clustering at 52.1 / 71.1 / 78.7 / 82.9 / 83.8 / 84.2,
+           median 83.98 -- and atan2(4096, 416) is 84.2
+area       road 290.5M against pavement 759.4M: the corridor is 27% of the
+           street surface
+```
+
+Two corrections. **Tile 379 is not "the plaza tile at pavement level"**: E3M1
+has 50 sectors wearing it, at z -122880, -90112 and -136192, which are
+interiors. And **"the kerb tile is 6" is E3M1's street, not a campaign law** --
+over the 43 maps' 1046 outdoor kerb-condition records the tiles are 2490
+(149), 67 (65), 110 (51), 2499 (49), 6 (38)... with the top eight sharing only
+43% between them.
+
+### 1. The grid, solved from the interiors up
+
+`projects/blood-city/level/city_solve.py`, with the envelopes in
+`city_plan.ENVELOPES`. A cell is as wide as the widest ENVELOPE standing in it
+-- interior, plus walls, plus P13's 512 facade recess where a face carries
+inserts -- and a gutter is its class minimum and no less. Roads are spacers:
+the solve never asks where there is room for a street, it sizes the islands
+and pushes them apart.
+
+```text
+             solved              old (norm-derived)
+x  col_a     17408               12288
+   col_b     15872               12288
+   col_c     19968               14336
+   total     73728               59392        built 72%  corridor 28%
+y  row_1     15872               12288
+   row_2     15360               14336
+   row_3      9728               10240
+   total     61440               57344        built 67%  corridor 33%
+```
+
+**The arcade, as a number.** `l3_mall.MASS` is 14336 wide; its envelope with
+walls and a west-facing recess is 15872; the norm gave the whole of col_c
+14336. The concourse was never going to fit, and the plan could not say so.
+
+**Against E3M1, as a rate.** Its corridor is 27% of the street surface; the
+solve comes out at 28% on x and 33% on y without being told to. That is the
+check that matters, and `test_city_solve.AgainstE3M1` holds it at +/- 12
+points, beside absolute checks on the class minima and the band -- because a
+city built entirely at the wrong scale satisfies every ratio in the file
+(owner-queue item 17).
+
+The city grows 24% on x. The wall budget is the constraint that decides
+whether that is affordable and it has not been re-checked against the solved
+grid, which is the first thing the rebuild must do.
+
+### 2. Partition overlays
+
+`bloodmap/overlay.py`. An overlay is a set of polygons that splits regions
+into pieces **without changing ownership, surfaces, frames or behaviour**;
+each piece inherits its parent's everything and differs only in what the
+overlay says. That inheritance is the contract that lets a road's texture run
+through a shadow edge as though the edge were not there.
+
+The geometry is a HALF-PLANE cut, deliberately: splitting a convex polygon by
+a line gives exactly two convex polygons with no tolerance anywhere, area is
+conserved exactly on axis cuts and to within 2 units on the 84-degree oblique
+one, and a rectangle is four cuts. A concave region is **refused loudly** --
+"insert a sector where there is room" is the idiom being replaced, and
+silently declining to cut is that same failure wearing a hat.
+
+`HeightIsland` carries the kerb: rise 2048, `floor_z(ground) = ground - 2048`,
+and `kerb_records` puts the tile on the **road-side** record. That is the
+correction the model rests on. Gravesend gave the band the house tiles because
+the band was a hole's edge in a street residue and inherited the building.
+
+### 3. One sun
+
+`resolution.SUN_BEARING = 478`, stated once with its convention: a Build angle,
+0..2047, zero along +x, increasing as `sprite.ang` does, naming the direction
+a shadow is cast TOWARDS. 478 units is 84.02 degrees, which is E3M1's own
+oblique shade-edge cluster and its 416-over-4096 geometry.
+`SUN_SHADOW_PER_HEIGHT` is 1.0 -- a 45-degree elevation, so a shadow is as
+long as its mass is tall, which is what E3M1's look like. The palette is its
+measured 8 / 34 / 24.
+
+### What this run did not do
+
+Most of the assignment, and the reasons are worth stating rather than
+implying:
+
+* **Deliverable 4, the L2 rebuild, is not started.** It is a from-scratch
+  regeneration of a 259-sector map that must preserve and re-read-back every
+  mechanism it already has -- the curtain, the turnstiles, thirteen doors, the
+  sewer stacks, the secret declaration. Attempting it with what was left of
+  this run would have left the city broken and the layers below it untested.
+* **The overlays are not inside `PlanarLayout.compile` yet.** The geometry and
+  the piece model are done and tested; wiring them into the compiler is part
+  of the rebuild, not separable from it.
+* **Deliverable 5's gates are not written**, and one of them turned out to
+  need work this run could not finish honestly. "Every kerb band wears the
+  kerb tile" has a clean fail-first -- **0 of 261 kerb-condition records in the
+  current city wear tile 6, and its steps are 1024/1536/2048/3072/4096 where
+  E3M1 uses 2048 only** -- but the absolute half does not calibrate: the
+  campaign's outdoor kerb tiles are diverse (top eight = 43%), and the
+  narrower clause "the band must not wear the material standing above it"
+  scores the campaign at 16% and the city at 0%, so the city is already
+  *better* by it. A gate that cannot separate them measures nothing, and it is
+  not shipped. What the gate needs is the rebuild: once kerbs are emitted by
+  `HeightIsland` there is a declared population to check rather than a
+  geometric guess at which steps are kerbs.
+* **No renders, no read-back, no norm re-baselining** -- all of those are
+  about the rebuilt map.
+
+### Regression tests
+
+`tests/test_city_solve` (13) and `tests/test_overlay` (15): the envelope
+arithmetic, roads as spacers, slack absorbing residue and a target the rigid
+parts exceed being refused; exact area conservation on axis and oblique cuts,
+a concave region refused, pieces inheriting their parent; E3M1's kerb read off
+the map inside the test (11 records, tile 6, step -2048), the sun's bearing
+against its own geometry, and an axis-aligned edge NOT reading as the sun's --
+because "shadow edges share the sun's angle" is otherwise satisfied by every
+sector boundary in the map.
+
+### Next highest-value experiment
+
+Wire `overlay.apply_overlay` into `PlanarLayout.compile` on ONE road: emit the
+west street as a ground plane with two pavement islands and let the compiler
+cut the kerb. If the road's frame survives the cut -- assert with the ported
+`>` and with `texture_frame.world_u` -- the rest of the rebuild is the same
+edit repeated, and the kerb gate gets its declared population.
+
 ## The demonstration maps, and two things they said plainly
 
 `maps/blood/mechanism/` holds thirty-odd official XMapEdit tutorial maps, one

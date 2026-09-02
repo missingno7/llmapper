@@ -680,3 +680,48 @@ which cannot catch a constructor that is wrong in a consistent way.
 > cheap general rule meanwhile: when a gate is added, ask what it would say
 > about a map where the quantity is uniformly wrong, and if the answer is
 > "nothing", say so in the docstring.
+
+## 18. The two street questions are answered, and one new one (2026-09-02)
+
+**§5 question 2 — plazas at pavement level without a kerb: taken as YES**, per
+the assignment. Noting a correction while adopting it: tile 379 is not "the
+plaza tile at pavement level" in E3M1. It has 50 sectors wearing 379, at z
+-122880, -90112 and -136192 — interiors, not the street. The plaza-at-pavement
+decision stands on its own merits; it just is not E3M1's evidence.
+
+**§5 question 3 — pavement bands on lanes and alleys: taken as ALWAYS.** E3M1
+supports it: its fourteen pavement sectors band at 512 x2, 1024 x1, 2048 x6
+and 2560 x1, so the narrow cases exist and are never zero.
+
+**§5 question 1 — the light direction convention: answered and written down.**
+`resolution.SUN_BEARING = 478`, a Build angle (0..2047, zero along +x,
+increasing as `sprite.ang` does), naming the direction a shadow is cast
+towards. 84.02 degrees, which is E3M1's oblique shade-edge cluster.
+
+### The new one: what is a kerb, for a gate to count?
+
+The assignment asks for "every kerb band wears the kerb tile on its road-side
+record (absolute: tile 6 or a tile the campaign attests in that slot)". The
+fail-first half is clean — **0 of 261 kerb-condition records in the current
+city wear tile 6**, and its steps are 1024/1536/2048/3072/4096 where E3M1 uses
+2048 without exception. The absolute half does not calibrate:
+
+* over the 43 campaign maps' **1046 outdoor kerb-condition records** the tiles
+  are 2490 (149), 67 (65), 110 (51), 2499 (49), 6 (38), 2474 (37)... the top
+  eight sharing 43% between them. Tile 6 is E3M1's street, not a law.
+* the narrower clause "the band must not wear the material of the surface
+  standing above it" scores the **campaign at 16% and the city at 0%** — the
+  city is already better by it.
+
+The trouble is the population, not the tile. Both readings guess at which
+two-sided steps are kerbs from geometry alone, and a campaign map's outdoor
+steps include harbour walls, rubble, ledges and rooftops.
+
+> **Recommended default: do not ship the kerb gate until the rebuild emits
+> kerbs.** Once a kerb is a record `overlay.HeightIsland` declares, the
+> population is stated rather than inferred and the rule becomes "the tile on
+> a declared kerb record is the island's `kerb_tile`" — which is exact, needs
+> no corpus threshold, and is the same shape as P13's record-ownership ledger.
+> The E3M1 numbers stay as the constructor's defaults (tile 6, rise 2048), not
+> as a corpus-wide law. Ship a miscalibrated gate and it joins the ones that
+> passed an 8x map.
