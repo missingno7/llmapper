@@ -717,8 +717,16 @@ The trouble is the population, not the tile. Both readings guess at which
 two-sided steps are kerbs from geometry alone, and a campaign map's outdoor
 steps include harbour walls, rubble, ledges and rooftops.
 
-> **Recommended default: do not ship the kerb gate until the rebuild emits
-> kerbs.** Once a kerb is a record `overlay.HeightIsland` declares, the
+> **CLOSED 2026-09-02 (P14b slice 1).** The kerb is now a record
+> `overlay.HeightIsland` declares, so `street_model.kerb_faults` checks a
+> stated population instead of inferring one, and the rule is exact with no
+> corpus threshold: the band wears the declared tile, never the material
+> standing above it, and the rise is 2048 absolutely (E3M1, 11 of 11). Slice
+> 1 passes it on 3 declared records; the committed city fails it on all 74
+> faces a body sees from its outdoor ground, which wear 380/417/384/28/393/400.
+>
+> ~~Recommended default: do not ship the kerb gate until the rebuild emits
+> kerbs.~~ Once a kerb is a record `overlay.HeightIsland` declares, the
 > population is stated rather than inferred and the rule becomes "the tile on
 > a declared kerb record is the island's `kerb_tile`" — which is exact, needs
 > no corpus threshold, and is the same shape as P13's record-ownership ledger.

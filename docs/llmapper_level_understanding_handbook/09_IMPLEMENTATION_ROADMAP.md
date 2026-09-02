@@ -3384,6 +3384,81 @@ oblique shade-edge cluster and its 416-over-4096 geometry.
 long as its mass is tall, which is what E3M1's look like. The palette is its
 measured 8 / 34 / 24.
 
+### P14b slices 0 and 1, 2026-09-02
+
+**Slice 0 — the limits.** Target port NBlood at the V8 limits
+(`build.h:48-59`, `db.h:25-27`), now in `project.json`. The city stands at
+**259/4096 sectors (6%), 1694/16384 walls (10%), 430/16384 sprites (2%)**,
+X-objects 53/27/110 (at most 1%). Projected rebuild from the solved grid:
+streets about 36 sectors and 260 walls (E3M1's prior is 9.8 walls per street
+sector; the new model adds kerb and shadow cuts), masses and interiors
+carrying over near 200/1400, sewer 45/265 — **about 280 sectors and 1900
+walls, 7% and 12%**. Nothing is near a limit and nothing is to be shrunk for
+budget.
+
+**Slice 1 — one road, on the model.**
+`projects/blood-city/level/build_street_slice.py` writes its own map and
+leaves `blood-city-current.MAP` alone, so the city is never half-rebuilt while
+the model is being proved on it.
+
+The road is emitted WHOLE and then cut: by the kerb where an island lies on
+it, by the shadow where a mass falls across it. **One half-plane cuts
+everything it crosses** — road and pavement alike — which is not tidiness but
+the thing that makes the pieces line up: cutting only the road left the
+island's road-facing edge spanning two road pieces with nothing to pair
+against, and `PlanarLayout.compile` refused it as an unpaired portal. That
+refusal is the compiler doing its job, and it is the shape of the old "insert
+a sector where there is room" failure showing up one level higher.
+
+Result: 5 pieces (road in two, west island in two, east island whole), 3
+declared kerb records, 2 shadow edges, 3 lamps, one lawful shopfront insert;
+**5 sectors, 20 walls, 3 sprites.**
+
+#### The four gates, and the fail-first
+
+```text
+kerb        3 declared records, 0 faults
+sun         1 shadow edge, 0 off-bearing
+frame       the editor would change 0 walls after the kerb and shadow cuts
+sightline   from the road the faces standing up wear [6], above them [4]
+```
+
+**Fail-first on the committed city**: of the **74 faces standing up around its
+34 outdoor sectors, none wears a kerb tile** — they wear 380 (35), 417 (17),
+384 (8), 28 (8), 393 (5), 400 (1). Facade stone, all of it, because the band
+was a hole's edge in a street residue and inherited the building. The two
+slice-1 road pieces see `[6]` with `[4]` above.
+
+**Owner-queue item 18 is closed.** The gate P14 could not calibrate is exact
+now, and the reason is the population rather than the threshold: a kerb is a
+record `HeightIsland` declares, so `street_model.kerb_faults` checks a stated
+set instead of guessing which two-sided steps are kerbs. Three clauses — the
+band wears the declared tile, it never wears the material standing above it
+(the owner's), and the rise is **2048 absolutely**, E3M1's on 11 of 11. No
+corpus threshold anywhere. The same shape as P13's ownership ledger.
+
+Writing the reader found a bug in the reader. A boundary has two records and
+only one is the kerb; keying on edge orientation returned whichever was
+indexed first, so the first run reported the island's own facade tile as a
+kerb fault and read the rise as −2048. The road is the side whose floor is
+numerically larger, which is true by the definition of an island and needs no
+names carried in from the build.
+
+#### What slice 1 does not settle
+
+* **The east island is not cut by the shadow**, so this slice proves the
+  road/island pairing across a cut on one side only. Whether the pairing holds
+  when both islands are cut is slice 2's first question.
+* **The shopfront insert is declared, not carved.** `Insert.lawful` is True
+  because it names a holder region; that region is not emitted. The same gap
+  P13 left, now with a place to put it.
+* **A mass is a rectangle in this slice**, not an L3 module on an island. The
+  shadow is cast from its footprint and its height, which is the mechanism;
+  re-parenting the real masses is slice 3.
+* **The sightline gate reads geometry, not visibility.** It asks what a body
+  standing on the road would meet at the road's edge; it does not trace a
+  view. A kerb hidden behind something would pass it.
+
 ### What this run did not do
 
 Most of the assignment, and the reasons are worth stating rather than
