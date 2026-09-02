@@ -65,6 +65,23 @@ ROOF_TILE = joins.ROOF_TILE
 #: How tall a shell stands. Four player heights is the mass the shadow was
 #: already cast from, so making the mass visible must not move it.
 SHELL_BODIES = 4
+#: How thick a shell's wall is, and how wide its door. E6M1's shopfront is a
+#: 4096 x 512 recess with its sill 8192 up and its head 77824 down; a doorway
+#: is the same construction with the sill on the floor, so the mouth is
+#: 4096 wide and the wall 1024 deep -- one Blood door leaf and two thirds of
+#: a body.
+WALL_THICKNESS = 1024
+DOOR_WIDTH = 4096
+#: A doorway's head, in player heights. Blood's own doors clear a body with
+#: room; two is the figure the aperture grammar uses for a street door.
+DOOR_HEAD_BODIES = 2.0
+#: What a room inside a shell is: floor at the island's grade, ceiling a
+#: comfortable three bodies up, no sky.
+INTERIOR_BODIES = 3.0
+#: kSectorSlideMarked, the curtain's own type. A region carrying one is a
+#: mechanism to `overlay.Domain`, which is what gives the light domain a
+#: denominator at last.
+CURTAIN_TYPE = 614
 FACADE_STONE = joins.TILE_CLASSES["facade stone"]
 RISE = 2048
 ROAD_Z = GRADE + RISE
@@ -335,12 +352,15 @@ def plan_facts(g) -> FactStore:
     return store
 
 
-def emission(shells: bool = True) -> Emission:
+def emission(shells: bool = True, field: bool = True) -> Emission:
     """What this city is. No pass runs here.
 
-    `shells=False` builds the same city with the masses left as pure
-    occluders, which is what slice 2i shipped. It exists for one gate: making
-    a mass visible must not move its shadow.
+    Two switches, and each exists for exactly one gate. `shells=False` leaves
+    the masses as pure occluders, which is what slice 2i shipped: making a
+    mass visible must not move its shadow. `field=False` builds the same city
+    with the sun switched off, which is the only honest way to ask Rule 2's
+    question -- a mechanism's DragPoint closure must be what it was BEFORE any
+    overlay ran, and the comparison needs a map where none did.
     """
     g = geometry()
     if not shells:
@@ -367,16 +387,63 @@ def emission(shells: bool = True) -> Emission:
             ceiling_tile=SKY_TILE, wall_tile=PAVE_WALL_TILE,
             kind=joins.PAVEMENT))
 
-    #: THE SHELLS. Not lit: a roof four bodies up is not ground, and cutting
-    #: it would put the street's field on a surface the street cannot see.
+    #: THE SHELLS, and what a shell is: a FACADE with an OPENING in it, an
+    #: INSERT filling the opening in a sector of its own, and a room behind.
+    #: Not lit: a roof four bodies up is not ground, and cutting it would put
+    #: the street's field on a surface the street cannot see.
     roof_z = ISLAND_Z - SHELL_BODIES * STANDING
+    interior_z = ISLAND_Z - int(INTERIOR_BODIES * STANDING)
+    door_head_z = ISLAND_Z - int(DOOR_HEAD_BODIES * STANDING)
+    declarations = []
     for number, (key, rect) in enumerate(sorted(g["shells"].items())):
+        x0, y0, x1, y1 = rect
+        inner = (x0 + WALL_THICKNESS, y0 + WALL_THICKNESS,
+                 x1 - WALL_THICKNESS, y1 - WALL_THICKNESS)
+        #: The mouth is on the SOUTH face, which is the one the sun lights and
+        #: the street sees; `city_plan.ENVELOPES` faces its venues south too.
+        mid = (x0 + x1) // 2
+        door = (mid - DOOR_WIDTH // 2, inner[3], mid + DOOR_WIDTH // 2, y1)
+        #: THE FACADE'S OWN RING: the wall, cut open at the door. Not a
+        #: rectangle with a hole -- the doorway reaches the outside, so the
+        #: room is not enclosed by the wall and the whole thing is one simple
+        #: polygon, a C. Writing it as outer-plus-hole makes the hole TOUCH
+        #: the outer ring at the mouth, which is degenerate and which
+        #: PlanarLayout catches as same-direction coincident segments.
+        #:
+        #: The doorway is a VOID in the facade and the curtain FILLS it; the
+        #: facade's frame crosses the mouth and the curtain's does not, which
+        #: is the one-record-one-frame law.
+        ix0, iy0, ix1, iy1 = inner
+        dx0, dx1 = door[0], door[2]
+        ring = [(x0, y0), (x1, y0), (x1, y1), (dx1, y1), (dx1, iy1),
+                (ix1, iy1), (ix1, iy0), (ix0, iy0), (ix0, iy1),
+                (dx0, iy1), (dx0, y1), (x0, y1)]
         surfaces.append(SurfaceSpec(
-            surface_id=f"shell:{key}", rings=(_rect(*rect),),
+            surface_id=f"shell:{key}",
+            rings=(ring,),
             floor_z=roof_z, ceiling_z=_sky(roof_z), floor_tile=ROOF_TILE,
             ceiling_tile=SKY_TILE,
             wall_tile=FACADE_FAMILY[number % len(FACADE_FAMILY)],
             kind=joins.FACADE, lit=False))
+        surfaces.append(SurfaceSpec(
+            surface_id=f"interior:{key}", rings=(_rect(*inner),),
+            floor_z=ISLAND_Z, ceiling_z=interior_z,
+            floor_tile=PAVE_TILE, ceiling_tile=ROOF_TILE,
+            wall_tile=FACADE_FAMILY[number % len(FACADE_FAMILY)],
+            kind=joins.INTERIOR, role="interior", parallax_ceiling=False,
+            lit=False, lod=LEVELS["massing"]))
+        surfaces.append(SurfaceSpec(
+            surface_id=f"door:{key}", rings=(_rect(*door),),
+            floor_z=ISLAND_Z, ceiling_z=door_head_z,
+            floor_tile=PAVE_TILE, ceiling_tile=ROOF_TILE,
+            wall_tile=FACADE_FAMILY[number % len(FACADE_FAMILY)],
+            kind=joins.OPENING, role="opening", parallax_ceiling=False,
+            lit=False, lod=LEVELS["facades"], sector_type=CURTAIN_TYPE))
+        declarations.append({
+            "kind": "curtain", "surface": f"door:{key}",
+            "holder": f"shell:{key}", "room": f"interior:{key}",
+            "void": [list(point) for point in _rect(*door)],
+            "sector_type": CURTAIN_TYPE, "lod": LEVELS["facades"]})
 
     #: THE END WALLS, in E3M1's dialect: floor 379, parallax sky above,
     #: blocking faces in the district's facade stone. Not lit, because a
@@ -429,8 +496,9 @@ def emission(shells: bool = True) -> Emission:
     return Emission(
         name="slice2-streets",
         surfaces=surfaces,
-        declarations=[],
-        light=LightSpec(masses=tuple(g["masses"]), bearing_units=SUN_BEARING,
+        declarations=declarations,
+        light=LightSpec(masses=tuple(g["masses"]) if field else (),
+                        bearing_units=SUN_BEARING,
                         base_shade=BASE_SHADE, step=STEP, lamps=tuple(lamps)),
         joins=JoinSpec(strict=False),
         frames=FrameSpec(),
@@ -537,6 +605,20 @@ def main() -> int:
           f"{joins.FACADE_FAMILY}, {len(bad_repeat)} off its y_repeat "
           f"{joins.FACADE_Y_REPEAT}; {len(roofs)} roofs wear {ROOF_TILE}")
 
+    # --- Rule 2, with a denominator at last ---------------------------------
+    faults, mechanisms = motion_set_faults(built, compile_city(
+        emission(field=False)))
+    print(f"Rule 2: {mechanisms} mechanism(s); {len(faults)} whose DragPoint "
+          f"closure the overlays moved")
+    for row in faults[:3]:
+        print("   -", row)
+    holes = opening_frame_faults(built)
+    print(f"openings: {report['facts'].get('void', 0)} declared, "
+          f"{report['facts'].get('fill', 0)} filled, {len(holes)} frame "
+          f"fault(s) at their mouths")
+    for row in holes[:3]:
+        print("   -", row)
+
     # --- terminations ------------------------------------------------------
     faults = street.termination_faults(disk, list(g["end_walls"].values()),
                                        standing_height=STANDING)
@@ -580,7 +662,8 @@ def main() -> int:
         import copy
 
         keys = ("x_repeat", "x_panning", "y_repeat", "y_panning", "cstat")
-        chains = list(run_partition(disk, art_sizes=art, owners=owners))
+        chains = list(run_partition(disk, art_sizes=art, owners=owners,
+                                    boundaries=report["frame_boundary_walls"]))
         for chain in chains:
             #: ONE PROBE PER RUN, from the untouched map. The editor's
             #: recursion follows `wall[nextwall].point2` and does not stop at
@@ -692,6 +775,97 @@ def _limits(disk):
     print("limits: " + "  ".join(
         f"{k} {v}/{budget[k + '_limit']} ({100 * v // budget[k + '_limit']}%)"
         for k, v in counts.items()))
+
+
+# ---------------------------------------------------------------------------
+# Rule 2, for real, and the facade's frame across its openings
+# ---------------------------------------------------------------------------
+
+def motion_set_faults(built, plain) -> list:
+    """A mechanism's motion set is what it was before any overlay ran.
+
+    Overlay Rule 2: a region carrying a sector type is excluded from EVERY
+    overlay, because cutting a mover changes its `DragPoint` closure. Until
+    this slice the light domain refused nothing and the rule was never asked;
+    with nine curtains in the map it has a denominator, and this is the gate
+    it exists for.
+
+    `plain` is the same city built with the sun switched off. The comparison
+    is by SURFACE NAME rather than by sector id, because the field changes how
+    many sectors there are and which index each one lands on.
+    """
+    from bloodmap.motion import drag_closure
+
+    def closures(run):
+        out = {}
+        for name, _piece, spec in run.pieces:
+            if not spec.sector_type:
+                continue
+            sector = run.compiled.allocations[name].sector_id
+            found = drag_closure(run.disk, sector)
+            out[spec.surface_id] = sorted(
+                tuple(sorted(point)) for point in found["vertices"]) \
+                if "vertices" in found else sorted(found.get("walls", ()))
+        return out
+
+    with_sun, without = closures(built), closures(plain)
+    out = []
+    for name in sorted(set(with_sun) | set(without)):
+        if with_sun.get(name) != without.get(name):
+            out.append(
+                f"{name}: its DragPoint closure has "
+                f"{len(with_sun.get(name, ()))} members with the sun and "
+                f"{len(without.get(name, ()))} without -- an overlay reached "
+                f"a mechanism")
+    return out, len(with_sun)
+
+
+def opening_frame_faults(built) -> list:
+    """The facade's frame crosses the mouth, and the insert's does not.
+
+    Two questions, and each is about a different record. The FACADE's run must
+    carry one continuous projection across the opening -- one `world_u`
+    cursor, no restart at the jamb -- and the INSERT's records must not be on
+    that run at all, because a material with its own scale needs a record no
+    other surface uses.
+    """
+    from bloodmap.texture_frame import sector_index
+
+    disk = built.disk
+    owners = sector_index(disk)
+    names = {built.compiled.allocations[n].sector_id: s.surface_id
+             for n, _p, s in built.pieces}
+    kinds = {built.compiled.allocations[n].sector_id: s.kind
+             for n, _p, s in built.pieces}
+    out = []
+    for row in built.report["join_rows"]:
+        here = owners[row["wall"]]
+        there = int(disk.walls[row["wall"]].fields["next_sector"])
+        if row["a"] != joins.OPENING or row["b"] != joins.FACADE:
+            continue
+        #: THE HOLDER RECORD. The rule says the facade's run crosses the
+        #: mouth, so this record belongs to the facade above it and its band
+        #: must wear the facade's material rather than the opening's.
+        face = disk.walls[row["wall"]].fields
+        if int(face["over_picnum"] or face["picnum"]) not in FACADE_FAMILY:
+            out.append(f"wall {row['wall']}: the head of an opening in "
+                       f"{names.get(here)} does not wear the facade's "
+                       f"material")
+    #: and the glass -- or here the curtain -- never sits on the facade's wall
+    for name, _piece, spec in built.pieces:
+        if spec.kind != joins.OPENING:
+            continue
+        sector = built.compiled.allocations[name].sector_id
+        start = int(disk.sectors[sector].fields["wall_ptr"])
+        count = int(disk.sectors[sector].fields["wall_count"])
+        for wall_id in range(start, start + count):
+            neighbour = int(disk.walls[wall_id].fields["next_sector"])
+            if neighbour >= 0 and kinds.get(neighbour) == joins.FACADE:
+                continue
+        if count < 4:
+            out.append(f"{spec.surface_id}: an insert with {count} records "
+                       f"is not a sector of its own")
+    return out
 
 
 if __name__ == "__main__":

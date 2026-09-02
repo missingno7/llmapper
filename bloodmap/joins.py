@@ -58,6 +58,10 @@ SEA = "sea"
 HORIZON = "horizon"
 CHASM = "chasm"
 ENCLOSURE_BACKDROP = "enclosure_backdrop"
+#: The inside of a shell. Not a ground surface: the sun does not reach it and
+#: the light domain refuses it for the plainest of Rule 2's reasons -- it has
+#: no sky.
+INTERIOR = "interior"
 VOID = "void"
 GATE = "gate"
 
@@ -179,6 +183,27 @@ def _rows() -> tuple[JoinRule, ...]:
                  holder=True,
                  evidence="E6M1 s4/s64: a 512-deep recess, sill 8192 up, head "
                           "77824 down; the facade crosses the mouth"),
+        #: The shell: facade, opening, interior -----------------------------
+        JoinRule(PAVEMENT, OPENING, EQUAL, frame="boundary",
+                 evidence="E6M1 s4/s64: the threshold of a shopfront recess "
+                          "is at the pavement's own z and draws no band; the "
+                          "insert's frame is its own and does not continue "
+                          "the ground's"),
+        JoinRule(OPENING, INTERIOR, EQUAL, frame="boundary",
+                 evidence="E6M1: past the mouth the floor runs on unchanged "
+                          "into the room, and the room's frame is the room's"),
+        JoinRule(OPENING, FACADE, B_ABOVE, b_shows="upper band, facade class",
+                 frame="continues", holder=True,
+                 evidence="E6M1 s4/s64: the head of the recess is 77824 down "
+                          "from the facade above it and the FACADE'S run "
+                          "crosses the mouth -- that is the one record the "
+                          "holder law is about, and it belongs to the facade "
+                          "and not to the opening"),
+        JoinRule(INTERIOR, FACADE, B_ABOVE, b_shows="upper band, facade class",
+                 cstat=1, frame="boundary",
+                 evidence="E3M1: its records from the ground up into a "
+                          "building wear the same facade family, blocking, "
+                          "and the building's frame is not the street's"),
         #: The map edge ----------------------------------------------------
         JoinRule(SHORE, SEA, EQUAL, frame="independent",
                  evidence="DWE3M10: the shore meets the sea at equal z and "

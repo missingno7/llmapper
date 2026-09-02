@@ -889,6 +889,7 @@ def world_u(level: Any, wall: int, *,
 def run_partition(level: Any, *,
                   art_sizes: dict[int, tuple[int, int]] | None = None,
                   owners: Sequence[int] | None = None,
+                  boundaries: Iterable[int] = (),
                   break_degrees: float = RUN_BREAK_DEGREES) -> list[list[int]]:
     """Every wall of the map, cut into runs, deterministically.
 
@@ -898,20 +899,30 @@ def run_partition(level: Any, *,
     separate projection. Finding the true starts first is what makes the
     partition independent of the order walls happen to sit in the file --
     which is the property the whole module exists for.
+
+    `boundaries` are records the JOIN TABLE says a frame may not cross -- a
+    row whose `frame` is `"boundary"`. That answer is the reason the joins
+    pass runs before the frames pass, and until it was passed in, a run walked
+    straight out of a street into a building's room and the editor then
+    disagreed with the closed form on 84 walls, every one of them on the y
+    term, because the two sides of such a record peg to different floors.
     """
     if art_sizes is None:
         from .texture_align import wall_art_sizes
 
         art_sizes = wall_art_sizes()
     owners = list(owners) if owners is not None else sector_index(level)
+    stop = {int(value) for value in boundaries}
     successor: dict[int, int] = {}
     for index in range(len(level.walls)):
         tile = int(_fields(level.walls[index])["picnum"])
         size = art_sizes.get(tile)
         if not size or not size[0]:
             continue
+        if index in stop:
+            continue
         nxt = _next_on_run(level, index, tile, owners, {index}, break_degrees)
-        if nxt is not None:
+        if nxt is not None and nxt not in stop:
             successor[index] = nxt
     has_predecessor = set(successor.values())
 
@@ -956,6 +967,7 @@ def frame_map(level: Any, *,
               skip: set[int] | None = None,
               skip_moving: bool = True,
               world_phase: set[int] | None = None,
+              boundaries: Iterable[int] = (),
               records: Any = None, owner: str = "surface") -> dict[str, Any]:
     """Project every material onto the run it belongs to, in one pass.
 
@@ -1016,6 +1028,7 @@ def frame_map(level: Any, *,
                 skip.add(wall)
                 moving += 1
     runs = run_partition(level, art_sizes=art_sizes, owners=owners,
+                         boundaries=boundaries,
                          break_degrees=break_degrees)
     framed = changed = singles = district = 0
     for run in runs:

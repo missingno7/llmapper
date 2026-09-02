@@ -85,6 +85,9 @@ class SurfaceSpec:
     finish: dict = field(default_factory=dict)
     #: XSECTOR fields: `pan_floor`, `pan_always`, `drag`, `pan_velocity` ...
     behavior: dict = field(default_factory=dict)
+    #: A Blood sector type. A region carrying one in 600..619 is a MECHANISM
+    #: to `overlay.Domain` and is excluded from every overlay.
+    sector_type: int = 0
 
 
 @dataclass(frozen=True)
@@ -219,6 +222,21 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
     # --- 2. declare -------------------------------------------------------
     run.enter("declare")
     report["declarations"] = len(emission.declarations)
+    #: AN OPENING VOIDS ITS HOLDER AND AN INSERT FILLS THE OPENING. Two facts,
+    #: not one, because they are two different claims about two different
+    #: records: the void is a hole in the facade and belongs to the facade;
+    #: the fill is a sector of its own with its own frame.
+    for row in emission.declarations:
+        lod = int(row.get("lod", LEVELS["facades"]))
+        if row.get("holder") and row.get("void"):
+            store.add("void", ("void", row["surface"]), lod=lod,
+                      source=f"declaration:{row.get('kind', 'opening')}",
+                      holder=row["holder"], outline=row["void"])
+        store.add("fill", ("fill", row["surface"]), lod=lod,
+                  source=f"declaration:{row.get('kind', 'insert')}",
+                  kind=row.get("kind", "insert"),
+                  opening=row["surface"], room=row.get("room"),
+                  sector_type=int(row.get("sector_type", 0)))
 
     # --- 3. light ---------------------------------------------------------
     run.enter("light")
@@ -304,6 +322,7 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
             floor_stat=spec.floor_stat, ceiling_stat=spec.ceiling_stat,
             parallax_ceiling=spec.parallax_ceiling, role=spec.role,
             declared_zero_exit=spec.declared_zero_exit,
+            type=spec.sector_type,
             sector_behavior=dict(spec.behavior))
     report["pieces"] = len(pieces)
     report["levels"] = sorted({p.depth for _n, p, _s in pieces})
@@ -321,11 +340,17 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
 
     if emission.start is not None:
         start_id, angle = emission.start
-        name = next(n for n, _p, spec in pieces if spec.surface_id == start_id)
-        spot = _centroid(layout.regions[name].outer)
-        floor = next(spec.floor_z for n, _p, spec in pieces if n == name)
+        name, piece, spec = next((n, p, s) for n, p, s in pieces
+                                 if s.surface_id == start_id)
+        #: A REPRESENTATIVE INTERIOR POINT, not a centroid. The ground plane
+        #: is concave -- it is a street lattice -- so its centroid sits in a
+        #: block, and the compiler refuses a start that is not strictly inside
+        #: its sector. With the field on, the plane is cut into pieces small
+        #: enough that the centroid happens to land inside one; with the sun
+        #: off it is one piece and the centroid is in a building.
+        spot = _inside_point(piece.rings)
         layout.set_player_start(name, x=int(spot[0]), y=int(spot[1]),
-                                z=int(floor), angle=int(angle))
+                                z=int(spec.floor_z), angle=int(angle))
 
     compiled = layout.compile()
     disk = compiled.level.to_disk_map()
@@ -412,16 +437,27 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
 
     art = wall_art_sizes(emission.frames.art_root)
     report["art"] = bool(art)
+    #: THE JOIN TABLE'S ANSWER, USED. A row whose frame is "boundary" says a
+    #: run may not cross that record, and that is the reason joins run before
+    #: frames. Until it was passed in, a run walked out of a street into a
+    #: building's room and the editor disagreed with the closed form on 84
+    #: walls, every one of them on the y term, because the two sides of such a
+    #: record peg to different floors.
+    boundaries = {row["wall"] for row in applied["applied"]
+                  if row["frame"] == "boundary"}
+    report["frame_boundary_walls"] = sorted(boundaries)
     if art:
         report["frames"] = {k: v for k, v
-                            in frame_map(disk, art_sizes=art).items()
+                            in frame_map(disk, art_sizes=art,
+                                         boundaries=boundaries).items()
                             if k != "basis"}
 
         from .texture_frame import run_partition, sector_index
 
         owners = sector_index(disk)
         for number, chain in enumerate(run_partition(disk, art_sizes=art,
-                                                     owners=owners)):
+                                                     owners=owners,
+                                                     boundaries=boundaries)):
             store.add("frame", ("run", number), lod=LEVELS["facades"],
                       source="texture_frame.frame_map", walls=list(chain),
                       tile=int(disk.walls[chain[0]].fields["picnum"]),
@@ -458,6 +494,26 @@ def shared_segments(a_rings, b_rings) -> list:
                                                       tuple(end)}:
                         out.append((tuple(point), tuple(nxt)))
     return out
+
+
+def _inside_point(rings) -> Point:
+    """Some point strictly inside these rings, found rather than assumed."""
+    from .overlay import _point_in
+
+    ring = rings[0]
+    spot = (sum(p[0] for p in ring) // len(ring),
+            sum(p[1] for p in ring) // len(ring))
+    if _point_in(rings, spot):
+        return spot
+    xs = sorted({p[0] for ring in rings for p in ring})
+    ys = sorted({p[1] for ring in rings for p in ring})
+    for index in range(len(xs) - 1):
+        for row in range(len(ys) - 1):
+            candidate = ((xs[index] + xs[index + 1]) // 2,
+                         (ys[row] + ys[row + 1]) // 2)
+            if _point_in(rings, candidate):
+                return candidate
+    raise PipelineError("no point of the start surface is inside it")
 
 
 def _centroid(ring) -> Point:

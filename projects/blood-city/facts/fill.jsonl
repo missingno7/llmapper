@@ -1,0 +1,9 @@
+{"fields":{"kind":"curtain","opening":"door:col_a/row_1","room":"interior:col_a/row_1","sector_type":614},"key":["fill","door:col_a/row_1"],"lod":2,"source":"declaration:curtain"}
+{"fields":{"kind":"curtain","opening":"door:col_a/row_2","room":"interior:col_a/row_2","sector_type":614},"key":["fill","door:col_a/row_2"],"lod":2,"source":"declaration:curtain"}
+{"fields":{"kind":"curtain","opening":"door:col_a/row_3","room":"interior:col_a/row_3","sector_type":614},"key":["fill","door:col_a/row_3"],"lod":2,"source":"declaration:curtain"}
+{"fields":{"kind":"curtain","opening":"door:col_b/row_1","room":"interior:col_b/row_1","sector_type":614},"key":["fill","door:col_b/row_1"],"lod":2,"source":"declaration:curtain"}
+{"fields":{"kind":"curtain","opening":"door:col_b/row_2","room":"interior:col_b/row_2","sector_type":614},"key":["fill","door:col_b/row_2"],"lod":2,"source":"declaration:curtain"}
+{"fields":{"kind":"curtain","opening":"door:col_b/row_3","room":"interior:col_b/row_3","sector_type":614},"key":["fill","door:col_b/row_3"],"lod":2,"source":"declaration:curtain"}
+{"fields":{"kind":"curtain","opening":"door:col_c/row_1","room":"interior:col_c/row_1","sector_type":614},"key":["fill","door:col_c/row_1"],"lod":2,"source":"declaration:curtain"}
+{"fields":{"kind":"curtain","opening":"door:col_c/row_2","room":"interior:col_c/row_2","sector_type":614},"key":["fill","door:col_c/row_2"],"lod":2,"source":"declaration:curtain"}
+{"fields":{"kind":"curtain","opening":"door:col_c/row_3","room":"interior:col_c/row_3","sector_type":614},"key":["fill","door:col_c/row_3"],"lod":2,"source":"declaration:curtain"}
