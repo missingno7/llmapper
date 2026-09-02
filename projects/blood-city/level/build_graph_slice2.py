@@ -55,6 +55,16 @@ ROAD_TILE, PAVE_TILE, KERB_TILE = 352, 4, 6
 #: 2048 from a road to a pavement.
 ROAD_WALL_TILE = 400
 PAVE_WALL_TILE = 401
+#: SHELLS. E3M1's facade family, measured by the LENGTH each tile covers
+#: rather than by its record count -- 401 at 27.6%, 417 at 21.5%, 181 at
+#: 11.6%, 400 at 8.7%, together 69.4% of its 122 facade records, every one of
+#: them at y_repeat 8. The four are dealt round the districts so a street is
+#: not one material end to end; 401 leads because it covers the most.
+FACADE_FAMILY = joins.FACADE_FAMILY
+ROOF_TILE = joins.ROOF_TILE
+#: How tall a shell stands. Four player heights is the mass the shadow was
+#: already cast from, so making the mass visible must not move it.
+SHELL_BODIES = 4
 FACADE_STONE = joins.TILE_CLASSES["facade stone"]
 RISE = 2048
 ROAD_Z = GRADE + RISE
@@ -210,24 +220,33 @@ def geometry():
     yard = None
     islands = {}
     masses = []
+    shells = {}
     for x_name, (x0, x1) in ((n, spans_x[n]) for n in x.demanded):
         for y_name, (y0, y1) in ((n, spans_y[n]) for n in y.demanded):
             key = f"{x_name}/{y_name}"
+            #: Where a shell may stand on this island. The notched one has
+            #: to give the yard up: a mass placed in the bounding box would
+            #: sit in the yard rather than on the island, and the cut then
+            #: pinches the island's ring against the yard's.
+            buildable = (x0, y0, x1, y1)
             if key == "col_c/row_3":
                 notch_x1 = x0 + (x1 - x0) // 3
                 notch_y1 = y0 + (y1 - y0) // 2
                 yard = (x0, y0, notch_x1, notch_y1)
                 islands[key] = [(notch_x1, y0), (x1, y0), (x1, y1), (x0, y1),
                                 (x0, notch_y1), (notch_x1, notch_y1)]
+                buildable = (notch_x1, y0, x1, y1)
             else:
                 islands[key] = _rect(x0, y0, x1, y1)
-            mx0, my0 = x0 + BAND, y0 + BAND
-            mx1 = min(x1 - BAND, mx0 + x.demanded[x_name])
-            my1 = min(y1 - BAND, my0 + y.demanded[y_name])
+            bx0, by0, bx1, by1 = buildable
+            mx0, my0 = bx0 + BAND, by0 + BAND
+            mx1 = min(bx1 - BAND, mx0 + x.demanded[x_name])
+            my1 = min(by1 - BAND, my0 + y.demanded[y_name])
             if mx1 - mx0 >= 2048 and my1 - my0 >= 2048:
                 masses.append(Mass(f"mass:{key}",
                                    tuple(_rect(mx0, my0, mx1, my1)),
-                                   4 * STANDING))
+                                   SHELL_BODIES * STANDING))
+                shells[key] = (mx0, my0, mx1, my1)
     places["works_yard"] = yard
 
     water = {
@@ -238,7 +257,7 @@ def geometry():
                     quay_hi + SHORE_DEPTH + SEA_DEPTH + HORIZON_DEPTH),
     }
     return {"x": x, "y": y, "plane": plane, "islands": islands,
-            "masses": masses, "ends": ends, "places": places,
+            "masses": masses, "shells": shells, "ends": ends, "places": places,
             "quay_walk": quay_walk, "water": water,
             "end_walls": {name: street.end_wall(
                 _rect(*rect), road_floor_z=ROAD_Z, standing_height=STANDING,
@@ -316,9 +335,16 @@ def plan_facts(g) -> FactStore:
     return store
 
 
-def emission() -> Emission:
-    """What this city is. No pass runs here."""
+def emission(shells: bool = True) -> Emission:
+    """What this city is. No pass runs here.
+
+    `shells=False` builds the same city with the masses left as pure
+    occluders, which is what slice 2i shipped. It exists for one gate: making
+    a mass visible must not move its shadow.
+    """
     g = geometry()
+    if not shells:
+        g = dict(g, shells={})
     surfaces = [SurfaceSpec(
         surface_id="plane", rings=tuple(g["plane"]), floor_z=ROAD_Z,
         ceiling_z=_sky(ROAD_Z), floor_tile=ROAD_TILE, ceiling_tile=SKY_TILE,
@@ -329,11 +355,28 @@ def emission() -> Emission:
     for name, rect in g["places"].items():
         pavements[name] = _rect(*rect)
     for name, ring in sorted(pavements.items()):
+        #: A SHELL STANDS IN ITS ISLAND, so the island has a hole where the
+        #: building is -- the same relation the plane has to the islands, one
+        #: level up. Before this the mass cast a shadow and was not there.
+        hole = g["shells"].get(name)
+        rings = ((ring,) if hole is None
+                 else (ring, list(reversed(_rect(*hole)))))
         surfaces.append(SurfaceSpec(
-            surface_id=name, rings=(ring,), floor_z=ISLAND_Z,
+            surface_id=name, rings=rings, floor_z=ISLAND_Z,
             ceiling_z=_sky(ISLAND_Z), floor_tile=PAVE_TILE,
             ceiling_tile=SKY_TILE, wall_tile=PAVE_WALL_TILE,
             kind=joins.PAVEMENT))
+
+    #: THE SHELLS. Not lit: a roof four bodies up is not ground, and cutting
+    #: it would put the street's field on a surface the street cannot see.
+    roof_z = ISLAND_Z - SHELL_BODIES * STANDING
+    for number, (key, rect) in enumerate(sorted(g["shells"].items())):
+        surfaces.append(SurfaceSpec(
+            surface_id=f"shell:{key}", rings=(_rect(*rect),),
+            floor_z=roof_z, ceiling_z=_sky(roof_z), floor_tile=ROOF_TILE,
+            ceiling_tile=SKY_TILE,
+            wall_tile=FACADE_FAMILY[number % len(FACADE_FAMILY)],
+            kind=joins.FACADE, lit=False))
 
     #: THE END WALLS, in E3M1's dialect: floor 379, parallax sky above,
     #: blocking faces in the district's facade stone. Not lit, because a
@@ -443,9 +486,18 @@ def main() -> int:
     print("shade by depth:", dict(sorted(shades.items())))
 
     # --- the lamp gate -----------------------------------------------------
+    #: Deltas SUM: two lamps on one piece are two contributions to one
+    #: additive channel, and the sector reads both. The first version of this
+    #: gate compared each lamp against its own delta alone and called the
+    #: second one a fault.
+    from collections import Counter as _Counter
+
+    per_sector = _Counter()
+    for row in report["lamps"]:
+        per_sector[row["sector"]] += row["delta"]
     wrong = []
     for row in report["lamps"]:
-        want = BASE_SHADE + row["depth"] * STEP + row["delta"]
+        want = BASE_SHADE + row["depth"] * STEP + per_sector[row["sector"]]
         got = int(disk.sectors[row["sector"]].fields["floor_shade"])
         if got != want:
             wrong.append(f"{row['lamp']}: reads {got}, wants {want}")
@@ -458,6 +510,32 @@ def main() -> int:
           f"campaign's indoor {AREA_PER_LAMP}")
     for row in wrong[:5]:
         print("   -", row)
+
+    # --- the shells, and the shadow they must not have moved ---------------
+    shadowless = compile_city(emission(shells=False))
+    before = {f.source: int(f.fields["depth"])
+              for f in shadowless.store.of("shade_depth")
+              if f.source.startswith("piece:plane")}
+    after = {f.source: int(f.fields["depth"])
+             for f in built.store.of("shade_depth")
+             if f.source.startswith("piece:plane")}
+    moved = sorted(k for k in set(before) | set(after)
+                   if before.get(k) != after.get(k))
+    print(f"shells: {len(g['shells'])} built; the ground plane's field is "
+          f"{len(before)} pieces before and {len(after)} after, "
+          f"{len(moved)} with a different depth")
+    for row in moved[:4]:
+        print(f"   - {row}: {before.get(row)} -> {after.get(row)}")
+    facade_walls = [w for w, wall in enumerate(disk.walls)
+                    if int(wall.fields["picnum"]) in joins.FACADE_FAMILY]
+    bad_repeat = [w for w in facade_walls
+                  if int(disk.walls[w].fields["y_repeat"])
+                  != joins.FACADE_Y_REPEAT]
+    roofs = [i for i, sec in enumerate(disk.sectors)
+             if int(sec.fields["floor_picnum"]) == ROOF_TILE]
+    print(f"facades: {len(facade_walls)} records in E3M1's family "
+          f"{joins.FACADE_FAMILY}, {len(bad_repeat)} off its y_repeat "
+          f"{joins.FACADE_Y_REPEAT}; {len(roofs)} roofs wear {ROOF_TILE}")
 
     # --- terminations ------------------------------------------------------
     faults = street.termination_faults(disk, list(g["end_walls"].values()),

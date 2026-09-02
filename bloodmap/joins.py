@@ -157,6 +157,21 @@ def _rows() -> tuple[JoinRule, ...]:
                  "stone", cstat=1, frame="boundary",
                  shade_offset=KERB_SHADE_OFFSET,
                  evidence="E3M1 s339 to s2/s3/s4, same dialect as the road"),
+        JoinRule(PAVEMENT, FACADE, B_ABOVE, a_shows="lower band, facade "
+                 "class", cstat=1, frame="boundary",
+                 shade_offset=KERB_SHADE_OFFSET,
+                 evidence="E3M1: the one-sided records of its outdoor sectors "
+                          "ARE its facades -- 122 of them, every one at "
+                          "y_repeat 8, weighted by length 401 (27.6%), 417 "
+                          "(21.5%), 181 (11.6%) and 400 (8.7%); and its "
+                          "records stepping up from the ground into a "
+                          "building wear the same family, 417 on the road's "
+                          "two at 100352 and 67584 and 400 on five pavement "
+                          "records. The ground's frame stops at the wall"),
+        JoinRule(ROAD, FACADE, B_ABOVE, a_shows="lower band, facade class",
+                 cstat=1, frame="boundary", shade_offset=KERB_SHADE_OFFSET,
+                 evidence="E3M1's road stepping up into a building: two "
+                          "records, tile 417, at 100352 and 67584"),
         #: E6M1, the shopfront ---------------------------------------------
         JoinRule(FACADE, OPENING, ONE_SIDED,
                  a_shows="upper band, pegged cstat 4, continues the facade",
@@ -318,7 +333,20 @@ TILE_CLASSES = {
     #: 3 records and 55 on 4, so the class has two members and 28 is the one
     #: the gentle, walkable step wears.
     "quay class": 28,
+    #: E3M1's facade family, weighted by the LENGTH each tile covers rather
+    #: than by its record count, because a long wall shows more of itself:
+    #: 401 at 27.6%, 417 at 21.5%, 181 at 11.6%, 400 at 8.7%. 401 is the
+    #: class's representative; the four together are 69.4% of the facade.
+    "facade class": 401,
 }
+
+#: The four the census leaves standing, in order of the length they cover.
+FACADE_FAMILY = (401, 417, 181, 400)
+#: Without exception on all 122 of E3M1's facade records.
+FACADE_Y_REPEAT = 8
+#: What a roof wears: E3M1's own, on the 29 records where the street looks up
+#: into a building.
+ROOF_TILE = 379
 
 
 def _face(item: Any) -> Any:

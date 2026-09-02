@@ -263,9 +263,19 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
         [piece.rings for _n, piece, _s in pieces], registry,
         declared=declared_vertices([[list(r) for r in spec.rings]
                                     for spec in surfaces]))
+    #: THE THIRD POPULATION, and it is the closure of the other two. A cut
+    #: that lands collinear with an edge is merged into it, and the merged
+    #: edge has no parent -- so a crossing recorded against either half
+    #: reaches neither. Every vertex any piece carries is an exact integer
+    #: point, so exact collinearity is the right question for all of them at
+    #: once: insert each into every edge it lies exactly on. Build needs a
+    #: vertex wherever two sectors meet, and these are exactly those.
+    everywhere = {tuple(point) for rings in welded for ring in rings
+                  for point in ring}
+    welded, again = weld(welded, CutRegistry(), declared=everywhere)
     for (_name, piece, _spec), rings_out in zip(pieces, welded):
         piece.rings = rings_out
-    report["welded_vertices"] = added
+    report["welded_vertices"] = added + again
 
     #: POST-CONDITION per surface, AFTER the weld. Before it, every surface
     #: fails: two pieces that ought to share an edge diverge by the fraction

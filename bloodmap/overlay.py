@@ -762,6 +762,31 @@ def split_polygon(rings: Sequence[Sequence[Point]], cut: "Cut",
     def _on(point):
         return point in crossings or _side(cut, point) == 0
 
+    #: A VERTEX ON THE LINE IS NOT ALWAYS A CROSSING. Where a ring merely
+    #: TOUCHES the cut -- both its neighbours on the same side -- the polygon
+    #: does not pass through, and pairing it as a chord endpoint makes the
+    #: count odd and hands a chord to the wrong partner. That is not a corner
+    #: case here: a shell's shadow is cast FROM its own footprint, and the
+    #: footprint is the hole it stands in, so every shadow edge begins exactly
+    #: on a hole vertex. On five of the city's islands it lost between 14 and
+    #: 21 million square units, silently, and the pieces still looked like
+    #: pieces.
+    touches = set()
+    for ring in rings:
+        count = len(ring)
+        sides = [_side(cut, tuple(point)) for point in ring]
+        for index, point in enumerate(ring):
+            if sides[index] != 0:
+                continue
+            before = next((sides[(index - step) % count]
+                           for step in range(1, count)
+                           if sides[(index - step) % count] != 0), 0)
+            after = next((sides[(index + step) % count]
+                          for step in range(1, count)
+                          if sides[(index + step) % count] != 0), 0)
+            if before and after and before == after:
+                touches.add(tuple(point))
+
     out = []
     for want in (1, -1):
         edges = {}
@@ -787,15 +812,15 @@ def split_polygon(rings: Sequence[Sequence[Point]], cut: "Cut",
                 if sh == -want or sn == -want:
                     keep = False
                 if not keep:
-                    if sh == 0:
+                    if sh == 0 and here not in touches:
                         on_line.add(here)
-                    if sn == 0:
+                    if sn == 0 and nxt not in touches:
                         on_line.add(nxt)
                     continue
                 edges[here] = nxt
-                if sh == 0:
+                if sh == 0 and here not in touches:
                     on_line.add(here)
-                if sn == 0:
+                if sn == 0 and nxt not in touches:
                     on_line.add(nxt)
         #: close the gaps along the line
         needs_out = sorted((p for p in on_line if p not in edges),

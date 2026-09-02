@@ -989,3 +989,73 @@ class ATIsATHoweverItCameToBeOne(unittest.TestCase):
         piece = [[(0, 0), (16384, 0), (16384, 4096), (0, 4096)]]
         _welded, added = weld([piece], CutRegistry(), declared={(8192, 1)})
         self.assertEqual(added, 0)
+
+
+class ACutThroughAVertexIsNotAlwaysACrossing(unittest.TestCase):
+    """A shell casts its shadow FROM its own footprint, and the footprint is
+    the hole it stands in -- so every shadow edge begins exactly on a hole
+    vertex. Where a ring merely TOUCHES the cut, pairing that vertex as a
+    chord endpoint makes the count odd and hands a chord to the wrong
+    partner. On five of the city's islands it lost between 14 and 21 million
+    square units, silently, and the pieces still looked like pieces.
+    """
+
+    #: The island, and the hole its building stands in.
+    OUTER = [(3072, 25088), (20480, 25088), (20480, 40448), (3072, 40448)]
+    HOLE = [(5120, 38400), (18432, 38400), (18432, 27136), (5120, 27136)]
+
+    def test_a_cut_beginning_on_a_hole_vertex_conserves_area(self):
+        from bloodmap.overlay import (
+            Cut, CutRegistry, region_area, split_polygon)
+
+        rings = [list(self.OUTER), list(self.HOLE)]
+        whole = region_area(rings)
+        # the shadow's first edge, from the hole's own corner
+        cut = Cut((18432, 27136), (25496, 94607))
+        inside, outside = split_polygon(rings, cut, registry=CutRegistry())
+        got = (sum(region_area(r) for r in inside)
+               + sum(region_area(r) for r in outside))
+        self.assertAlmostEqual(got, whole, delta=2)
+
+    def test_the_same_cut_through_the_hole_still_separates(self):
+        # A real crossing of the hole must still be paired: the fix must not
+        # turn every on-line vertex into a touch.
+        from bloodmap.overlay import (
+            Cut, CutRegistry, region_area, split_polygon)
+
+        rings = [list(self.OUTER), list(self.HOLE)]
+        cut = Cut((11776, 20000), (11776, 45000))
+        inside, outside = split_polygon(rings, cut, registry=CutRegistry())
+        self.assertTrue(inside)
+        self.assertTrue(outside)
+        self.assertAlmostEqual(
+            sum(region_area(r) for r in inside)
+            + sum(region_area(r) for r in outside),
+            region_area(rings), delta=2)
+
+    def test_a_cut_that_grazes_a_convex_corner_keeps_the_whole(self):
+        # The plainest touch there is: a line through one corner of a square
+        # with the square entirely on one side.
+        from bloodmap.overlay import (
+            Cut, CutRegistry, region_area, split_polygon)
+
+        square = [[(0, 0), (8192, 0), (8192, 8192), (0, 8192)]]
+        cut = Cut((0, -4096), (-4096, 0))
+        inside, outside = split_polygon(square, cut, registry=CutRegistry())
+        got = (sum(region_area(r) for r in inside)
+               + sum(region_area(r) for r in outside))
+        self.assertAlmostEqual(got, region_area(square), delta=2)
+
+    def test_a_shell_s_own_shadow_leaves_its_island_whole(self):
+        # End to end, at the city's own numbers: the field over an annulus
+        # whose hole is the mass that casts the shadow.
+        from bloodmap.light_field import Mass, build_field
+        from bloodmap.overlay import CutRegistry, region_area
+
+        rings = [list(self.OUTER), list(self.HOLE)]
+        mass = Mass("mass", tuple(self.HOLE), 4 * 16960)
+        out = build_field(rings, [mass], bearing_units=478,
+                          registry=CutRegistry(), weld_now=False)
+        self.assertAlmostEqual(
+            sum(region_area(p.rings) for p in out["pieces"]),
+            region_area(rings), delta=64)
