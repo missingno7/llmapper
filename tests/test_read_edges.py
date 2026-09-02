@@ -53,8 +53,13 @@ class TheChain(unittest.TestCase):
         counts = self.result["counts"]
         family = sum(counts.get(kind, 0) for kind in
                      ("end_wall", "chasm", "horizon", "waterfront",
-                      "enclosure_backdrop"))
+                      "enclosure_backdrop", "gate"))
+        #: Still 16, but split now: 12 end walls and 4 GATES, because item
+        #: 28c named the two moving masses apart and a boundary record whose
+        #: far side moves is a way through rather than a termination.
         self.assertEqual(family, 16)
+        self.assertEqual(counts.get("end_wall"), 12)
+        self.assertEqual(counts.get("gate"), 4)
         self.assertEqual(counts.get("building_back", 0)
                          + counts.get("backing", 0), 65)
         self.assertEqual(counts.get("interior_doorway", 0), 19)

@@ -71,58 +71,6 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sector:122": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:123": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:124": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:125": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
  "sector:126": [
   {
    "about": "sentence:sector:126",
@@ -163,175 +111,6 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sector:128": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:129": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:130": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:131": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:132": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:133": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:134": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:135": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:136": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:137": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:138": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:139": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:140": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
  "sector:141": [
   {
    "about": "sentence:sector:141",
@@ -350,30 +129,6 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
-  },
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:142": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
  "sector:143": [
@@ -394,56 +149,6 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
-  },
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:144": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:145": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:146": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
  "sector:147": [
@@ -464,17 +169,6 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
-  },
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
  "sector:148": [
@@ -495,43 +189,6 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
-  },
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:149": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:150": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
  "sector:151": [
@@ -552,17 +209,6 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
-  },
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
  "sector:152": [
@@ -583,30 +229,6 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
-  },
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:153": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
  "sector:154": [
@@ -627,30 +249,6 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
-  },
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:155": [
-  {
-   "about": "assembly:001/space:053",
-   "id": "name:assembly:001/space:053",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
  "sector:159": [
@@ -737,45 +335,6 @@
    "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
- "sector:176": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:177": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:178": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
  "sector:181": [
   {
    "about": "sentence:sector:181",
@@ -804,58 +363,6 @@
    "readings": [
     "arrival",
     "street"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:203": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:206": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:208": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:209": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
    ],
    "why": "more than one measured rule fires, and rule order is not evidence"
   }
@@ -922,342 +429,16 @@
    "why": "no prefix holds 60% of the teaching: {'door': 22, 'e1m1zd1': 2, 'e1m1zdf': 2, 'environment': 7, 'machinery': 20}"
   }
  ],
- "sector:255": [
+ "sector:28": [
   {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
+   "about": "sector:28",
+   "id": "plan:sector:28",
+   "layer": 7,
    "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
+    "island:001",
+    "unnamed_ground:65"
    ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:256": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:257": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:258": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:259": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:260": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:261": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:262": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:263": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:264": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:265": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:266": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:267": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:268": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:269": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:270": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:271": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:272": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:273": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:274": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:275": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:276": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:277": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:278": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:279": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:280": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
+   "why": "equally far through the mass from 2 frontages, so which block it belongs to is not decided by the walk"
   }
  ],
  "sector:281": [
@@ -1278,17 +459,6 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
-  },
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
  "sector:282": [
@@ -1331,150 +501,6 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sector:284": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:285": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:286": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:291": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:292": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:293": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:294": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:295": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:296": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:297": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:298": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:299": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
  "sector:3": [
   {
    "about": "assembly:001/space:002",
@@ -1483,90 +509,6 @@
    "readings": [
     "arrival",
     "street"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:300": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:301": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:302": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:303": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:304": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:305": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:306": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
    ],
    "why": "more than one measured rule fires, and rule order is not evidence"
   }
@@ -1591,54 +533,6 @@
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
   }
  ],
- "sector:308": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:309": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:310": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:311": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
  "sector:319": [
   {
    "about": "sentence:sector:319",
@@ -1657,78 +551,6 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
-  }
- ],
- "sector:344": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:345": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:346": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:347": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:348": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:350": [
-  {
-   "about": "assembly:001/space:104",
-   "id": "name:assembly:001/space:104",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
  "sector:352": [
@@ -1822,32 +644,6 @@
     "othersectorsfx"
    ],
    "why": "no prefix holds 60% of the teaching: {'door': 31, 'e1m1zd1': 18, 'e1m1zdf': 19, 'environment': 11, 'machinery': 80, 'modelling': 1, 'othersectorsfx': 1, 'sprite': 12, 'trap': 2, 'wall': 5}"
-  }
- ],
- "sector:375": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
-  }
- ],
- "sector:376": [
-  {
-   "about": "assembly:001/space:067",
-   "id": "name:assembly:001/space:067",
-   "layer": 8,
-   "readings": [
-    "stepped_run",
-    "stepped_run",
-    "stepped_run"
-   ],
-   "why": "more than one measured rule fires, and rule order is not evidence"
   }
  ],
  "sector:4": [

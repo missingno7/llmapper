@@ -9,7 +9,7 @@
   },
   {
    "node": "blocks",
-   "question": "The reader recovers 23 blocks by connectivity of everything that is not ground. The largest holds 123 sectors, which is a whole side of the city rather than one building. Is a block a connected mass, or something smaller the reader cannot yet see?",
+   "question": "The reader recovers 24 blocks by connectivity of everything that is not ground. The largest holds 75 sectors, which is a whole side of the city rather than one building. Is a block a connected mass, or something smaller the reader cannot yet see?",
    "recommended_default": "smaller: a block in `city_plan` is one buildable rectangle and E3M1's masses run together through their interiors. The reader should cut a mass at its street frontages -- that is layer 7's next measurement, and it is named as missing rather than guessed",
    "evidence": "references/plan.json: blocks"
   },

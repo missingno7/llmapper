@@ -104,7 +104,8 @@
  "counts": {
   "backing": 7,
   "building_back": 58,
-  "end_wall": 16,
+  "end_wall": 12,
+  "gate": 4,
   "interior_doorway": 19
  },
  "disagreements_with_the_measured_facts": [
@@ -116,7 +117,7 @@
   {
    "claim": "the map edge is a family of five",
    "reconciled": "the family is right and E3M1 exercises three of it; the other members are attested on DWE3M1 and DWE3M10, as the decisions say",
-   "the_reader_finds": "E3M1 uses ['backing', 'building_back', 'end_wall', 'interior_doorway']: no chasm, no horizon, no waterfront and no enclosure anywhere on its boundary"
+   "the_reader_finds": "E3M1 uses ['backing', 'building_back', 'end_wall', 'gate', 'interior_doorway']: no chasm, no horizon, no waterfront and no enclosure anywhere on its boundary"
   }
  ],
  "ground_sectors": [
@@ -195,10 +196,10 @@
   "938": "building_back",
   "939": "building_back",
   "940": "interior_doorway",
-  "941": "end_wall",
-  "942": "end_wall",
-  "943": "end_wall",
-  "944": "end_wall",
+  "941": "gate",
+  "942": "gate",
+  "943": "gate",
+  "944": "gate",
   "945": "interior_doorway",
   "946": "building_back",
   "947": "end_wall",
@@ -247,7 +248,7 @@
    {
     "claim": "the map edge is a family of five",
     "reconciled": "the family is right and E3M1 exercises three of it; the other members are attested on DWE3M1 and DWE3M10, as the decisions say",
-    "the_reader_finds": "E3M1 uses ['backing', 'building_back', 'end_wall', 'interior_doorway']: no chasm, no horizon, no waterfront and no enclosure anywhere on its boundary"
+    "the_reader_finds": "E3M1 uses ['backing', 'building_back', 'end_wall', 'gate', 'interior_doorway']: no chasm, no horizon, no waterfront and no enclosure anywhere on its boundary"
    }
   ],
   "explained": 100,
@@ -743,7 +744,8 @@
  "segment_counts": {
   "backing": 5,
   "building_back": 33,
-  "end_wall": 12,
+  "end_wall": 11,
+  "gate": 1,
   "interior_doorway": 19
  },
  "segments": [
@@ -1010,7 +1012,7 @@
    ]
   },
   {
-   "kind": "end_wall",
+   "kind": "gate",
    "length": 4,
    "records": [
     941,
@@ -1267,7 +1269,8 @@
   "by_kind": {
    "backing": 7,
    "building_back": 58,
-   "end_wall": 16,
+   "end_wall": 12,
+   "gate": 4,
    "interior_doorway": 19
   },
   "residue_percent": 0.0,
@@ -1276,7 +1279,8 @@
   "segments_by_kind": {
    "backing": 5,
    "building_back": 33,
-   "end_wall": 12,
+   "end_wall": 11,
+   "gate": 1,
    "interior_doorway": 19
   }
  },
@@ -1340,10 +1344,10 @@
   "938": "one-sided: a flat wall against the void, no sector spent behind it",
   "939": "one-sided: a flat wall against the void, no sector spent behind it",
   "940": "the far side is sector 282, an interior: this is a way in, not a termination",
-  "941": "the far side is sector 174, an outdoor mass standing more than the 4096 autostep above every neighbour",
-  "942": "the far side is sector 172, an outdoor mass standing more than the 4096 autostep above every neighbour",
-  "943": "the far side is sector 172, an outdoor mass standing more than the 4096 autostep above every neighbour",
-  "944": "the far side is sector 174, an outdoor mass standing more than the 4096 autostep above every neighbour",
+  "941": "the far side is sector 174, a raised outdoor mass that carries a sector type: a way through when it is told to move, and a wall until then",
+  "942": "the far side is sector 172, a raised outdoor mass that carries a sector type: a way through when it is told to move, and a wall until then",
+  "943": "the far side is sector 172, a raised outdoor mass that carries a sector type: a way through when it is told to move, and a wall until then",
+  "944": "the far side is sector 174, a raised outdoor mass that carries a sector type: a way through when it is told to move, and a wall until then",
   "945": "the far side is sector 282, an interior: this is a way in, not a termination",
   "946": "one-sided: a flat wall against the void, no sector spent behind it",
   "947": "the far side is sector 343, an outdoor mass standing more than the 4096 autostep above every neighbour",

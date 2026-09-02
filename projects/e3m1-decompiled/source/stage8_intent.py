@@ -22,7 +22,9 @@ from _review import Tree, answers, write_pack
 from bloodmap.curriculum import mine_map
 from bloodmap.format import read_map
 from bloodmap.patterns import corpus_map_path
-from bloodmap.read_intent import name_mechanisms, name_places, summary
+from bloodmap.anchors import find_bundles
+from bloodmap.read_intent import (
+    name_mechanisms, name_places, named_props, summary)
 from bloodmap.read_joins import surface_kinds
 from bloodmap.read_mechanisms import curriculum_index, read_mechanisms
 from bloodmap.read_stairs import read_stairs
@@ -96,7 +98,9 @@ def main() -> int:
                 if kind in ("road", "pavement", "outdoor_ground", "end_wall")],
         start_sector=int(disk.header["start_sector"]),
         structures={run["id"]: run["sectors"] for run in stairs["runs"]},
-        stacks=mechanisms["stacks"])
+        stacks=mechanisms["stacks"],
+        props=named_props(world),
+        bundles=[row.to_dict() for row in find_bundles(disk.to_build_ir())])
     stats = summary(names, places)
 
     payload = {

@@ -57,6 +57,13 @@ SOLID = "solid"
 INTERIOR = "interior"
 OUTDOOR_GROUND = "outdoor_ground"
 WATER = "water"
+#: A raised outdoor mass that carries a SECTOR TYPE is not a termination: it
+#: is a mechanism, and what the reader sees is its rest state (decisions
+#: section 30, item 28c). Naming it apart is what lets the end-wall row keep
+#: its blocking clause on the records that stay put -- E3M1's four
+#: non-blocking pavement|end_wall records all face sectors 172 and 174, which
+#: carry type 600 and move.
+MECHANISM_AT_REST = "mechanism_at_rest"
 
 #: `Blood`'s step-up limit. A body climbs 4096 without jumping, so an outdoor
 #: floor more than that above every neighbour is not ground -- it is a top.
@@ -257,19 +264,29 @@ def surface_kinds(level: Any, *, owners: Sequence[int] | None = None
         climbable = [(member, other) for member, other in edges
                      if int(_face(level.sectors[other])["floor_z"])
                      - int(_face(level.sectors[member])["floor_z"]) <= AUTOSTEP]
+        #: A mass MOVES if any of its sectors carries a type. It is then a
+        #: mechanism at rest, whole, rather than a mass some of whose sectors
+        #: happen to be typed: a door leaf and the frame it is cut from are
+        #: one thing, and splitting them by which sector holds the type would
+        #: put half a door in each kind.
+        moves = sorted(member for member in group
+                       if int(_face(level.sectors[member])["type"]))
         for member in sorted(group):
             here = int(_face(level.sectors[member])["floor_z"])
-            if edges and not climbable:
-                note = ""
-                if int(_face(level.sectors[member])["type"]):
-                    note = (f"; it also carries sector type "
-                            f"{int(_face(level.sectors[member])['type'])}, so "
-                            f"this is its REST state and layer 5 owns the rest")
+            if edges and not climbable and moves:
+                types = sorted({int(_face(level.sectors[index])["type"])
+                                for index in moves})
+                name(member, MECHANISM_AT_REST,
+                     f"outdoor, in a mass of {len(group)} sector(s) no body "
+                     f"can step onto, but sector(s) {moves} carry type "
+                     f"{types}: this is its REST state, and layer 5 owns what "
+                     f"it does. Not a termination")
+            elif edges and not climbable:
                 name(member, END_WALL,
                      f"outdoor, in a mass of {len(group)} sector(s) that no "
                      f"body can step onto: every one of its {len(edges)} "
                      f"edges to the network rises more than the {AUTOSTEP} "
-                     f"autostep{note}")
+                     f"autostep")
             else:
                 name(member, OUTDOOR_GROUND,
                      f"outdoor ground at z={here}, neither the base plane nor "

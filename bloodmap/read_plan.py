@@ -232,19 +232,57 @@ def _flanks(level: Any, corridor: dict[str, Any], islands: Sequence[dict],
     }
 
 
-def blocks(level: Any, kinds: dict[int, str], graph: dict[int, set[int]]
-           ) -> list[dict[str, Any]]:
-    """The masses between the streets, with their envelopes.
+#: What counts as ground for a frontage: the surfaces a building fronts ONTO.
+FRONTAGE_KINDS = frozenset({"road", "pavement", "outdoor_ground", "shore"})
 
-    A block is a connected run of everything that is not ground and not sky:
-    the interiors and the solid masses of one building or one row of them.
-    Its ENVELOPE is its extent in plan units -- which is what `city_plan`'s
-    `ENVELOPES` states and what the solver lays the grid out from.
+
+def frontages(level: Any, group: set[int], kinds: dict[int, str],
+              owners: Sequence[int], places: dict[int, str]) -> dict[str, set[int]]:
+    """Which street each of a mass's sectors fronts onto, by place.
+
+    `places` maps a ground sector to the plan element it belongs to (a
+    corridor, an island). A frontage is therefore named after a STREET rather
+    than after the sector on the other side of one door, which is what makes
+    the cut stable when the shadow cuts a carriageway into four.
     """
+    out: dict[str, set[int]] = defaultdict(set)
+    for index in sorted(group):
+        fields = _face(level.sectors[index])
+        start = int(fields["wall_ptr"])
+        for wall_id in range(start, start + int(fields["wall_count"])):
+            other = int(_face(level.walls[wall_id])["next_sector"])
+            if other < 0 or kinds.get(other) not in FRONTAGE_KINDS:
+                continue
+            out[places.get(other, f"unnamed_ground:{other}")].add(index)
+    return dict(out)
+
+
+def blocks(level: Any, kinds: dict[int, str], graph: dict[int, set[int]],
+           places: dict[int, str] | None = None) -> tuple[list, list]:
+    """The masses between the streets, cut at their street frontages.
+
+    A connected run of interiors and solid masses is a MASS, and E3M1's
+    largest is 123 sectors -- a whole side of the city, because its buildings
+    run together through their interiors. `city_plan`'s block is one buildable
+    rectangle, so the mass is cut: every sector goes to the frontage it is
+    nearest to THROUGH THE MASS ITSELF (a multi-source breadth-first walk from
+    the sectors that touch each street), and a block is the part of the mass
+    one street serves.
+
+    A sector the walk reaches from two frontages at the same distance is not
+    assigned by tie-break -- it is emitted as a `candidate` for the selection
+    pass, because which building a shared back room belongs to is exactly the
+    kind of question a reader may not decide quietly.
+
+    Returns `(blocks, candidates)`.
+    """
+    places = dict(places or {})
     inside = {index for index, kind in kinds.items()
               if kind in ("interior", "solid")}
     left = set(inside)
     out: list[dict[str, Any]] = []
+    unsure: list[dict[str, Any]] = []
+    owners = sector_index(level)
     while left:
         seed = min(left)
         group, queue = {seed}, [seed]
@@ -255,19 +293,86 @@ def blocks(level: Any, kinds: dict[int, str], graph: dict[int, set[int]]
                     group.add(other)
                     queue.append(other)
         left -= group
-        rects = [bbox(level, index) for index in group]
-        x0 = min(r[0] for r in rects); y0 = min(r[1] for r in rects)
-        x1 = max(r[2] for r in rects); y1 = max(r[3] for r in rects)
-        out.append({
-            "block_id": f"block:{len(out):02d}",
-            "sectors": sorted(group),
-            "envelope_pu": [_pu(x1 - x0), _pu(y1 - y0)],
-            "rect_pu": [_pu(x0), _pu(y0), _pu(x1), _pu(y1)],
-        })
+
+        fronts = frontages(level, group, kinds, owners, places)
+        if len(fronts) < 2:
+            parts = {(sorted(fronts)[0] if fronts else "no frontage"):
+                     sorted(group)}
+            ties: dict[int, list[str]] = {}
+        else:
+            parts, ties = _cut_at_frontages(group, fronts, graph)
+        for name, members in sorted(parts.items()):
+            if not members:
+                continue
+            rects = [bbox(level, index) for index in members]
+            x0 = min(r[0] for r in rects); y0 = min(r[1] for r in rects)
+            x1 = max(r[2] for r in rects); y1 = max(r[3] for r in rects)
+            out.append({
+                "block_id": f"block:{len(out):02d}",
+                "sectors": sorted(members),
+                "fronts": name,
+                "mass_sectors": len(group),
+                "frontages_of_the_mass": sorted(fronts),
+                "envelope_pu": [_pu(x1 - x0), _pu(y1 - y0)],
+                "rect_pu": [_pu(x0), _pu(y0), _pu(x1), _pu(y1)],
+            })
+        for index, names in sorted(ties.items()):
+            unsure.append({
+                "about": f"sector:{index}",
+                "readings": sorted(names),
+                "why": (f"equally far through the mass from "
+                        f"{len(names)} frontages, so which block it belongs "
+                        f"to is not decided by the walk"),
+            })
     out.sort(key=lambda row: -(row["envelope_pu"][0] * row["envelope_pu"][1]))
     for number, row in enumerate(out):
         row["block_id"] = f"block:{number:02d}"
-    return out
+    return out, unsure
+
+
+def _cut_at_frontages(group: set[int], fronts: dict[str, set[int]],
+                      graph: dict[int, set[int]]):
+    """Multi-source breadth-first from each frontage, at once.
+
+    All sources advance a step together, so a sector is claimed by whichever
+    frontage reaches it first and a sector reached in the same step by two is
+    a tie rather than a race the iteration order wins.
+    """
+    owner: dict[int, str] = {}
+    ties: dict[int, list[str]] = {}
+    frontier: dict[str, set[int]] = {name: set(members)
+                                     for name, members in fronts.items()}
+    for name, members in frontier.items():
+        for index in members:
+            owner.setdefault(index, name)
+    #: A sector on two frontages at once belongs to both from step zero.
+    for index in list(owner):
+        holders = sorted(name for name, members in fronts.items()
+                         if index in members)
+        if len(holders) > 1:
+            ties[index] = holders
+    seen = set(owner)
+    while any(frontier.values()):
+        reached: dict[int, list[str]] = defaultdict(list)
+        for name, members in frontier.items():
+            for index in members:
+                for other in sorted(graph.get(index, ())):
+                    if other in group and other not in seen:
+                        reached[other].append(name)
+        nxt: dict[str, set[int]] = {name: set() for name in fronts}
+        for index, names in sorted(reached.items()):
+            unique = sorted(set(names))
+            owner[index] = unique[0]
+            if len(unique) > 1:
+                ties[index] = unique
+            seen.add(index)
+            for name in unique:
+                nxt[name].add(index)
+        frontier = nxt
+    parts: dict[str, list[int]] = defaultdict(list)
+    for index in sorted(group):
+        parts[owner.get(index, "no frontage")].append(index)
+    return dict(parts), ties
 
 
 def read_plan(level: Any, kinds: dict[int, str] | None = None, *,
@@ -316,6 +421,21 @@ def read_plan(level: Any, kinds: dict[int, str] | None = None, *,
                            f"[{AMBIGUOUS_LOW}, {AMBIGUOUS_HIGH}]")}
                   for run in runs if run["ambiguous"]]
 
+    #: Which plan element each ground sector belongs to, so a frontage is
+    #: named after a STREET and not after the sector behind one door.
+    places: dict[int, str] = {}
+    for run in runs:
+        for index in run["sectors"]:
+            places[index] = run["corridor_id"]
+    for island in islands:
+        for index in island["sectors"]:
+            places.setdefault(index, island["island_id"])
+    built, unsure = blocks(level, kinds, graph, places)
+    #: A sector the frontage walk reaches from two streets at once is a
+    #: candidate, not a tie-break: which building a shared back room belongs
+    #: to is not a reader's to decide quietly.
+    candidates += unsure
+
     claimed = {index for run in runs for index in run["sectors"]}
     claimed |= {index for island in islands for index in island["sectors"]}
     ground = sorted(index for index in network
@@ -337,7 +457,7 @@ def read_plan(level: Any, kinds: dict[int, str] | None = None, *,
                      "band_pu": sorted({shape_of(level, index)["width_pu"]
                                         for index in island["sectors"]})}
                     for island in islands],
-        "blocks": blocks(level, kinds, graph),
+        "blocks": built,
         "ground_sectors": ground,
         "ground_shapes": shapes,
         "rectangular_fill": {

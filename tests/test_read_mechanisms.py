@@ -91,13 +91,41 @@ class TheInventory(unittest.TestCase):
                in row["against_the_course"].get("verdict", "")]
         self.assertTrue(off)
 
-    def test_all_three_stacks_carry_the_same_fault(self):
-        """Three of three is a convention, not a mistake -- and the reader
-        reports it as a fault, which is the queue item."""
+    def test_the_marker_offset_is_a_convention_and_no_longer_a_fault(self):
+        """Item 30e, settled by counting the other 35.
+
+        E3M1's three stacks each put the upper marker 256 above the floor it
+        links, and the reader called it "the floor marker floats". Over the
+        campaign it is 38 stacks of 38, with the lower marker at exactly 0 in
+        all 38. A convention the campaign keeps without exception is not a
+        fault a checker gets to name -- and the manual's own negative example
+        is still caught, by the clause that is about shape.
+        """
+        from bloodmap.curriculum import UPPER_MARKER_OFFSET
+
+        self.assertEqual(UPPER_MARKER_OFFSET, -256)
         self.assertEqual(len(self.result["stacks"]), 3)
         for stack in self.result["stacks"]:
-            self.assertTrue(stack["faults"])
-            self.assertIn("floor marker floats", stack["faults"][0])
+            self.assertEqual(stack["faults"], [])
+
+    def test_the_manuals_negative_example_is_still_a_fault(self):
+        """The lesson `STACKS3DSPACES-BADROR` is shipped to show what goes
+        wrong. A reader that calls it fine is wrong, and relaxing the marker
+        clause must not have relaxed the shape clause."""
+        from pathlib import Path
+
+        from bloodmap.curriculum import mine_map
+        from bloodmap.patterns import corpus_root
+
+        folder = corpus_root() / "mechanism" / "Vanilla"
+        found = [path for path in folder.glob("*")
+                 if path.name.upper() == "STACKS3DSPACES-BADROR.MAP"]
+        if not found:
+            raise unittest.SkipTest("the negative example is not in the corpus")
+        faults = [fault for stack in mine_map(found[0]).stacks
+                  for fault in stack["faults"]]
+        self.assertTrue(faults)
+        self.assertTrue(any("concave" in fault for fault in faults))
 
     def test_a_wired_record_no_sentence_reaches_is_named_residue(self):
         for row in self.result["residue"]:

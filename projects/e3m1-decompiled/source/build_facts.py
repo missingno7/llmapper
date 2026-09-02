@@ -19,6 +19,7 @@ from _common import MAP_NAME, PROJECT, art_dir, art_sizes, level
 import os
 
 from bloodmap import read_facts, read_intent
+from bloodmap.anchors import find_bundles
 from bloodmap.curriculum import mine_map
 from bloodmap.format import read_map
 from bloodmap.patterns import corpus_map_path
@@ -99,7 +100,9 @@ def main() -> int:
         street=[index for index, kind in kinds["kinds"].items()
                 if kind in ("road", "pavement", "outdoor_ground", "end_wall")],
         start_sector=int(disk.header["start_sector"]),
-        structures=structures, stacks=mechanisms["stacks"])
+        structures=structures, stacks=mechanisms["stacks"],
+        props=read_intent.named_props(world),
+        bundles=[row.to_dict() for row in find_bundles(disk.to_build_ir())])
     store.extend(read_facts.layer8(names, places))
 
     #: The selection passes run LAST, over every candidate any reader left.

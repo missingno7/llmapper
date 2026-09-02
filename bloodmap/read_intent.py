@@ -28,6 +28,13 @@ from typing import Any, Sequence
 
 #: How much of the teaching one prefix must hold before it names the thing.
 MAJORITY = 0.6
+#: And how much of a space's named props one prop must hold before it names
+#: the space. The same number, and it is `decoration.CONFIDENT_SHARE` -- the
+#: share this project already settled on for calling a tile's role confident.
+PROP_MAJORITY = 0.6
+#: Below this many named props there is nothing to take a majority of. Two
+#: torches are not a torch-lit room; they are two torches.
+PROP_FLOOR = 3
 
 
 def _prefix(lesson: str) -> str:
@@ -86,10 +93,41 @@ def name_mechanisms(sentences: Sequence[dict[str, Any]],
                      f"{MAJORITY:.0%} of the teaching")}
 
 
+def named_props(level: Any) -> dict[int, "Counter"]:
+    """Per sector, the campaign-named props the player can actually see.
+
+    Two filters, both established elsewhere and both load-bearing:
+    `blood_types.sprite_visibility` drops the wiring -- about a quarter of a
+    campaign map's sprites are markers and generators nobody sees, and
+    counting them measures the editor rather than the level -- and
+    `furniture.FURNITURE` supplies the NAME, which is the campaign's own word
+    for the tile rather than ours. A tile nobody has named contributes
+    nothing, so a space full of unnamed props is refused rather than guessed
+    at.
+    """
+    from .blood_types import sprite_visibility
+    from .furniture import FURNITURE
+
+    by_tile = {item.picnum: name for name, item in FURNITURE.items()}
+    out: dict[int, Counter] = defaultdict(Counter)
+    for sprite in level.sprites:
+        fields = sprite["fields"] if isinstance(sprite, dict) else sprite.fields
+        name = by_tile.get(int(fields["picnum"]))
+        if name is None:
+            continue
+        seen = sprite_visibility(int(fields["type"]), int(fields["cstat"]))
+        if seen["kind"] != "visible":
+            continue
+        out[int(fields["sector"])][name] += 1
+    return dict(out)
+
+
 def name_places(level: Any, spaces: Sequence[dict[str, Any]], *,
                 street: Sequence[int] = (), start_sector: int | None = None,
                 structures: dict[str, Sequence[int]] | None = None,
-                stacks: Sequence[dict[str, Any]] = ()) -> dict[str, Any]:
+                stacks: Sequence[dict[str, Any]] = (),
+                props: dict[int, "Counter"] | None = None,
+                bundles: Sequence[dict[str, Any]] = ()) -> dict[str, Any]:
     """A name per space, only where one measured rule fires."""
     structures = dict(structures or {})
     street = set(street)
@@ -97,6 +135,19 @@ def name_places(level: Any, spaces: Sequence[dict[str, Any]], *,
     for stack in stacks:
         stacked[int(stack["lower"])] = f"stack {stack['link_id']}"
         stacked[int(stack["upper"])] = f"stack {stack['link_id']}"
+
+    props = dict(props or {})
+    #: A bundle is several primitives that are ONE authored object
+    #: (`anchors.find_bundles`): a counter with its till, a crate pile. A
+    #: space that holds one was furnished on purpose, which is a different
+    #: fact from a space that has props in it.
+    bundled: dict[int, int] = defaultdict(int)
+    for bundle in bundles:
+        core = bundle.get("core")
+        if isinstance(core, str) and core.startswith("sector:"):
+            core = int(core.split(":", 1)[1])
+        if core is not None:
+            bundled[int(core)] += 1
 
     named, candidates, refused = [], [], []
     for space in spaces:
@@ -119,23 +170,58 @@ def name_places(level: Any, spaces: Sequence[dict[str, Any]], *,
             hits.append({"name": "stacked_space",
                          "basis": f"carries a room-over-room link at "
                                   f"{', '.join(stacked[s] for s in touched)}"})
+        #: THE PROP RULE. The name is the campaign's own word for whatever
+        #: furnishes the space, taken only on a clear majority of NAMED,
+        #: VISIBLE props -- so a space of unnamed props, or of two things and
+        #: three others, is refused rather than labelled.
+        here: Counter = Counter()
+        for index in sectors:
+            here.update(props.get(index, {}))
+        total = sum(here.values())
+        if total >= PROP_FLOOR:
+            top, held = here.most_common(1)[0]
+            share = held / total
+            if share >= PROP_MAJORITY:
+                hits.append({"name": top,
+                             "basis": f"{held} of its {total} named visible "
+                                      f"props are {top}s "
+                                      f"({share:.0%}, the campaign's own name "
+                                      f"for the tile)"})
+        carried = sorted(index for index in sectors if bundled.get(index))
+        if carried:
+            hits.append({"name": "furnished",
+                         "basis": f"holds {sum(bundled[i] for i in carried)} "
+                                  f"authored bundle(s) -- a raised island "
+                                  f"with its props -- at "
+                                  f"{', '.join(f'sector:{i}' for i in carried)}"})
+        #: Several rules firing with the SAME name is not an ambiguity: three
+        #: stepped runs in one space still say "stepped_run". A candidate is
+        #: for readings that DISAGREE, and counting agreement as doubt was
+        #: putting four of E3M1's spaces in the queue for no reason.
+        readings = sorted({hit["name"] for hit in hits})
         if not hits:
             refused.append({"space": space["id"],
                             "why": "no measurement distinguishes it: it is "
                                    "an interior of this map like many others"})
-        elif len(hits) == 1:
-            named.append({"space": space["id"], **hits[0],
+        elif len(readings) == 1:
+            named.append({"space": space["id"], "name": readings[0],
+                          "basis": "; ".join(hit["basis"] for hit in hits),
                           "sectors": sorted(sectors)})
         else:
             candidates.append({"space": space["id"],
                                "sectors": sorted(sectors),
-                               "readings": [hit["name"] for hit in hits],
+                               "readings": readings,
                                "bases": [hit["basis"] for hit in hits],
                                "why": "more than one measured rule fires, and "
                                       "rule order is not evidence"})
     return {"named": named, "candidates": candidates, "refused": refused,
             "rule": ("a name only where exactly one measured rule fires; two "
-                     "rules is a candidate, none is a refusal")}
+                     "rules is a candidate, none is a refusal. The rules are: "
+                     "holds the player start; wholly on the street network; "
+                     "contains a recovered structure; carries a stack link; "
+                     f"one campaign-named prop holds {PROP_MAJORITY:.0%} of "
+                     f"at least {PROP_FLOOR} named visible props; holds an "
+                     "authored bundle")}
 
 
 def summary(mechanisms: dict[str, Any], places: dict[str, Any]) -> dict[str, Any]:

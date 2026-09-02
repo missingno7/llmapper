@@ -132,7 +132,7 @@ def main() -> int:
     #: the residue so the zero cannot be read as "understood".
     family = sum(count for kind, count in result["counts"].items()
                  if kind in ("end_wall", "chasm", "horizon",
-                             "enclosure_backdrop", "waterfront"))
+                             "enclosure_backdrop", "waterfront", "gate"))
     payload = {
         "reader": "bloodmap.read_edges (new; reuses "
                   "reachability.classify_offmap for the backdrop hunt)",

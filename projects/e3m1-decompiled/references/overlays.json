@@ -147,8 +147,9 @@
    },
    {
     "boundary_faces": {
-     "end_wall": 8,
+     "end_wall": 4,
      "interior": 9,
+     "mechanism_at_rest": 4,
      "outdoor_ground": 4,
      "road": 4,
      "solid": 5,
@@ -210,8 +211,9 @@
     "outline_edges": 32,
     "records_the_map_kerbs": 4,
     "what_the_other_side_is": {
-     "end_wall": 8,
+     "end_wall": 4,
      "interior": 9,
+     "mechanism_at_rest": 4,
      "outdoor_ground": 4,
      "road": 4,
      "solid": 5,

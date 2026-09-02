@@ -85,10 +85,30 @@ class ThePlan(unittest.TestCase):
         self.assertTrue(any(row["sector"] == 175 for row in touched))
 
     def test_an_ambiguous_piece_of_road_is_a_candidate_not_a_decision(self):
-        candidates = self.plan["candidates"]
-        self.assertEqual(len(candidates), 1)
-        self.assertEqual(candidates[0]["sectors"], [7])
-        self.assertEqual(sorted(candidates[0]["readings"]), ["edge", "junction"])
+        road = [row for row in self.plan["candidates"]
+                if row.get("sectors") == [7]]
+        self.assertEqual(len(road), 1)
+        self.assertEqual(sorted(road[0]["readings"]), ["edge", "junction"])
+
+    def test_a_sector_two_streets_reach_at_once_is_a_candidate_too(self):
+        """Item 30b: a mass is cut at its street frontages by a walk from
+        each, and a sector both walks reach in the same step is not assigned
+        by tie-break. Which building a shared back room belongs to is not a
+        reader's to decide quietly."""
+        shared = [row for row in self.plan["candidates"]
+                  if str(row.get("about", "")).startswith("sector:")]
+        self.assertTrue(shared)
+        for row in shared:
+            self.assertGreater(len(row["readings"]), 1)
+
+    def test_a_block_is_cut_at_its_street_frontages(self):
+        """E3M1's largest interior mass is 123 sectors -- a whole side of the
+        city, because its buildings run together through their interiors.
+        `city_plan`'s block is one buildable rectangle, so the mass is cut."""
+        big = [row for row in self.plan["blocks"] if row["mass_sectors"] == 123]
+        self.assertGreater(len(big), 1, "the 123-sector mass was left whole")
+        self.assertEqual(sum(len(row["sectors"]) for row in big), 123)
+        self.assertEqual(len({row["fronts"] for row in big}), len(big))
 
     def test_the_schematic_costs_something_and_the_reader_says_how_much(self):
         """Every plan element is a rect and a sector is not."""

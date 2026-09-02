@@ -37,8 +37,8 @@ from typing import Any, Sequence
 
 from .joins import CHASM_TILES
 from .read_joins import (
-    AUTOSTEP, INTERIOR, SOLID, adjacency, reads_as_water, street_network,
-    surface_kinds,
+    AUTOSTEP, INTERIOR, MECHANISM_AT_REST, SOLID, adjacency, reads_as_water,
+    street_network, surface_kinds,
 )
 from .texture_frame import sector_index
 
@@ -48,6 +48,12 @@ WATERFRONT = "waterfront"
 CHASM = "chasm"
 BUILDING_BACK = "building_back"
 BACKING = "backing"
+#: `joins.GATE`, which section 14 already names as a member of the family: a
+#: way through, rather than a termination. A boundary record whose far side is
+#: a MECHANISM AT REST is one -- the mass is a wall only until it is told to
+#: move -- and E3M1's four such records were unclassified until 28c named the
+#: movers apart from the end walls.
+GATE = "gate"
 ENCLOSURE_BACKDROP = "enclosure_backdrop"
 INTERIOR_DOORWAY = "interior_doorway"
 UNCLASSIFIED = "unclassified"
@@ -98,6 +104,11 @@ def classify(level: Any, wall_id: int, here: int, kinds: dict[int, str]
     if reads_as_water(level.sectors[other]):
         return WATERFRONT, "the far side reads as water: a palette, or panning"
     kind = kinds.get(other)
+    if kind == MECHANISM_AT_REST:
+        return (GATE,
+                f"the far side is sector {other}, a raised outdoor mass that "
+                f"carries a sector type: a way through when it is told to "
+                f"move, and a wall until then")
     if kind == END_WALL:
         return (END_WALL,
                 f"the far side is sector {other}, an outdoor mass standing "

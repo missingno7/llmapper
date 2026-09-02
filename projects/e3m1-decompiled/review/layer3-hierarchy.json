@@ -398,7 +398,7 @@
   {
    "id": "kind:end_wall",
    "kind": "surface_kind",
-   "name": "end_wall (10 sectors)",
+   "name": "end_wall (8 sectors)",
    "parent": "level",
    "children": [
     "row:end_wall|pavement|b_below",
@@ -408,8 +408,6 @@
     0,
     118,
     165,
-    172,
-    174,
     237,
     339,
     343
@@ -418,15 +416,13 @@
   {
    "id": "row:end_wall|pavement|b_below",
    "kind": "join_row",
-   "name": "end_wall|pavement|b_below x13",
+   "name": "end_wall|pavement|b_below x9",
    "parent": "kind:end_wall",
    "children": [],
    "sectors": [
     0,
     118,
     165,
-    172,
-    174,
     237,
     339,
     343
@@ -469,7 +465,7 @@
   {
    "id": "row:pavement|end_wall|b_above",
    "kind": "join_row",
-   "name": "pavement|end_wall|b_above x13",
+   "name": "pavement|end_wall|b_above x9",
    "parent": "kind:pavement",
    "children": [],
    "sectors": [

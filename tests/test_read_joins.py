@@ -100,21 +100,34 @@ class E3M1sStreet(unittest.TestCase):
         self.assertGreater(self.census["described"]["pavement|pavement|equal"], 0)
 
     def test_the_table_describes_the_street_and_not_the_building(self):
+        """66 described, not the 74 of the first reading: item 28c moved
+        E3M1's two moving masses out of `end_wall` and into
+        `mechanism_at_rest`, and the table has no row for a street meeting a
+        mechanism -- correctly, since what it meets depends on the state."""
         from bloodmap.read_joins import summary
 
         stats = summary(self.result)
         self.assertEqual(stats["two_sided_records"], 1386)
-        self.assertEqual(stats["records_described"], 74)
+        self.assertEqual(stats["records_described"], 66)
         interior = sum(count for key, count in self.census["undescribed"].items()
                        if key.startswith("interior|interior"))
         self.assertEqual(interior, 1122)
 
-    def test_the_end_wall_records_that_do_not_block_face_a_mover(self):
-        """The row says blocking. Five records do not, and four of those face
-        a sector carrying type 600: a mechanism at rest, which is layer 5's."""
+    def test_a_raised_mass_that_moves_is_not_an_end_wall(self):
+        """Item 28c, and it is what the blocking clause was tripping over.
+
+        Five band records used not to block, and four of them faced sectors
+        172 and 174, which carry type 600. Those two are now
+        `mechanism_at_rest` and their records are not end-wall joins at all,
+        so one disagreement remains -- wall 1529, facing the raised ledge
+        s237, which really does not block and really is not a mechanism.
+        """
+        kinds = self.kinds["kinds"]
+        self.assertEqual(kinds[172], "mechanism_at_rest")
+        self.assertEqual(kinds[174], "mechanism_at_rest")
         rows = self.census["cstat_disagreements"]
-        self.assertEqual(len(rows), 5)
-        self.assertEqual(sum(1 for row in rows if row["faced_sector_moves"]), 4)
+        self.assertEqual(len(rows), 1)
+        self.assertFalse(rows[0]["faced_sector_moves"])
 
 
 if __name__ == "__main__":

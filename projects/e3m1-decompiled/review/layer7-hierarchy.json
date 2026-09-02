@@ -514,7 +514,7 @@
   {
    "id": "blocks",
    "kind": "plan",
-   "name": "blocks with envelopes (23)",
+   "name": "blocks with envelopes (24)",
    "parent": "level",
    "children": [
     "block:00",
@@ -898,22 +898,7 @@
    "parent": "blocks",
    "children": [],
    "sectors": [
-    12,
-    13,
     14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24,
-    25,
-    26,
-    27,
     28,
     29,
     30,
@@ -927,16 +912,9 @@
     38,
     39,
     40,
-    41,
-    42,
-    43,
-    44,
-    46,
-    47,
     48,
     49,
     50,
-    51,
     52,
     53,
     54,
@@ -946,16 +924,6 @@
     58,
     59,
     60,
-    61,
-    62,
-    63,
-    64,
-    66,
-    67,
-    68,
-    69,
-    70,
-    71,
     72,
     73,
     74,
@@ -964,13 +932,6 @@
     77,
     78,
     79,
-    80,
-    81,
-    82,
-    83,
-    84,
-    85,
-    86,
     87,
     88,
     89,
@@ -988,8 +949,6 @@
     101,
     102,
     103,
-    105,
-    106,
     107,
     108,
     109,
@@ -1011,16 +970,9 @@
     233,
     245,
     246,
-    248,
-    249,
-    250,
-    251,
-    252,
-    253,
     313,
     314,
-    315,
-    381
+    315
    ]
   },
   {
@@ -1087,7 +1039,64 @@
   {
    "id": "block:03",
    "kind": "block",
-   "name": "block:03 envelope [20.25, 5.25] pu",
+   "name": "block:03 envelope [12.12, 11.5] pu",
+   "parent": "blocks",
+   "children": [],
+   "sectors": [
+    12,
+    13,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    41,
+    42,
+    43,
+    44,
+    46,
+    47,
+    51,
+    61,
+    62,
+    63,
+    64,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    105,
+    106,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    381
+   ]
+  },
+  {
+   "id": "block:04",
+   "kind": "block",
+   "name": "block:04 envelope [20.25, 5.25] pu",
    "parent": "blocks",
    "children": [],
    "sectors": [
@@ -1095,9 +1104,9 @@
    ]
   },
   {
-   "id": "block:04",
+   "id": "block:05",
    "kind": "block",
-   "name": "block:04 envelope [5.25, 20.25] pu",
+   "name": "block:05 envelope [5.25, 20.25] pu",
    "parent": "blocks",
    "children": [],
    "sectors": [
@@ -1105,9 +1114,9 @@
    ]
   },
   {
-   "id": "block:05",
+   "id": "block:06",
    "kind": "block",
-   "name": "block:05 envelope [16.0, 6.5] pu",
+   "name": "block:06 envelope [16.0, 6.5] pu",
    "parent": "blocks",
    "children": [],
    "sectors": [
@@ -1170,9 +1179,9 @@
    ]
   },
   {
-   "id": "block:06",
+   "id": "block:07",
    "kind": "block",
-   "name": "block:06 envelope [7.5, 12.75] pu",
+   "name": "block:07 envelope [7.5, 12.75] pu",
    "parent": "blocks",
    "children": [],
    "sectors": [
@@ -1194,9 +1203,9 @@
    ]
   },
   {
-   "id": "block:07",
+   "id": "block:08",
    "kind": "block",
-   "name": "block:07 envelope [9.0, 8.0] pu",
+   "name": "block:08 envelope [9.0, 8.0] pu",
    "parent": "blocks",
    "children": [],
    "sectors": [
@@ -1204,9 +1213,9 @@
    ]
   },
   {
-   "id": "block:08",
+   "id": "block:09",
    "kind": "block",
-   "name": "block:08 envelope [6.5, 10.06] pu",
+   "name": "block:09 envelope [6.5, 10.06] pu",
    "parent": "blocks",
    "children": [],
    "sectors": [
@@ -1276,9 +1285,9 @@
    ]
   },
   {
-   "id": "block:09",
+   "id": "block:10",
    "kind": "block",
-   "name": "block:09 envelope [6.03, 5.0] pu",
+   "name": "block:10 envelope [6.03, 5.0] pu",
    "parent": "blocks",
    "children": [],
    "sectors": [
@@ -1321,24 +1330,14 @@
    ]
   },
   {
-   "id": "block:10",
+   "id": "block:11",
    "kind": "block",
-   "name": "block:10 envelope [4.0, 6.0] pu",
+   "name": "block:11 envelope [4.0, 6.0] pu",
    "parent": "blocks",
    "children": [],
    "sectors": [
     173,
     282
-   ]
-  },
-  {
-   "id": "block:11",
-   "kind": "block",
-   "name": "block:11 envelope [4.0, 4.0] pu",
-   "parent": "blocks",
-   "children": [],
-   "sectors": [
-    351
    ]
   }
  ]

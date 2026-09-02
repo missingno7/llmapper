@@ -1468,3 +1468,60 @@ current [8, 16] holds 45.3% of them; on `all_parallax`, 1362 boundaries over
 *Recommended default:* the gate calls the reader and uses the quartile
 envelope of the network it names — [8, 18] for the street definition. E3M1's
 own 24–26 stays recorded as the precedent's value and outside both.
+
+## 33. The four reader corrections landed, and one of them moved a census (P15, 2026-09-03)
+
+Items 28c, 30b, 30e and 30g of decisions section 30, all reader-side.
+
+**33a. 28c: a raised outdoor mass that carries a sector type is now
+`mechanism_at_rest`, not `end_wall`.** On E3M1 that is sectors 172 and 174.
+Three consequences, each measured: the end-wall row's blocking clause now
+holds on 3 of 3 road-side and 8 of 9 pavement-side records (the one remaining
+exception is wall 1529, facing the raised ledge s237, which is not a
+mechanism); layer 3 describes 66 records rather than 74, because a street
+meeting a mechanism has no row — correctly, since what it meets depends on the
+state; and the four boundary records that faced those masses are now `gate`,
+which section 14 already names in the family.
+
+**And it moved the 28b census by nearly half.** Before 28c the same census
+found 285 `road|end_wall` records over 21 maps; after, 149 over 17. The 136
+that left were band records against masses that move. Every one of the two
+tiles that wore `facade stone`'s 400 left with them, so 400 is now attested on
+**none** of the 191 end-wall band records in the campaign.
+*Recommended default:* accept the narrower kind; the reports keep both figures
+so the conditioning is visible. Node `kind:end_wall`, E3M1 layer 3.
+
+**33b. 30b: a block is cut at its street frontages.** A mass is walked from
+each frontage at once, breadth-first through the mass itself, and a block is
+the part one street serves. E3M1's 123-sector mass becomes 74 + 49, fronting
+`island:001` and the unnamed ground s65; blocks go 23 to 24. Sector 28 is
+reached by both walks in the same step and is emitted as a `candidate` rather
+than tie-broken — which building a shared back room belongs to is not a
+reader's to decide quietly.
+*Recommended default:* as built. Node `blocks`, E3M1 layer 7.
+
+**33c. 30e: the stack marker offset is a convention, 38 of 38.** Every
+campaign stack puts its UPPER marker 256 above the floor it links and its
+lower marker at exactly 0 — all 38, no exception. `curriculum.stack_faults`
+no longer calls it a fault; a marker at any OTHER offset still is, and the
+manual's own negative example (`STACKS3DSPACES-BADROR`) is still caught by the
+concavity clause. E3M1's three stacks now report no faults.
+*Recommended default:* as built. `UPPER_MARKER_OFFSET = -256` carries the
+count in its comment. Node `kind:room_over_room`, E3M1 layer 5.
+
+**33d. 30g: the prop reader is in layer 8, and the refusal rate held.** Two
+rules were added, both measured: one campaign-named, VISIBLE prop
+(`furniture.FURNITURE` for the name, `blood_types.sprite_visibility` to drop
+the quarter of sprites that are wiring) holding 60% of at least three; and
+holding an authored bundle (`anchors.find_bundles`). On E3M1 the prop rule
+fires once — space:023, 12 of 12 named props are planks — and the bundle rule
+never, because its six bundles sit in singleton spaces the tree does not group.
+Named 6 to 10, refused 26 to 25, candidates 4 to 1.
+
+Most of that rise is a separate fix: **several rules firing with the SAME name
+is not an ambiguity.** Three stepped runs in one space still say
+`stepped_run`, and counting agreement as doubt had put four spaces in the
+queue for nothing.
+*Recommended default:* as built. The refusal rate is 25 of 36 (69%), which is
+the honest answer for a map whose interiors are furnished with tiles nobody
+has named. Node `level`, E3M1 layer 8.

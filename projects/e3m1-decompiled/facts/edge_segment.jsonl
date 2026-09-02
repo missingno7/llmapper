@@ -34,7 +34,7 @@
 {"_from": ["wall:823", "wall:824"], "_layer": 6, "_reader": "bloodmap.read_edges", "id": "edge:033", "kind": "building_back", "length": 2, "records": ["wall:823", "wall:824"]}
 {"_from": ["wall:938", "wall:939"], "_layer": 6, "_reader": "bloodmap.read_edges", "id": "edge:034", "kind": "building_back", "length": 2, "records": ["wall:938", "wall:939"]}
 {"_from": ["wall:940"], "_layer": 6, "_reader": "bloodmap.read_edges", "id": "edge:035", "kind": "interior_doorway", "length": 1, "records": ["wall:940"]}
-{"_from": ["wall:941", "wall:942", "wall:943", "wall:944"], "_layer": 6, "_reader": "bloodmap.read_edges", "id": "edge:036", "kind": "end_wall", "length": 4, "records": ["wall:941", "wall:942", "wall:943", "wall:944"]}
+{"_from": ["wall:941", "wall:942", "wall:943", "wall:944"], "_layer": 6, "_reader": "bloodmap.read_edges", "id": "edge:036", "kind": "gate", "length": 4, "records": ["wall:941", "wall:942", "wall:943", "wall:944"]}
 {"_from": ["wall:945"], "_layer": 6, "_reader": "bloodmap.read_edges", "id": "edge:037", "kind": "interior_doorway", "length": 1, "records": ["wall:945"]}
 {"_from": ["wall:946"], "_layer": 6, "_reader": "bloodmap.read_edges", "id": "edge:038", "kind": "building_back", "length": 1, "records": ["wall:946"]}
 {"_from": ["wall:947"], "_layer": 6, "_reader": "bloodmap.read_edges", "id": "edge:039", "kind": "end_wall", "length": 1, "records": ["wall:947"]}
