@@ -1406,3 +1406,65 @@ the one to start with.
 manhole, the trunk, the junction and the stair back up. Each carries
 `built: false` with its reason, so an absent leg is a row rather than a
 silence, and the other twelve are checked on the built map and all reachable.
+
+## 37. The three censuses landed: two of the writer's clauses are the campaign's exception (P15, 2026-09-03)
+
+Numbers from `projects/campaign-census/facts/`, full table in
+`reports/campaign-census-2026-09-03.md`. Node ids are in E3M1's packs.
+
+**37a. The reader's `end_wall` kind is broader than "a termination".** It
+means "an outdoor mass no body can step onto", which over 43 maps finds 285
+`road|end_wall` records whose step quartiles are 32 768 and 263 168 — so a
+quarter of these masses stand under two player heights and are ledges, not
+walls. The census numbers below are conditioned on that kind.
+*Recommended default:* keep the criterion (it needs no tile and it recovered
+E3M1's three exactly) and add a REPORTED split at two player heights rather
+than a second kind, so one census serves both readings. Node `kind:end_wall`,
+E3M1 layer 3.
+
+**37b. `TILE_CLASSES["facade stone"] = 400` is worn by 2 of 285 road-side
+end-wall records — 0.7%.** The class has 27 members on that side; its
+commonest is 449 (75, 26%), then 2490 (56), 91 (34), 28 (19). E3M1's 414 is 3.
+*Recommended default:* keep 400 as Gravesend's stated CHOICE, and record the
+campaign's distribution as the envelope rather than promoting 449 — a modal
+tile over 21 maps is not a law, and section 22 says a choice needs only to lie
+inside an attested class. Writer change, P14b's. Node `kind:end_wall`.
+
+**37c. The `road|end_wall` row's `cstat=1` holds on 5.6% of the campaign.**
+269 of 285 road-side band records do NOT block; 41 of 49 pavement-side do not.
+It is not a height rule: blocking records sit at a median step of 88 064 and
+non-blocking ones at 114 688, and the non-blocking set spans both the lowest
+and the highest masses. E3M1's three blocking records are the exception the
+row was written from.
+*Recommended default:* drop `cstat=1` from the row and let gravity be the
+gate, which is what 94% of the campaign does; keep it as a per-project choice
+where a mass is low enough to walk onto. Writer change, P14b's. Node
+`row:road|end_wall`, E3M1 layer 3.
+
+**37d. 28d needs no change, and my own earlier reading of it was wrong.**
+Report 28d said E3M1 "restarts its materials at corners" from its 50.6% on
+bend solid-solid. The campaign is **67.9%** over 43 maps; collinear
+solid-solid is 93.7% and reflex solid-solid 19.1%. Blood does carry a run
+through an ordinary bend and stops at a reflex corner, which is exactly
+`RUN_BREAK_DEGREES = 100`. E3M1 is the outlier, not the writer.
+
+**37e. The eleven proposed indoor rows are one law, not eleven.** 49 821
+`interior|interior` records fall in 25 classes, mirrored in pairs; the `draws`
+column is `wallVisible`, the engine's own law, so the pairs say one thing:
+*the band is on the side that stands above* — the kerb's law, indoors. The
+evidence about authorship is the residual: 132 `level|level` records draw
+where the geometry exposes nothing, and every one is overridden by hand (126
+masked, 6 one-way).
+*Recommended default:* one indoor row keyed on the height relation with a
+tile class per context, plus a `masked` row for the 132. Proposed only; P14b
+consumes it in slice 5. Node `level`, E3M1 layer 3.
+
+**37f. The shade-step envelope depends on the network, and now says so.**
+`read_light.shade_step_envelope(network=...)`: on
+`largest_outdoor_component` — the definition section 30 names — 362
+boundaries over 21 maps, median **15**, quartiles **[8, 18]**, and the gate's
+current [8, 16] holds 45.3% of them; on `all_parallax`, 1362 boundaries over
+29 maps, median 12, quartiles [8, 16], 56.2% inside.
+*Recommended default:* the gate calls the reader and uses the quartile
+envelope of the network it names — [8, 18] for the street definition. E3M1's
+own 24–26 stays recorded as the precedent's value and outside both.
