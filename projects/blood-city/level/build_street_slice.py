@@ -44,9 +44,13 @@ from bloodmap.planar_layout import PlanarLayout                  # noqa: E402
 from bloodmap.surface import (                                   # noqa: E402
     Insert, Opening, RecordOwner, Surface)
 from bloodmap.texture_frame import WallRunFrame                  # noqa: E402
+from bloodmap.player_space import PLAYER_PROFILES                 # noqa: E402
+from bloodmap.street import end_wall, termination_faults          # noqa: E402
 from resolution import (                                         # noqa: E402
-    GRADE, SHADE_LIT, SHADE_SHADOW, STREET_SKY, SUN_BEARING,
+    GRADE, SHADE_LIT, SHADE_SHADOW, SKY_TILE, STREET_SKY, SUN_BEARING,
     SUN_BEARING_DEGREES, SUN_SHADOW_PER_HEIGHT, WIDTH_UNITS)
+
+STANDING = PLAYER_PROFILES["blood"].standing_height
 
 #: E3M1, measured: the road wears 352 and the pavement 4; the kerb band on the
 #: road-side record wears 6; the island stands 2048 above the road.
@@ -164,9 +168,14 @@ def build():
             if not poly:
                 continue
             name = f"{surface_id}:{half_name}"
+            #: THE SKY IS A MATERIAL, not the floor tile copied upward. The
+            #: first cut of this slice gave every parallaxed ceiling its own
+            #: floor's tile, and `parallax-wears-a-sky-tile` reported all five
+            #: as errors -- the law was there, the slice had simply never been
+            #: run through the gates the city build runs.
             layout.add_region(
                 name, poly, floor_z=floor_z, ceiling_z=floor_z - STREET_SKY,
-                floor_picnum=floor_tile, ceiling_picnum=floor_tile,
+                floor_picnum=floor_tile, ceiling_picnum=SKY_TILE,
                 wall_picnum=wall_tile, floor_shade=shade, wall_shade=shade,
                 parallax_ceiling=True, role="street")
             halves.append((half_name, name, poly))

@@ -733,3 +733,34 @@ steps include harbour walls, rubble, ledges and rooftops.
 > The E3M1 numbers stay as the constructor's defaults (tile 6, rise 2048), not
 > as a corpus-wide law. Ship a miscalibrated gate and it joins the ones that
 > passed an 8x map.
+
+## 19. One sun means north-south streets are never cross-shadowed (2026-09-02)
+
+Not a defect, but a consequence of a decision, and it should be decided
+knowingly rather than discovered later.
+
+`SUN_BEARING` is 478 -- 84 degrees, very nearly due +y -- measured from E3M1's
+own oblique shade edges. A shadow therefore drifts about 7100 units in x for
+every 67500 in y, so on a **north-south** street it runs ALONG the road and
+reaches the far pavement only after roughly 125,000 units of run. No street in
+Gravesend is a fifth of that. On an **east-west** street the same sun cuts
+straight across the road and both its pavements.
+
+Gravesend's graph is mostly north-south (the avenue, the west street, the two
+spurs) with three east-west runs (Theatre Row, market street, the quay). So
+with one sun, the avenue and the west street get shadow edges running along
+them -- long thin lit and shadowed strips -- and only the three east-west runs
+get the crossing shadow that reads as a building's shade thrown over a street.
+
+E3M1 has it both ways for the same reason: s8 is 7456 x 21504 north-south and
+s45 is 18048 x 4096 east-west, and its oblique shade edges are the ones its
+east-west road carries.
+
+> **Recommended default: keep the one sun and accept the asymmetry.** It is
+> what E3M1 does and it is physically what a low sun does to a grid city --
+> one axis of streets in shade, the other striped along its length. Two
+> alternatives exist if the look disappoints: turn the bearing 45 degrees so
+> both axes are cut obliquely (cheap, one constant, but no longer E3M1's
+> measured angle), or rotate the city's grid against the sun instead (dearer,
+> and it changes every solved coordinate). Neither is worth doing before the
+> whole graph compiles and the effect can actually be looked at.

@@ -724,6 +724,14 @@ SKIP: dict[str, str] = {
         "both sides, which is a pane set flush in stonework",
     "bloodmap.surface.insert_faults":
         "a reader over declared inserts; a reading is used, not read back",
+    "bloodmap.street.end_wall":
+        "returns the raised sector and the faces a road's end presents, for "
+        "a caller to emit into the tree; the slice-2 street network that "
+        "would build them does not compile yet, so there is no built "
+        "geometry to read back -- named here so the gap stays countable",
+    "bloodmap.street.termination_faults":
+        "a reader over declared terminations; a reading is used, not read "
+        "back",
     # --- aperture ----------------------------------------------------------
     "bloodmap.aperture.facade_of":
         "reads a facade plane off an existing map; a reader",

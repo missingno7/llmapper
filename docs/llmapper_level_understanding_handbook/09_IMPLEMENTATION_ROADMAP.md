@@ -3459,6 +3459,103 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### P14b slice 1 completed; slice 2 NOT landed, 2026-09-02
+
+**(a) The sky.** Slice 1 as committed gave every parallaxed ceiling its own
+floor's tile -- road ceilings wearing 352, pavement ceilings wearing 4. Running
+it through the gates the city build runs reported **10 errors**:
+`parallax-wears-a-sky-tile` on all five sectors and
+`tile-sits-in-an-attested-slot` on all five. The law was already there; the
+slice had simply never been asked. Fixed to `SKY_TILE` 3491: **10 errors to
+0**, and the slice now passes every rule the city build runs.
+
+**(b) Terminations.** `bloodmap/street.py` gains `end_wall` and
+`termination_faults`, measured off E3M1's three (s0, s339, s343):
+
+```text
+id     walls  floor pic  ceiling    above the road   under the sky line
+s0       9      379      3491 sky   5.80 bodies      5.80
+s339    10      379      3491 sky   3.86             7.73
+s343     8      379      3491 sky   5.80 / 9.60      5.80
+```
+
+Faces to the road are two-sided, **blocking** (cstat 1), `y_repeat` 8, in the
+district's own facade stone -- 400 on s0, 401 on s339, 108 on s343. Where a
+face meets a pedestrian path instead it is NOT blocking (s339's walls to
+s10/s11, picnum 181, cstat 0): you may walk between the houses, you may not
+walk up the end of the street.
+
+And **this is where E3M1's 379 lives**: it is the top of an end wall, not a
+plaza surface. The correction from P14's first run stands and now has a
+positive home.
+
+#### The four unproven items
+
+**1. A shadow cutting both islands of a road: PROVED, and it needed a road
+running the other way.** With one sun at `SUN_BEARING` 478 -- 84 degrees, very
+nearly due +y -- a **north-south road is cut lengthwise and only an east-west
+road is cut across**. On a north-south street the shadow drifts 7100 in x per
+67500 in y, so it reaches the far pavement after about 125,000 units of run,
+longer than any street in this city. That is a property of having one sun, not
+a defect; E3M1 has both kinds (s8 is 7456 x 21504, s45 is 18048 x 4096) and
+its oblique shade edges are the ones its east-west roads carry.
+
+Built as a crossing pair: 12 pieces, 10 kerbs, 1 junction, 1 shadow edge, 6
+lamps; the shadow cut `ew:0` and the islands on **both** sides of it. It
+compiles. **The unpaired-portal refusal did not reappear**, because the
+emitter cuts everything in one pass by construction -- which was the fix
+slice 1 predicted.
+
+**4. Junctions: PROVED in the same build.** Where two roads cross, the overlap
+becomes a junction square and each road gives up its share, so the two never
+both own it.
+
+**2 and 3 are NOT done.** The shopfront recess is still declared rather than
+carved, and the sightline gate still reads geometry rather than visibility.
+They were third and fourth in the queue behind the two that block the graph.
+
+#### Slice 2 did not land, and exactly why
+
+`projects/blood-city/level/street_build.py` is the general emitter and
+`build_streets_slice2.py` drives it over the whole graph. It gets as far as
+**40 roads, 9 islands, 118 pieces, 75 kerbs, 16 junctions, 9 shadow edges, 30
+lamps, 16 end walls** and then `PlanarLayout.compile` refuses it. Four
+refusals, each a real defect and each fixed, and the fifth is where this run
+stopped:
+
+1. **Unpaired portals at every junction.** Pairing was keyed on whether two
+   surfaces' original RECTANGLES touched, which stops being the question the
+   moment a junction is subtracted out of a road. Replaced with pairing by
+   coincident wall segments, which is true whatever cut produced the pieces.
+2. **Slivers.** An oblique shadow clipping the corner off a junction left a
+   triangle 43 units across, and the compiler then found coincident segments
+   nobody had declared. Fixed by the rule that **a cut which would leave a
+   scrap does not cut** -- `overlay.MIN_PIECE_AREA`, the same figure
+   `clip_to_rect` already refuses on -- and the grazed surface takes the shade
+   of its larger half rather than keeping the lit default by accident.
+3. **Duplicate connections**: the explicit `cut:` joins became redundant once
+   pairing was general.
+4. **Float reconstruction of an oblique shared edge.** A cut gives both pieces
+   the *same* crossing points, so the shared edge is an exact endpoint match;
+   projecting onto a float unit vector lost the last unit and the compiler
+   reported nine pairs as unpaired. Now exact integers, with the three cases
+   separated.
+5. **STILL OPEN:** `zero_exit_gameplay_sector` on three junction squares --
+   "sector has no walkable-at-rest reciprocal portal". Every piece has
+   connections and none is isolated, so the junction's neighbours are being
+   found but not as *walkable* ones. That is the next thing to read, and it is
+   where this run stopped rather than leave a half-rebuilt map.
+
+`blood-city-current.MAP` is untouched, as it has been since slice 1.
+
+#### What slice 3 must answer first
+
+Not the masses. **The junction's walkable-reciprocal refusal**, because it is
+the last thing between the emitter and a compilable whole graph, and every
+later slice builds on that map. After it: whether the kerb and sightline gates
+hold over 75 declared kerbs rather than 3, and whether 118 pieces stay inside
+the frame-invariance property that 5 pieces did.
+
 ### What this run did not do
 
 Most of the assignment, and the reasons are worth stating rather than

@@ -246,3 +246,108 @@ def runs_from_plan(nodes: dict[str, Sequence[float]],
             b=(nodes[b][0] * unit, nodes[b][1] * unit),
             width=int(widths[kind]), district=str(district)))
     return out
+
+
+# ---------------------------------------------------------------------------
+# where a road stops
+# ---------------------------------------------------------------------------
+
+#: **A road does not end at a building, and it does not end at a kerb.** E3M1
+#: ends its streets against a raised mass whose floor IS the top of the wall
+#: -- you see a stone face across the road and a strip of sky above it -- and
+#: that mass is a sector, not a facade.
+#:
+#: Measured on its three (s0, s339, s343):
+#:
+#: ==== ===== ========= =========== ================= ==================
+#: id   walls floor pic ceiling     above the road    under the sky line
+#: ==== ===== ========= =========== ================= ==================
+#: s0     9      379    3491 sky    5.80 bodies       5.80
+#: s339  10      379    3491 sky    3.86              7.73
+#: s343   8      379    3491 sky    5.80 / 9.60       5.80
+#: ==== ===== ========= =========== ================= ==================
+#:
+#: Its faces to the road and to the pavements are two-sided, **blocking**
+#: (cstat 1), at `y_repeat` 8, in the district's own facade stone -- 400 on
+#: s0, 401 on s339, 108 on s343. Where a face meets a pedestrian path instead
+#: of a road it is NOT blocking (s339's walls to s10/s11, picnum 181,
+#: cstat 0): you may walk between the houses, you may not walk up the end of
+#: the street.
+#:
+#: The floor tile is 379, which is also the answer to where E3M1's 379 lives:
+#: it is the top of an end wall, not a plaza surface. That correction stands.
+END_WALL_FLOOR_TILE = 379
+END_WALL_CSTAT_BLOCKING = 1
+END_WALL_Y_REPEAT = 8
+#: E3M1's range, in player heights, as a band rather than a number: three of
+#: three sit inside it and a termination outside it is not this dialect.
+END_WALL_RISE_BODIES = (3.86, 5.80)
+END_WALL_SKY_BODIES = (5.80, 7.73)
+
+
+def end_wall(outline, *, road_floor_z: int, standing_height: int,
+             facade_tile: int, rise_bodies: float = 5.80,
+             sky_bodies: float = 5.80, sky_tile: int = 3491,
+             name: str = "end_wall") -> dict:
+    """A road's termination, in E3M1's dialect.
+
+    Returns the raised sector to emit and the faces it presents. `rise_bodies`
+    is how far its floor stands above the road and `sky_bodies` how far the
+    sky line stands above that floor, both in player heights, because that is
+    how the three originals actually vary -- 3.86 to 5.80 up, 5.80 to 7.73
+    of sky.
+
+    The faces are **inserts on the ground plane, not part of any facade run**:
+    an end wall is a thing standing at the end of a street, and giving its
+    faces to the street's run would make the road's material turn a corner
+    and climb it.
+    """
+    rise = int(round(float(rise_bodies) * int(standing_height)))
+    sky = int(round(float(sky_bodies) * int(standing_height)))
+    floor_z = int(road_floor_z) - rise
+    return {
+        "name": str(name),
+        "outline": [tuple(int(v) for v in point) for point in outline],
+        #: Blood's z grows downward: standing up is a smaller z.
+        "floor_z": floor_z,
+        "ceiling_z": floor_z - sky,
+        "floor_picnum": END_WALL_FLOOR_TILE,
+        "ceiling_picnum": int(sky_tile),
+        "parallax_ceiling": True,
+        "face_picnum": int(facade_tile),
+        "face_cstat": END_WALL_CSTAT_BLOCKING,
+        "face_y_repeat": END_WALL_Y_REPEAT,
+        "rise": rise,
+        "sky": sky,
+        "source": ("E3M1 s0/s339/s343: floor 379, ceiling 3491 parallax, "
+                   "blocking two-sided faces in the district's facade stone "
+                   "at y_repeat 8"),
+    }
+
+
+def termination_faults(disk, declared, *, standing_height: int) -> list[str]:
+    """Every road end is a declared termination, and reads like one.
+
+    The gate the model needs and Gravesend fails: a road that simply stops
+    against a building face or a kerb has no end, and a body walking it sees
+    the level run out.
+    """
+    out = []
+    for record in declared:
+        rise = int(record.get("rise", 0)) / float(standing_height)
+        sky = int(record.get("sky", 0)) / float(standing_height)
+        low, high = END_WALL_RISE_BODIES
+        if not (low - 0.5 <= rise <= high + 0.5):
+            out.append(f"{record['name']}: stands {rise:.2f} bodies above the "
+                       f"road; E3M1's three are {low}-{high}")
+        low, high = END_WALL_SKY_BODIES
+        if not (low - 0.5 <= sky <= high + 0.5):
+            out.append(f"{record['name']}: {sky:.2f} bodies of sky above it; "
+                       f"E3M1's three are {low}-{high}")
+        if int(record.get("floor_picnum", 0)) != END_WALL_FLOOR_TILE:
+            out.append(f"{record['name']}: its top wears "
+                       f"{record.get('floor_picnum')}, not {END_WALL_FLOOR_TILE}")
+        if not int(record.get("face_cstat", 0)) & END_WALL_CSTAT_BLOCKING:
+            out.append(f"{record['name']}: its faces do not block -- you may "
+                       f"not walk up the end of a street")
+    return out

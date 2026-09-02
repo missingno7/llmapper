@@ -833,6 +833,14 @@ SKIP: dict[str, str] = {
     "bloodmap.surface.insert_faults":
         "a check over declared inserts, not a constructor",
     # --- bloodmap.street: a street is a district-scale thing -----------------
+    "bloodmap.street.end_wall":
+        "where a road STOPS, in E3M1's dialect (s0/s339/s343): a raised mass "
+        "whose floor is the top of the wall. The zoo is a gallery of bays "
+        "off a spine and has no road to end; the exhibit is Gravesend's own "
+        "street network, which is being rebuilt slice by slice",
+    "bloodmap.street.termination_faults":
+        "a check over declared terminations, not a constructor",
+
     # The zoo is a gallery of bays off a spine. It has no street runs and no
     # district seams, so there is nothing here for a carriageway to be laid
     # ON: the exhibit for street anatomy is Gravesend's own west street, in

@@ -207,3 +207,84 @@ class TheFrameSurvivesTheCuts(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ARoadHasAnEnd(unittest.TestCase):
+    """E3M1's terminations, measured on s0, s339 and s343.
+
+    A road does not end at a building and it does not end at a kerb. E3M1
+    ends its streets against a raised mass whose floor IS the top of the wall:
+    a stone face across the road with a strip of sky above it.
+    """
+
+    def test_the_dialect_is_e3m1s(self):
+        from bloodmap.street import (
+            END_WALL_CSTAT_BLOCKING, END_WALL_FLOOR_TILE, END_WALL_Y_REPEAT,
+            end_wall)
+
+        found = end_wall([(0, 0), (1024, 0), (1024, 4096), (0, 4096)],
+                         road_floor_z=10240, standing_height=16960,
+                         facade_tile=400)
+        self.assertEqual(found["floor_picnum"], END_WALL_FLOOR_TILE)
+        self.assertEqual(found["ceiling_picnum"], 3491)
+        self.assertTrue(found["parallax_ceiling"])
+        self.assertEqual(found["face_cstat"], END_WALL_CSTAT_BLOCKING)
+        self.assertEqual(found["face_y_repeat"], END_WALL_Y_REPEAT)
+        self.assertEqual(found["face_picnum"], 400)
+
+    def test_e3m1s_three_terminations_read_as_the_dialect(self):
+        # ABSOLUTE, off the map: floor 379, sky ceiling 3491 parallaxed, and
+        # blocking faces. Read rather than trusted.
+        from bloodmap.format import read_map
+        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.street import END_WALL_FLOOR_TILE
+
+        found = [e for e in list_corpus_maps(population="blood-campaign")
+                 if e.path.stem.upper() == "E3M1"]
+        if not found:
+            self.skipTest("E3M1 is not in the corpus")
+        disk = read_map(found[0].path)
+        for sector_id in (0, 339, 343):
+            fields = disk.sectors[sector_id].fields
+            self.assertEqual(int(fields["floor_picnum"]),
+                             END_WALL_FLOOR_TILE, sector_id)
+            self.assertEqual(int(fields["ceiling_picnum"]), 3491, sector_id)
+            self.assertTrue(int(fields["ceiling_stat"]) & 1, sector_id)
+
+    def test_a_termination_outside_e3m1s_band_is_a_fault(self):
+        # It can fail: a wall a body could step over is not the end of a
+        # street. E3M1's three stand 3.86 to 5.80 player heights up.
+        from bloodmap.street import end_wall, termination_faults
+
+        low = end_wall([(0, 0), (1024, 0), (1024, 4096), (0, 4096)],
+                       road_floor_z=10240, standing_height=16960,
+                       facade_tile=400, rise_bodies=0.5)
+        found = termination_faults(None, [low], standing_height=16960)
+        self.assertTrue(found)
+        self.assertIn("above the road", found[0])
+
+    def test_a_termination_you_could_walk_up_is_a_fault(self):
+        from bloodmap.street import end_wall, termination_faults
+
+        found = end_wall([(0, 0), (1024, 0), (1024, 4096), (0, 4096)],
+                         road_floor_z=10240, standing_height=16960,
+                         facade_tile=400)
+        found["face_cstat"] = 0
+        faults = termination_faults(None, [found], standing_height=16960)
+        self.assertTrue(any("may not walk up" in line for line in faults))
+
+
+class TheSkyIsAMaterial(unittest.TestCase):
+    def test_the_slice_wears_a_sky_tile_on_every_parallax_ceiling(self):
+        # The defect slice 1 shipped: every parallaxed ceiling wore its own
+        # floor's tile, and `parallax-wears-a-sky-tile` reported all five.
+        # The law was there; the slice had never been run through the gates
+        # the city build runs.
+        from bloodmap import rules_blood                       # noqa: F401
+        from bloodmap.rules import RULES
+
+        disk = _map(SLICE)
+        for rule_id in ("parallax-wears-a-sky-tile",
+                        "tile-sits-in-an-attested-slot"):
+            finding = RULES[rule_id].check(disk)
+            self.assertEqual(finding.violations, (), rule_id)
