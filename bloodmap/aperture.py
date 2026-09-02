@@ -1011,6 +1011,34 @@ def frame_z_doors(layout: Any, *, art_sizes: Mapping[int, tuple[int, int]],
 MASKWALL_CSTAT = 1 | 16 | 64
 
 
+#: How deep a pocket may be and still be a HOLDER rather than a room. E6M1's
+#: display recesses are 512 deep against a 25600-long shop, and the campaign
+#: census counts a glass wall as held when its sector has six walls or fewer
+#: and a short side within a recess depth.
+HOLDER_DEPTH = 1024
+HOLDER_WALLS = 6
+
+
+def _either_is_a_holder(layout: Any, region_a: str, region_b: str) -> bool:
+    """Does one side of this partition exist to hold the panel?
+
+    A holder is a shallow pocket: few walls, and a short side no deeper than
+    a reveal. A room is not a holder, and a panel set into a room's own wall
+    has to share that wall's record with whatever surface owns it.
+    """
+    for region_id in (region_a, region_b):
+        region = getattr(layout, "regions", {}).get(region_id)
+        outline = getattr(region, "outline", None) if region is not None else None
+        if not outline:
+            continue
+        xs = [int(point[0]) for point in outline]
+        ys = [int(point[1]) for point in outline]
+        short = min(max(xs) - min(xs), max(ys) - min(ys))
+        if len(outline) <= HOLDER_WALLS and 0 < short <= HOLDER_DEPTH:
+            return True
+    return False
+
+
 def maskwall_panel(
     layout: Any,
     panel_id: str,
@@ -1022,6 +1050,7 @@ def maskwall_panel(
     picnum: int,
     shade: int | None = None,
     blocking: bool = True,
+    require_holder: bool = False,
 ) -> str:
     """A grille, grate or grid set into an opening between two rooms.
 
@@ -1038,8 +1067,26 @@ def maskwall_panel(
     the pattern zoo's sewer had its grate lettered as a gap rather than
     built. `blocking` off makes a grille you can walk through, which is what
     a decorative screen is.
+
+    **This writes `over_picnum` and cstat and nothing else**, so it inherits
+    the host record's scale and phase -- which is lawful exactly when the host
+    is a HOLDER record, one the panel's own construct owns, and unlawful when
+    it is a facade run's record, because then the grille is drawn at the
+    facade's scale and neither material is right (`AlignWalls`,
+    xmapedit/src_blood/xmpmaped.cpp:3024-3050: a record's bands and its masked
+    middle share `x_repeat`). `require_holder` makes that a refusal rather
+    than a convention, at the only moment it can be checked here: this runs
+    before compile, so there are no records to claim yet, and what the source
+    CAN say is whether either side of the partition is a holder -- a pocket
+    shallow enough to exist for the panel rather than a room the panel is
+    borrowing a wall from.
     """
     cstat = MASKWALL_CSTAT if blocking else (16 | 64)
+    if require_holder and not _either_is_a_holder(layout, region_a, region_b):
+        raise ApertureError(
+            f"{panel_id}: neither {region_a!r} nor {region_b!r} is a holder, "
+            f"so this panel would inherit a surface run's scale and phase "
+            f"(one record, one frame -- see bloodmap.surface)")
     layout.add_partition(panel_id, region_a, region_b,
                          role="masked_partition", a1=tuple(a1), a2=tuple(a2))
     #: The visible surface lives on the OVERLAY of both faces, which nothing

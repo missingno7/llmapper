@@ -615,7 +615,8 @@ class CityTreeReadBack(unittest.TestCase):
 #: A module missing here is a module the rule does not bind -- the failure
 #: mode the zoo's own COVERED_MODULES comment records.
 READBACK_MODULES = ("bloodmap.mechanism", "bloodmap.doors", "bloodmap.glass",
-                    "bloodmap.aperture", "bloodmap.street")
+                    "bloodmap.aperture", "bloodmap.street",
+                    "bloodmap.surface")
 
 #: constructor -> the test method in this file that builds it and reads it
 #: back. Named rather than discovered, so deleting the test fails the gate
@@ -721,6 +722,8 @@ SKIP: dict[str, str] = {
     "bloodmap.glass.panes_without_a_recess":
         "the same reading at map scale: every glazed wall with a room on "
         "both sides, which is a pane set flush in stonework",
+    "bloodmap.surface.insert_faults":
+        "a reader over declared inserts; a reading is used, not read back",
     # --- aperture ----------------------------------------------------------
     "bloodmap.aperture.facade_of":
         "reads a facade plane off an existing map; a reader",

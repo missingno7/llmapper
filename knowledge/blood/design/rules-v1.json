@@ -169,6 +169,16 @@
    "statement": "a map draws its wall materials at the size the campaign draws them, within a factor of two",
    "source": "xmapedit/src_blood/xmpmaped.cpp:3036 AlignWalls"
   },
+  "no-record-carries-two-frames": {
+   "rule": "no-record-carries-two-frames",
+   "maps": 43,
+   "population": 231,
+   "violations": 1,
+   "rate": 0.00433,
+   "severity": "error",
+   "statement": "a masked insert may share a record with a surface run only while the two want nearly the same scale",
+   "source": "xmapedit/src_blood/xmpmaped.cpp:3024-3050 AlignWalls"
+  },
   "open-neighbours-share-a-sky": {
    "rule": "open-neighbours-share-a-sky",
    "maps": 43,

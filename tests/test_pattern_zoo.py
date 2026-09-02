@@ -45,7 +45,8 @@ except Exception:
 COVERED_MODULES = ("bloodmap.mechanism", "bloodmap.vocabulary",
                    "bloodmap.doors", "bloodmap.aperture",
                    "bloodmap.furniture", "bloodmap.owner_anchors",
-                   "bloodmap.glass", "bloodmap.street")
+                   "bloodmap.glass", "bloodmap.street",
+                   "bloodmap.surface")
 
 
 def public_constructors():

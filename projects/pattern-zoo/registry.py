@@ -829,6 +829,9 @@ SKIP: dict[str, str] = {
         "a room with a pane in its face; fixtured on E6M1 s4/s64/s52",
     "bloodmap.glass.panes_without_a_recess":
         "the map-level form of the same reading, over a finished map",
+    # --- bloodmap.surface: ownership objects, not geometry -----------------
+    "bloodmap.surface.insert_faults":
+        "a check over declared inserts, not a constructor",
     # --- bloodmap.street: a street is a district-scale thing -----------------
     # The zoo is a gallery of bays off a spine. It has no street runs and no
     # district seams, so there is nothing here for a carriageway to be laid

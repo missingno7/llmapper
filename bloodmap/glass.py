@@ -113,15 +113,33 @@ def attach_xwall(level: Any, wall_id: int, **values: int) -> None:
 def glaze(level: Any, spans: Iterable[Sequence[int]], *,
           tile: int = GLASS_TILE, cstat: int = GLASS_CSTAT,
           repeats: Sequence[int] = GLASS_REPEATS,
-          xwall: dict[str, int] | None = None) -> dict[str, Any]:
+          xwall: dict[str, int] | None = None,
+          owner: str | None = None, records: Any = None) -> dict[str, Any]:
     """Turn every two-sided wall inside one of `spans` into breakable glass.
 
     Both sides of the pair are glazed, which is what E6M1 does and what
     `trTriggerWall` expects when it clears the bits on `pWall2`.
+
+    **A pane only sets the scale on a record it owns.** `x_repeat` and
+    `y_repeat` are shared by a record's step bands and its masked middle
+    (`AlignWalls`, xmapedit/src_blood/xmpmaped.cpp:3024-3050), so writing them
+    on a facade-line record overwrites whatever the facade's surface frame
+    put there -- and in blood-city that is exactly what happened in both
+    directions: this function set 32 on 24 panes, `frame_map` then re-derived
+    the facade run over the same records, fifteen kept the pane's number and
+    nine got the facade's, decided by pass order.
+
+    Pass a :class:`~bloodmap.surface.RecordOwner` as `records` and an `owner`
+    name, and the scale is written only where this pane owns the record; where
+    it does not, the overlay and its cstat still go on -- those are the
+    insert's own fields and nothing else uses them -- and the record is
+    counted in `borrowed`. `aperture.maskwall_panel` has always worked that
+    way, which is why it was lawful on a holder record and unlawful anywhere
+    else.
     """
     spans = [tuple(int(v) for v in span) for span in spans]
     report = {"panes": 0, "spans": len(spans), "skipped_solid": 0,
-              "walls": []}
+              "walls": [], "borrowed": []}
     fields_of = _fields
     for index in range(len(level.walls)):
         fields = fields_of(level.walls[index])
@@ -137,10 +155,20 @@ def glaze(level: Any, spans: Iterable[Sequence[int]], *,
             #: inside the span is the shop's own pier and stays a pier.
             report["skipped_solid"] += 1
             continue
+        #: The overlay and its cstat are the insert's own fields: no surface
+        #: run reads `over_picnum`, so these are always safe to write.
         fields["over_picnum"] = int(tile)
         fields["cstat"] = int(fields["cstat"]) | int(cstat)
-        fields["x_repeat"], fields["y_repeat"] = (int(repeats[0]),
-                                                  int(repeats[1]))
+        name = owner or "glass"
+        if records is None or records.may_write(index, name):
+            if records is not None:
+                records.claim(index, name)
+            fields["x_repeat"], fields["y_repeat"] = (int(repeats[0]),
+                                                      int(repeats[1]))
+        else:
+            #: Somebody else owns the scale here. Say so rather than fight.
+            records.concede(index, name)
+            report["borrowed"].append(index)
         attach_xwall(level, index, **(xwall or GLASS_XWALL))
         report["panes"] += 1
         report["walls"].append(index)

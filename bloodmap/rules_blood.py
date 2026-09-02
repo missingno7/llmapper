@@ -1467,3 +1467,131 @@ register(Rule(
     scope="wall",
     check=_materials_are_drawn_at_campaign_size,
 ))
+
+
+# ---------------------------------------------------------------------------
+# one record, one frame
+# ---------------------------------------------------------------------------
+
+#: How far apart an insert's scale and its run's may be before the record is
+#: visibly serving two masters -- as a RATIO, because the quantity is a scale.
+#:
+#: Measured, and the measurement corrected the law this rule was written from.
+#: The brief's clause was "a wall record with a masked overlay whose picnum
+#: continues a surface run is a violation". **The campaign does that 34 times
+#: across 14 of its 43 maps**, so it is not a violation, it is a practice: a
+#: grille or a grate set into a wall whose material carries on past it, drawn
+#: at a scale near enough that one record can serve both.
+#:
+#: What the campaign does NOT do is let the two diverge. Its 34 disagreements
+#: run 1.11x to 2.33x, tightly packed, with exactly one outlier at 11.11x.
+#: So the threshold is the campaign's own ceiling and the rule says something
+#: falsifiable: two frames on one record are tolerable while they nearly
+#: agree, and past 2.4x one of the two materials is simply drawn wrong.
+FRAME_DISAGREEMENT = 2.4
+
+
+def _no_record_carries_two_frames(disk) -> Finding:
+    """An insert on a surface run whose scale disagrees with the run.
+
+    A Build wall record has one set of texture fields and its bands share them
+    with its masked middle (`AlignWalls`, xmapedit/src_blood/xmpmaped.cpp:
+    3024-3050), so a masked insert sitting on a record that also carries a
+    surface run is two materials competing for four fields. The competition is
+    only VISIBLE when the two want different numbers -- which is what this
+    measures -- because when they agree the record can serve both and there is
+    nothing to see.
+
+    Moving walls are excluded by construct, as everywhere else: their length
+    is not a fact about the world.
+    """
+    from .texture_frame import (
+        MOVING_SECTOR_TYPES, WALL_MASKED, join_continues, wall_length)
+
+    moving = set()
+    for sector in disk.sectors:
+        if int(sector.fields["type"]) not in MOVING_SECTOR_TYPES:
+            continue
+        start = int(sector.fields["wall_ptr"])
+        moving.update(range(start, start + int(sector.fields["wall_count"])))
+    previous = {}
+    for sector in disk.sectors:
+        start = int(sector.fields["wall_ptr"])
+        count = int(sector.fields["wall_count"])
+        for wall in range(start, start + count):
+            nxt = int(disk.walls[wall].fields["point2"])
+            if start <= nxt < start + count:
+                previous[nxt] = wall
+
+    def step(index):
+        length = wall_length(disk, index)
+        return (int(disk.walls[index].fields["x_repeat"]) * 128.0 / length
+                if length else None)
+
+    population = 0
+    out = []
+    for index, wall in enumerate(disk.walls):
+        fields = wall.fields
+        if index in moving:
+            continue
+        if not int(fields.get("over_picnum", 0)):
+            continue
+        if not int(fields["cstat"]) & WALL_MASKED:
+            continue
+        mine = step(index)
+        if mine is None:
+            continue
+        tile = int(fields["picnum"])
+        neighbours = []
+        for other in (previous.get(index), int(fields["point2"])):
+            if other is None or other == index or other >= len(disk.walls):
+                continue
+            if int(disk.walls[other].fields["picnum"]) != tile:
+                continue
+            size = art_sizes().get(tile)
+            if not size or not size[0]:
+                continue
+            #: Sharing a picnum is not sharing a run. The record only carries
+            #: two frames when the material actually CONTINUES across the
+            #: join -- otherwise the run ended here and the insert is the
+            #: only thing on the record.
+            first, second = ((other, index) if other == previous.get(index)
+                             else (index, other))
+            if not join_continues(disk, first, second, size)[0]:
+                continue
+            found = step(other)
+            if found:
+                neighbours.append((other, found))
+        if not neighbours:
+            continue                      # not on a run: nothing to compete
+        population += 1
+        for other, found in neighbours:
+            ratio = max(mine, found) / max(min(mine, found), 1e-6)
+            if ratio > FRAME_DISAGREEMENT:
+                out.append(Violation(
+                    f"wall[{index}]",
+                    f"a masked insert at {mine:.2f} texel steps sits on the "
+                    f"same record as a run drawn at {found:.2f} "
+                    f"(wall[{other}]), {ratio:.1f}x apart; the campaign's "
+                    f"widest is 2.33x"))
+                break
+    return Finding(population, tuple(out))
+
+
+register(Rule(
+    id="no-record-carries-two-frames",
+    statement=(
+        "a masked insert may share a record with a surface run only while the "
+        "two want nearly the same scale"),
+    because=(
+        "picnum and over_picnum share x_repeat, x_panning, y_repeat and "
+        "y_panning on one wall record, so a pane fitted to its opening and a "
+        "facade continuing past it cannot both be right on the same record. "
+        "The only way to give an insert its own record is a holder sector, "
+        "and blood-city shipped 24 panes on the facade line where glaze and "
+        "frame_map overwrote each other -- fifteen kept the pane's scale and "
+        "nine the facade's, decided by the order the passes ran"),
+    source="xmapedit/src_blood/xmpmaped.cpp:3024-3050 AlignWalls",
+    scope="wall",
+    check=_no_record_carries_two_frames,
+))

@@ -955,7 +955,8 @@ def frame_map(level: Any, *,
               break_degrees: float = RUN_BREAK_DEGREES,
               skip: set[int] | None = None,
               skip_moving: bool = True,
-              world_phase: set[int] | None = None) -> dict[str, Any]:
+              world_phase: set[int] | None = None,
+              records: Any = None, owner: str = "surface") -> dict[str, Any]:
     """Project every material onto the run it belongs to, in one pass.
 
     The replacement for `texture_align.align_wall_runs` and the floor-anchored
@@ -994,6 +995,16 @@ def frame_map(level: Any, *,
         art_sizes = wall_art_sizes()
     owners = sector_index(level)
     skip = set(skip or ())
+    #: A record an insert already owns is not the surface's to re-derive.
+    #: Without this the two writers fight and pass order picks the winner
+    #: per record -- which is what blood-city shipped: nine of 24 panes lost
+    #: the scale `glaze` gave them and fifteen kept it, and nobody chose.
+    borrowed = 0
+    if records is not None:
+        for index in range(len(level.walls)):
+            if not records.may_write(index, owner):
+                skip.add(index)
+                borrowed += 1
     moving = 0
     if skip_moving:
         for sector_id, sector in enumerate(level.sectors):
@@ -1031,11 +1042,14 @@ def frame_map(level: Any, *,
             flip=int(head["cstat"]) & WALL_FLIP_MASK,
         )
         changed += resolve_run(level, run, frame, art_sizes, owners)
+        if records is not None:
+            records.claim_all(run, owner)
         framed += len(run)
         district += int(world)
         singles += int(len(run) == 1)
     return {"runs": len(runs), "walls_framed": framed,
             "district_runs": district,
+            "records_left_to_their_insert": borrowed,
             "single_wall_runs": singles, "fields_changed": changed,
             "walls_unframed": len(level.walls) - framed,
             "walls_left_to_their_mechanism": moving,
