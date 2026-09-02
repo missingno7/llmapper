@@ -30,6 +30,7 @@ BLOODMAP_CORPUS=D:/Games/DOS/llmapper/maps/blood BLOODMAP_ART=D:/Games/DOS/llmap
 | stage | layer | reader | evidence |
 | --- | --- | --- | --- |
 | `stage1_space_tree.py` | the space tree | `bloodmap.decompiler` (reused) | `references/space-tree.json` |
+| `stage2_surfaces.py` | surfaces and frames | `bloodmap.read_surfaces` (new) | `references/surfaces.json` |
 
 `source/ledger.py` composes every stage's evidence into `residue-ledger.json`.
 

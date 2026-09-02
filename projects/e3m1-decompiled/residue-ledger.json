@@ -21,10 +21,18 @@
    "state": "read"
   },
   {
+   "disagreements": [],
    "evidence": "surfaces.json",
+   "explained": 779,
+   "gate": "replay each recovered frame through texture_frame.resolve_run and diff picnum, x_repeat, x_panning, y_repeat and y_panning per record",
    "layer": 2,
    "name": "surfaces and frames",
-   "state": "not yet read"
+   "population": "2481 wall records",
+   "reader": "bloodmap.read_surfaces (new)",
+   "residue": 1702,
+   "residue_is": "records broken off a same-material neighbour (574), records with no same-material neighbour at all (1075), and records one frame does not reproduce (53)",
+   "residue_percent": 68.6,
+   "state": "read"
   },
   {
    "evidence": "join-census.json",
@@ -63,7 +71,7 @@
    "state": "not yet read"
   }
  ],
- "layers_read": 1,
+ "layers_read": 2,
  "measure": "understanding is 100% minus residue, per layer, in that layer's own population; a layer with no evidence file is 'not yet read', which is not zero residue",
  "of": "E3M1.MAP",
  "schema_version": 1,
