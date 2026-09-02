@@ -830,9 +830,44 @@ Three ways out, and they are not equal:
    a Build sector has one floor shade, which is the whole reason overlays
    exist.
 
-> **Recommended default: write the simple-polygon splitter (1).** It is the
+> **CLOSED 2026-09-02 (slice 2c): the splitter is built.** Even-odd chord
+> pairing over all rings at once, so holes need no special case; area
+> conserved exactly in integers on a concave plane, on a square with two
+> island holes cut three ways, and on a U whose arms come back as two
+> disconnected pieces. Slivers are absorbed and reported. The plane was NOT
+> decomposed into convex pieces.
+>
+> ~~Recommended default: write the simple-polygon splitter (1).~~ It is the
 > only option that keeps the model the supervisor just decided, it is exact,
 > and it is bounded work with an obvious test -- area conservation across the
 > pieces, and the pieces re-joining to the original. Option 2 would land
 > faster and quietly undo the junction fix, which is the kind of trade this
 > project has already paid for twice.
+
+## 22. The light field needs its levels re-measured before it can quantise
+    (2026-09-02)
+
+Deliverable 3 asks for the sun as a directional source, lamps as point
+sources, the field summed and **quantised to the campaign's levels**, and the
+cut set as that field's iso-lines. The clipper and the domains are now in
+place to do it; the levels are not.
+
+What I have is E3M1 alone: over its 68 street sectors the floor shades are 8
+on nine of them, 34 on seventeen, 32 on three, 24 on seven, and 44 on thirteen
+-- and I read the 44 as the quay and the far bank, outside the lit street. So
+E3M1 says three levels, 8 / 24 / 34, with 32 as a near-neighbour of 34 and 44
+as something else entirely.
+
+That is one map. Quantising the whole city's light to three levels taken from
+one map is the same shape of mistake as the continuity threshold and the
+magnitude envelope: a number that looks measured but has a sample of one, and
+both of those had to be re-thresholded once the corpus was actually asked.
+
+> **Recommended default: measure the levels over every campaign map's outdoor
+> street sectors before quantising, and state how many levels the corpus
+> actually uses rather than adopting E3M1's three.** If the corpus turns out
+> to cluster at three, the number is E3M1's and now it is also everyone's; if
+> it clusters at four or five, three would have been flattening the city's
+> light for no reason. Either way the penumbra question answers itself --
+> section 17's "penumbra only where the corpus measurement says so" cannot be
+> settled without this measurement, and I have not made it.

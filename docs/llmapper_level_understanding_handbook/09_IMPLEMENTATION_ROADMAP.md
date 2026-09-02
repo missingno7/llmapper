@@ -3459,6 +3459,78 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### Slice 2c: domains and the clipper, 2026-09-02
+
+**Deliverable 1 — overlay domains.** An overlay declares the predicate over
+regions it may cut, and Rule 2 is folded in and not negotiable per overlay: a
+region carrying a sector type, a moving wall (`cstat 0x4000/0x8000`), a stack
+marker, a holder role or an insert is excluded from EVERY overlay.
+
+Run over the committed city, the LIGHT domain **admits 31 of 259 regions and
+refuses 228**: 197 with no parallax sky (the interiors), 14 mechanisms, 13
+inserts, 4 stack markers. The sun cannot reach a house, and a shadow falling
+on one is reported in the manifest rather than refused -- it is a fact about
+the world, not an error.
+
+The fail-first is the shape that matters rather than a synthetic: every one of
+the city's movers is refused by name, and every mechanism's `drag_closure`
+motion set is identical before and after, because the domain never admitted
+one.
+
+**Deliverable 2 — the clipper** (owner-queue item 21's default, built).
+`split_polygon` cuts a polygon WITH HOLES by a half-plane using even-odd chord
+pairing over **all rings at once**: every ring is augmented with its
+crossings, the edges on one side are kept with their original direction, and
+the gaps are closed by chords along the cut line, paired consecutively by
+their parameter. Holes need no special case, which is the entire reason to
+pair over all rings together.
+
+Area is conserved **exactly, in integers**, on every case the brief names:
+
+```text
+concave 12-vertex plane, vertical cut      183500800 -> 91750400 + 91750400
+the same plane, oblique at the sun          -> 15810560 + 167690240
+square with two island holes, three cuts    343932928 conserved in all three
+a U cut across its arms                     ONE side comes back as TWO pieces,
+                                            25165824 each, exactly equal
+convex shadow on a square                   inside 2048*2048, sum exact
+a shadow covering a whole island            no outside at all
+```
+
+The two-disconnected-pieces case is the one `split_convex` could never have
+said; a clipper that returned a single polygon there would be silently wrong.
+
+`cut_by_convex` applies a convex shadow as a sequence of half-plane cuts to
+the pieces still overlapping it, keeping the outside pieces separate so a
+caller can merge them back. `cut_region` absorbs a sliver rather than refusing
+it: a cut that would leave a scrap does not cut, the polygon stays on the side
+it is mostly on, and the absorption is **reported** -- an oblique shadow
+clipping a junction corner leaves a 43-unit triangle, and emitting it puts a
+degenerate loop in the map.
+
+The plane is NOT decomposed into convex pieces. That was item 21's rejected
+option and it would have handed the junction squares back through the side
+door.
+
+#### Not built, and the honest reason
+
+Deliverables 3 to 6 -- the light field, the channel table and arbitration, the
+fixed order of operations, and the emitter rewritten around `ground_plane` --
+are not started. Each is a piece of work the size of the two above, and the
+run had room for the two that unblock the rest. Nothing downstream of them is
+built: no whole graph, no waterfront, no read-back, no renders.
+
+What is now true that was not: the shadow CAN cut the plane, and it cannot
+reach a mechanism. Those were the two things stopping slice 2b.
+
+#### What slice 3 must answer first
+
+Unchanged in shape but no longer blocked on geometry: **the light field**
+(deliverable 3), because the cut set is its iso-lines and every later gate --
+shadow bearing, frame continuity across edges, sector counts before and after
+-- is stated over that field. The clipper is the instrument; the field is what
+decides where to cut.
+
 ### Slice 2b: the table in the compiler, and the junction that is not a room
 
 **Deliverable 1 — the compiler applies the join table.** `joins.apply` walks
