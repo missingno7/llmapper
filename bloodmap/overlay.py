@@ -1156,21 +1156,50 @@ class CutRegistry:
             node = self.parent.get(node)
         return out
 
+    def descendants(self, key: tuple) -> list:
+        """Every edge that came, at any remove, from cutting this one."""
+        children: dict = {}
+        for child, parent in self.parent.items():
+            children.setdefault(parent, []).append(child)
+        out: list = []
+        stack = list(children.get(key, ()))
+        seen = {key}
+        while stack:
+            node = stack.pop()
+            if node in seen:
+                continue
+            seen.add(node)
+            out.append(node)
+            stack.extend(children.get(node, ()))
+        return out
+
     def by_edge(self) -> dict:
         """Which points may be inserted into a ring carrying which edge.
 
-        A point recorded against a child edge is offered to every ancestor,
-        because a neighbour that was never cut still carries the whole edge.
+        BOTH directions of the chain, and each answers a different failure.
+
+        UPWARD -- a point recorded against a child edge is offered to every
+        ancestor, because a neighbour that was never cut still carries the
+        whole edge. That is the case slice 2g could not see.
+
+        DOWNWARD -- a point recorded against a whole edge is offered to every
+        edge cut out of it, because a plaza's corner is seeded against the
+        street's DECLARED edge and the piece that ends up carrying that stretch
+        of street is a grandchild of it. Without this the T survives every cut
+        and `PlanarLayout` reports it as an unpaired portal candidate.
+
+        `weld` filters both by span, so an ancestor's point that falls outside
+        a child's stretch is simply not inserted there.
         """
         out: dict = {}
         for key, found in self.points.items():
-            for target in [key] + self.ancestors(key):
+            for target in [key] + self.ancestors(key) + self.descendants(key):
                 out.setdefault(target, set()).update(found)
         return out
 
 
-def weld(pieces: Sequence[Sequence[Sequence[Point]]], registry: dict
-         ) -> tuple[list, int]:
+def weld(pieces: Sequence[Sequence[Sequence[Point]]], registry: dict,
+         declared: Iterable[Point] = ()) -> tuple[list, int]:
     """Insert every recorded crossing into every ring that still carries its edge.
 
     **The weld, by identity, with no search radius anywhere.** While cutting,
@@ -1192,9 +1221,20 @@ def weld(pieces: Sequence[Sequence[Sequence[Point]]], registry: dict
     The walls this adds are not overhead. Build requires a vertex wherever two
     sectors' boundaries meet -- a wall without one is a red wall -- so these
     are walls the format was always going to need.
+
+    `declared` is the second population, and it takes the OTHER exact test.
+    A crossing is rounded, so it is found by identity and genealogy and never
+    by geometry. A vertex the solver placed is not rounded at all, so exact
+    collinearity is the right question to ask of it -- and it has to be asked
+    of the CUT edges rather than the declared ones, because a chord that lands
+    collinear with a declared edge merges with it and `_clean` drops the
+    corner between them. That is a real case: a shadow chord at the cemetery's
+    own y swallowed the cemetery's corner and left one plane piece abutting
+    two neighbours across a single edge.
     """
     lookup = registry.by_edge() if hasattr(registry, "by_edge") else {
         key: set(value) for key, value in registry.items()}
+    declared = {tuple(point) for point in declared}
     added = 0
     out = []
     for rings in pieces:
@@ -1206,7 +1246,14 @@ def weld(pieces: Sequence[Sequence[Sequence[Point]]], registry: dict
                 here = tuple(ring[index])
                 nxt = tuple(ring[(index + 1) % count])
                 grown.append(here)
-                found = lookup.get(edge_key(here, nxt))
+                found = set(lookup.get(edge_key(here, nxt)) or ())
+                if declared:
+                    #: The second population, asked its own exact question.
+                    #: This has to happen BEFORE the empty-set shortcut: the
+                    #: edge that swallowed the cemetery's corner had no
+                    #: registry entry at all, because no cut ever made it.
+                    found |= {point for point in declared
+                              if _between(here, nxt, point)}
                 if not found:
                     continue
                 #: only points strictly between the two ends, in order along
@@ -1259,3 +1306,40 @@ def _between(a: Point, b: Point, point: Point) -> bool:
         return False
     return (min(a[0], b[0]) <= point[0] <= max(a[0], b[0])
             and min(a[1], b[1]) <= point[1] <= max(a[1], b[1]))
+
+
+def seed_coincident_vertices(registry: "CutRegistry",
+                             surfaces: Iterable[Sequence[Sequence[Point]]]
+                             ) -> int:
+    """Record every surface corner that lands inside another surface's edge.
+
+    The weld inserts a crossing into every ring carrying the edge it came
+    from. That closes the cuts, and it does not close the DECLARATION: a
+    plaza let into a street, an end wall across its mouth or a yard notched
+    out of an island all put a corner in the middle of a neighbour's edge,
+    and no cut ever made it. Build calls a wall like that a T-junction and
+    draws a red line through it.
+
+    So the same registry is seeded, before any field runs, with every vertex
+    of one surface that lies strictly within an edge of another. From there
+    it is a crossing like any other and the weld does not care which kind it
+    was -- which is the point: an island is an island however it came to be
+    one, and a T is a T however it came to be one.
+
+    Exact collinearity is the right test HERE, unlike inside the weld: these
+    are declared integer coordinates that no rounding has touched.
+    """
+    rings = [list(ring) for surface in surfaces for ring in surface]
+    points = {tuple(point) for ring in rings for point in ring}
+    seeded = 0
+    for ring in rings:
+        for index, here in enumerate(ring):
+            nxt = ring[(index + 1) % len(ring)]
+            here, nxt = tuple(here), tuple(nxt)
+            for point in points:
+                if point in (here, nxt):
+                    continue
+                if _between(here, nxt, point):
+                    registry.record(here, nxt, point)
+                    seeded += 1
+    return seeded

@@ -30,7 +30,7 @@ from typing import Any
 from .channels import PASSES, Compilation, OrderError, RegionLedger
 from .light_field import build_field
 from .lightbomb import apply_shade_channel
-from .overlay import CutRegistry, partition_faults
+from .overlay import CutRegistry, partition_faults, seed_coincident_vertices
 
 Point = tuple[int, int]
 
@@ -72,6 +72,10 @@ class SurfaceSpec:
     floor_stat: int = 0
     ceiling_stat: int = 0
     lit: bool = True
+    #: A backdrop is not a place. A zero-height horizon has no way in on
+    #: purpose, and saying so is a claim the geometry audit accepts; leaving
+    #: it unsaid is the `zero_exit_gameplay_sector` refusal.
+    declared_zero_exit: bool = False
     #: Fields written straight onto the compiled sector, for what `RegionSpec`
     #: does not carry: `floor_pal` and friends.
     finish: dict = field(default_factory=dict)
@@ -81,11 +85,26 @@ class SurfaceSpec:
 
 @dataclass(frozen=True)
 class Lamp:
-    """A point source on a surface: a delta into the shade channel."""
+    """A point source on a surface: a sprite, and a delta into the channel.
+
+    Both halves, because they are two different claims. The sprite is what a
+    body sees -- E3M1's street lights are tile 2519/2521 drawn at shade -128
+    -- and the delta is what the sector reads. E3M1 makes only the first
+    claim, so a level that makes the second is deciding something, and the
+    channel is where a decision like that belongs.
+    """
 
     lamp_id: str
     point: Point
     delta: int
+    tile: int = 0
+    sprite_shade: int = -128
+    sprite_type: int = 0
+    #: How far the lamp hangs above its floor. Blood's median for tile 641 is
+    #: 58368, which is 3.44 player heights.
+    height: int = 0
+    cstat: int = 128
+    clipdist: int = 32
 
 
 @dataclass(frozen=True)
@@ -185,21 +204,25 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
     report["welded_vertices"] = 0
     report["slivers_absorbed"] = 0
     faults: list = []
+    whole: dict = {}
+    #: ONE REGISTRY FOR THE WHOLE CITY, seeded before any field runs. Two
+    #: surfaces that share an edge are the same edge seen from two sides, and
+    #: a plaza let into a street puts a corner in the middle of the street's
+    #: edge that no cut ever made. Both are crossings to the weld, and it does
+    #: not care which kind they were.
+    registry = CutRegistry()
+    report["seeded_vertices"] = seed_coincident_vertices(
+        registry, [[list(ring) for ring in spec.rings] for spec in surfaces])
     for spec in surfaces:
         rings = [list(ring) for ring in spec.rings]
         if spec.lit and light.masses:
-            registry = CutRegistry()
             field_out = build_field(
                 rings, light.masses, bearing_units=light.bearing_units,
                 per_height=light.per_height, registry=registry,
+                weld_now=False,
                 **({} if min_area is None else {"min_area": min_area}))
-            report["welded_vertices"] += field_out["welded_vertices"]
             report["slivers_absorbed"] += len(field_out["absorbed"])
             grown = field_out["pieces"]
-            #: POST-CONDITION per surface: the pieces partition what was cut.
-            faults.extend(f"{spec.surface_id}: {row}"
-                          for row in partition_faults(
-                              [p.rings for p in grown], rings))
         else:
             from .light_field import Piece
 
@@ -207,17 +230,45 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
         for index, piece in enumerate(grown):
             name = (spec.surface_id if len(grown) == 1
                     else f"{spec.surface_id}#{index}")
-            layout.add_region(
-                name, piece.rings[0], holes=piece.rings[1:],
-                floor_z=spec.floor_z, ceiling_z=spec.ceiling_z,
-                floor_picnum=spec.floor_tile,
-                ceiling_picnum=spec.ceiling_tile,
-                wall_picnum=spec.wall_tile, floor_shade=light.base_shade,
-                floor_stat=spec.floor_stat, ceiling_stat=spec.ceiling_stat,
-                parallax_ceiling=spec.parallax_ceiling, role=spec.role,
-                sector_behavior=dict(spec.behavior))
             pieces.append((name, piece, spec))
+            whole.setdefault(spec.surface_id, rings)
+
+    #: THE WELD, once, over every piece of every surface. A crossing recorded
+    #: while cutting the last surface belongs to the first one's edge too.
+    from .overlay import declared_vertices, weld
+
+    welded, added = weld(
+        [piece.rings for _n, piece, _s in pieces], registry,
+        declared=declared_vertices([[list(r) for r in spec.rings]
+                                    for spec in surfaces]))
+    for (_name, piece, _spec), rings_out in zip(pieces, welded):
+        piece.rings = rings_out
+    report["welded_vertices"] = added
+
+    #: POST-CONDITION per surface, AFTER the weld. Before it, every surface
+    #: fails: two pieces that ought to share an edge diverge by the fraction
+    #: of a unit their crossings rounded by, and the assertion reads that as
+    #: an overlap -- correctly. Asking before the weld would be asking a
+    #: question whose answer is known.
+    by_surface: dict = {}
+    for _name, piece, spec in pieces:
+        by_surface.setdefault(spec.surface_id, []).append(piece.rings)
+    for surface_id, cut in sorted(by_surface.items()):
+        faults.extend(f"{surface_id}: {row}"
+                      for row in partition_faults(cut, whole[surface_id]))
     report["partition_faults"] = faults
+
+    for name, piece, spec in pieces:
+        layout.add_region(
+            name, piece.rings[0], holes=piece.rings[1:],
+            floor_z=spec.floor_z, ceiling_z=spec.ceiling_z,
+            floor_picnum=spec.floor_tile,
+            ceiling_picnum=spec.ceiling_tile,
+            wall_picnum=spec.wall_tile, floor_shade=light.base_shade,
+            floor_stat=spec.floor_stat, ceiling_stat=spec.ceiling_stat,
+            parallax_ceiling=spec.parallax_ceiling, role=spec.role,
+            declared_zero_exit=spec.declared_zero_exit,
+            sector_behavior=dict(spec.behavior))
     report["pieces"] = len(pieces)
     report["levels"] = sorted({p.depth for _n, p, _s in pieces})
 
@@ -265,8 +316,13 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
         sector = compiled.allocations[name].sector_id
         ledger.write(str(sector), "shade", f"lamp:{lamp.lamp_id}", lamp.delta,
                      intent="presentation")
+        depth = next(p.depth for n, p, _s in pieces if n == name)
         lit_lamps.append({"lamp": lamp.lamp_id, "sector": sector,
-                          "region": name, "delta": lamp.delta})
+                          "region": name, "delta": lamp.delta,
+                          "depth": depth})
+        if lamp.tile:
+            floor = next(spec.floor_z for n, _p, spec in pieces if n == name)
+            _place_lamp(disk, sector, lamp, floor)
     report["lamps"] = lit_lamps
     report["shade"] = apply_shade_channel(disk, ledger)
 
@@ -330,3 +386,27 @@ def _piece_at(pieces, point):
         if _point_in(piece.rings, tuple(point)):
             return name
     return None
+
+
+def _place_lamp(disk: Any, sector: int, lamp: Lamp, floor_z: int) -> None:
+    """Put the lamp's sprite in the map, on the sector the delta went to.
+
+    Straight onto the disk map rather than through `PlanarLayout`, because
+    the piece the lamp lands on is not known until the field has cut the
+    surface -- the region a placement would have named does not exist when
+    the emitter speaks.
+    """
+    from .format import SPRITE_FIELDS
+    from .model import DiskObject
+
+    fields = {name: 0 for name, _code in SPRITE_FIELDS}
+    fields.update({
+        "x": int(lamp.point[0]), "y": int(lamp.point[1]),
+        "z": int(floor_z) - int(lamp.height),
+        "sector": int(sector), "picnum": int(lamp.tile),
+        "shade": int(lamp.sprite_shade), "type": int(lamp.sprite_type),
+        "initial_type": int(lamp.sprite_type), "cstat": int(lamp.cstat),
+        "clipdist": int(lamp.clipdist), "x_repeat": 64, "y_repeat": 64,
+        "owner": -1, "index": len(disk.sprites), "extra": -1,
+    })
+    disk.sprites.append(DiskObject(fields=fields))

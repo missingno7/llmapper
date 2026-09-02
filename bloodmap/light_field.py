@@ -122,7 +122,8 @@ def build_field(rings: Sequence[Sequence[tuple[int, int]]],
                 masses: Sequence[Mass], *, bearing_units: int,
                 per_height: float = 1.0, max_levels: int = MAX_LEVELS,
                 min_area: int = MIN_PIECE_AREA,
-                registry: dict | None = None) -> dict[str, Any]:
+                registry: dict | None = None,
+                weld_now: bool = True) -> dict[str, Any]:
     """Cut one surface by the sun field of every mass that reaches it.
 
     ONE field per plane, cut once. Each mass's shadow is a convex polygon and
@@ -168,9 +169,17 @@ def build_field(rings: Sequence[Sequence[tuple[int, int]]],
     #: THE WELD, last, over every piece of this surface at once. Until the
     #: cuts are finished a piece may still be split again, so welding earlier
     #: would insert points that a later cut then has to re-find.
-    welded, added = weld([piece.rings for piece in pieces], registry)
-    for piece, rings_out in zip(pieces, welded):
-        piece.rings = rings_out
+    #:
+    #: `weld_now=False` says the same thing one level up: when a caller cuts
+    #: SEVERAL surfaces against one registry, this surface's cuts are not the
+    #: last ones, and welding here would miss every crossing the surfaces
+    #: after it record on an edge they share with this one. The caller then
+    #: welds every piece of every surface together, once.
+    added = 0
+    if weld_now:
+        welded, added = weld([piece.rings for piece in pieces], registry)
+        for piece, rings_out in zip(pieces, welded):
+            piece.rings = rings_out
     return {"pieces": pieces, "absorbed": absorbed, "refused": refused,
             "welded_vertices": added,
             "levels": sorted({piece.depth for piece in pieces})}

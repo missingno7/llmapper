@@ -923,3 +923,69 @@ class EdgesHaveAGenealogy(unittest.TestCase):
         source = Path("bloodmap/overlay.py").read_text(encoding="utf-8")
         for banned in ("TOLERANCE", "EPSILON", "tolerance =", "epsilon ="):
             self.assertNotIn(banned, source, banned)
+
+
+class ATIsATHoweverItCameToBeOne(unittest.TestCase):
+    """Three ways a piece ends up with a corner in a neighbour's edge.
+
+    The weld was built for one of them -- a cut crossing recorded against the
+    edge it came from. The city found the other two, and both are Ts that
+    `PlanarLayout` reports as unpaired portal candidates.
+    """
+
+    def test_a_declared_corner_inside_a_declared_edge_is_seeded(self):
+        # A plaza let into a street: the plaza's corners land in the middle
+        # of the street's edge and NO CUT EVER MADE THEM.
+        from bloodmap.overlay import (
+            CutRegistry, edge_key, seed_coincident_vertices, weld)
+
+        street = [[(0, 0), (16384, 0), (16384, 4096), (0, 4096)]]
+        plaza = [[(4096, 0), (10240, 0), (10240, -4096), (4096, -4096)]]
+        registry = CutRegistry()
+        seeded = seed_coincident_vertices(registry, [street, plaza])
+        self.assertEqual(seeded, 2)
+        self.assertEqual(registry.points[edge_key((0, 0), (16384, 0))],
+                         {(4096, 0), (10240, 0)})
+        welded, added = weld([street], registry)
+        self.assertEqual(added, 2)
+        self.assertIn((4096, 0), welded[0][0])
+
+    def test_a_parent_s_point_reaches_a_grandchild_edge(self):
+        # The seed is recorded against the DECLARED edge; the piece that ends
+        # up carrying that stretch is a grandchild of it, so the chain has to
+        # walk downward as well as up.
+        from bloodmap.overlay import CutRegistry, edge_key
+
+        registry = CutRegistry()
+        p, q = (0, 0), (16384, 0)
+        registry.record(p, q, (4096, 0))
+        registry.split(p, q, (8192, 0))
+        registry.split(p, (8192, 0), (2048, 0))
+        offered = registry.by_edge()
+        self.assertIn((4096, 0), offered[edge_key((2048, 0), (8192, 0))])
+
+    def test_a_chord_collinear_with_a_declared_edge_swallows_its_corner(self):
+        # The case the city actually hit: a shadow chord landed at the
+        # cemetery's own y, merged with the cemetery's top edge, and `_clean`
+        # dropped the corner between them -- leaving one piece abutting two
+        # neighbours across a single edge. A crossing test cannot see it,
+        # because no crossing was made there; a DECLARED vertex is exact, so
+        # exact collinearity is the right question for that population.
+        from bloodmap.overlay import CutRegistry, weld
+
+        piece = [[(25600, 27136), (20737, 27136), (19879, 18944),
+                  (25600, 18944)]]
+        welded, added = weld([piece], CutRegistry())
+        self.assertEqual(added, 0, "no crossing was ever recorded here")
+        welded, added = weld([piece], CutRegistry(),
+                             declared={(23552, 27136)})
+        self.assertEqual(added, 1)
+        self.assertIn((23552, 27136), welded[0][0])
+
+    def test_a_declared_vertex_off_the_edge_is_not_inserted(self):
+        # Exact, not near: the declared population gets no tolerance either.
+        from bloodmap.overlay import CutRegistry, weld
+
+        piece = [[(0, 0), (16384, 0), (16384, 4096), (0, 4096)]]
+        _welded, added = weld([piece], CutRegistry(), declared={(8192, 1)})
+        self.assertEqual(added, 0)
