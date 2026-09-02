@@ -321,6 +321,13 @@ def main() -> int:
         ys = [int(f["y"]) for f in walls]
         report = glass.glaze(compiled.level,
                              [(min(xs), min(ys), max(xs), max(ys))])
+        #: The same count the city keeps: is this pane held in a display
+        #: recess, or set flush in a room face? E6M1 does the former and the
+        #: zoo's exhibit does the latter.
+        from bloodmap.glass import panes_without_a_recess
+
+        report["panes_on_the_facade_line"] = len(
+            panes_without_a_recess(compiled.level))
         print("shop window glass:", report)
 
     #: ONE FRAME PER RUN. The zoo had no alignment pass at all: every wall

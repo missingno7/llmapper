@@ -2050,22 +2050,22 @@
   "blood-city-current.MAP": {
    "bend portal-portal": {
     "n": 768,
-    "x": 574,
+    "x": 550,
     "y": 764
    },
    "bend solid-solid": {
     "n": 209,
-    "x": 191,
+    "x": 206,
     "y": 209
    },
    "collinear solid-portal": {
     "n": 73,
-    "x": 70,
+    "x": 72,
     "y": 71
    },
    "bend solid-portal": {
     "n": 198,
-    "x": 163,
+    "x": 165,
     "y": 194
    },
    "collinear portal-portal": {

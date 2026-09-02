@@ -166,44 +166,25 @@ def snap_opening(start: int, width: int) -> tuple[int, int]:
     return snapped, bays * BAY
 
 
-def world_align_facades(level, compiled, districts) -> dict:
-    """Phase every street wall's texture to world position, not to its own
-    start vertex.
-
-    E3M1 does this on 43 of its 61 street-facing walls.  It is what makes a
-    bay grid exist at all: with the phase locked to world coordinates, tile
-    boundaries fall on world multiples of 1024 everywhere in the district,
-    so an opening snapped to that grid never cuts a painted window -- and
-    the wall above the opening continues the same grid, because it is
-    phased from the same rule rather than from where it happens to start.
-    """
-    from bloodmap.texture_align import wall_art_sizes
-    art = wall_art_sizes("reference/blood")
-    report = {"walls_phased": 0, "skipped_scale": 0}
-    for region_id in districts:
-        allocation = compiled.allocations.get(region_id)
-        if allocation is None:
-            continue
-        for wall_id in allocation.wall_ids:
-            fields = _fields(level.walls[wall_id])
-            x1, y1 = int(fields["x"]), int(fields["y"])
-            nxt = _fields(level.walls[int(fields["point2"])])
-            x2, y2 = int(nxt["x"]), int(nxt["y"])
-            length = ((x2 - x1) ** 2 + (y2 - y1) ** 2) ** 0.5
-            repeat = int(fields["x_repeat"])
-            if not length or not repeat:
-                continue
-            if abs(length / (repeat * 8) - UNITS_PER_TILE_PIXEL) > 0.5:
-                report["skipped_scale"] += 1     # not at the facade scale
-                continue
-            width = art.get(int(fields["picnum"]), (64, 128))[0]
-            horizontal = abs(x2 - x1) >= abs(y2 - y1)
-            start = x1 if horizontal else y1
-            sign = 1 if ((x2 - x1) if horizontal else (y2 - y1)) > 0 else -1
-            fields["x_panning"] = int(
-                (sign * start / UNITS_PER_TILE_PIXEL)) % width
-            report["walls_phased"] += 1
-    return report
+#: `world_align_facades` lived here until 2026-09-02 and is gone. It phased
+#: every street wall's texture from its own world coordinate, which is what
+#: makes a bay grid exist -- tile boundaries on world multiples of 1024
+#: everywhere in a district, so an opening snapped to that grid never cuts a
+#: painted window. It fought `texture_frame.frame_map` for the same field and
+#: nothing decided between them (owner queue item 16).
+#:
+#: The conflict was an artefact of the per-wall representation. A run whose
+#: U-ORIGIN is a world point gives the district-wide bay grid AND still
+#: accumulates across its own doorways, so both facts hold at once:
+#: `texture_frame.world_u` computes that origin and `frame_map(world_phase=)`
+#: takes it. Measured on this map, the frame puts 640 of 1694 walls on the
+#: world bay grid against this function's 607, and continuity rises with it
+#: (bend solid-solid x 91% -> 98%).
+#:
+#: `align_headers` above is NOT replaced by any of that and stays: it sets
+#: cstat 4 (kWallOrgOutside), which makes a header peg to the facade's own
+#: ceiling instead of to the step (`GetWallZPeg`, xmpmaped.cpp:3009-3011),
+#: and the frame DEPENDS on that bit rather than deciding it.
 
 
 def face_landmark(level, rect, tile, *, frieze=None, band=None) -> dict:

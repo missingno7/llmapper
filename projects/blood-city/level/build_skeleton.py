@@ -1330,7 +1330,19 @@ def main() -> int:
                     else l3_mall.SOUTH_BAND)
         spans.append((wx0, wy0, wx1, wy1))
     spans.extend(l3_market.SUPERMARKET_WINDOWS)
-    print("shop glass:", glass.glaze(compiled.level, spans))
+    report = glass.glaze(compiled.level, spans)
+    #: E6M1 holds its glass in a 512-deep display recess with a sill 8192 up
+    #: and a head 77824 down (s4/s64 against s52), so the facade crosses the
+    #: mouth as a lintel band and the street never meets the pane. These spans
+    #: are glazed on the room's own outward face instead, which is the owner's
+    #: "shop glass sits directly on the facade line". Counted at every build
+    #: rather than left to a report nobody re-runs; the carve is a tree change
+    #: and is not done (roadmap, P13).
+    from bloodmap.glass import panes_without_a_recess
+
+    flush = panes_without_a_recess(compiled.level)
+    report["panes_on_the_facade_line"] = len(flush)
+    print("shop glass:", report)
 
     # The landmark wears its own stone, inside and out, as E1M5's does.
     import l3_church
@@ -1364,11 +1376,20 @@ def main() -> int:
     # doorway instead of restarting at it. The concourse needs no opt-in any
     # more, because portal walls were never the exception -- they were the
     # case the old pass could not express.
-    print("texture frames:", frame_map(compiled.level, art_sizes=art_sizes))
-    # Street facades override run-continuation with world phase, so the
-    # bay grid is the same everywhere in a district (E3M1's own practice).
-    print("facade phase:", facade_pass.world_align_facades(
-        compiled.level, compiled, ctx["street_regions"]))
+    # THE DISTRICT FRAME (owner queue item 16, resolved). `world_align_facades`
+    # used to run after this and phase every street wall from its own world
+    # coordinate -- which is what makes a bay grid exist, and which fought the
+    # run carry for the same field with no decision between them. The two were
+    # never really in conflict: a run whose U-ORIGIN is a world point gives the
+    # district-wide bay grid AND accumulates across its own doorways. So the
+    # street fronts are named here and `frame_map` gives them a world u0.
+    district_walls = set()
+    for region_id in ctx["street_regions"]:
+        allocation = compiled.allocations.get(region_id)
+        if allocation is not None:
+            district_walls.update(int(w) for w in allocation.wall_ids)
+    print("texture frames:", frame_map(compiled.level, art_sizes=art_sizes,
+                                       world_phase=district_walls))
     # Crate tops start their tile at the crate's own corner. 71% of the
     # campaign's 110 raised crate tops do; this map's eleven did not, so a
     # 1024 box off the 1024 world grid wore a cut tile.

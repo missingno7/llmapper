@@ -101,7 +101,6 @@ registry is populated by that import's side effect, so a bare
 - **note** `opening-clears-a-standing-body` -- a way through is at least one standing body tall -- 0.97 standing humans of clear opening between sectors 158 and 154 (wall 1213)
 - **note** `opening-clears-a-standing-body` -- a way through is at least one standing body tall -- 0.97 standing humans of clear opening between sectors 250 and 95 (wall 1660)
 - **note** `opening-clears-a-standing-body` -- a way through is at least one standing body tall -- 0.97 standing humans of clear opening between sectors 252 and 97 (wall 1668)
-- **note** `rule-ungraded` -- texture-continues-across-a-join has not been measured against the corpus, so it carries no severity and was not enforced (registry)
 - **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 4/64 on tile 908 (sprite[16])
 - **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 4/64 on tile 908 (sprite[17])
 - **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 96/80 on tile 793 (sprite[52])

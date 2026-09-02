@@ -859,6 +859,33 @@ def frame_runs(level: Any, frames: dict[int, "WallRunFrame"], *,
             "walls_unframed": len(level.walls) - len(covered)}
 
 
+def world_u(level: Any, wall: int, *,
+            texels_per_unit: float = NATURAL_TEXELS_PER_UNIT) -> int:
+    """The texel offset of this wall's start, measured in WORLD space.
+
+    A district frame's `u0`. `world_align_facades` in blood-city phased every
+    street wall from its own world coordinate, which is what makes a bay grid
+    exist at all: tile boundaries fall on world multiples of 1024 everywhere in
+    the district, so an opening snapped to that grid never cuts a painted
+    window. Taken as a run's `u0` instead of as a per-wall override, the same
+    fact holds AND the run still accumulates, so the material also crosses
+    every doorway -- the two were only ever in conflict inside the per-wall
+    representation (owner queue item 16).
+
+    The axis is the run's own direction, so a wall running -x phases from -x.
+    At natural scale this is `start / 16`, which is exactly what
+    `facade_pass.UNITS_PER_TILE_PIXEL` has meant all along.
+    """
+    face = _fields(level.walls[wall])
+    nxt = _fields(level.walls[int(face["point2"])])
+    dx = int(nxt["x"]) - int(face["x"])
+    dy = int(nxt["y"]) - int(face["y"])
+    horizontal = abs(dx) >= abs(dy)
+    start = int(face["x"]) if horizontal else int(face["y"])
+    sign = 1 if (dx if horizontal else dy) > 0 else -1
+    return int(round(sign * start * texels_per_unit))
+
+
 def run_partition(level: Any, *,
                   art_sizes: dict[int, tuple[int, int]] | None = None,
                   owners: Sequence[int] | None = None,
@@ -927,7 +954,8 @@ def frame_map(level: Any, *,
               carry_scale: bool = True,
               break_degrees: float = RUN_BREAK_DEGREES,
               skip: set[int] | None = None,
-              skip_moving: bool = True) -> dict[str, Any]:
+              skip_moving: bool = True,
+              world_phase: set[int] | None = None) -> dict[str, Any]:
     """Project every material onto the run it belongs to, in one pass.
 
     The replacement for `texture_align.align_wall_runs` and the floor-anchored
@@ -978,7 +1006,7 @@ def frame_map(level: Any, *,
                 moving += 1
     runs = run_partition(level, art_sizes=art_sizes, owners=owners,
                          break_degrees=break_degrees)
-    framed = changed = singles = 0
+    framed = changed = singles = district = 0
     for run in runs:
         run = [w for w in run if w not in skip]
         if not run:
@@ -988,18 +1016,26 @@ def frame_map(level: Any, *,
         length = wall_length(level, run[0]) or 1
         scale = (int(head["x_repeat"]) * 8.0 / length if carry_scale
                  else NATURAL_TEXELS_PER_UNIT)
+        #: A DISTRICT FRAME: a run whose first wall is named here takes its
+        #: u-origin from world space rather than from zero, so every street
+        #: front in the district shares one bay grid while each run still
+        #: accumulates across its own doorways.
+        world = world_phase is not None and run[0] in world_phase
         frame = WallRunFrame(
             tile=tile,
             texels_per_unit=max(scale, 1e-6),
-            u0=int(head["x_panning"]),
+            u0=(world_u(level, run[0], texels_per_unit=max(scale, 1e-6))
+                if world else int(head["x_panning"])),
             v0=wall_z_peg(level, run[0], owners),
             y_repeat=int(head["y_repeat"]) or 8,
             flip=int(head["cstat"]) & WALL_FLIP_MASK,
         )
         changed += resolve_run(level, run, frame, art_sizes, owners)
         framed += len(run)
+        district += int(world)
         singles += int(len(run) == 1)
     return {"runs": len(runs), "walls_framed": framed,
+            "district_runs": district,
             "single_wall_runs": singles, "fields_changed": changed,
             "walls_unframed": len(level.walls) - framed,
             "walls_left_to_their_mechanism": moving,
