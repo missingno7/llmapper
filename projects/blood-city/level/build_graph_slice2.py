@@ -35,6 +35,7 @@ for path in (str(ROOT), str(HERE)):
 
 from bloodmap import joins                                        # noqa: E402
 from bloodmap import street                                       # noqa: E402
+from bloodmap.facts import LEVELS, FactStore                       # noqa: E402
 from bloodmap.light_field import Mass                             # noqa: E402
 from bloodmap.overlay import ground_plane_rings, region_area      # noqa: E402
 from bloodmap.pipeline import (                                   # noqa: E402
@@ -278,6 +279,43 @@ def _perimeter_lamps(rings, count):
     return out
 
 
+def plan_facts(g) -> FactStore:
+    """The envelope solve, as level-0 facts. This IS the plan.
+
+    Everything after it is a level-1 or later declaration ABOUT these
+    rectangles, and the level-of-detail gate says none of those passes may
+    move one.
+    """
+    store = FactStore()
+    for axis, solved in (("x", g["x"]), ("y", g["y"])):
+        for name, lo, hi in solved.spans:
+            store.add("part_of", ("span", axis, name), lod=LEVELS["plan"],
+                      source="city_solve.solve_axis", parent="city",
+                      axis=axis, lo=int(lo), hi=int(hi),
+                      kind="cell" if name in solved.demanded else "gutter",
+                      demanded=int(solved.demanded.get(name, 0)))
+    for key, ring in sorted(g["islands"].items()):
+        store.add("island", ("island", key), lod=LEVELS["plan"],
+                  source="city_plan.BLOCKS", ring=[list(p) for p in ring],
+                  kind="block")
+    for name, rect in sorted(g["places"].items()):
+        store.add("island", ("island", name), lod=LEVELS["plan"],
+                  source="city_plan.AREAS", ring=[list(p) for p in _rect(*rect)],
+                  kind="open_place")
+    for name, rect in sorted(g["ends"].items()):
+        store.add("island", ("island", name), lod=LEVELS["plan"],
+                  source="city_plan.BOUNDARY",
+                  ring=[list(p) for p in _rect(*rect)], kind="end_wall")
+    for name, rect in sorted(g["water"].items()):
+        store.add("island", ("island", name), lod=LEVELS["plan"],
+                  source="city_plan.BOUNDARY",
+                  ring=[list(p) for p in _rect(*rect)], kind="waterfront")
+    store.add("island", ("island", "quay_walk"), lod=LEVELS["plan"],
+              source="city_plan.BOUNDARY",
+              ring=[list(p) for p in _rect(*g["quay_walk"])], kind="walk")
+    return store
+
+
 def emission() -> Emission:
     """What this city is. No pass runs here."""
     g = geometry()
@@ -353,7 +391,8 @@ def emission() -> Emission:
                         base_shade=BASE_SHADE, step=STEP, lamps=tuple(lamps)),
         joins=JoinSpec(strict=False),
         frames=FrameSpec(),
-        start=("plane", 0))
+        start=("plane", 0),
+        facts=plan_facts(g))
 
 
 # ---------------------------------------------------------------------------
@@ -509,6 +548,16 @@ def main() -> int:
     print("  symmetry gaps:")
     for gap in recovered["symmetry_gaps"]:
         print(f"   - {gap}")
+
+    print("facts:", report["facts"])
+    print("facts by level:",
+          {k: report["facts_by_level"].get(k, 0) for k in sorted(LEVELS.values())})
+    print(f"LoD gate: the frames pass changed "
+          f"{len(report['lod_faults'])} fact(s) below its level")
+    for row in report["lod_faults"][:3]:
+        print("   -", row)
+    written = built.store.write(ROOT / "projects/blood-city/facts")
+    print(f"wrote {len(written)} fact file(s) to projects/blood-city/facts")
 
     out = HERE / "slice2-streets.MAP"
     write_map(disk, out)

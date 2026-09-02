@@ -28,6 +28,7 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from .channels import PASSES, Compilation, OrderError, RegionLedger
+from .facts import LEVELS, FactStore, compare_below
 from .light_field import build_field
 from .lightbomb import apply_shade_channel
 from .overlay import CutRegistry, partition_faults, seed_coincident_vertices
@@ -72,6 +73,9 @@ class SurfaceSpec:
     floor_stat: int = 0
     ceiling_stat: int = 0
     lit: bool = True
+    #: Level of detail. A surface solved by the envelope program is plan (0);
+    #: the ground and the shells it carries are massing (1).
+    lod: int = LEVELS["massing"]
     #: A backdrop is not a place. A zero-height horizon has no way in on
     #: purpose, and saying so is a claim the geometry audit accepts; leaving
     #: it unsaid is the `zero_exit_gameplay_sector` refusal.
@@ -150,6 +154,10 @@ class Emission:
     frames: FrameSpec | None = None
     #: `(surface_id, angle)`: which surface the body starts on.
     start: tuple | None = None
+    #: The emitter's own facts -- the plan, at level 0. The compiler adds the
+    #: rest as it runs, so the store beside the map is the whole declaration
+    #: and not just the part a Build sector can hold.
+    facts: FactStore | None = None
 
     def missing(self) -> list[str]:
         """The passes this emission cannot run, in pipeline order."""
@@ -166,6 +174,7 @@ class Built:
     ledger: RegionLedger
     run: Compilation
     report: dict
+    store: FactStore
 
 
 def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
@@ -188,6 +197,7 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
     run = Compilation()
     layout = PlanarLayout(name=emission.name)
     ledger = RegionLedger()
+    store = emission.facts if emission.facts is not None else FactStore()
     report: dict[str, Any] = {"name": emission.name}
     pieces: list = []
 
@@ -197,6 +207,14 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
     if not surfaces:
         raise PipelineError(f"{emission.name}: no surfaces to build")
     report["surfaces"] = len(surfaces)
+    for spec in surfaces:
+        store.add("surface", ("surface", spec.surface_id), lod=spec.lod,
+                  source=f"emitter:{emission.name}", kind=spec.kind,
+                  floor_z=spec.floor_z, ceiling_z=spec.ceiling_z,
+                  floor_tile=spec.floor_tile, wall_tile=spec.wall_tile,
+                  ceiling_tile=spec.ceiling_tile, role=spec.role,
+                  lit=spec.lit, rings=[list(map(list, ring))
+                                       for ring in spec.rings])
 
     # --- 2. declare -------------------------------------------------------
     run.enter("declare")
@@ -263,6 +281,10 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
     report["partition_faults"] = faults
 
     for name, piece, spec in pieces:
+        store.add("part_of", ("piece", name), lod=spec.lod,
+                  source=f"surface:{spec.surface_id}",
+                  parent=spec.surface_id, depth=piece.depth,
+                  rings=[list(map(list, ring)) for ring in piece.rings])
         layout.add_region(
             name, piece.rings[0], holes=piece.rings[1:],
             floor_z=spec.floor_z, ceiling_z=spec.ceiling_z,
@@ -329,6 +351,25 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
             _place_lamp(disk, sector, lamp, floor)
     report["lamps"] = lit_lamps
     report["shade"] = apply_shade_channel(disk, ledger)
+    for name, piece, spec in pieces:
+        sector = compiled.allocations[name].sector_id
+        #: THE DEPTH k, which no Build sector holds: the map records the sum
+        #: and the store records what it was made of.
+        store.add("shade_depth", ("sector", sector), lod=spec.lod,
+                  source=f"piece:{name}", depth=piece.depth,
+                  base=light.base_shade, step=light.step,
+                  sources=list(piece.sources),
+                  shade=int(disk.sectors[sector].fields["floor_shade"]))
+    for row in lit_lamps:
+        store.add("lamp_delta", ("lamp", row["lamp"]),
+                  lod=LEVELS["dressing"], source=f"piece:{row['region']}",
+                  sector=row["sector"], delta=row["delta"], depth=row["depth"])
+    for write in ledger.writes:
+        store.add("claims", ("claim", write.region, write.channel,
+                             write.owner), lod=LEVELS["massing"],
+                  source=write.owner, region=write.region,
+                  channel=write.channel, value=write.value,
+                  intent=write.intent)
 
     # --- 4. joins ---------------------------------------------------------
     run.enter("joins")
@@ -340,8 +381,21 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
                                strict=emission.joins.strict)
     report["joins"] = {k: v for k, v in applied.items() if k != "applied"}
     report["join_rows"] = applied["applied"]
+    for row in applied["applied"]:
+        store.add("join", ("wall", row["wall"]), lod=LEVELS["massing"],
+                  source="joins.apply", a=row["a"], b=row["b"],
+                  height=row["height"], shows=row["shows"],
+                  frame=row["frame"],
+                  picnum=int(disk.walls[row["wall"]].fields["picnum"]),
+                  shade=int(disk.walls[row["wall"]].fields["shade"]))
 
     # --- 5. frames --------------------------------------------------------
+    #: THE LEVEL-OF-DETAIL GATE, live. The frames pass is level 2, so every
+    #: fact of level 0 and 1 -- the plan and the massing -- must come out of
+    #: it byte-identical. A facade pass that moves an envelope by one unit
+    #: still compiles and still passes every geometry gate; the only evidence
+    #: is a level-0 line that moved.
+    below = store.lines_below(LEVELS["facades"])
     run.enter("frames")
     from .texture_align import wall_art_sizes
     from .texture_frame import frame_map
@@ -353,9 +407,27 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
                             in frame_map(disk, art_sizes=art).items()
                             if k != "basis"}
 
+        from .texture_frame import run_partition, sector_index
+
+        owners = sector_index(disk)
+        for number, chain in enumerate(run_partition(disk, art_sizes=art,
+                                                     owners=owners)):
+            store.add("frame", ("run", number), lod=LEVELS["facades"],
+                      source="texture_frame.frame_map", walls=list(chain),
+                      tile=int(disk.walls[chain[0]].fields["picnum"]),
+                      x_repeat=[int(disk.walls[w].fields["x_repeat"])
+                                for w in chain],
+                      x_panning=[int(disk.walls[w].fields["x_panning"])
+                                 for w in chain])
+
+    report["lod_faults"] = compare_below(below,
+                                        store.lines_below(LEVELS["facades"]),
+                                        LEVELS["facades"])
     run.require_complete()
+    report["facts"] = store.count()
+    report["facts_by_level"] = store.by_level()
     return Built(layout=layout, compiled=compiled, disk=disk, pieces=pieces,
-                 ledger=ledger, run=run, report=report)
+                 ledger=ledger, run=run, report=report, store=store)
 
 
 def shared_segments(a_rings, b_rings) -> list:

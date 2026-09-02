@@ -1,0 +1,846 @@
+{"fields":{"a":"end_wall","b":"pavement","frame":"boundary","height":"b_below","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",664],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"end_wall","b":"pavement","frame":"boundary","height":"b_below","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",666],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"end_wall","b":"pavement","frame":"boundary","height":"b_below","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",670],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"end_wall","b":"pavement","frame":"boundary","height":"b_below","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",672],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"end_wall","b":"pavement","frame":"boundary","height":"b_below","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",674],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"end_wall","b":"road","frame":"boundary","height":"b_below","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",663],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"end_wall","b":"road","frame":"boundary","height":"b_below","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",665],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"end_wall","b":"road","frame":"boundary","height":"b_below","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",667],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"end_wall","b":"road","frame":"boundary","height":"b_below","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",669],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"end_wall","b":"road","frame":"boundary","height":"b_below","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",671],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"end_wall","b":"road","frame":"boundary","height":"b_below","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",673],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",842],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",843],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",844],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",845],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",846],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",847],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",848],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",849],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",850],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",851],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",852],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",853],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",854],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",855],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",856],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",857],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",858],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",859],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",860],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",861],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"horizon","b":"sea","frame":"independent","height":"equal","picnum":3491,"shade":9,"shows":"nothing"},"key":["wall",862],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"end_wall","frame":"boundary","height":"b_above","picnum":400,"shade":14,"shows":"lower band, facade stone"},"key":["wall",252],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"end_wall","frame":"boundary","height":"b_above","picnum":400,"shade":14,"shows":"lower band, facade stone"},"key":["wall",353],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"end_wall","frame":"boundary","height":"b_above","picnum":400,"shade":14,"shows":"lower band, facade stone"},"key":["wall",358],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"end_wall","frame":"boundary","height":"b_above","picnum":400,"shade":8,"shows":"lower band, facade stone"},"key":["wall",455],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"end_wall","frame":"boundary","height":"b_above","picnum":400,"shade":8,"shows":"lower band, facade stone"},"key":["wall",460],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",239],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",241],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",267],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",268],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",269],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",290],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",291],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",292],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",293],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",300],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",301],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",302],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",315],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",316],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",319],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",325],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",326],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",327],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",328],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",330],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",331],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",332],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",334],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",335],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",336],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",337],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",341],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",342],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",343],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",344],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",345],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",346],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",368],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",369],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",370],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",391],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",392],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",393],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",394],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",402],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",403],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",404],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",417],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",418],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",421],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",427],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",428],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",429],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",430],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",432],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",433],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",434],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",436],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",437],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",438],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",439],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",443],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",444],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",445],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",446],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",447],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",448],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",470],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",471],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",472],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",492],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",493],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",494],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",495],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",502],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",503],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",504],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",519],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",520],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",523],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",525],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",526],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",527],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",529],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",530],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",531],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",532],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",535],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",536],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",537],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",538],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",539],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",540],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",545],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",546],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",548],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",549],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",550],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",558],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",560],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",562],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",564],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",570],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",572],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",574],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",576],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",582],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",584],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",586],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",588],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",592],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",594],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",596],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",598],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",600],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",602],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",604],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",606],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",608],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",610],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",612],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",614],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",616],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",618],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",620],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",622],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",624],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",626],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",629],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",630],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",631],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",632],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",634],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",635],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",636],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",637],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",638],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",639],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",640],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",642],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",643],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",644],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",645],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",646],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",647],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",648],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",650],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",651],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",652],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",653],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",655],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",657],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",658],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",659],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",660],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",661],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",662],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",245],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",247],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",248],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",249],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",250],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",253],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",254],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",255],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",256],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",260],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",261],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",264],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",265],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",266],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",271],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",272],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",273],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",276],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",277],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",278],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",279],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",282],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",283],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",284],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",286],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",287],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",288],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",297],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",298],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",299],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",304],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",305],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",306],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",308],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",310],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",311],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",312],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",320],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",322],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",323],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",348],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",349],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",350],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",351],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",354],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",355],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",356],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",357],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",361],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",362],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",365],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",366],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",367],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",372],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",373],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",374],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",375],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",378],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",379],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",380],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",383],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",384],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",385],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",386],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",387],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",388],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",389],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",396],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",399],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",400],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",401],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",406],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",407],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",408],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",410],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",412],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",413],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",414],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",422],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",424],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",425],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",450],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",451],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",452],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",453],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",456],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",457],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",458],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",459],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",463],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",464],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",467],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",468],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",469],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",474],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",475],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",476],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",479],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",480],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",481],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",484],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",485],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",486],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",488],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",489],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",490],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",499],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",500],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",501],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",506],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",507],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",508],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",509],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",510],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",512],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",514],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",515],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",516],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",541],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",544],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",554],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",556],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",566],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",568],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",578],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"pavement","frame":"continues","height":"equal","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",580],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",238],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",240],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",289],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",294],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",313],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",314],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",317],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",318],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",324],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",329],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",333],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",338],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",339],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",340],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",390],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",395],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",415],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",416],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",419],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",420],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",426],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",431],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",435],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",440],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",441],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",442],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",491],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",496],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",517],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",518],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",521],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",522],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",524],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",528],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",533],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",534],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",547],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",551],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",552],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",557],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",561],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",569],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",573],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",581],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",585],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",589],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",593],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",597],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",601],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",605],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",609],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",613],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",617],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",621],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",625],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",633],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",641],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",649],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",654],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",656],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",242],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",243],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",244],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",246],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",251],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",257],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",258],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",259],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",262],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",263],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",270],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",274],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",275],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",280],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",281],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",285],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",295],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",296],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",303],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",307],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",309],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",321],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",347],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",352],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",359],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",360],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",363],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",364],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",371],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",376],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",377],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",381],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",382],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",397],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",398],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",405],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",409],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",411],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",423],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",449],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",454],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",461],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",462],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",465],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",466],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",473],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",477],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",478],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",482],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",483],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",487],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",497],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",498],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",505],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",511],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",513],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",542],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",543],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",553],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",565],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"road","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",577],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",559],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",563],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",571],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",575],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",583],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",587],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",591],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",595],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",599],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",603],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",607],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",611],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",615],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",619],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",623],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":16,"shows":"nothing"},"key":["wall",627],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",555],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",567],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"pavement","b":"shore","frame":"independent","height":"b_below","picnum":401,"shade":9,"shows":"nothing"},"key":["wall",579],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"end_wall","frame":"boundary","height":"b_above","picnum":400,"shade":14,"shows":"lower band, facade stone"},"key":["wall",118],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"end_wall","frame":"boundary","height":"b_above","picnum":400,"shade":14,"shows":"lower band, facade stone"},"key":["wall",136],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"end_wall","frame":"boundary","height":"b_above","picnum":400,"shade":14,"shows":"lower band, facade stone"},"key":["wall",173],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"end_wall","frame":"boundary","height":"b_above","picnum":400,"shade":14,"shows":"lower band, facade stone"},"key":["wall",35],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"end_wall","frame":"boundary","height":"b_above","picnum":400,"shade":14,"shows":"lower band, facade stone"},"key":["wall",37],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"end_wall","frame":"boundary","height":"b_above","picnum":400,"shade":14,"shows":"lower band, facade stone"},"key":["wall",39],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",116],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",117],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",122],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",134],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",135],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",137],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",138],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",140],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",141],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",148],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",149],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",151],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",152],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",156],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",157],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",158],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",160],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",171],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",172],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",174],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",175],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",177],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",178],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",180],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",186],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",187],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",188],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",189],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",191],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",192],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",195],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",196],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",198],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",199],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",201],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",212],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",213],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",215],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",216],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",224],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",225],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",227],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",228],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",232],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",233],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",235],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",36],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",38],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",40],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":14,"shows":"lower band, kerb class"},"key":["wall",41],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",0],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",102],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",103],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",107],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",110],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",111],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",113],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",114],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",126],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",128],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",144],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",146],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",163],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",165],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",182],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",184],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",204],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",206],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",220],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",222],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",23],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",24],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",25],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",28],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",2],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",31],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",32],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",3],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",4],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",64],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",67],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",68],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",72],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",75],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",76],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",78],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",79],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":26,"shows":"lower band, kerb class"},"key":["wall",99],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",130],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",132],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",14],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",167],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",169],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",17],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",19],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",208],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",20],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",210],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",49],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",52],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",54],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",55],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",58],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",60],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",61],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",62],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",6],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",85],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",88],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",8],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",90],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",91],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",94],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",95],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":38,"shows":"lower band, kerb class"},"key":["wall",97],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":50,"shows":"lower band, kerb class"},"key":["wall",10],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":50,"shows":"lower band, kerb class"},"key":["wall",12],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":50,"shows":"lower band, kerb class"},"key":["wall",45],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":50,"shows":"lower band, kerb class"},"key":["wall",47],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":50,"shows":"lower band, kerb class"},"key":["wall",81],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"pavement","frame":"independent","height":"b_above","picnum":6,"shade":50,"shows":"lower band, kerb class"},"key":["wall",83],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",127],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",129],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",131],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",133],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",145],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",147],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",15],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",164],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",166],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",168],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",16],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",170],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",183],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",185],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",18],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",205],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",207],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",209],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",211],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",21],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",221],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",223],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",22],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",50],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",51],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",53],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",56],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",57],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",86],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",87],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",89],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",92],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":16,"shows":"nothing"},"key":["wall",93],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",100],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",101],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",104],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",105],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",106],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",108],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",109],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",112],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",115],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",11],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",123],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",124],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",125],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",139],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",13],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",142],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",143],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",150],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",153],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",154],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",155],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",159],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",161],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",162],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",176],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",179],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",181],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",190],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",193],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",194],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",197],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",1],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",200],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",202],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",203],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",214],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",217],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",219],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",226],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",229],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",231],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",234],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",237],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",26],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",27],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",29],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",30],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",33],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",42],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",46],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",48],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",59],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",5],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",63],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",65],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",66],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",69],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",70],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",71],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",73],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",74],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",77],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",7],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",80],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",82],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",84],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",96],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",98],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"road","b":"road","frame":"continues","height":"equal","picnum":400,"shade":9,"shows":"nothing"},"key":["wall",9],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",796],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",812],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",828],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",753],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",757],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",762],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",766],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",770],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",775],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",779],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",783],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",788],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",800],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",804],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",808],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",816],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",820],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",824],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",832],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",836],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"horizon","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",840],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",792],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",793],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",794],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",797],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",811],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",813],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",827],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",829],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",752],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",754],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",756],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",758],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",760],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",761],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",763],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",765],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",767],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",769],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",771],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",773],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",774],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",776],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",778],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",780],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",782],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",784],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",786],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",787],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",789],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",799],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",801],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",803],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",805],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",807],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",809],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",810],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",815],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",817],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",819],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",821],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",823],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",825],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",826],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",831],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",833],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",835],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",837],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"sea","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",839],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",790],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",751],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",755],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",759],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",764],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",768],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",772],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",777],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",781],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",785],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",798],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",802],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",806],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",814],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",818],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",822],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",830],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",834],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"sea","b":"shore","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",838],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":14,"shows":"lower band, quay class"},"key":["wall",711],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":14,"shows":"lower band, quay class"},"key":["wall",723],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":14,"shows":"lower band, quay class"},"key":["wall",735],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":14,"shows":"lower band, quay class"},"key":["wall",747],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":26,"shows":"lower band, quay class"},"key":["wall",683],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":26,"shows":"lower band, quay class"},"key":["wall",695],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":26,"shows":"lower band, quay class"},"key":["wall",707],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":26,"shows":"lower band, quay class"},"key":["wall",719],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":26,"shows":"lower band, quay class"},"key":["wall",731],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":26,"shows":"lower band, quay class"},"key":["wall",743],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":38,"shows":"lower band, quay class"},"key":["wall",679],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":38,"shows":"lower band, quay class"},"key":["wall",691],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":38,"shows":"lower band, quay class"},"key":["wall",703],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":38,"shows":"lower band, quay class"},"key":["wall",715],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":38,"shows":"lower band, quay class"},"key":["wall",727],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":38,"shows":"lower band, quay class"},"key":["wall",739],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":50,"shows":"lower band, quay class"},"key":["wall",675],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":50,"shows":"lower band, quay class"},"key":["wall",687],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"pavement","frame":"independent","height":"b_above","picnum":28,"shade":50,"shows":"lower band, quay class"},"key":["wall",699],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",681],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",685],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",693],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",697],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",705],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",709],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",713],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",717],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",721],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",725],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",729],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",733],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",737],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",741],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",745],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",749],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",677],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",689],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"sea","frame":"independent","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",701],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",680],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",682],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",684],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",686],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",692],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",694],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",696],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",698],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",704],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",706],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",708],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",710],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",714],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",716],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",718],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",720],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",722],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",724],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",726],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",728],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",730],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",732],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",734],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",736],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",738],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",740],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",742],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",744],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",746],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":16,"shows":"nothing"},"key":["wall",748],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",676],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",678],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",688],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",690],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",700],"lod":1,"source":"joins.apply"}
+{"fields":{"a":"shore","b":"shore","frame":"continues","height":"equal","picnum":28,"shade":9,"shows":"nothing"},"key":["wall",702],"lod":1,"source":"joins.apply"}
