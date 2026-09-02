@@ -244,6 +244,25 @@ class Compilation:
     def complete(self) -> bool:
         return list(self.done) == list(PASSES)
 
+    def require_complete(self) -> None:
+        """The order assertion is also a COMPLETENESS assertion.
+
+        Running the passes in the right order is worth nothing if one of them
+        never ran. Slice 2h's frame gate found 191 misaligned walls and the
+        cause was that `frame_map` had never been called: a gate downstream of
+        a missing pass reports the symptom, and only the compiler can report
+        the absence. So a build that stops early raises **naming the first
+        pass it never entered**.
+        """
+        for name in PASSES:
+            if name not in self.done:
+                raise OrderError(
+                    f"the {name!r} pass never ran. The order is "
+                    f"{' -> '.join(PASSES)} and all five are compulsory -- a "
+                    f"pass that simply does not run is invisible to every "
+                    f"gate downstream of it, which is how 191 walls came to "
+                    f"be misaligned with a clean frame report")
+
 
 def _why_before(earlier: str, later: str) -> str:
     reasons = {
