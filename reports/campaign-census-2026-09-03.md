@@ -46,7 +46,7 @@ highest.
 > quartiles are 32 768 and 393 216, so a quarter of these masses still stand
 > under two player heights and are ledges rather than terminations. A narrower
 > kind is a further reader change and would want the owner's word — queue item
-> 32a.
+> 37a.
 
 ## 28d — where a material stops, by bend class
 

@@ -187,7 +187,7 @@ PROPOSALS = {
 NOT_MACROS = {
     "interior|interior rows": {
         "cause": ROW,
-        "owner": "queue item 32e -- 11 proposed rows, none added",
+        "owner": "queue item 37e -- 11 proposed rows, none added",
         "says": ("the join grammar has no row for two interiors meeting, in "
                  "any of the three height relations. It is the campaign's "
                  "commonest join and the table is silent on it"),

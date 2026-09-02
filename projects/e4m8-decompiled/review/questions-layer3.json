@@ -4,7 +4,7 @@
   {
    "node": "row:road|pavement|b_above",
    "question": "The reader recovers 11 road|pavement records and all 11 wear tile 6 with cstat 0 -- the kerb, exactly as the row states. But `joins.TILE_CLASSES` gives `facade stone` as 400, and over the 43 campaign maps NONE of the 191 end-wall band records wears it. Is 400 a campaign value or Gravesend's own choice?",
-   "recommended_default": "treat 400 as our CHOICE; the class is now mined (queue item 32b) and is led by 2490 and 91. The kerb row needs no change",
+   "recommended_default": "treat 400 as our CHOICE; the class is now mined (queue item 37b) and is led by 2490 and 91. The kerb row needs no change",
    "evidence": "references/join-census.json: band_tiles"
   },
   {

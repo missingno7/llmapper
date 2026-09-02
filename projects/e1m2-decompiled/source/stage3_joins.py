@@ -52,7 +52,7 @@ def _review(world, result, owners) -> dict:
                       "wears it. Is 400 a campaign value or "
                       "Gravesend's own choice?"),
          "recommended_default": ("treat 400 as our CHOICE; the class is now "
-                                 "mined (queue item 32b) and is led by 2490 "
+                                 "mined (queue item 37b) and is led by 2490 "
                                  "and 91. The kerb row needs no change"),
          "evidence": "references/join-census.json: band_tiles"},
         {"node": "kind:end_wall",

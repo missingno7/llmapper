@@ -109,8 +109,8 @@ largest buckets are not macro work at all:
 
 | bucket | facts | cause | owner |
 | --- | --- | --- | --- |
-| a surface's own projection (2178 + 1636) | 3814 | reader | the Surface/Frame representation item — layer 2 cannot attest a frame on a wall with no same-material neighbour, or on one whose neighbour breaks the projection. **This is the largest residue on all three maps and no macro touches it.** |
-| `interior\|interior` rows (1266 + 662 + 662) | 2590 | row | queue item 32e — 11 proposed rows, none added. Two interiors meeting is the campaign's commonest join and the table is silent on it. |
+| a surface's own projection (2178 + 1636) | 3814 | reader | the Surface/Frame representation item — layer 2 cannot attest a frame on a wall with no same-material neighbour, or on one whose neighbour breaks the projection. **This is the largest residue on all three maps, and the only macro that reaches into it is `stair`, for 321 of the 3814.** |
+| `interior\|interior` rows (1266 + 662 + 662) | 2590 | row | queue item 37e — 11 proposed rows, none added. Two interiors meeting is the campaign's commonest join and the table is silent on it. |
 | spaces nothing groups | 242 | reader | `decompiler.decompile_level` — a sector in the tree only so the partition closes. A constructor cannot supply evidence. |
 
 ## The macros
@@ -157,6 +157,12 @@ what it opens onto. Layer 8 refuses to name these on both maps that have them,
 because **the taught course has no lesson of type 511 at all**: the campaign
 uses a mechanism its own curriculum omits.
 
+**The macro total and the bucket total overlap by exactly `stair`'s 321.**
+Those facts are surface residue on tread walls and are counted in both rows;
+every other macro's residue is disjoint from both buckets. 8227 residue facts
+across three maps: 6404 in the two buckets, 1283 the five macros would lower,
+321 in both, and 861 elsewhere.
+
 ## What I did not propose
 
 `kerbed_island` and `water_body` were measured and not proposed, for opposite
@@ -167,8 +173,15 @@ leaves 56 residue facts that are all join rows, which is row work.
 ## The suite
 
 ```text
-SUITE_LINE
+Ran 2034 tests in 213.753s
+FAILED (failures=5, errors=4, skipped=267, expected failures=4)
 ```
+
+The nine are P16's worktree-environment failures (relative `maps/`,
+`reference/`, `NBlood/` paths); none is from this work. The four new tests in
+`tests/test_read_overlays.py` pin the no-sun shape — that `read_light` returns
+its `sign` and `casters` keys on a map with no oblique shade boundary, and
+that E3M1 still recovers a bearing of 479, so the shape is not a blanket.
 
 ## Owner questions
 
