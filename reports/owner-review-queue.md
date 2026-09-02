@@ -1002,10 +1002,61 @@ geometry by up to half the grid, which on a 2048 kerb is invisible and on a
 512 pavement path is a twelfth of its width, and it would quietly change the
 band widths the E3M1 gate checks.
 
-> **Recommended default: weld.** The snap is tempting because it is small, but
+> **CLOSED 2026-09-02 (slice 2g) BY A GATE, not by a judgement.** G1 (vertex
+> fidelity: every declared vertex present in the built map, unmoved) separates
+> the options: snapping to 8 moves 2 of slice 1's 11 distinct points and G1
+> names both, so snap fails by construction. The weld is built and closes the
+> captured regression with zero partition faults. This should not have been an
+> owner question -- an invariant existed and I did not look for it before
+> asking.
+>
+> ~~Recommended default: weld.~~ The snap is tempting because it is small, but
 > it buys correctness by moving the geometry the plan solved, and this project
 > has already paid twice for a cheap fix that quietly changed a measured
 > number -- the 8x scale and the junction squares. Welding leaves every
 > coordinate where the solver put it and makes the shared edges true rather
 > than nearly true. If welding proves harder than it looks, snapping to 8 is
 > the fallback and the E3M1 band gate will say what it cost.
+
+> **Decided by the supervisor (2026-09-02): weld, by edge identity, not
+> by a half-unit search.** See section 25 of
+> `projects/blood-city/reports/street-model-decisions-2026-09-02.md`.
+> The choice was decidable by two gates the project already states
+> (vertex fidelity; partition + PlanarLayout acceptance), so it should
+> not have reached this queue; that is now a standing rule.
+
+## 27. A T-junction the registry cannot see (2026-09-02)
+
+**No invariant separates the two options here, which is why it is in the
+queue** rather than settled by a gate.
+
+The weld inserts a crossing into the edge it was computed from, keyed by that
+edge's undirected identity. The graph's remaining failure is a different
+shape: one island edge is abutted by three neighbouring pieces in
+sub-segments, and those sub-segment endpoints were crossings on a DIFFERENT
+edge -- piece B's corner happens to sit on piece A's edge without ever having
+been a crossing of it. The registry has no record tying them, so the weld
+cannot act.
+
+**A. Edge identity plus containment.** After welding, insert any piece vertex
+that lies within another piece's edge span. It closes the case, and it
+reintroduces exactly the containment test that edge identity was chosen to
+avoid -- with a tolerance, because a rounded corner is not exactly on the edge
+it touches.
+
+**B. Record the containment at cut time.** When a cut produces a piece, note
+which existing pieces' boundaries its new vertices fall on, and register those
+too. No tolerance at cut time (the geometry is still exact there), but it
+means every cut consults the whole piece set rather than just its own input.
+
+Both give the same map. A is a few lines and a tolerance; B is a wider change
+with no tolerance. G1 does not separate them -- neither moves a vertex. G2
+does not separate them -- both would pass. The wall counts would be identical.
+
+> **Recommended default: B, record it at cut time.** The argument is only that
+> this project has repeatedly paid for tolerances that looked harmless (the
+> 0.05 that read as an overlap; the exact-collinearity test that rejected its
+> own crossings), and B is the option with none. But I want to record that
+> the case for A is real -- it is small, local, and testable -- and that if B
+> turns out to need the whole piece set threaded through every cut, A with a
+> half-unit tolerance is the honest fallback rather than a defeat.

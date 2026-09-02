@@ -3459,6 +3459,70 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### Slice 2g: the weld, and the gate that chose it
+
+**G1, vertex fidelity.** `overlay.vertex_faults`: every vertex a surface
+declared must appear in the built map unmoved, exact set inclusion. A cut may
+ADD points -- that is what a cut does -- but may never move one the solver
+placed. Snapping crossings to a coarser grid fails it by construction, and on
+slice 1 it fails concretely: snapping to 8 moves **2 of its 11 distinct
+points** and G1 names both. The gate chose weld; no taste was required.
+
+**`_crossing` is canonical.** The endpoints are ordered before interpolating,
+because the SAME edge is given one way by a plane's hole ring and the other by
+the island standing in it, and two directions rounded to two different
+integers would leave the weld nothing to match. Over 2000 random oblique
+edges: **zero disagreements**.
+
+**The weld, by identity.** While cutting, each crossing is recorded against
+the UNDIRECTED key of the edge it came from, in a registry spanning every cut
+of a surface. Afterwards each recorded point is inserted into every ring that
+still carries that edge, ordered along it. No search radius anywhere.
+
+The captured regression now passes G2 with **zero faults**, one mass and all
+nine, welding 2 vertices.
+
+Three things that had to be got right, and each was wrong first:
+
+* **A registry point belongs to its edge by RECORD, not by re-derivation.** It
+  was rounded when it was computed, so it is routinely not exactly collinear
+  with the edge it came from -- 668 on the cross product for the fixture's own
+  crossing -- and an exact collinearity test rejected the very points the weld
+  exists to insert.
+* **Absorbed means the neighbour KEEPS the area.** The sliver branch returned
+  the CUT piece and discarded the scrap, losing 536 units on a 419-million
+  rectangle. The partition assertion found it the moment the weld removed the
+  overlap that had been masking it.
+* **The emitter must pair EVERY shared segment**, not the first. After welding,
+  two pieces routinely share several.
+
+The walls the weld adds are not overhead: Build needs a vertex wherever two
+sectors' boundaries meet, and a wall without one is a red wall.
+
+#### Deliverable 6 still did not land, and the symptom has moved
+
+`partial_area_overlap` is **gone** -- the weld closed it, and the plane-to-
+island pairs now pair. What remains is a narrower unpaired-portal set, all of
+it island-internal: one island edge is abutted by three neighbouring pieces in
+sub-segments the registry never recorded, because those endpoints were
+crossings on a DIFFERENT edge rather than on this one. The weld inserts a
+crossing into the edge it came from; it does not yet insert a neighbour's
+vertex into an edge that merely passes through it.
+
+So there are still no whole-graph counts, no waterfront, no end walls, no
+read-back, no renders, and the four absolute shade values remain fixture
+numbers.
+
+#### What slice 3 must answer first
+
+**Whether the weld should be by edge identity alone, or by edge identity plus
+containment.** The remaining failure is a T-junction the registry cannot see:
+piece B's corner sits on piece A's edge without ever having been a crossing of
+that edge. Extending the weld to insert any piece vertex lying within a
+segment's span would close it, and it reintroduces the containment test that
+edge identity was chosen to avoid -- so it needs its own invariant before it
+is written, not after.
+
 ### Slice 2f: the assertion, and the cause captured
 
 **Step 1 -- the partition assertion.** `overlay.partition_faults` asks three

@@ -159,12 +159,12 @@ def build():
     paired = 0
     for index, (a_name, a_piece, _a_sid, _az) in enumerate(pieces):
         for b_name, b_piece, _b_sid, _bz in pieces[index + 1:]:
-            edge = _shared(a_piece.rings, b_piece.rings)
-            if edge is None:
-                continue
-            layout.add_connection(f"join:{a_name}:{b_name}", a_name, b_name,
-                                  role="portal", a1=edge[0], a2=edge[1])
-            paired += 1
+            for number, edge in enumerate(_shared(a_piece.rings,
+                                                  b_piece.rings)):
+                layout.add_connection(
+                    f"join:{a_name}:{b_name}:{number}", a_name, b_name,
+                    role="portal", a1=edge[0], a2=edge[1])
+                paired += 1
     report["joins_declared"] = paired
 
     start = next(name for name, piece, sid, _z in pieces if sid == "plane")
@@ -175,6 +175,14 @@ def build():
 
 
 def _shared(a_rings, b_rings):
+    """EVERY segment the two pieces share, not the first.
+
+    After the weld two pieces routinely share several segments -- a chord that
+    a later cut split, an island edge broken by a shadow crossing -- and
+    declaring only one leaves the rest as coincident walls nobody paired,
+    which `PlanarLayout` reports as unexplained unpaired portal candidates.
+    """
+    out = []
     for a in a_rings:
         for index, point in enumerate(a):
             nxt = a[(index + 1) % len(a)]
@@ -183,8 +191,8 @@ def _shared(a_rings, b_rings):
                     end = b[(other + 1) % len(b)]
                     if {tuple(point), tuple(nxt)} == {tuple(start),
                                                       tuple(end)}:
-                        return (tuple(point), tuple(nxt))
-    return None
+                        out.append((tuple(point), tuple(nxt)))
+    return out
 
 
 def main() -> int:
