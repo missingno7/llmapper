@@ -437,3 +437,48 @@ def lights_in(level: Any, tiles: Iterable[int], *,
         out.append((int(fields["x"]), int(fields["y"]), int(fields["z"]),
                     int(fields["sector"])))
     return out
+
+
+# ---------------------------------------------------------------------------
+# the single summing owner of the shade channel
+# ---------------------------------------------------------------------------
+
+def apply_shade_channel(level, ledger, *, floor: int = -128,
+                        ceiling: int = 127) -> dict:
+    """Sum every contribution to the shade channel and write it once.
+
+    `floor_shade` is an ADDITIVE channel and this is its only writer
+    (`bloodmap.channels`). The sun field, a lamp's pool, a flicker's base and
+    a Link-driven wave all contribute DELTAS to `bloodmap.channels.
+    RegionLedger`; nothing writes the field directly, so nothing can be
+    decided by which pass happened to run last.
+
+    That failure mode is not hypothetical. `glass.glaze` and
+    `texture_frame.frame_map` both wrote the same four texture fields on the
+    same 24 records, and pass order decided per record -- fifteen kept one
+    number and nine got the other, and nobody chose. Shade had four writers
+    and the same shape of problem waiting.
+
+    Regions are keyed by their sector index as a string, which is what the
+    ledger carries.
+    """
+    from .channels import ADDITIVE, CHANNELS
+
+    if CHANNELS["shade"] != ADDITIVE:                    # pragma: no cover
+        raise ValueError("shade must be an additive channel")
+    written = 0
+    contributors = 0
+    for index, sector in enumerate(level.sectors):
+        key = str(index)
+        parts = ledger.contributors(key, "shade")
+        if not parts:
+            continue
+        total = ledger.total(key, "shade")
+        fields = _fields(sector)
+        base = int(fields["floor_shade"])
+        fields["floor_shade"] = max(floor, min(ceiling, base + int(total)))
+        written += 1
+        contributors += len(parts)
+    return {"sectors_written": written, "contributions": contributors,
+            "basis": ("shade is additive and this is its single summing "
+                      "owner; nothing else writes floor_shade")}
