@@ -31,8 +31,24 @@ BLOODMAP_CORPUS=D:/Games/DOS/llmapper/maps/blood BLOODMAP_ART=D:/Games/DOS/llmap
 | --- | --- | --- | --- |
 | `stage1_space_tree.py` | the space tree | `bloodmap.decompiler` (reused) | `references/space-tree.json` |
 | `stage2_surfaces.py` | surfaces and frames | `bloodmap.read_surfaces` (new) | `references/surfaces.json` |
+| `stage3_joins.py` | joins | `bloodmap.read_joins` (new) | `references/join-census.json` |
 
 `source/ledger.py` composes every stage's evidence into `residue-ledger.json`.
+
+## Review packs
+
+Every layer emits one, into `review/layer<N>.html`: the reader's decisions as
+a tree on the left, E3M1 on the right in XMapEdit's orientation (+Y down),
+click a node to light its sectors. **A sector no node owns is that layer's
+residue**, shown rather than claimed, so the packs are built from a hierarchy
+whose nodes are only what the layer decided.
+
+Owner questions are beside the pack in `review/questions-layer<N>.json`, at
+most ten a layer, each naming a node id with a recommended default -- never
+nodes themselves, because `review_pack`'s deepest-owner rule would then let a
+question own the sectors it asks about and colour the map by our doubts. The
+owner's marks come back as `review/answers-layer<N>.json`; each is fixed or
+refuted by a measurement in the next report.
 
 ## What is here
 

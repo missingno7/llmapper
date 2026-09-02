@@ -1,0 +1,3152 @@
+{
+ "nodes": [
+  {
+   "id": "level",
+   "kind": "level",
+   "name": "E3M1 -- surfaces of more than one record",
+   "parent": null,
+   "children": [
+    "tile:0",
+    "tile:6",
+    "tile:20",
+    "tile:28",
+    "tile:35",
+    "tile:42",
+    "tile:67",
+    "tile:84",
+    "tile:88",
+    "tile:90",
+    "tile:100",
+    "tile:108",
+    "tile:118",
+    "tile:170",
+    "tile:181",
+    "tile:203",
+    "tile:204",
+    "tile:255",
+    "tile:301",
+    "tile:378",
+    "tile:379",
+    "tile:380",
+    "tile:381",
+    "tile:384",
+    "tile:393",
+    "tile:400",
+    "tile:401",
+    "tile:414",
+    "tile:417",
+    "tile:449",
+    "tile:498",
+    "tile:510"
+   ],
+   "sectors": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    199,
+    200,
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    219,
+    220,
+    221,
+    222,
+    223,
+    224,
+    225,
+    226,
+    227,
+    228,
+    229,
+    230,
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255,
+    256,
+    257,
+    258,
+    259,
+    260,
+    261,
+    262,
+    263,
+    264,
+    265,
+    266,
+    267,
+    268,
+    269,
+    270,
+    271,
+    272,
+    273,
+    274,
+    275,
+    276,
+    277,
+    278,
+    279,
+    280,
+    281,
+    282,
+    283,
+    284,
+    285,
+    286,
+    287,
+    288,
+    289,
+    290,
+    291,
+    292,
+    293,
+    294,
+    295,
+    296,
+    297,
+    298,
+    299,
+    300,
+    301,
+    302,
+    303,
+    304,
+    305,
+    306,
+    307,
+    308,
+    309,
+    310,
+    311,
+    312,
+    313,
+    314,
+    315,
+    316,
+    317,
+    318,
+    319,
+    320,
+    321,
+    322,
+    323,
+    324,
+    325,
+    326,
+    327,
+    328,
+    329,
+    330,
+    331,
+    332,
+    333,
+    334,
+    335,
+    336,
+    337,
+    338,
+    339,
+    340,
+    341,
+    342,
+    343,
+    344,
+    345,
+    346,
+    347,
+    348,
+    349,
+    350,
+    351,
+    352,
+    353,
+    354,
+    355,
+    356,
+    357,
+    358,
+    359,
+    360,
+    361,
+    362,
+    363,
+    364,
+    365,
+    366,
+    367,
+    368,
+    369,
+    370,
+    371,
+    372,
+    373,
+    374,
+    375,
+    376,
+    377,
+    378,
+    379,
+    380,
+    381
+   ]
+  },
+  {
+   "id": "tile:0",
+   "kind": "material",
+   "name": "tile 0 (2 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:1216",
+    "surface:1573"
+   ],
+   "sectors": [
+    254,
+    351
+   ]
+  },
+  {
+   "id": "surface:1216",
+   "kind": "surface",
+   "name": "surface:1216 x4 exact",
+   "parent": "tile:0",
+   "children": [],
+   "sectors": [
+    254
+   ]
+  },
+  {
+   "id": "surface:1573",
+   "kind": "surface",
+   "name": "surface:1573 x4 exact",
+   "parent": "tile:0",
+   "children": [],
+   "sectors": [
+    351
+   ]
+  },
+  {
+   "id": "tile:6",
+   "kind": "material",
+   "name": "tile 6 (1 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0040"
+   ],
+   "sectors": [
+    3,
+    8
+   ]
+  },
+  {
+   "id": "surface:0040",
+   "kind": "surface",
+   "name": "surface:0040 x2 exact",
+   "parent": "tile:6",
+   "children": [],
+   "sectors": [
+    3,
+    8
+   ]
+  },
+  {
+   "id": "tile:20",
+   "kind": "material",
+   "name": "tile 20 (11 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0399",
+    "surface:0593",
+    "surface:1313",
+    "surface:1314",
+    "surface:1315",
+    "surface:1316",
+    "surface:1317",
+    "surface:1318",
+    "surface:1319",
+    "surface:1320",
+    "surface:1557"
+   ],
+   "sectors": [
+    98,
+    161,
+    170,
+    287,
+    288,
+    289,
+    290,
+    348
+   ]
+  },
+  {
+   "id": "surface:0399",
+   "kind": "surface",
+   "name": "surface:0399 x2 exact",
+   "parent": "tile:20",
+   "children": [],
+   "sectors": [
+    98
+   ]
+  },
+  {
+   "id": "surface:0593",
+   "kind": "surface",
+   "name": "surface:0593 x2 exact",
+   "parent": "tile:20",
+   "children": [],
+   "sectors": [
+    161,
+    170
+   ]
+  },
+  {
+   "id": "surface:1313",
+   "kind": "surface",
+   "name": "surface:1313 x2 exact",
+   "parent": "tile:20",
+   "children": [],
+   "sectors": [
+    287
+   ]
+  },
+  {
+   "id": "surface:1314",
+   "kind": "surface",
+   "name": "surface:1314 x2 exact",
+   "parent": "tile:20",
+   "children": [],
+   "sectors": [
+    287
+   ]
+  },
+  {
+   "id": "surface:1315",
+   "kind": "surface",
+   "name": "surface:1315 x2 exact",
+   "parent": "tile:20",
+   "children": [],
+   "sectors": [
+    288
+   ]
+  },
+  {
+   "id": "surface:1316",
+   "kind": "surface",
+   "name": "surface:1316 x2 exact",
+   "parent": "tile:20",
+   "children": [],
+   "sectors": [
+    288
+   ]
+  },
+  {
+   "id": "surface:1317",
+   "kind": "surface",
+   "name": "surface:1317 x2 exact",
+   "parent": "tile:20",
+   "children": [],
+   "sectors": [
+    289
+   ]
+  },
+  {
+   "id": "surface:1318",
+   "kind": "surface",
+   "name": "surface:1318 x2 exact",
+   "parent": "tile:20",
+   "children": [],
+   "sectors": [
+    289
+   ]
+  },
+  {
+   "id": "surface:1319",
+   "kind": "surface",
+   "name": "surface:1319 x2 exact",
+   "parent": "tile:20",
+   "children": [],
+   "sectors": [
+    290
+   ]
+  },
+  {
+   "id": "surface:1320",
+   "kind": "surface",
+   "name": "surface:1320 x2 exact",
+   "parent": "tile:20",
+   "children": [],
+   "sectors": [
+    290
+   ]
+  },
+  {
+   "id": "surface:1557",
+   "kind": "surface",
+   "name": "surface:1557 x2 partial",
+   "parent": "tile:20",
+   "children": [],
+   "sectors": [
+    348
+   ]
+  },
+  {
+   "id": "tile:28",
+   "kind": "material",
+   "name": "tile 28 (14 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0156",
+    "surface:0392",
+    "surface:0520",
+    "surface:0544",
+    "surface:0551",
+    "surface:0553",
+    "surface:0555",
+    "surface:0557",
+    "surface:0559",
+    "surface:0564",
+    "surface:0566",
+    "surface:0979",
+    "surface:1107",
+    "surface:1804"
+   ],
+   "sectors": [
+    47,
+    93,
+    95,
+    97,
+    133,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    208,
+    232,
+    381
+   ]
+  },
+  {
+   "id": "surface:0156",
+   "kind": "surface",
+   "name": "surface:0156 x2 exact",
+   "parent": "tile:28",
+   "children": [],
+   "sectors": [
+    47
+   ]
+  },
+  {
+   "id": "surface:0392",
+   "kind": "surface",
+   "name": "surface:0392 x5 exact",
+   "parent": "tile:28",
+   "children": [],
+   "sectors": [
+    93,
+    95,
+    97
+   ]
+  },
+  {
+   "id": "surface:0520",
+   "kind": "surface",
+   "name": "surface:0520 x3 exact",
+   "parent": "tile:28",
+   "children": [],
+   "sectors": [
+    133
+   ]
+  },
+  {
+   "id": "surface:0544",
+   "kind": "surface",
+   "name": "surface:0544 x3 exact",
+   "parent": "tile:28",
+   "children": [],
+   "sectors": [
+    142,
+    143,
+    144
+   ]
+  },
+  {
+   "id": "surface:0551",
+   "kind": "surface",
+   "name": "surface:0551 x2 exact",
+   "parent": "tile:28",
+   "children": [],
+   "sectors": [
+    146,
+    147
+   ]
+  },
+  {
+   "id": "surface:0553",
+   "kind": "surface",
+   "name": "surface:0553 x2 exact",
+   "parent": "tile:28",
+   "children": [],
+   "sectors": [
+    146,
+    147
+   ]
+  },
+  {
+   "id": "surface:0555",
+   "kind": "surface",
+   "name": "surface:0555 x2 exact",
+   "parent": "tile:28",
+   "children": [],
+   "sectors": [
+    148,
+    149
+   ]
+  },
+  {
+   "id": "surface:0557",
+   "kind": "surface",
+   "name": "surface:0557 x3 exact",
+   "parent": "tile:28",
+   "children": [],
+   "sectors": [
+    148,
+    149
+   ]
+  },
+  {
+   "id": "surface:0559",
+   "kind": "surface",
+   "name": "surface:0559 x2 exact",
+   "parent": "tile:28",
+   "children": [],
+   "sectors": [
+    150,
+    151
+   ]
+  },
+  {
+   "id": "surface:0564",
+   "kind": "surface",
+   "name": "surface:0564 x2 exact",
+   "parent": "tile:28",
+   "children": [],
+   "sectors": [
+    152,
+    153
+   ]
+  },
+  {
+   "id": "surface:0566",
+   "kind": "surface",
+   "name": "surface:0566 x2 exact",
+   "parent": "tile:28",
+   "children": [],
+   "sectors": [
+    145,
+    153
+   ]
+  },
+  {
+   "id": "surface:0979",
+   "kind": "surface",
+   "name": "surface:0979 x3 exact",
+   "parent": "tile:28",
+   "children": [],
+   "sectors": [
+    208
+   ]
+  },
+  {
+   "id": "surface:1107",
+   "kind": "surface",
+   "name": "surface:1107 x3 exact",
+   "parent": "tile:28",
+   "children": [],
+   "sectors": [
+    232
+   ]
+  },
+  {
+   "id": "surface:1804",
+   "kind": "surface",
+   "name": "surface:1804 x2 exact",
+   "parent": "tile:28",
+   "children": [],
+   "sectors": [
+    381
+   ]
+  },
+  {
+   "id": "tile:35",
+   "kind": "material",
+   "name": "tile 35 (1 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0220"
+   ],
+   "sectors": [
+    63,
+    64
+   ]
+  },
+  {
+   "id": "surface:0220",
+   "kind": "surface",
+   "name": "surface:0220 x2 exact",
+   "parent": "tile:35",
+   "children": [],
+   "sectors": [
+    63,
+    64
+   ]
+  },
+  {
+   "id": "tile:42",
+   "kind": "material",
+   "name": "tile 42 (2 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0498",
+    "surface:0530"
+   ],
+   "sectors": [
+    124,
+    125,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    137,
+    139,
+    140,
+    142,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    153,
+    154,
+    155
+   ]
+  },
+  {
+   "id": "surface:0498",
+   "kind": "surface",
+   "name": "surface:0498 x18 exact",
+   "parent": "tile:42",
+   "children": [],
+   "sectors": [
+    124,
+    125,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    137,
+    140,
+    144,
+    146,
+    149,
+    150,
+    153,
+    155
+   ]
+  },
+  {
+   "id": "surface:0530",
+   "kind": "surface",
+   "name": "surface:0530 x18 exact",
+   "parent": "tile:42",
+   "children": [],
+   "sectors": [
+    124,
+    125,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    137,
+    139,
+    142,
+    145,
+    147,
+    148,
+    151,
+    154
+   ]
+  },
+  {
+   "id": "tile:67",
+   "kind": "material",
+   "name": "tile 67 (2 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0074",
+    "surface:0118"
+   ],
+   "sectors": [
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+   ]
+  },
+  {
+   "id": "surface:0074",
+   "kind": "surface",
+   "name": "surface:0074 x24 exact",
+   "parent": "tile:67",
+   "children": [],
+   "sectors": [
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+   ]
+  },
+  {
+   "id": "surface:0118",
+   "kind": "surface",
+   "name": "surface:0118 x24 exact",
+   "parent": "tile:67",
+   "children": [],
+   "sectors": [
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+   ]
+  },
+  {
+   "id": "tile:84",
+   "kind": "material",
+   "name": "tile 84 (1 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0959"
+   ],
+   "sectors": [
+    205
+   ]
+  },
+  {
+   "id": "surface:0959",
+   "kind": "surface",
+   "name": "surface:0959 x2 exact",
+   "parent": "tile:84",
+   "children": [],
+   "sectors": [
+    205
+   ]
+  },
+  {
+   "id": "tile:88",
+   "kind": "material",
+   "name": "tile 88 (1 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0982"
+   ],
+   "sectors": [
+    209
+   ]
+  },
+  {
+   "id": "surface:0982",
+   "kind": "surface",
+   "name": "surface:0982 x2 exact",
+   "parent": "tile:88",
+   "children": [],
+   "sectors": [
+    209
+   ]
+  },
+  {
+   "id": "tile:90",
+   "kind": "material",
+   "name": "tile 90 (1 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:1701"
+   ],
+   "sectors": [
+    366
+   ]
+  },
+  {
+   "id": "surface:1701",
+   "kind": "surface",
+   "name": "surface:1701 x2 exact",
+   "parent": "tile:90",
+   "children": [],
+   "sectors": [
+    366
+   ]
+  },
+  {
+   "id": "tile:100",
+   "kind": "material",
+   "name": "tile 100 (21 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0489",
+    "surface:0491",
+    "surface:0532",
+    "surface:0533",
+    "surface:0573",
+    "surface:0620",
+    "surface:0628",
+    "surface:0634",
+    "surface:0644",
+    "surface:0722",
+    "surface:0723",
+    "surface:0726",
+    "surface:0727",
+    "surface:0898",
+    "surface:0978",
+    "surface:0983",
+    "surface:1219",
+    "surface:1226",
+    "surface:1415",
+    "surface:1434",
+    "surface:1440"
+   ],
+   "sectors": [
+    122,
+    138,
+    156,
+    157,
+    158,
+    167,
+    168,
+    169,
+    170,
+    171,
+    179,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    200,
+    201,
+    202,
+    203,
+    204,
+    205,
+    208,
+    209,
+    255,
+    256,
+    257,
+    258,
+    259,
+    260,
+    261,
+    262,
+    263,
+    264,
+    265,
+    266,
+    267,
+    268,
+    269,
+    270,
+    271,
+    272,
+    273,
+    274,
+    275,
+    276,
+    277,
+    278,
+    279,
+    317,
+    318,
+    320,
+    322,
+    323,
+    324,
+    325,
+    326,
+    327,
+    328,
+    329,
+    330,
+    331,
+    332,
+    375,
+    376
+   ]
+  },
+  {
+   "id": "surface:0489",
+   "kind": "surface",
+   "name": "surface:0489 x2 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    122
+   ]
+  },
+  {
+   "id": "surface:0491",
+   "kind": "surface",
+   "name": "surface:0491 x6 partial",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    122
+   ]
+  },
+  {
+   "id": "surface:0532",
+   "kind": "surface",
+   "name": "surface:0532 x2 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    138
+   ]
+  },
+  {
+   "id": "surface:0533",
+   "kind": "surface",
+   "name": "surface:0533 x2 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    138
+   ]
+  },
+  {
+   "id": "surface:0573",
+   "kind": "surface",
+   "name": "surface:0573 x7 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    156,
+    157,
+    158,
+    168,
+    171
+   ]
+  },
+  {
+   "id": "surface:0620",
+   "kind": "surface",
+   "name": "surface:0620 x2 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    167,
+    168
+   ]
+  },
+  {
+   "id": "surface:0628",
+   "kind": "surface",
+   "name": "surface:0628 x2 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    169,
+    171
+   ]
+  },
+  {
+   "id": "surface:0634",
+   "kind": "surface",
+   "name": "surface:0634 x6 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    170
+   ]
+  },
+  {
+   "id": "surface:0644",
+   "kind": "surface",
+   "name": "surface:0644 x4 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    170
+   ]
+  },
+  {
+   "id": "surface:0722",
+   "kind": "surface",
+   "name": "surface:0722 x2 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    183
+   ]
+  },
+  {
+   "id": "surface:0723",
+   "kind": "surface",
+   "name": "surface:0723 x2 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    183
+   ]
+  },
+  {
+   "id": "surface:0726",
+   "kind": "surface",
+   "name": "surface:0726 x2 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    184
+   ]
+  },
+  {
+   "id": "surface:0727",
+   "kind": "surface",
+   "name": "surface:0727 x2 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    184
+   ]
+  },
+  {
+   "id": "surface:0898",
+   "kind": "surface",
+   "name": "surface:0898 x57 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    200,
+    201,
+    202,
+    203,
+    204
+   ]
+  },
+  {
+   "id": "surface:0978",
+   "kind": "surface",
+   "name": "surface:0978 x6 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    179,
+    208,
+    209
+   ]
+  },
+  {
+   "id": "surface:0983",
+   "kind": "surface",
+   "name": "surface:0983 x7 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    182,
+    205,
+    208,
+    209
+   ]
+  },
+  {
+   "id": "surface:1219",
+   "kind": "surface",
+   "name": "surface:1219 x27 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    255,
+    256,
+    257,
+    258,
+    259,
+    260,
+    261,
+    262,
+    263,
+    264,
+    265,
+    266,
+    267,
+    268,
+    269,
+    271,
+    272,
+    273,
+    274,
+    275,
+    276,
+    277,
+    279
+   ]
+  },
+  {
+   "id": "surface:1226",
+   "kind": "surface",
+   "name": "surface:1226 x19 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    255,
+    256,
+    257,
+    258,
+    259,
+    260,
+    261,
+    262,
+    263,
+    264,
+    265,
+    266,
+    267,
+    268,
+    269,
+    270,
+    278,
+    375,
+    376
+   ]
+  },
+  {
+   "id": "surface:1415",
+   "kind": "surface",
+   "name": "surface:1415 x6 partial",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    320,
+    329,
+    330,
+    332
+   ]
+  },
+  {
+   "id": "surface:1434",
+   "kind": "surface",
+   "name": "surface:1434 x18 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    317,
+    318,
+    320,
+    322,
+    323,
+    324,
+    325,
+    326,
+    327,
+    328,
+    329,
+    331
+   ]
+  },
+  {
+   "id": "surface:1440",
+   "kind": "surface",
+   "name": "surface:1440 x10 exact",
+   "parent": "tile:100",
+   "children": [],
+   "sectors": [
+    322,
+    323,
+    324,
+    325,
+    326,
+    328
+   ]
+  },
+  {
+   "id": "tile:108",
+   "kind": "material",
+   "name": "tile 108 (34 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0061",
+    "surface:0063",
+    "surface:0142",
+    "surface:0155",
+    "surface:0162",
+    "surface:0166",
+    "surface:0248",
+    "surface:0260",
+    "surface:0276",
+    "surface:0288",
+    "surface:0294",
+    "surface:0303",
+    "surface:0306",
+    "surface:0312",
+    "surface:0375",
+    "surface:0407",
+    "surface:0455",
+    "surface:0462",
+    "surface:1104",
+    "surface:1172",
+    "surface:1174",
+    "surface:1186",
+    "surface:1206",
+    "surface:1306",
+    "surface:1311",
+    "surface:1349",
+    "surface:1379",
+    "surface:1791",
+    "surface:1796",
+    "surface:1797",
+    "surface:1803",
+    "surface:1805",
+    "surface:1806",
+    "surface:1807"
+   ],
+   "sectors": [
+    13,
+    14,
+    42,
+    43,
+    46,
+    47,
+    49,
+    50,
+    55,
+    67,
+    68,
+    70,
+    71,
+    72,
+    73,
+    75,
+    76,
+    78,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    101,
+    111,
+    112,
+    113,
+    115,
+    117,
+    228,
+    229,
+    230,
+    231,
+    232,
+    246,
+    249,
+    252,
+    284,
+    285,
+    286,
+    291,
+    292,
+    293,
+    294,
+    295,
+    296,
+    297,
+    298,
+    299,
+    300,
+    301,
+    302,
+    303,
+    304,
+    305,
+    306,
+    308,
+    309,
+    311,
+    344,
+    345,
+    346,
+    348,
+    349,
+    381
+   ]
+  },
+  {
+   "id": "surface:0061",
+   "kind": "surface",
+   "name": "surface:0061 x2 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    13
+   ]
+  },
+  {
+   "id": "surface:0063",
+   "kind": "surface",
+   "name": "surface:0063 x5 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    13,
+    70,
+    252
+   ]
+  },
+  {
+   "id": "surface:0142",
+   "kind": "surface",
+   "name": "surface:0142 x2 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    43
+   ]
+  },
+  {
+   "id": "surface:0155",
+   "kind": "surface",
+   "name": "surface:0155 x2 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    46,
+    47
+   ]
+  },
+  {
+   "id": "surface:0162",
+   "kind": "surface",
+   "name": "surface:0162 x2 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    49,
+    50
+   ]
+  },
+  {
+   "id": "surface:0166",
+   "kind": "surface",
+   "name": "surface:0166 x3 partial",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    50,
+    55
+   ]
+  },
+  {
+   "id": "surface:0248",
+   "kind": "surface",
+   "name": "surface:0248 x3 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    67,
+    252
+   ]
+  },
+  {
+   "id": "surface:0260",
+   "kind": "surface",
+   "name": "surface:0260 x3 partial",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    68
+   ]
+  },
+  {
+   "id": "surface:0276",
+   "kind": "surface",
+   "name": "surface:0276 x4 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    71
+   ]
+  },
+  {
+   "id": "surface:0288",
+   "kind": "surface",
+   "name": "surface:0288 x3 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    73
+   ]
+  },
+  {
+   "id": "surface:0294",
+   "kind": "surface",
+   "name": "surface:0294 x4 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    72,
+    73
+   ]
+  },
+  {
+   "id": "surface:0303",
+   "kind": "surface",
+   "name": "surface:0303 x2 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    75,
+    115
+   ]
+  },
+  {
+   "id": "surface:0306",
+   "kind": "surface",
+   "name": "surface:0306 x3 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    76,
+    99
+   ]
+  },
+  {
+   "id": "surface:0312",
+   "kind": "surface",
+   "name": "surface:0312 x2 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    78,
+    113
+   ]
+  },
+  {
+   "id": "surface:0375",
+   "kind": "surface",
+   "name": "surface:0375 x17 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    101
+   ]
+  },
+  {
+   "id": "surface:0407",
+   "kind": "surface",
+   "name": "surface:0407 x9 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    14,
+    73,
+    76,
+    99
+   ]
+  },
+  {
+   "id": "surface:0455",
+   "kind": "surface",
+   "name": "surface:0455 x3 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    78,
+    113
+   ]
+  },
+  {
+   "id": "surface:0462",
+   "kind": "surface",
+   "name": "surface:0462 x6 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    75,
+    112,
+    115,
+    117
+   ]
+  },
+  {
+   "id": "surface:1104",
+   "kind": "surface",
+   "name": "surface:1104 x13 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    228,
+    229,
+    230,
+    231,
+    232
+   ]
+  },
+  {
+   "id": "surface:1172",
+   "kind": "surface",
+   "name": "surface:1172 x4 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    246
+   ]
+  },
+  {
+   "id": "surface:1174",
+   "kind": "surface",
+   "name": "surface:1174 x10 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    111,
+    246
+   ]
+  },
+  {
+   "id": "surface:1186",
+   "kind": "surface",
+   "name": "surface:1186 x4 partial",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    249
+   ]
+  },
+  {
+   "id": "surface:1206",
+   "kind": "surface",
+   "name": "surface:1206 x3 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    252
+   ]
+  },
+  {
+   "id": "surface:1306",
+   "kind": "surface",
+   "name": "surface:1306 x5 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    284,
+    285,
+    286,
+    308,
+    309
+   ]
+  },
+  {
+   "id": "surface:1311",
+   "kind": "surface",
+   "name": "surface:1311 x3 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    284,
+    285,
+    286
+   ]
+  },
+  {
+   "id": "surface:1349",
+   "kind": "surface",
+   "name": "surface:1349 x50 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    291,
+    292,
+    293,
+    294,
+    295,
+    296,
+    297,
+    298,
+    299,
+    300,
+    301,
+    302,
+    303,
+    304,
+    305,
+    306,
+    344,
+    345,
+    346,
+    348,
+    349
+   ]
+  },
+  {
+   "id": "surface:1379",
+   "kind": "surface",
+   "name": "surface:1379 x2 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    311
+   ]
+  },
+  {
+   "id": "surface:1791",
+   "kind": "surface",
+   "name": "surface:1791 x8 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    42,
+    68,
+    381
+   ]
+  },
+  {
+   "id": "surface:1796",
+   "kind": "surface",
+   "name": "surface:1796 x4 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    381
+   ]
+  },
+  {
+   "id": "surface:1797",
+   "kind": "surface",
+   "name": "surface:1797 x2 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    381
+   ]
+  },
+  {
+   "id": "surface:1803",
+   "kind": "surface",
+   "name": "surface:1803 x3 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    46,
+    47,
+    381
+   ]
+  },
+  {
+   "id": "surface:1805",
+   "kind": "surface",
+   "name": "surface:1805 x5 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    381
+   ]
+  },
+  {
+   "id": "surface:1806",
+   "kind": "surface",
+   "name": "surface:1806 x3 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    381
+   ]
+  },
+  {
+   "id": "surface:1807",
+   "kind": "surface",
+   "name": "surface:1807 x4 exact",
+   "parent": "tile:108",
+   "children": [],
+   "sectors": [
+    381
+   ]
+  },
+  {
+   "id": "tile:118",
+   "kind": "material",
+   "name": "tile 118 (2 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0320",
+    "surface:1080"
+   ],
+   "sectors": [
+    80,
+    81,
+    223,
+    224,
+    225
+   ]
+  },
+  {
+   "id": "surface:0320",
+   "kind": "surface",
+   "name": "surface:0320 x7 partial",
+   "parent": "tile:118",
+   "children": [],
+   "sectors": [
+    80,
+    81
+   ]
+  },
+  {
+   "id": "surface:1080",
+   "kind": "surface",
+   "name": "surface:1080 x9 partial",
+   "parent": "tile:118",
+   "children": [],
+   "sectors": [
+    223,
+    224,
+    225
+   ]
+  },
+  {
+   "id": "tile:170",
+   "kind": "material",
+   "name": "tile 170 (3 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0177",
+    "surface:0179",
+    "surface:0193"
+   ],
+   "sectors": [
+    53,
+    56,
+    57
+   ]
+  },
+  {
+   "id": "surface:0177",
+   "kind": "surface",
+   "name": "surface:0177 x5 partial",
+   "parent": "tile:170",
+   "children": [],
+   "sectors": [
+    53
+   ]
+  },
+  {
+   "id": "surface:0179",
+   "kind": "surface",
+   "name": "surface:0179 x8 exact",
+   "parent": "tile:170",
+   "children": [],
+   "sectors": [
+    53
+   ]
+  },
+  {
+   "id": "surface:0193",
+   "kind": "surface",
+   "name": "surface:0193 x2 exact",
+   "parent": "tile:170",
+   "children": [],
+   "sectors": [
+    56,
+    57
+   ]
+  },
+  {
+   "id": "tile:181",
+   "kind": "material",
+   "name": "tile 181 (4 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0677",
+    "surface:0692",
+    "surface:1121",
+    "surface:1483"
+   ],
+   "sectors": [
+    175,
+    235,
+    337
+   ]
+  },
+  {
+   "id": "surface:0677",
+   "kind": "surface",
+   "name": "surface:0677 x3 partial",
+   "parent": "tile:181",
+   "children": [],
+   "sectors": [
+    175
+   ]
+  },
+  {
+   "id": "surface:0692",
+   "kind": "surface",
+   "name": "surface:0692 x3 partial",
+   "parent": "tile:181",
+   "children": [],
+   "sectors": [
+    175
+   ]
+  },
+  {
+   "id": "surface:1121",
+   "kind": "surface",
+   "name": "surface:1121 x3 exact",
+   "parent": "tile:181",
+   "children": [],
+   "sectors": [
+    235
+   ]
+  },
+  {
+   "id": "surface:1483",
+   "kind": "surface",
+   "name": "surface:1483 x2 exact",
+   "parent": "tile:181",
+   "children": [],
+   "sectors": [
+    337
+   ]
+  },
+  {
+   "id": "tile:203",
+   "kind": "material",
+   "name": "tile 203 (3 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:1686",
+    "surface:1691",
+    "surface:1695"
+   ],
+   "sectors": [
+    361,
+    362,
+    364
+   ]
+  },
+  {
+   "id": "surface:1686",
+   "kind": "surface",
+   "name": "surface:1686 x2 exact",
+   "parent": "tile:203",
+   "children": [],
+   "sectors": [
+    361,
+    362
+   ]
+  },
+  {
+   "id": "surface:1691",
+   "kind": "surface",
+   "name": "surface:1691 x3 exact",
+   "parent": "tile:203",
+   "children": [],
+   "sectors": [
+    361,
+    362,
+    364
+   ]
+  },
+  {
+   "id": "surface:1695",
+   "kind": "surface",
+   "name": "surface:1695 x4 exact",
+   "parent": "tile:203",
+   "children": [],
+   "sectors": [
+    364
+   ]
+  },
+  {
+   "id": "tile:204",
+   "kind": "material",
+   "name": "tile 204 (1 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:1736"
+   ],
+   "sectors": [
+    365,
+    371
+   ]
+  },
+  {
+   "id": "surface:1736",
+   "kind": "surface",
+   "name": "surface:1736 x11 exact",
+   "parent": "tile:204",
+   "children": [],
+   "sectors": [
+    365,
+    371
+   ]
+  },
+  {
+   "id": "tile:255",
+   "kind": "material",
+   "name": "tile 255 (2 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0341",
+    "surface:0343"
+   ],
+   "sectors": [
+    82,
+    83,
+    84
+   ]
+  },
+  {
+   "id": "surface:0341",
+   "kind": "surface",
+   "name": "surface:0341 x4 exact",
+   "parent": "tile:255",
+   "children": [],
+   "sectors": [
+    82,
+    83
+   ]
+  },
+  {
+   "id": "surface:0343",
+   "kind": "surface",
+   "name": "surface:0343 x2 exact",
+   "parent": "tile:255",
+   "children": [],
+   "sectors": [
+    84
+   ]
+  },
+  {
+   "id": "tile:301",
+   "kind": "material",
+   "name": "tile 301 (3 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0122",
+    "surface:0251",
+    "surface:1801"
+   ],
+   "sectors": [
+    41,
+    68,
+    249,
+    381
+   ]
+  },
+  {
+   "id": "surface:0122",
+   "kind": "surface",
+   "name": "surface:0122 x2 exact",
+   "parent": "tile:301",
+   "children": [],
+   "sectors": [
+    41,
+    249
+   ]
+  },
+  {
+   "id": "surface:0251",
+   "kind": "surface",
+   "name": "surface:0251 x2 exact",
+   "parent": "tile:301",
+   "children": [],
+   "sectors": [
+    68
+   ]
+  },
+  {
+   "id": "surface:1801",
+   "kind": "surface",
+   "name": "surface:1801 x3 exact",
+   "parent": "tile:301",
+   "children": [],
+   "sectors": [
+    249,
+    381
+   ]
+  },
+  {
+   "id": "tile:378",
+   "kind": "material",
+   "name": "tile 378 (4 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:1304",
+    "surface:1305",
+    "surface:1365",
+    "surface:1373"
+   ],
+   "sectors": [
+    284,
+    308,
+    309,
+    310
+   ]
+  },
+  {
+   "id": "surface:1304",
+   "kind": "surface",
+   "name": "surface:1304 x2 exact",
+   "parent": "tile:378",
+   "children": [],
+   "sectors": [
+    284
+   ]
+  },
+  {
+   "id": "surface:1305",
+   "kind": "surface",
+   "name": "surface:1305 x5 exact",
+   "parent": "tile:378",
+   "children": [],
+   "sectors": [
+    284
+   ]
+  },
+  {
+   "id": "surface:1365",
+   "kind": "surface",
+   "name": "surface:1365 x4 partial",
+   "parent": "tile:378",
+   "children": [],
+   "sectors": [
+    308,
+    309
+   ]
+  },
+  {
+   "id": "surface:1373",
+   "kind": "surface",
+   "name": "surface:1373 x3 exact",
+   "parent": "tile:378",
+   "children": [],
+   "sectors": [
+    310
+   ]
+  },
+  {
+   "id": "tile:379",
+   "kind": "material",
+   "name": "tile 379 (14 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0344",
+    "surface:0346",
+    "surface:0351",
+    "surface:0353",
+    "surface:0427",
+    "surface:0605",
+    "surface:0608",
+    "surface:1030",
+    "surface:1060",
+    "surface:1072",
+    "surface:1094",
+    "surface:1152",
+    "surface:1153",
+    "surface:1156"
+   ],
+   "sectors": [
+    84,
+    85,
+    86,
+    87,
+    103,
+    162,
+    163,
+    164,
+    216,
+    217,
+    218,
+    219,
+    220,
+    221,
+    222,
+    226,
+    227,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244
+   ]
+  },
+  {
+   "id": "surface:0344",
+   "kind": "surface",
+   "name": "surface:0344 x2 exact",
+   "parent": "tile:379",
+   "children": [],
+   "sectors": [
+    84
+   ]
+  },
+  {
+   "id": "surface:0346",
+   "kind": "surface",
+   "name": "surface:0346 x3 exact",
+   "parent": "tile:379",
+   "children": [],
+   "sectors": [
+    85
+   ]
+  },
+  {
+   "id": "surface:0351",
+   "kind": "surface",
+   "name": "surface:0351 x2 exact",
+   "parent": "tile:379",
+   "children": [],
+   "sectors": [
+    86
+   ]
+  },
+  {
+   "id": "surface:0353",
+   "kind": "surface",
+   "name": "surface:0353 x3 exact",
+   "parent": "tile:379",
+   "children": [],
+   "sectors": [
+    87
+   ]
+  },
+  {
+   "id": "surface:0427",
+   "kind": "surface",
+   "name": "surface:0427 x2 partial",
+   "parent": "tile:379",
+   "children": [],
+   "sectors": [
+    103
+   ]
+  },
+  {
+   "id": "surface:0605",
+   "kind": "surface",
+   "name": "surface:0605 x2 exact",
+   "parent": "tile:379",
+   "children": [],
+   "sectors": [
+    163,
+    164
+   ]
+  },
+  {
+   "id": "surface:0608",
+   "kind": "surface",
+   "name": "surface:0608 x4 exact",
+   "parent": "tile:379",
+   "children": [],
+   "sectors": [
+    162,
+    163,
+    164
+   ]
+  },
+  {
+   "id": "surface:1030",
+   "kind": "surface",
+   "name": "surface:1030 x11 partial",
+   "parent": "tile:379",
+   "children": [],
+   "sectors": [
+    216,
+    219,
+    220,
+    222
+   ]
+  },
+  {
+   "id": "surface:1060",
+   "kind": "surface",
+   "name": "surface:1060 x5 partial",
+   "parent": "tile:379",
+   "children": [],
+   "sectors": [
+    218
+   ]
+  },
+  {
+   "id": "surface:1072",
+   "kind": "surface",
+   "name": "surface:1072 x11 partial",
+   "parent": "tile:379",
+   "children": [],
+   "sectors": [
+    217,
+    219,
+    221,
+    238,
+    239
+   ]
+  },
+  {
+   "id": "surface:1094",
+   "kind": "surface",
+   "name": "surface:1094 x2 exact",
+   "parent": "tile:379",
+   "children": [],
+   "sectors": [
+    226,
+    227
+   ]
+  },
+  {
+   "id": "surface:1152",
+   "kind": "surface",
+   "name": "surface:1152 x3 exact",
+   "parent": "tile:379",
+   "children": [],
+   "sectors": [
+    240,
+    241
+   ]
+  },
+  {
+   "id": "surface:1153",
+   "kind": "surface",
+   "name": "surface:1153 x5 exact",
+   "parent": "tile:379",
+   "children": [],
+   "sectors": [
+    241,
+    242,
+    243,
+    244
+   ]
+  },
+  {
+   "id": "surface:1156",
+   "kind": "surface",
+   "name": "surface:1156 x3 exact",
+   "parent": "tile:379",
+   "children": [],
+   "sectors": [
+    242,
+    243
+   ]
+  },
+  {
+   "id": "tile:380",
+   "kind": "material",
+   "name": "tile 380 (2 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0023",
+    "surface:0580"
+   ],
+   "sectors": [
+    4,
+    159,
+    175
+   ]
+  },
+  {
+   "id": "surface:0023",
+   "kind": "surface",
+   "name": "surface:0023 x3 exact",
+   "parent": "tile:380",
+   "children": [],
+   "sectors": [
+    4,
+    175
+   ]
+  },
+  {
+   "id": "surface:0580",
+   "kind": "surface",
+   "name": "surface:0580 x4 exact",
+   "parent": "tile:380",
+   "children": [],
+   "sectors": [
+    159
+   ]
+  },
+  {
+   "id": "tile:381",
+   "kind": "material",
+   "name": "tile 381 (2 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0581",
+    "surface:0583"
+   ],
+   "sectors": [
+    9,
+    159
+   ]
+  },
+  {
+   "id": "surface:0581",
+   "kind": "surface",
+   "name": "surface:0581 x2 exact",
+   "parent": "tile:381",
+   "children": [],
+   "sectors": [
+    159
+   ]
+  },
+  {
+   "id": "surface:0583",
+   "kind": "surface",
+   "name": "surface:0583 x2 exact",
+   "parent": "tile:381",
+   "children": [],
+   "sectors": [
+    9,
+    159
+   ]
+  },
+  {
+   "id": "tile:384",
+   "kind": "material",
+   "name": "tile 384 (2 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0013",
+    "surface:0678"
+   ],
+   "sectors": [
+    1,
+    2,
+    175
+   ]
+  },
+  {
+   "id": "surface:0013",
+   "kind": "surface",
+   "name": "surface:0013 x4 exact",
+   "parent": "tile:384",
+   "children": [],
+   "sectors": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "surface:0678",
+   "kind": "surface",
+   "name": "surface:0678 x4 exact",
+   "parent": "tile:384",
+   "children": [],
+   "sectors": [
+    175
+   ]
+  },
+  {
+   "id": "tile:393",
+   "kind": "material",
+   "name": "tile 393 (3 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0047",
+    "surface:1125",
+    "surface:1127"
+   ],
+   "sectors": [
+    6,
+    9,
+    235
+   ]
+  },
+  {
+   "id": "surface:0047",
+   "kind": "surface",
+   "name": "surface:0047 x4 exact",
+   "parent": "tile:393",
+   "children": [],
+   "sectors": [
+    6,
+    9
+   ]
+  },
+  {
+   "id": "surface:1125",
+   "kind": "surface",
+   "name": "surface:1125 x3 partial",
+   "parent": "tile:393",
+   "children": [],
+   "sectors": [
+    235
+   ]
+  },
+  {
+   "id": "surface:1127",
+   "kind": "surface",
+   "name": "surface:1127 x5 exact",
+   "parent": "tile:393",
+   "children": [],
+   "sectors": [
+    235
+   ]
+  },
+  {
+   "id": "tile:400",
+   "kind": "material",
+   "name": "tile 400 (3 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0001",
+    "surface:0683",
+    "surface:0690"
+   ],
+   "sectors": [
+    0,
+    5,
+    175
+   ]
+  },
+  {
+   "id": "surface:0001",
+   "kind": "surface",
+   "name": "surface:0001 x2 exact",
+   "parent": "tile:400",
+   "children": [],
+   "sectors": [
+    0
+   ]
+  },
+  {
+   "id": "surface:0683",
+   "kind": "surface",
+   "name": "surface:0683 x8 exact",
+   "parent": "tile:400",
+   "children": [],
+   "sectors": [
+    175
+   ]
+  },
+  {
+   "id": "surface:0690",
+   "kind": "surface",
+   "name": "surface:0690 x12 exact",
+   "parent": "tile:400",
+   "children": [],
+   "sectors": [
+    5,
+    175
+   ]
+  },
+  {
+   "id": "tile:401",
+   "kind": "material",
+   "name": "tile 401 (3 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:1497",
+    "surface:1506",
+    "surface:1513"
+   ],
+   "sectors": [
+    338,
+    339,
+    340
+   ]
+  },
+  {
+   "id": "surface:1497",
+   "kind": "surface",
+   "name": "surface:1497 x2 exact",
+   "parent": "tile:401",
+   "children": [],
+   "sectors": [
+    338
+   ]
+  },
+  {
+   "id": "surface:1506",
+   "kind": "surface",
+   "name": "surface:1506 x2 exact",
+   "parent": "tile:401",
+   "children": [],
+   "sectors": [
+    339
+   ]
+  },
+  {
+   "id": "surface:1513",
+   "kind": "surface",
+   "name": "surface:1513 x2 partial",
+   "parent": "tile:401",
+   "children": [],
+   "sectors": [
+    340
+   ]
+  },
+  {
+   "id": "tile:414",
+   "kind": "material",
+   "name": "tile 414 (6 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0018",
+    "surface:0033",
+    "surface:0679",
+    "surface:0686",
+    "surface:1130",
+    "surface:1475"
+   ],
+   "sectors": [
+    2,
+    3,
+    6,
+    7,
+    45,
+    159,
+    175,
+    235,
+    237,
+    337
+   ]
+  },
+  {
+   "id": "surface:0018",
+   "kind": "surface",
+   "name": "surface:0018 x2 exact",
+   "parent": "tile:414",
+   "children": [],
+   "sectors": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "surface:0033",
+   "kind": "surface",
+   "name": "surface:0033 x3 exact",
+   "parent": "tile:414",
+   "children": [],
+   "sectors": [
+    6,
+    7,
+    235
+   ]
+  },
+  {
+   "id": "surface:0679",
+   "kind": "surface",
+   "name": "surface:0679 x3 exact",
+   "parent": "tile:414",
+   "children": [],
+   "sectors": [
+    45,
+    159,
+    175
+   ]
+  },
+  {
+   "id": "surface:0686",
+   "kind": "surface",
+   "name": "surface:0686 x6 exact",
+   "parent": "tile:414",
+   "children": [],
+   "sectors": [
+    175
+   ]
+  },
+  {
+   "id": "surface:1130",
+   "kind": "surface",
+   "name": "surface:1130 x5 exact",
+   "parent": "tile:414",
+   "children": [],
+   "sectors": [
+    235,
+    237
+   ]
+  },
+  {
+   "id": "surface:1475",
+   "kind": "surface",
+   "name": "surface:1475 x2 exact",
+   "parent": "tile:414",
+   "children": [],
+   "sectors": [
+    337
+   ]
+  },
+  {
+   "id": "tile:417",
+   "kind": "material",
+   "name": "tile 417 (3 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0471",
+    "surface:0616",
+    "surface:0695"
+   ],
+   "sectors": [
+    118,
+    166,
+    175
+   ]
+  },
+  {
+   "id": "surface:0471",
+   "kind": "surface",
+   "name": "surface:0471 x2 exact",
+   "parent": "tile:417",
+   "children": [],
+   "sectors": [
+    118
+   ]
+  },
+  {
+   "id": "surface:0616",
+   "kind": "surface",
+   "name": "surface:0616 x8 partial",
+   "parent": "tile:417",
+   "children": [],
+   "sectors": [
+    166,
+    175
+   ]
+  },
+  {
+   "id": "surface:0695",
+   "kind": "surface",
+   "name": "surface:0695 x2 exact",
+   "parent": "tile:417",
+   "children": [],
+   "sectors": [
+    175
+   ]
+  },
+  {
+   "id": "tile:449",
+   "kind": "material",
+   "name": "tile 449 (9 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0477",
+    "surface:0480",
+    "surface:0484",
+    "surface:0485",
+    "surface:1435",
+    "surface:1442",
+    "surface:1448",
+    "surface:1574",
+    "surface:1781"
+   ],
+   "sectors": [
+    120,
+    121,
+    327,
+    329,
+    331,
+    333,
+    352,
+    378,
+    380
+   ]
+  },
+  {
+   "id": "surface:0477",
+   "kind": "surface",
+   "name": "surface:0477 x7 partial",
+   "parent": "tile:449",
+   "children": [],
+   "sectors": [
+    120,
+    380
+   ]
+  },
+  {
+   "id": "surface:0480",
+   "kind": "surface",
+   "name": "surface:0480 x3 exact",
+   "parent": "tile:449",
+   "children": [],
+   "sectors": [
+    121
+   ]
+  },
+  {
+   "id": "surface:0484",
+   "kind": "surface",
+   "name": "surface:0484 x3 partial",
+   "parent": "tile:449",
+   "children": [],
+   "sectors": [
+    121
+   ]
+  },
+  {
+   "id": "surface:0485",
+   "kind": "surface",
+   "name": "surface:0485 x2 exact",
+   "parent": "tile:449",
+   "children": [],
+   "sectors": [
+    121
+   ]
+  },
+  {
+   "id": "surface:1435",
+   "kind": "surface",
+   "name": "surface:1435 x3 partial",
+   "parent": "tile:449",
+   "children": [],
+   "sectors": [
+    327,
+    333
+   ]
+  },
+  {
+   "id": "surface:1442",
+   "kind": "surface",
+   "name": "surface:1442 x2 exact",
+   "parent": "tile:449",
+   "children": [],
+   "sectors": [
+    329
+   ]
+  },
+  {
+   "id": "surface:1448",
+   "kind": "surface",
+   "name": "surface:1448 x3 exact",
+   "parent": "tile:449",
+   "children": [],
+   "sectors": [
+    331
+   ]
+  },
+  {
+   "id": "surface:1574",
+   "kind": "surface",
+   "name": "surface:1574 x4 partial",
+   "parent": "tile:449",
+   "children": [],
+   "sectors": [
+    352
+   ]
+  },
+  {
+   "id": "surface:1781",
+   "kind": "surface",
+   "name": "surface:1781 x3 exact",
+   "parent": "tile:449",
+   "children": [],
+   "sectors": [
+    378
+   ]
+  },
+  {
+   "id": "tile:498",
+   "kind": "material",
+   "name": "tile 498 (2 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0429",
+    "surface:0446"
+   ],
+   "sectors": [
+    104,
+    109
+   ]
+  },
+  {
+   "id": "surface:0429",
+   "kind": "surface",
+   "name": "surface:0429 x4 exact",
+   "parent": "tile:498",
+   "children": [],
+   "sectors": [
+    104
+   ]
+  },
+  {
+   "id": "surface:0446",
+   "kind": "surface",
+   "name": "surface:0446 x8 exact",
+   "parent": "tile:498",
+   "children": [],
+   "sectors": [
+    109
+   ]
+  },
+  {
+   "id": "tile:510",
+   "kind": "material",
+   "name": "tile 510 (1 surfaces)",
+   "parent": "level",
+   "children": [
+    "surface:0245"
+   ],
+   "sectors": [
+    67
+   ]
+  },
+  {
+   "id": "surface:0245",
+   "kind": "surface",
+   "name": "surface:0245 x2 exact",
+   "parent": "tile:510",
+   "children": [],
+   "sectors": [
+    67
+   ]
+  }
+ ]
+}

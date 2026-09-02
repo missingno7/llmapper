@@ -17,9 +17,66 @@ from __future__ import annotations
 from collections import Counter
 
 from _common import art_sizes, level, write
+from _review import Tree, answers, write_pack
 
 from bloodmap.read_surfaces import read_surfaces, summary
 from bloodmap.texture_frame import sector_index, wall_visible
+
+
+def _review(level_ir, result, owners) -> dict:
+    """The pack: one node per surface that spans more than one record.
+
+    A surface owns wall records, and the pack colours sectors, so a surface
+    node holds the sectors its records belong to. A sector no multi-record
+    surface touches is unowned -- which is this layer's residue drawn on the
+    map: the parts of E3M1 where every wall carries its own projection.
+    """
+    tree = Tree(len(level_ir.sectors), "E3M1 -- surfaces of more than one record")
+    by_tile: dict[int, list] = {}
+    for item in result["surfaces"]:
+        if len(item.records) > 1:
+            by_tile.setdefault(item.tile, []).append(item)
+    for tile in sorted(by_tile):
+        group = by_tile[tile]
+        sectors = {owners[record] for item in group for record in item.records}
+        tree.add(f"tile:{tile}", "material", f"tile {tile} "
+                 f"({len(group)} surfaces)", tree.root.id, sectors)
+        for item in group:
+            tree.add(item.surface_id, "surface",
+                     f"{item.surface_id} x{len(item.records)} "
+                     f"{'exact' if item.understood else 'partial'}",
+                     f"tile:{tile}",
+                     {owners[record] for record in item.records})
+    biggest = max((item for group in by_tile.values() for item in group),
+                  key=lambda item: len(item.records))
+    questions = [
+        {"node": biggest.surface_id,
+         "question": ("E3M1's largest recovered surface spans "
+                      f"{len(biggest.records)} records of tile {biggest.tile}. "
+                      "Only 31% of the map's records sit in a shared "
+                      "projection at all. Should the writer keep projecting "
+                      "one frame per RUN, or per FLAT FACE, which is what "
+                      "E3M1 does (88% of collinear joins continue, 15-51% of "
+                      "bends, 13% of reflex corners)?"),
+         "recommended_default": ("keep the run, and add nothing: "
+                                 "RUN_BREAK_DEGREES already stops at 100 "
+                                 "degrees, and the reader's census is the "
+                                 "evidence for whether a bend break belongs "
+                                 "in the writer too. Decide it on the whole "
+                                 "campaign, not on E3M1"),
+         "evidence": "references/surfaces.json: u_continuity_by_join_class"},
+        {"node": "level",
+         "question": ("2481 records, 1075 of them with no same-material "
+                      "neighbour at all. Is a lone record a SURFACE of one, "
+                      "or is it evidence that our surface model does not fit "
+                      "how Blood was authored?"),
+         "recommended_default": ("count it as residue, as here: a frame "
+                                 "fitted to one record reproduces it for "
+                                 "free, and calling that understanding is how "
+                                 "a coverage report reaches 100%"),
+         "evidence": "references/surfaces.json: residue_solitary_records"},
+    ]
+    return write_pack(2, tree, "E3M1 layer 2: surfaces and frames", questions)
 
 
 def main() -> int:
@@ -79,6 +136,8 @@ def main() -> int:
             "disagreements": [],
         },
     }
+    payload["review"] = _review(world, result, owners)
+    payload["owner_marks_read_back"] = answers(2)
     write("surfaces.json", payload)
 
     print(f"E3M1 surfaces: {stats['surfaces']} recovered, "

@@ -1,0 +1,17 @@
+{
+ "layer": 2,
+ "questions": [
+  {
+   "node": "surface:0898",
+   "question": "E3M1's largest recovered surface spans 57 records of tile 100. Only 31% of the map's records sit in a shared projection at all. Should the writer keep projecting one frame per RUN, or per FLAT FACE, which is what E3M1 does (88% of collinear joins continue, 15-51% of bends, 13% of reflex corners)?",
+   "recommended_default": "keep the run, and add nothing: RUN_BREAK_DEGREES already stops at 100 degrees, and the reader's census is the evidence for whether a bend break belongs in the writer too. Decide it on the whole campaign, not on E3M1",
+   "evidence": "references/surfaces.json: u_continuity_by_join_class"
+  },
+  {
+   "node": "level",
+   "question": "2481 records, 1075 of them with no same-material neighbour at all. Is a lone record a SURFACE of one, or is it evidence that our surface model does not fit how Blood was authored?",
+   "recommended_default": "count it as residue, as here: a frame fitted to one record reproduces it for free, and calling that understanding is how a coverage report reaches 100%",
+   "evidence": "references/surfaces.json: residue_solitary_records"
+  }
+ ]
+}

@@ -35,10 +35,53 @@
    "state": "read"
   },
   {
+   "disagreements": [
+    {
+     "claim": "the T of the main street ends in three end walls (sectors 0, 339, 343)",
+     "measured": {
+      "end_walls": [
+       0,
+       118,
+       165,
+       166,
+       172,
+       174,
+       236,
+       237,
+       339,
+       343
+      ],
+      "met_by_a_road": [
+       0,
+       339,
+       343
+      ]
+     },
+     "reconciled": "exactly 3 of them are met by a ROAD record -- [0, 339, 343] -- which is the claim's set; the other 7 are met by a pavement, so the claim is right about the T and the reader is counting the same kind of surface elsewhere too",
+     "the_reader_finds": "10 outdoor masses no body can step onto: [0, 118, 165, 166, 172, 174, 236, 237, 339, 343]"
+    },
+    {
+     "claim": "`joins.py`'s PAVEMENT|PAVEMENT row cites \"E3M1 s10/s11: a pavement-only path between abutting islands\"",
+     "reconciled": "the ROW is still attested -- 14 pavement|pavement records exist in E3M1, between the shadow-cut pavement bands -- but its cited evidence is two sectors that are not pavement at all",
+     "the_reader_finds": "s10 and s11 have floor_z == ceiling_z == 8192: zero clear height, ceiling tiles 414 and 401, `floor_stat` 2 and 66. They are SOLID MASSES, not paths; no body stands in either"
+    },
+    {
+     "claim": "road|end wall and pavement|end wall: lower band in facade stone, BLOCKING",
+     "reconciled": "the blocking clause holds on every static end wall; the exceptions are movers, which are layer 5's",
+     "the_reader_finds": "5 of 16 band records do not block, and 4 of those face a sector that carries a sector type (600)"
+    }
+   ],
    "evidence": "join-census.json",
+   "explained": 74,
+   "gate": "every two-sided record looked up in bloodmap.joins.ROWS; for each row with a band, what the record wears and whether it blocks, against what the row says",
    "layer": 3,
    "name": "joins",
-   "state": "not yet read"
+   "population": "1386 two-sided wall records",
+   "reader": "bloodmap.read_joins (new)",
+   "residue": 1312,
+   "residue_is": "31 surface pairs the table has no row for; 1122 of the records are interior|interior",
+   "residue_percent": 94.66,
+   "state": "read"
   },
   {
    "evidence": "overlays.json",
@@ -71,7 +114,7 @@
    "state": "not yet read"
   }
  ],
- "layers_read": 2,
+ "layers_read": 3,
  "measure": "understanding is 100% minus residue, per layer, in that layer's own population; a layer with no evidence file is 'not yet read', which is not zero residue",
  "of": "E3M1.MAP",
  "schema_version": 1,

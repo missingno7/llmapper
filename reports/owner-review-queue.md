@@ -1060,3 +1060,57 @@ does not separate them -- both would pass. The wall counts would be identical.
 > the case for A is real -- it is small, local, and testable -- and that if B
 > turns out to need the whole piece set threaded through every cut, A with a
 > half-unit tolerance is the honest fallback rather than a defeat.
+
+## 28. E3M1 decompiled, layers 1-3: what the readers found in the writer (P15, 2026-09-02)
+
+The experiment of decisions section 23 on E3M1. Every number below is read
+off `maps/blood/campaign/E3M1.MAP` by a reader in `bloodmap/`, and each
+question names a node id in its layer's review pack
+(`projects/e3m1-decompiled/review/layer<N>.html`). No writer module was
+touched.
+
+**28a. `joins.py`'s pavement|pavement row cites two sectors that are not
+pavement.** The row's evidence reads "E3M1 s10/s11: a pavement-only path
+between abutting islands". Both sectors have `floor_z == ceiling_z == 8192`:
+zero clear height, ceiling tiles 414 and 401. They are solid masses -- Build
+draws nothing inside one and no body stands in it. The ROW is still attested
+(14 pavement|pavement records in E3M1, between the shadow-cut pavement
+bands); only its citation is wrong.
+*Recommended default:* correct the evidence string to name the shadow-cut
+bands, and leave the row. Node `row:pavement|pavement|equal`, layer 3.
+
+**28b. `TILE_CLASSES["facade stone"] = 400` is our choice, not E3M1's.** All
+3 road|end_wall records wear 414 and all 3 block; the 13 pavement|end_wall
+records wear {414: 6, 181: 2, 384: 2, 417: 2, 488: 1}. The kerb row by
+contrast is exact: 11 of 11 road-side records wear tile 6, and none blocks.
+*Recommended default:* keep 400 as Gravesend's choice, record 414 as E3M1's,
+and mine the class over the campaign before either is called a default.
+Node `kind:end_wall`, layer 3.
+
+**28c. Four "end wall" records do not block, and all four face a mover.**
+Sectors 172 and 174 carry sector type 600. The reader classifies them as
+wall-top masses because at rest nothing can step onto them, and the join
+table's blocking clause is then wrong about them and right about the eleven
+static records.
+*Recommended default:* a raised outdoor mass carrying a sector type is a
+mechanism at rest, not an end wall; the reader should name it apart so the
+end-wall row keeps its blocking clause. Node `kind:end_wall`, layer 3.
+
+**28d. E3M1 restarts its materials at corners.** 514 of 1537 same-tile joins
+continue in u (33.4%): 88% of collinear solid-solid joins, 51% of
+solid-solid bends, 15% of solid-portal reflex corners. Only 779 of 2481
+records (31.4%) sit in a shared projection at all. The writer's
+`RUN_BREAK_DEGREES` of 100 carries a run straight through a bend.
+*Recommended default:* change nothing yet -- decide the bend break on a
+campaign-wide census, not on one map. Node `surface:0898`, layer 2.
+
+**28e. The join table describes the street and nothing inside the
+buildings.** 1312 of 1386 two-sided records (94.66%) are pairs with no row,
+and 1122 of those are interior|interior.
+*Recommended default:* that is the table's honest scope; adding indoor rows
+should follow an indoor census. Node `level`, layer 3.
+
+Confirmed, not disagreed: the rise is 2048 on 11 of 11 steps, measured; the
+road is the network's base plane at z 10240 and is recovered without looking
+at tile 352; exactly three end walls are met by a road record, and they are
+s0, s339 and s343.
