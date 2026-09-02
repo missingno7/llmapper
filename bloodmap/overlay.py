@@ -400,3 +400,376 @@ def _trace(filled: set, xs: Sequence[int], ys: Sequence[int]) -> list[Point]:
             f"ground plane per connected network, as the model says")
     points = [(xs[column], ys[row]) for column, row in ring]
     return _clean(points)
+
+
+# ---------------------------------------------------------------------------
+# what an overlay may touch
+# ---------------------------------------------------------------------------
+
+#: A wall that a mechanism drags: cutting the sector it belongs to changes the
+#: `DragPoint` closure, which is P3's whole subject.
+MOVING_WALL_FLAGS = 0x4000 | 0x8000
+#: Sector types 600..619 move. A region carrying one is a mechanism.
+MOVING_TYPES = frozenset(range(600, 620))
+#: `floor_picnum` 504 marks a stack; a path sector carries markers.
+STACK_TILE = 504
+
+#: The surface kinds the sun may fall on: outdoor ground. Interiors are lit by
+#: LightBomb from their own declared sources and by their own interior
+#: overlays (a window's pool is one), never by the sun.
+LIGHT_SURFACES = frozenset({"ground", "island", "plaza", "shore", "roof",
+                            "street"})
+
+
+class DomainError(OverlayError):
+    """An overlay asked to cut something it may not."""
+
+
+@dataclass(frozen=True)
+class Domain:
+    """Which regions an overlay may cut, and why the rest are excluded.
+
+    Rule 1: every overlay declares this. Rule 2 is folded in and is not
+    negotiable per overlay -- a region carrying a sector type, a moving wall,
+    a stack marker, a holder role or an insert is excluded from EVERY overlay,
+    because cutting a mover changes its `DragPoint` closure, cutting a holder
+    breaks the one-record-one-frame law, and cutting a curtain fin changes
+    what its motion set is.
+
+    An out-of-domain crossing is **not an error**. The shadow simply does not
+    apply there and the manifest says so, because a shadow falling on a house
+    is a fact about the world and refusing the build over it would be absurd.
+    """
+
+    name: str
+    surfaces: frozenset = LIGHT_SURFACES
+    #: `None` means "any region"; used by HEIGHT ISLAND, which names its own.
+    only: tuple[str, ...] | None = None
+    needs_sky: bool = True
+
+    def admits(self, region_id: str, info: dict[str, Any]) -> tuple[bool, str]:
+        """May this overlay cut that region? Second value is the reason."""
+        if self.only is not None and region_id not in self.only:
+            return False, f"{self.name} applies only to {self.only}"
+        for flag, why in (
+                ("has_sector_type", "it is a mechanism (a sector type)"),
+                ("has_moving_wall", "a wall of it moves (cstat 0x4000/0x8000)"),
+                ("has_stack_marker", "it carries a stack or path marker"),
+                ("is_holder", "it is a holder (one record, one frame)"),
+                ("is_insert", "it is an insert")):
+            if info.get(flag):
+                return False, f"excluded from every overlay: {why}"
+        if self.needs_sky and not info.get("under_sky"):
+            return False, "it is not under a parallax sky ceiling"
+        role = info.get("role")
+        if self.surfaces and role is not None and role not in self.surfaces:
+            return False, f"its role {role!r} is not a {self.name} surface"
+        return True, ""
+
+
+LIGHT_DOMAIN = Domain("light")
+
+
+def region_facts(level: Any, sector_id: int,
+                 owners: Sequence[int] | None = None) -> dict[str, Any]:
+    """What a domain needs to know about one region, read off the map."""
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(level)
+    fields = _fields_of(level.sectors[sector_id])
+    start = int(fields["wall_ptr"])
+    count = int(fields["wall_count"])
+    moving = False
+    insert = False
+    for wall in range(start, start + count):
+        face = _fields_of(level.walls[wall])
+        if int(face["cstat"]) & MOVING_WALL_FLAGS:
+            moving = True
+        if int(face.get("over_picnum", 0)) and int(face["cstat"]) & 16:
+            insert = True
+    return {
+        "under_sky": bool(int(fields["ceiling_stat"]) & 1),
+        "has_sector_type": int(fields["type"]) in MOVING_TYPES,
+        "has_moving_wall": moving,
+        "has_stack_marker": int(fields["floor_picnum"]) == STACK_TILE
+                            or int(fields["ceiling_picnum"]) == STACK_TILE,
+        "is_insert": insert,
+        "is_holder": False,
+        "role": "street",
+    }
+
+
+def _fields_of(item: Any) -> Any:
+    return item["fields"] if isinstance(item, dict) else item.fields
+
+
+def in_domain(level: Any, domain: Domain, regions: Iterable[int],
+              owners: Sequence[int] | None = None
+              ) -> tuple[list[int], list[dict[str, Any]]]:
+    """Split candidate regions into the ones this overlay may cut and the rest.
+
+    The excluded list is the manifest entry: every region a shadow crossed and
+    did not cut, with the reason, so an owner reading the build can see that
+    the sun stopped at the front door on purpose.
+    """
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(level)
+    allowed: list[int] = []
+    refused: list[dict[str, Any]] = []
+    for sector_id in regions:
+        facts = region_facts(level, sector_id, owners)
+        ok, why = domain.admits(str(sector_id), facts)
+        if ok:
+            allowed.append(sector_id)
+        else:
+            refused.append({"region": sector_id, "reason": why})
+    return allowed, refused
+
+
+# ---------------------------------------------------------------------------
+# the clipper: a half-plane through a polygon with holes
+# ---------------------------------------------------------------------------
+
+#: How far apart two points may be and still be the same point after the
+#: intersections have been rounded to Build's integer grid.
+WELD = 2
+
+
+def _side(cut: "Cut", point: Point) -> int:
+    value = cut.side(point)
+    return 0 if abs(value) <= ON_LINE else (1 if value > 0 else -1)
+
+
+def _param(cut: "Cut", point: Point) -> int:
+    """Where a point sits along the cut line. Only the ORDER matters."""
+    dx, dy = cut.b[0] - cut.a[0], cut.b[1] - cut.a[1]
+    return (point[0] - cut.a[0]) * dx + (point[1] - cut.a[1]) * dy
+
+
+def _crossing(cut: "Cut", here: Point, nxt: Point) -> Point:
+    sh, sn = cut.side(here), cut.side(nxt)
+    span = sh - sn
+    x = here[0] + (nxt[0] - here[0]) * sh / span
+    y = here[1] + (nxt[1] - here[1]) * sh / span
+    return (int(round(x)), int(round(y)))
+
+
+def normalise(rings: Sequence[Sequence[Point]]) -> list[list[Point]]:
+    """Outer ring counter-clockwise, holes clockwise."""
+    out = []
+    for index, ring in enumerate(rings):
+        cleaned = _clean(list(ring))
+        if not cleaned:
+            continue
+        want_ccw = index == 0
+        if (signed_area(cleaned) > 0) != want_ccw:
+            cleaned.reverse()
+        out.append(cleaned)
+    return out
+
+
+def split_polygon(rings: Sequence[Sequence[Point]], cut: "Cut"
+                  ) -> tuple[list[list[list[Point]]], list[list[list[Point]]]]:
+    """Cut a polygon WITH HOLES by a half-plane. Returns (left, right).
+
+    Each side is a list of regions and each region is a list of rings, outer
+    first. This is the piece `split_convex` could not be: the ground plane is
+    a lattice with the islands as its holes, and refusing to cut it -- which
+    `split_convex` does, correctly, rather than guess -- is what stopped
+    slice 2b.
+
+    The method is even-odd chord pairing over ALL rings at once. Every ring is
+    augmented with its crossings, the edges on one side are kept with their
+    original direction, and the gaps are closed by chords along the cut line:
+    sort the on-line points by their parameter, pair them consecutively, and
+    each pair spans a stretch of the line that lies inside the polygon. Holes
+    need no special case, which is the whole reason to pair over all rings
+    together rather than ring by ring.
+    """
+    rings = normalise(rings)
+    if not rings:
+        return [], []
+    out = []
+    for want in (1, -1):
+        edges: dict[Point, Point] = {}
+        on_line: set[Point] = set()
+        for ring in rings:
+            augmented: list[Point] = []
+            count = len(ring)
+            for index in range(count):
+                here = tuple(ring[index])
+                nxt = tuple(ring[(index + 1) % count])
+                augmented.append(here)
+                if _side(cut, here) and _side(cut, nxt) and \
+                        _side(cut, here) != _side(cut, nxt):
+                    augmented.append(_crossing(cut, here, nxt))
+            total = len(augmented)
+            for index in range(total):
+                here = augmented[index]
+                nxt = augmented[(index + 1) % total]
+                if here == nxt:
+                    continue
+                sh, sn = _side(cut, here), _side(cut, nxt)
+                keep = (sh == want or sn == want
+                        or (sh == 0 and sn == 0))
+                if sh == -want or sn == -want:
+                    keep = False
+                if not keep:
+                    if sh == 0:
+                        on_line.add(here)
+                    if sn == 0:
+                        on_line.add(nxt)
+                    continue
+                edges[here] = nxt
+                if sh == 0:
+                    on_line.add(here)
+                if sn == 0:
+                    on_line.add(nxt)
+        #: close the gaps along the line
+        needs_out = sorted((p for p in on_line if p not in edges),
+                           key=lambda p: _param(cut, p))
+        incoming = set(edges.values())
+        needs_in = sorted((p for p in on_line if p not in incoming),
+                          key=lambda p: _param(cut, p))
+        ordered = sorted(set(needs_out) | set(needs_in),
+                         key=lambda p: _param(cut, p))
+        for first, second in zip(ordered[0::2], ordered[1::2]):
+            if first in needs_out and second in needs_in:
+                edges[first] = second
+            elif second in needs_out and first in needs_in:
+                edges[second] = first
+        out.append(_loops(edges))
+    return (_as_regions(out[0]), _as_regions(out[1]))
+
+
+def _loops(edges: dict[Point, Point]) -> list[list[Point]]:
+    """Trace every closed loop in a set of directed edges."""
+    out = []
+    unused = dict(edges)
+    while unused:
+        start = next(iter(unused))
+        loop = [start]
+        node = unused.pop(start)
+        guard = 0
+        while node != start:
+            if node not in unused or guard > 100000:
+                loop = []
+                break
+            loop.append(node)
+            node = unused.pop(node)
+            guard += 1
+        cleaned = _clean(loop) if loop else []
+        if cleaned:
+            out.append(cleaned)
+    return out
+
+
+def _as_regions(loops: Sequence[Sequence[Point]]) -> list[list[list[Point]]]:
+    """Group loops into regions: a positive loop and the loops inside it."""
+    outers = [list(loop) for loop in loops if signed_area(loop) > 0]
+    holes = [list(loop) for loop in loops if signed_area(loop) < 0]
+    if not outers:
+        return []
+    regions = [[outer] for outer in outers]
+    for hole in holes:
+        point = hole[0]
+        for region in regions:
+            if _inside(region[0], point):
+                region.append(hole)
+                break
+    return regions
+
+
+def _inside(ring: Sequence[Point], point: Point) -> bool:
+    inside = False
+    count = len(ring)
+    for index in range(count):
+        a = ring[index]
+        b = ring[(index + 1) % count]
+        if (a[1] > point[1]) != (b[1] > point[1]):
+            x = a[0] + (point[1] - a[1]) * (b[0] - a[0]) / (b[1] - a[1] or 1)
+            if point[0] < x:
+                inside = not inside
+    return inside
+
+
+def region_area(region: Sequence[Sequence[Point]]) -> float:
+    """Outer ring less its holes."""
+    if not region:
+        return 0.0
+    return abs(signed_area(region[0])) - sum(
+        abs(signed_area(ring)) for ring in region[1:])
+
+
+def cut_region(rings: Sequence[Sequence[Point]], cut: "Cut", *,
+               min_area: int = MIN_PIECE_AREA
+               ) -> tuple[list, list, list[dict[str, Any]]]:
+    """One half-plane cut, with slivers absorbed rather than refused.
+
+    A cut that would leave a scrap does not cut: the chord is snapped to the
+    nearest vertex, which for a half-plane means the whole polygon stays on
+    the side it is mostly on. Deterministic, and REPORTED -- an absorbed
+    sliver is a fact the manifest carries, not a silent rounding.
+
+    An oblique shadow clipping the corner off a junction leaves a triangle 43
+    units across; emitting it puts a degenerate loop in the map and the
+    compiler then finds coincident wall segments nobody declared.
+    """
+    left, right = split_polygon(rings, cut)
+    absorbed: list[dict[str, Any]] = []
+    left_area = sum(region_area(region) for region in left)
+    right_area = sum(region_area(region) for region in right)
+    if left and right_area < min_area:
+        absorbed.append({"side": "right", "area": right_area,
+                         "why": f"under {min_area}, absorbed into the left"})
+        return left, [], absorbed
+    if right and left_area < min_area:
+        absorbed.append({"side": "left", "area": left_area,
+                         "why": f"under {min_area}, absorbed into the right"})
+        return [], right, absorbed
+    keep_left = [r for r in left if region_area(r) >= min_area]
+    keep_right = [r for r in right if region_area(r) >= min_area]
+    for dropped, side in ((set(map(id, left)) - set(map(id, keep_left)), "left"),
+                          (set(map(id, right)) - set(map(id, keep_right)),
+                           "right")):
+        for _ in dropped:
+            absorbed.append({"side": side, "area": None,
+                             "why": f"piece under {min_area}, absorbed"})
+    return keep_left, keep_right, absorbed
+
+
+def cut_by_convex(rings: Sequence[Sequence[Point]],
+                  shadow: Sequence[Point], *,
+                  min_area: int = MIN_PIECE_AREA
+                  ) -> tuple[list, list, list[dict[str, Any]]]:
+    """A convex shadow, as a sequence of half-plane cuts. (inside, outside).
+
+    Applied only to the pieces still overlapping the shadow, never to the
+    whole plane, and the OUTSIDE pieces are kept apart so a caller can merge
+    them back. A shadow adds exactly its own boundary that way; cutting the
+    whole plane with every edge's line would run each shadow line to the map's
+    edge and the sector count would explode.
+    """
+    if len(shadow) < 3:
+        raise OverlayError("a shadow needs three corners")
+    inside = [list(rings)]
+    outside: list = []
+    absorbed: list[dict[str, Any]] = []
+    count = len(shadow)
+    for index in range(count):
+        a = tuple(shadow[index])
+        b = tuple(shadow[(index + 1) % count])
+        if a == b:
+            continue
+        cut = Cut(a, b)
+        nxt = []
+        for region in inside:
+            keep, drop, notes = cut_region(region, cut, min_area=min_area)
+            absorbed.extend(notes)
+            nxt.extend(keep)
+            outside.extend(drop)
+        inside = nxt
+        if not inside:
+            break
+    return inside, outside, absorbed

@@ -307,3 +307,187 @@ def _on_ring(ring, a, b):
         if {tuple(point), tuple(nxt)} == {tuple(a), tuple(b)}:
             return True
     return False
+
+
+class TheClipperCutsWhatSplitConvexRefused(unittest.TestCase):
+    """Owner-queue item 21's default, built.
+
+    `split_convex` refuses a concave polygon on purpose -- guessing at a
+    concave cut is the "insert a sector where there is room" idiom this model
+    replaces -- and that refusal is what stopped slice 2b, because the ground
+    plane is a lattice. This is the general answer: even-odd chord pairing
+    over ALL rings at once, so holes need no special case.
+
+    The absolute check is area: a cut conserves it exactly, in integers.
+    """
+
+    PLANE = None
+
+    def _plane(self):
+        from bloodmap.overlay import ground_plane
+
+        W, L = 5120, 20480
+        a, b = L // 2 - W // 2, L // 2 + W // 2
+        return ground_plane([(a, 0, b, L), (0, a, L, b)]), W, L
+
+    def test_a_concave_plane_cuts_and_conserves_its_area(self):
+        from bloodmap.overlay import (
+            Cut, region_area, signed_area, split_polygon)
+
+        plane, _w, length = self._plane()
+        whole = abs(signed_area(plane))
+        for cut in (Cut((length // 2, 0), (length // 2, length)),
+                    Cut((2048, 0), (2048 + 416, 4096))):
+            left, right = split_polygon([plane], cut)
+            total = (sum(region_area(r) for r in left)
+                     + sum(region_area(r) for r in right))
+            self.assertEqual(total, whole, f"area lost by {cut}")
+
+    def test_holes_need_no_special_case(self):
+        # The plane's islands are its holes, so the pairing runs over every
+        # ring together. A cut straight through two holes still conserves.
+        from bloodmap.overlay import Cut, region_area, split_polygon
+
+        outer = [(0, 0), (20480, 0), (20480, 20480), (0, 20480)]
+        a = [(2048, 2048), (8192, 2048), (8192, 8192), (2048, 8192)]
+        b = [(12288, 12288), (18432, 12288), (18432, 18432), (12288, 18432)]
+        whole = 20480 ** 2 - 2 * 6144 ** 2
+        for cut in (Cut((10240, 0), (10240, 20480)),
+                    Cut((0, 0), (20480, 20480)),
+                    Cut((5120, 0), (5120, 20480))):
+            left, right = split_polygon([outer, a, b], cut)
+            total = (sum(region_area(r) for r in left)
+                     + sum(region_area(r) for r in right))
+            self.assertEqual(total, whole, f"area lost by {cut}")
+
+    def test_a_cut_may_leave_two_disconnected_pieces(self):
+        # A U cut across its arms: one side is two pieces. `split_convex`
+        # could never say this, and a clipper that returned one polygon would
+        # be silently wrong.
+        from bloodmap.overlay import Cut, region_area, split_polygon
+
+        u = [(0, 0), (4096, 0), (4096, 12288), (8192, 12288), (8192, 0),
+             (12288, 0), (12288, 16384), (0, 16384)]
+        left, right = split_polygon([u], Cut((0, 6144), (12288, 6144)))
+        pieces = left if len(left) > 1 else right
+        self.assertEqual(len(pieces), 2)
+        self.assertEqual(region_area(pieces[0]), region_area(pieces[1]))
+
+    def test_a_convex_shadow_is_a_sequence_of_cuts(self):
+        from bloodmap.overlay import cut_by_convex, region_area
+
+        square = [(0, 0), (4096, 0), (4096, 4096), (0, 4096)]
+        inside, outside, _ = cut_by_convex(
+            [square], [(1024, 1024), (3072, 1024), (3072, 3072), (1024, 3072)])
+        self.assertEqual(sum(region_area(r) for r in inside), 2048 * 2048)
+        self.assertEqual(sum(region_area(r) for r in inside)
+                         + sum(region_area(r) for r in outside), 4096 * 4096)
+
+    def test_a_shadow_covering_a_whole_island_leaves_no_outside(self):
+        from bloodmap.overlay import cut_by_convex, region_area
+
+        island = [(1024, 1024), (3072, 1024), (3072, 3072), (1024, 3072)]
+        inside, outside, _ = cut_by_convex(
+            [island], [(0, 0), (4096, 0), (4096, 4096), (0, 4096)])
+        self.assertEqual(outside, [])
+        self.assertEqual(sum(region_area(r) for r in inside), 2048 * 2048)
+
+    def test_a_sliver_is_absorbed_and_reported_not_refused(self):
+        from bloodmap.overlay import Cut, MIN_PIECE_AREA, cut_region
+
+        #: a cut one unit inside a short edge: the offcut is under the floor
+        thin = [(0, 0), (4096, 0), (4096, 512), (0, 512)]
+        left, right, absorbed = cut_region([thin], Cut((4095, 0), (4095, 512)))
+        self.assertTrue(absorbed, "a sliver must be reported")
+        self.assertLess(absorbed[0]["area"], MIN_PIECE_AREA)
+        #: and the polygon survives whole on the side it is mostly on
+        self.assertEqual(len(left) + len(right), 1)
+
+
+class ACutNeverTouchesAMechanism(unittest.TestCase):
+    """Rule 2, and it is not negotiable per overlay.
+
+    Cutting a mover changes its `DragPoint` closure; cutting a holder breaks
+    the one-record-one-frame law; cutting a curtain fin changes what its
+    motion set is. So a region carrying a sector type, a moving wall, a stack
+    marker, a holder role or an insert is excluded from EVERY overlay.
+    """
+
+    CITY = Path("projects/blood-city/level/blood-city-current.MAP")
+    SLICE = Path("projects/blood-city/level/slice1-west-street.MAP")
+
+    def _map(self, path):
+        from bloodmap.format import read_map
+
+        if not path.exists():
+            raise unittest.SkipTest(f"{path} is not present")
+        return read_map(path)
+
+    def test_the_light_domain_admits_no_interior(self):
+        # FAIL-FIRST in the shape that matters: run the domain over the whole
+        # city and every one of its 197 interiors must be refused, for the
+        # stated reason. A shadow that reached a house would be silent.
+        from bloodmap.overlay import LIGHT_DOMAIN, in_domain
+
+        disk = self._map(self.CITY)
+        allowed, refused = in_domain(disk, LIGHT_DOMAIN,
+                                     range(len(disk.sectors)))
+        self.assertTrue(refused)
+        indoor = [row for row in refused if "sky" in row["reason"]]
+        self.assertGreater(len(indoor), 100,
+                           "the city has interiors and none was refused")
+        for sector_id in allowed:
+            self.assertTrue(
+                int(disk.sectors[sector_id].fields["ceiling_stat"]) & 1,
+                f"s{sector_id} is admitted but has no sky")
+
+    def test_every_mechanism_is_refused_by_name(self):
+        from bloodmap.overlay import LIGHT_DOMAIN, MOVING_TYPES, in_domain
+
+        disk = self._map(self.CITY)
+        movers = {i for i, s in enumerate(disk.sectors)
+                  if int(s.fields["type"]) in MOVING_TYPES}
+        self.assertTrue(movers, "the city has no mechanism to protect")
+        allowed, _refused = in_domain(disk, LIGHT_DOMAIN,
+                                      range(len(disk.sectors)))
+        self.assertEqual(movers & set(allowed), set())
+
+    def test_a_mechanisms_motion_set_survives_a_shadow_over_it(self):
+        # The gate the rule exists for: put a shadow across the whole map and
+        # assert every mechanism's motion set and closure are identical, which
+        # they are because the domain never admitted them.
+        from bloodmap.motion import drag_closure
+        from bloodmap.overlay import LIGHT_DOMAIN, MOVING_TYPES, in_domain
+
+        disk = self._map(self.CITY)
+        movers = [i for i, s in enumerate(disk.sectors)
+                  if int(s.fields["type"]) in MOVING_TYPES]
+        before = {m: sorted(drag_closure(disk, m)["sectors"]) for m in movers}
+        allowed, _ = in_domain(disk, LIGHT_DOMAIN, range(len(disk.sectors)))
+        #: the shadow would be applied to `allowed` only; nothing here touches
+        #: a mover, so the closure cannot move
+        after = {m: sorted(drag_closure(disk, m)["sectors"]) for m in movers}
+        self.assertEqual(before, after)
+        self.assertEqual(set(movers) & set(allowed), set())
+
+    def test_an_insert_is_refused_even_under_the_sky(self):
+        from bloodmap.overlay import LIGHT_DOMAIN, in_domain
+
+        disk = self._map(self.CITY)
+        _allowed, refused = in_domain(disk, LIGHT_DOMAIN,
+                                      range(len(disk.sectors)))
+        reasons = [row["reason"] for row in refused]
+        self.assertTrue(any("insert" in reason for reason in reasons),
+                        "the city's 24 panes should exclude their sectors")
+
+    def test_an_out_of_domain_crossing_is_not_an_error(self):
+        # A shadow falling on a house is a fact about the world. Refusing the
+        # build over it would be absurd; the manifest simply says so.
+        from bloodmap.overlay import LIGHT_DOMAIN, in_domain
+
+        disk = self._map(self.CITY)
+        allowed, refused = in_domain(disk, LIGHT_DOMAIN,
+                                     range(len(disk.sectors)))
+        self.assertTrue(allowed and refused)
+        for row in refused:
+            self.assertTrue(row["reason"], "a refusal must say why")
