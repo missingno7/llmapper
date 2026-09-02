@@ -610,9 +610,28 @@ def main() -> int:
     mission = mission_faults(built)
     print("mission:", {k: v for k, v in mission.items()
                        if not isinstance(v, list) or v})
-    print(f"   the plan's circuit has {len(plan.CIRCUIT)} legs; its "
-          f"coordinates are in the 58x56 plan grid and the solve is 72x60, "
-          f"so leg positions are NOT checked against this map")
+    #: THE CIRCUIT, AS SURFACES. A leg is the surfaces a body passes through,
+    #: so it survives a re-solve; the coordinates it used to carry were in the
+    #: 58x56 plan grid and the solve is 72x60, and no leg could be checked at
+    #: all.
+    from bloodmap.conditional import Held, build_graph
+    from bloodmap.street_model import circuit_faults
+
+    by_surface = {}
+    for name, _piece, spec in built.pieces:
+        by_surface.setdefault(spec.surface_id, []).append(
+            built.compiled.allocations[name].sector_id)
+    at_rest = build_graph(disk).reachable(Held())
+    legs = plan.CIRCUIT
+    walked = [leg for leg in legs if leg.get("built", True)]
+    broken = circuit_faults(disk, legs, by_surface, reachable=at_rest)
+    print(f"circuit: {len(walked)} of {len(legs)} legs built, "
+          f"{len(broken)} unreachable")
+    for row in broken[:4]:
+        print("   -", row)
+    for leg in legs:
+        if not leg.get("built", True):
+            print(f"   not built: {leg['leg']!r} -- {leg.get('why', '')}")
 
     # --- terminations ------------------------------------------------------
     faults = street.termination_faults(disk, list(g["end_walls"].values()),

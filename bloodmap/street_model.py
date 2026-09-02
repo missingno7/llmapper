@@ -457,3 +457,47 @@ def sky_faults(disk: Any, *, owners: Sequence[int] | None = None) -> list[str]:
                        f"{sorted(skies.items(), key=lambda kv: -kv[1])} -- "
                        f"271 of 271 campaign regions wear exactly one")
     return out
+
+
+def circuit_faults(disk: Any, circuit: Iterable[dict], surfaces: dict, *,
+                   start_sector: int | None = None,
+                   reachable: Iterable[int] | None = None) -> list[str]:
+    """Every built leg of a circuit is reachable, in order, from the start.
+
+    A leg is a sequence of SURFACE IDS -- "the avenue between Theatre Row and
+    Market Street" -- because a coordinate does not survive a re-solve and a
+    surface does. `surfaces` maps a surface id to the sectors that realise it;
+    `reachable` is the set the conditional graph floods at rest.
+
+    Three questions, and each fails differently. A leg naming a surface the
+    level does not have is a leg with nothing to stand on. A leg whose
+    surfaces are not in the reachable set is a leg a body cannot get to. And
+    two consecutive legs with no reachable surface between them are a circuit
+    that is not one.
+    """
+    reached = set(reachable) if reachable is not None else None
+    out = []
+    previous = None
+    for index, leg in enumerate(circuit):
+        if not leg.get("built", True):
+            continue
+        named = list(leg.get("surfaces", ()))
+        if not named:
+            out.append(f"leg {index} ({leg['leg']!r}) names no surface")
+            continue
+        missing = [name for name in named if not surfaces.get(name)]
+        if missing:
+            out.append(f"leg {index} ({leg['leg']!r}) names {missing}, which "
+                       f"this level does not have")
+            continue
+        if reached is not None:
+            unreached = [name for name in named
+                         if not (set(surfaces[name]) & reached)]
+            if unreached:
+                out.append(f"leg {index} ({leg['leg']!r}): {unreached} is "
+                           f"built and not reachable at rest")
+                continue
+        previous = index
+    if previous is None and any(leg.get("built", True) for leg in circuit):
+        out.append("no leg of the circuit is standing")
+    return out

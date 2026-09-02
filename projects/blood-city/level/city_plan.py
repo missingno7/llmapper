@@ -268,23 +268,56 @@ ROOF_STACKS = [
 ]
 
 # --- the main circuit (ID): start -> venues -> objective -------------------
+#: THE MAIN CIRCUIT, AS SURFACE IDS (owner queue item 3, decided 2026-09-03).
+#:
+#: Each leg used to be a coordinate in the 58x56 plan grid. The envelope solve
+#: produces 72x60, so no leg could be checked against a built map -- and a
+#: coordinate would not survive the next re-solve either. A leg is now the
+#: SURFACES a body passes through, in order: "the avenue between Theatre Row
+#: and Market Street" survives a re-solve, and (35.5, 25) does not.
+#:
+#: `at` is kept as provenance, not as a check. `built` is false for a leg
+#: whose surfaces this level does not have yet, with the reason, so an absent
+#: leg is a row rather than a silence.
 CIRCUIT = [
-    {"leg": "start on the quay", "at": (33.5, 53)},
-    {"leg": "plaza and monument", "at": (26, 45)},
-    {"leg": "the avenue north: the Aldermack vista", "at": (35.5, 37.5)},
-    {"leg": "the vista, mid-avenue", "at": (35.5, 25)},
-    {"leg": "forecourt and Theatre Row venues", "at": (30, 13.5)},
-    {"leg": "the avenue to the north lane", "at": (35.5, 1.5)},
-    {"leg": "the north lane east to the spur", "at": (55.5, 1.5)},
-    {"leg": "the spur south to the works yard", "at": (55.5, 19)},
-    {"leg": "into the yard", "at": (52, 19.5)},
-    {"leg": "manhole drop at the yard's edge", "at": (49.5, 21.5)},
-    {"leg": "the trunk west under the works (the sewer leg)", "at": (44, 21.5)},
-    {"leg": "the sewer junction", "at": (41.75, 12)},
-    {"leg": "works stair up to the yard", "at": (48.5, 19)},
-    {"leg": "spur south, market street west", "at": (55.5, 37.5)},
-    {"leg": "market street to the avenue", "at": (35.5, 37.5)},
-    {"leg": "north to the forecourt: the objective", "at": (32, 15)},
+    {"leg": "start on the quay", "at": (33.5, 53),
+     "surfaces": ("walk",), "built": True},
+    {"leg": "plaza and monument", "at": (26, 45),
+     "surfaces": ("plane", "market_plaza"), "built": True},
+    {"leg": "the avenue north: the Aldermack vista", "at": (35.5, 37.5),
+     "surfaces": ("plane",), "built": True},
+    {"leg": "the vista, mid-avenue", "at": (35.5, 25),
+     "surfaces": ("plane",), "built": True},
+    {"leg": "forecourt and Theatre Row venues", "at": (30, 13.5),
+     "surfaces": ("plane", "col_a/row_1"), "built": True},
+    {"leg": "the avenue to the north lane", "at": (35.5, 1.5),
+     "surfaces": ("plane",), "built": True},
+    {"leg": "the north lane east to the spur", "at": (55.5, 1.5),
+     "surfaces": ("plane",), "built": True},
+    {"leg": "the spur south to the works yard", "at": (55.5, 19),
+     "surfaces": ("plane", "col_c/row_3"), "built": True},
+    {"leg": "into the yard", "at": (52, 19.5),
+     "surfaces": ("works_yard",), "built": True},
+    {"leg": "manhole drop at the yard's edge", "at": (49.5, 21.5),
+     "surfaces": ("manhole",), "built": False,
+     "why": "no sewer is emitted: the manhole, the trunk and the junction "
+            "are three legs of one unbuilt district"},
+    {"leg": "the trunk west under the works (the sewer leg)", "at": (44, 21.5),
+     "surfaces": ("sewer_trunk",), "built": False,
+     "why": "no sewer is emitted"},
+    {"leg": "the sewer junction", "at": (41.75, 12),
+     "surfaces": ("sewer_junction",), "built": False,
+     "why": "no sewer is emitted"},
+    {"leg": "works stair up to the yard", "at": (48.5, 19),
+     "surfaces": ("works_stair",), "built": False,
+     "why": "the stair is the sewer's way back up and has nothing to climb "
+            "from yet"},
+    {"leg": "spur south, market street west", "at": (55.5, 37.5),
+     "surfaces": ("plane",), "built": True},
+    {"leg": "market street to the avenue", "at": (35.5, 37.5),
+     "surfaces": ("plane", "market_plaza"), "built": True},
+    {"leg": "north to the forecourt: the objective", "at": (32, 15),
+     "surfaces": ("plane", "col_a/row_1"), "built": True},
 ]
 
 # --- channel budget per district (CN 8: 50..70 user channels) --------------

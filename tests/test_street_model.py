@@ -370,3 +370,73 @@ class TheReaderSideOfTheGroundModel(unittest.TestCase):
         self.assertEqual(len(found["symmetry_gaps"]), 3)
         for gap in found["symmetry_gaps"]:
             self.assertIn(":", gap, "each gap is named, then explained")
+
+
+class TheCircuitIsASequenceOfSurfaces(unittest.TestCase):
+    """A leg is the surfaces a body passes through, never a coordinate.
+
+    The plan's legs were points in a 58x56 grid and the envelope solve makes
+    72x60, so no leg could be checked against a built map -- and a coordinate
+    would not survive the next re-solve either.
+    """
+
+    CIRCUIT = (
+        {"leg": "start on the quay", "surfaces": ("walk",), "built": True},
+        {"leg": "the plaza", "surfaces": ("plane", "plaza"), "built": True},
+        {"leg": "the sewer", "surfaces": ("trunk",), "built": False,
+         "why": "no sewer is emitted"},
+    )
+    SURFACES = {"walk": [0], "plane": [1], "plaza": [2]}
+
+    def test_a_circuit_whose_legs_are_all_reachable_is_silent(self):
+        from bloodmap.street_model import circuit_faults
+
+        self.assertEqual(
+            circuit_faults(None, self.CIRCUIT, self.SURFACES,
+                           reachable={0, 1, 2}), [])
+
+    def test_a_leg_that_is_built_and_unreachable_is_named(self):
+        # THE FAIL-FIRST: one leg's surface drops out of the reachable set.
+        from bloodmap.street_model import circuit_faults
+
+        faults = circuit_faults(None, self.CIRCUIT, self.SURFACES,
+                                reachable={0, 1})
+        self.assertEqual(len(faults), 1)
+        self.assertIn("'the plaza'", faults[0])
+        self.assertIn("not reachable at rest", faults[0])
+
+    def test_a_leg_naming_a_surface_the_level_lacks_is_named(self):
+        from bloodmap.street_model import circuit_faults
+
+        faults = circuit_faults(None, self.CIRCUIT,
+                                {"walk": [0], "plane": [1]},
+                                reachable={0, 1})
+        self.assertEqual(len(faults), 1)
+        self.assertIn("does not have", faults[0])
+
+    def test_an_unbuilt_leg_is_skipped_and_not_a_fault(self):
+        from bloodmap.street_model import circuit_faults
+
+        self.assertEqual(
+            circuit_faults(None, self.CIRCUIT, self.SURFACES,
+                           reachable={0, 1, 2}), [],
+            "the sewer leg is declared unbuilt, with its reason")
+
+    def test_the_plan_s_own_circuit_names_surfaces(self):
+        import sys
+        from pathlib import Path
+
+        level_dir = Path("projects/blood-city/level")
+        if not (level_dir / "city_plan.py").exists():  # pragma: no cover
+            self.skipTest("the project is not present")
+        sys.path.insert(0, str(level_dir))
+        try:
+            import city_plan
+        finally:
+            sys.path.remove(str(level_dir))
+        self.assertTrue(all("surfaces" in leg for leg in city_plan.CIRCUIT))
+        self.assertEqual(sum(1 for leg in city_plan.CIRCUIT
+                             if not leg.get("built", True)), 4)
+        for leg in city_plan.CIRCUIT:
+            if not leg.get("built", True):
+                self.assertTrue(leg.get("why"), leg["leg"])
