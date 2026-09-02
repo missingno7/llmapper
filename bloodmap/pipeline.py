@@ -105,6 +105,10 @@ class Lamp:
     height: int = 0
     cstat: int = 128
     clipdist: int = 32
+    #: "wall" snaps the sprite onto the nearest wall record of the piece it
+    #: lands on and aligns it to that wall. A light under an open sky has
+    #: nothing overhead to hang from, so out there it mounts or it stands.
+    mount: str = "free"
 
 
 @dataclass(frozen=True)
@@ -399,9 +403,12 @@ def _place_lamp(disk: Any, sector: int, lamp: Lamp, floor_z: int) -> None:
     from .format import SPRITE_FIELDS
     from .model import DiskObject
 
+    x, y, angle = int(lamp.point[0]), int(lamp.point[1]), 0
+    if lamp.mount == "wall":
+        x, y, angle = _against_a_wall(disk, sector, (x, y))
     fields = {name: 0 for name, _code in SPRITE_FIELDS}
     fields.update({
-        "x": int(lamp.point[0]), "y": int(lamp.point[1]),
+        "x": x, "y": y, "angle": angle,
         "z": int(floor_z) - int(lamp.height),
         "sector": int(sector), "picnum": int(lamp.tile),
         "shade": int(lamp.sprite_shade), "type": int(lamp.sprite_type),
@@ -410,3 +417,39 @@ def _place_lamp(disk: Any, sector: int, lamp: Lamp, floor_z: int) -> None:
         "owner": -1, "index": len(disk.sprites), "extra": -1,
     })
     disk.sprites.append(DiskObject(fields=fields))
+
+
+def _against_a_wall(disk: Any, sector: int, point) -> tuple:
+    """The nearest point ON a wall of this sector, and the way it faces.
+
+    A wall-aligned sprite that is not on a wall is the same mistake as a
+    lantern under the sky, one step along, so the mount puts it there rather
+    than trusting the caller to have.
+    """
+    import math
+
+    fields = disk.sectors[sector].fields
+    start = int(fields["wall_ptr"])
+    best = None
+    for wall_id in range(start, start + int(fields["wall_count"])):
+        here = disk.walls[wall_id].fields
+        nxt = disk.walls[int(here["point2"])].fields
+        ax, ay = int(here["x"]), int(here["y"])
+        dx, dy = int(nxt["x"]) - ax, int(nxt["y"]) - ay
+        span = dx * dx + dy * dy
+        if not span:
+            continue
+        share = max(0.0, min(1.0, ((point[0] - ax) * dx
+                                   + (point[1] - ay) * dy) / span))
+        near = (ax + dx * share, ay + dy * share)
+        distance = math.hypot(point[0] - near[0], point[1] - near[1])
+        if best is None or distance < best[0]:
+            #: Build's angle is 2048 to the turn, and a wall sprite faces the
+            #: wall's normal: the wall runs (dx, dy), so its inward normal is
+            #: (dy, -dx).
+            facing = int(round(math.atan2(-dx, dy) * 2048 / (2 * math.pi)))
+            best = (distance, (int(round(near[0])), int(round(near[1]))),
+                    facing % 2048)
+    if best is None:
+        return int(point[0]), int(point[1]), 0
+    return best[1][0], best[1][1], best[2]

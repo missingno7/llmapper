@@ -74,6 +74,18 @@ B_ABOVE = "b_above"
 B_BELOW = "b_below"
 ONE_SIDED = "one_sided"
 
+#: How a STEP's face is shaded, relative to the floor shade of the surface
+#: that owns the record. Measured on E3M1's eleven kerb records, which are the
+#: only place the campaign states this relation: the six standing on road at
+#: floor shade 32 read a median 38, and the five standing on road at 8 read a
+#: median 8. Median delta over all eleven **+6**, quartiles -8 and +10.
+#:
+#: It matters because a step face that keeps the base while the surfaces
+#: around it darken is the one thing in an outdoor scene that does not obey
+#: the sun. The other step rows below carry the same offset, and the corpus
+#: measures it only at the kerb -- that extension is stated, not measured.
+KERB_SHADE_OFFSET = 6
+
 #: What a record may show. `NOTHING` is not "no rule": it is the rule that
 #: this join draws no band, which is what a road/road cut and a shore/sea meet
 #: both do and what makes their frames continue.
@@ -103,6 +115,11 @@ class JoinRule:
     cstat: int = 0
     frame: str = "continues"
     holder: bool = False
+    #: What the STEP's own face is shaded, relative to the floor shade of the
+    #: surface that owns the record. A step record is not lit by the surfaces
+    #: it separates for free -- it is a wall, and its shade is written -- so
+    #: the join that draws the band says what the band is shaded too.
+    shade_offset: int | None = None
     evidence: str = ""
 
     @property
@@ -117,9 +134,13 @@ def _rows() -> tuple[JoinRule, ...]:
                  "shadow or junction cut draws nothing and the road's frame "
                  "runs through it"),
         JoinRule(ROAD, PAVEMENT, B_ABOVE, a_shows="lower band, kerb class",
-                 frame="independent",
+                 frame="independent", shade_offset=KERB_SHADE_OFFSET,
                  evidence="E3M1 11/11 road-side records wear tile 6, step "
-                          "2048 without exception"),
+                          "2048 without exception; those same 11 records are "
+                          "shaded a median +6 from the road floor they stand "
+                          "on -- 38 where the road reads 32, 8 where it "
+                          "reads 8 -- so the face follows the field and does "
+                          "not sit at the base"),
         JoinRule(PAVEMENT, PAVEMENT, EQUAL,
                  evidence="E3M1 s10/s11: a pavement-only path between "
                           "abutting islands, and shadow cuts across a band"),
@@ -128,12 +149,13 @@ def _rows() -> tuple[JoinRule, ...]:
                  evidence="the facade's frame is world-anchored, so it does "
                           "not take the pavement's"),
         JoinRule(ROAD, END_WALL, B_ABOVE, a_shows="lower band, facade stone",
-                 cstat=1, frame="boundary",
+                 cstat=1, frame="boundary", shade_offset=KERB_SHADE_OFFSET,
                  evidence="E3M1 s0/s339/s343: blocking, y_repeat 8, the "
                           "district's own stone; the end wall's faces carry "
                           "their own frame"),
-        JoinRule(PAVEMENT, END_WALL, B_ABOVE, a_shows="lower band, facade stone",
-                 cstat=1, frame="boundary",
+        JoinRule(PAVEMENT, END_WALL, B_ABOVE, a_shows="lower band, facade "
+                 "stone", cstat=1, frame="boundary",
+                 shade_offset=KERB_SHADE_OFFSET,
                  evidence="E3M1 s339 to s2/s3/s4, same dialect as the road"),
         #: E6M1, the shopfront ---------------------------------------------
         JoinRule(FACADE, OPENING, ONE_SIDED,
@@ -156,7 +178,7 @@ def _rows() -> tuple[JoinRule, ...]:
                  evidence="DWE3M10 s120/s403 meet the same way: one shore cut "
                           "in two is still one shore"),
         JoinRule(SHORE, PAVEMENT, B_ABOVE, a_shows="lower band, quay class",
-                 frame="independent",
+                 frame="independent", shade_offset=KERB_SHADE_OFFSET,
                  evidence="DWE3M10 s120/s403: the shore's landward neighbour "
                           "stands above it and the band is on the SHORE side "
                           "-- 4 records step 35840 to tile 255 and 2 to tile "
@@ -173,7 +195,7 @@ def _rows() -> tuple[JoinRule, ...]:
                  evidence="a building's back is not a facade and takes no "
                           "facade run"),
         JoinRule(PAVEMENT, CHASM, B_BELOW, a_shows="lower band, rock",
-                 cstat=1, frame="boundary",
+                 cstat=1, frame="boundary", shade_offset=KERB_SHADE_OFFSET,
                  evidence="DWE3M1: its deepest sectors sit 26.9 player "
                           "heights below the median floor (z 526336 against "
                           "70656) wearing rock 274, 270 and 411"),
@@ -368,6 +390,12 @@ def apply(level: Any, kinds: dict[int, str], *,
                 written += 1
         if found.cstat:
             face["cstat"] = int(face["cstat"]) | int(found.cstat)
+        if found.shade_offset is not None:
+            #: The step's face follows the field, because the floor it stands
+            #: on already has. Read from the OWNER's floor, which by this pass
+            #: has the sun's and the lamps' contributions summed into it.
+            face["shade"] = (int(_face(level.sectors[here])["floor_shade"])
+                             + int(found.shade_offset))
         applied.append({"wall": wall_id, "a": a_kind, "b": b_kind,
                         "height": height, "shows": shows,
                         "frame": found.frame})

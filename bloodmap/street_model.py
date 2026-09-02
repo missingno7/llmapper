@@ -265,3 +265,195 @@ def read_city(disk: Any, *, road_tile: int = 352, pavement_tile: int = 4,
             "the contributions the ledger arbitrated",
         ],
     }
+
+
+# ---------------------------------------------------------------------------
+# the owner's four findings, as readers that run on any map
+# ---------------------------------------------------------------------------
+
+#: The campaign's whole sky family. `usage_kinds.sky_family` derives the same
+#: set from the corpus; this is here so a reader can name one without an
+#: index.
+SKY_FAMILY = frozenset({2500, 3491, 3678})
+
+#: What a light must be to stand outdoors. Blood mounts its lights on walls:
+#: of the campaign's wall-aligned bright sprites the commonest are 795, 510
+#: and 511, all indoor, and OUTDOORS the campaign mounts two in 43 maps. So a
+#: lamp on a street is a choice either way -- but a lamp hanging from nothing
+#: is not a choice, it is a mistake, and this is the bit that says so.
+SPRITE_WALL_ALIGNED = 16
+
+
+def kerb_tile_faults(disk: Any, *, kerb_tile: int = KERB_TILE,
+                     road_tile: int = 352, pavement_tile: int = 4,
+                     owners: Sequence[int] | None = None) -> list[str]:
+    """A kerb exists only where ROAD meets PAVEMENT (owner, W1).
+
+    E3M1 says it twice over: its eleven tile-6 records are all road-side and
+    all step 2048 to a pavement, and its road|road records wear the district's
+    facade family (401, 400, 380, 393) instead. So the kerb tile is never a
+    surface's default material -- the moment it is, every shadow cut and every
+    map edge reads as a kerb, and so does the face of an end wall.
+    """
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(disk)
+    out = []
+    for wall_id, wall in enumerate(disk.walls):
+        face = _fields(wall)
+        if int(face["picnum"]) != int(kerb_tile):
+            continue
+        here = owners[wall_id]
+        there = int(face["next_sector"])
+        pair = {int(_fields(disk.sectors[here])["floor_picnum"]),
+                int(_fields(disk.sectors[there])["floor_picnum"])
+                if there >= 0 else -1}
+        if pair != {int(road_tile), int(pavement_tile)}:
+            out.append(f"wall {wall_id} wears the kerb tile {kerb_tile} but "
+                       f"separates {sorted(pair)}, not road|pavement")
+    return out
+
+
+def step_shade_faults(disk: Any, *, offset: int = 6, kerb_tile: int = KERB_TILE,
+                      owners: Sequence[int] | None = None) -> list[str]:
+    """A step's face follows the field its floor is in (owner, W2).
+
+    Measured on E3M1's eleven kerb records: the six standing on road at floor
+    shade 32 read a median 38, the five standing on road at 8 read 8, and the
+    median delta over all eleven is +6. A face that keeps the base while the
+    surfaces around it darken is the one thing in an outdoor scene that does
+    not obey the sun.
+    """
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(disk)
+    out = []
+    for wall_id, wall in enumerate(disk.walls):
+        face = _fields(wall)
+        if int(face["picnum"]) != int(kerb_tile):
+            continue
+        here = owners[wall_id]
+        want = int(_fields(disk.sectors[here])["floor_shade"]) + int(offset)
+        got = int(face["shade"])
+        if got != want:
+            out.append(f"wall {wall_id} is a step out of a floor at shade "
+                       f"{int(_fields(disk.sectors[here])['floor_shade'])} "
+                       f"and reads {got}, not {want}")
+    return out
+
+
+def lamp_faults(disk: Any, *, tiles: Iterable[int] = (),
+                max_shade: int = -64,
+                owners: Sequence[int] | None = None) -> list[str]:
+    """A lamp hangs from something or stands on something (owner, W3).
+
+    Under an open sky there is nothing overhead to hang from, so a ceiling
+    lantern out there hangs from nothing. Either the sprite is wall-aligned
+    and sits on a wall of its own sector, or it is under a real ceiling.
+    """
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(disk)
+    wanted = {int(tile) for tile in tiles}
+    out = []
+    for index, sprite in enumerate(disk.sprites):
+        fields = _fields(sprite)
+        cstat = int(fields["cstat"])
+        if cstat & 32768:
+            continue
+        if wanted:
+            if int(fields["picnum"]) not in wanted:
+                continue
+        elif int(fields["shade"]) > int(max_shade):
+            continue
+        sector_id = int(fields["sector"])
+        if not int(_fields(disk.sectors[sector_id])["ceiling_stat"]) & 1:
+            continue
+        if not cstat & SPRITE_WALL_ALIGNED:
+            out.append(f"sprite {index} (tile {fields['picnum']}) hangs under "
+                       f"an open sky with nothing over it")
+            continue
+        if not _touches_a_wall(disk, sector_id, (int(fields["x"]),
+                                                 int(fields["y"]))):
+            out.append(f"sprite {index} (tile {fields['picnum']}) is "
+                       f"wall-aligned but stands on no wall of sector "
+                       f"{sector_id}")
+    return out
+
+
+def _touches_a_wall(disk: Any, sector_id: int, point, slack: int = 64) -> bool:
+    fields = _fields(disk.sectors[sector_id])
+    start = int(fields["wall_ptr"])
+    for wall_id in range(start, start + int(fields["wall_count"])):
+        here = _fields(disk.walls[wall_id])
+        nxt = _fields(disk.walls[int(here["point2"])])
+        ax, ay = int(here["x"]), int(here["y"])
+        bx, by = int(nxt["x"]), int(nxt["y"])
+        dx, dy = bx - ax, by - ay
+        span = dx * dx + dy * dy
+        if not span:
+            continue
+        t = ((point[0] - ax) * dx + (point[1] - ay) * dy) / span
+        t = max(0.0, min(1.0, t))
+        near = (ax + dx * t, ay + dy * t)
+        if math.hypot(point[0] - near[0], point[1] - near[1]) <= slack:
+            return True
+    return False
+
+
+def sky_faults(disk: Any, *, owners: Sequence[int] | None = None) -> list[str]:
+    """One connected outdoor space wears ONE sky (owner, W4).
+
+    Measured, and it is a law rather than a tendency: across the 43 campaign
+    maps, **271 of 271 connected outdoor regions carry exactly one sky
+    picnum**, with no exception at any size. A seam between two skies reads as
+    a crack in the sky, which is what the owner saw where DWE3M10's 3678 met
+    E3M1's 3491.
+
+    The horizon counts: its parallaxed FLOOR is a sky surface like any other.
+    This is also the reader side -- run on an original, a non-empty answer is
+    a finding about that map.
+    """
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(disk)
+    outdoor = [i for i, sec in enumerate(disk.sectors)
+               if int(_fields(sec)["ceiling_stat"]) & 1]
+    graph: dict[int, set] = {}
+    for wall_id, wall in enumerate(disk.walls):
+        there = int(_fields(wall)["next_sector"])
+        if there < 0:
+            continue
+        here = owners[wall_id]
+        if here in outdoor and there in outdoor:
+            graph.setdefault(here, set()).add(there)
+            graph.setdefault(there, set()).add(here)
+    seen: set = set()
+    out = []
+    for start in outdoor:
+        if start in seen:
+            continue
+        component = [start]
+        seen.add(start)
+        stack = [start]
+        while stack:
+            node = stack.pop()
+            for nxt in graph.get(node, ()):
+                if nxt not in seen:
+                    seen.add(nxt)
+                    stack.append(nxt)
+                    component.append(nxt)
+        skies: dict[int, int] = {}
+        for member in component:
+            fields = _fields(disk.sectors[member])
+            skies[int(fields["ceiling_picnum"])] = \
+                skies.get(int(fields["ceiling_picnum"]), 0) + 1
+            if int(fields["floor_stat"]) & 1:
+                skies[int(fields["floor_picnum"])] = \
+                    skies.get(int(fields["floor_picnum"]), 0) + 1
+        if len(skies) > 1:
+            out.append(f"one outdoor space of {len(component)} sectors wears "
+                       f"{len(skies)} skies: "
+                       f"{sorted(skies.items(), key=lambda kv: -kv[1])} -- "
+                       f"271 of 271 campaign regions wear exactly one")
+    return out

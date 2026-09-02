@@ -45,6 +45,15 @@ from resolution import (                                          # noqa: E402
     GRADE, SKY_TILE, STANDING, STREET_SKY, SUN_BEARING, WIDTH_UNITS)
 
 ROAD_TILE, PAVE_TILE, KERB_TILE = 352, 4, 6
+#: W1, the owner's walk: the KERB TILE IS NEVER A DEFAULT. It was the plane's
+#: wall material, so every shadow cut, every map edge and every end wall face
+#: read as a kerb -- 111 records of the built map wore it with no pavement on
+#: the other side. E3M1's road|road records wear the district's facade family
+#: (401 twice, 400 twice, 380, 393) and its pavement records wear 401 above
+#: all; tile 6 appears there on eleven records and every one of them steps
+#: 2048 from a road to a pavement.
+ROAD_WALL_TILE = 400
+PAVE_WALL_TILE = 401
 FACADE_STONE = joins.TILE_CLASSES["facade stone"]
 RISE = 2048
 ROAD_Z = GRADE + RISE
@@ -71,11 +80,18 @@ STEP = 12
 #: square. The tile is 641, the hanging lantern, at the campaign's own cstat
 #: 128, statnum 0, repeat 64 and a median 58,368 (3.44 player heights) above
 #: its floor.
-LAMP_TILE = 641
+#: W3, the owner's walk: 641 is a ceiling lantern on a chain, and under an
+#: open sky it hangs from nothing. Blood mounts its lights on WALLS -- of the
+#: campaign's wall-aligned bright sprites the commonest are 795, 510 and 511,
+#: and 510 is the sconce `lighting` already names. Its 28 campaign sprites
+#: carry cstat 208 (wall-aligned), repeat 64, type 0, and the bright ones hang
+#: a median 21504 -- 1.27 player heights -- above their floor.
+LAMP_TILE = 510
 LAMP_TYPE = 0
 LAMP_SHADE = -128
-LAMP_CSTAT = 128
-LAMP_HANG = 58368
+LAMP_CSTAT = 208
+LAMP_HANG = 21504
+LAMP_MOUNT = "wall"
 AREA_PER_LAMP = 187624103
 #: The campaign gives its lamp-lit OUTDOOR sectors no shade bonus, because it
 #: has none. So this delta is ours and is declared as such: half the measured
@@ -86,7 +102,13 @@ LAMP_DELTA = -STEP // 2
 SHORE_STEP = joins.SHORE_STEP
 SHORE_TILE = joins.SHORE_TILES[0]
 SEA_TILE = joins.SEA_TILE
-HORIZON_TILE = joins.HORIZON_TILE
+#: W4, the owner's walk: ONE OUTDOOR SPACE WEARS ONE SKY. Across the 43
+#: campaign maps, 271 of 271 connected outdoor regions carry exactly one sky
+#: picnum, at every size, with no exception. DWE3M10's horizon wears 3678
+#: because that is DWE3M10's sky; Gravesend's sky is E3M1's 3491, so the
+#: horizon inherits THAT, on its floor and its ceiling alike. The trick is the
+#: zero height and the parallax bit on both, not the tile.
+HORIZON_TILE = SKY_TILE
 QUAY_WALK_DEPTH = 2048
 SHORE_DEPTH = 2048
 SEA_DEPTH = 16384
@@ -262,7 +284,7 @@ def emission() -> Emission:
     surfaces = [SurfaceSpec(
         surface_id="plane", rings=tuple(g["plane"]), floor_z=ROAD_Z,
         ceiling_z=_sky(ROAD_Z), floor_tile=ROAD_TILE, ceiling_tile=SKY_TILE,
-        wall_tile=KERB_TILE, kind=joins.ROAD)]
+        wall_tile=ROAD_WALL_TILE, kind=joins.ROAD)]
 
     pavements = dict(g["islands"])
     pavements["quay_walk"] = _rect(*g["quay_walk"])
@@ -272,7 +294,7 @@ def emission() -> Emission:
         surfaces.append(SurfaceSpec(
             surface_id=name, rings=(ring,), floor_z=ISLAND_Z,
             ceiling_z=_sky(ISLAND_Z), floor_tile=PAVE_TILE,
-            ceiling_tile=SKY_TILE, wall_tile=PAVE_TILE,
+            ceiling_tile=SKY_TILE, wall_tile=PAVE_WALL_TILE,
             kind=joins.PAVEMENT))
 
     #: THE END WALLS, in E3M1's dialect: floor 379, parallax sky above,
@@ -307,8 +329,8 @@ def emission() -> Emission:
                   "pan_angle": joins.SEA_PAN_ANGLE}))
     surfaces.append(SurfaceSpec(
         surface_id="horizon", rings=(_rect(*water["horizon"]),),
-        floor_z=shore_z, ceiling_z=shore_z, floor_tile=HORIZON_TILE,
-        ceiling_tile=HORIZON_TILE, wall_tile=HORIZON_TILE,
+        floor_z=shore_z, ceiling_z=shore_z, floor_tile=SKY_TILE,
+        ceiling_tile=SKY_TILE, wall_tile=SKY_TILE,
         kind=joins.HORIZON, floor_stat=1, lit=False,
         declared_zero_exit=True))
 
@@ -321,7 +343,7 @@ def emission() -> Emission:
             lamps.append(Lamp(f"{name}:{number}", point, LAMP_DELTA,
                               tile=LAMP_TILE, sprite_shade=LAMP_SHADE,
                               sprite_type=LAMP_TYPE, height=LAMP_HANG,
-                              cstat=LAMP_CSTAT))
+                              cstat=LAMP_CSTAT, mount=LAMP_MOUNT))
 
     return Emission(
         name="slice2-streets",
@@ -432,18 +454,35 @@ def main() -> int:
 
     # --- the editor --------------------------------------------------------
     art = wall_art_sizes("reference/blood")
-    moved = 0
+    moved, moved_walls = 0, []
     if art:
+        #: ON A COPY. `auto_align_walls` MUTATES, and running the gate on the
+        #: map about to be written meant the emitter shipped whatever the
+        #: gate's own probe had done to it -- which is why the same map read
+        #: 2 in memory and 87 off disk.
+        import copy
+
         keys = ("x_repeat", "x_panning", "y_repeat", "y_panning", "cstat")
-        for chain in run_partition(disk, art_sizes=art, owners=owners):
+        chains = list(run_partition(disk, art_sizes=art, owners=owners))
+        for chain in chains:
+            #: ONE PROBE PER RUN, from the untouched map. The editor's
+            #: recursion follows `wall[nextwall].point2` and does not stop at
+            #: a run boundary, so a shared probe lets one run's walk spill
+            #: into the next and the gate then reads its own spill back as a
+            #: frame defect -- which is exactly what it did, on two walls.
+            probe = copy.deepcopy(disk)
             before = {w: {k: int(disk.walls[w].fields[k]) for k in keys}
                       for w in chain}
-            auto_align_walls(disk, chain[0], flags=0x01, art_sizes=art,
+            auto_align_walls(probe, chain[0], flags=0x01, art_sizes=art,
                              owners=owners)
-            moved += sum(1 for w in chain
-                         if any(int(disk.walls[w].fields[k]) != before[w][k]
-                                for k in keys))
+            for wall_id in chain:
+                if any(int(probe.walls[wall_id].fields[k]) != before[wall_id][k]
+                       for k in keys):
+                    moved += 1
+                    moved_walls.append(wall_id)
     print(f"frames: the editor would change {moved} wall(s)")
+    if moved_walls:
+        print("   first:", moved_walls[:8])
 
     # --- the light domain, WITH its denominator ----------------------------
     print(refusal_line(refusal_denominator(disk, LIGHT_DOMAIN,
