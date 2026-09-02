@@ -491,3 +491,48 @@ class ACutNeverTouchesAMechanism(unittest.TestCase):
         self.assertTrue(allowed and refused)
         for row in refused:
             self.assertTrue(row["reason"], "a refusal must say why")
+
+
+class AStreetGridEnclosesItsBlocks(unittest.TestCase):
+    """The plane is a polygon WITH HOLES, and one ring loses most of it."""
+
+    GRID = [(0, 0, 2048, 20480), (10240, 0, 12288, 20480),
+            (0, 0, 20480, 2048), (0, 10240, 20480, 12288)]
+
+    def test_a_grid_traces_an_outer_ring_and_a_hole(self):
+        from bloodmap.overlay import ground_plane_rings, region_area
+
+        rings = ground_plane_rings(self.GRID)
+        self.assertEqual(len(rings), 2, "outer ring plus one enclosed block")
+        #: ABSOLUTE: the union of four strips less their four overlaps
+        expected = 4 * (2048 * 20480) - 4 * (2048 * 2048)
+        self.assertEqual(region_area(rings), expected)
+
+    def test_the_single_ring_form_refuses_a_plane_with_holes(self):
+        # Rather than silently returning the outer ring and losing the block,
+        # which is what the first version did -- it reported Gravesend's own
+        # grid as disconnected, 28 boundary vertices of 64.
+        from bloodmap.overlay import OverlayError, ground_plane
+
+        with self.assertRaises(OverlayError) as caught:
+            ground_plane(self.GRID)
+        self.assertIn("hole", str(caught.exception))
+
+    def test_connectivity_is_about_cells_not_rings(self):
+        from bloodmap.overlay import OverlayError, ground_plane_rings
+
+        with self.assertRaises(OverlayError) as caught:
+            ground_plane_rings([(0, 0, 1024, 1024),
+                                (8192, 8192, 9216, 9216)])
+        self.assertIn("cells are reachable", str(caught.exception))
+
+    def test_a_hole_survives_a_cut_through_the_plane(self):
+        from bloodmap.overlay import (
+            Cut, ground_plane_rings, region_area, split_polygon)
+
+        rings = ground_plane_rings(self.GRID)
+        whole = region_area(rings)
+        left, right = split_polygon(rings, Cut((6144, 0), (6144, 20480)))
+        total = (sum(region_area(r) for r in left)
+                 + sum(region_area(r) for r in right))
+        self.assertEqual(total, whole)

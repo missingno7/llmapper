@@ -359,14 +359,28 @@ def ground_plane(strips: Sequence[Sequence[int]]) -> list[Point]:
                 filled.add((column, row))
     if not filled:
         raise OverlayError("the strips cover nothing")
-    return _trace(filled, xs, ys)
+    rings = _trace(filled, xs, ys)
+    if len(rings) > 1:
+        raise OverlayError(
+            f"this plane has {len(rings) - 1} hole(s) -- the blocks its roads "
+            f"enclose. Call `ground_plane_rings` for the whole polygon; one "
+            f"ring would lose them")
+    return rings[0]
 
 
-def _trace(filled: set, xs: Sequence[int], ys: Sequence[int]) -> list[Point]:
-    """Walk the boundary of a set of grid cells, counter-clockwise."""
-    #: every boundary edge, as (from, to) in grid coordinates, oriented so the
-    #: filled cell is on the left
-    edges: dict[tuple[int, int], tuple[int, int]] = {}
+def _trace(filled: set, xs, ys) -> list:
+    """Walk the boundary of a set of grid cells: EVERY ring, outer first.
+
+    A street lattice does not have one boundary. It has an outer ring and one
+    hole per block its roads enclose -- the islands stand in those holes -- so
+    returning a single ring loses most of the map, and reporting the extra
+    rings as "disconnected" is worse: the first version did exactly that and
+    refused Gravesend's own grid, 28 boundary vertices of 64.
+
+    Connectivity is a question about the CELLS, answered by flooding them, and
+    not about how many rings the boundary has.
+    """
+    edges = {}
     for column, row in filled:
         if (column, row - 1) not in filled:
             edges[(column, row)] = (column + 1, row)
@@ -378,28 +392,64 @@ def _trace(filled: set, xs: Sequence[int], ys: Sequence[int]) -> list[Point]:
             edges[(column, row + 1)] = (column, row)
     if not edges:
         raise OverlayError("the strips have no boundary")
-    start = min(edges)
-    ring = [start]
-    node = edges[start]
-    seen = {start}
-    while node != start:
-        ring.append(node)
-        seen.add(node)
-        node = edges.get(node)
-        if node is None:
-            raise OverlayError(
-                "the strips do not form one connected plane; emit one ground "
-                "plane per connected network, as the model says")
-    #: A ring that closes is not proof the plane is connected: two separate
-    #: squares each close their own. The plane is one only if walking from
-    #: one boundary vertex reaches every boundary vertex there is.
-    if seen != set(edges):
+
+    seed = next(iter(filled))
+    seen = {seed}
+    stack = [seed]
+    while stack:
+        column, row = stack.pop()
+        for step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            nxt = (column + step[0], row + step[1])
+            if nxt in filled and nxt not in seen:
+                seen.add(nxt)
+                stack.append(nxt)
+    if seen != filled:
         raise OverlayError(
-            f"the strips do not form one connected plane: the boundary walk "
-            f"closed after {len(seen)} of {len(edges)} vertices. Emit one "
+            f"the strips do not form one connected plane: {len(seen)} of "
+            f"{len(filled)} cells are reachable from the first. Emit one "
             f"ground plane per connected network, as the model says")
-    points = [(xs[column], ys[row]) for column, row in ring]
-    return _clean(points)
+
+    rings = []
+    unused = dict(edges)
+    while unused:
+        first = next(iter(unused))
+        ring = [first]
+        node = unused.pop(first)
+        while node != first:
+            if node not in unused:
+                raise OverlayError("the boundary walk did not close")
+            ring.append(node)
+            node = unused.pop(node)
+        points = _clean([(xs[column], ys[row]) for column, row in ring])
+        if points:
+            rings.append(points)
+    if not rings:
+        raise OverlayError("the strips have no boundary")
+    rings.sort(key=lambda r: -abs(signed_area(r)))
+    return rings
+
+
+def ground_plane_rings(strips) -> list:
+    """The whole plane: its outer ring, then one hole per enclosed block.
+
+    A street grid encloses its blocks, so the plane is a polygon WITH HOLES
+    and the islands stand in them. `split_polygon` pairs chords over all rings
+    at once, so nothing downstream needs a special case for them.
+    """
+    xs = sorted({int(v) for strip in strips for v in (strip[0], strip[2])})
+    ys = sorted({int(v) for strip in strips for v in (strip[1], strip[3])})
+    filled = set()
+    for column in range(len(xs) - 1):
+        for row in range(len(ys) - 1):
+            cx = (xs[column] + xs[column + 1]) // 2
+            cy = (ys[row] + ys[row + 1]) // 2
+            if any(min(s[0], s[2]) <= cx <= max(s[0], s[2])
+                   and min(s[1], s[3]) <= cy <= max(s[1], s[3])
+                   for s in strips):
+                filled.add((column, row))
+    if not filled:
+        raise OverlayError("the strips cover nothing")
+    return _trace(filled, xs, ys)
 
 
 # ---------------------------------------------------------------------------
