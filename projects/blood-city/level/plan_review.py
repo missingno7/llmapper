@@ -154,10 +154,18 @@ def measure(data: dict) -> list[dict]:
         "citywide_streets_plaza": 200,
     }
     total_walls = sum(projection.values())
-    ok = all(v <= 1100 for k, v in projection.items() if k != "citywide_streets_plaza") \
-        and total_walls <= 7000
-    row("districts <= ~1100 walls, total cap 7000 (CN 7)",
-        f"{projection} -> total {total_walls} (+{7000 - total_walls} reserve)",
+    # The ceiling is the target port's, not a campaign map's: NBlood is
+    # compiled with the V8 limits (build.h:48-59), read from project.json.
+    # The old 7000 cap was a vanilla-DOS number, retired 2026-09-02.
+    import json as _json
+    import pathlib as _pathlib
+    _budget = _json.load(open(_pathlib.Path(__file__).resolve().parents[1] / "project.json",
+                              encoding="utf-8"))["budget"]
+    walls_limit = int(_budget["walls_limit"])
+    reserve = int(walls_limit * 0.9)
+    ok = total_walls <= reserve
+    row(f"projected walls under the NBlood limit with 10% headroom ({reserve} of {walls_limit})",
+        f"{projection} -> total {total_walls} (+{reserve - total_walls} to the reserve line)",
         ok, "model stated in plan_review.py; verified against real counts every L2/L3 iteration")
 
     return rows

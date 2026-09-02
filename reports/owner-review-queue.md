@@ -1053,10 +1053,29 @@ Both give the same map. A is a few lines and a tolerance; B is a wider change
 with no tolerance. G1 does not separate them -- neither moves a vertex. G2
 does not separate them -- both would pass. The wall counts would be identical.
 
-> **Recommended default: B, record it at cut time.** The argument is only that
+> **CLOSED 2026-09-02 (slice 2h), and my framing of it was wrong.** Neither A
+> nor B: edges have a GENEALOGY, and a split records its children's parentage
+> so a crossing reaches any ring carrying its key or an ancestor. No tolerance
+> constant anywhere.
+>
+> And the claim that no invariant separated A from B was false. A crossing is
+> rounded PER COORDINATE, so it can sit up to 0.707 units off its edge --
+> measured worst case 0.702 over 20000 random oblique edges -- and a half-unit
+> containment misses every crossing rounded toward the far corner of its unit
+> cell. That bound separates them, and I asserted "no invariant" instead of
+> looking for one. From here that claim needs a fixture both options pass.
+>
+> ~~Recommended default: B, record it at cut time.~~ The argument is only that
 > this project has repeatedly paid for tolerances that looked harmless (the
 > 0.05 that read as an overlap; the exact-collinearity test that rejected its
 > own crossings), and B is the option with none. But I want to record that
 > the case for A is real -- it is small, local, and testable -- and that if B
 > turns out to need the whole piece set threaded through every cut, A with a
 > half-unit tolerance is the honest fallback rather than a defeat.
+
+> **Item 27, decided by the supervisor (2026-09-02): neither A nor B as
+> stated; edges get a genealogy (child -> parent recorded at the cut,
+> crossings owed to every carrier of the key or its ancestors). A gate
+> does separate the options: a crossing rounded 0.6-0.7 units off its
+> edge, which a half-unit containment misses. See section 26 of the
+> decisions document.**

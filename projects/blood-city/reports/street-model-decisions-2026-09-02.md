@@ -1519,3 +1519,128 @@ not launch it, so **nothing has walked this map** -- the owner's walk is
 the first. `bloodmap.readback` still has nothing to compare, because the
 emitter declares no constructs. And the buildings are still placeholder
 masses casting shadows, not shells with facades.
+
+### 23a. Unfrozen (owner, 2026-09-02 evening): E3M1 first, in parallel
+
+The owner starts the experiment now, on a second Opus agent, and picks
+E3M1 first, not E1M1: the city language is what the street work is
+writing, so E3M1's readers are the writer's evidence directly (section
+20). E1M1 follows for the mechanism and naming layers. Project directory
+`projects/e3m1-decompiled`, shaped like `projects/e2m3-decompiled`,
+with the residue ledger as the deliverable. Readers land in `bloodmap`
+as modules, never inside the project, so the census can run over the
+corpus; the agent adds readers and never edits the writer side
+(overlay, light_field, joins, surface, planar_layout) -- a disagreement
+between what a reader recovers and what the writer assumes is a finding
+for the owner queue, not a patch.
+
+## 28. Overlapping layers, systemically: records, aspects, channels, links (owner question, 2026-09-02)
+
+The owner's worry: E3M1 already has doors of several dialects, stairs,
+a collapsing house, cracking walls, a falling ceiling, 61 light waves
+over the sun's shadows; a Death Wish map has an order of magnitude more
+detail, mechanism and linkage. Many layers overlap on the same sectors.
+A single hierarchy cannot hold that, and it must not try.
+
+**The model: one set of records, many aspects, one ledger.**
+
+1. **Records are the only truth.** Sectors, walls, sprites and their
+   X-structs, as the map stores them. Nothing else is authoritative.
+2. **An aspect is a partial reading of records.** The space tree is one
+   aspect. Surfaces/frames, joins, islands, the light field,
+   mechanisms, edges, the plan, intent: each is another. An aspect never
+   owns a record; it CLAIMS FIELDS of records (this wall's picnum and
+   x_repeat belong to surface S; this sector's floor_z to island I;
+   this sector's shade to sun depth 2 plus light wave W). Aspects are
+   the decompiler's "primary hierarchy plus overlapping alternatives",
+   made precise at field level.
+3. **Overlap is resolved per channel, exactly as the writer does it.**
+   The channel table (section 18) already says which fields are
+   additive (shade) and which exclusive (floor_z, sector type, frame,
+   holder role). Reading is the inverse: on an additive channel several
+   aspects may each explain a contribution, and the sum must equal the
+   record (shade = base + k*12 + wave); on an exclusive channel exactly
+   one aspect may claim the field, and two claimants are a FINDING, not
+   an error to hide. This is the symmetry rule at field level.
+4. **Links are a graph, not a tree.** tx/rx chains, markers, stack
+   links, keys, conditions form relations over records; a mechanism
+   "sentence" is a subgraph pattern with roles, and the conditional
+   topology is derived from the graph. Links never sit in a hierarchy;
+   they reference records and nodes of any aspect.
+5. **The ledger is the deliverable, and it is the writer's ledger.**
+   RegionLedger / RecordOwner is the format: (record, field) ->
+   claimant aspect(s) with evidence. Residue = fields no aspect claims;
+   conflict = exclusive fields with two claimants. Understanding is a
+   percentage of FIELDS, not of sectors, so a sector that is "half
+   understood" (its geometry read, its trigger not) counts as half.
+6. **Reading order comes from the ledger.** The next thing to read is
+   the largest unclaimed mass, like a profiler; nobody reads a Death
+   Wish map front to back. A vocabulary saturates when a new map's
+   residue under the existing readers is small; the residue tail names
+   the new vocabulary. E3M1 first; DWE3M1 measured against E3M1's
+   readers before anyone writes a reader for it.
+7. **Browsing is the ledger by aspect.** The review pack shows one
+   aspect at a time with the others dimmed; a record's fact panel lists
+   every claim on it and every unclaimed field. The owner marks a
+   claim, not a sector.
+
+Consequence for P15: the residue ledger is `(record, field) -> claims`,
+every layer writes into the same ledger, and a layer's report is its
+share of claimed fields plus the conflicts it raised on exclusive
+channels. The order of layers is unchanged.
+
+## 29. Slice 2i landed; lamps are a stated choice; slice 3 scope (2026-09-02)
+
+Deliverable 6 is complete (2ee6c2f..684aac9): 179 sectors / 866 walls /
+15 sprites, 846 join records with 0 unknown, 80 welded vertices, 0
+slivers, G1 66/0, sun bearing read back at 84.02 degrees, the four
+shades plus lamp deltas read off real sectors with 0 misread, end walls
+and waterfront gated on built records. The compiler owns the pipeline
+(`pipeline.py`, `Compilation.require_complete`); the light-domain
+denominator is reported as UNTESTED at 0 of 0. The map to walk is
+`projects/blood-city/level/slice2-streets.MAP`, start sector 0 at
+(15481, 23722, 10240), angle 0, on Theatre Row facing east.
+
+Two corpus corrections accepted: a shore never meets land at equal z
+(DWE3M10: seven quay-wall steps of 35840, one walkable step of 3072),
+so the join row is SHORE|PAVEMENT B_ABOVE and EQUAL raises; and Blood
+has ZERO visible outdoor lamps in 43 campaign maps (E3M1's 45 bright
+outdoor sprites are invisible kGenSound / ambient SFX emitters). Blood
+lights its streets with the sun alone.
+
+**Decision on lamps (owner's taste, supervisor's default):** Gravesend
+keeps its street lamps. The plan's identity for Theatre Row is
+"gas-lit"; the owner asked for lamps on pavements; and section 22
+allows a stated CHOICE where the corpus has no law. The lamp density
+is therefore recorded as a choice claim (Blood's indoor sconce rate
+applied outdoors), never as an envelope, and the sun remains the only
+source of the shade FIELD; lamps stay PRESENTATION deltas. If the
+owner wants the city to read as Blood does, the lamps come out with
+one declaration and nothing else changes.
+
+**Read-back gaps are findings about Blood, not about us:** field depth
+k and lamp authorship are not on disk because Blood sums shade at write
+time. A reader cannot recover them from a map alone; the fact store the
+compiler will write from slice 3 (section 2 of the research document)
+records them beside the map, and E3M1's reader will report the same
+gap honestly.
+
+**Slice 3 scope:** the owner's walk of slice2-streets.MAP first (its
+findings arrive as review marks or a message and are treated like
+slice 1's); then building masses as real shells with L3 interiors
+re-parented under their islands, facades as surfaces with openings and
+inserts in their own sectors (section 6d), the light domain's first
+real refusals, the fact store, the LoD invariance gate, and the
+declared mission graph. Eye-level renders remain unproven until an
+observer exists; plan views must use XMapEdit's orientation (+Y down).
+
+### 22a. Norms are conditional (external review point 7, adopted 2026-09-02)
+
+Every norm the readers produce is conditioned on a context (surface
+kind, join class, LoD, function, population), never a global average
+over a map or the campaign: "slopes | outdoor sewer", "detail density
+| storefront", "dead ends | optional venue". A global rate is an alarm
+at most, never a target; matching a campaign median by adding things
+is statistical cosplay, and the discriminator is not allowed to ask
+for it. Each conditional norm carries the examples where Blood did NOT
+use the thing in that context.

@@ -18,10 +18,15 @@
     "6 population, decoration, lighting"
   ],
   "budget": {
-    "sectors_target": [400, 650],
-    "walls_cap": 7000,
-    "walls_reserve_note": "engine limit 8192; DukCity3 sits at 8185 -- the cap keeps ~1200 walls of iteration headroom",
-    "sprites_limit": 4096
+    "target_port": "NBlood (V8 limits; not vanilla DOS Blood)",
+    "sectors_limit": 4096,
+    "walls_limit": 16384,
+    "sprites_limit": 16384,
+    "xsectors_limit": 4096,
+    "xwalls_limit": 16384,
+    "xsprites_limit": 16384,
+    "reserve_note": "keep 10% headroom under each limit for iteration; the old 7000-wall cap and the 512 X-object figures were vanilla-DOS numbers (retired 2026-09-02)",
+    "source": "NBlood/source/build/include/build.h:48-59, NBlood/source/blood/src/db.h:25-27"
   },
   "schema_version": 1
 }
