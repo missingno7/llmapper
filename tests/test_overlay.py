@@ -687,3 +687,162 @@ class ObliqueCutsRoundAndThePiecesDrift(unittest.TestCase):
         self.assertLess(worst, 1.0,
                         f"a vertex sits {worst:.2f} units inside a neighbour, "
                         f"which would be a real overlap rather than rounding")
+
+
+class TheWeldByEdgeIdentity(unittest.TestCase):
+    """Two pieces share an edge exactly, or they only nearly do.
+
+    Every oblique cut rounds its crossings to Build's integer grid, so a piece
+    that was cut has a vertex where the chord met its boundary and a
+    neighbour that was not cut does not. The weld inserts each recorded
+    crossing into every ring that still carries the edge it came from, keyed
+    UNDIRECTED -- a plane's hole ring and the island standing in it are the
+    same edges given in opposite directions.
+
+    No search radius anywhere: a crossing belongs to its edge by record.
+    """
+
+    FIXTURE = Path("tests/fixtures/overlay_partition_regression.json")
+
+    def test_a_crossing_rounds_the_same_from_either_end(self):
+        # Without this the same edge, given one way by the plane's hole and
+        # the other by the island, yields two different points and the weld
+        # has nothing to match.
+        import random
+
+        from bloodmap.overlay import Cut, _crossing
+
+        rng = random.Random(7)
+        checked = 0
+        for _ in range(2000):
+            p = (rng.randint(-20000, 20000), rng.randint(-20000, 20000))
+            q = (rng.randint(-20000, 20000), rng.randint(-20000, 20000))
+            a = (rng.randint(-20000, 20000), rng.randint(-20000, 20000))
+            b = (rng.randint(-20000, 20000), rng.randint(-20000, 20000))
+            if a == b or p == q:
+                continue
+            cut = Cut(a, b)
+            if (cut.side(p) > 0) == (cut.side(q) > 0):
+                continue
+            if cut.side(p) == 0 or cut.side(q) == 0:
+                continue
+            checked += 1
+            self.assertEqual(_crossing(cut, p, q), _crossing(cut, q, p))
+        self.assertGreater(checked, 200)
+
+    def test_an_edge_key_is_undirected(self):
+        from bloodmap.overlay import edge_key
+
+        self.assertEqual(edge_key((5, 3), (1, 9)), edge_key((1, 9), (5, 3)))
+
+    def test_the_weld_closes_the_captured_regression(self):
+        # THE CASE THAT DECIDED IT. Before the weld this surface gained 334
+        # units and put a vertex 0.05 inside its neighbour.
+        import json
+        import sys
+
+        if not self.FIXTURE.exists():
+            self.skipTest(f"{self.FIXTURE} is not present")
+        level = str(Path("projects/blood-city/level"))
+        if level not in sys.path:
+            sys.path.insert(0, level)
+        try:
+            from resolution import SUN_BEARING
+        except ImportError as error:               # pragma: no cover
+            self.skipTest(str(error))
+        from bloodmap.light_field import Mass, build_field
+        from bloodmap.overlay import partition_faults
+
+        data = json.loads(self.FIXTURE.read_text(encoding="utf-8"))
+        rings = [[tuple(p) for p in ring] for ring in data["rings"]]
+        masses = [Mass(m["id"], tuple(tuple(p) for p in m["outline"]),
+                       m["height"]) for m in data["masses"]]
+        found = build_field(rings, masses, bearing_units=SUN_BEARING)
+        self.assertEqual(
+            partition_faults([p.rings for p in found["pieces"]], rings), [])
+        self.assertGreater(found["welded_vertices"], 0,
+                           "if nothing welded, the fixture stopped exercising "
+                           "the case it was captured for")
+
+    def test_a_registry_point_is_inserted_despite_not_being_collinear(self):
+        # The crux, and the reason an exact `_between` rejected the very
+        # points the weld exists to insert: a crossing is rounded, so it is
+        # routinely NOT exactly collinear with the edge it came from -- 668 on
+        # the cross product for the fixture's own crossing.
+        from bloodmap.overlay import edge_key, weld
+
+        edge = ((3887, 5120), (5334, 18944))
+        point = (5120, 16900)
+        cross = ((edge[1][0] - edge[0][0]) * (point[1] - edge[0][1])
+                 - (edge[1][1] - edge[0][1]) * (point[0] - edge[0][0]))
+        self.assertNotEqual(cross, 0, "the fixture point should be off-line")
+        piece = [[edge[1], (3072, 18944), (3072, 5120), edge[0]]]
+        welded, added = weld([piece], {edge_key(*edge): {point}})
+        self.assertEqual(added, 1)
+        self.assertIn(point, welded[0][0])
+
+    def test_welding_adds_the_walls_build_requires(self):
+        # Not overhead: Build needs a vertex wherever two sectors' boundaries
+        # meet, and a wall without one is a red wall.
+        from bloodmap.overlay import cut_by_convex, partition_faults, weld
+
+        square = [[(0, 0), (20480, 0), (20480, 20480), (0, 20480)]]
+        registry = {}
+        inside, outside, _ = cut_by_convex(
+            square, [(2048, 2048), (9000, 2048), (11000, 18000),
+                     (4048, 18000)], registry=registry)
+        before = inside + outside
+        welded, added = weld(before, registry)
+        self.assertGreater(added, 0)
+        self.assertEqual(partition_faults(welded, square), [])
+
+    def test_absorbing_a_sliver_keeps_its_area(self):
+        # The defect the weld uncovered by removing the overlap that masked
+        # it: returning the CUT piece discarded the scrap, losing 536 units on
+        # a 419-million rectangle. Absorbed means the neighbour KEEPS it.
+        from bloodmap.overlay import Cut, cut_region, region_area
+
+        thin = [[(0, 0), (4096, 0), (4096, 512), (0, 512)]]
+        left, right, absorbed = cut_region(thin, Cut((4095, 0), (4095, 512)))
+        self.assertEqual(len(absorbed), 1)
+        kept = sum(region_area(r) for r in left + right)
+        self.assertEqual(kept, region_area(thin))
+
+
+class G1VertexFidelity(unittest.TestCase):
+    """Every vertex a surface declared appears in the map, unmoved.
+
+    This is the invariant that decided weld against snap, with no owner
+    question needed: snapping a crossing to a coarser grid fails it by
+    construction, because the moment a crossing moves the piece boundaries
+    meeting there move with it.
+    """
+
+    SLICE = Path("projects/blood-city/level/slice1-west-street.MAP")
+
+    def test_the_slice_keeps_every_vertex_it_declared(self):
+        from bloodmap.format import read_map
+        from bloodmap.overlay import vertex_faults
+
+        if not self.SLICE.exists():
+            self.skipTest(f"{self.SLICE} is not present")
+        disk = read_map(self.SLICE)
+        points = {(int(w.fields["x"]), int(w.fields["y"]))
+                  for w in disk.walls}
+        self.assertEqual(vertex_faults(disk, points), [])
+
+    def test_snapping_to_eight_fails_g1(self):
+        # FAIL-FIRST, and it is the whole argument: snap moves 2 of slice 1's
+        # 11 distinct points and G1 names both.
+        from bloodmap.format import read_map
+        from bloodmap.overlay import vertex_faults
+
+        if not self.SLICE.exists():
+            self.skipTest(f"{self.SLICE} is not present")
+        disk = read_map(self.SLICE)
+        points = {(int(w.fields["x"]), int(w.fields["y"]))
+                  for w in disk.walls}
+        snapped = {((x // 8) * 8, (y // 8) * 8) for x, y in points}
+        faults = vertex_faults(disk, snapped)
+        self.assertTrue(faults, "if snap moved nothing this map is a bad "
+                                "witness for the argument")

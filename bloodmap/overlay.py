@@ -598,11 +598,35 @@ def _param(cut: "Cut", point: Point) -> int:
 
 
 def _crossing(cut: "Cut", here: Point, nxt: Point) -> Point:
+    """Where an edge meets the cut, rounded the same way from either end.
+
+    The endpoints are put in canonical order first. Without that,
+    interpolating from `here` and interpolating from `nxt` round to different
+    integers on an oblique edge -- and the SAME edge is given in one direction
+    by the plane's hole ring and in the other by the island's outer ring, so
+    the two would disagree about where they meet and the weld would have
+    nothing to match.
+    """
+    here, nxt = tuple(here), tuple(nxt)
+    if (nxt[0], nxt[1]) < (here[0], here[1]):
+        here, nxt = nxt, here
     sh, sn = cut.side(here), cut.side(nxt)
     span = sh - sn
     x = here[0] + (nxt[0] - here[0]) * sh / span
     y = here[1] + (nxt[1] - here[1]) * sh / span
     return (int(round(x)), int(round(y)))
+
+
+def edge_key(a: Point, b: Point) -> tuple:
+    """The undirected identity of an edge: the same whichever way it is given.
+
+    The weld's registry key. A plane's hole ring runs one way round a block
+    and the island's outer ring runs the other, so the two describe the same
+    edges in opposite directions; keyed undirected, a crossing recorded from
+    one is found by the other.
+    """
+    a, b = (int(a[0]), int(a[1])), (int(b[0]), int(b[1]))
+    return (a, b) if a <= b else (b, a)
 
 
 def normalise(rings: Sequence[Sequence[Point]]) -> list[list[Point]]:
@@ -619,7 +643,8 @@ def normalise(rings: Sequence[Sequence[Point]]) -> list[list[Point]]:
     return out
 
 
-def split_polygon(rings: Sequence[Sequence[Point]], cut: "Cut"
+def split_polygon(rings: Sequence[Sequence[Point]], cut: "Cut",
+                  registry: dict | None = None
                   ) -> tuple[list[list[list[Point]]], list[list[list[Point]]]]:
     """Cut a polygon WITH HOLES by a half-plane. Returns (left, right).
 
@@ -657,7 +682,10 @@ def split_polygon(rings: Sequence[Sequence[Point]], cut: "Cut"
             here = tuple(ring[index])
             nxt = tuple(ring[(index + 1) % count])
             if _side(cut, here) and _side(cut, nxt) and                     _side(cut, here) != _side(cut, nxt):
-                crossings.add(_crossing(cut, here, nxt))
+                point = _crossing(cut, here, nxt)
+                crossings.add(point)
+                if registry is not None:
+                    registry.setdefault(edge_key(here, nxt), set()).add(point)
 
     def _on(point):
         return point in crossings or _side(cut, point) == 0
@@ -774,7 +802,7 @@ def region_area(region: Sequence[Sequence[Point]]) -> float:
 
 
 def cut_region(rings: Sequence[Sequence[Point]], cut: "Cut", *,
-               min_area: int = MIN_PIECE_AREA
+               min_area: int = MIN_PIECE_AREA, registry: dict | None = None
                ) -> tuple[list, list, list[dict[str, Any]]]:
     """One half-plane cut, with slivers absorbed rather than refused.
 
@@ -787,7 +815,7 @@ def cut_region(rings: Sequence[Sequence[Point]], cut: "Cut", *,
     units across; emitting it puts a degenerate loop in the map and the
     compiler then finds coincident wall segments nobody declared.
     """
-    left, right = split_polygon(rings, cut)
+    left, right = split_polygon(rings, cut, registry)
     absorbed: list[dict[str, Any]] = []
     left_area = sum(region_area(region) for region in left)
     right_area = sum(region_area(region) for region in right)
@@ -795,14 +823,21 @@ def cut_region(rings: Sequence[Sequence[Point]], cut: "Cut", *,
     #: entirely leaves one side empty, and the first version reported that as
     #: a sliver of area 0 -- so the counts a build printed were mostly
     #: phantom, and a real absorption could not be seen among them.
+    #: ABSORBED MEANS THE NEIGHBOUR KEEPS IT. Returning the CUT piece here
+    #: discards the scrap and loses its area -- a 536-unit scrap went missing
+    #: that way on a 419-million rectangle, and the partition assertion found
+    #: it the moment the weld had removed the overlap that was masking it.
+    #: The polygon goes back whole on the side it is mostly on, which is what
+    #: "snap the chord to the nearest vertex" means.
+    whole = [list(ring) for ring in normalise(rings)]
     if left and right and right_area < min_area:
         absorbed.append({"side": "right", "area": right_area,
                          "why": f"under {min_area}, absorbed into the left"})
-        return left, [], absorbed
+        return [whole], [], absorbed
     if right and left and left_area < min_area:
         absorbed.append({"side": "left", "area": left_area,
                          "why": f"under {min_area}, absorbed into the right"})
-        return [], right, absorbed
+        return [], [whole], absorbed
     keep_left = [r for r in left if region_area(r) >= min_area]
     keep_right = [r for r in right if region_area(r) >= min_area]
     for dropped, side in ((set(map(id, left)) - set(map(id, keep_left)), "left"),
@@ -816,7 +851,7 @@ def cut_region(rings: Sequence[Sequence[Point]], cut: "Cut", *,
 
 def cut_by_convex(rings: Sequence[Sequence[Point]],
                   shadow: Sequence[Point], *,
-                  min_area: int = MIN_PIECE_AREA
+                  min_area: int = MIN_PIECE_AREA, registry: dict | None = None
                   ) -> tuple[list, list, list[dict[str, Any]]]:
     """A convex shadow, as a sequence of half-plane cuts. (inside, outside).
 
@@ -847,7 +882,8 @@ def cut_by_convex(rings: Sequence[Sequence[Point]],
         cut = Cut(a, b)
         nxt = []
         for region in inside:
-            keep, drop, notes = cut_region(region, cut, min_area=min_area)
+            keep, drop, notes = cut_region(region, cut, min_area=min_area,
+                                           registry=registry)
             absorbed.extend(notes)
             nxt.extend(keep)
             outside.extend(drop)
@@ -964,3 +1000,129 @@ def assert_partition(pieces, whole, *, what: str = "pieces") -> None:
     if faults:
         raise OverlayError(f"{what} do not partition their input: "
                            + "; ".join(faults))
+
+
+# ---------------------------------------------------------------------------
+# G1: every vertex a surface declared appears in the map, unmoved
+# ---------------------------------------------------------------------------
+
+def declared_vertices(surfaces: Iterable[Sequence[Sequence[Point]]]) -> set:
+    """Every point the source named, across every ring of every surface."""
+    out = set()
+    for rings in surfaces:
+        for ring in rings:
+            for point in ring:
+                out.add((int(point[0]), int(point[1])))
+    return out
+
+
+def vertex_faults(level: Any, declared: Iterable[Point]) -> list[str]:
+    """Which declared vertices are missing from the built map.
+
+    **G1, vertex fidelity.** A cut may add points -- that is what a cut does --
+    but it may never move one the source placed, so the declared set must be a
+    subset of the built set. Exact, no radius.
+
+    This is the invariant that decided weld against snap. Snapping crossings to
+    a coarser grid fails it by construction: the moment a crossing moves, the
+    piece boundaries that meet there move with it, and a vertex the solver
+    placed is no longer where the solver placed it. No taste required, and no
+    owner question -- the gate chose.
+    """
+    built = set()
+    for wall in level.walls:
+        fields = wall["fields"] if isinstance(wall, dict) else wall.fields
+        built.add((int(fields["x"]), int(fields["y"])))
+    missing = sorted(set(declared) - built)
+    return [f"declared vertex {point} is not in the built map"
+            for point in missing]
+
+
+def weld(pieces: Sequence[Sequence[Sequence[Point]]], registry: dict
+         ) -> tuple[list, int]:
+    """Insert every recorded crossing into every ring that still carries its edge.
+
+    **The weld, by identity, with no search radius anywhere.** While cutting,
+    each crossing is recorded against the UNDIRECTED key of the edge it was
+    computed from; afterwards, any ring that still holds that whole edge gets
+    the crossing inserted into it, ordered along the edge.
+
+    That is what makes two pieces share an edge exactly rather than nearly.
+    Without it a cut leaves a T-junction: the piece that was cut has a vertex
+    where the chord met its boundary, and the neighbour that was not cut does
+    not, so the two diverge by the fraction of a unit the rounding introduced
+    and `PlanarLayout` reads it as an overlap.
+
+    The registry spans ALL surfaces of one plane on purpose: a plane's hole
+    ring and the island standing in it are the same edges given in opposite
+    directions, so a crossing recorded from one must be found by the other.
+    `edge_key` is what makes that work.
+
+    The walls this adds are not overhead. Build requires a vertex wherever two
+    sectors' boundaries meet -- a wall without one is a red wall -- so these
+    are walls the format was always going to need.
+    """
+    added = 0
+    out = []
+    for rings in pieces:
+        welded = []
+        for ring in rings:
+            grown: list[Point] = []
+            count = len(ring)
+            for index in range(count):
+                here = tuple(ring[index])
+                nxt = tuple(ring[(index + 1) % count])
+                grown.append(here)
+                found = registry.get(edge_key(here, nxt))
+                if not found:
+                    continue
+                #: only points strictly between the two ends, in order along
+                #: the edge; a piece that already has one keeps it once
+                span = (nxt[0] - here[0], nxt[1] - here[1])
+                inserted = []
+                for point in found:
+                    if point in (here, nxt):
+                        continue
+                    #: A REGISTRY POINT BELONGS TO ITS EDGE BY RECORD, not by
+                    #: re-derivation. It was rounded to the integer grid when
+                    #: it was computed, so it is routinely NOT exactly
+                    #: collinear with the edge it came from -- 668 on the
+                    #: cross product for the fixture's own crossing -- and an
+                    #: exact collinearity test rejects the very points the
+                    #: weld exists to insert. Only the ordering matters here.
+                    if not _within_span(here, nxt, point):
+                        continue
+                    inserted.append(point)
+                inserted.sort(key=lambda p: ((p[0] - here[0]) * span[0]
+                                             + (p[1] - here[1]) * span[1]))
+                for point in inserted:
+                    grown.append(point)
+                    added += 1
+            welded.append(grown)
+        out.append(welded)
+    return out, added
+
+
+def _within_span(a: Point, b: Point, point: Point) -> bool:
+    """Does the point fall between the two ends, along the edge?
+
+    The bounding box only: a registry point is already known to belong to this
+    edge, and asking again in exact integers would reject it for the rounding
+    that put it there.
+    """
+    return (min(a[0], b[0]) <= point[0] <= max(a[0], b[0])
+            and min(a[1], b[1]) <= point[1] <= max(a[1], b[1]))
+
+
+def _between(a: Point, b: Point, point: Point) -> bool:
+    """Is `point` on the segment a->b, inclusive of neither end?
+
+    Collinearity is exact; the containment test is the bounding box, which for
+    a collinear point is the whole question.
+    """
+    cross = ((b[0] - a[0]) * (point[1] - a[1])
+             - (b[1] - a[1]) * (point[0] - a[0]))
+    if cross != 0:
+        return False
+    return (min(a[0], b[0]) <= point[0] <= max(a[0], b[0])
+            and min(a[1], b[1]) <= point[1] <= max(a[1], b[1]))
