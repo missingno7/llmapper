@@ -769,7 +769,7 @@ class TheWeldByEdgeIdentity(unittest.TestCase):
         # points the weld exists to insert: a crossing is rounded, so it is
         # routinely NOT exactly collinear with the edge it came from -- 668 on
         # the cross product for the fixture's own crossing.
-        from bloodmap.overlay import edge_key, weld
+        from bloodmap.overlay import CutRegistry, edge_key, weld
 
         edge = ((3887, 5120), (5334, 18944))
         point = (5120, 16900)
@@ -777,17 +777,19 @@ class TheWeldByEdgeIdentity(unittest.TestCase):
                  - (edge[1][1] - edge[0][1]) * (point[0] - edge[0][0]))
         self.assertNotEqual(cross, 0, "the fixture point should be off-line")
         piece = [[edge[1], (3072, 18944), (3072, 5120), edge[0]]]
-        welded, added = weld([piece], {edge_key(*edge): {point}})
+        registry = CutRegistry(points={edge_key(*edge): {point}})
+        welded, added = weld([piece], registry)
         self.assertEqual(added, 1)
         self.assertIn(point, welded[0][0])
 
     def test_welding_adds_the_walls_build_requires(self):
         # Not overhead: Build needs a vertex wherever two sectors' boundaries
         # meet, and a wall without one is a red wall.
-        from bloodmap.overlay import cut_by_convex, partition_faults, weld
+        from bloodmap.overlay import (
+            CutRegistry, cut_by_convex, partition_faults, weld)
 
         square = [[(0, 0), (20480, 0), (20480, 20480), (0, 20480)]]
-        registry = {}
+        registry = CutRegistry()
         inside, outside, _ = cut_by_convex(
             square, [(2048, 2048), (9000, 2048), (11000, 18000),
                      (4048, 18000)], registry=registry)
@@ -846,3 +848,78 @@ class G1VertexFidelity(unittest.TestCase):
         faults = vertex_faults(disk, snapped)
         self.assertTrue(faults, "if snap moved nothing this map is a bad "
                                 "witness for the argument")
+
+
+class EdgesHaveAGenealogy(unittest.TestCase):
+    """Identity alone cannot see a crossing recorded against a sub-edge.
+
+    When a cut splits `(p, q)` at `r`, a later cut recording a crossing
+    against `(p, r)` has recorded it against something no neighbour carries --
+    the neighbour that was never cut still holds `(p, q)` whole. So each split
+    records its children's parentage and the weld follows the chain.
+    """
+
+    def test_a_crossing_on_a_half_edge_reaches_the_whole_edge(self):
+        from bloodmap.overlay import CutRegistry, edge_key
+
+        registry = CutRegistry()
+        p, q, r = (0, 0), (1000, 1000), (500, 500)
+        registry.record(p, q, r)
+        registry.split(p, q, r)
+        registry.record(p, r, (250, 250))
+        offered = registry.by_edge()[edge_key(p, q)]
+        self.assertIn((250, 250), offered)
+        self.assertIn((500, 500), offered)
+
+    def test_the_chain_walks_more_than_one_generation(self):
+        from bloodmap.overlay import CutRegistry, edge_key
+
+        registry = CutRegistry()
+        p, q = (0, 0), (8000, 8000)
+        registry.split(p, q, (4000, 4000))
+        registry.split(p, (4000, 4000), (2000, 2000))
+        registry.record(p, (2000, 2000), (1000, 1000))
+        self.assertIn((1000, 1000), registry.by_edge()[edge_key(p, q)])
+
+    def test_a_half_unit_containment_would_miss_a_real_crossing(self):
+        # THE BOUND THAT SETTLED IT. A crossing is rounded per coordinate, so
+        # it can sit up to 0.5*sqrt(2) = 0.707 off its edge; searched over
+        # random oblique edges the worst found is 0.702, so the bound is tight
+        # and it is reached. A half-unit containment misses those.
+        import math
+        import random
+
+        from bloodmap.overlay import Cut, _crossing
+
+        rng = random.Random(3)
+        worst = 0.0
+        for _ in range(20000):
+            p = (rng.randint(0, 4000), rng.randint(0, 4000))
+            q = (rng.randint(0, 4000), rng.randint(0, 4000))
+            a = (rng.randint(0, 4000), rng.randint(0, 4000))
+            b = (rng.randint(0, 4000), rng.randint(0, 4000))
+            if a == b or p == q:
+                continue
+            cut = Cut(a, b)
+            if (cut.side(p) > 0) == (cut.side(q) > 0):
+                continue
+            if cut.side(p) == 0 or cut.side(q) == 0:
+                continue
+            sh, sn = cut.side(p), cut.side(q)
+            span = sh - sn
+            true_x = p[0] + (q[0] - p[0]) * sh / span
+            true_y = p[1] + (q[1] - p[1]) * sh / span
+            found = _crossing(cut, p, q)
+            worst = max(worst, math.hypot(found[0] - true_x,
+                                          found[1] - true_y))
+        self.assertGreater(worst, 0.5,
+                           "if no crossing ever exceeded half a unit, "
+                           "containment would have been a fair option")
+        self.assertLessEqual(worst, math.sqrt(2) / 2 + 1e-9)
+
+    def test_overlay_carries_no_tolerance_constant(self):
+        # The weld is by identity and genealogy, so nothing in the module may
+        # decide geometry by nearness.
+        source = Path("bloodmap/overlay.py").read_text(encoding="utf-8")
+        for banned in ("TOLERANCE", "EPSILON", "tolerance =", "epsilon ="):
+            self.assertNotIn(banned, source, banned)

@@ -685,7 +685,11 @@ def split_polygon(rings: Sequence[Sequence[Point]], cut: "Cut",
                 point = _crossing(cut, here, nxt)
                 crossings.add(point)
                 if registry is not None:
-                    registry.setdefault(edge_key(here, nxt), set()).add(point)
+                    registry.record(here, nxt, point)
+                    #: the edge is being cut here, so its two halves descend
+                    #: from it -- a later cut recording against a half must
+                    #: still reach a neighbour that carries the whole
+                    registry.split(here, nxt, point)
 
     def _on(point):
         return point in crossings or _side(cut, point) == 0
@@ -1038,6 +1042,65 @@ def vertex_faults(level: Any, declared: Iterable[Point]) -> list[str]:
             for point in missing]
 
 
+@dataclass
+class CutRegistry:
+    """Crossings, and the GENEALOGY of the edges they were computed from.
+
+    A crossing is rounded per coordinate, so it can sit up to
+    ``0.5 * sqrt(2) = 0.707`` units off the edge it came from -- and a
+    containment test with a half-unit tolerance misses every crossing that
+    rounded toward the far corner of its unit cell. That bound is why the weld
+    is by identity and not by proximity, and it is the invariant that settles
+    the question rather than a preference.
+
+    But identity alone is not enough either. When a cut splits edge ``(p, q)``
+    at ``r``, the two halves are new edges, and a LATER cut recording a
+    crossing against ``(p, r)`` has recorded it against something no
+    neighbouring piece carries -- the neighbour still holds ``(p, q)`` whole.
+    So each split records its children's parentage, and at weld time a
+    crossing reaches any ring carrying its key **or any ancestor of it**.
+
+    No tolerance constant appears anywhere in this module; `test_overlay`
+    greps for one.
+    """
+
+    points: dict = field(default_factory=dict)
+    parent: dict = field(default_factory=dict)
+
+    def record(self, a: Point, b: Point, point: Point) -> None:
+        self.points.setdefault(edge_key(a, b), set()).add(tuple(point))
+
+    def split(self, p: Point, q: Point, r: Point) -> None:
+        """Edge (p, q) was cut at r: its two halves descend from it."""
+        whole = edge_key(p, q)
+        for half in (edge_key(p, r), edge_key(r, q)):
+            if half != whole:
+                self.parent[half] = whole
+
+    def ancestors(self, key: tuple) -> list:
+        """The chain from an edge up to the one it was first cut from."""
+        out = []
+        seen = {key}
+        node = self.parent.get(key)
+        while node is not None and node not in seen:
+            out.append(node)
+            seen.add(node)
+            node = self.parent.get(node)
+        return out
+
+    def by_edge(self) -> dict:
+        """Which points may be inserted into a ring carrying which edge.
+
+        A point recorded against a child edge is offered to every ancestor,
+        because a neighbour that was never cut still carries the whole edge.
+        """
+        out: dict = {}
+        for key, found in self.points.items():
+            for target in [key] + self.ancestors(key):
+                out.setdefault(target, set()).update(found)
+        return out
+
+
 def weld(pieces: Sequence[Sequence[Sequence[Point]]], registry: dict
          ) -> tuple[list, int]:
     """Insert every recorded crossing into every ring that still carries its edge.
@@ -1062,6 +1125,8 @@ def weld(pieces: Sequence[Sequence[Sequence[Point]]], registry: dict
     sectors' boundaries meet -- a wall without one is a red wall -- so these
     are walls the format was always going to need.
     """
+    lookup = registry.by_edge() if hasattr(registry, "by_edge") else {
+        key: set(value) for key, value in registry.items()}
     added = 0
     out = []
     for rings in pieces:
@@ -1073,7 +1138,7 @@ def weld(pieces: Sequence[Sequence[Sequence[Point]]], registry: dict
                 here = tuple(ring[index])
                 nxt = tuple(ring[(index + 1) % count])
                 grown.append(here)
-                found = registry.get(edge_key(here, nxt))
+                found = lookup.get(edge_key(here, nxt))
                 if not found:
                     continue
                 #: only points strictly between the two ends, in order along

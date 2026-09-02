@@ -45,6 +45,7 @@ from typing import Any, Iterable, Sequence
 from .overlay import (
     MIN_PIECE_AREA, Cut, OverlayError, cut_by_convex, region_area,
     signed_area, weld)
+from .overlay import CutRegistry
 
 #: The median shade delta across the campaign's same-z outdoor boundaries.
 STEP = 12
@@ -138,7 +139,7 @@ def build_field(rings: Sequence[Sequence[tuple[int, int]]],
     #: record spans every cut of this surface -- and the caller may pass one
     #: that spans a whole plane and its islands, which are the same edges seen
     #: from two sides.
-    registry = {} if registry is None else registry
+    registry = CutRegistry() if registry is None else registry
     pieces = [Piece(rings=[list(ring) for ring in rings], depth=0)]
     absorbed: list[dict[str, Any]] = []
     refused: list[str] = []
