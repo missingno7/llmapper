@@ -1425,3 +1425,97 @@ with no unknown pairs, and the light field's four levels reading 8 / 20 /
 plaza and cemetery, the yard notch, the pavement-only paths, the lamps and
 the read-back are not emitted -- the emitter builds roads and islands and
 stops. Nothing in the model blocks them; they are the next run's work.
+
+## 27. The city builds (2026-09-02): two systemic findings, and the half that is missing
+
+Slice 2h (07f862b, 8db3321, 7f1e685): the genealogy closed the last
+refusal, the graph builds, and every gate is green on real sectors:
+depth 0 -> 8 (40 sectors), 1 -> 20 (33), 2 -> 32 (24), 3 -> 44 (6), one
+lamp-lit piece at 2; G1 178 declared / 0 missing; partition silent on
+104 surfaces; the kerb [6] seen from all 38 road pieces; light domain
+104 admitted / 0 refused. The 0.707 bound is tight (worst found 0.702
+over 20 000 edges).
+
+Two findings the report understates:
+
+1. **The frames gate failed because the emitter never ran
+   `frame_map`, and the pass-order assertion did not notice.** The
+   order assertion (d9a1ed5) checks the order of passes that ran, not
+   that every mandatory pass ran. Decision: the compiler owns the
+   pipeline. An emitter declares surfaces, overlays, joins and frames;
+   it never calls passes. `PlanarLayout.compile` (or the city's build
+   entry) runs planes -> declare -> light -> joins -> frames itself and
+   raises if any of the five is skipped. A gate that reads "the editor
+   would change nothing" must be unreachable without frames having run.
+2. **The light domain refuses nothing because the map has nothing to
+   refuse.** That is a true zero, not evidence. Rule 2's first real
+   test comes with slice 3 when L3 is re-parented; the gate exists.
+
+**Deliverable 6 is half done.** Roads and islands are in the map; the
+waterfront, end walls, plaza, cemetery, yard notch, pavement-only paths,
+lamps, read-back and the four renders are not, and nothing in the model
+blocks them (the plan states them all). Slice 2i finishes deliverable 6
+before slice 3 starts, because the owner's walk of the city needs its
+edges: slice 1's two findings (sky, road ends) came from that walk.
+
+## 28. Slice 2i: the pipeline inverted, the edge finished, and two corrections (P14b, 2026-09-02)
+
+**Decision 1 landed.** `bloodmap/pipeline.py` owns the five passes; an
+emitter returns an `Emission` and calls none of them. An omission is
+refused before any pass runs, naming the pass. The fail-first is slice
+2h's own defect and it is now impossible: an emitter with `frames=None`
+is told about frames, not about 191 walls.
+`Compilation.require_complete` makes the order assertion a completeness
+assertion too.
+
+**Decision 2 landed, and reads UNTESTED.** The manifest line is now
+`light domain: admits 179, refuses 0 of 0 eligible (mechanisms,
+inserts, holders) -- UNTESTED`. Nothing in this map carries a sector
+type, a moving wall, a stack marker, a holder role or an insert, so the
+rule has never been asked. It stops being zero the moment slice 3
+re-parents L3.
+
+### The city, built
+
+179 sectors, 866 walls, 15 sprites -- 4%, 5% and 0% of the NBlood
+limits. 20 surfaces, 179 pieces, 16 seeded vertices, 80 welded, 0
+slivers. 846 join records with no unknown pairs: 242 kerb, 278
+pavement-only path, 112 shore. Partition faults 0, G1 0 missing, the
+editor would change 0 walls, both absolute rules 0 violations, no
+dropped PRESENTATION facets.
+
+Map: `projects/blood-city/level/slice2-streets.MAP`. Start: sector 0 at
+(15481, 23722, 10240), angle 0 -- on Theatre Row, west of the avenue,
+facing east down the row.
+
+### Two corrections, both from the corpus
+
+**"The shore at pavement level" is not attested.** DWE3M10's shore never
+meets its landward neighbour at equal z: seven records step 35840 (a
+quay wall) and one steps 3072 (walkable, inside Blood's 4096 autostep).
+The row added is SHORE|PAVEMENT B_ABOVE with the band on the shore's own
+side; PAVEMENT|SHORE at EQUAL still raises.
+
+**"Lamps at E3M1's rate" has no rate to take.** E3M1's 45 bright outdoor
+sprites carry cstat 32896 -- `0x8000` is INVISIBLE -- statnum 12, and
+types 708/710, which are `kGenSound` and Ambient SFX. They are sound
+generators wearing an editor icon. Across all 43 campaign maps and
+51,277,134,846 square units of outdoor ground there are **0 visible
+outdoor lamps**. Blood lights its streets with the sun and nothing else.
+The city's 15 lamps are placed at Blood's INDOOR density (per-map median
+one per 187,624,103 square units) and their shade delta is ours, declared
+as ours, because the campaign attests none.
+
+**A question for the owner, not a decision I took:** should Gravesend
+have street lamps at all? The corpus says Blood's streets have none, and
+the plan's `AREAS.furnish` asks for them at three places. I built them
+because both the plan and the brief asked; if the answer is that the
+city should read like Blood, they come out and the sun does all the work.
+
+### What is unproven
+
+The renders are plan views. The observer is XMapEdit and this run does
+not launch it, so **nothing has walked this map** -- the owner's walk is
+the first. `bloodmap.readback` still has nothing to compare, because the
+emitter declares no constructs. And the buildings are still placeholder
+masses casting shadows, not shells with facades.

@@ -3459,6 +3459,144 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### Slice 2i: the compiler owns the pipeline, and the city reaches the water
+
+**Decision 1 -- an emitter declares and calls no pass.** `bloodmap/pipeline.py`
+takes an `Emission` -- surfaces, declarations, light, joins, frames -- and
+`compile_city` runs `planes -> declare -> light -> joins -> frames` itself,
+refusing an emission that omits one **naming the pass, before any pass runs**.
+The fail-first is slice 2h's own defect: that emitter never called `frame_map`,
+and what reported it was the frames GATE, at 191 misaligned walls. A gate
+downstream of a missing pass can only report the symptom.
+
+The distinction that makes it work is between an omission and a declared
+emptiness. `declarations=[]` says "this map has no mechanisms", which is a
+statement; `declarations=None` says nothing, which is the bug. `None` is
+refused, the empty list is not. `Compilation.require_complete` is the same
+assertion at the end -- the order assertion is now a completeness assertion.
+
+**Decision 2 -- a zero needs its denominator.** Slice 2h's manifest said
+"light domain: admits 104, refuses 0" and every reader of it, me included,
+read that as the rule holding. Nothing in that map was a mechanism, an insert
+or a holder, so the rule was never asked. `overlay.refusal_denominator` counts
+the population actually at risk beside the number refused, and prints 0 of 0
+as **UNTESTED**. It still reads UNTESTED today, and that is the honest line.
+
+#### A T is a T however it came to be one
+
+The weld was built for one kind of T -- a cut crossing recorded against the
+edge it came from. The rest of the city's edge found two more:
+
+* **a declared corner inside a declared edge.** A plaza let into a street, an
+  end wall across its mouth, a yard notched out of an island: the corner lands
+  in the middle of a neighbour's edge and NO CUT EVER MADE IT.
+  `seed_coincident_vertices` records those before any field runs.
+* **a parent's point reaching a grandchild.** The seed is recorded against the
+  DECLARED edge and the piece carrying that stretch is a grandchild of it.
+  Slice 2h's chain only walked upward; `by_edge` now walks both ways, and each
+  direction answers a different failure.
+* **a chord collinear with a declared edge.** A shadow landed at the cemetery's
+  own y, merged with the cemetery's top edge, and the collinear clean dropped
+  the corner between them. No crossing exists there to find. So the weld takes
+  a SECOND POPULATION with its own exact test: a vertex the solver placed is
+  not rounded at all, so exact collinearity is the right question for it.
+  **Two populations, two tests, both exact, and still no tolerance constant.**
+
+The weld also moved up a level: `build_field(weld_now=False)` and the pipeline
+welds every piece of every surface at once against one registry, because a
+crossing recorded while cutting the last surface belongs to the first one's
+edge too. The partition post-condition moved with it -- asking before the weld
+is asking a question whose answer is known.
+
+#### The city now reaches its own edge
+
+```text
+sectors / walls / sprites   179 / 866 / 15    (4%, 5%, 0% of the limits)
+surfaces declared           20      pieces after the field   179
+seeded vertices 16          welded vertices 80      slivers absorbed 0
+joins                       846 records, 0 unknown pairs
+                            242 kerb, 278 pavement-only path, 112 shore
+partition faults 0          G1: 66 declared, 0 missing
+the editor would change     0 walls
+```
+
+**End walls** stop the avenue, the spur and the west street in E3M1's dialect
+-- 5.8 player heights up, parallax sky above, blocking faces in facade stone --
+each just south of the perimeter lane so the lane stays whole. 3 declared, 0
+termination faults.
+
+**The waterfront** is DWE3M10's, read back off the built sectors: a quay walk,
+a shore one walkable step (3072, inside Blood's 4096 autostep) below it, the
+sea meeting the shore at equal z as stone 2490 under palette 10 with
+`pan_floor` + `pan_always` + `drag` at velocity 10 on angle 900, and a
+zero-height horizon at the sea's own z wearing sky 3678 on BOTH surfaces with
+the parallax bit on both.
+
+**Three open places** at pavement level, each an island with its own surface
+abutting the island it belongs to: the market plaza, the cemetery, and the
+works yard, which is notched out of `col_c/row_3` and leaves it an L.
+
+**The shade, off real sectors** (base 8, step 12; the lower value in each pair
+is a piece that also has a lamp on it):
+
+```text
+depth 0   shade  8 on 61 sectors,  2 on 3
+depth 1   shade 20 on 49,         14 on 5
+depth 2   shade 32 on 40,         26 on 5
+depth 3   shade 44 on 14,         38 on 2
+```
+
+#### Two corrections the corpus forced
+
+**"The shore at pavement level" is not attested.** It would want a
+PAVEMENT|SHORE row at EQUAL and DWE3M10 has none: every landward record of its
+shore steps UP, seven by 35840 (a quay wall) and one by 3072 (walkable). The
+row added is SHORE|PAVEMENT B_ABOVE with the band on the shore's own side, and
+asking for the EQUAL row still raises.
+
+**"Lamps at E3M1's rate" has no rate to take.** E3M1's 45 bright outdoor
+sprites carry cstat 32896, whose `0x8000` bit is INVISIBLE, statnum 12, and
+types 708 and 710 -- `kGenSound` and Ambient SFX. They are sound generators
+wearing an editor icon. Widened to the whole campaign: **0 visible outdoor
+lamps in 43 maps over 51,277,134,846 square units of outdoor ground**. Blood
+does not put lamps on its streets; its outdoor light is the sun and the shadow
+field, which is what the light field already models. So the rate is borrowed
+from the only lamp density Blood has, its indoor one -- a per-map median of one
+per 187,624,103 square units -- and the shade delta is ours and is declared as
+such.
+
+#### The read-back, and the gaps it names
+
+```text
+planes 1        islands 10 (13 pavement surfaces declared)
+road 38         pavement 96
+shade levels    [2, 8, 14, 20, 26, 32, 38, 44]
+iso-lines       380, of which 274 oblique
+sun bearing     84.02 degrees recovered against 84.02 declared
+```
+
+Three **symmetry gaps**, named rather than counted as failures: *surface
+identity* (two islands on a path are one component, so the reader counts
+networks and not declared surfaces); *field depth* (the map records a shade,
+and k is nowhere on disk once `base + k*step` has been summed); *lamp
+authorship* (a lamp's delta is inside `floor_shade` by the time it is written,
+so the contributions the ledger arbitrated are gone).
+
+#### What is still unproven
+
+The renders are **plan views, not eye views** -- the observer is XMapEdit and
+this run does not launch it. Nothing has walked the map. `bloodmap.readback`
+still has nothing to compare, because the emitter declares no constructs. And
+the light domain's denominator is zero.
+
+#### What slice 3 must answer first
+
+**Whether a mechanism survives the field**, and now the map is ready to ask:
+the moment L3 is re-parented, the denominator stops being zero and the
+UNTESTED line becomes a real rate. The gate is already written -- every
+mechanism's `drag_closure` motion set identical before and after the overlays
+-- and until something eligible exists, the light domain's zero means nothing.
+
 ### Slice 2h: the genealogy, and the graph stands
 
 **The correction I owed.** I wrote that no invariant separated A from B. It
