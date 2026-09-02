@@ -3459,6 +3459,170 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### Slice 3: the owner's walk, a fact store, and buildings that are there
+
+#### The walk, and why no slice-2 gate caught any of it
+
+Four findings, each measured, fixed, and gated with an absolute reading off
+the built map.
+
+**W1, the kerb tile as a default material.** 111 records wore tile 6 with no
+pavement on the other side -- shadow cuts, map edges, the faces of end walls
+-- because it was the plane's wall material and a join row only overwrites
+where it has something to say. E3M1 says it twice over: its eleven tile-6
+records all step 2048 from a road to a pavement, and its road|road records
+wear the district's facade family instead (401, 400, 380, 393). **111 before,
+0 after.**
+
+**W2, a step face that does not obey the sun.** Measured on E3M1's eleven kerb
+records, the only place the campaign states the relation: the six standing on
+road at floor shade 32 read a median **38**, the five on road at 8 read **8**,
+median delta **+6**, quartiles -8 and +10. A `JoinRule` now carries a
+`shade_offset` and the table writes the band's shade from the floor that owns
+it. The city's kerbs read 14, 26, 38 and 50 on floors of 8, 20, 32 and 44 --
+and 38 on a depth-2 floor is exactly what E3M1 reads. **232 before, 0 after.**
+
+**W3, a lantern hanging from nothing.** 641 is a ceiling lantern on a chain
+and all fifteen stood under open sky. Of the campaign's wall-aligned bright
+sprites the commonest are 795, 510 and 511; 510 is the sconce, 28 sprites at
+cstat 208, repeat 64, the bright ones a median 21504 above their floor. The
+lamps are sconces now, snapped onto the nearest wall record of their piece.
+**15 before, 0 after.**
+
+**W4, two skies side by side.** Across the 43 campaign maps, **271 of 271**
+connected outdoor regions carry exactly one sky picnum, at every size, with no
+exception -- a law, not a tendency. The horizon's trick is the zero height and
+the parallax bit on both surfaces, not DWE3M10's particular tile, so it
+inherits Gravesend's. **1 before, 0 after.**
+
+**Why none of slice 2's gates caught them.** All four are ABSOLUTE questions
+about the built map that no gate was asking. The join census checked that
+every pair had a rule, not that every record wearing a rule's tile had that
+pair; the light gates checked floors and never a wall; nothing looked at a
+sprite at all; and the sky was checked per surface and never per SPACE.
+
+**And two defects in the frames gate itself.** It ran `auto_align_walls` on
+the map it was about to write, so the emitter shipped whatever the probe had
+done to it -- the same map read 2 in memory and 87 off disk. And it shared one
+probe across every run, while the editor's recursion follows
+`wall[nextwall].point2` and does not stop at a run boundary, so one run's walk
+spilled into the next and the gate read its own spill back as a defect.
+
+**Plan views use the editor's orientation.** Three renderers flipped Y, so
+every plan view was mirrored against XMapEdit. The gate has to be asymmetric,
+because "larger page y for larger world y" is satisfied by a mirrored drawing
+too: the fixture is a wedge 2048 wide at the north and 16384 at the south, and
+flipped it reads 8.0 where correct it reads 0.125.
+
+#### The compiler writes its facts beside the map
+
+`bloodmap/facts.py`, JSONL per predicate in `projects/blood-city/facts/`. 2199
+facts over fourteen predicates: `part_of`, `surface`, `island`, `frame`,
+`join`, `void`, `fill`, `shade_depth`, `lamp_delta`, `link`, `key`,
+`sentence`, `realises`, `claims`. A predicate nobody declared is refused
+rather than defaulted.
+
+Every declaration carries a level of detail -- plan 0, massing 1, facades 2,
+dressing 3 -- and **a pass at level N leaves every fact of level < N
+byte-identical**. The failure that gate exists for is silent by construction:
+a facade pass that nudges an envelope by one unit still compiles, still
+partitions, still aligns, and the only evidence anywhere is a level-0 line
+that moved. The fail-first moves exactly one number by exactly one.
+
+The three read-back gaps of slice 2i close, because all three were gaps in the
+MAP and not in what the compiler knew: thirteen pavement surfaces keep their
+own rows however the map connects them; every sector carries its `k` beside
+the shade `k` was summed into; fourteen lamp contributions survive as rows
+after LightBomb summed them.
+
+#### Masses become shells, and a clipper defect that had been waiting
+
+Each of the nine masses is now a building: a FACADE with an OPENING in it, an
+INSERT filling the opening in a sector of its own, and a room behind. The
+facade family is E3M1's 122 one-sided outdoor records weighted by the LENGTH
+each tile covers -- 401 at 27.6%, 417 at 21.5%, 181 at 11.6%, 400 at 8.7%,
+together 69.4%, every one of them at y_repeat 8. The city's 730 facade records
+are too.
+
+**Making a mass visible must not move its shadow**, and the gate is the city
+built twice: 37 ground pieces before, 37 after, 0 with a different depth.
+
+Getting there found a clipper defect of exactly this shape. A shell casts its
+shadow FROM its own footprint, and the footprint is the hole it stands in, so
+every shadow edge begins exactly on a hole vertex. `split_polygon` paired
+every on-line vertex as a chord endpoint -- but a ring that merely TOUCHES the
+cut does not pass through it, and pairing it makes the count odd. **Five
+islands lost between 14 and 21 million square units each, silently, and the
+pieces still looked like pieces.**
+
+The weld gained a third population, and it is the closure of the other two: a
+cut that lands collinear with an edge is merged into it and the merged edge
+has no parent. Every vertex any piece carries is an exact integer point, so
+exact collinearity is the right question for all of them at once. **Still no
+tolerance constant.**
+
+#### The frames pass uses the joins pass's answer
+
+A row whose `frame` is `"boundary"` says a run may not cross that record --
+the stated reason joins run before frames, and it had never been passed in.
+Without it a run walked out of a street into a building's room and the editor
+disagreed with the closed form on 84 walls, every one on the y term, because
+the two sides of such a record peg to different floors. With it: 744 runs, and
+**the editor would change 0 walls**.
+
+#### Rule 2 is asked for the first time
+
+Nine curtains carry sector type 614, so the light domain has a denominator at
+last: **admits 166, refuses 18 of 9 eligible, tested.** The gate compares each
+mechanism's `DragPoint` closure against the same city built with the sun
+switched off -- by GEOMETRY, not by wall index, because the field changes
+every index after the first cut -- and **0 of 9 moved**. The fail-first lays a
+shadow over a curtain and reads the change off the built map.
+
+#### The mission graph, declared and honest about itself
+
+Kept apart from the space graph. Nine `sentence` rows over nine curtains, nine
+`link`s and five `key`s, and **every link and key carries `realised: false`
+with its reason**, because no switch, generator or key pickup is emitted yet.
+An unrealised declaration is a row, not an absence. 181 of 184 sectors are
+reachable at rest and all nine sentences and nine rooms are among them.
+
+#### The vocabulary moved into `bloodmap`
+
+`bloodmap/city.py`: `street`, `island`, `end_wall`, `waterfront`, `facade`,
+`opening`, `room`, `insert`, `shell`. A project may choose its numbers and it
+may not own its nouns, and these are the words P15's readers of E3M1 have to
+recognise coming the other way.
+
+#### The city
+
+```text
+sectors / walls / sprites   184 / 1042 / 15   (4%, 6%, 0% of the limits)
+surfaces 47   pieces 184    welded 143   slivers 0   partition faults 0
+joins    1022 records, 0 unknown pairs, 266 frame boundaries
+G1       174 declared, 0 missing        the editor would change 0 walls
+facts    2199 over 14 predicates and 4 levels; LoD gate 0
+```
+
+#### What is still unproven
+
+The plan's 16-leg circuit is **not** checked against this map: its coordinates
+are in the 58x56 plan grid and the solve is 72x60, which is the correction
+slice 2i already owed. The nine rooms are empty boxes -- **the L3 interiors
+are not re-parented**. The renders are plan views; the observer is XMapEdit
+and this run does not launch it, so **nothing has walked this map**. And the
+sewer, the switches and the keys are declared and not realised.
+
+#### What slice 4 must answer first
+
+**Whether a room can hold a construct.** Every gate in this slice is about
+surfaces, joins and fields; none of them has ever looked inside a building.
+The moment an L3 interior is re-parented, the read-back has its first real
+sentence to compare -- and the question that decides the shape of everything
+after it is whether a construct declared against a room's records survives
+the compiler's own passes, or whether it needs its own level of detail below
+`dressing`.
+
 ### Slice 2i: the compiler owns the pipeline, and the city reaches the water
 
 **Decision 1 -- an emitter declares and calls no pass.** `bloodmap/pipeline.py`

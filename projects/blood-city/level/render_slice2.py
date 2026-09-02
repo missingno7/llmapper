@@ -32,8 +32,9 @@ from matplotlib.patches import Polygon as MplPolygon              # noqa: E402
 
 from bloodmap.format import read_map                              # noqa: E402
 from bloodmap.texture_frame import sector_index                   # noqa: E402
+from bloodmap import joins                                        # noqa: E402
 from build_graph_slice2 import (                                  # noqa: E402
-    HORIZON_TILE, PAVE_TILE, ROAD_TILE, SEA_TILE, SHORE_TILE, geometry)
+    PAVE_TILE, ROAD_TILE, SEA_TILE, SHORE_TILE, geometry)
 
 #: What each surface kind is drawn in. Shade modulates the fill, so a piece
 #: three shadows deep is visibly darker than the same kind in full sun.
@@ -42,16 +43,21 @@ KIND_COLOUR = {
     PAVE_TILE: (0.72, 0.68, 0.62),
     SHORE_TILE: (0.82, 0.75, 0.55),
     SEA_TILE: (0.30, 0.45, 0.62),
-    HORIZON_TILE: (0.60, 0.70, 0.82),
+    3491: (0.60, 0.70, 0.82),
+    #: a roof, and the end walls, which wear the same tile
+    joins.ROOF_TILE: (0.42, 0.33, 0.30),
 }
 #: The join that decided each record, by the tile the table wrote on it.
-RECORD_COLOUR = {6: "#c8452e", 400: "#8a5cc8", 28: "#2e8ac8"}
+RECORD_COLOUR = {6: "#c8452e", 400: "#8a5cc8", 401: "#8a5cc8",
+                 28: "#2e8ac8", 417: "#8a5cc8", 181: "#8a5cc8"}
 
+#: Editor orientation throughout: Build +Y is DOWN, so north is at the top
+#: of every frame and the y axis runs down the page.
 FRAMES = (
-    ("street", "The west street from the road, with its kerbs",
-     (18000, 22000, 30000, 36000)),
-    ("junction", "Where the avenue crosses Theatre Row",
-     (38000, 15000, 52000, 29000)),
+    ("street", "The west street from the road, its kerbs and the cemetery",
+     (16000, 22000, 32000, 40000)),
+    ("shell", "A shell on col_b/row_2: facade, doorway, room",
+     (25000, 24000, 43000, 42000)),
     ("path", "The market plaza, and the path onto its island",
      (24000, 36000, 43000, 49000)),
     ("quay", "The quay: walk, shore, sea and the horizon beyond",
@@ -112,6 +118,9 @@ def render(map_path: pathlib.Path, out_dir: pathlib.Path, commit: str):
             axes.plot(int(sprite.fields["x"]), int(sprite.fields["y"]),
                       marker="o", markersize=4, color="#ffd24d", zorder=4)
         axes.set_xlim(x0, x1)
+        #: XMAPEDIT'S ORIENTATION. `set_ylim(bottom, top)`, so passing the
+        #: LARGER world y as the bottom puts +Y down the page, which is where
+        #: the editor puts it and where the owner reads it.
         axes.set_ylim(y1, y0)
         axes.set_aspect("equal")
         axes.set_xticks([])

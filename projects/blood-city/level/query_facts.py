@@ -58,8 +58,19 @@ def query(store: FactStore) -> dict:
     join_pairs = Counter((f.fields["a"], f.fields["b"]) for f in joins)
     contributors = Counter(f.fields["owner"] if "owner" in f.fields
                            else f.source for f in claims)
+    links = store.of("link")
+    keys = store.of("key")
     return {
         "surfaces declared": len(surfaces),
+        "openings (void)": len(store.of("void")),
+        "inserts (fill)": Counter(f.fields["kind"] for f in store.of("fill")),
+        "sentences": Counter(f.fields["construct"]
+                             for f in store.of("sentence")),
+        "realised by records": len(store.of("realises")),
+        "links declared / realised":
+            (len(links), sum(1 for f in links if f.fields.get("realised"))),
+        "keys declared / realised":
+            (len(keys), sum(1 for f in keys if f.fields.get("realised"))),
         "surfaces by kind": dict(sorted(by_kind.items())),
         "islands in the plan": Counter(f.fields["kind"]
                                        for f in islands),
@@ -85,11 +96,16 @@ def closed_gaps(store: FactStore) -> list:
     depths = store.of("shade_depth")
     lamps = store.of("lamp_delta")
     levels = sorted({int(f.fields["depth"]) for f in depths})
+    unrealised = [f for f in store.of("link") + store.of("key")
+                  if not f.fields.get("realised")]
     return [
-        f"surface identity: {len(pavements)} pavement surfaces were declared; "
-        f"the map's connected components read "
-        f"{len({f.fields['parent'] for f in store.of('part_of') if f.key[0] == 'piece'})} "
-        f"parents, and a path between two of them cannot merge a fact",
+        f"mission wiring: {len(unrealised)} declaration(s) carry "
+        f"realised: false with their reason, so an unrealised link is a ROW "
+        f"and not an absence",
+        f"surface identity: {len(pavements)} pavement surfaces were declared "
+        f"and each keeps its own row; the built map merges any two of them "
+        f"that a pavement-only path connects into one component, and a path "
+        f"cannot merge a fact",
         f"field depth: every sector carries its k -- levels {levels} -- "
         f"beside the shade it was summed into",
         f"lamp authorship: {len(lamps)} lamp contributions survive as their "
