@@ -536,3 +536,154 @@ class AStreetGridEnclosesItsBlocks(unittest.TestCase):
         total = (sum(region_area(r) for r in left)
                  + sum(region_area(r) for r in right))
         self.assertEqual(total, whole)
+
+
+class ThePartitionAssertionTheClipperNeverHad(unittest.TestCase):
+    """Area conservation is not partition, and that gap hid a real defect.
+
+    `sum(pieces) == whole` is satisfied by a genuine partition AND by a set
+    that double-counts one region while losing another of the same size. The
+    clipper's tests asserted only the area, which is the same shape of gap as
+    the 8x texture regression, one level down.
+    """
+
+    SQUARE = [[(0, 0), (4096, 0), (4096, 4096), (0, 4096)]]
+
+    def test_a_clean_split_partitions(self):
+        from bloodmap.overlay import Cut, partition_faults, split_polygon
+
+        left, right = split_polygon(self.SQUARE, Cut((2048, 0), (2048, 4096)))
+        self.assertEqual(partition_faults(left + right, self.SQUARE), [])
+
+    def test_a_clockwise_shadow_cuts_the_same_as_a_counter_clockwise_one(self):
+        # MEASURED DEFECT (b): "inside" is the left of every edge, which is
+        # only true of a polygon wound counter-clockwise. A clockwise shadow
+        # gave inside = nothing and outside = everything -- the cut silently
+        # did nothing at all.
+        from bloodmap.overlay import cut_by_convex, partition_faults
+
+        ccw = [(1024, 1024), (3072, 1024), (3072, 3072), (1024, 3072)]
+        cw = list(reversed(ccw))
+        for shadow in (ccw, cw):
+            inside, outside, _ = cut_by_convex(self.SQUARE, shadow)
+            self.assertEqual(len(inside), 1, "the shadow must cut")
+            self.assertEqual(partition_faults(inside + outside, self.SQUARE),
+                             [])
+
+    def test_an_empty_side_is_not_an_absorbed_sliver(self):
+        # MEASURED DEFECT (a): a cut that misses the polygon leaves one side
+        # empty, and that was reported as a sliver of area 0 -- so the counts
+        # a build printed were mostly phantom and a real absorption could not
+        # be seen among them.
+        from bloodmap.overlay import Cut, cut_region
+
+        _left, _right, absorbed = cut_region(self.SQUARE,
+                                             Cut((8192, 0), (8192, 4096)))
+        self.assertEqual(absorbed, [])
+
+    def test_a_real_sliver_is_still_reported(self):
+        from bloodmap.overlay import Cut, cut_region
+
+        thin = [[(0, 0), (4096, 0), (4096, 512), (0, 512)]]
+        _left, _right, absorbed = cut_region(thin, Cut((4095, 0), (4095, 512)))
+        self.assertEqual(len(absorbed), 1)
+
+    def test_the_assertion_catches_a_planted_overlap(self):
+        # It has to be able to fail: two pieces that both claim the middle.
+        from bloodmap.overlay import partition_faults
+
+        a = [[(0, 0), (2560, 0), (2560, 4096), (0, 4096)]]
+        b = [[(1536, 0), (4096, 0), (4096, 4096), (1536, 4096)]]
+        found = partition_faults([a, b], self.SQUARE)
+        self.assertTrue(found)
+
+
+class ObliqueCutsRoundAndThePiecesDrift(unittest.TestCase):
+    """The captured cause, with its magnitude.
+
+    `tests/fixtures/overlay_partition_regression.json` is one island of the
+    real graph and the nine masses whose shadows fall on it. Cutting it with a
+    single shadow gains **334 units of area over 276 million** -- 1.2 parts per
+    million -- and one piece's vertex lands **0.05 units** inside its
+    neighbour.
+
+    That is not double-counting. Every oblique half-plane cut rounds its
+    crossings to Build's integer grid independently, so two pieces that ought
+    to share an edge diverge by a fraction of a unit, and the partition is
+    exact only to within that rounding. Both this assertion and
+    `PlanarLayout`'s overlap check were reading a 0.05-unit divergence as a
+    real overlap.
+    """
+
+    FIXTURE = Path("tests/fixtures/overlay_partition_regression.json")
+
+    def _case(self):
+        import json
+        import sys
+
+        if not self.FIXTURE.exists():
+            raise unittest.SkipTest(f"{self.FIXTURE} is not present")
+        level = str(Path("projects/blood-city/level"))
+        if level not in sys.path:
+            sys.path.insert(0, level)
+        try:
+            from resolution import SUN_BEARING
+        except ImportError as error:               # pragma: no cover
+            raise unittest.SkipTest(str(error))
+        from bloodmap.light_field import Mass, shadow_of
+
+        data = json.loads(self.FIXTURE.read_text(encoding="utf-8"))
+        rings = [[tuple(p) for p in ring] for ring in data["rings"]]
+        mass = data["masses"][0]
+        shadow = shadow_of(Mass(mass["id"],
+                                tuple(tuple(p) for p in mass["outline"]),
+                                mass["height"]), SUN_BEARING)
+        return rings, shadow
+
+    def test_the_drift_is_rounding_and_not_double_counting(self):
+        from bloodmap.overlay import cut_by_convex, region_area
+
+        rings, shadow = self._case()
+        inside, outside, _ = cut_by_convex(rings, shadow)
+        pieces = inside + outside
+        whole = region_area(rings)
+        got = sum(region_area(piece) for piece in pieces)
+        #: ABSOLUTE: the drift is parts per million, not a lost or duplicated
+        #: region. A double-count would be a piece-sized number.
+        self.assertLess(abs(got - whole) / whole, 1e-5,
+                        f"{got} against {whole}")
+        self.assertGreater(abs(got - whole), 0,
+                           "if this is ever exact the rounding was fixed and "
+                           "this fixture should assert equality instead")
+
+    def test_no_vertex_is_more_than_a_unit_inside_its_neighbour(self):
+        from bloodmap.overlay import _on_boundary, _point_in, cut_by_convex
+
+        rings, shadow = self._case()
+        inside, outside, _ = cut_by_convex(rings, shadow)
+        pieces = inside + outside
+        worst = 0.0
+        for index, piece in enumerate(pieces):
+            for other_index, other in enumerate(pieces):
+                if index == other_index:
+                    continue
+                for vertex in piece[0]:
+                    if _on_boundary(other, vertex) or not _point_in(other,
+                                                                    vertex):
+                        continue
+                    #: how far inside is the NEAREST edge, not the furthest.
+                    #: Taking the max over edges measures the distance across
+                    #: the whole polygon and reads a point sitting on one
+                    #: slanted edge as 11780 units deep, which is how this
+                    #: test first accused the clipper of a structural overlap.
+                    nearest = min(
+                        (abs((b[0] - a[0]) * (a[1] - vertex[1])
+                             - (a[0] - vertex[0]) * (b[1] - a[1]))
+                         / ((((b[0] - a[0]) ** 2 + (b[1] - a[1]) ** 2) ** 0.5)
+                            or 1))
+                        for ring in other
+                        for a, b in zip(ring, ring[1:] + ring[:1]))
+                    worst = max(worst, nearest)
+        self.assertLess(worst, 1.0,
+                        f"a vertex sits {worst:.2f} units inside a neighbour, "
+                        f"which would be a real overlap rather than rounding")

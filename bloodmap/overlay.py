@@ -791,11 +791,15 @@ def cut_region(rings: Sequence[Sequence[Point]], cut: "Cut", *,
     absorbed: list[dict[str, Any]] = []
     left_area = sum(region_area(region) for region in left)
     right_area = sum(region_area(region) for region in right)
-    if left and right_area < min_area:
+    #: AN EMPTY SIDE IS NOT AN ABSORBED SLIVER. A cut that misses the polygon
+    #: entirely leaves one side empty, and the first version reported that as
+    #: a sliver of area 0 -- so the counts a build printed were mostly
+    #: phantom, and a real absorption could not be seen among them.
+    if left and right and right_area < min_area:
         absorbed.append({"side": "right", "area": right_area,
                          "why": f"under {min_area}, absorbed into the left"})
         return left, [], absorbed
-    if right and left_area < min_area:
+    if right and left and left_area < min_area:
         absorbed.append({"side": "left", "area": left_area,
                          "why": f"under {min_area}, absorbed into the right"})
         return [], right, absorbed
@@ -824,6 +828,13 @@ def cut_by_convex(rings: Sequence[Sequence[Point]],
     """
     if len(shadow) < 3:
         raise OverlayError("a shadow needs three corners")
+    #: "Inside" is the left of every edge, which is only true of a polygon
+    #: wound counter-clockwise. A clockwise shadow gives inside = nothing and
+    #: outside = everything -- the cut silently does nothing at all -- so the
+    #: orientation is normalised here rather than trusted from the caller.
+    shadow = list(shadow)
+    if signed_area(shadow) < 0:
+        shadow.reverse()
     inside = [list(rings)]
     outside: list = []
     absorbed: list[dict[str, Any]] = []
@@ -844,3 +855,112 @@ def cut_by_convex(rings: Sequence[Sequence[Point]],
         if not inside:
             break
     return inside, outside, absorbed
+
+
+# ---------------------------------------------------------------------------
+# the assertion the clipper's tests were missing
+# ---------------------------------------------------------------------------
+
+def _point_in(rings: Sequence[Sequence[Point]], point: Point) -> bool:
+    """Is a point inside a polygon with holes? Even-odd over every ring."""
+    inside = False
+    for ring in rings:
+        count = len(ring)
+        for index in range(count):
+            a = ring[index]
+            b = ring[(index + 1) % count]
+            if (a[1] > point[1]) != (b[1] > point[1]):
+                span = (b[1] - a[1]) or 1
+                x = a[0] + (point[1] - a[1]) * (b[0] - a[0]) / span
+                if point[0] < x:
+                    inside = not inside
+    return inside
+
+
+def _on_boundary(rings: Sequence[Sequence[Point]], point: Point) -> bool:
+    """Does the point lie on any edge of any ring?"""
+    px, py = point
+    for ring in rings:
+        count = len(ring)
+        for index in range(count):
+            ax, ay = ring[index]
+            bx, by = ring[(index + 1) % count]
+            if (bx - ax) * (py - ay) - (by - ay) * (px - ax) != 0:
+                continue                       # not collinear
+            if min(ax, bx) <= px <= max(ax, bx) and                     min(ay, by) <= py <= max(ay, by):
+                return True
+    return False
+
+
+def partition_faults(pieces: Sequence[Sequence[Sequence[Point]]],
+                     whole: Sequence[Sequence[Point]], *,
+                     samples: int = 400, tolerance: float = 1.0
+                     ) -> list[str]:
+    """Do these pieces partition `whole`? Three questions, not one.
+
+    The clipper's tests asserted area conservation and nothing else, and area
+    conservation is **not** partition: ``sum(pieces) == whole`` is satisfied
+    by a genuine partition AND by a set that double-counts one region while
+    losing another of the same size. That is the same shape of gap as the 8x
+    texture regression, one level down, and it is why the whole-graph build
+    could fail on overlapping pieces with every clipper test green.
+
+    So: the area, then no two interiors overlapping, then every sampled point
+    of the whole claimed exactly once.
+    """
+    out: list[str] = []
+    want = region_area(whole)
+    got = sum(region_area(piece) for piece in pieces)
+    if abs(got - want) > tolerance:
+        out.append(f"area {got} against {want}, off by {got - want}")
+
+    for index, piece in enumerate(pieces):
+        for other_index in range(index + 1, len(pieces)):
+            other = pieces[other_index]
+            for vertex in piece[0]:
+                #: STRICTLY inside, which means not on the boundary. Two
+                #: pieces of a partition share edges everywhere, and a point
+                #: on a shared edge tests as "inside" or "outside" depending
+                #: on which way the ray happens to go -- so a boundary test
+                #: has to come first or the assertion reports a partition as
+                #: an overlap, which is what it did on its first run.
+                if _on_boundary(other, vertex):
+                    continue
+                if _point_in(other, vertex):
+                    out.append(
+                        f"piece {index} has vertex {vertex} strictly "
+                        f"inside piece {other_index}")
+                    break
+
+    if want > 0:
+        xs = [p[0] for ring in whole for p in ring]
+        ys = [p[1] for ring in whole for p in ring]
+        import random
+
+        rng = random.Random(20260902)
+        checked = claimed_twice = claimed_none = 0
+        for _ in range(samples):
+            point = (rng.randint(min(xs), max(xs)), rng.randint(min(ys), max(ys)))
+            if not _point_in(whole, point):
+                continue
+            checked += 1
+            hits = sum(1 for piece in pieces if _point_in(piece, point))
+            if hits > 1:
+                claimed_twice += 1
+            elif hits == 0:
+                claimed_none += 1
+        if claimed_twice:
+            out.append(f"{claimed_twice} of {checked} sampled points are "
+                       f"claimed by more than one piece")
+        if claimed_none:
+            out.append(f"{claimed_none} of {checked} sampled points are "
+                       f"claimed by no piece")
+    return out
+
+
+def assert_partition(pieces, whole, *, what: str = "pieces") -> None:
+    """Raise unless `pieces` partition `whole`."""
+    faults = partition_faults(pieces, whole)
+    if faults:
+        raise OverlayError(f"{what} do not partition their input: "
+                           + "; ".join(faults))
