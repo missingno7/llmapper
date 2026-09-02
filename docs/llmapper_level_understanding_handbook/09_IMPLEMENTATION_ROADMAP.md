@@ -3516,7 +3516,7 @@ flipped it reads 8.0 where correct it reads 0.125.
 
 #### The compiler writes its facts beside the map
 
-`bloodmap/facts.py`, JSONL per predicate in `projects/blood-city/facts/`. 2199
+`bloodmap/facts.py`, JSONL per predicate in `projects/blood-city/facts/`. 2398
 facts over fourteen predicates: `part_of`, `surface`, `island`, `frame`,
 `join`, `void`, `fill`, `shade_depth`, `lamp_delta`, `link`, `key`,
 `sentence`, `realises`, `claims`. A predicate nobody declared is refused
@@ -3597,11 +3597,11 @@ recognise coming the other way.
 #### The city
 
 ```text
-sectors / walls / sprites   184 / 1042 / 15   (4%, 6%, 0% of the limits)
+sectors / walls / sprites   184 / 1042 / 14   (4%, 6%, 0% of the limits)
 surfaces 47   pieces 184    welded 143   slivers 0   partition faults 0
 joins    1022 records, 0 unknown pairs, 266 frame boundaries
 G1       174 declared, 0 missing        the editor would change 0 walls
-facts    2199 over 14 predicates and 4 levels; LoD gate 0
+facts    2398 over 14 predicates and 4 levels; LoD gate 0
 ```
 
 #### What is still unproven
