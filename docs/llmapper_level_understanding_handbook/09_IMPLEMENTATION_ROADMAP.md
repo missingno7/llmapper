@@ -3459,6 +3459,75 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### Slice 2e: the absolute light gate, and where the graph stops
+
+**Step 0 -- four shades read off a compiled map.** Every gate in slice 2d
+checked the field's SHAPE and not one checked the shade a sector ends up with,
+which is the hole the 8x texture regression went through. A fixture compiled
+end to end through `PlanarLayout` -- a plane, two masses whose shadows overlap
+where they cross it, one lamp in the sun -- gives four numbers off the built
+Build sectors:
+
+```text
+s3  depth 0, full sun                 shade  8   = base
+s1  depth 1, one shadow               shade 20   = base + 12
+s0  depth 2, two overlapping shadows  shade 32   = base + 24
+s2  depth 0 with a lamp on it         shade  2   = base - 6
+```
+
+4 pieces, levels [0, 1, 2], 11 slivers absorbed.
+
+The fail-first is the point of the exercise. Break the conversion from `k*12`
+to `k` and the absolute gate reads 9 where it wants 20, **while every shape
+gate stays green**: `field_faults` returns nothing, every iso-line is still at
+the sun's bearing, the level count is still inside the campaign's. A city one
+step too dark would have shipped with a clean report.
+
+**A ground plane is a polygon WITH HOLES.** Running the whole graph found it
+at once: a street grid encloses its blocks, so the plane's boundary is an
+outer ring plus one hole per block, and `ground_plane` traced only the first
+and then reported the rest as disconnected -- **Gravesend's own grid, 28
+boundary vertices of 64**. `ground_plane_rings` traces every ring, ordered
+outer-first, and connectivity is now a question about the CELLS, answered by
+flooding them, rather than about how many rings the boundary has. The
+single-ring form refuses a plane with holes instead of silently losing them.
+
+#### Deliverable 6 did not land, and exactly where it stopped
+
+The emitter is rewritten around the plane
+(`projects/blood-city/level/build_graph_slice2.py`) and gets further than any
+previous attempt: the solved grid, the plane traced as rings, the islands, the
+placeholder masses, the field cutting every surface, the passes entered in
+order through `channels.Compilation`. It then fails
+`PlanarLayout._validate_regions`:
+
+```text
+independent regions col_a/row_1#0 and col_a/row_1#3 have XY
+partial_area_overlap without a declared special relationship
+```
+
+Two pieces of ONE island overlap, so `build_field` is producing overlapping
+pieces for a single surface. The suspect is `cut_region`'s sliver branch: when
+a side falls under `MIN_PIECE_AREA` it returns the cut piece and DISCARDS the
+scrap rather than returning the polygon whole, so `cut_by_convex`'s inside and
+outside sets stop partitioning the input. That is a hypothesis, not a
+diagnosis -- I ran out of room to prove it, and guessing at it would be the
+fourth guess in this pipeline rather than the first measurement.
+
+So: no whole-graph counts, no waterfront, no end walls in a map, no read-back,
+no renders, no dropped PRESENTATION facets from a real build. The builder is
+committed as it stands because it is where the next run starts, not because it
+works.
+
+#### What slice 3 must answer first
+
+**Whether `cut_by_convex` partitions its input.** One test: cut a square by a
+convex shadow and assert `sum(inside) + sum(outside) == whole` AND that no
+inside piece overlaps an outside piece. The area half of that already passes;
+the overlap half has never been asserted, and the whole-graph failure says it
+does not hold. Everything downstream -- masses, interiors, mechanisms -- sits
+on a map that cannot compile until it does.
+
 ### Slice 2d part two: channels, and the order asserted
 
 **Deliverable 4 -- two kinds of channel, and no more.** `bloodmap/channels.py`

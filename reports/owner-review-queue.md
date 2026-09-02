@@ -928,9 +928,44 @@ step interval) and none checks the shade a sector actually ends up with.
 That is the same hole the 8x texture regression went through: relative checks
 all green, one absolute number nobody looked at.
 
-> **Recommended default: make the field contribute `k * 12` and nothing else,
+> **CLOSED 2026-09-02 (slice 2e).** The conversion is `k * 12` and it is now
+> read off a compiled map: full sun 8, one shadow 20, two overlapping shadows
+> 32, a lamp in full sun 2. The fail-first breaks it to `k` and the absolute
+> gate speaks while every shape gate stays green, which was the whole worry.
+>
+> ~~Recommended default: make the field contribute `k * 12` and nothing else,
 > and add one absolute gate before the whole graph is built -- a sector known
 > to be in full sun ends at the plan's stated lit base, and one known to be in
 > one shadow ends at base + 12.** Two numbers, read off the built map, checked
 > against the plan. It is the check the P13 regression should have had, and it
 > costs one assertion.
+
+## 25. Does a convex cut partition its input? (2026-09-02)
+
+The whole-graph build fails on `independent regions col_a/row_1#0 and
+col_a/row_1#3 have XY partial_area_overlap`. Two pieces of ONE island overlap,
+so `overlay.cut_by_convex` is not partitioning the surface it cuts.
+
+The suspect is `cut_region`'s sliver branch. When one side falls under
+`MIN_PIECE_AREA` it returns the CUT piece and discards the scrap, rather than
+returning the polygon whole on the side it is mostly on. If that is what
+happens, `inside` and `outside` stop being a partition of the input and a
+later edge can produce a piece overlapping an earlier offcut.
+
+That is a hypothesis. I did not prove it, and guessing would be the fourth
+guess in this pipeline rather than the first measurement.
+
+What makes it worth an owner note rather than just a bug: **the clipper's
+tests assert area conservation and never assert non-overlap**, and those are
+different properties. `sum(inside) + sum(outside) == whole` is satisfied by a
+partition AND by a set of pieces that double-count one region and lose
+another of the same size. The same shape of gap as the 8x regression, one
+level down.
+
+> **Recommended default: before touching the sliver branch, add the missing
+> assertion to the clipper's existing tests -- no inside piece overlaps an
+> outside piece, and no two pieces of one side overlap each other -- and let
+> it name the case.** Then fix what it names. If the sliver branch is
+> innocent, that assertion is still the one the clipper should have had from
+> the start, and it costs a few lines against a module three slices now
+> depend on.
