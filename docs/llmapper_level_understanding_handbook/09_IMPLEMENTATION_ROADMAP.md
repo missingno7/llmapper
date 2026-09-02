@@ -3459,6 +3459,83 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### Slice 2h: the genealogy, and the graph stands
+
+**The correction I owed.** I wrote that no invariant separated A from B. It
+was wrong, and the bound says so: a crossing is rounded PER COORDINATE, so it
+can sit up to `0.5 * sqrt(2) = 0.707` units off the edge it was computed from,
+and a half-unit containment misses every crossing that rounded toward the far
+corner of its unit cell. Searched empirically over 20000 random oblique edges,
+the worst offset found is **0.702** -- the bound is tight and it is reached.
+From here, "no invariant separates them" is shown by a fixture both options
+pass, never asserted.
+
+**Edges have a genealogy.** `overlay.CutRegistry` holds crossings keyed by
+undirected edge AND the parentage of every split: when a cut divides `(p, q)`
+at `r`, it records `{p,r} -> {p,q}` and `{r,q} -> {p,q}`. At weld time a
+crossing reaches any ring carrying its key **or any ancestor of it**, because
+a neighbour that was never cut still holds the whole edge. **No tolerance
+constant anywhere in `overlay.py`.**
+
+That was the whole of the remaining failure. Identity alone could not see a
+crossing recorded against a sub-edge; the ancestor chain can.
+
+#### The graph builds
+
+```text
+solved grid       73728 x 61440
+plane             one region, 10 rings -- the city boundary and nine block holes
+surfaces          10 before the field  ->  104 pieces after
+welded vertices   46          slivers absorbed  0
+joins             253 declared, 506 records, 96 kerb bands, 0 unknown pairs
+sectors / walls   104 / 534     (2% and 3% of the NBlood limits)
+```
+
+**The four absolute shade values, read off REAL sectors of the built city**
+(base 8, step 12):
+
+```text
+depth 0, full sun          shade  8   on 40 sectors
+depth 1, one shadow        shade 20   on 33
+depth 2, two shadows       shade 32   on 24
+depth 3, three shadows     shade 44   on  6
+depth 0 under a lamp       shade  2   on  1
+```
+
+Every gate green: G1 vertex fidelity 178 declared and 0 missing; G2 silent on
+every surface; a body on any of the 38 road pieces sees `[6]`, the kerb; the
+editor would change 0 walls after the frame pass; the light domain admits 104
+and refuses 0 (there are no mechanisms in this slice yet); magnitude 0
+violations; parallax 0 violations; no dropped PRESENTATION facets; no cuts
+refused; no out-of-domain crossings.
+
+The frame gate failed first, at 191 walls, and the cause was that the emitter
+never ran `frame_map` at all -- a missing pass rather than a defect. With it,
+314 runs over 534 walls and the editor has nothing to say.
+
+#### What is NOT in the map
+
+Deliverable 6's list is only half emitted. The graph, the islands, the
+junctions as pieces of the plane, the field and the joins are there. **The
+waterfront, the end walls, the plaza and cemetery, the yard notch, the
+pavement-only paths and the lamps are not** -- the emitter builds roads and
+islands and stops. Those are geometry the plan already states
+(`city_plan.BOUNDARY`, the areas, `street.end_wall`) and the next run wires
+in; nothing in the model blocks them.
+
+No read-back either: `bloodmap.readback` compares a built map against the
+sentences its constructors claimed, and this emitter declares no constructs
+yet.
+
+#### What slice 3 must answer first
+
+**Whether a mechanism survives the field.** The light domain currently refuses
+nothing because there is nothing to refuse -- no mover, no insert, no holder
+exists in this map. The moment slice 3 re-parents the L3 modules, Rule 2 has
+its first real work, and the gate that matters is the one already written:
+every mechanism's `drag_closure` motion set identical before and after the
+overlays.
+
 ### Slice 2g: the weld, and the gate that chose it
 
 **G1, vertex fidelity.** `overlay.vertex_faults`: every vertex a surface
