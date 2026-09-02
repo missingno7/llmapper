@@ -1,0 +1,343 @@
+{
+ "population": "blood-campaign",
+ "maps": 43,
+ "totals": {
+  "link_receivers": 269,
+  "link_senders": 146,
+  "link_senders_with_dead_edge_flags": 126,
+  "link_senders_with_no_receiver": 8,
+  "mechanisms": 2023,
+  "receivers_that_cannot_respond": 1,
+  "shade_unmeasurable_at_on": 23,
+  "transmitters": 752
+ },
+ "link_sender_sector_types": {
+  "600": 65,
+  "614": 28,
+  "615": 5,
+  "616": 4,
+  "617": 44
+ },
+ "receiver_kinds": {
+  "sector": 268,
+  "sprite": 1
+ },
+ "receiver_responses": {
+  "dims and brightens with the travel": 175,
+  "flips only when the travel lands on a whole state": 1,
+  "mirrors the sender's travel": 93
+ },
+ "sender_faults": {
+  "nothing receives on channel 102": 1,
+  "nothing receives on channel 103": 1,
+  "nothing receives on channel 106": 1,
+  "nothing receives on channel 114": 1,
+  "nothing receives on channel 122": 1,
+  "nothing receives on channel 128": 1,
+  "nothing receives on channel 165": 1,
+  "nothing receives on channel 486": 1
+ },
+ "receiver_faults": {
+  "shade_always 1": 1
+ },
+ "dimmer_shade_waves": {
+  "0": 152,
+  "2": 2,
+  "3": 3,
+  "5": 3,
+  "6": 9,
+  "7": 5,
+  "8": 1
+ },
+ "mover_receiver_types": [
+  600,
+  602,
+  614,
+  615,
+  616,
+  617
+ ],
+ "notable": [
+  {
+   "why": "no receiver",
+   "map": "E1M3",
+   "sender": 307,
+   "detail": "channel 128"
+  },
+  {
+   "why": "no receiver",
+   "map": "E1M4",
+   "sender": 218,
+   "detail": "channel 114"
+  },
+  {
+   "why": "no receiver",
+   "map": "E1M5",
+   "sender": 197,
+   "detail": "channel 103"
+  },
+  {
+   "why": "no receiver",
+   "map": "E1M8",
+   "sender": 109,
+   "detail": "channel 122"
+  },
+  {
+   "why": "no receiver",
+   "map": "E2M5",
+   "sender": 80,
+   "detail": "channel 102"
+  },
+  {
+   "why": "non-sector receiver",
+   "map": "E2M5",
+   "sender": 122,
+   "kind": "sprite",
+   "receiver": 818,
+   "detail": "flips only when the travel lands on a whole state"
+  },
+  {
+   "why": "no receiver",
+   "map": "E2M5",
+   "sender": 673,
+   "detail": "channel 165"
+  },
+  {
+   "why": "no receiver",
+   "map": "E3M2",
+   "sender": 45,
+   "detail": "channel 106"
+  },
+  {
+   "why": "no receiver",
+   "map": "E3M6",
+   "sender": 35,
+   "detail": "channel 486"
+  },
+  {
+   "why": "cannot respond",
+   "map": "E4M2",
+   "sender": 33,
+   "kind": "sector",
+   "receiver": 200,
+   "detail": "shade_always 1: sectorfx.cpp:166 scales the amplitude by busy only when shade_always is 0, so the wave runs at full swing whatever the sender does -- the light does not follow"
+  }
+ ],
+ "per_map": [
+  {
+   "map": "E1M1",
+   "transmitters": 21,
+   "link_senders": 4
+  },
+  {
+   "map": "E1M2",
+   "transmitters": 36,
+   "link_senders": 3
+  },
+  {
+   "map": "E1M3",
+   "transmitters": 32,
+   "link_senders": 13
+  },
+  {
+   "map": "E1M4",
+   "transmitters": 27,
+   "link_senders": 3
+  },
+  {
+   "map": "E1M5",
+   "transmitters": 26,
+   "link_senders": 1
+  },
+  {
+   "map": "E1M6",
+   "transmitters": 42,
+   "link_senders": 10
+  },
+  {
+   "map": "E1M7",
+   "transmitters": 4,
+   "link_senders": 0
+  },
+  {
+   "map": "E1M8",
+   "transmitters": 17,
+   "link_senders": 2
+  },
+  {
+   "map": "E2M1",
+   "transmitters": 13,
+   "link_senders": 1
+  },
+  {
+   "map": "E2M2",
+   "transmitters": 12,
+   "link_senders": 1
+  },
+  {
+   "map": "E2M3",
+   "transmitters": 6,
+   "link_senders": 0
+  },
+  {
+   "map": "E2M4",
+   "transmitters": 49,
+   "link_senders": 8
+  },
+  {
+   "map": "E2M5",
+   "transmitters": 30,
+   "link_senders": 14
+  },
+  {
+   "map": "E2M6",
+   "transmitters": 25,
+   "link_senders": 10
+  },
+  {
+   "map": "E2M7",
+   "transmitters": 28,
+   "link_senders": 5
+  },
+  {
+   "map": "E2M8",
+   "transmitters": 2,
+   "link_senders": 0
+  },
+  {
+   "map": "E2M9",
+   "transmitters": 9,
+   "link_senders": 1
+  },
+  {
+   "map": "E3M1",
+   "transmitters": 26,
+   "link_senders": 7
+  },
+  {
+   "map": "E3M2",
+   "transmitters": 24,
+   "link_senders": 3
+  },
+  {
+   "map": "E3M3",
+   "transmitters": 10,
+   "link_senders": 3
+  },
+  {
+   "map": "E3M4",
+   "transmitters": 17,
+   "link_senders": 2
+  },
+  {
+   "map": "E3M5",
+   "transmitters": 37,
+   "link_senders": 8
+  },
+  {
+   "map": "E3M6",
+   "transmitters": 25,
+   "link_senders": 4
+  },
+  {
+   "map": "E3M7",
+   "transmitters": 7,
+   "link_senders": 0
+  },
+  {
+   "map": "E3M8",
+   "transmitters": 43,
+   "link_senders": 3
+  },
+  {
+   "map": "E4M1",
+   "transmitters": 10,
+   "link_senders": 4
+  },
+  {
+   "map": "E4M2",
+   "transmitters": 12,
+   "link_senders": 5
+  },
+  {
+   "map": "E4M3",
+   "transmitters": 12,
+   "link_senders": 0
+  },
+  {
+   "map": "E4M4",
+   "transmitters": 11,
+   "link_senders": 3
+  },
+  {
+   "map": "E4M5",
+   "transmitters": 7,
+   "link_senders": 0
+  },
+  {
+   "map": "E4M6",
+   "transmitters": 14,
+   "link_senders": 5
+  },
+  {
+   "map": "E4M7",
+   "transmitters": 8,
+   "link_senders": 0
+  },
+  {
+   "map": "E4M8",
+   "transmitters": 1,
+   "link_senders": 0
+  },
+  {
+   "map": "E4M9",
+   "transmitters": 10,
+   "link_senders": 2
+  },
+  {
+   "map": "E6M1",
+   "transmitters": 8,
+   "link_senders": 4
+  },
+  {
+   "map": "E6M2",
+   "transmitters": 5,
+   "link_senders": 0
+  },
+  {
+   "map": "E6M3",
+   "transmitters": 14,
+   "link_senders": 8
+  },
+  {
+   "map": "E6M4",
+   "transmitters": 19,
+   "link_senders": 5
+  },
+  {
+   "map": "E6M5",
+   "transmitters": 11,
+   "link_senders": 0
+  },
+  {
+   "map": "E6M6",
+   "transmitters": 11,
+   "link_senders": 4
+  },
+  {
+   "map": "E6M7",
+   "transmitters": 24,
+   "link_senders": 0
+  },
+  {
+   "map": "E6M8",
+   "transmitters": 1,
+   "link_senders": 0
+  },
+  {
+   "map": "E6M9",
+   "transmitters": 6,
+   "link_senders": 0
+  }
+ ]
+}

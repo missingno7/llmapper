@@ -245,6 +245,157 @@ a defect in its input rather than in any base graph.
 The blocking-aware base keeps links and teleports whatever else it refuses,
 for exactly this reason.
 
+## The Link, read as a verb (2026-09-02, agent P8)
+
+Every reading above is about a *route*: what a channel opens, and for whom.
+None of them could say what E1M1's alcove does, because that is not a route.
+`s125` is a curtain and `s124` is the room behind it, and the curtain does not
+*open* the room -- it **dims** it, continuously, all the way through its own
+travel. The fact lives in one field, the sector's `command`, and nothing in
+this stack had ever read a sector's command as a verb.
+
+`effects.transmission` is that reader, and `read_mechanism` carries it as a
+fifth plane beside primitive / carried / embedding / style.
+
+### Eleven verbs report an edge; one says "follow me"
+
+`blood_types.COMMANDS` 0..11 are the twelve a transmitter may choose. Eleven
+are edge reports -- the sender changed state, the receiver acts once, and
+`SetSectorState` sends them only inside the `trigger_on` / `trigger_off`
+flags (`triggers.cpp:140, :152`). `kCmdLink` is not one of them, and the
+engine goes out of its way to say so: those two lines both open with
+`command != kCmdLink`.
+
+Instead the Link is re-sent from inside the **busy proc**, once per game tick
+for the whole of the sender's travel, carrying the sender's `busy` with it:
+
+```c
+    if (pXSector->command == kCmdLink && pXSector->txID)
+        evSend(nSector, 6, pXSector->txID, kCmdLink, causerID);
+```
+
+-- `VSpriteBusy :1247`, `VDoorBusy :1346`, `HDoorBusy :1374`, `RDoorBusy
+:1401`, `StepRotateBusy :1434`, `GenSectorBusy :1454`. There is a seventh
+copy at `VCrushBusy :1198`, and it is **unreachable in vanilla**: `BUSYID_0`
+is referenced from `nnexts.cpp:4222` alone, inside `NOONE_EXTENSIONS`.
+
+`LinkSector` (`:1776-1801`) then decides what the far end does with that busy,
+and the decision is the RECEIVER's sector type. Six types are handed straight
+to their own busy proc (`:1781-1794`) and mirror the travel; everything else
+takes the default branch (`:1795-1799`), which copies the busy into the
+XSECTOR and calls `SetSectorState` only when the low sixteen bits are zero --
+that is, only at a whole state. A copied busy is what `DoSectorLighting` reads
+(`sectorfx.cpp:166-168`), and that is the dimmer.
+
+So one verb, three answers, chosen by the listener and not by the sender.
+
+### The campaign, counted
+
+Over the 43 campaign maps (`blood-campaign`; the numbers are in
+`blood-link-census.json`):
+
+| | |
+|---|---|
+| mechanisms (sector types 600-619) | 2023 |
+| sectors that transmit at all | 752 |
+| of those, sending `kCmdLink` | **146 — 19.4%** |
+| receivers they reach | 269, **1.84 per sender** |
+
+Receivers by kind: **268 sectors (99.6%), one sprite (0.4%), no walls.** The
+sprite is E2M5 s122 -> sprite 818, and `LinkSprite`'s default branch
+(`:1822-1829`) gives it the same deal a wall gets -- the busy is copied and
+only a whole state does anything.
+
+What the busy does to them:
+
+| response | | engine |
+|---|---|---|
+| dims and brightens with the travel | 175 — **65.1%** | `LinkSector` default -> `sectorfx.cpp:166-168` |
+| mirrors the sender's travel | 93 — **34.6%** | `LinkSector:1781-1794` |
+| flips only at a whole state | 1 — 0.4% | `LinkSprite:1822-1829` |
+
+So the Link is a lighting verb about twice as often as it is a coupling verb,
+and both readings were absent before this pass.
+
+Senders by sector type: 600 (65, 44.5%), 617 (44, 30.1%), 614 (28, 19.2%),
+615 (5, 3.4%), 616 (4, 2.7%). Not one campaign Link is sent by a 602, a 613 or
+a 612 -- which matters, because those three are exactly where the engine's
+behaviour stops being symmetric.
+
+### The asymmetry nobody had written down
+
+`kSectorRotateStep` (613) **sends** a Link from `StepRotateBusy:1434` and is
+**absent from `LinkSector`'s switch** (`:1780-1800`). A stepped rotator can
+drive a mirror; it cannot be one. `kSectorPath` (612) is the other way round
+again: `PathBusy` (`:1465-1494`) is the one busy proc with no Link clause in
+it, so a `command 5` on a path sector is never sent at all, and neither is one
+on a `kSectorTeleport` (604), which runs no busy proc.
+
+And the case no field inspection would ever show: a `command 5` sector that
+is not one of the seven mover types reaches `GenSectorBusy` only when it has a
+busy time to run (`OperateSector:1717-1737`). With `busy_time_a` and
+`busy_time_b` both zero it calls `SetSectorState` instead, and `:140/:152`
+refuse to send for a Link. The sector has a channel, a verb and a listener,
+and never speaks. **No campaign map does this**; the fixture is a mutated copy.
+
+### Four ways a receiver cannot answer, and the one the campaign contains
+
+1. **`shade_always` 1.** `sectorfx.cpp:166` scales the amplitude by busy only
+   `if (!pXSector->shadeAlways && pXSector->busy)`. With the bit set, the wave
+   runs at full swing from the level's first tic and the Link changes nothing.
+2. **`amplitude` 0.** `InitSectorFX:363` puts a sector in `shadeList` only if
+   its amplitude is non-zero, so `DoSectorLighting` never visits it and the
+   three `shade_*` flags below are inert decoration.
+3. **amplitude with no face.** A shade is computed and applied to nothing
+   (`:171-199`).
+4. **`locked`.** `trMessageSector:1916` gates every command but the two lock
+   verbs, so the Link is dropped before `LinkSector` is reached. Same at
+   `trMessageWall:1937` and `trMessageSprite:1962`.
+
+**One of the 269 campaign receivers cannot answer: E4M2 s33 -> s200.** s33 is
+a marked rotator transmitting on 103; s200 receives it with `amplitude -4`,
+`shade_wave 7` (flicker2) and **`shade_always 1`**. Its three fellow listeners
+on the same channel (s38, s39, s201) all respond. Read as an OBSERVATION and
+not as a bug: a light meant to flicker regardless is a legitimate thing to
+want, and this reading cannot tell that from a slip. What it can say is that
+the channel reaches s200 and changes nothing about it.
+
+**Eight of the 146 Link senders (5.5%) reach nobody at all** -- E1M3 s307,
+E1M4 s218, E1M5 s197, E1M8 s109, E2M5 s80, E2M5 s673, E3M2 s45, E3M6 s35.
+Checked against sectors, walls and sprites alike; the channel is genuinely
+empty.
+
+**126 of the 146 (86.3%) carry `trigger_on` or `trigger_off` flags the engine
+cannot consult**, because `:140` and `:152` test `command != kCmdLink` first.
+Harmless, and worth recording only so that a reader does not report an edge
+these mechanisms never report.
+
+### Wave 0 is a waveform, not a missing field
+
+152 of the 175 Link dimmers (86.9%) carry `shade_wave` 0, and that is the
+design rather than an omission: `GetWaveValue` case 0 returns the amplitude
+unchanged (`sectorfx.cpp:80-81`), so the shade IS the busy-scaled amplitude
+and tracks the travel linearly. Any other waveform makes the light animate on
+its own and merely modulates that animation by how far the sender has gone.
+
+`effects.wave_value` transcribes waves 0-4 exactly. Waves 5 and 11 need
+Build's `Sin`/`Cos` tables and 6-10 index the four flicker tables and the
+strobe table; none of those is transcribed here, so those receivers report
+`unmeasurable` with the reason rather than a number nobody checked. **23 of
+the 269 receivers (8.6%) are unmeasurable at the ON pose** on that count, or
+because a non-zero `shade_frequency` keeps advancing the phase with
+`totalclock` (`:170-171`) -- for those the honest answer is a range over the
+clock, and this pass does not simulate the clock.
+
+### What this changes in the limitation above
+
+The last bullet under *Limitations* said a `command` that turns a listener off
+is not distinguished from one that turns it on. That is still true of the
+graph, which is about routes. It is no longer true of the mechanism record:
+`transmission` names the verb, and for the one continuous verb it says what
+each listener does with the travel.
+
+
 ## Limitations
 
 - Only Z-motion is gated. The 657 rotate and slide mechanisms have no

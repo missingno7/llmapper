@@ -2642,6 +2642,179 @@ build's `return 1`, and the comment there says so.
   from the sector type plus the fabric tile. A curtain that wears something
   else is measured as a plain marked slide.
 
+## The Link, read as a verb, 2026-09-02
+
+Supervisor assignment P8. The reader could not say "the room light follows the
+curtain" although three attested pairs and the city's own are wired for it.
+P7 had measured exactly why and left it: every field is legible one at a time
+-- E1M1 s125 `tx_id 126, command 5`; s124 `rx_id 126, amplitude -8,
+shade_always 0` -- and **nothing in the stack read a sector's `command` as a
+verb at all**.
+
+### What changed
+
+`effects.transmission(disk, sector_id)` is the reader, and `read_mechanism`
+carries it as a fifth plane beside primitive / carried / embedding / style.
+The four planes describe one sector. This one cannot: what a mechanism drives
+is not a property of the mechanism or of the thing it drives, it is a property
+of the pair, and the only field holding it is `command`.
+
+It lives in `effects.py` rather than `conditional.py` because `conditional`
+imports `effects` and that arrow points one way; `receiver_index` -- the
+mirror of `conditional.transmitters` -- lives there for the same reason.
+
+The record carries two keys deliberately. `drives` is the flat list of driven
+sector ids, which is what a caller comparing two readings wants;
+`transmission` beside it is the whole facet -- channel, verb, every listener
+by kind, and per listener what the sender's `busy` does to it.
+
+### Evidence
+
+Engine, all vanilla and each line read before it was cited:
+
+* The send is from the **busy proc**, once per game tick for the whole
+  travel, carrying the sender's `busy`: `VSpriteBusy :1247`, `VDoorBusy
+  :1346`, `HDoorBusy :1374`, `RDoorBusy :1401`, `StepRotateBusy :1434`,
+  `GenSectorBusy :1454`. The seventh copy, `VCrushBusy :1198`, is
+  **unreachable in vanilla** -- `BUSYID_0` is referenced from
+  `nnexts.cpp:4222` alone, under `NOONE_EXTENSIONS`. The supervisor brief
+  listed six; there are seven, and one of them does not count.
+* `SetSectorState` sends no edge for such a sector: `:140` and `:152` both
+  open with `command != kCmdLink`.
+* `LinkSector` (`:1776-1801`) decides by the RECEIVER's type. Six types are
+  handed to their own busy proc (`:1781-1794`) and mirror the travel;
+  everything else takes the default (`:1795-1799`), which copies the busy and
+  calls `SetSectorState` only at a whole state.
+* `LinkSprite` (`:1803-1831`) and `LinkWall` (`:1833-1839`) do the same for
+  the other two kinds; `kSwitchCombo` is the one sprite that reads a Link as
+  DATA, copying the sender's `data1` (`:1806-1821`).
+* `sectorfx.cpp:162` is the lighting gate (`shadeAlways || busy`), `:166-168`
+  scales the amplitude by busy, `:171` evaluates the wave with
+  `phase*8 + freq*totalclock`, `:171-199` applies the result to the faces the
+  three `shade_*` flags select.
+* **`InitSectorFX:363`** is the fact the brief did not have: a sector enters
+  `shadeList` only `if (pXSector->amplitude)`. With amplitude 0 the sector is
+  never visited and every other shade field on it is inert. That is a harder
+  test than "no wave", and it is the correct one.
+* `trMessageSector:1916` / `trMessageWall:1937` / `trMessageSprite:1962` drop
+  every command but the two lock verbs on a `locked` receiver.
+
+Campaign, 43 maps, 2023 mechanisms, 752 transmitting sectors
+(`reports/blood-link-census.json`, section in
+`reports/blood-conditional-topology.md`):
+
+* **146 send a Link (19.4% of transmitters)**, reaching 269 receivers --
+  1.84 each.
+* **268 sectors (99.6%), one sprite (0.4%), no walls.**
+* **175 dim (65.1%), 93 mirror (34.6%), 1 flips only at a whole state.** The
+  Link is a lighting verb about twice as often as a coupling verb.
+* Senders: 600 (65), 617 (44), 614 (28), 615 (5), 616 (4). No 602, 613 or 612
+  -- which is where the engine stops being symmetric.
+* **152 of the 175 dimmers (86.9%) carry `shade_wave` 0**, which is not a
+  missing field: `GetWaveValue` case 0 returns the amplitude unchanged
+  (`:80-81`), so the shade IS the scaled amplitude and tracks the travel
+  linearly. This is the campaign's canonical dimmer.
+
+### Counterexamples
+
+* **The asymmetry the model had to grow to hold.** 613 SENDS a Link
+  (`StepRotateBusy:1434`) and is absent from `LinkSector`'s switch: a stepped
+  rotator can drive a mirror and cannot be one. 612 is the reverse -- `PathBusy`
+  (`:1465-1494`) is the one busy proc with no Link clause, so a `command 5`
+  path sector never sends. 604 runs no busy proc at all.
+* **A `command 5` sector with both busy times zero transmits NOTHING.**
+  `OperateSector:1717-1737` reaches `GenSectorBusy` only when there is a busy
+  time; otherwise it calls `SetSectorState`, whose sends `:140/:152` refuse
+  for a Link. No campaign map does this; the fixture is a mutated copy.
+* **One campaign receiver of 269 cannot answer: E4M2 s33 -> s200**,
+  `shade_always 1` with `shade_wave 7`. Its three fellow listeners on channel
+  103 all respond. Recorded as an observation, not a bug: a light meant to
+  flicker regardless is a legitimate thing to want and this reading cannot
+  tell that from a slip.
+* **Eight Link senders (5.5%) reach nobody** -- E1M3 s307, E1M4 s218, E1M5
+  s197, E1M8 s109, E2M5 s80, E2M5 s673, E3M2 s45, E3M6 s35 -- checked against
+  sectors, walls and sprites alike.
+* **126 of 146 (86.3%) carry edge flags the engine cannot consult.** Harmless.
+  Recorded so no reader reports an edge these mechanisms never report.
+
+### The gate, and what it failed on first
+
+`test_a_receiver_with_shade_always_cannot_follow` takes DOOR-CURTAINS s21 ->
+s20 and sets one bit on the receiver. With the `shade_always` clause removed
+from `_sector_receiver` the reading still says `follows [20]` and the test
+fails on `[20] != []`; with it, `cannot_respond` names s20 and quotes
+`sectorfx.cpp:166`. Every field on both sectors stays individually valid, so
+nothing else in the stack can tell. Four more mutated fixtures cover amplitude
+0, a locked receiver, an empty channel and the zero-busy-time sender.
+
+The acceptance fixture, `test_the_light_link_is_read_as_a_facet_of_the_
+mechanism`, passes with **its assertion unchanged**; `expectedFailure`
+removed.
+
+**And the suite log found a second copy of it.** The same gap had been
+recorded twice -- once on E1M1 in `test_attested_constructs` and once on the
+tutorial map as `test_door_curtains.WiringExemplarTest.test_the_light_link_is_
+read_as_a_facet` -- and the first full run came back `FAILED (unexpected
+successes=1)` with no ERROR or FAIL line anywhere in it. Closing one closed
+both, which nobody knew, because nothing in the repo had ever asked how many
+fixtures were waiting on the same missing reader. That is the supervisor's
+"never pipe the suite through tail" rule earning its keep for the second time
+in two days: the only trace was one line above the `Ran` line.
+
+### Regression tests
+
+`tests/test_attested_constructs.TheLinkIsAVerbTest`, 10 tests, plus the two
+that close the tutorial twin in `tests/test_door_curtains`: the two
+tutorial pairs (DOOR-CURTAINS s21 -> s20, DOOR-CURTAINSD s18 -> s17), E1M1's
+carnival rotator s50 driving four receivers of two kinds on one channel
+(s51 mirrors, s44/s45/s55 dim), the five fail-first mutations, the 613
+asymmetry and wave 0. Plus two new assertions on `CurtainTest` for the E1M1
+pair's shade numbers and its dead edge flags.
+
+### The city
+
+`projects/blood-city/level/build_skeleton.py` ran end to end -- P7 could not
+run it, because `reference/blood` held no ART; it does now, and the build is
+**byte-identical** to the committed map, 259 sectors / 1694 walls / 430
+sprites, `read-back: 44 sentence(s), all agree`. That closes P7's first
+unproven item as well as this one.
+
+s37 -> s24 reads `follow me`, `continuous`, sending from `HDoorBusy
+(triggers.cpp:1374)`, `follows [24]`, no faults. The stage light at each end
+of the curtain's travel:
+
+```text
+OFF (busy 0)      floor 32   ceiling 34   walls 32
+ON  (busy 65536)  floor  8   ceiling 10   walls  8      delta -24, wave 0
+```
+
+### What remains unknown
+
+* **The clock is not simulated.** `GetWaveValue`'s phase advances with
+  `freq*totalclock` (`:170-171`), so a receiver with a non-zero
+  `shade_frequency` has a shade RANGE, not a value. `wave_value` transcribes
+  waves 0-4 exactly; 5 and 11 need Build's `Sin`/`Cos` tables and 6-10 index
+  the four flicker tables and the strobe table, none transcribed here. **23 of
+  269 receivers (8.6%) report `unmeasurable` with the reason** rather than a
+  number nobody checked.
+* `trProcessBusy` is still not modelled (P7 said the same of `state_pair`), so
+  "at busy 65536" is the end of travel and not a time.
+* The facet reads a SECTOR's transmission. A wall or sprite that transmits is
+  a receiver here and never a sender; `conditional.transmitters` still owns
+  that side.
+* Nothing yet declares `drives` as a read-back claim, so a constructor cannot
+  yet be held to the light it says it drives. That is the natural next step
+  and it needs a `sentence()` key.
+
+### Next highest-value experiment
+
+Give `readback.sentence()` a `drives` key so `curtains.link_stage_light`'s
+claim is checked against the built map rather than trusted -- the arbiter
+already decides the tx slot and nothing verifies the decision survived. After
+that, the receiver-side twin of P7's 171 changed interaction readings: how
+many campaign mechanisms have a `drives` facet that the design-role reading
+should be consulting and is not.
+
 ## The demonstration maps, and two things they said plainly
 
 `maps/blood/mechanism/` holds thirty-odd official XMapEdit tutorial maps, one

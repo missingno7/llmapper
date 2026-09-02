@@ -186,18 +186,211 @@ class CurtainTest(unittest.TestCase):
         self.assertEqual(int(alcove["rx_id"]), 126)
         self.assertEqual(int(alcove["amplitude"]), -8)
 
-    @unittest.expectedFailure
     def test_the_light_link_is_read_as_a_facet_of_the_mechanism(self):
-        # Blueprint: roadmap, curtain s124/s125. The fields above are all
-        # readable one at a time; nothing in the stack reports "this
-        # mechanism drives that light" as a facet, and command 5 is unread by
-        # the whole stack. Queue item: command-verb reading on the bus.
+        # Was `expectedFailure`; CLOSED 2026-09-02 with the assertion
+        # unchanged. Every field here was legible one at a time all along --
+        # s125 tx_id 126 command 5, s124 rx_id 126 amplitude -8 -- and the
+        # missing reader was for `command` AS A VERB. `effects.transmission`
+        # is that reader and `read_mechanism` carries it as plane 5.
         from bloodmap.doors import _wall_owners
         from bloodmap.effects import read_mechanism
 
         reading = read_mechanism(self.disk, 125,
                                  owners=_wall_owners(self.disk))
         self.assertEqual(reading.get("drives"), [124])
+
+    def test_the_alcove_light_is_read_as_FOLLOWING_the_curtain(self):
+        # The facet the flat list cannot carry: not merely that s125 reaches
+        # s124, but that the reaching is CONTINUOUS. `HDoorBusy`
+        # (triggers.cpp:1374) re-sends kCmdLink every tick of the travel and
+        # `LinkSector`'s default branch (:1795-1799) copies the sender's busy
+        # into the receiver, so `sectorfx.cpp:166-168` scales the amplitude by
+        # it: the light tracks the fabric rather than switching after it.
+        from bloodmap.effects import FOLLOWS_AS_DIMMER, transmission
+
+        wiring = transmission(self.disk, 125)
+        self.assertTrue(wiring["continuous"])
+        self.assertEqual(wiring["verb"], "follow me")
+        self.assertEqual(wiring["follows"], [124])
+        self.assertEqual(wiring["cannot_respond"], [])
+        light, = wiring["receivers"]
+        self.assertEqual(light["response"], FOLLOWS_AS_DIMMER)
+        # 36 authored, amplitude -8, wave 0 -- `GetWaveValue`'s constant case
+        # (sectorfx.cpp:80-81), so the shade IS the scaled amplitude.
+        self.assertEqual(light["off"]["floor_shade"], 36)
+        self.assertEqual(light["on"]["floor_shade"], 28)
+
+    def test_the_edge_flags_on_a_command_5_sector_are_dead_weight(self):
+        # s125 carries trigger_on and trigger_off, and neither can ever fire:
+        # `SetSectorState` tests `command != kCmdLink` before consulting them
+        # (triggers.cpp:140, :152). Recorded because a reader that treats them
+        # as live would report an edge this mechanism never reports.
+        from bloodmap.effects import transmission
+
+        self.assertTrue(transmission(self.disk, 125)["edge_flags_ignored"])
+
+
+class TheLinkIsAVerbTest(unittest.TestCase):
+    """The tutorial's own Link pairs, and the ways one goes deaf.
+
+    `kCmdLink` is the one command of the twelve that is not an edge report.
+    Eleven say "you, now, do this once"; Link says "follow me", and the engine
+    means it literally -- the sender re-sends every tick of its own travel
+    (`HDoorBusy`, triggers.cpp:1374) carrying its `busy`, and the receiver
+    copies that busy in (`LinkSector` default, :1795-1799).
+
+    So a Link is only as good as what the far end does with a busy, and the
+    far end has fields that make it inert while every one of them stays
+    individually legal. That is what these fixtures pin.
+    """
+
+    def _mechanism(self, name):
+        from bloodmap.format import read_map
+
+        path = Path("maps/blood/mechanism/Vanilla") / name
+        if not path.exists():
+            self.skipTest(f"{path} is not present")
+        return read_map(path)
+
+    def test_the_tutorial_curtain_drives_its_room_light(self):
+        # DOOR-CURTAINS s21 -> s20, the lesson E1M1 s125/s124 is a dressed
+        # copy of: one 614 slide, tx 106 command 5, and one type-0 room on
+        # rx 106 with amplitude -20 across floor, ceiling and walls. Opening
+        # the curtain lights the room it opens into.
+        from bloodmap.effects import FOLLOWS_AS_DIMMER, transmission
+
+        wiring = transmission(self._mechanism("DOOR-CURTAINS.map"), 21)
+        self.assertEqual((wiring["channel"], wiring["command"]), (106, 5))
+        self.assertEqual(wiring["follows"], [20])
+        light, = wiring["receivers"]
+        self.assertEqual(light["response"], FOLLOWS_AS_DIMMER)
+        self.assertEqual(light["needs"]["faces"], ["floor", "ceiling", "walls"])
+        self.assertEqual((light["off"]["floor_shade"],
+                          light["on"]["floor_shade"]), (20, 0))
+
+    def test_the_two_leaf_tutorial_drives_its_own_light_the_same_way(self):
+        # DOOR-CURTAINSD s18 -> s17. The same sentence in a different curtain
+        # dialect: the facet belongs to the wiring, not to the leaf count.
+        from bloodmap.effects import transmission
+
+        wiring = transmission(self._mechanism("DOOR-CURTAINSD.map"), 18)
+        self.assertEqual((wiring["channel"], wiring["command"]), (108, 5))
+        self.assertEqual(wiring["follows"], [17])
+        self.assertEqual(wiring["cannot_respond"], [])
+
+    def test_a_receiver_with_shade_always_cannot_follow(self):
+        # THE FAIL-FIRST FIXTURE. `sectorfx.cpp:166` scales the amplitude by
+        # busy only `if (!pXSector->shadeAlways && pXSector->busy)`. Set that
+        # one bit and the wave runs at full swing from the level's first tic,
+        # unchanged by anything the curtain does -- and every field on both
+        # sectors stays individually valid, so nothing else in the stack can
+        # tell. The room is still lit; it just no longer answers.
+        from bloodmap.effects import transmission
+
+        disk = self._mechanism("DOOR-CURTAINS.map")
+        _extra(disk.sectors[20])["shade_always"] = 1
+        wiring = transmission(disk, 21)
+        self.assertEqual(wiring["follows"], [],
+                         "a shade_always receiver must not read as following")
+        self.assertEqual([row["id"] for row in wiring["cannot_respond"]], [20])
+        self.assertIn("shade_always 1",
+                      wiring["cannot_respond"][0]["faults"][0])
+
+    def test_a_receiver_with_no_amplitude_is_never_lit_at_all(self):
+        # The other way the same pair goes quiet, and a harder one:
+        # `InitSectorFX:363` puts a sector in `shadeList` only if its
+        # amplitude is non-zero, so with amplitude 0 `DoSectorLighting` never
+        # visits it and the three shade flags below are inert decoration.
+        from bloodmap.effects import STATE_ONLY, transmission
+
+        disk = self._mechanism("DOOR-CURTAINS.map")
+        _extra(disk.sectors[20])["amplitude"] = 0
+        light, = transmission(disk, 21)["receivers"]
+        self.assertEqual(light["response"], STATE_ONLY)
+        self.assertIn("InitSectorFX:363", light["faults"][0])
+
+    def test_a_locked_receiver_never_hears_the_link(self):
+        # `trMessageSector:1916` gates every command but the two lock verbs on
+        # `!pXSector->locked`, so a locked receiver drops the Link before
+        # `LinkSector` is reached.
+        from bloodmap.effects import transmission
+
+        disk = self._mechanism("DOOR-CURTAINS.map")
+        _extra(disk.sectors[20])["locked"] = 1
+        wiring = transmission(disk, 21)
+        self.assertEqual(wiring["follows"], [])
+        self.assertIn("trMessageSector:1916",
+                      wiring["cannot_respond"][0]["faults"][0])
+
+    def test_a_channel_nobody_receives_on_is_a_send_into_nothing(self):
+        from bloodmap.effects import transmission
+
+        disk = self._mechanism("DOOR-CURTAINS.map")
+        _extra(disk.sectors[20])["rx_id"] = 0
+        wiring = transmission(disk, 21)
+        self.assertEqual(wiring["receivers"], [])
+        self.assertIn("reaches no one", wiring["faults"][0])
+
+    def test_a_command_5_sector_with_no_busy_time_transmits_nothing(self):
+        # The sender-side twin, and the one no field inspection would show:
+        # `OperateSector`'s default branch reaches `GenSectorBusy` only when
+        # there is a busy time to run (triggers.cpp:1717-1737). With both at
+        # zero it calls `SetSectorState`, whose two sends are guarded by
+        # `command != kCmdLink` (:140, :152). The sector has a channel, a verb
+        # and a listener, and never speaks.
+        from bloodmap.effects import transmission
+
+        disk = self._mechanism("DOOR-CURTAINS.map")
+        extra = _extra(disk.sectors[21])
+        disk.sectors[21].fields["type"] = 0
+        extra["busy_time_a"] = 0
+        extra["busy_time_b"] = 0
+        wiring = transmission(disk, 21)
+        self.assertIsNone(wiring["sends"])
+        self.assertIn("nothing is ever transmitted", wiring["faults"][0])
+
+    def test_a_link_to_a_second_mover_is_a_mirror_not_a_trigger(self):
+        # E1M1 s50, the carnival rotator, drives FOUR receivers on one channel
+        # and they are not the same kind of thing: s51 is another 617 and
+        # takes the busy through `RDoorBusy` (triggers.cpp:1793), so it turns
+        # in step; s44, s45 and s55 are type-0 rooms that dim with it. One
+        # verb, two responses, and the difference is the receiver's type.
+        from bloodmap.effects import (
+            FOLLOWS_AS_DIMMER, FOLLOWS_AS_MOVER, transmission)
+
+        wiring = transmission(_campaign("E1M1"), 50)
+        by_id = {row["id"]: row for row in wiring["receivers"]}
+        self.assertEqual(sorted(by_id), [44, 45, 51, 55])
+        self.assertEqual(by_id[51]["response"], FOLLOWS_AS_MOVER)
+        for room in (44, 45, 55):
+            self.assertEqual(by_id[room]["response"], FOLLOWS_AS_DIMMER)
+        self.assertEqual(wiring["cannot_respond"], [])
+
+    def test_a_stepped_rotator_can_drive_a_mirror_but_cannot_be_one(self):
+        # `StepRotateBusy` sends the Link (triggers.cpp:1434) but type 613 is
+        # absent from `LinkSector`'s switch (:1780-1800), so a Link it
+        # RECEIVES only reaches the default branch. The asymmetry is real and
+        # this is the only place in the stack that states it.
+        from bloodmap.effects import (
+            LINK_DRIVEN_MOVER_TYPES, LINK_SENDING_BUSY_PROC,
+            SENDS_BUT_CANNOT_MIRROR)
+
+        self.assertIn(613, LINK_SENDING_BUSY_PROC)
+        self.assertNotIn(613, LINK_DRIVEN_MOVER_TYPES)
+        self.assertEqual(SENDS_BUT_CANNOT_MIRROR, frozenset({613}))
+
+    def test_wave_zero_is_the_constant_and_that_is_why_dimmers_carry_none(self):
+        # `GetWaveValue` case 0 returns the amplitude unchanged
+        # (sectorfx.cpp:80-81). All four attested Link dimmers carry wave 0,
+        # which is not an omission: it is the only waveform whose output is
+        # the scaled amplitude and therefore proportional to the travel.
+        from bloodmap.effects import wave_value
+
+        self.assertEqual(wave_value(0, 0, -20), -20)
+        self.assertEqual(wave_value(0, 1234, -20), -20)
+        # and a wave this module does not transcribe says so, instead of
+        # returning a number nobody checked
+        self.assertIsNone(wave_value(7, 0, -20))
 
 
 class DoubleSlideDoorTest(unittest.TestCase):

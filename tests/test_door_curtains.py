@@ -169,16 +169,31 @@ class WiringExemplarTest(unittest.TestCase):
         self.assertEqual(int(light["rx_id"]), 106)
         self.assertEqual(int(light["amplitude"]), -20)
 
-    @unittest.expectedFailure
     def test_the_light_link_is_read_as_a_facet(self):
-        # Blueprint: roadmap grammar, control bus. Nothing in the stack
-        # reports "this mechanism drives that light", and command 5 is still
-        # unread. Counted rather than absent.
+        # Was `expectedFailure`; CLOSED 2026-09-02 with the assertion
+        # unchanged, by the same reader that closed the E1M1 twin --
+        # `effects.transmission`, carried on the record as plane 5.
         from bloodmap.doors import _wall_owners
         from bloodmap.effects import read_mechanism
 
         reading = read_mechanism(self.disk, 21, owners=_wall_owners(self.disk))
         self.assertEqual(reading.get("drives"), [20])
+
+    def test_the_light_is_read_as_FOLLOWING_rather_than_as_switched(self):
+        # The half the flat list cannot carry. `HDoorBusy` (triggers.cpp:1374)
+        # re-sends kCmdLink every tick of the travel with the sender's busy in
+        # it, and `LinkSector`'s default branch (:1795-1799) copies that busy
+        # into s20, where `sectorfx.cpp:166-168` scales the amplitude by it.
+        # The room brightens WITH the curtain; it does not switch after it.
+        from bloodmap.effects import FOLLOWS_AS_DIMMER, transmission
+
+        wiring = transmission(self.disk, 21)
+        self.assertTrue(wiring["continuous"])
+        self.assertEqual(wiring["follows"], [20])
+        light, = wiring["receivers"]
+        self.assertEqual(light["response"], FOLLOWS_AS_DIMMER)
+        self.assertEqual((light["off"]["floor_shade"],
+                          light["on"]["floor_shade"]), (20, 0))
 
 
 class ConstructorMatchesTutorialTest(unittest.TestCase):

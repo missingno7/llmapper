@@ -5,7 +5,7 @@ record — not a parallel framework and not a catalog of named prefabs. Nothing
 here re-derives geometry; every number comes from `observe_motion_sector` or
 `assembly_around`.
 
-The reading is factored along four planes, and keeping them apart is the whole
+The reading is factored along five planes, and keeping them apart is the whole
 point:
 
 1. **primitive** — what the engine physically does: a surface moves in z, a
@@ -16,6 +16,8 @@ point:
    reachability. **This is where meaning is born.**
 4. **style** — how the thing is made readable: a face unlike its surround, a
    signifier beside it, see-through leaves.
+5. **transmission** — what the mechanism DRIVES. Not a property of the sector
+   at all: it lives in the pair, and the only field carrying it is `command`.
 
 **The name of a mechanism is assigned from the embedding, never from the
 fields.** That is not a preference, it is a measurement: across the 43
@@ -663,10 +665,443 @@ def carried_parts(assembly: Any) -> dict[str, Any]:
     }
 
 
+# ---------------------------------------------------------------------------
+# Plane 5: what the mechanism DRIVES
+#
+# The four planes above say what one sector does. None of them can say "the
+# alcove light follows the curtain", because that fact is not in the curtain
+# and not in the light: it is in the pair, and the only field carrying it is
+# the sector's `command` -- a number the whole stack could read and no reader
+# had ever interpreted as a verb.
+#
+# Everything here is a transcription. The engine is the authority and each
+# clause names the line it came from.
+# ---------------------------------------------------------------------------
+
+#: The twelve instruction verbs, `blood_types.COMMANDS` 0..11. Command 12 and
+#: up are a counter instruction, the two callback verbs and then the *causes*
+#: -- what the engine sends when a body pushes or shoots something -- which
+#: are not a transmitter's choice.
+#:
+#: **Link is the continuous one.** Eleven of the twelve are edge verbs: the
+#: sender reports that it changed state and the receiver acts once. `kCmdLink`
+#: is sent every tick of the sender's own travel and carries the sender's
+#: `busy` with it, so the receiver does not act once -- it TRACKS.
+COMMAND_VERBS: dict[int, str] = {
+    0: "turn it off", 1: "turn it on", 2: "match my state",
+    3: "toggle it", 4: "take my state inverted", 5: "follow me",
+    6: "lock it", 7: "unlock it", 8: "toggle its lock",
+    9: "stop, then off", 10: "stop, then on", 11: "stop at the next stop",
+}
+LINK = 5
+
+#: Which busy proc runs a sector, and therefore whether a `command 5` sector
+#: sends its Link at all. `OperateSector`'s type switch (triggers.cpp:
+#: 1680-1738) picks the BUSYID; `gBusyProc` (:2076-2085) maps it to the
+#: function; and each of those functions opens with the same two lines:
+#:
+#:     if (pXSector->command == kCmdLink && pXSector->txID)
+#:         evSend(nSector, 6, pXSector->txID, kCmdLink, causerID);
+#:
+#: -- VSpriteBusy :1247, VDoorBusy :1346, HDoorBusy :1374, RDoorBusy :1401,
+#: StepRotateBusy :1434, GenSectorBusy :1454.
+LINK_SENDING_BUSY_PROC: dict[int, str] = {
+    600: "VDoorBusy (triggers.cpp:1346)",
+    602: "VSpriteBusy (triggers.cpp:1247)",
+    613: "StepRotateBusy (triggers.cpp:1434)",
+    614: "HDoorBusy (triggers.cpp:1374)",
+    615: "RDoorBusy (triggers.cpp:1401)",
+    616: "HDoorBusy (triggers.cpp:1374)",
+    617: "RDoorBusy (triggers.cpp:1401)",
+}
+
+#: The seventh Link send, `VCrushBusy` (triggers.cpp:1198), is NOT reachable
+#: in vanilla: `BUSYID_0` is referenced from `nnexts.cpp:4222` alone, which is
+#: the NOONE_EXTENSIONS / `gModernMap` path. Cited here so the omission reads
+#: as a decision rather than an oversight.
+MODERN_ONLY_LINK_SEND = (
+    "VCrushBusy (triggers.cpp:1198), reached only from nnexts.cpp:4222 "
+    "under gModernMap")
+
+#: Two sector types run no busy proc at all, so a `command 5` on one of them
+#: is never sent. `kSectorTeleport` goes to `OperateTeleport` and
+#: `kSectorPath` to `OperatePath` (triggers.cpp:1710-1716); `PathBusy`
+#: (:1465-1494) is the one busy proc with no Link clause in it.
+NO_LINK_SENDER_TYPES: dict[int, str] = {
+    604: "OperateTeleport runs no busy proc (triggers.cpp:1711)",
+    612: "PathBusy carries no kCmdLink send (triggers.cpp:1465-1494)",
+}
+
+#: How a receiver answers, named for what the busy does to it.
+FOLLOWS_AS_MOVER = "mirrors the sender's travel"
+FOLLOWS_AS_DIMMER = "dims and brightens with the travel"
+STATE_ONLY = "flips only when the travel lands on a whole state"
+COMBO_DIAL = "reads the sender's data1 as a combination digit"
+
+#: `LinkSector` (triggers.cpp:1781-1794) hands the busy straight to the
+#: receiver's own busy proc for exactly these types -- which is why a Link to
+#: a second mover is a mirror and not a trigger.
+LINK_DRIVEN_MOVER_TYPES: dict[int, str] = {
+    600: "VDoorBusy (triggers.cpp:1785)",
+    602: "VSpriteBusy (triggers.cpp:1782)",
+    614: "HDoorBusy (triggers.cpp:1789)",
+    615: "RDoorBusy (triggers.cpp:1793)",
+    616: "HDoorBusy (triggers.cpp:1789)",
+    617: "RDoorBusy (triggers.cpp:1793)",
+}
+
+#: Worth saying the other way round as well: `kSectorRotateStep` (613) SENDS a
+#: Link from `StepRotateBusy` but is not in `LinkSector`'s switch, so a Link it
+#: RECEIVES reaches only the default branch. A stepped rotator can drive a
+#: mirror; it cannot be one.
+SENDS_BUT_CANNOT_MIRROR = frozenset({613})
+
+#: Waves this module transcribes exactly. `GetWaveValue` (sectorfx.cpp:75-107)
+#: is a pure function of (wave, phase, amplitude); 0..4 are integer arithmetic
+#: and are reproduced below. 5 and 11 need Build's `Sin`/`Cos` tables and 6..10
+#: index the four flicker tables and the strobe table, none of which is
+#: transcribed here -- so those report the shade as unmeasurable rather than
+#: guessing at it.
+TRANSCRIBED_WAVES = frozenset({0, 1, 2, 3, 4})
+
+
+def wave_value(wave: int, phase: int, amplitude: int) -> int | None:
+    """`GetWaveValue` (sectorfx.cpp:75-107), for the waves transcribed here.
+
+    Returns None for a wave whose table this module does not carry. **Wave 0
+    returns the amplitude unchanged** (`:80-81 case 0: return c`), which is
+    the whole reason a Link-driven dimmer usually carries no wave at all: the
+    shade then IS the scaled amplitude and tracks `busy` linearly.
+    """
+    phase &= 2047
+    amplitude = int(amplitude)
+    if wave == 0:
+        return amplitude
+    if wave == 1:
+        return (phase >> 10) * amplitude
+    if wave == 2:
+        return (abs(128 - (phase >> 3)) * amplitude) >> 7
+    if wave == 3:
+        return ((phase >> 3) * amplitude) >> 8
+    if wave == 4:
+        return ((255 - (phase >> 3)) * amplitude) >> 8
+    return None
+
+
+def _mulscale16(a: int, b: int) -> int:
+    return (int(a) * int(b)) >> 16
+
+
+def _clip_shade(value: int) -> int:
+    return max(-128, min(127, int(value)))
+
+
+def _x(item: Any) -> dict[str, Any]:
+    extra = getattr(item, "extra", None)
+    return dict(extra.fields) if extra is not None else {}
+
+
+def shade_at(disk: Any, sector_id: int, busy: int) -> dict[str, Any]:
+    """What `DoSectorLighting` leaves on this sector's faces at `busy`.
+
+    The gate is `sectorfx.cpp:162` -- `if (pXSector->shadeAlways ||
+    pXSector->busy)` -- so with `shade_always` 0 and busy 0 the sector is
+    simply its authored shade. At a non-zero busy the amplitude is scaled
+    (`:166-168`), the wave is evaluated (`:171`) and the result is added to
+    each face the three `shade*` flags select, clipped to -128..127
+    (`:171-199`).
+
+    `unmeasurable` is set, and the shade left unchanged, when the wave is one
+    this module does not transcribe or when the phase still advances with the
+    clock (`freq` non-zero, `:170-171`): the honest answer there is a range
+    over the clock, not a number.
+    """
+    fields = disk.sectors[sector_id].fields
+    extra = _x(disk.sectors[sector_id])
+    floor = int(fields["floor_shade"])
+    ceiling = int(fields["ceiling_shade"])
+    out: dict[str, Any] = {
+        "busy": int(busy), "floor_shade": floor, "ceiling_shade": ceiling,
+        "delta": 0, "unmeasurable": None,
+    }
+    if not extra:
+        return out
+    amplitude = int(extra.get("amplitude", 0))
+    always = int(extra.get("shade_always", 0))
+    #: sectorfx.cpp:363 -- `InitSectorFX` lists a sector for lighting only if
+    #: its amplitude is non-zero. With amplitude 0 the sector is never visited
+    #: and every other shade field on it is inert.
+    if amplitude == 0:
+        return out
+    if not always and int(busy) == 0:
+        return out
+    scaled = (_mulscale16(amplitude, int(busy)) if (not always and busy)
+              else amplitude)
+    wave = int(extra.get("shade_wave", 0))
+    freq = int(extra.get("shade_frequency", 0))
+    if wave not in TRANSCRIBED_WAVES:
+        out["unmeasurable"] = (
+            f"wave {wave} needs a table this module does not transcribe "
+            "(sectorfx.cpp:90-107)")
+        return out
+    if freq and wave != 0:
+        out["unmeasurable"] = (
+            f"shade_frequency {freq} advances the phase with totalclock "
+            "(sectorfx.cpp:170-171); the shade is a range, not a value")
+        return out
+    delta = wave_value(wave, int(extra.get("shade_phase", 0)) * 8, scaled)
+    out["delta"] = int(delta)
+    if int(extra.get("shade_floor", 0)):
+        out["floor_shade"] = _clip_shade(floor + delta)
+    if int(extra.get("shade_ceiling", 0)):
+        out["ceiling_shade"] = _clip_shade(ceiling + delta)
+    #: The walls take the same delta, one at a time (`:191-199`), so the pair
+    #: of extremes is the honest summary of a face that is many faces.
+    if int(extra.get("shade_walls", 0)):
+        start = int(fields["wall_ptr"])
+        shades = [int(disk.walls[index].fields["shade"])
+                  for index in range(start, start + int(fields["wall_count"]))]
+        if shades:
+            out["wall_shade"] = [_clip_shade(min(shades) + delta),
+                                 _clip_shade(max(shades) + delta)]
+    return out
+
+
+def receiver_index(disk: Any) -> dict[int, list[tuple[str, int]]]:
+    """Channel -> everything that listens on it, by kind.
+
+    The mirror of `conditional.transmitters`, and it lives here rather than
+    there because `conditional` imports `effects` and that arrow points one
+    way only.
+    """
+    out: dict[int, list[tuple[str, int]]] = {}
+    for kind, items in (("sector", disk.sectors), ("wall", disk.walls),
+                        ("sprite", disk.sprites)):
+        for index, item in enumerate(items):
+            channel = int(_x(item).get("rx_id", 0))
+            if channel:
+                out.setdefault(channel, []).append((kind, index))
+    return out
+
+
+def _sector_receiver(disk: Any, index: int, continuous: bool) -> dict[str, Any]:
+    """One sector on the far end of a channel, and what busy does to it."""
+    fields = disk.sectors[index].fields
+    extra = _x(disk.sectors[index])
+    type_id = int(fields["type"])
+    amplitude = int(extra.get("amplitude", 0))
+    row: dict[str, Any] = {
+        "kind": "sector", "id": index, "type_id": type_id,
+        "response": None, "engine": None, "follows": False,
+        "needs": {}, "faults": [],
+    }
+    if not continuous:
+        row["response"] = STATE_ONLY
+        row["engine"] = "OperateSector (triggers.cpp:1680-1738)"
+        return row
+    #: triggers.cpp:1916 -- `trMessageSector` drops every command but the two
+    #: lock verbs on a locked receiver, kCmdLink included.
+    if int(extra.get("locked", 0)):
+        row["faults"].append(
+            "locked: trMessageSector:1916 drops the Link before LinkSector "
+            "is reached")
+    if type_id in LINK_DRIVEN_MOVER_TYPES:
+        row["response"] = FOLLOWS_AS_MOVER
+        row["engine"] = LINK_DRIVEN_MOVER_TYPES[type_id]
+        row["follows"] = not row["faults"]
+        return row
+    row["engine"] = "LinkSector default branch (triggers.cpp:1795-1799)"
+    if type_id in SENDS_BUT_CANNOT_MIRROR:
+        row["faults"].append(
+            f"type {type_id} is absent from LinkSector's switch "
+            "(triggers.cpp:1780-1800): it can send a Link but not mirror one")
+    if amplitude == 0:
+        row["response"] = STATE_ONLY
+        row["needs"] = {"amplitude": "non-zero, or the sector is never lit"}
+        #: Not a fault on its own: a receiver with no amplitude was never
+        #: meant to light, and it still takes the state edge at a whole busy.
+        #: It becomes a fault when the sector carries shade wiring that now
+        #: cannot run.
+        if any(int(extra.get(flag, 0)) for flag in
+               ("shade_always", "shade_floor", "shade_ceiling", "shade_walls")):
+            row["faults"].append(
+                "shade wiring with amplitude 0: InitSectorFX:363 never lists "
+                "the sector, so DoSectorLighting never visits it")
+        return row
+    row["response"] = FOLLOWS_AS_DIMMER
+    row["needs"] = {
+        "amplitude": amplitude,
+        "shade_wave": int(extra.get("shade_wave", 0)),
+        "shade_frequency": int(extra.get("shade_frequency", 0)),
+        "shade_always": int(extra.get("shade_always", 0)),
+        "faces": [name for name, flag in
+                  (("floor", "shade_floor"), ("ceiling", "shade_ceiling"),
+                   ("walls", "shade_walls"))
+                  if int(extra.get(flag, 0))],
+    }
+    if int(extra.get("shade_always", 0)):
+        row["faults"].append(
+            "shade_always 1: sectorfx.cpp:166 scales the amplitude by busy "
+            "only when shade_always is 0, so the wave runs at full swing "
+            "whatever the sender does -- the light does not follow")
+    if not row["needs"]["faces"] and not int(extra.get("colored_lights", 0)):
+        row["faults"].append(
+            "amplitude with no shade_floor/ceiling/walls: sectorfx.cpp:"
+            "171-199 computes a shade and applies it to nothing")
+    row["off"] = shade_at(disk, index, 0)
+    row["on"] = shade_at(disk, index, 65536)
+    row["follows"] = not row["faults"]
+    return row
+
+
+def _wall_receiver(disk: Any, index: int, continuous: bool) -> dict[str, Any]:
+    extra = _x(disk.walls[index])
+    row: dict[str, Any] = {
+        "kind": "wall", "id": index, "type_id": None,
+        "response": STATE_ONLY,
+        "engine": ("LinkWall (triggers.cpp:1833-1839): the busy is copied and "
+                   "SetWallState runs only at a whole busy"),
+        "follows": False, "needs": {}, "faults": [],
+    }
+    if not continuous:
+        row["engine"] = "OperateWall (triggers.cpp:692)"
+    elif int(extra.get("locked", 0)):
+        row["faults"].append("locked: trMessageWall:1937 drops the Link")
+    return row
+
+
+def _sprite_receiver(disk: Any, index: int, continuous: bool) -> dict[str, Any]:
+    fields = disk.sprites[index].fields
+    extra = _x(disk.sprites[index])
+    type_id = int(fields.get("type", 0))
+    row: dict[str, Any] = {
+        "kind": "sprite", "id": index, "type_id": type_id,
+        "response": STATE_ONLY,
+        "engine": ("LinkSprite default (triggers.cpp:1822-1829): the busy is "
+                   "copied and SetSpriteState runs only at a whole busy"),
+        "follows": False, "needs": {}, "faults": [],
+    }
+    if not continuous:
+        row["engine"] = "OperateSprite (triggers.cpp:1906)"
+        return row
+    #: kSwitchCombo, the one sprite that reads a Link as DATA rather than as
+    #: travel: it copies the sender's data1 and compares it to its own data2.
+    if type_id == SWITCH_COMBO:
+        row["response"] = COMBO_DIAL
+        row["engine"] = "LinkSprite kSwitchCombo (triggers.cpp:1806-1821)"
+        row["needs"] = {"data2": int(extra.get("data2", 0))}
+    if int(extra.get("locked", 0)):
+        row["faults"].append("locked: trMessageSprite:1962 drops the Link")
+    return row
+
+
+#: `kSwitchCombo`, common_game.h:443.
+SWITCH_COMBO = 21
+
+
+def _command_name(command: int) -> str | None:
+    from .blood_types import COMMANDS
+
+    entry = COMMANDS.get(int(command))
+    return entry["name"] if entry else None
+
+
+def transmission(disk: Any, sector_id: int, *,
+                 receivers: dict[int, list[tuple[str, int]]] | None = None
+                 ) -> dict[str, Any] | None:
+    """What this sector tells other things to do, and whether they can.
+
+    None when the sector transmits nothing. Otherwise the channel, the verb,
+    every listener on that channel by kind, and per listener what the sender's
+    `busy` actually does to it -- which for a Link is the difference between a
+    light that follows a curtain and a light that ignores it.
+    """
+    if sector_id >= len(disk.sectors):
+        return None
+    extra = _x(disk.sectors[sector_id])
+    channel = int(extra.get("tx_id", 0)) if extra else 0
+    if not channel:
+        return None
+    command = int(extra.get("command", 0))
+    type_id = int(disk.sectors[sector_id].fields["type"])
+    continuous = command == LINK
+    index = receiver_index(disk) if receivers is None else receivers
+    listeners = list(index.get(channel, ()))
+
+    out: dict[str, Any] = {
+        "channel": channel,
+        "command": command,
+        "verb": COMMAND_VERBS.get(command),
+        "command_name": _command_name(command),
+        "continuous": continuous,
+        "sends": None,
+        "receivers": [],
+        "faults": [],
+    }
+    if continuous:
+        proc = LINK_SENDING_BUSY_PROC.get(type_id)
+        if proc is not None:
+            out["sends"] = f"kCmdLink every tick of its own travel, from {proc}"
+        elif type_id in NO_LINK_SENDER_TYPES:
+            out["faults"].append(
+                f"command 5 on sector type {type_id}, which runs no Link-"
+                f"sending busy proc: {NO_LINK_SENDER_TYPES[type_id]}")
+        elif not (int(extra.get("busy_time_a", 0))
+                  or int(extra.get("busy_time_b", 0))):
+            #: `OperateSector`'s default branch (triggers.cpp:1717-1737)
+            #: reaches `GenSectorBusy` only when there is a busy time to run.
+            #: With both at zero it calls `SetSectorState` directly, and
+            #: :140/:152 refuse to send for a command-5 sector. Such a sector
+            #: transmits NOTHING, ever.
+            out["faults"].append(
+                "command 5 with busy_time_a and busy_time_b both 0: "
+                "OperateSector:1718 takes the SetSectorState path and "
+                ":140/:152 skip the send for kCmdLink, so nothing is ever "
+                "transmitted")
+        else:
+            out["sends"] = ("kCmdLink every tick of its own travel, from "
+                            "GenSectorBusy (triggers.cpp:1454)")
+        #: The edge flags are dead weight on a command-5 sector: :140 and :152
+        #: test `command != kCmdLink` before consulting them. Recorded rather
+        #: than flagged -- it costs nothing, and the campaign is full of it.
+        out["edge_flags_ignored"] = bool(int(extra.get("trigger_on", 0))
+                                         or int(extra.get("trigger_off", 0)))
+    else:
+        out["sends"] = ("the verb once, on the state edge its trigger_on / "
+                        "trigger_off flags allow (triggers.cpp:140, :152)")
+        if not (int(extra.get("trigger_on", 0))
+                or int(extra.get("trigger_off", 0))):
+            out["faults"].append(
+                "neither trigger_on nor trigger_off: SetSectorState:140/:152 "
+                "send only inside those flags, so this transmitter is silent")
+
+    for kind, item in listeners:
+        if kind == "sector":
+            row = _sector_receiver(disk, item, continuous)
+        elif kind == "wall":
+            row = _wall_receiver(disk, item, continuous)
+        else:
+            row = _sprite_receiver(disk, item, continuous)
+        out["receivers"].append(row)
+    if not listeners:
+        out["faults"].append(
+            f"nothing receives on channel {channel}: the send reaches no one")
+    out["drives"] = sorted(row["id"] for row in out["receivers"]
+                           if row["kind"] == "sector")
+    out["follows"] = sorted(row["id"] for row in out["receivers"]
+                            if row["kind"] == "sector" and row["follows"])
+    out["cannot_respond"] = [
+        {"kind": row["kind"], "id": row["id"], "faults": list(row["faults"])}
+        for row in out["receivers"] if row["faults"]]
+    return out
+
+
 def read_mechanism(disk: Any, sector_id: int, *,
                    owners: Sequence[int] | None = None,
-                   assembly: Any = None) -> dict[str, Any] | None:
-    """All four planes for one moving sector, or None if it does not move."""
+                   assembly: Any = None,
+                   receivers: dict[int, list[tuple[str, int]]] | None = None
+                   ) -> dict[str, Any] | None:
+    """All five planes for one moving sector, or None if it does not move."""
     record = observe_motion_sector(
         disk, sector_id,
         owners=list(owners) if owners is not None else None)
@@ -680,6 +1115,7 @@ def read_mechanism(disk: Any, sector_id: int, *,
     effects = physical_effects(record)
     motion = swept_motion(disk, sector_id, record)
     sweeps = swept_opening(disk, sector_id, motion) if motion else None
+    wiring = transmission(disk, sector_id, receivers=receivers)
     return {
         "$schema": SCHEMA,
         "schema_version": SCHEMA_VERSION,
@@ -697,6 +1133,15 @@ def read_mechanism(disk: Any, sector_id: int, *,
         "carried": carried_parts(assembly),
         "embedding": spatial,
         "style": style(record),
+        #: Plane 5. `drives` is the flat list of sectors on the far end of
+        #: this mechanism's channel -- the short answer to "what does it
+        #: drive" -- and `transmission` beside it carries the verb, the
+        #: receivers of every kind, and what each one does with the busy.
+        #: Two keys rather than one because the flat list is what a caller
+        #: comparing two readings wants, and burying it inside the facet
+        #: would make every such comparison walk a dict.
+        "transmission": wiring,
+        "drives": list(wiring["drives"]) if wiring else [],
         #: Last, and from the embedding alone.
         "design_object": design_object(
             spatial, sweeps=sweeps,
@@ -708,9 +1153,13 @@ def read_mechanism(disk: Any, sector_id: int, *,
 def read_map_mechanisms(disk: Any, *, map_name: str = "") -> dict[str, Any]:
     """Every moving sector of one map, read the same way."""
     owners = _wall_owners(disk)
+    #: Once for the map, not once per mechanism: the scan is over every
+    #: sector, wall and sprite, and E1M1 alone would repeat it 24 times.
+    receivers = receiver_index(disk)
     readings = []
     for sector_id in range(len(disk.sectors)):
-        reading = read_mechanism(disk, sector_id, owners=owners)
+        reading = read_mechanism(disk, sector_id, owners=owners,
+                                 receivers=receivers)
         if reading is not None:
             readings.append(reading)
     return {
