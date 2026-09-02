@@ -1345,23 +1345,34 @@ def main() -> int:
     # the ones where a long facade was split to hang an entrance off it.
     # Runs first, then floor-anchoring for the walls that tile unevenly.
     # Must come after facade_pass, which decides the picnums.
-    from bloodmap.texture_align import (
-        align_wall_runs, align_wall_textures, wall_art_sizes)
+    from bloodmap.texture_align import wall_art_sizes
+    from bloodmap.texture_frame import frame_map, frame_raised_solids
     art_sizes = wall_art_sizes("reference/blood")
-    # The arcade concourse is a single deliberate frontage loop; its several
-    # doors and display boxes are cuts in one continuous interior finish.
-    # This is XMapEdit's `>` operation expressed as a named design intent,
-    # not a map-wide attempt to phase every portal band.
-    concourse_sector = compiled.allocations[
-        ctx["mall_rooms"]["concourse"].region_id].sector_id
-    print("align runs:", align_wall_runs(
-        compiled.level, art_sizes,
-        continuous_portal_sectors={int(concourse_sector)}))
+    # ONE FRAME PER RUN, resolved in closed form from world coordinates.
+    #
+    # This replaces `align_wall_runs` and the floor-anchored `align_wall_
+    # textures` pass together, and the reason is the owner walk: those two
+    # fought each other. The run pass carried x inside a sector loop and
+    # refused every portal-to-portal join but one opted-in concourse; the
+    # anchor pass then set y from each wall's OWN sector height, which breaks
+    # the vertical phase at every kerb, sill and lintel -- 31% of this map's
+    # bend solid-portal joins continued in y against the campaign's 61%.
+    #
+    # A run here is what the editor's traversal says it is (`ED32_AutoAlign
+    # Walls`, xmapedit/src_blood/xmpmaped.cpp:3096-3144): it steps across
+    # `next_wall` into the neighbouring sector, so a facade continues past a
+    # doorway instead of restarting at it. The concourse needs no opt-in any
+    # more, because portal walls were never the exception -- they were the
+    # case the old pass could not express.
+    print("texture frames:", frame_map(compiled.level, art_sizes=art_sizes))
     # Street facades override run-continuation with world phase, so the
     # bay grid is the same everywhere in a district (E3M1's own practice).
     print("facade phase:", facade_pass.world_align_facades(
         compiled.level, compiled, ctx["street_regions"]))
-    print("align anchor:", align_wall_textures(compiled.level, art_sizes))
+    # Crate tops start their tile at the crate's own corner. 71% of the
+    # campaign's 110 raised crate tops do; this map's eleven did not, so a
+    # 1024 box off the 1024 world grid wore a cut tile.
+    print("crate tops:", frame_raised_solids(compiled.level, art_sizes=art_sizes))
 
     # LightBomb now runs inside ``layout.compile`` from the sources declared by
     # each emitting placement.  Flicker remains a distinct runtime effect: it

@@ -710,6 +710,17 @@ SKIP: dict[str, str] = {
     "bloodmap.glass.breaks_to":
         "answers what a cstat becomes after the break, for reading a map's "
         "post-break topology; a rule, not a construction",
+    "bloodmap.glass.recess_spec":
+        "returns the recess outline and its two z values for a caller to "
+        "carve into the tree; nothing in either build carves it yet, so there "
+        "is no built geometry to read back -- named here so the gap stays "
+        "countable rather than absent",
+    "bloodmap.glass.recess_faults":
+        "a reader over a built map, fixtured against E6M1's own recesses; a "
+        "reading is used, not read back",
+    "bloodmap.glass.panes_without_a_recess":
+        "the same reading at map scale: every glazed wall with a room on "
+        "both sides, which is a pane set flush in stonework",
     # --- aperture ----------------------------------------------------------
     "bloodmap.aperture.facade_of":
         "reads a facade plane off an existing map; a reader",

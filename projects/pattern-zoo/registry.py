@@ -819,6 +819,16 @@ SKIP: dict[str, str] = {
     "bloodmap.glass.breaks_to":
         "answers what a cstat becomes after the break, for reading a map's "
         "post-break topology without running the engine",
+    "bloodmap.glass.recess_spec":
+        "returns E6M1's display-box measurements for a caller to carve; it "
+        "builds no geometry itself, and the zoo's SHOP WINDOW is glazed on a "
+        "room face rather than through a recess -- which is the open work, "
+        "roadmap 'the shopfront, measured -- and not yet applied'",
+    "bloodmap.glass.recess_faults":
+        "a reader: does this sector hold its glass in a display box or is it "
+        "a room with a pane in its face; fixtured on E6M1 s4/s64/s52",
+    "bloodmap.glass.panes_without_a_recess":
+        "the map-level form of the same reading, over a finished map",
     # --- bloodmap.street: a street is a district-scale thing -----------------
     # The zoo is a gallery of bays off a spine. It has no street runs and no
     # district seams, so there is nothing here for a carriageway to be laid

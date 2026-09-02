@@ -156,3 +156,64 @@ class TheZooExhibitIsReallyGlazed(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TheShopfrontIsABoxNotAPane(unittest.TestCase):
+    """E6M1's display recess, which is where the glass recipe came from.
+
+    The owner walk: "shop glass sits directly on the facade line". It does in
+    blood-city; it does not in E6M1, and nobody had looked at the geometry
+    AROUND the glass -- only at the four fields on the wall itself.
+    """
+
+    def test_the_recess_spec_reproduces_e6m1s_own_numbers(self):
+        # s4 and s64 against s52: floor 81920 vs 90112, ceiling 36864 vs
+        # -40960. Blood's z grows downward, so that is a sill 8192 up and a
+        # head 77824 down.
+        from bloodmap.glass import recess_spec
+
+        disk = _map(E6M1)
+        shop = disk.sectors[52].fields
+        spec = recess_spec((0, 0, 4096, 0), axis="x",
+                           room_floor_z=int(shop["floor_z"]),
+                           room_ceiling_z=int(shop["ceiling_z"]))
+        self.assertEqual(spec["floor_z"], int(disk.sectors[4].fields["floor_z"]))
+        self.assertEqual(spec["ceiling_z"],
+                         int(disk.sectors[4].fields["ceiling_z"]))
+        self.assertEqual(spec["depth"], 512)
+
+    def test_e6m1s_two_recesses_read_as_recesses(self):
+        from bloodmap.glass import recess_faults
+
+        disk = _map(E6M1)
+        for sector_id in (4, 64):
+            self.assertEqual(recess_faults(disk, sector_id), [], sector_id)
+
+    def test_the_shop_itself_does_not(self):
+        # The reader has to be able to tell a box from a room, or it would
+        # pass a pane set flush in a facade -- which is the defect.
+        from bloodmap.glass import recess_faults
+
+        found = recess_faults(_map(E6M1), 52)
+        self.assertTrue(found)
+        self.assertIn("not a display recess", found[0])
+
+    def test_every_e6m1_pane_is_held_by_a_recess_on_one_side(self):
+        from bloodmap.glass import panes_without_a_recess
+
+        self.assertEqual(panes_without_a_recess(_map(E6M1)), [])
+
+    def test_the_reader_can_fail_on_a_pane_with_rooms_on_both_sides(self):
+        # Fail-first: widen the recess into a room and the pane it held is
+        # reported. Every field on the glass wall stays exactly as it was.
+        from bloodmap.glass import panes_without_a_recess
+
+        disk = _map(E6M1)
+        for sector_id in (4, 64):
+            fields = disk.sectors[sector_id].fields
+            start = int(fields["wall_ptr"])
+            for wall in range(start, start + int(fields["wall_count"])):
+                face = disk.walls[wall].fields
+                face["x"] = int(face["x"]) * 8
+                face["y"] = int(face["y"]) * 8
+        self.assertTrue(panes_without_a_recess(disk))

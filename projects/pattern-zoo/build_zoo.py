@@ -323,6 +323,23 @@ def main() -> int:
                              [(min(xs), min(ys), max(xs), max(ys))])
         print("shop window glass:", report)
 
+    #: ONE FRAME PER RUN. The zoo had no alignment pass at all: every wall
+    #: started at panning zero, so it continued 41% of its plain bend
+    #: solid-solid joins where the campaign continues 68%, and 42% of its
+    #: collinear solid-portal ones where no campaign map goes below 65%.
+    #: `frame_map` states the projection once per run and derives the fields;
+    #: `frame_raised_solids` lands each crate top's tile on its own corner.
+    from bloodmap.texture_align import wall_art_sizes
+    from bloodmap.texture_frame import frame_map, frame_raised_solids
+
+    art_sizes = wall_art_sizes("reference/blood")
+    if art_sizes:
+        print("texture frames:", frame_map(compiled.level, art_sizes=art_sizes))
+        print("crate tops:", frame_raised_solids(compiled.level,
+                                                 art_sizes=art_sizes))
+    else:
+        print("texture frames: skipped, no ART in reference/blood")
+
     disk = compiled.level.to_disk_map()
 
     #: THE AUTHORING-LOOP LAW, at the build rather than in a separate sweep.

@@ -186,3 +186,170 @@ def breaks_to(cstat: int) -> int:
     which is what makes kWallGib the one mechanism that OPENS a route.
     """
     return int(cstat) & ~BREAK_CLEARS
+
+
+# ---------------------------------------------------------------------------
+# the shopfront, as E6M1 builds it
+# ---------------------------------------------------------------------------
+
+#: **A shop window is not a pane in a wall; it is a box you look into.**
+#:
+#: Measured on E6M1, which is where this module's whole recipe came from and
+#: where nobody had looked at the geometry around the glass. Its four glazed
+#: walls (22, 373, 381, 490) do not lie between the street and the shop. They
+#: lie between the SHOP and a display recess: `s4` and `s64` are four-wall
+#: sectors 4096 long and 512 deep, open to the street on their outer side,
+#: with floor 81920 against the shop's 90112 and ceiling 36864 against
+#: -40960. Blood's z grows downward, so that is a sill 8192 up and a head
+#: 77824 down -- a box at chest height with a low soffit, which is exactly
+#: what a shop window is.
+#:
+#: The consequence for the facade is the point: the street never meets the
+#: glass. The facade material runs across the recess mouth as a lintel band
+#: above and a stall riser below, and the pane sits half a metre back in
+#: shadow. Glazing a room's own outward face -- which is what `glaze` does on
+#: a span, and what blood-city's six shopfronts do -- puts the glass flush in
+#: the stonework and gives the eye nothing to read as depth.
+#:
+#: Not universal, and the number matters: of the 356 glazed walls in the 43
+#: campaign maps, **139 (39%) sit in a shallow pocket of six walls or fewer**
+#: and 217 are on a room face. So the recess is a strong minority idiom for
+#: shopfronts, not a law about all glass, and `recess_spec` is offered to a
+#: constructor rather than forced on one.
+RECESS_DEPTH = 512
+#: E6M1 s52 floor 90112 - s4 floor 81920.
+RECESS_SILL = 8192
+#: E6M1 s52 ceiling -40960 - s4 ceiling 36864, as a drop from the room head.
+RECESS_HEAD_DROP = 77824
+
+
+def recess_spec(span: Sequence[int], *, axis: str = "x",
+                outward: int = 1, depth: int = RECESS_DEPTH,
+                sill: int = RECESS_SILL, head_drop: int = RECESS_HEAD_DROP,
+                room_floor_z: int = 0, room_ceiling_z: int = 0
+                ) -> dict[str, Any]:
+    """The display box between a street and a shop, to E6M1's measurements.
+
+    Returns the recess outline in world coordinates, the two z values it
+    holds, and which of its edges is the pane and which is the mouth -- the
+    mouth being the edge the FACADE run crosses, not a hole the facade stops
+    at. A caller that carves this out of a facade wall and hangs the pane on
+    `pane_edge` gets E6M1's arrangement; one that glazes `mouth_edge` gets
+    what the city does today, and the two look nothing alike from the street.
+    """
+    x0, y0, x1, y1 = (int(v) for v in span)
+    x0, x1 = min(x0, x1), max(x0, x1)
+    y0, y1 = min(y0, y1), max(y0, y1)
+    if axis not in ("x", "y"):
+        raise GlassError(f"a recess runs along x or y, not {axis!r}")
+    step = int(depth) * (1 if outward >= 0 else -1)
+    if axis == "x":
+        #: the span runs along x; the box is pushed in along y
+        inner_y = y0
+        outer_y = y0 + step
+        outline = [(x0, inner_y), (x1, inner_y), (x1, outer_y), (x0, outer_y)]
+        pane_edge = ((x0, inner_y), (x1, inner_y))
+        mouth_edge = ((x1, outer_y), (x0, outer_y))
+    else:
+        inner_x = x0
+        outer_x = x0 + step
+        outline = [(inner_x, y0), (inner_x, y1), (outer_x, y1), (outer_x, y0)]
+        pane_edge = ((inner_x, y0), (inner_x, y1))
+        mouth_edge = ((outer_x, y1), (outer_x, y0))
+    return {
+        "outline": outline,
+        "pane_edge": pane_edge,
+        "mouth_edge": mouth_edge,
+        "depth": int(depth),
+        #: Blood's z grows downward: a sill is a floor ABOVE the shop's, so
+        #: numerically smaller, and a dropped head is numerically larger.
+        "floor_z": int(room_floor_z) - int(sill),
+        "ceiling_z": int(room_ceiling_z) + int(head_drop),
+        "sill": int(sill),
+        "head_drop": int(head_drop),
+        "source": ("E6M1 s4/s64 against s52: 4096 x 512, floor 81920 vs "
+                   "90112, ceiling 36864 vs -40960"),
+    }
+
+
+def _face(entry: Any) -> Any:
+    """The field mapping, whether this is a compiled dict or a `DiskObject`.
+
+    `_fields` above returns the object itself for the disk case, because every
+    other caller here then goes through `.fields`; this one indexes directly.
+    """
+    if isinstance(entry, dict):
+        return entry["fields"] if "fields" in entry else entry
+    return getattr(entry, "fields", entry)
+
+
+def recess_faults(disk: Any, sector_id: int, *,
+                  tile: int = GLASS_TILE) -> list[str]:
+    """Is this sector a display recess with the pane on its inner face?
+
+    The two ways the arrangement is lost. A recess whose glass is on the
+    MOUTH is a pane flush in the facade with a pointless box behind it; a
+    recess with no sill and no head drop is a doorway, and the eye reads it
+    as one.
+    """
+    fields = _face(disk.sectors[sector_id])
+    start = int(fields["wall_ptr"])
+    count = int(fields["wall_count"])
+    walls = list(range(start, start + count))
+    glazed = [w for w in walls
+              if int(_face(disk.walls[w]).get("over_picnum", 0)) == tile]
+    out = []
+    if not glazed:
+        return [f"sector {sector_id} holds no glass"]
+    #: Is this sector a display BOX, or is it the room itself? The measured
+    #: separator, and the one the campaign census used: a shallow pocket of
+    #: six walls or fewer whose short side is a recess depth. A pane on a
+    #: room's own face has the whole room behind it and reads as glass set
+    #: flush in the stonework.
+    points = [(int(_face(disk.walls[w])["x"]), int(_face(disk.walls[w])["y"]))
+              for w in walls]
+    short = min(max(p[0] for p in points) - min(p[0] for p in points),
+                max(p[1] for p in points) - min(p[1] for p in points))
+    if count > 6 or short > 2 * RECESS_DEPTH:
+        out.append(
+            f"sector {sector_id} is a room ({count} walls, {short} across), "
+            f"not a display recess: the pane is flush in the facade. E6M1 "
+            f"holds its glass in a {RECESS_DEPTH}-deep box (s4, s64)")
+    for wall in glazed:
+        nxt = int(_face(disk.walls[wall])["next_sector"])
+        if nxt < 0:
+            out.append(f"wall {wall} is glazed but ONE-SIDED")
+            continue
+        there = _face(disk.sectors[nxt])
+        if int(there["floor_z"]) == int(fields["floor_z"]):
+            out.append(
+                f"wall {wall}: no sill -- the recess floor is the shop's, so "
+                f"this reads as a doorway (E6M1 lifts it {RECESS_SILL})")
+    return out
+
+
+def panes_without_a_recess(disk: Any, *, tile: int = GLASS_TILE) -> list[str]:
+    """Glazed walls with a room on both sides, which is glass flush in stone.
+
+    The map-level question, because `recess_faults` answers a per-sector one
+    and a pane only needs a display box on ONE side: E6M1's wall 22 runs from
+    the recess `s4` into the shop `s52`, and `s52` is emphatically a room.
+    """
+    owners: dict[int, int] = {}
+    for sector_id, sector in enumerate(disk.sectors):
+        fields = _face(sector)
+        start = int(fields["wall_ptr"])
+        for wall in range(start, start + int(fields["wall_count"])):
+            owners[wall] = sector_id
+    out = []
+    for index, wall in enumerate(disk.walls):
+        if int(_face(wall).get("over_picnum", 0)) != tile:
+            continue
+        here = owners.get(index, -1)
+        there = int(_face(wall)["next_sector"])
+        sides = [s for s in (here, there) if s >= 0]
+        if any(not recess_faults(disk, s, tile=tile) for s in sides):
+            continue
+        out.append(f"wall {index}: rooms on both sides ({here}, {there}); "
+                   f"no display recess holds this pane")
+    return out
