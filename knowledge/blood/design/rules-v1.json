@@ -239,6 +239,16 @@
    "statement": "a sector carrying a stack marker must wear the mirror tile on the surface the stack looks through",
    "source": "NBlood/source/blood/src/mirrors.cpp:243 IsRorSector"
   },
+  "texture-continues-across-a-join": {
+   "rule": "texture-continues-across-a-join",
+   "maps": 43,
+   "population": 452,
+   "violations": 0,
+   "rate": 0.0,
+   "severity": "error",
+   "statement": "where a material meets itself at a vertex the texture continues at least as often as the weakest campaign map does",
+   "source": "xmapedit/src_blood/xmpmaped.cpp:3024-3050 AlignWalls, :2991 GetWallZPeg"
+  },
   "threshold-follows-the-roofed-side": {
    "rule": "threshold-follows-the-roofed-side",
    "maps": 43,
@@ -257,7 +267,7 @@
    "rate": 0.0,
    "severity": "error",
    "statement": "a tile goes in a slot the campaign is attested to use it in",
-   "source": "knowledge/blood/design/usage-kinds-v1.json, 43 campaign maps"
+   "source": "knowledge/blood/design/usage-kinds-v2.json (walls, by rendered band) and usage-kinds-v1.json (surfaces and sprites), 43 campaign maps"
   },
   "transmitter-reports-an-edge": {
    "rule": "transmitter-reports-an-edge",

@@ -153,7 +153,18 @@ class CandidateTests(unittest.TestCase):
     #: storage vocabulary could not see it at all: it checked `picnum` on
     #: walls and never looked at `over_picnum`. Reported, not patched --
     #: candidate-v7 is another project's shipped artifact.
+    #: And one more, 2026-09-02, from `texture-continues-across-a-join`.
+    #: Candidate-v7 continues the vertical phase across 31% of its collinear
+    #: solid-portal joins where no campaign map goes below 75%: it was built
+    #: by the per-wall representation, which anchors each wall's y to its OWN
+    #: sector's height, so the phase breaks at every sill and lintel. Its x is
+    #: fine (100%), which is the signature -- somebody ran a run-carry pass
+    #: and there was never a y half to run. Reported, not patched: another
+    #: project's shipped artifact, and rebuilding it through `frame_map` is
+    #: that project's call.
     KNOWN = {("transmitter-reports-an-edge", "sprite 290"),
+             ("texture-continues-across-a-join",
+              "joins[collinear solid-portal].y"),
              ("tile-sits-in-an-attested-slot", "wall[577]"),
              ("tile-sits-in-an-attested-slot", "wall[579]"),
              ("tile-sits-in-an-attested-slot", "wall[593]"),

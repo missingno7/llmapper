@@ -1260,3 +1260,104 @@ register(Rule(
     scope="sprite",
     check=_transmitters_report_an_edge,
 ))
+
+# ---------------------------------------------------------------------------
+# texture continuity
+# ---------------------------------------------------------------------------
+
+#: What the campaign does at a join where a material meets itself, measured
+#: over its 43 maps with the editor's own predicate (`texture_frame.
+#: continuity_rows`; the law is `AlignWalls`, xmapedit/src_blood/xmpmaped.cpp:
+#: 3024-3050). Per class: the joins counted, the aggregate rate, and the
+#: **floor** -- the lowest any single campaign map with 30+ joins in that class
+#: reaches, rounded DOWN to the nearest per cent -- rounding a floor to the
+#: nearest per cent rounds it above the map it came from, which is how the
+#: first version of this table flagged five campaign maps with their own
+#: minimum.
+#:
+#: The floor is the number the rule uses, and the aggregate is only reported,
+#: because the spread destroys the aggregate as a threshold. `bend solid-solid`
+#: x runs from 28% to 95% across the campaign's own maps: a rule set fifteen
+#: points under the 68% aggregate flags a third of Blood. That is not a rule
+#: about Blood, it is a rule about being below average, and the first version
+#: of this rule was exactly that -- it fired on E1M1 and E3M1.
+#:
+#: Below the floor is a different claim and a falsifiable one: *no campaign map
+#: is ever this bad in this class*. It is satisfied by all 43 by construction,
+#: so a built map that trips it is doing something the corpus never does.
+CAMPAIGN_CONTINUITY: dict[str, dict[str, float]] = {
+    "bend portal-portal": {"n": 28216, "x": 0.30, "x_floor": 0.14,
+                           "y": 0.91, "y_floor": 0.58},
+    "bend solid-solid": {"n": 20021, "x": 0.68, "x_floor": 0.28,
+                         "y": 0.99, "y_floor": 0.95},
+    "bend solid-portal": {"n": 13366, "x": 0.34, "x_floor": 0.21,
+                          "y": 0.61, "y_floor": 0.27},
+    "collinear solid-solid": {"n": 6760, "x": 0.94, "x_floor": 0.81,
+                              "y": 0.99, "y_floor": 0.91},
+    "collinear solid-portal": {"n": 4442, "x": 0.80, "x_floor": 0.65,
+                               "y": 0.88, "y_floor": 0.75},
+    "collinear portal-portal": {"n": 3588, "x": 0.57, "x_floor": 0.25,
+                                "y": 0.89, "y_floor": 0.68},
+    "reflex solid-portal": {"n": 2836, "x": 0.25, "x_floor": 0.06,
+                            "y": 0.62, "y_floor": 0.29},
+    "reflex portal-portal": {"n": 1910, "x": 0.21, "x_floor": 0.03,
+                             "y": 0.73, "y_floor": 0.36},
+    "reflex solid-solid": {"n": 871, "x": 0.19, "x_floor": 0.08,
+                           "y": 0.99, "y_floor": 0.88},
+}
+
+#: A class the campaign itself continues less than half the time is a
+#: deliberate restart, not a standard. Those are excluded by AXIS, which is the
+#: distinction that matters: the campaign restarts x at an outside corner
+#: (reflex x, 19-25%) and between two step bands (bend portal-portal x, 30%),
+#: and continues y in the very same joins 62-91% of the time. A rule that
+#: dropped the whole class would stop looking at the half that is broken.
+DELIBERATE_RESTART = 0.50
+#: Below this a class is too small to say anything about, and it is the same
+#: floor the campaign floors were measured with.
+CONTINUITY_MIN_JOINS = 30
+
+
+def _texture_runs_continue_as_the_campaign_does(disk) -> Finding:
+    from .texture_frame import continuity_rows
+
+    rows = continuity_rows(disk)
+    population = 0
+    out = []
+    for name in sorted(rows):
+        row = rows[name]
+        expected = CAMPAIGN_CONTINUITY.get(name)
+        if expected is None or row["n"] < CONTINUITY_MIN_JOINS:
+            continue
+        for axis in ("x", "y"):
+            if expected[axis] < DELIBERATE_RESTART:
+                continue                   # the campaign restarts here too
+            population += 1
+            got = row[axis] / row["n"]
+            floor = expected[f"{axis}_floor"]
+            if got < floor:
+                out.append(Violation(
+                    f"joins[{name}].{axis}",
+                    f"{got:.0%} of {row['n']} continue; no campaign map goes "
+                    f"below {floor:.0%} (campaign {expected[axis]:.0%})"))
+    return Finding(population, tuple(out))
+
+
+register(Rule(
+    id="texture-continues-across-a-join",
+    statement=(
+        "where a material meets itself at a vertex the texture continues at "
+        "least as often as the weakest campaign map does"),
+    because=(
+        "AlignWalls advances the horizontal coordinate by x_repeat*8 texels "
+        "per wall and shifts the vertical phase by the peg-height difference, "
+        "so a run that restarts at a vertex puts a seam on a face that has no "
+        "corner in it -- which is what splitting a wall to hang a doorway off "
+        "it does to a facade. The axes are separated because the campaign "
+        "restarts x deliberately at outside corners and between step bands "
+        "while continuing y in those same joins, and a gate that did not know "
+        "that would either flag the corpus or stop looking at the broken half"),
+    source="xmapedit/src_blood/xmpmaped.cpp:3024-3050 AlignWalls, :2991 GetWallZPeg",
+    scope="wall",
+    check=_texture_runs_continue_as_the_campaign_does,
+))
