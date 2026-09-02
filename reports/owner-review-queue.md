@@ -962,10 +962,50 @@ partition AND by a set of pieces that double-count one region and lose
 another of the same size. The same shape of gap as the 8x regression, one
 level down.
 
-> **Recommended default: before touching the sliver branch, add the missing
+> **CLOSED 2026-09-02 (slice 2f), and the assertion was right to come first.**
+> It named the case: a single oblique cut gains 334 units over 276 million and
+> puts a vertex 0.05 units inside its neighbour. The sliver branch was
+> innocent of the overlap, though it had its own defect -- it reported an
+> EMPTY side as an absorbed sliver, so the counts in slices 2d and 2e were
+> mostly phantom. A clockwise shadow also cut nothing at all. Both fixed with
+> fail-firsts.
+>
+> ~~Recommended default: before touching the sliver branch, add the missing
 > assertion to the clipper's existing tests -- no inside piece overlaps an
 > outside piece, and no two pieces of one side overlap each other -- and let
 > it name the case.** Then fix what it names. If the sliver branch is
 > innocent, that assertion is still the one the clipper should have had from
 > the start, and it costs a few lines against a module three slices now
 > depend on.
+
+## 26. Weld the pieces, or snap the grid? (2026-09-02)
+
+The captured cause: every oblique half-plane cut rounds its crossings to
+Build's integer grid **independently**, so two pieces that ought to share an
+edge diverge by a fraction of a unit. Measured on one island of the real
+graph: 334 units of area gained over 276 million, and a vertex 0.05 units
+inside its neighbour. `PlanarLayout` reads that as `partial_area_overlap` and
+refuses the build.
+
+It is not a tolerance question. Loosening the assertion would be choosing not
+to see the thing it was written to see, and the compiler would still refuse.
+
+**Weld.** After all cuts, run a T-junction pass over the piece set: every
+crossing point one cut created is inserted into any neighbouring piece whose
+edge passes within half a unit of it, so the shared edges become literally the
+same vertices. Exact, no geometry moves, and it is the answer that also serves
+interiors and any future cut. It touches every piece and needs its own tests.
+
+**Snap.** Round every crossing to a coarser grid -- 8 or 16 units -- so two
+independent roundings land on the same point. Perhaps twenty lines. It moves
+geometry by up to half the grid, which on a 2048 kerb is invisible and on a
+512 pavement path is a twelfth of its width, and it would quietly change the
+band widths the E3M1 gate checks.
+
+> **Recommended default: weld.** The snap is tempting because it is small, but
+> it buys correctness by moving the geometry the plan solved, and this project
+> has already paid twice for a cheap fix that quietly changed a measured
+> number -- the 8x scale and the junction squares. Welding leaves every
+> coordinate where the solver put it and makes the shared edges true rather
+> than nearly true. If welding proves harder than it looks, snapping to 8 is
+> the fallback and the E3M1 band gate will say what it cost.

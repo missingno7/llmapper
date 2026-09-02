@@ -3459,6 +3459,71 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### Slice 2f: the assertion, and the cause captured
+
+**Step 1 -- the partition assertion.** `overlay.partition_faults` asks three
+questions where the clipper's tests asked one: the area (already), no two
+pieces' interiors overlapping, and every sampled interior point of the whole
+claimed by exactly one piece. Area conservation is **not** partition --
+`sum(pieces) == whole` is satisfied by a genuine partition and equally by a
+set that double-counts one region while losing another the same size.
+
+The two measured defects are fixed with their own fail-firsts:
+
+* **(a) phantom slivers.** `cut_region` reported "absorbed" whenever one side
+  was merely EMPTY, so a cut that missed the polygon entirely counted as a
+  sliver of area 0. The 11 and 18 "slivers absorbed" I reported in slices 2d
+  and 2e were mostly that. An empty side is now not an absorption, and a real
+  one still is.
+* **(b) a clockwise shadow cut nothing.** "Inside" is the left of every edge,
+  which holds only for a counter-clockwise polygon; a clockwise shadow gave
+  inside = nothing and outside = everything, silently. `cut_by_convex`
+  normalises the winding now, and the test cuts the same square with both.
+
+**Step 2 -- the capture, and the cause.** The emitter gained a per-surface
+post-condition before `add_region`; it fires on **10 of the graph's surfaces**
+and the first was dumped to `tests/fixtures/overlay_partition_regression.json`
+-- one island, the nine masses whose shadows fall on it.
+
+Bisected: a **single** `cut_by_convex` call on a plain rectangle, nothing
+absorbed, gains **334 units of area over 276 million** (1.2 parts per million)
+and puts one piece's vertex **0.05 units** inside its neighbour.
+
+> **The cause: every oblique half-plane cut rounds its crossings to Build's
+> integer grid independently, so two pieces that ought to share an edge
+> diverge by a fraction of a unit -- and both this assertion and
+> `PlanarLayout`'s overlap check were reading that as a real overlap.**
+
+Two corrections I owe on the way to that sentence. My first scan reported 0.05
+units and I called it rounding; a fuller scan then said **11780 units**, which
+would have been structural -- and that number was my own test taking the
+distance to the FURTHEST edge of the neighbour rather than the nearest, so it
+measured across the whole polygon. The point genuinely sits on a slanted edge
+that exact integer collinearity misses. The 0.05 was right; the 11780 was
+mine. And the first run of the assertion itself accused a correct partition of
+overlapping, because a vertex on a shared edge tests as inside or outside
+depending on which way the ray goes, so a boundary test has to come first.
+
+#### Deliverable 6 still did not land
+
+The cause is understood and not fixed: making the pieces share their crossing
+vertices exactly is vertex welding across the whole piece set, which is real
+work and not a tolerance. Loosening the assertion instead would be choosing
+not to see the thing it was just written to see.
+
+So there are still no whole-graph counts, no waterfront, no end walls, no
+read-back, no renders, and the four absolute shade values remain fixture
+numbers rather than city ones.
+
+#### What slice 3 must answer first
+
+**Whether to weld or to snap.** Either the pieces share crossing vertices
+exactly -- insert every cut's crossings into the neighbouring pieces that
+already existed, which is a T-junction pass over the piece set -- or every
+crossing is snapped to a coarser grid so that two independent roundings land
+on the same point. The first is exact and touches every piece; the second is
+cheap and moves geometry by up to half the grid. Owner queue item 26.
+
 ### Slice 2e: the absolute light gate, and where the graph stops
 
 **Step 0 -- four shades read off a compiled map.** Every gate in slice 2d

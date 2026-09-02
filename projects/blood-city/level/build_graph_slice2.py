@@ -27,7 +27,7 @@ from bloodmap.format import write_map                             # noqa: E402
 from bloodmap.light_field import Mass, build_field                # noqa: E402
 from bloodmap.lightbomb import apply_shade_channel                # noqa: E402
 from bloodmap.overlay import (                                    # noqa: E402
-    ground_plane_rings, region_area)
+    ground_plane_rings, partition_faults, region_area)
 from bloodmap.planar_layout import PlanarLayout                   # noqa: E402
 from city_solve import Cell, Envelope, Gutter, solve_axis         # noqa: E402
 from resolution import (                                          # noqa: E402
@@ -128,6 +128,20 @@ def build():
             sorted(surfaces.items()):
         field = build_field(rings, masses, bearing_units=SUN_BEARING)
         absorbed += len(field["absorbed"])
+        #: POST-CONDITION, per surface, before anything is added: the field's
+        #: pieces must partition the surface it cut. Area alone is not that
+        #: -- it is satisfied by a set that double-counts one region and loses
+        #: another of the same size.
+        faults = partition_faults([p.rings for p in field["pieces"]], rings)
+        if faults:
+            report.setdefault("partition_faults", []).append(
+                {"surface": surface_id, "faults": faults,
+                 "pieces": [[list(map(list, ring)) for ring in p.rings]
+                            for p in field["pieces"]],
+                 "rings": [list(map(list, ring)) for ring in rings],
+                 "masses": [{"id": m.mass_id,
+                             "outline": list(map(list, m.outline)),
+                             "height": m.height} for m in masses]})
         for index, piece in enumerate(field["pieces"]):
             name = (surface_id if len(field["pieces"]) == 1
                     else f"{surface_id}#{index}")
