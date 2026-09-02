@@ -209,10 +209,23 @@ def room(surface_id: str, rect: Sequence[int], *, floor_z: int,
         lit=False, lod=int(lod))
 
 
+#: A curtain's leaf: `conformance.CURTAIN`'s own numbers. One flagged tip or
+#: two carrying opposite flags, and the deformation is only visible on the
+#: fabric, so the leaf wears 146 and not the wall it hangs in.
+CURTAIN_FABRIC = 146
+DRAG_FORWARD = 0x4000
+#: MASKED. `engine.cpp:4938-4940` draws a two-sided wall's middle band only
+#: when it is masked or one-way; unmasked, the fabric shows on the step bands
+#: and nowhere a body walks -- which is what `conformance.measure_curtain`
+#: says when it counts 0 visible fabric walls.
+MASKED = 16
+
+
 def insert(surface: str, *, holder: str, room_id: str, void: Sequence,
            kind: str = "curtain", sector_type: int = 0, lod: int = 2,
            wiring: Iterable[dict] = (), key: int | None = None,
-           key_realised: bool = False, key_why: str = "") -> dict:
+           key_realised: bool = False, key_why: str = "",
+           leaf: dict | None = None) -> dict:
     """What fills an opening: the declaration, not the geometry.
 
     Two facts come out of this and they are two different claims. `void` says
@@ -225,7 +238,8 @@ def insert(surface: str, *, holder: str, room_id: str, void: Sequence,
             "sector_type": int(sector_type), "lod": int(lod),
             "wiring": [dict(row) for row in wiring],
             "key": key, "key_realised": bool(key_realised),
-            "key_why": str(key_why)}
+            "key_why": str(key_why),
+            "leaf": dict(leaf) if leaf else None}
 
 
 def shell(key: str, rect: Sequence[int], *, wall_thickness: int,
@@ -251,8 +265,16 @@ def shell(key: str, rect: Sequence[int], *, wall_thickness: int,
         opening(f"door:{key}", door, floor_z=floor_z, head_z=head_z,
                 wall_tile=wall_tile, sector_type=sector_type),
     ]
+    #: THE LEAF. A sector type alone is not a curtain: `drag_closure` finds
+    #: nothing to drag and `conformance.measure_curtain` says so in two
+    #: sentences -- "found 0 leaves" and "fabric: wanted 146". The leaf is the
+    #: record at the mouth, flagged and wearing the fabric.
     declaration = insert(f"door:{key}", holder=f"shell:{key}",
                          room_id=f"interior:{key}", void=_rect(*door),
                          sector_type=sector_type, wiring=wiring,
-                         key=gate_key, key_why=key_why)
+                         key=gate_key, key_why=key_why,
+                         leaf={"tile": CURTAIN_FABRIC,
+                               "flags": DRAG_FORWARD | MASKED,
+                               "over_picnum": CURTAIN_FABRIC,
+                               "faces": joins.PAVEMENT})
     return surfaces, declaration

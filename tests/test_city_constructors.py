@@ -138,5 +138,47 @@ class TheShell(unittest.TestCase):
         self.assertIn("no tx", made["wiring"][0]["why"])
 
 
+class ASectorTypeAloneIsNotAMechanism(unittest.TestCase):
+    """The question slice 4 was set: does a construct declared against a
+    room's records survive the compiler's passes?
+
+    It does -- Rule 2 finds 0 of 9 closures moved -- and it was not a curtain
+    to begin with. A sector type with no flagged wall drags nothing, and the
+    read-back said so in two sentences before anything else was asked.
+    """
+
+    def _shell(self, **overrides):
+        spec = dict(wall_thickness=1024, door_width=4096,
+                    roof_z=GRADE - 4 * STANDING, floor_z=GRADE,
+                    interior_z=GRADE - 3 * STANDING,
+                    head_z=GRADE - 2 * STANDING,
+                    sky_z=_sky_of(GRADE - 4 * STANDING), sky_tile=SKY,
+                    wall_tile=joins.FACADE_FAMILY[0], sector_type=614)
+        spec.update(overrides)
+        return city.shell("block", (0, 0, 16384, 16384), **spec)
+
+    def test_the_declaration_carries_a_leaf(self):
+        _surfaces, declared = self._shell()
+        leaf = declared["leaf"]
+        self.assertEqual(leaf["tile"], city.CURTAIN_FABRIC)
+        self.assertTrue(leaf["flags"] & city.DRAG_FORWARD)
+        self.assertEqual(leaf["faces"], joins.PAVEMENT)
+
+    def test_the_leaf_is_masked_or_the_fabric_is_drawn_nowhere(self):
+        # engine.cpp:4938-4940 draws a two-sided wall's middle band only when
+        # it is masked or one-way. Unmasked, conformance counts 0 visible
+        # fabric walls -- "the fabric shows on the step bands and nowhere a
+        # body walks".
+        _surfaces, declared = self._shell()
+        self.assertTrue(declared["leaf"]["flags"] & city.MASKED)
+        self.assertEqual(declared["leaf"]["over_picnum"], city.CURTAIN_FABRIC)
+
+    def test_the_fabric_is_the_conformance_template_s_own_tile(self):
+        from bloodmap.conformance import CURTAIN_TEMPLATE
+
+        self.assertEqual(city.CURTAIN_FABRIC,
+                         CURTAIN_TEMPLATE["picnum"])
+
+
 if __name__ == "__main__":
     unittest.main()

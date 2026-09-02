@@ -156,6 +156,45 @@ def _env(venue_id):
                     faced=tuple(spec.get("faced", ("south",))))
 
 
+def tenants():
+    """Which venue lives on which island, from the plan's own cell lists.
+
+    A cell in `X_ORDER` names the venues in its column and one in `Y_ORDER`
+    the venues in its row, so the venue on an island is the one both name.
+    Four of the nine fall out that way; the rest take the next venue their
+    column has not used, and then the next their row has not. Reported rather
+    than hidden, because a room whose tenant was picked by a tie-break is a
+    weaker claim than one both lists agree on.
+    """
+    columns = {"col_a": ("aldermack", "saloon", "shooting_parlor"),
+               "col_b": ("market_hall", "ferry_office"),
+               "col_c": ("church", "arcade", "pawn_shop")}
+    rows = {"row_1": ("aldermack", "church"),
+            "row_2": ("arcade", "market_hall"),
+            "row_3": ("works_canteen", "workshop_bar")}
+    out, used = {}, set()
+    for column, venues in columns.items():
+        for row, in_row in rows.items():
+            both = [name for name in venues if name in in_row]
+            if both:
+                out[f"{column}/{row}"] = (both[0], "both lists name it")
+                used.add(both[0])
+    for column, venues in columns.items():
+        for row, in_row in rows.items():
+            key = f"{column}/{row}"
+            if key in out:
+                continue
+            spare = ([name for name in venues if name not in used]
+                     + [name for name in in_row if name not in used])
+            if spare:
+                out[key] = (spare[0], "the next venue its column or row has "
+                                      "not used")
+                used.add(spare[0])
+            else:
+                out[key] = (None, "the plan names no venue for this island")
+    return out
+
+
 X_ORDER = [Gutter("lane_west", "lane"),
            Cell("col_a", (_env("aldermack"), _env("saloon"),
                           _env("shooting_parlor"))),
@@ -430,7 +469,9 @@ def emission(shells: bool = True, field: bool = True) -> Emission:
     #: own, and a room behind. Not lit: a roof four bodies up is not ground.
     roof_z = ISLAND_Z - SHELL_BODIES * STANDING
     declarations = []
+    who = tenants()
     for number, (key, rect) in enumerate(sorted(g["shells"].items())):
+        tenant, how = who.get(key, (None, "unassigned"))
         made, declared = city.shell(
             key, rect, wall_thickness=WALL_THICKNESS, door_width=DOOR_WIDTH,
             roof_z=roof_z, floor_z=ISLAND_Z,
@@ -447,6 +488,8 @@ def emission(shells: bool = True, field: bool = True) -> Emission:
             key_why="city_plan.CHANNELS gives the citywide circuit five key "
                     "gates; no key pickup is emitted yet")
         surfaces.extend(made)
+        declared["tenant"] = tenant
+        declared["tenant_basis"] = how
         declarations.append(declared)
 
     #: THE END WALLS, in E3M1's dialect: 5.8 player heights up, parallax sky
@@ -633,6 +676,15 @@ def main() -> int:
         if not leg.get("built", True):
             print(f"   not built: {leg['leg']!r} -- {leg.get('why', '')}")
 
+    # --- each building's own sentence, read back ---------------------------
+    back = readback_faults(built)
+    print(f"read-back: {back['sentences']} sentences, "
+          f"{back['differences']} difference(s), agrees={back['agree']}")
+    for surface, row in back["per building"].items():
+        print(f"   {surface:24} {str(row['tenant']):18} "
+              f"{row['differences']} difference(s)"
+              + ("" if not row["facets"] else f": {row['facets']}"))
+
     # --- terminations ------------------------------------------------------
     faults = street.termination_faults(disk, list(g["end_walls"].values()),
                                        standing_height=STANDING)
@@ -817,9 +869,18 @@ def motion_set_faults(built, plain) -> list:
                 continue
             sector = run.compiled.allocations[name].sector_id
             found = drag_closure(run.disk, sector)
+            #: BY THE VERTICES IT DRAGS, not by wall index and not by the
+            #: walls' spans. `DragPoint` moves POINTS; the field changes
+            #: every wall index after the first cut, and it changes how
+            #: far a neighbouring wall runs, but it must not change WHICH
+            #: POINTS MOVE. Comparing indices reports a difference on
+            #: every mechanism and comparing spans reports one wherever a
+            #: piece was cut beside a door; neither is what the rule is
+            #: about.
             out[spec.surface_id] = sorted(
-                tuple(sorted(point)) for point in found["vertices"]) \
-                if "vertices" in found else sorted(found.get("walls", ()))
+                (int(run.disk.walls[wall].fields["x"]),
+                 int(run.disk.walls[wall].fields["y"]))
+                for wall in found["walls"])
         return out
 
     with_sun, without = closures(built), closures(plain)
@@ -928,6 +989,50 @@ def mission_faults(built) -> dict:
         "links realised": sum(1 for f in links if f.attrs.get("realised")),
         "keys declared": len(keys),
         "keys realised": sum(1 for f in keys if f.attrs.get("realised")),
+    }
+
+
+def readback_faults(built) -> dict:
+    """Each building's own sentence, read back off the built map.
+
+    The question this slice was set: does a construct declared against a
+    ROOM's records survive the compiler's passes? The sentence is declared
+    before the field cuts anything and before the joins and the frames write
+    on the walls, and the read-back asks the built map whether it is still
+    true -- per building, so a difference names one building and not the city.
+    """
+    from bloodmap.readback import read_back, sentence
+
+    disk = built.disk
+    sectors = {spec.surface_id: built.compiled.allocations[name].sector_id
+               for name, _piece, spec in built.pieces}
+    claims, tenants = [], {}
+    for fact in built.store.of("sentence"):
+        surface = fact.attrs["surface"]
+        sector = sectors.get(surface)
+        if sector is None:
+            continue
+        tenants[surface] = fact.attrs.get("tenant")
+        start = int(disk.sectors[sector].fields["wall_ptr"])
+        count = int(disk.sectors[sector].fields["wall_count"])
+        claims.append(sentence(
+            fact.attrs["construct"], name=surface, sector=sector,
+            sector_type=int(fact.attrs.get("sector_type", 0)),
+            members=list(range(start, start + count))))
+    result = read_back(disk, claims, map_name="slice2-streets")
+    by_name: dict = {}
+    for row in result.differences:
+        by_name.setdefault(row.mechanism, []).append(row)
+    return {
+        "sentences": len(claims),
+        "agree": result.agrees,
+        "differences": len(result.differences),
+        "per building": {
+            surface: {"tenant": tenants.get(surface),
+                      "differences": len(by_name.get(surface, ())),
+                      "facets": sorted({row.facet
+                                        for row in by_name.get(surface, ())})}
+            for surface in sorted(tenants)},
     }
 
 

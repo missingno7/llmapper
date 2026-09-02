@@ -588,7 +588,7 @@
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "interior", "b": "facade", "frame": "boundary", "height": "b_above", "id": "wall:596", "lod": 1, "picnum": 401, "shade": 25, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "interior", "frame": "boundary", "height": "equal", "id": "wall:597", "lod": 1, "picnum": 401, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:598", "lod": 1, "picnum": 401, "shade": 32, "shows": "nothing"}
-{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:599", "lod": 1, "picnum": 401, "shade": 32, "shows": "nothing"}
+{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:599", "lod": 1, "picnum": 146, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:600", "lod": 1, "picnum": 401, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:601", "lod": 1, "picnum": 417, "shade": 9, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:602", "lod": 1, "picnum": 417, "shade": 9, "shows": "nothing"}
@@ -612,7 +612,7 @@
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "interior", "b": "facade", "frame": "boundary", "height": "b_above", "id": "wall:620", "lod": 1, "picnum": 417, "shade": 25, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "interior", "frame": "boundary", "height": "equal", "id": "wall:621", "lod": 1, "picnum": 417, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:622", "lod": 1, "picnum": 417, "shade": 32, "shows": "nothing"}
-{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:623", "lod": 1, "picnum": 417, "shade": 32, "shows": "nothing"}
+{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:623", "lod": 1, "picnum": 146, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:624", "lod": 1, "picnum": 417, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:625", "lod": 1, "picnum": 181, "shade": 9, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:626", "lod": 1, "picnum": 181, "shade": 9, "shows": "nothing"}
@@ -638,7 +638,7 @@
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "interior", "b": "facade", "frame": "boundary", "height": "b_above", "id": "wall:646", "lod": 1, "picnum": 181, "shade": 25, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "interior", "frame": "boundary", "height": "equal", "id": "wall:647", "lod": 1, "picnum": 181, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:648", "lod": 1, "picnum": 181, "shade": 32, "shows": "nothing"}
-{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:649", "lod": 1, "picnum": 181, "shade": 32, "shows": "nothing"}
+{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:649", "lod": 1, "picnum": 146, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:650", "lod": 1, "picnum": 181, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:651", "lod": 1, "picnum": 400, "shade": 9, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:652", "lod": 1, "picnum": 400, "shade": 9, "shows": "nothing"}
@@ -660,7 +660,7 @@
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "interior", "b": "facade", "frame": "boundary", "height": "b_above", "id": "wall:668", "lod": 1, "picnum": 400, "shade": 25, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "interior", "frame": "boundary", "height": "equal", "id": "wall:669", "lod": 1, "picnum": 400, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:670", "lod": 1, "picnum": 400, "shade": 32, "shows": "nothing"}
-{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:671", "lod": 1, "picnum": 400, "shade": 32, "shows": "nothing"}
+{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:671", "lod": 1, "picnum": 146, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:672", "lod": 1, "picnum": 400, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:673", "lod": 1, "picnum": 401, "shade": 9, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:674", "lod": 1, "picnum": 401, "shade": 9, "shows": "nothing"}
@@ -684,7 +684,7 @@
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "interior", "b": "facade", "frame": "boundary", "height": "b_above", "id": "wall:692", "lod": 1, "picnum": 401, "shade": 25, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "interior", "frame": "boundary", "height": "equal", "id": "wall:693", "lod": 1, "picnum": 401, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:694", "lod": 1, "picnum": 401, "shade": 32, "shows": "nothing"}
-{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:695", "lod": 1, "picnum": 401, "shade": 32, "shows": "nothing"}
+{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:695", "lod": 1, "picnum": 146, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:696", "lod": 1, "picnum": 401, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:697", "lod": 1, "picnum": 417, "shade": 9, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:698", "lod": 1, "picnum": 417, "shade": 9, "shows": "nothing"}
@@ -710,7 +710,7 @@
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "interior", "b": "facade", "frame": "boundary", "height": "b_above", "id": "wall:718", "lod": 1, "picnum": 417, "shade": 25, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "interior", "frame": "boundary", "height": "equal", "id": "wall:719", "lod": 1, "picnum": 417, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:720", "lod": 1, "picnum": 417, "shade": 32, "shows": "nothing"}
-{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:721", "lod": 1, "picnum": 417, "shade": 32, "shows": "nothing"}
+{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:721", "lod": 1, "picnum": 146, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:722", "lod": 1, "picnum": 417, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:723", "lod": 1, "picnum": 181, "shade": 9, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:724", "lod": 1, "picnum": 181, "shade": 9, "shows": "nothing"}
@@ -732,7 +732,7 @@
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "interior", "b": "facade", "frame": "boundary", "height": "b_above", "id": "wall:740", "lod": 1, "picnum": 181, "shade": 25, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "interior", "frame": "boundary", "height": "equal", "id": "wall:741", "lod": 1, "picnum": 181, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:742", "lod": 1, "picnum": 181, "shade": 32, "shows": "nothing"}
-{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:743", "lod": 1, "picnum": 181, "shade": 32, "shows": "nothing"}
+{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:743", "lod": 1, "picnum": 146, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:744", "lod": 1, "picnum": 181, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:745", "lod": 1, "picnum": 400, "shade": 9, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:746", "lod": 1, "picnum": 400, "shade": 9, "shows": "nothing"}
@@ -756,7 +756,7 @@
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "interior", "b": "facade", "frame": "boundary", "height": "b_above", "id": "wall:764", "lod": 1, "picnum": 400, "shade": 25, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "interior", "frame": "boundary", "height": "equal", "id": "wall:765", "lod": 1, "picnum": 400, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:766", "lod": 1, "picnum": 400, "shade": 32, "shows": "nothing"}
-{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:767", "lod": 1, "picnum": 400, "shade": 32, "shows": "nothing"}
+{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:767", "lod": 1, "picnum": 146, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:768", "lod": 1, "picnum": 400, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:769", "lod": 1, "picnum": 401, "shade": 9, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "facade", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:770", "lod": 1, "picnum": 401, "shade": 9, "shows": "nothing"}
@@ -780,7 +780,7 @@
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "interior", "b": "facade", "frame": "boundary", "height": "b_above", "id": "wall:788", "lod": 1, "picnum": 401, "shade": 25, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "interior", "frame": "boundary", "height": "equal", "id": "wall:789", "lod": 1, "picnum": 401, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:790", "lod": 1, "picnum": 401, "shade": 32, "shows": "nothing"}
-{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:791", "lod": 1, "picnum": 401, "shade": 32, "shows": "nothing"}
+{"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "pavement", "frame": "boundary", "height": "equal", "id": "wall:791", "lod": 1, "picnum": 146, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "opening", "b": "facade", "frame": "continues", "height": "b_above", "id": "wall:792", "lod": 1, "picnum": 401, "shade": 32, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "end_wall", "b": "road", "frame": "boundary", "height": "b_below", "id": "wall:793", "lod": 1, "picnum": 400, "shade": 16, "shows": "nothing"}
 {"_from": ["joins.apply"], "_layer": 1, "_reader": "compiler", "a": "end_wall", "b": "pavement", "frame": "boundary", "height": "b_below", "id": "wall:794", "lod": 1, "picnum": 400, "shade": 16, "shows": "nothing"}

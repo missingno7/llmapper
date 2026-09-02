@@ -245,6 +245,8 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
                   source=f"declaration:{row.get('kind', 'insert')}",
                   construct=row.get("kind", "insert"),
                   surface=row["surface"],
+                  tenant=row.get("tenant"),
+                  tenant_basis=row.get("tenant_basis", ""),
                   sector_type=int(row.get("sector_type", 0)))
         for wiring in row.get("wiring", ()):
             store.add("link", ("link", row["surface"], wiring.get("channel")),
@@ -384,6 +386,36 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
             disk.sectors[sector].fields[key] = value
     report["sectors"] = len(disk.sectors)
     report["walls"] = len(disk.walls)
+    #: THE LEAF, written after the compile because it names a NEIGHBOUR and
+    #: the neighbour's sector does not exist until then. A sector type alone
+    #: is not a mechanism: nothing drags, and the read-back says so.
+    kind_of = {compiled.allocations[name].sector_id: spec.kind
+               for name, _piece, spec in pieces}
+    for row in emission.declarations:
+        leaf = row.get("leaf")
+        if not leaf:
+            continue
+        name = next((n for n, _p, spec in pieces
+                     if spec.surface_id == row["surface"]), None)
+        if name is None:
+            continue
+        sector = compiled.allocations[name].sector_id
+        start = int(disk.sectors[sector].fields["wall_ptr"])
+        count = int(disk.sectors[sector].fields["wall_count"])
+        for wall_id in range(start, start + count):
+            face = disk.walls[wall_id].fields
+            there = int(face["next_sector"])
+            if there < 0 or kind_of.get(there) != leaf.get("faces"):
+                continue
+            face["picnum"] = int(leaf["tile"])
+            face["cstat"] = int(face["cstat"]) | int(leaf["flags"])
+            if leaf.get("over_picnum"):
+                face["over_picnum"] = int(leaf["over_picnum"])
+            report.setdefault("leaves", []).append(
+                {"surface": row["surface"], "wall": wall_id,
+                 "tile": int(leaf["tile"])})
+            break
+
     claimed = {fact.attrs["surface"] for fact in store.of("sentence")}
     for name, _piece, spec in pieces:
         if spec.surface_id not in claimed:
