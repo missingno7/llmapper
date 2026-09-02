@@ -16,6 +16,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass, replace
 from math import atan2, degrees, hypot
@@ -281,6 +282,19 @@ def resolve_corpus_map(path: str | Path, *, root: str | Path | None = None) -> C
     )
 
 
+#: XMapEdit writes `ASAVE<n>.map` (+ `.bak`) into whatever directory it was
+#: opened from, so an autosave lands in the corpus every time the owner opens
+#: the editor (owner, 2026-09-02: "ignore them"). The name check already
+#: quarantines it out of every authoritative population; this predicate lets
+#: the hygiene gates tell expected editor debris from a real stray file.
+_EDITOR_AUTOSAVE = re.compile(r"^ASAVE\d*\.(map|bak)$", re.IGNORECASE)
+
+
+def is_editor_autosave(path: str | Path) -> bool:
+    """True for an XMapEdit autosave file (`ASAVE1.map`, `ASAVE1.bak`)."""
+    return bool(_EDITOR_AUTOSAVE.match(Path(path).name))
+
+
 def _map_paths_under(directory: Path) -> list[Path]:
     if not directory.is_dir():
         return []
@@ -329,7 +343,15 @@ def tier_index(root: str | Path | None = None) -> dict[str, str]:
 
 
 def _admitted(item: CorpusMap) -> bool:
-    """Fail-closed admission for the two authoritative original populations."""
+    """Fail-closed admission for the two authoritative original populations.
+
+    An XMapEdit autosave is never admitted anywhere: the editor drops
+    `ASAVE<n>.map` into whichever corpus directory it was opened from, and
+    `curated/` and `community/` accept arbitrary names, so without this an
+    autosave in `curated/` counted as a curated map (2026-09-02: 47 for 46).
+    """
+    if is_editor_autosave(item.path):
+        return False
     if item.population not in STRICT_NAME_POPULATIONS:
         return True
     return item.filename_hint == item.population

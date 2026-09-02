@@ -49,10 +49,17 @@ def named_corpus_maps() -> list[Path]:
     `NAMED_POPULATIONS` is the same set `corpus_map_path` searches by name,
     and for the same reason.
     """
+    from bloodmap.patterns import is_editor_autosave
+
     root = blood_corpus_root()
     found: dict[str, Path] = {}
     for population in NAMED_POPULATIONS:
         for item in list_corpus_maps(root, population=population, attach_tiers=False):
+            # XMapEdit autosaves land in the corpus whenever the owner opens
+            # the editor; they are quarantined by the registry and are never
+            # part of the losslessness gate (owner, 2026-09-02: ignore them).
+            if is_editor_autosave(item.path):
+                continue
             found.setdefault(item.name.upper(), item.path)
     return sorted(found.values())
 

@@ -121,6 +121,33 @@ class SyntheticCorpusTests(unittest.TestCase):
         names = {p.name for p in list_original_maps(self.root, population="blood-campaign")}
         self.assertEqual(names, {"E1M1.MAP", "E6M9.MAP"})
 
+    def test_editor_autosaves_are_recognised_as_expected_debris(self):
+        # XMapEdit drops ASAVE<n>.map wherever it was opened; the owner opens
+        # the editor on corpus files daily (2026-09-02: "ignore them"). The
+        # name check already quarantines them out of every population; the
+        # predicate lets a hygiene gate tell that debris from a real stray.
+        from bloodmap.patterns import is_editor_autosave
+
+        payload = encode_map(synthetic_map())
+        strays = [self.root / "campaign" / "ASAVE1.map",
+                  self.root / "curated" / "ASAVE12.map"]
+        for stray in strays:
+            stray.write_bytes(payload + b"\xff")
+        try:
+            self.assertTrue(all(is_editor_autosave(s) for s in strays))
+            self.assertTrue(is_editor_autosave("ASAVE1.bak"))
+            self.assertFalse(is_editor_autosave(self.root / "campaign" / "E1M1.MAP"))
+            strict = {item.name.upper()
+                      for population in ("blood-campaign", "community-curated")
+                      for item in list_corpus_maps(self.root, population=population)}
+            self.assertFalse({n for n in strict if n.startswith("ASAVE")}, strict)
+            quarantined = {item.relative for item in unadmitted_corpus_maps(self.root)}
+            self.assertEqual(quarantined, {"campaign/ASAVE1.map", "curated/ASAVE12.map"})
+            self.assertTrue(all(is_editor_autosave(r) for r in quarantined))
+        finally:
+            for stray in strays:
+                stray.unlink()
+
     def test_community_and_tiered_are_one_population_with_tier_metadata(self):
         community = list_corpus_maps(self.root, population="community")
         self.assertEqual(len(community), 2, "tiered/ must not double-count community maps")

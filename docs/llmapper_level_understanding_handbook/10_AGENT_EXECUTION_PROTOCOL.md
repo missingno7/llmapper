@@ -34,6 +34,30 @@ exists — do not rebuild it).
 - When changing a unit or measurement, grep for its consumers; derived
   numbers move with it.
 
+## Irreplaceable local data (read before any delete)
+
+`maps/` and `reference/` are gitignored and are the project's only
+evidence: the map corpus, the mechanism curriculum, the owner's own maps,
+the Blood game directory the observer runs against, and the bot's test
+maps. On 2026-09-01 a `git worktree remove --force` followed a directory
+junction into the main checkout and deleted both; the bot's AGTST test
+maps could not be recovered. The owner's rule: **this must never happen
+again.** So:
+
+- Never run a recursive delete of any kind inside or near the repository
+  (`git worktree remove`, `Remove-Item -Recurse`, `rm -rf`, `rmdir /s`,
+  `git clean`). Deletion of a directory tree is the owner's action, not an
+  agent's. If a worktree or scratch tree must go, report it and stop.
+- Never create a junction or symlink into `maps/`, `reference/`, `NBlood/`
+  or `xmapedit/`. Worktrees reach the corpus through `BLOODMAP_CORPUS=
+  D:\Games\DOS\llmapper\maps\blood` and absolute paths only.
+- Before any cleanup a human runs, enumerate reparse points
+  (`Get-ChildItem -Recurse -Force | ? { $_.Attributes -band 'ReparsePoint' }`)
+  and unlink each with `[IO.Directory]::Delete(path)` (non-recursive) first.
+- Run `tools\backup_corpus.ps1` after any change under `maps/` or
+  `reference/`; it mirrors both to two drives and refuses to run through a
+  junction. The recovery record is `reports/corpus-recovery-2026-09-01.md`.
+
 ## Before coding
 
 For the selected task:

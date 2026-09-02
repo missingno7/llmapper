@@ -551,3 +551,15 @@ mapper made of the world each time it was rebuilt, which is the trace to read
 when a run goes wrong: engine, mapper, Regions, relations, traversal, planner,
 executor, in that order. Each carries the Blood objects behind the semantic id
 it names, for reading only.
+
+## Loss notice, 2026-09-02
+
+The AGTST test maps (`reference/blood/AGTST1.map` … `AGTST18.map`),
+`overlap1.map` and the `llmapper-bot-iter27.*` artifacts were deleted on
+2026-09-01 by a worktree cleanup that followed a directory junction, and no
+copy exists anywhere on this machine or in the NBlood fork's history. The
+hard correctness gate in `tools/botcorpus.sh` therefore has no maps to run
+until they are re-authored. Recovery record: `reports/corpus-recovery-
+2026-09-01.md`. The rule that follows is in
+`docs/llmapper_level_understanding_handbook/10_AGENT_EXECUTION_PROTOCOL.md`,
+"Irreplaceable local data".
