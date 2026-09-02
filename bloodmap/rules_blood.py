@@ -1361,3 +1361,109 @@ register(Rule(
     scope="wall",
     check=_texture_runs_continue_as_the_campaign_does,
 ))
+
+#: How big a material is drawn, as texels per sixteen world units -- one Build
+#: texel step. A wall consumes `x_repeat * 8` texels (`AlignWalls`,
+#: xmapedit/src_blood/xmpmaped.cpp:3036), so the figure is
+#: `x_repeat * 128 / length`, and a 64-wide tile at 1.0 covers 1024 world
+#: units, which is Blood's own module.
+#:
+#: Measured over the 43 campaign maps: **every map's median lies between 0.84
+#: and 1.00**, for one-sided walls (43 maps, n=46873) and two-sided alike (43
+#: maps, n=52801). That is the tightest number this project has found in the
+#: corpus, and it is the one nothing was checking: after 8b70d51 both built
+#: maps sat at a median of 8.00 -- every facade eight times too narrow -- and
+#: the continuity gate, the read-back, the conformance sweep and the
+#: `>`-invariance test all passed, because every one of them compares a wall
+#: to its neighbour and the neighbour was wrong in the same way.
+#:
+#: The envelope below is deliberately twice as wide either side of that band.
+#: A material drawn at half or double its natural size is a look a mapper may
+#: want; eight times is not a look, it is an error.
+TEXEL_STEP_ENVELOPE = (0.5, 2.0)
+#: What the campaign actually occupies, kept beside the envelope so the
+#: generosity is visible rather than assumed.
+CAMPAIGN_TEXEL_STEP = {"one-sided": (0.84, 1.00), "two-sided": (0.93, 1.00)}
+#: Below this a kind is too small a sample for a median to mean anything.
+TEXEL_STEP_MIN_WALLS = 30
+
+
+def _texel_step_rows(disk):
+    """(kind, texels per 16 units) per measurable wall.
+
+    Moving walls are their own class and excluded BY CONSTRUCT rather than by
+    hand: a mover's length is not a fact about the world, since
+    `TranslateSector` moves the flagged end every tick while `x_repeat` stays
+    put. A curtain's fabric is authored for the span the cloth hangs across
+    and the file is saved at the gathered pose, so its drawn length says
+    nothing about its scale -- which is why `texture_frame.frame_map` refuses
+    to project them and why they cannot be judged here either.
+    """
+    from .texture_frame import MOVING_SECTOR_TYPES, wall_length
+
+    sizes = art_sizes()
+    moving = set()
+    for sector in disk.sectors:
+        if int(sector.fields["type"]) not in MOVING_SECTOR_TYPES:
+            continue
+        start = int(sector.fields["wall_ptr"])
+        moving.update(range(start, start + int(sector.fields["wall_count"])))
+    out = []
+    for index, wall in enumerate(disk.walls):
+        if index in moving:
+            continue
+        picnum = int(wall.fields["picnum"])
+        size = sizes.get(picnum)
+        if not size or not size[0]:
+            continue
+        length = wall_length(disk, index)
+        if length <= 0:
+            continue
+        kind = "two-sided" if int(wall.fields["next_sector"]) >= 0 else "one-sided"
+        out.append((kind, index, int(wall.fields["x_repeat"]) * 128.0 / length))
+    return out
+
+
+def _materials_are_drawn_at_campaign_size(disk) -> Finding:
+    import statistics
+    from collections import defaultdict
+
+    by_kind = defaultdict(list)
+    for kind, _index, step in _texel_step_rows(disk):
+        by_kind[kind].append(step)
+    population = 0
+    out = []
+    low, high = TEXEL_STEP_ENVELOPE
+    for kind in sorted(by_kind):
+        steps = by_kind[kind]
+        if len(steps) < TEXEL_STEP_MIN_WALLS:
+            continue
+        population += 1
+        median = statistics.median(steps)
+        if not (low <= median <= high):
+            seen = CAMPAIGN_TEXEL_STEP.get(kind)
+            out.append(Violation(
+                f"walls[{kind}].texel_step",
+                f"median {median:.2f} over {len(steps)} walls is outside "
+                f"[{low}, {high}]; every campaign map lies in "
+                f"{seen[0]:.2f}-{seen[1]:.2f}" if seen else
+                f"median {median:.2f} is outside [{low}, {high}]"))
+    return Finding(population, tuple(out))
+
+
+register(Rule(
+    id="material-is-drawn-at-campaign-size",
+    statement=(
+        "a map draws its wall materials at the size the campaign draws them, "
+        "within a factor of two"),
+    because=(
+        "a wall consumes x_repeat*8 texels, so how big the material looks is "
+        "x_repeat*128/length and nothing in the file states it. Every "
+        "alignment check in this project is RELATIVE -- it compares a wall to "
+        "its neighbour -- so a scale error applied uniformly passes all of "
+        "them at once, which is exactly what happened: both built maps shipped "
+        "at eight times too narrow with every continuity gate green"),
+    source="xmapedit/src_blood/xmpmaped.cpp:3036 AlignWalls",
+    scope="wall",
+    check=_materials_are_drawn_at_campaign_size,
+))

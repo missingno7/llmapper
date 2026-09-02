@@ -143,6 +143,12 @@ FLOOR_RELATIVE = 0x40
 #: `AlignWalls` works modulo 256 in both pannings: they are `uint8_t`.
 PANNING_PERIOD = 256
 
+#: One texel per sixteen world units: the campaign's median wall scale, and
+#: the same figure `texture_align.NATURAL_TEXEL_SCALE` states as "two tile
+#: widths per repeat". A 64-wide tile at this scale covers 1024 world units,
+#: which is Blood's own module.
+NATURAL_TEXELS_PER_UNIT = 1.0 / 16.0
+
 #: Where the campaign stops carrying a run. Not a guess: over the 43 campaign
 #: maps a reflex join continues the texture a quarter of the time against
 #: three quarters for a bend, and the editor's traversal has no angle test at
@@ -510,7 +516,11 @@ class WallRunFrame:
 
     `texels_per_unit` is the scale the editor carries with `lenrepquot`
     (`xmpmaped.h:279-289`); the field is texels per world unit, so a wall of
-    length L takes ``L * texels_per_unit / 8`` as its `x_repeat`.
+    length L takes ``L * texels_per_unit / 8`` as its `x_repeat`, because
+    `x_repeat * 8` is what a wall consumes (`AlignWalls`, `:3036`). Getting
+    that eight wrong is invisible to the `>`-invariance test -- both sides
+    accumulate the same wrong number -- which is why there are absolute tests
+    beside it now.
 
     `v0` is a world z, not a wall: the vertical phase is affine in the peg
     height (`AlignWalls`, `:3044`), so stating the height the material hangs
@@ -520,9 +530,16 @@ class WallRunFrame:
     """
 
     tile: int
-    #: Texels per world unit. 1/8 is one tile every 8*tilesizx units, which is
-    #: what this repo has always called the natural scale.
-    texels_per_unit: float = 1.0 / 8.0
+    #: Texels per world unit, and the default is the CAMPAIGN's own.
+    #:
+    #: Measured over the 43 maps as texels per 16 world units -- one Build
+    #: texel step, `x_repeat * 128 / length` -- the median is 1.00 for
+    #: one-sided walls (n=46873, quartiles 0.93-1.00) and 1.00 for two-sided
+    #: (n=52801). One texel per 16 units is `texels_per_unit` 1/16, which puts
+    #: `x_repeat` at `length / 128` for a 64-wide tile and agrees with
+    #: `texture_align.natural_x_repeat`, which has said `length / (2 *
+    #: tile_width)` since long before this module existed.
+    texels_per_unit: float = NATURAL_TEXELS_PER_UNIT
     #: Texel offset at the run's first wall start. Non-zero only when a run is
     #: deliberately continued from somewhere else.
     u0: int = 0
@@ -762,7 +779,13 @@ def resolve_run(level: Any, run: Sequence[int], frame: WallRunFrame,
     for index in run:
         face = _fields(level.walls[index])
         length = wall_length(level, index)
-        repeat = max(1, min(255, int(round(length * frame.texels_per_unit))))
+        #: `x_repeat * 8` is the texel count a wall consumes (`AlignWalls`,
+        #: `:3036` `xrepeat<<3`), so the repeat that realises a scale in
+        #: texels per world unit is `length * scale / 8`. The eight was
+        #: missing here from 8b70d51 until 2026-09-02 and made every framed
+        #: wall in both built maps eight times too narrow.
+        repeat = max(1, min(255, int(round(
+            length * frame.texels_per_unit / 8.0))))
         y_panning = c_div((wall_z_peg(level, index, owners) - v0)
                           * int(frame.y_repeat), height << 3) % PANNING_PERIOD
         wanted = {
@@ -964,7 +987,7 @@ def frame_map(level: Any, *,
         tile = int(head["picnum"])
         length = wall_length(level, run[0]) or 1
         scale = (int(head["x_repeat"]) * 8.0 / length if carry_scale
-                 else 1.0 / 8.0)
+                 else NATURAL_TEXELS_PER_UNIT)
         frame = WallRunFrame(
             tile=tile,
             texels_per_unit=max(scale, 1e-6),

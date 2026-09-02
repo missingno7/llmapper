@@ -159,6 +159,16 @@
    "statement": "a masked wall should be something you look through, not stone",
    "source": "corpus"
   },
+  "material-is-drawn-at-campaign-size": {
+   "rule": "material-is-drawn-at-campaign-size",
+   "maps": 43,
+   "population": 86,
+   "violations": 0,
+   "rate": 0.0,
+   "severity": "error",
+   "statement": "a map draws its wall materials at the size the campaign draws them, within a factor of two",
+   "source": "xmapedit/src_blood/xmpmaped.cpp:3036 AlignWalls"
+  },
   "open-neighbours-share-a-sky": {
    "rule": "open-neighbours-share-a-sky",
    "maps": 43,
