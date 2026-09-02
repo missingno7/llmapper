@@ -590,19 +590,40 @@ def split_polygon(rings: Sequence[Sequence[Point]], cut: "Cut"
     rings = normalise(rings)
     if not rings:
         return [], []
+    #: WHICH POINTS ARE ON THE LINE IS RECORDED, NOT RE-DERIVED.
+    #:
+    #: A crossing is computed in rationals and rounded to Build's integer
+    #: grid, and the rounded point is then routinely more than `ON_LINE` off
+    #: the line it was cut on -- the cross product magnifies half a unit of
+    #: rounding by the segment's length. Asking `_side` about it afterwards
+    #: answers "not on the line", so the chord is never built, the chain
+    #: dangles and BOTH sides come back empty. Axis-aligned cuts and a
+    #: 45-degree one land exactly on integers, which is why the first round of
+    #: tests passed and the sun's 84 degrees did not.
+    crossings = set()
+    for ring in rings:
+        count = len(ring)
+        for index in range(count):
+            here = tuple(ring[index])
+            nxt = tuple(ring[(index + 1) % count])
+            if _side(cut, here) and _side(cut, nxt) and                     _side(cut, here) != _side(cut, nxt):
+                crossings.add(_crossing(cut, here, nxt))
+
+    def _on(point):
+        return point in crossings or _side(cut, point) == 0
+
     out = []
     for want in (1, -1):
-        edges: dict[Point, Point] = {}
-        on_line: set[Point] = set()
+        edges = {}
+        on_line = set()
         for ring in rings:
-            augmented: list[Point] = []
+            augmented = []
             count = len(ring)
             for index in range(count):
                 here = tuple(ring[index])
                 nxt = tuple(ring[(index + 1) % count])
                 augmented.append(here)
-                if _side(cut, here) and _side(cut, nxt) and \
-                        _side(cut, here) != _side(cut, nxt):
+                if _side(cut, here) and _side(cut, nxt) and                         _side(cut, here) != _side(cut, nxt):
                     augmented.append(_crossing(cut, here, nxt))
             total = len(augmented)
             for index in range(total):
@@ -610,9 +631,9 @@ def split_polygon(rings: Sequence[Sequence[Point]], cut: "Cut"
                 nxt = augmented[(index + 1) % total]
                 if here == nxt:
                     continue
-                sh, sn = _side(cut, here), _side(cut, nxt)
-                keep = (sh == want or sn == want
-                        or (sh == 0 and sn == 0))
+                sh = 0 if _on(here) else _side(cut, here)
+                sn = 0 if _on(nxt) else _side(cut, nxt)
+                keep = (sh == want or sn == want or (sh == 0 and sn == 0))
                 if sh == -want or sn == -want:
                     keep = False
                 if not keep:
