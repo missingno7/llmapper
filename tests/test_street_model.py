@@ -288,3 +288,85 @@ class TheSkyIsAMaterial(unittest.TestCase):
                         "tile-sits-in-an-attested-slot"):
             finding = RULES[rule_id].check(disk)
             self.assertEqual(finding.violations, (), rule_id)
+
+
+class TheReaderSideOfTheGroundModel(unittest.TestCase):
+    """Every writer has a reader, and the reader says what it cannot recover.
+
+    A value only the emitter knows is a claim nobody can check, so `read_city`
+    reports its blind spots by name beside the numbers it does recover.
+    """
+
+    @staticmethod
+    def _city():
+        """A road split by one shadow, and two islands joined by a path."""
+        from bloodmap.planar_layout import PlanarLayout
+
+        layout = PlanarLayout(name="reader-fixture")
+        sky = 3491
+        # two road pieces, one lit and one in shadow, meeting on an OBLIQUE
+        # edge at the sun's bearing (atan2(4096, 416) = 84.2 degrees)
+        layout.add_region("road_lit", [(0, 0), (8608, 0), (8192, 4096),
+                                       (0, 4096)],
+                          floor_z=10240, ceiling_z=10240 - 6 * 32768,
+                          floor_picnum=352, ceiling_picnum=sky,
+                          wall_picnum=6, floor_shade=8,
+                          parallax_ceiling=True, role="street")
+        layout.add_region("road_dark", [(8608, 0), (16384, 0), (16384, 4096),
+                                        (8192, 4096)],
+                          floor_z=10240, ceiling_z=10240 - 6 * 32768,
+                          floor_picnum=352, ceiling_picnum=sky,
+                          wall_picnum=6, floor_shade=20,
+                          parallax_ceiling=True, role="street")
+        for name, x0, x1 in (("island_a", 0, 8192), ("island_b", 8192, 16384)):
+            layout.add_region(name, [(x0, 4096), (x1, 4096), (x1, 12288),
+                                     (x0, 12288)],
+                              floor_z=8192, ceiling_z=8192 - 6 * 32768,
+                              floor_picnum=4, ceiling_picnum=sky,
+                              wall_picnum=4, floor_shade=8,
+                              parallax_ceiling=True, role="street")
+        layout.add_connection("shadow", "road_lit", "road_dark", role="portal",
+                              a1=(8608, 0), a2=(8192, 4096))
+        layout.add_connection("path", "island_a", "island_b", role="portal",
+                              a1=(8192, 4096), a2=(8192, 12288))
+        layout.add_connection("kerb_a", "road_lit", "island_a", role="portal",
+                              a1=(0, 4096), a2=(8192, 4096))
+        layout.add_connection("kerb_b", "road_dark", "island_b", role="portal",
+                              a1=(8192, 4096), a2=(16384, 4096))
+        layout.set_player_start("road_lit", x=2048, y=2048, z=10240, angle=0)
+        return layout.compile().level.to_disk_map()
+
+    def test_it_recovers_one_plane_and_the_shade_levels(self):
+        from bloodmap.street_model import read_city
+
+        found = read_city(self._city())
+        self.assertEqual(found["planes"], 1)
+        self.assertEqual(found["road_sectors"], 2)
+        self.assertEqual(found["shade_levels"], [8, 20])
+
+    def test_it_recovers_the_sun_bearing_from_the_iso_line(self):
+        from bloodmap.street_model import read_city
+
+        found = read_city(self._city())
+        self.assertEqual(found["oblique_iso_lines"], 2)
+        self.assertAlmostEqual(found["sun_bearing_degrees"], 84.2, places=1)
+
+    def test_two_islands_on_a_path_read_back_as_one(self):
+        # THE NAMED GAP, and it is a real asymmetry rather than a defect: the
+        # map records a connected pavement network and not the surfaces the
+        # emitter declared.
+        from bloodmap.street_model import read_city
+
+        found = read_city(self._city())
+        self.assertEqual(found["pavement_sectors"], 2)
+        self.assertEqual(found["islands"], 1)
+        self.assertTrue(any("surface identity" in gap
+                            for gap in found["symmetry_gaps"]))
+
+    def test_the_gaps_are_reported_rather_than_implied(self):
+        from bloodmap.street_model import read_city
+
+        found = read_city(self._city())
+        self.assertEqual(len(found["symmetry_gaps"]), 3)
+        for gap in found["symmetry_gaps"]:
+            self.assertIn(":", gap, "each gap is named, then explained")

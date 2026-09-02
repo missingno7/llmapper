@@ -147,6 +147,14 @@ def _rows() -> tuple[JoinRule, ...]:
                  evidence="DWE3M10: the shore meets the sea at equal z and "
                           "neither record draws; the sea carries its own "
                           "panning frame"),
+        JoinRule(SEA, SEA, EQUAL,
+                 evidence="DWE3M10: its 18 sea sectors meet one another at "
+                          "equal z on 150 records and the meeting draws no "
+                          "band -- the cut set there is the water's own, and "
+                          "here it is the light field's"),
+        JoinRule(SHORE, SHORE, EQUAL,
+                 evidence="DWE3M10 s120/s403 meet the same way: one shore cut "
+                          "in two is still one shore"),
         JoinRule(SHORE, PAVEMENT, B_ABOVE, a_shows="lower band, quay class",
                  frame="independent",
                  evidence="DWE3M10 s120/s403: the shore's landward neighbour "
