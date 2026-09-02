@@ -1,16 +1,29 @@
-"""Slice 2 deliverable 6: the whole street graph, on the ground-plane model.
+"""Gravesend's ground: the street graph, its edges, and the water it ends at.
 
-The street network is ONE region per connected network -- a lattice, concave,
-with the islands as the space it does not cover. Junctions are the parts of
-that plane no island covers and have no exits of their own to declare. The
-light field cuts the plane and its islands; the join table decides every
-shared record; the channel ledger owns every shade.
+The emitter DECLARES and calls no pass. It returns a `pipeline.Emission` --
+surfaces, declarations, light, joins, frames -- and `pipeline.compile_city`
+runs planes -> declare -> light -> joins -> frames itself. Slice 2h's version
+of this file called the passes by hand and forgot `frame_map`; what reported
+that was the frames gate, at 191 misaligned walls, which is the symptom and
+not the cause.
+
+The model, unchanged: streets are the ground plane, one region per connected
+network; pavements are ISLANDS standing 2048 up on it; a kerb is the island's
+exposed edge; the light field cuts both; the join table decides every shared
+record.
+
+What this slice adds is the rest of the city's edge. End walls where three
+streets reach the boundary. A south waterfront -- quay walk, shore, sea,
+horizon -- in DWE3M10's dialect. A plaza, a cemetery and a works yard at
+pavement level, each an island with its own surface and each joined to the
+island it abuts by a pavement-only path. Lamps at E3M1's measured rate.
 
 Writes `slice2-streets.MAP` and leaves `blood-city-current.MAP` alone.
 """
 
 from __future__ import annotations
 
+import math
 import pathlib
 import sys
 
@@ -20,26 +33,64 @@ for path in (str(ROOT), str(HERE)):
     if path not in sys.path:
         sys.path.insert(0, path)
 
-import city_plan as plan                                          # noqa: E402
 from bloodmap import joins                                        # noqa: E402
-from bloodmap.channels import Compilation, RegionLedger           # noqa: E402
-from bloodmap.format import write_map                             # noqa: E402
-from bloodmap.light_field import Mass, build_field                # noqa: E402
-from bloodmap.lightbomb import apply_shade_channel                # noqa: E402
-from bloodmap.overlay import (                                    # noqa: E402
-    ground_plane_rings, partition_faults, region_area)
-from bloodmap.planar_layout import PlanarLayout                   # noqa: E402
+from bloodmap import street                                       # noqa: E402
+from bloodmap.light_field import Mass                             # noqa: E402
+from bloodmap.overlay import ground_plane_rings, region_area      # noqa: E402
+from bloodmap.pipeline import (                                   # noqa: E402
+    Emission, FrameSpec, JoinSpec, Lamp, LightSpec, SurfaceSpec)
 from city_solve import Cell, Envelope, Gutter, solve_axis         # noqa: E402
+import city_plan as plan                                          # noqa: E402
 from resolution import (                                          # noqa: E402
-    GRADE, SKY_TILE, STREET_SKY, SUN_BEARING, WIDTH_UNITS)
+    GRADE, SKY_TILE, STANDING, STREET_SKY, SUN_BEARING, WIDTH_UNITS)
 
 ROAD_TILE, PAVE_TILE, KERB_TILE = 352, 4, 6
+FACADE_STONE = joins.TILE_CLASSES["facade stone"]
 RISE = 2048
 ROAD_Z = GRADE + RISE
 ISLAND_Z = GRADE
 BAND = 2048
 BASE_SHADE = 8
 STEP = 12
+
+#: LAMPS, and the correction the corpus forced.
+#:
+#: "Lamps at E3M1's rate" has no rate to take. E3M1's 45 bright outdoor
+#: sprites are tiles 2519/2521 at shade -128 -- and they carry cstat 32896,
+#: whose 0x8000 bit is INVISIBLE, statnum 12 (kStatAmbience) and types 708 and
+#: 710, which `blood_types` names kGenSound and Ambient SFX. They are sound
+#: generators wearing an editor icon, not lights. Widened to the whole
+#: campaign: **0 visible outdoor lamps in 43 maps over 51,277,134,846 square
+#: units of outdoor ground**. Blood does not put lamps on its streets; its
+#: outdoor light is the sun and the shadow field, which is what the light
+#: field already models.
+#:
+#: So the rate is borrowed from the only lamp density Blood has, its indoor
+#: one: 245 lamps over 65,376,896,105 square units of interior, a per-map
+#: median of one per **187,624,103** square units -- one every 13,698 units
+#: square. The tile is 641, the hanging lantern, at the campaign's own cstat
+#: 128, statnum 0, repeat 64 and a median 58,368 (3.44 player heights) above
+#: its floor.
+LAMP_TILE = 641
+LAMP_TYPE = 0
+LAMP_SHADE = -128
+LAMP_CSTAT = 128
+LAMP_HANG = 58368
+AREA_PER_LAMP = 187624103
+#: The campaign gives its lamp-lit OUTDOOR sectors no shade bonus, because it
+#: has none. So this delta is ours and is declared as such: half the measured
+#: field step, so a lamp lifts half a shadow level rather than cancelling one.
+LAMP_DELTA = -STEP // 2
+
+#: The waterfront, in DWE3M10's dialect and at its measured step.
+SHORE_STEP = joins.SHORE_STEP
+SHORE_TILE = joins.SHORE_TILES[0]
+SEA_TILE = joins.SEA_TILE
+HORIZON_TILE = joins.HORIZON_TILE
+QUAY_WALK_DEPTH = 2048
+SHORE_DEPTH = 2048
+SEA_DEPTH = 16384
+HORIZON_DEPTH = 2048
 
 
 def _env(venue_id):
@@ -65,21 +116,34 @@ Y_ORDER = [Gutter("lane_north", "lane"),
            Cell("row_3", (_env("works_canteen"), _env("workshop_bar"))),
            Gutter("quay", "row")]
 
+#: How deep an end wall bites into the street it stops. The wall itself is
+#: `street.end_wall`'s dialect; this is only how much street it occupies.
+END_WALL_DEPTH = 2048
+#: Which streets end at the boundary, and at which end. `city_plan.BOUNDARY`
+#: names three -- the avenue, the spur and the west street -- and puts all
+#: three on the north side.
+TERMINATED = ("avenue", "spur", "west_street")
 
-def centroid(ring):
-    return (sum(p[0] for p in ring) // len(ring),
-            sum(p[1] for p in ring) // len(ring))
+
+def _rect(x0, y0, x1, y1):
+    return [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
 
 
-def build():
-    run = Compilation()
+def _sky(floor_z):
+    return floor_z - STREET_SKY
+
+
+def geometry():
+    """Every rectangle this city is made of, solved and named.
+
+    Separated from the emission so a gate can ask where the plaza is without
+    compiling a map.
+    """
     x = solve_axis("x", X_ORDER, WIDTH_UNITS)
     y = solve_axis("y", Y_ORDER, WIDTH_UNITS)
-    layout = PlanarLayout(name="slice2-streets")
-    report = {"solved": (x.total, y.total)}
+    spans_x = {name: (lo, hi) for name, lo, hi in x.spans}
+    spans_y = {name: (lo, hi) for name, lo, hi in y.spans}
 
-    # --- 1. planes and islands -------------------------------------------
-    run.enter("planes")
     strips = []
     for name, lo, hi in x.spans:
         if name not in x.demanded:
@@ -87,176 +151,277 @@ def build():
     for name, lo, hi in y.spans:
         if name not in y.demanded:
             strips.append((0, lo, x.total, hi))
-    #: The plane is a polygon WITH HOLES: a street grid encloses its blocks,
-    #: and the islands stand in those holes.
-    plane = ground_plane_rings(strips)
-    report["plane_rings"] = [len(ring) for ring in plane]
 
+    lane_north = spans_y["lane_north"][1]
+    #: END WALLS. Each stops its street just south of the perimeter lane, so
+    #: the lane itself stays whole -- a ring lattice survives one blockage per
+    #: leg, and the connectivity flood in `ground_plane_rings` still asks.
+    ends = {}
+    for name in TERMINATED:
+        lo, hi = spans_x[name]
+        ends[f"end_wall:{name}"] = (lo, lane_north,
+                                    hi, lane_north + END_WALL_DEPTH)
+
+    #: THE OPEN PLACES, each let into a street and each abutting the island it
+    #: belongs to, so the shared edge is a pavement-only path.
+    plaza_x0, plaza_x1 = spans_x["col_b"][0] + BAND, spans_x["col_b"][1] - BAND
+    plaza_y0 = spans_y["market_street"][0]
+    places = {
+        "market_plaza": (plaza_x0, plaza_y0, plaza_x1, plaza_y0 + 3072),
+        "cemetery": (spans_x["west_street"][0], spans_y["row_2"][0] + BAND,
+                     spans_x["west_street"][0] + 3072,
+                     spans_y["row_2"][1] - BAND),
+    }
+
+    #: THE QUAY WALK: the southernmost band of the quay street, taken out of
+    #: the plane and stood 2048 up, so the shore has a pavement to step to.
+    quay_lo, quay_hi = spans_y["quay"]
+    quay_walk = (0, quay_hi - QUAY_WALK_DEPTH, x.total, quay_hi)
+
+    holes = list(ends.values()) + list(places.values()) + [quay_walk]
+    plane = ground_plane_rings(strips, holes=holes)
+
+    #: THE ISLANDS. col_c/row_3 loses the works yard to a notch, so it is an
+    #: L: the yard is its own pavement surface at the same z and the two are
+    #: joined by a path, which is what a yard is.
+    yard = None
     islands = {}
     masses = []
-    for x_name, x0, x1 in x.spans:
-        if x_name not in x.demanded:
-            continue
-        for y_name, y0, y1 in y.spans:
-            if y_name not in y.demanded:
-                continue
+    for x_name, (x0, x1) in ((n, spans_x[n]) for n in x.demanded):
+        for y_name, (y0, y1) in ((n, spans_y[n]) for n in y.demanded):
             key = f"{x_name}/{y_name}"
-            islands[key] = [(x0, y0), (x1, y0), (x1, y1), (x0, y1)]
+            if key == "col_c/row_3":
+                notch_x1 = x0 + (x1 - x0) // 3
+                notch_y1 = y0 + (y1 - y0) // 2
+                yard = (x0, y0, notch_x1, notch_y1)
+                islands[key] = [(notch_x1, y0), (x1, y0), (x1, y1), (x0, y1),
+                                (x0, notch_y1), (notch_x1, notch_y1)]
+            else:
+                islands[key] = _rect(x0, y0, x1, y1)
             mx0, my0 = x0 + BAND, y0 + BAND
             mx1 = min(x1 - BAND, mx0 + x.demanded[x_name])
             my1 = min(y1 - BAND, my0 + y.demanded[y_name])
             if mx1 - mx0 >= 2048 and my1 - my0 >= 2048:
                 masses.append(Mass(f"mass:{key}",
-                                   ((mx0, my0), (mx1, my0), (mx1, my1),
-                                    (mx0, my1)), 4 * 16960))
-    report["islands"] = len(islands)
-    report["masses"] = len(masses)
+                                   tuple(_rect(mx0, my0, mx1, my1)),
+                                   4 * STANDING))
+    places["works_yard"] = yard
 
-    # --- 2. declare (nothing yet: no mechanisms in this slice) ------------
-    run.enter("declare")
-
-    # --- 3. the light field on its domain --------------------------------
-    run.enter("light")
-    surfaces = {"plane": (plane, ROAD_Z, ROAD_TILE, KERB_TILE)}
-    for key, ring in islands.items():
-        surfaces[key] = ([ring], ISLAND_Z, PAVE_TILE, PAVE_TILE)
-
-    ledger = RegionLedger()
-    pieces = []
-    absorbed = 0
-    for surface_id, (rings, floor_z, floor_tile, wall_tile) in \
-            sorted(surfaces.items()):
-        field = build_field(rings, masses, bearing_units=SUN_BEARING)
-        absorbed += len(field["absorbed"])
-        report["welded_vertices"] = (report.get("welded_vertices", 0)
-                                     + field["welded_vertices"])
-        report["before_field"] = report.get("before_field", 0) + 1
-        #: POST-CONDITION, per surface, before anything is added: the field's
-        #: pieces must partition the surface it cut. Area alone is not that
-        #: -- it is satisfied by a set that double-counts one region and loses
-        #: another of the same size.
-        faults = partition_faults([p.rings for p in field["pieces"]], rings)
-        if faults:
-            report.setdefault("partition_faults", []).append(
-                {"surface": surface_id, "faults": faults,
-                 "pieces": [[list(map(list, ring)) for ring in p.rings]
-                            for p in field["pieces"]],
-                 "rings": [list(map(list, ring)) for ring in rings],
-                 "masses": [{"id": m.mass_id,
-                             "outline": list(map(list, m.outline)),
-                             "height": m.height} for m in masses]})
-        for index, piece in enumerate(field["pieces"]):
-            name = (surface_id if len(field["pieces"]) == 1
-                    else f"{surface_id}#{index}")
-            layout.add_region(name, piece.rings[0], holes=piece.rings[1:],
-                              floor_z=floor_z, ceiling_z=floor_z - STREET_SKY,
-                              floor_picnum=floor_tile, ceiling_picnum=SKY_TILE,
-                              wall_picnum=wall_tile, floor_shade=BASE_SHADE,
-                              parallax_ceiling=True, role="street")
-            pieces.append((name, piece, surface_id, floor_z))
-    report["pieces"] = len(pieces)
-    report["slivers_absorbed"] = absorbed
-    report["levels"] = sorted({p.depth for _n, p, _s, _z in pieces})
-
-    # --- pair every piece that shares a wall ------------------------------
-    paired = 0
-    for index, (a_name, a_piece, _a_sid, _az) in enumerate(pieces):
-        for b_name, b_piece, _b_sid, _bz in pieces[index + 1:]:
-            for number, edge in enumerate(_shared(a_piece.rings,
-                                                  b_piece.rings)):
-                layout.add_connection(
-                    f"join:{a_name}:{b_name}:{number}", a_name, b_name,
-                    role="portal", a1=edge[0], a2=edge[1])
-                paired += 1
-    report["joins_declared"] = paired
-
-    start = next(name for name, piece, sid, _z in pieces if sid == "plane")
-    spot = centroid(layout.regions[start].outer)
-    layout.set_player_start(start, x=int(spot[0]), y=int(spot[1]),
-                            z=ROAD_Z, angle=0)
-    return layout, run, ledger, pieces, report, x, y
+    water = {
+        "shore": (0, quay_hi, x.total, quay_hi + SHORE_DEPTH),
+        "sea": (0, quay_hi + SHORE_DEPTH, x.total,
+                quay_hi + SHORE_DEPTH + SEA_DEPTH),
+        "horizon": (0, quay_hi + SHORE_DEPTH + SEA_DEPTH, x.total,
+                    quay_hi + SHORE_DEPTH + SEA_DEPTH + HORIZON_DEPTH),
+    }
+    return {"x": x, "y": y, "plane": plane, "islands": islands,
+            "masses": masses, "ends": ends, "places": places,
+            "quay_walk": quay_walk, "water": water,
+            "end_walls": {name: street.end_wall(
+                _rect(*rect), road_floor_z=ROAD_Z, standing_height=STANDING,
+                facade_tile=FACADE_STONE, sky_tile=SKY_TILE, name=name)
+                for name, rect in ends.items()}}
 
 
-def _shared(a_rings, b_rings):
-    """EVERY segment the two pieces share, not the first.
+def _perimeter_lamps(rings, count):
+    """`count` points evenly along a ring, stepped inward off the edge.
 
-    After the weld two pieces routinely share several segments -- a chord that
-    a later cut split, an island edge broken by a shadow crossing -- and
-    declaring only one leaves the rest as coincident walls nobody paired,
-    which `PlanarLayout` reports as unexplained unpaired portal candidates.
+    A lamp stands ON the pavement, not on its lip, so each point is moved
+    1024 -- two thirds of a body width -- toward the ring's centroid.
     """
+    ring = rings[0]
+    edges = []
+    total = 0.0
+    for index, point in enumerate(ring):
+        nxt = ring[(index + 1) % len(ring)]
+        length = math.hypot(nxt[0] - point[0], nxt[1] - point[1])
+        edges.append((point, nxt, length))
+        total += length
+    cx = sum(p[0] for p in ring) / len(ring)
+    cy = sum(p[1] for p in ring) / len(ring)
     out = []
-    for a in a_rings:
-        for index, point in enumerate(a):
-            nxt = a[(index + 1) % len(a)]
-            for b in b_rings:
-                for other, start in enumerate(b):
-                    end = b[(other + 1) % len(b)]
-                    if {tuple(point), tuple(nxt)} == {tuple(start),
-                                                      tuple(end)}:
-                        out.append((tuple(point), tuple(nxt)))
+    for number in range(count):
+        want = total * (number + 0.5) / count
+        walked = 0.0
+        for point, nxt, length in edges:
+            if walked + length >= want:
+                share = (want - walked) / length if length else 0.0
+                px = point[0] + (nxt[0] - point[0]) * share
+                py = point[1] + (nxt[1] - point[1]) * share
+                span = math.hypot(cx - px, cy - py) or 1.0
+                out.append((int(round(px + (cx - px) / span * 1024)),
+                            int(round(py + (cy - py) / span * 1024))))
+                break
+            walked += length
     return out
 
 
+def emission() -> Emission:
+    """What this city is. No pass runs here."""
+    g = geometry()
+    surfaces = [SurfaceSpec(
+        surface_id="plane", rings=tuple(g["plane"]), floor_z=ROAD_Z,
+        ceiling_z=_sky(ROAD_Z), floor_tile=ROAD_TILE, ceiling_tile=SKY_TILE,
+        wall_tile=KERB_TILE, kind=joins.ROAD)]
+
+    pavements = dict(g["islands"])
+    pavements["quay_walk"] = _rect(*g["quay_walk"])
+    for name, rect in g["places"].items():
+        pavements[name] = _rect(*rect)
+    for name, ring in sorted(pavements.items()):
+        surfaces.append(SurfaceSpec(
+            surface_id=name, rings=(ring,), floor_z=ISLAND_Z,
+            ceiling_z=_sky(ISLAND_Z), floor_tile=PAVE_TILE,
+            ceiling_tile=SKY_TILE, wall_tile=PAVE_TILE,
+            kind=joins.PAVEMENT))
+
+    #: THE END WALLS, in E3M1's dialect: floor 379, parallax sky above,
+    #: blocking faces in the district's facade stone. Not lit, because a
+    #: thing standing at the end of a street is not ground.
+    for name, record in sorted(g["end_walls"].items()):
+        surfaces.append(SurfaceSpec(
+            surface_id=name, rings=(record["outline"],),
+            floor_z=record["floor_z"], ceiling_z=record["ceiling_z"],
+            floor_tile=record["floor_picnum"],
+            ceiling_tile=record["ceiling_picnum"],
+            wall_tile=FACADE_STONE, kind=joins.END_WALL, lit=False))
+
+    #: THE WATERFRONT. The shore stands one walkable step (3072, inside
+    #: Blood's 4096 autostep) below the quay walk, the sea meets it at equal
+    #: z, and the horizon is a zero-height sector at the sea's own z wearing
+    #: the sky tile on BOTH surfaces with the parallax bit on both.
+    water = g["water"]
+    shore_z = ISLAND_Z + SHORE_STEP
+    surfaces.append(SurfaceSpec(
+        surface_id="shore", rings=(_rect(*water["shore"]),), floor_z=shore_z,
+        ceiling_z=_sky(shore_z), floor_tile=SHORE_TILE,
+        ceiling_tile=SKY_TILE, wall_tile=joins.TILE_CLASSES["quay class"],
+        kind=joins.SHORE))
+    surfaces.append(SurfaceSpec(
+        surface_id="sea", rings=(_rect(*water["sea"]),), floor_z=shore_z,
+        ceiling_z=_sky(shore_z), floor_tile=SEA_TILE, ceiling_tile=SKY_TILE,
+        wall_tile=joins.TILE_CLASSES["quay class"], kind=joins.SEA,
+        finish={"floor_pal": joins.SEA_PALETTE},
+        behavior={"pan_floor": 1, "pan_always": 1, "drag": 1,
+                  "pan_velocity": joins.SEA_PAN_VELOCITY,
+                  "pan_angle": joins.SEA_PAN_ANGLE}))
+    surfaces.append(SurfaceSpec(
+        surface_id="horizon", rings=(_rect(*water["horizon"]),),
+        floor_z=shore_z, ceiling_z=shore_z, floor_tile=HORIZON_TILE,
+        ceiling_tile=HORIZON_TILE, wall_tile=HORIZON_TILE,
+        kind=joins.HORIZON, floor_stat=1, lit=False,
+        declared_zero_exit=True))
+
+    #: LAMPS, at E3M1's rate over the pavement this city actually has.
+    lamps = []
+    for name, ring in sorted(pavements.items()):
+        area = region_area([ring])
+        count = max(1, int(round(area / AREA_PER_LAMP)))
+        for number, point in enumerate(_perimeter_lamps([ring], count)):
+            lamps.append(Lamp(f"{name}:{number}", point, LAMP_DELTA,
+                              tile=LAMP_TILE, sprite_shade=LAMP_SHADE,
+                              sprite_type=LAMP_TYPE, height=LAMP_HANG,
+                              cstat=LAMP_CSTAT))
+
+    return Emission(
+        name="slice2-streets",
+        surfaces=surfaces,
+        declarations=[],
+        light=LightSpec(masses=tuple(g["masses"]), bearing_units=SUN_BEARING,
+                        base_shade=BASE_SHADE, step=STEP, lamps=tuple(lamps)),
+        joins=JoinSpec(strict=False),
+        frames=FrameSpec(),
+        start=("plane", 0))
+
+
+# ---------------------------------------------------------------------------
+# the gates, and the map
+# ---------------------------------------------------------------------------
+
 def main() -> int:
-    layout, run, ledger, pieces, report, _x, _y = build()
-    print("solved grid:", report["solved"])
-    print({k: v for k, v in report.items() if k != "solved"})
-    compiled = layout.compile()
-    disk = compiled.level.to_disk_map()
-    print(f"compiled: {len(disk.sectors)} sectors, {len(disk.walls)} walls")
-
-    #: the field's contributions, at the decided conversion
-    for name, piece, _sid, _z in pieces:
-        if piece.depth:
-            sector = compiled.allocations[name].sector_id
-            ledger.write(str(sector), "shade", "sun:field", piece.depth * STEP,
-                         intent="presentation")
-    lamp = next((compiled.allocations[n].sector_id
-                 for n, p, _s, _z in pieces if p.depth == 0), None)
-    if lamp is not None:
-        ledger.write(str(lamp), "shade", "lamp:0", -6, intent="presentation")
-    print("shade channel:", apply_shade_channel(disk, ledger))
     from collections import Counter
-    shades = Counter()
-    for name, piece, _sid, _z in pieces:
-        sec = compiled.allocations[name].sector_id
-        shades[(piece.depth, int(disk.sectors[sec].fields["floor_shade"]))] += 1
-    print("shade by depth:", dict(sorted(shades.items())))
 
-    # --- 4. joins ---------------------------------------------------------
-    run.enter("joins")
-    kinds = {}
-    for name, _piece, sid, _z in pieces:
-        sector = compiled.allocations[name].sector_id
-        kinds[sector] = joins.ROAD if sid == "plane" else joins.PAVEMENT
-    applied = joins.apply(disk, kinds, strict=False)
-    print("joins:", {k: v for k, v in applied.items() if k != "applied"})
-
-    # --- 5. frames: one projection per run, resolved in closed form -------
-    run.enter("frames")
-    from bloodmap.texture_align import wall_art_sizes as _sizes
-    from bloodmap.texture_frame import frame_map
-
-    _art = _sizes("reference/blood")
-    if _art:
-        print("texture frames:", {k: v for k, v
-                                  in frame_map(disk, art_sizes=_art).items()
-                                  if k != "basis"})
-
-    # --- the gates -------------------------------------------------------
+    from bloodmap.format import write_map
     from bloodmap.overlay import (
-        LIGHT_DOMAIN, declared_vertices, in_domain, vertex_faults)
-    from bloodmap.street_model import sees_the_kerb
+        LIGHT_DOMAIN, declared_vertices, refusal_denominator, refusal_line,
+        vertex_faults)
+    from bloodmap.pipeline import compile_city
+    from bloodmap.street_model import read_city, sees_the_kerb
     from bloodmap.texture_align import wall_art_sizes
     from bloodmap.texture_frame import (
         auto_align_walls, run_partition, sector_index)
 
-    owners = sector_index(disk)
-    declared = declared_vertices([p.rings for _n, p, _s, _z in pieces])
-    g1 = vertex_faults(disk, declared)
-    print(f"G1 vertex fidelity: {len(declared)} declared, {len(g1)} missing")
+    g = geometry()
+    spoken = emission()
+    built = compile_city(spoken)
+    disk, report = built.disk, built.report
+    print("solved grid:", (g["x"].total, g["y"].total))
+    print("plane rings:", [len(r) for r in g["plane"]])
+    for key in ("surfaces", "seeded_vertices", "pieces", "levels",
+                "welded_vertices", "slivers_absorbed", "portals_paired",
+                "sectors", "walls", "joins"):
+        print(f"  {key}: {report[key]}")
+    print("  partition faults:", len(report["partition_faults"]))
+    print("  frames:", report.get("frames"))
 
+    owners = sector_index(disk)
+
+    # --- G1 ---------------------------------------------------------------
+    declared = declared_vertices([[list(r) for r in spec.rings]
+                                  for spec in spoken.surfaces])
+    missing = vertex_faults(disk, declared)
+    print(f"G1 vertex fidelity: {len(declared)} declared, "
+          f"{len(missing)} missing")
+
+    # --- the absolute shades, read off real sectors ------------------------
+    shades = Counter()
+    for name, piece, spec in built.pieces:
+        sector = built.compiled.allocations[name].sector_id
+        shades[(piece.depth,
+                int(disk.sectors[sector].fields["floor_shade"]))] += 1
+    print("shade by depth:", dict(sorted(shades.items())))
+
+    # --- the lamp gate -----------------------------------------------------
+    wrong = []
+    for row in report["lamps"]:
+        want = BASE_SHADE + row["depth"] * STEP + row["delta"]
+        got = int(disk.sectors[row["sector"]].fields["floor_shade"])
+        if got != want:
+            wrong.append(f"{row['lamp']}: reads {got}, wants {want}")
+    pave_area = sum(region_area([list(r) for r in spec.rings])
+                    for spec in spoken.surfaces
+                    if spec.kind == joins.PAVEMENT)
+    density = pave_area / max(1, len(report["lamps"]))
+    print(f"lamps: {len(report['lamps'])} placed, {len(wrong)} misread; one "
+          f"per {density:.0f} square units of pavement against the "
+          f"campaign's indoor {AREA_PER_LAMP}")
+    for row in wrong[:5]:
+        print("   -", row)
+
+    # --- terminations ------------------------------------------------------
+    faults = street.termination_faults(disk, list(g["end_walls"].values()),
+                                       standing_height=STANDING)
+    print(f"end walls: {len(g['end_walls'])} declared, "
+          f"{len(faults)} fault(s)")
+    for row in faults[:4]:
+        print("   -", row)
+
+    # --- the waterfront ----------------------------------------------------
+    water = _waterfront_faults(disk, built)
+    print("waterfront:", water or "reads as DWE3M10's -- the sea pans and "
+          "drags under palette 10, the horizon is zero-height sky on both")
+
+    # --- the paths ---------------------------------------------------------
+    paths = sum(1 for row in report["join_rows"]
+                if row["a"] == joins.PAVEMENT and row["b"] == joins.PAVEMENT)
+    kerbs = sum(1 for row in report["join_rows"]
+                if {row["a"], row["b"]} == {joins.ROAD, joins.PAVEMENT})
+    shores = sum(1 for row in report["join_rows"]
+                 if joins.SHORE in (row["a"], row["b"]))
+    print(f"joins by kind: {kerbs} kerb records, {paths} pavement-only path "
+          f"records, {shores} shore records")
+
+    # --- sightline ---------------------------------------------------------
     tiles = set()
     roads = [i for i, sec in enumerate(disk.sectors)
              if int(sec.fields["floor_picnum"]) == ROAD_TILE]
@@ -265,6 +430,7 @@ def main() -> int:
     print(f"sightline: from {len(roads)} road pieces a body sees "
           f"{sorted(tiles)}")
 
+    # --- the editor --------------------------------------------------------
     art = wall_art_sizes("reference/blood")
     moved = 0
     if art:
@@ -279,8 +445,9 @@ def main() -> int:
                                 for k in keys))
     print(f"frames: the editor would change {moved} wall(s)")
 
-    allowed, refused = in_domain(disk, LIGHT_DOMAIN, range(len(disk.sectors)))
-    print(f"light domain: admits {len(allowed)}, refuses {len(refused)}")
+    # --- the light domain, WITH its denominator ----------------------------
+    print(refusal_line(refusal_denominator(disk, LIGHT_DOMAIN,
+                                           range(len(disk.sectors)), owners)))
 
     from bloodmap import rules_blood                              # noqa: F401
     from bloodmap.rules import RULES
@@ -290,19 +457,70 @@ def main() -> int:
                         "parallax-wears-a-sky-tile"):
             found = RULES[rule_id].check(disk)
             print(f"{rule_id}: {len(found.violations)} violation(s)")
+    print("dropped PRESENTATION facets:",
+          built.ledger.dropped_facets() or "none")
 
-    print("dropped PRESENTATION facets:", ledger.dropped_facets() or "none")
+    # --- the read-back -----------------------------------------------------
+    recovered = read_city(disk, road_tile=ROAD_TILE, pavement_tile=PAVE_TILE)
+    print("read back:")
+    for key in ("planes", "islands", "road_sectors", "pavement_sectors",
+                "shade_levels", "iso_lines", "oblique_iso_lines",
+                "sun_bearing_degrees"):
+        print(f"  {key}: {recovered[key]}")
+    print("  symmetry gaps:")
+    for gap in recovered["symmetry_gaps"]:
+        print(f"   - {gap}")
+
     out = HERE / "slice2-streets.MAP"
     write_map(disk, out)
-    print(f"wrote {out}: {len(disk.sectors)} sectors, {len(disk.walls)} walls")
+    print(f"wrote {out}: {len(disk.sectors)} sectors, {len(disk.walls)} "
+          f"walls, {len(disk.sprites)} sprites")
     _limits(disk)
     return 0
+
+
+def _waterfront_faults(disk, built) -> list:
+    """The sea pans and drags; the horizon is zero-height sky on both sides.
+
+    Read off the BUILT sectors and not off the declaration -- the whole point
+    of an absolute gate is that it reads what the map says.
+    """
+    out = []
+    named = {spec.surface_id: built.compiled.allocations[name].sector_id
+             for name, _piece, spec in built.pieces}
+    sea = named.get("sea")
+    if sea is None:
+        return ["no sea sector was built"]
+    fields = disk.sectors[sea].fields
+    holder = disk.sectors[sea].extra
+    extra = dict(holder.fields) if holder is not None else {}
+    if int(fields["floor_picnum"]) != SEA_TILE:
+        out.append(f"the sea wears {fields['floor_picnum']}, not {SEA_TILE}")
+    if int(fields.get("floor_pal", 0)) != joins.SEA_PALETTE:
+        out.append(f"the sea is palette {fields.get('floor_pal')}, not "
+                   f"{joins.SEA_PALETTE} -- it would read as the stone it is")
+    for name in ("pan_floor", "pan_always", "drag"):
+        if not int(extra.get(name, 0)):
+            out.append(f"the sea does not carry {name}")
+    horizon = named.get("horizon")
+    if horizon is None:
+        return out + ["no horizon sector was built"]
+    fields = disk.sectors[horizon].fields
+    if int(fields["floor_z"]) != int(fields["ceiling_z"]):
+        out.append("the horizon is not zero-height")
+    for role in ("floor", "ceiling"):
+        if int(fields[f"{role}_picnum"]) != HORIZON_TILE:
+            out.append(f"the horizon's {role} is not {HORIZON_TILE}")
+        if not int(fields[f"{role}_stat"]) & 1:
+            out.append(f"the horizon's {role} is not parallaxed")
+    return out
 
 
 def _limits(disk):
     import json
 
-    budget = json.load(open(ROOT / "projects/blood-city/project.json"))["budget"]
+    budget = json.load(
+        open(ROOT / "projects/blood-city/project.json"))["budget"]
     counts = {"sectors": len(disk.sectors), "walls": len(disk.walls),
               "sprites": len(disk.sprites)}
     print("limits: " + "  ".join(
