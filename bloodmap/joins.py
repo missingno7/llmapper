@@ -146,8 +146,12 @@ def _rows() -> tuple[JoinRule, ...]:
                           "reads 8 -- so the face follows the field and does "
                           "not sit at the base"),
         JoinRule(PAVEMENT, PAVEMENT, EQUAL,
-                 evidence="E3M1 s10/s11: a pavement-only path between "
-                          "abutting islands, and shadow cuts across a band"),
+                 evidence="E3M1's shadow-cut pavement bands: where the sun's "
+                          "iso-line crosses a pavement the two pieces meet at "
+                          "equal z and draw nothing, which is the same "
+                          "meeting a path between two abutting islands makes. "
+                          "(The row used to cite s10/s11; those are masses, "
+                          "not a path -- P15's reader found it.)"),
         JoinRule(PAVEMENT, FACADE, ONE_SIDED, b_shows="facade run",
                  frame="independent",
                  evidence="the facade's frame is world-anchored, so it does "
@@ -309,11 +313,28 @@ def described(pairs: Iterable[tuple[str, str, str]]) -> list[str]:
 WATER_PALETTES = frozenset({10})
 
 
+def _x(item: Any) -> dict[str, Any]:
+    """A sector's Blood extra, read the way both shapes store it.
+
+    `assembly._x` has had this since it was written and this had not: a
+    `LevelIR` sector carries its XSECTOR under the key `"blood"` and a
+    `DiskObject` carries it on an `extra` attribute, so `getattr(sector,
+    "extra", None)` is `None` for every decompiled level. On DWE3M10 -- the
+    map the shore and sea rows were mined from -- that lost 4 of its 22
+    panning sectors, the ones at palette 0 whose only evidence is that they
+    move.
+    """
+    extra = item["blood"] if isinstance(item, dict) else getattr(
+        item, "extra", None)
+    if extra is None:
+        return {}
+    return dict(extra["fields"] if isinstance(extra, dict) else extra.fields)
+
+
 def is_water(sector: Any) -> bool:
     """Does this surface behave and read as water?"""
     fields = sector["fields"] if isinstance(sector, dict) else sector.fields
-    extra = getattr(sector, "extra", None)
-    extra = dict(extra.fields) if extra is not None else {}
+    extra = _x(sector)
     panning = any(int(extra.get(name, 0)) for name in
                   ("pan_floor", "pan_always", "pan_velocity", "drag"))
     return panning or int(fields.get("floor_pal", 0)) in WATER_PALETTES

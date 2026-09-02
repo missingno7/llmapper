@@ -41,21 +41,27 @@ class Islands(unittest.TestCase):
         self.assertEqual(self.result["kerb_tiles_seen"], {6: 11})
         self.assertEqual(self.result["kerb_records_the_map_makes"], 11)
 
-    def test_kerb_records_claims_a_kerb_on_edges_facing_no_road(self):
+    def test_kerb_records_now_claims_exactly_what_the_map_makes(self):
         """The writer replayed over what the reader recovered.
 
-        `overlay.kerb_records` iterates the island's outline and never reads
-        its `ground_outline` argument, so it asks for a kerb on the edges
-        facing a building, an interior and the void as well. 81 claims against
-        the map's 11. Reported, not patched: `overlay.py` is the writer.
+        This test used to assert the DEFECT. `overlay.kerb_records` iterated
+        the island's outline and never read its `ground_outline` argument, so
+        it asked for a kerb on the edges facing a building, an interior and
+        the void as well: **81 claims against the map's 11**, the 70 extra
+        facing 56 edges of void, 18 of interior and 13 of end wall.
+
+        Two things had to change for the numbers to meet. The writer emits one
+        record per GROUND edge the island's boundary shares a stretch with,
+        because the band goes on the ground's side and the two sides are not
+        split alike -- E3M1's islands present 7 outline edges to the road and
+        the road answers with 11 records. And the reader replays EVERY loop of
+        an island: island:001 has two, and all four of its road-facing edges
+        are on the shorter one.
         """
-        self.assertEqual(self.result["kerb_records_the_writer_claims"], 81)
-        self.assertGreater(self.result["kerb_records_the_writer_claims"],
-                           self.result["kerb_records_the_map_makes"])
-        over = self.result["islands_the_writer_over_claims"]
-        self.assertEqual(len(over), 3)
-        self.assertTrue(all(row["what_the_other_side_is"].get("void", 0)
-                            for row in over))
+        self.assertEqual(self.result["kerb_records_the_writer_claims"], 11)
+        self.assertEqual(self.result["kerb_records_the_writer_claims"],
+                         self.result["kerb_records_the_map_makes"])
+        self.assertEqual(self.result["islands_the_writer_over_claims"], [])
 
     def test_a_step_that_is_not_the_rise_is_residue(self):
         steps = self.result["steps_that_are_not_islands"]

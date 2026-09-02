@@ -352,3 +352,62 @@ class APlazaMayStandInAStreet(unittest.TestCase):
         rings = ground_plane_rings(self.STRIPS,
                                    holes=[(0, 6144, 4096, 8192)])
         self.assertGreaterEqual(len(rings), 1)
+
+
+class WaterIsReadThroughBothShapes(unittest.TestCase):
+    """`is_water`'s panning clause never ran on a decompiled level.
+
+    It read `getattr(sector, "extra", None)`, which is None for every
+    `LevelIR` sector -- they carry the extra under the key "blood" -- so only
+    the palette clause fired. On DWE3M10, the map the shore and sea rows were
+    mined from, the old accessor saw 0 of its 22 panning sectors through a
+    LevelIR and all 22 through a DiskMap.
+    """
+
+    @staticmethod
+    def _dwe3m10():
+        from bloodmap.patterns import corpus_map_path, read_map
+
+        try:
+            return read_map(corpus_map_path("DWE3M10"))
+        except Exception:  # pragma: no cover - corpus absent
+            raise unittest.SkipTest("DWE3M10 is not in the corpus")
+
+    def _panning(self, level):
+        from bloodmap.joins import _x
+
+        return sum(1 for sector in level.sectors
+                   if any(int(_x(sector).get(name, 0)) for name in
+                          ("pan_floor", "pan_always", "pan_velocity", "drag")))
+
+    def test_the_same_count_through_a_diskmap_and_a_levelir(self):
+        disk = self._dwe3m10()
+        self.assertEqual(self._panning(disk), 22)
+        self.assertEqual(self._panning(disk.to_level_ir()), 22)
+
+    def test_the_old_accessor_saw_none_of_them_through_a_levelir(self):
+        # THE FAIL-FIRST, kept as the measurement it was.
+        level = self._dwe3m10().to_level_ir()
+        seen = 0
+        for sector in level.sectors:
+            extra = getattr(sector, "extra", None)
+            fields = dict(extra.fields) if extra is not None else {}
+            if any(int(fields.get(name, 0)) for name in
+                   ("pan_floor", "pan_always", "pan_velocity", "drag")):
+                seen += 1
+        self.assertEqual(seen, 0)
+
+    def test_is_water_agrees_across_the_two_shapes(self):
+        from bloodmap.joins import is_water
+
+        disk = self._dwe3m10()
+        self.assertEqual(sum(1 for s in disk.sectors if is_water(s)),
+                         sum(1 for s in disk.to_level_ir().sectors
+                             if is_water(s)))
+
+    def test_the_pavement_path_row_no_longer_cites_two_masses(self):
+        from bloodmap import joins
+
+        found = joins.rule(joins.PAVEMENT, joins.PAVEMENT, joins.EQUAL)
+        self.assertNotIn("s10/s11: a pavement-only path", found.evidence)
+        self.assertIn("shadow-cut", found.evidence)

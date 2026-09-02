@@ -118,6 +118,27 @@ def read_islands(level: Any, kinds: dict[int, str] | None = None, *,
         left -= found
         groups.append(sorted(found))
 
+    #: THE GROUND'S OWN BOUNDARY, as RECORDS rather than as rings. A kerb band
+    #: goes on the ground's side, so the ground's record is the unit the map
+    #: counts in -- and the two sides are not split alike: E3M1's islands
+    #: present 7 outline edges to the road and the road answers them with 11
+    #: records. Traced as rings the count comes out in the island's unit and
+    #: the comparison is against the wrong number.
+    road_outline = []
+    for index in network:
+        if kinds.get(index) != "road":
+            continue
+        fields = _face(level.sectors[index])
+        start = int(fields["wall_ptr"])
+        for wall_id in range(start, start + int(fields["wall_count"])):
+            face = _face(level.walls[wall_id])
+            other = int(face["next_sector"])
+            if other >= 0 and kinds.get(other) == "road":
+                continue
+            nxt = _face(level.walls[int(face["point2"])])
+            road_outline.append([(int(face["x"]), int(face["y"])),
+                                 (int(nxt["x"]), int(nxt["y"]))])
+
     islands: list[dict[str, Any]] = []
     kerb_tiles: Counter = Counter()
     claimed = matched = 0
@@ -151,10 +172,22 @@ def read_islands(level: Any, kinds: dict[int, str] | None = None, *,
                               if road_side else 0,
                               floor_picnum=int(_face(level.sectors[group[0]])
                                                ["floor_picnum"]))
-        #: THE WRITER, RUN OVER THE RECOVERED ISLAND. `kerb_records` claims a
-        #: kerb on every edge of the outline; the map puts one only where the
-        #: other side is the road.
-        wanted = kerb_records(island, "ground", outline)
+        #: THE WRITER, RUN OVER THE RECOVERED ISLAND, and given the GROUND's
+        #: boundary rather than the island's own outline a second time. That
+        #: substitution was what let the writer claim a kerb on every edge:
+        #: an island's edge is a kerb only where the road is on the other
+        #: side, and the road's boundary is where that is written down.
+        #: EVERY LOOP OF THE ISLAND, not just its longest. E3M1's island:001
+        #: has two, and all four of its road-facing edges are on the shorter
+        #: one -- replaying only the longest asked the writer about a boundary
+        #: the road never meets and scored it 0 of 4.
+        wanted = []
+        for loop in loops:
+            wanted.extend(kerb_records(
+                HeightIsland(island_id=island.island_id, outline=tuple(loop),
+                             rise=island.rise, kerb_tile=island.kerb_tile,
+                             floor_picnum=island.floor_picnum),
+                "ground", road_outline))
         claimed += len(wanted)
         matched += sum(road_side.values())
         if len(wanted) > sum(road_side.values()):

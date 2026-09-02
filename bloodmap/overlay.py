@@ -295,23 +295,85 @@ def _bounds(polygon: Sequence[Point]) -> tuple[int, int, int, int]:
     return (min(xs), min(ys), max(xs), max(ys))
 
 
+def ground_edges(ground_outline: Sequence) -> list:
+    """The undirected edges of a ground boundary, however it was given.
+
+    One loop or many: a street network's boundary is an outer ring plus one
+    hole per block, and a caller with a single loop should not have to wrap it.
+    """
+    loops = list(ground_outline)
+    if loops and len(loops[0]) == 2 and all(
+            isinstance(value, (int, float)) for value in loops[0]):
+        loops = [loops]
+    out = []
+    for loop in loops:
+        points = [tuple(point) for point in loop]
+        #: A two-point "loop" is a single SEGMENT, and a caller who has the
+        #: ground as a list of records rather than as rings should be able to
+        #: hand them over as they are. Walking it as a cycle would count it
+        #: twice.
+        span = range(len(points) - 1) if len(points) == 2 else range(len(points))
+        for index in span:
+            here = points[index]
+            nxt = points[(index + 1) % len(points)]
+            if here != nxt:
+                out.append((here, nxt))
+    return out
+
+
+def _shares_a_stretch(a: Point, b: Point, c: Point, d: Point) -> bool:
+    """Do the two segments lie along one line and overlap in more than a point?
+
+    Exact: these are vertices a level actually stores, so no rounding has been
+    near them and collinearity is a cross product being zero. A kerb record and
+    the island edge it belongs to need not be the SAME segment -- either side
+    may be split where the other is not -- so the test is an overlap and not an
+    identity.
+    """
+    if _cross(a, b, c) or _cross(a, b, d):
+        return False
+    span = (b[0] - a[0], b[1] - a[1])
+    def along(point):
+        return (point[0] - a[0]) * span[0] + (point[1] - a[1]) * span[1]
+    length = span[0] * span[0] + span[1] * span[1]
+    lo, hi = sorted((along(c), along(d)))
+    return min(hi, length) - max(lo, 0) > 0
+
+
 def kerb_records(island: HeightIsland, ground_id: str,
-                 ground_outline: Sequence[Point]) -> list[dict[str, Any]]:
+                 ground_outline: Sequence) -> list[dict[str, Any]]:
     """Which records carry the kerb band, and what goes on them.
 
-    One entry per edge of the island that faces the ground plane. The tile
-    goes on the ground's side, and the peg is the default -- E3M1's kerb
-    records carry no `kWallOrgBottom`, so the band hangs from the ceiling the
-    way every other two-sided wall does.
+    One entry per edge of the island **that is also an edge of the ground**.
+    The tile goes on the ground's side, and the peg is the default -- E3M1's
+    kerb records carry no `kWallOrgBottom`, so the band hangs from the ceiling
+    the way every other two-sided wall does.
+
+    THE ARGUMENT WAS TAKEN AND NEVER READ. Every edge of the island got a
+    kerb, so an island's back, the faces it turns to a building's interior and
+    the face it presents to an end wall all asked for one. Replayed by
+    `read_islands` over E3M1's three islands it claimed **81 records where the
+    map makes 11** -- the 11 it got right are exactly the map's, all tile 6,
+    none blocking, and the other 70 face 56 edges of void, 18 of interior and
+    13 of end wall. A kerb is what the join road|pavement looks like, and an
+    edge with no road on the other side is not that join.
     """
+    #: ONE RECORD PER GROUND EDGE, not per island edge. The band goes on the
+    #: GROUND's side, so the ground's record is the unit -- and the two sides
+    #: are not split alike: E3M1's islands present 7 outline edges to the road
+    #: and the road answers them with 11 records.
+    outline = [tuple(point) for point in island.outline]
+    mine = [(outline[index], outline[(index + 1) % len(outline)])
+            for index in range(len(outline))
+            if outline[index] != outline[(index + 1) % len(outline)]]
     out = []
-    outline = list(island.outline)
-    for index, here in enumerate(outline):
-        there = outline[(index + 1) % len(outline)]
+    for here, there in ground_edges(ground_outline):
+        if not any(_shares_a_stretch(here, there, c, d) for c, d in mine):
+            continue
         out.append({
             "island": island.island_id,
             "ground": ground_id,
-            "edge": (tuple(here), tuple(there)),
+            "edge": (here, there),
             "side": "ground",
             "picnum": int(island.kerb_tile),
             "band": int(island.rise),
