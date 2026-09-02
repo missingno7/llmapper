@@ -20,7 +20,9 @@ from collections import Counter
 from _common import PROJECT, art_sizes, campaign, levels, write
 
 from bloodmap.read_census import census, proposed_indoor_rows
-from bloodmap.read_light import NETWORKS, shade_step_envelope
+from bloodmap.read_light import (
+    NETWORK_ALL_OUTDOOR, NETWORK_LARGEST_COMPONENT,
+    shade_step_envelope)
 from bloodmap.read_store import FactStore
 
 
@@ -34,8 +36,15 @@ def main() -> int:
 
     summary = census(worlds, names=names, art_sizes=sizes)
     rows = proposed_indoor_rows(summary)
-    envelopes = {which: shade_step_envelope(worlds, network=which, names=names)
-                 for which in NETWORKS}
+    #: The envelope is `read_light.shade_step_envelope`, which landed on main
+    #: from queue item 29a while this census was being written -- and its
+    #: measurement is better than the one that was here: it counts one entry
+    #: per BOUNDARY, where mine counted one per record, so a two-sided wall
+    #: was weighed twice and a sector pair sharing several walls weighed
+    #: more than once. Theirs is what the writer's gate calls, so it is what
+    #: the census reports.
+    envelopes = {which: shade_step_envelope(campaign(), network=which)
+                 for which in (NETWORK_LARGEST_COMPONENT, NETWORK_ALL_OUTDOOR)}
 
     write("three-censuses.json", {
         "population": "blood-campaign",
@@ -92,10 +101,8 @@ def _facts(store, summary, rows, envelopes) -> None:
                   reader="bloodmap.read_census.proposed_indoor_rows")
     for which, row in envelopes.items():
         store.add("census_envelope", f"shade_step:{which}",
-                  {"network": which, "envelope": row["envelope"],
-                   "maps": row["maps"],
-                   "maps_with_a_boundary": row["maps_with_a_boundary"],
-                   "current_gate": row["current_gate"],
+                  {"network": which, **{k: v for k, v in row.items()
+                                        if k != "network"},
                    "population": "blood-campaign"},
                   reader="bloodmap.read_light.shade_step_envelope")
 
@@ -133,18 +140,15 @@ def _print(summary, rows, envelopes) -> None:
     print(f"  {len(summary['interior_pairs']['classes'])} classes over "
           f"{total} records; {len(rows)} would earn a proposed row")
 
-    print("\n29a -- the shade step, by network definition")
+    print("")
+    print("29a -- the shade step, by network definition "
+          "(read_light.shade_step_envelope, one entry per BOUNDARY)")
     for which, row in envelopes.items():
-        env = row["envelope"]
-        gate = row["current_gate"]
-        print(f"  {which:28s} n={env.get('n', 0):5d} over "
-              f"{row['maps_with_a_boundary']} maps  "
-              f"median {env.get('median')}  q1 {env.get('q1')} q3 "
-              f"{env.get('q3')}  mean {env.get('mean')}")
-        print(f"  {'':28s} the gate's {gate['interval']} holds "
-              f"{gate['boundaries_inside']} of {env.get('n', 0)} "
-              f"({gate['percent_inside']}%)")
-
-
+        low, high = row["envelope"]
+        q1, q3 = row["quartiles"]
+        print("  %-28s %4d boundaries over %2d maps  median %-5s  quartiles [%s, %s]"
+              % (which, row["records"], row["maps"], row["median"], q1, q3))
+        print("  %-28s the gate's [%d, %d] holds %.1f%%"
+              % ("", low, high, 100.0 * row["inside"]))
 if __name__ == "__main__":
     raise SystemExit(main())

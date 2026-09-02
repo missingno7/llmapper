@@ -118,35 +118,61 @@ class OnE3M1(unittest.TestCase):
 
 
 class TheShadeStepEnvelope(unittest.TestCase):
+    """`read_light.shade_step_envelope` is P14b's, adopted here.
+
+    It landed on main from queue item 29a while this census was being
+    written, and it counts one entry per BOUNDARY where the version that was
+    here counted one per record -- so a two-sided wall was weighed twice. The
+    duplicate is gone; these tests hold the contract the census depends on.
+    """
+
     def test_the_network_definition_is_named_in_the_answer(self):
         """The gate must say which network it means, because the answer moves
         with it. A function that returned a bare number could not."""
-        from bloodmap.read_light import shade_step_envelope
+        from bloodmap.patterns import corpus_map_path
+        from bloodmap.read_light import (
+            NETWORK_ALL_OUTDOOR, shade_step_envelope)
 
-        rows = shade_step_envelope([_map("E3M1")], names=["E3M1"],
-                                   network="all_parallax")
-        self.assertEqual(rows["network"], "all_parallax")
+        path = corpus_map_path("E3M1", missing_ok=True)
+        if not path.exists():
+            raise unittest.SkipTest("E3M1 is not in the corpus")
+        rows = shade_step_envelope([path], network=NETWORK_ALL_OUTDOOR)
+        self.assertEqual(rows["network"], NETWORK_ALL_OUTDOOR)
+        self.assertIn("median", rows)
+        self.assertIn("quartiles", rows)
         self.assertIn("envelope", rows)
-        self.assertIn("current_gate", rows)
-
-    def test_an_unknown_network_is_refused(self):
-        from bloodmap.light_field import FieldError
-        from bloodmap.read_light import shade_step_envelope
-
-        with self.assertRaises(FieldError):
-            shade_step_envelope([], network="whatever the caller meant")
 
     def test_e3m1s_own_step_is_outside_the_gate_under_both_definitions(self):
-        from bloodmap.light_field import STEP_ENVELOPE
-        from bloodmap.read_light import NETWORKS, shade_step_envelope
+        from bloodmap.patterns import corpus_map_path
+        from bloodmap.read_light import (
+            NETWORK_ALL_OUTDOOR, NETWORK_LARGEST_COMPONENT,
+            shade_step_envelope)
 
-        low, high = STEP_ENVELOPE
-        for network in NETWORKS:
-            rows = shade_step_envelope([_map("E3M1")], names=["E3M1"],
-                                       network=network)
-            median = rows["envelope"]["median"]
-            self.assertFalse(low <= median <= high,
-                             f"{network}: median {median} is inside the gate")
+        path = corpus_map_path("E3M1", missing_ok=True)
+        if not path.exists():
+            raise unittest.SkipTest("E3M1 is not in the corpus")
+        for network in (NETWORK_LARGEST_COMPONENT, NETWORK_ALL_OUTDOOR):
+            rows = shade_step_envelope([path], network=network)
+            low, high = rows["envelope"]
+            self.assertFalse(low <= rows["median"] <= high,
+                             f"{network}: median {rows['median']} is inside "
+                             f"the gate, and E3M1's step is 24-26")
+
+    def test_the_campaign_envelope_moves_with_the_network(self):
+        """The whole reason the gate has to name one: the two readings of
+        "the network" give different medians over the same 43 maps."""
+        from bloodmap.patterns import list_original_maps
+        from bloodmap.read_light import (
+            NETWORK_ALL_OUTDOOR, NETWORK_LARGEST_COMPONENT,
+            shade_step_envelope)
+
+        paths = list_original_maps(population="blood-campaign")
+        if not paths:
+            raise unittest.SkipTest("the campaign is not in the corpus")
+        street = shade_step_envelope(paths, network=NETWORK_LARGEST_COMPONENT)
+        every = shade_step_envelope(paths, network=NETWORK_ALL_OUTDOOR)
+        self.assertNotEqual(street["records"], every["records"])
+        self.assertNotEqual(street["quartiles"], every["quartiles"])
 
 
 if __name__ == "__main__":

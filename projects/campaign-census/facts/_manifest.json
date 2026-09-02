@@ -13,13 +13,25 @@
   "why": "these are the map's records verbatim. They are regenerated rather than committed, on the project's standing rule that the corpus is never committed and the command that reproduces it is"
  },
  "predicates": {
-  "census_layer": "one layer's claimed share and residue on one map"
+  "census_band": "what one join pair's band wears across a population",
+  "census_continuity": "how often a material continues, by join class",
+  "census_envelope": "a quantity's spread over a population, with its network definition named",
+  "census_pair": "how often a pair of surface kinds meets, by class",
+  "proposed_row": "a join row a census would justify; PROPOSED, never added"
  },
  "readers": {
-  "projects/campaign-census/source/residue_curve.py": 43
+  "bloodmap.read_census.end_wall_tiles": 2,
+  "bloodmap.read_census.interior_pairs": 25,
+  "bloodmap.read_census.proposed_indoor_rows": 11,
+  "bloodmap.read_census.u_continuity": 9,
+  "bloodmap.read_light.shade_step_envelope": 2
  },
  "rows": {
-  "census_layer": 43
+  "census_band": 2,
+  "census_continuity": 9,
+  "census_envelope": 2,
+  "census_pair": 25,
+  "proposed_row": 11
  },
  "schema_version": 1
 }

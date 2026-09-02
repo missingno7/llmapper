@@ -1570,3 +1570,29 @@ have a base plane, which is the flag "any outdoor ground exists"; 19 have a
 road with an island standing on it and a kerb at the join. The street model's
 population is under half the campaign, which is worth stating before any norm
 derived from it is called Blood's.
+
+## 35. The envelope was written twice, and the better one won (P15, 2026-09-03)
+
+`read_light.shade_step_envelope` landed on main from queue item 29a (64eb4d0)
+while the same function was being written here. Two implementations of one
+census, like the two fact stores of item 31 — and this time one is measurably
+better, so there was nothing to arbitrate.
+
+**Theirs counts one entry per BOUNDARY; mine counted one per record.** A
+two-sided wall is yielded from both sides and a sector pair may share several
+walls, so mine weighed a boundary once per record it happened to have. The
+duplicate is deleted and the census calls theirs, which is also what the
+writer's gate calls — one census, not two.
+
+They also differ on what "the largest outdoor component" IS, and that is worth
+recording because the same name meant two populations for a day: theirs takes
+every parallax sector, mine took only walkable ones and picked the largest by
+AREA rather than by count. Theirs finds a component on 36 maps, mine on 21.
+
+The published numbers move with it. Under `largest_outdoor_component`: 192
+boundaries over 36 maps, median **13.0**, quartiles **[9.0, 18.75]**, the
+gate's [8, 16] holding 50.5%. Under `all_outdoor`: 365 over 37, median 12,
+quartiles [8.0, 16.0], 52.3%.
+*No default needed; recorded because a reader that measures the same thing
+twice is the thing the sleep phase exists to find, and this one was found by
+a rebase rather than by the refactoring pass.*

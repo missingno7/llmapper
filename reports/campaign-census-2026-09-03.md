@@ -6,8 +6,8 @@ by `projects/campaign-census/source/three_censuses.py` over the 43 campaign
 maps and stored in `projects/campaign-census/facts/`; none is typed.
 
 Readers: `bloodmap/read_census.py` (new) and
-`bloodmap.read_light.shade_step_envelope` (new). **Nothing was added to
-`joins.ROWS`.** The indoor rows below are proposals with their evidence, and
+`bloodmap.read_light.shade_step_envelope` (P14b's, adopted — see 29a).
+**Nothing was added to `joins.ROWS`.** The indoor rows below are proposals with their evidence, and
 P14b decides.
 
 ## 28b — what a termination's band wears
@@ -106,18 +106,30 @@ grammar would have to describe as a decision rather than derive.
 
 ## 29a — the shade step, by network definition
 
-The gate must name its network, because the answer moves with it.
+**The census is `read_light.shade_step_envelope`, which landed on main from
+this queue item while this report was being written — and its measurement is
+better than the one this section first carried.** It counts one entry per
+BOUNDARY; mine counted one per record, so a two-sided wall was weighed twice
+and a sector pair sharing several walls weighed more than once. Theirs is what
+the writer's gate calls, so it is what the census reports, and my duplicate
+implementation is gone.
 
-| network | boundaries | maps | median | q1 | q3 | mean | the gate's [8, 16] holds |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| `largest_outdoor_component` | 362 | 21 | **15** | 8 | 18 | 14.15 | 164 (45.3%) |
-| `all_parallax` | 1362 | 29 | **12** | 8 | 16 | 14.91 | 766 (56.2%) |
+| network | boundaries | maps | median | quartiles | the gate's [8, 16] holds |
+| --- | --- | --- | --- | --- | --- |
+| `largest_outdoor_component` | 192 | 36 | **13.0** | [9.0, 18.75] | 50.5% |
+| `all_outdoor` | 365 | 37 | **12** | [8.0, 16.0] | 52.3% |
 
 Section 30 names `largest_outdoor_component` — "a city's street". Under it the
-median is 15 and the quartile envelope is **[8, 18]**, and the interval the
-gate carries today holds under half its boundaries.
+median is 13 and the quartile envelope is **[9, 18.75]**, and the interval the
+gate carries today holds half its boundaries.
 
-`shade_step_envelope(network=...)` is in `read_light` for P14b's gate to call.
+The two implementations also differed on what "the largest outdoor component"
+IS, and the difference is worth stating: theirs takes every parallax sector,
+mine took only walkable ones and picked the largest by area rather than by
+count. Theirs finds a component on 36 maps, mine on 21. Neither is wrong; the
+gate uses theirs, and the reason to say so is that the same name meant two
+populations for a day.
+
 E3M1's own 24–26 is the precedent's value and is outside both envelopes; that
 is recorded, not repaired.
 
@@ -129,4 +141,5 @@ is recorded, not repaired.
   now available.
 - **28d:** no change. The writer already matches the campaign.
 - **28e:** eleven proposed rows, and an argument that they are one law.
-- **29a:** the envelope is a reader call, not a constant.
+- **29a:** the envelope is a reader call, not a constant, and the call
+  is P14b's `shade_step_envelope` — one census, not two.

@@ -2,16 +2,16 @@
  "end_wall_tiles": {
   "blocking": {
    "pavement|end_wall": {
-    "0": 34,
+    "0": 28,
     "1": 8
    },
    "road|end_wall": {
-    "0": 136,
+    "0": 130,
     "1": 13
    }
   },
   "maps_with_the_pair": {
-   "pavement|end_wall": 6,
+   "pavement|end_wall": 5,
    "road|end_wall": 17
   },
   "step_by_blocking": {
@@ -25,12 +25,12 @@
      "q3": 98304
     },
     "not blocking": {
-     "max": 188416,
+     "max": 62464,
      "median": 36864,
      "min": 8192,
-     "n": 34,
-     "q1": 27648,
-     "q3": 62464
+     "n": 28,
+     "q1": 21504,
+     "q3": 48128
     }
    },
    "road|end_wall": {
@@ -46,8 +46,8 @@
      "max": 1214464,
      "median": 66560,
      "min": 5120,
-     "n": 136,
-     "q1": 32768,
+     "n": 130,
+     "q1": 28672,
      "q3": 393216
     }
    }
@@ -64,28 +64,27 @@
     "270": 3,
     "414": 6,
     "417": 2,
-    "488": 1,
-    "2473": 1,
-    "2490": 5
+    "488": 1
    },
    "road|end_wall": {
     "5": 8,
     "28": 16,
     "67": 1,
     "80": 1,
-    "91": 31,
+    "91": 23,
     "95": 7,
     "123": 5,
     "154": 3,
+    "177": 2,
     "401": 3,
     "414": 3,
     "421": 6,
     "449": 17,
     "452": 3,
     "512": 3,
-    "2473": 4,
+    "2473": 3,
     "2474": 2,
-    "2490": 36
+    "2490": 37
    }
   }
  },
@@ -2996,59 +2995,12 @@
   },
   "E1M7": {
    "end_wall": {
-    "blocking": {
-     "road|end_wall": {
-      "0": 8
-     }
-    },
-    "records": {
-     "road|end_wall": [
-      611,
-      612,
-      613,
-      614,
-      624,
-      625,
-      626,
-      627
-     ]
-    },
-    "step_by_blocking": {
-     "road|end_wall": {
-      "blocking": {
-       "n": 0
-      },
-      "not blocking": {
-       "max": 32768,
-       "median": 32768,
-       "min": 32768,
-       "n": 8,
-       "q1": 32768,
-       "q3": 32768
-      }
-     }
-    },
-    "step_values": {
-     "road|end_wall": {
-      "blocking": [],
-      "not blocking": [
-       32768,
-       32768,
-       32768,
-       32768,
-       32768,
-       32768,
-       32768,
-       32768
-      ]
-     }
-    },
-    "tiles": {
-     "road|end_wall": {
-      "91": 8
-     }
-    },
-    "total": 8
+    "blocking": {},
+    "records": {},
+    "step_by_blocking": {},
+    "step_values": {},
+    "tiles": {},
+    "total": 0
    },
    "interior_pairs": {
     "classes": {
@@ -3744,12 +3696,52 @@
   },
   "E2M1": {
    "end_wall": {
-    "blocking": {},
-    "records": {},
-    "step_by_blocking": {},
-    "step_values": {},
-    "tiles": {},
-    "total": 0
+    "blocking": {
+     "road|end_wall": {
+      "0": 4
+     }
+    },
+    "records": {
+     "road|end_wall": [
+      1462,
+      1463,
+      1464,
+      1465
+     ]
+    },
+    "step_by_blocking": {
+     "road|end_wall": {
+      "blocking": {
+       "n": 0
+      },
+      "not blocking": {
+       "max": 31744,
+       "median": 28672,
+       "min": 13312,
+       "n": 4,
+       "q1": 13312,
+       "q3": 31744
+      }
+     }
+    },
+    "step_values": {
+     "road|end_wall": {
+      "blocking": [],
+      "not blocking": [
+       13312,
+       13312,
+       28672,
+       31744
+      ]
+     }
+    },
+    "tiles": {
+     "road|end_wall": {
+      "177": 2,
+      "2490": 2
+     }
+    },
+    "total": 4
    },
    "interior_pairs": {
     "classes": {
@@ -7353,92 +7345,49 @@
   "E2M9": {
    "end_wall": {
     "blocking": {
-     "pavement|end_wall": {
-      "0": 6
-     },
      "road|end_wall": {
-      "0": 5
+      "0": 3
      }
     },
     "records": {
-     "pavement|end_wall": [
+     "road|end_wall": [
       220,
       221,
-      298,
-      299,
-      301,
       317
-     ],
-     "road|end_wall": [
-      351,
-      356,
-      357,
-      392,
-      400
      ]
     },
     "step_by_blocking": {
-     "pavement|end_wall": {
-      "blocking": {
-       "n": 0
-      },
-      "not blocking": {
-       "max": 188416,
-       "median": 155648,
-       "min": 65536,
-       "n": 6,
-       "q1": 65536,
-       "q3": 188416
-      }
-     },
      "road|end_wall": {
       "blocking": {
        "n": 0
       },
       "not blocking": {
-       "max": 192512,
-       "median": 159744,
-       "min": 83968,
-       "n": 5,
-       "q1": 83968,
-       "q3": 159744
+       "max": 86016,
+       "median": 65536,
+       "min": 65536,
+       "n": 3,
+       "q1": 65536,
+       "q3": 86016
       }
      }
     },
     "step_values": {
-     "pavement|end_wall": {
-      "blocking": [],
-      "not blocking": [
-       65536,
-       65536,
-       188416,
-       188416,
-       155648,
-       86016
-      ]
-     },
      "road|end_wall": {
       "blocking": [],
       "not blocking": [
-       192512,
-       159744,
-       159744,
-       83968,
-       83968
+       65536,
+       65536,
+       86016
       ]
      }
     },
     "tiles": {
-     "pavement|end_wall": {
-      "2473": 1,
-      "2490": 5
-     },
      "road|end_wall": {
-      "2473": 2,
-      "2490": 3
+      "2473": 1,
+      "2490": 2
      }
     },
-    "total": 11
+    "total": 3
    },
    "interior_pairs": {
     "classes": {
