@@ -3168,6 +3168,98 @@ waiting on now exist: `recess_spec` for the geometry, the notch fixture for
 the phase across the mouth, and a build-time count that will go to zero when
 it is done.
 
+### Facades with holes, inserts with holders, 2026-09-02 (P13 addendum)
+
+The owner's model, implemented before any re-glazing: **a building's facade
+provides holes and has its own aligned texture; shopfronts, windows and doors
+are put INTO the holes.** `bloodmap/surface.py` carries it -- `Surface` (a
+planar face with one material, one frame and a list of `Opening`), `Insert` (a
+construct bound to one opening, owning its holder sectors and its frames), and
+`RecordOwner`, the ledger.
+
+### The binding, measured before it was fixed
+
+A Build wall record has one set of texture fields and `picnum` shares them
+with `over_picnum` (`AlignWalls`, xmapedit/src_blood/xmpmaped.cpp:3024-3050).
+blood-city had two passes writing them on the same 24 records: `glass.glaze`
+set `x_repeat` 32 on each pane, and `frame_map` then re-derived the facade run
+over the same records.
+
+**Fifteen kept the pane's number and nine got the facade's** -- wall 23 at 35,
+wall 753 at 8, wall 757 at 28 -- and which nine was decided by the order the
+two passes happen to run in. Nobody chose it and nothing reported it. That is
+the owner's "never writes fields on a record it does not own", in the map.
+
+### The ledger refuses at the write
+
+`RecordOwner.claim` raises on a second claim from a different owner, so this
+is not a convention anybody has to remember. `glaze` now takes `owner=` and
+`records=`: the overlay and its cstat always go on -- those are the insert's
+own fields and no run reads them -- while `x_repeat`/`y_repeat` are written
+only where the pane owns the record, and a record it does not own is counted
+in `borrowed` rather than fought over. `frame_map` takes the same ledger and
+skips what an insert already owns, reporting
+`records_left_to_their_insert`.
+
+```text
+blood-city   records_owned 1634 = surface:facade 1610 + insert:shop_glass 24
+             records_left_to_their_insert 24, borrowed 0, conceded 0
+pattern-zoo  records_owned  436 = surface:room    434 + insert:shop_window 2
+             records_left_to_their_insert  2, borrowed 0, conceded 0
+```
+
+Every record now has exactly one owner, and both maps read back clean (44 and
+21 sentences).
+
+`aperture.maskwall_panel` gains `require_holder`. It writes `over_picnum` and
+cstat and nothing else, so it inherits the host record's scale -- lawful when
+the host is a holder record and unlawful when it is a facade run's. It runs
+before compile, so there are no records to claim yet; what the source CAN say
+is whether either side of the partition is a pocket, and `require_holder`
+makes that a refusal.
+
+### The corpus corrected the law it was given
+
+The gate as specified: *"a wall record with a masked overlay whose picnum
+continues a surface run is a violation"*. Measured over the 43 campaign maps:
+
+* 527 masked insert records, of which 376 sit on a same-tile neighbour;
+* by the literal clause, **231 of 527 are violations (43.8%)**;
+* requiring the join to actually continue still leaves **34 across 14 of the
+  43 maps**.
+
+So the clause is not true of Blood. Putting a grate into a wall whose material
+carries on past it is a **practice**, not an error -- one record serves both
+because both want nearly the same scale.
+
+What the campaign never does is let the two diverge. Its 34 disagreements run
+**1.11x to 2.33x**, tightly packed, with exactly one outlier at **11.11x**. So
+`no-record-carries-two-frames` fires above 2.4x, which flags **1 of 43
+campaign maps** (E3M3 wall 1447, that outlier, named in the fixture), fires
+twice on blood-city exactly as committed at fd31d02 (wall 23 at 5.9x, wall
+1093 at 2.5x) and finds nothing after. Graded 1 of 231, 0.43%, error tier.
+
+That is the second law this pair of runs has had to correct by measuring it.
+The first was the continuity threshold; both times the brief's version was a
+reasonable-sounding absolute that the corpus does not obey, and both times the
+defensible form was the campaign's own ceiling.
+
+### What this does not yet do
+
+* **The recesses are still not carved.** `Insert.lawful` is False for all six
+  city shopfronts, `insert_faults` says so, and the build counts
+  `panes_on_the_facade_line` -- 4 in the city, 2 in the zoo. The ledger makes
+  the panes lawful in the weak sense that they now own their records outright;
+  it does not give them a holder, so the facade run still ends at each pane
+  instead of crossing a recess mouth above it.
+* **Surfaces and openings are not yet declared by the city's constructs.** The
+  objects exist and are tested; `frame_map` still discovers runs post hoc,
+  which the architect review calls "the crutch again, one level up". Binding a
+  facade `Surface` to a building node is the next step and is what makes the
+  recess carve a local change rather than a whole-map one.
+* `maskwall_panel`'s `require_holder` defaults to False, so nothing currently
+  fails on it; turning it on needs the zoo's grate exhibit to declare a holder.
+
 ### What remains unproven
 
 * **The 8x maps were shipped and rendered and nobody saw it**, including me.

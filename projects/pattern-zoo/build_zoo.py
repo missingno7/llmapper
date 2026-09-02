@@ -313,14 +313,19 @@ def main() -> int:
     #: The span is the display box's own footprint, and `glaze` skips
     #: one-sided walls inside it: a window needs something behind it.
     from bloodmap import glass
+    from bloodmap.surface import RecordOwner
 
+    #: Shared with the texture-frame pass below: a record the pane owns is not
+    #: the surface's to re-derive (bloodmap.surface, "one record, one frame").
+    records = RecordOwner()
     display = compiled.allocations.get("shop_window:display")
     if display is not None:
         walls = [compiled.level.walls[w]["fields"] for w in display.wall_ids]
         xs = [int(f["x"]) for f in walls]
         ys = [int(f["y"]) for f in walls]
         report = glass.glaze(compiled.level,
-                             [(min(xs), min(ys), max(xs), max(ys))])
+                             [(min(xs), min(ys), max(xs), max(ys))],
+                             owner="insert:shop_window", records=records)
         #: The same count the city keeps: is this pane held in a display
         #: recess, or set flush in a room face? E6M1 does the former and the
         #: zoo's exhibit does the latter.
@@ -341,7 +346,11 @@ def main() -> int:
 
     art_sizes = wall_art_sizes("reference/blood")
     if art_sizes:
-        print("texture frames:", frame_map(compiled.level, art_sizes=art_sizes))
+        print("texture frames:", frame_map(compiled.level,
+                                           art_sizes=art_sizes,
+                                           records=records,
+                                           owner="surface:room"))
+        print("record owners:", records.report())
         print("crate tops:", frame_raised_solids(compiled.level,
                                                  art_sizes=art_sizes))
     else:

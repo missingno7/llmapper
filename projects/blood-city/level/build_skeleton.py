@@ -1330,7 +1330,16 @@ def main() -> int:
                     else l3_mall.SOUTH_BAND)
         spans.append((wx0, wy0, wx1, wy1))
     spans.extend(l3_market.SUPERMARKET_WINDOWS)
-    report = glass.glaze(compiled.level, spans)
+    #: ONE RECORD, ONE OWNER. The ledger is shared with the texture-frame
+    #: pass below, so a record a pane claims is one the facade's surface frame
+    #: will not re-derive. Without it the two passes overwrote each other and
+    #: the order decided per record: fifteen of these 24 kept the scale
+    #: `glaze` asked for and nine got the facade's.
+    from bloodmap.surface import RecordOwner
+
+    records = RecordOwner()
+    report = glass.glaze(compiled.level, spans, owner="insert:shop_glass",
+                         records=records)
     #: E6M1 holds its glass in a 512-deep display recess with a sill 8192 up
     #: and a head 77824 down (s4/s64 against s52), so the facade crosses the
     #: mouth as a lintel band and the street never meets the pane. These spans
@@ -1389,7 +1398,9 @@ def main() -> int:
         if allocation is not None:
             district_walls.update(int(w) for w in allocation.wall_ids)
     print("texture frames:", frame_map(compiled.level, art_sizes=art_sizes,
-                                       world_phase=district_walls))
+                                       world_phase=district_walls,
+                                       records=records, owner="surface:facade"))
+    print("record owners:", records.report())
     # Crate tops start their tile at the crate's own corner. 71% of the
     # campaign's 110 raised crate tops do; this map's eleven did not, so a
     # 1024 box off the 1024 world grid wore a cut tile.

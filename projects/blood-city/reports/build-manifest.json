@@ -1193,9 +1193,9 @@
     ]
   },
   "rules": {
-    "total": 452,
+    "total": 453,
     "by_severity": {
-      "note": 434,
+      "note": 435,
       "warning": 6,
       "error": 12
     },
@@ -1207,7 +1207,8 @@
       "warning:wall-between-rooms-is-not-paper": 1,
       "error:tile-sits-in-an-attested-slot": 12,
       "note:wall-draws-its-own-tile": 338,
-      "warning:wall-tile-is-drawn-somewhere": 5
+      "warning:wall-tile-is-drawn-somewhere": 5,
+      "note:rule-ungraded": 1
     }
   },
   "lost_wall_tiles": {
