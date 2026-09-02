@@ -259,3 +259,94 @@ SHORE_TILES = (433, 21, 255, 181, 416)
 #: and its outermost floor sits 26.9 below the median.
 CHASM_TILES = (274, 270, 411)
 CHASM_DEPTH_BODIES = (26.0, 28.0)
+
+
+# --- the compiler side: apply the table at every shared edge ---------------
+
+#: What a rule's `a_shows` names, resolved to a tile. The table says the tile
+#: CLASS ("lower band, kerb class") because a class is what the corpus
+#: attests; which member of the class a level uses is the level's choice, and
+#: Gravesend's is E3M1's.
+TILE_CLASSES = {
+    "kerb class": 6,
+    "facade stone": 400,
+    "rock": 274,
+}
+
+
+def _face(item: Any) -> Any:
+    if isinstance(item, dict):
+        return item["fields"] if "fields" in item else item
+    return getattr(item, "fields", item)
+
+
+def shared_edges(level: Any, owners: Iterable[int] | None = None):
+    """Every two-sided record, with the sector on each side.
+
+    Yields `(wall_id, here, there)`. Both records of a pair are yielded, once
+    each, because a join has two sides and each side's rule is about its own
+    record.
+    """
+    if owners is None:
+        from .texture_frame import sector_index
+
+        owners = sector_index(level)
+    for wall_id, wall in enumerate(level.walls):
+        nxt = int(_face(wall)["next_sector"])
+        if nxt >= 0:
+            yield wall_id, owners[wall_id], nxt
+
+
+def apply(level: Any, kinds: dict[int, str], *,
+          owners: Iterable[int] | None = None,
+          tiles: dict[str, int] | None = None,
+          strict: bool = True) -> dict[str, Any]:
+    """Write what the table says at every shared edge.
+
+    `kinds` maps sector id to surface kind. Every two-sided record whose two
+    sides have kinds is looked up, and the rule decides what that record
+    shows and which cstat bits it carries. **A pair with no row raises** under
+    `strict`, which is the point: the compiler stops asking "what should this
+    wall wear" and starts asking "what kind of join is this".
+
+    Returns what it wrote and what it could not answer, so a build can print
+    both rather than discovering later that a join was silently defaulted.
+    """
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(level)
+    tiles = dict(TILE_CLASSES if tiles is None else tiles)
+    written = 0
+    unknown: list[str] = []
+    applied: list[dict[str, Any]] = []
+    for wall_id, here, there in shared_edges(level, owners):
+        a_kind, b_kind = kinds.get(here), kinds.get(there)
+        if a_kind is None or b_kind is None:
+            continue
+        height = height_relation(
+            int(_face(level.sectors[here])["floor_z"]),
+            int(_face(level.sectors[there])["floor_z"]))
+        try:
+            found = rule(a_kind, b_kind, height)
+        except JoinError as error:
+            unknown.append(str(error).split(".")[0])
+            if strict:
+                raise
+            continue
+        face = _face(level.walls[wall_id])
+        shows = found.a_shows
+        if shows != NOTHING:
+            tile = next((value for name, value in tiles.items()
+                         if name in shows), None)
+            if tile is not None:
+                face["picnum"] = int(tile)
+                written += 1
+        if found.cstat:
+            face["cstat"] = int(face["cstat"]) | int(found.cstat)
+        applied.append({"wall": wall_id, "a": a_kind, "b": b_kind,
+                        "height": height, "shows": shows,
+                        "frame": found.frame})
+    return {"records": len(applied), "written": written,
+            "unknown": sorted(set(unknown)), "applied": applied,
+            "frame_boundaries": sum(1 for row in applied
+                                    if row["frame"] == "boundary")}

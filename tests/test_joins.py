@@ -178,5 +178,83 @@ class TheBoundaryIsStatedPerSide(unittest.TestCase):
         self.assertNotIn("south", sides, "the quay is walkable")
 
 
+
+class TheCompilerAppliesTheTable(unittest.TestCase):
+    """Deliverable 1: the table decides every shared record, or refuses."""
+
+    SLICE = Path("projects/blood-city/level/slice1-west-street.MAP")
+
+    def _slice(self):
+        from bloodmap.format import read_map
+
+        if not self.SLICE.exists():
+            raise unittest.SkipTest(f"{self.SLICE} is not present")
+        return read_map(self.SLICE)
+
+    def _kinds(self, disk):
+        from bloodmap.joins import PAVEMENT, ROAD
+
+        return {i: (ROAD if int(s.fields["floor_picnum"]) == 352 else PAVEMENT)
+                for i, s in enumerate(disk.sectors)}
+
+    def test_the_table_reproduces_the_slice_record_for_record(self):
+        # The proof: slice 1's kerbs were painted by hand from HeightIsland.
+        # Run the table over the same map and NOTHING may change -- if the
+        # table disagreed with the hand-written pass, one of the two is wrong.
+        from bloodmap.joins import apply
+
+        disk = self._slice()
+        keys = ("picnum", "over_picnum", "cstat", "x_repeat", "y_repeat",
+                "x_panning", "y_panning")
+        before = [{k: int(w.fields[k]) for k in keys} for w in disk.walls]
+        report = apply(disk, self._kinds(disk))
+        after = [{k: int(w.fields[k]) for k in keys} for w in disk.walls]
+        self.assertGreater(report["records"], 0, "no shared records found")
+        self.assertEqual(report["unknown"], [])
+        changed = [i for i, (a, b) in enumerate(zip(before, after)) if a != b]
+        self.assertEqual(changed, [],
+                         "the table disagrees with the hand-written pass")
+
+    def test_it_writes_the_kerb_band_on_the_road_side_only(self):
+        from bloodmap.joins import apply
+
+        disk = self._slice()
+        report = apply(disk, self._kinds(disk))
+        kerbs = [row for row in report["applied"]
+                 if row["shows"] != "nothing"]
+        self.assertTrue(kerbs)
+        for row in kerbs:
+            self.assertEqual(row["a"], "road",
+                             "only the road's record shows a kerb band")
+            self.assertIn("kerb", row["shows"])
+
+    def test_a_pair_with_no_row_refuses_loudly_and_names_it(self):
+        # FAIL-FIRST: the same map with one sector relabelled a kind the table
+        # has no row against. Before the compiler consulted the table this
+        # passed silently, because the record simply kept whatever tile its
+        # region carried.
+        from bloodmap.joins import CHASM, JoinError, apply
+
+        disk = self._slice()
+        kinds = self._kinds(disk)
+        kinds[next(iter(kinds))] = CHASM
+        with self.assertRaises(JoinError) as caught:
+            apply(disk, kinds)
+        message = str(caught.exception)
+        self.assertIn(CHASM, message)
+        self.assertIn("no rule", message)
+
+    def test_a_non_strict_run_reports_what_it_could_not_answer(self):
+        # For a build that wants the whole list rather than the first refusal.
+        from bloodmap.joins import CHASM, apply
+
+        disk = self._slice()
+        kinds = self._kinds(disk)
+        kinds[next(iter(kinds))] = CHASM
+        report = apply(disk, kinds, strict=False)
+        self.assertTrue(report["unknown"])
+        self.assertTrue(any(CHASM in line for line in report["unknown"]))
+
+
 if __name__ == "__main__":
     unittest.main()
