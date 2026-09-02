@@ -2815,6 +2815,209 @@ that, the receiver-side twin of P7's 171 changed interaction readings: how
 many campaign mechanisms have a `drives` facet that the design-role reading
 should be consulting and is not.
 
+## Texture frames: where a material is, 2026-09-02
+
+Supervisor assignment P11, from the owner walk. Adjacent walls wearing the
+same tile did not continue the texture -- at vertices, on facades, in the
+arcades, across doorway and window cuts. The supervisor had measured why: the
+representation decides texture fields PER WALL, so nothing in it can state
+"this material is projected onto this run from this origin at this scale".
+
+### The law, read from the editor rather than re-derived
+
+`AlignWalls` (`xmapedit/src_blood/xmpmaped.cpp:3024-3050`) is the whole wall
+half in four lines: a wall consumes exactly `x_repeat * 8` texels, panning is
+a texel offset modulo the tile width, `y_repeat` is carried along a run, and
+`y_panning` shifts by `((z1-z0) * y_repeat) / (tilesizy*8)`. `GetWallZPeg`
+(`:2991-3022`) says where a wall hangs from -- and its two-sided branch is two
+`if`s rather than an if/else, so a wall with a top step AND a bottom step ends
+up pegged to the bottom one. `ED32_AutoAlignWalls` (`:3070-3145`) is the
+traversal, and the traversal is why a run is not a sector loop: at
+`:3142-3143` it steps `wall[wall[w1].nextwall].point2`, around the vertex into
+the neighbouring sector. That is how a facade continues past a doorway.
+
+**Three corrections to the brief, all from reading the lines.**
+
+* **The `>` key is not the recursive one.** `maproc.cpp:1146-1151` sets flag
+  `0x01` when shift is NOT held, so plain `.` aligns a whole run and `>`
+  (shift+period) aligns exactly one neighbour. `,` adds `0x10` (walk
+  `lastwall`), ctrl adds `0x04` (carry the scale), and `0x20` is automatic
+  when the cursor sits on a bottom-swapped band. `AutoAlignWalls`
+  (`:3205-3216`) then runs the recursion **twice** with a fresh visited list,
+  so a correct map is a fixed point of two passes.
+* **Lengths are `approxDist`** (`common_game.h:1004-1012`), Build's octagonal
+  approximation, not the Euclidean length. Every diagonal wall in the map is
+  measured with the wrong number otherwise.
+* **A floor texel is sixteen world units**, and the expanded bit
+  (`floorstat 8`) makes it eight, not thirty-two: `globalxshift = 8 - log2
+  tilesizx` (`engine.cpp:2797`), `globalxpanning <<= globalxshift + 6`
+  (`:2880`), and the bit *increments* the shift (`:2799`). So a 64-wide tile
+  covers 1024 world units, which is why a 1024 crate on the 1024 grid wears a
+  whole tile and one anywhere else wears a cut one.
+
+### What changed
+
+`bloodmap/texture_frame.py`. A `WallRunFrame` is `(tile, texels per unit,
+u-origin, v-origin as a world z, y_repeat, flip)` attached to a RUN; a
+`SurfaceFrame` is `(tile, anchor, expanded, flips)` for a floor or ceiling.
+`resolve_run` derives all six wall fields from the frame and the wall's own
+world geometry, and `resolve_surface` derives `floor_stat` and the two
+pannings -- so a portal cut changes nothing and the wall-list order is not an
+input.
+
+The one running quantity is the texel cursor, and it is a prefix sum of
+`x_repeat * 8` **because the engine's accumulator is** (`:3036`). Using the
+true world distance would drift from the editor by the accumulated rounding of
+every wall before it, and the invariance test below would fail. That is the
+sense in which this is closed form: closed in the wall list, not in the run.
+
+`frame_map` replaces `texture_align.align_wall_runs` and the floor-anchored
+`align_wall_textures` pass **together**, which is the fix -- those two fought
+each other. The run pass carried x inside a sector loop and refused every
+portal-to-portal join but one opted-in concourse; the anchor pass then set y
+from each wall's own sector height, breaking the vertical phase at every kerb,
+sill and lintel.
+
+### The gate, and the threshold that had to be measured twice
+
+`texture-continues-across-a-join` in `rules_blood.py`, over nine classes
+(collinear/bend/reflex x solid-solid/solid-portal/portal-portal) in two axes.
+
+The first version used the campaign aggregate minus fifteen points, as the
+brief specifies, **and it flagged E1M1 and E3M1**. The reason is that the
+aggregate is not a standard: `bend solid-solid` x runs from **28% to 95%
+across the campaign's own maps**. A rule fifteen points under the 68%
+aggregate is a rule about being below average, and a third of Blood is.
+
+The threshold is now each class's campaign **floor** -- the lowest any single
+campaign map with 30+ joins reaches, rounded DOWN to the per cent. A violation
+then says something falsifiable: *no campaign map is ever this bad in this
+class*. Rounding the floor to the NEAREST per cent instead flagged five maps
+with their own minimum, which is how that detail was found.
+
+Deliberate restarts are excluded **by axis**, not by class. The campaign
+restarts x at outside corners (19-25%) and between step bands (30%) and
+continues y in those very same joins 62-91% of the time, so dropping the whole
+class would stop looking at the half that is broken.
+
+### The acceptance test: the editor has nothing left to say
+
+`auto_align_walls` is a port of `ED32_AutoAlignWalls`, second pass included.
+Resolve a frame onto a run, then run it: **0 of 788 framed walls in 158 runs
+moved**, on pattern-zoo, blood-city and E1M1. `tests/test_texture_frame` holds
+it on E1M1 and E3M1 -- original geometry with diagonals, steps, portals and
+bottom-swapped walls, not a rectangle chosen to pass -- and a companion test
+nudges one wall by 7 to prove the check can fail.
+
+That test found a real transcription bug. `AlignWalls`'s y term has a negative
+numerator at every lintel, sill and kerb return; **C truncates toward zero and
+Python floors**, so `-1 // 8` is `-1` where C gives `0`, and `-1` becomes
+`y_panning` 255. Thirty-six walls of the pattern zoo read as misaligned by
+exactly that one step until `c_div` existed.
+
+### The class table, before and after
+
+```text
+                            campaign      pattern-zoo        blood-city
+                            n      x   y    before  after     before  after
+bend solid-solid          20021  68  99    x 41 -> 93       x 73 ->  95
+bend solid-portal         13366  34  61    x 60 -> 73       x 91 ->  83
+                                           y 78 -> 93       y 31 ->  97
+collinear solid-portal     4442  80  88    x 42 -> 71       x 94 ->  98
+                                           y 49 -> 100      y 58 ->  97
+bend portal-portal        28216  30  91         --          x 55 ->  93
+collinear portal-portal    3588  57  89         --          x 37 ->  87
+reflex solid-portal        2836  25  62         --          x  0 ->  58
+                                                            y  0 ->  12
+```
+
+Gate: **3 findings before, 0 after; 0 of 43 campaign maps flagged.** One class
+went down -- blood-city `bend solid-portal` x, 91% to 83% -- because
+`world_align_facades` had been phasing those walls from world position and now
+mostly stands aside (`walls_phased` 128 -> 1); at 83% it is still two and a
+half times the campaign rate, and the two passes wanting the same walls is
+worth a decision rather than a silent winner.
+
+### Crate tops
+
+The campaign's raised crate tops (floor tiles 95/298/375/452/456/462, above
+every neighbour): **110 of them, 62% expanded, 71% landing the tile grid on
+the crate's own corner, 59% panned, 6% first-wall-relative.** The city's
+eleven and the zoo's three used **none of it** -- no expanded bit, no panning,
+nothing on the grid. `frame_raised_solids` gives each an object-anchored
+`SurfaceFrame`: **11 of 11 and 3 of 3 now wear an uncut top**, up from 0. The
+expanded bit is left as authored, because halving the world size of a tile is
+a look and landing the grid on the corner is correctness.
+
+### The moving-wall law, which the zoo's read-back taught
+
+`frame_map`'s first run turned the zoo's curtain texel scale from 2.0 into
+0.02 and the read-back gate refused the build. A moving sector's walls have no
+projectable length: `TranslateSector` moves the flagged end every tick while
+`x_repeat` stays put, and a curtain's fabric repeat is authored for the span
+the cloth hangs ACROSS while the file is saved at the gathered pose. So
+`MOVING_SECTOR_TYPES` are skipped and counted (`walls_left_to_their_mechanism`
+92 in the zoo, 60 in the city). The authoring-loop law caught a representation
+mistake that no texture measurement would have.
+
+### The shopfront, measured -- and not yet applied
+
+E6M1's four glazed walls do not lie between the street and the shop. `s4` and
+`s64` are 4096 x **512** four-wall display recesses; against the shop `s52`
+that is a **sill 8192 up and a head 77824 down**, and the pane is the recess's
+INNER face, so the facade material crosses the mouth as a lintel band and the
+street never meets the glass. `glass.recess_spec` reproduces those two z values
+exactly from the shop's own, `recess_faults` tells a display box from a room
+(E6M1 s4/s64 clean, s52 flagged), and `panes_without_a_recess` is the
+map-level reader.
+
+**The census qualifies the brief: of the 356 glazed walls in the 43 campaign
+maps, 139 (39%) sit in a shallow pocket and 217 are on a room face.** The
+recess is a strong minority idiom for shopfronts, not a law about glass, which
+is why the constructor offers it rather than forcing it.
+
+Re-glazing blood-city's six spans through it is **not done** -- see below.
+
+### What remains unproven, and what was left out
+
+* **The city's six shopfronts are not re-glazed.** Eight of its thirteen
+  glass-bearing sectors are rooms, and the fix is a geometry change in the
+  levelprog tree -- carve a 512 recess, re-hang the pane on its inner face,
+  continue the facade run across the mouth -- which needs its own build pass
+  and its own read-back claim. The reader, the spec and the fixtures are in
+  place so that pass can be gated; doing it inside this run would have been an
+  unread-back geometry edit to a map that currently builds clean.
+* **Sloped walls are not modelled.** `GetWallZPeg` is transcribed as written,
+  which reads flat `floor_z`/`ceiling_z`; a sloped sector's peg varies along
+  the wall and this pass does not know it.
+* **Bottom-swapped walls are ported but not fixtured.**
+  `ED32_AutoAlignWalls_GetWall` (`:3058-3061`) and flag `0x20` are
+  transcribed; no test drives them, because no map to hand has a
+  `kWallSwap` run to drive them with.
+* **`world_align_facades` and `frame_map` overlap.** Both want the facade
+  walls, and the frames are winning by default. Owner queue item 16.
+* Wall x/y flips are carried from the run head as the editor does
+  (`cstat0`, `:3095`), but nothing chooses them: no frame in either build
+  sets a flip deliberately.
+
+### Regression tests
+
+`tests/test_texture_frame`, 15 tests: the engine arithmetic (approxDist, C
+division, the sixteen-unit texel, the 1024 grid line), the z peg against every
+one-sided wall of E1M1, the invariance pair plus its can-it-fail companion,
+the run crossing a sector boundary, the partition covering each wall once, the
+moving-wall skip on DOOR-CURTAINS, and the calibration (0 of 43 flagged, plus a
+fail-first on an E1M1 with every panning zeroed). `tests/test_glass` gains five
+for the recess.
+
+### Next highest-value experiment
+
+Carry the recess through: give `levelprog` a shopfront node that emits the
+recess, the pane and the facade run as one thing, and make
+`panes_without_a_recess` a build-blocking claim in `readback.sentence()`. Then
+decide the `world_align_facades` overlap, which is the last place two passes
+still want the same field.
+
 ## The demonstration maps, and two things they said plainly
 
 `maps/blood/mechanism/` holds thirty-odd official XMapEdit tutorial maps, one

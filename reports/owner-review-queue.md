@@ -609,3 +609,36 @@ that cannot answer?
 > needs a `drives` key on `readback.sentence()` to enforce, which is the next
 > step named in the roadmap section and is NOT built yet -- so today the
 > reading reports and nothing refuses.
+
+## 16. Two passes want the facade's panning. Which wins? (2026-09-02)
+
+`facade_pass.world_align_facades` sets a facade wall's `x_panning` from its
+WORLD position, so the bay grid is identical everywhere in a district — E3M1's
+own practice, and the reason a row of shopfronts reads as one street rather
+than as eight buildings. `texture_frame.frame_map` sets it from the RUN, so a
+material continues across a doorway instead of restarting at it — the editor's
+own law, and the fix for the owner's walk.
+
+They want the same field on the same walls. Before this run the facade pass
+phased 128 walls; after it, 1, because the frames now set a scale its own
+check declines to override. Nothing decided that: it fell out of the order the
+two passes happen to run in.
+
+The measurable cost is one class: blood-city's `bend solid-portal` x went from
+91% to 83%. That is still two and a half times the campaign's 34% and well
+clear of the gate, so nothing is broken — but a silent winner between two
+deliberate passes is the kind of thing that turns into a mystery later.
+
+The third option is real and is what the campaign appears to do: a district is
+ONE frame. Give the whole street front a single `WallRunFrame` whose u-origin
+is a world point, and both facts hold at once — the bay grid is district-wide
+AND the material crosses every doorway, because they were never in conflict
+except in the per-wall representation.
+
+> **Recommended default: leave the frames winning for now, and make the
+> district frame the next step rather than choosing between the two passes.**
+> The frames fixed six classes and cost one, all of them still far above the
+> campaign; and `world_align_facades` is now nearly inert, so deleting it
+> would be tidier than keeping it as a coin-toss. Not deleted here, because it
+> encodes the E3M1 bay-grid observation and that observation should move into
+> the district frame rather than be lost.
