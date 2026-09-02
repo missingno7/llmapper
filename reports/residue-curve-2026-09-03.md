@@ -32,11 +32,21 @@ records. Per-layer numbers are claims.
 
 The full 43 rows are in `projects/campaign-census/references/residue-curve.json`.
 
-**The curve's shape is one fact repeated 43 times: layer 2 makes 92–97% of
-every map's claims.** Surfaces and stairs are the only readers that reach a
-map's bulk; layers 3, 4, 6, 7 and 8 together claim between 9 and 441 fields
-per map against layer 2's thousands. The claimed share therefore ranks maps
-roughly by wall count, not by how well they are understood.
+**The curve's shape is one fact repeated 43 times: layer 2 makes 95.8% of
+every claim in the campaign.** Over all 43 maps the claims divide as
+
+| layer | claims | share |
+| --- | --- | --- |
+| 2 surfaces and stairs | 205 043 | 95.84% |
+| 5 mechanisms | 7 556 | 3.53% |
+| 6 edges | 1 022 | 0.48% |
+| 4 overlays | 259 | 0.12% |
+| 3 joins | 53 | 0.02% |
+| 1, 7, 8 | 0 | 0% |
+
+Everything except layer 2 claims between 15 and 441 fields per map. The
+claimed share therefore ranks maps roughly by wall count, not by how well they
+are understood; the campaign's shares run 2.604% to 7.120%, median 5.205%.
 
 **And the more street a map has, the lower it ranks.** E1M3 (17 road sectors),
 E2M9, E6M8 and E3M1 are the four lowest of the street maps, because a street
@@ -84,3 +94,18 @@ that predates this work does not remove the map from the curve. Queue item
 the flag is true wherever any outdoor ground exists — but only 19 have a road
 with an island standing on it and a kerb at the join. That is the population
 the street model is about, and it is under half the campaign.
+
+## The suite
+
+```text
+Ran 2024 tests in 202.189s
+FAILED (failures=5, errors=4, skipped=267, expected failures=4)
+```
+
+The nine are the worktree-environment failures (relative `maps/`,
+`reference/`, `NBlood/` paths) that belong to P16; none is from this work. A
+tenth appeared once and is gone: `test_kerb_records_claims_a_kerb_on_edges_
+facing_no_road` pinned `overlay.kerb_records` claiming 81 records where E3M1
+makes 11 — **P14b fixed it** (7541ca7, from queue item 29b), and the reader
+that found the defect is now the gate that proves the fix: it claims 11 and
+the map makes 11.
