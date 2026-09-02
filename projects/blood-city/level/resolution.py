@@ -79,3 +79,44 @@ DISTRICT_STYLE = {
            "floor_shade": shade}
     for (name, mat), shade in zip(FACADES.items(), (30, 34, 32, 36))
 }
+
+
+# --- the sun: one direction for the whole level ---------------------------
+#
+# THE CONVENTION, stated once because the owner asked for it once.
+#
+# `SUN_BEARING` is a BUILD ANGLE: 0..2047, zero along +x, increasing the way
+# `sprite.ang` does. It is the direction a shadow is cast TOWARDS -- the
+# direction light travels in plan -- so a mass at (x, y) throws its shadow to
+# (x + L*cos, y + L*sin).
+#
+# The number is measured, not chosen. E3M1's road is cut at its shadow edges,
+# and those edges run along the sun's azimuth: of its 112 shade boundaries
+# inside the street surface, 60 are axis-aligned (sector edges) and 20 are
+# oblique, and the oblique ones cluster hard -- 52.1, 71.1, 78.7, 82.9, 83.8,
+# 84.2 degrees, median 84.0. The 84.2 cluster is the largest and is the
+# brief's "416 over 4096" read off the geometry: atan2(4096, 416) = 84.2.
+#
+# 84.0 degrees in Build units is 84.0 * 2048 / 360 = 478.
+SUN_BEARING = 478
+SUN_BEARING_DEGREES = 84.0
+#: How far a shadow edge may sit from the sun's bearing and still be this
+#: sun's. E3M1's own oblique edges spread 52..84, so the tolerance is what
+#: separates "cast by the sun" from "a sector boundary that happens to be
+#: diagonal", and it is generous on purpose.
+SUN_BEARING_TOLERANCE_DEGREES = 6.0
+
+#: How long a shadow is, per unit of mass height. Blood has no real sun
+#: elevation; what E3M1 has is shadows about as long as its masses are tall,
+#: so the elevation convention is 45 degrees and the shadow length equals the
+#: height above the ground plane. Stated as a ratio so it is one number to
+#: change if the corpus ever says otherwise.
+SUN_SHADOW_PER_HEIGHT = 1.0
+
+#: The shade palette, measured over E3M1's 68 street sectors: 8 on nine of
+#: them (lit), 34 on seventeen and 32 on three (shadow), 24 on seven
+#: (penumbra). 44 appears on thirteen, which is the quay and the far bank --
+#: outside the lit street, and not part of this palette.
+SHADE_LIT = 8
+SHADE_SHADOW = 34
+SHADE_PENUMBRA = 24

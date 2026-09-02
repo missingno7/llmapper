@@ -323,3 +323,49 @@ def plan() -> dict:
 if __name__ == "__main__":
     import json
     print(json.dumps(plan(), indent=2))
+
+
+# --- envelopes: what each venue needs, derived UP from its interior --------
+#
+# The layer contract keeps Build units out of this file, and these are the one
+# exception it has to make -- with the reason stated, because an envelope IS a
+# size and a schematic cannot carry one. They are measured, not chosen: where
+# the tree already builds the venue, the number is that module's own MASS rect
+# (`l3_church.MASS` 6144 x 10240, `l3_mall.MASS` 14336 x 10240); where it does
+# not, it is the venue pattern's room size for that type.
+#
+# The point of stating them here rather than in L2 is the order of decision
+# (street-model-decisions section 9): a building's size comes up from its
+# rooms, and the grid is solved from the envelopes. Taking a block from a norm
+# and carving rooms into it is what gave the arcade a concourse the wrong size.
+#
+# `interior` is the room extent; `city_solve.Envelope` adds the walls and the
+# facade depth an insert needs.
+ENVELOPES = {
+    "church":       {"interior": (6144, 10240), "faced": ("east",),
+                     "source": "l3_church.MASS, built"},
+    "arcade":       {"interior": (14336, 10240), "faced": ("west",),
+                     "source": "l3_mall.MASS, built"},
+    "aldermack":    {"interior": (12288, 10240), "faced": ("south",),
+                     "source": "VP complex at the low end; the theatre house "
+                               "plus its stage and forecourt depth"},
+    "market_hall":  {"interior": (10240, 7168), "faced": ("east",),
+                     "source": "VP retail_row, E4M9 multi-unit hall"},
+    "saloon":       {"interior": (5120, 4096), "faced": ("south",),
+                     "source": "VP bar: counter geometry plus tables"},
+    "shooting_parlor": {"interior": (3072, 7168), "faced": ("south",),
+                        "source": "VP walk_through: deep plan, narrow mouth"},
+    "pawn_shop":    {"interior": (4096, 4096), "faced": ("east",),
+                     "source": "VP open_front"},
+    "ferry_office": {"interior": (4096, 3072), "faced": ("south",),
+                     "source": "VP open_front, single doorway"},
+    "workshop_bar": {"interior": (4096, 4096), "faced": ("north",),
+                     "source": "VP bar in the hand-shaped district"},
+    "works_canteen": {"interior": (5120, 4096), "faced": ("east",),
+                      "source": "VP open_front onto the yard"},
+}
+
+#: Which cells absorb the residue. Named here so the solver never has to guess
+#: which parts of the city are allowed to change size: the plaza, the
+#: cemetery, the works yard and the alleys, and nothing else.
+SLACK_AREAS = ("market_plaza", "cemetery", "works_yard")
