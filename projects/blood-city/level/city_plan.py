@@ -416,3 +416,37 @@ def building_back_sides():
     return tuple(side for side, chain in BOUNDARY.items()
                  if all(segment["kind"] in ("building_back", "end_wall")
                         for segment in chain))
+
+# ---------------------------------------------------------------------------
+# A WIDTH CLASS IS THE FULL WIDTH (owner queue item 30a, decided 2026-09-03)
+# ---------------------------------------------------------------------------
+
+#: `resolution.WIDTH_UNITS` gives a street's width. It means the FULL width --
+#: carriageway plus the pavements beside it -- and not the carriageway alone.
+#: Read that way E3M1's east arm is a ROW with residual exactly 0, and the
+#: plan's own grid already sums its streets that way.
+#:
+#: So a gutter's solved span is the whole street, and the carriageway is what
+#: is left after the pavements are taken out of it. Measured on E3M1: its nine
+#: pavement sectors have a median narrow dimension of **2048** and its four
+#: road sectors are 4096, 4096, 5120 and 7456 across. A pavement is 2048 wide
+#: and a carriageway is never narrower than 2048.
+#:
+#: Where a gutter cannot afford both bands it gets ONE, on its low-coordinate
+#: side, and where it cannot afford one it gets none and is all carriageway.
+#: A one-sided pavement is not a compromise: E3M1's east arm is exactly that,
+#: 6144 across as 4096 of road and one 2048 pavement.
+WIDTH_IS_FULL_WIDTH = True
+PAVEMENT_BAND = 2048
+MIN_CARRIAGEWAY = 2048
+
+
+def pavement_bands(full_width: int, *, band: int = PAVEMENT_BAND,
+                   floor: int = MIN_CARRIAGEWAY) -> tuple[int, int]:
+    """(low-side band, high-side band) for a street of this full width."""
+    if full_width - 2 * band >= floor:
+        return band, band
+    if full_width - band >= floor:
+        return band, 0
+    return 0, 0
+

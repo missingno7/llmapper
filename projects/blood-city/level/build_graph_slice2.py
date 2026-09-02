@@ -200,39 +200,73 @@ def geometry():
     spans_x = {name: (lo, hi) for name, lo, hi in x.spans}
     spans_y = {name: (lo, hi) for name, lo, hi in y.spans}
 
+    #: A WIDTH CLASS IS THE FULL WIDTH. The gutter's solved span is the whole
+    #: street; the carriageway is what is left after its pavements are taken
+    #: out of it, and those bands go to the blocks beside them. The spans
+    #: themselves do not move, so the plan's level-0 facts are untouched --
+    #: what changes is where the kerb is.
+    def bands(name, spans, order):
+        cls = next((item.width_class for item in order
+                    if getattr(item, "gutter_id", None) == name), None)
+        lo, hi = spans[name]
+        return plan.pavement_bands(WIDTH_UNITS.get(cls, hi - lo))
+
+    carriageway = {}
     strips = []
     for name, lo, hi in x.spans:
-        if name not in x.demanded:
-            strips.append((lo, 0, hi, y.total))
+        if name in x.demanded:
+            continue
+        low, high = bands(name, spans_x, X_ORDER)
+        carriageway[("x", name)] = (lo + low, hi - high)
+        strips.append((lo + low, 0, hi - high, y.total))
     for name, lo, hi in y.spans:
-        if name not in y.demanded:
-            strips.append((0, lo, x.total, hi))
+        if name in y.demanded:
+            continue
+        low, high = bands(name, spans_y, Y_ORDER)
+        carriageway[("y", name)] = (lo + low, hi - high)
+        strips.append((0, lo + low, x.total, hi - high))
 
-    lane_north = spans_y["lane_north"][1]
+    #: An island reaches to the edge of the carriageway beside it, which is
+    #: how it comes to carry the pavement band.
+    def grown(axis, name, spans, order, demanded):
+        lo, hi = spans[name]
+        names = [item for item, _a, _b in (x.spans if axis == "x" else y.spans)]
+        index = names.index(name)
+        before = names[index - 1] if index else None
+        after = names[index + 1] if index + 1 < len(names) else None
+        if before is not None and before not in demanded:
+            lo = carriageway[(axis, before)][1]
+        if after is not None and after not in demanded:
+            hi = carriageway[(axis, after)][0]
+        return lo, hi
+
+    lane_north = carriageway[("y", "lane_north")][1]
     #: END WALLS. Each stops its street just south of the perimeter lane, so
     #: the lane itself stays whole -- a ring lattice survives one blockage per
     #: leg, and the connectivity flood in `ground_plane_rings` still asks.
     ends = {}
     for name in TERMINATED:
-        lo, hi = spans_x[name]
+        lo, hi = carriageway[("x", name)]
         ends[f"end_wall:{name}"] = (lo, lane_north,
                                     hi, lane_north + END_WALL_DEPTH)
 
     #: THE OPEN PLACES, each let into a street and each abutting the island it
     #: belongs to, so the shared edge is a pavement-only path.
-    plaza_x0, plaza_x1 = spans_x["col_b"][0] + BAND, spans_x["col_b"][1] - BAND
-    plaza_y0 = spans_y["market_street"][0]
+    col_b = grown("x", "col_b", spans_x, X_ORDER, x.demanded)
+    row_2 = grown("y", "row_2", spans_y, Y_ORDER, y.demanded)
+    market_lo = carriageway[("y", "market_street")][0]
+    west_lo = carriageway[("x", "west_street")][0]
     places = {
-        "market_plaza": (plaza_x0, plaza_y0, plaza_x1, plaza_y0 + 3072),
-        "cemetery": (spans_x["west_street"][0], spans_y["row_2"][0] + BAND,
-                     spans_x["west_street"][0] + 3072,
-                     spans_y["row_2"][1] - BAND),
+        "market_plaza": (col_b[0] + BAND, market_lo,
+                         col_b[1] - BAND, market_lo + 3072),
+        "cemetery": (west_lo, row_2[0] + BAND, west_lo + 3072,
+                     row_2[1] - BAND),
     }
 
     #: THE QUAY WALK: the southernmost band of the quay street, taken out of
     #: the plane and stood 2048 up, so the shore has a pavement to step to.
-    quay_lo, quay_hi = spans_y["quay"]
-    quay_walk = (0, quay_hi - QUAY_WALK_DEPTH, x.total, quay_hi)
+    quay_lo, quay_hi = carriageway[("y", "quay")]
+    quay_walk = (0, quay_hi, x.total, spans_y["quay"][1])
 
     holes = list(ends.values()) + list(places.values()) + [quay_walk]
     plane = ground_plane_rings(strips, holes=holes)
@@ -244,8 +278,11 @@ def geometry():
     islands = {}
     masses = []
     shells = {}
-    for x_name, (x0, x1) in ((n, spans_x[n]) for n in x.demanded):
-        for y_name, (y0, y1) in ((n, spans_y[n]) for n in y.demanded):
+    for x_name, (x0, x1) in ((n, grown("x", n, spans_x, X_ORDER, x.demanded))
+                             for n in x.demanded):
+        for y_name, (y0, y1) in ((n, grown("y", n, spans_y, Y_ORDER,
+                                           y.demanded))
+                                 for n in y.demanded):
             key = f"{x_name}/{y_name}"
             #: Where a shell may stand on this island. The notched one has
             #: to give the yard up: a mass placed in the bounding box would

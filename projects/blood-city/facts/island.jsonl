@@ -1,19 +1,19 @@
-{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_a/row_1", "kind": "block", "lod": 0, "ring": [[3072, 3072], [20480, 3072], [20480, 18944], [3072, 18944]]}
-{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_a/row_2", "kind": "block", "lod": 0, "ring": [[3072, 25088], [20480, 25088], [20480, 40448], [3072, 40448]]}
-{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_a/row_3", "kind": "block", "lod": 0, "ring": [[3072, 45568], [20480, 45568], [20480, 55296], [3072, 55296]]}
-{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_b/row_1", "kind": "block", "lod": 0, "ring": [[25600, 3072], [41472, 3072], [41472, 18944], [25600, 18944]]}
-{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_b/row_2", "kind": "block", "lod": 0, "ring": [[25600, 25088], [41472, 25088], [41472, 40448], [25600, 40448]]}
-{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_b/row_3", "kind": "block", "lod": 0, "ring": [[25600, 45568], [41472, 45568], [41472, 55296], [25600, 55296]]}
-{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_c/row_1", "kind": "block", "lod": 0, "ring": [[48640, 3072], [68608, 3072], [68608, 18944], [48640, 18944]]}
-{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_c/row_2", "kind": "block", "lod": 0, "ring": [[48640, 25088], [68608, 25088], [68608, 40448], [48640, 40448]]}
-{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_c/row_3", "kind": "block", "lod": 0, "ring": [[55296, 45568], [68608, 45568], [68608, 55296], [48640, 55296], [48640, 50432], [55296, 50432]]}
-{"_from": ["city_plan.AREAS"], "_layer": 0, "_reader": "compiler", "id": "island:cemetery", "kind": "open_place", "lod": 0, "ring": [[20480, 27136], [23552, 27136], [23552, 38400], [20480, 38400]]}
-{"_from": ["city_plan.AREAS"], "_layer": 0, "_reader": "compiler", "id": "island:market_plaza", "kind": "open_place", "lod": 0, "ring": [[27648, 40448], [39424, 40448], [39424, 43520], [27648, 43520]]}
-{"_from": ["city_plan.AREAS"], "_layer": 0, "_reader": "compiler", "id": "island:works_yard", "kind": "open_place", "lod": 0, "ring": [[48640, 45568], [55296, 45568], [55296, 50432], [48640, 50432]]}
-{"_from": ["city_plan.BOUNDARY"], "_layer": 0, "_reader": "compiler", "id": "island:end_wall:avenue", "kind": "end_wall", "lod": 0, "ring": [[41472, 3072], [48640, 3072], [48640, 5120], [41472, 5120]]}
-{"_from": ["city_plan.BOUNDARY"], "_layer": 0, "_reader": "compiler", "id": "island:end_wall:spur", "kind": "end_wall", "lod": 0, "ring": [[68608, 3072], [73728, 3072], [73728, 5120], [68608, 5120]]}
-{"_from": ["city_plan.BOUNDARY"], "_layer": 0, "_reader": "compiler", "id": "island:end_wall:west_street", "kind": "end_wall", "lod": 0, "ring": [[20480, 3072], [25600, 3072], [25600, 5120], [20480, 5120]]}
-{"_from": ["city_plan.BOUNDARY"], "_layer": 0, "_reader": "compiler", "id": "island:horizon", "kind": "waterfront", "lod": 0, "ring": [[0, 79872], [73728, 79872], [73728, 81920], [0, 81920]]}
-{"_from": ["city_plan.BOUNDARY"], "_layer": 0, "_reader": "compiler", "id": "island:sea", "kind": "waterfront", "lod": 0, "ring": [[0, 63488], [73728, 63488], [73728, 79872], [0, 79872]]}
-{"_from": ["city_plan.BOUNDARY"], "_layer": 0, "_reader": "compiler", "id": "island:shore", "kind": "waterfront", "lod": 0, "ring": [[0, 61440], [73728, 61440], [73728, 63488], [0, 63488]]}
+{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_a/row_1", "kind": "block", "lod": 0, "ring": [[3072, 3072], [22528, 3072], [22528, 20992], [3072, 20992]]}
+{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_a/row_2", "kind": "block", "lod": 0, "ring": [[3072, 23040], [22528, 23040], [22528, 42496], [3072, 42496]]}
+{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_a/row_3", "kind": "block", "lod": 0, "ring": [[3072, 45568], [22528, 45568], [22528, 57344], [3072, 57344]]}
+{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_b/row_1", "kind": "block", "lod": 0, "ring": [[25600, 3072], [43520, 3072], [43520, 20992], [25600, 20992]]}
+{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_b/row_2", "kind": "block", "lod": 0, "ring": [[25600, 23040], [43520, 23040], [43520, 42496], [25600, 42496]]}
+{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_b/row_3", "kind": "block", "lod": 0, "ring": [[25600, 45568], [43520, 45568], [43520, 57344], [25600, 57344]]}
+{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_c/row_1", "kind": "block", "lod": 0, "ring": [[46592, 3072], [70656, 3072], [70656, 20992], [46592, 20992]]}
+{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_c/row_2", "kind": "block", "lod": 0, "ring": [[46592, 23040], [70656, 23040], [70656, 42496], [46592, 42496]]}
+{"_from": ["city_plan.BLOCKS"], "_layer": 0, "_reader": "compiler", "id": "island:col_c/row_3", "kind": "block", "lod": 0, "ring": [[54613, 45568], [70656, 45568], [70656, 57344], [46592, 57344], [46592, 51456], [54613, 51456]]}
+{"_from": ["city_plan.AREAS"], "_layer": 0, "_reader": "compiler", "id": "island:cemetery", "kind": "open_place", "lod": 0, "ring": [[22528, 25088], [25600, 25088], [25600, 40448], [22528, 40448]]}
+{"_from": ["city_plan.AREAS"], "_layer": 0, "_reader": "compiler", "id": "island:market_plaza", "kind": "open_place", "lod": 0, "ring": [[27648, 42496], [41472, 42496], [41472, 45568], [27648, 45568]]}
+{"_from": ["city_plan.AREAS"], "_layer": 0, "_reader": "compiler", "id": "island:works_yard", "kind": "open_place", "lod": 0, "ring": [[46592, 45568], [54613, 45568], [54613, 51456], [46592, 51456]]}
+{"_from": ["city_plan.BOUNDARY"], "_layer": 0, "_reader": "compiler", "id": "island:end_wall:avenue", "kind": "end_wall", "lod": 0, "ring": [[43520, 3072], [46592, 3072], [46592, 5120], [43520, 5120]]}
+{"_from": ["city_plan.BOUNDARY"], "_layer": 0, "_reader": "compiler", "id": "island:end_wall:spur", "kind": "end_wall", "lod": 0, "ring": [[70656, 3072], [73728, 3072], [73728, 5120], [70656, 5120]]}
+{"_from": ["city_plan.BOUNDARY"], "_layer": 0, "_reader": "compiler", "id": "island:end_wall:west_street", "kind": "end_wall", "lod": 0, "ring": [[22528, 3072], [25600, 3072], [25600, 5120], [22528, 5120]]}
+{"_from": ["city_plan.BOUNDARY"], "_layer": 0, "_reader": "compiler", "id": "island:horizon", "kind": "waterfront", "lod": 0, "ring": [[0, 77824], [73728, 77824], [73728, 79872], [0, 79872]]}
+{"_from": ["city_plan.BOUNDARY"], "_layer": 0, "_reader": "compiler", "id": "island:sea", "kind": "waterfront", "lod": 0, "ring": [[0, 61440], [73728, 61440], [73728, 77824], [0, 77824]]}
+{"_from": ["city_plan.BOUNDARY"], "_layer": 0, "_reader": "compiler", "id": "island:shore", "kind": "waterfront", "lod": 0, "ring": [[0, 59392], [73728, 59392], [73728, 61440], [0, 61440]]}
 {"_from": ["city_plan.BOUNDARY"], "_layer": 0, "_reader": "compiler", "id": "island:quay_walk", "kind": "walk", "lod": 0, "ring": [[0, 59392], [73728, 59392], [73728, 61440], [0, 61440]]}
