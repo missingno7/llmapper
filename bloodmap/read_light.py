@@ -448,6 +448,17 @@ def summary(result: dict[str, Any]) -> dict[str, Any]:
 NETWORK_ALL_OUTDOOR = "all_outdoor"
 NETWORK_LARGEST_COMPONENT = "largest_outdoor_component"
 
+#: THE ENVELOPE A GATE CHECKS AGAINST, per network, decided rather than
+#: recomputed on every build (owner queue 32e/37f, decisions section 31). It
+#: is the quartile range of the network named, and a gate that does not name
+#: its network cannot use it: the two differ by a quarter and the answer moves
+#: with the definition. E3M1's own 24-26 lies outside both and is recorded as
+#: the precedent's value, not as the law.
+DECIDED_ENVELOPE = {
+    NETWORK_LARGEST_COMPONENT: (8, 18),
+    NETWORK_ALL_OUTDOOR: (8, 16),
+}
+
 
 def _outdoor(level: Any) -> set:
     return {index for index, sector in enumerate(level.sectors)
@@ -487,7 +498,8 @@ def _largest_outdoor(level: Any, owners: Sequence[int]) -> set:
 
 def shade_step_envelope(paths: Iterable[Any] | None = None, *,
                         network: str = NETWORK_LARGEST_COMPONENT,
-                        envelope: tuple[int, int] = (8, 16)) -> dict[str, Any]:
+                        envelope: tuple[int, int] | None = None
+                        ) -> dict[str, Any]:
     """The campaign's shade-step census, over a NAMED network.
 
     A writer's gate must not carry this as a constant. The number depends on
@@ -501,6 +513,9 @@ def shade_step_envelope(paths: Iterable[Any] | None = None, *,
 
     from .patterns import list_original_maps, read_map
     from .texture_frame import sector_index
+
+    if envelope is None:
+        envelope = DECIDED_ENVELOPE.get(network, (8, 16))
 
     if paths is None:
         paths = list_original_maps(population="blood-campaign")

@@ -320,3 +320,43 @@ class AMapWithNoSun(unittest.TestCase):
         self.assertIsNotNone(found["axis"]["axis_degrees"])
         self.assertEqual(found["sign"]["throw_bearing_units"], 479)
         self.assertGreater(found["casters"]["edges"], 0)
+
+
+class TheEnvelopeIsDecidedPerNetwork(unittest.TestCase):
+    """A gate that does not name its network cannot use an envelope.
+
+    The two definitions differ by a quarter, so the envelope is decided per
+    network -- [8, 18] on the largest outdoor component, [8, 16] over every
+    parallax sector -- and `shade_step_envelope` uses the one for the network
+    it was asked about.
+    """
+
+    def test_each_network_carries_its_own_decided_envelope(self):
+        from bloodmap.read_light import (
+            DECIDED_ENVELOPE, NETWORK_ALL_OUTDOOR, NETWORK_LARGEST_COMPONENT)
+
+        self.assertEqual(DECIDED_ENVELOPE[NETWORK_LARGEST_COMPONENT], (8, 18))
+        self.assertEqual(DECIDED_ENVELOPE[NETWORK_ALL_OUTDOOR], (8, 16))
+
+    def test_the_census_uses_its_network_s_envelope_unasked(self):
+        from bloodmap.patterns import list_original_maps
+        from bloodmap.read_light import (
+            NETWORK_LARGEST_COMPONENT, shade_step_envelope)
+
+        try:
+            paths = list_original_maps(population="blood-campaign")[:4]
+        except Exception:  # pragma: no cover - corpus absent
+            self.skipTest("the campaign is not in the corpus")
+        found = shade_step_envelope(paths, network=NETWORK_LARGEST_COMPONENT)
+        self.assertEqual(tuple(found["envelope"]), (8, 18))
+
+    def test_a_caller_may_still_state_one(self):
+        from bloodmap.patterns import list_original_maps
+        from bloodmap.read_light import shade_step_envelope
+
+        try:
+            paths = list_original_maps(population="blood-campaign")[:4]
+        except Exception:  # pragma: no cover - corpus absent
+            self.skipTest("the campaign is not in the corpus")
+        found = shade_step_envelope(paths, envelope=(1, 2))
+        self.assertEqual(tuple(found["envelope"]), (1, 2))

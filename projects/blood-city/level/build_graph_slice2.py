@@ -620,14 +620,18 @@ def main() -> int:
     #: comes from `read_light.shade_step_envelope`, a census over the
     #: campaign, and never from a constant here.
     census = _shade_census()
-    low, high = census["quartiles"]
+    #: THE ENVELOPE IS THE READER'S, and it is the DECIDED one for the network
+    #: this gate names -- [8, 18] on the largest outdoor component. The
+    #: measured quartiles are reported beside it so the two can disagree.
+    low, high = census["envelope"]
+    q_low, q_high = census["quartiles"]
     inside = low <= STEP <= high
-    print(f"shade step: Gravesend CHOOSES {STEP}; the campaign's "
-          f"{census['network']} has median {census['median']} over "
-          f"{census['records']} boundaries in {census['maps']} maps, "
-          f"quartiles {low}-{high}, {100 * census['inside']:.0f}% inside "
-          f"{tuple(census['envelope'])} -- the choice is "
-          f"{'inside' if inside else 'OUTSIDE'} the measured range")
+    print(f"shade step: Gravesend CHOOSES {STEP}; the gate's network is "
+          f"{census['network']} and its envelope {low}-{high}; the campaign "
+          f"has median {census['median']} over {census['records']} "
+          f"BOUNDARIES in {census['maps']} maps, quartiles {q_low}-{q_high}, "
+          f"{100 * census['inside']:.0f}% inside -- the choice is "
+          f"{'inside' if inside else 'OUTSIDE'} the envelope")
     if not inside:
         print(f"   - {STEP} is outside {low}-{high}: a choice may be made, "
               f"and one outside the campaign's own middle half has to be "
