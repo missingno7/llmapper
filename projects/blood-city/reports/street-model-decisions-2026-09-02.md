@@ -1763,3 +1763,72 @@ after every step; no agent branch is merged by anyone again.
 Owner: walk `projects/blood-city/level/slice2-streets.MAP` again (nine
 doors that shut, switches beside them, keys on the circuit); the review
 packs of three maps wait under `projects/*-decompiled/review/`.
+
+## 32. The owner's second walk (2026-09-03): eight findings, three of them systemic
+
+Measured off `slice2-streets.MAP` and the engine before deciding:
+
+- The nine "doors" are sectors 4096 x 1024 with a clear height of 33920
+  AT REST (open), ceiling tile 379, one masked record (over_picnum 146)
+  on the street side only. E3M1's Z-motion doors are closed at rest
+  (ceiling on floor), 768-1536 wide, 256 thick (s52/s54/s58/s59/s60,
+  s114); their open height is the lintel, never the roof.
+- The nine switches sit in the SHELL's sector (floor -59648) at 5120
+  above that floor, i.e. above the roof; `trigger_on` and `trigger_off`
+  are 0 on all nine, so by `NBlood/source/blood/src/triggers.cpp:102-104`
+  none can ever send.
+- The eighteen "sconces" are tile 510, which `decoration-v1.json`
+  itself describes as a wall-aligned plate 1.45 player heights tall;
+  the tile was chosen by brightness, not by role, and eleven of them
+  hang on red walls between street pieces, mid-street.
+- Sprite 536 is at its sector's floor (z 2048) but the sector is not
+  the one under it; the statue floats over ground at 8192.
+- One interior floor wears 401, the facade family's window tile.
+- Wall 236 (facade, tile 401) reads shade 9 while the piece it stands
+  on reads 32: facades do not take the field, only floors and kerbs.
+- Engine, `engine.cpp:4688`: the upper wall between two sectors clips
+  the view (umost raised to the far ceiling line) only when at least
+  ONE of the two ceilings is not parallaxed; sky against sky never
+  clips. So sky-height steps are harmless (E3M1: 13 differing sky|sky
+  pairs, no visible cut), and what the owner sees at the doors is a
+  REAL ceiling (the door sector's, 379, two bodies up, across a
+  4096-wide mouth) clipping everything above it behind. The rule the
+  owner asked for: an outdoor opening's real ceiling is a lintel over a
+  door-width mouth, never a roof-height slab over a facade's width.
+
+**Decisions:**
+
+1. **Doors follow E3M1's envelope:** closed at rest, width from the
+   campaign door census (768-1536 in E3M1), thickness 256, the door
+   sector between the facade's opening records and the room, opening
+   to the lintel; the facade's band above and beside the mouth is the
+   facade's own records and never moves (aperture grammar). The A/B
+   from item 32a (void slot vs pocket) is not needed for a Z-motion
+   door and stays parked.
+2. **Switches:** `trigger_on = 1` (and `trigger_off` where the door is
+   toggled back), in the PAVEMENT sector beside the mouth, z = pavement
+   floor - 5120; a reachability reading off the map: the switch is
+   inside a standing body's use range from a walkable floor. The link
+   reader (P15) must require the send-when bits before it says
+   `realised: true`; today it said so about nine switches that cannot
+   send.
+3. **Street lamps come out.** Two attempts produced a chained lantern
+   under the sky and a floating plate; Blood has zero visible outdoor
+   lamps in 43 maps. The lamp construct stays for places with a REAL
+   ceiling (arcade, porch, the lintel of a doorway), where 641 hangs
+   legitimately, and that is how Theatre Row gets its gas-lit reading
+   later. Tiles are chosen by ROLE from the owner anchors and
+   `decoration-v1.json`, never by a brightness statistic. Owner veto
+   welcome; the choice claim is rewritten accordingly.
+4. **Wall-mounted props go on one-sided records only**, never on a red
+   wall between pieces; floor props sit in the sector that contains
+   their xy (updatesector) at that sector's floor.
+5. **Floor and ceiling tiles come from the floor/ceiling class of the
+   anchors**, wall classes are refused on horizontal surfaces.
+6. **Masks:** a Z-motion door has no mask; an insert's mask is on BOTH
+   records with the same over_picnum unless the sentence says one-way.
+7. **Facades take the field:** measure on E3M1 the relation between a
+   one-sided outdoor record's shade and the floor shade of the ground
+   piece it faces (as W2 did for kerbs), and write it through the join
+   table; and the shadow's near edge must share vertices with the
+   shell's street-facing records, so the shadow fits the building.
