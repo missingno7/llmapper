@@ -80,12 +80,25 @@ class E3M1sStreet(unittest.TestCase):
     def test_exactly_three_end_walls_are_met_by_a_road(self):
         """The owner's reading: "the T of the main street ends in three end
         walls (0, 339, 343)". The reader finds ten wall-top masses and three
-        of them are what a ROAD runs into -- which is the same statement."""
+        of them are what a ROAD runs into -- which is the same statement.
+
+        Still three, and now under two names. Item 32c split `facade` off
+        `end_wall`, and 343 is part of E3M1's one building: the four-sector
+        mass 118/165/166/343, whose top wears 379 and whose room is ceilinged
+        379. The T still ends in three masses; one of them has rooms in it,
+        and the test reads both rows rather than the one that used to hold
+        all three.
+        """
         level = _e3m1()
-        records = self.census["described_records"]["road|end_wall|b_above"]
+        records = (self.census["described_records"]["road|end_wall|b_above"]
+                   + self.census["described_records"]["road|facade|b_above"])
         met = sorted({int(level.walls[record]["fields"]["next_sector"])
                       for record in records})
         self.assertEqual(met, [0, 339, 343])
+        terminations = sorted(
+            {int(level.walls[record]["fields"]["next_sector"])
+             for record in self.census["described_records"]["road|end_wall|b_above"]})
+        self.assertEqual(terminations, [0, 339])
 
     def test_s10_and_s11_are_solid_masses_not_a_pavement_path(self):
         """`joins.py`'s pavement|pavement row cites them as "a pavement-only
@@ -102,18 +115,32 @@ class E3M1sStreet(unittest.TestCase):
     def test_the_table_describes_the_building_now_as_well(self):
         """It used to describe 66 of 1386 and the building was the residue.
 
+        Two items landed on it within a day and both raised the number.
+
         Item 37e landed the indoor law -- ONE row keyed on the height
         relation, because the campaign's 25 mirrored interior|interior classes
         say one thing and it is `wallVisible`: the record whose neighbour
         stands above is the one that draws. The 1122 interior|interior records
-        that were residue are described by three rows, and 198 remain: a
-        building meeting a solid, a pavement or an end wall.
+        that were residue are described by three rows.
+
+        Item 32c then split `facade` and `opening` off `end_wall` and
+        `interior`. E3M1 has one building -- the four-sector mass
+        118/165/166/343, whose top wears 379 and whose room is ceilinged 379
+        -- and one shopfront, sector 206. Both reach rows the writer's table
+        has carried since the grammar was written and no reader could produce.
+
+        1188 after the indoor law, 1190 after the two kinds: E3M1's shopfront
+        stopped being an interior, so the two records between it and room 208
+        are `interior|opening` and `opening|interior`, which the table
+        describes. 196 remain, and they are what the grammar still has no row
+        for -- a mass meeting a solid, a mechanism at rest meeting anything,
+        a facade meeting a facade.
         """
         from bloodmap.read_joins import summary
 
         stats = summary(self.result)
         self.assertEqual(stats["two_sided_records"], 1386)
-        self.assertEqual(stats["records_described"], 1188)
+        self.assertEqual(stats["records_described"], 1190)
         interior = sum(count for key, count in self.census["undescribed"].items()
                        if key.startswith("interior|interior"))
         self.assertEqual(interior, 0)

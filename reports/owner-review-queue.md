@@ -1687,3 +1687,107 @@ current [8, 16] holds 45.3% of them; on `all_parallax`, 1362 boundaries over
 *Recommended default:* the gate calls the reader and uses the quartile
 envelope of the network it names — [8, 18] for the street definition. E3M1's
 own 24–26 stays recorded as the precedent's value and outside both.
+
+## 38. Two kinds, one recount and the first symmetry diff (P15, 2026-09-03)
+
+Items 32c and 32e/37f done, plus `tools/symmetry_diff.py`. Numbers are queries
+over `projects/blood-city/references/symmetry-diff.json`,
+`projects/*-decompiled/residue-ledger.json` and
+`read_light.shade_step_envelope`.
+
+**38a. The city's 296 unnamed joins fall to 134, and the writer's table needed
+no new row.** `read_joins.surface_kinds` gained `facade` (a raised outdoor
+mass that holds rooms AND roofs them) and `opening` (a sector at the
+pavement's own z with the pavement on one side and a room on the other).
+`bloodmap/joins.py` has carried `pavement|facade`, `facade|opening`,
+`interior|facade` and `opening|pavement` since the grammar was written — the
+READER could not produce the kinds, so 162 of the writer's own rows were
+unreachable on the map the writer built, and 122 more records were described
+by a row that called a building a termination. 284 records now reach a row.
+Everything the city still leaves undescribed is its waterfront: `water|water`
+52, `shore|water` 38, `water|solid` 44.
+*Node:* `projects/e3m1-decompiled/review/layer3.html`, node `level`.
+The band census re-ran with the split and is exact: 179 records before, 179
+after, 31 of them under the new name, nothing lost. It also says something new
+— **tile 91 leads the buildings (15 of 27 `road|facade` records) and 2490
+leads the plain terminations (28 of 116 `road|end_wall`)** — which is the
+first evidence the campaign dresses a facade differently from a wall, and it
+was invisible while the two were one kind.
+*Recommended default:* keep both kinds. The roof test is RELATIONAL — the
+mass's top must wear a tile one of its rooms wears as a ceiling — rather than
+`ROOF_TILE = 379`, which is E3M1's own and would have been item 37b's mistake
+a second time.
+
+**38b. The two kinds cost the three decompiled maps nothing, and E3M1 has a
+building.** Claimed share before and after: E3M1 3.883% / 3.883%, E1M2 4.083%
+/ 4.083%, E4M8 6.693% / 6.693%, and every layer's claim count is identical.
+What moved is residue: E3M1's layer 3 falls 1320 → 1316 and E1M2's 1224 →
+1222. E3M1's four-sector mass 118/165/166/343 is a facade (top 379, and its
+room is ceilinged 379) and sector 206 is a shopfront; E1M2 gains only sector
+128; E4M8 gains neither, because its raised mass roofs nothing. E1M2's mass
+126 holds three rooms and is NOT a facade: its top is 49 and its rooms are
+ceilinged 68, which is the case the relational test exists for.
+*Node:* `projects/e1m2-decompiled/review/layer3.html`, node `level`.
+*Recommended default:* no action. Reported because a kind that changes a
+claim quietly is worse than one that changes nothing.
+
+**38c. A facade is still a mass, and forgetting that cost E3M1 two shadow
+casters.** `read_light.casters` counted `solid` and `end_wall`; the day
+`facade` was added, E3M1's up-sun corner count fell from 8 to 6 without any
+geometry moving. It now counts `facade` and `mechanism_at_rest` too, and the
+end-wall band census counts `road|facade` and `pavement|facade` beside
+`road|end_wall` and `pavement|end_wall`.
+*Node:* `projects/e3m1-decompiled/review/layer4.html`, node `islands`.
+*Recommended default:* the rule is worth stating once: a new kind is a
+REFINEMENT of an old one, and every reader that consumed the old kind has to
+be told, or the refinement reads as a loss.
+
+**38d. The envelope recount confirms 37f rather than moving it.**
+`shade_step_envelope` already counted one entry per sector pair, so there was
+nothing to correct: `largest_outdoor_component` gives **192 boundaries over 36
+maps, median 13.0, quartiles [9.0, 18.75]**, and `all_outdoor` gives **365
+over 37, median 12, quartiles [8.0, 16.0]** — the published numbers, unchanged.
+The gate's chosen [8, 18] on the largest component holds on **58.9%** of
+boundaries; [8, 16] holds on 50.5%. What changed is that the answer now states
+its `network`, its `population`, its `unit` ("boundary: one entry per sector
+pair, never per wall record"), and both map counts (`maps_read` 43,
+`maps` 36), so a later reading cannot silently be a different one.
+*Node:* `projects/e3m1-decompiled/review/layer4.html`, node `islands`.
+*Recommended default:* keep [8, 18] on `largest_outdoor_component` and let the
+gate print the population line the census now returns.
+
+**38e. The symmetry diff's one content disagreement is mine, and a single lamp
+causes it.** On 143 of the 146 sectors both halves name, the reader reads the
+shade depth exactly ONE deeper than the compiler declared. The three it agrees
+with — sectors 35, 54 and 73 — are the three carrying two lamps each, which
+puts them at shade -4 against the compiler's declared base of 8.
+`read_light.field` elects the base as the lightest shade with area, so those
+three elect themselves and every other sector reads one level deeper. The
+reader already excludes a sector that drives its own shade with a wave; it
+does not exclude one a lamp lit.
+*Node:* `projects/e3m1-decompiled/review/layer4.html`, node `depth:0`.
+*Recommended default:* exclude lamp-lit sectors from the base election, the
+same way `shade_edges` excludes a light wave, and re-run the campaign curve to
+show what it costs. This is a reader defect and it is mine to fix; it is
+reported first because it moves a number on every map and the owner should see
+the measurement before the change.
+
+**38f. What the diff says about the two stores, apart from that.** 2490 rows
+declared, 8661 recovered, 1070 ids on both sides. The strongest positive
+result is that **the compiler and the readers agree on the join grammar row
+for all 924 records they both name** — `a`, `b`, `height`, `frame` and `shows`,
+924 times, not one disagreement. The rest is shape rather than content:
+`join` is `picnum`/`shade` on one side and `record`/`row`/`wears_tile`/
+`blocking` on the other; the compiler declares a `join` for all 1058 two-sided
+records where the readers emit `join` for 924 and `unknown_join` for 134 (the
+same 134). `fill`, `void` and `lamp_delta` are declared and no reader recovers
+them — three claims nothing checks. Two words are a real vocabulary gap
+rather than a shape one: the compiler says `sea` where the reader says
+`water`, and the compiler has no `solid` at all. Every other kind the diff
+lists as unknown is known on the other side, in a different predicate, and
+the report now says where.
+*Node:* `projects/blood-city/reports/symmetry-diff.md` (the report itself; it
+is not a pack, and this is the one item without a node id, because the diff
+is not a reading of a tree).
+*Recommended default:* take the three unchecked predicates one at a time —
+`lamp_delta` first, because 38e says the reader needs a lamp model anyway.

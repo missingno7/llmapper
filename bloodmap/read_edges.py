@@ -37,7 +37,8 @@ from typing import Any, Sequence
 
 from .joins import CHASM_TILES
 from .read_joins import (
-    AUTOSTEP, INTERIOR, MECHANISM_AT_REST, SOLID, adjacency, reads_as_water,
+    AUTOSTEP, FACADE, INTERIOR, MECHANISM_AT_REST, OPENING, SOLID, adjacency,
+    reads_as_water,
     street_network, surface_kinds,
 )
 from .texture_frame import sector_index
@@ -109,6 +110,15 @@ def classify(level: Any, wall_id: int, here: int, kinds: dict[int, str]
                 f"the far side is sector {other}, a raised outdoor mass that "
                 f"carries a sector type: a way through when it is told to "
                 f"move, and a wall until then")
+    if kind == FACADE:
+        #: A facade IS an end wall from the street: the same mass, the same
+        #: band, the same run. What is different is behind it, and the edge
+        #: chain is about what the street sees, so it keeps one name and
+        #: says which reading produced it.
+        return (END_WALL,
+                f"the far side is sector {other}, a raised outdoor mass that "
+                f"holds rooms and roofs them -- a building. From the street "
+                f"it terminates exactly as an end wall does")
     if kind == END_WALL:
         return (END_WALL,
                 f"the far side is sector {other}, an outdoor mass standing "
@@ -124,6 +134,12 @@ def classify(level: Any, wall_id: int, here: int, kinds: dict[int, str]
                 f"the far side is {drop} below, in the open"
                 + (f", wearing rock {int(there['floor_picnum'])}" if rock else
                    f", wearing {int(there['floor_picnum'])} (not a rock tile)"))
+    if kind == OPENING:
+        return (INTERIOR_DOORWAY,
+                f"the far side is sector {other}, an opening: a room at the "
+                f"pavement's own z with the street on one side and another "
+                f"room on the other. A way in, and the one the map built on "
+                f"purpose")
     if kind == INTERIOR:
         return (INTERIOR_DOORWAY,
                 f"the far side is sector {other}, an interior: this is a way "

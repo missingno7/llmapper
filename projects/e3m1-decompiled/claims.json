@@ -19218,27 +19218,27 @@
   {
    "channel": "frame",
    "layer": 3,
-   "owner": "join:end_wall|pavement|b_below",
+   "owner": "join:facade|pavement|b_below",
    "value": 1,
-   "why": "the end_wall|pavement|b_below row sets cstat 1 and this record carries it"
+   "why": "the facade|pavement|b_below row sets cstat 1 and this record carries it"
   }
  ],
  "wall:2131:cstat": [
   {
    "channel": "frame",
    "layer": 3,
-   "owner": "join:end_wall|road|b_below",
+   "owner": "join:facade|road|b_below",
    "value": 1,
-   "why": "the end_wall|road|b_below row sets cstat 1 and this record carries it"
+   "why": "the facade|road|b_below row sets cstat 1 and this record carries it"
   }
  ],
  "wall:2132:cstat": [
   {
    "channel": "frame",
    "layer": 3,
-   "owner": "join:end_wall|pavement|b_below",
+   "owner": "join:facade|pavement|b_below",
    "value": 1,
-   "why": "the end_wall|pavement|b_below row sets cstat 1 and this record carries it"
+   "why": "the facade|pavement|b_below row sets cstat 1 and this record carries it"
   }
  ],
  "wall:2135:picnum": [
@@ -20442,9 +20442,9 @@
   {
    "channel": "frame",
    "layer": 3,
-   "owner": "join:road|end_wall|b_above",
+   "owner": "join:road|facade|b_above",
    "value": 1,
-   "why": "the road|end_wall|b_above row sets cstat 1 and this record carries it"
+   "why": "the road|facade|b_above row sets cstat 1 and this record carries it"
   }
  ],
  "wall:222:picnum": [
@@ -29663,9 +29663,9 @@
   {
    "channel": "frame",
    "layer": 3,
-   "owner": "join:end_wall|pavement|b_below",
+   "owner": "join:facade|pavement|b_below",
    "value": 1,
-   "why": "the end_wall|pavement|b_below row sets cstat 1 and this record carries it"
+   "why": "the facade|pavement|b_below row sets cstat 1 and this record carries it"
   }
  ],
  "wall:644:picnum": [
@@ -33533,9 +33533,9 @@
   {
    "channel": "frame",
    "layer": 3,
-   "owner": "join:pavement|end_wall|b_above",
+   "owner": "join:pavement|facade|b_above",
    "value": 1,
-   "why": "the pavement|end_wall|b_above row sets cstat 1 and this record carries it"
+   "why": "the pavement|facade|b_above row sets cstat 1 and this record carries it"
   }
  ],
  "wall:816:picnum": [
@@ -34451,9 +34451,9 @@
   {
    "channel": "frame",
    "layer": 3,
-   "owner": "join:end_wall|pavement|b_below",
+   "owner": "join:facade|pavement|b_below",
    "value": 1,
-   "why": "the end_wall|pavement|b_below row sets cstat 1 and this record carries it"
+   "why": "the facade|pavement|b_below row sets cstat 1 and this record carries it"
   }
  ],
  "wall:85:picnum": [
@@ -35891,9 +35891,9 @@
   {
    "channel": "frame",
    "layer": 3,
-   "owner": "join:pavement|end_wall|b_above",
+   "owner": "join:pavement|facade|b_above",
    "value": 1,
-   "why": "the pavement|end_wall|b_above row sets cstat 1 and this record carries it"
+   "why": "the pavement|facade|b_above row sets cstat 1 and this record carries it"
   }
  ],
  "wall:947:picnum": [
@@ -37277,9 +37277,9 @@
   {
    "channel": "frame",
    "layer": 3,
-   "owner": "join:pavement|end_wall|b_above",
+   "owner": "join:pavement|facade|b_above",
    "value": 1,
-   "why": "the pavement|end_wall|b_above row sets cstat 1 and this record carries it"
+   "why": "the pavement|facade|b_above row sets cstat 1 and this record carries it"
   }
  ],
  "wall:984:picnum": [
@@ -37331,9 +37331,9 @@
   {
    "channel": "frame",
    "layer": 3,
-   "owner": "join:pavement|end_wall|b_above",
+   "owner": "join:pavement|facade|b_above",
    "value": 1,
-   "why": "the pavement|end_wall|b_above row sets cstat 1 and this record carries it"
+   "why": "the pavement|facade|b_above row sets cstat 1 and this record carries it"
   }
  ],
  "wall:985:picnum": [

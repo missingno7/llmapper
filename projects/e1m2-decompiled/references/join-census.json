@@ -32,6 +32,8 @@
  ],
  "described": {
   "end_wall|road|b_below": 7,
+  "opening|pavement|equal": 1,
+  "pavement|opening|equal": 1,
   "pavement|pavement|equal": 2,
   "pavement|road|b_below": 7,
   "road|end_wall|b_above": 7,
@@ -53,13 +55,13 @@
     "the_reader_finds": "1 of 16 band records do not block, and 0 of those face a sector that carries a sector type (600)"
    }
   ],
-  "explained": 34,
+  "explained": 36,
   "gate": "every two-sided record looked up in bloodmap.joins.ROWS; for each row with a band, what the record wears and whether it blocks, against what the row says",
   "population": "1258 two-sided wall records",
   "reader": "bloodmap.read_joins (new)",
-  "residue": 1224,
-  "residue_is": "22 surface pairs the table has no row for; 1102 of the records are interior|interior",
-  "residue_percent": 97.3
+  "residue": 1222,
+  "residue_is": "22 surface pairs the table has no row for; 1100 of the records are interior|interior",
+  "residue_percent": 97.14
  },
  "measured_rise": 1024,
  "outdoor_components": [
@@ -251,7 +253,6 @@
    123,
    124,
    125,
-   128,
    129,
    130,
    131,
@@ -451,7 +452,8 @@
   "cstat_disagreements": 1,
   "kinds": {
    "end_wall": 2,
-   "interior": 288,
+   "interior": 287,
+   "opening": 1,
    "pavement": 2,
    "road": 4,
    "solid": 10,
@@ -459,10 +461,10 @@
   },
   "measured_rise": 1024,
   "pairs_with_no_row": 22,
-  "records_described": 34,
-  "records_undescribed": 1224,
-  "residue_percent": 97.3,
-  "rows_used": 6,
+  "records_described": 36,
+  "records_undescribed": 1222,
+  "residue_percent": 97.14,
+  "rows_used": 8,
   "two_sided_records": 1258
  },
  "surface_kinds": {
@@ -499,7 +501,7 @@
   "125": "interior",
   "126": "end_wall",
   "127": "road",
-  "128": "interior",
+  "128": "opening",
   "129": "interior",
   "13": "interior",
   "130": "interior",
@@ -794,16 +796,16 @@
   "end_wall|interior|b_above": 3,
   "end_wall|solid|equal": 3,
   "interior|end_wall|b_below": 3,
-  "interior|interior|b_above": 294,
-  "interior|interior|b_below": 294,
+  "interior|interior|b_above": 293,
+  "interior|interior|b_below": 293,
   "interior|interior|equal": 514,
+  "interior|opening|b_below": 1,
   "interior|pavement|b_below": 1,
-  "interior|pavement|equal": 1,
   "interior|solid|b_above": 20,
   "interior|solid|equal": 2,
   "interior|water|b_above": 22,
+  "opening|interior|b_above": 1,
   "pavement|interior|b_above": 1,
-  "pavement|interior|equal": 1,
   "solid|end_wall|equal": 3,
   "solid|interior|b_below": 20,
   "solid|interior|equal": 2,
@@ -926,7 +928,6 @@
    934,
    949,
    955,
-   1024,
    1030,
    1035,
    1040,
@@ -1242,7 +1243,6 @@
    963,
    967,
    971,
-   1032,
    1037,
    1042,
    1048,
@@ -1938,11 +1938,11 @@
    2453,
    2457
   ],
+  "interior|opening|b_below": [
+   1032
+  ],
   "interior|pavement|b_below": [
    1126
-  ],
-  "interior|pavement|equal": [
-   1027
   ],
   "interior|solid|b_above": [
    150,
@@ -1994,11 +1994,11 @@
    2369,
    2370
   ],
+  "opening|interior|b_above": [
+   1024
+  ],
   "pavement|interior|b_above": [
    1704
-  ],
-  "pavement|interior|equal": [
-   1709
   ],
   "solid|end_wall|equal": [
    1638,
@@ -2118,7 +2118,7 @@
   "125": "walkable with a ceiling that is not parallax",
   "126": "outdoor, in a mass of 1 sector(s) that no body can step onto: every one of its 1 edges to the network rises more than the 4096 autostep",
   "127": "outdoor ground at the network's base plane z=17408, the level its islands stand on",
-  "128": "walkable with a ceiling that is not parallax",
+  "128": "a room at the pavement's own z=16384, with pavement [235] on one side and room [129] on the other: a way in rather than either",
   "129": "walkable with a ceiling that is not parallax",
   "13": "walkable with a ceiling that is not parallax",
   "130": "walkable with a ceiling that is not parallax",

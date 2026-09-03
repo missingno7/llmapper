@@ -126,7 +126,7 @@
 {"_from": ["sector:125"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:125", "kind": "interior", "record": "sector:125", "why": "walkable with a ceiling that is not parallax"}
 {"_from": ["sector:126"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:126", "kind": "end_wall", "record": "sector:126", "why": "outdoor, in a mass of 1 sector(s) that no body can step onto: every one of its 1 edges to the network rises more than the 4096 autostep"}
 {"_from": ["sector:127"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:127", "kind": "road", "record": "sector:127", "why": "outdoor ground at the network's base plane z=17408, the level its islands stand on"}
-{"_from": ["sector:128"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:128", "kind": "interior", "record": "sector:128", "why": "walkable with a ceiling that is not parallax"}
+{"_from": ["sector:128"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:128", "kind": "opening", "record": "sector:128", "why": "a room at the pavement's own z=16384, with pavement [235] on one side and room [129] on the other: a way in rather than either"}
 {"_from": ["sector:129"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:129", "kind": "interior", "record": "sector:129", "why": "walkable with a ceiling that is not parallax"}
 {"_from": ["sector:130"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:130", "kind": "interior", "record": "sector:130", "why": "walkable with a ceiling that is not parallax"}
 {"_from": ["sector:131"], "_layer": 3, "_reader": "bloodmap.read_joins", "id": "sector:131", "kind": "interior", "record": "sector:131", "why": "walkable with a ceiling that is not parallax"}

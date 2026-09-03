@@ -7,6 +7,7 @@
    "parent": null,
    "children": [
     "kind:end_wall",
+    "kind:opening",
     "kind:pavement",
     "kind:road"
    ],
@@ -351,16 +352,49 @@
    ]
   },
   {
+   "id": "kind:opening",
+   "kind": "surface_kind",
+   "name": "opening (1 sectors)",
+   "parent": "level",
+   "children": [
+    "row:opening|pavement|equal"
+   ],
+   "sectors": [
+    128
+   ]
+  },
+  {
+   "id": "row:opening|pavement|equal",
+   "kind": "join_row",
+   "name": "opening|pavement|equal x1",
+   "parent": "kind:opening",
+   "children": [],
+   "sectors": [
+    128
+   ]
+  },
+  {
    "id": "kind:pavement",
    "kind": "surface_kind",
    "name": "pavement (2 sectors)",
    "parent": "level",
    "children": [
+    "row:pavement|opening|equal",
     "row:pavement|pavement|equal",
     "row:pavement|road|b_below"
    ],
    "sectors": [
     234,
+    235
+   ]
+  },
+  {
+   "id": "row:pavement|opening|equal",
+   "kind": "join_row",
+   "name": "pavement|opening|equal x1",
+   "parent": "kind:pavement",
+   "children": [],
+   "sectors": [
     235
    ]
   },

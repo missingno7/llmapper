@@ -718,7 +718,6 @@
     203,
     204,
     205,
-    206,
     207,
     208,
     209,
@@ -1215,7 +1214,7 @@
   {
    "id": "block:09",
    "kind": "block",
-   "name": "block:09 envelope [6.5, 10.06] pu",
+   "name": "block:09 envelope [6.44, 10.06] pu",
    "parent": "blocks",
    "children": [],
    "sectors": [
@@ -1249,7 +1248,6 @@
     203,
     204,
     205,
-    206,
     207,
     208,
     209,

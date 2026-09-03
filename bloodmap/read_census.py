@@ -37,7 +37,12 @@ from .texture_frame import (
 )
 
 #: The join pairs 28b is about: a street meeting a termination.
-END_WALL_PAIRS = ("road|end_wall", "pavement|end_wall")
+#: A facade is an end wall as far as the BAND is concerned: the same lower
+#: band on the same side of the same street. The census counts both, because
+#: excluding buildings from a census of what terminates a street would leave
+#: out the terminations the campaign spent the most tiles on.
+END_WALL_PAIRS = ("road|end_wall", "pavement|end_wall",
+                  "road|facade", "pavement|facade")
 
 
 def _face(item: Any) -> Any:
@@ -93,14 +98,19 @@ def end_wall_tiles(level: Any, kinds: dict[int, str] | None = None, *,
             continue
         here = owners[wall_id]
         a, b = kinds.get(here), kinds.get(other)
-        if b != "end_wall" or a not in ("road", "pavement"):
+        #: A FACADE IS A TERMINATION TOO. It was split off `end_wall` because
+        #: it holds rooms (item 32c), and a census of what a street runs into
+        #: that excluded buildings would be a census of the walls between the
+        #: buildings. It is keyed under its own name, not folded in, so the
+        #: split stays visible and either row can be read alone.
+        if b not in ("end_wall", "facade") or a not in ("road", "pavement"):
             continue
         #: The band only exists where the far side stands ABOVE this one;
         #: Blood's z grows downward.
         if int(_face(level.sectors[other])["floor_z"]) >= int(
                 _face(level.sectors[here])["floor_z"]):
             continue
-        key = f"{a}|end_wall"
+        key = f"{a}|{b}"
         blocks = int(face["cstat"]) & 1
         tiles[key][int(face["picnum"])] += 1
         blocking[key][blocks] += 1

@@ -64,6 +64,23 @@ WATER = "water"
 #: non-blocking pavement|end_wall records all face sectors 172 and 174, which
 #: carry type 600 and move.
 MECHANISM_AT_REST = "mechanism_at_rest"
+#: A raised outdoor mass that HOLDS ROOMS is a building, not a termination
+#: (decisions section 31, item 32c). `end_wall` is defined as "an outdoor mass
+#: no body can step onto", and the city's 126 `end_wall|interior` records were
+#: that definition meeting a room behind it -- a contradiction the grammar had
+#: no word for. Two clauses decide it, and the roof one is RELATIONAL rather
+#: than a tile constant: the mass's top must wear a tile that one of the rooms
+#: it opens onto wears as its CEILING. That is what a roof IS -- the same
+#: surface seen from above and from below -- and it is why Gravesend's nine
+#: buildings read as facades while E1M2's raised mass, whose top is 49 and
+#: whose three rooms are ceilinged 68, stays a termination.
+FACADE = "facade"
+#: The threshold between the street and a room: a sector at the PAVEMENT'S OWN
+#: z with a pavement on one side and a room on the other. It is neither -- it
+#: is roofed like the room and level with the street -- and calling it an
+#: interior put 36 of the city's records into `pavement|interior` and
+#: `interior|interior`, which say nothing about a way in.
+OPENING = "opening"
 
 #: `Blood`'s step-up limit. A body climbs 4096 without jumping, so an outdoor
 #: floor more than that above every neighbour is not ground -- it is a top.
@@ -307,6 +324,55 @@ def surface_kinds(level: Any, *, owners: Sequence[int] | None = None
         if index not in kinds:
             name(index, INTERIOR,
                  "walkable with a ceiling that is not parallax")
+
+    #: OPENINGS BEFORE FACADES, because the mouth a facade needs is usually
+    #: the opening. A facade whose only room has just been renamed would
+    #: otherwise stop being a facade, which is the wrong way round: the
+    #: opening is the evidence FOR the building, not against it.
+    for index in sorted(kinds):
+        if kinds[index] != INTERIOR:
+            continue
+        here = int(_face(level.sectors[index])["floor_z"])
+        level_pavements = [other for other in sorted(graph.get(index, ()))
+                           if kinds.get(other) == PAVEMENT
+                           and int(_face(level.sectors[other])["floor_z"])
+                           == here]
+        rooms = [other for other in sorted(graph.get(index, ()))
+                 if kinds.get(other) == INTERIOR and other != index]
+        if level_pavements and rooms:
+            name(index, OPENING,
+                 f"a room at the pavement's own z={here}, with pavement "
+                 f"{level_pavements} on one side and room {rooms} on the "
+                 f"other: a way in rather than either")
+
+    #: A mass is re-read as a building where it holds a room and roofs it.
+    #: Done as a second pass over the masses the first one named, so the test
+    #: can be written and argued with on its own, and so a mass that MOVES
+    #: keeps the mechanism reading it already earned.
+    pending = {index for index, kind in kinds.items() if kind == END_WALL}
+    while pending:
+        group = _component([min(pending)], pending, graph)
+        pending -= group
+        mouths = [other for member in sorted(group)
+                  for other in sorted(graph.get(member, ()))
+                  if other not in group
+                  and kinds.get(other) in (INTERIOR, OPENING)]
+        if not mouths:
+            continue
+        tops = {int(_face(level.sectors[member])["floor_picnum"])
+                for member in group}
+        roofs = {int(_face(level.sectors[other])["ceiling_picnum"])
+                 for other in mouths}
+        shared = sorted(tops & roofs)
+        if not shared:
+            continue
+        for member in sorted(group):
+            name(member, FACADE,
+                 f"a raised mass of {len(group)} sector(s) holding "
+                 f"{len(set(mouths))} room(s), whose top wears tile "
+                 f"{shared[0]} -- the tile room {sorted(set(mouths))[0]} "
+                 f"wears as its ceiling. The mass is the room's roof, so it "
+                 f"is a building rather than a termination")
 
     return {
         "kinds": kinds,

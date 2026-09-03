@@ -2,10 +2,16 @@
  "band_blocking": {
   "pavement|end_wall|b_above": {
    "0": 1,
-   "1": 8
+   "1": 4
+  },
+  "pavement|facade|b_above": {
+   "1": 4
   },
   "road|end_wall|b_above": {
-   "1": 3
+   "1": 2
+  },
+  "road|facade|b_above": {
+   "1": 1
   },
   "road|pavement|b_above": {
    "0": 11
@@ -13,12 +19,18 @@
  },
  "band_tiles": {
   "pavement|end_wall|b_above": {
-   "414": 6,
-   "417": 2,
+   "414": 4,
    "488": 1
   },
+  "pavement|facade|b_above": {
+   "414": 2,
+   "417": 2
+  },
   "road|end_wall|b_above": {
-   "414": 3
+   "414": 2
+  },
+  "road|facade|b_above": {
+   "414": 1
   },
   "road|pavement|b_above": {
    "6": 11
@@ -38,12 +50,20 @@
   }
  ],
  "described": {
-  "end_wall|pavement|b_below": 9,
-  "end_wall|road|b_below": 3,
-  "pavement|end_wall|b_above": 9,
+  "end_wall|pavement|b_below": 5,
+  "end_wall|road|b_below": 2,
+  "facade|pavement|b_below": 4,
+  "facade|road|b_below": 1,
+  "interior|opening|equal": 1,
+  "opening|interior|equal": 1,
+  "opening|pavement|equal": 1,
+  "pavement|end_wall|b_above": 5,
+  "pavement|facade|b_above": 4,
+  "pavement|opening|equal": 1,
   "pavement|pavement|equal": 14,
   "pavement|road|b_below": 11,
-  "road|end_wall|b_above": 3,
+  "road|end_wall|b_above": 2,
+  "road|facade|b_above": 1,
   "road|pavement|b_above": 11,
   "road|road|equal": 6
  },
@@ -53,22 +73,17 @@
    "measured": {
     "end_walls": [
      0,
-     118,
-     165,
-     166,
      236,
      237,
-     339,
-     343
+     339
     ],
     "met_by_a_road": [
      0,
-     339,
-     343
+     339
     ]
    },
-   "reconciled": "exactly 3 of them are met by a ROAD record -- [0, 339, 343] -- which is the claim's set; the other 5 are met by a pavement, so the claim is right about the T and the reader is counting the same kind of surface elsewhere too",
-   "the_reader_finds": "8 outdoor masses no body can step onto: [0, 118, 165, 166, 236, 237, 339, 343]"
+   "reconciled": "exactly 2 of them are met by a ROAD record -- [0, 339] -- which is the claim's set; the other 2 are met by a pavement, so the claim is right about the T and the reader is counting the same kind of surface elsewhere too",
+   "the_reader_finds": "4 outdoor masses no body can step onto: [0, 236, 237, 339]"
   },
   {
    "claim": "`joins.py`'s PAVEMENT|PAVEMENT row cites \"E3M1 s10/s11: a pavement-only path between abutting islands\"",
@@ -88,22 +103,17 @@
     "measured": {
      "end_walls": [
       0,
-      118,
-      165,
-      166,
       236,
       237,
-      339,
-      343
+      339
      ],
      "met_by_a_road": [
       0,
-      339,
-      343
+      339
      ]
     },
-    "reconciled": "exactly 3 of them are met by a ROAD record -- [0, 339, 343] -- which is the claim's set; the other 5 are met by a pavement, so the claim is right about the T and the reader is counting the same kind of surface elsewhere too",
-    "the_reader_finds": "8 outdoor masses no body can step onto: [0, 118, 165, 166, 236, 237, 339, 343]"
+    "reconciled": "exactly 2 of them are met by a ROAD record -- [0, 339] -- which is the claim's set; the other 2 are met by a pavement, so the claim is right about the T and the reader is counting the same kind of surface elsewhere too",
+    "the_reader_finds": "4 outdoor masses no body can step onto: [0, 236, 237, 339]"
    },
    {
     "claim": "`joins.py`'s PAVEMENT|PAVEMENT row cites \"E3M1 s10/s11: a pavement-only path between abutting islands\"",
@@ -116,13 +126,13 @@
     "the_reader_finds": "1 of 16 band records do not block, and 0 of those face a sector that carries a sector type (600)"
    }
   ],
-  "explained": 66,
+  "explained": 70,
   "gate": "every two-sided record looked up in bloodmap.joins.ROWS; for each row with a band, what the record wears and whether it blocks, against what the row says",
   "population": "1386 two-sided wall records",
   "reader": "bloodmap.read_joins (new)",
-  "residue": 1320,
-  "residue_is": "37 surface pairs the table has no row for; 1122 of the records are interior|interior",
-  "residue_percent": 95.24
+  "residue": 1316,
+  "residue_is": "37 surface pairs the table has no row for; 1120 of the records are interior|interior",
+  "residue_percent": 94.95
  },
  "measured_rise": 2048,
  "outdoor_components": [
@@ -399,9 +409,7 @@
    203,
    204,
    205,
-   206,
    207,
-   208,
    209,
    210,
    211,
@@ -612,9 +620,11 @@
  "summary": {
   "cstat_disagreements": 1,
   "kinds": {
-   "end_wall": 8,
-   "interior": 337,
+   "end_wall": 4,
+   "facade": 4,
+   "interior": 336,
    "mechanism_at_rest": 2,
+   "opening": 1,
    "outdoor_ground": 1,
    "pavement": 9,
    "road": 4,
@@ -622,10 +632,10 @@
   },
   "measured_rise": 2048,
   "pairs_with_no_row": 37,
-  "records_described": 66,
-  "records_undescribed": 1320,
-  "residue_percent": 95.24,
-  "rows_used": 8,
+  "records_described": 70,
+  "records_undescribed": 1316,
+  "residue_percent": 94.95,
+  "rows_used": 16,
   "two_sided_records": 1386
  },
  "surface_kinds": {
@@ -651,7 +661,7 @@
   "115": "interior",
   "116": "interior",
   "117": "interior",
-  "118": "end_wall",
+  "118": "facade",
   "119": "interior",
   "12": "interior",
   "120": "interior",
@@ -703,8 +713,8 @@
   "162": "interior",
   "163": "interior",
   "164": "interior",
-  "165": "end_wall",
-  "166": "end_wall",
+  "165": "facade",
+  "166": "facade",
   "167": "interior",
   "168": "interior",
   "169": "interior",
@@ -749,7 +759,7 @@
   "203": "interior",
   "204": "interior",
   "205": "interior",
-  "206": "interior",
+  "206": "opening",
   "207": "interior",
   "208": "interior",
   "209": "interior",
@@ -901,7 +911,7 @@
   "340": "solid",
   "341": "solid",
   "342": "solid",
-  "343": "end_wall",
+  "343": "facade",
   "344": "interior",
   "345": "interior",
   "346": "interior",
@@ -1015,11 +1025,19 @@
  "table_tile_matches": {
   "pavement|end_wall|b_above": [
    0,
-   9
+   5
+  ],
+  "pavement|facade|b_above": [
+   0,
+   4
   ],
   "road|end_wall|b_above": [
    0,
-   3
+   2
+  ],
+  "road|facade|b_above": [
+   0,
+   1
   ],
   "road|pavement|b_above": [
    11,
@@ -1029,18 +1047,18 @@
  "undescribed": {
   "end_wall|end_wall|b_above": 4,
   "end_wall|end_wall|b_below": 4,
-  "end_wall|end_wall|equal": 6,
-  "end_wall|interior|b_above": 1,
   "end_wall|solid|b_above": 2,
-  "end_wall|solid|b_below": 11,
-  "interior|end_wall|b_below": 1,
+  "end_wall|solid|b_below": 8,
+  "facade|facade|equal": 6,
+  "facade|interior|b_above": 1,
+  "facade|solid|b_below": 3,
+  "interior|facade|b_below": 1,
   "interior|interior|b_above": 279,
   "interior|interior|b_below": 279,
-  "interior|interior|equal": 564,
+  "interior|interior|equal": 562,
   "interior|mechanism_at_rest|b_below": 5,
   "interior|outdoor_ground|b_below": 1,
   "interior|pavement|b_below": 17,
-  "interior|pavement|equal": 1,
   "interior|solid|b_above": 26,
   "interior|solid|equal": 7,
   "mechanism_at_rest|interior|b_above": 5,
@@ -1050,13 +1068,13 @@
   "outdoor_ground|interior|b_above": 1,
   "outdoor_ground|pavement|b_below": 4,
   "pavement|interior|b_above": 17,
-  "pavement|interior|equal": 1,
   "pavement|mechanism_at_rest|b_above": 4,
   "pavement|outdoor_ground|b_above": 4,
   "pavement|solid|b_above": 4,
   "pavement|solid|equal": 3,
-  "solid|end_wall|b_above": 11,
+  "solid|end_wall|b_above": 8,
   "solid|end_wall|b_below": 2,
+  "solid|facade|b_above": 3,
   "solid|interior|b_below": 26,
   "solid|interior|equal": 7,
   "solid|pavement|b_below": 4,
@@ -1078,17 +1096,6 @@
    1555,
    1556
   ],
-  "end_wall|end_wall|equal": [
-   643,
-   855,
-   857,
-   860,
-   865,
-   2125
-  ],
-  "end_wall|interior|b_above": [
-   862
-  ],
   "end_wall|solid|b_above": [
    1558,
    1561
@@ -1097,16 +1104,29 @@
    1,
    2,
    3,
-   858,
    2094,
    2095,
    2097,
    2101,
-   2103,
+   2103
+  ],
+  "facade|facade|equal": [
+   643,
+   855,
+   857,
+   860,
+   865,
+   2125
+  ],
+  "facade|interior|b_above": [
+   862
+  ],
+  "facade|solid|b_below": [
+   858,
    2127,
    2128
   ],
-  "interior|end_wall|b_below": [
+  "interior|facade|b_below": [
    927
   ],
   "interior|interior|b_above": [
@@ -2023,9 +2043,7 @@
    1312,
    1313,
    1314,
-   1319,
    1327,
-   1330,
    1339,
    1345,
    1347,
@@ -2266,9 +2284,6 @@
    1956,
    2202
   ],
-  "interior|pavement|equal": [
-   1321
-  ],
   "interior|solid|b_above": [
    204,
    205,
@@ -2357,9 +2372,6 @@
    1542,
    1544
   ],
-  "pavement|interior|equal": [
-   13
-  ],
   "pavement|mechanism_at_rest|b_above": [
    941,
    942,
@@ -2391,14 +2403,16 @@
    2093,
    2104,
    2111,
-   2112,
-   2114,
-   2118,
-   2124
+   2112
   ],
   "solid|end_wall|b_below": [
    1906,
    1973
+  ],
+  "solid|facade|b_above": [
+   2114,
+   2118,
+   2124
   ],
   "solid|interior|b_below": [
    215,
@@ -2484,7 +2498,7 @@
   "115": "walkable with a ceiling that is not parallax",
   "116": "walkable with a ceiling that is not parallax",
   "117": "walkable with a ceiling that is not parallax",
-  "118": "outdoor, in a mass of 4 sector(s) that no body can step onto: every one of its 5 edges to the network rises more than the 4096 autostep",
+  "118": "a raised mass of 4 sector(s) holding 1 room(s), whose top wears tile 379 -- the tile room 173 wears as its ceiling. The mass is the room's roof, so it is a building rather than a termination",
   "119": "walkable with a ceiling that is not parallax",
   "12": "walkable with a ceiling that is not parallax",
   "120": "walkable with a ceiling that is not parallax",
@@ -2536,8 +2550,8 @@
   "162": "walkable with a ceiling that is not parallax",
   "163": "walkable with a ceiling that is not parallax",
   "164": "walkable with a ceiling that is not parallax",
-  "165": "outdoor, in a mass of 4 sector(s) that no body can step onto: every one of its 5 edges to the network rises more than the 4096 autostep",
-  "166": "outdoor, in a mass of 4 sector(s) that no body can step onto: every one of its 5 edges to the network rises more than the 4096 autostep",
+  "165": "a raised mass of 4 sector(s) holding 1 room(s), whose top wears tile 379 -- the tile room 173 wears as its ceiling. The mass is the room's roof, so it is a building rather than a termination",
+  "166": "a raised mass of 4 sector(s) holding 1 room(s), whose top wears tile 379 -- the tile room 173 wears as its ceiling. The mass is the room's roof, so it is a building rather than a termination",
   "167": "walkable with a ceiling that is not parallax",
   "168": "walkable with a ceiling that is not parallax",
   "169": "walkable with a ceiling that is not parallax",
@@ -2582,7 +2596,7 @@
   "203": "walkable with a ceiling that is not parallax",
   "204": "walkable with a ceiling that is not parallax",
   "205": "walkable with a ceiling that is not parallax",
-  "206": "walkable with a ceiling that is not parallax",
+  "206": "a room at the pavement's own z=8192, with pavement [1] on one side and room [208] on the other: a way in rather than either",
   "207": "walkable with a ceiling that is not parallax",
   "208": "walkable with a ceiling that is not parallax",
   "209": "walkable with a ceiling that is not parallax",
@@ -2734,7 +2748,7 @@
   "340": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it",
   "341": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it",
   "342": "floor_z == ceiling_z: no clear height, so nothing draws inside and no body stands in it",
-  "343": "outdoor, in a mass of 4 sector(s) that no body can step onto: every one of its 5 edges to the network rises more than the 4096 autostep",
+  "343": "a raised mass of 4 sector(s) holding 1 room(s), whose top wears tile 379 -- the tile room 173 wears as its ceiling. The mass is the room's roof, so it is a building rather than a termination",
   "344": "walkable with a ceiling that is not parallax",
   "345": "walkable with a ceiling that is not parallax",
   "346": "walkable with a ceiling that is not parallax",

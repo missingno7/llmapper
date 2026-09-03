@@ -118,7 +118,8 @@ def main() -> int:
     places = name_places(
         world, spaces,
         street=[index for index, kind in kinds.items()
-                if kind in ("road", "pavement", "outdoor_ground", "end_wall")],
+                if kind in ("road", "pavement", "outdoor_ground",
+                                          "end_wall", "facade")],
         start_sector=int(disk.header["start_sector"]),
         structures={run["id"]: run["sectors"] for run in stairs["runs"]},
         stacks=mechanisms["stacks"],

@@ -75,13 +75,23 @@ class OnE3M1(unittest.TestCase):
         from bloodmap.read_census import end_wall_tiles
 
         rows = end_wall_tiles(self.level)
-        self.assertEqual(rows["tiles"]["road|end_wall"], {414: 3})
-        self.assertEqual(rows["blocking"]["road|end_wall"], {1: 3})
-        #: 9, not the 13 of the first reading: item 28c moved E3M1's two
-        #: moving masses out of `end_wall`, so the four records facing them
-        #: are no longer end-wall joins. The census population moved with the
-        #: kind, which is why it is re-run whenever a kind changes.
-        self.assertEqual(sum(rows["tiles"]["pavement|end_wall"].values()), 9)
+        #: The band census is keyed by the far side's OWN kind, so a split in
+        #: the kinds shows as a split in the rows rather than as a loss. Item
+        #: 32c took E3M1's building (118/165/166/343) out of `end_wall` and
+        #: into `facade`; the three road-side records the first reading found
+        #: are still three, now two and one.
+        self.assertEqual(rows["tiles"]["road|end_wall"], {414: 2})
+        self.assertEqual(rows["tiles"]["road|facade"], {414: 1})
+        self.assertEqual(rows["blocking"]["road|end_wall"], {1: 2})
+        self.assertEqual(rows["blocking"]["road|facade"], {1: 1})
+        #: 9 on the pavement side, not the 13 of the first reading: item 28c
+        #: moved E3M1's two moving masses out of `end_wall`, so the four
+        #: records facing them are no longer end-wall joins. Of the 9, four
+        #: are the building's. The census population moves with the kind,
+        #: which is why it is re-run whenever a kind changes.
+        self.assertEqual(sum(rows["tiles"]["pavement|end_wall"].values())
+                         + sum(rows["tiles"]["pavement|facade"].values()), 9)
+        self.assertEqual(sum(rows["tiles"]["pavement|facade"].values()), 4)
 
     def test_the_continuity_census_agrees_with_continuity_rows(self):
         """`texture_frame.continuity_rows` predates this module and measures

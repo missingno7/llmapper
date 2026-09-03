@@ -1838,7 +1838,6 @@
 {"_from": ["wall:934"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:934", "aspect": "join", "id": "join:wall:934", "why": "the writer's table has no row for interior|interior|b_above"}
 {"_from": ["wall:949"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:949", "aspect": "join", "id": "join:wall:949", "why": "the writer's table has no row for interior|interior|b_above"}
 {"_from": ["wall:955"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:955", "aspect": "join", "id": "join:wall:955", "why": "the writer's table has no row for interior|interior|b_above"}
-{"_from": ["wall:1024"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1024", "aspect": "join", "id": "join:wall:1024", "why": "the writer's table has no row for interior|interior|b_above"}
 {"_from": ["wall:1030"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1030", "aspect": "join", "id": "join:wall:1030", "why": "the writer's table has no row for interior|interior|b_above"}
 {"_from": ["wall:1035"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1035", "aspect": "join", "id": "join:wall:1035", "why": "the writer's table has no row for interior|interior|b_above"}
 {"_from": ["wall:1040"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1040", "aspect": "join", "id": "join:wall:1040", "why": "the writer's table has no row for interior|interior|b_above"}
@@ -2152,7 +2151,6 @@
 {"_from": ["wall:963"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:963", "aspect": "join", "id": "join:wall:963", "why": "the writer's table has no row for interior|interior|b_below"}
 {"_from": ["wall:967"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:967", "aspect": "join", "id": "join:wall:967", "why": "the writer's table has no row for interior|interior|b_below"}
 {"_from": ["wall:971"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:971", "aspect": "join", "id": "join:wall:971", "why": "the writer's table has no row for interior|interior|b_below"}
-{"_from": ["wall:1032"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1032", "aspect": "join", "id": "join:wall:1032", "why": "the writer's table has no row for interior|interior|b_below"}
 {"_from": ["wall:1037"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1037", "aspect": "join", "id": "join:wall:1037", "why": "the writer's table has no row for interior|interior|b_below"}
 {"_from": ["wall:1042"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1042", "aspect": "join", "id": "join:wall:1042", "why": "the writer's table has no row for interior|interior|b_below"}
 {"_from": ["wall:1048"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1048", "aspect": "join", "id": "join:wall:1048", "why": "the writer's table has no row for interior|interior|b_below"}
@@ -2845,8 +2843,8 @@
 {"_from": ["wall:2449"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:2449", "aspect": "join", "id": "join:wall:2449", "why": "the writer's table has no row for interior|interior|equal"}
 {"_from": ["wall:2453"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:2453", "aspect": "join", "id": "join:wall:2453", "why": "the writer's table has no row for interior|interior|equal"}
 {"_from": ["wall:2457"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:2457", "aspect": "join", "id": "join:wall:2457", "why": "the writer's table has no row for interior|interior|equal"}
+{"_from": ["wall:1032"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1032", "aspect": "join", "id": "join:wall:1032", "why": "the writer's table has no row for interior|opening|b_below"}
 {"_from": ["wall:1126"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1126", "aspect": "join", "id": "join:wall:1126", "why": "the writer's table has no row for interior|pavement|b_below"}
-{"_from": ["wall:1027"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1027", "aspect": "join", "id": "join:wall:1027", "why": "the writer's table has no row for interior|pavement|equal"}
 {"_from": ["wall:150"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:150", "aspect": "join", "id": "join:wall:150", "why": "the writer's table has no row for interior|solid|b_above"}
 {"_from": ["wall:433"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:433", "aspect": "join", "id": "join:wall:433", "why": "the writer's table has no row for interior|solid|b_above"}
 {"_from": ["wall:1241"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1241", "aspect": "join", "id": "join:wall:1241", "why": "the writer's table has no row for interior|solid|b_above"}
@@ -2891,8 +2889,8 @@
 {"_from": ["wall:2368"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:2368", "aspect": "join", "id": "join:wall:2368", "why": "the writer's table has no row for interior|water|b_above"}
 {"_from": ["wall:2369"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:2369", "aspect": "join", "id": "join:wall:2369", "why": "the writer's table has no row for interior|water|b_above"}
 {"_from": ["wall:2370"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:2370", "aspect": "join", "id": "join:wall:2370", "why": "the writer's table has no row for interior|water|b_above"}
+{"_from": ["wall:1024"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1024", "aspect": "join", "id": "join:wall:1024", "why": "the writer's table has no row for opening|interior|b_above"}
 {"_from": ["wall:1704"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1704", "aspect": "join", "id": "join:wall:1704", "why": "the writer's table has no row for pavement|interior|b_above"}
-{"_from": ["wall:1709"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1709", "aspect": "join", "id": "join:wall:1709", "why": "the writer's table has no row for pavement|interior|equal"}
 {"_from": ["wall:1638"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1638", "aspect": "join", "id": "join:wall:1638", "why": "the writer's table has no row for solid|end_wall|equal"}
 {"_from": ["wall:1639"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1639", "aspect": "join", "id": "join:wall:1639", "why": "the writer's table has no row for solid|end_wall|equal"}
 {"_from": ["wall:1640"], "_layer": 3, "_reader": "bloodmap.read_joins", "about": "wall:1640", "aspect": "join", "id": "join:wall:1640", "why": "the writer's table has no row for solid|end_wall|equal"}

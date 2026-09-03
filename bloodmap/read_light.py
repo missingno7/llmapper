@@ -293,8 +293,13 @@ def casters(level: Any, edges: Sequence[dict[str, Any]], throw_degrees: float,
     mass corner much more often, the sign is confirmed by geometry that had no
     part in choosing it.
     """
+    #: A FACADE IS A MASS. It was named apart from `end_wall` because it
+    #: holds rooms (item 32c), not because a body can walk through it: it
+    #: throws the same shadow it threw when the reader called it a
+    #: termination, and leaving it out cost E3M1 two of its eight up-sun
+    #: corners the day the kind was added.
     masses = {index for index, kind in kinds.items()
-              if kind in ("solid", "end_wall")}
+              if kind in ("solid", "end_wall", "facade", "mechanism_at_rest")}
     corners: dict[tuple[int, int], set[int]] = defaultdict(set)
     for wall_id, wall in enumerate(level.walls):
         face = _face(wall)
@@ -498,16 +503,24 @@ def _largest_outdoor(level: Any, owners: Sequence[int]) -> set:
 
 def shade_step_envelope(paths: Iterable[Any] | None = None, *,
                         network: str = NETWORK_LARGEST_COMPONENT,
-                        envelope: tuple[int, int] | None = None
-                        ) -> dict[str, Any]:
-    """The campaign's shade-step census, over a NAMED network.
+                        envelope: tuple[int, int] | None = None,
+                        population: str = "blood-campaign") -> dict[str, Any]:
+    """The campaign's shade-step census, over a NAMED network and population.
 
     A writer's gate must not carry this as a constant. The number depends on
-    what "the network" means and the two readings differ by a quarter, so the
-    gate says which one it used and reads it from here.
+    two choices and the readings differ by a quarter, so both are named in the
+    answer and the gate reads them from here rather than restating them:
+
+    * the NETWORK -- every outdoor sector, or the largest outdoor component;
+    * the POPULATION -- which maps were read at all.
+
+    The unit is the BOUNDARY (decisions section 31, item 32e): one entry per
+    pair of sectors, never per wall record. A two-sided wall is yielded from
+    both sides and a pair may share several walls, so counting records weighs
+    a boundary by how many times the map happens to have cut it.
 
     Returns the median, the quartiles, how many boundaries fall inside the
-    stated envelope, and the population it was measured over.
+    stated envelope, and the population and network it was measured over.
     """
     import statistics
 
@@ -517,18 +530,21 @@ def shade_step_envelope(paths: Iterable[Any] | None = None, *,
     if envelope is None:
         envelope = DECIDED_ENVELOPE.get(network, (8, 16))
 
+    given = paths is not None
     if paths is None:
-        paths = list_original_maps(population="blood-campaign")
+        paths = list_original_maps(population=population)
     #: ONE ENTRY PER BOUNDARY, not per record. A two-sided wall is yielded
     #: from both sides and a pair of sectors may share several walls; a
     #: boundary is the thing the step is a property of.
     deltas: list[int] = []
     maps = 0
+    read = 0
     for path in paths:
         try:
             level = read_map(path)
         except Exception:  # pragma: no cover - unreadable map
             continue
+        read += 1
         owners = sector_index(level)
         members = (_largest_outdoor(level, owners)
                    if network == NETWORK_LARGEST_COMPONENT else _outdoor(level))
@@ -559,15 +575,28 @@ def shade_step_envelope(paths: Iterable[Any] | None = None, *,
             step = abs(int(a["floor_shade"]) - int(b["floor_shade"]))
             if step:
                 deltas.append(step)
+    #: The population is stated whether or not anything was found, and the
+    #: two map counts are separate: `maps_read` is how many opened, `maps` is
+    #: how many had a network of at least two sectors to measure. A census
+    #: that reports only the second cannot be told from one that lost maps.
+    where = {
+        "network": network,
+        "population": population if not given else "caller-supplied paths",
+        "maps_read": read,
+        "maps": maps,
+        "unit": "boundary: one entry per sector pair, never per wall record",
+    }
     if not deltas:
-        return {"network": network, "maps": maps, "records": 0,
-                "median": None, "envelope": envelope, "inside": 0.0}
+        return {**where, "records": 0, "boundaries": 0, "median": None,
+                "quartiles": None, "envelope": envelope, "inside": 0.0}
     low, high = envelope
     inside = sum(1 for value in deltas if low <= value <= high)
     return {
-        "network": network,
-        "maps": maps,
+        **where,
+        #: `records` is kept because the writer's gate reads it; it has always
+        #: held boundaries, and `boundaries` is the name that says so.
         "records": len(deltas),
+        "boundaries": len(deltas),
         "median": statistics.median(deltas),
         "quartiles": (statistics.quantiles(deltas, n=4)[0],
                       statistics.quantiles(deltas, n=4)[2])

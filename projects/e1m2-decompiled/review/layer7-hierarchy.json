@@ -547,7 +547,6 @@
     123,
     124,
     125,
-    128,
     129,
     130,
     131,
@@ -965,7 +964,7 @@
   {
    "id": "block:01",
    "kind": "block",
-   "name": "block:01 envelope [22.0, 39.38] pu",
+   "name": "block:01 envelope [22.0, 38.88] pu",
    "parent": "blocks",
    "children": [],
    "sectors": [
@@ -973,7 +972,6 @@
     2,
     20,
     22,
-    128,
     129,
     130,
     131,

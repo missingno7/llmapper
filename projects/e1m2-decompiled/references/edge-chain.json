@@ -823,7 +823,7 @@
   "1022": "one-sided: a flat wall against the void, no sector spent behind it",
   "1023": "one-sided: a flat wall against the void, no sector spent behind it",
   "1704": "the far side is sector 148, an interior: this is a way in, not a termination",
-  "1709": "the far side is sector 128, an interior: this is a way in, not a termination",
+  "1709": "the far side is sector 128, an opening: a room at the pavement's own z with the street on one side and another room on the other. A way in, and the one the map built on purpose",
   "1713": "one-sided: a flat wall against the void, no sector spent behind it",
   "1714": "the far side is sector 219, an outdoor mass standing more than the 4096 autostep above every neighbour",
   "1715": "the far side is sector 219, an outdoor mass standing more than the 4096 autostep above every neighbour",

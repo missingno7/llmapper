@@ -7,6 +7,9 @@
    "parent": null,
    "children": [
     "kind:end_wall",
+    "kind:facade",
+    "kind:interior",
+    "kind:opening",
     "kind:pavement",
     "kind:road"
    ],
@@ -398,7 +401,7 @@
   {
    "id": "kind:end_wall",
    "kind": "surface_kind",
-   "name": "end_wall (8 sectors)",
+   "name": "end_wall (4 sectors)",
    "parent": "level",
    "children": [
     "row:end_wall|pavement|b_below",
@@ -406,38 +409,123 @@
    ],
    "sectors": [
     0,
-    118,
-    165,
     237,
-    339,
-    343
+    339
    ]
   },
   {
    "id": "row:end_wall|pavement|b_below",
    "kind": "join_row",
-   "name": "end_wall|pavement|b_below x9",
+   "name": "end_wall|pavement|b_below x5",
    "parent": "kind:end_wall",
    "children": [],
    "sectors": [
     0,
-    118,
-    165,
     237,
-    339,
-    343
+    339
    ]
   },
   {
    "id": "row:end_wall|road|b_below",
    "kind": "join_row",
-   "name": "end_wall|road|b_below x3",
+   "name": "end_wall|road|b_below x2",
    "parent": "kind:end_wall",
    "children": [],
    "sectors": [
     0,
-    339,
+    339
+   ]
+  },
+  {
+   "id": "kind:facade",
+   "kind": "surface_kind",
+   "name": "facade (4 sectors)",
+   "parent": "level",
+   "children": [
+    "row:facade|pavement|b_below",
+    "row:facade|road|b_below"
+   ],
+   "sectors": [
+    118,
+    165,
     343
+   ]
+  },
+  {
+   "id": "row:facade|pavement|b_below",
+   "kind": "join_row",
+   "name": "facade|pavement|b_below x4",
+   "parent": "kind:facade",
+   "children": [],
+   "sectors": [
+    118,
+    165,
+    343
+   ]
+  },
+  {
+   "id": "row:facade|road|b_below",
+   "kind": "join_row",
+   "name": "facade|road|b_below x1",
+   "parent": "kind:facade",
+   "children": [],
+   "sectors": [
+    343
+   ]
+  },
+  {
+   "id": "kind:interior",
+   "kind": "surface_kind",
+   "name": "interior (336 sectors)",
+   "parent": "level",
+   "children": [
+    "row:interior|opening|equal"
+   ],
+   "sectors": [
+    208
+   ]
+  },
+  {
+   "id": "row:interior|opening|equal",
+   "kind": "join_row",
+   "name": "interior|opening|equal x1",
+   "parent": "kind:interior",
+   "children": [],
+   "sectors": [
+    208
+   ]
+  },
+  {
+   "id": "kind:opening",
+   "kind": "surface_kind",
+   "name": "opening (1 sectors)",
+   "parent": "level",
+   "children": [
+    "row:opening|interior|equal",
+    "row:opening|pavement|equal"
+   ],
+   "sectors": [
+    206
+   ]
+  },
+  {
+   "id": "row:opening|interior|equal",
+   "kind": "join_row",
+   "name": "opening|interior|equal x1",
+   "parent": "kind:opening",
+   "children": [],
+   "sectors": [
+    206
+   ]
+  },
+  {
+   "id": "row:opening|pavement|equal",
+   "kind": "join_row",
+   "name": "opening|pavement|equal x1",
+   "parent": "kind:opening",
+   "children": [],
+   "sectors": [
+    206
    ]
   },
   {
@@ -447,6 +535,8 @@
    "parent": "level",
    "children": [
     "row:pavement|end_wall|b_above",
+    "row:pavement|facade|b_above",
+    "row:pavement|opening|equal",
     "row:pavement|pavement|equal",
     "row:pavement|road|b_below"
    ],
@@ -465,16 +555,35 @@
   {
    "id": "row:pavement|end_wall|b_above",
    "kind": "join_row",
-   "name": "pavement|end_wall|b_above x9",
+   "name": "pavement|end_wall|b_above x5",
    "parent": "kind:pavement",
    "children": [],
    "sectors": [
     2,
     4,
     6,
-    159,
-    175,
     235
+   ]
+  },
+  {
+   "id": "row:pavement|facade|b_above",
+   "kind": "join_row",
+   "name": "pavement|facade|b_above x4",
+   "parent": "kind:pavement",
+   "children": [],
+   "sectors": [
+    159,
+    175
+   ]
+  },
+  {
+   "id": "row:pavement|opening|equal",
+   "kind": "join_row",
+   "name": "pavement|opening|equal x1",
+   "parent": "kind:pavement",
+   "children": [],
+   "sectors": [
+    1
    ]
   },
   {
@@ -520,6 +629,7 @@
    "parent": "level",
    "children": [
     "row:road|end_wall|b_above",
+    "row:road|facade|b_above",
     "row:road|pavement|b_above",
     "row:road|road|equal"
    ],
@@ -533,12 +643,21 @@
   {
    "id": "row:road|end_wall|b_above",
    "kind": "join_row",
-   "name": "road|end_wall|b_above x3",
+   "name": "road|end_wall|b_above x2",
    "parent": "kind:road",
    "children": [],
    "sectors": [
     3,
-    7,
+    7
+   ]
+  },
+  {
+   "id": "row:road|facade|b_above",
+   "kind": "join_row",
+   "name": "road|facade|b_above x1",
+   "parent": "kind:road",
+   "children": [],
+   "sectors": [
     45
    ]
   },

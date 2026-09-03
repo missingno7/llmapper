@@ -609,3 +609,141 @@ def selections(store: Any) -> list[Fact]:
                              "basis": f"its ratio is {ratio}"},
                             sources=(row.id,), reader="selection", layer=7))
     return out
+
+
+#: --- recovering a whole store from a built map -----------------------------
+#: Three callers now want "every layer on one map, as facts": the census over
+#: the campaign, a decompilation project, and `tools/symmetry_diff.py`. Each
+#: had its own copy of the same twenty lines, and a copy is where two readings
+#: of one thing start (see the two envelopes of queue item 35). This is the
+#: one copy. A project still orchestrates -- it owns its hierarchy, its art
+#: and its report -- but it no longer owns the ORDER the layers run in.
+def recover(path: Any, *, art_sizes: dict | None = None,
+            lessons: str | None = None, curriculum: Any = None,
+            hierarchy: dict | None = None) -> dict[str, Any]:
+    """Every layer's facts for one built map, with the readings behind them.
+
+    `path` is a map on disk. `hierarchy` is layer 1's space tree; when it is
+    not given, `decompiler.decompile_level` builds one, and when THAT fails
+    the other seven layers still run and `layer1_error` says what stopped it.
+    A map that one reader cannot read is not a map with no facts.
+
+    Returns the store, the error if there was one, and every intermediate
+    reading, because a caller comparing this against a declaration needs the
+    reading and not only the fact it produced.
+    """
+    from .anchors import find_bundles
+    from .curriculum import mine_map
+    from .format import read_map
+    from .read_edges import read_edges
+    from .read_intent import name_mechanisms, name_places, named_props
+    from .read_islands import read_islands
+    from .read_joins import adjacency, join_census, surface_kinds
+    from .read_light import read_light
+    from .read_mechanisms import curriculum_index, read_mechanisms
+    from .read_plan import read_plan
+    from .read_stairs import read_stairs
+    from .read_store import base_facts
+    from .read_surfaces import read_surfaces
+    from .texture_frame import sector_index
+
+    #: The ART is where the readers get their tile sizes. `BLOODMAP_ART`
+    #: wins, then `reference/blood`; a caller that already has them passes
+    #: them, and one that has none gets the SurfaceReadError rather than a
+    #: surface reader silently measuring nothing.
+    if art_sizes is None:
+        import os
+
+        from .texture_align import wall_art_sizes
+
+        art_sizes = wall_art_sizes(os.environ.get("BLOODMAP_ART",
+                                                  "reference/blood"))
+    if lessons is None and curriculum is None:
+        import os
+
+        from .patterns import corpus_map_path
+
+        lessons = os.environ.get(
+            "BLOODMAP_LESSONS",
+            str(corpus_map_path("E1M1").parent.parent / "mechanism"
+                / "Vanilla"))
+
+    path = pathlib.Path(path)
+    disk = read_map(path)
+    level = disk.to_level_ir()
+    owners = sector_index(level)
+    store = FactStore()
+    store.extend(base_facts(level))
+
+    graph = adjacency(level, owners)
+    for here in sorted(graph):
+        for there in sorted(graph[here]):
+            if there > here:
+                store.add("connects", f"sector:{here}-sector:{there}",
+                          {"a": f"sector:{here}", "b": f"sector:{there}"},
+                          sources=(f"sector:{here}", f"sector:{there}"),
+                          reader="map")
+
+    layer1_error = None
+    if hierarchy is None:
+        from .decompiler import decompile_level
+
+        try:
+            hierarchy = decompile_level(level, source_name=path.name).hierarchy
+        except Exception as error:  # pragma: no cover - map-dependent
+            layer1_error = repr(error)
+    if hierarchy is not None:
+        store.extend(layer1(level, hierarchy))
+
+    surfaces = read_surfaces(level, art_sizes=art_sizes)
+    stairs = read_stairs(level)
+    store.extend(layer2(level, surfaces, stairs))
+
+    kinds = surface_kinds(level, owners=owners)
+    census = join_census(level, kinds["kinds"], owners=owners)
+    store.extend(layer3(level, {"kinds": kinds, "census": census}))
+
+    islands = read_islands(level, kinds["kinds"], owners=owners)
+    light = read_light(level, kinds["kinds"], owners=owners)
+    store.extend(layer4(level, islands, light))
+
+    edges = read_edges(level, kinds["kinds"], owners=owners)
+    store.extend(layer6(level, edges))
+
+    plan = read_plan(level, kinds["kinds"], owners=owners)
+    store.extend(layer7(level, plan))
+
+    mechanisms = read_mechanisms(level, disk, lessons=lessons,
+                                 reading=mine_map(path))
+    store.extend(layer5(level, mechanisms))
+
+    spaces = [{"id": node["id"], "sectors": _sectors_of(node)}
+              for node in (hierarchy or {"nodes": []})["nodes"]
+              if node["kind"] == "space" and not any(
+                  "reviewable singleton" in basis
+                  for basis in _basis_of(node))]
+    index = curriculum if curriculum is not None else (
+        curriculum_index(lessons) if lessons else {})
+    names = name_mechanisms(mechanisms["sentences"], index)
+    places = name_places(
+        level, spaces,
+        street=[one for one, kind in kinds["kinds"].items()
+                if kind in ("road", "pavement", "outdoor_ground", "end_wall",
+                            "facade")],
+        start_sector=int(disk.header["start_sector"]),
+        structures={run["id"]: run["sectors"] for run in stairs["runs"]},
+        stacks=mechanisms["stacks"], props=named_props(level),
+        bundles=[row.to_dict() for row in find_bundles(disk.to_build_ir())])
+    store.extend(layer8(names, places))
+    store.extend(selections(store))
+
+    return {
+        "store": store,
+        "layer1_error": layer1_error,
+        "readings": {
+            "hierarchy": hierarchy, "surfaces": surfaces, "stairs": stairs,
+            "kinds": kinds, "census": census, "islands": islands,
+            "light": light, "edges": edges, "plan": plan,
+            "mechanisms": mechanisms, "names": names, "places": places,
+        },
+    }

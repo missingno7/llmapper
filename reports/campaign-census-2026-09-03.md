@@ -13,40 +13,51 @@ P14b decides.
 ## 28b — what a termination's band wears
 
 The band is read on the GROUND's record, the side a body sees from the street.
+**Re-run after item 32c**, which split `facade` off `end_wall`: 179 records
+before and 179 after, 31 of them under a new name. The split is exact and
+nothing left the census.
 
 | pair | records | maps | top tiles |
 | --- | --- | --- | --- |
-| `road\|end_wall` | 149 | 17 | 2490 (36), 91 (31), 449 (17), 28 (16), 5 (8), 95 (7) |
-| `pavement\|end_wall` | 42 | 6 | 120 (12), 68 (10), 414 (6), 2490 (5), 270 (3) |
+| `road\|end_wall` | 116 | 16 | 2490 (28), 449 (17), 28 (16), 5 (8), 91 (8), 95 (7) |
+| `road\|facade` | 27 | 4 | 91 (15), 2490 (9), 177 (2), 414 (1) |
+| `pavement\|end_wall` | 32 | 5 | 120 (12), 68 (10), 414 (4), 270 (3), 95 (1) |
+| `pavement\|facade` | 4 | 1 | 414 (2), 417 (2) |
 
-**`TILE_CLASSES["facade stone"] = 400` is worn by NONE of the 191 records.**
-E3M1's 414 accounts for 9 of them. The class has 17 distinct members on the
-road side alone, led by 2490 (24%) and 91 (21%).
+**`TILE_CLASSES["facade stone"] = 400` is worn by NONE of the 179 records.**
+That was true before the split and is true of every one of the four rows
+after it. E3M1's 414 accounts for 9. The class has 17 distinct members on the
+road side alone, led by 2490 (24%) and 91 (21%) — and the split says something
+about those two: **91 leads the buildings (15 of 27) and 2490 leads the plain
+terminations (28 of 116)**, which is the first evidence that the campaign
+dresses a facade differently from a wall.
 
-**The row's `cstat=1` is the campaign's exception, not its rule.** 136 of 149
-`road|end_wall` band records do NOT block (91.3%); 34 of 42 `pavement|end_wall`
-do not (81.0%). E3M1's three blocking records are the minority behaviour.
+**The row's `cstat=1` is the campaign's exception, not its rule.** 104 of 116
+`road|end_wall` band records do NOT block (89.7%); 28 of 32
+`pavement|end_wall` do not (87.5%); 26 of 27 `road|facade` do not (96.3%).
+The one row that blocks throughout is `pavement|facade` — 4 of 4 — and all
+four are E3M1's single building.
 
-It is not a height rule. Blocking records stand a median 88 064 above the road
-(5.2 player heights) and non-blocking ones a median 66 560, with quartiles
-32 768 and 393 216 — the non-blocking set holds both the lowest masses and the
-highest.
+It is not a height rule. On `road|end_wall`, blocking records stand a median
+88 064 above the road (5.2 player heights) and non-blocking ones a median
+65 536, with quartiles 24 576 and 393 216 — the non-blocking set holds both
+the lowest masses and the highest.
 
-> **These numbers moved when the reader's kind moved, and that is the point.**
-> Run before item 28c, the same census gave 285 road-side records over 21
-> maps, 2 of them wearing 400, with 449 leading at 75. Naming a raised mass
-> that carries a sector type as a MECHANISM AT REST rather than a termination
-> removed 136 records — nearly half — and every one of the 400s with them. A
-> census is conditioned on the kind that defines its population (section 22a),
-> and the first figures are kept here so the conditioning is visible rather
-> than silently overwritten.
+> **These numbers moved twice when the reader's kind moved, and that is the
+> point.** Before item 28c the same census gave 285 road-side records over 21
+> maps, 2 of them wearing 400, with 449 leading at 75; naming a raised mass
+> that carries a sector type a MECHANISM AT REST rather than a termination
+> removed 136 of them and every 400 with them. Item 32c then split the
+> buildings out of what remained. A census is conditioned on the kind that
+> defines its population (section 22a), and both earlier figures are kept here
+> so the conditioning is visible rather than silently overwritten.
 
 > **Read the reader's kind before reading the number.** `end_wall` is now "an
-> outdoor mass, carrying no sector type, that no body can step onto". Its step
-> quartiles are 32 768 and 393 216, so a quarter of these masses still stand
-> under two player heights and are ledges rather than terminations. A narrower
-> kind is a further reader change and would want the owner's word — queue item
-> 37a.
+> outdoor mass, carrying no sector type, holding no room, that no body can
+> step onto". Its step quartiles are 24 576 and 393 216, so a quarter of these
+> masses still stand under two player heights and are ledges rather than
+> terminations. A narrower kind is a further reader change and would want the
+> owner's word — queue item 37a.
 
 ## 28d — where a material stops, by bend class
 
@@ -136,9 +147,9 @@ is recorded, not repaired.
 ## What this leaves for the writer
 
 - **28b:** `facade stone` is not 400 in the campaign — it is worn by none of
-  the 191 end-wall band records — and the row's blocking clause holds on 8.7%
-  of the road-side ones. Both are P14b's to change or keep, with the numbers
-  now available.
+  the 179 end-wall band records — and the row's blocking clause holds on 21 of
+  them (11.7%), 13 of the 143 road-side (9.1%). Both are P14b's to change or
+  keep, with the numbers now available.
 - **28d:** no change. The writer already matches the campaign.
 - **28e:** eleven proposed rows, and an argument that they are one law.
 - **29a:** the envelope is a reader call, not a constant, and the call

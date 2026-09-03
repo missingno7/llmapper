@@ -360,3 +360,67 @@ class TheEnvelopeIsDecidedPerNetwork(unittest.TestCase):
             self.skipTest("the campaign is not in the corpus")
         found = shade_step_envelope(paths, envelope=(1, 2))
         self.assertEqual(tuple(found["envelope"]), (1, 2))
+
+
+class TheEnvelopeSaysWhatItMeasured(unittest.TestCase):
+    """Item 32e: the unit is the boundary, and the census names its population.
+
+    The recount did not move the numbers -- `shade_step_envelope` already
+    counted a sector pair once -- and that is the result: 192 boundaries over
+    36 maps on the largest outdoor component, 365 over 37 on all outdoor,
+    unchanged. What changed is that the answer now says which network, which
+    population, how many maps opened and how many had a network to measure,
+    so a later reading cannot quietly be a different one.
+    """
+
+    def test_it_states_its_network_population_and_unit(self):
+        from bloodmap.read_light import (
+            NETWORK_LARGEST_COMPONENT, shade_step_envelope)
+
+        found = shade_step_envelope(network=NETWORK_LARGEST_COMPONENT)
+        self.assertEqual(found["network"], NETWORK_LARGEST_COMPONENT)
+        self.assertEqual(found["population"], "blood-campaign")
+        self.assertIn("boundary", found["unit"])
+        self.assertEqual(found["maps_read"], 43)
+        self.assertEqual(found["maps"], 36)
+
+    def test_boundaries_and_records_are_the_same_number(self):
+        """`records` was always boundaries; the new key only says so."""
+        from bloodmap.read_light import shade_step_envelope
+
+        found = shade_step_envelope()
+        self.assertEqual(found["boundaries"], found["records"])
+        self.assertEqual(found["boundaries"], 192)
+
+    def test_the_two_networks_recount_to_the_published_numbers(self):
+        from bloodmap.read_light import (
+            NETWORK_ALL_OUTDOOR, NETWORK_LARGEST_COMPONENT,
+            shade_step_envelope)
+
+        part = shade_step_envelope(network=NETWORK_LARGEST_COMPONENT)
+        self.assertEqual((part["boundaries"], part["maps"]), (192, 36))
+        self.assertEqual(part["median"], 13.0)
+        self.assertEqual(part["quartiles"], (9.0, 18.75))
+
+        whole = shade_step_envelope(network=NETWORK_ALL_OUTDOOR)
+        self.assertEqual((whole["boundaries"], whole["maps"]), (365, 37))
+        self.assertEqual(whole["median"], 12)
+        self.assertEqual(whole["quartiles"], (8.0, 16.0))
+
+    def test_the_gates_envelope_holds_on_three_boundaries_in_five(self):
+        """[8, 18] on the largest component, which is what section 31 chose."""
+        from bloodmap.read_light import (
+            NETWORK_LARGEST_COMPONENT, shade_step_envelope)
+
+        found = shade_step_envelope(network=NETWORK_LARGEST_COMPONENT,
+                                    envelope=(8, 18))
+        self.assertAlmostEqual(found["inside"], 0.5885, places=3)
+
+    def test_a_caller_supplied_path_list_says_so_rather_than_naming_a_population(self):
+        from bloodmap.patterns import list_original_maps
+        from bloodmap.read_light import shade_step_envelope
+
+        paths = list(list_original_maps(population="blood-campaign"))[:4]
+        found = shade_step_envelope(paths)
+        self.assertEqual(found["population"], "caller-supplied paths")
+        self.assertEqual(found["maps_read"], 4)

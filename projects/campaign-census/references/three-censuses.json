@@ -3,16 +3,25 @@
   "blocking": {
    "pavement|end_wall": {
     "0": 28,
-    "1": 8
+    "1": 4
+   },
+   "pavement|facade": {
+    "1": 4
    },
    "road|end_wall": {
-    "0": 130,
-    "1": 13
+    "0": 104,
+    "1": 12
+   },
+   "road|facade": {
+    "0": 26,
+    "1": 1
    }
   },
   "maps_with_the_pair": {
    "pavement|end_wall": 5,
-   "road|end_wall": 17
+   "pavement|facade": 1,
+   "road|end_wall": 16,
+   "road|facade": 4
   },
   "step_by_blocking": {
    "pavement|end_wall": {
@@ -20,8 +29,8 @@
      "max": 98304,
      "median": 98304,
      "min": 65536,
-     "n": 8,
-     "q1": 98304,
+     "n": 4,
+     "q1": 65536,
      "q3": 98304
     },
     "not blocking": {
@@ -33,22 +42,53 @@
      "q3": 48128
     }
    },
+   "pavement|facade": {
+    "blocking": {
+     "max": 98304,
+     "median": 98304,
+     "min": 98304,
+     "n": 4,
+     "q1": 98304,
+     "q3": 98304
+    },
+    "not blocking": {
+     "n": 0
+    }
+   },
    "road|end_wall": {
     "blocking": {
      "max": 1143808,
      "median": 88064,
      "min": 44032,
-     "n": 13,
+     "n": 12,
      "q1": 67584,
      "q3": 88064
     },
     "not blocking": {
      "max": 1214464,
-     "median": 66560,
+     "median": 65536,
      "min": 5120,
-     "n": 130,
-     "q1": 28672,
+     "n": 104,
+     "q1": 24576,
      "q3": 393216
+    }
+   },
+   "road|facade": {
+    "blocking": {
+     "max": 100352,
+     "median": 100352,
+     "min": 100352,
+     "n": 1,
+     "q1": 100352,
+     "q3": 100352
+    },
+    "not blocking": {
+     "max": 1166336,
+     "median": 160768,
+     "min": 13312,
+     "n": 26,
+     "q1": 65536,
+     "q3": 1166336
     }
    }
   },
@@ -62,41 +102,49 @@
     "95": 1,
     "120": 12,
     "270": 3,
-    "414": 6,
-    "417": 2,
+    "414": 4,
     "488": 1
+   },
+   "pavement|facade": {
+    "414": 2,
+    "417": 2
    },
    "road|end_wall": {
     "5": 8,
     "28": 16,
     "67": 1,
     "80": 1,
-    "91": 23,
+    "91": 8,
     "95": 7,
     "123": 5,
     "154": 3,
-    "177": 2,
     "401": 3,
-    "414": 3,
+    "414": 2,
     "421": 6,
     "449": 17,
     "452": 3,
     "512": 3,
     "2473": 3,
     "2474": 2,
-    "2490": 37
+    "2490": 28
+   },
+   "road|facade": {
+    "91": 15,
+    "177": 2,
+    "414": 1,
+    "2490": 9
    }
   }
  },
  "interior_pairs": {
   "classes": {
-   "floor a step down | ceiling a step down": 499,
+   "floor a step down | ceiling a step down": 498,
    "floor a step down | ceiling a step up": 429,
    "floor a step down | ceiling far above": 610,
    "floor a step down | ceiling far below": 348,
    "floor a step down | ceiling level": 3147,
    "floor a step up | ceiling a step down": 429,
-   "floor a step up | ceiling a step up": 499,
+   "floor a step up | ceiling a step up": 498,
    "floor a step up | ceiling far above": 348,
    "floor a step up | ceiling far below": 610,
    "floor a step up | ceiling level": 3147,
@@ -110,15 +158,15 @@
    "floor far below | ceiling far above": 1611,
    "floor far below | ceiling far below": 431,
    "floor far below | ceiling level": 5382,
-   "floor level | ceiling a step down": 1801,
-   "floor level | ceiling a step up": 1801,
-   "floor level | ceiling far above": 3326,
-   "floor level | ceiling far below": 3326,
-   "floor level | ceiling level": 13852
+   "floor level | ceiling a step down": 1800,
+   "floor level | ceiling a step up": 1800,
+   "floor level | ceiling far above": 3322,
+   "floor level | ceiling far below": 3322,
+   "floor level | ceiling level": 13842
   },
   "draws": {
    "floor a step down | ceiling a step down": {
-    "draws": 499
+    "draws": 498
    },
    "floor a step down | ceiling a step up": {
     "draws": 33,
@@ -139,7 +187,7 @@
     "draws": 429
    },
    "floor a step up | ceiling a step up": {
-    "draws": 499
+    "draws": 498
    },
    "floor a step up | ceiling far above": {
     "draws": 348
@@ -184,22 +232,22 @@
     "draws nothing": 5360
    },
    "floor level | ceiling a step down": {
-    "draws": 1801
+    "draws": 1800
    },
    "floor level | ceiling a step up": {
     "draws": 5,
-    "draws nothing": 1796
+    "draws nothing": 1795
    },
    "floor level | ceiling far above": {
     "draws": 5,
-    "draws nothing": 3321
+    "draws nothing": 3317
    },
    "floor level | ceiling far below": {
-    "draws": 3326
+    "draws": 3322
    },
    "floor level | ceiling level": {
     "draws": 132,
-    "draws nothing": 13720
+    "draws nothing": 13710
    }
   },
   "maps_with_the_class": {
@@ -744,13 +792,13 @@
    },
    "interior_pairs": {
     "classes": {
-     "floor a step down | ceiling a step down": 36,
+     "floor a step down | ceiling a step down": 35,
      "floor a step down | ceiling a step up": 6,
      "floor a step down | ceiling far above": 13,
      "floor a step down | ceiling far below": 9,
      "floor a step down | ceiling level": 73,
      "floor a step up | ceiling a step down": 6,
-     "floor a step up | ceiling a step up": 36,
+     "floor a step up | ceiling a step up": 35,
      "floor a step up | ceiling far above": 9,
      "floor a step up | ceiling far below": 13,
      "floor a step up | ceiling level": 73,
@@ -772,7 +820,7 @@
     },
     "draws": {
      "floor a step down | ceiling a step down": {
-      "draws": 36
+      "draws": 35
      },
      "floor a step down | ceiling a step up": {
       "draws nothing": 6
@@ -791,7 +839,7 @@
       "draws": 6
      },
      "floor a step up | ceiling a step up": {
-      "draws": 36
+      "draws": 35
      },
      "floor a step up | ceiling far above": {
       "draws": 9
@@ -853,7 +901,7 @@
     "mechanisms": {
      "floor a step down | ceiling a step down": {
       "a mechanism on one side": 5,
-      "both at rest": 31
+      "both at rest": 30
      },
      "floor a step down | ceiling a step up": {
       "a mechanism on one side": 5,
@@ -877,7 +925,7 @@
      },
      "floor a step up | ceiling a step up": {
       "a mechanism on one side": 5,
-      "both at rest": 31
+      "both at rest": 30
      },
      "floor a step up | ceiling far above": {
       "a mechanism on one side": 6,
@@ -946,12 +994,12 @@
       "both at rest": 170
      }
     },
-    "records": 1102,
+    "records": 1100,
     "top_tiles": {
      "floor a step down | ceiling a step down": {
       "4": 1,
       "49": 1,
-      "68": 20,
+      "68": 19,
       "130": 13
      },
      "floor a step down | ceiling far below": {
@@ -969,7 +1017,7 @@
       "174": 3
      },
      "floor a step up | ceiling a step up": {
-      "0": 19,
+      "0": 18,
       "68": 2,
       "84": 12,
       "379": 2
@@ -3697,12 +3745,12 @@
   "E2M1": {
    "end_wall": {
     "blocking": {
-     "road|end_wall": {
+     "road|facade": {
       "0": 4
      }
     },
     "records": {
-     "road|end_wall": [
+     "road|facade": [
       1462,
       1463,
       1464,
@@ -3710,7 +3758,7 @@
      ]
     },
     "step_by_blocking": {
-     "road|end_wall": {
+     "road|facade": {
       "blocking": {
        "n": 0
       },
@@ -3725,7 +3773,7 @@
      }
     },
     "step_values": {
-     "road|end_wall": {
+     "road|facade": {
       "blocking": [],
       "not blocking": [
        13312,
@@ -3736,7 +3784,7 @@
      }
     },
     "tiles": {
-     "road|end_wall": {
+     "road|facade": {
       "177": 2,
       "2490": 2
      }
@@ -4287,9 +4335,9 @@
      "floor far below | ceiling level": 149,
      "floor level | ceiling a step down": 22,
      "floor level | ceiling a step up": 22,
-     "floor level | ceiling far above": 89,
-     "floor level | ceiling far below": 89,
-     "floor level | ceiling level": 156
+     "floor level | ceiling far above": 86,
+     "floor level | ceiling far below": 86,
+     "floor level | ceiling level": 152
     },
     "draws": {
      "floor a step down | ceiling a step up": {
@@ -4353,14 +4401,14 @@
       "draws nothing": 22
      },
      "floor level | ceiling far above": {
-      "draws nothing": 89
+      "draws nothing": 86
      },
      "floor level | ceiling far below": {
-      "draws": 89
+      "draws": 86
      },
      "floor level | ceiling level": {
       "draws": 16,
-      "draws nothing": 140
+      "draws nothing": 136
      }
     },
     "mechanisms": {
@@ -4440,18 +4488,18 @@
      },
      "floor level | ceiling far above": {
       "a mechanism on one side": 20,
-      "both at rest": 69
+      "both at rest": 66
      },
      "floor level | ceiling far below": {
       "a mechanism on one side": 20,
-      "both at rest": 69
+      "both at rest": 66
      },
      "floor level | ceiling level": {
       "a mechanism on one side": 24,
-      "both at rest": 132
+      "both at rest": 128
      }
     },
-    "records": 1042,
+    "records": 1032,
     "top_tiles": {
      "floor a step down | ceiling far below": {
       "80": 1
@@ -4514,7 +4562,7 @@
      "floor level | ceiling far below": {
       "80": 15,
       "90": 12,
-      "281": 12,
+      "281": 9,
       "414": 10
      },
      "floor level | ceiling level": {
@@ -6070,8 +6118,11 @@
    "end_wall": {
     "blocking": {
      "road|end_wall": {
-      "0": 32,
+      "0": 25,
       "1": 1
+     },
+     "road|facade": {
+      "0": 7
      }
     },
     "records": {
@@ -6079,13 +6130,6 @@
       1582,
       1583,
       1595,
-      1616,
-      1617,
-      1618,
-      1619,
-      1621,
-      1622,
-      1623,
       1632,
       1633,
       1634,
@@ -6109,6 +6153,15 @@
       1659,
       1660,
       1661
+     ],
+     "road|facade": [
+      1616,
+      1617,
+      1618,
+      1619,
+      1621,
+      1622,
+      1623
      ]
     },
     "step_by_blocking": {
@@ -6123,11 +6176,24 @@
       },
       "not blocking": {
        "max": 1214464,
-       "median": 1166336,
+       "median": 1172480,
        "min": 1142784,
-       "n": 32,
+       "n": 25,
        "q1": 1165312,
-       "q3": 1206272
+       "q3": 1212416
+      }
+     },
+     "road|facade": {
+      "blocking": {
+       "n": 0
+      },
+      "not blocking": {
+       "max": 1166336,
+       "median": 1166336,
+       "min": 1166336,
+       "n": 7,
+       "q1": 1166336,
+       "q3": 1166336
       }
      }
     },
@@ -6139,13 +6205,6 @@
       "not blocking": [
        1214464,
        1214464,
-       1166336,
-       1166336,
-       1166336,
-       1166336,
-       1166336,
-       1166336,
-       1166336,
        1172480,
        1172480,
        1172480,
@@ -6170,11 +6229,26 @@
        1212416,
        1212416
       ]
+     },
+     "road|facade": {
+      "blocking": [],
+      "not blocking": [
+       1166336,
+       1166336,
+       1166336,
+       1166336,
+       1166336,
+       1166336,
+       1166336
+      ]
      }
     },
     "tiles": {
      "road|end_wall": {
-      "2490": 33
+      "2490": 26
+     },
+     "road|facade": {
+      "2490": 7
      }
     },
     "total": 33
@@ -7744,10 +7818,16 @@
     "blocking": {
      "pavement|end_wall": {
       "0": 1,
-      "1": 8
+      "1": 4
+     },
+     "pavement|facade": {
+      "1": 4
      },
      "road|end_wall": {
-      "1": 3
+      "1": 2
+     },
+     "road|facade": {
+      "1": 1
      }
     },
     "records": {
@@ -7755,16 +7835,20 @@
       22,
       28,
       47,
-      816,
-      947,
-      984,
-      985,
       1529,
       1535
      ],
+     "pavement|facade": [
+      816,
+      947,
+      984,
+      985
+     ],
      "road|end_wall": [
       26,
-      49,
+      49
+     ],
+     "road|facade": [
       222
      ]
     },
@@ -7774,8 +7858,8 @@
        "max": 98304,
        "median": 98304,
        "min": 65536,
-       "n": 8,
-       "q1": 98304,
+       "n": 4,
+       "q1": 65536,
        "q3": 98304
       },
       "not blocking": {
@@ -7787,13 +7871,39 @@
        "q3": 21504
       }
      },
+     "pavement|facade": {
+      "blocking": {
+       "max": 98304,
+       "median": 98304,
+       "min": 98304,
+       "n": 4,
+       "q1": 98304,
+       "q3": 98304
+      },
+      "not blocking": {
+       "n": 0
+      }
+     },
      "road|end_wall": {
       "blocking": {
        "max": 100352,
        "median": 100352,
        "min": 67584,
-       "n": 3,
+       "n": 2,
        "q1": 67584,
+       "q3": 100352
+      },
+      "not blocking": {
+       "n": 0
+      }
+     },
+     "road|facade": {
+      "blocking": {
+       "max": 100352,
+       "median": 100352,
+       "min": 100352,
+       "n": 1,
+       "q1": 100352,
        "q3": 100352
       },
       "not blocking": {
@@ -7807,20 +7917,30 @@
        65536,
        65536,
        98304,
-       98304,
-       98304,
-       98304,
-       98304,
        98304
       ],
       "not blocking": [
        21504
       ]
      },
+     "pavement|facade": {
+      "blocking": [
+       98304,
+       98304,
+       98304,
+       98304
+      ],
+      "not blocking": []
+     },
      "road|end_wall": {
       "blocking": [
        67584,
-       100352,
+       100352
+      ],
+      "not blocking": []
+     },
+     "road|facade": {
+      "blocking": [
        100352
       ],
       "not blocking": []
@@ -7828,12 +7948,18 @@
     },
     "tiles": {
      "pavement|end_wall": {
-      "414": 6,
-      "417": 2,
+      "414": 4,
       "488": 1
      },
+     "pavement|facade": {
+      "414": 2,
+      "417": 2
+     },
      "road|end_wall": {
-      "414": 3
+      "414": 2
+     },
+     "road|facade": {
+      "414": 1
      }
     },
     "total": 12
@@ -7862,8 +7988,8 @@
      "floor far below | ceiling level": 89,
      "floor level | ceiling a step down": 12,
      "floor level | ceiling a step up": 12,
-     "floor level | ceiling far above": 39,
-     "floor level | ceiling far below": 39,
+     "floor level | ceiling far above": 38,
+     "floor level | ceiling far below": 38,
      "floor level | ceiling level": 462
     },
     "draws": {
@@ -7937,10 +8063,10 @@
       "draws nothing": 12
      },
      "floor level | ceiling far above": {
-      "draws nothing": 39
+      "draws nothing": 38
      },
      "floor level | ceiling far below": {
-      "draws": 39
+      "draws": 38
      },
      "floor level | ceiling level": {
       "draws nothing": 462
@@ -8035,18 +8161,18 @@
      },
      "floor level | ceiling far above": {
       "a mechanism on one side": 7,
-      "both at rest": 32
+      "both at rest": 31
      },
      "floor level | ceiling far below": {
       "a mechanism on one side": 7,
-      "both at rest": 32
+      "both at rest": 31
      },
      "floor level | ceiling level": {
       "a mechanism on one side": 84,
       "both at rest": 378
      }
     },
-    "records": 1122,
+    "records": 1120,
     "top_tiles": {
      "floor a step down | ceiling a step down": {
       "28": 26,
@@ -8142,7 +8268,7 @@
       "108": 2
      },
      "floor level | ceiling far below": {
-      "100": 5,
+      "100": 4,
       "108": 11,
       "273": 4,
       "449": 8
@@ -13040,7 +13166,10 @@
    "end_wall": {
     "blocking": {
      "road|end_wall": {
-      "0": 28
+      "0": 13
+     },
+     "road|facade": {
+      "0": 15
      }
     },
     "records": {
@@ -13050,6 +13179,16 @@
       1304,
       1305,
       1306,
+      1352,
+      1353,
+      1354,
+      1355,
+      1356,
+      1357,
+      1358,
+      1359
+     ],
+     "road|facade": [
       1333,
       1334,
       1335,
@@ -13064,15 +13203,7 @@
       1344,
       1345,
       1346,
-      1348,
-      1352,
-      1353,
-      1354,
-      1355,
-      1356,
-      1357,
-      1358,
-      1359
+      1348
      ]
     },
     "step_by_blocking": {
@@ -13081,12 +13212,25 @@
        "n": 0
       },
       "not blocking": {
-       "max": 196608,
-       "median": 73728,
+       "max": 140288,
+       "median": 57344,
        "min": 12288,
-       "n": 28,
-       "q1": 57344,
-       "q3": 140288
+       "n": 13,
+       "q1": 12288,
+       "q3": 66560
+      }
+     },
+     "road|facade": {
+      "blocking": {
+       "n": 0
+      },
+      "not blocking": {
+       "max": 196608,
+       "median": 140288,
+       "min": 65536,
+       "n": 15,
+       "q1": 65536,
+       "q3": 160768
       }
      }
     },
@@ -13099,6 +13243,19 @@
        66560,
        140288,
        140288,
+       57344,
+       57344,
+       57344,
+       57344,
+       12288,
+       12288,
+       12288,
+       12288
+      ]
+     },
+     "road|facade": {
+      "blocking": [],
+      "not blocking": [
        196608,
        65536,
        65536,
@@ -13113,22 +13270,17 @@
        160768,
        65536,
        65536,
-       189440,
-       57344,
-       57344,
-       57344,
-       57344,
-       12288,
-       12288,
-       12288,
-       12288
+       189440
       ]
      }
     },
     "tiles": {
      "road|end_wall": {
-      "91": 23,
+      "91": 8,
       "449": 5
+     },
+     "road|facade": {
+      "91": 15
      }
     },
     "total": 28
@@ -15890,11 +16042,11 @@
      "floor far below | ceiling far above": 17,
      "floor far below | ceiling far below": 2,
      "floor far below | ceiling level": 175,
-     "floor level | ceiling a step down": 37,
-     "floor level | ceiling a step up": 37,
+     "floor level | ceiling a step down": 36,
+     "floor level | ceiling a step up": 36,
      "floor level | ceiling far above": 37,
      "floor level | ceiling far below": 37,
-     "floor level | ceiling level": 164
+     "floor level | ceiling level": 158
     },
     "draws": {
      "floor a step down | ceiling a step down": {
@@ -15960,10 +16112,10 @@
       "draws nothing": 174
      },
      "floor level | ceiling a step down": {
-      "draws": 37
+      "draws": 36
      },
      "floor level | ceiling a step up": {
-      "draws nothing": 37
+      "draws nothing": 36
      },
      "floor level | ceiling far above": {
       "draws nothing": 37
@@ -15973,7 +16125,7 @@
      },
      "floor level | ceiling level": {
       "draws": 2,
-      "draws nothing": 162
+      "draws nothing": 156
      }
     },
     "mechanisms": {
@@ -16050,11 +16202,11 @@
       "both at rest": 143
      },
      "floor level | ceiling a step down": {
-      "a mechanism on one side": 16,
+      "a mechanism on one side": 15,
       "both at rest": 21
      },
      "floor level | ceiling a step up": {
-      "a mechanism on one side": 16,
+      "a mechanism on one side": 15,
       "both at rest": 21
      },
      "floor level | ceiling far above": {
@@ -16066,11 +16218,11 @@
       "both at rest": 25
      },
      "floor level | ceiling level": {
-      "a mechanism on one side": 44,
-      "both at rest": 120
+      "a mechanism on one side": 42,
+      "both at rest": 116
      }
     },
-    "records": 778,
+    "records": 770,
     "top_tiles": {
      "floor a step down | ceiling a step down": {
       "194": 1
@@ -16136,7 +16288,7 @@
       "194": 1
      },
      "floor level | ceiling a step down": {
-      "9": 6,
+      "9": 5,
       "67": 5,
       "194": 5,
       "569": 16
@@ -18680,12 +18832,12 @@
   {
    "draws": {
     "draws": 132,
-    "draws nothing": 13720
+    "draws nothing": 13710
    },
    "maps": 43,
-   "note": "a row nobody has described; proposed only. 13720 of 13852 of its records draw no band, which is what a 'nothing' row would say",
+   "note": "a row nobody has described; proposed only. 13710 of 13842 of its records draw no band, which is what a 'nothing' row would say",
    "proposed_row": "floor level | ceiling level",
-   "records": 13852,
+   "records": 13842,
    "share": 0.278
   },
   {
@@ -18697,7 +18849,7 @@
    "note": "a row nobody has described; proposed only. 5360 of 5382 of its records draw no band, which is what a 'nothing' row would say",
    "proposed_row": "floor far below | ceiling level",
    "records": 5382,
-   "share": 0.108
+   "share": 0.1081
   },
   {
    "draws": {
@@ -18707,28 +18859,28 @@
    "note": "a row nobody has described; proposed only. 0 of 5382 of its records draw no band, which is what a 'nothing' row would say",
    "proposed_row": "floor far above | ceiling level",
    "records": 5382,
-   "share": 0.108
+   "share": 0.1081
   },
   {
    "draws": {
     "draws": 5,
-    "draws nothing": 3321
+    "draws nothing": 3317
    },
    "maps": 43,
-   "note": "a row nobody has described; proposed only. 3321 of 3326 of its records draw no band, which is what a 'nothing' row would say",
+   "note": "a row nobody has described; proposed only. 3317 of 3322 of its records draw no band, which is what a 'nothing' row would say",
    "proposed_row": "floor level | ceiling far above",
-   "records": 3326,
-   "share": 0.0668
+   "records": 3322,
+   "share": 0.0667
   },
   {
    "draws": {
-    "draws": 3326
+    "draws": 3322
    },
    "maps": 43,
-   "note": "a row nobody has described; proposed only. 0 of 3326 of its records draw no band, which is what a 'nothing' row would say",
+   "note": "a row nobody has described; proposed only. 0 of 3322 of its records draw no band, which is what a 'nothing' row would say",
    "proposed_row": "floor level | ceiling far below",
-   "records": 3326,
-   "share": 0.0668
+   "records": 3322,
+   "share": 0.0667
   },
   {
    "draws": {
@@ -18754,22 +18906,22 @@
   {
    "draws": {
     "draws": 5,
-    "draws nothing": 1796
+    "draws nothing": 1795
    },
    "maps": 39,
-   "note": "a row nobody has described; proposed only. 1796 of 1801 of its records draw no band, which is what a 'nothing' row would say",
+   "note": "a row nobody has described; proposed only. 1795 of 1800 of its records draw no band, which is what a 'nothing' row would say",
    "proposed_row": "floor level | ceiling a step up",
-   "records": 1801,
+   "records": 1800,
    "share": 0.0361
   },
   {
    "draws": {
-    "draws": 1801
+    "draws": 1800
    },
    "maps": 39,
-   "note": "a row nobody has described; proposed only. 0 of 1801 of its records draw no band, which is what a 'nothing' row would say",
+   "note": "a row nobody has described; proposed only. 0 of 1800 of its records draw no band, which is what a 'nothing' row would say",
    "proposed_row": "floor level | ceiling a step down",
-   "records": 1801,
+   "records": 1800,
    "share": 0.0361
   },
   {
@@ -18781,7 +18933,7 @@
    "note": "a row nobody has described; proposed only. 1557 of 1611 of its records draw no band, which is what a 'nothing' row would say",
    "proposed_row": "floor far below | ceiling far above",
    "records": 1611,
-   "share": 0.0323
+   "share": 0.0324
   },
   {
    "draws": {
@@ -18791,7 +18943,7 @@
    "note": "a row nobody has described; proposed only. 0 of 1611 of its records draw no band, which is what a 'nothing' row would say",
    "proposed_row": "floor far above | ceiling far below",
    "records": 1611,
-   "share": 0.0323
+   "share": 0.0324
   }
  ],
  "u_continuity": {

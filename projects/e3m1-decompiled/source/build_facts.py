@@ -98,7 +98,8 @@ def main() -> int:
     places = read_intent.name_places(
         world, spaces,
         street=[index for index, kind in kinds["kinds"].items()
-                if kind in ("road", "pavement", "outdoor_ground", "end_wall")],
+                if kind in ("road", "pavement", "outdoor_ground",
+                                          "end_wall", "facade")],
         start_sector=int(disk.header["start_sector"]),
         structures=structures, stacks=mechanisms["stacks"],
         props=read_intent.named_props(world),

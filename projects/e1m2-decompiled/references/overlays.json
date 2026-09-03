@@ -107,7 +107,8 @@
   "islands": [
    {
     "boundary_faces": {
-     "interior": 2,
+     "interior": 1,
+     "opening": 1,
      "road": 7
     },
     "floor_picnum": 281,

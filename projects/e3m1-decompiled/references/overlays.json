@@ -120,7 +120,8 @@
    {
     "boundary_faces": {
      "end_wall": 3,
-     "interior": 7,
+     "interior": 6,
+     "opening": 1,
      "road": 4,
      "solid": 2,
      "void": 14
@@ -142,7 +143,8 @@
    },
    {
     "boundary_faces": {
-     "end_wall": 4,
+     "end_wall": 1,
+     "facade": 3,
      "interior": 9,
      "mechanism_at_rest": 4,
      "outdoor_ground": 4,
@@ -167,7 +169,8 @@
    },
    {
     "boundary_faces": {
-     "end_wall": 2,
+     "end_wall": 1,
+     "facade": 1,
      "interior": 2,
      "road": 3,
      "void": 12

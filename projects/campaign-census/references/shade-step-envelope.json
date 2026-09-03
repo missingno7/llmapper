@@ -1,32 +1,40 @@
 {
  "all_outdoor": {
+  "boundaries": 365,
   "envelope": [
    8,
    16
   ],
   "inside": 0.5232876712328767,
   "maps": 37,
+  "maps_read": 43,
   "median": 12,
   "network": "all_outdoor",
+  "population": "caller-supplied paths",
   "quartiles": [
    8.0,
    16.0
   ],
-  "records": 365
+  "records": 365,
+  "unit": "boundary: one entry per sector pair, never per wall record"
  },
  "largest_outdoor_component": {
+  "boundaries": 192,
   "envelope": [
    8,
    16
   ],
   "inside": 0.5052083333333334,
   "maps": 36,
+  "maps_read": 43,
   "median": 13.0,
   "network": "largest_outdoor_component",
+  "population": "caller-supplied paths",
   "quartiles": [
    9.0,
    18.75
   ],
-  "records": 192
+  "records": 192,
+  "unit": "boundary: one entry per sector pair, never per wall record"
  }
 }

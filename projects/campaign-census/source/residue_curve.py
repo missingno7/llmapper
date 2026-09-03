@@ -62,6 +62,12 @@ def read_one(path, sizes, lessons, index) -> dict:
     Layer 1 is the only one that needs a hierarchy, and `decompile_level`
     builds it -- so a map that has never been decompiled into a project still
     gets its space tree here.
+
+    THIS IS THE SECOND COPY of the layer order and it should be the last.
+    `bloodmap.read_facts.recover` is the same twenty lines and is what
+    `tools/symmetry_diff.py` calls; this one is folded onto it at the next
+    full re-run of the curve, when the numbers can be compared before and
+    after in one step rather than taken on trust.
     """
     disk = read_map(path)
     level = disk.to_level_ir()
@@ -117,7 +123,8 @@ def read_one(path, sizes, lessons, index) -> dict:
     places = name_places(
         level, spaces,
         street=[i for i, k in kinds["kinds"].items()
-                if k in ("road", "pavement", "outdoor_ground", "end_wall")],
+                if k in ("road", "pavement", "outdoor_ground",
+                                       "end_wall", "facade")],
         start_sector=int(disk.header["start_sector"]),
         structures={run["id"]: run["sectors"] for run in stairs["runs"]},
         stacks=mechanisms["stacks"], props=named_props(level),
