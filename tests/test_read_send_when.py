@@ -83,8 +83,20 @@ class TheSendWhenBits(unittest.TestCase):
         self.assertIn("kCmdLink", why)
 
 
-class TheCitysNineSwitches(unittest.TestCase):
-    """The fail-first. Nine sources, nine channels, and nothing sent."""
+class TheCitysNineSwitchesNowSend(unittest.TestCase):
+    """The fail-first, and the fix that answered it.
+
+    The owner's second walk measured nine switches on `slice2-streets.MAP`
+    with a channel each and `trigger_on` and `trigger_off` both 0 -- nine
+    mechanisms the reader called realised and the engine would never have
+    started. The reader learnt the engine's rule (`can_send`), and P14b
+    rebuilt the map with the send-when bits set (queue item 39, W6).
+
+    Both halves are pinned. The rule itself is guarded by `TheSendWhenBits`
+    above, on values rather than on this map, so it survives the next rebuild;
+    what is checked here is that the map the finding came from now passes, and
+    that it passes for the stated reason and not by the rule going quiet.
+    """
 
     @classmethod
     def setUpClass(cls):
@@ -98,55 +110,34 @@ class TheCitysNineSwitches(unittest.TestCase):
         cls.result = read_mechanisms(cls.disk.to_level_ir(), cls.disk,
                                      lessons=None, reading=mine_map(CITY))
 
-    def test_the_map_really_does_carry_nine_dead_transmitters(self):
+    def test_no_transmitter_on_the_map_is_dead_any_more(self):
         dead = [index for index, sprite in enumerate(self.disk.sprites)
                 if sprite.extra is not None
                 and int(sprite.extra.fields.get("tx_id") or 0)
                 and not int(sprite.extra.fields.get("trigger_on") or 0)
                 and not int(sprite.extra.fields.get("trigger_off") or 0)]
-        self.assertEqual(len(dead), 9)
-        self.assertEqual(dead, [0, 2, 4, 6, 8, 10, 11, 14, 15])
+        self.assertEqual(dead, [],
+                         "these were sprites 0, 2, 4, 6, 8, 10, 11, 14 and 15")
 
-    def test_no_link_on_this_map_is_realised(self):
-        for link in self.result["links"]:
-            self.assertFalse(link["realised"], link)
-            self.assertIn("cannot send", link["why"])
-
-    def test_every_link_says_which_clause_failed(self):
-        for link in self.result["links"]:
-            self.assertEqual(link["sources_that_can_send"], [])
-            self.assertEqual(len(link["from"]), len(link["why_by_source"]))
+    def test_all_nine_links_are_realised_and_say_why(self):
+        links = self.result["links"]
+        self.assertEqual(len(links), 9)
+        for link in links:
+            self.assertTrue(link["realised"], link)
+            self.assertEqual(link["sources_that_can_send"], link["from"])
             for why in link["why_by_source"].values():
+                self.assertIn("sends on channel", why)
                 self.assertIn("trigger_on", why)
 
-    def test_a_chain_nobody_can_start_is_not_a_sentence(self):
-        """The strongest consequence: no sentence, so the receivers are
-        residue with their own ids rather than a mechanism that works."""
+    def test_each_chain_is_one_sentence(self):
         chains = [row for row in self.result["sentences"]
                   if row["kind"] == "tx -> rx chain"]
-        self.assertEqual(chains, [])
+        self.assertEqual(len(chains), 9)
 
-    def test_the_nine_switches_become_named_residue(self):
-        """The doors survive; the switches do not.
-
-        A door is a mechanism whether or not anything can open it -- sector
-        101 carries type 600 and a Z-motion sentence, and it is right that it
-        keeps one. What the map does not have is a CHAIN, and the nine
-        sprites that were supposed to start one are now residue naming their
-        own channel, which is what the owner can act on.
-        """
+    def test_no_switch_is_residue_any_more(self):
         reasons = {row["record"]: row["why"] for row in self.result["residue"]}
-        switches = sorted(record for record, why in reasons.items()
-                          if "transmits on channel" in why)
-        self.assertEqual(switches, [f"sprite:{index}" for index in
-                                    (0, 10, 11, 14, 15, 2, 4, 6, 8)])
-        self.assertNotIn("sector:101", reasons,
-                         "the door is a mechanism at rest and keeps its "
-                         "sentence; it is the wiring that is missing")
-        self.assertTrue(any(row["kind"] == "sector mechanism"
-                            for row in self.result["sentences"]))
-
-
+        self.assertEqual([record for record, why in reasons.items()
+                          if "transmits on channel" in why], [])
 class TheCampaignStillWorks(unittest.TestCase):
     """The guard: Blood's own chains are realised, or the rule is too strict."""
 

@@ -1993,3 +1993,21 @@ un-skipped 27 tests. Eight failures remain and they are the genuine relative
 blood")` and would fail the same way on any machine without that directory.
 *Recommended default:* P16's item still, with the count corrected from nine to
 eight and one concrete line to fix.
+
+**40f. Both fail-firsts landed on the same day, and their tests are re-pinned
+rather than left expected-to-fail.** P14b's rebuild (item 39) set the nine
+switches' `trigger_on`, so all nine city links are realised, nine chains are
+sentences, and no switch is residue — the rule I added is now green on the map
+that raised it. The same rebuild made a building a VOID in the island rather
+than a sector, following `engine.cpp:4688` and E3M1's own construction, so the
+city has **no facade and no opening left to name**. Seven of my tests were
+marked `@unittest.expectedFailure` in that commit; an expected failure that
+can never pass again is dead weight, so each is rewritten: the city classes
+pin what the city IS now (10 solids, 3 end walls, 854 two-sided records, 666
+described, 188 undescribed of which 134 is the waterfront), and the two rules
+themselves move onto E3M1 and E1M2, where the kinds are attested. No
+`expectedFailure` remains in either file.
+*Recommended default:* fine as done. The order is worth noting: `facade` was
+proposed against our own map and is now justified only by the campaign's,
+which is the right way round and would not have been visible without the
+rebuild.
