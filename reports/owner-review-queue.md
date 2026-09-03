@@ -1877,3 +1877,56 @@ withdrawn by its author.
    attached is answered by the agent with a census and closed.
 
 Layer review packs remain the agents' instrument, not the owner's.
+
+## 39. The owner's second walk consumed: a building is a void, and P15's facade kind has nothing to name (P14b, 2026-09-03)
+
+Eight findings, each a gate that failed first and now reads 0 off
+`slice2-streets.MAP`. Two of them changed the model rather than a number, and
+both consequences land on the reader side.
+
+**39a. A building is no longer a SECTOR, and `read_joins`'s `facade` and
+`opening` kinds have nothing to name.** W12's engine reading is why:
+`engine.cpp:4688` raises `umost` to the far ceiling line whenever one of two
+ceilings is not parallaxed, so a roof-height slab beside the street cut off
+everything above it behind -- 85 records of it. Sky against sky never clips.
+E3M1's buildings are not sectors at all: its facades ARE the one-sided records
+of its outdoor sectors, 122 of them, and the stone between its rooms is simply
+absent. So a building here is a hole in the island with its rooms inside it.
+
+The reader's classifier looked for a raised mass with a roof. There is none,
+so the city now reads 0 facades and 0 openings where it read 9 and 9, and the
+undescribed join classes are 188 -- the waterfront's 134 plus
+`pavement|interior` and `interior|solid` at the mouths.
+
+*Recommended default:* a facade is a one-sided record of an outdoor sector,
+not a sector -- which is what P15's own E3M1 census already measures (28e's
+122). The `opening` kind wants the other half of the same idea: a sector at
+the pavement's z between a pavement record and an interior. Seven of P15's
+tests in `test_read_facade_and_opening.py` are marked `expectedFailure` with
+this reason rather than deleted, so the finding they record survives and the
+suite stays green. P15's to re-derive; I have not touched the classifier.
+
+**39b. "Realised" needed a third clause, and it was mine to add.** Slice 4
+reported nine links `realised: true` on the evidence that a sprite carried the
+tx and a sector carried the matching rx. `triggers.cpp:102-104` gates every
+message on the send-when bit of the state being ENTERED, and all nine switches
+had `trigger_on = 0` and `trigger_off = 0`: they could never send, and the
+report said they were realised. **Realised now requires the send-when bit and
+a body that can reach the sprite** -- the nine sat 5120 above the SHELL's
+roof. The gate reads both off the map.
+
+*Recommended default:* P15's link reader takes the same third clause before it
+emits `realised: true`, so the two halves cannot disagree about what a working
+wire is.
+
+**39c. Street lamps are gone and the choice claim is rewritten.** Two attempts
+produced a chained lantern hanging from the sky and a wall plate on a red wall
+mid-street; the corpus said the same thing both times -- 0 visible outdoor
+lamps in 43 maps. Gravesend now chooses what the campaign chose. The lamp
+construct stays for a real ceiling. **A tile is chosen by ROLE and never by a
+brightness statistic**, and `PROP_ROLES` is that table.
+
+One consequence worth the line: with the lamps gone, the reader and the
+compiler agree on EVERY shade depth. The 143-sector disagreement was three
+sectors carrying two lamps each at shade -4, which moved the reader's elected
+base and shifted the whole field.

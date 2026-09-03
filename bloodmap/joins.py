@@ -207,6 +207,12 @@ def _rows() -> tuple[JoinRule, ...]:
                           "is at the pavement's own z and draws no band; the "
                           "insert's frame is its own and does not continue "
                           "the ground's"),
+        JoinRule(OPENING, OPENING, EQUAL, frame="continues",
+                 evidence="a mouth in two parts: the reveal is the depth of "
+                          "the opening and the leaf is what shuts it, and "
+                          "E6M1's 512-deep shopfront recess is the same "
+                          "thing built as one sector. The meeting draws "
+                          "nothing and the mouth's own frame runs through it"),
         JoinRule(OPENING, INTERIOR, EQUAL, frame="boundary",
                  evidence="E6M1: past the mouth the floor runs on unchanged "
                           "into the room, and the room's frame is the room's"),
@@ -232,11 +238,16 @@ def _rows() -> tuple[JoinRule, ...]:
         #: are not two rules but one, and it is the kerb's law indoors --
         #: 5382 of 5382 draw where the neighbour's floor is far above, and 22
         #: of 5382 where it is far below.
-        JoinRule(INTERIOR, INTERIOR, EQUAL, frame="continues",
+        JoinRule(INTERIOR, INTERIOR, EQUAL, frame="boundary",
                  evidence="13852 level|level records over all 43 maps and "
                           "132 of them draw -- `wallVisible` exposes nothing "
                           "between two floors at one z, so the join draws no "
-                          "band and the room's frame runs through it"),
+                          "band. It is still a FRAME BOUNDARY: two rooms are "
+                          "two rooms, their ceilings need not be level with "
+                          "each other, and a run carried across one put the "
+                          "editor 40 walls away from the closed form on the "
+                          "y term. 28d's 93.7% continuity is within one "
+                          "surface, not across two"),
         JoinRule(INTERIOR, INTERIOR, B_ABOVE,
                  a_shows="lower band, the room's own material",
                  frame="independent",
@@ -481,9 +492,20 @@ def shared_edges(level: Any, owners: Iterable[int] | None = None):
             yield wall_id, owners[wall_id], nxt
 
 
+#: A ONE-SIDED OUTDOOR RECORD TAKES ITS PIECE'S FIELD, by the same offset the
+#: kerb does. Over the campaign's 5320 such records the median delta from the
+#: floor shade of the piece they stand on is **+6**, quartiles -3 to +15.75 --
+#: the same number the kerb census gave, which makes it one law and not two:
+#: an outdoor record is shaded by the ground it stands on, whether it is a
+#: step's band or a building's face. E3M1's own 122 read a median 0 and 32% of
+#: them exactly 0; it is the outlier here as it is on the shade step.
+OUTDOOR_FACE_OFFSET = KERB_SHADE_OFFSET
+
+
 def apply(level: Any, kinds: dict[int, str], *,
           owners: Iterable[int] | None = None,
           tiles: dict[str, int] | None = None,
+          face_offset: int | None = OUTDOOR_FACE_OFFSET,
           strict: bool = True) -> dict[str, Any]:
     """Write what the table says at every shared edge.
 
@@ -503,6 +525,22 @@ def apply(level: Any, kinds: dict[int, str], *,
     written = 0
     unknown: list[str] = []
     applied: list[dict[str, Any]] = []
+    faces = 0
+    if face_offset is not None:
+        #: THE ONE-SIDED CLAUSE OF THE SAME LAW. A facade has no neighbour, so
+        #: no row can name the pair -- but the record still stands on a piece
+        #: of ground, and the ground's field is what shades it.
+        for wall_id, wall in enumerate(level.walls):
+            face = _face(wall)
+            if int(face["next_sector"]) >= 0:
+                continue
+            here = owners[wall_id]
+            sector = _face(level.sectors[here])
+            if not int(sector["ceiling_stat"]) & 1:
+                continue
+            face["shade"] = int(sector["floor_shade"]) + int(face_offset)
+            faces += 1
+
     for wall_id, here, there in shared_edges(level, owners):
         a_kind, b_kind = kinds.get(here), kinds.get(there)
         if a_kind is None or b_kind is None:
@@ -537,6 +575,7 @@ def apply(level: Any, kinds: dict[int, str], *,
                         "height": height, "shows": shows,
                         "frame": found.frame})
     return {"records": len(applied), "written": written,
+            "outdoor_faces_shaded": faces,
             "unknown": sorted(set(unknown)), "applied": applied,
             "frame_boundaries": sum(1 for row in applied
                                     if row["frame"] == "boundary")}

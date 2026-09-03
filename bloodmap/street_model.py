@@ -501,3 +501,405 @@ def circuit_faults(disk: Any, circuit: Iterable[dict], surfaces: dict, *,
     if previous is None and any(leg.get("built", True) for leg in circuit):
         out.append("no leg of the circuit is standing")
     return out
+
+
+# ---------------------------------------------------------------------------
+# the owner's second walk (2026-09-03): eight findings, as readers
+# ---------------------------------------------------------------------------
+
+#: THE CAMPAIGN'S Z-MOTION DOOR, measured over 1231 type-600 sectors in 43
+#: maps: the long side runs 768 to 2048 across the middle half with a median
+#: of 1024, and the short side is 256 on 339 of them, the commonest by a
+#: distance. E3M1's own six (s52, s54, s58, s59, s60, s114) are 256 to 1024
+#: long, 256 thick except s114's 128, CLOSED at rest -- ceiling on floor, all
+#: six -- and carry NO masked record between them.
+DOOR_WIDTH_ENVELOPE = (768, 2048)
+DOOR_THICKNESS = 256
+#: What one opens to. E3M1's four that move travel 16384, 17408, 18432 and
+#: 22528; the campaign's median is 16384. A door opens to its LINTEL and never
+#: to the roof.
+DOOR_TRAVEL_ENVELOPE = (16384, 30720)
+
+#: A ONE-SIDED OUTDOOR RECORD TAKES ITS PIECE'S FIELD, and by the same offset
+#: the kerb does. Over the campaign's 5320 such records the median delta from
+#: the floor shade of the piece they stand on is **+6**, quartiles -3 to +15.75
+#: -- the same +6 the kerb census gave. E3M1's own 122 read a median 0, with
+#: 32% of them exactly 0, and it is the outlier here as it is on the shade
+#: step.
+FACADE_SHADE_OFFSET = 6
+FACADE_SHADE_QUARTILES = (-3, 16)
+
+#: `triggers.cpp:102-104`: a sprite sends only if the state it is entering has
+#: its bit set. Neither bit, no message, whatever the tx says.
+TRIGGER_ON, TRIGGER_OFF = "trigger_on", "trigger_off"
+#: How far a standing body can reach to press something.
+USE_RANGE = 1024 + 512
+
+
+def door_envelope_faults(disk: Any, *, door_type: int = 600,
+                         owners: Sequence[int] | None = None) -> list[str]:
+    """A door is a door-sized sector, shut at rest, that opens to its lintel.
+
+    The owner's W5. Nine of them were 4096 x 1024 sectors standing OPEN at
+    rest with 33920 of clear -- the whole facade lifting, not a door -- where
+    every one of E3M1's six is closed with its ceiling on its floor, 256 to
+    1024 long and 256 thick.
+    """
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(disk)
+    low, high = DOOR_WIDTH_ENVELOPE
+    out = []
+    for index, sector in enumerate(disk.sectors):
+        fields = _fields(sector)
+        if int(fields["type"]) != int(door_type):
+            continue
+        start = int(fields["wall_ptr"])
+        count = int(fields["wall_count"])
+        points = [(int(_fields(disk.walls[w])["x"]),
+                   int(_fields(disk.walls[w])["y"]))
+                  for w in range(start, start + count)]
+        span_x = max(p[0] for p in points) - min(p[0] for p in points)
+        span_y = max(p[1] for p in points) - min(p[1] for p in points)
+        long_side, short_side = max(span_x, span_y), min(span_x, span_y)
+        if not low <= long_side <= high:
+            out.append(f"sector {index}: a door {long_side} across is outside "
+                       f"the campaign's {low}-{high}")
+        if short_side > DOOR_THICKNESS * 2:
+            out.append(f"sector {index}: a door {short_side} thick; the "
+                       f"campaign's commonest is {DOOR_THICKNESS}")
+        if int(fields["ceiling_z"]) != int(fields["floor_z"]):
+            out.append(f"sector {index}: a door standing open at rest, "
+                       f"{int(fields['floor_z']) - int(fields['ceiling_z'])} "
+                       f"of clear; all six of E3M1's are shut")
+        holder = getattr(sector, "extra", None)
+        if holder is None:
+            out.append(f"sector {index}: a door with no XSECTOR opens nowhere")
+            continue
+        travel = abs(int(holder.fields.get("off_ceiling_z", 0))
+                     - int(holder.fields.get("on_ceiling_z", 0)))
+        if travel and not (DOOR_TRAVEL_ENVELOPE[0] <= travel
+                           <= DOOR_TRAVEL_ENVELOPE[1]):
+            out.append(f"sector {index}: it opens {travel}, outside the "
+                       f"campaign's {DOOR_TRAVEL_ENVELOPE}")
+    return out
+
+
+def facade_motion_faults(disk: Any, *, facade_tiles: Iterable[int] = (),
+                         owners: Sequence[int] | None = None) -> list[str]:
+    """A facade never moves. The aperture grammar's own rule, as a reading.
+
+    The band above and beside a mouth belongs to the facade, and a facade
+    record carrying a drag flag is the whole building lifting with the door.
+    """
+    from .motion import flagged_walls
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(disk)
+    wanted = {int(tile) for tile in facade_tiles}
+    out = []
+    for index, sector in enumerate(disk.sectors):
+        fields = _fields(sector)
+        start = int(fields["wall_ptr"])
+        count = int(fields["wall_count"])
+        records = range(start, start + count)
+        if wanted and not any(int(_fields(disk.walls[w])["picnum"]) in wanted
+                              for w in records):
+            continue
+        moving = sorted(flagged_walls(disk, index))
+        if moving:
+            out.append(f"sector {index}: {len(moving)} facade record(s) carry "
+                       f"a drag flag; a facade does not move")
+    return out
+
+
+def switch_faults(disk: Any, *, use_range: int = USE_RANGE,
+                  owners: Sequence[int] | None = None) -> list[str]:
+    """A switch that cannot send, or that nobody can reach (W6).
+
+    `triggers.cpp:102-104` gates every message on the send-when bit of the
+    state being entered: without `trigger_on` (or `trigger_off` for the way
+    back) a tx is a number nobody ever transmits. And a switch out of a
+    standing body's reach of a walkable floor is a switch nobody presses --
+    the nine in this city sat 5120 above the SHELL's roof.
+    """
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(disk)
+    out = []
+    for index, sprite in enumerate(disk.sprites):
+        holder = getattr(sprite, "extra", None)
+        if holder is None:
+            continue
+        tx = int(holder.fields.get("tx_id", 0))
+        if not tx:
+            continue
+        if not (int(holder.fields.get(TRIGGER_ON, 0))
+                or int(holder.fields.get(TRIGGER_OFF, 0))):
+            out.append(f"sprite {index}: carries tx {tx} and neither "
+                       f"{TRIGGER_ON} nor {TRIGGER_OFF}, so by "
+                       f"triggers.cpp:102-104 it can never send")
+        fields = _fields(sprite)
+        sector = int(fields["sector"])
+        floor = int(_fields(disk.sectors[sector])["floor_z"])
+        above = floor - int(fields["z"])
+        if not 0 <= above <= use_range * 8:
+            out.append(f"sprite {index}: stands {above} above its sector's "
+                       f"floor, which no body reaches")
+    return out
+
+
+def sprite_home_faults(disk: Any) -> list[str]:
+    """Every sprite is in the sector its xy is in, at that sector's floor (W8).
+
+    `updatesector` is the engine's own answer to "which sector is this point
+    in", and a sprite whose `sector` field disagrees with it is somewhere else
+    from where it is drawn to stand.
+    """
+    out = []
+    for index, sprite in enumerate(disk.sprites):
+        fields = _fields(sprite)
+        point = (int(fields["x"]), int(fields["y"]))
+        named = int(fields["sector"])
+        found = _sector_at(disk, point)
+        if found is None:
+            out.append(f"sprite {index} at {point} is in no sector at all")
+            continue
+        if found != named:
+            out.append(f"sprite {index} at {point} says sector {named} and "
+                       f"updatesector says {found}")
+    return out
+
+
+def _sector_at(disk: Any, point) -> int | None:
+    """`updatesector`, as a reading: which sector contains this point."""
+    for index in range(len(disk.sectors)):
+        if _point_in_sector(disk, index, point):
+            return index
+    return None
+
+
+def _point_in_sector(disk: Any, index: int, point) -> bool:
+    fields = _fields(disk.sectors[index])
+    start = int(fields["wall_ptr"])
+    count = int(fields["wall_count"])
+    inside = False
+    walk = start
+    while walk < start + count:
+        loop = []
+        first = walk
+        while True:
+            face = _fields(disk.walls[walk])
+            loop.append((int(face["x"]), int(face["y"])))
+            walk = int(face["point2"])
+            if walk == first:
+                walk = first + len(loop)
+                break
+        if _crosses(loop, point):
+            inside = not inside
+    return inside
+
+
+def _crosses(loop, point) -> bool:
+    x, y = point
+    inside = False
+    for index, (ax, ay) in enumerate(loop):
+        bx, by = loop[(index + 1) % len(loop)]
+        if (ay > y) != (by > y):
+            span = (by - ay)
+            if span and x < ax + (y - ay) * (bx - ax) / span:
+                inside = not inside
+    return inside
+
+
+def horizontal_tile_faults(disk: Any, *, wall_tiles: Iterable[int]
+                           ) -> list[str]:
+    """A wall-class tile on a floor or a ceiling is a fault by sector (W9)."""
+    wanted = {int(tile) for tile in wall_tiles}
+    out = []
+    for index, sector in enumerate(disk.sectors):
+        fields = _fields(sector)
+        for role in ("floor", "ceiling"):
+            tile = int(fields[f"{role}_picnum"])
+            if tile in wanted:
+                out.append(f"sector {index}: its {role} wears {tile}, which "
+                           f"is a wall class")
+    return out
+
+
+def mask_partner_faults(disk: Any, *, owners: Sequence[int] | None = None
+                        ) -> list[str]:
+    """A mask is on BOTH records of a join, or the sentence says one-way (W10).
+
+    A masked record whose partner is not masked is a wall you can see through
+    from one side and not the other, and no construct in this project declares
+    that.
+    """
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(disk)
+    out = []
+    for wall_id, wall in enumerate(disk.walls):
+        face = _fields(wall)
+        if not int(face["cstat"]) & 16:
+            continue
+        partner = int(face.get("next_wall", -1))
+        if partner < 0:
+            out.append(f"wall {wall_id} is masked and one-sided; a mask needs "
+                       f"a partner to be seen through")
+            continue
+        other = _fields(disk.walls[partner])
+        if not int(other["cstat"]) & 16:
+            out.append(f"wall {wall_id} is masked and its partner "
+                       f"{partner} is not")
+        elif int(other["over_picnum"]) != int(face["over_picnum"]):
+            out.append(f"wall {wall_id} shows {face['over_picnum']} and its "
+                       f"partner {partner} shows {other['over_picnum']}")
+    return out
+
+
+def facade_shade_faults(disk: Any, *, offset: int = FACADE_SHADE_OFFSET,
+                        facade_tiles: Iterable[int] = (),
+                        owners: Sequence[int] | None = None) -> list[str]:
+    """A one-sided outdoor record takes its piece's field (W11).
+
+    Measured over the campaign's 5320 such records: the median delta from the
+    floor shade of the piece they stand on is +6, quartiles -3 to +15.75 --
+    the same +6 the kerb census gave, which makes it one law and not two.
+    E3M1's own 122 read a median 0 and it is the outlier here as it is on the
+    shade step.
+    """
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(disk)
+    wanted = {int(tile) for tile in facade_tiles}
+    out = []
+    for wall_id, wall in enumerate(disk.walls):
+        face = _fields(wall)
+        if int(face["next_sector"]) >= 0:
+            continue
+        if wanted and int(face["picnum"]) not in wanted:
+            continue
+        here = owners[wall_id]
+        sector = _fields(disk.sectors[here])
+        if not int(sector["ceiling_stat"]) & 1:
+            continue
+        want = int(sector["floor_shade"]) + int(offset)
+        if int(face["shade"]) != want:
+            out.append(f"wall {wall_id} stands on a piece at shade "
+                       f"{int(sector['floor_shade'])} and reads "
+                       f"{int(face['shade'])}, not {want}")
+    return out
+
+
+def sky_clip_faults(disk: Any, *, lintel_height: int | None = None,
+                    owners: Sequence[int] | None = None) -> list[str]:
+    """A real ceiling beside the sky clips everything above it (W12).
+
+    `engine.cpp:4688`: the upper wall between two sectors raises `umost` to
+    the far ceiling line only when at least ONE of the two ceilings is not
+    parallaxed. Sky against sky never clips, whatever the step -- E3M1 has 13
+    differing sky|sky pairs and no visible cut. So what an outdoor opening may
+    have is a LINTEL over a door-width mouth, and what it may not have is a
+    roof-height slab across a facade's width.
+    """
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(disk)
+    out = []
+    for wall_id, wall in enumerate(disk.walls):
+        face = _fields(wall)
+        there = int(face["next_sector"])
+        if there < 0:
+            continue
+        here = owners[wall_id]
+        a, b = _fields(disk.sectors[here]), _fields(disk.sectors[there])
+        if not int(b["ceiling_stat"]) & 1:
+            continue
+        if int(a["ceiling_stat"]) & 1:
+            continue
+        clear = int(a["floor_z"]) - int(a["ceiling_z"])
+        if lintel_height is not None and clear <= int(lintel_height):
+            continue
+        out.append(f"wall {wall_id}: sector {here} has a real ceiling "
+                   f"{clear} above its floor and faces the sky in {there}, "
+                   f"so it clips everything above its line behind it")
+    return out
+
+
+def prop_role_faults(disk: Any, roles: dict, *,
+                     owners: Sequence[int] | None = None) -> list[str]:
+    """Every prop's tile has an anchored role matching its declared use (W7).
+
+    `roles` maps a tile to the surface it belongs on -- "wall", "floor",
+    "ceiling". A wall-mounted plate on a red wall between two street pieces is
+    a tile chosen by brightness and placed by nothing.
+    """
+    from .texture_frame import sector_index
+
+    owners = list(owners) if owners is not None else sector_index(disk)
+    out = []
+    for index, sprite in enumerate(disk.sprites):
+        fields = _fields(sprite)
+        tile = int(fields["picnum"])
+        role = roles.get(tile)
+        if role is None:
+            out.append(f"sprite {index}: tile {tile} has no anchored role")
+            continue
+        cstat = int(fields["cstat"])
+        if role == "wall" and not cstat & 16:
+            out.append(f"sprite {index}: tile {tile} is a wall role and is "
+                       f"not wall-aligned")
+        if role == "wall" and not _touches_a_solid(disk, int(fields["sector"]),
+                                                   (int(fields["x"]),
+                                                    int(fields["y"]))):
+            out.append(f"sprite {index}: tile {tile} is a wall role and the "
+                       f"record it stands on is a portal, not a wall")
+        if role == "ceiling" and int(_fields(
+                disk.sectors[int(fields['sector'])])["ceiling_stat"]) & 1:
+            out.append(f"sprite {index}: tile {tile} hangs from a ceiling and "
+                       f"the sector's ceiling is the sky")
+    return out
+
+
+def _touches_a_solid(disk: Any, sector_id: int, point, slack: int = 64) -> bool:
+    """Is the nearest record of this sector a one-sided one?"""
+    fields = _fields(disk.sectors[sector_id])
+    start = int(fields["wall_ptr"])
+    best = None
+    for wall_id in range(start, start + int(fields["wall_count"])):
+        here = _fields(disk.walls[wall_id])
+        nxt = _fields(disk.walls[int(here["point2"])])
+        ax, ay = int(here["x"]), int(here["y"])
+        dx, dy = int(nxt["x"]) - ax, int(nxt["y"]) - ay
+        span = dx * dx + dy * dy
+        if not span:
+            continue
+        share = max(0.0, min(1.0, ((point[0] - ax) * dx
+                                   + (point[1] - ay) * dy) / span))
+        near = (ax + dx * share, ay + dy * share)
+        distance = math.hypot(point[0] - near[0], point[1] - near[1])
+        if best is None or distance < best[0]:
+            best = (distance, int(here["next_sector"]) < 0)
+    return bool(best and best[0] <= slack and best[1])
+
+
+def shadow_fits_faults(disk: Any, masses: Iterable[Any]) -> list[str]:
+    """The shadow's near edge shares vertices with the building it falls from.
+
+    W11's second half. A shadow is cast from a mass's footprint, and if that
+    footprint is not the building's own outline the shadow starts somewhere
+    the building is not. Gated by VERTEX IDENTITY, exactly: every corner the
+    mass casts from must be a vertex of the built map.
+    """
+    built = {(int(_fields(wall)["x"]), int(_fields(wall)["y"]))
+             for wall in disk.walls}
+    out = []
+    for mass in masses:
+        for point in getattr(mass, "outline", ()):
+            spot = (int(point[0]), int(point[1]))
+            if spot not in built:
+                out.append(f"{getattr(mass, 'mass_id', mass)}: casts from "
+                           f"{spot}, which is not a vertex of the map -- the "
+                           f"shadow does not start at the building")
+    return out

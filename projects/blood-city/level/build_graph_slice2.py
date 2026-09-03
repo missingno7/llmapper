@@ -26,6 +26,7 @@ from __future__ import annotations
 import math
 import pathlib
 import sys
+from dataclasses import replace
 
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
@@ -179,6 +180,20 @@ LAMP_SHADE = -128
 LAMP_CSTAT = 208
 LAMP_HANG = 21504
 LAMP_MOUNT = "wall"
+
+#: WHAT EACH PROP'S TILE IS FOR, from the owner anchors and
+#: `decoration-v1.json` -- by ROLE, never by a brightness statistic. Tile 510
+#: was picked for being drawn bright and is a wall-aligned plate 1.45 bodies
+#: tall; eleven of the eighteen ended up hanging on red walls between street
+#: pieces, which is what a tile chosen by a number and placed by nothing
+#: looks like.
+PROP_ROLES = {
+    city.SWITCH_TILE: "wall",
+    641: "ceiling",          # the hanging lantern, and only under a ceiling
+    510: "wall",
+    536: "floor", 537: "floor",
+    2552: "floor", 2553: "floor", 2554: "floor", 2555: "floor", 2556: "floor",
+}
 AREA_PER_LAMP = 187624103
 #: The campaign gives its lamp-lit OUTDOOR sectors no shade bonus, because it
 #: has none. So this delta is ours and is declared as such: half the measured
@@ -514,35 +529,56 @@ def emission(shells: bool = True, field: bool = True) -> Emission:
         hole = g["shells"].get(name)
         rings = ((ring,) if hole is None
                  else (ring, list(reversed(_rect(*hole)))))
-        surfaces.append(city.island(name, rings, floor_z=ISLAND_Z,
-                                    sky_z=_sky(ISLAND_Z), sky_tile=SKY_TILE))
+        made = city.island(name, rings, floor_z=ISLAND_Z,
+                           sky_z=_sky(ISLAND_Z), sky_tile=SKY_TILE)
+        if hole is not None:
+            #: THE FACADE IS THE ISLAND'S OWN HOLE RING. A building is a void
+            #: in the pavement, so the records around it are one-sided and
+            #: they are the facade -- which is what E3M1's 122 facade records
+            #: are, the one-sided records of its outdoor sectors.
+            made = replace(made, hole_wall_tile=FACADE_FAMILY[
+                sorted(g["shells"]).index(name) % len(FACADE_FAMILY)])
+        surfaces.append(made)
 
-    #: THE SHELLS, through the constructor that names what one is: a FACADE
-    #: with an OPENING in it, an INSERT filling the opening in a sector of its
-    #: own, and a room behind. Not lit: a roof four bodies up is not ground.
-    roof_z = ISLAND_Z - SHELL_BODIES * STANDING
+    #: THE BUILDINGS. Not shells: a shell built as a SECTOR has a real
+    #: ceiling, and `engine.cpp:4688` says an upper wall clips the view
+    #: whenever one of two ceilings is not parallaxed -- so a roof-height slab
+    #: beside the street cut off everything above it behind, at every doorway.
+    #: E3M1's buildings are not sectors at all; its facades are the one-sided
+    #: records of its outdoor sectors. So a building is a void in the island,
+    #: with its rooms as sectors inside it and its wall as the space no sector
+    #: fills.
     declarations = []
     who = tenants()
     dressed = []
+    interior_z = ISLAND_Z - int(INTERIOR_BODIES * STANDING)
     for number, (key, rect) in enumerate(sorted(g["shells"].items())):
         tenant, how = who.get(key, (None, "unassigned"))
+        facade_tile = FACADE_FAMILY[number % len(FACADE_FAMILY)]
+        wiring = [{"channel": CHANNEL_BASE + number, "tx_id": 0,
+                   "rx_id": CHANNEL_BASE + number, "realised": False,
+                   "why": "the door carries the rx; no switch or generator "
+                          "carries the matching tx yet"}]
+        gate_key = (number + 1) if number < KEY_GATES else None
+        key_why = ("city_plan.CHANNELS gives the citywide circuit five key "
+                   "gates; no key pickup is emitted yet")
         if key == CHURCH_ISLAND:
-            made, declared, placed = city.shell_of_rooms(
-                key, rect, CHURCH_ROOMS, wall_thickness=WALL_THICKNESS,
-                door_width=DOOR_WIDTH, roof_z=roof_z, floor_z=ISLAND_Z,
-                head_z=ISLAND_Z - int(DOOR_HEAD_BODIES * STANDING),
-                sky_z=_sky(roof_z), sky_tile=SKY_TILE,
-                wall_tile=FACADE_FAMILY[number % len(FACADE_FAMILY)],
-                entry="narthex", sector_type=CURTAIN_TYPE,
-                wiring=[{"channel": CHANNEL_BASE + number, "tx_id": 0,
-                         "rx_id": CHANNEL_BASE + number, "realised": False,
-                         "why": "the door carries the rx; no switch or "
-                                "generator carries the matching tx yet"}],
-                gate_key=(number + 1) if number < KEY_GATES else None,
-                key_why="city_plan.CHANNELS gives the citywide circuit five "
-                        "key gates; no key pickup is emitted yet")
-            #: THE NAVE, DRESSED AGAINST ITS OWN RECORD: the aisle side, so
-            #: the bundle stands where a body walking the nave sees it.
+            rooms = CHURCH_ROOMS
+            entry = "narthex"
+        else:
+            inner_w = rect[2] - rect[0] - 2 * WALL_THICKNESS
+            inner_d = rect[3] - rect[1] - 2 * WALL_THICKNESS
+            rooms = [{"name": "room", "rect": (0, 0, inner_w, inner_d),
+                      "clear": int(INTERIOR_BODIES * STANDING),
+                      "tile": facade_tile}]
+            entry = "room"
+        _hole, made, declared, placed = city.building(
+            key, rect, rooms, wall_thickness=WALL_THICKNESS,
+            floor_z=ISLAND_Z, sky_tile=SKY_TILE, facade_tile=facade_tile,
+            entry=entry, sector_type=CURTAIN_TYPE, wiring=wiring,
+            gate_key=gate_key, key_why=key_why)
+        if key == CHURCH_ISLAND:
+            #: THE NAVE, DRESSED AGAINST ITS OWN RECORD.
             nave = placed["nave"]
             bundle = city.dressing(
                 ((nave[0], nave[1]), (nave[0], nave[3])),
@@ -558,26 +594,6 @@ def emission(shells: bool = True, field: bool = True) -> Emission:
                             "anchor": bundle["anchor"],
                             "props": [row["prop_id"]
                                       for row in bundle["props"]]})
-            surfaces.extend(made)
-            declared["tenant"] = tenant
-            declared["tenant_basis"] = how
-            declarations.append(declared)
-            continue
-        made, declared = city.shell(
-            key, rect, wall_thickness=WALL_THICKNESS, door_width=DOOR_WIDTH,
-            roof_z=roof_z, floor_z=ISLAND_Z,
-            interior_z=ISLAND_Z - int(INTERIOR_BODIES * STANDING),
-            head_z=ISLAND_Z - int(DOOR_HEAD_BODIES * STANDING),
-            sky_z=_sky(roof_z), sky_tile=SKY_TILE,
-            wall_tile=FACADE_FAMILY[number % len(FACADE_FAMILY)],
-            sector_type=CURTAIN_TYPE,
-            wiring=[{"channel": CHANNEL_BASE + number, "tx_id": 0,
-                     "rx_id": CHANNEL_BASE + number, "realised": False,
-                     "why": "the door carries the rx; no switch or generator "
-                            "carries the matching tx yet"}],
-            gate_key=(number + 1) if number < KEY_GATES else None,
-            key_why="city_plan.CHANNELS gives the citywide circuit five key "
-                    "gates; no key pickup is emitted yet")
         surfaces.extend(made)
         declared["tenant"] = tenant
         declared["tenant_basis"] = how
@@ -603,18 +619,19 @@ def emission(shells: bool = True, field: bool = True) -> Emission:
         sea_depth=SEA_DEPTH, horizon_depth=HORIZON_DEPTH,
         pavement_z=ISLAND_Z, sky_z_of=_sky, sky_tile=SKY_TILE))
 
-    #: LAMPS, at E3M1's rate over the pavement this city actually has.
+    #: NO STREET LAMPS. Two attempts produced a chained lantern hanging from
+    #: the sky and a wall plate floating on a red wall mid-street, and the
+    #: corpus said so both times: **0 visible outdoor lamps in 43 maps over
+    #: 51,277,134,846 square units of outdoor ground.** Blood lights its
+    #: streets with the sun and nothing else.
+    #:
+    #: The lamp construct stays for places with a REAL ceiling -- an arcade,
+    #: a porch, the lintel of a doorway -- where 641 hangs from something. The
+    #: CHOICE claim is rewritten: Gravesend chooses to have no street lamps,
+    #: which is the campaign's own choice, and the reason it is written down
+    #: is that two slices chose otherwise.
     lamps = []
-    for name, ring in sorted(pavements.items()):
-        area = region_area([ring])
-        count = max(1, int(round(area / AREA_PER_LAMP)))
-        for number, point in enumerate(_perimeter_lamps([ring], count)):
-            lamps.append(Lamp(f"{name}:{number}", point, LAMP_DELTA,
-                              tile=LAMP_TILE, sprite_shade=LAMP_SHADE,
-                              sprite_type=LAMP_TYPE, height=LAMP_HANG,
-                              cstat=LAMP_CSTAT, mount=LAMP_MOUNT))
 
-    Emission.dressed = dressed
     return Emission(
         name="slice2-streets",
         surfaces=surfaces,
@@ -823,6 +840,39 @@ def main() -> int:
         print(f"   {surface:24} {str(row['tenant']):18} "
               f"{row['differences']} difference(s)"
               + ("" if not row["facets"] else f": {row['facets']}"))
+
+    # --- the owner's second walk, twelve readings off the built map --------
+    from bloodmap.street_model import (
+        door_envelope_faults, facade_motion_faults, facade_shade_faults,
+        horizontal_tile_faults, kerb_tile_faults, lamp_faults,
+        mask_partner_faults, prop_role_faults, shadow_fits_faults,
+        sky_clip_faults, sky_faults, sprite_home_faults, step_shade_faults,
+        switch_faults)
+
+    family = set(joins.FACADE_FAMILY)
+    walk = [
+        ("W1  kerb tile", kerb_tile_faults(disk)),
+        ("W2  step shade", step_shade_faults(disk)),
+        ("W3  lamps", lamp_faults(disk)),
+        ("W4  one sky", sky_faults(disk)),
+        ("W5  door envelope", door_envelope_faults(disk)),
+        ("W5b facade motion", facade_motion_faults(disk, facade_tiles=family)),
+        ("W6  switches send", switch_faults(disk)),
+        ("W7  prop roles", prop_role_faults(disk, PROP_ROLES)),
+        ("W8  sprite homes", sprite_home_faults(disk)),
+        ("W9  horizontal tiles",
+         horizontal_tile_faults(disk, wall_tiles=family | {KERB_TILE, 28})),
+        ("W10 mask partners", mask_partner_faults(disk)),
+        ("W11 facade shade", facade_shade_faults(disk, facade_tiles=family)),
+        ("W11b shadow fits", shadow_fits_faults(disk, g["masses"])),
+        ("W12 sky clipping",
+         sky_clip_faults(disk, lintel_height=city.DOOR_TRAVEL)),
+    ]
+    print("the owner's walks: "
+          + ", ".join(f"{name.split()[0]} {len(rows)}" for name, rows in walk))
+    for name, rows in walk:
+        for row in rows[:2]:
+            print(f"   {name} - {row}")
 
     # --- terminations ------------------------------------------------------
     faults = street.termination_faults(disk, list(g["end_walls"].values()),

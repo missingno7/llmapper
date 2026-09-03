@@ -62,7 +62,8 @@ def _place(disk, props, *, on_plinth):
         sector = 0
         if on_plinth:
             for index, item in enumerate(disk.sectors):
-                if int(item.fields["floor_picnum"]) == city.PLINTH_TILE:
+                if int(item.fields["wall_picnum"] if False
+                       else item.fields["floor_picnum"]) == city.INTERIOR_FLOOR:
                     sector = index
                     break
         fields = {name: 0 for name, _code in SPRITE_FIELDS}

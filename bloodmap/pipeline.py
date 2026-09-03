@@ -88,6 +88,10 @@ class SurfaceSpec:
     #: A Blood sector type. A region carrying one in 600..619 is a MECHANISM
     #: to `overlay.Domain` and is excluded from every overlay.
     sector_type: int = 0
+    #: What the records of this surface's HOLE rings wear, where that differs
+    #: from its outer ring's. A building is a void in a pavement, so the
+    #: pavement's hole ring IS the facade and wears the facade's material.
+    hole_wall_tile: int = 0
 
 
 @dataclass(frozen=True)
@@ -389,6 +393,31 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
         sector = compiled.allocations[name].sector_id
         for key, value in spec.finish.items():
             disk.sectors[sector].fields[key] = value
+    #: THE HOLE RINGS' OWN MATERIAL, written after the compile because a
+    #: sector's loops are only walls once it has been built. The first loop is
+    #: the outer ring and the rest are holes.
+    for name, piece, spec in pieces:
+        if not spec.hole_wall_tile:
+            continue
+        sector = compiled.allocations[name].sector_id
+        fields = disk.sectors[sector].fields
+        start = int(fields["wall_ptr"])
+        count = int(fields["wall_count"])
+        walk, first = start, True
+        while walk < start + count:
+            loop, cursor = [], walk
+            while True:
+                loop.append(cursor)
+                cursor = int(disk.walls[cursor].fields["point2"])
+                if cursor == walk:
+                    break
+            if not first:
+                for wall_id in loop:
+                    disk.walls[wall_id].fields["picnum"] = int(
+                        spec.hole_wall_tile)
+            first = False
+            walk += len(loop)
+
     report["sectors"] = len(disk.sectors)
     report["walls"] = len(disk.walls)
     #: THE LEAF, written after the compile because it names a NEIGHBOUR and
@@ -592,6 +621,18 @@ def compile_city(emission: Emission, *, min_area: int | None = None) -> Built:
     #: record peg to different floors.
     boundaries = {row["wall"] for row in applied["applied"]
                   if row["frame"] == "boundary"}
+    #: AND A MECHANISM'S OWN RECORDS. `frame_map` already leaves them to the
+    #: mechanism -- one record, one frame -- but a run still WALKED THROUGH
+    #: one: a door shut at rest pegs to its own floor, and the run that
+    #: crossed it carried that peg into the room behind, 40 walls of it. A
+    #: record no surface owns is a record no run may cross.
+    for name, _piece, spec in pieces:
+        if not spec.sector_type:
+            continue
+        sector = compiled.allocations[name].sector_id
+        start = int(disk.sectors[sector].fields["wall_ptr"])
+        count = int(disk.sectors[sector].fields["wall_count"])
+        boundaries.update(range(start, start + count))
     report["frame_boundary_walls"] = sorted(boundaries)
     if art:
         report["frames"] = {k: v for k, v
@@ -689,7 +730,8 @@ def _place_prop(disk: Any, sector: int, prop: dict, floor_z: int) -> int:
 
     x, y, angle = int(prop["point"][0]), int(prop["point"][1]), 0
     if prop.get("mount") == "wall":
-        x, y, angle = _against_a_wall(disk, sector, (x, y))
+        x, y, angle = _against_a_wall(disk, sector, (x, y),
+                                      solid_only=bool(prop.get("solid_only")))
     fields = {name: 0 for name, _code in SPRITE_FIELDS}
     fields.update({
         "x": x, "y": y, "angle": angle,
@@ -758,12 +800,18 @@ def _place_lamp(disk: Any, sector: int, lamp: Lamp, floor_z: int) -> None:
     disk.sprites.append(DiskObject(fields=fields))
 
 
-def _against_a_wall(disk: Any, sector: int, point) -> tuple:
-    """The nearest point ON a wall of this sector, and the way it faces.
+def _against_a_wall(disk: Any, sector: int, point, *,
+                    solid_only: bool = False, clearance: int = 64) -> tuple:
+    """The nearest point just inside a wall of this sector, and its facing.
 
-    A wall-aligned sprite that is not on a wall is the same mistake as a
-    lantern under the sky, one step along, so the mount puts it there rather
-    than trusting the caller to have.
+    `solid_only` restricts the choice to ONE-SIDED records, which is the
+    owner's rule for a wall-mounted prop: a plate on a red wall between two
+    street pieces is hanging on a portal, and eleven of eighteen were.
+
+    The point comes back `clearance` INSIDE the sector rather than exactly on
+    the record, because a sprite on a boundary belongs to whichever sector
+    `updatesector` reaches first, and a sprite whose sector field disagrees
+    with `updatesector` is somewhere else from where it is drawn.
     """
     import math
 
@@ -772,6 +820,8 @@ def _against_a_wall(disk: Any, sector: int, point) -> tuple:
     best = None
     for wall_id in range(start, start + int(fields["wall_count"])):
         here = disk.walls[wall_id].fields
+        if solid_only and int(here["next_sector"]) >= 0:
+            continue
         nxt = disk.walls[int(here["point2"])].fields
         ax, ay = int(here["x"]), int(here["y"])
         dx, dy = int(nxt["x"]) - ax, int(nxt["y"]) - ay
@@ -781,6 +831,19 @@ def _against_a_wall(disk: Any, sector: int, point) -> tuple:
         share = max(0.0, min(1.0, ((point[0] - ax) * dx
                                    + (point[1] - ay) * dy) / span))
         near = (ax + dx * share, ay + dy * share)
+        #: INWARD IS TOWARD WHERE THE CALLER ASKED FOR IT. The record's own
+        #: normal points either way depending on the ring's winding, and
+        #: guessing put nine switches outside the map -- `updatesector` found
+        #: no sector at all for them. The requested point is in the sector by
+        #: construction, so the direction from the wall to it is inward.
+        length = math.sqrt(span)
+        away = math.hypot(point[0] - near[0], point[1] - near[1])
+        if away:
+            near = (near[0] + (point[0] - near[0]) / away * clearance,
+                    near[1] + (point[1] - near[1]) / away * clearance)
+        else:
+            near = (near[0] + dy / length * clearance,
+                    near[1] - dx / length * clearance)
         distance = math.hypot(point[0] - near[0], point[1] - near[1])
         if best is None or distance < best[0]:
             #: Build's angle is 2048 to the turn, and a wall sprite faces the

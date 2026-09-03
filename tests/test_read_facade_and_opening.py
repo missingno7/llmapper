@@ -70,6 +70,15 @@ class TheCityAsksForTwoKinds(unittest.TestCase):
         cls.kinds = cls.read["kinds"]
         cls.census = join_census(cls.level, cls.kinds)
 
+    @unittest.expectedFailure
+    #: THE MODEL CHANGED UNDER THIS TEST, on the owner's W12: a building is
+    #: no longer a SECTOR standing on the pavement, it is a VOID in it, and
+    #: `engine.cpp:4688` is the reason -- a roof-height real ceiling beside
+    #: the sky clips everything above its line behind it. So the city has no
+    #: facade sectors and no opening sectors for the reader to name, and the
+    #: finding this test records is about a map that no longer exists. Kept
+    #: as the record it is; queue item 39 asks P15 what a facade is when the
+    #: building is not a sector.
     def test_the_296_falls_to_134_and_the_rest_is_water(self):
         """The 296 the two kinds were proposed against, and what is left.
 
@@ -97,6 +106,15 @@ class TheCityAsksForTwoKinds(unittest.TestCase):
                          "everything the city leaves undescribed is now its "
                          "waterfront, which is a different item")
 
+    @unittest.expectedFailure
+    #: THE MODEL CHANGED UNDER THIS TEST, on the owner's W12: a building is
+    #: no longer a SECTOR standing on the pavement, it is a VOID in it, and
+    #: `engine.cpp:4688` is the reason -- a roof-height real ceiling beside
+    #: the sky clips everything above its line behind it. So the city has no
+    #: facade sectors and no opening sectors for the reader to name, and the
+    #: finding this test records is about a map that no longer exists. Kept
+    #: as the record it is; queue item 39 asks P15 what a facade is when the
+    #: building is not a sector.
     def test_nine_masses_are_facades_and_three_are_not(self):
         """Twelve raised masses; nine hold rooms and three terminate a street."""
         from bloodmap.read_joins import END_WALL, FACADE
@@ -105,6 +123,15 @@ class TheCityAsksForTwoKinds(unittest.TestCase):
         self.assertEqual(counts.get(FACADE), 9)
         self.assertEqual(counts.get(END_WALL), 3)
 
+    @unittest.expectedFailure
+    #: THE MODEL CHANGED UNDER THIS TEST, on the owner's W12: a building is
+    #: no longer a SECTOR standing on the pavement, it is a VOID in it, and
+    #: `engine.cpp:4688` is the reason -- a roof-height real ceiling beside
+    #: the sky clips everything above its line behind it. So the city has no
+    #: facade sectors and no opening sectors for the reader to name, and the
+    #: finding this test records is about a map that no longer exists. Kept
+    #: as the record it is; queue item 39 asks P15 what a facade is when the
+    #: building is not a sector.
     def test_the_nine_shopfronts_are_openings(self):
         from bloodmap.read_joins import OPENING
 
@@ -116,6 +143,15 @@ class TheCityAsksForTwoKinds(unittest.TestCase):
             "the last three moved when the church took eight sectors "
             "where it had one")
 
+    @unittest.expectedFailure
+    #: THE MODEL CHANGED UNDER THIS TEST, on the owner's W12: a building is
+    #: no longer a SECTOR standing on the pavement, it is a VOID in it, and
+    #: `engine.cpp:4688` is the reason -- a roof-height real ceiling beside
+    #: the sky clips everything above its line behind it. So the city has no
+    #: facade sectors and no opening sectors for the reader to name, and the
+    #: finding this test records is about a map that no longer exists. Kept
+    #: as the record it is; queue item 39 asks P15 what a facade is when the
+    #: building is not a sector.
     def test_no_record_is_an_end_wall_with_a_room_behind_it_any_more(self):
         """The pair that made no architectural sense is gone from the census."""
         undescribed = self.census["undescribed"]
@@ -123,6 +159,15 @@ class TheCityAsksForTwoKinds(unittest.TestCase):
                      "pavement|interior|equal", "interior|pavement|equal"):
             self.assertNotIn(pair, undescribed, f"{pair} should be named now")
 
+    @unittest.expectedFailure
+    #: THE MODEL CHANGED UNDER THIS TEST, on the owner's W12: a building is
+    #: no longer a SECTOR standing on the pavement, it is a VOID in it, and
+    #: `engine.cpp:4688` is the reason -- a roof-height real ceiling beside
+    #: the sky clips everything above its line behind it. So the city has no
+    #: facade sectors and no opening sectors for the reader to name, and the
+    #: finding this test records is about a map that no longer exists. Kept
+    #: as the record it is; queue item 39 asks P15 what a facade is when the
+    #: building is not a sector.
     def test_162_records_reach_a_row_that_was_always_there(self):
         """Which rows the two kinds unlocked, and how many records each holds."""
         described = self.census["described"]
@@ -150,6 +195,15 @@ class TheCityAsksForTwoKinds(unittest.TestCase):
 class TheRoofTestIsRelational(unittest.TestCase):
     """A facade is not a tile number; it is a mass whose top roofs a room."""
 
+    @unittest.expectedFailure
+    #: THE MODEL CHANGED UNDER THIS TEST, on the owner's W12: a building is
+    #: no longer a SECTOR standing on the pavement, it is a VOID in it, and
+    #: `engine.cpp:4688` is the reason -- a roof-height real ceiling beside
+    #: the sky clips everything above its line behind it. So the city has no
+    #: facade sectors and no opening sectors for the reader to name, and the
+    #: finding this test records is about a map that no longer exists. Kept
+    #: as the record it is; queue item 39 asks P15 what a facade is when the
+    #: building is not a sector.
     def test_the_citys_masses_agree_with_the_rooms_they_hold(self):
         from bloodmap.read_joins import FACADE, adjacency, surface_kinds
 
@@ -230,6 +284,15 @@ class TheCampaignGuard(unittest.TestCase):
 class AnOpeningIsAThreshold(unittest.TestCase):
     """Its measurement, so the name can be argued with."""
 
+    @unittest.expectedFailure
+    #: THE MODEL CHANGED UNDER THIS TEST, on the owner's W12: a building is
+    #: no longer a SECTOR standing on the pavement, it is a VOID in it, and
+    #: `engine.cpp:4688` is the reason -- a roof-height real ceiling beside
+    #: the sky clips everything above its line behind it. So the city has no
+    #: facade sectors and no opening sectors for the reader to name, and the
+    #: finding this test records is about a map that no longer exists. Kept
+    #: as the record it is; queue item 39 asks P15 what a facade is when the
+    #: building is not a sector.
     def test_every_opening_stands_at_its_pavements_own_z(self):
         from bloodmap.read_joins import (
             OPENING, PAVEMENT, adjacency, surface_kinds)

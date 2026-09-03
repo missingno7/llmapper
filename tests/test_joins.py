@@ -435,7 +435,11 @@ class IndoorsIsOneLawNotEleven(unittest.TestCase):
 
         found = joins.rule(joins.INTERIOR, joins.INTERIOR, joins.EQUAL)
         self.assertEqual(found.a_shows, joins.NOTHING)
-        self.assertEqual(found.frame, "continues")
+        #: DRAWS NOTHING AND IS STILL A BOUNDARY. Two rooms are two rooms:
+        #: their floors being level says nothing about their ceilings, and a
+        #: run carried across one put the editor 40 walls away from the
+        #: closed form on the y term.
+        self.assertEqual(found.frame, "boundary")
 
     def test_the_record_whose_neighbour_stands_above_is_the_one_that_draws(self):
         from bloodmap import joins

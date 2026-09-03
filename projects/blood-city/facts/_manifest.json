@@ -19,7 +19,6 @@
   "island": "a height island: sectors standing one rise above the ground",
   "join": "how two surfaces meet at one shared record",
   "key": "a lock and the key that opens it",
-  "lamp_delta": "one source's contribution to a sector's shade, before it was summed",
   "link": "a tx -> rx relation between records",
   "part_of": "a record belongs to a place, in one aspect's hierarchy",
   "realises": "which records a sentence is made of",
@@ -29,16 +28,15 @@
   "void": "an opening cut in a holder surface, and the holder it belongs to"
  },
  "readers": {
-  "compiler": 2615
+  "compiler": 2102
  },
  "rows": {
-  "claims": 127,
+  "claims": 109,
   "fill": 9,
-  "frame": 822,
+  "frame": 603,
   "island": 19,
-  "join": 1112,
+  "join": 854,
   "key": 5,
-  "lamp_delta": 18,
   "link": 9,
   "part_of": 213,
   "realises": 9,

@@ -50,6 +50,12 @@ ROAD_WALL_TILE = 400
 PAVEMENT_WALL_TILE = 401
 FACADE_FAMILY = joins.FACADE_FAMILY
 ROOF_TILE = joins.ROOF_TILE
+#: THE FLOOR AND CEILING CLASSES, from `materials.INTERIORS["common"]`, which
+#: is E3M1's own interior: a papered wall over a coffered ceiling. They are
+#: named here because a wall-class tile on a horizontal surface is a fault --
+#: the owner found 401, the facade family's window, on an interior floor.
+INTERIOR_FLOOR = 304
+INTERIOR_CEILING = 454
 #: A pavement stands this far above the road it borders.
 KERB_RISE = 2048
 
@@ -181,8 +187,9 @@ def facade(surface_id: str, rect: Sequence[int], inner: Sequence[int],
 
 def opening(surface_id: str, rect: Sequence[int], *, floor_z: int,
             head_z: int, wall_tile: int, floor_tile: int = PAVEMENT_TILE,
-            ceiling_tile: int = ROOF_TILE, sector_type: int = 0,
-            lod: int = 2, behavior: dict | None = None) -> SurfaceSpec:
+            ceiling_tile: int = INTERIOR_CEILING, sector_type: int = 0,
+            lod: int = 2, behavior: dict | None = None,
+            role: str = "opening") -> SurfaceSpec:
     """A void in a facade, as a sector of its own.
 
     P13's law, and the reason this is a sector rather than a wall band: a
@@ -194,20 +201,31 @@ def opening(surface_id: str, rect: Sequence[int], *, floor_z: int,
         surface_id=surface_id, rings=(_rect(*rect),), floor_z=int(floor_z),
         ceiling_z=int(head_z), floor_tile=int(floor_tile),
         ceiling_tile=int(ceiling_tile), wall_tile=int(wall_tile),
-        kind=joins.OPENING, role="opening", parallax_ceiling=False,
+        kind=joins.OPENING, role=str(role), parallax_ceiling=False,
         lit=False, lod=int(lod), sector_type=int(sector_type),
         behavior=dict(behavior or {}))
 
 
 def room(surface_id: str, rect: Sequence[int], *, floor_z: int,
-         ceiling_z: int, wall_tile: int, floor_tile: int = PAVEMENT_TILE,
-         ceiling_tile: int = ROOF_TILE, lod: int = 1) -> SurfaceSpec:
-    """The space behind a facade. Not ground: the sun does not reach it."""
+         ceiling_z: int, wall_tile: int, floor_tile: int = INTERIOR_FLOOR,
+         ceiling_tile: int = INTERIOR_CEILING, lod: int = 1,
+         role: str = "gated_pocket") -> SurfaceSpec:
+    """The space behind a facade. Not ground: the sun does not reach it.
+
+    Its ROLE is `gated_pocket`, which is the truth about a room behind a shut
+    door: its only way in is a mechanism, so it has no walkable-at-rest portal
+    and the geometry audit is told that rather than being silenced.
+
+    The floor and the ceiling wear FLOOR and CEILING classes. E3M1's own
+    interior is `materials.INTERIORS["common"]` -- floor 304, ceiling 454 --
+    and a wall tile on a horizontal surface is a fault by sector, which is
+    what the owner found on one of them.
+    """
     return SurfaceSpec(
         surface_id=surface_id, rings=(_rect(*rect),), floor_z=int(floor_z),
         ceiling_z=int(ceiling_z), floor_tile=int(floor_tile),
         ceiling_tile=int(ceiling_tile), wall_tile=int(wall_tile),
-        kind=joins.INTERIOR, role="interior", parallax_ceiling=False,
+        kind=joins.INTERIOR, role=str(role), parallax_ceiling=False,
         lit=False, lod=int(lod))
 
 
@@ -297,11 +315,15 @@ def switch(prop_id: str, point: Point, *, tx_id: int, height: int = SWITCH_HEIGH
     It carries the tx; the mechanism carries the matching rx. Until both
     exist the link is a declaration and says so.
     """
+    #: `triggers.cpp:102-104` gates every message on the send-when bit of the
+    #: state being ENTERED. Without `trigger_on` a tx is a number nobody ever
+    #: transmits, and nine of this city's switches carried exactly that.
     return {"prop_id": str(prop_id), "point": (int(point[0]), int(point[1])),
             "tile": SWITCH_TILE, "sprite_type": SWITCH_TYPE, "cstat": MASKED,
             "shade": -8, "height": int(height), "mount": "wall",
+            "solid_only": True,
             "xsprite": {"tx_id": int(tx_id), "trigger_push": 1,
-                        "command": 1, "state": 0}}
+                        "trigger_on": 1, "command": 1, "state": 0}}
 
 
 def key_pickup(prop_id: str, point: Point, *, key: int,
@@ -485,9 +507,10 @@ def dressing(anchor: Sequence, props: Sequence[dict], *, inward: Point,
     top = int(floor_z) - int(rise)
     surface = SurfaceSpec(
         surface_id=surface_id, rings=(corners,), floor_z=top,
-        ceiling_z=int(ceiling_z), floor_tile=int(tile),
-        ceiling_tile=ROOF_TILE, wall_tile=int(tile), kind=joins.INTERIOR,
-        role="interior", parallax_ceiling=False, lit=False, lod=int(lod))
+        ceiling_z=int(ceiling_z), floor_tile=INTERIOR_FLOOR,
+        ceiling_tile=INTERIOR_CEILING, wall_tile=int(tile),
+        kind=joins.INTERIOR, role="gated_pocket", parallax_ceiling=False,
+        lit=False, lod=int(lod))
 
     #: the props, spread along the plinth's own centre line
     angle = int(round(math.atan2(-ux, uy) * 2048 / (2 * math.pi))) % 2048
@@ -649,6 +672,10 @@ def shell_of_rooms(key: str, rect: Sequence[int], rooms: Sequence[dict], *,
     return surfaces, declaration, placed
 
 
+#: The campaign's door width, across the middle half of 1231 type-600
+#: sectors in 43 maps.
+DOOR_WIDTH_ENVELOPE = (768, 2048)
+
 #: A STEPPED RUN IS THREE RISES OR MORE. `structures._detect_stepped_runs`
 #: takes a maximal monotone climb in the sub-step rise graph and wants at
 #: least three of them; two steps are a threshold and a kerb, not a stair.
@@ -696,10 +723,165 @@ def stair(from_: Sequence, to: Sequence, *, treads: int, width: int,
         surfaces.append(SurfaceSpec(
             surface_id=f"{surface_id}:{index:02d}", rings=(ring,),
             floor_z=floor_z, ceiling_z=floor_z - int(clear_height),
-            floor_tile=int(floor_tile), ceiling_tile=ROOF_TILE,
-            wall_tile=int(tile), kind=joins.INTERIOR, role="interior",
+            floor_tile=int(floor_tile), ceiling_tile=INTERIOR_CEILING,
+            wall_tile=int(tile), kind=joins.INTERIOR, role="gated_pocket",
             parallax_ceiling=False, lit=False, lod=int(lod)))
     rise = abs(head_z - foot_z) // count
     return {"surfaces": surfaces, "rises": count, "rise": rise,
             "width": int(width), "flank_tile": int(tile),
             "foot_z": foot_z, "head_z": head_z}
+
+
+# ---------------------------------------------------------------------------
+# a building is a VOID in the pavement, not a sector standing on it
+# ---------------------------------------------------------------------------
+
+#: THE CAMPAIGN'S Z-MOTION DOOR, over 1231 type-600 sectors in 43 maps: the
+#: long side runs 768 to 2048 across the middle half, median 1024, and the
+#: short side is 256 on 339 of them, the commonest by a distance. E3M1's own
+#: six are 256 to 1024 long, 256 thick but for s114's 128, and CLOSED AT REST
+#: -- ceiling on floor, all six -- with no masked record between them.
+DOOR_WIDTH = 1024
+DOOR_THICKNESS = 256
+#: What one opens to: the LINTEL, never the roof. E3M1's four that move travel
+#: 16384, 17408, 18432 and 22528; the campaign's quartiles are 16384 and
+#: 30720, and `l3_church` measured a median open height of 31744 over 1269 of
+#: them. 30720 is the campaign's own q3 and 1.81 player heights.
+DOOR_TRAVEL = 30720
+#: How deep the reveal is: whatever is left of the wall once the door has its
+#: 256. E6M1's shopfront recess is 512 deep, so a 1024 wall gives 768 and a
+#: 512 wall gives 256, both inside that dialect.
+
+
+def building(key: str, rect: Sequence[int], rooms: Sequence[dict], *,
+             wall_thickness: int, floor_z: int, sky_tile: int,
+             facade_tile: int, entry: str, door_width: int = DOOR_WIDTH,
+             door_thickness: int = DOOR_THICKNESS,
+             travel: int = DOOR_TRAVEL, sector_type: int = 0,
+             wiring: Iterable[dict] = (), gate_key: int | None = None,
+             key_why: str = "") -> tuple:
+    """A building: a VOID in the pavement with rooms inside it.
+
+    THE MODEL CHANGED HERE, and the engine is why. A shell built as a SECTOR
+    has a real ceiling, and `engine.cpp:4688` says an upper wall clips the
+    view -- raises `umost` to the far ceiling line -- whenever one of the two
+    ceilings is not parallaxed. So a roof-height slab beside the street cuts
+    off everything above it behind, which is what the owner saw at every
+    doorway. Sky against sky never clips, whatever the step: E3M1 has 13
+    differing sky|sky pairs and no visible cut.
+
+    E3M1's buildings are not sectors. Its facades ARE the one-sided records of
+    its outdoor sectors -- 122 of them -- and the stone between its rooms is
+    simply absent from the map. So a building here is a HOLE in the island,
+    with the rooms as sectors inside it, the wall as the space between them
+    that no sector fills, and the facade as the island's own hole-ring
+    records, which are one-sided because there is nothing on the other side.
+
+    The mouth follows E3M1's envelope: a `door_width` opening in the facade,
+    a reveal taking the rest of the wall's depth, and the door itself
+    `door_thickness` deep against the room, CLOSED at rest with its ceiling on
+    its floor, opening to its lintel.
+
+    Returns `(hole_ring, surfaces, declaration, placed)`.
+    """
+    from .doors import z_motion_door
+    from .overlay import ground_plane_rings
+
+    x0, y0, x1, y1 = (int(v) for v in rect)
+    inner = (x0 + wall_thickness, y0 + wall_thickness,
+             x1 - wall_thickness, y1 - wall_thickness)
+    plan = {row["name"]: [int(v) for v in row["rect"]] for row in rooms}
+    if entry not in plan:
+        raise DressingError(f"{key}: the entry room {entry!r} is not in the "
+                            f"plan")
+    low_x = min(r[0] for r in plan.values())
+    low_y = min(r[1] for r in plan.values())
+    span_x = max(r[2] for r in plan.values()) - low_x
+    span_y = max(r[3] for r in plan.values()) - low_y
+    if span_x > inner[2] - inner[0] or span_y > inner[3] - inner[1]:
+        raise DressingError(
+            f"{key}: a plan {span_x}x{span_y} does not fit an interior "
+            f"{inner[2] - inner[0]}x{inner[3] - inner[1]}")
+    offset_x = max(0, min((inner[2] - inner[0]) - span_x,
+                          (x0 + x1) // 2 - inner[0]
+                          - ((plan[entry][0] + plan[entry][2]) // 2 - low_x)))
+    offset_y = (inner[3] - inner[1]) - span_y
+
+    def place(box):
+        return (inner[0] + offset_x + box[0] - low_x,
+                inner[1] + offset_y + box[1] - low_y,
+                inner[0] + offset_x + box[2] - low_x,
+                inner[1] + offset_y + box[3] - low_y)
+
+    placed = {name: place(box) for name, box in plan.items()}
+    room_box = placed[entry]
+    width = min(int(door_width), room_box[2] - room_box[0])
+    if width < DOOR_WIDTH_ENVELOPE[0]:
+        raise DressingError(
+            f"{key}: a mouth {width} across is narrower than any door the "
+            f"campaign builds ({DOOR_WIDTH_ENVELOPE[0]} at the first "
+            f"quartile of 1231)")
+    mid = (room_box[0] + room_box[2]) // 2
+    #: THE DOOR IS AGAINST THE ROOM and the reveal takes the rest of the wall.
+    door = (mid - width // 2, room_box[3],
+            mid + width // 2, room_box[3] + int(door_thickness))
+    reveal = (door[0], door[3], door[2], y1)
+    if reveal[1] >= reveal[3]:
+        raise DressingError(f"{key}: the wall is thinner than its own door")
+
+    #: The island's hole is the footprint; the reveal's mouth lies on its
+    #: south edge and becomes the one two-sided record in it.
+    hole = [(x0, y0), (x0, y1), (x1, y1), (x1, y0)]
+    if _screen_area(hole) > 0:
+        hole.reverse()
+
+    channel = next((int(row.get("rx_id") or row.get("channel") or 0)
+                    for row in wiring), 0)
+    shut = int(floor_z)
+    open_to = int(floor_z) - int(travel)
+    behavior = {}
+    if sector_type == Z_MOTION:
+        behavior = z_motion_door(shut, open_to,
+                                 interaction="both" if channel else "direct",
+                                 rx_id=channel or None, key=gate_key)
+    elif channel:
+        behavior = {"rx_id": channel}
+
+    surfaces = []
+    for row in rooms:
+        box = placed[row["name"]]
+        rise = int(row.get("rise", 0))
+        surfaces.append(room(
+            f"room:{key}:{row['name']}", box, floor_z=int(floor_z) - rise,
+            ceiling_z=int(floor_z) - rise - int(row["clear"]),
+            wall_tile=int(row.get("tile", facade_tile))))
+    #: The reveal is the head of the opening, at the lintel.
+    #: THE REVEAL IS PART OF THE MOUTH, not a room: it is the depth of the
+    #: opening between the street and the leaf, which is what E6M1's 512-deep
+    #: shopfront recess is.
+    surfaces.append(opening(
+        f"reveal:{key}", reveal, floor_z=int(floor_z), head_z=open_to,
+        wall_tile=int(facade_tile), floor_tile=PAVEMENT_TILE,
+        ceiling_tile=INTERIOR_CEILING, lod=2, role="doorway"))
+    #: THE DOOR, SHUT: its ceiling is on its floor and it opens to the lintel.
+    surfaces.append(opening(
+        f"door:{key}", door, floor_z=int(floor_z), head_z=int(floor_z),
+        wall_tile=int(facade_tile), sector_type=int(sector_type),
+        behavior=behavior))
+
+    declaration = insert(
+        f"door:{key}", kind="z_motion_door" if sector_type == Z_MOTION
+        else "curtain", holder=f"island:{key}",
+        room_id=f"room:{key}:{entry}", void=_rect(*door),
+        sector_type=int(sector_type), wiring=wiring, key=gate_key,
+        key_why=key_why, leaf=None)
+    if channel:
+        #: THE SWITCH IS IN THE PAVEMENT, beside the mouth, on the facade's
+        #: own one-sided record -- `triggers.cpp:102-104` needs the send-when
+        #: bit and a body needs to be standing somewhere to press it.
+        declaration["props"] = [switch(
+            f"switch:{key}", (door[2] + width, y1 + 512), tx_id=channel)]
+        if gate_key:
+            declaration["props"].append(key_pickup(
+                f"key:{key}", (mid, y1 + 3 * 1024), key=int(gate_key)))
+    return hole, surfaces, declaration, placed

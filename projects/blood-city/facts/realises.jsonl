@@ -1,9 +1,9 @@
-{"_from": ["sentence:door:col_a/row_1"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_a/row_1:101", "lod": 2, "sector": 101, "sentence": "door:col_a/row_1", "walls": [597, 598, 599, 600]}
-{"_from": ["sentence:door:col_a/row_2"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_a/row_2:104", "lod": 2, "sector": 104, "sentence": "door:col_a/row_2", "walls": [621, 622, 623, 624]}
-{"_from": ["sentence:door:col_a/row_3"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_a/row_3:107", "lod": 2, "sector": 107, "sentence": "door:col_a/row_3", "walls": [647, 648, 649, 650]}
-{"_from": ["sentence:door:col_b/row_1"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_b/row_1:110", "lod": 2, "sector": 110, "sentence": "door:col_b/row_1", "walls": [669, 670, 671, 672]}
-{"_from": ["sentence:door:col_b/row_2"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_b/row_2:113", "lod": 2, "sector": 113, "sentence": "door:col_b/row_2", "walls": [693, 694, 695, 696]}
-{"_from": ["sentence:door:col_b/row_3"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_b/row_3:116", "lod": 2, "sector": 116, "sentence": "door:col_b/row_3", "walls": [719, 720, 721, 722]}
-{"_from": ["sentence:door:col_c/row_1"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_c/row_1:126", "lod": 2, "sector": 126, "sentence": "door:col_c/row_1", "walls": [790, 791, 792, 793, 794]}
-{"_from": ["sentence:door:col_c/row_2"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_c/row_2:130", "lod": 2, "sector": 130, "sentence": "door:col_c/row_2", "walls": [819, 820, 821, 822]}
-{"_from": ["sentence:door:col_c/row_3"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_c/row_3:133", "lod": 2, "sector": 133, "sentence": "door:col_c/row_3", "walls": [843, 844, 845, 846]}
+{"_from": ["sentence:door:col_a/row_1"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_a/row_1:101", "lod": 2, "sector": 101, "sentence": "door:col_a/row_1", "walls": [589, 590, 591, 592]}
+{"_from": ["sentence:door:col_a/row_2"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_a/row_2:104", "lod": 2, "sector": 104, "sentence": "door:col_a/row_2", "walls": [603, 604, 605, 606]}
+{"_from": ["sentence:door:col_a/row_3"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_a/row_3:107", "lod": 2, "sector": 107, "sentence": "door:col_a/row_3", "walls": [617, 618, 619, 620]}
+{"_from": ["sentence:door:col_b/row_1"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_b/row_1:110", "lod": 2, "sector": 110, "sentence": "door:col_b/row_1", "walls": [631, 632, 633, 634]}
+{"_from": ["sentence:door:col_b/row_2"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_b/row_2:113", "lod": 2, "sector": 113, "sentence": "door:col_b/row_2", "walls": [645, 646, 647, 648]}
+{"_from": ["sentence:door:col_b/row_3"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_b/row_3:116", "lod": 2, "sector": 116, "sentence": "door:col_b/row_3", "walls": [659, 660, 661, 662]}
+{"_from": ["sentence:door:col_c/row_1"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_c/row_1:126", "lod": 2, "sector": 126, "sentence": "door:col_c/row_1", "walls": [711, 712, 713, 714]}
+{"_from": ["sentence:door:col_c/row_2"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_c/row_2:130", "lod": 2, "sector": 130, "sentence": "door:col_c/row_2", "walls": [729, 730, 731, 732]}
+{"_from": ["sentence:door:col_c/row_3"], "_layer": 2, "_reader": "compiler", "id": "realises:door:col_c/row_3:133", "lod": 2, "sector": 133, "sentence": "door:col_c/row_3", "walls": [743, 744, 745, 746]}

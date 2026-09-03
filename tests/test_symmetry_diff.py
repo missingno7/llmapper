@@ -145,18 +145,23 @@ class TheCity(unittest.TestCase):
         #: 924 when this was written; 978 since St Gallow's was
         #: re-parented and the city gained eight church rooms. The
         #: claim is the agreement, not the count.
-        self.assertEqual(row["same_id"], 978)
+        self.assertEqual(row["same_id"], 666)
         self.assertEqual(row["differing_ids"], 0)
 
-    def test_the_only_content_disagreement_left_is_shade_depth(self):
+    def test_there_is_no_content_disagreement_left_at_all(self):
+        """It used to be `shade_depth` on 143 sectors, and the cause was the
+        lamps: `read_light.field` elects the base as the lightest shade with
+        area, and three sectors carried two lamps each at shade -4, so the
+        reader read -4 as depth 0 and everything the compiler called depth 0
+        as depth 1. **The street lamps came out on the owner's W7** -- Blood
+        has none in 43 maps -- and with them the disagreement."""
         attrs = [found for found in self.result["findings"]
                  if found["class"] == "same id different attrs"]
-        self.assertEqual([found["predicate"] for found in attrs],
-                         ["shade_depth"])
-        self.assertEqual(attrs[0]["fields"], {"depth": 143})
+        self.assertEqual([found["predicate"] for found in attrs], [])
 
-    def test_the_reader_reads_every_depth_one_deeper_except_the_lamp_lit_three(self):
-        """A lamp sets the reader's base, and one lamp shifts the whole field.
+    def test_the_reader_and_the_compiler_now_agree_on_every_depth(self):
+        """A lamp used to set the reader's base, and one lamp shifted the
+        whole field.
 
         `read_light.field` elects the base as the lightest shade with area,
         and sectors 35, 54 and 73 carry two lamps each, which puts them at
@@ -177,12 +182,12 @@ class TheCity(unittest.TestCase):
                   if recovered[one]["depth"] - declared[one]["depth"] == 1]
         same = [one for one in shared
                 if recovered[one]["depth"] == declared[one]["depth"]]
-        self.assertEqual(len(shared), 146)
-        self.assertEqual(len(deeper), 143)
-        self.assertEqual(same, ["sector:35", "sector:54", "sector:73"])
-        for one in same:
-            self.assertEqual(declared[one]["shade"], -4)
-            self.assertEqual(declared[one]["depth"], 0)
+        #: WITH THE LAMPS GONE, the reader's elected base is the compiler's
+        #: own and every shared sector agrees. 146 shared and 143 one deeper
+        #: was the reading while three sectors carried two lamps each.
+        self.assertEqual(len(shared), 163)
+        self.assertEqual(len(deeper), 0)
+        self.assertEqual(len(same), len(shared))
 
     def test_the_134_joins_the_compiler_declares_and_no_reader_names(self):
         """The waterfront, on both sides of one number.
@@ -192,6 +197,18 @@ class TheCity(unittest.TestCase):
         it has none. The 134 missing `join` ids and the 134 recovered
         `unknown_join` ids are the same records.
         """
-        self.assertEqual(self.result["predicates"]["join"]["missing_ids"], 134)
-        self.assertEqual(
-            self.result["predicates"]["unknown_join"]["recovered"], 134)
+        #: 134 when this was written and 188 since the buildings became
+        #: voids: the reader has no `facade` or `opening` kind to give a
+        #: sector that is not there, so the reveal and the leaf read as
+        #: `interior` and their records join the waterfront in the residue.
+        #: The CLAIM is the one being asserted -- the two numbers are the
+        #: same records -- and it still holds.
+        self.assertEqual(self.result["predicates"]["join"]["missing_ids"],
+                         self.result["predicates"]["unknown_join"]["recovered"])
+        self.assertEqual(self.result["predicates"]["join"]["missing_ids"], 188)
+
+    def test_the_two_halves_still_agree_wherever_both_speak(self):
+        """666 records now, 978 before the buildings became voids: what the
+        reader cannot name it does not name wrongly."""
+        row = self.result["predicates"]["join"]
+        self.assertEqual(row["same_id"], 666)
