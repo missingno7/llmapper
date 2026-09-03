@@ -1849,3 +1849,31 @@ mall, market, sewer, shed, theatre. The foundry is next and it is the
 interesting one: a hall with a gallery over it is the same relation as rooms
 in a mass, one level up, and whether that is the same word is what porting it
 answers.
+
+## 38. Triage by the supervisor (2026-09-03): the queue is closed at its defaults
+
+Two walks of the built city produced twelve findings no gate had caught;
+eight layer packs with 22 questions produced none, because the owner
+cannot judge a layer without hunting every detail in the editor. So the
+owner's channel is the walk, and this queue changes shape.
+
+**Every item 1-37 is closed at its recommended default**, with the
+supervisor's decisions in sections 16-32 of the street-model decisions
+document taking precedence where they differ, and two edits: item 4
+deletes nothing (the two Duke maps move; the autosave stays in the pen,
+because nothing is deleted in this project any more), and item 32a is
+withdrawn by its author.
+
+**From now on a question reaches the owner only in one of two forms:**
+
+1. **A walk.** A built map, a start position, and at most five lines of
+   "look at this". The owner's findings come back as a list and each
+   becomes a gate. Every slice ends with one.
+2. **A fragment.** A sector set cut out of a map into a small playable
+   map (`bloodmap extract` / `fragment`) with ONE line of question
+   ("this is what the readers call a storefront bay: does it read as
+   one?"), at most a handful per week, and only where a census or an
+   invariant cannot answer. A question with no fragment or walk
+   attached is answered by the agent with a census and closed.
+
+Layer review packs remain the agents' instrument, not the owner's.

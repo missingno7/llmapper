@@ -213,3 +213,19 @@ times. From now on there is one trunk and no long-lived agent branch:
   `reference/`, or a submodule pointer.
 - The suite runs to a log before every push and the Ran line is quoted
   in the report; a red suite is not pushed.
+
+## The owner's review channel is the walk (2026-09-03)
+
+Two walks of the built city found twelve defects no gate had caught;
+eight per-layer review packs found none. Owner review therefore takes
+two forms only: a WALK (a built map, a start position, five lines of
+what to look at; findings come back as a list and each becomes a
+fail-first gate with an absolute reading) and a FRAGMENT (one sector
+set cut into a small playable map with one line of question, only
+where no census or invariant can answer). A decompilation is reviewed
+by walking its ROUND TRIP: the original rebuilt from its facts, with
+the understood parts recompiled by the writer and the rest copied,
+so anything the owner notices is a misreading or a residue with a
+sector id. Per-layer packs are for agents. A queue item without a
+walk or a fragment attached is answered by census and closed by the
+agent who raised it.
