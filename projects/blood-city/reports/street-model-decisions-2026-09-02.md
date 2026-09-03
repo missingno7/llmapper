@@ -1644,3 +1644,80 @@ at most, never a target; matching a campaign median by adding things
 is statistical cosplay, and the discriminator is not allowed to ask
 for it. Each conditional norm carries the examples where Blood did NOT
 use the thing in that context.
+
+## 30. Both agents at rest (2026-09-03): decisions on queue items 1-4 (city) and 28-31 (E3M1)
+
+State. P14b finished slice 3 on main (117f733): 184 sectors / 1042 walls
+/ 14 sprites, 47 surfaces, 1022 joins with 0 unknown pairs, G1 174/0,
+the editor would change 0 walls, 2398 facts over 14 predicates, LoD gate
+0, Rule 2 asked for the first time (9 curtains, 0 moved), the four walk
+findings each fixed with an absolute gate (111/232/15/1 before, 0
+after), the mission graph declared with every link and key honestly
+`realised: false`. P15 finished all eight layers of E3M1 (merged in
+29cda62): 18 297 facts in 35 predicates, 3.883% of claimable fields
+claimed, 136 mechanism sentences, the plan recovered in plan units,
+eight review packs with 22 owner questions, and a list of what the
+writer assumes that E3M1 does not do.
+
+Decisions, each the supervisor's unless marked owner:
+
+- **City 1, lamps:** stays as decided (choice claim, sconces 510, -6).
+- **City 2, doors A/B:** A. They are doors; slice 4 realises them
+  (switch on the facade beside each, keys on the circuit). The fixture
+  separated the options correctly: eligibility for Rule 2 is the
+  invariant.
+- **City 3, the circuit's grid:** legs become sequences of SURFACE IDS
+  ("the avenue between Theatre Row and Market Street"), never plan
+  coordinates; a leg survives a re-solve, a coordinate does not. Plan
+  change, supervisor's call, owner may veto.
+- **City 4, behind the doors:** re-parent the L3 interiors one at a
+  time, each under its island's shell, each with its own read-back
+  sentence. This IS slice 4.
+- **31, two fact stores:** unify on the READER's shape
+  (`read_store`: per-row provenance, declared predicate table with a
+  description per predicate, the ledger's four extra predicates), with
+  `lod` as an attribute. `facts.py` becomes the compiler's writer INTO
+  that shape; the LoD gate becomes a query. P14b makes the change; P15
+  freezes the row shape meanwhile. The diff of the two stores is the
+  symmetry test of section 20 from now on.
+- **29a, the shade step:** the step is a per-project CHOICE (Gravesend
+  keeps 12; the owner liked the slice-2 shadows) checked against a
+  CAMPAIGN envelope whose network definition the gate names: the
+  largest outdoor component, the definition that matches "a city's
+  street". The envelope is a READER census (P15 provides
+  `shade_step_envelope(network=...)`; P14b's gate calls it, never a
+  constant). E3M1's own 24-26 is recorded as the precedent's value.
+- **29b, `kerb_records` claims 81 where E3M1 makes 11:** writer bug,
+  P14b fixes: use the `ground_outline` it already takes; fail-first on
+  E3M1's three islands replayed through the reader (11 expected).
+- **29c, `is_water` blind on a LevelIR:** writer bug, P14b fixes with
+  the `_x` accessor; test on DWE3M10's 22 panning sectors.
+- **28a:** fix the evidence string (s10/s11 are masses); the row stays.
+- **28b, 28d, 28e:** three censuses for P15's readers over the 43
+  campaign maps before the writer changes anything: end-wall tiles by
+  join pair; u-continuity by bend class (collinear / bend / reflex,
+  solid-solid / solid-portal); interior|interior pair classes by floor
+  and ceiling kind. P14b consumes the results in slice 5, not before.
+- **28c, 30b, 30e, 30g:** reader-side, P15: a raised outdoor mass with
+  a sector type is a mechanism at rest, named apart; a block is cut at
+  its street frontages; the stack-fault text says "256 below, as all
+  three of E3M1's are"; the prop reader is wired into layer 8.
+- **30a, width class means FULL width** (carriageway plus pavements):
+  E3M1's east arm is then a ROW with residual exactly 0, and the plan's
+  grid already sums streets that way. Stated in `city_plan.py`, applied
+  in slice 4 as its own first commit with counts before and after.
+- **30f, a chain is one sentence with fan-out as a parameter:** adopted
+  for the writer; slice 4's switches use it.
+- **30c, 30d, 30h:** recorded; no action.
+
+Next for P15: the sleep phase needs a residue curve, so the readers run
+as a CENSUS over all 43 campaign maps first (they are pure functions),
+per map per layer; that table picks the second map to decompile fully
+by the largest claimed share under E3M1's readers among maps with a
+street network (default if ambiguous: E1M2), and then the refactoring
+pass promotes what both maps needed. E1M1 stays third, for mechanisms
+and the owner's names.
+
+Owner: eight review packs wait in `projects/e3m1-decompiled/review/`
+with 22 questions; the four city questions above are decided with
+defaults and need only a veto.
