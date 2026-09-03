@@ -34,6 +34,7 @@ The numbers are the corpus's
 
 from __future__ import annotations
 
+import math
 from typing import Any, Iterable, Sequence
 
 from . import joins
@@ -384,3 +385,123 @@ def shell(key: str, rect: Sequence[int], *, wall_thickness: int,
     if props:
         declaration["props"] = props
     return surfaces, declaration
+
+
+# ---------------------------------------------------------------------------
+# dressing: props stand on something, and the something is anchored to a record
+# ---------------------------------------------------------------------------
+
+#: A PLINTH IS WAIST-HIGH AND ELONGATED, and both numbers are the reader's.
+#: `anchors.find_bundles` recovers a raised island only when its rise is more
+#: than the 4096 step limit and no more than half a body (8192) -- of 958
+#: campaign blocking islands that band holds the largest mass, 38.3% -- and
+#: only when its footprint is at least twice as long as it is deep, because a
+#: square blocking island is a pillar and a counter is a run you stand along.
+#: 6144 is E6M1's owner-identified cashwrap, in the middle of the band.
+PLINTH_RISE = 6144
+PLINTH_DEPTH = 2048
+PLINTH_MIN_ASPECT = 2.0
+#: What a plinth wears. E3M1's facade family again: a counter in a Blood room
+#: is built of the room's own stone.
+PLINTH_TILE = 401
+
+
+class DressingError(ValueError):
+    """A bundle that would not come back as one."""
+
+
+def dressing(anchor: Sequence, props: Sequence[dict], *, inward: Point,
+             floor_z: int, ceiling_z: int, surface_id: str,
+             spread: float = 0.6, facing: str = "out",
+             depth: int = PLINTH_DEPTH, rise: int = PLINTH_RISE,
+             tile: int = PLINTH_TILE, lod: int = 3) -> dict:
+    """A bundle of unwired sprites, placed against an ANCHOR RECORD.
+
+    Never by absolute coordinate. `anchor` is an edge of the host surface --
+    two points the solver placed -- and everything here is an offset from it:
+    the plinth is centred on that edge, `spread` of its length, `depth` into
+    the room, and the props stand along the plinth's top.
+
+    That is what makes it come back. `anchors.find_bundles` recovers a bundle
+    from geometry and never from proximity: one outer neighbour, a floor
+    raised out of the host by more than a step, an elongated footprint, and at
+    least one visible prop. A handful of sprites dropped at coordinates has
+    none of those and comes back as nothing -- which is the whole difference
+    between dressing a room and scattering in one.
+
+    Returns the plinth's surface, the hole its host must carry, and the props.
+    """
+    (ax, ay), (bx, by) = (tuple(anchor[0]), tuple(anchor[1]))
+    length = math.hypot(bx - ax, by - ay)
+    if not length:
+        raise DressingError(f"{surface_id}: an anchor record of zero length")
+    run = max(int(round(length * float(spread))), 1)
+    if run < depth * PLINTH_MIN_ASPECT:
+        raise DressingError(
+            f"{surface_id}: a plinth {run} long and {depth} deep has aspect "
+            f"{run / depth:.2f}; `anchors.find_bundles` wants at least "
+            f"{PLINTH_MIN_ASPECT}, because a square blocking island is a "
+            f"pillar and a counter is a run you stand along")
+    if not 4096 < rise <= 8192:
+        raise DressingError(
+            f"{surface_id}: a rise of {rise} is not waist height; a bundle is "
+            f"recovered between 4096 and 8192 and nowhere else")
+
+    #: the unit vectors of the record and of the room behind it
+    ux, uy = (bx - ax) / length, (by - ay) / length
+    span = math.hypot(inward[0], inward[1]) or 1.0
+    nx, ny = inward[0] / span, inward[1] / span
+    #: THE PLINTH IS OFF THE WALL BY ITS OWN DEPTH, so its only neighbour is
+    #: the host: flush against the record it would share that record's far
+    #: side too, and `find_bundles` counts two outer neighbours and refuses.
+    mid = ((ax + bx) / 2.0, (ay + by) / 2.0)
+    base = (mid[0] + nx * depth, mid[1] + ny * depth)
+    half = run / 2.0
+    corners = []
+    for along, out in ((-half, 0), (half, 0), (half, depth), (-half, depth)):
+        corners.append((int(round(base[0] + ux * along + nx * out)),
+                        int(round(base[1] + uy * along + ny * out))))
+
+    top = int(floor_z) - int(rise)
+    surface = SurfaceSpec(
+        surface_id=surface_id, rings=(corners,), floor_z=top,
+        ceiling_z=int(ceiling_z), floor_tile=int(tile),
+        ceiling_tile=ROOF_TILE, wall_tile=int(tile), kind=joins.INTERIOR,
+        role="interior", parallax_ceiling=False, lit=False, lod=int(lod))
+
+    #: the props, spread along the plinth's own centre line
+    angle = int(round(math.atan2(-ux, uy) * 2048 / (2 * math.pi))) % 2048
+    if facing == "in":
+        angle = (angle + 1024) % 2048
+    placed = []
+    count = max(1, len(props))
+    for index, prop in enumerate(props):
+        share = (index + 0.5) / count - 0.5
+        point = (int(round(base[0] + ux * run * share + nx * depth / 2)),
+                 int(round(base[1] + uy * run * share + ny * depth / 2)))
+        placed.append({**prop, "point": point, "angle": angle,
+                       "prop_id": f"{surface_id}:{prop.get('name', index)}",
+                       "mount": "free", "height": 0})
+    return {"surface": surface, "hole": list(reversed(corners)),
+            "props": placed, "anchor": (tuple(anchor[0]), tuple(anchor[1])),
+            "rise": int(rise), "aspect": run / depth}
+
+
+def prop(name: str, *, shade: int = -8, statnum: int = 0) -> dict:
+    """One named prop, by the campaign's own word for its tile.
+
+    `read_intent.named_props` counts a sprite only when `furniture.FURNITURE`
+    has a name for its tile and `blood_types.sprite_visibility` calls it
+    visible -- a tile nobody has named contributes nothing, and about a
+    quarter of a campaign map's sprites are wiring nobody sees.
+    """
+    from .furniture import FURNITURE
+
+    item = FURNITURE.get(name)
+    if item is None:
+        raise DressingError(
+            f"{name!r} is not a name the campaign uses. `furniture.FURNITURE` "
+            f"supplies the word, and a tile nobody has named cannot be read "
+            f"back")
+    return {"name": str(name), "tile": int(item.picnum), "cstat": 0,
+            "shade": int(shade), "sprite_type": 0, "statnum": int(statnum)}
