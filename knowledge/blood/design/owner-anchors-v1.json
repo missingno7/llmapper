@@ -5,123 +5,1708 @@
     "source": "owner hand-tagging, first-glance visual reading of the tiles",
     "date": "2026-08-31",
     "language_of_original_labels": "cs",
-    "caveat": "These picnums may be used in other contexts elsewhere in the corpus. Entries are semantic anchors (probes) in the sense of docs/llmapper_level_understanding_handbook/03_SEMANTIC_ANCHORS_AND_SUBGRAPH_MINING.md: high-confidence seeds for corpus queries, not final classifications. Do not turn any entry into a picnum->object lookup rule."
+    "caveat": "These picnums may be used in other contexts elsewhere in the corpus. Entries are semantic anchors (probes) in the sense of docs/llmapper_level_understanding_handbook/03_SEMANTIC_ANCHORS_AND_SUBGRAPH_MINING.md: high-confidence seeds for corpus queries, not final classifications. Do not turn any entry into a picnum->object lookup rule.",
+    "batches": [
+      {
+        "date": "2026-09-03",
+        "source": "owner tile sheet (tools/tile_naming_sheet.py), first-glance readings; label_cs by the owner, label_en by the supervisor",
+        "tiles": 120
+      }
+    ]
   },
   "cross_reference_note": "Where a tile already carries a derived reading elsewhere in the repo (tools/mine_e6m1_shop.py ASSETS, tools/mine_sewer_kit.py ASSETS, knowledge/blood/design/switches-v1.json), that reading is recorded in cross_refs. Dual roles are evidence of context-dependence, not errors.",
   "anchors": [
-    {"picnum": 73, "kind": "sprite", "translucent": true, "label_en": "hanging clothes", "label_cs": "visící oblečení", "notes": "optional palette", "cross_refs": ["mine_e6m1_shop:hanging_clothes"]},
-    {"picnum": 2377, "kind": "sprite", "translucent": true, "label_en": "mannequin", "label_cs": "manekýn", "binding": "strong", "notes": "optional palettes; anchor enrichment 30.4x (Phase 2)", "cross_refs": ["mine_e6m1_shop:mannequin"]},
-    {"picnum": 1050, "kind": "sprite", "translucent": true, "label_en": "electrical wall outlet", "label_cs": "elektrická zásuvka na zdi", "cross_refs": ["decoration-v1: 13 uses / 4 maps, canonical_cstat 385"]},
-    {"picnum": 758, "kind": "sprite", "translucent": true, "label_en": "voxel chair", "label_cs": "voxelová židle", "cross_refs": ["mine_e6m1_shop:chair"]},
-    {"picnum": 1165, "kind": "sprite", "translucent": true, "label_en": "wall clock", "label_cs": "nástěnné hodiny", "dual_role": "5 original-campaign occurrences are shootable one-way switches (type 21, how=shot) per switches-v1.json; owner confirms 2026-08-31: clocks are often authored to visually break when shot, hence the switch wiring for the state change", "cross_refs": ["mine_e6m1_shop:wall_clock", "switches-v1:tiles[1165]=5"]},
-
-    {"picnum": 2520, "kind": "sprite", "wiring": true, "label_en": "sector sound marker (invisible in game)", "label_cs": "sound — speciální neviditelný sprite", "notes": "owner confirmed 2026-08-31; 1247/1250 campaign uses are sprite type 709 kSoundSector; editor speaker icon", "cross_refs": ["blood-contrast-niche-pair addendum"]},
-    {"picnum": 2521, "kind": "sprite", "wiring": true, "label_en": "environmental/ambient sound marker (invisible in game)", "label_cs": "environmental sound — speciální neviditelný sprite", "notes": "owner confirmed 2026-08-31; sprite type 710 Ambient SFX; rides turnstiles and rotors as their sound", "cross_refs": ["auto-rotators"]},
-    {"picnum": 2332, "kind": "sprite", "wiring": true, "label_en": "upper room-over-room stack marker; drawn as a downward arrow", "label_cs": "speciální upper marker, vypadá jako šipka dolů", "notes": "owner 2026-08-31: because of the arrow look it may have been reused somewhere as a literal down-arrow signpost — a signifier-reuse hypothesis worth checking when mining wayfinding; 273/273 campaign stack markers wear 2332 (upper) / 2331 (lower), statnum 0", "cross_refs": ["blood-city ROR findings", "grammar-requests #8"]},
-
-    {"picnum": 720, "kind": "wall", "label_en": "grandfather clock, front face", "label_cs": "stojací (grandfather) hodiny přední strana"},
-    {"picnum": 2026, "kind": "wall", "label_en": "shelf", "label_cs": "regál", "binding": "strong", "notes": "owner preliminary review of rendered positives 2026-08-31: all 16 anchor hits are true shelves, across both structural realizations (recessed niche shelving in SSMALL, wall-run shelving on E6M1's retail floor) — the pilot-1 'one tile, two structures' split is two variants of one concept, not a bad anchor", "cross_refs": ["mine_e6m1_shop:shelf_wall", "blood-contrast-shelf-vs-crate"]},
-    {"picnum": 2635, "kind": "wall", "label_en": "shelf", "label_cs": "regál", "binding": "strong", "notes": "see 2026 — same owner preliminary verdict", "cross_refs": ["mine_e6m1_shop:shelf_wall", "blood-contrast-shelf-vs-crate"]},
-    {"picnum": 95, "kind": "wall", "label_en": "large crate", "label_cs": "velká bedna", "cross_refs": ["mine_e6m1_shop:crate_surface"]},
-    {"picnum": 452, "kind": "wall", "label_en": "smaller crate", "label_cs": "menší bedna", "state_pair": {"broken": 462}, "cross_refs": ["mine_e6m1_shop:crate_surface"]},
-    {"picnum": 462, "kind": "wall", "label_en": "smaller crate, broken", "label_cs": "menší rozbitá bedna", "state_pair": {"intact": 452}, "notes": "owner correction 2026-08-31: the broken crate is 462 (an earlier tag mistakenly said 469)"},
-    {"picnum": 456, "kind": "wall", "label_en": "crate look, but often a plain wall/ceiling texture", "label_cs": "v podstatě bedna; často se ale používá i jako běžná textura na stropy a stěny", "binding": "weak", "notes": "owner refined 2026-08-31; treat as material, not object identity"},
-    {"picnum": 144, "kind": "wall", "label_en": "wooden lattice, used e.g. as windows", "label_cs": "dřevěná mříž, používá se např. jako okna", "notes": "owner-named 2026-08-31; was the commonest visible object (7x) in the surviving raised-niche class of the Phase 4 re-run"},
-    {"picnum": 202, "kind": "wall", "label_en": "worn wall/facade texture, bricks showing through", "label_cs": "textura zdi/fasády, zašlá, začínají být vidět cihly", "binding": "weak", "dual_role": "the E6M1 shop kit groups it under shelf_wall (2026, 202, 2635); owner reads the tile itself as a worn facade surface — in the shop it is likely the worn backdrop the shelves sit against, not a shelf front", "cross_refs": ["mine_e6m1_shop:shelf_wall"]},
-    {"picnum": 332, "kind": "sprite", "label_en": "grate/lattice", "label_cs": "mříž", "dual_role": "rides E1M4/DWE1M9 turnstile doors as the four blade grates; also usable as a maskwall grate", "cross_refs": ["auto-rotators: turnstile blades"]},
-    {"picnum": 468, "kind": "wall", "label_en": "vertical ceiling light, unlit", "label_cs": "svislé stropní světlo, zhasnuté", "state_pair": {"lit": 469}, "dual_role": "16 original-campaign occurrences recorded as switch tiles in switches-v1.json — consistent with a light whose lit/unlit state is toggled", "notes": "owner correction 2026-08-31: an earlier tag read 468 as a pipe wall; the pipe wall is 498", "cross_refs": ["switches-v1:tiles[468]=16"]},
-    {"picnum": 469, "kind": "wall", "label_en": "vertical ceiling light, lit", "label_cs": "svislé stropní světlo, rozsvícené", "state_pair": {"unlit": 468}, "notes": "owner correction 2026-08-31 supersedes the earlier 'smaller broken crate' tag for this picnum"},
-    {"picnum": 458, "kind": "wall", "label_en": "rock", "label_cs": "skála", "state_pair": {"mossy": 459}},
-    {"picnum": 459, "kind": "wall", "label_en": "rock, moss-grown", "label_cs": "skála obrostlá mechem", "state_pair": {"bare": 458}, "notes": "NOT a crate. BloodCity's templates.py once used it as SMALL_CRATE because it is 128x128 like the real large crate 95 and looks boxy in a thumbnail (owner caught it 2026-08-31); the small crate is 452 (64x64). Do not confuse with sprite TYPE 459 = kTrapExploder, a different namespace."},
-    {"picnum": 464, "kind": "wall", "label_en": "grate door", "label_cs": "dveře mříže", "notes": "not to be confused with cstat value 464 in keys-v1/switches-v1 histograms"},
-    {"picnum": 2476, "kind": "wall", "label_en": "cash register top surface; also machinery", "label_cs": "kasa – horní plocha pokladny; strojní zařízení", "dual_role": "shop context reads it as the register top, industrial context as machinery", "cross_refs": ["mine_e6m1_shop:cash_register_surface", "mine_sewer_kit:machinery"]},
-    {"picnum": 2477, "kind": "wall", "label_en": "machinery", "label_cs": "strojní zařízení", "cross_refs": ["mine_sewer_kit:machinery"]},
-    {"picnum": 2462, "kind": "wall", "label_en": "machinery", "label_cs": "strojní zařízení", "cross_refs": ["mine_sewer_kit:machinery"]},
-    {"picnum": 2463, "kind": "wall", "label_en": "machinery", "label_cs": "strojní zařízení", "cross_refs": ["mine_sewer_kit:machinery"]},
-    {"picnum": 34, "kind": "wall", "label_en": "wood, usable e.g. for counter/cabinet sides", "label_cs": "dřevo použitelné např. na boky pultu/skříněk", "cross_refs": ["mine_e6m1_shop:wood_casework"]},
-    {"picnum": 35, "kind": "wall", "label_en": "drawer fronts", "label_cs": "přední strana šuplíků", "cross_refs": ["mine_e6m1_shop:drawer_surface"]},
-    {"picnum": 36, "kind": "wall", "label_en": "drawer fronts", "label_cs": "přední strana šuplíků", "cross_refs": ["mine_e6m1_shop:drawer_surface"]},
-    {"picnum": 1097, "kind": "wall", "label_en": "sheet metal for shafts", "label_cs": "plech pro šachty", "cross_refs": ["mine_e6m1_shop:shaft_metal"]},
-    {"picnum": 63, "kind": "wall", "label_en": "barrel wall, broken", "label_cs": "zeď ze sudů rozbitá", "state_pair": {"intact": 64}},
-    {"picnum": 64, "kind": "wall", "label_en": "barrel wall", "label_cs": "zeď ze sudů", "state_pair": {"broken": 63}},
-    {"picnum": 31, "kind": "wall", "label_en": "bookcase front", "label_cs": "přední strana knihovny"},
-    {"picnum": 32, "kind": "wall", "label_en": "bookcase front", "label_cs": "přední strana knihovny"},
-    {"picnum": 33, "kind": "wall", "label_en": "bookcase front", "label_cs": "přední strana knihovny"},
-    {"picnum": 496, "kind": "wall", "label_en": "technical wall with pipes", "label_cs": "technická zeď s trubkami", "cross_refs": ["mine_sewer_kit:pipe_walls"]},
-    {"picnum": 497, "kind": "wall", "label_en": "technical wall with pipes", "label_cs": "technická zeď s trubkami", "cross_refs": ["mine_sewer_kit:pipe_walls"]},
-    {"picnum": 498, "kind": "wall", "label_en": "technical wall with pipes", "label_cs": "technická zeď s trubkami", "notes": "owner correction 2026-08-31: this replaces the earlier erroneous 468 tag; completes the consecutive pipe-wall run 496-499", "cross_refs": ["mine_sewer_kit:pipe_walls (after correction)"]},
-    {"picnum": 499, "kind": "wall", "label_en": "technical wall with pipes", "label_cs": "technická zeď s trubkami", "cross_refs": ["mine_sewer_kit:pipe_walls"]},
-    {"picnum": 500, "kind": "wall", "label_en": "technical door", "label_cs": "technické dveře", "cross_refs": ["mine_sewer_kit:sewer_door"]},
-    {"picnum": 501, "kind": "wall", "label_en": "technical light", "label_cs": "technické světlo", "notes": "owner label is more general than mine_sewer_kit's 'sewer_light'", "cross_refs": ["mine_sewer_kit:sewer_light"]},
-    {"picnum": 502, "kind": "wall", "label_en": "sewer grate", "label_cs": "stoková mříž", "cross_refs": ["mine_sewer_kit:sewer_grate"]},
-
-    {"picnum": 463, "kind": "maskwall", "label_en": "grate", "label_cs": "mříž"},
-    {"picnum": 465, "kind": "maskwall", "label_en": "grate", "label_cs": "mříž", "state_pair": {"broken": 466}, "dual_role": "also rides DNE3L6's turnstile doors as the blade grates", "cross_refs": ["auto-rotators: turnstile blades"]},
-    {"picnum": 466, "kind": "maskwall", "label_en": "grate, broken", "label_cs": "rozbitá mříž", "state_pair": {"intact": 465}},
-
-    {"picnum": 2101, "kind": "sprite", "binding": "strong", "label_en": "flame (small fire)", "label_cs": "plamen", "notes": "AI visual guess confirmed by owner 2026-08-31 (batch of 24 frequent unnamed decorations)"},
-    {"picnum": 3566, "kind": "sprite", "binding": "strong", "label_en": "large flame / bonfire", "label_cs": "velký plamen"},
-    {"picnum": 731, "kind": "sprite", "binding": "strong", "label_en": "blood (spreading)", "label_cs": "krev", "notes": "owner correction: reads like flames but is blood"},
-    {"picnum": 713, "kind": "sprite", "binding": "strong", "label_en": "blood splatter (wall)", "label_cs": "krvavý stříkanec"},
-    {"picnum": 732, "kind": "sprite", "binding": "strong", "label_en": "gore / blood mass", "label_cs": "krvavá kaše"},
-    {"picnum": 929, "kind": "sprite", "binding": "strong", "label_en": "blood dripping from ceiling", "label_cs": "krev kapající ze stropu"},
-    {"picnum": 754, "kind": "sprite", "binding": "strong", "label_en": "thin smoke/steam column", "label_cs": "sloupec kouře/páry"},
-    {"picnum": 672, "kind": "sprite", "binding": "strong", "label_en": "smoke/steam plume", "label_cs": "oblak kouře/páry"},
-    {"picnum": 2915, "kind": "sprite", "label_en": "water surface; sometimes clouds seen from above", "label_cs": "voda; občas použitá jako mraky pod sebou vysoko nahoře", "dual_role": "water decal on floors, cloud layer far below when high up — context decides"},
-
-    {"picnum": 580, "kind": "sprite", "binding": "strong", "label_en": "standing candelabrum, three candles", "label_cs": "stojací kandelábr se svíčkami"},
-    {"picnum": 2493, "kind": "sprite", "binding": "strong", "label_en": "street lamp, snow-covered", "label_cs": "pouliční lampa, zasněžená", "notes": "owner refinement: the snow matters — winter street dressing"},
-
-    {"picnum": 384, "kind": "sprite", "label_en": "brick facade with shuttered window (backdrop)", "label_cs": "cihlová fasáda s okenicemi"},
-    {"picnum": 381, "kind": "sprite", "label_en": "facade section, cornice top, brick base (backdrop)", "label_cs": "segment fasády s římsou"},
-    {"picnum": 371, "kind": "sprite", "label_en": "stone/slate wall with diamond emblem", "label_cs": "kamenná stěna s kosočtvercovým emblémem"},
-    {"picnum": 363, "kind": "sprite", "label_en": "stone block masonry", "label_cs": "kamenné kvádrové zdivo"},
-    {"picnum": 470, "kind": "sprite", "label_en": "riveted metal plating", "label_cs": "nýtované kovové plátování"},
-    {"picnum": 191, "kind": "sprite", "label_en": "metal hatch/grate with X brace", "label_cs": "kovový poklop s X výztuhou"},
-    {"picnum": 58, "kind": "sprite", "label_en": "iron bars (jail)", "label_cs": "vězeňské mříže"},
-
-    {"picnum": 256, "kind": "sprite", "label_en": "wooden plank boarding; often a wooden rope-bridge deck", "label_cs": "dřevěné bednění; často i dřevěný provazový most", "dual_role": "boarding panel vs rope-bridge deck — context decides"},
-    {"picnum": 69, "kind": "sprite", "label_en": "single wooden plank", "label_cs": "prkno", "notes": "variant of furniture.py plank 68"},
-    {"picnum": 515, "kind": "sprite", "label_en": "straw (loose tangle)", "label_cs": "sláma", "notes": "owner correction: straw rather than branches"},
-    {"picnum": 838, "kind": "sprite", "label_en": "crack/hole in a wall", "label_cs": "prasklina/díra ve zdi", "notes": "possibly reads as a web in some placements"},
-    {"picnum": 511, "kind": "sprite", "label_en": "small metal strip/plate (?)", "label_cs": "kovový pelíšek(?) — owner unsure", "notes": "tentative on both sides; verify against occurrences before use"},
-    {"picnum": 3812, "kind": "sprite", "label_en": "letter E, font tile", "label_cs": "písmeno E", "notes": "tiles 3808-3833 are A-Z, already owned by bloodmap/lettering.py — facade signage (Phase 7) builds on it"},
-
-    {"picnum": 449, "kind": "wall", "label_en": "rough rock face / rubble stone", "label_cs": "hrubá skála / lomový kámen", "notes": "most-used unnamed wall in the campaign (4312 uses / 23 maps); AI visual guess batch 2026-08-31, owner corrected only 195 and 200"},
-    {"picnum": 80, "kind": "wall", "label_en": "weathered vertical stone wall with hints of moss", "label_cs": "zvětralá svislá kamenná stěna s náznaky mechu", "notes": "owner confirmed 2026-08-31: stone, not planks"},
-    {"picnum": 91, "kind": "wall", "label_en": "brick wall with base course", "label_cs": "cihlová zeď se soklem"},
-    {"picnum": 200, "kind": "wall", "label_en": "metal threshold with rivets", "label_cs": "kovový práh s nýty", "dual_role": "decorative trim, or a part of metal mechanisms", "notes": "owner-named 2026-08-31; 32 maps — aperture-family trim (thresholds), pairs naturally with 195"},
-    {"picnum": 2490, "kind": "wall", "label_en": "light marble", "label_cs": "světlý mramor"},
-    {"picnum": 109, "kind": "wall", "label_en": "plaster wall with top beam and carved base", "label_cs": "omítková stěna s trámem a zdobeným soklem"},
-    {"picnum": 427, "kind": "wall", "label_en": "grey ashlar stone blocks", "label_cs": "šedé kamenné kvádry"},
-    {"picnum": 90, "kind": "wall", "label_en": "worn large bricks with moss", "label_cs": "opotřebené velké cihly s mechem"},
-    {"picnum": 84, "kind": "wall", "label_en": "wooden paneling / wainscot", "label_cs": "dřevěné obložení", "notes": "owner correction 2026-08-31: paneling, not a door leaf"},
-    {"picnum": 385, "kind": "wall", "label_en": "rough tan brickwork", "label_cs": "hrubé světlé cihlové zdivo"},
-    {"picnum": 21, "kind": "wall", "label_en": "dark vertical planks", "label_cs": "tmavá svislá prkna"},
-    {"picnum": 67, "kind": "wall", "label_en": "dark horizontal planks", "label_cs": "tmavá vodorovná prkna"},
-    {"picnum": 369, "kind": "wall", "label_en": "concrete/plaster with light cornice band", "label_cs": "beton/omítka se světlou římsou"},
-    {"picnum": 195, "kind": "wall", "label_en": "metal rail/track — PRIMARILY the inside faces of jambs only", "label_cs": "kovová kolejnice — primárně jen zevnitř v zárubních", "binding": "strong", "notes": "owner-named 2026-08-31, sharpened 2026-09-01: NOT a door-face texture (zoo v2 misused it on door leaves); it dresses the inner reveal of a doorway, pairs with threshold 200; 32 maps"},
-    {"picnum": 281, "kind": "wall", "label_en": "irregular grey stone masonry", "label_cs": "šedé nepravidelné kamenné zdivo"},
-    {"picnum": 88, "kind": "wall", "label_en": "wooden column/pilaster with base and capital", "label_cs": "dřevěný sloup/pilastr"},
-
-    {"picnum": 2500, "kind": "surface", "label_en": "sky parallax segment", "label_cs": "část nebeské paralaxy", "wiring": false, "notes": "owner correction 2026-08-31: a sky tile, not cave rock — belongs to the parallax sky family, never a walkable material"},
-    {"picnum": 270, "kind": "surface", "label_en": "dirt/earth ground", "label_cs": "hlína/zemina"},
-    {"picnum": 2448, "kind": "surface", "label_en": "marble; also used as snow", "label_cs": "mramor, ale používá se i jako sníh", "binding": "weak", "dual_role": "marble floor indoors vs snow cover outdoors — with the snow-covered street lamp 2493, part of the winter dressing vocabulary"},
-    {"picnum": 491, "kind": "surface", "label_en": "metal plating; can also read as stone", "label_cs": "spíše kovová textura, ale může být i kámen", "binding": "weak", "notes": "owner correction 2026-08-31"},
-    {"picnum": 273, "kind": "surface", "label_en": "rock/cliff", "label_cs": "skála", "notes": "owner correction 2026-08-31: rock, not planks"},
-    {"picnum": 416, "kind": "surface", "label_en": "dark gravel/asphalt", "label_cs": "tmavý štěrk/asfalt"},
-    {"picnum": 3678, "kind": "surface", "label_en": "dark rock / scorched ground", "label_cs": "tmavá skála / spálená zem", "notes": "AI guess, flagged uncertain and not owner-corrected — verify"},
-    {"picnum": 455, "kind": "surface", "label_en": "moss-green surface material (also ceilings/walls)", "label_cs": "povrch v barvě mechu; může být i strop nebo zeď, na skutečný mech se spíš nepoužívá", "binding": "weak", "notes": "owner correction 2026-08-31: a color/material, not vegetation — do not treat as grass"},
-    {"picnum": 361, "kind": "surface", "label_en": "grass/turf with dirt patches", "label_cs": "tráva/drn s prosvítající hlínou", "binding": "strong", "notes": "found via owner hint (E1M1 outdoor areas): dominant floor of E1M1's open-sky sectors; campaign-wide 66 surface uses / 11 maps, 35 as floor under open sky — with dirt 270, the ground vocabulary for the planned park"},
-    {"picnum": 253, "kind": "surface", "label_en": "dressed/worked stone — altars, also concrete-like surfaces", "label_cs": "opracovaný kámen; používá se na oltáře, ale i jako betonová plocha", "binding": "weak", "dual_role": "ceremonial (altar tops) vs utilitarian (concrete-like flat areas) — context decides", "notes": "owner-named 2026-08-31; second-commonest open-sky floor of E1M1 (the cemetery's paved surfaces)"},
-    {"picnum": 1129, "kind": "surface", "label_en": "railway track with sleepers, floor texture", "label_cs": "železniční koleje s pražci, textura na podlahu", "binding": "strong", "notes": "owner-named 2026-08-31; a floor STRIP texture — the track reads top-down as a run, so it wants a narrow sector laid along the route (cf. E3M2's walled town + rail); street/rail anatomy vocabulary for the city"},
-    {"picnum": 146, "kind": "wall", "label_en": "curtain texture", "label_cs": "textura závěsu", "binding": "strong", "notes": "owner 2026-09-01: a curtain is usually a THIN SECTOR that changes width — the texture squashes as it opens and stretches as it closes; the animation IS the texture deformation. E1M1 s125 is the attested example. This resolves design_role's dressing-plane miss on the curtain.", "state_pair": {"translucent_variant": 147}},
-    {"picnum": 147, "kind": "maskwall", "label_en": "curtain, translucent variant", "label_cs": "závěs s průhledností", "binding": "strong", "notes": "owner 2026-09-01: usable as a sprite or maskwall thanks to transparency", "state_pair": {"opaque_variant": 146}},
-    {"picnum": 400, "kind": "wall", "label_en": "multi-storey building facade with windows (backdrop)", "label_cs": "textura vícepatrové budovy s okny", "binding": "weak", "notes": "owner 2026-09-01: a BACKDROP-scale texture (family with 384/381); zoo v2 misused it almost everywhere as generic wall — it implies a whole building, use only where that reading is intended"},
-    {"picnum": 401, "kind": "wall", "label_en": "multi-storey building facade with windows (backdrop)", "label_cs": "textura vícepatrové budovy s okny", "binding": "weak", "notes": "see 400"},
-    {"picnum": 156, "kind": "wall", "label_en": "door leaf texture", "label_cs": "textura křídla dveří", "binding": "strong", "notes": "owner 2026-09-01: belongs on door LEAVES; zoo v2 misused it on plain walls — a wall wearing it falsely promises a door (readability violation)"},
-    {"picnum": 142, "kind": "maskwall", "label_en": "skull-shaped fireplace maskwall", "label_cs": "maskwall krbu ve tvaru lebky", "binding": "strong", "notes": "owner 2026-09-01: NOT curtain family (despite sitting in the 140s run) and nothing to do with 2464; its two-sided-wall uses are the legitimate see-through fireplace mouth — resolves the mask-law review item"},
-    {"picnum": 2464, "kind": "sprite", "label_en": "ejected shotgun shell casing", "label_cs": "vystřelená nábojnice z brokovnice", "binding": "strong", "notes": "owner 2026-09-01: decorative; its 2 two-sided-wall slots in the campaign are mapper accidents, not a family — resolves the mask-law review item"}
+    {
+      "picnum": 73,
+      "kind": "sprite",
+      "translucent": true,
+      "label_en": "hanging clothes",
+      "label_cs": "visící oblečení",
+      "notes": "optional palette",
+      "cross_refs": [
+        "mine_e6m1_shop:hanging_clothes"
+      ]
+    },
+    {
+      "picnum": 2377,
+      "kind": "sprite",
+      "translucent": true,
+      "label_en": "mannequin",
+      "label_cs": "manekýn",
+      "binding": "strong",
+      "notes": "optional palettes; anchor enrichment 30.4x (Phase 2)",
+      "cross_refs": [
+        "mine_e6m1_shop:mannequin"
+      ]
+    },
+    {
+      "picnum": 1050,
+      "kind": "sprite",
+      "translucent": true,
+      "label_en": "electrical wall outlet",
+      "label_cs": "elektrická zásuvka na zdi",
+      "cross_refs": [
+        "decoration-v1: 13 uses / 4 maps, canonical_cstat 385"
+      ]
+    },
+    {
+      "picnum": 758,
+      "kind": "sprite",
+      "translucent": true,
+      "label_en": "voxel chair",
+      "label_cs": "voxelová židle",
+      "cross_refs": [
+        "mine_e6m1_shop:chair"
+      ]
+    },
+    {
+      "picnum": 1165,
+      "kind": "sprite",
+      "translucent": true,
+      "label_en": "wall clock",
+      "label_cs": "nástěnné hodiny",
+      "dual_role": "5 original-campaign occurrences are shootable one-way switches (type 21, how=shot) per switches-v1.json; owner confirms 2026-08-31: clocks are often authored to visually break when shot, hence the switch wiring for the state change",
+      "cross_refs": [
+        "mine_e6m1_shop:wall_clock",
+        "switches-v1:tiles[1165]=5"
+      ]
+    },
+    {
+      "picnum": 2520,
+      "kind": "sprite",
+      "wiring": true,
+      "label_en": "sector sound marker (invisible in game)",
+      "label_cs": "sound — speciální neviditelný sprite",
+      "notes": "owner confirmed 2026-08-31; 1247/1250 campaign uses are sprite type 709 kSoundSector; editor speaker icon",
+      "cross_refs": [
+        "blood-contrast-niche-pair addendum"
+      ]
+    },
+    {
+      "picnum": 2521,
+      "kind": "sprite",
+      "wiring": true,
+      "label_en": "environmental/ambient sound marker (invisible in game)",
+      "label_cs": "environmental sound — speciální neviditelný sprite",
+      "notes": "owner confirmed 2026-08-31; sprite type 710 Ambient SFX; rides turnstiles and rotors as their sound",
+      "cross_refs": [
+        "auto-rotators"
+      ]
+    },
+    {
+      "picnum": 2332,
+      "kind": "sprite",
+      "wiring": true,
+      "label_en": "upper room-over-room stack marker; drawn as a downward arrow",
+      "label_cs": "speciální upper marker, vypadá jako šipka dolů",
+      "notes": "owner 2026-08-31: because of the arrow look it may have been reused somewhere as a literal down-arrow signpost — a signifier-reuse hypothesis worth checking when mining wayfinding; 273/273 campaign stack markers wear 2332 (upper) / 2331 (lower), statnum 0",
+      "cross_refs": [
+        "blood-city ROR findings",
+        "grammar-requests #8"
+      ]
+    },
+    {
+      "picnum": 720,
+      "kind": "wall",
+      "label_en": "grandfather clock, front face",
+      "label_cs": "stojací (grandfather) hodiny přední strana"
+    },
+    {
+      "picnum": 2026,
+      "kind": "wall",
+      "label_en": "shelf",
+      "label_cs": "regál",
+      "binding": "strong",
+      "notes": "owner preliminary review of rendered positives 2026-08-31: all 16 anchor hits are true shelves, across both structural realizations (recessed niche shelving in SSMALL, wall-run shelving on E6M1's retail floor) — the pilot-1 'one tile, two structures' split is two variants of one concept, not a bad anchor",
+      "cross_refs": [
+        "mine_e6m1_shop:shelf_wall",
+        "blood-contrast-shelf-vs-crate"
+      ]
+    },
+    {
+      "picnum": 2635,
+      "kind": "wall",
+      "label_en": "shelf",
+      "label_cs": "regál",
+      "binding": "strong",
+      "notes": "see 2026 — same owner preliminary verdict",
+      "cross_refs": [
+        "mine_e6m1_shop:shelf_wall",
+        "blood-contrast-shelf-vs-crate"
+      ]
+    },
+    {
+      "picnum": 95,
+      "kind": "wall",
+      "label_en": "large crate",
+      "label_cs": "velká bedna",
+      "cross_refs": [
+        "mine_e6m1_shop:crate_surface"
+      ]
+    },
+    {
+      "picnum": 452,
+      "kind": "wall",
+      "label_en": "smaller crate",
+      "label_cs": "menší bedna",
+      "state_pair": {
+        "broken": 462
+      },
+      "cross_refs": [
+        "mine_e6m1_shop:crate_surface"
+      ]
+    },
+    {
+      "picnum": 462,
+      "kind": "wall",
+      "label_en": "smaller crate, broken",
+      "label_cs": "menší rozbitá bedna",
+      "state_pair": {
+        "intact": 452
+      },
+      "notes": "owner correction 2026-08-31: the broken crate is 462 (an earlier tag mistakenly said 469)"
+    },
+    {
+      "picnum": 456,
+      "kind": "wall",
+      "label_en": "crate look, but often a plain wall/ceiling texture",
+      "label_cs": "v podstatě bedna; často se ale používá i jako běžná textura na stropy a stěny",
+      "binding": "weak",
+      "notes": "owner refined 2026-08-31; treat as material, not object identity"
+    },
+    {
+      "picnum": 144,
+      "kind": "wall",
+      "label_en": "wooden lattice, used e.g. as windows",
+      "label_cs": "dřevěná mříž, používá se např. jako okna",
+      "notes": "owner-named 2026-08-31; was the commonest visible object (7x) in the surviving raised-niche class of the Phase 4 re-run"
+    },
+    {
+      "picnum": 202,
+      "kind": "wall",
+      "label_en": "worn wall/facade texture, bricks showing through",
+      "label_cs": "textura zdi/fasády, zašlá, začínají být vidět cihly",
+      "binding": "weak",
+      "dual_role": "the E6M1 shop kit groups it under shelf_wall (2026, 202, 2635); owner reads the tile itself as a worn facade surface — in the shop it is likely the worn backdrop the shelves sit against, not a shelf front",
+      "cross_refs": [
+        "mine_e6m1_shop:shelf_wall"
+      ]
+    },
+    {
+      "picnum": 332,
+      "kind": "sprite",
+      "label_en": "grate/lattice",
+      "label_cs": "mříž",
+      "dual_role": "rides E1M4/DWE1M9 turnstile doors as the four blade grates; also usable as a maskwall grate",
+      "cross_refs": [
+        "auto-rotators: turnstile blades"
+      ]
+    },
+    {
+      "picnum": 468,
+      "kind": "wall",
+      "label_en": "vertical ceiling light, unlit",
+      "label_cs": "svislé stropní světlo, zhasnuté",
+      "state_pair": {
+        "lit": 469
+      },
+      "dual_role": "16 original-campaign occurrences recorded as switch tiles in switches-v1.json — consistent with a light whose lit/unlit state is toggled",
+      "notes": "owner correction 2026-08-31: an earlier tag read 468 as a pipe wall; the pipe wall is 498",
+      "cross_refs": [
+        "switches-v1:tiles[468]=16"
+      ]
+    },
+    {
+      "picnum": 469,
+      "kind": "wall",
+      "label_en": "vertical ceiling light, lit",
+      "label_cs": "svislé stropní světlo, rozsvícené",
+      "state_pair": {
+        "unlit": 468
+      },
+      "notes": "owner correction 2026-08-31 supersedes the earlier 'smaller broken crate' tag for this picnum"
+    },
+    {
+      "picnum": 458,
+      "kind": "wall",
+      "label_en": "rock",
+      "label_cs": "skála",
+      "state_pair": {
+        "mossy": 459
+      }
+    },
+    {
+      "picnum": 459,
+      "kind": "wall",
+      "label_en": "rock, moss-grown",
+      "label_cs": "skála obrostlá mechem",
+      "state_pair": {
+        "bare": 458
+      },
+      "notes": "NOT a crate. BloodCity's templates.py once used it as SMALL_CRATE because it is 128x128 like the real large crate 95 and looks boxy in a thumbnail (owner caught it 2026-08-31); the small crate is 452 (64x64). Do not confuse with sprite TYPE 459 = kTrapExploder, a different namespace."
+    },
+    {
+      "picnum": 464,
+      "kind": "wall",
+      "label_en": "grate door",
+      "label_cs": "dveře mříže",
+      "notes": "not to be confused with cstat value 464 in keys-v1/switches-v1 histograms"
+    },
+    {
+      "picnum": 2476,
+      "kind": "wall",
+      "label_en": "cash register top surface; also machinery",
+      "label_cs": "kasa – horní plocha pokladny; strojní zařízení",
+      "dual_role": "shop context reads it as the register top, industrial context as machinery",
+      "cross_refs": [
+        "mine_e6m1_shop:cash_register_surface",
+        "mine_sewer_kit:machinery"
+      ]
+    },
+    {
+      "picnum": 2477,
+      "kind": "wall",
+      "label_en": "machinery",
+      "label_cs": "strojní zařízení",
+      "cross_refs": [
+        "mine_sewer_kit:machinery"
+      ]
+    },
+    {
+      "picnum": 2462,
+      "kind": "wall",
+      "label_en": "machinery",
+      "label_cs": "strojní zařízení",
+      "cross_refs": [
+        "mine_sewer_kit:machinery"
+      ]
+    },
+    {
+      "picnum": 2463,
+      "kind": "wall",
+      "label_en": "machinery",
+      "label_cs": "strojní zařízení",
+      "cross_refs": [
+        "mine_sewer_kit:machinery"
+      ]
+    },
+    {
+      "picnum": 34,
+      "kind": "wall",
+      "label_en": "wood, usable e.g. for counter/cabinet sides",
+      "label_cs": "dřevo použitelné např. na boky pultu/skříněk",
+      "cross_refs": [
+        "mine_e6m1_shop:wood_casework"
+      ]
+    },
+    {
+      "picnum": 35,
+      "kind": "wall",
+      "label_en": "drawer fronts",
+      "label_cs": "přední strana šuplíků",
+      "cross_refs": [
+        "mine_e6m1_shop:drawer_surface"
+      ]
+    },
+    {
+      "picnum": 36,
+      "kind": "wall",
+      "label_en": "drawer fronts",
+      "label_cs": "přední strana šuplíků",
+      "cross_refs": [
+        "mine_e6m1_shop:drawer_surface"
+      ]
+    },
+    {
+      "picnum": 1097,
+      "kind": "wall",
+      "label_en": "sheet metal for shafts",
+      "label_cs": "plech pro šachty",
+      "cross_refs": [
+        "mine_e6m1_shop:shaft_metal"
+      ]
+    },
+    {
+      "picnum": 63,
+      "kind": "wall",
+      "label_en": "barrel wall, broken",
+      "label_cs": "zeď ze sudů rozbitá",
+      "state_pair": {
+        "intact": 64
+      }
+    },
+    {
+      "picnum": 64,
+      "kind": "wall",
+      "label_en": "barrel wall",
+      "label_cs": "zeď ze sudů",
+      "state_pair": {
+        "broken": 63
+      }
+    },
+    {
+      "picnum": 31,
+      "kind": "wall",
+      "label_en": "bookcase front",
+      "label_cs": "přední strana knihovny"
+    },
+    {
+      "picnum": 32,
+      "kind": "wall",
+      "label_en": "bookcase front",
+      "label_cs": "přední strana knihovny"
+    },
+    {
+      "picnum": 33,
+      "kind": "wall",
+      "label_en": "bookcase front",
+      "label_cs": "přední strana knihovny"
+    },
+    {
+      "picnum": 496,
+      "kind": "wall",
+      "label_en": "technical wall with pipes",
+      "label_cs": "technická zeď s trubkami",
+      "cross_refs": [
+        "mine_sewer_kit:pipe_walls"
+      ]
+    },
+    {
+      "picnum": 497,
+      "kind": "wall",
+      "label_en": "technical wall with pipes",
+      "label_cs": "technická zeď s trubkami",
+      "cross_refs": [
+        "mine_sewer_kit:pipe_walls"
+      ]
+    },
+    {
+      "picnum": 498,
+      "kind": "wall",
+      "label_en": "technical wall with pipes",
+      "label_cs": "technická zeď s trubkami",
+      "notes": "owner correction 2026-08-31: this replaces the earlier erroneous 468 tag; completes the consecutive pipe-wall run 496-499",
+      "cross_refs": [
+        "mine_sewer_kit:pipe_walls (after correction)"
+      ]
+    },
+    {
+      "picnum": 499,
+      "kind": "wall",
+      "label_en": "technical wall with pipes",
+      "label_cs": "technická zeď s trubkami",
+      "cross_refs": [
+        "mine_sewer_kit:pipe_walls"
+      ]
+    },
+    {
+      "picnum": 500,
+      "kind": "wall",
+      "label_en": "technical door",
+      "label_cs": "technické dveře",
+      "cross_refs": [
+        "mine_sewer_kit:sewer_door"
+      ]
+    },
+    {
+      "picnum": 501,
+      "kind": "wall",
+      "label_en": "technical light",
+      "label_cs": "technické světlo",
+      "notes": "owner label is more general than mine_sewer_kit's 'sewer_light'",
+      "cross_refs": [
+        "mine_sewer_kit:sewer_light"
+      ]
+    },
+    {
+      "picnum": 502,
+      "kind": "wall",
+      "label_en": "sewer grate",
+      "label_cs": "stoková mříž",
+      "cross_refs": [
+        "mine_sewer_kit:sewer_grate"
+      ]
+    },
+    {
+      "picnum": 463,
+      "kind": "maskwall",
+      "label_en": "grate",
+      "label_cs": "mříž"
+    },
+    {
+      "picnum": 465,
+      "kind": "maskwall",
+      "label_en": "grate",
+      "label_cs": "mříž",
+      "state_pair": {
+        "broken": 466
+      },
+      "dual_role": "also rides DNE3L6's turnstile doors as the blade grates",
+      "cross_refs": [
+        "auto-rotators: turnstile blades"
+      ]
+    },
+    {
+      "picnum": 466,
+      "kind": "maskwall",
+      "label_en": "grate, broken",
+      "label_cs": "rozbitá mříž",
+      "state_pair": {
+        "intact": 465
+      }
+    },
+    {
+      "picnum": 2101,
+      "kind": "sprite",
+      "binding": "strong",
+      "label_en": "flame (small fire)",
+      "label_cs": "plamen",
+      "notes": "AI visual guess confirmed by owner 2026-08-31 (batch of 24 frequent unnamed decorations)"
+    },
+    {
+      "picnum": 3566,
+      "kind": "sprite",
+      "binding": "strong",
+      "label_en": "large flame / bonfire",
+      "label_cs": "velký plamen"
+    },
+    {
+      "picnum": 731,
+      "kind": "sprite",
+      "binding": "strong",
+      "label_en": "blood (spreading)",
+      "label_cs": "krev",
+      "notes": "owner correction: reads like flames but is blood"
+    },
+    {
+      "picnum": 713,
+      "kind": "sprite",
+      "binding": "strong",
+      "label_en": "blood splatter (wall)",
+      "label_cs": "krvavý stříkanec"
+    },
+    {
+      "picnum": 732,
+      "kind": "sprite",
+      "binding": "strong",
+      "label_en": "gore / blood mass",
+      "label_cs": "krvavá kaše"
+    },
+    {
+      "picnum": 929,
+      "kind": "sprite",
+      "binding": "strong",
+      "label_en": "blood dripping from ceiling",
+      "label_cs": "krev kapající ze stropu"
+    },
+    {
+      "picnum": 754,
+      "kind": "sprite",
+      "binding": "strong",
+      "label_en": "thin smoke/steam column",
+      "label_cs": "sloupec kouře/páry"
+    },
+    {
+      "picnum": 672,
+      "kind": "sprite",
+      "binding": "strong",
+      "label_en": "smoke/steam plume",
+      "label_cs": "oblak kouře/páry"
+    },
+    {
+      "picnum": 2915,
+      "kind": "sprite",
+      "label_en": "water surface; sometimes clouds seen from above",
+      "label_cs": "voda; občas použitá jako mraky pod sebou vysoko nahoře",
+      "dual_role": "water decal on floors, cloud layer far below when high up — context decides"
+    },
+    {
+      "picnum": 580,
+      "kind": "sprite",
+      "binding": "strong",
+      "label_en": "standing candelabrum, three candles",
+      "label_cs": "stojací kandelábr se svíčkami"
+    },
+    {
+      "picnum": 2493,
+      "kind": "sprite",
+      "binding": "strong",
+      "label_en": "street lamp, snow-covered",
+      "label_cs": "pouliční lampa, zasněžená",
+      "notes": "owner refinement: the snow matters — winter street dressing"
+    },
+    {
+      "picnum": 384,
+      "kind": "sprite",
+      "label_en": "brick facade with shuttered window (backdrop)",
+      "label_cs": "cihlová fasáda s okenicemi"
+    },
+    {
+      "picnum": 381,
+      "kind": "sprite",
+      "label_en": "facade section, cornice top, brick base (backdrop)",
+      "label_cs": "segment fasády s římsou"
+    },
+    {
+      "picnum": 371,
+      "kind": "sprite",
+      "label_en": "stone/slate wall with diamond emblem",
+      "label_cs": "kamenná stěna s kosočtvercovým emblémem"
+    },
+    {
+      "picnum": 363,
+      "kind": "sprite",
+      "label_en": "stone block masonry",
+      "label_cs": "kamenné kvádrové zdivo"
+    },
+    {
+      "picnum": 470,
+      "kind": "sprite",
+      "label_en": "riveted metal plating",
+      "label_cs": "nýtované kovové plátování"
+    },
+    {
+      "picnum": 191,
+      "kind": "sprite",
+      "label_en": "metal hatch/grate with X brace",
+      "label_cs": "kovový poklop s X výztuhou"
+    },
+    {
+      "picnum": 58,
+      "kind": "sprite",
+      "label_en": "iron bars (jail)",
+      "label_cs": "vězeňské mříže"
+    },
+    {
+      "picnum": 256,
+      "kind": "sprite",
+      "label_en": "wooden plank boarding; often a wooden rope-bridge deck",
+      "label_cs": "dřevěné bednění; často i dřevěný provazový most",
+      "dual_role": "boarding panel vs rope-bridge deck — context decides"
+    },
+    {
+      "picnum": 69,
+      "kind": "sprite",
+      "label_en": "single wooden plank",
+      "label_cs": "prkno",
+      "notes": "variant of furniture.py plank 68"
+    },
+    {
+      "picnum": 515,
+      "kind": "sprite",
+      "label_en": "straw (loose tangle)",
+      "label_cs": "sláma",
+      "notes": "owner correction: straw rather than branches"
+    },
+    {
+      "picnum": 838,
+      "kind": "sprite",
+      "label_en": "crack/hole in a wall",
+      "label_cs": "prasklina/díra ve zdi",
+      "notes": "possibly reads as a web in some placements"
+    },
+    {
+      "picnum": 511,
+      "kind": "sprite",
+      "label_en": "small metal strip/plate (?)",
+      "label_cs": "kovový pelíšek(?) — owner unsure",
+      "notes": "tentative on both sides; verify against occurrences before use"
+    },
+    {
+      "picnum": 3812,
+      "kind": "sprite",
+      "label_en": "letter E, font tile",
+      "label_cs": "písmeno E",
+      "notes": "tiles 3808-3833 are A-Z, already owned by bloodmap/lettering.py — facade signage (Phase 7) builds on it"
+    },
+    {
+      "picnum": 449,
+      "kind": "wall",
+      "label_en": "rough rock face / rubble stone",
+      "label_cs": "hrubá skála / lomový kámen",
+      "notes": "most-used unnamed wall in the campaign (4312 uses / 23 maps); AI visual guess batch 2026-08-31, owner corrected only 195 and 200"
+    },
+    {
+      "picnum": 80,
+      "kind": "wall",
+      "label_en": "weathered vertical stone wall with hints of moss",
+      "label_cs": "zvětralá svislá kamenná stěna s náznaky mechu",
+      "notes": "owner confirmed 2026-08-31: stone, not planks"
+    },
+    {
+      "picnum": 91,
+      "kind": "wall",
+      "label_en": "brick wall with base course",
+      "label_cs": "cihlová zeď se soklem"
+    },
+    {
+      "picnum": 200,
+      "kind": "wall",
+      "label_en": "metal threshold with rivets",
+      "label_cs": "kovový práh s nýty",
+      "dual_role": "decorative trim, or a part of metal mechanisms",
+      "notes": "owner-named 2026-08-31; 32 maps — aperture-family trim (thresholds), pairs naturally with 195"
+    },
+    {
+      "picnum": 2490,
+      "kind": "wall",
+      "label_en": "light marble",
+      "label_cs": "světlý mramor"
+    },
+    {
+      "picnum": 109,
+      "kind": "wall",
+      "label_en": "plaster wall with top beam and carved base",
+      "label_cs": "omítková stěna s trámem a zdobeným soklem"
+    },
+    {
+      "picnum": 427,
+      "kind": "wall",
+      "label_en": "grey ashlar stone blocks",
+      "label_cs": "šedé kamenné kvádry"
+    },
+    {
+      "picnum": 90,
+      "kind": "wall",
+      "label_en": "worn large bricks with moss",
+      "label_cs": "opotřebené velké cihly s mechem"
+    },
+    {
+      "picnum": 84,
+      "kind": "wall",
+      "label_en": "wooden paneling / wainscot",
+      "label_cs": "dřevěné obložení",
+      "notes": "owner correction 2026-08-31: paneling, not a door leaf"
+    },
+    {
+      "picnum": 385,
+      "kind": "wall",
+      "label_en": "rough tan brickwork",
+      "label_cs": "hrubé světlé cihlové zdivo"
+    },
+    {
+      "picnum": 21,
+      "kind": "wall",
+      "label_en": "dark vertical planks",
+      "label_cs": "tmavá svislá prkna"
+    },
+    {
+      "picnum": 67,
+      "kind": "wall",
+      "label_en": "dark horizontal planks",
+      "label_cs": "tmavá vodorovná prkna"
+    },
+    {
+      "picnum": 369,
+      "kind": "wall",
+      "label_en": "concrete/plaster with light cornice band",
+      "label_cs": "beton/omítka se světlou římsou"
+    },
+    {
+      "picnum": 195,
+      "kind": "wall",
+      "label_en": "metal rail/track — PRIMARILY the inside faces of jambs only",
+      "label_cs": "kovová kolejnice — primárně jen zevnitř v zárubních",
+      "binding": "strong",
+      "notes": "owner-named 2026-08-31, sharpened 2026-09-01: NOT a door-face texture (zoo v2 misused it on door leaves); it dresses the inner reveal of a doorway, pairs with threshold 200; 32 maps"
+    },
+    {
+      "picnum": 281,
+      "kind": "wall",
+      "label_en": "irregular grey stone masonry",
+      "label_cs": "šedé nepravidelné kamenné zdivo"
+    },
+    {
+      "picnum": 88,
+      "kind": "wall",
+      "label_en": "wooden column/pilaster with base and capital",
+      "label_cs": "dřevěný sloup/pilastr"
+    },
+    {
+      "picnum": 2500,
+      "kind": "surface",
+      "label_en": "sky parallax segment",
+      "label_cs": "část nebeské paralaxy",
+      "wiring": false,
+      "notes": "owner correction 2026-08-31: a sky tile, not cave rock — belongs to the parallax sky family, never a walkable material"
+    },
+    {
+      "picnum": 270,
+      "kind": "surface",
+      "label_en": "dirt/earth ground",
+      "label_cs": "hlína/zemina"
+    },
+    {
+      "picnum": 2448,
+      "kind": "surface",
+      "label_en": "marble; also used as snow",
+      "label_cs": "mramor, ale používá se i jako sníh",
+      "binding": "weak",
+      "dual_role": "marble floor indoors vs snow cover outdoors — with the snow-covered street lamp 2493, part of the winter dressing vocabulary"
+    },
+    {
+      "picnum": 491,
+      "kind": "surface",
+      "label_en": "metal plating; can also read as stone",
+      "label_cs": "spíše kovová textura, ale může být i kámen",
+      "binding": "weak",
+      "notes": "owner correction 2026-08-31"
+    },
+    {
+      "picnum": 273,
+      "kind": "surface",
+      "label_en": "rock/cliff",
+      "label_cs": "skála",
+      "notes": "owner correction 2026-08-31: rock, not planks"
+    },
+    {
+      "picnum": 416,
+      "kind": "surface",
+      "label_en": "dark gravel/asphalt",
+      "label_cs": "tmavý štěrk/asfalt"
+    },
+    {
+      "picnum": 3678,
+      "kind": "surface",
+      "label_en": "dark rock / scorched ground",
+      "label_cs": "tmavá skála / spálená zem",
+      "notes": "AI guess, flagged uncertain and not owner-corrected — verify"
+    },
+    {
+      "picnum": 455,
+      "kind": "surface",
+      "label_en": "moss-green surface material (also ceilings/walls)",
+      "label_cs": "povrch v barvě mechu; může být i strop nebo zeď, na skutečný mech se spíš nepoužívá",
+      "binding": "weak",
+      "notes": "owner correction 2026-08-31: a color/material, not vegetation — do not treat as grass"
+    },
+    {
+      "picnum": 361,
+      "kind": "surface",
+      "label_en": "grass/turf with dirt patches",
+      "label_cs": "tráva/drn s prosvítající hlínou",
+      "binding": "strong",
+      "notes": "found via owner hint (E1M1 outdoor areas): dominant floor of E1M1's open-sky sectors; campaign-wide 66 surface uses / 11 maps, 35 as floor under open sky — with dirt 270, the ground vocabulary for the planned park"
+    },
+    {
+      "picnum": 253,
+      "kind": "surface",
+      "label_en": "dressed/worked stone — altars, also concrete-like surfaces",
+      "label_cs": "opracovaný kámen; používá se na oltáře, ale i jako betonová plocha",
+      "binding": "weak",
+      "dual_role": "ceremonial (altar tops) vs utilitarian (concrete-like flat areas) — context decides",
+      "notes": "owner-named 2026-08-31; second-commonest open-sky floor of E1M1 (the cemetery's paved surfaces)"
+    },
+    {
+      "picnum": 1129,
+      "kind": "surface",
+      "label_en": "railway track with sleepers, floor texture",
+      "label_cs": "železniční koleje s pražci, textura na podlahu",
+      "binding": "strong",
+      "notes": "owner-named 2026-08-31; a floor STRIP texture — the track reads top-down as a run, so it wants a narrow sector laid along the route (cf. E3M2's walled town + rail); street/rail anatomy vocabulary for the city"
+    },
+    {
+      "picnum": 146,
+      "kind": "wall",
+      "label_en": "curtain texture",
+      "label_cs": "textura závěsu",
+      "binding": "strong",
+      "notes": "owner 2026-09-01: a curtain is usually a THIN SECTOR that changes width — the texture squashes as it opens and stretches as it closes; the animation IS the texture deformation. E1M1 s125 is the attested example. This resolves design_role's dressing-plane miss on the curtain.",
+      "state_pair": {
+        "translucent_variant": 147
+      }
+    },
+    {
+      "picnum": 147,
+      "kind": "maskwall",
+      "label_en": "curtain, translucent variant",
+      "label_cs": "závěs s průhledností",
+      "binding": "strong",
+      "notes": "owner 2026-09-01: usable as a sprite or maskwall thanks to transparency",
+      "state_pair": {
+        "opaque_variant": 146
+      }
+    },
+    {
+      "picnum": 400,
+      "kind": "wall",
+      "label_en": "multi-storey building facade with windows (backdrop)",
+      "label_cs": "textura vícepatrové budovy s okny",
+      "binding": "weak",
+      "notes": "owner 2026-09-01: a BACKDROP-scale texture (family with 384/381); zoo v2 misused it almost everywhere as generic wall — it implies a whole building, use only where that reading is intended"
+    },
+    {
+      "picnum": 401,
+      "kind": "wall",
+      "label_en": "multi-storey building facade with windows (backdrop)",
+      "label_cs": "textura vícepatrové budovy s okny",
+      "binding": "weak",
+      "notes": "see 400"
+    },
+    {
+      "picnum": 156,
+      "kind": "wall",
+      "label_en": "door leaf texture",
+      "label_cs": "textura křídla dveří",
+      "binding": "strong",
+      "notes": "owner 2026-09-01: belongs on door LEAVES; zoo v2 misused it on plain walls — a wall wearing it falsely promises a door (readability violation)"
+    },
+    {
+      "picnum": 142,
+      "kind": "maskwall",
+      "label_en": "skull-shaped fireplace maskwall",
+      "label_cs": "maskwall krbu ve tvaru lebky",
+      "binding": "strong",
+      "notes": "owner 2026-09-01: NOT curtain family (despite sitting in the 140s run) and nothing to do with 2464; its two-sided-wall uses are the legitimate see-through fireplace mouth — resolves the mask-law review item"
+    },
+    {
+      "picnum": 2464,
+      "kind": "sprite",
+      "label_en": "ejected shotgun shell casing",
+      "label_cs": "vystřelená nábojnice z brokovnice",
+      "binding": "strong",
+      "notes": "owner 2026-09-01: decorative; its 2 two-sided-wall slots in the campaign are mapper accidents, not a family — resolves the mask-law review item"
+    },
+    {
+      "picnum": 379,
+      "kind": "wall",
+      "label_en": "stone wall",
+      "label_cs": "Kamenná zeď",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 28,
+      "kind": "wall",
+      "label_en": "wooden wall",
+      "label_cs": "Dřevěná zeď",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 6,
+      "kind": "wall",
+      "label_en": "kerb",
+      "label_cs": "Obrubník",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 4,
+      "kind": "surface",
+      "label_en": "stone paving",
+      "label_cs": "Kamenná dlažba",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 417,
+      "kind": "wall",
+      "label_en": "brick wall with crumbling plaster",
+      "label_cs": "Cihlová zeď s rozpadající se omítkou",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 454,
+      "kind": "surface",
+      "label_en": "ceiling tiles",
+      "label_cs": "Stropní dlaždice",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 181,
+      "kind": "wall",
+      "label_en": "brick wall",
+      "label_cs": "Cihlová zeď",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 304,
+      "kind": "surface",
+      "label_en": "carpet",
+      "label_cs": "Koberec",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 352,
+      "kind": "surface",
+      "label_en": "cobblestone",
+      "label_cs": "Cobblestone",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 433,
+      "kind": "surface",
+      "label_en": "dirt",
+      "label_cs": "Hlína",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 3491,
+      "kind": "surface",
+      "label_en": "red sky parallax",
+      "label_cs": "Paralaxa rudého nebe",
+      "notes": "owner tile sheet 2026-09-03; parallax sky, not a material; one sky per connected outdoor space (decisions 27/W4)"
+    },
+    {
+      "picnum": 409,
+      "kind": "wall",
+      "label_en": "grey stone wall with meander ornament",
+      "label_cs": "Šedá kamenná zeď s meandrovým ornamentem",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 406,
+      "kind": "wall",
+      "label_en": "grey stone wall",
+      "label_cs": "Šedá kamenná zeď",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 20,
+      "kind": "wall",
+      "label_en": "wood",
+      "label_cs": "Dřevěné",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 2540,
+      "kind": "sprite",
+      "label_en": "key-door sign, skull",
+      "label_cs": "Symbol že dveře vyžadují klíč, lebka",
+      "notes": "owner tile sheet 2026-09-03; key-door decal"
+    },
+    {
+      "picnum": 255,
+      "kind": "wall",
+      "label_en": "metal wall, lightly rusted",
+      "label_cs": "Kovová lehce rezavá zeď",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 504,
+      "kind": "surface",
+      "label_en": "mirror / room-over-room surface",
+      "label_cs": "Zrcadlo, ROR",
+      "notes": "owner tile sheet 2026-09-03; the room-over-room / mirror surface: an engine surface, never a material choice"
+    },
+    {
+      "picnum": 510,
+      "kind": "wall",
+      "label_en": "metal plate",
+      "label_cs": "Plíšek",
+      "notes": "owner tile sheet 2026-09-03; a plate, NOT a lamp: it was chosen as a 'sconce' by brightness once (walk W7, 2026-09-03)"
+    },
+    {
+      "picnum": 266,
+      "kind": "maskwall",
+      "label_en": "glass or metal sheet (mask)",
+      "label_cs": "Textura skla nebo kovového plechu",
+      "notes": "owner tile sheet 2026-09-03; mask: glass or a metal sheet, context decides"
+    },
+    {
+      "picnum": 915,
+      "kind": "sprite",
+      "label_en": "blood splatter",
+      "label_cs": "Krvavý cákanec",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 795,
+      "kind": "sprite",
+      "label_en": "flat round light",
+      "label_cs": "Ploché kulaté světlo",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 170,
+      "kind": "wall",
+      "label_en": "wooden boarding",
+      "label_cs": "Dřevěné bednění",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 2542,
+      "kind": "sprite",
+      "label_en": "key-door sign, fire",
+      "label_cs": "Symbol že dveře vyžadují klíč, oheň",
+      "notes": "owner tile sheet 2026-09-03; key-door decal"
+    },
+    {
+      "picnum": 2545,
+      "kind": "sprite",
+      "label_en": "key-door sign, moon",
+      "label_cs": "Symbol že dveře vyžadují klíč, měsíc",
+      "notes": "owner tile sheet 2026-09-03; key-door decal"
+    },
+    {
+      "picnum": 390,
+      "kind": "surface",
+      "label_en": "clay wall",
+      "label_cs": "Hliněná zeď",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 296,
+      "kind": "surface",
+      "label_en": "grimy tiles",
+      "label_cs": "Zašlé kachličky",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 378,
+      "kind": "wall",
+      "label_en": "glowing wood",
+      "label_cs": "Žhavé dřevo",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 30,
+      "kind": "wall",
+      "label_en": "wooden door",
+      "label_cs": "Dřevěné dveře",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 301,
+      "kind": "surface",
+      "label_en": "carpet",
+      "label_cs": "Koberec",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 300,
+      "kind": "wall",
+      "label_en": "carpet",
+      "label_cs": "Koberec",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 2544,
+      "kind": "sprite",
+      "label_en": "key-door sign, spider",
+      "label_cs": "Symbol že dveře vyžadují klíč, pavouk",
+      "notes": "owner tile sheet 2026-09-03; key-door decal"
+    },
+    {
+      "picnum": 1008,
+      "kind": "wall",
+      "label_en": "tablecloth, carpet",
+      "label_cs": "Ubrus, koberec",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 826,
+      "kind": "sprite",
+      "label_en": "bloody writing 'stay out'",
+      "label_cs": "Krvavý nápis stay out",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 96,
+      "kind": "wall",
+      "label_en": "iron-bound door",
+      "label_cs": "Okované dveře",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 1721,
+      "kind": "sprite",
+      "label_en": "hanging wires",
+      "label_cs": "Visící dráty",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 751,
+      "kind": "sprite",
+      "label_en": "wall sign 'manager'",
+      "label_cs": "cedulka na zeď \"manager\"",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 393,
+      "kind": "wall",
+      "label_en": "clay facade with a window",
+      "label_cs": "Hliněná fasáda s oknem",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 380,
+      "kind": "wall",
+      "label_en": "brick-and-stone house facade with a window",
+      "label_cs": "Fasáda z cihel a kamene domu s oknem",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 397,
+      "kind": "wall",
+      "label_en": "wooden facade with a window",
+      "label_cs": "Dřevěná fasáda s oknem",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 776,
+      "kind": "sprite",
+      "label_en": "spurting blood",
+      "label_cs": "Vystřikující krev",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 1045,
+      "kind": "sprite",
+      "label_en": "explosion scorch mark",
+      "label_cs": "Stopa po výbuchu",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 981,
+      "kind": "sprite",
+      "label_en": "poster 'JOJO the idiot circus boy'",
+      "label_cs": "Plakát JOJO the idiot circus boy",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 1057,
+      "kind": "wall",
+      "label_en": "cobweb (wall)",
+      "label_cs": "Pavučina zeď",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 1058,
+      "kind": "sprite",
+      "label_en": "cobweb (decoration)",
+      "label_cs": "Pavučina deko",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 471,
+      "kind": "wall",
+      "label_en": "carpet",
+      "label_cs": "koberec",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 712,
+      "kind": "sprite",
+      "label_en": "clay jug",
+      "label_cs": "Hliněný džbán",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 2937,
+      "kind": "sprite",
+      "label_en": "dead cultist",
+      "label_cs": "Mrtvý cultist",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 163,
+      "kind": "wall",
+      "label_en": "painting",
+      "label_cs": "Obraz",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 574,
+      "kind": "sprite",
+      "label_en": "drinking glass",
+      "label_cs": "Sklenička",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 1098,
+      "kind": "sprite",
+      "label_en": "shaft grate",
+      "label_cs": "Šachetní mříž",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 1061,
+      "kind": "sprite",
+      "label_en": "giant spider cocoon",
+      "label_cs": "Kokon od obřího pavouka",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 716,
+      "kind": "wall",
+      "label_en": "painting",
+      "label_cs": "Obraz",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 711,
+      "kind": "sprite",
+      "label_en": "broken mirror",
+      "label_cs": "rozbité zrcadlo",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 269,
+      "kind": "sprite",
+      "label_en": "painting",
+      "label_cs": "Obraz",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 1105,
+      "kind": "sprite",
+      "label_en": "bloody writing 'sloth'",
+      "label_cs": "krvavý nápis sloth",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 110,
+      "kind": "wall",
+      "label_en": "cobblestone",
+      "label_cs": "cobblestone",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 1044,
+      "kind": "sprite",
+      "label_en": "grate",
+      "label_cs": "Mříž",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 43,
+      "kind": "wall",
+      "label_en": "stone",
+      "label_cs": "Kámen",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 120,
+      "kind": "surface",
+      "label_en": "clay tiles",
+      "label_cs": "Hliněné dlaždice",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 89,
+      "kind": "wall",
+      "label_en": "stone wall",
+      "label_cs": "Kamenná stěna",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 436,
+      "kind": "wall",
+      "label_en": "metal threshold",
+      "label_cs": "Kovový práh",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 660,
+      "kind": "sprite",
+      "label_en": "underwater grass",
+      "label_cs": "Podvodní tráva",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 664,
+      "kind": "sprite",
+      "label_en": "underwater grass",
+      "label_cs": "Podvodní tráva",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 2288,
+      "kind": "surface",
+      "label_en": "fluorescent light, vertical tile",
+      "label_cs": "Zářivka, vertikální tile",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 2039,
+      "kind": "surface",
+      "label_en": "teleport pad",
+      "label_cs": "Teleport",
+      "notes": "owner tile sheet 2026-09-03; teleporter pad surface"
+    },
+    {
+      "picnum": 297,
+      "kind": "wall",
+      "label_en": "tiles",
+      "label_cs": "Dlaždičky",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 641,
+      "kind": "sprite",
+      "label_en": "lamp hanging on a chain",
+      "label_cs": "Lampa visící na řetězu",
+      "notes": "owner tile sheet 2026-09-03; hangs from a chain: needs a real ceiling above it, never open sky (walk W3, 2026-09-02)"
+    },
+    {
+      "picnum": 290,
+      "kind": "surface",
+      "label_en": "chequerboard paving",
+      "label_cs": "Dlažba s vzorem šachovnice",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 1120,
+      "kind": "surface",
+      "label_en": "green dirty water",
+      "label_cs": "Zelená špinavá voda",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 530,
+      "kind": "surface",
+      "label_en": "lava, scorched ground",
+      "label_cs": "Láva, rozpálená zem",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 997,
+      "kind": "surface",
+      "label_en": "sewage surface",
+      "label_cs": "Hladina splašek",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 5,
+      "kind": "wall",
+      "label_en": "wall of grey stone bricks",
+      "label_cs": "Zeď z šedých kamenných cihel",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 358,
+      "kind": "wall",
+      "label_en": "stone",
+      "label_cs": "Kámen",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 205,
+      "kind": "wall",
+      "label_en": "vertical black-and-yellow hazard stripes",
+      "label_cs": "vertikální černožluté bezpečnostní šrafování",
+      "notes": "owner tile sheet 2026-09-03; hazard stripes: an industrial/lift edge marking"
+    },
+    {
+      "picnum": 274,
+      "kind": "surface",
+      "label_en": "rough coarse stone, almost cobblestone",
+      "label_cs": "Hrubý, drsný kámen až skoro cobblestone",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 438,
+      "kind": "surface",
+      "label_en": "embossed metal floor",
+      "label_cs": "reliéfní kovová podlaha",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 495,
+      "kind": "wall",
+      "label_en": "metal door",
+      "label_cs": "Kovové dveře",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 275,
+      "kind": "surface",
+      "label_en": "rough coarse stone",
+      "label_cs": "Hrubý, drsný kámen",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 130,
+      "kind": "wall",
+      "label_en": "clay wall",
+      "label_cs": "Hliněná stěna",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 2342,
+      "kind": "wall",
+      "label_en": "fire (mask wall)",
+      "label_cs": "Maskwall oheň",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 10,
+      "kind": "surface",
+      "label_en": "lattice window with a diamond grid",
+      "label_cs": "mřížované okno s kosočtvercovým rastrem",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 9,
+      "kind": "wall",
+      "label_en": "metal roll-up gate",
+      "label_cs": "Kovová rolovací vrata",
+      "notes": "owner tile sheet 2026-09-03; a door dialect: roll-up gate"
+    },
+    {
+      "picnum": 2290,
+      "kind": "surface",
+      "label_en": "fluorescent light",
+      "label_cs": "Zářivka",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 23,
+      "kind": "wall",
+      "label_en": "iron-bound door",
+      "label_cs": "Okované dveře",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 230,
+      "kind": "wall",
+      "label_en": "flesh wall",
+      "label_cs": "Zeď z masa",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 2453,
+      "kind": "wall",
+      "label_en": "technical riveted metal cladding",
+      "label_cs": "Technický kovový nýtovaný obklad",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 280,
+      "kind": "surface",
+      "label_en": "rubble masonry",
+      "label_cs": "suťové zdivo",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 180,
+      "kind": "wall",
+      "label_en": "brick wall",
+      "label_cs": "Cihlová zeď",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 41,
+      "kind": "wall",
+      "label_en": "brown stone",
+      "label_cs": "Hnědý kámen",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 215,
+      "kind": "wall",
+      "label_en": "pressed metal",
+      "label_cs": "Prolisovaný kov",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 177,
+      "kind": "wall",
+      "label_en": "wooden wall",
+      "label_cs": "Dřevěná zeď",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 178,
+      "kind": "wall",
+      "label_en": "plank deck, plank floor",
+      "label_cs": "prkenná paluba, fošnová podlaha",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 172,
+      "kind": "wall",
+      "label_en": "timber shoring",
+      "label_cs": "dřevěná výdřeva",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 346,
+      "kind": "wall",
+      "label_en": "gravestone",
+      "label_cs": "Náhrobek",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 503,
+      "kind": "wall",
+      "label_en": "metal wall",
+      "label_cs": "Kovová zeď",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 199,
+      "kind": "wall",
+      "label_en": "metal door",
+      "label_cs": "Kovové dveře",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 105,
+      "kind": "wall",
+      "label_en": "coffered wood panelling",
+      "label_cs": "Kazetové dřevěné obložení",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 569,
+      "kind": "wall",
+      "label_en": "stained glass",
+      "label_cs": "Barevné sklo",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 291,
+      "kind": "surface",
+      "label_en": "bloody tiles",
+      "label_cs": "Krvavé dlaždice",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 217,
+      "kind": "wall",
+      "label_en": "metal platform, usually a lift floor",
+      "label_cs": "Kovová plošina, většinou podlaha výtahu",
+      "notes": "owner tile sheet 2026-09-03; lift floor"
+    },
+    {
+      "picnum": 219,
+      "kind": "sprite",
+      "label_en": "drain",
+      "label_cs": "Odtok",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 411,
+      "kind": "wall",
+      "label_en": "cobblestone",
+      "label_cs": "Cobblestone",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 421,
+      "kind": "wall",
+      "label_en": "wall of grey bricks",
+      "label_cs": "Zeď z šedých cihel",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 2473,
+      "kind": "wall",
+      "label_en": "snow-covered cobblestone",
+      "label_cs": "Cobblestone od sněhu",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 2474,
+      "kind": "wall",
+      "label_en": "snow-covered wooden plank wall",
+      "label_cs": "Dřevěná zeď z planěk od sněhu",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 329,
+      "kind": "wall",
+      "label_en": "hedge",
+      "label_cs": "Živý plot",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 179,
+      "kind": "wall",
+      "label_en": "wooden panel",
+      "label_cs": "Dřevěný panel",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 160,
+      "kind": "wall",
+      "label_en": "clay wall",
+      "label_cs": "Hliněná zeď",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 153,
+      "kind": "wall",
+      "label_en": "clay wall with a wooden skirting",
+      "label_cs": "hliněná zeď s dřevěným soklem",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 287,
+      "kind": "surface",
+      "label_en": "interlocking paving",
+      "label_cs": "zámková dlažba",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 394,
+      "kind": "wall",
+      "label_en": "clay wall",
+      "label_cs": "Hliněná zeď",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 159,
+      "kind": "wall",
+      "label_en": "crumpled curtain",
+      "label_cs": "Zkrabacený závěs",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 1005,
+      "kind": "wall",
+      "label_en": "waterfall",
+      "label_cs": "Vodopád",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 81,
+      "kind": "wall",
+      "label_en": "stone wall",
+      "label_cs": "Kamenná zeď",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 248,
+      "kind": "wall",
+      "label_en": "metal plate, decoration",
+      "label_cs": "Plíšek, dekorace",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 489,
+      "kind": "wall",
+      "label_en": "technical metal cladding",
+      "label_cs": "Kovový technický obklad",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 479,
+      "kind": "wall",
+      "label_en": "stone column texture",
+      "label_cs": "Textura na kamenný sloup",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 97,
+      "kind": "wall",
+      "label_en": "metal crypt door",
+      "label_cs": "Kovové dveře od krypty",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 15,
+      "kind": "surface",
+      "label_en": "planks",
+      "label_cs": "Prkna",
+      "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 261,
+      "kind": "wall",
+      "label_en": "small door, like a furnace's",
+      "label_cs": "Dvířka jak od pece",
+      "notes": "owner tile sheet 2026-09-03"
+    }
   ],
   "reading_guide": {
     "kind": "sprite = seen as a (translucency-capable) sprite; wall = seen as a wall texture; surface = seen on floors/ceilings; maskwall = seen on masked walls. First-glance readings — a tile can legitimately appear in other kinds.",
