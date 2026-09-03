@@ -1,0 +1,125 @@
+{
+ "byte_diff": {
+  "differing_bytes_in_the_common_prefix": 0,
+  "identical": true,
+  "original_bytes": 44003,
+  "rebuilt_bytes": 44003
+ },
+ "coverage": {
+  "copied": 26205,
+  "fields": 27836,
+  "per_kind": {
+   "sector": {
+    "copied": 3368,
+    "fields": 3457,
+    "rebuilt": 89,
+    "records": 80
+   },
+   "sprite": {
+    "copied": 9932,
+    "fields": 9932,
+    "rebuilt": 0,
+    "records": 124
+   },
+   "wall": {
+    "copied": 12905,
+    "fields": 14447,
+    "rebuilt": 1542,
+    "records": 848
+   }
+  },
+  "per_layer": {
+   "2": {
+    "by_kind": {
+     "wall": 1530
+    },
+    "name": "surfaces, frames and structures",
+    "rebuilt": 1530
+   },
+   "4": {
+    "by_kind": {
+     "sector": 4
+    },
+    "name": "overlays: islands, the light field, lamps",
+    "rebuilt": 4
+   },
+   "5": {
+    "by_kind": {
+     "sector": 85
+    },
+    "name": "mechanisms as sentences",
+    "rebuilt": 85
+   },
+   "6": {
+    "by_kind": {
+     "wall": 12
+    },
+    "name": "the edge chain",
+    "rebuilt": 12
+   }
+  },
+  "rebuilt": 1631,
+  "share": 5.859
+ },
+ "misreadings": [],
+ "of": {
+  "facts": "projects/e4m8-decompiled/facts",
+  "map": "D:/Games/DOS/llmapper/maps/blood/campaign/E4M8.MAP",
+  "rebuilt": "projects/e4m8-decompiled/round-trip/E4M8.MAP"
+ },
+ "promises": [
+  [
+   [
+    2,
+    "one frame replays through texture_frame.resolve_run"
+   ],
+   1530
+  ],
+  [
+   [
+    5,
+    "the state-anchored z quartet the sentence states"
+   ],
+   68
+  ],
+  [
+   [
+    5,
+    "the sentence of a type 600 mechanism"
+   ],
+   13
+  ],
+  [
+   [
+    6,
+    "a one-sided wall against the void takes no facade run and no masked band"
+   ],
+   12
+  ],
+  [
+   [
+    5,
+    "the sentence of a type 602 mechanism"
+   ],
+   4
+  ],
+  [
+   [
+    4,
+    "the light field at depth 0"
+   ],
+   3
+  ],
+  [
+   [
+    4,
+    "a height island on the base plane"
+   ],
+   1
+  ]
+ ],
+ "rebuild": {
+  "unwritable": [],
+  "written": 1631
+ }
+}

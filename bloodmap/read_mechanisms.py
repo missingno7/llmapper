@@ -116,7 +116,8 @@ def read_mechanisms(level: Any, disk: Any, *,
                     lessons: str | pathlib.Path = DEFAULT_LESSONS,
                     reading: Any = None) -> dict[str, Any]:
     """Every triggered record as a sentence, or as a named residue."""
-    from .conditional import conditional_edges, key_sprites, transmitters
+    from .conditional import (
+        can_send, conditional_edges, key_sprites, transmitters)
     from .curriculum import mine_map
 
     index = curriculum_index(lessons)
@@ -211,9 +212,41 @@ def read_mechanisms(level: Any, disk: Any, *,
         receivers = _receivers(level, int(channel))
         from_ = [f"{source.kind}:{source.index}" for source in sources]
         triggers = sorted({source.trigger for source in sources})
+        #: A CHANNEL IS NOT A LINK UNTIL SOMETHING CAN SEND ON IT. `tx_id`
+        #: satisfies the first of the engine's three clauses and no more; the
+        #: owner's second walk of the city found nine switches with a channel
+        #: each and both send-when bits at 0, and this reader called all nine
+        #: realised. `conditional.can_send` is the engine's rule, and the
+        #: reason is kept per source so a dead link names the record.
+        able: list[str] = []
+        why_by_source: dict[str, str] = {}
+        for source in sources:
+            record = f"{source.kind}:{source.index}"
+            holder = (disk.sprites, disk.walls, disk.sectors)[
+                ("sprite", "wall", "sector").index(source.kind)][source.index]
+            sends, why = can_send(getattr(holder, "extra", None) or {})
+            why_by_source[record] = why
+            if sends:
+                able.append(record)
+        realised = bool(able) and bool(receivers)
+        if realised:
+            why = (f"{len(able)} of {len(from_)} source(s) can send on "
+                   f"{int(channel)}, and {len(receivers)} record(s) listen")
+        elif not able:
+            why = (f"nothing can send on channel {int(channel)}: "
+                   + "; ".join(sorted(set(why_by_source.values()))))
+        else:
+            why = (f"channel {int(channel)} can be sent on but no record "
+                   f"listens on it")
         links.append({"channel": int(channel), "from": from_,
-                      "triggers": triggers, "to": receivers})
-        if not receivers:
+                      "triggers": triggers, "to": receivers,
+                      "realised": realised, "why": why,
+                      "sources_that_can_send": sorted(able),
+                      "why_by_source": why_by_source})
+        #: No sentence for a chain nothing can start. The receivers fall
+        #: through to the residue below and are named there, with their ids,
+        #: which is what the owner can act on.
+        if not receivers or not realised:
             continue
         #: THE CHAIN IS A SENTENCE. A record that only listens is not
         #: unexplained: it is the far end of a tx -> rx link, and the link is

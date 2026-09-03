@@ -15,10 +15,6 @@
 {"_from": ["sentence:sector:60", "sector:60"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:sector:60:sector:60", "record": "sector:60", "sentence": "sentence:sector:60"}
 {"_from": ["sentence:sector:61", "sector:61"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:sector:61:sector:61", "record": "sector:61", "sentence": "sentence:sector:61"}
 {"_from": ["sentence:sector:68", "sector:68"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:sector:68:sector:68", "record": "sector:68", "sentence": "sentence:sector:68"}
-{"_from": ["sentence:channel:100", "sprite:4"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:100:sprite:4", "record": "sprite:4", "sentence": "sentence:channel:100"}
-{"_from": ["sentence:channel:100", "sector:56"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:100:sector:56", "record": "sector:56", "sentence": "sentence:channel:100"}
-{"_from": ["sentence:channel:100", "sprite:3"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:100:sprite:3", "record": "sprite:3", "sentence": "sentence:channel:100"}
-{"_from": ["sentence:channel:100", "sprite:24"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:100:sprite:24", "record": "sprite:24", "sentence": "sentence:channel:100"}
 {"_from": ["sentence:channel:101", "sprite:86"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:101:sprite:86", "record": "sprite:86", "sentence": "sentence:channel:101"}
 {"_from": ["sentence:channel:101", "sector:54"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:101:sector:54", "record": "sector:54", "sentence": "sentence:channel:101"}
 {"_from": ["sentence:channel:101", "sprite:2"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:101:sprite:2", "record": "sprite:2", "sentence": "sentence:channel:101"}
@@ -27,12 +23,6 @@
 {"_from": ["sentence:channel:101", "sprite:63"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:101:sprite:63", "record": "sprite:63", "sentence": "sentence:channel:101"}
 {"_from": ["sentence:channel:101", "sprite:85"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:101:sprite:85", "record": "sprite:85", "sentence": "sentence:channel:101"}
 {"_from": ["sentence:channel:101", "sprite:97"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:101:sprite:97", "record": "sprite:97", "sentence": "sentence:channel:101"}
-{"_from": ["sentence:channel:102", "sprite:5"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:102:sprite:5", "record": "sprite:5", "sentence": "sentence:channel:102"}
-{"_from": ["sentence:channel:102", "sector:59"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:102:sector:59", "record": "sector:59", "sentence": "sentence:channel:102"}
-{"_from": ["sentence:channel:103", "sprite:1"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:103:sprite:1", "record": "sprite:1", "sentence": "sentence:channel:103"}
-{"_from": ["sentence:channel:103", "sector:57"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:103:sector:57", "record": "sector:57", "sentence": "sentence:channel:103"}
-{"_from": ["sentence:channel:104", "sprite:6"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:104:sprite:6", "record": "sprite:6", "sentence": "sentence:channel:104"}
-{"_from": ["sentence:channel:104", "sector:58"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:104:sector:58", "record": "sector:58", "sentence": "sentence:channel:104"}
 {"_from": ["sentence:channel:106", "sprite:8"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:106:sprite:8", "record": "sprite:8", "sentence": "sentence:channel:106"}
 {"_from": ["sentence:channel:106", "sprite:9"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:106:sprite:9", "record": "sprite:9", "sentence": "sentence:channel:106"}
 {"_from": ["sentence:channel:107", "sprite:2"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:107:sprite:2", "record": "sprite:2", "sentence": "sentence:channel:107"}

@@ -1,0 +1,31 @@
+{
+ "cut_edge_tile": 400,
+ "of": "D:\\Games\\DOS\\llmapper\\maps\\blood\\campaign\\E3M1.MAP",
+ "question": "Walking from sector 8 to sector 3 to sector 2, is that ONE step of shadow getting deeper, or two?",
+ "sectors": {
+  "1": 0,
+  "159": 10,
+  "175": 11,
+  "2": 1,
+  "235": 12,
+  "236": 13,
+  "3": 2,
+  "4": 3,
+  "45": 9,
+  "5": 4,
+  "6": 5,
+  "7": 6,
+  "8": 7,
+  "9": 8
+ },
+ "sprites": 270,
+ "start": {
+  "sector_in_fragment": 0,
+  "sector_in_the_map": 1,
+  "x": -27364,
+  "y": -18646,
+  "z": -8768
+ },
+ "walls_kept": 147,
+ "walls_sealed": 105
+}

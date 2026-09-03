@@ -1930,3 +1930,66 @@ One consequence worth the line: with the lamps gone, the reader and the
 compiler agree on EVERY shade depth. The 143-sector disagreement was three
 sectors carrying two lamps each at shade -4, which moved the reader's elected
 base and shifted the whole field.
+
+## 40. The round trip, and the last per-layer questions (P15, 2026-09-03)
+
+The owner's channel is the walk and the fragment, so this is the last item
+that mentions a review pack. Numbers are queries over
+`projects/*-decompiled/round-trip/*.json` and
+`reports/questions-closed-2026-09-03.md`.
+
+**40a. A transmitter that cannot send is not a link, and the city has nine.**
+`read_mechanisms` now calls `conditional.can_send` before it writes a chain
+sentence: the engine sends only when `txID` is set, `command != kCmdLink` (5)
+AND one of `triggerOn`/`triggerOff` is set
+(`triggers.cpp`, SetSpriteState 100-106, SetWallState 121-127, SetSectorState
+138-155 — the same three clauses for all three record kinds). All nine of the
+city's switches have a channel and both send-when bits at 0, so **no link on
+that map is realised and no chain sentence is written**; the nine sprites
+become residue naming their own channel, and the doors keep their own
+sentences, because a door is a mechanism whether or not anything can open it.
+The campaign is barely touched: E3M1 keeps 56 of 63 chains, E1M2 80 of 83,
+E4M8 24 of 28. The 15 it drops are channels Blood itself shipped dead.
+*Recommended default:* the rule as written. The seven dead channels in E3M1
+are a finding about the shipped map, not about the reader.
+
+**40b. All three decompilations round-trip byte-identical, and that is worth
+less than it sounds.** `tools/round_trip.py` writes every claimed field back
+from the claim's own value and copies everything else. E3M1: **4298 of 123280
+fields rebuilt (3.49%)**, 0 misreadings. E1M2: 4114 of 112579 (3.65%), 0.
+E4M8: 1631 of 27836 (5.86%), 0. Each rebuilt file is byte-identical to the
+original — and 96% of those bytes were COPIED. The two numbers belong in the
+same sentence every time one of them is quoted.
+*Recommended default:* quote them together. "Byte-identical" alone reads as
+"we understand the map"; the pair reads as what it is.
+
+**40c. The result is not vacuous, and the tests say why.** A rebuild that
+writes nothing is byte-identical too, so `tests/test_round_trip.py` first
+proves the detector fails: a claim one off the original comes back as a named
+misreading with both values, on a map field and on an extra. And the claims
+are model REPLAYS, not read-backs — 3895 of E3M1's are "one frame replays
+through `texture_frame.resolve_run`", 136 are a mechanism's state-anchored z
+quartet, 97 are a stair's fitted progression. Writing those back and getting
+the original byte is a test of the model.
+*Recommended default:* keep the "what the claims promise" table in the report;
+it is the only thing that stops the round trip being a copy check.
+
+**40d. Nineteen open questions closed: 8 by invariant, 5 by census, 3 already
+decided, 3 turned into fragments.** Full text in
+`reports/questions-closed-2026-09-03.md`. Two are worth surfacing:
+`reachability.classify_offmap` does NOT raise on every map — section 14 passed
+it a `LevelIR` and it takes a `DiskMap`; on a DiskMap it reads E3M1 without
+complaint, so the enclosure member has a reader after all and the caller is
+the bug. And the singleton-space share is 28%, 35%, 30% across three maps
+from three episodes, which makes it a property of the reader rather than of
+the maps.
+*Recommended default:* no owner action. The three fragments are the ask.
+
+**40e. Two of the "nine P16 failures" were only a missing junction.** The
+worktree had `maps/` junctioned and not `reference/`; adding it fixed
+`test_pattern_zoo.setUpClass` and `test_stair`'s new surface test, and
+un-skipped 27 tests. Eight failures remain and they are the genuine relative
+`NBlood/` set. `tests/test_stair.py:99` hardcodes `wall_art_sizes("reference/
+blood")` and would fail the same way on any machine without that directory.
+*Recommended default:* P16's item still, with the count corrected from nine to
+eight and one concrete line to fix.

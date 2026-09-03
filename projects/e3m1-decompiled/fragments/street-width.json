@@ -1,0 +1,27 @@
+{
+ "cut_edge_tile": 384,
+ "of": "D:\\Games\\DOS\\llmapper\\maps\\blood\\campaign\\E3M1.MAP",
+ "question": "Standing in the middle: is this street's width the CARRIAGEWAY you walk on, or the whole gap between the buildings?",
+ "sectors": {
+  "1": 0,
+  "2": 1,
+  "3": 2,
+  "4": 3,
+  "45": 9,
+  "5": 4,
+  "6": 5,
+  "7": 6,
+  "8": 7,
+  "9": 8
+ },
+ "sprites": 64,
+ "start": {
+  "sector_in_fragment": 0,
+  "sector_in_the_map": 1,
+  "x": -27364,
+  "y": -18646,
+  "z": -8768
+ },
+ "walls_kept": 61,
+ "walls_sealed": 33
+}

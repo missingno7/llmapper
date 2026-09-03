@@ -1,0 +1,176 @@
+{
+ "byte_diff": {
+  "differing_bytes_in_the_common_prefix": 0,
+  "identical": true,
+  "original_bytes": 165083,
+  "rebuilt_bytes": 165083
+ },
+ "coverage": {
+  "copied": 108465,
+  "fields": 112579,
+  "per_kind": {
+   "sector": {
+    "copied": 19094,
+    "fields": 19288,
+    "rebuilt": 194,
+    "records": 313
+   },
+   "sprite": {
+    "copied": 49861,
+    "fields": 49861,
+    "rebuilt": 0,
+    "records": 698
+   },
+   "wall": {
+    "copied": 39510,
+    "fields": 43430,
+    "rebuilt": 3920,
+    "records": 2469
+   }
+  },
+  "per_layer": {
+   "2": {
+    "by_kind": {
+     "sector": 46,
+     "wall": 3905
+    },
+    "name": "surfaces, frames and structures",
+    "rebuilt": 3951
+   },
+   "4": {
+    "by_kind": {
+     "sector": 3
+    },
+    "name": "overlays: islands, the light field, lamps",
+    "rebuilt": 3
+   },
+   "5": {
+    "by_kind": {
+     "sector": 145,
+     "wall": 6
+    },
+    "name": "mechanisms as sentences",
+    "rebuilt": 151
+   },
+   "6": {
+    "by_kind": {
+     "wall": 9
+    },
+    "name": "the edge chain",
+    "rebuilt": 9
+   }
+  },
+  "rebuilt": 4114,
+  "share": 3.654
+ },
+ "misreadings": [],
+ "of": {
+  "facts": "projects/e1m2-decompiled/facts",
+  "map": "D:/Games/DOS/llmapper/maps/blood/campaign/E1M2.MAP",
+  "rebuilt": "projects/e1m2-decompiled/round-trip/E1M2.MAP"
+ },
+ "promises": [
+  [
+   [
+    2,
+    "one frame replays through texture_frame.resolve_run"
+   ],
+   3905
+  ],
+  [
+   [
+    5,
+    "the state-anchored z quartet the sentence states"
+   ],
+   96
+  ],
+  [
+   [
+    2,
+    "a stepped run's rise: this floor lands on the fitted progression"
+   ],
+   46
+  ],
+  [
+   [
+    5,
+    "the sentence of a type 600 mechanism"
+   ],
+   22
+  ],
+  [
+   [
+    5,
+    "the sentence of a type 614 mechanism"
+   ],
+   10
+  ],
+  [
+   [
+    6,
+    "a one-sided wall against the void takes no facade run and no masked band"
+   ],
+   9
+  ],
+  [
+   [
+    5,
+    "kWallGib"
+   ],
+   6
+  ],
+  [
+   [
+    5,
+    "the sentence of a type 617 mechanism"
+   ],
+   5
+  ],
+  [
+   [
+    5,
+    "the sentence of a type 613 mechanism"
+   ],
+   4
+  ],
+  [
+   [
+    5,
+    "the sentence of a type 616 mechanism"
+   ],
+   4
+  ],
+  [
+   [
+    5,
+    "the sentence of a type 618 mechanism"
+   ],
+   3
+  ],
+  [
+   [
+    4,
+    "a height island on the base plane"
+   ],
+   2
+  ],
+  [
+   [
+    4,
+    "the light field at depth 0"
+   ],
+   1
+  ],
+  [
+   [
+    5,
+    "the sentence of a type 602 mechanism"
+   ],
+   1
+  ]
+ ],
+ "rebuild": {
+  "unwritable": [],
+  "written": 4114
+ }
+}

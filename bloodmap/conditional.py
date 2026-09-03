@@ -218,6 +218,50 @@ def _sprite_trigger(type_id: int, extra: dict[str, Any]) -> str:
     return _trigger_for("sprite", type_id, extra)
 
 
+#: `eventq.h:88`. A record whose command is kCmdLink follows its partner and
+#: never transmits on its own account -- the engine tests for it before either
+#: send-when bit, in all three of SetSpriteState, SetWallState and
+#: SetSectorState.
+KCMD_LINK = 5
+
+
+def can_send(extra: Any) -> tuple[bool, str]:
+    """Whether a record with this XSECTOR/XWALL/XSPRITE can ever transmit.
+
+    The engine's rule, identical for the three record kinds
+    (`NBlood/source/blood/src/triggers.cpp`, SetSpriteState 100-106,
+    SetWallState 121-127, SetSectorState 138-155):
+
+        if (pX->txID)
+            if (command != kCmdLink && triggerOn  &&  state) evSend(...)
+            if (command != kCmdLink && triggerOff && !state) evSend(...)
+
+    Three clauses. A `tx_id` alone satisfies only the first, and the owner's
+    second walk of the city found nine switches with a channel each and both
+    send-when bits at 0 -- nine mechanisms the reader called realised and the
+    engine would never have started. The reason is returned with the verdict
+    because "cannot send" is only useful when it says which clause failed.
+    """
+    fields = extra.fields if hasattr(extra, "fields") else (extra or {})
+    channel = int(fields.get("tx_id") or 0)
+    if not channel:
+        return False, "no channel: tx_id is 0, so evSend is never reached"
+    command = int(fields.get("command") or 0)
+    if command == KCMD_LINK:
+        return False, (f"command is kCmdLink ({KCMD_LINK}): a linked record "
+                       f"follows its partner and the engine tests this before "
+                       f"either send-when bit")
+    on = int(fields.get("trigger_on") or 0)
+    off = int(fields.get("trigger_off") or 0)
+    if not on and not off:
+        return False, (f"cannot send: tx_id is {channel} but trigger_on and "
+                       f"trigger_off are both 0, so neither evSend clause is "
+                       f"ever reached")
+    when = " or ".join(name for name, bit in
+                       (("trigger_on", on), ("trigger_off", off)) if bit)
+    return True, f"sends on channel {channel} when {when}"
+
+
 def transmitters(disk: Any) -> dict[int, list[Source]]:
     """Every sprite, wall and sector that transmits, indexed by channel.
 

@@ -3,7 +3,7 @@
  "questions": [
   {
    "node": "sentence:sector:56",
-   "question": "4 of 45 sentences use a (type, shape, slot) combination the taught course never shows -- sector:56, the course teaches this type but not this combination (shape '(no shape)', slots 'rx,shade wave,z pair'), for one. Is a combination the course does not teach a finding or a reader artefact?",
+   "question": "4 of 41 sentences use a (type, shape, slot) combination the taught course never shows -- sector:56, the course teaches this type but not this combination (shape '(no shape)', slots 'rx,shade wave,z pair'), for one. Is a combination the course does not teach a finding or a reader artefact?",
    "recommended_default": "a finding, and the interesting one: the course teaches each slot alone and the campaign combines them. It belongs in the curriculum's own gaps list, not in ours",
    "evidence": "references/mechanisms.json: sentences[].against_the_course"
   },

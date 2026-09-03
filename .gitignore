@@ -61,3 +61,10 @@ texturecache.index
 # the authored source is the .py beside them.
 ASAVE*.map
 ASAVE*.bak
+
+# Round-trip rebuilds and review fragments are cut from commercial campaign
+# maps and carry their geometry verbatim -- a byte-identical rebuild of E3M1
+# IS E3M1. They are regenerable in one command (see the README beside each)
+# and are never committed, on the same rule as maps/ itself.
+projects/*/round-trip/*.MAP
+projects/*/fragments/*.MAP

@@ -9,7 +9,7 @@
   },
   {
    "node": "level",
-   "question": "No mechanism on this map is named: all 28 refusals. The rule is that a lesson-file prefix must hold 60% of the lessons teaching that (type, shape). Is a map with no named mechanism a reading or a gap?",
+   "question": "No mechanism on this map is named: all 24 refusals. The rule is that a lesson-file prefix must hold 60% of the lessons teaching that (type, shape). Is a map with no named mechanism a reading or a gap?",
    "recommended_default": "a reading. Every sentence here is a door or a channel, and the course teaches those under file names too varied for a majority. The refusal is the honest answer and the rate is the measurement",
    "evidence": "references/intent.json: mechanisms.refused"
   }

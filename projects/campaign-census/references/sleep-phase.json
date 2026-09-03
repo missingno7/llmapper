@@ -43,14 +43,14 @@
   "self_lit": {
    "cause": "construct",
    "lowers": {
-    "E1M2": 17,
-    "E3M1": 26,
+    "E1M2": 21,
+    "E3M1": 39,
     "E4M8": 1
    },
    "maps_it_lowers": 3,
    "says": "a sector that lights itself: an XSECTOR carrying a light wave and no motion, no key and no channel",
    "signature": "self_lit(space, amplitude=, phase=, wave=)",
-   "total": 44,
+   "total": 61,
    "why_a_macro": "the reader can read it and calls it residue only because it is not a mechanism; it is a lighting construct with no home in the language"
   },
   "stair": {
@@ -136,10 +136,10 @@
       "mechanism_state": 154,
       "sector_type": 52
      },
-     "facts": 1627,
+     "facts": 1611,
      "fields_claimed": 206,
      "name": "mechanisms as sentences",
-     "residue_facts": 397,
+     "residue_facts": 410,
      "share_of_all_fields": 0.186,
      "state": "read"
     },
@@ -166,10 +166,10 @@
     },
     "8": {
      "by_channel": {},
-     "facts": 172,
+     "facts": 165,
      "fields_claimed": 0,
      "name": "intent",
-     "residue_facts": 109,
+     "residue_facts": 102,
      "share_of_all_fields": 0.0,
      "state": "read"
     }
@@ -178,11 +178,11 @@
     "breakable": 18,
     "channel": 41,
     "dressing": 330,
-    "self_lit": 26,
+    "self_lit": 39,
     "stair": 219
    },
    "map": "E3M1",
-   "residue_facts": 2485
+   "residue_facts": 2491
   },
   {
    "layers": {
@@ -233,10 +233,10 @@
       "mechanism_state": 102,
       "sector_type": 49
      },
-     "facts": 1477,
+     "facts": 1469,
      "fields_claimed": 151,
      "name": "mechanisms as sentences",
-     "residue_facts": 460,
+     "residue_facts": 464,
      "share_of_all_fields": 0.149,
      "state": "read"
     },
@@ -262,10 +262,10 @@
     },
     "8": {
      "by_channel": {},
-     "facts": 188,
+     "facts": 185,
      "fields_claimed": 0,
      "name": "intent",
-     "residue_facts": 132,
+     "residue_facts": 129,
      "share_of_all_fields": 0.0,
      "state": "read"
     }
@@ -274,11 +274,11 @@
     "breakable": 6,
     "channel": 72,
     "dressing": 371,
-    "self_lit": 17,
+    "self_lit": 21,
     "stair": 102
    },
    "map": "E1M2",
-   "residue_facts": 2457
+   "residue_facts": 2458
   },
   {
    "layers": {
@@ -328,7 +328,7 @@
       "mechanism_state": 68,
       "sector_type": 17
      },
-     "facts": 396,
+     "facts": 382,
      "fields_claimed": 85,
      "name": "mechanisms as sentences",
      "residue_facts": 81,
@@ -357,10 +357,10 @@
     },
     "8": {
      "by_channel": {},
-     "facts": 50,
+     "facts": 46,
      "fields_claimed": 0,
      "name": "intent",
-     "residue_facts": 32,
+     "residue_facts": 28,
      "share_of_all_fields": 0.0,
      "state": "read"
     }
@@ -371,7 +371,7 @@
     "self_lit": 1
    },
    "map": "E4M8",
-   "residue_facts": 693
+   "residue_facts": 689
   }
  ],
  "population": [
@@ -389,11 +389,11 @@
    "total": 67
   },
   "intent: not a sector type": {
-   "E1M2": 84,
-   "E3M1": 66,
-   "E4M8": 28,
+   "E1M2": 81,
+   "E3M1": 59,
+   "E4M8": 24,
    "maps": 3,
-   "total": 178
+   "total": 164
   },
   "intent: the course teaches no lesson of type 511": {
    "E1M2": 6,
@@ -480,11 +480,11 @@
    "total": 773
   },
   "mechanism: carries a light wave and nothing else": {
-   "E1M2": 17,
-   "E3M1": 26,
+   "E1M2": 21,
+   "E3M1": 39,
    "E4M8": 1,
    "maps": 3,
-   "total": 44
+   "total": 61
   },
   "mechanism: listens on channel 7 but no sentence names it": {
    "E1M2": 1,

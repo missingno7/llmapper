@@ -1,0 +1,19 @@
+{
+ "cut_edge_tile": 100,
+ "of": "D:\\Games\\DOS\\llmapper\\maps\\blood\\campaign\\E3M1.MAP",
+ "question": "What is this room for? Any word will do -- and 'nothing, it is just a room' is an answer.",
+ "sectors": {
+  "206": 0,
+  "208": 1
+ },
+ "sprites": 2,
+ "start": {
+  "sector_in_fragment": 0,
+  "sector_in_the_map": 206,
+  "x": -27680,
+  "y": -17856,
+  "z": -8768
+ },
+ "walls_kept": 22,
+ "walls_sealed": 20
+}

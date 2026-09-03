@@ -2755,13 +2755,13 @@
  ],
  "ledger": {
   "disagreements": [],
-  "explained": 515,
+  "explained": 502,
   "gate": "every record carrying an XSECTOR, XWALL or XSPRITE either realised by a sentence or named as residue; each sentence checked against the lessons of its type",
   "population": "890 wired records (133 XSECTOR, 41 XWALL, 716 XSPRITE)",
   "reader": "bloodmap.read_mechanisms (new)",
-  "residue": 397,
+  "residue": 410,
   "residue_is": "wired records no sentence realises",
-  "residue_percent": 44.61
+  "residue_percent": 46.07
  },
  "links": [
   {
@@ -2769,10 +2769,18 @@
    "from": [
     "sprite:665"
    ],
+   "realised": false,
+   "sources_that_can_send": [
+    "sprite:665"
+   ],
    "to": [],
    "triggers": [
     "relay"
-   ]
+   ],
+   "why": "channel 1 can be sent on but no record listens on it",
+   "why_by_source": {
+    "sprite:665": "sends on channel 1 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 2,
@@ -2789,36 +2797,84 @@
     "sector:243",
     "sector:244"
    ],
+   "realised": false,
+   "sources_that_can_send": [
+    "sector:180",
+    "sector:230",
+    "sector:243",
+    "sector:244",
+    "sector:53",
+    "sprite:429",
+    "sprite:431",
+    "sprite:443",
+    "sprite:608",
+    "sprite:792",
+    "sprite:793"
+   ],
    "to": [],
    "triggers": [
     "pickup",
     "relay",
     "touch"
-   ]
+   ],
+   "why": "channel 2 can be sent on but no record listens on it",
+   "why_by_source": {
+    "sector:180": "sends on channel 2 when trigger_on",
+    "sector:230": "sends on channel 2 when trigger_on",
+    "sector:243": "sends on channel 2 when trigger_on",
+    "sector:244": "sends on channel 2 when trigger_on",
+    "sector:53": "sends on channel 2 when trigger_on",
+    "sprite:429": "sends on channel 2 when trigger_on or trigger_off",
+    "sprite:431": "sends on channel 2 when trigger_on or trigger_off",
+    "sprite:443": "sends on channel 2 when trigger_on or trigger_off",
+    "sprite:608": "sends on channel 2 when trigger_on or trigger_off",
+    "sprite:792": "sends on channel 2 when trigger_on or trigger_off",
+    "sprite:793": "sends on channel 2 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 3,
    "from": [
     "wall:334"
    ],
+   "realised": false,
+   "sources_that_can_send": [
+    "wall:334"
+   ],
    "to": [],
    "triggers": [
     "push"
-   ]
+   ],
+   "why": "channel 3 can be sent on but no record listens on it",
+   "why_by_source": {
+    "wall:334": "sends on channel 3 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 4,
    "from": [
     "sprite:676"
    ],
+   "realised": false,
+   "sources_that_can_send": [
+    "sprite:676"
+   ],
    "to": [],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "channel 4 can be sent on but no record listens on it",
+   "why_by_source": {
+    "sprite:676": "sends on channel 4 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 100,
    "from": [
+    "sprite:678"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:678"
    ],
    "to": [
@@ -2838,11 +2894,19 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 100, and 13 record(s) listen",
+   "why_by_source": {
+    "sprite:678": "sends on channel 100 when trigger_off"
+   }
   },
   {
    "channel": 101,
    "from": [
+    "sprite:27"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:27"
    ],
    "to": [
@@ -2853,11 +2917,20 @@
    ],
    "triggers": [
     "shot"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 101, and 4 record(s) listen",
+   "why_by_source": {
+    "sprite:27": "sends on channel 101 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 102,
    "from": [
+    "wall:1628",
+    "wall:1629"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "wall:1628",
     "wall:1629"
    ],
@@ -2867,11 +2940,20 @@
    ],
    "triggers": [
     "push"
-   ]
+   ],
+   "why": "2 of 2 source(s) can send on 102, and 2 record(s) listen",
+   "why_by_source": {
+    "wall:1628": "sends on channel 102 when trigger_on or trigger_off",
+    "wall:1629": "sends on channel 102 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 103,
    "from": [
+    "sprite:28"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:28"
    ],
    "to": [
@@ -2885,35 +2967,59 @@
    ],
    "triggers": [
     "shot"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 103, and 7 record(s) listen",
+   "why_by_source": {
+    "sprite:28": "sends on channel 103 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 104,
    "from": [
     "sector:51"
    ],
+   "realised": false,
+   "sources_that_can_send": [],
    "to": [
     "sector:64"
    ],
    "triggers": [
     "push"
-   ]
+   ],
+   "why": "nothing can send on channel 104: command is kCmdLink (5): a linked record follows its partner and the engine tests this before either send-when bit",
+   "why_by_source": {
+    "sector:51": "command is kCmdLink (5): a linked record follows its partner and the engine tests this before either send-when bit"
+   }
   },
   {
    "channel": 105,
    "from": [
     "sector:66"
    ],
+   "realised": false,
+   "sources_that_can_send": [],
    "to": [
     "sector:67"
    ],
    "triggers": [
     "push"
-   ]
+   ],
+   "why": "nothing can send on channel 105: command is kCmdLink (5): a linked record follows its partner and the engine tests this before either send-when bit",
+   "why_by_source": {
+    "sector:66": "command is kCmdLink (5): a linked record follows its partner and the engine tests this before either send-when bit"
+   }
   },
   {
    "channel": 106,
    "from": [
+    "sprite:63",
+    "wall:440",
+    "wall:442",
+    "wall:448",
+    "wall:450"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:63",
     "wall:440",
     "wall:442",
@@ -2926,11 +3032,23 @@
    "triggers": [
     "push",
     "switch"
-   ]
+   ],
+   "why": "5 of 5 source(s) can send on 106, and 1 record(s) listen",
+   "why_by_source": {
+    "sprite:63": "sends on channel 106 when trigger_on",
+    "wall:440": "sends on channel 106 when trigger_on or trigger_off",
+    "wall:442": "sends on channel 106 when trigger_on or trigger_off",
+    "wall:448": "sends on channel 106 when trigger_on or trigger_off",
+    "wall:450": "sends on channel 106 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 107,
    "from": [
+    "sprite:64"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:64"
    ],
    "to": [
@@ -2943,11 +3061,19 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 107, and 6 record(s) listen",
+   "why_by_source": {
+    "sprite:64": "sends on channel 107 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 108,
    "from": [
+    "sprite:75"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:75"
    ],
    "to": [
@@ -2955,11 +3081,19 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 108, and 1 record(s) listen",
+   "why_by_source": {
+    "sprite:75": "sends on channel 108 when trigger_off"
+   }
   },
   {
    "channel": 109,
    "from": [
+    "sprite:61"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:61"
    ],
    "to": [
@@ -2981,11 +3115,19 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 109, and 15 record(s) listen",
+   "why_by_source": {
+    "sprite:61": "sends on channel 109 when trigger_on"
+   }
   },
   {
    "channel": 110,
    "from": [
+    "sprite:707"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:707"
    ],
    "to": [
@@ -2996,11 +3138,22 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 110, and 4 record(s) listen",
+   "why_by_source": {
+    "sprite:707": "sends on channel 110 when trigger_off"
+   }
   },
   {
    "channel": 111,
    "from": [
+    "wall:483",
+    "wall:485",
+    "wall:491",
+    "wall:493"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "wall:483",
     "wall:485",
     "wall:491",
@@ -3011,11 +3164,22 @@
    ],
    "triggers": [
     "push"
-   ]
+   ],
+   "why": "4 of 4 source(s) can send on 111, and 1 record(s) listen",
+   "why_by_source": {
+    "wall:483": "sends on channel 111 when trigger_on or trigger_off",
+    "wall:485": "sends on channel 111 when trigger_on or trigger_off",
+    "wall:491": "sends on channel 111 when trigger_on or trigger_off",
+    "wall:493": "sends on channel 111 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 112,
    "from": [
+    "sprite:89"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:89"
    ],
    "to": [
@@ -3024,36 +3188,56 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 112, and 2 record(s) listen",
+   "why_by_source": {
+    "sprite:89": "sends on channel 112 when trigger_on"
+   }
   },
   {
    "channel": 113,
    "from": [
     "sector:105"
    ],
+   "realised": false,
+   "sources_that_can_send": [],
    "to": [
     "sector:106"
    ],
    "triggers": [
     "push"
-   ]
+   ],
+   "why": "nothing can send on channel 113: command is kCmdLink (5): a linked record follows its partner and the engine tests this before either send-when bit",
+   "why_by_source": {
+    "sector:105": "command is kCmdLink (5): a linked record follows its partner and the engine tests this before either send-when bit"
+   }
   },
   {
    "channel": 114,
    "from": [
     "sector:114"
    ],
+   "realised": false,
+   "sources_that_can_send": [],
    "to": [
     "sector:116",
     "sector:117"
    ],
    "triggers": [
     "push"
-   ]
+   ],
+   "why": "nothing can send on channel 114: command is kCmdLink (5): a linked record follows its partner and the engine tests this before either send-when bit",
+   "why_by_source": {
+    "sector:114": "command is kCmdLink (5): a linked record follows its partner and the engine tests this before either send-when bit"
+   }
   },
   {
    "channel": 115,
    "from": [
+    "sprite:340"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:340"
    ],
    "to": [
@@ -3061,12 +3245,20 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 115, and 1 record(s) listen",
+   "why_by_source": {
+    "sprite:340": "sends on channel 115 when trigger_off"
+   }
   },
   {
    "channel": 116,
    "from": [
     "sprite:267",
+    "sprite:698"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:698"
    ],
    "to": [
@@ -3233,11 +3425,20 @@
    "triggers": [
     "switch",
     "unknown"
-   ]
+   ],
+   "why": "1 of 2 source(s) can send on 116, and 159 record(s) listen",
+   "why_by_source": {
+    "sprite:267": "cannot send: tx_id is 116 but trigger_on and trigger_off are both 0, so neither evSend clause is ever reached",
+    "sprite:698": "sends on channel 116 when trigger_off"
+   }
   },
   {
    "channel": 117,
    "from": [
+    "sprite:132"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:132"
    ],
    "to": [
@@ -3245,11 +3446,19 @@
    ],
    "triggers": [
     "shot"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 117, and 1 record(s) listen",
+   "why_by_source": {
+    "sprite:132": "sends on channel 117 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 118,
    "from": [
+    "sector:120"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sector:120"
    ],
    "to": [
@@ -3265,11 +3474,19 @@
    ],
    "triggers": [
     "touch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 118, and 9 record(s) listen",
+   "why_by_source": {
+    "sector:120": "sends on channel 118 when trigger_on"
+   }
   },
   {
    "channel": 119,
    "from": [
+    "sprite:133"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:133"
    ],
    "to": [
@@ -3278,11 +3495,19 @@
    ],
    "triggers": [
     "shot"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 119, and 2 record(s) listen",
+   "why_by_source": {
+    "sprite:133": "sends on channel 119 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 120,
    "from": [
+    "sprite:727"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:727"
    ],
    "to": [
@@ -3302,11 +3527,19 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 120, and 13 record(s) listen",
+   "why_by_source": {
+    "sprite:727": "sends on channel 120 when trigger_off"
+   }
   },
   {
    "channel": 121,
    "from": [
+    "sector:141"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sector:141"
    ],
    "to": [
@@ -3314,11 +3547,19 @@
    ],
    "triggers": [
     "relay"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 121, and 1 record(s) listen",
+   "why_by_source": {
+    "sector:141": "sends on channel 121 when trigger_on"
+   }
   },
   {
    "channel": 122,
    "from": [
+    "sector:143"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sector:143"
    ],
    "to": [
@@ -3326,11 +3567,19 @@
    ],
    "triggers": [
     "relay"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 122, and 1 record(s) listen",
+   "why_by_source": {
+    "sector:143": "sends on channel 122 when trigger_on"
+   }
   },
   {
    "channel": 123,
    "from": [
+    "sector:148"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sector:148"
    ],
    "to": [
@@ -3338,11 +3587,19 @@
    ],
    "triggers": [
     "relay"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 123, and 1 record(s) listen",
+   "why_by_source": {
+    "sector:148": "sends on channel 123 when trigger_on"
+   }
   },
   {
    "channel": 124,
    "from": [
+    "sector:147"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sector:147"
    ],
    "to": [
@@ -3350,11 +3607,19 @@
    ],
    "triggers": [
     "relay"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 124, and 1 record(s) listen",
+   "why_by_source": {
+    "sector:147": "sends on channel 124 when trigger_on"
+   }
   },
   {
    "channel": 125,
    "from": [
+    "sector:152"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sector:152"
    ],
    "to": [
@@ -3362,11 +3627,19 @@
    ],
    "triggers": [
     "relay"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 125, and 1 record(s) listen",
+   "why_by_source": {
+    "sector:152": "sends on channel 125 when trigger_on"
+   }
   },
   {
    "channel": 126,
    "from": [
+    "sector:151"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sector:151"
    ],
    "to": [
@@ -3374,21 +3647,37 @@
    ],
    "triggers": [
     "relay"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 126, and 1 record(s) listen",
+   "why_by_source": {
+    "sector:151": "sends on channel 126 when trigger_on"
+   }
   },
   {
    "channel": 127,
    "from": [
     "sector:154"
    ],
+   "realised": false,
+   "sources_that_can_send": [
+    "sector:154"
+   ],
    "to": [],
    "triggers": [
     "relay"
-   ]
+   ],
+   "why": "channel 127 can be sent on but no record listens on it",
+   "why_by_source": {
+    "sector:154": "sends on channel 127 when trigger_on"
+   }
   },
   {
    "channel": 128,
    "from": [
+    "sector:122"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sector:122"
    ],
    "to": [
@@ -3397,11 +3686,23 @@
    ],
    "triggers": [
     "touch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 128, and 2 record(s) listen",
+   "why_by_source": {
+    "sector:122": "sends on channel 128 when trigger_on"
+   }
   },
   {
    "channel": 129,
    "from": [
+    "sprite:155",
+    "wall:836",
+    "wall:838",
+    "wall:842",
+    "wall:844"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:155",
     "wall:836",
     "wall:838",
@@ -3415,24 +3716,43 @@
    "triggers": [
     "push",
     "switch"
-   ]
+   ],
+   "why": "5 of 5 source(s) can send on 129, and 2 record(s) listen",
+   "why_by_source": {
+    "sprite:155": "sends on channel 129 when trigger_off",
+    "wall:836": "sends on channel 129 when trigger_on",
+    "wall:838": "sends on channel 129 when trigger_on",
+    "wall:842": "sends on channel 129 when trigger_on",
+    "wall:844": "sends on channel 129 when trigger_on"
+   }
   },
   {
    "channel": 130,
    "from": [
     "sector:162"
    ],
+   "realised": false,
+   "sources_that_can_send": [],
    "to": [
     "sector:163",
     "sector:164"
    ],
    "triggers": [
     "relay"
-   ]
+   ],
+   "why": "nothing can send on channel 130: command is kCmdLink (5): a linked record follows its partner and the engine tests this before either send-when bit",
+   "why_by_source": {
+    "sector:162": "command is kCmdLink (5): a linked record follows its partner and the engine tests this before either send-when bit"
+   }
   },
   {
    "channel": 131,
    "from": [
+    "wall:1370",
+    "wall:1372"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "wall:1370",
     "wall:1372"
    ],
@@ -3441,11 +3761,20 @@
    ],
    "triggers": [
     "push"
-   ]
+   ],
+   "why": "2 of 2 source(s) can send on 131, and 1 record(s) listen",
+   "why_by_source": {
+    "wall:1370": "sends on channel 131 when trigger_on or trigger_off",
+    "wall:1372": "sends on channel 131 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 132,
    "from": [
+    "sprite:341"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:341"
    ],
    "to": [
@@ -3453,25 +3782,37 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 132, and 1 record(s) listen",
+   "why_by_source": {
+    "sprite:341": "sends on channel 132 when trigger_off"
+   }
   },
   {
    "channel": 133,
    "from": [
     "sector:181"
    ],
+   "realised": false,
+   "sources_that_can_send": [],
    "to": [
     "sector:180"
    ],
    "triggers": [
     "push"
-   ]
+   ],
+   "why": "nothing can send on channel 133: command is kCmdLink (5): a linked record follows its partner and the engine tests this before either send-when bit",
+   "why_by_source": {
+    "sector:181": "command is kCmdLink (5): a linked record follows its partner and the engine tests this before either send-when bit"
+   }
   },
   {
    "channel": 134,
    "from": [
     "sector:218"
    ],
+   "realised": false,
+   "sources_that_can_send": [],
    "to": [
     "sector:221",
     "sector:222",
@@ -3483,11 +3824,20 @@
    ],
    "triggers": [
     "relay"
-   ]
+   ],
+   "why": "nothing can send on channel 134: command is kCmdLink (5): a linked record follows its partner and the engine tests this before either send-when bit",
+   "why_by_source": {
+    "sector:218": "command is kCmdLink (5): a linked record follows its partner and the engine tests this before either send-when bit"
+   }
   },
   {
    "channel": 135,
    "from": [
+    "sprite:373",
+    "sprite:657"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:373",
     "sprite:657"
    ],
@@ -3515,11 +3865,21 @@
    "triggers": [
     "shot",
     "switch"
-   ]
+   ],
+   "why": "2 of 2 source(s) can send on 135, and 19 record(s) listen",
+   "why_by_source": {
+    "sprite:373": "sends on channel 135 when trigger_on",
+    "sprite:657": "sends on channel 135 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 137,
    "from": [
+    "sprite:410",
+    "sprite:412"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:410",
     "sprite:412"
    ],
@@ -3528,11 +3888,21 @@
    ],
    "triggers": [
     "push"
-   ]
+   ],
+   "why": "2 of 2 source(s) can send on 137, and 1 record(s) listen",
+   "why_by_source": {
+    "sprite:410": "sends on channel 137 when trigger_on",
+    "sprite:412": "sends on channel 137 when trigger_on"
+   }
   },
   {
    "channel": 138,
    "from": [
+    "sprite:800",
+    "sprite:801"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:800",
     "sprite:801"
    ],
@@ -3546,11 +3916,20 @@
    "triggers": [
     "pickup",
     "switch"
-   ]
+   ],
+   "why": "2 of 2 source(s) can send on 138, and 5 record(s) listen",
+   "why_by_source": {
+    "sprite:800": "sends on channel 138 when trigger_on or trigger_off",
+    "sprite:801": "sends on channel 138 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 139,
    "from": [
+    "sprite:640"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:640"
    ],
    "to": [
@@ -3559,11 +3938,20 @@
    ],
    "triggers": [
     "shot"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 139, and 2 record(s) listen",
+   "why_by_source": {
+    "sprite:640": "sends on channel 139 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 140,
    "from": [
+    "sprite:614",
+    "sprite:747"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:614",
     "sprite:747"
    ],
@@ -3576,11 +3964,20 @@
    ],
    "triggers": [
     "shot"
-   ]
+   ],
+   "why": "2 of 2 source(s) can send on 140, and 5 record(s) listen",
+   "why_by_source": {
+    "sprite:614": "sends on channel 140 when trigger_on or trigger_off",
+    "sprite:747": "sends on channel 140 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 141,
    "from": [
+    "sprite:630"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:630"
    ],
    "to": [
@@ -3588,11 +3985,19 @@
    ],
    "triggers": [
     "shot"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 141, and 1 record(s) listen",
+   "why_by_source": {
+    "sprite:630": "sends on channel 141 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 142,
    "from": [
+    "sprite:629"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:629"
    ],
    "to": [
@@ -3606,11 +4011,21 @@
    ],
    "triggers": [
     "shot"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 142, and 7 record(s) listen",
+   "why_by_source": {
+    "sprite:629": "sends on channel 142 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 143,
    "from": [
+    "wall:1480",
+    "wall:1481",
+    "wall:1482"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "wall:1480",
     "wall:1481",
     "wall:1482"
@@ -3620,11 +4035,21 @@
    ],
    "triggers": [
     "push"
-   ]
+   ],
+   "why": "3 of 3 source(s) can send on 143, and 1 record(s) listen",
+   "why_by_source": {
+    "wall:1480": "sends on channel 143 when trigger_on or trigger_off",
+    "wall:1481": "sends on channel 143 when trigger_on or trigger_off",
+    "wall:1482": "sends on channel 143 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 144,
    "from": [
+    "sprite:644"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:644"
    ],
    "to": [
@@ -3645,11 +4070,19 @@
    ],
    "triggers": [
     "relay"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 144, and 14 record(s) listen",
+   "why_by_source": {
+    "sprite:644": "sends on channel 144 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 145,
    "from": [
+    "sprite:654"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:654"
    ],
    "to": [
@@ -3659,11 +4092,19 @@
    ],
    "triggers": [
     "relay"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 145, and 3 record(s) listen",
+   "why_by_source": {
+    "sprite:654": "sends on channel 145 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 147,
    "from": [
+    "sector:276"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sector:276"
    ],
    "to": [
@@ -3675,11 +4116,19 @@
    ],
    "triggers": [
     "touch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 147, and 5 record(s) listen",
+   "why_by_source": {
+    "sector:276": "sends on channel 147 when trigger_on"
+   }
   },
   {
    "channel": 148,
    "from": [
+    "sprite:667"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:667"
    ],
    "to": [
@@ -3691,11 +4140,19 @@
    ],
    "triggers": [
     "shot"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 148, and 5 record(s) listen",
+   "why_by_source": {
+    "sprite:667": "sends on channel 148 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 149,
    "from": [
+    "sector:348"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sector:348"
    ],
    "to": [
@@ -3708,11 +4165,19 @@
    ],
    "triggers": [
     "touch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 149, and 6 record(s) listen",
+   "why_by_source": {
+    "sector:348": "sends on channel 149 when trigger_on"
+   }
   },
   {
    "channel": 150,
    "from": [
+    "sprite:756"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:756"
    ],
    "to": [
@@ -3722,11 +4187,19 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 150, and 3 record(s) listen",
+   "why_by_source": {
+    "sprite:756": "sends on channel 150 when trigger_off"
+   }
   },
   {
    "channel": 151,
    "from": [
+    "sprite:682"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:682"
    ],
    "to": [
@@ -3739,11 +4212,19 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 151, and 6 record(s) listen",
+   "why_by_source": {
+    "sprite:682": "sends on channel 151 when trigger_off"
+   }
   },
   {
    "channel": 152,
    "from": [
+    "sprite:680"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:680"
    ],
    "to": [
@@ -3753,11 +4234,19 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 152, and 3 record(s) listen",
+   "why_by_source": {
+    "sprite:680": "sends on channel 152 when trigger_off"
+   }
   },
   {
    "channel": 153,
    "from": [
+    "sprite:699"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:699"
    ],
    "to": [
@@ -3765,11 +4254,19 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 153, and 1 record(s) listen",
+   "why_by_source": {
+    "sprite:699": "sends on channel 153 when trigger_off"
+   }
   },
   {
    "channel": 154,
    "from": [
+    "wall:1771"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "wall:1771"
    ],
    "to": [
@@ -3777,11 +4274,19 @@
    ],
    "triggers": [
     "push"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 154, and 1 record(s) listen",
+   "why_by_source": {
+    "wall:1771": "sends on channel 154 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 155,
    "from": [
+    "sprite:78"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:78"
    ],
    "to": [
@@ -3789,11 +4294,20 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 155, and 1 record(s) listen",
+   "why_by_source": {
+    "sprite:78": "sends on channel 155 when trigger_off"
+   }
   },
   {
    "channel": 156,
    "from": [
+    "sprite:145",
+    "sprite:730"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:145",
     "sprite:730"
    ],
@@ -3803,11 +4317,20 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "2 of 2 source(s) can send on 156, and 2 record(s) listen",
+   "why_by_source": {
+    "sprite:145": "sends on channel 156 when trigger_off",
+    "sprite:730": "sends on channel 156 when trigger_off"
+   }
   },
   {
    "channel": 157,
    "from": [
+    "sector:1"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sector:1"
    ],
    "to": [
@@ -3817,11 +4340,19 @@
    ],
    "triggers": [
     "touch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 157, and 3 record(s) listen",
+   "why_by_source": {
+    "sector:1": "sends on channel 157 when trigger_on"
+   }
   },
   {
    "channel": 158,
    "from": [
+    "sprite:418"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:418"
    ],
    "to": [
@@ -3842,21 +4373,37 @@
    ],
    "triggers": [
     "kill"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 158, and 14 record(s) listen",
+   "why_by_source": {
+    "sprite:418": "sends on channel 158 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 159,
    "from": [
     "sprite:539"
    ],
+   "realised": false,
+   "sources_that_can_send": [
+    "sprite:539"
+   ],
    "to": [],
    "triggers": [
     "shot"
-   ]
+   ],
+   "why": "channel 159 can be sent on but no record listens on it",
+   "why_by_source": {
+    "sprite:539": "sends on channel 159 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 160,
    "from": [
+    "sprite:540"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:540"
    ],
    "to": [
@@ -3865,11 +4412,19 @@
    ],
    "triggers": [
     "shot"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 160, and 2 record(s) listen",
+   "why_by_source": {
+    "sprite:540": "sends on channel 160 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 161,
    "from": [
+    "sprite:541"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:541"
    ],
    "to": [
@@ -3880,11 +4435,19 @@
    ],
    "triggers": [
     "shot"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 161, and 4 record(s) listen",
+   "why_by_source": {
+    "sprite:541": "sends on channel 161 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 162,
    "from": [
+    "sprite:681"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:681"
    ],
    "to": [
@@ -3892,11 +4455,20 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 162, and 1 record(s) listen",
+   "why_by_source": {
+    "sprite:681": "sends on channel 162 when trigger_off"
+   }
   },
   {
    "channel": 163,
    "from": [
+    "wall:2406",
+    "wall:2408"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "wall:2406",
     "wall:2408"
    ],
@@ -3905,11 +4477,20 @@
    ],
    "triggers": [
     "push"
-   ]
+   ],
+   "why": "2 of 2 source(s) can send on 163, and 1 record(s) listen",
+   "why_by_source": {
+    "wall:2406": "sends on channel 163 when trigger_on or trigger_off",
+    "wall:2408": "sends on channel 163 when trigger_on or trigger_off"
+   }
   },
   {
    "channel": 164,
    "from": [
+    "sector:8"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sector:8"
    ],
    "to": [
@@ -3918,11 +4499,19 @@
    ],
    "triggers": [
     "touch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 164, and 2 record(s) listen",
+   "why_by_source": {
+    "sector:8": "sends on channel 164 when trigger_on"
+   }
   },
   {
    "channel": 165,
    "from": [
+    "sector:171"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sector:171"
    ],
    "to": [
@@ -3930,11 +4519,19 @@
    ],
    "triggers": [
     "touch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 165, and 1 record(s) listen",
+   "why_by_source": {
+    "sector:171": "sends on channel 165 when trigger_on"
+   }
   },
   {
    "channel": 166,
    "from": [
+    "sprite:805"
+   ],
+   "realised": true,
+   "sources_that_can_send": [
     "sprite:805"
    ],
    "to": [
@@ -3942,7 +4539,11 @@
    ],
    "triggers": [
     "switch"
-   ]
+   ],
+   "why": "1 of 1 source(s) can send on 166, and 1 record(s) listen",
+   "why_by_source": {
+    "sprite:805": "sends on channel 166 when trigger_off"
+   }
   }
  ],
  "owner_marks_read_back": [],
@@ -3986,14 +4587,6 @@
    "sprite:32",
    "sprite:33",
    "sprite:34"
-  ],
-  "sentence:channel:104": [
-   "sector:51",
-   "sector:64"
-  ],
-  "sentence:channel:105": [
-   "sector:66",
-   "sector:67"
   ],
   "sentence:channel:106": [
    "sprite:63",
@@ -4052,15 +4645,6 @@
    "sprite:89",
    "wall:485",
    "wall:491"
-  ],
-  "sentence:channel:113": [
-   "sector:105",
-   "sector:106"
-  ],
-  "sentence:channel:114": [
-   "sector:114",
-   "sector:116",
-   "sector:117"
   ],
   "sentence:channel:115": [
    "sprite:340",
@@ -4304,11 +4888,6 @@
    "sector:162",
    "sprite:155"
   ],
-  "sentence:channel:130": [
-   "sector:162",
-   "sector:163",
-   "sector:164"
-  ],
   "sentence:channel:131": [
    "wall:1370",
    "wall:1372",
@@ -4317,20 +4896,6 @@
   "sentence:channel:132": [
    "sprite:341",
    "sprite:341"
-  ],
-  "sentence:channel:133": [
-   "sector:181",
-   "sector:180"
-  ],
-  "sentence:channel:134": [
-   "sector:218",
-   "sector:221",
-   "sector:222",
-   "sector:223",
-   "sector:224",
-   "sector:227",
-   "sector:238",
-   "sector:239"
   ],
   "sentence:channel:135": [
    "sprite:373",
@@ -4940,7 +5505,19 @@
    "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
   },
   {
+   "record": "sector:106",
+   "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
+  },
+  {
    "record": "sector:113",
+   "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
+  },
+  {
+   "record": "sector:116",
+   "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
+  },
+  {
+   "record": "sector:117",
    "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
   },
   {
@@ -4972,8 +5549,20 @@
    "why": "wired, and no sentence realises it"
   },
   {
+   "record": "sector:163",
+   "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
+  },
+  {
+   "record": "sector:164",
+   "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
+  },
+  {
    "record": "sector:175",
    "why": "wired, and no sentence realises it"
+  },
+  {
+   "record": "sector:180",
+   "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
   },
   {
    "record": "sector:192",
@@ -4992,8 +5581,28 @@
    "why": "wired, and no sentence realises it"
   },
   {
+   "record": "sector:221",
+   "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
+  },
+  {
+   "record": "sector:222",
+   "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
+  },
+  {
+   "record": "sector:223",
+   "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
+  },
+  {
+   "record": "sector:224",
+   "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
+  },
+  {
    "record": "sector:225",
    "why": "wired, and no sentence realises it"
+  },
+  {
+   "record": "sector:227",
+   "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
   },
   {
    "record": "sector:230",
@@ -5006,6 +5615,14 @@
   {
    "record": "sector:233",
    "why": "wired, and no sentence realises it"
+  },
+  {
+   "record": "sector:238",
+   "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
+  },
+  {
+   "record": "sector:239",
+   "why": "carries a light wave and nothing else: a sector lighting itself, which is a sentence this reader does not yet write"
   },
   {
    "record": "sector:243",
@@ -6510,6 +7127,7 @@
    101,
    102,
    103,
+   106,
    107,
    108,
    110,
@@ -6517,6 +7135,8 @@
    112,
    113,
    115,
+   116,
+   117,
    118,
    123,
    124,
@@ -6540,6 +7160,8 @@
    157,
    158,
    161,
+   163,
+   164,
    165,
    166,
    167,
@@ -6549,6 +7171,7 @@
    177,
    178,
    179,
+   180,
    182,
    183,
    184,
@@ -6583,6 +7206,7 @@
    217,
    219,
    220,
+   227,
    228,
    229,
    230,
@@ -8496,38 +9120,6 @@
     "consulted": true,
     "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
    },
-   "id": "sentence:channel:104",
-   "kind": "tx -> rx chain",
-   "receivers": 1,
-   "sentence": "channel 104: sector:51 (push) tells 1 record(s)",
-   "shape": "a chain",
-   "slots": [
-    "tx",
-    "rx"
-   ],
-   "type": null
-  },
-  {
-   "against_the_course": {
-    "consulted": true,
-    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
-   },
-   "id": "sentence:channel:105",
-   "kind": "tx -> rx chain",
-   "receivers": 1,
-   "sentence": "channel 105: sector:66 (push) tells 1 record(s)",
-   "shape": "a chain",
-   "slots": [
-    "tx",
-    "rx"
-   ],
-   "type": null
-  },
-  {
-   "against_the_course": {
-    "consulted": true,
-    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
-   },
    "id": "sentence:channel:106",
    "kind": "tx -> rx chain",
    "receivers": 1,
@@ -8628,38 +9220,6 @@
    "kind": "tx -> rx chain",
    "receivers": 2,
    "sentence": "channel 112: sprite:89 (switch) tells 2 record(s)",
-   "shape": "a chain",
-   "slots": [
-    "tx",
-    "rx"
-   ],
-   "type": null
-  },
-  {
-   "against_the_course": {
-    "consulted": true,
-    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
-   },
-   "id": "sentence:channel:113",
-   "kind": "tx -> rx chain",
-   "receivers": 1,
-   "sentence": "channel 113: sector:105 (push) tells 1 record(s)",
-   "shape": "a chain",
-   "slots": [
-    "tx",
-    "rx"
-   ],
-   "type": null
-  },
-  {
-   "against_the_course": {
-    "consulted": true,
-    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
-   },
-   "id": "sentence:channel:114",
-   "kind": "tx -> rx chain",
-   "receivers": 2,
-   "sentence": "channel 114: sector:114 (push) tells 2 record(s)",
    "shape": "a chain",
    "slots": [
     "tx",
@@ -8896,22 +9456,6 @@
     "consulted": true,
     "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
    },
-   "id": "sentence:channel:130",
-   "kind": "tx -> rx chain",
-   "receivers": 2,
-   "sentence": "channel 130: sector:162 (relay) tells 2 record(s)",
-   "shape": "a chain",
-   "slots": [
-    "tx",
-    "rx"
-   ],
-   "type": null
-  },
-  {
-   "against_the_course": {
-    "consulted": true,
-    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
-   },
    "id": "sentence:channel:131",
    "kind": "tx -> rx chain",
    "receivers": 1,
@@ -8932,38 +9476,6 @@
    "kind": "tx -> rx chain",
    "receivers": 1,
    "sentence": "channel 132: sprite:341 (switch) tells 1 record(s)",
-   "shape": "a chain",
-   "slots": [
-    "tx",
-    "rx"
-   ],
-   "type": null
-  },
-  {
-   "against_the_course": {
-    "consulted": true,
-    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
-   },
-   "id": "sentence:channel:133",
-   "kind": "tx -> rx chain",
-   "receivers": 1,
-   "sentence": "channel 133: sector:181 (push) tells 1 record(s)",
-   "shape": "a chain",
-   "slots": [
-    "tx",
-    "rx"
-   ],
-   "type": null
-  },
-  {
-   "against_the_course": {
-    "consulted": true,
-    "verdict": "the course teaches the channel as the one way a trigger reaches an effect; the chain's LENGTH is this map's own"
-   },
-   "id": "sentence:channel:134",
-   "kind": "tx -> rx chain",
-   "receivers": 7,
-   "sentence": "channel 134: sector:218 (relay) tells 7 record(s)",
    "shape": "a chain",
    "slots": [
     "tx",
@@ -9488,7 +10000,7 @@
    "breakable wall": 18,
    "room over room": 3,
    "sector mechanism": 52,
-   "tx -> rx chain": 63
+   "tx -> rx chain": 56
   },
   "conditions": 189,
   "inventory": {
@@ -9529,10 +10041,10 @@
   },
   "keys": 2,
   "links": 69,
-  "records_a_sentence_realises": 515,
-  "residue_percent": 44.61,
-  "residue_records": 397,
-  "sentences": 136,
+  "records_a_sentence_realises": 502,
+  "residue_percent": 46.07,
+  "residue_records": 410,
+  "sentences": 129,
   "stacks": 3,
   "wired_records": 890
  },

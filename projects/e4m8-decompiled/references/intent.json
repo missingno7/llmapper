@@ -3,11 +3,11 @@
   "disagreements": [],
   "explained": 0,
   "gate": "a name only where a measurement distinguishes: the modal lesson-name prefix for a mechanism, exactly one firing rule for a place. Everything else is refused by name",
-  "population": "45 sentences and 5 grouped spaces",
+  "population": "41 sentences and 5 grouped spaces",
   "reader": "bloodmap.read_intent (new)",
-  "residue": 32,
+  "residue": 28,
   "residue_is": "sentences and spaces no measurement names",
-  "residue_percent": 64.0
+  "residue_percent": 60.87
  },
  "mechanisms": {
   "candidates": [
@@ -737,23 +737,7 @@
   "named": [],
   "refused": [
    {
-    "sentence": "sentence:channel:100",
-    "why": "not a sector type: the course teaches it somewhere other than by type"
-   },
-   {
     "sentence": "sentence:channel:101",
-    "why": "not a sector type: the course teaches it somewhere other than by type"
-   },
-   {
-    "sentence": "sentence:channel:102",
-    "why": "not a sector type: the course teaches it somewhere other than by type"
-   },
-   {
-    "sentence": "sentence:channel:103",
-    "why": "not a sector type: the course teaches it somewhere other than by type"
-   },
-   {
-    "sentence": "sentence:channel:104",
     "why": "not a sector type: the course teaches it somewhere other than by type"
    },
    {
@@ -985,8 +969,8 @@
    "candidates": 17,
    "named": 0,
    "named_percent": 0.0,
-   "population": 45,
-   "refused": 28
+   "population": 41,
+   "refused": 24
   },
   "names_by_kind": {},
   "places": {

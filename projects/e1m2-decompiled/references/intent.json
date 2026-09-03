@@ -3,11 +3,11 @@
   "disagreements": [],
   "explained": 26,
   "gate": "a name only where a measurement distinguishes: the modal lesson-name prefix for a mechanism, exactly one firing rule for a place. Everything else is refused by name",
-  "population": "139 sentences and 49 grouped spaces",
+  "population": "136 sentences and 49 grouped spaces",
   "reader": "bloodmap.read_intent (new)",
-  "residue": 132,
+  "residue": 129,
   "residue_is": "sentences and spaces no measurement names",
-  "residue_percent": 70.21
+  "residue_percent": 69.73
  },
  "mechanisms": {
   "candidates": [
@@ -1629,10 +1629,6 @@
     "why": "not a sector type: the course teaches it somewhere other than by type"
    },
    {
-    "sentence": "sentence:channel:143",
-    "why": "not a sector type: the course teaches it somewhere other than by type"
-   },
-   {
     "sentence": "sentence:channel:144",
     "why": "not a sector type: the course teaches it somewhere other than by type"
    },
@@ -1649,19 +1645,11 @@
     "why": "not a sector type: the course teaches it somewhere other than by type"
    },
    {
-    "sentence": "sentence:channel:148",
-    "why": "not a sector type: the course teaches it somewhere other than by type"
-   },
-   {
     "sentence": "sentence:channel:149",
     "why": "not a sector type: the course teaches it somewhere other than by type"
    },
    {
     "sentence": "sentence:channel:150",
-    "why": "not a sector type: the course teaches it somewhere other than by type"
-   },
-   {
-    "sentence": "sentence:channel:151",
     "why": "not a sector type: the course teaches it somewhere other than by type"
    },
    {
@@ -2426,9 +2414,9 @@
   "mechanisms": {
    "candidates": 30,
    "named": 15,
-   "named_percent": 10.79,
-   "population": 139,
-   "refused": 94
+   "named_percent": 11.03,
+   "population": 136,
+   "refused": 91
   },
   "names_by_kind": {
    "door": 15

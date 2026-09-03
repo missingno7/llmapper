@@ -3,11 +3,11 @@
   "disagreements": [],
   "explained": 26,
   "gate": "a name only where a measurement distinguishes: the modal lesson-name prefix for a mechanism, exactly one firing rule for a place. Everything else is refused by name",
-  "population": "136 sentences and 36 grouped spaces",
+  "population": "129 sentences and 36 grouped spaces",
   "reader": "bloodmap.read_intent (new)",
-  "residue": 109,
+  "residue": 102,
   "residue_is": "sentences and spaces no measurement names",
-  "residue_percent": 63.37
+  "residue_percent": 61.82
  },
  "mechanisms": {
   "candidates": [
@@ -1991,14 +1991,6 @@
     "why": "not a sector type: the course teaches it somewhere other than by type"
    },
    {
-    "sentence": "sentence:channel:104",
-    "why": "not a sector type: the course teaches it somewhere other than by type"
-   },
-   {
-    "sentence": "sentence:channel:105",
-    "why": "not a sector type: the course teaches it somewhere other than by type"
-   },
-   {
     "sentence": "sentence:channel:106",
     "why": "not a sector type: the course teaches it somewhere other than by type"
    },
@@ -2024,14 +2016,6 @@
    },
    {
     "sentence": "sentence:channel:112",
-    "why": "not a sector type: the course teaches it somewhere other than by type"
-   },
-   {
-    "sentence": "sentence:channel:113",
-    "why": "not a sector type: the course teaches it somewhere other than by type"
-   },
-   {
-    "sentence": "sentence:channel:114",
     "why": "not a sector type: the course teaches it somewhere other than by type"
    },
    {
@@ -2091,23 +2075,11 @@
     "why": "not a sector type: the course teaches it somewhere other than by type"
    },
    {
-    "sentence": "sentence:channel:130",
-    "why": "not a sector type: the course teaches it somewhere other than by type"
-   },
-   {
     "sentence": "sentence:channel:131",
     "why": "not a sector type: the course teaches it somewhere other than by type"
    },
    {
     "sentence": "sentence:channel:132",
-    "why": "not a sector type: the course teaches it somewhere other than by type"
-   },
-   {
-    "sentence": "sentence:channel:133",
-    "why": "not a sector type: the course teaches it somewhere other than by type"
-   },
-   {
-    "sentence": "sentence:channel:134",
     "why": "not a sector type: the course teaches it somewhere other than by type"
    },
    {
@@ -2831,9 +2803,9 @@
   "mechanisms": {
    "candidates": 36,
    "named": 16,
-   "named_percent": 11.76,
-   "population": 136,
-   "refused": 84
+   "named_percent": 12.4,
+   "population": 129,
+   "refused": 77
   },
   "names_by_kind": {
    "door": 16

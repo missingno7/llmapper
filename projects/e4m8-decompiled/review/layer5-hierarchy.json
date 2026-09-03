@@ -309,14 +309,10 @@
   {
    "id": "kind:tx_->_rx_chain",
    "kind": "mechanism_kind",
-   "name": "tx -> rx chain (28)",
+   "name": "tx -> rx chain (24)",
    "parent": "level",
    "children": [
-    "sentence:channel:100",
     "sentence:channel:101",
-    "sentence:channel:102",
-    "sentence:channel:103",
-    "sentence:channel:104",
     "sentence:channel:106",
     "sentence:channel:107",
     "sentence:channel:108",
@@ -357,27 +353,12 @@
     49,
     51,
     54,
-    56,
-    57,
-    58,
-    59,
     60,
     61,
     62,
     68,
     69,
     70
-   ]
-  },
-  {
-   "id": "sentence:channel:100",
-   "kind": "sentence",
-   "name": "channel:100",
-   "parent": "kind:tx_->_rx_chain",
-   "children": [],
-   "sectors": [
-    56,
-    69
    ]
   },
   {
@@ -388,39 +369,6 @@
    "children": [],
    "sectors": [
     54,
-    69
-   ]
-  },
-  {
-   "id": "sentence:channel:102",
-   "kind": "sentence",
-   "name": "channel:102",
-   "parent": "kind:tx_->_rx_chain",
-   "children": [],
-   "sectors": [
-    59,
-    69
-   ]
-  },
-  {
-   "id": "sentence:channel:103",
-   "kind": "sentence",
-   "name": "channel:103",
-   "parent": "kind:tx_->_rx_chain",
-   "children": [],
-   "sectors": [
-    57,
-    69
-   ]
-  },
-  {
-   "id": "sentence:channel:104",
-   "kind": "sentence",
-   "name": "channel:104",
-   "parent": "kind:tx_->_rx_chain",
-   "children": [],
-   "sectors": [
-    58,
     69
    ]
   },

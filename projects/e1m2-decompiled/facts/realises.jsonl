@@ -266,10 +266,6 @@
 {"_from": ["sentence:channel:142", "sector:154"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:142:sector:154", "record": "sector:154", "sentence": "sentence:channel:142"}
 {"_from": ["sentence:channel:142", "sector:155"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:142:sector:155", "record": "sector:155", "sentence": "sentence:channel:142"}
 {"_from": ["sentence:channel:142", "sprite:668"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:142:sprite:668", "record": "sprite:668", "sentence": "sentence:channel:142"}
-{"_from": ["sentence:channel:143", "sector:155"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:143:sector:155", "record": "sector:155", "sentence": "sentence:channel:143"}
-{"_from": ["sentence:channel:143", "sector:154"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:143:sector:154", "record": "sector:154", "sentence": "sentence:channel:143"}
-{"_from": ["sentence:channel:143", "sector:268"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:143:sector:268", "record": "sector:268", "sentence": "sentence:channel:143"}
-{"_from": ["sentence:channel:143", "sector:269"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:143:sector:269", "record": "sector:269", "sentence": "sentence:channel:143"}
 {"_from": ["sentence:channel:144", "sprite:629"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:144:sprite:629", "record": "sprite:629", "sentence": "sentence:channel:144"}
 {"_from": ["sentence:channel:144", "sprite:128"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:144:sprite:128", "record": "sprite:128", "sentence": "sentence:channel:144"}
 {"_from": ["sentence:channel:144", "sprite:529"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:144:sprite:529", "record": "sprite:529", "sentence": "sentence:channel:144"}
@@ -296,9 +292,6 @@
 {"_from": ["sentence:channel:147", "sector:226"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:147:sector:226", "record": "sector:226", "sentence": "sentence:channel:147"}
 {"_from": ["sentence:channel:147", "sprite:603"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:147:sprite:603", "record": "sprite:603", "sentence": "sentence:channel:147"}
 {"_from": ["sentence:channel:147", "sprite:646"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:147:sprite:646", "record": "sprite:646", "sentence": "sentence:channel:147"}
-{"_from": ["sentence:channel:148", "sector:228"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:148:sector:228", "record": "sector:228", "sentence": "sentence:channel:148"}
-{"_from": ["sentence:channel:148", "sector:161"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:148:sector:161", "record": "sector:161", "sentence": "sentence:channel:148"}
-{"_from": ["sentence:channel:148", "sector:227"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:148:sector:227", "record": "sector:227", "sentence": "sentence:channel:148"}
 {"_from": ["sentence:channel:149", "sprite:79"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:149:sprite:79", "record": "sprite:79", "sentence": "sentence:channel:149"}
 {"_from": ["sentence:channel:149", "sprite:261"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:149:sprite:261", "record": "sprite:261", "sentence": "sentence:channel:149"}
 {"_from": ["sentence:channel:149", "sprite:526"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:149:sprite:526", "record": "sprite:526", "sentence": "sentence:channel:149"}
@@ -307,8 +300,6 @@
 {"_from": ["sentence:channel:150", "wall:1145"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:150:wall:1145", "record": "wall:1145", "sentence": "sentence:channel:150"}
 {"_from": ["sentence:channel:150", "wall:1147"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:150:wall:1147", "record": "wall:1147", "sentence": "sentence:channel:150"}
 {"_from": ["sentence:channel:150", "sector:149"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:150:sector:149", "record": "sector:149", "sentence": "sentence:channel:150"}
-{"_from": ["sentence:channel:151", "sector:183"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:151:sector:183", "record": "sector:183", "sentence": "sentence:channel:151"}
-{"_from": ["sentence:channel:151", "sector:260"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:151:sector:260", "record": "sector:260", "sentence": "sentence:channel:151"}
 {"_from": ["sentence:channel:152", "sector:262"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:152:sector:262", "record": "sector:262", "sentence": "sentence:channel:152"}
 {"_from": ["sentence:channel:152", "sprite:522"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:152:sprite:522", "record": "sprite:522", "sentence": "sentence:channel:152"}
 {"_from": ["sentence:channel:153", "sprite:547"], "_layer": 5, "_reader": "bloodmap.read_mechanisms", "id": "sentence:channel:153:sprite:547", "record": "sprite:547", "sentence": "sentence:channel:153"}
