@@ -83,7 +83,14 @@ class TheRowsAreTheMeasuredOnes(unittest.TestCase):
         from bloodmap.joins import END_WALL, ROAD, rule
 
         found = rule(ROAD, END_WALL, "b_above")
-        self.assertEqual(found.cstat & 1, 1, "you may not walk up a street's end")
+        #: NO LONGER BLOCKING, and the census is why: 269 of the campaign's
+        #: 285 road-side end-wall band records do not block, and it is not a
+        #: height rule -- blocking sits at a median step of 88064 and
+        #: non-blocking at 114688. 94% lets gravity be the gate, and E3M1's
+        #: three are the exception this row was first written from. Blocking
+        #: stays available as a per-project choice.
+        self.assertEqual(found.cstat & 1, 0,
+                         "gravity is the gate on 94% of the campaign")
         self.assertEqual(found.frame, "boundary")
 
     def test_the_sea_and_the_horizon_draw_nothing(self):
@@ -411,3 +418,96 @@ class WaterIsReadThroughBothShapes(unittest.TestCase):
         found = joins.rule(joins.PAVEMENT, joins.PAVEMENT, joins.EQUAL)
         self.assertNotIn("s10/s11: a pavement-only path", found.evidence)
         self.assertIn("shadow-cut", found.evidence)
+
+
+class IndoorsIsOneLawNotEleven(unittest.TestCase):
+    """49 821 interior|interior records over 43 maps, in 25 mirrored classes.
+
+    The `draws` column of that census is `wallVisible`, the ENGINE's law: a
+    two-sided record draws where a step exposes it on its own side. So the
+    mirrored pairs are one rule and it is the kerb's, indoors -- 5382 of 5382
+    draw where the neighbour's floor is far above and 22 of 5382 where it is
+    far below.
+    """
+
+    def test_two_floors_at_one_z_draw_nothing(self):
+        from bloodmap import joins
+
+        found = joins.rule(joins.INTERIOR, joins.INTERIOR, joins.EQUAL)
+        self.assertEqual(found.a_shows, joins.NOTHING)
+        self.assertEqual(found.frame, "continues")
+
+    def test_the_record_whose_neighbour_stands_above_is_the_one_that_draws(self):
+        from bloodmap import joins
+
+        found = joins.rule(joins.INTERIOR, joins.INTERIOR, joins.B_ABOVE)
+        self.assertIn("lower band", found.a_shows)
+        self.assertEqual(found.b_shows, joins.NOTHING)
+        flipped = joins.rule(joins.INTERIOR, joins.INTERIOR, joins.B_BELOW)
+        self.assertEqual(flipped.a_shows, joins.NOTHING)
+        self.assertIn("lower band", flipped.b_shows)
+
+    def test_an_indoor_band_wears_no_class_because_there_is_none(self):
+        # The flattest distribution the project has measured: over 12857 such
+        # records the commonest tile covers 4.9% of the length. So the row
+        # names the room's own material and writes no tile.
+        from bloodmap import joins
+
+        found = joins.rule(joins.INTERIOR, joins.INTERIOR, joins.B_ABOVE)
+        self.assertNotIn("class", found.a_shows)
+        self.assertFalse(any(name in found.a_shows
+                             for name in joins.TILE_CLASSES))
+
+    def test_the_overridden_row_is_the_one_thing_that_cannot_be_derived(self):
+        from bloodmap import joins
+
+        found = joins.rule(joins.INTERIOR, joins.INTERIOR, joins.OVERRIDDEN)
+        self.assertTrue(found.cstat & 16)
+        self.assertIn("126 masked", found.evidence)
+
+    def test_e3m1_s_indoor_residue_falls(self):
+        # THE FAIL-FIRST, replayed through the reader: 1320 undescribed
+        # records before these rows, 198 after -- 1122 of them the three
+        # interior|interior classes.
+        from bloodmap.format import read_map
+        from bloodmap.patterns import corpus_map_path
+        from bloodmap.read_joins import join_census, surface_kinds
+        from bloodmap.texture_frame import sector_index
+
+        try:
+            level = read_map(corpus_map_path("E3M1")).to_level_ir()
+        except Exception:  # pragma: no cover - corpus absent
+            self.skipTest("E3M1 is not in the corpus")
+        owners = sector_index(level)
+        census = join_census(level, surface_kinds(level, owners=owners)["kinds"],
+                             owners=owners)
+        self.assertEqual(census["two_sided_records"], 1386)
+        self.assertEqual(census["records_undescribed"], 198)
+        self.assertNotIn("interior|interior|equal", census["undescribed"])
+
+
+class BlockingIsAChoiceAndSoIsAStone(unittest.TestCase):
+
+    def test_the_end_wall_row_no_longer_blocks(self):
+        # 269 of the campaign's 285 road-side end-wall band records do not
+        # block, and it is not a height rule: blocking sits at a median step
+        # of 88064 and non-blocking at 114688. 94% lets gravity be the gate.
+        from bloodmap import joins
+
+        self.assertEqual(joins.rule(joins.ROAD, joins.END_WALL,
+                                    joins.B_ABOVE).cstat, 0)
+        self.assertEqual(joins.rule(joins.PAVEMENT, joins.END_WALL,
+                                    joins.B_ABOVE).cstat, 0)
+
+    def test_gravesend_s_400_is_recorded_as_a_choice_in_its_class(self):
+        from bloodmap import joins
+
+        self.assertEqual(joins.TILE_CLASSES["facade stone"], 400)
+        self.assertIn(400, joins.END_WALL_BAND_ENVELOPE)
+        self.assertEqual(joins.END_WALL_BAND_ENVELOPE[400], 2)
+        self.assertEqual(sum(joins.END_WALL_BAND_ENVELOPE.values()) <=
+                         joins.END_WALL_BAND_RECORDS, True)
+        self.assertGreater(joins.END_WALL_BAND_ENVELOPE[449],
+                           joins.END_WALL_BAND_ENVELOPE[400],
+                           "the commonest member is not the one chosen, and "
+                           "a modal tile over 21 maps is not a law")

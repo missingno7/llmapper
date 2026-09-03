@@ -77,6 +77,13 @@ EQUAL = "equal"
 B_ABOVE = "b_above"
 B_BELOW = "b_below"
 ONE_SIDED = "one_sided"
+#: NOT A HEIGHT. A record the author overrode so that it draws where the
+#: geometry exposes nothing: `wallVisible` says no band, and the wall is
+#: masked or one-way anyway. The campaign has 132 of them among 13 852
+#: level|level interior records, and every single one is overridden by hand
+#: -- 126 masked, 6 one-way. That is the one thing about an indoor join that
+#: cannot be derived, so it is the one thing an indoor grammar has to be told.
+OVERRIDDEN = "overridden"
 
 #: How a STEP's face is shaded, relative to the floor shade of the surface
 #: that owns the record. Measured on E3M1's eleven kerb records, which are the
@@ -156,13 +163,20 @@ def _rows() -> tuple[JoinRule, ...]:
                  frame="independent",
                  evidence="the facade's frame is world-anchored, so it does "
                           "not take the pavement's"),
+        #: NO `cstat=1`. 269 of the campaign's 285 road-side end-wall band
+        #: records do NOT block, and 41 of 49 pavement-side ones do not: 94%
+        #: lets gravity be the gate. It is not a height rule either --
+        #: blocking records sit at a median step of 88 064 and non-blocking
+        #: ones at 114 688 -- so E3M1's three are the exception the row was
+        #: first written from. Blocking stays available as a PER-PROJECT
+        #: choice where a mass is low enough to walk onto.
         JoinRule(ROAD, END_WALL, B_ABOVE, a_shows="lower band, facade stone",
-                 cstat=1, frame="boundary", shade_offset=KERB_SHADE_OFFSET,
+                 frame="boundary", shade_offset=KERB_SHADE_OFFSET,
                  evidence="E3M1 s0/s339/s343: blocking, y_repeat 8, the "
                           "district's own stone; the end wall's faces carry "
                           "their own frame"),
         JoinRule(PAVEMENT, END_WALL, B_ABOVE, a_shows="lower band, facade "
-                 "stone", cstat=1, frame="boundary",
+                 "stone", frame="boundary",
                  shade_offset=KERB_SHADE_OFFSET,
                  evidence="E3M1 s339 to s2/s3/s4, same dialect as the road"),
         JoinRule(PAVEMENT, FACADE, B_ABOVE, a_shows="lower band, facade "
@@ -208,6 +222,42 @@ def _rows() -> tuple[JoinRule, ...]:
                  evidence="E3M1: its records from the ground up into a "
                           "building wear the same facade family, blocking, "
                           "and the building's frame is not the street's"),
+        #: INDOORS: ONE LAW, NOT ELEVEN ------------------------------------
+        #:
+        #: 49 821 `interior|interior` records over 43 maps fall in 25 classes
+        #: and the classes come in mirrored pairs, because both records of a
+        #: join are counted and each sees the other's relation reversed. The
+        #: `draws` column is `wallVisible`, the ENGINE's law: a two-sided
+        #: record draws where a step exposes it on its own side. So the pairs
+        #: are not two rules but one, and it is the kerb's law indoors --
+        #: 5382 of 5382 draw where the neighbour's floor is far above, and 22
+        #: of 5382 where it is far below.
+        JoinRule(INTERIOR, INTERIOR, EQUAL, frame="continues",
+                 evidence="13852 level|level records over all 43 maps and "
+                          "132 of them draw -- `wallVisible` exposes nothing "
+                          "between two floors at one z, so the join draws no "
+                          "band and the room's frame runs through it"),
+        JoinRule(INTERIOR, INTERIOR, B_ABOVE,
+                 a_shows="lower band, the room's own material",
+                 frame="independent",
+                 evidence="the kerb's law indoors: the record whose "
+                          "neighbour stands above is the one that draws -- "
+                          "5382 of 5382 at a far step and 3147 of 3147 at a "
+                          "single one, against 22 and 5 the other way. The "
+                          "MATERIAL is not a class: over 12857 such records "
+                          "the commonest tile covers 4.9% of the length (449, "
+                          "19 maps) and the next four are 4.0, 3.5, 3.2 and "
+                          "3.1%, which is the flattest distribution this "
+                          "project has measured. An indoor band wears the "
+                          "room's own wall, so this row draws no tile"),
+        JoinRule(INTERIOR, INTERIOR, OVERRIDDEN,
+                 a_shows="masked band, the room's own material", cstat=16,
+                 frame="independent",
+                 evidence="the residual, and the only part of an indoor join "
+                          "that cannot be derived: 132 of the 13852 "
+                          "level|level records draw where the geometry "
+                          "exposes nothing, and every one is overridden by "
+                          "hand -- 126 masked, 6 one-way"),
         #: The map edge ----------------------------------------------------
         JoinRule(SHORE, SEA, EQUAL, frame="independent",
                  evidence="DWE3M10: the shore meets the sea at equal z and "
@@ -385,6 +435,19 @@ TILE_CLASSES = {
     #: class's representative; the four together are 69.4% of the facade.
     "facade class": 401,
 }
+
+#: WHAT THE CAMPAIGN PUTS ON A ROAD-SIDE END-WALL BAND, over 285 records in
+#: 21 maps. `TILE_CLASSES["facade stone"] = 400` is worn by **2 of the 285**,
+#: which is 0.7%, and the class has 27 members: 449 on 75 (26%), 2490 on 56,
+#: 91 on 34, 28 on 19, and E3M1's own 414 on 3.
+#:
+#: 400 stays where it is, as GRAVESEND'S CHOICE. A modal tile over 21 maps is
+#: not a law -- section 22 says a choice needs only to lie inside an attested
+#: class -- and this is the distribution it lies inside, recorded so the
+#: choice can be seen for what it is.
+END_WALL_BAND_ENVELOPE = {449: 75, 2490: 56, 91: 34, 28: 19, 414: 3, 400: 2}
+END_WALL_BAND_RECORDS = 285
+END_WALL_BAND_MEMBERS = 27
 
 #: The four the census leaves standing, in order of the length they cover.
 FACADE_FAMILY = (401, 417, 181, 400)

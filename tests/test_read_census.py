@@ -95,16 +95,24 @@ class OnE3M1(unittest.TestCase):
             self.assertEqual(mine["by_class"][name]["n"], row["n"], name)
             self.assertEqual(mine["by_class"][name]["u_continues"], row["x"], name)
 
-    def test_the_interior_census_covers_layer_threes_undescribed_pairs(self):
+    def test_the_interior_census_is_what_layer_three_now_describes(self):
+        """It used to cover layer 3's undescribed interior pairs exactly.
+
+        That was the point of measuring them, and item 37e consumed the
+        measurement: the join table has the indoor law now, so the pairs this
+        census counts are the pairs layer 3 DESCRIBES rather than the ones it
+        cannot. The equality is the same equality, read from the other side.
+        """
         from bloodmap.read_census import interior_pairs
         from bloodmap.read_joins import read_joins
 
         pairs = interior_pairs(self.level)
-        census_total = pairs["records"]
-        joins = read_joins(self.level)["census"]["undescribed"]
-        undescribed = sum(count for key, count in joins.items()
+        joins = read_joins(self.level)["census"]
+        undescribed = sum(count for key, count in joins["undescribed"].items()
                           if key.startswith("interior|interior"))
-        self.assertEqual(census_total, undescribed)
+        self.assertEqual(undescribed, 0)
+        self.assertGreater(pairs["records"], 0)
+        self.assertLessEqual(pairs["records"], joins["records_described"])
 
     def test_a_class_carries_the_angle_it_was_measured_at(self):
         """A bend of 12 degrees and one of 89 are the same class and not the

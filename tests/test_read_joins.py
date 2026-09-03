@@ -99,19 +99,24 @@ class E3M1sStreet(unittest.TestCase):
             self.assertEqual(self.kinds["kinds"][sector], "solid")
         self.assertGreater(self.census["described"]["pavement|pavement|equal"], 0)
 
-    def test_the_table_describes_the_street_and_not_the_building(self):
-        """66 described, not the 74 of the first reading: item 28c moved
-        E3M1's two moving masses out of `end_wall` and into
-        `mechanism_at_rest`, and the table has no row for a street meeting a
-        mechanism -- correctly, since what it meets depends on the state."""
+    def test_the_table_describes_the_building_now_as_well(self):
+        """It used to describe 66 of 1386 and the building was the residue.
+
+        Item 37e landed the indoor law -- ONE row keyed on the height
+        relation, because the campaign's 25 mirrored interior|interior classes
+        say one thing and it is `wallVisible`: the record whose neighbour
+        stands above is the one that draws. The 1122 interior|interior records
+        that were residue are described by three rows, and 198 remain: a
+        building meeting a solid, a pavement or an end wall.
+        """
         from bloodmap.read_joins import summary
 
         stats = summary(self.result)
         self.assertEqual(stats["two_sided_records"], 1386)
-        self.assertEqual(stats["records_described"], 66)
+        self.assertEqual(stats["records_described"], 1188)
         interior = sum(count for key, count in self.census["undescribed"].items()
                        if key.startswith("interior|interior"))
-        self.assertEqual(interior, 1122)
+        self.assertEqual(interior, 0)
 
     def test_a_raised_mass_that_moves_is_not_an_end_wall(self):
         """Item 28c, and it is what the blocking clause was tripping over.
@@ -125,9 +130,11 @@ class E3M1sStreet(unittest.TestCase):
         kinds = self.kinds["kinds"]
         self.assertEqual(kinds[172], "mechanism_at_rest")
         self.assertEqual(kinds[174], "mechanism_at_rest")
-        rows = self.census["cstat_disagreements"]
-        self.assertEqual(len(rows), 1)
-        self.assertFalse(rows[0]["faced_sector_moves"])
+        #: AND THE LAST DISAGREEMENT IS GONE, because item 37c took the
+        #: clause out rather than the record: 269 of the campaign's 285
+        #: road-side end-wall band records do not block, so wall 1529 was
+        #: never the exception -- the row was.
+        self.assertEqual(self.census["cstat_disagreements"], [])
 
 
 if __name__ == "__main__":
