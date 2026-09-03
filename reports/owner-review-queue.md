@@ -1805,3 +1805,47 @@ reason beside it.
 *Node:* `projects/e3m1-decompiled/review/layer3.html`, node `level`.
 *Recommended default:* fine as done. If P14b would rather own the edit, the
 line to revisit is the comment above the assertion.
+
+## 38. Slice 5: what landed, and three things the readers and I disagree about (P14b, 2026-09-03)
+
+**38a. `read_surfaces`'s continuation law is not `AlignWalls`'s, or I have
+misread one of them.** The stair fixture differs in exactly one field -- the
+flank's `x_panning`, a cursor running the length of each side against zero at
+every tread, with the repeat taken from each record's own length in both, and
+a tread depth of 2816 so a record does not consume a whole number of tiles.
+`read_surfaces` explains the ZERO case (0 broken of 20) and calls the
+accumulated one broken (9). `AlignWalls` accumulates `x_repeat * 8` and would
+call the zero case broken. One of the two is not the law I think it is.
+*Recommended default:* P15 states the law `read_surfaces` fits in one
+sentence, and if it is world-anchored rather than accumulated, the writer's
+frame gate and the reader's residue are measuring different things and the
+roadmap's "surface representation is 46% of the residue" needs that footnote.
+The numbers are asserted in `tests/test_stair.py` so the day it changes,
+something says so.
+
+**38b. The waterfront is 134 records the join table does not describe, and
+they are all of it.** `water|water|equal`, `water|shore|equal`,
+`water|solid|equal` and their mirrors. The writer has SEA|SEA, SHORE|SEA and
+SHORE|SHORE rows; the reader names those sectors `water`, not `sea`.
+*Recommended default:* the reader's `water` and the writer's `sea` are the
+same kind under two names, and the cheaper fix is the writer's -- rename `SEA`
+to `WATER` in `joins.py` so one word means one thing on both sides. Writer
+change, mine, held for slice 6 because it touches every waterfront row and
+this slice's suite is already carrying four number updates.
+
+**38c. Four of P15's tests asserted counts of a map I then changed.** St
+Gallow's took eight sectors where the city had one, so `two_sided_records`
+went 1058 -> 1112, `records_described` 924 -> 978, the nine shopfronts' sector
+ids moved, and `same_id` went 924 -> 978. I updated the numbers and left the
+claims alone, each with the reason in place; the residue stayed at 134 and the
+agreement stayed total, which is the part that was being asserted.
+*Recommended default:* a test that pins a count of the built city belongs to
+whoever builds it -- either the number moves to a fixture P15 owns, or the
+assertion becomes a relation ("every shared record agrees") rather than a
+count. Reported, not decided.
+
+**38d. Six L3 interiors remain, and the church is the pattern.** foundry,
+mall, market, sewer, shed, theatre. The foundry is next and it is the
+interesting one: a hall with a gallery over it is the same relation as rooms
+in a mass, one level up, and whether that is the same word is what porting it
+answers.

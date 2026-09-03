@@ -3459,6 +3459,134 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### Slice 5: indoors is one law, and a building is eight rooms in one mass
+
+#### Three census results consumed
+
+**37e, the indoor law.** 49 821 `interior|interior` records over 43 maps fall
+in 25 classes, mirrored in pairs because both records of a join are counted
+and each sees the other's relation reversed. The `draws` column is
+`wallVisible`, the ENGINE's law: a two-sided record draws where a step exposes
+it on its own side. So the pairs are one rule and it is the kerb's law indoors
+-- 5382 of 5382 draw where the neighbour's floor is far above, 22 of 5382
+where it is far below.
+
+Three rows carry it: equal draws nothing; `b_above` puts the band on the
+record whose neighbour stands above; and `OVERRIDDEN` carries the residual --
+the 132 `level|level` records that draw where the geometry exposes nothing,
+**every one of them overridden by hand, 126 masked and 6 one-way**, which is
+the one thing about an indoor join that cannot be derived.
+
+**The band wears no CLASS, because there is none.** Over 12 857 records whose
+neighbour stands above, the commonest tile covers 4.9% of the length (449, 19
+maps) and the next four are 4.0, 3.5, 3.2 and 3.1% -- the flattest
+distribution this project has measured. An indoor band wears the room's own
+wall, so the row draws no tile.
+
+E3M1 replayed through `read_joins`: **1320 records of residue before, 198
+after**, and the 1122 interior|interior are gone from it.
+
+**37c, blocking is a choice.** 269 of the campaign's 285 road-side end-wall
+band records do not block; 41 of 49 pavement-side do not. It is not a height
+rule -- blocking sits at a median step of 88 064 and non-blocking at 114 688
+-- so E3M1's three are the exception the row was written from. `cstat=1` is
+out of both end-wall rows and gravity is the gate, as it is on 94% of the
+campaign.
+
+**37b, 400 is a choice inside its class.** Worn by 2 of the 285, which is
+0.7%; the class has 27 members, 449 on 75 and 2490 on 56. Recorded as
+`END_WALL_BAND_ENVELOPE` rather than promoting the mode, because a mode over
+21 maps is not a law.
+
+#### dressing: props stand on something
+
+`city.dressing(anchor, [props], spread=, facing=)` places a bundle against an
+ANCHOR RECORD and never by absolute coordinate, and every constraint in it is
+the reader's. `anchors.find_bundles` recovers a raised island only between the
+4096 step limit and half a body -- of 958 campaign blocking islands that band
+holds 38.3% -- and only when the footprint is twice as long as it is deep.
+`city.prop(name)` takes the campaign's own word for a tile, because
+`read_intent.named_props` counts nothing else.
+
+**The fail-first is the same two sprites, at the same two points, in the same
+room, with nothing under them: `find_bundles` returns [].**
+
+#### St Gallow's, re-parented
+
+`city.shell_of_rooms` is what a building with more than one room is. A shell
+gives it one and one room is a box; eight is a MASS WITH ROOMS TAKEN OUT OF
+IT, and the stone left between them is what makes a nave read as a nave. The
+facade is the footprint minus the rooms minus the door, traced by
+`overlay.ground_plane_rings` -- a mass with holes in it is a plane with blocks
+on it, one level up and inside out.
+
+The floor plan is `l3_church.py`'s own, moved to coordinates RELATIVE to the
+shell's interior origin so it survives a re-solve; the old one was absolute,
+and a width class changing underneath it would have left the church where it
+was and the island somewhere else.
+
+Three refusals on the way, each correct: a plinth flush on a 2048 depth is
+aspect 1.30 and not a counter; a hole loop is NEGATIVE in Build's screen space
+and an outer loop positive; and a 4096 mouth on a 1536 narthex spills over the
+nave, so a door is no wider than the room it serves and is centred on that
+room rather than on the shell.
+
+```text
+bundles          1 placed, 1 read back: core 127 in host 121, rise 6144,
+                 aspect 3.9, both props, and named_props counts them
+read-back        9 sentences, 0 differences, agrees=True
+church facts     12 sectors; 12 part_of and 12 surface declared, 12
+                 surface_kind and 12 join recovered, 8 attachment, 4 residue
+```
+
+#### stair, and a measurement that came out the other way round
+
+`city.stair(from_, to, treads=, width=, clear_height=)` states a run as its
+two ends and a count, never as a list of boxes, so it survives a landing
+moving. `read_stairs` recovers the fixture as one stepped run of five.
+
+**The flank residue is NOT demonstrated, and the honest reading is that I do
+not yet know the reader's continuation law.** The two variants differ in one
+field -- the flank's `x_panning`, a cursor per side against zero at every
+tread -- with the repeat from the record's own length in both, and a tread
+depth of 2816 chosen so that a record does not consume a whole number of
+tiles. `read_surfaces` explains the ZERO case (0 broken of 20) and calls the
+accumulated one broken (9). That is the opposite of the direction
+`AlignWalls` accumulates in, so one of the two is not the law I think it is,
+and the numbers are asserted so the day it changes something says so.
+
+#### The city
+
+```text
+sectors / walls / sprites   199 / 1131 / 34
+surfaces 55  pieces 199  welded 169  slivers 0  partition faults 0
+joins   1112 records, 0 unknown pairs (the writer's), 298 frame boundaries
+G1      194 declared, 0 missing      the editor would change 0 walls
+facts   2398 -> 2589 over 14 predicates; LoD gate 0
+```
+
+The row-for-row diff against P15's readers: **the 296 unnamed joins fall to
+134, and every one of the 134 is the waterfront** -- `water|water`,
+`water|shore`, `water|solid`. `join` is 1112 declared against 978 recovered
+with 978 THE SAME ID; `shade_depth` 199 against 146 with 146 the same.
+
+#### What is still unproven
+
+Six L3 interiors -- foundry, mall, market, sewer, shed, theatre -- are not
+re-parented. The stair is proved on a fixture and is not in the city, because
+St Gallow's crypt stair is a room in the plan and not a run. The waterfront is
+134 records the join table does not describe. And nothing has walked this map.
+
+#### What slice 6 must answer first
+
+**Whether a second building needs a second constructor.** The church fitted
+`shell_of_rooms` because it is rooms in a mass; the foundry is a hall with a
+gallery over it, which is the same relation one level up and may or may not be
+the same word. The way to find out is to port it and see which of
+`shell_of_rooms`, `stair` and `dressing` it needs unchanged -- and section 36's
+rule is already waiting: a macro that does not lower residue on two maps after
+landing is removed.
+
 ### Slice 5, first answer: the weld was not the cause
 
 Slice 4 left one read-back difference per building, `members`, and named the

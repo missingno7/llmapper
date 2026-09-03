@@ -142,7 +142,10 @@ class TheCity(unittest.TestCase):
         and on `a`, `b`, `height`, `frame` and `shows` they agree 924 times.
         """
         row = self.result["predicates"]["join"]
-        self.assertEqual(row["same_id"], 924)
+        #: 924 when this was written; 978 since St Gallow's was
+        #: re-parented and the city gained eight church rooms. The
+        #: claim is the agreement, not the count.
+        self.assertEqual(row["same_id"], 978)
         self.assertEqual(row["differing_ids"], 0)
 
     def test_the_only_content_disagreement_left_is_shade_depth(self):

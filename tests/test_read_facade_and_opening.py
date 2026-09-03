@@ -81,8 +81,14 @@ class TheCityAsksForTwoKinds(unittest.TestCase):
         add a row. It made 162 records able to find the row that was already
         there.
         """
-        self.assertEqual(self.census["two_sided_records"], 1058)
-        self.assertEqual(self.census["records_described"], 924)
+        #: THE MAP MOVED UNDER THESE NUMBERS. St Gallow's was re-parented
+        #: into its shell after they were taken, so the city has eight
+        #: church rooms where it had one: 1112 two-sided records against
+        #: 1058, and 978 described against 924. What did NOT move is the
+        #: finding: the residue is 134 either way, and every one of it is
+        #: the waterfront.
+        self.assertEqual(self.census["two_sided_records"], 1112)
+        self.assertEqual(self.census["records_described"], 978)
         self.assertEqual(self.census["records_undescribed"], 134)
         self.assertEqual(set(self.census["undescribed"]),
                          {"shore|water|equal", "water|shore|equal",
@@ -106,7 +112,9 @@ class TheCityAsksForTwoKinds(unittest.TestCase):
         self.assertEqual(
             sorted(index for index, kind in self.kinds.items()
                    if kind == OPENING),
-            [101, 104, 107, 110, 113, 116, 119, 122, 125])
+            [101, 104, 107, 110, 113, 116, 126, 130, 133],
+            "the last three moved when the church took eight sectors "
+            "where it had one")
 
     def test_no_record_is_an_end_wall_with_a_room_behind_it_any_more(self):
         """The pair that made no architectural sense is gone from the census."""
@@ -120,13 +128,16 @@ class TheCityAsksForTwoKinds(unittest.TestCase):
         described = self.census["described"]
         unlocked = {pair: count for pair, count in described.items()
                     if "facade" in pair or "opening" in pair}
-        self.assertEqual(sum(unlocked.values()), 284)
+        self.assertEqual(sum(unlocked.values()), 312)
         self.assertEqual(unlocked, {
             "pavement|facade|b_above": 61, "facade|pavement|b_below": 61,
-            "facade|interior|b_below": 45, "interior|facade|b_above": 45,
+            "facade|interior|b_below": 58, "interior|facade|b_above": 58,
             "facade|opening|b_below": 18, "opening|facade|b_above": 18,
             "pavement|opening|equal": 9, "opening|pavement|equal": 9,
-            "interior|opening|equal": 9, "opening|interior|equal": 9})
+            "interior|opening|equal": 10, "opening|interior|equal": 10},
+            "facade|interior went 45 -> 58 and interior|opening 9 -> 10: "
+            "the church has eight rooms against one, and its narthex is "
+            "the tenth room a mouth opens onto")
         #: 162 of the 284 were undescribed before -- every facade|interior,
         #: facade|opening and opening|* record. The other 122 are the
         #: pavement|facade pairs, which WERE described, as pavement|end_wall:

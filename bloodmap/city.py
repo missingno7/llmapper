@@ -647,3 +647,59 @@ def shell_of_rooms(key: str, rect: Sequence[int], rooms: Sequence[dict], *,
             declaration["props"].append(key_pickup(
                 f"key:{key}", (door_mid, y1 + 3 * 1024), key=int(gate_key)))
     return surfaces, declaration, placed
+
+
+#: A STEPPED RUN IS THREE RISES OR MORE. `structures._detect_stepped_runs`
+#: takes a maximal monotone climb in the sub-step rise graph and wants at
+#: least three of them; two steps are a threshold and a kerb, not a stair.
+MIN_RISES = 3
+
+
+def stair(from_: Sequence, to: Sequence, *, treads: int, width: int,
+          clear_height: int, surface_id: str, tile: int = PLINTH_TILE,
+          floor_tile: int = 304, lod: int = 1) -> dict:
+    """A stepped run between two landings, and ONE surface owns its flank.
+
+    `from_` and `to` are `(edge, floor_z)`: two parallel records the solver
+    placed, the foot and the head. The treads divide the gap between them
+    evenly and the rise divides the drop evenly, so a stair is stated as its
+    two ends and its count -- never as a list of boxes, which is what makes
+    it survive a landing moving.
+
+    THE FLANK IS ONE SURFACE. Every tread's side records wear one material
+    and carry one projection across the whole run, which is what
+    `read_surfaces` means by explained: a record whose u-origin fits no
+    neighbour's frame is residue, and a run that restarts its panning at every
+    tread is the commonest way to make some.
+    """
+    if int(treads) < MIN_RISES:
+        raise DressingError(
+            f"{surface_id}: {treads} treads is not a stepped run; "
+            f"`structures` wants at least {MIN_RISES} rises, because two "
+            f"steps are a threshold and a kerb")
+    (ax, ay), (bx, by) = tuple(from_[0][0]), tuple(from_[0][1])
+    (cx, cy), (dx, dy) = tuple(to[0][0]), tuple(to[0][1])
+    foot_z, head_z = int(from_[1]), int(to[1])
+    surfaces = []
+    count = int(treads)
+    for index in range(count):
+        low, high = index / count, (index + 1) / count
+        ring = [
+            (int(round(ax + (cx - ax) * low)), int(round(ay + (cy - ay) * low))),
+            (int(round(bx + (dx - bx) * low)), int(round(by + (dy - by) * low))),
+            (int(round(bx + (dx - bx) * high)), int(round(by + (dy - by) * high))),
+            (int(round(ax + (cx - ax) * high)), int(round(ay + (cy - ay) * high))),
+        ]
+        if _screen_area(ring) < 0:
+            ring.reverse()
+        floor_z = foot_z + int(round((head_z - foot_z) * (index + 0.5) / count))
+        surfaces.append(SurfaceSpec(
+            surface_id=f"{surface_id}:{index:02d}", rings=(ring,),
+            floor_z=floor_z, ceiling_z=floor_z - int(clear_height),
+            floor_tile=int(floor_tile), ceiling_tile=ROOF_TILE,
+            wall_tile=int(tile), kind=joins.INTERIOR, role="interior",
+            parallax_ceiling=False, lit=False, lod=int(lod)))
+    rise = abs(head_z - foot_z) // count
+    return {"surfaces": surfaces, "rises": count, "rise": rise,
+            "width": int(width), "flank_tile": int(tile),
+            "foot_z": foot_z, "head_z": head_z}
