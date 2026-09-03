@@ -1,0 +1,2 @@
+{"_from": ["sprite:258", "sprite:678"], "_layer": 5, "_reader": "bloodmap.conditional.key_sprites", "channel": 3, "id": "key:channel:3", "sprites": ["sprite:258", "sprite:678"]}
+{"_from": ["sprite:677"], "_layer": 5, "_reader": "bloodmap.conditional.key_sprites", "channel": 6, "id": "key:channel:6", "sprites": ["sprite:677"]}

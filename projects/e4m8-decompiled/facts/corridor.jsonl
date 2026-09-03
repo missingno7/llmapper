@@ -1,0 +1,1 @@
+{"_from": ["sector:52"], "_layer": 7, "_reader": "bloodmap.read_plan", "axis": "x", "carriageway_class": "avenue", "carriageway_pu": 8.0, "full_width_class": "avenue", "full_width_pu": 12.0, "id": "corridor:00", "length_pu": 22.0, "ratio": 2.75, "role": "edge", "sectors": [52]}

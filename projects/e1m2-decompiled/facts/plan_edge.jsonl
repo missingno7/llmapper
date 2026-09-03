@@ -1,0 +1,3 @@
+{"_from": ["corridor:00"], "_layer": 7, "_reader": "bloodmap.read_plan", "carriageway_pu": 2.0, "corridor": "corridor:00", "from": "corridor:00:a", "full_width_pu": 5.0, "id": "plan_edge:00", "length_pu": 16.0, "to": "corridor:00:b", "width_class": "alley"}
+{"_from": ["corridor:01"], "_layer": 7, "_reader": "bloodmap.read_plan", "carriageway_pu": 2.0, "corridor": "corridor:01", "from": "corridor:01:a", "full_width_pu": 5.0, "id": "plan_edge:01", "length_pu": 15.38, "to": "corridor:01:b", "width_class": "alley"}
+{"_from": ["corridor:02"], "_layer": 7, "_reader": "bloodmap.read_plan", "carriageway_pu": 6.0, "corridor": "corridor:02", "from": "corridor:02:a", "full_width_pu": 10.0, "id": "plan_edge:02", "length_pu": 12.0, "to": "corridor:02:b", "width_class": "row"}

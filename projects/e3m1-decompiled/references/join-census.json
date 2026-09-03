@@ -1,7 +1,7 @@
 {
  "band_blocking": {
   "pavement|end_wall|b_above": {
-   "0": 5,
+   "0": 1,
    "1": 8
   },
   "road|end_wall|b_above": {
@@ -13,8 +13,6 @@
  },
  "band_tiles": {
   "pavement|end_wall|b_above": {
-   "181": 2,
-   "384": 2,
    "414": 6,
    "417": 2,
    "488": 1
@@ -29,46 +27,6 @@
  "base_plane_z": 10240,
  "cstat_disagreements": [
   {
-   "faced_sector_moves": true,
-   "faced_sector_type": 600,
-   "faces_sector": 174,
-   "join": "pavement|end_wall|b_above",
-   "sector": 175,
-   "the_map_says": "cstat 4, not blocking",
-   "the_table_says": "blocking (cstat 1)",
-   "wall": 941
-  },
-  {
-   "faced_sector_moves": true,
-   "faced_sector_type": 600,
-   "faces_sector": 172,
-   "join": "pavement|end_wall|b_above",
-   "sector": 175,
-   "the_map_says": "cstat 4, not blocking",
-   "the_table_says": "blocking (cstat 1)",
-   "wall": 942
-  },
-  {
-   "faced_sector_moves": true,
-   "faced_sector_type": 600,
-   "faces_sector": 172,
-   "join": "pavement|end_wall|b_above",
-   "sector": 175,
-   "the_map_says": "cstat 4, not blocking",
-   "the_table_says": "blocking (cstat 1)",
-   "wall": 943
-  },
-  {
-   "faced_sector_moves": true,
-   "faced_sector_type": 600,
-   "faces_sector": 174,
-   "join": "pavement|end_wall|b_above",
-   "sector": 175,
-   "the_map_says": "cstat 4, not blocking",
-   "the_table_says": "blocking (cstat 1)",
-   "wall": 944
-  },
-  {
    "faced_sector_moves": false,
    "faced_sector_type": 0,
    "faces_sector": 237,
@@ -80,9 +38,9 @@
   }
  ],
  "described": {
-  "end_wall|pavement|b_below": 13,
+  "end_wall|pavement|b_below": 9,
   "end_wall|road|b_below": 3,
-  "pavement|end_wall|b_above": 13,
+  "pavement|end_wall|b_above": 9,
   "pavement|pavement|equal": 14,
   "pavement|road|b_below": 11,
   "road|end_wall|b_above": 3,
@@ -98,8 +56,6 @@
      118,
      165,
      166,
-     172,
-     174,
      236,
      237,
      339,
@@ -111,18 +67,18 @@
      343
     ]
    },
-   "reconciled": "exactly 3 of them are met by a ROAD record -- [0, 339, 343] -- which is the claim's set; the other 7 are met by a pavement, so the claim is right about the T and the reader is counting the same kind of surface elsewhere too",
-   "the_reader_finds": "10 outdoor masses no body can step onto: [0, 118, 165, 166, 172, 174, 236, 237, 339, 343]"
+   "reconciled": "exactly 3 of them are met by a ROAD record -- [0, 339, 343] -- which is the claim's set; the other 5 are met by a pavement, so the claim is right about the T and the reader is counting the same kind of surface elsewhere too",
+   "the_reader_finds": "8 outdoor masses no body can step onto: [0, 118, 165, 166, 236, 237, 339, 343]"
   },
   {
    "claim": "`joins.py`'s PAVEMENT|PAVEMENT row cites \"E3M1 s10/s11: a pavement-only path between abutting islands\"",
-   "reconciled": "the ROW is still attested -- 14 pavement|pavement records exist in E3M1, between the shadow-cut pavement bands -- but its cited evidence is two sectors that are not pavement at all",
+   "reconciled": "the ROW is still attested -- 14 pavement|pavement records exist here, between the shadow-cut pavement bands -- but its cited evidence is two sectors that are not pavement at all",
    "the_reader_finds": "s10 and s11 have floor_z == ceiling_z == 8192: zero clear height, ceiling tiles 414 and 401, `floor_stat` 2 and 66. They are SOLID MASSES, not paths; no body stands in either"
   },
   {
    "claim": "road|end wall and pavement|end wall: lower band in facade stone, BLOCKING",
    "reconciled": "the blocking clause holds on every static end wall; the exceptions are movers, which are layer 5's",
-   "the_reader_finds": "5 of 16 band records do not block, and 4 of those face a sector that carries a sector type (600)"
+   "the_reader_finds": "1 of 16 band records do not block, and 0 of those face a sector that carries a sector type (600)"
   }
  ],
  "ledger": {
@@ -135,8 +91,6 @@
       118,
       165,
       166,
-      172,
-      174,
       236,
       237,
       339,
@@ -148,27 +102,27 @@
       343
      ]
     },
-    "reconciled": "exactly 3 of them are met by a ROAD record -- [0, 339, 343] -- which is the claim's set; the other 7 are met by a pavement, so the claim is right about the T and the reader is counting the same kind of surface elsewhere too",
-    "the_reader_finds": "10 outdoor masses no body can step onto: [0, 118, 165, 166, 172, 174, 236, 237, 339, 343]"
+    "reconciled": "exactly 3 of them are met by a ROAD record -- [0, 339, 343] -- which is the claim's set; the other 5 are met by a pavement, so the claim is right about the T and the reader is counting the same kind of surface elsewhere too",
+    "the_reader_finds": "8 outdoor masses no body can step onto: [0, 118, 165, 166, 236, 237, 339, 343]"
    },
    {
     "claim": "`joins.py`'s PAVEMENT|PAVEMENT row cites \"E3M1 s10/s11: a pavement-only path between abutting islands\"",
-    "reconciled": "the ROW is still attested -- 14 pavement|pavement records exist in E3M1, between the shadow-cut pavement bands -- but its cited evidence is two sectors that are not pavement at all",
+    "reconciled": "the ROW is still attested -- 14 pavement|pavement records exist here, between the shadow-cut pavement bands -- but its cited evidence is two sectors that are not pavement at all",
     "the_reader_finds": "s10 and s11 have floor_z == ceiling_z == 8192: zero clear height, ceiling tiles 414 and 401, `floor_stat` 2 and 66. They are SOLID MASSES, not paths; no body stands in either"
    },
    {
     "claim": "road|end wall and pavement|end wall: lower band in facade stone, BLOCKING",
     "reconciled": "the blocking clause holds on every static end wall; the exceptions are movers, which are layer 5's",
-    "the_reader_finds": "5 of 16 band records do not block, and 4 of those face a sector that carries a sector type (600)"
+    "the_reader_finds": "1 of 16 band records do not block, and 0 of those face a sector that carries a sector type (600)"
    }
   ],
-  "explained": 74,
+  "explained": 66,
   "gate": "every two-sided record looked up in bloodmap.joins.ROWS; for each row with a band, what the record wears and whether it blocks, against what the row says",
   "population": "1386 two-sided wall records",
   "reader": "bloodmap.read_joins (new)",
-  "residue": 1312,
-  "residue_is": "31 surface pairs the table has no row for; 1122 of the records are interior|interior",
-  "residue_percent": 94.66
+  "residue": 1320,
+  "residue_is": "37 surface pairs the table has no row for; 1122 of the records are interior|interior",
+  "residue_percent": 95.24
  },
  "measured_rise": 2048,
  "outdoor_components": [
@@ -412,7 +366,9 @@
    169,
    170,
    171,
+   172,
    173,
+   174,
    176,
    177,
    178,
@@ -654,20 +610,21 @@
   343
  ],
  "summary": {
-  "cstat_disagreements": 5,
+  "cstat_disagreements": 1,
   "kinds": {
-   "end_wall": 10,
+   "end_wall": 8,
    "interior": 337,
+   "mechanism_at_rest": 2,
    "outdoor_ground": 1,
    "pavement": 9,
    "road": 4,
    "solid": 21
   },
   "measured_rise": 2048,
-  "pairs_with_no_row": 31,
-  "records_described": 74,
-  "records_undescribed": 1312,
-  "residue_percent": 94.66,
+  "pairs_with_no_row": 37,
+  "records_described": 66,
+  "records_undescribed": 1320,
+  "residue_percent": 95.24,
   "rows_used": 8,
   "two_sided_records": 1386
  },
@@ -754,9 +711,9 @@
   "17": "interior",
   "170": "interior",
   "171": "interior",
-  "172": "end_wall",
+  "172": "mechanism_at_rest",
   "173": "interior",
-  "174": "end_wall",
+  "174": "mechanism_at_rest",
   "175": "pavement",
   "176": "interior",
   "177": "interior",
@@ -1058,7 +1015,7 @@
  "table_tile_matches": {
   "pavement|end_wall|b_above": [
    0,
-   13
+   9
   ],
   "road|end_wall|b_above": [
    0,
@@ -1070,25 +1027,31 @@
   ]
  },
  "undescribed": {
-  "end_wall|end_wall|b_above": 7,
-  "end_wall|end_wall|b_below": 7,
+  "end_wall|end_wall|b_above": 4,
+  "end_wall|end_wall|b_below": 4,
   "end_wall|end_wall|equal": 6,
-  "end_wall|interior|b_above": 6,
+  "end_wall|interior|b_above": 1,
   "end_wall|solid|b_above": 2,
   "end_wall|solid|b_below": 11,
-  "interior|end_wall|b_below": 6,
+  "interior|end_wall|b_below": 1,
   "interior|interior|b_above": 279,
   "interior|interior|b_below": 279,
   "interior|interior|equal": 564,
+  "interior|mechanism_at_rest|b_below": 5,
   "interior|outdoor_ground|b_below": 1,
   "interior|pavement|b_below": 17,
   "interior|pavement|equal": 1,
   "interior|solid|b_above": 26,
   "interior|solid|equal": 7,
+  "mechanism_at_rest|interior|b_above": 5,
+  "mechanism_at_rest|mechanism_at_rest|b_above": 3,
+  "mechanism_at_rest|mechanism_at_rest|b_below": 3,
+  "mechanism_at_rest|pavement|b_below": 4,
   "outdoor_ground|interior|b_above": 1,
   "outdoor_ground|pavement|b_below": 4,
   "pavement|interior|b_above": 17,
   "pavement|interior|equal": 1,
+  "pavement|mechanism_at_rest|b_above": 4,
   "pavement|outdoor_ground|b_above": 4,
   "pavement|solid|b_above": 4,
   "pavement|solid|equal": 3,
@@ -1104,18 +1067,12 @@
  },
  "undescribed_records": {
   "end_wall|end_wall|b_above": [
-   935,
-   936,
-   937,
    1549,
    1550,
    1551,
    1552
   ],
   "end_wall|end_wall|b_below": [
-   917,
-   918,
-   921,
    1553,
    1554,
    1555,
@@ -1130,12 +1087,7 @@
    2125
   ],
   "end_wall|interior|b_above": [
-   862,
-   929,
-   930,
-   931,
-   932,
-   933
+   862
   ],
   "end_wall|solid|b_above": [
    1558,
@@ -1155,12 +1107,7 @@
    2128
   ],
   "interior|end_wall|b_below": [
-   927,
-   1791,
-   1792,
-   1793,
-   1794,
-   1795
+   927
   ],
   "interior|interior|b_above": [
    80,
@@ -2290,6 +2237,13 @@
    2479,
    2480
   ],
+  "interior|mechanism_at_rest|b_below": [
+   1791,
+   1792,
+   1793,
+   1794,
+   1795
+  ],
   "interior|outdoor_ground|b_below": [
    336
   ],
@@ -2352,6 +2306,29 @@
    2074,
    2083
   ],
+  "mechanism_at_rest|interior|b_above": [
+   929,
+   930,
+   931,
+   932,
+   933
+  ],
+  "mechanism_at_rest|mechanism_at_rest|b_above": [
+   935,
+   936,
+   937
+  ],
+  "mechanism_at_rest|mechanism_at_rest|b_below": [
+   917,
+   918,
+   921
+  ],
+  "mechanism_at_rest|pavement|b_below": [
+   919,
+   920,
+   928,
+   934
+  ],
   "outdoor_ground|interior|b_above": [
    326
   ],
@@ -2382,6 +2359,12 @@
   ],
   "pavement|interior|equal": [
    13
+  ],
+  "pavement|mechanism_at_rest|b_above": [
+   941,
+   942,
+   943,
+   944
   ],
   "pavement|outdoor_ground|b_above": [
    951,
@@ -2561,9 +2544,9 @@
   "17": "walkable with a ceiling that is not parallax",
   "170": "walkable with a ceiling that is not parallax",
   "171": "walkable with a ceiling that is not parallax",
-  "172": "outdoor, in a mass of 2 sector(s) that no body can step onto: every one of its 2 edges to the network rises more than the 4096 autostep; it also carries sector type 600, so this is its REST state and layer 5 owns the rest",
+  "172": "outdoor, in a mass of 2 sector(s) no body can step onto, but sector(s) [172, 174] carry type [600]: this is its REST state, and layer 5 owns what it does. Not a termination",
   "173": "walkable with a ceiling that is not parallax",
-  "174": "outdoor, in a mass of 2 sector(s) that no body can step onto: every one of its 2 edges to the network rises more than the 4096 autostep; it also carries sector type 600, so this is its REST state and layer 5 owns the rest",
+  "174": "outdoor, in a mass of 2 sector(s) no body can step onto, but sector(s) [172, 174] carry type [600]: this is its REST state, and layer 5 owns what it does. Not a termination",
   "175": "outdoor ground exactly the measured rise (2048) above the base plane",
   "176": "walkable with a ceiling that is not parallax",
   "177": "walkable with a ceiling that is not parallax",

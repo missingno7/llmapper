@@ -3,7 +3,7 @@
  "questions": [
   {
    "node": "level",
-   "question": "26 of 36 grouped spaces are refused a name: no measurement distinguishes them. E2M3 named 8 of 340 for the same reason. Is a refusal rate this high the honest answer, or a missing measurement?",
+   "question": "25 of 36 grouped spaces are refused a name: no measurement distinguishes them. E2M3 named 8 of 340 for the same reason. Is a refusal rate this high the honest answer, or a missing measurement?",
    "recommended_default": "the honest answer, and the missing measurement is named rather than guessed: what distinguishes a Blood interior is its furniture, and the prop reader is not wired into this layer yet",
    "evidence": "references/intent.json: places.refused"
   },

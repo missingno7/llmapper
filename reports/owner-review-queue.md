@@ -1415,3 +1415,275 @@ believed it. Unflagged, the read-back agrees on all nine buildings: 9
 sentences, 0 differences. **No slot is needed for a shutter**, and the A/B
 between void and pocket is not this question's; it returns when something in
 this city actually slides.
+## 33. The four reader corrections landed, and one of them moved a census (P15, 2026-09-03)
+
+Items 28c, 30b, 30e and 30g of decisions section 30, all reader-side.
+
+**33a. 28c: a raised outdoor mass that carries a sector type is now
+`mechanism_at_rest`, not `end_wall`.** On E3M1 that is sectors 172 and 174.
+Three consequences, each measured: the end-wall row's blocking clause now
+holds on 3 of 3 road-side and 8 of 9 pavement-side records (the one remaining
+exception is wall 1529, facing the raised ledge s237, which is not a
+mechanism); layer 3 describes 66 records rather than 74, because a street
+meeting a mechanism has no row — correctly, since what it meets depends on the
+state; and the four boundary records that faced those masses are now `gate`,
+which section 14 already names in the family.
+
+**And it moved the 28b census by nearly half.** Before 28c the same census
+found 285 `road|end_wall` records over 21 maps; after, 149 over 17. The 136
+that left were band records against masses that move. Every one of the two
+tiles that wore `facade stone`'s 400 left with them, so 400 is now attested on
+**none** of the 191 end-wall band records in the campaign.
+*Recommended default:* accept the narrower kind; the reports keep both figures
+so the conditioning is visible. Node `kind:end_wall`, E3M1 layer 3.
+
+**33b. 30b: a block is cut at its street frontages.** A mass is walked from
+each frontage at once, breadth-first through the mass itself, and a block is
+the part one street serves. E3M1's 123-sector mass becomes 74 + 49, fronting
+`island:001` and the unnamed ground s65; blocks go 23 to 24. Sector 28 is
+reached by both walks in the same step and is emitted as a `candidate` rather
+than tie-broken — which building a shared back room belongs to is not a
+reader's to decide quietly.
+*Recommended default:* as built. Node `blocks`, E3M1 layer 7.
+
+**33c. 30e: the stack marker offset is a convention, 38 of 38.** Every
+campaign stack puts its UPPER marker 256 above the floor it links and its
+lower marker at exactly 0 — all 38, no exception. `curriculum.stack_faults`
+no longer calls it a fault; a marker at any OTHER offset still is, and the
+manual's own negative example (`STACKS3DSPACES-BADROR`) is still caught by the
+concavity clause. E3M1's three stacks now report no faults.
+*Recommended default:* as built. `UPPER_MARKER_OFFSET = -256` carries the
+count in its comment. Node `kind:room_over_room`, E3M1 layer 5.
+
+**33d. 30g: the prop reader is in layer 8, and the refusal rate held.** Two
+rules were added, both measured: one campaign-named, VISIBLE prop
+(`furniture.FURNITURE` for the name, `blood_types.sprite_visibility` to drop
+the quarter of sprites that are wiring) holding 60% of at least three; and
+holding an authored bundle (`anchors.find_bundles`). On E3M1 the prop rule
+fires once — space:023, 12 of 12 named props are planks — and the bundle rule
+never, because its six bundles sit in singleton spaces the tree does not group.
+Named 6 to 10, refused 26 to 25, candidates 4 to 1.
+
+Most of that rise is a separate fix: **several rules firing with the SAME name
+is not an ambiguity.** Three stepped runs in one space still say
+`stepped_run`, and counting agreement as doubt had put four spaces in the
+queue for nothing.
+*Recommended default:* as built. The refusal rate is 25 of 36 (69%), which is
+the honest answer for a map whose interiors are furnished with tiles nobody
+has named. Node `level`, E3M1 layer 8.
+
+## 34. The residue curve, and what it says about the readers (P15, 2026-09-03)
+
+All eight layers over 43 campaign maps,
+`projects/campaign-census/references/residue-curve.json`, full table in
+`reports/residue-curve-2026-09-03.md`.
+
+**34a. E6M7 cannot be decompiled, and it is layer 1's reader.**
+`decompiler.decompile_level` raises `KeyError(144)` because `analyze_spatial`
+returns no geometry record for that sector. The census runs the other seven
+layers on it and records `layer1_error` on the row rather than dropping the
+map.
+*Recommended default:* leave it. One map of 43, in a reader that predates this
+work and belongs to the space tree rather than to the street model; fixing
+`analyze_spatial` is its own task with its own fixture. Node `level`, E3M1
+layer 1.
+
+**34b. Layer 2 makes 92-97% of every map's claims, and the curve is
+therefore a wall count.** Surfaces and stairs are the only readers that reach
+a map's bulk; layers 3, 4, 6, 7 and 8 together claim between 9 and 441 fields
+per map against layer 2's thousands. The maps with the MOST street rank
+lowest — E1M3 (17 road sectors), E2M9, E6M8 and E3M1 are four of the five
+lowest street maps — because a street is outdoor sectors whose fields nothing
+claims yet.
+*Recommended default:* report the claimed share per layer and stop treating
+the total as a ranking. The number worth watching for the sleep phase is
+layer 3's, because that is the grammar; and it is 33, 12, 6, 2 and zero
+everywhere else. Node `level`, E3M1 layer 3.
+
+**34c. The second-map rule was ambiguous and the default decided it.** The
+literal ranking gives E1M6, whose whole street is one road sector and four
+kerb records and 96.6% of whose claims are layer 2; ranking without layer 2
+gives E4M8, an 80-sector fragment. Neither is stable under a change to layer
+2. The stated default, **E1M2**, is also the best on the criterion the sleep
+phase needs: it is the only map besides E3M1 where the join table describes
+more than a handful (12 claims), it has the same four road sectors, seven kerb
+records, and 313 sectors against E3M1's 382.
+*Recommended default:* E1M2, as chosen and recorded as a `selection` fact with
+its criterion and the ambiguity that triggered it.
+**Superseded by 36a:** re-running the census under my own step-2 reader
+corrections removed the ambiguity and the rule now names E4M8 outright. Both
+maps are decompiled; this paragraph is kept because it is what the choice was
+made on.
+
+**34d. Only 19 of 43 campaign maps have a street in the model's sense.** 37
+have a base plane, which is the flag "any outdoor ground exists"; 19 have a
+road with an island standing on it and a kerb at the join. The street model's
+population is under half the campaign, which is worth stating before any norm
+derived from it is called Blood's.
+**Corrected: it is 16 of 43, and 36 with an outdoor network.** Item 28c
+stopped reading a raised outdoor mass carrying a sector type as an island, and
+four maps -- E1M3, E1M6, E2M9, E4M6 -- turned out to have no island on their
+road at all. The population is smaller than this item first said, and it
+shrank because a reader stopped mistaking mechanisms for street furniture.
+
+## 35. The envelope was written twice, and the better one won (P15, 2026-09-03)
+
+`read_light.shade_step_envelope` landed on main from queue item 29a (64eb4d0)
+while the same function was being written here. Two implementations of one
+census, like the two fact stores of item 31 — and this time one is measurably
+better, so there was nothing to arbitrate.
+
+**Theirs counts one entry per BOUNDARY; mine counted one per record.** A
+two-sided wall is yielded from both sides and a sector pair may share several
+walls, so mine weighed a boundary once per record it happened to have. The
+duplicate is deleted and the census calls theirs, which is also what the
+writer's gate calls — one census, not two.
+
+They also differ on what "the largest outdoor component" IS, and that is worth
+recording because the same name meant two populations for a day: theirs takes
+every parallax sector, mine took only walkable ones and picked the largest by
+AREA rather than by count. Theirs finds a component on 36 maps, mine on 21.
+
+The published numbers move with it. Under `largest_outdoor_component`: 192
+boundaries over 36 maps, median **13.0**, quartiles **[9.0, 18.75]**, the
+gate's [8, 16] holding 50.5%. Under `all_outdoor`: 365 over 37, median 12,
+quartiles [8.0, 16.0], 52.3%.
+*No default needed; recorded because a reader that measures the same thing
+twice is the thing the sleep phase exists to find, and this one was found by
+a rebase rather than by the refactoring pass.*
+
+## 36. The sleep phase over three decompilations (P15, 2026-09-03)
+
+Measured by `projects/campaign-census/source/sleep_phase.py` over E3M1, E1M2
+and E4M8; every number is a query over the three fact stores. Full write-up in
+[reports/sleep-phase-2026-09-03.md](sleep-phase-2026-09-03.md). **No
+constructor has been added to bloodmap — P14b owns `bloodmap/city.py` and this
+is the list.**
+
+**36a. The second-map rule now names E4M8, not E1M2, and I had already
+decompiled E1M2.** Re-running the residue curve under my own step-2 reader
+corrections moved six of 43 rows: item 28c stopped reading a raised outdoor
+mass with a sector type as an island, so E1M3, E1M6, E2M9 and E4M6 lost their
+islands and with them their streets. The street population falls from 19 maps
+to 16, the ambiguity that triggered the stated E1M2 default is gone, and
+"largest claimed share among street maps" gives E4M8 (6.693%) unambiguously.
+I decompiled E4M8 as well rather than discard either reading: E4M8 because the
+rule names it, E1M2 because the join grammar reaches it four times better (12
+layer-3 claims over 313 sectors against 6 over 80).
+*Node:* `projects/e4m8-decompiled/review/layer3.html`, node `level`.
+*Recommended default:* keep all three. The rule was applied and its answer is
+recorded; the extra map cost one afternoon and turned "what did both maps
+need" into "what did three maps from three episodes need", which is a much
+harder question to answer by coincidence.
+
+**36b. `dressing(anchor, [prop…], *, spread=, facing=)` — 773 residue facts,
+all three maps (330 / 371 / 72).** The largest construct gap on every map. The
+readers exist already: `read_intent.named_props` names the props and
+`anchors.find_bundles` groups them. Nothing authors them, because our language
+can place a sprite only by absolute coordinate.
+*Node:* `projects/e1m2-decompiled/review/layer5.html`, node `level`.
+*Recommended default:* build it first. It is the biggest, it has a reader to
+check it against, and it is the only one of the five whose residue is one fact
+per record the player actually sees.
+
+**36c. `stair(from_, to, *, treads=, width=, clear_height=)` — 321 facts, two
+maps (219 / 102 / 0).** A stepped run as one construct owning every tread AND
+the projection across them. The residue it lowers is in **layer 2**, not layer
+1: a tread is its own sector, so its side walls have no same-material
+neighbour and no frame can be attested on any of them. E4M8 has no stepped run
+at all, which is why this is the one macro on two maps rather than three.
+*Node:* `projects/e3m1-decompiled/review/layer2.html`, node `level`.
+*Recommended default:* build it second, and make it a SURFACE owner rather
+than a space group — the whole 321 is surface residue.
+
+**36d. `channel(number, tx=[…], rx=[…], *, on=, wave=)` — 121 facts, all three
+(41 / 72 / 8); `self_lit(space, amplitude=, phase=, wave=)` — 44, all three
+(26 / 17 / 1); `breakable(surface, *, on=, reveals=)` — 24, two maps (18 / 6 /
+0).** Three smaller construct gaps. `channel` is the fan-out our one-pair
+writer cannot express. `self_lit` is a sector the reader reads perfectly and
+files as residue only because it is not a mechanism. `breakable` is kWallGib
+— and layer 8 refuses to name those because **the taught course has no lesson
+of type 511 at all**, a mechanism the campaign uses and its own curriculum
+omits.
+*Node:* `projects/e3m1-decompiled/review/layer5.html`, node `kind:breakable_wall`.
+*Recommended default:* all three, after `dressing` and `stair`. The type-511
+gap in the curriculum is worth a note to whoever maintains the lessons; it is
+not a defect in our reader.
+
+**36e. The two largest residues on all three maps are not macro work, and
+should not be counted as if they were.** 3814 facts are layer 2 unable to
+attest a frame on a wall with no same-material neighbour or on one whose
+neighbour breaks the projection — that is the Surface/Frame representation
+item, and no constructor touches it. 2590 facts are the join table having no
+row for two interiors meeting, in any height relation — that is the 11
+proposed rows of item 32e, still none added. Together they are 78% of the
+8227 residue facts across the three maps, and the five macros above account
+for 1283, or 16% -- with 321 counted in both, because `stair`'s residue IS
+surface residue, on the walls of treads that are each their own sector.
+*Node:* `projects/e3m1-decompiled/review/layer2.html`, node `level`.
+*Recommended default:* state the split in any roadmap item that quotes a
+residue number, so "lower the residue" does not become "write more
+constructors". The cheapest large win is the 11 rows; the largest is the
+surface representation.
+
+## 37. The three censuses landed: two of the writer's clauses are the campaign's exception (P15, 2026-09-03)
+
+Numbers from `projects/campaign-census/facts/`, full table in
+`reports/campaign-census-2026-09-03.md`. Node ids are in E3M1's packs.
+
+**37a. The reader's `end_wall` kind is broader than "a termination".** It
+means "an outdoor mass no body can step onto", which over 43 maps finds 285
+`road|end_wall` records whose step quartiles are 32 768 and 263 168 — so a
+quarter of these masses stand under two player heights and are ledges, not
+walls. The census numbers below are conditioned on that kind.
+*Recommended default:* keep the criterion (it needs no tile and it recovered
+E3M1's three exactly) and add a REPORTED split at two player heights rather
+than a second kind, so one census serves both readings. Node `kind:end_wall`,
+E3M1 layer 3.
+
+**37b. `TILE_CLASSES["facade stone"] = 400` is worn by 2 of 285 road-side
+end-wall records — 0.7%.** The class has 27 members on that side; its
+commonest is 449 (75, 26%), then 2490 (56), 91 (34), 28 (19). E3M1's 414 is 3.
+*Recommended default:* keep 400 as Gravesend's stated CHOICE, and record the
+campaign's distribution as the envelope rather than promoting 449 — a modal
+tile over 21 maps is not a law, and section 22 says a choice needs only to lie
+inside an attested class. Writer change, P14b's. Node `kind:end_wall`.
+
+**37c. The `road|end_wall` row's `cstat=1` holds on 5.6% of the campaign.**
+269 of 285 road-side band records do NOT block; 41 of 49 pavement-side do not.
+It is not a height rule: blocking records sit at a median step of 88 064 and
+non-blocking ones at 114 688, and the non-blocking set spans both the lowest
+and the highest masses. E3M1's three blocking records are the exception the
+row was written from.
+*Recommended default:* drop `cstat=1` from the row and let gravity be the
+gate, which is what 94% of the campaign does; keep it as a per-project choice
+where a mass is low enough to walk onto. Writer change, P14b's. Node
+`row:road|end_wall`, E3M1 layer 3.
+
+**37d. 28d needs no change, and my own earlier reading of it was wrong.**
+Report 28d said E3M1 "restarts its materials at corners" from its 50.6% on
+bend solid-solid. The campaign is **67.9%** over 43 maps; collinear
+solid-solid is 93.7% and reflex solid-solid 19.1%. Blood does carry a run
+through an ordinary bend and stops at a reflex corner, which is exactly
+`RUN_BREAK_DEGREES = 100`. E3M1 is the outlier, not the writer.
+
+**37e. The eleven proposed indoor rows are one law, not eleven.** 49 821
+`interior|interior` records fall in 25 classes, mirrored in pairs; the `draws`
+column is `wallVisible`, the engine's own law, so the pairs say one thing:
+*the band is on the side that stands above* — the kerb's law, indoors. The
+evidence about authorship is the residual: 132 `level|level` records draw
+where the geometry exposes nothing, and every one is overridden by hand (126
+masked, 6 one-way).
+*Recommended default:* one indoor row keyed on the height relation with a
+tile class per context, plus a `masked` row for the 132. Proposed only; P14b
+consumes it in slice 5. Node `level`, E3M1 layer 3.
+
+**37f. The shade-step envelope depends on the network, and now says so.**
+`read_light.shade_step_envelope(network=...)`: on
+`largest_outdoor_component` — the definition section 30 names — 362
+boundaries over 21 maps, median **15**, quartiles **[8, 18]**, and the gate's
+current [8, 16] holds 45.3% of them; on `all_parallax`, 1362 boundaries over
+29 maps, median 12, quartiles [8, 16], 56.2% inside.
+*Recommended default:* the gate calls the reader and uses the quartile
+envelope of the network it names — [8, 18] for the street definition. E3M1's
+own 24–26 stays recorded as the precedent's value and outside both.

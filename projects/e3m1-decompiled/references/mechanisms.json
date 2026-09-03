@@ -8393,12 +8393,10 @@
     "consulted": true,
     "verdict": "the course teaches stacks as link markers; the faults are read against that"
    },
-   "faults": [
-    "the floor marker floats: sprite 13 sits at z -49408 and the plane it links is at -49152"
-   ],
+   "faults": [],
    "id": "sentence:stack:0",
    "kind": "room over room",
-   "sentence": "sectors 12 and 14 are one space stacked, linked by sprites [13, 0], offset (-32, 0); faults: the floor marker floats: sprite 13 sits at z -49408 and the plane it links is at -49152",
+   "sentence": "sectors 12 and 14 are one space stacked, linked by sprites [13, 0], offset (-32, 0)",
    "shape": "a stack",
    "slots": [],
    "type": null
@@ -8408,12 +8406,10 @@
     "consulted": true,
     "verdict": "the course teaches stacks as link markers; the faults are read against that"
    },
-   "faults": [
-    "the floor marker floats: sprite 76 sits at z -10496 and the plane it links is at -10240"
-   ],
+   "faults": [],
    "id": "sentence:stack:1",
    "kind": "room over room",
-   "sentence": "sectors 85 and 87 are one space stacked, linked by sprites [76, 77], offset (96, -256); faults: the floor marker floats: sprite 76 sits at z -10496 and the plane it links is at -10240",
+   "sentence": "sectors 85 and 87 are one space stacked, linked by sprites [76, 77], offset (96, -256)",
    "shape": "a stack",
    "slots": [],
    "type": null
@@ -8423,12 +8419,10 @@
     "consulted": true,
     "verdict": "the course teaches stacks as link markers; the faults are read against that"
    },
-   "faults": [
-    "the floor marker floats: sprite 87 sits at z -135424 and the plane it links is at -135168"
-   ],
+   "faults": [],
    "id": "sentence:stack:2",
    "kind": "room over room",
-   "sentence": "sectors 109 and 104 are one space stacked, linked by sprites [87, 86], offset (160, -256); faults: the floor marker floats: sprite 87 sits at z -135424 and the plane it links is at -135168",
+   "sentence": "sectors 109 and 104 are one space stacked, linked by sprites [87, 86], offset (160, -256)",
    "shape": "a stack",
    "slots": [],
    "type": null
@@ -9444,9 +9438,7 @@
  ],
  "stacks": [
   {
-   "faults": [
-    "the floor marker floats: sprite 13 sits at z -49408 and the plane it links is at -49152"
-   ],
+   "faults": [],
    "link_id": 0,
    "lower": 12,
    "offset": [
@@ -9461,9 +9453,7 @@
    "upper": 14
   },
   {
-   "faults": [
-    "the floor marker floats: sprite 76 sits at z -10496 and the plane it links is at -10240"
-   ],
+   "faults": [],
    "link_id": 1,
    "lower": 85,
    "offset": [
@@ -9478,9 +9468,7 @@
    "upper": 87
   },
   {
-   "faults": [
-    "the floor marker floats: sprite 87 sits at z -135424 and the plane it links is at -135168"
-   ],
+   "faults": [],
    "link_id": 2,
    "lower": 109,
    "offset": [

@@ -1,0 +1,11 @@
+{"_from": ["sector:69"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:69", "kind": "logic_closet", "sectors": [69], "why": ["23 switches and 9 generators, unreachable"]}
+{"_from": ["sector:70"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:70", "kind": "logic_closet", "sectors": [70], "why": ["2 switches and 1 generators, unreachable"]}
+{"_from": ["sector:71"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:71", "kind": "signature", "sectors": [71], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:72"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:72", "kind": "signature", "sectors": [72], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:73"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:73", "kind": "signature", "sectors": [73], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:74"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:74", "kind": "signature", "sectors": [74], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:75"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:75", "kind": "signature", "sectors": [75], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:76"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:76", "kind": "signature", "sectors": [76], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:77"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:77", "kind": "signature", "sectors": [77], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:78"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:78", "kind": "signature", "sectors": [78], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:79"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:79", "kind": "signature", "sectors": [79], "why": ["1 of 1 outlines match a known glyph stamp"]}

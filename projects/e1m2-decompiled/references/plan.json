@@ -1,0 +1,1034 @@
+{
+ "blocks": [
+  {
+   "block_id": "block:00",
+   "envelope_pu": [
+    76.0,
+    143.5
+   ],
+   "frontages_of_the_mass": [
+    "island:000"
+   ],
+   "fronts": "island:000",
+   "mass_sectors": 225,
+   "rect_pu": [
+    -57.0,
+    -17.0,
+    19.0,
+    126.5
+   ],
+   "sectors": [
+    0,
+    5,
+    6,
+    10,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    221,
+    222,
+    223,
+    224,
+    225,
+    226,
+    227,
+    228,
+    229,
+    233,
+    239,
+    240,
+    241,
+    242,
+    257,
+    258,
+    259,
+    260,
+    261,
+    262,
+    263,
+    264,
+    265,
+    266,
+    267,
+    268,
+    269,
+    271,
+    272,
+    273,
+    274,
+    275,
+    277,
+    278,
+    279,
+    284,
+    285,
+    286,
+    287,
+    288,
+    290,
+    291,
+    292,
+    293,
+    294,
+    295,
+    296,
+    297,
+    305,
+    307,
+    308,
+    309,
+    310
+   ]
+  },
+  {
+   "block_id": "block:01",
+   "envelope_pu": [
+    22.0,
+    39.38
+   ],
+   "frontages_of_the_mass": [
+    "island:000"
+   ],
+   "fronts": "island:000",
+   "mass_sectors": 52,
+   "rect_pu": [
+    -10.0,
+    -1.38,
+    12.0,
+    38.0
+   ],
+   "sectors": [
+    1,
+    2,
+    20,
+    22,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    197,
+    198,
+    199,
+    200,
+    230,
+    231,
+    232,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255,
+    256,
+    270,
+    298,
+    299,
+    300,
+    301,
+    302,
+    304
+   ]
+  },
+  {
+   "block_id": "block:02",
+   "envelope_pu": [
+    9.0,
+    33.0
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    -12.0,
+    38.0,
+    -3.0,
+    71.0
+   ],
+   "sectors": [
+    220
+   ]
+  },
+  {
+   "block_id": "block:03",
+   "envelope_pu": [
+    4.5,
+    2.25
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    3.0,
+    45.5,
+    7.5,
+    47.75
+   ],
+   "sectors": [
+    19
+   ]
+  },
+  {
+   "block_id": "block:04",
+   "envelope_pu": [
+    0.94,
+    1.12
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    22.31,
+    23.38,
+    23.25,
+    24.5
+   ],
+   "sectors": [
+    23
+   ]
+  },
+  {
+   "block_id": "block:05",
+   "envelope_pu": [
+    0.88,
+    1.06
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    24.12,
+    23.44,
+    25.0,
+    24.5
+   ],
+   "sectors": [
+    25
+   ]
+  },
+  {
+   "block_id": "block:06",
+   "envelope_pu": [
+    0.88,
+    1.06
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    25.12,
+    23.44,
+    26.0,
+    24.5
+   ],
+   "sectors": [
+    26
+   ]
+  },
+  {
+   "block_id": "block:07",
+   "envelope_pu": [
+    0.81,
+    1.06
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    26.06,
+    23.44,
+    26.88,
+    24.5
+   ],
+   "sectors": [
+    27
+   ]
+  },
+  {
+   "block_id": "block:08",
+   "envelope_pu": [
+    0.81,
+    1.06
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    26.94,
+    23.44,
+    27.75,
+    24.5
+   ],
+   "sectors": [
+    28
+   ]
+  },
+  {
+   "block_id": "block:09",
+   "envelope_pu": [
+    0.81,
+    1.06
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    28.5,
+    23.44,
+    29.31,
+    24.5
+   ],
+   "sectors": [
+    30
+   ]
+  },
+  {
+   "block_id": "block:10",
+   "envelope_pu": [
+    0.75,
+    1.12
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    23.38,
+    23.38,
+    24.12,
+    24.5
+   ],
+   "sectors": [
+    24
+   ]
+  },
+  {
+   "block_id": "block:11",
+   "envelope_pu": [
+    0.75,
+    1.12
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    29.44,
+    23.38,
+    30.19,
+    24.5
+   ],
+   "sectors": [
+    31
+   ]
+  },
+  {
+   "block_id": "block:12",
+   "envelope_pu": [
+    1.0,
+    0.75
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    -53.5,
+    121.75,
+    -52.5,
+    122.5
+   ],
+   "sectors": [
+    289
+   ]
+  },
+  {
+   "block_id": "block:13",
+   "envelope_pu": [
+    0.62,
+    1.06
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    27.81,
+    23.44,
+    28.44,
+    24.5
+   ],
+   "sectors": [
+    29
+   ]
+  },
+  {
+   "block_id": "block:14",
+   "envelope_pu": [
+    0.5,
+    1.25
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    2.25,
+    46.12,
+    2.75,
+    47.38
+   ],
+   "sectors": [
+    306
+   ]
+  },
+  {
+   "block_id": "block:15",
+   "envelope_pu": [
+    0.75,
+    0.62
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    -23.38,
+    23.25,
+    -22.62,
+    23.88
+   ],
+   "sectors": [
+    276
+   ]
+  },
+  {
+   "block_id": "block:16",
+   "envelope_pu": [
+    0.62,
+    0.5
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    -22.25,
+    23.38,
+    -21.62,
+    23.88
+   ],
+   "sectors": [
+    280
+   ]
+  },
+  {
+   "block_id": "block:17",
+   "envelope_pu": [
+    0.62,
+    0.5
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    -21.25,
+    23.38,
+    -20.62,
+    23.88
+   ],
+   "sectors": [
+    281
+   ]
+  },
+  {
+   "block_id": "block:18",
+   "envelope_pu": [
+    0.62,
+    0.5
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    -19.38,
+    23.38,
+    -18.75,
+    23.88
+   ],
+   "sectors": [
+    282
+   ]
+  },
+  {
+   "block_id": "block:19",
+   "envelope_pu": [
+    0.5,
+    0.5
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    3.0,
+    48.0,
+    3.5,
+    48.5
+   ],
+   "sectors": [
+    283
+   ]
+  },
+  {
+   "block_id": "block:20",
+   "envelope_pu": [
+    0.5,
+    0.5
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    3.75,
+    48.0,
+    4.25,
+    48.5
+   ],
+   "sectors": [
+    303
+   ]
+  },
+  {
+   "block_id": "block:21",
+   "envelope_pu": [
+    0.5,
+    0.5
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    4.5,
+    48.0,
+    5.0,
+    48.5
+   ],
+   "sectors": [
+    311
+   ]
+  },
+  {
+   "block_id": "block:22",
+   "envelope_pu": [
+    0.5,
+    0.5
+   ],
+   "frontages_of_the_mass": [],
+   "fronts": "no frontage",
+   "mass_sectors": 1,
+   "rect_pu": [
+    5.25,
+    48.0,
+    5.75,
+    48.5
+   ],
+   "sectors": [
+    312
+   ]
+  }
+ ],
+ "candidates": [
+  {
+   "about": "corridor:02",
+   "ratio": 2.0,
+   "readings": [
+    "edge",
+    "junction"
+   ],
+   "sectors": [
+    238
+   ],
+   "why": "long/short is 2.0, inside the ambiguous band [1.2, 2.5]"
+  },
+  {
+   "about": "corridor:03",
+   "ratio": 1.2,
+   "readings": [
+    "edge",
+    "junction"
+   ],
+   "sectors": [
+    237
+   ],
+   "why": "long/short is 1.2, inside the ambiguous band [1.2, 2.5]"
+  }
+ ],
+ "corridors": [
+  {
+   "ambiguous": false,
+   "axis": "y",
+   "carriageway_class": {
+    "class_pu": 2,
+    "nearest": "alley",
+    "residual_pu": 0.0
+   },
+   "carriageway_pu": 2.0,
+   "corridor_id": "corridor:00",
+   "flanks": {
+    "band_high_pu": 3.0,
+    "band_low_pu": 0.0,
+    "bands": {
+     "high": [
+      {
+       "band_pu": 3.0,
+       "island": "island:000",
+       "runs_along": 1.0,
+       "sector": 235,
+       "shape": "y"
+      }
+     ],
+     "low": []
+    },
+    "touched_but_not_a_band": [
+     {
+      "band_pu": 4.0,
+      "island": "island:000",
+      "runs_along": 0.04,
+      "sector": 234,
+      "shape": "y",
+      "why": "runs along less than 0.25 of the corridor"
+     }
+    ]
+   },
+   "full_width_class": {
+    "class_pu": 5,
+    "nearest": "street",
+    "residual_pu": 0.0
+   },
+   "full_width_pu": 5.0,
+   "length_pu": 16.0,
+   "ratio": 8.0,
+   "rect_pu": [
+    -12.0,
+    38.0,
+    -10.0,
+    54.0
+   ],
+   "role": "edge",
+   "sectors": [
+    127
+   ]
+  },
+  {
+   "ambiguous": false,
+   "axis": "y",
+   "carriageway_class": {
+    "class_pu": 2,
+    "nearest": "alley",
+    "residual_pu": 0.0
+   },
+   "carriageway_pu": 2.0,
+   "corridor_id": "corridor:01",
+   "flanks": {
+    "band_high_pu": 0.0,
+    "band_low_pu": 3.0,
+    "bands": {
+     "high": [],
+     "low": [
+      {
+       "band_pu": 3.0,
+       "island": "island:000",
+       "runs_along": 1.0,
+       "sector": 235,
+       "shape": "y"
+      }
+     ]
+    },
+    "touched_but_not_a_band": []
+   },
+   "full_width_class": {
+    "class_pu": 5,
+    "nearest": "street",
+    "residual_pu": 0.0
+   },
+   "full_width_pu": 5.0,
+   "length_pu": 15.38,
+   "ratio": 7.69,
+   "rect_pu": [
+    -8.0,
+    38.0,
+    -6.0,
+    53.38
+   ],
+   "role": "edge",
+   "sectors": [
+    236
+   ]
+  },
+  {
+   "ambiguous": true,
+   "axis": "y",
+   "carriageway_class": {
+    "class_pu": 6,
+    "nearest": "row",
+    "residual_pu": 0.0
+   },
+   "carriageway_pu": 6.0,
+   "corridor_id": "corridor:02",
+   "flanks": {
+    "band_high_pu": 0.0,
+    "band_low_pu": 4.0,
+    "bands": {
+     "high": [],
+     "low": [
+      {
+       "band_pu": 4.0,
+       "island": "island:000",
+       "runs_along": 0.89,
+       "sector": 234,
+       "shape": "y"
+      }
+     ]
+    },
+    "touched_but_not_a_band": []
+   },
+   "full_width_class": {
+    "class_pu": 7,
+    "nearest": "avenue",
+    "residual_pu": 3.0
+   },
+   "full_width_pu": 10.0,
+   "length_pu": 12.0,
+   "ratio": 2.0,
+   "rect_pu": [
+    -12.0,
+    53.0,
+    -6.0,
+    65.0
+   ],
+   "role": "edge",
+   "sectors": [
+    238
+   ]
+  },
+  {
+   "ambiguous": true,
+   "axis": "square",
+   "carriageway_class": {
+    "class_pu": 5,
+    "nearest": "street",
+    "residual_pu": 0.0
+   },
+   "carriageway_pu": 5.0,
+   "corridor_id": "corridor:03",
+   "flanks": {
+    "band_high_pu": 0.0,
+    "band_low_pu": 0.0,
+    "bands": {
+     "high": [],
+     "low": []
+    },
+    "touched_but_not_a_band": []
+   },
+   "full_width_class": {
+    "class_pu": 5,
+    "nearest": "street",
+    "residual_pu": 0.0
+   },
+   "full_width_pu": 5.0,
+   "length_pu": 6.0,
+   "ratio": 1.2,
+   "rect_pu": [
+    -12.0,
+    64.0,
+    -6.0,
+    69.0
+   ],
+   "role": "junction",
+   "sectors": [
+    237
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "carriageway_pu": 2.0,
+   "corridor": "corridor:00",
+   "from": "corridor:00:a",
+   "full_width_pu": 5.0,
+   "length_pu": 16.0,
+   "to": "corridor:00:b",
+   "width_class": "alley"
+  },
+  {
+   "carriageway_pu": 2.0,
+   "corridor": "corridor:01",
+   "from": "corridor:01:a",
+   "full_width_pu": 5.0,
+   "length_pu": 15.38,
+   "to": "corridor:01:b",
+   "width_class": "alley"
+  },
+  {
+   "carriageway_pu": 6.0,
+   "corridor": "corridor:02",
+   "from": "corridor:02:a",
+   "full_width_pu": 10.0,
+   "length_pu": 12.0,
+   "to": "corridor:02:b",
+   "width_class": "row"
+  }
+ ],
+ "islands": [
+  {
+   "band_pu": [
+    3.0,
+    4.0
+   ],
+   "island": "island:000",
+   "sectors": [
+    234,
+    235
+   ]
+  }
+ ],
+ "junctions": [
+  "corridor:03"
+ ],
+ "ledger": {
+  "disagreements": [],
+  "explained": 6,
+  "gate": "every ground sector assigned to a street, an island or an area, and every extent stated in plan units with the nearest width class and its residual",
+  "population": "6 ground sectors",
+  "reader": "bloodmap.read_plan (new)",
+  "residue": 0,
+  "residue_is": "ground on no street, island or area",
+  "residue_percent": 0.0
+ },
+ "owner_marks_read_back": [],
+ "plan_unit_build": 1024,
+ "reader": "bloodmap.read_plan (new; the solver's inverse)",
+ "rectangular_fill": {
+  "best": 0.988,
+  "median": 0.891,
+  "worst": 0.37
+ },
+ "residue_sectors": [],
+ "review": {
+  "hierarchy": "projects\\e1m2-decompiled\\review\\layer7-hierarchy.json",
+  "pack": "projects\\e1m2-decompiled\\review\\layer7.html",
+  "questions": "projects\\e1m2-decompiled\\review\\questions-layer7.json",
+  "sectors_unowned": [
+   3,
+   4,
+   7,
+   8,
+   9,
+   11,
+   21,
+   126,
+   219
+  ]
+ },
+ "summary": {
+  "blocks": 23,
+  "corridors": 4,
+  "edges": 3,
+  "ground_sectors": 6,
+  "islands": 1,
+  "rectangular_fill": {
+   "best": 0.988,
+   "median": 0.891,
+   "worst": 0.37
+  },
+  "residue_percent": 0.0,
+  "residue_sectors": 0
+ },
+ "width_classes_pu": {
+  "alley": 2,
+  "avenue": 7,
+  "lane": 3,
+  "row": 6,
+  "street": 5
+ }
+}

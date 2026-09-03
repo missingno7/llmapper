@@ -1,0 +1,23 @@
+{
+ "layer": 7,
+ "questions": [
+  {
+   "node": "streets",
+   "question": "A street has a CARRIAGEWAY and a FULL WIDTH and they land in different classes: E3M1's main street is 8.0 pu of carriageway (avenue) and 12.0 with its pavements (avenue). Which does `city_plan`'s width class mean?",
+   "recommended_default": "the FULL width: the plan's grid is a running sum of street widths and block columns, and a pavement is part of the street rather than of the block. State it in city_plan.py; the reader gives both until it is stated",
+   "evidence": "references/plan.json: corridors"
+  },
+  {
+   "node": "blocks",
+   "question": "The reader recovers 13 blocks by connectivity of everything that is not ground. The largest holds 1 sectors, which is a whole side of the city rather than one building. Is a block a connected mass, or something smaller the reader cannot yet see?",
+   "recommended_default": "smaller: a block in `city_plan` is one buildable rectangle and E3M1's masses run together through their interiors. The reader should cut a mass at its street frontages -- that is layer 7's next measurement, and it is named as missing rather than guessed",
+   "evidence": "references/plan.json: blocks"
+  },
+  {
+   "node": "level",
+   "question": "Every plan element is a RECT and a sector is not. E3M1's ground fills its own bounding rectangles 74% of the time at the median and 73% at the worst. How much of that loss is the schematic allowed?",
+   "recommended_default": "state it rather than bound it: the plan is schematic by contract, and the fill is the honest measure of what the schematic drops. The solver's own output should carry the same number so the two can be compared",
+   "evidence": "references/plan.json: rectangular_fill"
+  }
+ ]
+}

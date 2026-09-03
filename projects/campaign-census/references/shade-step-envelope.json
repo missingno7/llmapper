@@ -1,0 +1,32 @@
+{
+ "all_outdoor": {
+  "envelope": [
+   8,
+   16
+  ],
+  "inside": 0.5232876712328767,
+  "maps": 37,
+  "median": 12,
+  "network": "all_outdoor",
+  "quartiles": [
+   8.0,
+   16.0
+  ],
+  "records": 365
+ },
+ "largest_outdoor_component": {
+  "envelope": [
+   8,
+   16
+  ],
+  "inside": 0.5052083333333334,
+  "maps": 36,
+  "median": 13.0,
+  "network": "largest_outdoor_component",
+  "quartiles": [
+   9.0,
+   18.75
+  ],
+  "records": 192
+ }
+}

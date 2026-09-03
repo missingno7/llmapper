@@ -1,0 +1,17 @@
+{
+ "layer": 8,
+ "questions": [
+  {
+   "node": "level",
+   "question": "38 of 49 grouped spaces are refused a name: no measurement distinguishes them. E2M3 named 8 of 340 for the same reason. Is a refusal rate this high the honest answer, or a missing measurement?",
+   "recommended_default": "the honest answer, and the missing measurement is named rather than guessed: what distinguishes a Blood interior is its furniture, and the prop reader is not wired into this layer yet",
+   "evidence": "references/intent.json: places.refused"
+  },
+  {
+   "node": "named:assembly:001/space:002",
+   "question": "A mechanism is named by the prefix of the lesson files teaching its type and shape -- DOOR-* for sentence:sector:0, on 48 of 61 lesson constructs teaching type 614 with this shape come from lessons named DOOR-*. Is the curriculum's own file naming a fair source of function names?",
+   "recommended_default": "yes, with the share reported: it is the campaign's vocabulary rather than ours, and where no prefix holds 60% the reader refuses instead of picking",
+   "evidence": "references/intent.json: mechanisms.named"
+  }
+ ]
+}

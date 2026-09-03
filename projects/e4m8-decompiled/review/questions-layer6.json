@@ -1,0 +1,23 @@
+{
+ "layer": 6,
+ "questions": [
+  {
+   "node": "edge:building_back",
+   "question": "12 of 16 boundary records are one-sided walls against the void -- section 15b's 'a building may be a link in the chain'. E3M1 spends no sector behind any of them. Is `building_back` an edge KIND, or just the absence of one?",
+   "recommended_default": "a kind: it is what the plan states for a side that needs no street behind it, and the solver drops the perimeter lane there. The reader counts it as one and the census says how much of E3M1's edge it is",
+   "evidence": "references/edge-chain.json: counts"
+  },
+  {
+   "node": "offmap",
+   "question": "Section 14 records `reachability.classify_offmap` as raising TypeError on every map, which is why the enclosure-with-backdrop member has no reader. It does not raise: on E3M1 it returns 374 reached, 8 off-map, 2 logic closets and 6 bare. Should the backdrop hunt be reopened?",
+   "recommended_default": "yes, but not here: E3M1 has no enclosure, so its off-map geometry is closets and scraps. The hunt belongs on the curated community population, as precedent",
+   "evidence": "references/edge-chain.json: offmap"
+  },
+  {
+   "node": "edge:interior_doorway",
+   "question": "1 boundary records open into an interior. A way IN is not a termination, so the chain is not closed by terminations alone. Should a doorway be a member of the edge family, or a hole in the chain?",
+   "recommended_default": "a member, named `gate` in `joins.py`'s vocabulary: section 14 already says a road may end at a junction, a gate or an edge kind, and a doorway is the building-scale gate",
+   "evidence": "references/edge-chain.json: segments"
+  }
+ ]
+}

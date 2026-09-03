@@ -10,6 +10,7 @@
     "edge:backing",
     "edge:building_back",
     "edge:end_wall",
+    "edge:gate",
     "edge:interior_doorway",
     "offmap"
    ],
@@ -447,18 +448,27 @@
   {
    "id": "edge:end_wall",
    "kind": "edge_kind",
-   "name": "end_wall: 16 records in 12 segments",
+   "name": "end_wall: 12 records in 11 segments",
    "parent": "level",
    "children": [],
    "sectors": [
     0,
     118,
     165,
-    172,
-    174,
     237,
     339,
     343
+   ]
+  },
+  {
+   "id": "edge:gate",
+   "kind": "edge_kind",
+   "name": "gate: 4 records in 1 segments",
+   "parent": "level",
+   "children": [],
+   "sectors": [
+    172,
+    174
    ]
   },
   {

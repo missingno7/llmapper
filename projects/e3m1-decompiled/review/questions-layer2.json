@@ -3,8 +3,8 @@
  "questions": [
   {
    "node": "surface:0898",
-   "question": "E3M1's largest recovered surface spans 57 records of tile 100. Only 31% of the map's records sit in a shared projection at all. Should the writer keep projecting one frame per RUN, or per FLAT FACE, which is what E3M1 does (88% of collinear joins continue, 15-51% of bends, 13% of reflex corners)?",
-   "recommended_default": "keep the run, and add nothing: RUN_BREAK_DEGREES already stops at 100 degrees, and the reader's census is the evidence for whether a bend break belongs in the writer too. Decide it on the whole campaign, not on E3M1",
+   "question": "the largest recovered surface here spans 57 records of tile 100. Only 31% of the map's records sit in a shared projection at all. Should the writer keep projecting one frame per RUN, or per FLAT FACE? Measured over the 43 campaign maps the answer is the run: 93.7% of collinear solid-solid joins continue, 67.9% of bends and 19.1% of reflex corners.",
+   "recommended_default": "keep the run, and add nothing: RUN_BREAK_DEGREES already stops at 100 degrees, and the reader's census is the evidence for whether a bend break belongs in the writer too. Decide it on the whole campaign, which is now measured: see reports/campaign-census-2026-09-03.md",
    "evidence": "references/surfaces.json: u_continuity_by_join_class"
   },
   {

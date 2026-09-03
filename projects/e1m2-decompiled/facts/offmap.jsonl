@@ -1,0 +1,20 @@
+{"_from": ["sector:19"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:19", "kind": "logic_closet", "sectors": [19], "why": ["41 switches and 1 generators, unreachable"]}
+{"_from": ["sector:23"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:23", "kind": "signature", "sectors": [23], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:24"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:24", "kind": "signature", "sectors": [24], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:25"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:25", "kind": "signature", "sectors": [25], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:26"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:26", "kind": "signature", "sectors": [26], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:27"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:27", "kind": "signature", "sectors": [27], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:28"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:28", "kind": "signature", "sectors": [28], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:29"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:29", "kind": "signature", "sectors": [29], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:30"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:30", "kind": "signature", "sectors": [30], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:31"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:31", "kind": "signature", "sectors": [31], "why": ["1 of 1 outlines match a known glyph stamp"]}
+{"_from": ["sector:276"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:276", "kind": "logic_closet", "sectors": [276], "why": ["3 switches and 0 generators, unreachable"]}
+{"_from": ["sector:280"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:280", "kind": "sealed", "sectors": [280], "why": ["1 sprites, 1 sectors with an XSECTOR"]}
+{"_from": ["sector:281"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:281", "kind": "sealed", "sectors": [281], "why": ["1 sprites, 1 sectors with an XSECTOR"]}
+{"_from": ["sector:282"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:282", "kind": "sealed", "sectors": [282], "why": ["1 sprites, 1 sectors with an XSECTOR"]}
+{"_from": ["sector:283"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:283", "kind": "sealed", "sectors": [283], "why": ["0 sprites, 1 sectors with an XSECTOR"]}
+{"_from": ["sector:289"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:289", "kind": "sealed", "sectors": [289], "why": ["1 sprites, 1 sectors with an XSECTOR"]}
+{"_from": ["sector:303"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:303", "kind": "sealed", "sectors": [303], "why": ["0 sprites, 1 sectors with an XSECTOR"]}
+{"_from": ["sector:306"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:306", "kind": "bare", "sectors": [306], "why": ["no sprite, no XSECTOR: geometry with nothing wired to it"]}
+{"_from": ["sector:311"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:311", "kind": "sealed", "sectors": [311], "why": ["0 sprites, 1 sectors with an XSECTOR"]}
+{"_from": ["sector:312"], "_layer": 6, "_reader": "bloodmap.reachability.classify_offmap", "id": "offmap:312", "kind": "sealed", "sectors": [312], "why": ["0 sprites, 1 sectors with an XSECTOR"]}

@@ -1,0 +1,1 @@
+{"_from": ["corridor:00"], "_layer": 7, "_reader": "bloodmap.read_plan", "carriageway_pu": 8.0, "corridor": "corridor:00", "from": "corridor:00:a", "full_width_pu": 12.0, "id": "plan_edge:00", "length_pu": 22.0, "to": "corridor:00:b", "width_class": "avenue"}

@@ -309,6 +309,15 @@ def is_convex(points: list[tuple[int, int]]) -> bool:
     return len(signs) <= 1
 
 
+#: The upper marker sits this far ABOVE its plane in Blood's own z (which
+#: grows downward), i.e. 256 units above the floor it links -- and it does so
+#: in every campaign stack: 38 of 38, with the lower marker at exactly 0 in
+#: all 38. Three of three in E3M1 read as a defect until the other 35 were
+#: counted (decisions section 30, item 30e). A convention the campaign keeps
+#: without exception is not a fault a checker gets to name.
+UPPER_MARKER_OFFSET = -256
+
+
 def stack_faults(disk: Any, pair: dict[str, Any]) -> list[str]:
     """Check one ROR link against the rules the manual states.
 
@@ -342,11 +351,17 @@ def stack_faults(disk: Any, pair: dict[str, Any]) -> list[str]:
         sector_id = upper if role == motion.STACK_UPPER else lower
         plane = "floor_z" if role == motion.STACK_UPPER else "ceiling_z"
         want = int(disk.sectors[sector_id].fields[plane])
-        if int(sprite.fields["z"]) != want:
+        offset = int(sprite.fields["z"]) - want
+        if offset == UPPER_MARKER_OFFSET and role == motion.STACK_UPPER:
+            continue                       # the convention, 38 of 38
+        if offset:
             faults.append(
-                f"the {plane.split('_')[0]} marker floats: sprite "
-                f"{marker_sprite} sits at z {int(sprite.fields['z'])} and the "
-                f"plane it links is at {want}")
+                f"the {plane.split('_')[0]} marker sits {abs(offset)} "
+                f"{'below' if offset < 0 else 'above'} the plane it links "
+                f"(sprite {marker_sprite} at z {int(sprite.fields['z'])}, "
+                f"plane at {want}). The campaign's own offset is "
+                f"{abs(UPPER_MARKER_OFFSET)} below on the UPPER marker and 0 "
+                f"on the lower, 38 stacks of 38, so this is not it")
     return faults
 
 

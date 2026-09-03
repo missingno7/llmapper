@@ -1,0 +1,1 @@
+{"_from": ["sector:63"], "_layer": 4, "_reader": "bloodmap.read_islands", "boundary_faces": {"interior": 1, "road": 6, "void": 4}, "id": "island:000", "kerb_tile": 340, "rise": 4096, "sectors": [63]}

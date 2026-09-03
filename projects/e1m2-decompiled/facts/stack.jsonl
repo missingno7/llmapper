@@ -1,0 +1,1 @@
+{"_from": ["sector:186", "sector:191"], "_layer": 5, "_reader": "bloodmap.curriculum", "faults": [], "id": "stack:0", "lower": "sector:186", "offset": [64, 64], "sprites": ["sprite:185", "sprite:184"], "upper": "sector:191"}

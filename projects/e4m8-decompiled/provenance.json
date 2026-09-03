@@ -1,0 +1,20 @@
+{
+ "$schema": "llmapper.decompiled-project",
+ "schema_version": 1,
+ "of": "E4M8.MAP",
+ "source_crc32": "92082c8d",
+ "format": "Blood MAP",
+ "counts": {
+  "sectors": 80,
+  "walls": 848,
+  "sprites": 124
+ },
+ "authority": "exact_level_ir; regenerate it rather than reading anything here as truth",
+ "regenerate_exact_truth": "python -m bloodmap decompile D:/Games/DOS/llmapper/maps/blood/campaign/E4M8.MAP -o projects/e4m8-decompiled/exact-level-source.json",
+ "regenerate_this_project": "python -m tools.decompile_project D:/Games/DOS/llmapper/maps/blood/campaign/E4M8.MAP -o projects/e4m8-decompiled",
+ "derived_not_verified": [
+  "hierarchy grouping",
+  "structure recovery",
+  "local asset aliases"
+ ]
+}

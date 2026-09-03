@@ -107,6 +107,16 @@ PREDICATES: dict[str, str] = {
     "key": "a lock and the key that opens it",
     "stack": "a room-over-room link between two sectors",
     "condition": "a state a topology depends on",
+    # --- censuses over a population, not over one map ---------------------
+    "census_band": "what one join pair's band wears across a population",
+    "census_continuity": "how often a material continues, by join class",
+    "census_pair": "how often a pair of surface kinds meets, by class",
+    "census_envelope": "a quantity's spread over a population, with its "
+                       "network definition named",
+    "census_layer": "one layer's claimed share and residue on one map",
+    "proposed_row": "a join row a census would justify; PROPOSED, never added",
+    "macro": "a constructor two decompilations both needed, with the residue "
+             "it would lower on each",
     # --- the ledger, as predicates like any other -------------------------
     "claims": "an aspect says it determines one field of one record",
     "candidate": "a reading that could go more than one way, kept",

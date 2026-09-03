@@ -1,0 +1,9 @@
+{"_reader": "bloodmap.read_census.u_continuity", "id": "bend:bend_portal-portal", "join_class": "bend portal-portal", "maps": 43, "n": 28216, "percent": 29.6, "population": "blood-campaign", "u_continues": 8341}
+{"_reader": "bloodmap.read_census.u_continuity", "id": "bend:bend_solid-portal", "join_class": "bend solid-portal", "maps": 43, "n": 13366, "percent": 33.7, "population": "blood-campaign", "u_continues": 4498}
+{"_reader": "bloodmap.read_census.u_continuity", "id": "bend:bend_solid-solid", "join_class": "bend solid-solid", "maps": 43, "n": 20021, "percent": 67.9, "population": "blood-campaign", "u_continues": 13591}
+{"_reader": "bloodmap.read_census.u_continuity", "id": "bend:collinear_portal-portal", "join_class": "collinear portal-portal", "maps": 43, "n": 3588, "percent": 56.9, "population": "blood-campaign", "u_continues": 2043}
+{"_reader": "bloodmap.read_census.u_continuity", "id": "bend:collinear_solid-portal", "join_class": "collinear solid-portal", "maps": 43, "n": 4442, "percent": 79.9, "population": "blood-campaign", "u_continues": 3551}
+{"_reader": "bloodmap.read_census.u_continuity", "id": "bend:collinear_solid-solid", "join_class": "collinear solid-solid", "maps": 42, "n": 6760, "percent": 93.7, "population": "blood-campaign", "u_continues": 6336}
+{"_reader": "bloodmap.read_census.u_continuity", "id": "bend:reflex_portal-portal", "join_class": "reflex portal-portal", "maps": 43, "n": 1910, "percent": 21.0, "population": "blood-campaign", "u_continues": 401}
+{"_reader": "bloodmap.read_census.u_continuity", "id": "bend:reflex_solid-portal", "join_class": "reflex solid-portal", "maps": 43, "n": 2836, "percent": 24.6, "population": "blood-campaign", "u_continues": 699}
+{"_reader": "bloodmap.read_census.u_continuity", "id": "bend:reflex_solid-solid", "join_class": "reflex solid-solid", "maps": 39, "n": 871, "percent": 19.1, "population": "blood-campaign", "u_continues": 166}

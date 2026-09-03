@@ -1,0 +1,2 @@
+{"_reader": "bloodmap.read_light.shade_step_envelope", "envelope": [8, 16], "id": "shade_step:largest_outdoor_component", "inside": 0.5052083333333334, "maps": 36, "median": 13.0, "network": "largest_outdoor_component", "population": "blood-campaign", "quartiles": [9.0, 18.75], "records": 192}
+{"_reader": "bloodmap.read_light.shade_step_envelope", "envelope": [8, 16], "id": "shade_step:all_outdoor", "inside": 0.5232876712328767, "maps": 37, "median": 12, "network": "all_outdoor", "population": "blood-campaign", "quartiles": [8.0, 16.0], "records": 365}

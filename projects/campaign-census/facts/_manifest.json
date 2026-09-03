@@ -1,0 +1,25 @@
+{
+ "$schema": "llmapper.fact-store",
+ "base_predicates_are_the_corpus": {
+  "which": [
+   "connects",
+   "sector",
+   "sprite",
+   "wall",
+   "xsector",
+   "xsprite",
+   "xwall"
+  ],
+  "why": "these are the map's records verbatim. They are regenerated rather than committed, on the project's standing rule that the corpus is never committed and the command that reproduces it is"
+ },
+ "predicates": {
+  "census_layer": "one layer's claimed share and residue on one map"
+ },
+ "readers": {
+  "projects/campaign-census/source/residue_curve.py": 43
+ },
+ "rows": {
+  "census_layer": 43
+ },
+ "schema_version": 1
+}
