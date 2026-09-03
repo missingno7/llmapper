@@ -3459,6 +3459,84 @@ names carried in from the build.
   standing on the road would meet at the road's edge; it does not trace a
   view. A kerb hidden behind something would pass it.
 
+### The owner's second walk: a building is a void, not a block
+
+Eight findings, each a gate that failed first with an absolute reading and now
+reads 0. Two changed the model.
+
+| | before | after | what it was |
+| --- | --- | --- | --- |
+| W5 door envelope | 35 | 0 | 4096x1024 sectors open at rest, 33920 of clear |
+| W6 switches | 9 | 0 | a tx with neither send-when bit, above the roof |
+| W7 prop roles | 27 | 0 | a plate chosen by brightness, on a red wall |
+| W8 sprite homes | 18 | 0 | a sector field `updatesector` disagrees with |
+| W9 horizontal tiles | 1 | 0 | the facade's window on an interior floor |
+| W10 mask partners | 9 | 0 | a mask on the street side only |
+| W11 facade shade | 12 | 0 | shade 9 on a piece at 32 |
+| W12 sky clipping | 85 | 0 | a roof-height ceiling beside the sky |
+
+**W12 changed the model, and the engine is the argument.**
+`engine.cpp:4688` raises `umost` to the far ceiling line whenever one of two
+ceilings is not parallaxed, so a roof-height slab beside the street cuts off
+everything above it behind. Sky against sky never clips -- E3M1 has 13
+differing sky|sky pairs and no visible cut. And E3M1's buildings are not
+sectors at all: **its facades ARE the one-sided records of its outdoor
+sectors, 122 of them**, and the stone between its rooms is simply absent from
+the map. So a building is now a VOID in the island, with its rooms as sectors
+inside it, its wall as the space no sector fills, and its facade as the
+island's own hole ring.
+
+**W5, the door envelope, measured.** 1231 campaign type-600 sectors: long side
+768-2048 across the middle half, median 1024; short side 256 on 339, the
+commonest by a distance. E3M1's six are 256-1024 long, 256 thick, CLOSED at
+rest -- ceiling on floor, all six -- and carry no masked record, which is W10
+answered from the same six. The mouth is a 1024 opening, a reveal taking the
+rest of the wall's depth, and a 256 leaf against the room that opens 30720 to
+its lintel.
+
+**W11 is one law, not two.** Over the campaign's 5320 one-sided outdoor
+records the median delta from the floor shade of the piece they stand on is
+**+6** with quartiles -3 to +15.75 -- the same +6 the kerb census gave. An
+outdoor record is shaded by the ground it stands on, whether it is a step's
+band or a building's face. E3M1's own 122 read a median 0 and it is the
+outlier here as it is on the shade step.
+
+**W6, and what "realised" now requires.** Slice 4 reported nine links
+`realised: true` because a sprite carried the tx and a sector carried the rx.
+`triggers.cpp:102-104` gates every message on the send-when bit of the state
+being ENTERED, and all nine switches had neither, so none could ever send --
+and they sat 5120 above the SHELL's roof, where no body stands. Realised now
+requires the send-when bit AND a reachable sprite, both read off the map.
+
+**W7, and the choice claim rewritten.** Two attempts at a street lamp produced
+a chained lantern hanging from the sky and a wall plate on a red wall
+mid-street. The corpus said the same thing both times: 0 visible outdoor lamps
+in 43 maps. Gravesend now chooses what the campaign chose, and a tile is
+picked by ROLE and never by a brightness statistic. One consequence: with the
+lamps gone the reader and the compiler agree on EVERY shade depth, where 143
+sectors disagreed because three carried two lamps each at shade -4 and moved
+the reader's elected base.
+
+**Two more that fell out of the rework.** A run walked THROUGH a shut door and
+carried its floor peg into the room behind, 40 walls of it -- a record no
+surface owns is a record no run may cross. And `interior|interior` at equal z
+draws nothing and is still a frame BOUNDARY: two rooms are two rooms, their
+ceilings need not be level, and carrying a run across one was the other half
+of those 40.
+
+**Which slice-4 gate should have caught each.** None could, and the shape of
+the answer is the same every time: they were all absolute questions about the
+built map that no gate was asking. The read-back checked a sentence's own
+claims and a door's envelope is not one of them; the frames gate checked
+panning and never a ceiling; the mission graph checked that a tx and an rx
+matched and never whether the tx could fire; nothing looked at where a sprite
+actually was. **W6 is the sharpest: it was reported as `realised: true`, and
+that report was wrong because "realised" meant two clauses where the engine
+needs three.**
+
+199 sectors, 1031 walls, 16 sprites; reachable with the mechanisms worked, 199
+of 199.
+
 ### Slice 5: indoors is one law, and a building is eight rooms in one mass
 
 #### Three census results consumed
