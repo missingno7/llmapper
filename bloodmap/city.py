@@ -156,10 +156,15 @@ def waterfront(prefix: str, *, x0: int, x1: int, y: int, walk_depth: int,
                     behavior={"pan_floor": 1, "pan_always": 1, "drag": 1,
                               "pan_velocity": joins.SEA_PAN_VELOCITY,
                               "pan_angle": joins.SEA_PAN_ANGLE}),
+        #: The horizon's WALLS are not the sky. Its floor and ceiling are --
+        #: that is the trick, the zero height and the parallax bit on both --
+        #: but the owner names 3491 a `surface`, and a surface tile on a wall
+        #: is the same fault as a wall tile on a floor, read the other way.
         SurfaceSpec(surface_id=f"{prefix}horizon", rings=(horizon,),
                     floor_z=shore_z, ceiling_z=shore_z,
                     floor_tile=int(sky_tile), ceiling_tile=int(sky_tile),
-                    wall_tile=int(sky_tile), kind=joins.HORIZON,
+                    wall_tile=joins.TILE_CLASSES["quay class"],
+                    kind=joins.HORIZON,
                     floor_stat=1, lit=False, declared_zero_exit=True),
     ]
 

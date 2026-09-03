@@ -131,30 +131,48 @@ class W6ASwitchThatCannotSend(unittest.TestCase):
 
 
 class W7APropHasARole(unittest.TestCase):
-    """Tile 510 was chosen for being drawn bright; `decoration-v1.json` calls
-    it a wall-aligned plate 1.45 bodies tall, and eleven of eighteen hung on
-    red walls between street pieces."""
+    """A tile's role comes from `bloodmap.owner_anchors`, which names 224
+    tiles, and never from a census or a table typed here.
 
-    ROLES = {510: "wall", 641: "ceiling"}
+    Tile 510 was chosen for being drawn bright and eleven of eighteen hung on
+    red walls between street pieces. The owner names 510 a `wall` -- "metal
+    plate" -- so it was never a prop at all, and the local table that gave it
+    a role was the guess dressed up as the answer.
+    """
 
-    def test_a_wall_plate_not_wall_aligned_is_caught(self):
+    def test_the_owner_calls_510_a_wall_and_that_settles_it(self):
+        from bloodmap.owner_anchors import load_owner_anchors
+
+        anchor = load_owner_anchors().get(510)
+        self.assertIsNotNone(anchor)
+        self.assertEqual(anchor.kind, "wall")
         disk = _street()
         _sprite(disk, tile=510, sector=0, x=8192, y=8192)
-        faults = sm.prop_role_faults(disk, self.ROLES)
-        self.assertTrue(any("not wall-aligned" in row for row in faults))
+        self.assertTrue(any("as a sprite" in row and "names it a wall" in row
+                            for row in sm.prop_role_faults(disk)))
 
-    def test_a_lantern_under_the_sky_is_caught(self):
+    def test_a_lantern_hanging_under_the_sky_is_caught(self):
         disk = _street()
-        _sprite(disk, tile=641, sector=0, x=8192, y=8192)
-        faults = sm.prop_role_faults(disk, self.ROLES)
+        _sprite(disk, tile=641, sector=0, x=8192, y=8192,
+                z=GRADE - 3 * 16960)
         self.assertTrue(any("the sector's ceiling is the sky" in row
-                            for row in faults))
+                            for row in sm.prop_role_faults(disk)))
 
-    def test_a_tile_with_no_role_is_caught(self):
+    def test_a_wall_aligned_sprite_on_a_portal_is_caught(self):
         disk = _street()
-        _sprite(disk, tile=999, sector=0, x=8192, y=8192)
-        self.assertTrue(any("no anchored role" in row
-                            for row in sm.prop_role_faults(disk, self.ROLES)))
+        _sprite(disk, tile=641, sector=0, x=8192, y=8192, cstat=16)
+        self.assertTrue(any("portal, not a wall" in row
+                            for row in sm.prop_role_faults(disk)))
+
+    def test_a_tile_the_owner_has_not_named_goes_on_the_sheet(self):
+        # NOT a fault, and not a guess either: 224 tiles are named and this is
+        # not one of them, so it is a question for the next sheet.
+        disk = _street()
+        _sprite(disk, tile=99999, sector=0, x=8192, y=8192)
+        found = sm.anchor_role_faults(disk)
+        self.assertNotIn(99999, [int(row.split()[3])
+                                 for row in found["faults"] if row.split()[3].isdigit()])
+        self.assertIn(99999, [row["picnum"] for row in found["unanchored"]])
 
 
 class W8ASpriteIsWhereItSaysItIs(unittest.TestCase):
@@ -173,17 +191,31 @@ class W8ASpriteIsWhereItSaysItIs(unittest.TestCase):
 
 
 class W9AWallTileOnAFloor(unittest.TestCase):
+    """The role comes from the anchors. The first version of this gate carried
+    its own list of wall tiles and passed 379 on three roofs and 2490 on
+    twenty-three sea floors, because neither was in it."""
 
     def test_the_facade_s_window_on_a_floor_is_caught(self):
-        disk = _street(floor_picnum=401)
-        faults = sm.horizontal_tile_faults(disk, wall_tiles=FAMILY)
-        self.assertEqual(len(faults), 1)
-        self.assertIn("its floor wears 401", faults[0])
+        faults = sm.horizontal_tile_faults(_street(floor_picnum=401))
+        self.assertTrue(any("401 as a floor" in row for row in faults))
+        self.assertTrue(any("names it a wall" in row for row in faults))
 
-    def test_a_floor_class_is_silent(self):
+    def test_a_surface_anchor_on_a_floor_is_silent(self):
         self.assertEqual(
-            sm.horizontal_tile_faults(_street(floor_picnum=city.INTERIOR_FLOOR),
-                                      wall_tiles=FAMILY), [])
+            sm.horizontal_tile_faults(_street(floor_picnum=city.INTERIOR_FLOOR)),
+            [])
+
+    def test_an_acknowledged_conflict_is_reported_and_is_not_a_fault(self):
+        # 379 is a `wall` to the owner and a floor to E3M1's three end walls.
+        # A conflict the project has taken to the owner is on the sheet; an
+        # unacknowledged one fails.
+        disk = _street(floor_picnum=379)
+        self.assertTrue(sm.horizontal_tile_faults(disk))
+        found = sm.anchor_role_faults(disk, acknowledged=[("floor", 379)])
+        self.assertEqual([row for row in found["faults"]
+                          if " as a floor;" in row], [])
+        self.assertEqual([row["picnum"] for row in found["acknowledged"]],
+                         [379])
 
 
 class W10AMaskHasAPartner(unittest.TestCase):

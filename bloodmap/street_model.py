@@ -712,19 +712,95 @@ def _crosses(loop, point) -> bool:
     return inside
 
 
-def horizontal_tile_faults(disk: Any, *, wall_tiles: Iterable[int]
-                           ) -> list[str]:
-    """A wall-class tile on a floor or a ceiling is a fault by sector (W9)."""
-    wanted = {int(tile) for tile in wall_tiles}
-    out = []
-    for index, sector in enumerate(disk.sectors):
+#: WHICH ANCHOR KINDS A USE ADMITS. `owner_anchors` names 224 tiles and its
+#: `kind` IS the role -- 121 wall, 60 sprite, 37 surface, 6 maskwall -- so a
+#: gate asks the anchors and never a census. A census says what the campaign
+#: happens to do with a tile; an anchor says what the tile IS.
+ANCHOR_KIND_FOR_USE = {
+    "floor": {"surface"},
+    "ceiling": {"surface"},
+    "wall": {"wall", "maskwall"},
+    "maskwall": {"maskwall", "wall"},
+    "sprite": {"sprite"},
+}
+
+
+def tile_uses(disk: Any) -> dict:
+    """Every (use, tile) the map needs, with how many records need it."""
+    from collections import Counter
+
+    out: Counter = Counter()
+    for sector in disk.sectors:
         fields = _fields(sector)
         for role in ("floor", "ceiling"):
-            tile = int(fields[f"{role}_picnum"])
-            if tile in wanted:
-                out.append(f"sector {index}: its {role} wears {tile}, which "
-                           f"is a wall class")
-    return out
+            out[(role, int(fields[f"{role}_picnum"]))] += 1
+    for wall in disk.walls:
+        face = _fields(wall)
+        out[("wall", int(face["picnum"]))] += 1
+        if int(face["cstat"]) & 16 and int(face["over_picnum"]):
+            out[("maskwall", int(face["over_picnum"]))] += 1
+    for sprite in disk.sprites:
+        out[("sprite", int(_fields(sprite)["picnum"]))] += 1
+    return dict(out)
+
+
+def anchor_role_faults(disk: Any, *, anchors: Any = None,
+                       acknowledged: Iterable[tuple] = ()) -> dict:
+    """Every tile the map uses, against the role its OWNER ANCHOR gives it.
+
+    Three outcomes, and they are three different things:
+
+    * **matches** -- the anchor's kind admits the use, and nothing is owed.
+    * **a fault** -- the anchor gives the tile a kind this use does not admit
+      and nobody has recorded why. 379 is a `wall` and E3M1 puts it on top of
+      an end wall; that is a real disagreement between the owner's word for a
+      tile and the campaign's use of it, and it is a question, not a licence.
+    * **unanchored** -- 224 tiles are named and this is not one of them. It
+      goes on the NEXT SHEET, never into a guess: a gate that invents a role
+      for an unnamed tile is a census wearing an anchor's clothes.
+
+    `acknowledged` is the project's list of conflicts it has taken to the
+    owner, as `(use, picnum)` pairs. An acknowledged conflict is reported and
+    is not a fault; an unacknowledged one is.
+    """
+    from .owner_anchors import load_owner_anchors
+
+    anchors = anchors if anchors is not None else load_owner_anchors()
+    known = {(str(use), int(tile)) for use, tile in acknowledged}
+    faults, unanchored, noted = [], [], []
+    for (use, tile), count in sorted(tile_uses(disk).items()):
+        anchor = anchors.get(tile)
+        if anchor is None:
+            unanchored.append({"use": use, "picnum": tile, "records": count})
+            continue
+        admits = ANCHOR_KIND_FOR_USE.get(use, set())
+        if anchor.kind in admits:
+            continue
+        row = {"use": use, "picnum": tile, "records": count,
+               "anchor_kind": anchor.kind, "label": anchor.label_en,
+               "binding": anchor.binding or "untested"}
+        if (use, tile) in known:
+            noted.append(row)
+            continue
+        faults.append(f"{count} record(s) use {tile} as a {use}; the owner "
+                      f"names it a {anchor.kind} -- {anchor.label_en!r} "
+                      f"({row['binding']} binding)")
+    return {"faults": faults, "unanchored": unanchored, "acknowledged": noted}
+
+
+def horizontal_tile_faults(disk: Any, *, anchors: Any = None,
+                           acknowledged: Iterable[tuple] = ()) -> list[str]:
+    """A tile on a floor or a ceiling whose anchor is not a surface (W9).
+
+    The role comes from `owner_anchors`, never from a list of wall tiles
+    somebody typed: the first version of this gate carried its own set and
+    passed 379 on three roofs and 2490 on twenty-three sea floors, because
+    neither was in it.
+    """
+    found = anchor_role_faults(disk, anchors=anchors,
+                               acknowledged=acknowledged)
+    return [row for row in found["faults"]
+            if " as a floor;" in row or " as a ceiling;" in row]
 
 
 def mask_partner_faults(disk: Any, *, owners: Sequence[int] | None = None
@@ -827,38 +903,38 @@ def sky_clip_faults(disk: Any, *, lintel_height: int | None = None,
     return out
 
 
-def prop_role_faults(disk: Any, roles: dict, *,
+def prop_role_faults(disk: Any, *, anchors: Any = None,
+                     acknowledged: Iterable[tuple] = (),
                      owners: Sequence[int] | None = None) -> list[str]:
-    """Every prop's tile has an anchored role matching its declared use (W7).
+    """A prop's tile is a sprite, and it is placed on something (W7).
 
-    `roles` maps a tile to the surface it belongs on -- "wall", "floor",
-    "ceiling". A wall-mounted plate on a red wall between two street pieces is
-    a tile chosen by brightness and placed by nothing.
+    Two questions, each with its own source. THE ROLE comes from
+    `owner_anchors`: tile 510 was chosen for being drawn bright and the owner
+    names it a `wall` -- "metal plate" -- so it was never a prop at all. THE
+    PLACEMENT comes from the sprite itself: a wall-aligned sprite belongs on a
+    ONE-SIDED record and never on a red wall between two street pieces, and a
+    sprite that hangs belongs under a real ceiling.
     """
     from .texture_frame import sector_index
 
     owners = list(owners) if owners is not None else sector_index(disk)
-    out = []
+    found = anchor_role_faults(disk, anchors=anchors,
+                               acknowledged=acknowledged)
+    out = [row for row in found["faults"] if " as a sprite;" in row]
     for index, sprite in enumerate(disk.sprites):
         fields = _fields(sprite)
-        tile = int(fields["picnum"])
-        role = roles.get(tile)
-        if role is None:
-            out.append(f"sprite {index}: tile {tile} has no anchored role")
-            continue
+        sector = _fields(disk.sectors[int(fields["sector"])])
         cstat = int(fields["cstat"])
-        if role == "wall" and not cstat & 16:
-            out.append(f"sprite {index}: tile {tile} is a wall role and is "
-                       f"not wall-aligned")
-        if role == "wall" and not _touches_a_solid(disk, int(fields["sector"]),
-                                                   (int(fields["x"]),
-                                                    int(fields["y"]))):
-            out.append(f"sprite {index}: tile {tile} is a wall role and the "
-                       f"record it stands on is a portal, not a wall")
-        if role == "ceiling" and int(_fields(
-                disk.sectors[int(fields['sector'])])["ceiling_stat"]) & 1:
-            out.append(f"sprite {index}: tile {tile} hangs from a ceiling and "
-                       f"the sector's ceiling is the sky")
+        if cstat & 16 and not _touches_a_solid(
+                disk, int(fields["sector"]),
+                (int(fields["x"]), int(fields["y"]))):
+            out.append(f"sprite {index}: tile {fields['picnum']} is "
+                       f"wall-aligned and the record it stands on is a "
+                       f"portal, not a wall")
+        if (not cstat & 16 and int(fields["z"]) < int(sector["floor_z"])
+                and int(sector["ceiling_stat"]) & 1):
+            out.append(f"sprite {index}: tile {fields['picnum']} hangs above "
+                       f"its floor and the sector's ceiling is the sky")
     return out
 
 

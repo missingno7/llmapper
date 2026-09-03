@@ -181,18 +181,31 @@ LAMP_CSTAT = 208
 LAMP_HANG = 21504
 LAMP_MOUNT = "wall"
 
-#: WHAT EACH PROP'S TILE IS FOR, from the owner anchors and
-#: `decoration-v1.json` -- by ROLE, never by a brightness statistic. Tile 510
-#: was picked for being drawn bright and is a wall-aligned plate 1.45 bodies
-#: tall; eleven of the eighteen ended up hanging on red walls between street
-#: pieces, which is what a tile chosen by a number and placed by nothing
-#: looks like.
-PROP_ROLES = {
-    city.SWITCH_TILE: "wall",
-    641: "ceiling",          # the hanging lantern, and only under a ceiling
-    510: "wall",
-    536: "floor", 537: "floor",
-    2552: "floor", 2553: "floor", 2554: "floor", 2555: "floor", 2556: "floor",
+#: A TILE'S ROLE COMES FROM `bloodmap.owner_anchors`, WHICH NAMES 224 TILES,
+#: and never from a table typed here. This used to be that table, and it was
+#: wrong about the one tile it mattered for: it called 510 a wall role and the
+#: owner calls 510 a `wall` -- so 510 was never a prop at all, and giving it a
+#: role in a local dict was the guess dressed up as an answer.
+#:
+#: THE CONFLICTS THE CITY HAS TAKEN TO THE OWNER. An anchored tile used in a
+#: role its anchor does not give it is a QUESTION, not a licence, and these
+#: two are on the sheet with the campaign evidence that put them there. An
+#: unacknowledged conflict is a fault.
+ANCHOR_CONFLICTS = (
+    ("floor", 379),
+    ("floor", joins.SEA_TILE),
+)
+ANCHOR_CONFLICT_WHY = {
+    ("floor", 379): (
+        "E3M1 puts 379 on the tops of s0, s339 and s343 -- its three end "
+        "walls -- and `street.END_WALL_FLOOR_TILE` was measured from them. "
+        "The owner names 379 a wall, 'stone wall'. Which is right for the top "
+        "of a stone mass is the owner's to say"),
+    ("floor", joins.SEA_TILE): (
+        "DWE3M10's sea is 2490 under palette 10 with pan_floor, pan_always "
+        "and drag -- 25 of its 34 campaign sectors carry the palette and pan "
+        "-- and the whole waterfront grammar is built on it. The owner names "
+        "2490 a wall, 'light marble', which is what the other 8 are"),
 }
 AREA_PER_LAMP = 187624103
 #: The campaign gives its lamp-lit OUTDOOR sectors no shade bonus, because it
@@ -843,11 +856,11 @@ def main() -> int:
 
     # --- the owner's second walk, twelve readings off the built map --------
     from bloodmap.street_model import (
-        door_envelope_faults, facade_motion_faults, facade_shade_faults,
-        horizontal_tile_faults, kerb_tile_faults, lamp_faults,
-        mask_partner_faults, prop_role_faults, shadow_fits_faults,
-        sky_clip_faults, sky_faults, sprite_home_faults, step_shade_faults,
-        switch_faults)
+        anchor_role_faults, door_envelope_faults, facade_motion_faults,
+        facade_shade_faults, horizontal_tile_faults, kerb_tile_faults,
+        lamp_faults, mask_partner_faults, prop_role_faults,
+        shadow_fits_faults, sky_clip_faults, sky_faults, sprite_home_faults,
+        step_shade_faults, switch_faults)
 
     family = set(joins.FACADE_FAMILY)
     walk = [
@@ -858,10 +871,11 @@ def main() -> int:
         ("W5  door envelope", door_envelope_faults(disk)),
         ("W5b facade motion", facade_motion_faults(disk, facade_tiles=family)),
         ("W6  switches send", switch_faults(disk)),
-        ("W7  prop roles", prop_role_faults(disk, PROP_ROLES)),
+        ("W7  prop roles",
+         prop_role_faults(disk, acknowledged=ANCHOR_CONFLICTS)),
         ("W8  sprite homes", sprite_home_faults(disk)),
         ("W9  horizontal tiles",
-         horizontal_tile_faults(disk, wall_tiles=family | {KERB_TILE, 28})),
+         horizontal_tile_faults(disk, acknowledged=ANCHOR_CONFLICTS)),
         ("W10 mask partners", mask_partner_faults(disk)),
         ("W11 facade shade", facade_shade_faults(disk, facade_tiles=family)),
         ("W11b shadow fits", shadow_fits_faults(disk, g["masses"])),
@@ -873,6 +887,15 @@ def main() -> int:
     for name, rows in walk:
         for row in rows[:2]:
             print(f"   {name} - {row}")
+
+    #: THE NEXT SHEET. A tile the city needs that the owner has not named goes
+    #: here, never into a guess; and a tile whose anchor gives it another role
+    #: goes here too, with the campaign evidence that made the city use it.
+    roles = anchor_role_faults(disk, acknowledged=ANCHOR_CONFLICTS)
+    print(f"owner anchors: {len(roles['faults'])} unacknowledged conflict(s), "
+          f"{len(roles['acknowledged'])} on the sheet, "
+          f"{len(roles['unanchored'])} tile(s) with no anchor")
+    _write_anchor_sheet(roles)
 
     # --- terminations ------------------------------------------------------
     faults = street.termination_faults(disk, list(g["end_walls"].values()),
@@ -990,6 +1013,54 @@ def _with_hole(spec, surface_id, hole):
     if spec.surface_id != surface_id:
         return spec
     return replace(spec, rings=tuple(list(spec.rings) + [list(hole)]))
+
+
+def _write_anchor_sheet(roles: dict,
+                        path=ROOT / "reports/owner-anchor-requests.md") -> None:
+    """The next sheet: every tile the city needs and the owner has not named.
+
+    Written rather than guessed at. A gate that invents a role for an unnamed
+    tile is a census wearing an anchor's clothes, so the unnamed ones come out
+    here with what the city uses them for and how many records need them.
+    """
+    from bloodmap.owner_anchors import load_owner_anchors
+
+    anchors = load_owner_anchors()
+    lines = [
+        "# Owner anchor requests, from Gravesend", "",
+        f"`bloodmap.owner_anchors` names {len(anchors)} tiles. These are the "
+        "ones this city needs and that file does not have, and the ones whose "
+        "anchor gives them a role the city uses them against.", "",
+        "## Tiles with no anchor", "",
+        "| tile | the city uses it as | records | where it came from |",
+        "| --- | --- | --- | --- |",
+    ]
+    from_where = {
+        city.SWITCH_TILE: "the campaign's commonest wall-aligned switch: 104 "
+                          "as kSwitchToggle and 78 as kSwitchOneWay",
+        536: "`furniture.FURNITURE['statue']`",
+        537: "`furniture.FURNITURE['urn']`",
+    }
+    for key in range(1, 7):
+        from_where[city.KEY_TILE_BASE + key] = (
+            f"Blood's key {key}: sprite type {city.KEY_TYPE_BASE + key}")
+    for row in roles["unanchored"]:
+        lines.append(f"| {row['picnum']} | {row['use']} | {row['records']} | "
+                     f"{from_where.get(row['picnum'], 'unstated')} |")
+    lines += ["", "## Tiles the city uses against their anchor", "",
+              "Each is a question, not a licence: the owner's word for the "
+              "tile and the campaign's use of it disagree.", ""]
+    for row in roles["acknowledged"]:
+        why = ANCHOR_CONFLICT_WHY.get((row["use"], row["picnum"]), "")
+        lines += [f"**{row['picnum']} as a {row['use']}** -- the owner names "
+                  f"it a {row['anchor_kind']}, {row['label']!r} "
+                  f"({row['binding']} binding); {row['records']} record(s).",
+                  "", why, ""]
+    if roles["faults"]:
+        lines += ["## Unacknowledged, and failing the gate", ""]
+        lines += [f"- {row}" for row in roles["faults"]] + [""]
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("\n".join(lines), encoding="utf-8")
 
 
 def _shade_census(cache=ROOT / "work/shade_envelope.json") -> dict:
