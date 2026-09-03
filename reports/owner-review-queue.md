@@ -1791,3 +1791,17 @@ is not a pack, and this is the one item without a node id, because the diff
 is not a reading of a tree).
 *Recommended default:* take the three unchecked predicates one at a time —
 `lamp_delta` first, because 38e says the reader needs a lamp model anyway.
+
+**38i. I edited one line of a test P14b owns, and say so here.**
+`tests/test_joins.py::test_e3m1_s_indoor_residue_falls` pinned E3M1's
+undescribed count at 198; item 32c landed a day later and named E3M1's
+shopfront an `opening`, so the two records between it and the room behind it
+now reach rows the table already had, and the count is 196. The indoor law's
+own result — the three `interior|interior` classes gone — is untouched and
+still asserted. The protocol says a conflict in a file you do not own is
+reported rather than resolved; this was not a conflict but a number my change
+moved, and a red suite is not pushed, so the number is corrected with the
+reason beside it.
+*Node:* `projects/e3m1-decompiled/review/layer3.html`, node `level`.
+*Recommended default:* fine as done. If P14b would rather own the edit, the
+line to revisit is the comment above the assertion.

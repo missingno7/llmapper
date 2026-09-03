@@ -2,7 +2,7 @@
 
 What `projects/blood-city/facts/` DECLARES against what `bloodmap.read_facts.recover` reads back from `projects/blood-city/level/slice2-streets.MAP`. Produced by `tools/symmetry_diff.py`; every number is a query over the two stores.
 
-**2490 rows declared, 8661 recovered, 1070 ids on both sides, 7388 rows in disagreement outside the base predicates.**
+**2490 rows declared, 8639 recovered, 1070 ids on both sides, 7366 rows in disagreement outside the base predicates.**
 
 ## Disagreements by class
 
@@ -27,7 +27,7 @@ What `projects/blood-city/facts/` DECLARES against what `bloodmap.read_facts.rec
 | attachment | 0 | 503 | 0 | 0 | 503 | 0 | 0 |
 | block | 0 | 10 | 0 | 0 | 10 | 0 | 0 |
 | candidate | 0 | 20 | 0 | 0 | 20 | 0 | 0 |
-| claims | 127 | 2788 | 0 | 127 | 2788 | 0 | 0 |
+| claims | 127 | 2766 | 0 | 127 | 2766 | 0 | 0 |
 | condition | 0 | 54 | 0 | 0 | 54 | 0 | 0 |
 | connects *(base)* | 0 | 420 | 0 | 0 | 420 | 0 | 0 |
 | corridor | 0 | 33 | 0 | 0 | 33 | 0 | 0 |
@@ -202,9 +202,9 @@ Fields that differ, by how many ids: `depth` (143)
 * readers only: `record`
 * both: `depth`, `shade`
 
-### `claims` — extra id, 2788
+### `claims` — extra id, 2766
 
-`sector:0:floor_shade`, `sector:101:type`, `sector:102:floor_shade`, `sector:104:type`, `sector:105:floor_shade`, `sector:107:type`, `sector:108:floor_shade`, `sector:10:floor_shade`, `sector:110:type`, `sector:111:floor_shade`, `sector:113:type`, `sector:114:floor_shade`, `sector:116:type`, `sector:117:floor_shade`, `sector:119:type`, `sector:11:floor_shade`, `sector:120:floor_shade`, `sector:122:type`, `sector:123:floor_shade`, `sector:125:type`, `sector:126:floor_shade`, `sector:127:floor_shade`, `sector:128:floor_shade`, `sector:129:floor_z`, `sector:12:floor_shade`, `sector:130:floor_shade`, `sector:130:floor_z`, `sector:131:floor_shade`, `sector:131:floor_z`, `sector:132:floor_z`, `sector:133:floor_shade`, `sector:133:floor_z`, `sector:134:floor_shade`, `sector:134:floor_z`, `sector:135:floor_z`, `sector:136:floor_shade`, `sector:136:floor_z`, `sector:137:floor_shade`, `sector:137:floor_z`, `sector:138:floor_shade` … and 2748 more
+`sector:0:floor_shade`, `sector:101:type`, `sector:102:floor_shade`, `sector:104:type`, `sector:105:floor_shade`, `sector:107:type`, `sector:108:floor_shade`, `sector:10:floor_shade`, `sector:110:type`, `sector:111:floor_shade`, `sector:113:type`, `sector:114:floor_shade`, `sector:116:type`, `sector:117:floor_shade`, `sector:119:type`, `sector:11:floor_shade`, `sector:120:floor_shade`, `sector:122:type`, `sector:123:floor_shade`, `sector:125:type`, `sector:126:floor_shade`, `sector:127:floor_shade`, `sector:128:floor_shade`, `sector:129:floor_z`, `sector:12:floor_shade`, `sector:130:floor_shade`, `sector:130:floor_z`, `sector:131:floor_shade`, `sector:131:floor_z`, `sector:132:floor_z`, `sector:133:floor_shade`, `sector:133:floor_z`, `sector:134:floor_shade`, `sector:134:floor_z`, `sector:135:floor_z`, `sector:136:floor_shade`, `sector:136:floor_z`, `sector:137:floor_shade`, `sector:137:floor_z`, `sector:138:floor_shade` … and 2726 more
 
 ### `residue` — extra id, 810
 

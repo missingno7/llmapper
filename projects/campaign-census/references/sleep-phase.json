@@ -110,13 +110,13 @@
     },
     "3": {
      "by_channel": {
-      "frame": 33
+      "frame": 21
      },
-     "facts": 3121,
-     "fields_claimed": 33,
+     "facts": 1985,
+     "fields_claimed": 21,
      "name": "joins",
-     "residue_facts": 1320,
-     "share_of_all_fields": 0.03,
+     "residue_facts": 196,
+     "share_of_all_fields": 0.019,
      "state": "read"
     },
     "4": {
@@ -182,7 +182,7 @@
     "stair": 219
    },
    "map": "E3M1",
-   "residue_facts": 3609
+   "residue_facts": 2485
   },
   {
    "layers": {
@@ -208,14 +208,12 @@
      "state": "read"
     },
     "3": {
-     "by_channel": {
-      "frame": 12
-     },
-     "facts": 2807,
-     "fields_claimed": 12,
+     "by_channel": {},
+     "facts": 1693,
+     "fields_claimed": 0,
      "name": "joins",
-     "residue_facts": 1224,
-     "share_of_all_fields": 0.012,
+     "residue_facts": 122,
+     "share_of_all_fields": 0.0,
      "state": "read"
     },
     "4": {
@@ -280,7 +278,7 @@
     "stair": 102
    },
    "map": "E1M2",
-   "residue_facts": 3559
+   "residue_facts": 2457
   },
   {
    "layers": {
@@ -305,14 +303,12 @@
      "state": "read"
     },
     "3": {
-     "by_channel": {
-      "frame": 6
-     },
-     "facts": 868,
-     "fields_claimed": 6,
+     "by_channel": {},
+     "facts": 496,
+     "fields_claimed": 0,
      "name": "joins",
-     "residue_facts": 382,
-     "share_of_all_fields": 0.025,
+     "residue_facts": 16,
+     "share_of_all_fields": 0.0,
      "state": "read"
     },
     "4": {
@@ -375,7 +371,7 @@
     "self_lit": 1
    },
    "map": "E4M8",
-   "residue_facts": 1059
+   "residue_facts": 693
   }
  ],
  "population": [
@@ -406,13 +402,6 @@
    "maps": 2,
    "total": 24
   },
-  "join: the writer's table has no row for end_wall|interior|b_above": {
-   "E1M2": 3,
-   "E3M1": 1,
-   "E4M8": 0,
-   "maps": 2,
-   "total": 4
-  },
   "join: the writer's table has no row for end_wall|solid|equal": {
    "E1M2": 3,
    "E3M1": 0,
@@ -420,47 +409,12 @@
    "maps": 2,
    "total": 8
   },
-  "join: the writer's table has no row for interior|end_wall|b_below": {
-   "E1M2": 3,
-   "E3M1": 1,
-   "E4M8": 0,
-   "maps": 2,
-   "total": 4
-  },
-  "join: the writer's table has no row for interior|interior|b_above": {
-   "E1M2": 294,
-   "E3M1": 279,
-   "E4M8": 89,
-   "maps": 3,
-   "total": 662
-  },
-  "join: the writer's table has no row for interior|interior|b_below": {
-   "E1M2": 294,
-   "E3M1": 279,
-   "E4M8": 89,
-   "maps": 3,
-   "total": 662
-  },
-  "join: the writer's table has no row for interior|interior|equal": {
-   "E1M2": 514,
-   "E3M1": 564,
-   "E4M8": 188,
-   "maps": 3,
-   "total": 1266
-  },
   "join: the writer's table has no row for interior|pavement|b_below": {
    "E1M2": 1,
    "E3M1": 17,
    "E4M8": 1,
    "maps": 3,
    "total": 19
-  },
-  "join: the writer's table has no row for interior|pavement|equal": {
-   "E1M2": 1,
-   "E3M1": 1,
-   "E4M8": 0,
-   "maps": 2,
-   "total": 2
   },
   "join: the writer's table has no row for interior|solid|b_above": {
    "E1M2": 20,
@@ -482,13 +436,6 @@
    "E4M8": 1,
    "maps": 3,
    "total": 19
-  },
-  "join: the writer's table has no row for pavement|interior|equal": {
-   "E1M2": 1,
-   "E3M1": 1,
-   "E4M8": 0,
-   "maps": 2,
-   "total": 2
   },
   "join: the writer's table has no row for solid|end_wall|equal": {
    "E1M2": 3,

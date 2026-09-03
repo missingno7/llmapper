@@ -54,13 +54,23 @@ Residue is facts, not fields; the ledgers are in each project's
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 space tree | 0 | 108 | 0 | 110 | 0 | 24 |
 | 2 surfaces, frames, structures | 3992 | 1650 | 3951 | 1626 | 1530 | 539 |
-| 3 joins | 33 | 1320 | 12 | 1224 | 6 | 382 |
+| 3 joins | 21 | 196 | 0 | 122 | 0 | 16 |
 | 4 overlays | 17 | 24 | 3 | 7 | 4 | 1 |
 | 5 mechanisms | 206 | 397 | 151 | 460 | 85 | 81 |
 | 6 edge chain | 64 | 0 | 9 | 0 | 12 | 0 |
 | 7 plan | 0 | 1 | 0 | 0 | 0 | 0 |
 | 8 intent | 0 | 109 | 0 | 132 | 0 | 32 |
-| **total** | **4310 of 110998 (3.883%)** | **3609** | **4126 of 101049 (4.083%)** | **3559** | **1637 of 24458 (6.693%)** | **1059** |
+| **total** | **4298 of 110998 (3.872%)** | **2485** | **4114 of 101049 (4.071%)** | **2457** | **1631 of 24458 (6.669%)** | **693** |
+
+**Re-measured 2026-09-03, after two changes landed on layer 3 within a day.**
+The first reading of this table gave 3.883% / 4.083% / 6.693% with 3609 / 3559
+/ 1059 residue facts. Then P14b landed the indoor law of item 37e — ONE row
+keyed on the height relation — and P15 landed `facade` and `opening` (item
+32c). Between them, **layer 3's residue falls from 2926 to 334 across the
+three maps**, and the claimed share falls slightly, because the indoor row
+claims a `cstat` rather than a frame and so describes a record without
+claiming a field. That trade is worth stating plainly: 2592 residue facts
+gone for 30 claims, on the item this report called the cheapest large win.
 
 E3M1 re-ran unchanged at 3.883% under every reader I touched. One thing did
 move in its layer 4, and it moved the right way: **`overlay.kerb_records` used
@@ -71,22 +81,23 @@ longer asked because the code now answers it.
 
 ## The residue of three maps is one residue
 
-32 of the residue reasons hold on two or more maps. The twelve largest:
+The residue reasons that hold on two or more maps, largest first:
 
 | facts | maps | reason |
 | --- | --- | --- |
 | 2178 | 3 | surface: no same-material neighbour at all |
 | 1636 | 3 | surface: broken off a same-material neighbour |
-| 1266 | 3 | join: no row for `interior\|interior\|equal` |
 | 773 | 3 | mechanism: an XSPRITE with no wiring this reader reads |
-| 662 | 3 | join: no row for `interior\|interior\|b_above` |
-| 662 | 3 | join: no row for `interior\|interior\|b_below` |
 | 242 | 3 | space: no perceptual-space evidence groups this sector |
 | 178 | 3 | intent: not a sector type |
 | 67 | 3 | intent: no measurement distinguishes it |
 | 61 | 3 | mechanism: wired, and no sentence realises it |
 | 47 | 3 | join: no row for `interior\|solid\|b_above` |
 | 47 | 3 | join: no row for `solid\|interior\|b_below` |
+
+The three `interior|interior` rows that led this table on the first reading —
+1266, 662 and 662 facts — are **gone**, and nothing replaced them at the top.
+That is what a row does when it is the right row.
 
 Three maps from three episodes — a whole city street, a whole town, an
 80-sector fragment — leave residue in the same proportions for the same
@@ -109,8 +120,8 @@ largest buckets are not macro work at all:
 
 | bucket | facts | cause | owner |
 | --- | --- | --- | --- |
-| a surface's own projection (2178 + 1636) | 3814 | reader | the Surface/Frame representation item — layer 2 cannot attest a frame on a wall with no same-material neighbour, or on one whose neighbour breaks the projection. **This is the largest residue on all three maps, and the only macro that reaches into it is `stair`, for 321 of the 3814.** |
-| `interior\|interior` rows (1266 + 662 + 662) | 2590 | row | queue item 37e — 11 proposed rows, none added. Two interiors meeting is the campaign's commonest join and the table is silent on it. |
+| a surface's own projection (2178 + 1636) | 3814 | reader | the Surface/Frame representation item — layer 2 cannot attest a frame on a wall with no same-material neighbour, or on one whose neighbour breaks the projection. **This is now 68% of all the residue on all three maps, and the only macro that reaches into it is `stair`, for 321 of the 3814.** |
+| ~~`interior\|interior` rows~~ | ~~2590~~ → 0 | row | **Done.** Item 37e landed as ONE row keyed on the height relation rather than the eleven this report proposed, and it took the whole bucket. |
 | spaces nothing groups | 242 | reader | `decompiler.decompile_level` — a sector in the tree only so the partition closes. A constructor cannot supply evidence. |
 
 ## The macros
@@ -159,9 +170,14 @@ uses a mechanism its own curriculum omits.
 
 **The macro total and the bucket total overlap by exactly `stair`'s 321.**
 Those facts are surface residue on tread walls and are counted in both rows;
-every other macro's residue is disjoint from both buckets. 8227 residue facts
-across three maps: 6404 in the two buckets, 1283 the five macros would lower,
-321 in both, and 861 elsewhere.
+every other macro's residue is disjoint from both buckets. **5635** residue
+facts across three maps now: 3814 in the surface bucket, 242 in spaces, 1283
+the five macros would lower, 321 in both, and 617 elsewhere.
+
+**Not one of the five macro numbers moved when the row landed**, which is the
+classification earning its keep: a row gap and a construct gap are different
+things, and clearing 2592 of the first left all 1283 of the second exactly
+where it was.
 
 ## What I did not propose
 

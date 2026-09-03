@@ -6,34 +6,10 @@
   {
    "islands": 3,
    "kerb_records": 11,
-   "layer3_claims": 33,
+   "layer3_claims": 21,
    "map": "E3M1",
    "road_sectors": 4,
    "sectors": 382
-  },
-  {
-   "islands": 1,
-   "kerb_records": 7,
-   "layer3_claims": 12,
-   "map": "E1M2",
-   "road_sectors": 4,
-   "sectors": 313
-  },
-  {
-   "islands": 1,
-   "kerb_records": 6,
-   "layer3_claims": 6,
-   "map": "E4M8",
-   "road_sectors": 1,
-   "sectors": 80
-  },
-  {
-   "islands": 2,
-   "kerb_records": 2,
-   "layer3_claims": 2,
-   "map": "E2M6",
-   "road_sectors": 1,
-   "sectors": 237
   }
  ],
  "maps_with_a_street_in_the_models_sense": 16,
@@ -41,7 +17,7 @@
  "population": "blood-campaign",
  "ranking_among_real_streets": [
   {
-   "claimed_share": 6.693,
+   "claimed_share": 6.669,
    "islands": 1,
    "kerb_records": 6,
    "map": "E4M8",
@@ -104,17 +80,17 @@
    "road_sectors": 4
   },
   {
-   "claimed_share": 4.614,
-   "islands": 2,
-   "kerb_records": 2,
-   "map": "E2M6",
-   "road_sectors": 1
-  },
-  {
    "claimed_share": 4.613,
    "islands": 1,
    "kerb_records": 5,
    "map": "E2M2",
+   "road_sectors": 1
+  },
+  {
+   "claimed_share": 4.611,
+   "islands": 2,
+   "kerb_records": 2,
+   "map": "E2M6",
    "road_sectors": 1
   },
   {
@@ -125,7 +101,7 @@
    "road_sectors": 1
   },
   {
-   "claimed_share": 4.083,
+   "claimed_share": 4.071,
    "islands": 1,
    "kerb_records": 7,
    "map": "E1M2",
@@ -192,8 +168,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 4494,
-     "residue": 1984
+     "facts": 2808,
+     "residue": 298
     },
     "4": {
      "claims": 2,
@@ -221,7 +197,7 @@
      "residue": 157
     }
    },
-   "residue_facts": 5385,
+   "residue_facts": 3699,
    "road_sectors": 0,
    "street_sectors": 0
   },
@@ -256,8 +232,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 4651,
-     "residue": 2066
+     "facts": 2891,
+     "residue": 306
     },
     "4": {
      "claims": 1,
@@ -285,7 +261,7 @@
      "residue": 54
     }
    },
-   "residue_facts": 4818,
+   "residue_facts": 3058,
    "road_sectors": 0,
    "street_sectors": 0
   },
@@ -320,8 +296,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 451,
-     "residue": 196
+     "facts": 291,
+     "residue": 36
     },
     "4": {
      "claims": 0,
@@ -349,13 +325,13 @@
      "residue": 23
     }
    },
-   "residue_facts": 690,
+   "residue_facts": 530,
    "road_sectors": 0,
    "street_sectors": 0
   },
   {
    "claimable_fields": 24458,
-   "claimed_share": 6.693,
+   "claimed_share": 6.669,
    "counts": {
     "sector": 80,
     "sprite": 124,
@@ -364,7 +340,7 @@
     "xsprite": 120,
     "xwall": 1
    },
-   "fields_with_a_claim": 1637,
+   "fields_with_a_claim": 1631,
    "has_a_street_in_the_models_sense": true,
    "has_a_street_network": true,
    "islands": 1,
@@ -383,9 +359,9 @@
      "residue": 539
     },
     "3": {
-     "claims": 6,
-     "facts": 868,
-     "residue": 382
+     "claims": 0,
+     "facts": 496,
+     "residue": 16
     },
     "4": {
      "claims": 4,
@@ -413,7 +389,7 @@
      "residue": 32
     }
    },
-   "residue_facts": 1059,
+   "residue_facts": 693,
    "road_sectors": 1,
    "street_sectors": 2
   },
@@ -448,8 +424,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 4353,
-     "residue": 1952
+     "facts": 2655,
+     "residue": 254
     },
     "4": {
      "claims": 0,
@@ -477,7 +453,7 @@
      "residue": 114
     }
    },
-   "residue_facts": 4919,
+   "residue_facts": 3221,
    "road_sectors": 0,
    "street_sectors": 0
   },
@@ -512,8 +488,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 8260,
-     "residue": 3732
+     "facts": 4940,
+     "residue": 412
     },
     "4": {
      "claims": 4,
@@ -541,7 +517,7 @@
      "residue": 139
     }
    },
-   "residue_facts": 8948,
+   "residue_facts": 5628,
    "road_sectors": 1,
    "street_sectors": 1
   },
@@ -576,8 +552,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 5483,
-     "residue": 2426
+     "facts": 3233,
+     "residue": 176
     },
     "4": {
      "claims": 2,
@@ -605,7 +581,7 @@
      "residue": 64
     }
    },
-   "residue_facts": 5768,
+   "residue_facts": 3518,
    "road_sectors": 1,
    "street_sectors": 1
   },
@@ -640,8 +616,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 5154,
-     "residue": 2384
+     "facts": 3248,
+     "residue": 478
     },
     "4": {
      "claims": 5,
@@ -669,7 +645,7 @@
      "residue": 57
     }
    },
-   "residue_facts": 5261,
+   "residue_facts": 3355,
    "road_sectors": 2,
    "street_sectors": 3
   },
@@ -699,8 +675,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 4008,
-     "residue": 1754
+     "facts": 2512,
+     "residue": 258
     },
     "4": {
      "claims": 5,
@@ -728,7 +704,7 @@
      "residue": 66
     }
    },
-   "residue_facts": 4336,
+   "residue_facts": 2840,
    "road_sectors": 5,
    "street_sectors": 6
   },
@@ -763,8 +739,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 4483,
-     "residue": 2004
+     "facts": 2831,
+     "residue": 352
     },
     "4": {
      "claims": 22,
@@ -792,7 +768,7 @@
      "residue": 82
     }
    },
-   "residue_facts": 4915,
+   "residue_facts": 3263,
    "road_sectors": 3,
    "street_sectors": 5
   },
@@ -827,8 +803,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 3801,
-     "residue": 1686
+     "facts": 2293,
+     "residue": 178
     },
     "4": {
      "claims": 0,
@@ -856,7 +832,7 @@
      "residue": 113
     }
    },
-   "residue_facts": 4461,
+   "residue_facts": 2953,
    "road_sectors": 1,
    "street_sectors": 1
   },
@@ -891,8 +867,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2932,
-     "residue": 1322
+     "facts": 1706,
+     "residue": 96
     },
     "4": {
      "claims": 2,
@@ -920,7 +896,7 @@
      "residue": 52
     }
    },
-   "residue_facts": 3497,
+   "residue_facts": 2271,
    "road_sectors": 4,
    "street_sectors": 5
   },
@@ -955,8 +931,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2543,
-     "residue": 1134
+     "facts": 1509,
+     "residue": 100
     },
     "4": {
      "claims": 4,
@@ -984,7 +960,7 @@
      "residue": 43
     }
    },
-   "residue_facts": 2814,
+   "residue_facts": 1780,
    "road_sectors": 2,
    "street_sectors": 2
   },
@@ -1019,8 +995,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 497,
-     "residue": 220
+     "facts": 447,
+     "residue": 170
     },
     "4": {
      "claims": 3,
@@ -1048,7 +1024,7 @@
      "residue": 20
     }
    },
-   "residue_facts": 760,
+   "residue_facts": 710,
    "road_sectors": 2,
    "street_sectors": 2
   },
@@ -1083,8 +1059,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2983,
-     "residue": 1321
+     "facts": 2058,
+     "residue": 396
     },
     "4": {
      "claims": 2,
@@ -1112,7 +1088,7 @@
      "residue": 115
     }
    },
-   "residue_facts": 3503,
+   "residue_facts": 2578,
    "road_sectors": 1,
    "street_sectors": 1
   },
@@ -1147,8 +1123,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 1683,
-     "residue": 768
+     "facts": 1121,
+     "residue": 206
     },
     "4": {
      "claims": 0,
@@ -1176,7 +1152,7 @@
      "residue": 27
     }
    },
-   "residue_facts": 1826,
+   "residue_facts": 1264,
    "road_sectors": 0,
    "street_sectors": 0
   },
@@ -1211,8 +1187,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 3908,
-     "residue": 1784
+     "facts": 2422,
+     "residue": 298
     },
     "4": {
      "claims": 4,
@@ -1240,7 +1216,7 @@
      "residue": 62
     }
    },
-   "residue_facts": 4120,
+   "residue_facts": 2634,
    "road_sectors": 1,
    "street_sectors": 1
   },
@@ -1275,8 +1251,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 3572,
-     "residue": 1616
+     "facts": 2368,
+     "residue": 412
     },
     "4": {
      "claims": 5,
@@ -1304,7 +1280,7 @@
      "residue": 60
     }
    },
-   "residue_facts": 3802,
+   "residue_facts": 2598,
    "road_sectors": 4,
    "street_sectors": 4
   },
@@ -1339,8 +1315,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2757,
-     "residue": 1250
+     "facts": 2031,
+     "residue": 524
     },
     "4": {
      "claims": 9,
@@ -1368,7 +1344,7 @@
      "residue": 56
     }
    },
-   "residue_facts": 3185,
+   "residue_facts": 2459,
    "road_sectors": 1,
    "street_sectors": 1
   },
@@ -1403,8 +1379,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2470,
-     "residue": 1066
+     "facts": 1554,
+     "residue": 150
     },
     "4": {
      "claims": 7,
@@ -1432,7 +1408,7 @@
      "residue": 29
     }
    },
-   "residue_facts": 2847,
+   "residue_facts": 1931,
    "road_sectors": 1,
    "street_sectors": 2
   },
@@ -1467,8 +1443,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2008,
-     "residue": 866
+     "facts": 1224,
+     "residue": 82
     },
     "4": {
      "claims": 4,
@@ -1487,7 +1463,7 @@
     },
     "7": {
      "claims": 0,
-     "facts": 51,
+     "facts": 37,
      "residue": 1
     },
     "8": {
@@ -1496,7 +1472,7 @@
      "residue": 76
     }
    },
-   "residue_facts": 2341,
+   "residue_facts": 1557,
    "road_sectors": 2,
    "street_sectors": 5
   },
@@ -1531,8 +1507,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 7532,
-     "residue": 3450
+     "facts": 4330,
+     "residue": 248
     },
     "4": {
      "claims": 21,
@@ -1560,7 +1536,7 @@
      "residue": 123
     }
    },
-   "residue_facts": 8282,
+   "residue_facts": 5080,
    "road_sectors": 1,
    "street_sectors": 1
   },
@@ -1595,8 +1571,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2311,
-     "residue": 1010
+     "facts": 1603,
+     "residue": 302
     },
     "4": {
      "claims": 5,
@@ -1624,7 +1600,7 @@
      "residue": 42
     }
    },
-   "residue_facts": 2780,
+   "residue_facts": 2072,
    "road_sectors": 4,
    "street_sectors": 5
   },
@@ -1659,8 +1635,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 4685,
-     "residue": 2074
+     "facts": 3087,
+     "residue": 476
     },
     "4": {
      "claims": 2,
@@ -1688,7 +1664,7 @@
      "residue": 144
     }
    },
-   "residue_facts": 5863,
+   "residue_facts": 4265,
    "road_sectors": 1,
    "street_sectors": 1
   },
@@ -1723,8 +1699,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 3267,
-     "residue": 1440
+     "facts": 2121,
+     "residue": 294
     },
     "4": {
      "claims": 6,
@@ -1752,7 +1728,7 @@
      "residue": 118
     }
    },
-   "residue_facts": 3865,
+   "residue_facts": 2719,
    "road_sectors": 3,
    "street_sectors": 4
   },
@@ -1787,8 +1763,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 5875,
-     "residue": 2650
+     "facts": 3449,
+     "residue": 224
     },
     "4": {
      "claims": 2,
@@ -1816,7 +1792,7 @@
      "residue": 158
     }
    },
-   "residue_facts": 6354,
+   "residue_facts": 3928,
    "road_sectors": 4,
    "street_sectors": 5
   },
@@ -1851,8 +1827,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 1768,
-     "residue": 770
+     "facts": 1094,
+     "residue": 96
     },
     "4": {
      "claims": 2,
@@ -1880,73 +1856,9 @@
      "residue": 59
     }
    },
-   "residue_facts": 2168,
+   "residue_facts": 1494,
    "road_sectors": 1,
    "street_sectors": 1
-  },
-  {
-   "claimable_fields": 66409,
-   "claimed_share": 4.614,
-   "counts": {
-    "sector": 237,
-    "sprite": 361,
-    "wall": 1970,
-    "xsector": 115,
-    "xsprite": 312,
-    "xwall": 9
-   },
-   "fields_with_a_claim": 3064,
-   "has_a_street_in_the_models_sense": true,
-   "has_a_street_network": true,
-   "islands": 2,
-   "kerb_records": 2,
-   "layer1_error": null,
-   "map": "E2M6",
-   "per_layer": {
-    "1": {
-     "claims": 0,
-     "facts": 915,
-     "residue": 99
-    },
-    "2": {
-     "claims": 2849,
-     "facts": 5187,
-     "residue": 1347
-    },
-    "3": {
-     "claims": 2,
-     "facts": 2305,
-     "residue": 998
-    },
-    "4": {
-     "claims": 9,
-     "facts": 41,
-     "residue": 17
-    },
-    "5": {
-     "claims": 162,
-     "facts": 917,
-     "residue": 313
-    },
-    "6": {
-     "claims": 42,
-     "facts": 84,
-     "residue": 0
-    },
-    "7": {
-     "claims": 0,
-     "facts": 19,
-     "residue": 0
-    },
-    "8": {
-     "claims": 0,
-     "facts": 110,
-     "residue": 63
-    }
-   },
-   "residue_facts": 2837,
-   "road_sectors": 1,
-   "street_sectors": 3
   },
   {
    "claimable_fields": 76486,
@@ -1979,8 +1891,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2686,
-     "residue": 1160
+     "facts": 1642,
+     "residue": 116
     },
     "4": {
      "claims": 23,
@@ -1999,7 +1911,7 @@
     },
     "7": {
      "claims": 0,
-     "facts": 58,
+     "facts": 61,
      "residue": 3
     },
     "8": {
@@ -2008,9 +1920,73 @@
      "residue": 74
     }
    },
-   "residue_facts": 3231,
+   "residue_facts": 2187,
    "road_sectors": 1,
    "street_sectors": 8
+  },
+  {
+   "claimable_fields": 66409,
+   "claimed_share": 4.611,
+   "counts": {
+    "sector": 237,
+    "sprite": 361,
+    "wall": 1970,
+    "xsector": 115,
+    "xsprite": 312,
+    "xwall": 9
+   },
+   "fields_with_a_claim": 3062,
+   "has_a_street_in_the_models_sense": true,
+   "has_a_street_network": true,
+   "islands": 2,
+   "kerb_records": 2,
+   "layer1_error": null,
+   "map": "E2M6",
+   "per_layer": {
+    "1": {
+     "claims": 0,
+     "facts": 915,
+     "residue": 99
+    },
+    "2": {
+     "claims": 2849,
+     "facts": 5187,
+     "residue": 1347
+    },
+    "3": {
+     "claims": 0,
+     "facts": 1615,
+     "residue": 310
+    },
+    "4": {
+     "claims": 9,
+     "facts": 41,
+     "residue": 17
+    },
+    "5": {
+     "claims": 162,
+     "facts": 917,
+     "residue": 313
+    },
+    "6": {
+     "claims": 42,
+     "facts": 84,
+     "residue": 0
+    },
+    "7": {
+     "claims": 0,
+     "facts": 19,
+     "residue": 0
+    },
+    "8": {
+     "claims": 0,
+     "facts": 110,
+     "residue": 63
+    }
+   },
+   "residue_facts": 2149,
+   "road_sectors": 1,
+   "street_sectors": 3
   },
   {
    "claimable_fields": 89109,
@@ -2043,8 +2019,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2565,
-     "residue": 1128
+     "facts": 1723,
+     "residue": 286
     },
     "4": {
      "claims": 2,
@@ -2072,7 +2048,7 @@
      "residue": 51
     }
    },
-   "residue_facts": 3188,
+   "residue_facts": 2346,
    "road_sectors": 1,
    "street_sectors": 1
   },
@@ -2107,8 +2083,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 958,
-     "residue": 408
+     "facts": 606,
+     "residue": 56
     },
     "4": {
      "claims": 0,
@@ -2136,7 +2112,7 @@
      "residue": 43
     }
    },
-   "residue_facts": 1353,
+   "residue_facts": 1001,
    "road_sectors": 0,
    "street_sectors": 0
   },
@@ -2171,8 +2147,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2157,
-     "residue": 964
+     "facts": 1321,
+     "residue": 128
     },
     "4": {
      "claims": 0,
@@ -2200,7 +2176,7 @@
      "residue": 50
     }
    },
-   "residue_facts": 2407,
+   "residue_facts": 1571,
    "road_sectors": 2,
    "street_sectors": 2
   },
@@ -2235,12 +2211,12 @@
     },
     "3": {
      "claims": 0,
-     "facts": 4340,
-     "residue": 1952
+     "facts": 2716,
+     "residue": 328
     },
     "4": {
      "claims": 15,
-     "facts": 124,
+     "facts": 126,
      "residue": 50
     },
     "5": {
@@ -2264,7 +2240,7 @@
      "residue": 120
     }
    },
-   "residue_facts": 5340,
+   "residue_facts": 3716,
    "road_sectors": 1,
    "street_sectors": 1
   },
@@ -2299,8 +2275,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 4408,
-     "residue": 1984
+     "facts": 2494,
+     "residue": 70
     },
     "4": {
      "claims": 2,
@@ -2328,13 +2304,13 @@
      "residue": 167
     }
    },
-   "residue_facts": 4952,
+   "residue_facts": 3038,
    "road_sectors": 1,
    "street_sectors": 2
   },
   {
    "claimable_fields": 101049,
-   "claimed_share": 4.083,
+   "claimed_share": 4.071,
    "counts": {
     "sector": 313,
     "sprite": 698,
@@ -2343,7 +2319,7 @@
     "xsprite": 573,
     "xwall": 47
    },
-   "fields_with_a_claim": 4126,
+   "fields_with_a_claim": 4114,
    "has_a_street_in_the_models_sense": true,
    "has_a_street_network": true,
    "islands": 1,
@@ -2362,9 +2338,9 @@
      "residue": 1626
     },
     "3": {
-     "claims": 12,
-     "facts": 2807,
-     "residue": 1224
+     "claims": 0,
+     "facts": 1693,
+     "residue": 122
     },
     "4": {
      "claims": 3,
@@ -2392,7 +2368,7 @@
      "residue": 132
     }
    },
-   "residue_facts": 3559,
+   "residue_facts": 2457,
    "road_sectors": 4,
    "street_sectors": 6
   },
@@ -2427,8 +2403,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 1425,
-     "residue": 634
+     "facts": 831,
+     "residue": 40
     },
     "4": {
      "claims": 0,
@@ -2456,13 +2432,13 @@
      "residue": 32
     }
    },
-   "residue_facts": 1695,
+   "residue_facts": 1101,
    "road_sectors": 0,
    "street_sectors": 0
   },
   {
    "claimable_fields": 110998,
-   "claimed_share": 3.883,
+   "claimed_share": 3.872,
    "counts": {
     "sector": 382,
     "sprite": 807,
@@ -2471,7 +2447,7 @@
     "xsprite": 716,
     "xwall": 41
    },
-   "fields_with_a_claim": 4310,
+   "fields_with_a_claim": 4298,
    "has_a_street_in_the_models_sense": true,
    "has_a_street_network": true,
    "islands": 3,
@@ -2490,9 +2466,9 @@
      "residue": 1650
     },
     "3": {
-     "claims": 33,
-     "facts": 3121,
-     "residue": 1320
+     "claims": 21,
+     "facts": 1985,
+     "residue": 196
     },
     "4": {
      "claims": 17,
@@ -2520,7 +2496,7 @@
      "residue": 109
     }
    },
-   "residue_facts": 3609,
+   "residue_facts": 2485,
    "road_sectors": 4,
    "street_sectors": 13
   },
@@ -2555,8 +2531,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 1643,
-     "residue": 732
+     "facts": 1051,
+     "residue": 140
     },
     "4": {
      "claims": 2,
@@ -2584,7 +2560,7 @@
      "residue": 88
     }
    },
-   "residue_facts": 2201,
+   "residue_facts": 1609,
    "road_sectors": 4,
    "street_sectors": 5
   },
@@ -2619,8 +2595,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2869,
-     "residue": 1208
+     "facts": 1993,
+     "residue": 332
     },
     "4": {
      "claims": 8,
@@ -2648,7 +2624,7 @@
      "residue": 103
     }
    },
-   "residue_facts": 3763,
+   "residue_facts": 2887,
    "road_sectors": 1,
    "street_sectors": 4
   },
@@ -2683,8 +2659,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 1185,
-     "residue": 524
+     "facts": 825,
+     "residue": 164
     },
     "4": {
      "claims": 12,
@@ -2712,7 +2688,7 @@
      "residue": 88
     }
    },
-   "residue_facts": 1435,
+   "residue_facts": 1075,
    "road_sectors": 2,
    "street_sectors": 2
   },
@@ -2747,8 +2723,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 627,
-     "residue": 232
+     "facts": 415,
+     "residue": 20
     },
     "4": {
      "claims": 15,
@@ -2776,7 +2752,7 @@
      "residue": 28
     }
    },
-   "residue_facts": 798,
+   "residue_facts": 586,
    "road_sectors": 8,
    "street_sectors": 17
   },
@@ -2811,8 +2787,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2322,
-     "residue": 1074
+     "facts": 2008,
+     "residue": 760
     },
     "4": {
      "claims": 10,
@@ -2840,7 +2816,7 @@
      "residue": 56
     }
    },
-   "residue_facts": 2837,
+   "residue_facts": 2523,
    "road_sectors": 3,
    "street_sectors": 3
   },
@@ -2875,8 +2851,8 @@
     },
     "3": {
      "claims": 0,
-     "facts": 2873,
-     "residue": 1268
+     "facts": 1983,
+     "residue": 378
     },
     "4": {
      "claims": 6,
@@ -2904,7 +2880,7 @@
      "residue": 222
     }
    },
-   "residue_facts": 3904,
+   "residue_facts": 3014,
    "road_sectors": 4,
    "street_sectors": 4
   }
@@ -2912,7 +2888,7 @@
  "rule": "the second map is the one E3M1's readers already explain best among maps with a street network, because the point of a second map is what the two SHARE (research 2.5); the default if ambiguous is E1M2",
  "selection": {
   "chosen": "E4M8",
-  "corroboration": "the join table -- the street grammar itself -- describes anything on four maps: E3M1 (33), E1M2 (12), E4M8 (6), E2M6 (2). Excluding E3M1, E1M2 leads by a factor of two, and it is a whole map rather than a fragment",
+  "corroboration": "the join table -- the street grammar itself -- describes anything on four maps: E3M1 (21). Excluding E3M1, E1M2 leads by a factor of two, and it is a whole map rather than a fragment",
   "criterion": "among maps with a street network, the largest claimed share under E3M1's readers; the stated default if that is ambiguous is E1M2",
   "excluding_layer_2_gives": "E4M8",
   "the_literal_rule_gives": "E4M8",

@@ -918,8 +918,8 @@
   {
    "base": false,
    "class": "extra id",
-   "count": 2788,
-   "elided": 2748,
+   "count": 2766,
+   "elided": 2726,
    "ids": [
     "sector:0:floor_shade",
     "sector:101:type",
@@ -2047,7 +2047,7 @@
    "base": false,
    "declared": 127,
    "differing_ids": 0,
-   "extra_ids": 2788,
+   "extra_ids": 2766,
    "missing_ids": 127,
    "one_sided_fields": [
     "aspect",
@@ -2057,7 +2057,7 @@
     "region",
     "why"
    ],
-   "recovered": 2788,
+   "recovered": 2766,
    "same_id": 0,
    "unknown_kinds": 0
   },
@@ -2790,7 +2790,7 @@
    "unknown_join"
   ],
   "rows_declared": 2490,
-  "rows_in_disagreement": 7388,
-  "rows_recovered": 8661
+  "rows_in_disagreement": 7366,
+  "rows_recovered": 8639
  }
 }

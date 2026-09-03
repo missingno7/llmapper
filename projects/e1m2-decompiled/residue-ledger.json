@@ -689,14 +689,12 @@
    "state": "read"
   },
   "3": {
-   "by_channel": {
-    "frame": 12
-   },
-   "facts": 2805,
-   "fields_claimed": 12,
+   "by_channel": {},
+   "facts": 1693,
+   "fields_claimed": 0,
    "name": "joins",
-   "residue_facts": 1222,
-   "share_of_all_fields": 0.012,
+   "residue_facts": 122,
+   "share_of_all_fields": 0.0,
    "state": "read"
   },
   "4": {
@@ -772,21 +770,21 @@
    "best_percent_claimed": 42.9,
    "median_percent_claimed": 0.0,
    "records": 2469,
-   "records_with_no_claimed_field": 1672
+   "records_with_no_claimed_field": 1682
   }
  },
  "predicates": {
   "attachment": 843,
   "block": 23,
   "candidate": 33,
-  "claims": 4126,
+  "claims": 4114,
   "condition": 126,
   "connects": 371,
   "corridor": 4,
   "edge_segment": 10,
   "frame": 193,
   "island": 1,
-  "join": 36,
+  "join": 1136,
   "key": 2,
   "light_source": 3,
   "link": 97,
@@ -794,7 +792,7 @@
   "part_of": 1111,
   "plan_edge": 3,
   "realises": 501,
-  "residue": 3557,
+  "residue": 2457,
   "sector": 313,
   "selection": 29,
   "sentence": 139,
@@ -805,7 +803,7 @@
   "sun": 1,
   "surface": 193,
   "surface_kind": 313,
-  "unknown_join": 1222,
+  "unknown_join": 122,
   "wall": 2469,
   "xsector": 157,
   "xsprite": 573,
@@ -822,7 +820,7 @@
   "bloodmap.read_intent": 188,
   "bloodmap.read_islands": 3,
   "bloodmap.read_islands+read_light": 3,
-  "bloodmap.read_joins": 2805,
+  "bloodmap.read_joins": 1693,
   "bloodmap.read_light": 11,
   "bloodmap.read_mechanisms": 1251,
   "bloodmap.read_plan": 32,
@@ -835,7 +833,7 @@
  "residue_by_aspect": {
   "intent": 132,
   "island": 2,
-  "join": 1222,
+  "join": 122,
   "light": 5,
   "mechanism": 460,
   "space": 110,
@@ -1251,8 +1249,8 @@
    "xwall": 1410
   },
   "claimable_fields": 101049,
-  "fields_with_a_claim": 4126,
-  "residue_fields": 96923,
-  "understood_percent": 4.083
+  "fields_with_a_claim": 4114,
+  "residue_fields": 96935,
+  "understood_percent": 4.071
  }
 }

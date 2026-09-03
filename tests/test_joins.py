@@ -482,7 +482,13 @@ class IndoorsIsOneLawNotEleven(unittest.TestCase):
         census = join_census(level, surface_kinds(level, owners=owners)["kinds"],
                              owners=owners)
         self.assertEqual(census["two_sided_records"], 1386)
-        self.assertEqual(census["records_undescribed"], 198)
+        #: 196, not the 198 this test first pinned. Item 32c (P15) landed a
+        #: day later and named E3M1's shopfront `opening`, so the two records
+        #: between it and the room behind it are `interior|opening` and
+        #: `opening|interior` -- pairs the table already had rows for. The
+        #: indoor law's own result is untouched: the three interior|interior
+        #: classes are still gone.
+        self.assertEqual(census["records_undescribed"], 196)
         self.assertNotIn("interior|interior|equal", census["undescribed"])
 
 

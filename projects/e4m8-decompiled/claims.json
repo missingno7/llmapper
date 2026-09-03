@@ -8558,24 +8558,6 @@
    "why": "one frame over 8 records replays through texture_frame.resolve_run to this value"
   }
  ],
- "wall:442:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:end_wall|road|b_below",
-   "value": 1,
-   "why": "the end_wall|road|b_below row sets cstat 1 and this record carries it"
-  }
- ],
- "wall:443:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:end_wall|road|b_below",
-   "value": 1,
-   "why": "the end_wall|road|b_below row sets cstat 1 and this record carries it"
-  }
- ],
  "wall:443:picnum": [
   {
    "channel": "frame",
@@ -8664,15 +8646,6 @@
    "owner": "surface:0244",
    "value": 8,
    "why": "one frame over 2 records replays through texture_frame.resolve_run to this value"
-  }
- ],
- "wall:449:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:end_wall|road|b_below",
-   "value": 1,
-   "why": "the end_wall|road|b_below row sets cstat 1 and this record carries it"
   }
  ],
  "wall:44:picnum": [
@@ -10151,15 +10124,6 @@
    "why": "a one-sided wall against the void takes no facade run and no masked band"
   }
  ],
- "wall:564:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:road|end_wall|b_above",
-   "value": 1,
-   "why": "the road|end_wall|b_above row sets cstat 1 and this record carries it"
-  }
- ],
  "wall:564:picnum": [
   {
    "channel": "frame",
@@ -10205,15 +10169,6 @@
    "why": "one frame over 3 records replays through texture_frame.resolve_run to this value"
   }
  ],
- "wall:565:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:road|end_wall|b_above",
-   "value": 1,
-   "why": "the road|end_wall|b_above row sets cstat 1 and this record carries it"
-  }
- ],
  "wall:565:picnum": [
   {
    "channel": "frame",
@@ -10257,15 +10212,6 @@
    "owner": "surface:0344",
    "value": 8,
    "why": "one frame over 3 records replays through texture_frame.resolve_run to this value"
-  }
- ],
- "wall:566:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:road|end_wall|b_above",
-   "value": 1,
-   "why": "the road|end_wall|b_above row sets cstat 1 and this record carries it"
   }
  ],
  "wall:566:picnum": [

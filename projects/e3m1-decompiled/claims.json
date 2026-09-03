@@ -8207,15 +8207,6 @@
    "why": "one frame over 3 records replays through texture_frame.resolve_run to this value"
   }
  ],
- "wall:1535:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:pavement|end_wall|b_above",
-   "value": 1,
-   "why": "the pavement|end_wall|b_above row sets cstat 1 and this record carries it"
-  }
- ],
  "wall:1535:picnum": [
   {
    "channel": "frame",
@@ -19043,24 +19034,6 @@
    "why": "one frame over 2 records replays through texture_frame.resolve_run to this value"
   }
  ],
- "wall:2098:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:end_wall|pavement|b_below",
-   "value": 1,
-   "why": "the end_wall|pavement|b_below row sets cstat 1 and this record carries it"
-  }
- ],
- "wall:2099:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:end_wall|road|b_below",
-   "value": 1,
-   "why": "the end_wall|road|b_below row sets cstat 1 and this record carries it"
-  }
- ],
  "wall:20:over_picnum": [
   {
    "channel": "frame",
@@ -19113,15 +19086,6 @@
    "owner": "surface:0013",
    "value": 8,
    "why": "one frame over 4 records replays through texture_frame.resolve_run to this value"
-  }
- ],
- "wall:2100:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:end_wall|pavement|b_below",
-   "value": 1,
-   "why": "the end_wall|pavement|b_below row sets cstat 1 and this record carries it"
   }
  ],
  "wall:2103:picnum": [
@@ -20625,15 +20589,6 @@
    "owner": "surface:1803",
    "value": 6,
    "why": "one frame over 3 records replays through texture_frame.resolve_run to this value"
-  }
- ],
- "wall:22:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:pavement|end_wall|b_above",
-   "value": 1,
-   "why": "the pavement|end_wall|b_above row sets cstat 1 and this record carries it"
   }
  ],
  "wall:22:picnum": [
@@ -24117,15 +24072,6 @@
    "why": "one frame over 8 records replays through texture_frame.resolve_run to this value"
   }
  ],
- "wall:26:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:road|end_wall|b_above",
-   "value": 1,
-   "why": "the road|end_wall|b_above row sets cstat 1 and this record carries it"
-  }
- ],
  "wall:26:picnum": [
   {
    "channel": "frame",
@@ -24304,15 +24250,6 @@
    "owner": "surface:0193",
    "value": 8,
    "why": "one frame over 2 records replays through texture_frame.resolve_run to this value"
-  }
- ],
- "wall:28:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:pavement|end_wall|b_above",
-   "value": 1,
-   "why": "the pavement|end_wall|b_above row sets cstat 1 and this record carries it"
   }
  ],
  "wall:29:picnum": [
@@ -26835,15 +26772,6 @@
    "why": "one frame over 3 records replays through texture_frame.resolve_run to this value"
   }
  ],
- "wall:47:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:pavement|end_wall|b_above",
-   "value": 1,
-   "why": "the pavement|end_wall|b_above row sets cstat 1 and this record carries it"
-  }
- ],
  "wall:47:picnum": [
   {
    "channel": "frame",
@@ -26986,15 +26914,6 @@
    "owner": "join:road|pavement|b_above",
    "value": 6,
    "why": "the road|pavement|b_above row shows 'lower band, kerb class' and the class resolves to tile 6"
-  }
- ],
- "wall:49:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:road|end_wall|b_above",
-   "value": 1,
-   "why": "the road|end_wall|b_above row sets cstat 1 and this record carries it"
   }
  ],
  "wall:49:picnum": [
@@ -30766,15 +30685,6 @@
    "why": "kWallGib: the wall breaks"
   }
  ],
- "wall:6:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:end_wall|pavement|b_below",
-   "value": 1,
-   "why": "the end_wall|pavement|b_below row sets cstat 1 and this record carries it"
-  }
- ],
  "wall:702:picnum": [
   {
    "channel": "frame",
@@ -33250,15 +33160,6 @@
    "why": "one frame over 2 records replays through texture_frame.resolve_run to this value"
   }
  ],
- "wall:7:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:end_wall|road|b_below",
-   "value": 1,
-   "why": "the end_wall|road|b_below row sets cstat 1 and this record carries it"
-  }
- ],
  "wall:800:picnum": [
   {
    "channel": "frame",
@@ -35219,15 +35120,6 @@
    "owner": "surface:0593",
    "value": 8,
    "why": "one frame over 2 records replays through texture_frame.resolve_run to this value"
-  }
- ],
- "wall:8:cstat": [
-  {
-   "channel": "frame",
-   "layer": 3,
-   "owner": "join:end_wall|pavement|b_below",
-   "value": 1,
-   "why": "the end_wall|pavement|b_below row sets cstat 1 and this record carries it"
   }
  ],
  "wall:900:picnum": [
