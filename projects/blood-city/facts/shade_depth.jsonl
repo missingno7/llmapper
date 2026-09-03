@@ -116,76 +116,84 @@
 {"_from": ["piece:interior:col_b/row_3"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:115", "lod": 1, "shade": 8, "sources": [], "step": 12}
 {"_from": ["piece:door:col_b/row_3"], "_layer": 2, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:116", "lod": 2, "shade": 8, "sources": [], "step": 12}
 {"_from": ["piece:shell:col_c/row_1"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:117", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:interior:col_c/row_1"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:118", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:door:col_c/row_1"], "_layer": 2, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:119", "lod": 2, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:shell:col_c/row_2"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:120", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:interior:col_c/row_2"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:121", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:door:col_c/row_2"], "_layer": 2, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:122", "lod": 2, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:shell:col_c/row_3"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:123", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:interior:col_c/row_3"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:124", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:door:col_c/row_3"], "_layer": 2, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:125", "lod": 2, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:end_wall:avenue"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:126", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:end_wall:spur"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:127", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:end_wall:west_street"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:128", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:walk#0"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:129", "lod": 1, "shade": 44, "sources": ["mass:col_a/row_1", "mass:col_a/row_2", "mass:col_a/row_3"], "step": 12}
-{"_from": ["piece:walk#1"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:130", "lod": 1, "shade": 32, "sources": ["mass:col_a/row_1", "mass:col_a/row_2"], "step": 12}
-{"_from": ["piece:walk#2"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:131", "lod": 1, "shade": 20, "sources": ["mass:col_a/row_1"], "step": 12}
-{"_from": ["piece:walk#3"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:132", "lod": 1, "shade": 44, "sources": ["mass:col_b/row_1", "mass:col_b/row_2", "mass:col_b/row_3"], "step": 12}
-{"_from": ["piece:walk#4"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:133", "lod": 1, "shade": 32, "sources": ["mass:col_b/row_1", "mass:col_b/row_2"], "step": 12}
-{"_from": ["piece:walk#5"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:134", "lod": 1, "shade": 20, "sources": ["mass:col_b/row_1"], "step": 12}
-{"_from": ["piece:walk#6"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:135", "lod": 1, "shade": 44, "sources": ["mass:col_c/row_1", "mass:col_c/row_2", "mass:col_c/row_3"], "step": 12}
-{"_from": ["piece:walk#7"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:136", "lod": 1, "shade": 32, "sources": ["mass:col_c/row_1", "mass:col_c/row_2"], "step": 12}
-{"_from": ["piece:walk#8"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:137", "lod": 1, "shade": 32, "sources": ["mass:col_c/row_1", "mass:col_c/row_3"], "step": 12}
-{"_from": ["piece:walk#9"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:138", "lod": 1, "shade": 20, "sources": ["mass:col_c/row_1"], "step": 12}
-{"_from": ["piece:walk#10"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:139", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:walk#11"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:140", "lod": 1, "shade": 20, "sources": ["mass:col_c/row_2"], "step": 12}
-{"_from": ["piece:walk#12"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:141", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:walk#13"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:142", "lod": 1, "shade": 32, "sources": ["mass:col_b/row_2", "mass:col_b/row_3"], "step": 12}
-{"_from": ["piece:walk#14"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:143", "lod": 1, "shade": 20, "sources": ["mass:col_b/row_3"], "step": 12}
-{"_from": ["piece:walk#15"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:144", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:walk#16"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:145", "lod": 1, "shade": 32, "sources": ["mass:col_a/row_2", "mass:col_a/row_3"], "step": 12}
-{"_from": ["piece:walk#17"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:146", "lod": 1, "shade": 20, "sources": ["mass:col_a/row_3"], "step": 12}
-{"_from": ["piece:walk#18"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:147", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:shore#0"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:148", "lod": 1, "shade": 44, "sources": ["mass:col_a/row_1", "mass:col_a/row_2", "mass:col_a/row_3"], "step": 12}
-{"_from": ["piece:shore#1"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:149", "lod": 1, "shade": 32, "sources": ["mass:col_a/row_1", "mass:col_a/row_2"], "step": 12}
-{"_from": ["piece:shore#2"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:150", "lod": 1, "shade": 20, "sources": ["mass:col_a/row_1"], "step": 12}
-{"_from": ["piece:shore#3"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:151", "lod": 1, "shade": 44, "sources": ["mass:col_b/row_1", "mass:col_b/row_2", "mass:col_b/row_3"], "step": 12}
-{"_from": ["piece:shore#4"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:152", "lod": 1, "shade": 32, "sources": ["mass:col_b/row_1", "mass:col_b/row_2"], "step": 12}
-{"_from": ["piece:shore#5"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:153", "lod": 1, "shade": 20, "sources": ["mass:col_b/row_1"], "step": 12}
-{"_from": ["piece:shore#6"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:154", "lod": 1, "shade": 44, "sources": ["mass:col_c/row_1", "mass:col_c/row_2", "mass:col_c/row_3"], "step": 12}
-{"_from": ["piece:shore#7"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:155", "lod": 1, "shade": 32, "sources": ["mass:col_c/row_1", "mass:col_c/row_2"], "step": 12}
-{"_from": ["piece:shore#8"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:156", "lod": 1, "shade": 32, "sources": ["mass:col_c/row_1", "mass:col_c/row_3"], "step": 12}
-{"_from": ["piece:shore#9"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:157", "lod": 1, "shade": 20, "sources": ["mass:col_c/row_1"], "step": 12}
-{"_from": ["piece:shore#10"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:158", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:shore#11"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:159", "lod": 1, "shade": 20, "sources": ["mass:col_c/row_2"], "step": 12}
-{"_from": ["piece:shore#12"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:160", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:shore#13"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:161", "lod": 1, "shade": 32, "sources": ["mass:col_b/row_2", "mass:col_b/row_3"], "step": 12}
-{"_from": ["piece:shore#14"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:162", "lod": 1, "shade": 20, "sources": ["mass:col_b/row_3"], "step": 12}
-{"_from": ["piece:shore#15"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:163", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:shore#16"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:164", "lod": 1, "shade": 32, "sources": ["mass:col_a/row_2", "mass:col_a/row_3"], "step": 12}
-{"_from": ["piece:shore#17"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:165", "lod": 1, "shade": 20, "sources": ["mass:col_a/row_3"], "step": 12}
-{"_from": ["piece:shore#18"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:166", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:sea#0"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:167", "lod": 1, "shade": 44, "sources": ["mass:col_a/row_1", "mass:col_a/row_2", "mass:col_a/row_3"], "step": 12}
-{"_from": ["piece:sea#1"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:168", "lod": 1, "shade": 32, "sources": ["mass:col_a/row_1", "mass:col_a/row_2"], "step": 12}
-{"_from": ["piece:sea#2"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:169", "lod": 1, "shade": 20, "sources": ["mass:col_a/row_1"], "step": 12}
-{"_from": ["piece:sea#3"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:170", "lod": 1, "shade": 44, "sources": ["mass:col_b/row_1", "mass:col_b/row_2", "mass:col_b/row_3"], "step": 12}
-{"_from": ["piece:sea#4"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:171", "lod": 1, "shade": 32, "sources": ["mass:col_b/row_1", "mass:col_b/row_2"], "step": 12}
-{"_from": ["piece:sea#5"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:172", "lod": 1, "shade": 20, "sources": ["mass:col_b/row_1"], "step": 12}
-{"_from": ["piece:sea#6"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:173", "lod": 1, "shade": 44, "sources": ["mass:col_c/row_1", "mass:col_c/row_2", "mass:col_c/row_3"], "step": 12}
-{"_from": ["piece:sea#7"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:174", "lod": 1, "shade": 32, "sources": ["mass:col_c/row_1", "mass:col_c/row_2"], "step": 12}
-{"_from": ["piece:sea#8"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:175", "lod": 1, "shade": 32, "sources": ["mass:col_c/row_1", "mass:col_c/row_3"], "step": 12}
-{"_from": ["piece:sea#9"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:176", "lod": 1, "shade": 20, "sources": ["mass:col_c/row_1"], "step": 12}
-{"_from": ["piece:sea#10"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:177", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:sea#11"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:178", "lod": 1, "shade": 20, "sources": ["mass:col_c/row_3"], "step": 12}
-{"_from": ["piece:sea#12"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:179", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:sea#13"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:180", "lod": 1, "shade": 20, "sources": ["mass:col_c/row_2"], "step": 12}
-{"_from": ["piece:sea#14"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:181", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:sea#15"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:182", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:sea#16"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:183", "lod": 1, "shade": 32, "sources": ["mass:col_b/row_2", "mass:col_b/row_3"], "step": 12}
-{"_from": ["piece:sea#17"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:184", "lod": 1, "shade": 20, "sources": ["mass:col_b/row_3"], "step": 12}
-{"_from": ["piece:sea#18"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:185", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:sea#19"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:186", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:sea#20"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:187", "lod": 1, "shade": 32, "sources": ["mass:col_a/row_2", "mass:col_a/row_3"], "step": 12}
-{"_from": ["piece:sea#21"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:188", "lod": 1, "shade": 20, "sources": ["mass:col_a/row_3"], "step": 12}
-{"_from": ["piece:sea#22"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:189", "lod": 1, "shade": 8, "sources": [], "step": 12}
-{"_from": ["piece:horizon"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:190", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:room:col_c/row_1:apse"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:118", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:room:col_c/row_1:chancel"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:119", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:room:col_c/row_1:tower"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:120", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:room:col_c/row_1:nave"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:121", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:room:col_c/row_1:west_aisle"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:122", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:room:col_c/row_1:vestry"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:123", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:room:col_c/row_1:crypt_stair"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:124", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:room:col_c/row_1:narthex"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:125", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:door:col_c/row_1"], "_layer": 2, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:126", "lod": 2, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:plinth:col_c/row_1"], "_layer": 3, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:127", "lod": 3, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:shell:col_c/row_2"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:128", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:interior:col_c/row_2"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:129", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:door:col_c/row_2"], "_layer": 2, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:130", "lod": 2, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:shell:col_c/row_3"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:131", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:interior:col_c/row_3"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:132", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:door:col_c/row_3"], "_layer": 2, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:133", "lod": 2, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:end_wall:avenue"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:134", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:end_wall:spur"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:135", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:end_wall:west_street"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:136", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:walk#0"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:137", "lod": 1, "shade": 44, "sources": ["mass:col_a/row_1", "mass:col_a/row_2", "mass:col_a/row_3"], "step": 12}
+{"_from": ["piece:walk#1"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:138", "lod": 1, "shade": 32, "sources": ["mass:col_a/row_1", "mass:col_a/row_2"], "step": 12}
+{"_from": ["piece:walk#2"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:139", "lod": 1, "shade": 20, "sources": ["mass:col_a/row_1"], "step": 12}
+{"_from": ["piece:walk#3"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:140", "lod": 1, "shade": 44, "sources": ["mass:col_b/row_1", "mass:col_b/row_2", "mass:col_b/row_3"], "step": 12}
+{"_from": ["piece:walk#4"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:141", "lod": 1, "shade": 32, "sources": ["mass:col_b/row_1", "mass:col_b/row_2"], "step": 12}
+{"_from": ["piece:walk#5"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:142", "lod": 1, "shade": 20, "sources": ["mass:col_b/row_1"], "step": 12}
+{"_from": ["piece:walk#6"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:143", "lod": 1, "shade": 44, "sources": ["mass:col_c/row_1", "mass:col_c/row_2", "mass:col_c/row_3"], "step": 12}
+{"_from": ["piece:walk#7"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:144", "lod": 1, "shade": 32, "sources": ["mass:col_c/row_1", "mass:col_c/row_2"], "step": 12}
+{"_from": ["piece:walk#8"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:145", "lod": 1, "shade": 32, "sources": ["mass:col_c/row_1", "mass:col_c/row_3"], "step": 12}
+{"_from": ["piece:walk#9"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:146", "lod": 1, "shade": 20, "sources": ["mass:col_c/row_1"], "step": 12}
+{"_from": ["piece:walk#10"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:147", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:walk#11"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:148", "lod": 1, "shade": 20, "sources": ["mass:col_c/row_2"], "step": 12}
+{"_from": ["piece:walk#12"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:149", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:walk#13"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:150", "lod": 1, "shade": 32, "sources": ["mass:col_b/row_2", "mass:col_b/row_3"], "step": 12}
+{"_from": ["piece:walk#14"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:151", "lod": 1, "shade": 20, "sources": ["mass:col_b/row_3"], "step": 12}
+{"_from": ["piece:walk#15"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:152", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:walk#16"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:153", "lod": 1, "shade": 32, "sources": ["mass:col_a/row_2", "mass:col_a/row_3"], "step": 12}
+{"_from": ["piece:walk#17"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:154", "lod": 1, "shade": 20, "sources": ["mass:col_a/row_3"], "step": 12}
+{"_from": ["piece:walk#18"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:155", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:shore#0"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:156", "lod": 1, "shade": 44, "sources": ["mass:col_a/row_1", "mass:col_a/row_2", "mass:col_a/row_3"], "step": 12}
+{"_from": ["piece:shore#1"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:157", "lod": 1, "shade": 32, "sources": ["mass:col_a/row_1", "mass:col_a/row_2"], "step": 12}
+{"_from": ["piece:shore#2"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:158", "lod": 1, "shade": 20, "sources": ["mass:col_a/row_1"], "step": 12}
+{"_from": ["piece:shore#3"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:159", "lod": 1, "shade": 44, "sources": ["mass:col_b/row_1", "mass:col_b/row_2", "mass:col_b/row_3"], "step": 12}
+{"_from": ["piece:shore#4"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:160", "lod": 1, "shade": 32, "sources": ["mass:col_b/row_1", "mass:col_b/row_2"], "step": 12}
+{"_from": ["piece:shore#5"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:161", "lod": 1, "shade": 20, "sources": ["mass:col_b/row_1"], "step": 12}
+{"_from": ["piece:shore#6"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:162", "lod": 1, "shade": 44, "sources": ["mass:col_c/row_1", "mass:col_c/row_2", "mass:col_c/row_3"], "step": 12}
+{"_from": ["piece:shore#7"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:163", "lod": 1, "shade": 32, "sources": ["mass:col_c/row_1", "mass:col_c/row_2"], "step": 12}
+{"_from": ["piece:shore#8"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:164", "lod": 1, "shade": 32, "sources": ["mass:col_c/row_1", "mass:col_c/row_3"], "step": 12}
+{"_from": ["piece:shore#9"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:165", "lod": 1, "shade": 20, "sources": ["mass:col_c/row_1"], "step": 12}
+{"_from": ["piece:shore#10"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:166", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:shore#11"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:167", "lod": 1, "shade": 20, "sources": ["mass:col_c/row_2"], "step": 12}
+{"_from": ["piece:shore#12"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:168", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:shore#13"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:169", "lod": 1, "shade": 32, "sources": ["mass:col_b/row_2", "mass:col_b/row_3"], "step": 12}
+{"_from": ["piece:shore#14"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:170", "lod": 1, "shade": 20, "sources": ["mass:col_b/row_3"], "step": 12}
+{"_from": ["piece:shore#15"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:171", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:shore#16"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:172", "lod": 1, "shade": 32, "sources": ["mass:col_a/row_2", "mass:col_a/row_3"], "step": 12}
+{"_from": ["piece:shore#17"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:173", "lod": 1, "shade": 20, "sources": ["mass:col_a/row_3"], "step": 12}
+{"_from": ["piece:shore#18"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:174", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:sea#0"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:175", "lod": 1, "shade": 44, "sources": ["mass:col_a/row_1", "mass:col_a/row_2", "mass:col_a/row_3"], "step": 12}
+{"_from": ["piece:sea#1"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:176", "lod": 1, "shade": 32, "sources": ["mass:col_a/row_1", "mass:col_a/row_2"], "step": 12}
+{"_from": ["piece:sea#2"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:177", "lod": 1, "shade": 20, "sources": ["mass:col_a/row_1"], "step": 12}
+{"_from": ["piece:sea#3"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:178", "lod": 1, "shade": 44, "sources": ["mass:col_b/row_1", "mass:col_b/row_2", "mass:col_b/row_3"], "step": 12}
+{"_from": ["piece:sea#4"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:179", "lod": 1, "shade": 32, "sources": ["mass:col_b/row_1", "mass:col_b/row_2"], "step": 12}
+{"_from": ["piece:sea#5"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:180", "lod": 1, "shade": 20, "sources": ["mass:col_b/row_1"], "step": 12}
+{"_from": ["piece:sea#6"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 3, "id": "sector:181", "lod": 1, "shade": 44, "sources": ["mass:col_c/row_1", "mass:col_c/row_2", "mass:col_c/row_3"], "step": 12}
+{"_from": ["piece:sea#7"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:182", "lod": 1, "shade": 32, "sources": ["mass:col_c/row_1", "mass:col_c/row_2"], "step": 12}
+{"_from": ["piece:sea#8"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:183", "lod": 1, "shade": 32, "sources": ["mass:col_c/row_1", "mass:col_c/row_3"], "step": 12}
+{"_from": ["piece:sea#9"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:184", "lod": 1, "shade": 20, "sources": ["mass:col_c/row_1"], "step": 12}
+{"_from": ["piece:sea#10"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:185", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:sea#11"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:186", "lod": 1, "shade": 20, "sources": ["mass:col_c/row_3"], "step": 12}
+{"_from": ["piece:sea#12"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:187", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:sea#13"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:188", "lod": 1, "shade": 20, "sources": ["mass:col_c/row_2"], "step": 12}
+{"_from": ["piece:sea#14"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:189", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:sea#15"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:190", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:sea#16"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:191", "lod": 1, "shade": 32, "sources": ["mass:col_b/row_2", "mass:col_b/row_3"], "step": 12}
+{"_from": ["piece:sea#17"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:192", "lod": 1, "shade": 20, "sources": ["mass:col_b/row_3"], "step": 12}
+{"_from": ["piece:sea#18"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:193", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:sea#19"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:194", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:sea#20"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 2, "id": "sector:195", "lod": 1, "shade": 32, "sources": ["mass:col_a/row_2", "mass:col_a/row_3"], "step": 12}
+{"_from": ["piece:sea#21"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 1, "id": "sector:196", "lod": 1, "shade": 20, "sources": ["mass:col_a/row_3"], "step": 12}
+{"_from": ["piece:sea#22"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:197", "lod": 1, "shade": 8, "sources": [], "step": 12}
+{"_from": ["piece:horizon"], "_layer": 1, "_reader": "compiler", "base": 8, "depth": 0, "id": "sector:198", "lod": 1, "shade": 8, "sources": [], "step": 12}

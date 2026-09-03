@@ -88,6 +88,54 @@ INTERIOR_BODIES = 3.0
 #: markers. The construct's NAME changes with it; a sentence that says
 #: "curtain" about a shutter is worse than a shutter.
 CURTAIN_TYPE = 600
+#: ST GALLOW'S, ported from `l3_church.py` to declarations.
+#:
+#: The floor plan is that module's own, moved to coordinates RELATIVE to the
+#: shell's interior origin so it survives a re-solve -- the old one was
+#: absolute, in a mass at plan units (26, 21)-(32, 31), and a width class
+#: changing underneath it would have left the church where it was and the
+#: island somewhere else.
+#:
+#: Eight rooms in six by ten plan units, braided so the nave touches five of
+#: them, which is `references/church-patterns.md`'s answer to a measured
+#: fault: Gravesend's roofed sectors run q3 8.39 Mu^2 against E3M1's 1.13,
+#: and 23% of them are over 10M against E3M1's 2%. We build halls where the
+#: campaign builds warrens.
+#:
+#: One deviation, and it is the shell's: the street door is on the SOUTH face
+#: because that is where a shell's mouth is, so the avenue portal into the
+#: narthex is the mouth the notch cuts to. The cemetery side door is not
+#: built -- the church's island does not touch the cemetery in this solve.
+CHURCH_ROOMS = [
+    {"name": "apse", "rect": (1536, 0, 3072, 512), "clear": 40960,
+     "tile": 409, "rise": 2048,
+     "note": "the apse behind the altar, over the nave with the chancel"},
+    {"name": "chancel", "rect": (1024, 512, 3584, 2048), "clear": 49152,
+     "tile": 409, "rise": 2048, "note": "the chancel, raised over the nave"},
+    {"name": "tower", "rect": (3584, 512, 5120, 2048), "clear": 98304,
+     "tile": 406, "note": "the bell tower: 5.8 bodies, the city's tallest "
+                          "interior and half again the nave"},
+    {"name": "nave", "rect": (1024, 2048, 3584, 8704), "clear": 65536,
+     "tile": 406, "note": "the nave, four repeats tall"},
+    {"name": "west_aisle", "rect": (0, 2048, 1024, 8704), "clear": 32768,
+     "tile": 406, "note": "the aisle, low beside the nave so the nave reads "
+                          "tall"},
+    {"name": "vestry", "rect": (3584, 2560, 5120, 3584), "clear": 32768,
+     "tile": 406, "note": "the vestry"},
+    {"name": "crypt_stair", "rect": (3584, 3584, 5120, 5120), "clear": 32768,
+     "tile": 379, "note": "the head of the crypt stair"},
+    {"name": "narthex", "rect": (3584, 5120, 5120, 8192), "clear": 40960,
+     "tile": 406, "note": "the narthex, behind the avenue portal"},
+]
+#: Which island St Gallow's stands on. `tenants()` puts the church on
+#: col_c/row_1 and both the plan's column and its row name it there, so this
+#: is the strongest of the nine assignments.
+CHURCH_ISLAND = "col_c/row_1"
+#: What the nave is dressed with, against the record its west aisle shares.
+#: Two named props, because `read_intent.named_props` counts only what
+#: `furniture.FURNITURE` has a word for.
+CHURCH_DRESSING = ("urn", "statue")
+
 #: `city_plan.CHANNELS["citywide_circuit"]["keys_gates"]` is 5.
 KEY_GATES = 5
 #: Where this level's rx ids start. Blood's channels are free integers; a
@@ -475,8 +523,46 @@ def emission(shells: bool = True, field: bool = True) -> Emission:
     roof_z = ISLAND_Z - SHELL_BODIES * STANDING
     declarations = []
     who = tenants()
+    dressed = []
     for number, (key, rect) in enumerate(sorted(g["shells"].items())):
         tenant, how = who.get(key, (None, "unassigned"))
+        if key == CHURCH_ISLAND:
+            made, declared, placed = city.shell_of_rooms(
+                key, rect, CHURCH_ROOMS, wall_thickness=WALL_THICKNESS,
+                door_width=DOOR_WIDTH, roof_z=roof_z, floor_z=ISLAND_Z,
+                head_z=ISLAND_Z - int(DOOR_HEAD_BODIES * STANDING),
+                sky_z=_sky(roof_z), sky_tile=SKY_TILE,
+                wall_tile=FACADE_FAMILY[number % len(FACADE_FAMILY)],
+                entry="narthex", sector_type=CURTAIN_TYPE,
+                wiring=[{"channel": CHANNEL_BASE + number, "tx_id": 0,
+                         "rx_id": CHANNEL_BASE + number, "realised": False,
+                         "why": "the door carries the rx; no switch or "
+                                "generator carries the matching tx yet"}],
+                gate_key=(number + 1) if number < KEY_GATES else None,
+                key_why="city_plan.CHANNELS gives the citywide circuit five "
+                        "key gates; no key pickup is emitted yet")
+            #: THE NAVE, DRESSED AGAINST ITS OWN RECORD: the aisle side, so
+            #: the bundle stands where a body walking the nave sees it.
+            nave = placed["nave"]
+            bundle = city.dressing(
+                ((nave[0], nave[1]), (nave[0], nave[3])),
+                [city.prop(name) for name in CHURCH_DRESSING],
+                inward=(1, 0), floor_z=ISLAND_Z,
+                ceiling_z=ISLAND_Z - CHURCH_ROOMS[3]["clear"],
+                surface_id=f"plinth:{key}", spread=0.6, depth=1024)
+            made = [_with_hole(spec, f"room:{key}:nave", bundle["hole"])
+                    for spec in made]
+            made.append(bundle["surface"])
+            declared.setdefault("props", []).extend(bundle["props"])
+            dressed.append({"bundle": f"plinth:{key}",
+                            "anchor": bundle["anchor"],
+                            "props": [row["prop_id"]
+                                      for row in bundle["props"]]})
+            surfaces.extend(made)
+            declared["tenant"] = tenant
+            declared["tenant_basis"] = how
+            declarations.append(declared)
+            continue
         made, declared = city.shell(
             key, rect, wall_thickness=WALL_THICKNESS, door_width=DOOR_WIDTH,
             roof_z=roof_z, floor_z=ISLAND_Z,
@@ -528,6 +614,7 @@ def emission(shells: bool = True, field: bool = True) -> Emission:
                               sprite_type=LAMP_TYPE, height=LAMP_HANG,
                               cstat=LAMP_CSTAT, mount=LAMP_MOUNT))
 
+    Emission.dressed = dressed
     return Emission(
         name="slice2-streets",
         surfaces=surfaces,
@@ -844,6 +931,15 @@ def main() -> int:
           f"walls, {len(disk.sprites)} sprites")
     _limits(disk)
     return 0
+
+
+def _with_hole(spec, surface_id, hole):
+    """Give one surface a hole, leaving the others alone."""
+    from dataclasses import replace
+
+    if spec.surface_id != surface_id:
+        return spec
+    return replace(spec, rings=tuple(list(spec.rings) + [list(hole)]))
 
 
 def _shade_census(cache=ROOT / "work/shade_envelope.json") -> dict:

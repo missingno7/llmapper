@@ -406,6 +406,19 @@ PLINTH_MIN_ASPECT = 2.0
 PLINTH_TILE = 401
 
 
+def _screen_area(ring: Sequence) -> float:
+    """Twice the signed area in Build's screen space (+Y down).
+
+    `planar_geom.validate_loop` is exact about the sign: an outer loop is
+    POSITIVE and a hole NEGATIVE, and it refuses either the wrong way round.
+    """
+    total = 0.0
+    for index, here in enumerate(ring):
+        nxt = ring[(index + 1) % len(ring)]
+        total += here[0] * nxt[1] - nxt[0] * here[1]
+    return total
+
+
 class DressingError(ValueError):
     """A bundle that would not come back as one."""
 
@@ -462,6 +475,13 @@ def dressing(anchor: Sequence, props: Sequence[dict], *, inward: Point,
         corners.append((int(round(base[0] + ux * along + nx * out)),
                         int(round(base[1] + uy * along + ny * out))))
 
+    #: BOTH WINDINGS ARE THE VALIDATOR'S, and it refuses either the wrong way
+    #: round: an outer loop is POSITIVE in Build's screen space and a hole
+    #: NEGATIVE. The plinth's ring is built in the anchor record's own
+    #: direction, which may be either, so both are normalised rather than
+    #: assumed.
+    if _screen_area(corners) < 0:
+        corners.reverse()
     top = int(floor_z) - int(rise)
     surface = SurfaceSpec(
         surface_id=surface_id, rings=(corners,), floor_z=top,
@@ -482,7 +502,12 @@ def dressing(anchor: Sequence, props: Sequence[dict], *, inward: Point,
         placed.append({**prop, "point": point, "angle": angle,
                        "prop_id": f"{surface_id}:{prop.get('name', index)}",
                        "mount": "free", "height": 0})
-    return {"surface": surface, "hole": list(reversed(corners)),
+    #: THE HOLE'S WINDING IS THE HOST'S PROBLEM, and `PlanarLayout` is exact
+    #: about it: a hole loop must run counter-clockwise in Build's screen
+    #: space. The plinth's own ring is built in the anchor's direction, which
+    #: may be either way round, so the hole is normalised rather than assumed.
+    hole = list(reversed(corners))
+    return {"surface": surface, "hole": hole,
             "props": placed, "anchor": (tuple(anchor[0]), tuple(anchor[1])),
             "rise": int(rise), "aspect": run / depth}
 
@@ -505,3 +530,120 @@ def prop(name: str, *, shade: int = -8, statnum: int = 0) -> dict:
             f"back")
     return {"name": str(name), "tile": int(item.picnum), "cstat": 0,
             "shade": int(shade), "sprite_type": 0, "statnum": int(statnum)}
+
+
+def shell_of_rooms(key: str, rect: Sequence[int], rooms: Sequence[dict], *,
+                   wall_thickness: int, door_width: int, roof_z: int,
+                   floor_z: int, head_z: int, sky_z: int, sky_tile: int,
+                   wall_tile: int, entry: str, sector_type: int = 0,
+                   wiring: Iterable[dict] = (), gate_key: int | None = None,
+                   key_why: str = "") -> tuple:
+    """A building whose interior is ROOMS CUT OUT OF SOLID STONE.
+
+    `shell` gives a building one room, and one room is a box. A building with
+    eight is not eight boxes in a row: it is a mass with rooms taken out of
+    it, and the stone that is left between them is the thing that makes a
+    nave read as a nave and a vestry as a vestry.
+
+    So the facade is not a ring around one rectangle any more. It is the
+    shell's footprint MINUS the rooms and minus the door, traced by
+    `overlay.ground_plane_rings`, which already does exactly this for the
+    street plane and its blocks -- a mass with holes in it is a plane with
+    blocks on it, one level up and inside out.
+
+    `rooms` are dicts of `{name, rect, clear, tile, rise}` in coordinates
+    relative to the shell's INNER origin, so a floor plan survives being moved
+    and being re-solved. `entry` names the room the street door reaches; the
+    door notch runs from the shell's south face to that room's south edge,
+    through whatever stone is between.
+    """
+    from .overlay import ground_plane_rings
+
+    x0, y0, x1, y1 = (int(v) for v in rect)
+    inner = (x0 + wall_thickness, y0 + wall_thickness,
+             x1 - wall_thickness, y1 - wall_thickness)
+    plan = {row["name"]: [int(v) for v in row["rect"]] for row in rooms}
+    if entry not in plan:
+        raise DressingError(f"{key}: the entry room {entry!r} is not in the "
+                            f"plan")
+    span_x = max(r[2] for r in plan.values()) - min(r[0] for r in plan.values())
+    span_y = max(r[3] for r in plan.values()) - min(r[1] for r in plan.values())
+    if span_x > inner[2] - inner[0] or span_y > inner[3] - inner[1]:
+        raise DressingError(
+            f"{key}: a plan {span_x}x{span_y} does not fit an interior "
+            f"{inner[2] - inner[0]}x{inner[3] - inner[1]}")
+    low_x = min(r[0] for r in plan.values())
+    low_y = min(r[1] for r in plan.values())
+    #: THE ENTRY ROOM IS CENTRED ON THE MOUTH, and the plan's south edge sits
+    #: on the interior's, so a door in the middle of the street face reaches
+    #: the room that is meant to receive it.
+    mid = (x0 + x1) // 2
+    entry_mid = (plan[entry][0] + plan[entry][2]) // 2 - low_x
+    offset_x = mid - inner[0] - entry_mid
+    offset_x = max(0, min(offset_x, (inner[2] - inner[0]) - span_x))
+    offset_y = (inner[3] - inner[1]) - span_y
+
+    def place(box):
+        return (inner[0] + offset_x + box[0] - low_x,
+                inner[1] + offset_y + box[1] - low_y,
+                inner[0] + offset_x + box[2] - low_x,
+                inner[1] + offset_y + box[3] - low_y)
+
+    placed = {name: place(box) for name, box in plan.items()}
+    #: THE MOUTH IS WHERE THE ROOM IT SERVES IS. Centring it on the shell
+    #: instead put the notch through the nave whenever the plan had to be
+    #: clamped to fit, and a door that opens into the wrong room is worse
+    #: than one that is off centre.
+    door_mid = (placed[entry][0] + placed[entry][2]) // 2
+    #: AND IT IS NO WIDER THAN THE ROOM IT SERVES. A 4096 mouth on a 1536
+    #: narthex spills over the nave beside it, and the compiler reads that
+    #: as two regions overlapping -- correctly, because they do.
+    width = min(int(door_width), placed[entry][2] - placed[entry][0])
+    door = (door_mid - width // 2, placed[entry][3],
+            door_mid + width // 2, y1)
+
+    rings = ground_plane_rings([[x0, y0, x1, y1]],
+                               holes=list(placed.values()) + [list(door)])
+    channel = next((int(row.get("rx_id") or row.get("channel") or 0)
+                    for row in wiring), 0)
+    from .doors import z_motion_door
+
+    behavior = {}
+    if sector_type == Z_MOTION:
+        behavior = z_motion_door(
+            int(floor_z), int(head_z),
+            interaction="both" if channel else "direct",
+            rx_id=channel or None, key=gate_key)
+    elif channel:
+        behavior = {"rx_id": channel}
+
+    surfaces = [SurfaceSpec(
+        surface_id=f"shell:{key}", rings=tuple(rings), floor_z=int(roof_z),
+        ceiling_z=int(sky_z), floor_tile=ROOF_TILE,
+        ceiling_tile=int(sky_tile), wall_tile=int(wall_tile),
+        kind=joins.FACADE, lit=False)]
+    for row in rooms:
+        box = placed[row["name"]]
+        rise = int(row.get("rise", 0))
+        surfaces.append(room(
+            f"room:{key}:{row['name']}", box, floor_z=int(floor_z) - rise,
+            ceiling_z=int(floor_z) - rise - int(row["clear"]),
+            wall_tile=int(row.get("tile", wall_tile))))
+    surfaces.append(opening(
+        f"door:{key}", door, floor_z=int(floor_z), head_z=int(head_z),
+        wall_tile=int(wall_tile), sector_type=int(sector_type),
+        behavior=behavior))
+    declaration = insert(
+        f"door:{key}", kind="z_motion_door" if sector_type == Z_MOTION
+        else "curtain", holder=f"shell:{key}",
+        room_id=f"room:{key}:{entry}", void=_rect(*door),
+        sector_type=int(sector_type), wiring=wiring, key=gate_key,
+        key_why=key_why, leaf=_leaf_for(sector_type))
+    if channel:
+        declaration["props"] = [switch(
+            f"switch:{key}", (door[2] + door_width // 2, y1 - 1),
+            tx_id=channel)]
+        if gate_key:
+            declaration["props"].append(key_pickup(
+                f"key:{key}", (door_mid, y1 + 3 * 1024), key=int(gate_key)))
+    return surfaces, declaration, placed

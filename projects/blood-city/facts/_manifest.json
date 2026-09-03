@@ -29,22 +29,22 @@
   "void": "an opening cut in a holder surface, and the holder it belongs to"
  },
  "readers": {
-  "compiler": 2490
+  "compiler": 2615
  },
  "rows": {
   "claims": 127,
   "fill": 9,
-  "frame": 775,
+  "frame": 822,
   "island": 19,
-  "join": 1058,
+  "join": 1112,
   "key": 5,
   "lamp_delta": 18,
   "link": 9,
-  "part_of": 205,
+  "part_of": 213,
   "realises": 9,
   "sentence": 9,
-  "shade_depth": 191,
-  "surface": 47,
+  "shade_depth": 199,
+  "surface": 55,
   "void": 9
  },
  "schema_version": 1
