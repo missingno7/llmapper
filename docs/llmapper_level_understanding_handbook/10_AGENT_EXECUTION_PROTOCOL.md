@@ -187,3 +187,29 @@ Tests that can fail meaningfully.
 One or two focused next steps.
 
 Do not claim a broad semantic capability from a narrow pilot.
+
+## One trunk: origin/main is the integration point (owner, 2026-09-03)
+
+Agents forked twice in one day and the supervisor merged by hand both
+times. From now on there is one trunk and no long-lived agent branch:
+
+- `origin/main` is the truth. Every agent rebases onto it and pushes to
+  it at the end of EVERY committed step, not at the end of a slice:
+  `git fetch origin && git rebase origin/main && git push origin HEAD:main`.
+- An agent in the main checkout works on `main` directly and runs
+  `git pull --ff-only origin main` before each step.
+- An agent in a worktree keeps a local branch only because git will not
+  check out `main` twice; it pushes `HEAD:main` and never pushes its
+  branch name. The branch is disposable and is never merged by anyone.
+- Whoever pushes second resolves the conflict, by rebase, on the files
+  they own; a conflict in a file you do not own is reported, not
+  resolved. Ownership: P14b the writer side (`overlay`, `light_field`,
+  `joins`, `surface`, `planar_layout`, `pipeline`, `facts`, `city`,
+  `projects/blood-city`); P15 the readers (`read_*`, `curriculum`,
+  `projects/*-decompiled`, `projects/campaign-census`); shared files
+  (`reports/owner-review-queue.md`, the roadmap) are append-only and
+  merge by keeping both sides.
+- Commit by file name, never `git add -A`; never commit `maps/`,
+  `reference/`, or a submodule pointer.
+- The suite runs to a log before every push and the Ran line is quoted
+  in the report; a red suite is not pushed.

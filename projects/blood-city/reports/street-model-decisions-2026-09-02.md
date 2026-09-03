@@ -1721,3 +1721,45 @@ and the owner's names.
 Owner: eight review packs wait in `projects/e3m1-decompiled/review/`
 with 22 questions; the four city questions above are decided with
 defaults and need only a veto.
+
+## 31. One trunk, and decisions on queue items 32-37 (2026-09-03)
+
+Landed: P14b's slice 4 on main (ff8da12: one fact store on the reader's
+shape, full-width classes, the circuit as surface ids, nine switches
+and five keys realised, a Z-motion shutter that needs no slot) and
+P15's census, E1M2 and E4M8 decompiled by the same program, the residue
+curve and five macro proposals (merged in cf97a39). The protocol now
+says one trunk: every agent rebases onto origin/main and pushes to main
+after every step; no agent branch is merged by anyone again.
+
+- **32a withdrawn, 32b:** shutters stay Z-motion; a marked-slide
+  constructor arrives when something slides.
+- **32c:** P15 adds `facade` and `opening` to `read_joins.surface_kinds`;
+  the city's 296 unnamed joins are the fail-first.
+- **32e / 37f:** the unit is the BOUNDARY (a sector pair once). P15's
+  `shade_step_envelope` counts boundaries and states its population;
+  the gate uses the quartile envelope of the network it names, [8, 18]
+  on the largest outdoor component until the recount says otherwise.
+- **32f:** interiors one per slice, church first, each with its
+  read-back sentence. **32g:** the sewer legs stay `built: false` until
+  the sewer's slice.
+- **36a:** keep all three decompilations. **36b-36d:** `dressing`
+  first, `stair` second (a SURFACE owner), then `channel`, `self_lit`,
+  `breakable`; P14b builds them in `bloodmap/city.py`, P15's readers
+  must read each back, and a macro that does not lower residue on two
+  maps after landing is removed. **36e:** every roadmap item quoting a
+  residue number states the split (surface representation 46%, indoor
+  rows 31%, macros 16%); the eleven rows are one law and the cheapest
+  win; the surface representation is the largest and is the
+  architect's item, not a constructor.
+- **37a:** keep the end-wall criterion, report the split at two player
+  heights. **37b:** 400 stays Gravesend's CHOICE inside the attested
+  class; the campaign distribution is the envelope. **37c:** drop
+  `cstat=1` from the road|end_wall row; blocking is a per-project
+  choice. **37d:** no change; E3M1 is the outlier. **37e:** one indoor
+  row keyed on the height relation (the kerb's law indoors) with a
+  tile class per context, plus a `masked` row; P14b consumes it now.
+
+Owner: walk `projects/blood-city/level/slice2-streets.MAP` again (nine
+doors that shut, switches beside them, keys on the circuit); the review
+packs of three maps wait under `projects/*-decompiled/review/`.
