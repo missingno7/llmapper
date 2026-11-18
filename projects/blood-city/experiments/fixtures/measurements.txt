@@ -1,0 +1,35 @@
+fixtures, 2026-11-17 -- what was counted, on which map
+
+before   before/observed.MAP  sha256 e4e0d325768a...  327 sectors / 2084 walls
+full     full/observed.MAP    sha256 d24eb4419988...  (what the reviewer saw)
+final    final/observed.MAP   sha256 2a043d9c9dcc...  328 sectors
+
+what indoor standing things stand on (tools.mine_stands)
+            things  floor  island  ledge  niche  floating
+  before        77     9%     49%     3%    12%      27%
+  final        120     6%     32%     2%    42%      18%
+  E3M1          82    22%      1%    18%     9%      50%
+  E1M2          79    58%      1%     9%    22%      10%
+  E1M4         117    46%      3%    12%    27%      12%
+median rise of an island that carries things   before 0.18 body, final 0.43
+  (town maps, islands, ledges and niches alike: 0.48)
+shelf niches                   0 -> 7, each 12288 clear on a floor 8192 up
+things standing in them        42 (6 per shelf)
+decoration sprites / tiles     266 / 85 -> 309 / 86
+wall / floor / ceiling tiles   37 / 23 / 11 -> 38 / 23 / 12
+
+predictions
+  F1 rise >= 0.40                         held (0.43)
+  F2 ledge+niche share >= 35%             held (44%)
+  F3 reviewer says counter/bar and shelf  held; full over before in 7 of 8
+     changed views, not in unit_e
+  F4 stock is what does it                held: "decisive"; bare "unfinished"
+  F5 rules 12 errors / 7 warnings, unchanged; two builds 2a043d9c9dcc;
+     NBlood load: pass (a load test; nobody was moved through it)
+  C1 pawn_front, saloon_door              0 px changed
+
+not predicted
+  The first build moved four shop names and WHISKEY to side walls: a shelf
+  made their wall "not solid". The first counters shut a key, a pickup and
+  a zombie behind them. Both fixed; the second only because a reviewer saw
+  a scalp.

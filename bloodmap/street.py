@@ -166,13 +166,18 @@ class Slot:
 
 
 def lamp_slots(run: Run, *, interval: int = LAMP_INTERVAL,
-               inset: int | None = None, sidewalk: int | None = None
-               ) -> list[Slot]:
+               inset: int | None = None, sidewalk: int | None = None,
+               stagger: bool = False) -> list[Slot]:
     """Lamp positions along both pavements of a run.
 
     Spaced from the middle outwards so a run always has a lamp near its
     centre and the ends stay clear for whatever meets them -- a junction, a
     gate, a doorway.
+
+    `stagger`: one lamp per position, on alternate pavements, not a pair
+    facing each other. Paired, a lamp's nearest neighbour is the street's
+    width away; DWE3M1, the one town map with kerbed streets and standing
+    lamps, has its median lamp 8,192 units from the next.
     """
     if interval <= 0:
         raise StreetError("interval must be positive")
@@ -185,7 +190,10 @@ def lamp_slots(run: Run, *, interval: int = LAMP_INTERVAL,
     out: list[Slot] = []
     for index in range(count):
         t = (index + 0.5) / count
-        for side, sign in (("low", -1), ("high", 1)):
+        sides = (("low", -1), ("high", 1))
+        if stagger:
+            sides = (sides[index % 2],)
+        for side, sign in sides:
             offset = sign * (run.width / 2.0 - sidewalk + inset)
             if run.horizontal:
                 x = run.a[0] + (run.b[0] - run.a[0]) * t

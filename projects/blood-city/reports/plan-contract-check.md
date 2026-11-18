@@ -9,17 +9,17 @@ row is a plan bug (layer directive); green advances to Phase 1c.
 | 2-3 superblocks at 24k..32k (CN 2) | [29696, 32768] | **PASS** | derived: BLOCKS role=superblock extents |
 | small free-standing masses ~768..2432 (CN 2) | [1536, 2304, 2432] | **PASS** | derived: BLOCKS role=free_standing extents |
 | mid blocks inside precedent spread (CN 2) | [10240, 12288, 14336, 14336] | **PASS** | derived: BLOCKS role=block extents |
-| main streets 5120..7168, alleys 1024..2048 (CN 1) | {'lane': 3072, 'avenue': 7168, 'alley': 2048, 'street': 5120, 'row': 6144} | **PASS** | resolution.WIDTH_UNITS vs CN 1 bands |
+| main streets 5120..7168, alleys 1024..2048 (CN 1) | {'street': 5120, 'row': 6144, 'avenue': 7168, 'lane': 3072, 'alley': 2048} | **PASS** | resolution.WIDTH_UNITS vs CN 1 bands |
 | one plaza/forecourt/square/yard per district (CN 1) | {'market_slip': 'plaza', 'theatre_row': 'forecourt', 'old_crossing': 'cemetery', 'foundry_ward': 'yard'} | **PASS** | derived: AREAS by district |
 | avenue canyon 1.7..2.1 (CN 1) | 1.71 | **PASS** | resolution.STREET_SKY over avenue width |
 | substantial interiors 0.13..0.37 per 10240 frontage (CN 3) | 10 venues / 617k = 0.17 | **PASS** | derived: VENUES over block+boundary frontage |
-| doorways 0.23..1.17 per 10240 frontage (CN 3) | 23 -> 0.38 | **PASS** | derived: VENUES doorways + sewer entries |
+| doorways 0.23..1.17 per 10240 frontage (CN 3) | 24 -> 0.40 | **PASS** | derived: VENUES doorways + sewer entries |
 | venue mix: landmark complex + bar + walk-through + open-front (VP) | ['bar', 'church_complex', 'landmark_complex', 'open_front', 'retail_row', 'walk_through'] | **PASS** | VENUES types vs venue-patterns.md |
-| sewer entries ~0.02..0.04 per 10240 frontage, forms drop+stair (SP) | 2 (['drop', 'stair']) -> 0.033 | **PASS** | SEWER entries over frontage |
+| sewer entries ~0.02..0.04 per 10240 frontage, forms drop+stair (SP) | 3 (['drop', 'stair', 'spiral']) -> 0.050 | **MISS** | SEWER entries over frontage |
 | sewer depth 2.5..4 standing (SP) | 3.14 | **PASS** | resolution.SEWER_FLOOR - GRADE |
 | sewer topology: its own ring under its district (SP) | 4 edges incl. ring return | **PASS** | SEWER edges |
 | 50..70 user channels, destruction and staged-sound reserved (CN 8) | total 66, destruction 10, sound/spawn 11 | **PASS** | CHANNELS allocation |
 | main circuit: start -> venues -> sewer leg -> objective (ID) | 16 legs | **PASS** | CIRCUIT legs |
-| districts <= ~1100 walls, total cap 7000 (CN 7) | {'theatre_row': 738, 'market_slip': 205, 'old_crossing': 395, 'foundry_ward_and_sewer': 745, 'citywide_streets_plaza': 200} -> total 2283 (+4717 reserve) | **PASS** | model stated in plan_review.py; verified against real counts every L2/L3 iteration |
+| projected walls under the NBlood limit with 10% headroom (14745 of 16384) | {'theatre_row': 738, 'market_slip': 205, 'old_crossing': 395, 'foundry_ward_and_sewer': 745, 'citywide_streets_plaza': 200} -> total 2283 (+12462 to the reserve line) | **PASS** | model stated in plan_review.py; verified against real counts every L2/L3 iteration |
 
 Plot: [gravesend-l1-plan.png](../references/plots/gravesend-l1-plan.png)

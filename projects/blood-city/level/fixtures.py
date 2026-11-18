@@ -108,8 +108,39 @@ LEDGE = Family("ledge", rise=4096, tile=568, depth=512,
                widths=(2048, 2304),
                source="E3M3 rise-4096/tile-568 family, 10 occurrences")
 
+#: What Blood's towns stand their goods on. `tools/mine_stands.py` over
+#: seven town maps: the 91 fixtures that carry a standing thing (25 islands,
+#: 33 ledges, 33 niches) rise a median 0.48 body over the floor beside them
+#: -- 8,192 is 0.483 -- and 35 of them are topped with tile 34, the owner's
+#: "wood, usable e.g. for counter/cabinet sides"; the commonest riser on an
+#: island or a ledge is 28, the owner's "wooden wall". COUNTER above is not
+#: wrong, it is low: a 0.18-body block reads as a bench ("bench-like
+#: blocks", a blind reviewer, 2026-11-18), and nothing in the town maps
+#: keeps a bottle on one.
+BAR = Family("bar", rise=8192, tile=34, depth=768,
+             widths=(1024, 2048),
+             source="seven town maps, 91 thing-carrying fixtures: median "
+                    "rise 0.48 body, top 34 (tools/mine_stands.py)")
+BAR_FACE = 28
+
 FAMILIES = {f.name: f for f in (COUNTER, PEDESTAL, PANEL,
-                                BOOTH, STAGE, STANCHION, LEDGE)}
+                                BOOTH, STAGE, STANCHION, LEDGE, BAR)}
+
+#: A shelf let into a wall: E1M2 sector 213, E3M2 82 and 87, E1M4 167
+#: (`references/town-fixtures.png`). Its floor is a bar's height; its head
+#: is 0.725 body over that (E1M2 213's own 12,288), which leaves the wall
+#: over it for the shop's name; a quarter to half a player width deep.
+SHELF_RISE = BAR.rise
+SHELF_CLEAR = 12288
+SHELF_DEPTH = 384
+#: Its back and cheeks: the owner's "wood" (20), the niche back of two of
+#: the mined ones. The shelf itself is 34.
+SHELF_BACK = 20
+SHELF_INTENT = "shelf_niche"
+#: A trade whose stock is a WALL in Blood: the owner's "bookcase front"
+#: (31, 32, 33). There is no book sprite in the town maps; books are a
+#: surface.
+SHELF_BACKS = {"books": 32}
 
 #: The share of fixtures that carry any merchandise at all. Measured across
 #: the four sources: 28/171, 11/136, 2/43, 1/62 -- call it one in seven.
@@ -220,10 +251,37 @@ def place(name, host, rect, material, *, family: str, grade: int,
     return piece
 
 
+def shelf_niche(room, name: str, face: str, *, width: int, at: float = 0.5,
+                depth: int = SHELF_DEPTH, rise: int = SHELF_RISE,
+                clear: int = SHELF_CLEAR, sells: str = ""):
+    # (the back of a bookseller's shelf is the owner's "bookcase front")
+    """A shelf let into one face of a room, for a row of stock.
+
+    Not a block on the floor: the room keeps its floor and the wall keeps
+    its plane, which is what the town maps do with a wall that has nothing
+    behind it. The caller must know the wall has `depth` of void behind
+    that stretch; the compiler refuses the level if it has not.
+
+    The riser under the shelf and the band over its head are the ROOM's
+    wall, drawn by the room's own record, so the room's material runs on
+    past the shelf unbroken.
+    """
+    if width < 1024:
+        raise FixtureError(f"{name}: a {width}-unit shelf holds no row")
+    return room.recess(
+        f"{name}", face, at=at, width=int(width), depth=int(depth),
+        floor_delta=-int(rise), clear_height=int(clear),
+        floor_picnum=BAR.tile, ceiling_picnum=BAR.tile,
+        wall_picnum=SHELF_BACKS.get(sells, SHELF_BACK),
+        intent={"kind": SHELF_INTENT, "sells": sells,
+                "source": "E1M2 s213, E3M2 s82/s87 (tools/mine_stands.py)"})
+
+
 def run_along(name, host, *, axis: str, start: int, end: int,
               across0: int, across1: int, family: str, material,
               grade: int, host_clear: int, gap: int = 512,
-              connector=None, wall_picnum: int | None = None):
+              connector=None, wall_picnum: int | None = None,
+              whole: bool = False):
     """A shelf or counter run: modules at the family's own widths.
 
     The run prefab shape -- given a length, emit modules at campaign
@@ -243,7 +301,10 @@ def run_along(name, host, *, axis: str, start: int, end: int,
     node = citytree.sub(host, name, note=f"{family} run: {fam.source}")
     cursor, index = start, 0
     while cursor < end:
-        width = fam.widths[_roll(f"{name}:{index}", len(fam.widths))]
+        #: `whole`: one piece from end to end. A bar is one bar; modules
+        #: with gaps between them are a row of benches.
+        width = (end - start) if whole else \
+            fam.widths[_roll(f"{name}:{index}", len(fam.widths))]
         if cursor + width > end:
             width = end - cursor
         if width < min(fam.widths):

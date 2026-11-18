@@ -129,7 +129,10 @@ def write(layout, rooms: dict) -> dict:
             report["missing"].append(key)
             continue
         rect = props.room_rect(room)
-        faces = props.solid_faces(layout, room.region_id, rect)
+        #: `wallplane.text` knows how high an opening is, so a name may
+        #: stand over a shelf
+        faces = props.solid_faces(layout, room.region_id, rect,
+                                  over_shelves=True)
         if face not in faces:
             # The declared wall turned out to carry a portal; take the
             # longest solid one instead rather than writing on a doorway.

@@ -1,0 +1,41 @@
+before: b590dda08aed sectors 325 walls 2074 skyline {'0.0': 16, '5.8': 8, '11.6': 108, '11.7': 3, '13.5': 2, '17.4': 6}
+final: ac2094c932c9 sectors 325 walls 2074 skyline {'0.0': 16, '5.8': 8, '11.6': 108, '11.7': 3, '13.5': 2, '17.4': 6}
+before->final
+  pawn_front         sky 0.000->0.000  tall px 0->0  changed 223280
+  pawn_rake          sky 0.024->0.024  tall px 0->0  changed 26458
+  pawn_inside        sky 0.000->0.000  tall px 0->0  changed 193737
+  super_east         sky 0.000->0.000  tall px 0->0  changed 82320
+  super_east_rake    sky 0.119->0.119  tall px 144->144  changed 18953
+  super_north        sky 0.000->0.000  tall px 0->0  changed 160448
+  super_north_rake   sky 0.048->0.048  tall px 0->0  changed 8717
+  super_inside       sky 0.000->0.000  tall px 0->0  changed 166837
+  super_south_pane   sky 0.035->0.035  tall px 0->0  changed 18810
+  super_north_far    sky 0.047->0.047  tall px 0->0  changed 21182
+  pawn_close         sky 0.021->0.021  tall px 0->0  changed 149690
+  hall_band          sky 0.000->0.000  tall px 0->0  changed 189857
+  hall_stock_band    sky 0.000->0.000  tall px 0->0  changed 192175
+  mall_north         sky 0.000->0.000  tall px 0->0  changed 145201
+  mall_rake          sky 0.000->0.000  tall px 0->0  changed 114145
+  avenue_north_far   sky 0.086->0.086  tall px 5867->5867  changed 0
+  avenue_north_mid   sky 0.061->0.061  tall px 0->0  changed 0
+  avenue_north_near  sky 0.000->0.000  tall px 0->0  changed 0
+  row_west_far       sky 0.100->0.100  tall px 0->0  changed 0
+  row_west_near      sky 0.042->0.042  tall px 0->0  changed 0
+  market_west_far    sky 0.126->0.126  tall px 0->0  changed 3572
+  market_west_near   sky 0.024->0.024  tall px 0->0  changed 23301
+  market_east_far    sky 0.048->0.048  tall px 0->0  changed 0
+  market_east_near   sky 0.009->0.009  tall px 0->0  changed 0
+  belfry_in          sky 0.000->0.000  tall px 0->0  changed 0
+  belfry_out         sky 0.000->0.000  tall px 0->0  changed 0
+  belfry_up          sky 0.000->0.000  tall px 0->0  changed 0
+  tower_room         sky 0.000->0.000  tall px 0->0  changed 0
+  tower_room_back    sky 0.000->0.000  tall px 0->0  changed 0
+  chancel_south      sky 0.000->0.000  tall px 0->0  changed 0
+  nave_north         sky 0.000->0.000  tall px 0->0  changed 0
+  nave_roof          sky 0.000->0.000  tall px 0->0  changed 0
+  aisle_north        sky 0.000->0.000  tall px 0->0  changed 0
+  narthex_north      sky 0.000->0.000  tall px 0->0  changed 0
+  narthex_east       sky 0.000->0.000  tall px 0->0  changed 0
+  vestry             sky 0.000->0.000  tall px 0->0  changed 0
+drawn sky seams: none
+interior ceilings leaking into the sky: {'before': {'pawn_close': 21137}, 'final': {'super_north_far': 1736, 'pawn_close': 16176}}

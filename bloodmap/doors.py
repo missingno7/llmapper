@@ -91,7 +91,8 @@ def z_motion_endpoints(floor_z: int, open_ceiling_z: int) -> dict[str, int]:
 def z_motion_door(floor_z: int, open_ceiling_z: int, *,
                   interaction: str = "direct", rx_id: int | None = None,
                   key: int | None = None, open_time: int = 5,
-                  close_time: int | None = None) -> dict[str, int]:
+                  close_time: int | None = None,
+                  close_after: int | None = None) -> dict[str, int]:
     """Complete XSECTOR behaviour for a rising Z-motion door.
 
     A type-600 sector with only :func:`z_motion_endpoints` is *not* a complete
@@ -100,6 +101,15 @@ def z_motion_door(floor_z: int, open_ceiling_z: int, *,
     tenths of a second in both directions (the value used by the
     reasoned-authoring pilot).  The three interaction modes keep direct use,
     remote switches, and their deliberate combination distinct in source.
+
+    ``close_after`` makes the door shut itself, that many tenths of a second
+    after it finishes opening.  `SetSectorState` posts the Off command only
+    when ``reTriggerA`` is set (blood/src/triggers.cpp:147-148), so both
+    fields are written.  Of the campaign's 1,231 type-600 sectors 226 hold a
+    wait, 202 of them with the re-trigger; 30 -- three seconds -- is the
+    commonest by a factor of three.  A door that stays open is the default
+    because it is the campaign's (994 of them); reach for this where an open
+    door is a liability, which under a see-over roof it is.
 
     ``interaction`` is one of ``"direct"``, ``"remote"`` or ``"both"``.
     ``rx_id`` is required for ``remote`` and ``both``; ``key`` only applies to
@@ -114,11 +124,17 @@ def z_motion_door(floor_z: int, open_ceiling_z: int, *,
     if close_time is not None and int(close_time) < 1:
         raise DoorError("a Z-motion door needs close_time >= 1; zero is instant")
 
+    if close_after is not None and int(close_after) < 1:
+        raise DoorError("close_after is in tenths of a second and at least 1")
+
     fields = {
         "busy_time_a": int(open_time),
         "busy_time_b": int(open_time if close_time is None else close_time),
         **z_motion_endpoints(floor_z, open_ceiling_z),
     }
+    if close_after is not None:
+        fields["wait_time_a"] = int(close_after)
+        fields["retrigger_a"] = 1
     if interaction in {"direct", "both"}:
         fields.update(xsector_direct_use(key=key))
     if interaction in {"remote", "both"}:

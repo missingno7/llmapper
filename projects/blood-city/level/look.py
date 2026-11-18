@@ -150,6 +150,22 @@ POSE_SETS = {
         "portal_avenue": (34.2, 29.2, 32.2, 29.2, LEVEL, "the avenue portal"),
         "portal_cemetery": (24.4, 29.2, 26.4, 29.2, LEVEL, "the cemetery door"),
     },
+    #: Inside St Gallow's after it got roofs over it (2026-11-17): every room,
+    #: looking both ways, and out through the tower door from inside.
+    "church_inside": {
+        "belfry_in": (33.0, 23.6, 32.5, 22.9, LEVEL, "in the belfry, toward the inner door"),
+        "belfry_out": (33.0, 23.0, 33.0, 24.3, LEVEL, "in the belfry, back at the tower door"),
+        "belfry_up": (33.0, 23.2, 33.0, 22.9, UP, "up the belfry"),
+        "tower_room": (31.6, 23.3, 30.8, 23.3, LEVEL, "the room behind the tower, west to the chancel"),
+        "tower_room_back": (31.0, 23.3, 32.6, 23.3, LEVEL, "the same room, back at the inner door"),
+        "chancel_south": (29.4, 23.0, 29.4, 29.0, LEVEL, "from the chancel down the nave"),
+        "nave_north": (29.4, 29.8, 29.4, 24.2, LEVEL, "the nave from its south end"),
+        "nave_roof": (29.0, 29.9, 29.0, 24.2, UP, "up into the nave's pitched ceiling"),
+        "aisle_north": (27.6, 30.0, 27.6, 25.0, LEVEL, "the west aisle"),
+        "narthex_north": (31.4, 29.3, 31.4, 27.4, LEVEL, "the narthex"),
+        "narthex_east": (31.0, 28.7, 32.2, 28.7, LEVEL, "the narthex wall where the avenue portal was"),
+        "vestry": (31.4, 25.2, 31.4, 24.7, LEVEL, "the vestry"),
+    },
     "overhaul": {
         "shop_window": (30.2, 1.9, 30.2, 3.4, LEVEL, "the glazed shopfront from Theatre Row"),
         "shop_window_close": (30.2, 2.6, 30.2, 3.4, LEVEL, "up against the glass"),
@@ -214,6 +230,193 @@ POSE_SETS = {
         "sewer_wet": (45.0, 21.5, 41.0, 21.5, LEVEL, "the wet trunk, west toward the junction"),
         "market_plaza_w": (33.0, 45.0, 20.0, 45.0, LEVEL, "the plaza, west past the monument"),
     },
+    #: St Gallow's from where a player meets it.  Fixed 2026-11-17 for the
+    #: skyline experiment (experiments/church-skyline): every pose stands in
+    #: open street, so none of them moves when the church's massing does.
+    #: `avenue_front` stood at x 38.0 until 2026-11-17, which is now exactly
+    #: the kerb of the avenue's east carriageway: a camera on a sector
+    #: boundary is in neither sector and the observer writes no frame.  It
+    #: moved 0.3 east, onto the pavement.
+    "skyline": {
+        "avenue_south": (35.5, 33.5, 33.5, 23.3, LEVEL,
+                         "walking north up the avenue toward the church"),
+        "avenue_south_up": (35.5, 33.5, 33.5, 23.3, UP,
+                            "the same step, eyes raised to the roofline"),
+        "avenue_north": (35.8, 17.2, 33.5, 23.3, LEVEL,
+                         "coming south across the Row junction"),
+        "avenue_front": (38.3, 26.5, 32.0, 26.5, LEVEL,
+                         "across the avenue, square on the church's long side"),
+        "avenue_front_up": (38.3, 26.5, 32.0, 26.5, UP,
+                            "the same, looking up its face"),
+        "portal": (36.5, 28.7, 32.0, 28.7, LEVEL,
+                   "facing the avenue portal from the far kerb"),
+        "tower_door": (35.2, 27.2, 33.3, 24.2, LEVEL,
+                       "walking up the avenue: the door in the tower's foot"),
+        "tower_door_close": (33.4, 25.6, 33.4, 24.0, LEVEL,
+                             "on the pavement, square on the tower door"),
+        "tower_foot": (36.5, 21.5, 33.5, 23.3, UP,
+                       "at the junction, looking up where the tower stands"),
+        "row_corner": (30.0, 18.0, 33.5, 23.0, LEVEL,
+                       "on Theatre Row, looking past the church's north end"),
+        "forecourt": (30.5, 13.5, 33.5, 23.3, LEVEL,
+                      "from the Aldermack forecourt: the vista church-patterns asks for"),
+        "vista_far": (35.5, 45.0, 35.5, 20.0, LEVEL,
+                      "from the market end, the whole avenue north"),
+        "spawn_north": (33.5, 53.0, 34.5, 23.0, LEVEL,
+                        "the spawn, turned to face up the avenue"),
+        "cemetery_side": (23.9, 30.0, 26.6, 26.0, UP,
+                          "inside the cemetery, up at the church's west face"),
+    },
+    #: Shop glass and the street's own floor (owner, 2026-11-17: "the glass
+    #: should sit in an aperture/frame so glass texture scaling won't be
+    #: colliding with facade texture"; "roads and sidewalk attempts ... look
+    #: poor").  Each pane square-on and at a rake from the street, and once
+    #: from inside its shop; then the ground, eyes lowered.
+    "shopfronts": {
+        "pawn_front": (29.7, 1.6, 29.7, 3.1, LEVEL,
+                       "Theatre Row, square on the pawn shop's display"),
+        "pawn_rake": (25.5, 2.0, 29.5, 3.1, LEVEL,
+                      "the same pane at a rake, with the facade either side"),
+        "pawn_inside": (29.7, 5.6, 29.7, 3.5, LEVEL,
+                        "inside the pawn shop, looking out through the glass"),
+        "super_east": (18.2, 43.3, 15.4, 43.3, LEVEL,
+                       "square on the market hall's long east pane"),
+        "super_east_rake": (17.2, 50.5, 15.4, 44.0, LEVEL,
+                            "both east panes at a rake"),
+        "super_north": (7.2, 38.2, 7.2, 41.0, LEVEL,
+                        "square on the market hall's north pane"),
+        "super_north_rake": (13.0, 39.6, 8.0, 41.0, LEVEL,
+                             "the north pane at a rake"),
+        "super_inside": (11.5, 43.3, 13.8, 43.3, LEVEL,
+                         "inside the market hall, looking out east"),
+        "super_south_pane": (16.8, 50.4, 15.3, 48.6, LEVEL,
+                             "the market hall's short east pane, close, at a rake"),
+        "super_north_far": (12.6, 38.7, 7.5, 41.0, LEVEL,
+                            "the north pane at a rake, from the street's middle"),
+        "pawn_close": (28.2, 2.4, 29.6, 3.2, LEVEL,
+                       "close on a mullion: the reveal and the sash pocket"),
+        "hall_band": (7.6, 46.2, 13.8, 42.6, UP,
+                      "on the market hall's floor, eyes raised to the band "
+                      "over its east windows"),
+        "hall_stock_band": (8.0, 44.0, 8.0, 49.2, UP,
+                            "the same, toward the stockroom opening"),
+        "mall_north": (42.4, 46.4, 42.4, 44.5, LEVEL,
+                       "in the arcade, square on a unit's window"),
+        "mall_rake": (40.4, 46.0, 42.6, 44.5, LEVEL,
+                      "the same at a rake along the concourse"),
+    },
+    #: Where the long views end (survey finding 2: "every vista ends in
+    #: black").  Each main street looked along toward the city's edge, from
+    #: far and from near, standing on the pavement side of the kerb.
+    "vistas": {
+        "avenue_north_far": (35.0, 34.0, 35.4, 0.0, LEVEL,
+                             "up the avenue from the market street: its far end"),
+        "avenue_north_mid": (35.0, 14.0, 35.4, 0.0, LEVEL,
+                             "up the avenue from below Theatre Row"),
+        "avenue_north_near": (35.0, 5.5, 35.6, 0.0, LEVEL,
+                              "the avenue's last stretch"),
+        "row_west_far": (33.0, 16.4, 0.0, 17.6, LEVEL,
+                         "down Theatre Row from the avenue: its west end"),
+        "row_west_near": (9.0, 16.4, 0.0, 17.8, LEVEL,
+                          "Theatre Row's last stretch"),
+        "market_west_far": (33.0, 36.4, 0.0, 37.3, LEVEL,
+                            "down the market street westward"),
+        "market_west_near": (8.0, 36.4, 0.0, 37.4, LEVEL,
+                             "the market street's west end"),
+        "market_east_far": (39.0, 36.4, 58.0, 37.3, LEVEL,
+                            "down the market street eastward"),
+        "market_east_near": (51.0, 36.4, 58.0, 37.4, LEVEL,
+                             "the market street's east end"),
+    },
+    #: Inside the pawnbroker's, toward the back of the shop where the pledge
+    #: room is (2026-11-18: "more complex interiors").
+    #: What the goods stand on (experiments/fixtures). An arcade unit is seen
+    #: from the concourse, over its counter, so that is where these stand.
+    "fixtures": {
+        "saloon_in": (9.4, 12.4, 6.6, 9.8, LEVEL, "the saloon, over the tables to the bar"),
+        "saloon_counter": (7.0, 11.0, 6.5, 9.6, LEVEL, "at the bar"),
+        "saloon_shelf": (7.6, 10.9, 10.2, 9.4, LEVEL, "along the bar to the east wall"),
+        "unit_b": (45.0, 44.3, 45.0, 41.0, LEVEL, "the apothecary from the concourse"),
+        "unit_c": (48.0, 44.3, 48.0, 41.0, LEVEL, "the ironmonger from the concourse"),
+        "unit_e": (45.0, 45.7, 45.0, 49.0, LEVEL, "the bookseller from the concourse"),
+        "unit_f": (48.0, 45.7, 48.0, 49.0, LEVEL, "the grocer from the concourse"),
+        "unit_b_rake": (45.6, 43.3, 44.6, 41.0, LEVEL, "the apothecary, close and at a rake"),
+        "pawn_front": (33.4, 5.1, 32.3, 5.1, LEVEL, "control: the pawn shop off the avenue"),
+        "saloon_door": (6.6, 16.2, 6.6, 14.6, LEVEL, "control: the saloon door"),
+    },
+    #: Does everything fit where it was put (experiments/sprite-fit)?
+    "fit": {
+        "saloon_in": (9.4, 12.4, 6.6, 9.8, LEVEL, "the saloon, over the tables"),
+        "unit_a": (42.7, 44.3, 41.8, 41.0, LEVEL, "the draper"),
+        "unit_c": (48.0, 44.3, 48.0, 41.0, LEVEL, "the ironmonger"),
+        "unit_d": (42.7, 45.7, 41.8, 49.0, LEVEL, "the clockmaker"),
+        "unit_e": (45.0, 45.7, 45.0, 49.0, LEVEL, "the bookseller"),
+        "pawn_west": (31.0, 4.9, 27.2, 4.9, LEVEL, "the pawn shop, to its west wall"),
+        "pawn_window": (30.0, 5.4, 29.2, 3.5, LEVEL, "the pawn shop's display from inside"),
+        "row": (22.5, 17.0, 30.0, 16.4, LEVEL, "Theatre Row, east"),
+        "avenue": (35.8, 20.0, 35.8, 33.0, LEVEL, "the avenue, south"),
+        "market": (30.0, 47.5, 38.0, 46.3, LEVEL, "the market street"),
+        "crossing_west": (12.0, 21.5, 20.0, 23.4, LEVEL, "the old crossing"),
+        "yard": (52.5, 18.5, 50.3, 19.4, LEVEL, "the foundry yard, to the stair mouth"),
+    },
+    "pawn_inside": {
+        "pawn_to_back": (30.75, 4.1, 30.75, 7.0, LEVEL,
+                         "in the shop, square on its back wall"),
+        "pawn_back_rake": (29.2, 4.3, 30.9, 6.4, LEVEL,
+                           "the back wall at a rake"),
+        "pawn_back_close": (30.75, 5.5, 30.75, 7.0, LEVEL,
+                            "close on the back wall"),
+        "pawn_length": (27.7, 4.9, 32.0, 5.2, LEVEL,
+                        "down the length of the shop"),
+    },
+    "ground": {
+        "avenue_road": (35.5, 40.0, 35.5, 28.0, DOWN,
+                        "on the avenue, eyes lowered: carriageway and kerb"),
+        "avenue_road_level": (35.5, 40.0, 35.5, 28.0, LEVEL,
+                              "the same, level"),
+        "row_road": (22.0, 1.8, 34.0, 1.8, DOWN,
+                     "along Theatre Row, eyes lowered"),
+        "row_road_level": (22.0, 1.8, 34.0, 1.8, LEVEL, "the same, level"),
+        "market_road": (17.5, 52.0, 17.5, 40.0, DOWN,
+                        "beside the market hall, eyes lowered"),
+        "market_road_level": (17.5, 52.0, 17.5, 40.0, LEVEL, "the same, level"),
+        "west_road": (2.0, 30.0, 2.0, 18.0, LEVEL, "the west street"),
+        "kerb_close": (35.2, 30.0, 37.4, 31.2, DOWN,
+                       "on the avenue's pavement, close on the kerb's face"),
+        "kerb_along": (35.6, 34.0, 36.0, 24.0, DOWN,
+                       "along the avenue's kerb and centre strip"),
+        "sill_close": (16.4, 43.0, 15.3, 42.4, DOWN,
+                       "close on the market hall's stall riser and sill"),
+        "west_street_on_road": (18.0, 36.0, 18.0, 30.0, LEVEL,
+                             "on the west street's carriageway"),
+        "crossing": (35.2, 37.2, 28.0, 37.0, LEVEL,
+                     "at a crossing: how two roads meet"),
+        "foundry_road": (55.5, 30.0, 55.5, 18.0, LEVEL, "the rail spur's street"),
+    },
+    #: What a LOW SKY hides (owner, 2026-11-17: "when you put parallax sky low
+    #: it is covering view like a normal ceiling").  Each of these looks past
+    #: or over something low at something tall that ought to show above it.
+    "over": {
+        "yard_out_east": (22.5, 30.5, 40.0, 26.0, LEVEL,
+                          "in the churchyard, looking east: the church, and the "
+                          "avenue's far tenements over its roof"),
+        "yard_out_east_up": (22.5, 30.5, 40.0, 26.0, UP,
+                             "the same, eyes raised"),
+        "yard_out_south": (23.9, 30.0, 24.0, 40.0, UP,
+                           "in the churchyard, looking south over its own wall "
+                           "at the market blocks"),
+        "yard_to_tower": (22.5, 33.0, 33.5, 23.3, UP,
+                          "from the churchyard's far corner toward the tower"),
+        "avenue_over_wall": (36.5, 33.6, 26.0, 33.6, UP,
+                             "on the avenue, looking west over the churchyard "
+                             "wall: the west street's blocks beyond"),
+        "row_over_church": (29.0, 17.0, 31.0, 30.0, UP,
+                            "on Theatre Row, looking south over the church's "
+                            "north end: its nave and tower behind"),
+        "avenue_over_church": (37.5, 27.0, 26.0, 27.0, UP,
+                               "across the avenue, over the low range: the nave "
+                               "should stand behind it"),
+    },
     "fresh3": {
         "theatre_row": (17.5, 18.0, 24.0, 16.5, LEVEL, "Theatre Row street, east toward the forecourt"),
         "forecourt": (29.5, 14.0, 31.5, 12.5, LEVEL, "the Aldermack forecourt"),
@@ -224,15 +427,35 @@ POSE_SETS = {
 }
 
 
+#: Street level, in Build z.  `resolution.GRADE`, restated so this module
+#: still renders a campaign reference map without the city's own imports.
+GRADE_Z = 8192
+
+
 def sector_at(level, x: int, y: int) -> int | None:
-    for sector_id in range(len(level.sectors)):
-        # `_contains` handles outer loops and carved holes.  The old observer
-        # helper accepted a camera inside a street's carved lamp/building hole
-        # and then handed it to the renderer as the host sector, producing an
-        # invalid frame exactly where close light-pool review is needed.
-        if _contains(level, sector_id, x, y):
-            return sector_id
-    return None
+    """The sector at a point -- the one a person would be standing in.
+
+    `_contains` handles outer loops and carved holes.  (The old observer
+    helper accepted a camera inside a street's carved lamp/building hole and
+    handed it to the renderer as the host sector.)
+
+    Space is stacked now: a sewer runs under the avenue and a roof stands
+    over the church, so a point in plan can lie in several sectors.  This
+    used to return the first, and the day the church got its roof every
+    interior pose rendered the rooftop instead.  The answer is the sector
+    whose floor is nearest the street's: a pose is written for a person on
+    the ground.  A pose meant for the sewer still needs a layer named on it.
+    """
+    hits = [sector_id for sector_id in range(len(level.sectors))
+            if _contains(level, sector_id, x, y)]
+    if not hits:
+        return None
+
+    def floor(sector_id):
+        sector = level.sectors[sector_id]
+        fields = sector["fields"] if isinstance(sector, dict) else sector.fields
+        return int(fields["floor_z"])
+    return min(hits, key=lambda sector_id: abs(floor(sector_id) - GRADE_Z))
 
 
 def poses_for(level, name: str) -> list[Viewpoint]:
@@ -301,6 +524,10 @@ def main(argv=None) -> int:
         resource_dir=pathlib.Path("reference/blood"), viewpoints=views,
         width=640, height=480, screenshots=[v.view_id for v in views],
         brightness=0, rff=None))
+    # The run keeps the MAP it looked at: the path is overwritten by the next
+    # build, and a frame whose map is gone is not evidence of anything.
+    import shutil
+    shutil.copyfile(map_path, out_dir / "observed.MAP")
     print(f"{len(views)} frames -> {out_dir}")
     for view in views:
         print(f"  {view.view_id}: sector {view.sector} z {view.z} -- {view.note}")

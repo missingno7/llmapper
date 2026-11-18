@@ -1,0 +1,170 @@
+{
+ "variants": {
+  "nobills": {
+   "source": "projects\\blood-city\\level\\blood-city-current.MAP",
+   "target": "projects\\blood-city\\experiments\\town-goods\\nobills\\variant.MAP",
+   "source_sha256": "666d83b79fe427c2a9ebb7c9f5a92bd44927545e90a9f60bea89e347c43c79a0",
+   "target_sha256": "9bd4ff29f40a3d522d67b2aed965dde70cfb6680289d5e5d1861c7bb00c8edd7",
+   "edits": [
+    {
+     "edit": "signs, show bills, notices and papers removed",
+     "on": "sprites",
+     "touched": 15,
+     "dropped": true
+    }
+   ],
+   "claims": {
+    "is_a_build": false,
+    "is_evidence_of": "what the edited records contribute"
+   }
+  },
+  "nothings": {
+   "source": "projects\\blood-city\\level\\blood-city-current.MAP",
+   "target": "projects\\blood-city\\experiments\\town-goods\\nothings\\variant.MAP",
+   "source_sha256": "666d83b79fe427c2a9ebb7c9f5a92bd44927545e90a9f60bea89e347c43c79a0",
+   "target_sha256": "cf46b0914bdad51da2af61ae03b8d3def2549b150713acd9293f89fca1f1cdb8",
+   "edits": [
+    {
+     "edit": "every object and picture removed; signs and bills kept",
+     "on": "sprites",
+     "touched": 71,
+     "dropped": true
+    }
+   ],
+   "claims": {
+    "is_a_build": false,
+    "is_evidence_of": "what the edited records contribute"
+   }
+  }
+ },
+ "edits": {
+  "nobills": [
+   {
+    "name": "signs, show bills, notices and papers removed",
+    "on": "sprites",
+    "where": {
+     "picnum": [
+      356,
+      440,
+      453,
+      740,
+      741,
+      742,
+      743,
+      744,
+      751,
+      932,
+      943,
+      981
+     ]
+    },
+    "drop": true
+   }
+  ],
+  "nothings": [
+   {
+    "name": "every object and picture removed; signs and bills kept",
+    "on": "sprites",
+    "where": {
+     "picnum": [
+      163,
+      268,
+      505,
+      517,
+      520,
+      521,
+      536,
+      540,
+      543,
+      545,
+      574,
+      579,
+      604,
+      605,
+      606,
+      608,
+      613,
+      614,
+      616,
+      621,
+      644,
+      658,
+      712,
+      739,
+      759,
+      802,
+      834,
+      845,
+      848,
+      938,
+      1009,
+      1010,
+      1013,
+      1708,
+      1710,
+      1712,
+      2139,
+      2304,
+      2937,
+      3540
+     ]
+    },
+    "drop": true
+   }
+  ]
+ },
+ "new_tiles": [
+  163,
+  268,
+  356,
+  440,
+  453,
+  505,
+  517,
+  520,
+  521,
+  536,
+  540,
+  543,
+  545,
+  574,
+  579,
+  604,
+  605,
+  606,
+  608,
+  613,
+  614,
+  616,
+  621,
+  644,
+  658,
+  712,
+  739,
+  740,
+  741,
+  742,
+  743,
+  744,
+  751,
+  759,
+  802,
+  834,
+  845,
+  848,
+  932,
+  938,
+  943,
+  981,
+  1009,
+  1010,
+  1013,
+  1708,
+  1710,
+  1712,
+  2139,
+  2304,
+  2937,
+  3540
+ ]
+}

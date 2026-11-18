@@ -68,3 +68,14 @@ ASAVE*.bak
 # and are never committed, on the same rule as maps/ itself.
 projects/*/round-trip/*.MAP
 projects/*/fragments/*.MAP
+
+# A design experiment keeps its record (hypothesis, measurements, the
+# reviewer's words, one before/after sheet) at its top level. The folders
+# under it are look.py runs: frames and a copy of the map they were taken
+# from, 311M for blood-city, regenerable from the level sources.
+projects/*/experiments/*/*/
+
+# Renders of commercial maps and sheets of commercial tile art, kept locally
+# beside the json mined from them and never redistributed.
+projects/*/references/town-fixtures.png
+projects/*/references/city-assets.png

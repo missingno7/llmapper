@@ -1,0 +1,25 @@
+shop-surrounds, 2026-11-18 -- what was counted, on which map
+
+before  observed.MAP sha256 b590dda08aed...  325 sectors / 2074 walls / 469 sprites
+full    (the build the blind reviewer saw)   sha256 ec4102aaf96f...
+final   observed.MAP sha256 ac2094c932c9...  325 sectors / 2074 walls / 517 sprites
+
+floor shade, street median 32
+  rooms behind glass, before                  32 (all ten)
+  reviewed build: displays / shops (median)   21 / 20
+  final: displays 5,19,20,22,24,25; shops 14,15,23,28; median of the ten 21
+names on a street-facing fascia               0 -> 5 (PAWNBROKER, PROVISIONS,
+                                              MARKET HALL, DRAPER, CLOCKS)
+what-if variants of the reviewed build (whatif.json)
+  unlit      10 sectors and 127 walls to their before shades, 6 lamps dropped
+  unnamed    30 letter sprites dropped
+  unfronted  34 surround walls repainted in the wall they stand in
+controls     church interior and street-end frames: 0 pixels changed
+
+rules        12 errors / 7 warnings, unchanged
+determinism  reviewed build and final build: two builds each, same sha256
+NBlood load  final build: pass. A load test; nobody was moved through it.
+suite        reviewed build 2268 OK; final build 2268 OK (25 skipped, 4 expected failures)
+blind review one reviewer, five unlabelled sets of nine views. The final
+             build (shorter lamp chains, the market sign relettered, DRAPER
+             and CLOCKS added) was not reviewed blind.

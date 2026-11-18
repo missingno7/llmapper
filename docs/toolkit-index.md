@@ -34,6 +34,14 @@ something, look for it here first.
 | a repeated fixture along a wall | `prefab.alcove_run` |
 | a ledge you can be shot from | `prefab.parapet` — knows the corpus rise is 1.93 bodies |
 | a hole in a floor | `Room.carve` + a room filling it, joined on `hole_face` |
+| a wall, roof or building lower than what stands beyond it | `skyline.roof` — a sector whose floor is its top, under the common sky, then `skyline.dress_steps`. **Never lower the sky**: a low parallax ceiling hides everything above the wall (`skyline.lowered_skies` lists them) |
+| the one thing taller than the city | `skyline.apron` with a raised sky, sloped for a gable |
+| the end of a street, or anything with only sky behind it | a mass a few bodies up and, behind it, a parallax sector of NO height at grade: the eye goes over into sky (E3M1 s340). `bloodmap.skyline.is_sky_backing`; Blood City's `streets.end_walls`. Light the face (-8) and make it blocking |
+| a door into a building whose roof is seen over | not in the low wall: `skyline.leaks_under_roofs` — the room paints into the sky. Enter through a tower or full-height block; `doors.z_motion_door(close_after=30)` for the inner leaf |
+| bars across an opening | `bloodmap.glass.grille(level, spans, tile=...)` — blocking, masked, unbreakable; reports a wall whose two sides are not level, because bars share their record's scale with a step band as glass does |
+| glass in a wall | never on a record that also carries a step band: its scale is the band's too. Put the pane between two volumes at one floor and ceiling (reveal, sash pocket, box); `bloodmap.glass.glaze(fit=True)` for the pane, `recess_faults` / `panes_without_a_recess` to read it back. Blood City's `level/glass.py: shopfront()` lays the frame out |
+| a material that has a base (a dado, a ground storey, a kerb) | `texture_frame.frame_map(v_anchor="floor")` — one vertical origin per run, the tile's bottom row on the floor the run stands on. The default is the editor's first-wall peg, which keeps a run continuous and means nothing |
+| the side of something raised in a street | it is drawn from the STREET's record: `skyline.dress_steps(level, {sector: tile}, only_from=street_sectors)`. A carriageway is the lower side, so its own `wall_picnum` is the kerb's face |
 
 ## Space over space — three techniques, and which to use
 
@@ -83,6 +91,16 @@ Do not add a check anywhere else. If it is worth enforcing it is worth grading.
 | what surrounds a tile I have a name for | `anchors.mine_anchor` — and it tells you whether that context means anything (enrichment) |
 | is this a bundle or props in a heap | `anchors.compare_placements` — support, never sprite count |
 | how much free floor does this fixture need | `player_space.check_clearance` — an access front; 73% of campaign counters back onto something |
+| did my change do what I said it would | write `hypothesis.json` first, render the same poses before and after, then `python -m tools.judge_experiment <dir>` — sky share, changed pixels, drawn sky seams, every map and frame hashed |
+| which PART of my change did the work | `python -m tools.whatif built.MAP -o variant.MAP --edits edits.json` — a variant of a built map with one thing unlit, repainted or removed, in a second. Render the variants beside the full build and the before and hand all of them, unlabelled, to a blind reviewer. Blood City writes `<map>.tags.json` so an edit can say `"intent": "shop_display"` |
+| does every sprite fit where it was put (sunk, through a ceiling, squeezed, covering another) | `python -m tools.sprite_fit MAP` — a lint of the built map as the renderer draws it; `--rates maps...` for the campaign's own numbers, which are the thresholds. `bloodmap.placement.drawn_extent` is the box; the city build prints the lint and `tests/test_sprite_fit.py` holds it |
+| what do the goods in Blood's town maps stand ON | `python -m tools.mine_stands [maps...]` — every indoor standing thing by what is under it (floor, island, ledge, niche, floating), from the sector and its neighbours; rise, head, size and tiles of the fixtures. Blood City's `fixtures.BAR` and `fixtures.shelf_niche` are built on it |
+| what do Blood's own town maps dress a place with, and how is each thing set down | `python -m tools.mine_city_assets [maps...]` — every decoration tile in a named handful of maps, which maps, indoors or out, alignment, and the repeats, cstat, shade, palette, type, status and height it is given; a contact sheet of the ones a built map does not use. Blood City's `level/goods.py` is a plan by place built on it |
+| how complex are these interiors, against the campaign's | `python -m tools.city_profile --interiors <maps...>` — per interior: floor and ceiling heights, floor range in bodies, floor and wall tiles, shade spread, slopes. E3M1 is the target; the largest gap is light |
+| how does another Build game (or a campaign map) do this, in terms I can use | `python -m tools.city_profile <maps...>` — one list of structural questions (street-wall heights, kerb, pavement, glass and its records, openings, sky backings, light) answered in bodies and shares, so a Duke map, a Blood map and a built map are columns of one table. Tiles and raw coordinates do not cross; ratios do |
+| stand in a Duke Nukem 3D map and look | `python -m tools.duke_view <map> -o DIR [--pose name:x,y,tx,ty] [--sectors a,b]` — a viewing copy in Blood's format (nothing scaled), Duke's ART, and Duke's own palette, shade table and palette swaps in an archive the observer can read, through the same observer. Shape, colour and light as authored are Duke's; the sky is not. Never a conversion |
+| how has something recognisable been built before, and did it read | `knowledge/blood/design/visual-construction-atlas-v1.json` — native facts, derived counts and viewers' readings kept apart, with a status per record |
+| is there a way from the start to this place | `conditional.build_graph` — gates and what works them; Blood City's `walk_static.py` renders the chain. **A reading of the map, not a walk** |
 
 ## Knowing what Blood does
 

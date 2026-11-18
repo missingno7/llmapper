@@ -45,6 +45,20 @@ GRASS = 361
 DIRT = 270
 STRAW = 515
 
+
+def _lift(fields) -> float:
+    """How far over the ground this sprite's z goes so that it is DRAWN
+    standing on it (`bloodmap.placement.drawn_extent`). At z = floor the
+    straw was sunk to half its height."""
+    import wallplane
+    from bloodmap.placement import drawn_lift
+
+    size = wallplane.art().get(int(fields["picnum"]))
+    if size is None:
+        return 0.0
+    return drawn_lift(size[1], size[3], int(fields.get("y_repeat", 64)),
+                      int(fields["cstat"])) / 16960.0
+
 #: A path two bodies wide: you meet someone on it and neither steps onto the
 #: grass. 384 is a player width, so 1024 is comfortably that.
 PATH_WIDTH = 1024
@@ -310,9 +324,11 @@ def plant(layout, ground_region: str, box, area, *, art_sizes=None,
         if not on_ground:
             dropped += 1
             continue
+        _straw = furnish("straw", art_sizes)
         layout.place_on_floor(f"{prefix}:straw:{index}", ground_region,
                               local=(fx, fy),
-                              **furnish("straw", art_sizes))
+                              height_player_heights=_lift(_straw),
+                              **_straw)
         planted["straw"] = planted.get("straw", 0) + 1
     if dropped:
         planted["_dropped_into_masonry"] = dropped

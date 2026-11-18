@@ -1,0 +1,55 @@
+before: 5a1aac2ed778 sectors 259 walls 1694 skyline {'11.6': 138, '11.7': 3}
+round1: e91eb78417ee sectors 263 walls 1726 skyline {'6.8': 4, '11.6': 137, '11.7': 3, '15.5': 3}
+round2: 8b043cbdb22c sectors 270 walls 1773 skyline {'3.1': 2, '3.9': 46, '11.6': 113, '11.7': 3, '15.5': 6}
+after: ebfe5628812e sectors 270 walls 1773 skyline {'3.1': 2, '3.9': 46, '11.6': 113, '11.7': 3, '17.4': 6}
+interior-before: 5a1aac2ed778 sectors 259 walls 1694 skyline {'11.6': 138, '11.7': 3}
+interior-after: ebfe5628812e sectors 270 walls 1773 skyline {'3.1': 2, '3.9': 46, '11.6': 113, '11.7': 3, '17.4': 6}
+before->round1
+  avenue_south       sky 0.058->0.052  tall px 0->14985  changed 81488
+  avenue_south_up    sky 0.157->0.164  tall px 0->22993  changed 124983
+  avenue_north       sky 0.073->0.077  tall px 7315->33499  changed 86276
+  avenue_front       sky 0.000->0.000  tall px 0->52026  changed 140284
+  avenue_front_up    sky 0.009->0.091  tall px 0->76765  changed 216326
+  portal             sky 0.000->0.000  tall px 0->0  changed 119005
+  tower_foot         sky 0.112->0.176  tall px 4454->95441  changed 179723
+  row_corner         sky 0.002->0.000  tall px 0->15868  changed 108576
+  forecourt          sky 0.038->0.015  tall px 687->13371  changed 82443
+  vista_far          sky 0.057->0.056  tall px 0->5756  changed 11417
+  spawn_north        sky 0.113->0.110  tall px 0->2856  changed 2227
+  cemetery_side      sky 0.000->0.000  tall px 0->0  changed 0
+before->round2
+  avenue_south       sky 0.058->0.089  tall px 0->14985  changed 89617
+  avenue_south_up    sky 0.157->0.282  tall px 0->22925  changed 135768
+  avenue_north       sky 0.073->0.133  tall px 7315->33501  changed 90543
+  avenue_front       sky 0.000->0.133  tall px 0->52026  changed 163473
+  avenue_front_up    sky 0.009->0.350  tall px 0->76765  changed 252000
+  portal             sky 0.000->0.082  tall px 0->0  changed 166946
+  tower_foot         sky 0.112->0.341  tall px 4454->95438  changed 205738
+  row_corner         sky 0.002->0.000  tall px 0->15869  changed 105463
+  forecourt          sky 0.038->0.108  tall px 687->13371  changed 86018
+  vista_far          sky 0.057->0.082  tall px 0->4999  changed 19451
+  spawn_north        sky 0.113->0.114  tall px 0->2229  changed 2823
+  cemetery_side      sky 0.000->0.103  tall px 0->0  changed 49085
+before->after
+  avenue_south       sky 0.058->0.089  tall px 0->14985  changed 90405
+  avenue_south_up    sky 0.157->0.282  tall px 0->22948  changed 136579
+  avenue_north       sky 0.073->0.133  tall px 7315->33501  changed 90575
+  avenue_front       sky 0.000->0.133  tall px 0->52026  changed 164100
+  avenue_front_up    sky 0.009->0.350  tall px 0->76765  changed 252627
+  portal             sky 0.000->0.082  tall px 0->0  changed 168049
+  tower_foot         sky 0.112->0.341  tall px 4454->95438  changed 206531
+  row_corner         sky 0.002->0.000  tall px 0->15869  changed 105463
+  forecourt          sky 0.038->0.108  tall px 687->13371  changed 86018
+  vista_far          sky 0.057->0.081  tall px 0->5355  changed 19826
+  spawn_north        sky 0.113->0.114  tall px 0->2400  changed 2994
+  cemetery_side      sky 0.000->0.103  tall px 0->0  changed 49085
+interior-before->interior-after
+  nave               sky 0.000->0.000  tall px 0->0  changed 0
+  nave_up            sky 0.000->0.000  tall px 0->0  changed 0
+  chancel            sky 0.000->0.000  tall px 0->0  changed 0
+  aisle              sky 0.000->0.000  tall px 0->0  changed 0
+  narthex            sky 0.000->0.000  tall px 0->0  changed 0
+  tower_up           sky 0.000->0.000  tall px 0->0  changed 64503
+  portal_avenue      sky 0.000->0.000  tall px 0->0  changed 168237
+  portal_cemetery    sky 0.000->0.000  tall px 0->0  changed 0
+drawn sky seams: none

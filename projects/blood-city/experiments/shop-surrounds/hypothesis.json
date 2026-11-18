@@ -1,0 +1,25 @@
+{
+  "experiment": "shop-surrounds",
+  "written": "2026-11-17, before the first build with the change",
+  "owner_said": "Lit room and named fascias - be creative. ... you can try to check how it looks without something ... what if we add this or remove this, what it will change",
+  "observation": "Rooms behind glass are at the street's own shade (32 and 32; DukCity3 37 and 24, E3M1 32 and 24). The pawnbroker, the apothecary and the rest are named on their own inside walls; one sign in the city is on a street. A facade is one tile from pavement to sky.",
+  "change": "The reveal of each shop window becomes the shop's surround: the street's floor, a ceiling a fascia (0.72 body) over the window's head, the shop's own material (owner-anchored: 105 coffered panelling, 215 pressed metal, 84 wainscot), a pilaster tile on the solid wall between two sashes, the shop's name lettered on the fascia, a chain lamp (owner tile 641) hung in the display with a declared light source.",
+  "ablations": "From the full build, with tools/whatif.py on the built map: (a) unlit: the displays and shops returned to the street's shade and the lamps dropped; (b) unnamed: the fascia letters dropped; (c) unfronted: the surround repainted in the district facade. Each against the full build and the before, same cameras, shown to a blind reviewer unlabelled.",
+  "predictions": {
+    "F1": "Rooms behind glass become at least 8 shade steps brighter than the street floor (median), as in DukCity3 and E3M1.",
+    "F2": "A blind reviewer names what each of the two street shops SELLS or IS from the full build, at 'likely' or better, and cannot from the before.",
+    "F3": "Of the three ablations the reviewer misses the NAME most (ranks 'unnamed' lowest of the three), because it is the only one that removes information.",
+    "F4": "'unlit' is ranked below the full build in the frames that look through glass, and makes no difference in frames at a rake.",
+    "F5": "'unfronted' is ranked below the full build: a surround in the facade's own tile reads as part of the wall.",
+    "F6": "No glazed record gains a step band; no new rule error; deterministic; load oracle; suite."
+  },
+  "controls": {
+    "C1": "street-end and church frames change by fewer than 500 pixels."
+  },
+  "could_be_wrong": [
+    "LightBomb may not light the shop room from a source in the display, or may over-light a 256-deep box to white.",
+    "Pressed metal on a market hall may read as a shutter rather than a fascia.",
+    "At 640x480 the letters on a fascia 0.72 body tall may be too small to read from across the street.",
+    "A hanging lamp 0.97 body long in a display 1.2 bodies tall may hang in front of the mannequins' faces."
+  ]
+}

@@ -126,6 +126,9 @@ TABLE_SIDE = 1024
 
 #: The gap kept between a shelf run and the counter in front of it.
 STAND_CLEAR = 512
+#: The way round the end of a counter too high to step over: a player
+#: width.
+COUNTER_PASS = 1024
 #: How far a fixture stands off its room's own walls.  Not a style choice:
 #: a carve whose edge lies exactly on the room outline produces two
 #: coincident same-direction segments, which the planar compiler refuses --
@@ -220,13 +223,19 @@ def row_cost(units: list[Unit]) -> dict:
 # the object level: templates that place templates
 # ---------------------------------------------------------------------------
 
+def _shelf_id(space) -> str:
+    """A shelf is named by the room it is let into: an id is a tree path."""
+    return f"{space.region_id.split('region:', 1)[-1]}/shelf"
+
+
 def _inset_rect(host_rect, margin: int):
     x0, y0, x1, y1 = (int(v) for v in host_rect)
     return (x0 + margin, y0 + margin, x1 - margin, y1 - margin)
 
 
 def shop(space, *, material, grade: int, host_clear: int, name: str = "fittings",
-         margin: int = 512, connector=None):
+         margin: int = 512, connector=None, back: str | None = None,
+         sells: str = ""):
     """Furnish a retail unit: a shelf run down one side, a counter at the front.
 
     The unit is handed in; everything else is derived from its own rect, so
@@ -242,6 +251,11 @@ def shop(space, *, material, grade: int, host_clear: int, name: str = "fittings"
     A unit too shallow for both gets the shelves and no counter, rather
     than a counter overlapping the shelves.  `STAND_CLEAR` is the gap kept
     between them: half a player width, enough to stand behind the counter.
+
+    `back` names the face with void behind it. Given one, the unit is fitted
+    the way Blood's towns fit a shop (`tools/mine_stands.py`): the stock
+    stands in a shelf let into that wall, not on a run of knee-high blocks
+    in front of it, and the counter is one hip-high wooden piece.
     """
     import citytree
     import props
@@ -264,7 +278,19 @@ def shop(space, *, material, grade: int, host_clear: int, name: str = "fittings"
     # What fits decides what goes in, and a counter wins a shallow unit:
     # a counter is the thing that says "shop" from the doorway, where a
     # shelf run alone reads as storage.
-    if usable >= shelf_d + counter_d + STAND_CLEAR:
+    if back is not None:
+        counter_d = fixtures.BAR.depth
+        face_length = (x1 - x0) if back in ("north", "south") else (y1 - y0)
+        fixtures.shelf_niche(space, _shelf_id(space), back,
+                             width=face_length - 2 * WALL_STANDOFF,
+                             sells=sells)
+        placed = [("counter", counter_d, across - WALL_STANDOFF - counter_d)]
+        #: A hip-high counter cannot be stepped over, so it stops a body's
+        #: width short of one wall. Run wall to wall it made a north-range
+        #: unit a kiosk: a pickup, the arcade's key and a zombie were shut
+        #: behind 8,192 units of wood (a blind reviewer saw "a bald scalp").
+        a1 -= COUNTER_PASS - margin
+    elif usable >= shelf_d + counter_d + STAND_CLEAR:
         placed = [("shelves", shelf_d, WALL_STANDOFF),
                   ("counter", counter_d, across - WALL_STANDOFF - counter_d)]
     elif usable >= counter_d:
@@ -280,9 +306,11 @@ def shop(space, *, material, grade: int, host_clear: int, name: str = "fittings"
         fixtures.run_along(
             f"{space.node_id}_{kind}", space, axis=axis,
             start=a0, end=a1, across0=base, across1=base + depth,
-            family="pedestal" if kind == "shelves" else "counter",
+            family=("pedestal" if kind == "shelves"
+                    else "bar" if back is not None else "counter"),
             material=material, grade=grade, host_clear=host_clear,
-            connector=connector)
+            connector=connector, whole=back is not None,
+            wall_picnum=fixtures.BAR_FACE if back is not None else None)
     # The runs attach to the room; move them into this node so the shop owns
     # its fittings rather than scattering them among the room's children.
     wanted = {f"{space.node_id}_{kind}" for kind, _d, _o in placed}
@@ -603,7 +631,7 @@ def stockroom(space, *, material, grade: int, host_clear: int,
 
 
 def bar(space, *, material, grade: int, host_clear: int, name: str = "fittings",
-        margin: int = 1024, tables: int = 2, connector=None):
+        margin: int = 1024, tables: int = 2, connector=None, shelf=None):
     """Furnish a drinking room: a counter, a back-bar panel run, tables.
 
     The saloon's counter and its two card tables were three literal rects
@@ -619,18 +647,29 @@ def bar(space, *, material, grade: int, host_clear: int, name: str = "fittings",
             f"{space.node_id}: {x1 - x0}x{y1 - y0} is too small for a bar")
     node = citytree.sub(space, name, note="bar fittings (templates.bar)")
 
+    #: One hip-high plank bar, end to end (`fixtures.BAR`). It was four
+    #: knee-high modules with gaps: "bench-like blocks".
     bar_run = fixtures.run_along(
         f"{space.node_id}_bar", space, axis="x", start=x0, end=x1,
-        across0=y0, across1=y0 + fixtures.COUNTER.depth,
-        family="counter", material=material, grade=grade,
-        host_clear=host_clear, connector=connector)
+        across0=y0, across1=y0 + fixtures.BAR.depth,
+        family="bar", material=material, grade=grade,
+        host_clear=host_clear, connector=connector, whole=True,
+        wall_picnum=fixtures.BAR_FACE)
+    #: The liquor: a shelf let into a wall beside the bar, as E1M2's is.
+    if shelf is not None:
+        face, at, width = shelf
+        fixtures.shelf_niche(space, _shelf_id(space), face,
+                             at=at, width=width, sells="liquor")
     # The scale below the fixture: what stands ON the counter.  A bar's own
     # counter is the deliberate case -- `every=True` -- because a bar with
     # nothing on it is the thing being fixed; every other surface in the
     # city goes through `surface.carries` at the campaign's 4.7%.
-    import surface
-    surface.dress_run(bar_run, f"{space.node_id}_candles",
-                      item=surface.CANDLE, every=True)
+    #
+    # It was a flame on every module (`surface.CANDLE`, tile 2101 at repeat
+    # 64): a row of fires along the bar. The survey called them "braziers"
+    # on 2026-11-17 and a blind reviewer the next day "burning bar tables
+    # are absurd". A bar carries bottles and glasses, and `goods.py` now
+    # sets them down from Blood's own town maps, so the flames are gone.
     # Tables down the far half, spaced so a body fits between them.
     step = (x1 - x0) // max(1, tables)
     for index in range(tables):

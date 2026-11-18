@@ -69,7 +69,7 @@ NORTH_BAND = (CONCOURSE[1] - NECK_D, CONCOURSE[1])
 SOUTH_BAND = (CONCOURSE[3], CONCOURSE[3] + NECK_D)
 UNIT_D = 2048
 #: How deep a display box stands in front of its shop.
-WINDOW_PLINTH = 2048
+WINDOW_PLINTH = 4096
 
 #: **The ranges are generated, not drawn.**  They used to be six literal
 #: rectangles on a fixed 3x2 grid at absolute coordinates, so the arcade
@@ -119,6 +119,15 @@ NECKS = [
     (_unit_name(side, unit.index), unit.opening[0], unit.opening[1], side)
     for side, units in RANGES.items() for unit in units
 ]
+
+#: What the two glazed units are, lettered small on their fascias.  A blind
+#: reviewer on the first build: "the mall units sell nothing ... no set has
+#: a sign".  The four that open by a neck are named on their inside walls
+#: (`signage.SIGNS`); these two had no name anywhere.
+#: What each unit sells: its lettering says so, and its shelf is stocked by it.
+SELLS = {"unit_a": "draper", "unit_b": "apothecary", "unit_c": "ironmonger",
+         "unit_d": "clocks", "unit_e": "books", "unit_f": "tobacco"}
+WINDOW_NAMES = {"unit_a": "DRAPER", "unit_d": "CLOCKS"}
 
 #: Glazed display boxes, the E6M1 shopfront: (unit, x0, x1, side, plinth).
 #: One per range, because a mall whose every unit is behind glass has no way
@@ -187,15 +196,34 @@ def build(city, market_st):
 
     # Glazed display boxes: shop on one side, concourse on the other, which
     # is the two-sided wall breakable glass needs.
+    import glass
     for unit, wx0, wx1, side, plinth in WINDOWS:
         y0, y1 = NORTH_BAND if side == "north" else SOUTH_BAND
-        box = make(f"{unit}_window", wx0, y0, wx1, y1, "shop",
-                   UNIT_H - plinth, f"{unit}'s display window",
-                   role="detail", floor_z=GRADE - plinth)
         inner, outer = ("north", "south") if side == "north" else ("south", "north")
+        front = glass.shopfront((wx0, y0, wx1, y1), outer)
+
+        def part(name, rect, note, _plinth=plinth):
+            return make(name, *rect, "shop", UNIT_H - _plinth, note,
+                        role="detail", floor_z=GRADE - _plinth)
+
+        box = part(f"{unit}_window", front["box"], f"{unit}'s display window")
+        reveal = part(f"{unit}_window_reveal", front["reveal"],
+                      f"{unit}'s window surround: riser and fascia")
+        glass.surround(front, name=f"{unit}_window", kind="arcade",
+                       reveal=reveal, box=box, shop=rooms[unit], grade=GRADE,
+                       sill=plinth, box_clear=UNIT_H - plinth,
+                       words=WINDOW_NAMES.get(unit))
+        for index, rect in enumerate(front["sashes"]):
+            sash = part(f"{unit}_window_sash_{index}", rect,
+                        "a sash pocket: the pane hangs at its back")
+            sash.surfaces(wall_picnum=glass.JAMB_TILE)
+            arcade.connect(sash.face(outer), reveal.face(inner),
+                           connection_id=f"connection:{unit}_window_sash_{index}_reveal")
+            arcade.connect(sash.face(inner), box.face(outer),
+                           connection_id=f"connection:{unit}_window_sash_{index}_box")
         arcade.connect(box.face(inner), rooms[unit].face(outer),
                        connection_id=f"connection:{unit}_window_shop")
-        arcade.connect(box.face(outer), rooms["concourse"].face(side),
+        arcade.connect(reveal.face(outer), rooms["concourse"].face(side),
                        connection_id=f"connection:{unit}_window_concourse")
 
     # **The units are furnished by a template, not left empty.**  Six retail
@@ -208,9 +236,13 @@ def build(city, market_st):
     for _side, _units in RANGES.items():
         for _unit in _units:
             _name = _unit_name(_side, _unit.index)
+            #: A unit's back wall is the one away from the concourse, and
+            #: it has void behind it: the stock goes in a shelf there.
             fitted.append(templates.shop(
                 rooms[_name], material=INTERIORS["shop"], grade=GRADE,
-                host_clear=UNIT_H, margin=384))
+                host_clear=UNIT_H, margin=384,
+                back="north" if _side == "north" else "south",
+                sells=SELLS.get(_name, "")))
     rooms["_fitted"] = fitted
 
     # The street entrance: concourse -> door -> porch -> the market street.
@@ -265,7 +297,7 @@ def dress(layout, rooms, attested) -> dict:
                     ((51712, 46592), (51712, 47360)), SERVICE_KEY)
     # And the key itself, in a unit, so the lock is not a wall.
     keysign.item(layout, "key:arcade_eye", rooms["unit_f"].region_id,
-                 SERVICE_KEY, local=(0.15, 0.8))   # clear of the counter
+                 SERVICE_KEY, local=(0.2, 0.3))    # the customer's side
     report["keyed_door"] = "eye"
 
     # E4M9's own ambience, in the concourse and the two ranges.
@@ -280,9 +312,11 @@ def dress(layout, rooms, attested) -> dict:
     # Population and finds, attested as everywhere else.
     for index, (name, type_id, local) in enumerate(
             [("concourse", 202, (0.2, 0.4)), ("concourse", 203, (0.8, 0.6)),
-             ("unit_a", 202, (0.5, 0.4)), ("unit_e", 203, (0.5, 0.85)),
+             ("unit_a", 202, (0.5, 0.4)), ("unit_e", 203, (0.5, 0.3)),
              ("service", 202, (0.5, 0.5)),
-             ("unit_c", 65, (0.4, 0.85)), ("unit_d", 62, (0.5, 0.85)),
+             #: (the customer's side of each counter: behind a hip-high one
+             #: a find is out of reach)
+             ("unit_c", 65, (0.4, 0.2)), ("unit_d", 62, (0.5, 0.3)),
              ("service", 109, (0.3, 0.6))]):
         spec = attested(type_id)
         if spec is None or name not in rooms:

@@ -52,6 +52,8 @@ SUPERMARKET_WINDOWS = (
     (13824, 48128, 15360, 49152),
     (3584, 40960, 10752, 41472),
 )
+#: The side of each the street is on.
+SUPERMARKET_WINDOW_FACES = ("east", "east", "north")
 
 COMPASS = dict(zip(RECT_FACES, range(4)))
 
@@ -295,16 +297,52 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     # Display galleries are separate shallow sectors, so mannequins and window
     # lighting never occupy a sales aisle.  The east strip is split by the
     # entrance; the north strip makes the building read from the side.
-    display_n = room("display_n", 13.5, 40.5, 15.0, 44.0, shop,
-                     "east supermarket window: raised display behind glass",
-                     role="detail")
-    display_s = room("display_s", 13.5, 47.0, 15.0, 48.0, shop,
-                     "east supermarket window: lower display behind glass",
-                     role="detail")
-    display_side = room("display_side", 3.5, 40.0, 10.5, 40.5, shop,
-                        "north side display gallery behind glass", role="detail")
-    for box in (display_n, display_s, display_side):
-        box.surfaces(floor_z=GRADE - 2048, clear_height=ROOM_HEIGHT - 2048)
+    # Each window is a pane in a frame -- reveal, sash pockets, box -- and
+    # none of it is glazed on the facade line; see `glass.shopfront`.
+    import glass
+    window_parts = []
+    fronts = []
+
+    def window(name, rect_pu, outward, note, words=None):
+        front = glass.shopfront([int(v * PU) for v in rect_pu], outward)
+
+        def part(part_name, rect, part_note):
+            made = room(part_name, *(v / PU for v in rect), shop, part_note,
+                        role="detail")
+            made.surfaces(floor_z=GRADE - glass.SILL,
+                          clear_height=ROOM_HEIGHT - glass.SILL)
+            window_parts.append(made)
+            return made
+
+        box = part(name, front["box"], note)
+        reveal = part(f"{name}_reveal", front["reveal"],
+                      "the window's surround: riser, fascia and the name")
+        fronts.append((front, name, reveal, box, words))
+        out, into = front["outward"], front["inward"]
+        for index, rect in enumerate(front["sashes"]):
+            sash = part(f"{name}_sash_{index}", rect,
+                        "a sash pocket: the pane hangs at its back")
+            sash.surfaces(wall_picnum=glass.JAMB_TILE)
+            hall.connect(sash.face(out), reveal.face(into),
+                         connection_id=f"connection:{name}_sash_{index}_reveal")
+            hall.connect(sash.face(into), box.face(out),
+                         connection_id=f"connection:{name}_sash_{index}_box")
+        return box, reveal
+
+    display_n, reveal_n = window(
+        "display_n", (13.5, 40.5, 15.0, 44.0), "east",
+        "east supermarket window: raised display behind glass",
+        words="PROVISIONS")
+    display_s, reveal_s = window(
+        "display_s", (13.5, 47.0, 15.0, 48.0), "east",
+        "east supermarket window: lower display behind glass")
+    display_side, reveal_side = window(
+        "display_side", (3.5, 40.0, 10.5, 40.5), "north",
+        "north side display gallery behind glass", words="MARKET HALL")
+    for front, front_name, reveal, box, words in fronts:
+        glass.surround(front, name=front_name, kind="hall", reveal=reveal,
+                       box=box, shop=sales, grade=GRADE, sill=glass.SILL,
+                       box_clear=ROOM_HEIGHT - glass.SILL, words=words)
     # Two bays wide (2048) with both edges on the 1024 bay grid, so the
     # opening replaces whole painted bays instead of slicing windows in
     # half.  E3M1's modal street opening is one bay; a public hall takes
@@ -334,14 +372,15 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     # leaving the warehouse opening or windows as coincident fake walls.
     hall.connect(stock.face("north"), sales.face("south"),
                  connection_id="connection:supermarket_stock")
-    for tag, box in (("north", display_n), ("south", display_s)):
+    for tag, box, reveal in (("north", display_n, reveal_n),
+                             ("south", display_s, reveal_s)):
         hall.connect(box.face("west"), sales.face("east"),
                      connection_id=f"connection:supermarket_window_{tag}_in")
-        city.connect(box.face("east"), market_st.face("north"),
+        city.connect(reveal.face("east"), market_st.face("north"),
                      connection_id=f"connection:supermarket_window_{tag}_street")
     hall.connect(display_side.face("south"), sales.face("north"),
                  connection_id="connection:supermarket_window_side_in")
-    city.connect(display_side.face("north"), market_st.face("north"),
+    city.connect(reveal_side.face("north"), market_st.face("north"),
                  connection_id="connection:supermarket_window_side_street")
     hall.connect(door.face("west"), sales.face("east", at=0.5,
                                                    width=UNIT_MOUTH),
@@ -376,8 +415,8 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
                                   "staff_door": staff_door}
     built["rooms"] += [sales.region_id, stock.region_id]
     built["interiors"] += [sales.region_id, stock.region_id,
-                           display_n.region_id, display_s.region_id,
-                           display_side.region_id, staff_door.region_id]
+                           staff_door.region_id]
+    built["interiors"] += [made.region_id for made in window_parts]
     return built
 
 

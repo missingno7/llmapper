@@ -154,7 +154,10 @@ def write_art_file(path: str | Path, tiles: dict[int, ArtTile], *, first: int | 
     table = (
         struct.pack(f"<{count}H", *widths)
         + struct.pack(f"<{count}H", *heights)
-        + struct.pack(f"<{count}i", *picanms)
+        #: unsigned, as `read_art_file` hands it back: a picanm whose top bit
+        #: is set (an animation type in the high byte) does not fit a signed
+        #: field, and every Duke ART file has some
+        + struct.pack(f"<{count}I", *(int(v) & 0xFFFFFFFF for v in picanms))
     )
     Path(path).write_bytes(header + table + b"".join(pixels))
 

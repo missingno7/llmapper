@@ -1,0 +1,37 @@
+{
+  "$schema": "llmapper.design-experiment",
+  "schema_version": 1,
+  "id": "church-roofs",
+  "written": "2026-11-17, after the owner's review in NBlood and before any source change; before/ already rendered",
+  "baseline": {
+    "map": "experiments/church-skyline/after/observed.MAP",
+    "sha256": "ebfe5628812e (the church-skyline result)"
+  },
+  "owner_said": "when you put parallax sky low it is covering view like a normal ceiling. For example that exterior wall around church yard could be a normal red sector with some floor height instead of lowering sky.",
+  "observation": [
+    "before/yard_to_tower: from the churchyard the church has NO tower. The tower stands 17.4 bodies tall forty units away and paints no pixel, because the yard's own sky, lowered to 3.9, is drawn over everything above the church's wall.",
+    "before/yard_out_south, yard_out_east_up: inside the yard nothing beyond its wall exists. The market blocks and the avenue's tenements, all 11.6 bodies, are replaced by sky.",
+    "before/avenue_over_wall: from the avenue, the west street's blocks do not show over the yard wall.",
+    "before/avenue_over_church, row_over_church: the nave does not stand behind the low range. This was recorded last round as a limit of the technique; it is a limit of the choice."
+  ],
+  "cause_hypothesis": "A low parallax ceiling is still a ceiling: the renderer paints it from the top of the far wall upward across every column that sector covers, so it occludes like a lid. Lowering the sky to shorten a wall also deletes the world above that wall. The campaign's commoner technique -- 32 of 38 maps draw three or more wall heights, most of them without a sky step -- keeps the sky high and raises the FLOOR: the low thing is a two-sided sector whose floor is its top, and the view passes over it.",
+  "intervention": {
+    "rule": "the sky is never lowered to make something short. Height comes from a raised floor under the common sky. A low sky is kept only where a roofed sector opens onto open ground (the two church doors), where the wall above the door is drawn to the open sector's sky whatever is done; and a sky is RAISED, never lowered, round the one thing taller than the city (the tower).",
+    "changes": [
+      "the churchyard's boundary wall and its mausoleum row become raised-floor sectors 3.1 bodies tall on all four streets; the yard's sky goes back to the city's",
+      "the church gets roof sectors over its interior: a low roof at 3.9 bodies and a pitched nave roof over it (eaves 5.8, ridge 7.0), as their own layers above the interior's",
+      "the tower keeps its tall gabled sky on the street side and gains its fourth, west, face over the roof",
+      "the avenue portal gets a gabled bay over the door; the cemetery door a flat one"
+    ]
+  },
+  "predictions": {
+    "R1_tower_from_the_yard": "tall-sky walls (the tower) paint at least 2000 px in yard_to_tower, where they painted 0",
+    "R2_world_over_the_wall": "sky share falls by at least 0.10 in yard_out_south and in avenue_over_wall, because blocks appear where sky was",
+    "R3_nave_behind_the_range": "sky share falls in avenue_over_church and row_over_church (the nave and tower now stand in it), by at least 0.03 each",
+    "R4_control_interior": "nave, nave_up, chancel, aisle, narthex frames are pixel-identical to the church-skyline result",
+    "R5_low_skies": "sky sectors holding their ceiling under 5 bodies fall from 13 to at most 3 (the door bays)",
+    "R6_gates": "the rule report gains no error; bloodmap.layers reports no error-class finding for the new roof layers; rebuild deterministic",
+    "R7_street_side_kept": "sky share in avenue_front_up stays within 0.10 of the church-skyline result (0.350): the eaves still show"
+  },
+  "what_would_refute": "the tower still absent from the yard; a render fault where a roof sector and the interior under it are seen together; the layer checker refusing the stack"
+}

@@ -1,0 +1,33 @@
+before2: e1495f082445 sectors 327 walls 2084 skyline {'0.0': 16, '5.8': 8, '11.6': 108, '11.7': 3, '13.5': 2, '17.4': 6}
+final2: e4e0d325768a sectors 327 walls 2084 skyline {'0.0': 16, '5.8': 8, '11.6': 108, '11.7': 3, '13.5': 2, '17.4': 6}
+before2->final2
+  pawn_front         sky 0.000->0.000  tall px 0->0  changed 9381
+  pawn_rake          sky 0.024->0.024  tall px 0->0  changed 936
+  pawn_inside        sky 0.000->0.000  tall px 0->0  changed 4526
+  super_east         sky 0.000->0.000  tall px 0->0  changed 965
+  super_east_rake    sky 0.119->0.119  tall px 144->144  changed 5947
+  super_north        sky 0.000->0.000  tall px 0->0  changed 2986
+  super_north_rake   sky 0.048->0.048  tall px 0->0  changed 189
+  super_inside       sky 0.000->0.000  tall px 0->0  changed 0
+  super_south_pane   sky 0.035->0.035  tall px 0->0  changed 4324
+  super_north_far    sky 0.047->0.047  tall px 0->0  changed 393
+  pawn_close         sky 0.021->0.021  tall px 0->0  changed 6540
+  hall_band          sky 0.000->0.000  tall px 0->0  changed 3
+  hall_stock_band    sky 0.000->0.000  tall px 0->0  changed 0
+  mall_north         sky 0.000->0.000  tall px 0->0  changed 1271
+  mall_rake          sky 0.000->0.000  tall px 0->0  changed 1781
+  pawn_to_back       sky 0.000->0.000  tall px 0->0  changed 68
+  pawn_back_rake     sky 0.000->0.000  tall px 0->0  changed 80
+  pawn_back_close    sky 0.000->0.000  tall px 0->0  changed 1458
+  pawn_length        sky 0.000->0.000  tall px 0->0  changed 2260
+  avenue_north_far   sky 0.086->0.086  tall px 5867->5867  changed 861
+  avenue_north_mid   sky 0.061->0.061  tall px 0->0  changed 0
+  avenue_north_near  sky 0.000->0.000  tall px 0->0  changed 0
+  row_west_far       sky 0.100->0.100  tall px 0->0  changed 282
+  row_west_near      sky 0.042->0.042  tall px 0->0  changed 2915
+  market_west_far    sky 0.126->0.126  tall px 0->0  changed 143
+  market_west_near   sky 0.024->0.024  tall px 0->0  changed 129
+  market_east_far    sky 0.048->0.048  tall px 0->0  changed 0
+  market_east_near   sky 0.009->0.009  tall px 0->0  changed 0
+drawn sky seams: none
+interior ceilings leaking into the sky: {'before2': {'super_north_far': 1736, 'pawn_close': 16176}, 'final2': {'super_north_far': 1736, 'pawn_close': 16176}}

@@ -82,12 +82,11 @@ COMPOSITIONS = (
          {"style": wallplane.style("fascia", initial=(1.4, "warning"))}),
         ("caption", "BOX OFFICE", {"style": "label"}),
     )),
-    # Vertical: the campaign stacks letters downward in 11 of its maps, at a
-    # median pitch of 1.25 drawn heights. Four letters at 80 is 0.99 player
-    # heights, which is what the pawn shop's 1.45 of clear wall will take.
-    ("theatre", "pawn_shop", "east", 0.50, 1.38, "pawn_column", (
-        ("caption", "LOANS", {"style": "column_small"}),
-    )),
+    # (The pawn shop's LOANS column used to be composed here, on whichever
+    # of its walls was the longest solid one. The pledge room pierced that
+    # wall and the column moved to the far end of the shop, out of every
+    # view. It is written beside the bars now, by `l3_theatre.populate`,
+    # which knows where the bars are.)
     # Two lines at two heights and two sizes, no painting: the plain case the
     # old one-dimensional spacing could not express at all, because it read
     # any two words on one wall as a conflict.

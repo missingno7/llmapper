@@ -1,0 +1,25 @@
+pledge-room, 2026-11-18 -- what was counted, on which map
+
+before  observed.MAP sha256 ac2094c932c9...  325 sectors / 2074 walls / 517 sprites
+full    (the build the blind reviewer saw)   sha256 3b11a862a416...
+final   observed.MAP sha256 e1495f082445...  327 sectors / 2086 walls
+
+the pawn shop's interior (connected roofed sectors), before -> final
+  sectors            11 -> 13
+  floor heights       5 -> 5      range 0.48 -> 0.48 body
+  ceiling heights     3 -> 4
+  wall tiles         10 -> 13
+  floor shade spread 17 -> 18     (0 before the shop was lit, the day before)
+city medians per interior (interiors-table.md): unchanged by one room
+
+what-if variants of the reviewed build (whatif.json)
+  nobars   2 walls: mask and blocking removed
+  unlit    1 sector and 4 walls at the street's shade, 1 lamp dropped
+  empty    3 sprites dropped
+
+rules        12 errors / 7 warnings, unchanged
+determinism  reviewed build and final build: two builds each, same sha256
+NBlood load  final build: pass. A load test; nobody was moved through it.
+suite        final build: 2276 tests, OK (25 skipped, 4 expected failures)
+blind review one reviewer, five unlabelled sets of four views. The final
+             build (LOANS moved beside the bars) was not reviewed blind.

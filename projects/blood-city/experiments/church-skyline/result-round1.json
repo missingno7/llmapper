@@ -1,0 +1,535 @@
+{
+  "$schema": "llmapper.design-experiment-result",
+  "compare": {
+    "before->after": {
+      "avenue_front": {
+        "changed_px": 140284,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          52026
+        ]
+      },
+      "avenue_front_up": {
+        "changed_px": 216326,
+        "same_pose": true,
+        "sky_share": [
+          0.0089,
+          0.0907
+        ],
+        "tall_wall_px": [
+          0,
+          76765
+        ]
+      },
+      "avenue_north": {
+        "changed_px": 86276,
+        "same_pose": true,
+        "sky_share": [
+          0.0727,
+          0.0769
+        ],
+        "tall_wall_px": [
+          7315,
+          33499
+        ]
+      },
+      "avenue_south": {
+        "changed_px": 81488,
+        "same_pose": true,
+        "sky_share": [
+          0.0583,
+          0.0518
+        ],
+        "tall_wall_px": [
+          0,
+          14985
+        ]
+      },
+      "avenue_south_up": {
+        "changed_px": 124983,
+        "same_pose": true,
+        "sky_share": [
+          0.157,
+          0.1635
+        ],
+        "tall_wall_px": [
+          0,
+          22993
+        ]
+      },
+      "cemetery_side": {
+        "changed_px": 0,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "forecourt": {
+        "changed_px": 82443,
+        "same_pose": true,
+        "sky_share": [
+          0.0377,
+          0.0151
+        ],
+        "tall_wall_px": [
+          687,
+          13371
+        ]
+      },
+      "portal": {
+        "changed_px": 119005,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "row_corner": {
+        "changed_px": 108576,
+        "same_pose": true,
+        "sky_share": [
+          0.0016,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          15868
+        ]
+      },
+      "spawn_north": {
+        "changed_px": 2227,
+        "same_pose": true,
+        "sky_share": [
+          0.1134,
+          0.1102
+        ],
+        "tall_wall_px": [
+          0,
+          2856
+        ]
+      },
+      "tower_foot": {
+        "changed_px": 179723,
+        "same_pose": true,
+        "sky_share": [
+          0.1116,
+          0.1758
+        ],
+        "tall_wall_px": [
+          4454,
+          95441
+        ]
+      },
+      "vista_far": {
+        "changed_px": 11417,
+        "same_pose": true,
+        "sky_share": [
+          0.0566,
+          0.0563
+        ],
+        "tall_wall_px": [
+          0,
+          5756
+        ]
+      }
+    }
+  },
+  "hypothesis_sha256": "da0437a681d9d6c1a11ed2edc29eadf7458bb060fd35b609ea69e45ac01bdd47",
+  "runs": {
+    "after": {
+      "map": "projects\\blood-city\\experiments\\church-skyline\\after\\observed.MAP",
+      "map_sha256": "e91eb78417ee272ae2281cc028e4ba9b5bee3beec6e3f4772aee8e5864b25f0b",
+      "sectors": 263,
+      "skyline": {
+        "by_bodies": {
+          "11.6": 137,
+          "11.7": 3,
+          "15.5": 3,
+          "6.8": 4
+        },
+        "distinct_heights": 4,
+        "tallest": 262144,
+        "tallest_sectors": [
+          56
+        ],
+        "walls": 147
+      },
+      "sprites": 431,
+      "views": {
+        "avenue_front": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 38912,
+            "y": 27136,
+            "z": -7072
+          },
+          "frame_sha256": "18b11383e626e8fced4f43d889b19a202a4836990f7505a756c2f61c73bb0175",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 52026,
+          "upper_steps": []
+        },
+        "avenue_front_up": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 160,
+            "x": 38912,
+            "y": 27136,
+            "z": -7072
+          },
+          "frame_sha256": "7df968973aed3bb8ec2b1cf35318489ef8bad6a5ca02e54960dcec673c497855",
+          "sky_share": 0.0907,
+          "status": "ok",
+          "tall_wall_px": 76765,
+          "upper_steps": []
+        },
+        "avenue_north": {
+          "camera": {
+            "angle": 612,
+            "horiz": 100,
+            "x": 36352,
+            "y": 17408,
+            "z": -7072
+          },
+          "frame_sha256": "039a4dfe0034f2de6777c0b2e6277f3f0aeee8dbe6195189f5b211856c2eb5f4",
+          "sky_share": 0.0769,
+          "status": "ok",
+          "tall_wall_px": 33499,
+          "upper_steps": []
+        },
+        "avenue_south": {
+          "camera": {
+            "angle": 1473,
+            "horiz": 100,
+            "x": 36352,
+            "y": 34304,
+            "z": -7072
+          },
+          "frame_sha256": "483d704ca106556e78fb5ff1100e676df87d339091567b89e7645e18c6b54c8f",
+          "sky_share": 0.0518,
+          "status": "ok",
+          "tall_wall_px": 14985,
+          "upper_steps": []
+        },
+        "avenue_south_up": {
+          "camera": {
+            "angle": 1473,
+            "horiz": 160,
+            "x": 36352,
+            "y": 34304,
+            "z": -7072
+          },
+          "frame_sha256": "5ddf4d48f90ec85f497e51a9154119c110615defd7ac4bde0e58100514e86f8c",
+          "sky_share": 0.1635,
+          "status": "ok",
+          "tall_wall_px": 22993,
+          "upper_steps": []
+        },
+        "cemetery_side": {
+          "camera": {
+            "angle": 1730,
+            "horiz": 160,
+            "x": 24473,
+            "y": 30720,
+            "z": -7072
+          },
+          "frame_sha256": "d3dd3fc7f2beb90fc302a3fb76ff1af0db5c9498ac667a8abb39b7240dc77e62",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "forecourt": {
+          "camera": {
+            "angle": 415,
+            "horiz": 100,
+            "x": 31232,
+            "y": 13824,
+            "z": -7072
+          },
+          "frame_sha256": "2e7ae56192076d89fb494c3c6e5f6e1a12e0f249c3e6d7f3d5fd7e4d5df47e5a",
+          "sky_share": 0.0151,
+          "status": "ok",
+          "tall_wall_px": 13371,
+          "upper_steps": []
+        },
+        "portal": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 37376,
+            "y": 29388,
+            "z": -7072
+          },
+          "frame_sha256": "163693b4b00b7776a6ea43c60af78317158dbdadb7efae40d26a655e1f41d967",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "row_corner": {
+          "camera": {
+            "angle": 313,
+            "horiz": 100,
+            "x": 30720,
+            "y": 18432,
+            "z": -7072
+          },
+          "frame_sha256": "8b4c6f367b8a93db6913cd27fd21b8dab2b70035e664a8c412c761cf0ebc03f4",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 15868,
+          "upper_steps": []
+        },
+        "spawn_north": {
+          "camera": {
+            "angle": 1547,
+            "horiz": 100,
+            "x": 34304,
+            "y": 54272,
+            "z": -7072
+          },
+          "frame_sha256": "bfbfed3e77050b07b7784728ec54c364fdffe53726b3aecfe482b45006a52a41",
+          "sky_share": 0.1102,
+          "status": "ok",
+          "tall_wall_px": 2856,
+          "upper_steps": []
+        },
+        "tower_foot": {
+          "camera": {
+            "angle": 848,
+            "horiz": 160,
+            "x": 37376,
+            "y": 22016,
+            "z": -7072
+          },
+          "frame_sha256": "a994005924045feddae935eb394a083a35b9babee78a60b4255edf9b860aa55c",
+          "sky_share": 0.1758,
+          "status": "ok",
+          "tall_wall_px": 95441,
+          "upper_steps": []
+        },
+        "vista_far": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 36352,
+            "y": 46080,
+            "z": -7072
+          },
+          "frame_sha256": "a9d431d8fc3bfa9dadc3917b4df0fcf1e86c366fd7184fb3e6ced40eb9507576",
+          "sky_share": 0.0563,
+          "status": "ok",
+          "tall_wall_px": 5756,
+          "upper_steps": []
+        }
+      },
+      "walls": 1726
+    },
+    "before": {
+      "map": "projects\\blood-city\\experiments\\church-skyline\\before\\observed.MAP",
+      "map_sha256": "5a1aac2ed778d2918eb9ed3d689cc6e1608f25acad3f780992e71652f644f84f",
+      "sectors": 259,
+      "skyline": {
+        "by_bodies": {
+          "11.6": 138,
+          "11.7": 3
+        },
+        "distinct_heights": 2,
+        "tallest": 198656,
+        "tallest_sectors": [
+          141
+        ],
+        "walls": 141
+      },
+      "sprites": 430,
+      "views": {
+        "avenue_front": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 38912,
+            "y": 27136,
+            "z": -7072
+          },
+          "frame_sha256": "5d2a4d67e2d5e3f81827c9980ea85c003f7d454225bd471651a9f6af753a1d3a",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "avenue_front_up": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 160,
+            "x": 38912,
+            "y": 27136,
+            "z": -7072
+          },
+          "frame_sha256": "31d6b7d65f90b844e081532026b174b3408bcf20f894b8816a3bd2c15efa00d2",
+          "sky_share": 0.0089,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "avenue_north": {
+          "camera": {
+            "angle": 612,
+            "horiz": 100,
+            "x": 36352,
+            "y": 17408,
+            "z": -7072
+          },
+          "frame_sha256": "6947f1c05236eb6717a71b1aeaaa49d1c33c363a588a6f98f4b1e347925adfeb",
+          "sky_share": 0.0727,
+          "status": "ok",
+          "tall_wall_px": 7315,
+          "upper_steps": []
+        },
+        "avenue_south": {
+          "camera": {
+            "angle": 1473,
+            "horiz": 100,
+            "x": 36352,
+            "y": 34304,
+            "z": -7072
+          },
+          "frame_sha256": "b86a57b9745e538f96ecc22898fa9964d275d73ddc6ae39b51ac796555071ec0",
+          "sky_share": 0.0583,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "avenue_south_up": {
+          "camera": {
+            "angle": 1473,
+            "horiz": 160,
+            "x": 36352,
+            "y": 34304,
+            "z": -7072
+          },
+          "frame_sha256": "5f0a3cfed31ee6374737cf4d27b4015f15983c278ae1007b2089b1d723d091b1",
+          "sky_share": 0.157,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "cemetery_side": {
+          "camera": {
+            "angle": 1730,
+            "horiz": 160,
+            "x": 24473,
+            "y": 30720,
+            "z": -7072
+          },
+          "frame_sha256": "d3dd3fc7f2beb90fc302a3fb76ff1af0db5c9498ac667a8abb39b7240dc77e62",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "forecourt": {
+          "camera": {
+            "angle": 415,
+            "horiz": 100,
+            "x": 31232,
+            "y": 13824,
+            "z": -7072
+          },
+          "frame_sha256": "88e52b8b0b82b25b1222ddbe70ee7ac1ab04f57cf8ebf5d61a8ca61a2e55ea94",
+          "sky_share": 0.0377,
+          "status": "ok",
+          "tall_wall_px": 687,
+          "upper_steps": []
+        },
+        "portal": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 37376,
+            "y": 29388,
+            "z": -7072
+          },
+          "frame_sha256": "67405f587e2386a7b662f272c7f88429f76e964d9eaf823c5b0b90dd9361c917",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "row_corner": {
+          "camera": {
+            "angle": 313,
+            "horiz": 100,
+            "x": 30720,
+            "y": 18432,
+            "z": -7072
+          },
+          "frame_sha256": "7c83782da70b59a81f28595940cf6e8466fb3e7963bec8874258e9bc8f48d518",
+          "sky_share": 0.0016,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "spawn_north": {
+          "camera": {
+            "angle": 1547,
+            "horiz": 100,
+            "x": 34304,
+            "y": 54272,
+            "z": -7072
+          },
+          "frame_sha256": "d6865e050238f9fd5882a1c1bbe8816e625700dc1db31bf7a2c3e88dc78ebea1",
+          "sky_share": 0.1134,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "tower_foot": {
+          "camera": {
+            "angle": 848,
+            "horiz": 160,
+            "x": 37376,
+            "y": 22016,
+            "z": -7072
+          },
+          "frame_sha256": "da4cd6de7d4d7a77ade51c221396e3b2811b154fe7350af88ce9b0a5dbcaa154",
+          "sky_share": 0.1116,
+          "status": "ok",
+          "tall_wall_px": 4454,
+          "upper_steps": []
+        },
+        "vista_far": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 36352,
+            "y": 46080,
+            "z": -7072
+          },
+          "frame_sha256": "ae5917aada4b3eb2cf94f479a5b8091d2fd4116ab0d684d95e59dadcad2cc37a",
+          "sky_share": 0.0566,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        }
+      },
+      "walls": 1694
+    }
+  },
+  "schema_version": 1
+}

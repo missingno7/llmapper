@@ -39,11 +39,14 @@ def _road_pieces(disk):
 class TheKerbIsWhatABodyOnTheRoadSees(unittest.TestCase):
     """The owner's acceptance test, as a reading."""
 
-    def test_the_committed_city_shows_a_body_the_house(self):
-        # FAIL-FIRST, and it is not close: of the 74 faces standing up around
-        # blood-city's outdoor sectors, none wears a kerb tile. They wear 380,
-        # 417, 384, 28, 393 and 400 -- facade stone, because the band was a
-        # hole's edge in a street residue and inherited the building.
+    def test_the_city_shows_a_body_on_the_road_a_kerb(self):
+        # This was the FAIL-FIRST: until 2026-11-17 none of the faces
+        # standing up around blood-city's outdoor sectors wore a kerb tile.
+        # They wore 380, 417, 384, 28, 393 and 400 -- facade stone, because
+        # the band was a hole's edge in a street residue and inherited the
+        # building. `streets.lay` now gives every carriageway the owner's
+        # kerb tile on its own record, which is the record a body on the
+        # road sees, so this is the positive fixture it said it would become.
         from bloodmap.street_model import sees_the_kerb
         from bloodmap.texture_frame import sector_index
 
@@ -58,9 +61,14 @@ class TheKerbIsWhatABodyOnTheRoadSees(unittest.TestCase):
             faces += len(view["faces"])
             tiles.update(view["kerb_tiles"])
         self.assertGreater(faces, 50, "nothing to look at")
-        self.assertNotIn(6, tiles,
-                         "if this ever fails the city has been rebuilt and "
-                         "this fixture should become the positive one")
+        self.assertIn(6, tiles)
+        #: and from the carriageways themselves, nothing else
+        road_tiles = set()
+        for sector_id in _road_pieces(disk):
+            if int(disk.sectors[sector_id].fields["ceiling_stat"]) & 1                     and int(disk.sectors[sector_id].fields["floor_z"]) == 10240:
+                road_tiles.update(
+                    sees_the_kerb(disk, sector_id, owners)["kerb_tiles"])
+        self.assertEqual(road_tiles, {6})
 
     def test_the_slice_shows_a_body_the_kerb(self):
         from bloodmap.street_model import sees_the_kerb

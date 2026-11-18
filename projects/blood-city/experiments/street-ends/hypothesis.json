@@ -1,0 +1,24 @@
+{
+  "experiment": "street-ends",
+  "written": "2026-11-17, before any edit to the level source for it",
+  "observation": "Every long view ends in black (survey finding 2; both blind reviewers: 'black void below the skyline'). Measured: the city's edge is 184,320 units of one-sided masonry (417, shade 8-9) drawn to the street's sky, 11.6 bodies, across the far side of a perimeter lane. The avenue is 57,000 units long.",
+  "reference": "E3M1 sector 8 rendered by the same observer (look.py --ref E3M1 --sectors 8): the street ends in a wall about 5.8 bodies tall with red sky filling the gap between the buildings above it. E3M1 s0/s339/s343 are raised masses 3.86-5.80 bodies up; behind each is a sector (s340, s338) with floor = ceiling = grade and a parallax ceiling.",
+  "cause": "A one-sided wall of a parallax sector is drawn to that sector's sky height. Nothing at the city's edge is lower than the sky, so no sky shows at the end of any street, and the wall is too far away to be lit.",
+  "change": "At the perimeter end of the avenue (north), Theatre Row (west) and the market street (west and east): a mass outside the city's edge across the street's mouth, 98,304 (5.8 bodies) up, faced in the district facade, with a zero-height parallax sector behind it.",
+  "predictions": {
+    "V1": "Sky share rises by at least 0.02 in each of the nine `vistas` frames looking at a changed end.",
+    "V2": "In the four `_near` frames the end reads to a blind reviewer as a wall with sky above it, not a black slab; it names what closes the street at 'likely' or better.",
+    "V3": "In the `_far` frames a blind reviewer no longer describes the street's end as black or void.",
+    "V4": "No new rule error; the build is deterministic; NBlood load oracle passes; the suite passes.",
+    "V5": "The zero-height backing sectors paint no surface of their own: no wall, floor or ceiling pixel in any frame is attributed to them except sky."
+  },
+  "controls": {
+    "C1": "The shopfront frames (pawn_front, super_east, mall_north) change by fewer than 500 pixels."
+  },
+  "could_be_wrong": [
+    "At 30,000 units the end wall may still be a black band, only shorter; the gain would then be sky, not a readable wall.",
+    "The observer may treat a zero-height sector differently from NBlood.",
+    "A low wall at the city's edge with nothing behind it may read as the edge of the world rather than as a street's end.",
+    "The campaign's streets are much brighter than ours (E3M1 facades shade -8, road floor shade 8; Gravesend 9 and 30-36). Distance may not be the main cause of the dark."
+  ]
+}

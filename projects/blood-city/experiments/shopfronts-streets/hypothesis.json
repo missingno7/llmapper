@@ -1,0 +1,40 @@
+{
+  "experiment": "shopfronts-streets",
+  "written": "2026-11-17, before any edit to the level source",
+  "owner_said": [
+    "the glass should sit in a aperure/frame so glass texture scaling won't be colliding with facade texture",
+    "we can decorate city more, it feels bit empty, there were roads and sidewalk attempts but it looks poor"
+  ],
+  "observation": {
+    "glass": "All six shop windows are glazed on BOTH faces of their display box: the street-side wall (which also carries the facade's lintel above the pane and the riser below it) and the shop-side wall. A wall record has one x_repeat/y_repeat for its masked middle and its step bands, so the pane's scale (32, 8) is also the facade's scale over that span. Seen in before/pawn_front and before/super_north_rake: the facade above each pane is drawn several times larger than the same tile either side of it. The glass also has no frame: a grey sheet flush in the stonework, 7168 long in one case, on a sill 2048 high.",
+    "streets": "18 runs planned; 3 pieces laid, 11 refused (8 because the run straddles a district seam), 5 lanes. Pavement and carriageway both wear tile 352, so even a laid road differs from its pavement only by a 2048 drop. Six lamp slots in the whole city. Seen in before/avenue_road_level, row_road_level, foundry_road: one cobble floor from wall to wall and nothing standing on it."
+  },
+  "cause": {
+    "glass": "bloodmap.glass.glaze turns every two-sided wall inside the box's rectangle into glass, and the box's outer wall is a facade record.",
+    "streets": "streets.lay clips a carriageway to one district and the main streets are split down their centrelines between two; ROADWAY and the street floor are the same tile."
+  },
+  "change": {
+    "glass": "A reveal: a shallow sector between the street and the display box, with the box's own floor and ceiling. The pane goes on the plane between reveal and box, where neither side has a step band, and nowhere else. The street-side record goes back to the facade. Long windows are divided into bays by piers. Reveal wears the owner's jamb tile (195). Pane x_repeat follows pane length.",
+    "streets": "Seam-straddling runs get two half-carriageways, one per district, either side of a narrow raised centre strip. Pavement wears the owner's stone paving (4), the carriageway cobble (352), the kerb face the owner's kerb tile (6). Lamps on every laid run. Street furniture from a campaign census, owner-anchored tiles only."
+  },
+  "predictions": {
+    "G1": "No wall carrying glass has a step band: for every glazed wall, both sectors have the same floor_z and ceiling_z. Before: 0 of 24. After: all.",
+    "G2": "No glazed wall is a facade record: none has a street sector (parallax ceiling) on either side. Before: 6 street-side. After: 0.",
+    "G3": "bloodmap.glass.panes_without_a_recess reports 0 (it reports 6 or more today).",
+    "G4": "In pawn_front and super_north the facade band above the pane is drawn at the same texture scale as the facade beside the window (read by a blind reviewer as 'continuous' rather than 'stretched' or 'a different material').",
+    "G5": "A blind reviewer names each of the three street shopfronts a shop window, at 'likely' or better, and mentions a frame or recess unprompted in at least two.",
+    "S1": "Laid carriageway pieces rise from 3 to at least 9, and the avenue, Theatre Row and the market street each have one.",
+    "S2": "In avenue_road_level, row_road_level and market_road_level a blind reviewer distinguishes pavement from roadway (today: one surface).",
+    "S3": "Street lamps placed rise from 6 slots to at least 16.",
+    "S4": "No new rule error; the build is deterministic; the NBlood load oracle passes; the full suite passes."
+  },
+  "controls": {
+    "C1": "church_inside frames (nave, chancel) change by fewer than 500 pixels: nothing here touches the church.",
+    "C2": "The mall's concourse floor and the theatre interior are not retiled."
+  },
+  "could_be_wrong": [
+    "A raised centre strip down the avenue may read as a mistake rather than a divider.",
+    "Stone paving wall to wall on the plazas may return the city to 'grey wall to wall', which an earlier phase recorded as a fault.",
+    "A reveal 256 deep may be too shallow to read as depth at 640x480."
+  ]
+}

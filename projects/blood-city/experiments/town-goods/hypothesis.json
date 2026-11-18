@@ -1,0 +1,27 @@
+{
+  "experiment": "town-goods",
+  "written": "2026-11-18, before the first build with the change",
+  "owner_said": "I think you should try to using more variety of assets, check other blood city maps like DWE3M1, E3M1, etc. what they are using for decorations. Looks like you have quite limited set now",
+  "observation": {
+    "measured": "Distinct decoration tiles: Gravesend 38; E6M1 32, E3M1 61, E3M2 87, DWE3M10 91, E1M4 104, E1M2 109, DWE3M1 142. Wall tiles 37 against 38 to 145. 119 decoration tiles are used by two or more of those seven town maps and by Gravesend not at all (tools/mine_city_assets.py).",
+    "read": "Two blind reviewers: 'the pawn's goods say boutique, not pawn'; 'the mall units sell nothing'."
+  },
+  "change": "goods.py: a plan by place, every tile attested in at least two of Blood's town maps and set down with the fields they give it. Bottles and glasses on the saloon's bar and tables; pledges in the pawnbroker's window and behind its bars; a grocer's goods in the market hall's windows; each arcade unit's counter saying what it sells; show bills and a pub sign on the street; notices, papers and bins where people pass; dead trees and brush in the churchyard; banners and candles in the church.",
+  "ablation": "tools/whatif.py: the full build with every sprite of a newly used tile dropped ('bare'), and with only the street's dropped ('indoors only'). Before, bare and full to a blind reviewer, unlabelled.",
+  "predictions": {
+    "A1": "Distinct decoration tiles rise from 38 to at least 75, past E3M1's 61.",
+    "A2": "At least 85% of the planned placements are set down; every refusal is named with its reason.",
+    "A3": "A blind reviewer names what the saloon, the market hall's window, the pawnbroker's window and two arcade units sell or are for, from the full build, at 'likely' or better, citing objects and not lettering; from the before it cannot for at least three of the five.",
+    "A4": "The reviewer does not call any new object out of place, floating, or the wrong size in more than two frames.",
+    "A5": "No new rule error; deterministic; load oracle; suite."
+  },
+  "controls": {
+    "C1": "street-end frames (avenue_north_mid, row_west_near) change by fewer than 500 px."
+  },
+  "could_be_wrong": [
+    "Things placed on a counter by fraction may stand on its edge or in a wall.",
+    "Breakable 'thing' types (416, 417) are blocking: a bottle on a bar is fine, a plant in a doorway is not.",
+    "Tiles are named from their pictures by me; 46 of those used have no owner anchor.",
+    "More objects is not better: the campaign's own city street is nearly bare outdoors."
+  ]
+}

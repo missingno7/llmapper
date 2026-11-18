@@ -811,6 +811,12 @@ SKIP: dict[str, str] = {
     "bloodmap.glass.attach_xwall":
         "the record-writing half of glaze; a pane without it is the defect "
         "pane_faults reports, and the exhibit is glazed through glaze itself",
+    "bloodmap.glass.grille":
+        "OWED, not excused: bars across an opening, first built in "
+        "blood-city's pledge room on 2026-11-18 "
+        "(projects/blood-city/experiments/pledge-room). It writes the same "
+        "records glaze does, less the XWALL, and has a read-back test; the "
+        "stall it wants is a barred cage beside the SHOP WINDOW",
     "bloodmap.glass.holder":
         "declares the pane's two sides as a mediation -- a claim about the "
         "construct, not a thing that stands in a bay",

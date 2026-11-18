@@ -60,6 +60,10 @@ from city_plan import plan
 from facade_pass import BAY as FACADE_BAY, snap_opening
 
 
+#: How far a lamp post keeps from a door: a body and a half each way.
+LAMP_DOOR_CLEAR = 1536
+
+
 def facade_pass_bay() -> int:
     return FACADE_BAY
 from resolution import (
@@ -79,6 +83,9 @@ SEAM_MARKET = (city_plan.Y_MARKST + city_plan.STREET / 2) * PU
 SEAM_AVENUE = (city_plan.X_AVENUE + city_plan.AVENUE / 2) * PU
 CITY_W = city_plan.CITY_W * PU
 CITY_D = city_plan.CITY_D * PU
+
+#: E3M1 s0/s339/s343: the shade of an end wall's face.
+END_WALL_SHADE = -8
 
 DISTRICT_BOUNDS = {
     "theatre_row": (0, 0, SEAM_AVENUE, SEAM_ROW),
@@ -263,6 +270,8 @@ def alley_notch_rect(alley, block_rect):
 
 
 def build():
+    import glass as _glass
+    _glass.FRONTS.clear()
     data = plan()
     city = LevelProgram(
         "gravesend", name="blood-city-skeleton", visibility=800,
@@ -271,7 +280,13 @@ def build():
                     parallax_ceiling=True, floor_z=GRADE,
                     clear_height=STREET_SKY, floor_shade=32, layer="street"),
     )
-    city.declare_layer("street", ceiling_z=GRADE - STREET_SKY, floor_z=16384,
+    import l3_church
+    l3_church.declare_layers(city)
+    # The street's band reaches to the top of the one thing taller than its
+    # sky: St Gallow's tower, whose ring of raised sky stands on the street.
+    city.declare_layer("street",
+                       ceiling_z=GRADE - max(STREET_SKY, l3_church.TOWER_HEIGHT),
+                       floor_z=16384,
                        note="the open city at grade")
     city.declare_layer("sewer", ceiling_z=SEWER_FLOOR - SEWER_CHAMBER_CLEAR,
                        floor_z=SEWER_FLOOR + 4096,
@@ -337,14 +352,20 @@ def build():
         for area in data["areas"]:
             if area["district"] == district and area.get("carved"):
                 ax0, ay0, ax1, ay1 = (v * PU for v in area["rect"])
-                room.carve([(ax0 - bx0, ay0 - by0), (ax1 - bx0, ay0 - by0),
-                            (ax1 - bx0, ay1 - by0), (ax0 - bx0, ay1 - by0)])
+                hole = [(ax0, ay0), (ax1, ay0), (ax1, ay1), (ax0, ay1)]
+                if area["id"] == "cemetery":
+                    # The church's eaves and tower are aprons standing in the
+                    # street's space, so the street gives that ground up too.
+                    import l3_church
+                    hole = l3_church.street_hole((ax0, ay0, ax1, ay1))
+                room.carve([(x - bx0, y - by0) for x, y in hole])
         streets[district] = room
         district_of[district] = assembly
 
 
     # ---- carved areas: the cemetery as a walled, gated ground -------------
     gates = []
+    gate_rects: dict = {}
     grounds = {}
     green_reports = {}
     ctx_greens = {}
@@ -430,6 +451,9 @@ def build():
                 inner_y = fy + wall_units if gate["edge"] == "north" else fy
                 street_span = ((fx, outer_y), (fx + gate_w, outer_y))
                 ground_span = ((fx, inner_y), (fx + gate_w, inner_y))
+            gate_rects.setdefault(area["id"], []).append(
+                (frame.dx, frame.dy, frame.dx + shape[2][0],
+                 frame.dy + shape[2][1], gate_room.region_id))
             gates.append((f"connection:{area['id']}_{name}_street",
                           gate_room.region_id,
                           streets[area["district"]].region_id,
@@ -443,20 +467,12 @@ def build():
     foundry_st = streets["foundry_ward"]
     market_st = streets["market_slip"]
 
-    city.connect(theatre_st.face("south"), oldcross_st.face("north"),
-                 connection_id="connection:seam_row")
-    city.connect(theatre_st.face("east"), foundry_st.face("west"),
-                 connection_id="connection:seam_avenue_north")
-    city.connect(oldcross_st.face("east"), foundry_st.face("west"),
-                 connection_id="connection:seam_avenue_mid")
-    city.connect(oldcross_st.face("south"),
-                 market_st.face("north", at=SEAM_AVENUE / (2 * CITY_W),
-                                width=SEAM_AVENUE),
-                 connection_id="connection:seam_market_west")
-    city.connect(foundry_st.face("south"),
-                 market_st.face("north", at=(SEAM_AVENUE + CITY_W) / (2 * CITY_W),
-                                width=CITY_W - SEAM_AVENUE),
-                 connection_id="connection:seam_market_east")
+    #: THE SEAMS ARE NOT DECLARED HERE ANY MORE.  Five connections used to
+    #: join the four district streets along their whole shared edges.  A
+    #: carriageway that lies on a seam is now notched out of both streets'
+    #: outlines (`streets.lay`), so what two streets share is whatever the
+    #: roads leave, and `streets.lay` -- which runs last and knows -- writes
+    #: one gate per stretch.
 
     # ---- the sewer: directly beneath Foundry Ward --------------------------
     #
@@ -820,7 +836,9 @@ def build():
     # ---- L3: St Gallow's, the mandatory landmark of Old Crossing --------
     import l3_church
     church_rooms = l3_church.build(district_of["old_crossing"], oldcross_st,
-                                   grounds["cemetery"], gates)
+                                   grounds["cemetery"], gates,
+                                   tuple(int(v * PU) for v in areas["cemetery"]["rect"]),
+                                   gate_rects.get("cemetery", ()))
 
     # ---- L3: the Gravesend Arcade (the shopping mall) -------------------
     import l3_mall
@@ -915,6 +933,9 @@ def build():
         "stack_mouths_at_grade": 1,          # the yard grate (the pits are indoors)
         "grate_kerb": 1,                     # its raised stone ring
         "light_pools": len(ctx_pools),
+        # The church's eaves, churchyard wall and tower gables: open ground
+        # at grade, street in everything but the height of its sky.
+        "sky_aprons": len(l3_church.APRONS),
         # Fountain, stalls and boards sit within one max step of the
         # street, so they join its walkable component (and cost no
         # walk-around loop -- the census is at its contract ceiling).
@@ -942,8 +963,34 @@ def build():
     ctx["manifest"]["streets"] = street_anatomy.lay(
         city, data, WIDTH_UNITS, DISTRICT_BOUNDS, streets, district_of,
         grade=GRADE, street_sky=STREET_SKY,
-        blocks_by_district=blocks_by_district, unit=PU)
+        blocks_by_district=blocks_by_district, unit=PU, seam_gates=gates)
     ctx["manifest"]["roadways"] = len(ctx["manifest"]["streets"]["laid"])
+
+    # ---- where the main streets stop ------------------------------------
+    # The avenue, Theatre Row and the market street ran out at the city's
+    # blank perimeter wall, 11.6 bodies of masonry: every long view ended in
+    # a black slab.  E3M1 ends a street in a low wall with the sky behind it
+    # (`streets.end_walls`).  The mouth of each is its run's width, centred
+    # where the run meets the edge.
+    from materials import FACADES as _FACADES
+
+    def _mouth(centre, kind):
+        half = WIDTH_UNITS[kind] // 2
+        return (int(centre - half), int(centre + half))
+
+    ends = [
+        ("the_avenue", "north", *_mouth(SEAM_AVENUE, "avenue")),
+        ("Theatre_Row", "west", *_mouth(SEAM_ROW, "row")),
+        ("market_street_west", "west", *_mouth(SEAM_MARKET, "street")),
+        ("market_street_east", "east", *_mouth(SEAM_MARKET, "street")),
+    ]
+    ctx["manifest"]["street_ends"] = street_anatomy.end_walls(
+        city, ends, streets, district_of, DISTRICT_BOUNDS, gates,
+        grade=GRADE, street_sky=STREET_SKY,
+        facade_of={name: material.wall for name, material in _FACADES.items()},
+        sky_tile=_FACADES["theatre_row"].ceiling)
+    ctx["manifest"]["end_walls"] = sum(
+        2 * len(row["districts"]) for row in ctx["manifest"]["street_ends"])
 
     return city, stack_links, gates, ctx, dressing
 
@@ -995,9 +1042,20 @@ def main() -> int:
     global LAST_BUILD
     program, stack_links, gates, ctx, dressing = build()
     layout = program.compile()
-    for gate_id, region_a, region_b, a1, a2 in gates:
+    for gate in gates:
+        gate_id, region_a, region_b, a1, a2 = gate[:5]
+        # A sixth field states a narrower span on purpose: a roof's edge or a
+        # boundary wall's end is not a doorway and need not admit a body.
         layout.add_connection(gate_id, region_a, region_b, a1=a1, a2=a2,
-                              min_width=1024)
+                              min_width=gate[5] if len(gate) > 5 else 1024)
+    # A roof that is seen over forbids a door beneath it (`bloodmap.skyline`).
+    # Checked on the source, so the fault never reaches a frame.
+    from bloodmap import skyline as _skyline
+    leaks = _skyline.leaks_under_roofs(layout)
+    print("rooms opening under a see-over roof:", leaks or "none")
+    if leaks:
+        raise SystemExit(f"{len(leaks)} room(s) under a see-over roof open "
+                         f"onto the air that sees it: {leaks}")
     for spec in stack_links:
         build_stack_link(layout, spec, SEWER_CITY_D,
                          see_through=spec["see_through"])
@@ -1107,14 +1165,35 @@ def main() -> int:
     # Tile 640 is what DWE3M1 stands in its streets: a lamp fixture that
     # sits ON the ground, 593 instances campaign-wide at height +0.00.
     import lightpools
+    #: A post does not stand in a doorway. A pool laid before a door keeps
+    #: its light and gets no post: at 2.1 bodies the canteen's stood square
+    #: in front of its door.
+    from shapely.geometry import Point as _Pt, Polygon as _Poly
+    _doors = [_Poly(_r.outer) for _r in layout.regions.values()
+              if getattr(_r, "role", "") in ("doorway", "gateway")]
+    ctx["manifest"]["pool_lamps"] = {"posts": 0, "light_only": 0}
     for index, region_id in enumerate(ctx["light_pools"]):
+        _pool = layout.regions[region_id]
+        _cx = sum(p[0] for p in _pool.outer) / len(_pool.outer)
+        _cy = sum(p[1] for p in _pool.outer) / len(_pool.outer)
+        if any(_d.distance(_Pt(_cx, _cy)) < LAMP_DOOR_CLEAR for _d in _doors):
+            layout.add_light_source(
+                f"light:pool_{index}", region_id, x=int(_cx), y=int(_cy),
+                z=int(_pool.floor_z - props.STREET_LAMP_LIGHT * 16960),
+                intensity=lightpools.LAMP_INTENSITY)
+            ctx["manifest"]["pool_lamps"]["light_only"] += 1
+            continue
+        ctx["manifest"]["pool_lamps"]["posts"] += 1
         layout.place_on_floor(f"light:lamp_{index}", region_id,
                               local=(0.5, 0.5),
                               height_player_heights=props.height_of(props.STREET_LAMP),
                               light_intensity=lightpools.LAMP_INTENSITY,
-                              light_height_player_heights=0.5,
+                              light_height_player_heights=props.STREET_LAMP_LIGHT,
                               emits_light=True,
-                              **props.fields(props.STREET_LAMP))
+                              **props.fields(
+                                  props.STREET_LAMP,
+                                  x_repeat=props.STREET_LAMP_REPEAT,
+                                  y_repeat=props.STREET_LAMP_REPEAT))
     # ---- street lamps into the derived slots -----------------------------
     # Wave 1 derived lamp positions from run length and placed nothing in
     # them; the slots were computed, reported and ignored. Same fixture as
@@ -1133,8 +1212,12 @@ def main() -> int:
                  for region_id, district in ctx["street_regions"].items()}
     placed_lamps, skipped_lamps = 0, 0
     for slot in lamp_slots:
-        run = slot["id"].split(":")[0]
-        district = district_of_run.get(run)
+        #: The district the slot STANDS in.  A run on a seam has a pavement
+        #: in each of two districts, and asking the run for its district put
+        #: half its lamps outside the street they were handed to.
+        district = next(
+            (name for name, b in DISTRICT_BOUNDS.items()
+             if b[0] < slot["x"] < b[2] and b[1] < slot["y"] < b[3]), None)
         region_id = street_of.get(district)
         if region_id is None:
             skipped_lamps += 1
@@ -1145,14 +1228,33 @@ def main() -> int:
         if not (0.0 <= local[0] <= 1.0 and 0.0 <= local[1] <= 1.0):
             skipped_lamps += 1
             continue
+        #: ...and not in, or hard against, anything carved out of the
+        #: street: a block, a porch, the church tower's ring, a carriageway.
+        #: `place_on_floor` accepts the point and the compiler refuses the
+        #: map, so the question is asked here.
+        from shapely.geometry import Point, Polygon
+        here = Point(slot["x"], slot["y"])
+        _street = layout.regions[region_id]
+        if (not Polygon(_street.outer).contains(here)
+                or Polygon(_street.outer).exterior.distance(here) < 192
+                or any(Polygon(hole).distance(here) < 192
+                       for hole in _street.holes)
+                #: ...nor before a door (a blind reviewer: "the lamp by the
+                #: door stands almost in the doorway")
+                or any(_d.distance(here) < LAMP_DOOR_CLEAR for _d in _doors)):
+            skipped_lamps += 1
+            continue
         try:
             layout.place_on_floor(
                 f"light:street_lamp:{slot['id'].replace(':', '_')}", region_id,
                 local=local,
                 height_player_heights=props.height_of(props.STREET_LAMP),
                 light_intensity=lightpools.LAMP_INTENSITY,
-                light_height_player_heights=0.5, emits_light=True,
-                **props.fields(props.STREET_LAMP))
+                light_height_player_heights=props.STREET_LAMP_LIGHT,
+                emits_light=True,
+                **props.fields(props.STREET_LAMP,
+                               x_repeat=props.STREET_LAMP_REPEAT,
+                               y_repeat=props.STREET_LAMP_REPEAT))
             placed_lamps += 1
         except Exception:
             skipped_lamps += 1
@@ -1262,6 +1364,11 @@ def main() -> int:
     for region_id, district in ctx["street_regions"].items():
         sign_rooms[f"street:{district}"] = region_id
     print("signage:", signage.write(layout, sign_rooms))
+    # A shop is named on its fascia and lit behind its glass
+    # (`glass.surround`; DukCity and E3M1, `references/dukcity-transfer.md`).
+    import glass as _shopfronts
+    print("fascia names:", _shopfronts.write_names(layout))
+    print("display lamps:", _shopfronts.hang_lamps(layout))
 
     # Named interiors deliberately receive a small, coherent signature set;
     # the generic grime pass remains sparse.  The detail pass chooses only
@@ -1276,6 +1383,18 @@ def main() -> int:
     })
     ctx["manifest"]["venue_details"] = venue_details
     print("venue detail:", venue_details)
+    # AFTER the venues' own detail, so what was composed for a wall keeps
+    # it: run before, two show bills took the Aldermack's board off its
+    # foyer wall.
+    # What stands on the counters, hangs on the walls and is posted in the
+    # street: Blood's own town maps' decoration, set down as they set it
+    # down (`goods.py`; owner, 2026-11-18: "more variety of assets").
+    import goods as _goods
+    _dressed = _goods.dress(layout, ctx["street_regions"], DISTRICT_BOUNDS)
+    ctx["manifest"]["goods"] = _dressed
+    print("goods:", {k: v for k, v in _dressed.items() if k != "refused"})
+    for _line in _dressed["refused"]:
+        print("   goods refused:", _line)
 
     # Goods, on the fixtures that carry any.  The composition chain ends
     # here: retail_row -> shop -> run -> fixture -> goods, and the last
@@ -1324,12 +1443,20 @@ def main() -> int:
                                                 ctx["street_regions"]))
     # Shop glass, after the facade pass so it survives what that painted.
     import glass, l3_theatre, l3_mall, l3_market
-    spans = [(w[3], w[4], w[5], w[6]) for w in l3_theatre.WINDOWS]
+    #: Only the pane's own plane, at the back of each sash pocket.  The
+    #: street-side record of a window is the facade's (owner, 2026-11-17).
+    spans = []
+    for w in l3_theatre.WINDOWS:
+        spans += glass.shopfront((w[3], w[4], w[5], w[6]), w[2])["panes"]
     for _unit, wx0, wx1, side, _plinth in l3_mall.WINDOWS:
         wy0, wy1 = (l3_mall.NORTH_BAND if side == "north"
                     else l3_mall.SOUTH_BAND)
-        spans.append((wx0, wy0, wx1, wy1))
-    spans.extend(l3_market.SUPERMARKET_WINDOWS)
+        spans += glass.shopfront(
+            (wx0, wy0, wx1, wy1),
+            "south" if side == "north" else "north")["panes"]
+    for span, outward in zip(l3_market.SUPERMARKET_WINDOWS,
+                             l3_market.SUPERMARKET_WINDOW_FACES):
+        spans += glass.shopfront(span, outward)["panes"]
     #: ONE RECORD, ONE OWNER. The ledger is shared with the texture-frame
     #: pass below, so a record a pane claims is one the facade's surface frame
     #: will not re-derive. Without it the two passes overwrote each other and
@@ -1339,7 +1466,7 @@ def main() -> int:
 
     records = RecordOwner()
     report = glass.glaze(compiled.level, spans, owner="insert:shop_glass",
-                         records=records)
+                         records=records, fit=True)
     #: E6M1 holds its glass in a 512-deep display recess with a sill 8192 up
     #: and a head 77824 down (s4/s64 against s52), so the facade crosses the
     #: mouth as a lintel band and the street never meets the pane. These spans
@@ -1349,6 +1476,9 @@ def main() -> int:
     #: and is not done (roadmap, P13).
     from bloodmap.glass import panes_without_a_recess
 
+    from bloodmap.glass import grille as _grille
+    print("grilles:", _grille(compiled.level, [l3_theatre.PAWN_GRILLE],
+                              tile=l3_theatre.GRILLE_TILE))
     flush = panes_without_a_recess(compiled.level)
     report["panes_on_the_facade_line"] = len(flush)
     print("shop glass:", report)
@@ -1357,6 +1487,59 @@ def main() -> int:
     import l3_church
     print("church face:", facade_pass.face_landmark(
         compiled.level, l3_church.MASS, INTERIORS["church"].wall))
+    # ...and its roofs and yard wall wear theirs on the side that sees them.
+    from bloodmap import skyline
+    print("church roofs:", skyline.dress_steps(compiled.level, {
+        compiled.allocations[region_id].sector_id: tile
+        for region_id, tile in l3_church.ROOF_FACES.items()
+        if region_id in compiled.allocations}))
+
+    # ...and so does everything else that stands up out of a street: a market
+    # stall, the fountain's rim, the monument's steps.  Each declares its own
+    # wall tile and none of them ever wore it, because the side of a raised
+    # floor is drawn from the record on the LOWER side -- the street's, which
+    # carries the district's facade.  A stall's edge was therefore a slice of
+    # a tenement: the cornice while the facade happened to hang from the top
+    # of its run, the brick base once it stood on its floor.  Roofs are
+    # dressed above; a carriageway is the lower side and wears its own kerb.
+    _street_ids = set(ctx["street_regions"])
+    _stands = {}
+    for _region_id, _region in layout.regions.items():
+        if (_region_id in _street_ids or not _region.parallax_ceiling
+                or _region_id not in compiled.allocations
+                or (getattr(_region, "intent", None) or {}).get("kind")
+                in ("roof", "sky_apron", "roadway", "sky_backing")):
+            continue
+        _stands[compiled.allocations[_region_id].sector_id] = int(
+            _region.wall_picnum)
+    _street_sectors = {compiled.allocations[r].sector_id for r in _street_ids
+                       if r in compiled.allocations}
+    print("standing edges:", skyline.dress_steps(
+        compiled.level, _stands, only_from=_street_sectors))
+    # An end wall's face is LIT and BLOCKING, as E3M1's are: its three street
+    # ends (s0, s339, s343) wear their facade at shade -8, cstat 1, on every
+    # face a road or a pavement sees, against 24 to 34 on the masonry beside
+    # them.  It is the thing at the end of a long view; at the street's own
+    # shade a blind reviewer still saw "an untextured dark block".
+    _ends = {compiled.allocations[_region_id].sector_id
+             for _region_id, _region in layout.regions.items()
+             if (getattr(_region, "intent", None) or {}).get("kind")
+             == "end_wall" and _region_id in compiled.allocations}
+    _lit = 0
+    for _wall in compiled.level.walls:
+        _fields = _wall["fields"]
+        if int(_fields.get("next_sector", -1)) in _ends:
+            _nxt = int(_fields.get("next_wall") or -1)
+            _owner_is_end = False
+            if _nxt >= 0:
+                _owner_is_end = int(compiled.level.walls[_nxt]["fields"].get(
+                    "next_sector", -1)) in _ends
+            if _owner_is_end:
+                continue                       # the join between two masses
+            _fields["shade"] = END_WALL_SHADE
+            _fields["cstat"] = int(_fields["cstat"]) | 1
+            _lit += 1
+    print("end wall faces lit:", _lit)
 
     # Texture alignment.  Blood advances a wall's horizontal texture
     # coordinate by x_repeat*8 along the wall, so a run only continues if
@@ -1397,9 +1580,15 @@ def main() -> int:
         allocation = compiled.allocations.get(region_id)
         if allocation is not None:
             district_walls.update(int(w) for w in allocation.wall_ids)
+    #: ...and every material STANDS ON ITS FLOOR (owner, 2026-11-17: "be
+    #: careful about meaningful texture alignment"). The run's vertical
+    #: origin used to be its first wall's peg, an accident of wall order: the
+    #: market hall wore its dado under the ceiling, and a facade's arched
+    #: ground storey began wherever the run did.
     print("texture frames:", frame_map(compiled.level, art_sizes=art_sizes,
                                        world_phase=district_walls,
-                                       records=records, owner="surface:facade"))
+                                       records=records, owner="surface:facade",
+                                       v_anchor="floor"))
     print("record owners:", records.report())
     # Crate tops start their tile at the crate's own corner. 71% of the
     # campaign's 110 raised crate tops do; this map's eleven did not, so a
@@ -1435,6 +1624,11 @@ def main() -> int:
     print("apertures before:", _before)
     print("lintels:", apertures.continue_lintels(compiled.level,
                                                  compiled.level.to_disk_map()))
+    # AFTER the lintel pass, which takes a sector's solid wall for its
+    # facade: stood before it, one pilaster outvoted two short jambs and the
+    # pawnbroker's whole surround was repainted in the pilaster tile.
+    print("pilasters:", glass.stand_pilasters(compiled.level,
+                                              compiled.allocations))
 
     disk = compiled.level.to_disk_map()
     # Wall sprites, as rectangles on the surfaces they hang from.  This was
@@ -1575,9 +1769,43 @@ def main() -> int:
                for d in sorted(_diags, key=lambda d: (d.severity, d.code))]
     (pathlib.Path(__file__).resolve().parents[1] / "reports" / "rules.md").write_text(
         chr(10).join(_lines), encoding="utf-8")
+    # Does every sprite fit where it was put, as the engine DRAWS it? The
+    # owner found sunk goods, a statue through a shelf's head and letters
+    # written through pictures by walking the map; nothing here could have
+    # said so (`tools/sprite_fit.py`, thresholds from the town maps).
+    from tools import sprite_fit as _fit
+    _lint = _fit.lint(disk)
+    ctx["manifest"]["sprite_fit"] = {
+        "rates": _lint["rates"],
+        **{kind: [{k: row[k] for k in ("sprite", "tile", "sector")
+                   if k in row} for row in _lint[kind]]
+           for kind in ("sunk", "through", "squeezed")},
+        "overlaps": [{"sprites": [o["a"], o["b"]], "tiles": list(o["tiles"]),
+                      "sector": o["sector"]} for o in _lint["overlaps"]]}
+    print("sprite fit:", _lint["rates"], "overlapping pairs:",
+          len(_lint["overlaps"]))
     out_dir = pathlib.Path(__file__).resolve().parent
     write_map(disk, out_dir / "city-skeleton.MAP")
     write_map(disk, out_dir / "blood-city-current.MAP")
+    # What each sector IS, beside the map, so `tools/whatif.py` can make a
+    # variant by name ("the shop displays", "the carriageways") instead of
+    # by a list of sector numbers that changes with every build.
+    import json as _json
+    import glass as _glass_tags
+    _tags: dict = {}
+    for _region_id, _region in layout.regions.items():
+        _kind = (getattr(_region, "intent", None) or {}).get("kind")
+        _allocation = compiled.allocations.get(_region_id)
+        if _kind and _allocation is not None:
+            _tags.setdefault(str(_kind), []).append(_allocation.sector_id)
+    _tags["lit_shop"] = sorted({
+        compiled.allocations[_front["shop"]].sector_id
+        for _front in _glass_tags.FRONTS
+        if _front["lit"] and _front["shop"] in compiled.allocations})
+    for _name in ("city-skeleton", "blood-city-current"):
+        (out_dir / f"{_name}.tags.json").write_text(
+            _json.dumps({k: sorted(v) for k, v in sorted(_tags.items())},
+                        indent=1), "utf-8")
     import json
     (out_dir.parents[0] / "reports" / "build-manifest.json").write_text(
         json.dumps(ctx["manifest"], indent=2), encoding="utf-8")

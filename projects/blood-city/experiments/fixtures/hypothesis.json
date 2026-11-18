@@ -1,0 +1,29 @@
+{
+ "experiment": "fixtures",
+ "written": "2026-11-17, before any edit to the level",
+ "owner_said": "Yes, fixtures (to: shall I build shop and bar fixtures next, so goods stand on shelves?)",
+ "observation": {
+  "read": "Blind reviewer of the dressed town: 'Shops have no fixtures ... shelves and racks with stock on them'; 'the goods are tiny lumps scattered on the floor rather than on shelves'; of the saloon, 'bench-like blocks'.",
+  "measured": "tools/mine_stands.py, seven town maps, indoor standing decoration by what is under it. Fixtures that carry things (25 islands, 33 ledges, 33 niches) stand a median 0.48 body over the floor, top tile 34 on 35 of 91; a niche has its head 0.72 body under the room's and is 0.75 x 2.0 player widths. Share of things on a ledge or in a niche: E3M1 27%, E1M2 31%, E1M4 39%, E3M2 17%. Gravesend: fixtures stand 0.18 body (16 islands), 15% of things on a ledge or niche, and those niches are its shop windows.",
+  "seen": "references/town-fixtures.png: thirteen of those fixtures from the room beside them. A hip-high plank bar; a shelf let into a wall with a row of bottles (E1M2 213, E3M2 82 and 87, E1M4 298); a back ledge with a row along it (DWE3M10 236, 260)."
+ },
+ "change": "fixtures.BAR: one continuous piece at 8192 (0.483 body), top 34, face 28, replacing the gapped 3072 counter modules in the saloon and the six arcade units. fixtures.shelf_niche: a recess in a free wall, floor at 8192, 16384 clear, 384 deep, wood. One in the saloon's east wall by the bar, one in each arcade unit's back wall, in place of the pedestal run. goods.py: a ROW of stock along each niche at one thing per third of a player width, by what the unit sells; clusters along the bar.",
+ "ablation": "tools/whatif.py on the built map: 'bare' (the fixtures, every sprite standing in a niche dropped) against 'full', and against the build before. Unlabelled, to one blind reviewer.",
+ "predictions": {
+  "F1": "The median rise of Gravesend's thing-carrying fixtures goes from 0.18 to at least 0.40 body.",
+  "F2": "The share of indoor standing things on a ledge or in a niche goes from 15% to at least 35%.",
+  "F3": "A blind reviewer, unprompted, uses 'bar' or 'counter' AND 'shelf' or 'shelves' of the saloon and of at least three of four arcade units in the full set, and ranks full over before in at least five of the seven views.",
+  "F4": "Stock is what does it: full ranks over bare in the views with a niche, and the reviewer says so.",
+  "F5": "No new rule error; deterministic; NBlood loads it; suite passes."
+ },
+ "controls": {
+  "C1": "pawn_front and saloon_door (no fixture changed in view) differ by fewer than 500 px."
+ },
+ "could_be_wrong": [
+  "A hip-high bar across an arcade unit's mouth may hide the shelf behind it from the concourse, which is the only place a unit is seen from.",
+  "A niche needs void behind the wall; only the saloon's east and west walls and the units' back walls have it. The pawn shop and the market hall get nothing.",
+  "The riser under a niche and the band over it are drawn by the room's wall record: its material must run on unbroken.",
+  "A row at the campaign's densest pitch may read as a kit again: one bottle forty times.",
+  "0.48 is the median of fixtures that CARRY things, not of counters; fixtures.COUNTER's 3072 is attested in DWE3M10 eight times and is not wrong, only low."
+ ]
+}

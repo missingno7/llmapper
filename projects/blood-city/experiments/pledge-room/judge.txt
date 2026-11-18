@@ -1,0 +1,24 @@
+before: ac2094c932c9 sectors 325 walls 2074 skyline {'0.0': 16, '5.8': 8, '11.6': 108, '11.7': 3, '13.5': 2, '17.4': 6}
+full: 3b11a862a416 sectors 327 walls 2084 skyline {'0.0': 16, '5.8': 8, '11.6': 108, '11.7': 3, '13.5': 2, '17.4': 6}
+before->full
+  pawn_to_back       sky 0.000->0.000  tall px 0->0  changed 127351
+  pawn_back_rake     sky 0.000->0.000  tall px 0->0  changed 131555
+  pawn_back_close    sky 0.000->0.000  tall px 0->0  changed 294702
+  pawn_length        sky 0.000->0.000  tall px 0->0  changed 84372
+  pawn_front         sky 0.000->0.000  tall px 0->0  changed 21461
+  pawn_rake          sky 0.024->0.024  tall px 0->0  changed 147
+  pawn_inside        sky 0.000->0.000  tall px 0->0  changed 16868
+  super_east         sky 0.000->0.000  tall px 0->0  changed 0
+  super_east_rake    sky 0.119->0.119  tall px 144->144  changed 0
+  super_north        sky 0.000->0.000  tall px 0->0  changed 0
+  super_north_rake   sky 0.048->0.048  tall px 0->0  changed 0
+  super_inside       sky 0.000->0.000  tall px 0->0  changed 0
+  super_south_pane   sky 0.035->0.035  tall px 0->0  changed 0
+  super_north_far    sky 0.047->0.047  tall px 0->0  changed 0
+  pawn_close         sky 0.021->0.021  tall px 0->0  changed 20766
+  hall_band          sky 0.000->0.000  tall px 0->0  changed 0
+  hall_stock_band    sky 0.000->0.000  tall px 0->0  changed 0
+  mall_north         sky 0.000->0.000  tall px 0->0  changed 0
+  mall_rake          sky 0.000->0.000  tall px 0->0  changed 0
+drawn sky seams: none
+interior ceilings leaking into the sky: {'before': {'super_north_far': 1736, 'pawn_close': 16176}, 'full': {'super_north_far': 1736, 'pawn_close': 16176}}

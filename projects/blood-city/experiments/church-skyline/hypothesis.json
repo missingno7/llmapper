@@ -1,0 +1,39 @@
+{
+  "$schema": "llmapper.design-experiment",
+  "schema_version": 1,
+  "id": "church-skyline",
+  "written": "2026-11-17, before any source change; the baseline frames in before/ already existed",
+  "baseline": {
+    "map": "projects/blood-city/level/blood-city-current.MAP",
+    "sha256": "5a1aac2ed778d2918eb9ed3d689cc6e1608f25acad3f780992e71652f644f84f",
+    "rebuilt_byte_exact_from_source": true
+  },
+  "observation": [
+    "From every street pose St Gallow's is a blank pale slab 11.6 bodies tall, the same height as every other block (frames before/avenue_front, avenue_south, forecourt).",
+    "Measured: all 34 sky sectors that touch a building hold one ceiling, 196,608 above grade, so every one-sided street wall in the city is drawn to one height.",
+    "The room named 'tower' is 5.8 bodies clear inside a mass whose street wall is 11.6: the tower is shorter than the wall hiding it and no pixel of it reaches a street.",
+    "A viewer not told what the building is has nothing to identify it by: no roofline, no silhouette, no window, a plank door under a strip of tenement brick."
+  ],
+  "why_it_matters": "church-patterns.md makes the church the mandatory landmark and its tower the vista element opposite the Aldermack; handoff.md lists 'no skyline' as open item 5. A landmark that cannot be told from its neighbours gives the avenue no destination.",
+  "cause_hypothesis": "A one-sided wall is drawn from its own sector's floor to its own sector's ceiling. The church's street faces are walls of the district street sector, so they take the district's sky height. Height is not a property of the building at all in this representation.",
+  "intervention": {
+    "technique": "sky apron: a thin strip of open ground against a mass face that carries its own parallax ceiling. The face becomes a wall of the strip and is drawn to the strip's height; the step between two parallax ceilings is not drawn (engine.cpp:4688).",
+    "attested": "E1M1 24, E1M3 66, E3M1 26 portals between sky sectors of unequal ceiling; E3M1's step is 15.4 bodies",
+    "changes": [
+      "body apron 512 wide along the church's avenue and Theatre Row faces, sky 114,688 above grade (6.8 bodies)",
+      "tower: a prism 1536 x 2048 projecting from the avenue face over the interior tower room, with an apron ring whose sky is 262,144 above grade (15.5 bodies)",
+      "interior belfry room inside the prism, joined to the existing tower room, so the tower outside stands where the tower inside is"
+    ],
+    "not_changed": "no other block, no interior room except the tower, nothing west of the church"
+  },
+  "predictions": {
+    "P1_roofline": "sky share of frame rises by at least 0.15 in avenue_front and at least 0.25 in avenue_front_up",
+    "P2_tower_seen": "walls of the tower apron paint at least 300 pixels in each of avenue_south, avenue_north, forecourt, vista_far and tower_foot",
+    "P3_tower_tallest": "the map's tallest sky-lit one-sided wall is a tower wall, and exterior wall heights take 3 distinct values where they took 1",
+    "P4_control_west": "cemetery_side is pixel-identical before and after (nothing west of the church changes)",
+    "P5_control_interior": "the nave, chancel, aisle and narthex frames of the standing 'church' pose set are pixel-identical before and after",
+    "P6_gates": "the build's read-back still agrees on every sentence, the rebuild is deterministic, and the only new rule findings are open-neighbours-share-a-sky on the apron portals",
+    "P7_no_seam": "no wall pixels are painted on the upper step of any apron portal (kind 'upper' on an apron/street wall) in any skyline frame"
+  },
+  "what_would_refute": "a visible seam at the apron edge; the tower hidden from the avenue poses; interior frames changing; a new error-class rule finding other than the predicted one"
+}

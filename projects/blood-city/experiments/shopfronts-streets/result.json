@@ -1,0 +1,2547 @@
+{
+  "$schema": "llmapper.design-experiment-result",
+  "compare": {
+    "before->after": {
+      "aisle_north": {
+        "changed_px": 51604,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "avenue_front": {
+        "changed_px": 150007,
+        "same_pose": true,
+        "sky_share": [
+          0.0936,
+          0.0936
+        ],
+        "tall_wall_px": [
+          44480,
+          44480
+        ]
+      },
+      "avenue_front_up": {
+        "changed_px": 74575,
+        "same_pose": true,
+        "sky_share": [
+          0.3097,
+          0.3097
+        ],
+        "tall_wall_px": [
+          65787,
+          65787
+        ]
+      },
+      "avenue_north": {
+        "changed_px": 175093,
+        "same_pose": false,
+        "sky_share": [
+          0.1302,
+          0.1259
+        ],
+        "tall_wall_px": [
+          34402,
+          33575
+        ]
+      },
+      "avenue_road": {
+        "changed_px": 225990,
+        "same_pose": true,
+        "sky_share": [
+          0.002,
+          0.002
+        ],
+        "tall_wall_px": [
+          1467,
+          1467
+        ]
+      },
+      "avenue_road_level": {
+        "changed_px": 162767,
+        "same_pose": true,
+        "sky_share": [
+          0.1192,
+          0.1193
+        ],
+        "tall_wall_px": [
+          3329,
+          3329
+        ]
+      },
+      "avenue_south": {
+        "changed_px": 212643,
+        "same_pose": false,
+        "sky_share": [
+          0.0789,
+          0.0768
+        ],
+        "tall_wall_px": [
+          6677,
+          6585
+        ]
+      },
+      "avenue_south_up": {
+        "changed_px": 178294,
+        "same_pose": false,
+        "sky_share": [
+          0.2627,
+          0.2577
+        ],
+        "tall_wall_px": [
+          10207,
+          10118
+        ]
+      },
+      "belfry_in": {
+        "changed_px": 0,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "belfry_out": {
+        "changed_px": 66011,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "belfry_up": {
+        "changed_px": 231771,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "cemetery_side": {
+        "changed_px": 123769,
+        "same_pose": true,
+        "sky_share": [
+          0.0974,
+          0.0974
+        ],
+        "tall_wall_px": [
+          23,
+          23
+        ]
+      },
+      "chancel_south": {
+        "changed_px": 126373,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "crossing": {
+        "changed_px": 151854,
+        "same_pose": false,
+        "sky_share": [
+          0.1623,
+          0.1543
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "forecourt": {
+        "changed_px": 157269,
+        "same_pose": true,
+        "sky_share": [
+          0.0838,
+          0.084
+        ],
+        "tall_wall_px": [
+          13948,
+          13948
+        ]
+      },
+      "foundry_road": {
+        "changed_px": 105386,
+        "same_pose": true,
+        "sky_share": [
+          0.0323,
+          0.0323
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "hall_band": {
+        "changed_px": 63626,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "hall_stock_band": {
+        "changed_px": 56004,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "kerb_along": {
+        "changed_px": 201110,
+        "same_pose": false,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          3199,
+          3100
+        ]
+      },
+      "kerb_close": {
+        "changed_px": 210738,
+        "same_pose": false,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "mall_north": {
+        "changed_px": 118455,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "mall_rake": {
+        "changed_px": 132273,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "market_road": {
+        "changed_px": 218250,
+        "same_pose": true,
+        "sky_share": [
+          0.006,
+          0.006
+        ],
+        "tall_wall_px": [
+          118,
+          118
+        ]
+      },
+      "market_road_level": {
+        "changed_px": 148328,
+        "same_pose": true,
+        "sky_share": [
+          0.1589,
+          0.1594
+        ],
+        "tall_wall_px": [
+          463,
+          463
+        ]
+      },
+      "monument_close": {
+        "changed_px": 141088,
+        "same_pose": true,
+        "sky_share": [
+          0.1738,
+          0.1738
+        ],
+        "tall_wall_px": [
+          719,
+          719
+        ]
+      },
+      "monument_read": {
+        "changed_px": 171195,
+        "same_pose": true,
+        "sky_share": [
+          0.1628,
+          0.1628
+        ],
+        "tall_wall_px": [
+          452,
+          452
+        ]
+      },
+      "monument_side": {
+        "changed_px": 108309,
+        "same_pose": true,
+        "sky_share": [
+          0.1433,
+          0.1433
+        ],
+        "tall_wall_px": [
+          819,
+          819
+        ]
+      },
+      "narthex_east": {
+        "changed_px": 0,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "narthex_north": {
+        "changed_px": 35019,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "nave_north": {
+        "changed_px": 63788,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "nave_roof": {
+        "changed_px": 92318,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "pawn_close": {
+        "changed_px": 237850,
+        "same_pose": true,
+        "sky_share": [
+          0.0212,
+          0.0212
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "pawn_front": {
+        "changed_px": 266240,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "pawn_inside": {
+        "changed_px": 136741,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "pawn_rake": {
+        "changed_px": 186445,
+        "same_pose": true,
+        "sky_share": [
+          0.0221,
+          0.0221
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "portal": {
+        "changed_px": 230955,
+        "same_pose": false,
+        "sky_share": [
+          0.0544,
+          0.047
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "row_corner": {
+        "changed_px": 247962,
+        "same_pose": false,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          15869,
+          15442
+        ]
+      },
+      "row_road": {
+        "changed_px": 218096,
+        "same_pose": true,
+        "sky_share": [
+          0.0001,
+          0.0001
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "row_road_level": {
+        "changed_px": 162042,
+        "same_pose": true,
+        "sky_share": [
+          0.0243,
+          0.0243
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "sill_close": {
+        "changed_px": 272893,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "spawn": {
+        "changed_px": 153376,
+        "same_pose": true,
+        "sky_share": [
+          0.2104,
+          0.2104
+        ],
+        "tall_wall_px": [
+          2314,
+          2314
+        ]
+      },
+      "spawn_north": {
+        "changed_px": 137126,
+        "same_pose": true,
+        "sky_share": [
+          0.1792,
+          0.1792
+        ],
+        "tall_wall_px": [
+          938,
+          938
+        ]
+      },
+      "spawn_wide": {
+        "changed_px": 156741,
+        "same_pose": true,
+        "sky_share": [
+          0.2047,
+          0.2047
+        ],
+        "tall_wall_px": [
+          1008,
+          1008
+        ]
+      },
+      "super_east": {
+        "changed_px": 161587,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "super_east_rake": {
+        "changed_px": 118363,
+        "same_pose": true,
+        "sky_share": [
+          0.1182,
+          0.1182
+        ],
+        "tall_wall_px": [
+          144,
+          144
+        ]
+      },
+      "super_inside": {
+        "changed_px": 105712,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "super_north": {
+        "changed_px": 297658,
+        "same_pose": false,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "super_north_far": {
+        "changed_px": 238948,
+        "same_pose": false,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "super_north_rake": {
+        "changed_px": 225004,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "super_south_pane": {
+        "changed_px": 84385,
+        "same_pose": true,
+        "sky_share": [
+          0.0355,
+          0.0355
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "tower_door": {
+        "changed_px": 228270,
+        "same_pose": false,
+        "sky_share": [
+          0.0507,
+          0.0482
+        ],
+        "tall_wall_px": [
+          26006,
+          25247
+        ]
+      },
+      "tower_door_close": {
+        "changed_px": 117901,
+        "same_pose": true,
+        "sky_share": [
+          0.0288,
+          0.0288
+        ],
+        "tall_wall_px": [
+          34278,
+          34278
+        ]
+      },
+      "tower_foot": {
+        "changed_px": 161702,
+        "same_pose": false,
+        "sky_share": [
+          0.3326,
+          0.3266
+        ],
+        "tall_wall_px": [
+          95438,
+          93212
+        ]
+      },
+      "tower_room": {
+        "changed_px": 186877,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "tower_room_back": {
+        "changed_px": 115721,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "vestry": {
+        "changed_px": 0,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "vista_far": {
+        "changed_px": 159935,
+        "same_pose": true,
+        "sky_share": [
+          0.1495,
+          0.1495
+        ],
+        "tall_wall_px": [
+          2184,
+          2184
+        ]
+      },
+      "west_road": {
+        "changed_px": 80348,
+        "same_pose": true,
+        "sky_share": [
+          0.0216,
+          0.0216
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "west_street_on_road": {
+        "changed_px": 113753,
+        "same_pose": true,
+        "sky_share": [
+          0.0603,
+          0.0603
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "hypothesis_sha256": "b993130f267ddb48171f1fd8fd30fd4259c31e11624e9b16bcbe64241ee69123",
+  "runs": {
+    "after": {
+      "map": "projects\\blood-city\\experiments\\shopfronts-streets\\after\\observed.MAP",
+      "map_sha256": "aebfccf19aab7cf18ae77de3b4d278ae5a4b2bcad4ed7f0d35238b9146df247a",
+      "sectors": 309,
+      "skyline": {
+        "by_bodies": {
+          "11.6": 108,
+          "11.7": 3,
+          "13.5": 2,
+          "17.4": 6
+        },
+        "distinct_heights": 4,
+        "lowered_skies": 22,
+        "tallest": 294912,
+        "tallest_sectors": [
+          61,
+          62,
+          63,
+          64,
+          65,
+          66
+        ],
+        "walls": 119
+      },
+      "sprites": 475,
+      "views": {
+        "aisle_north": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 28262,
+            "y": 30720,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "e4ff4d684aa056aad9dd1e20341bf9fcb1303f259707643e061fa4fdb4e98b32",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "avenue_front": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 39219,
+            "y": 27136,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "1a81bca45b3735eed14e1a5f83629b2f6d73e84b7a026dcf6e6317198ca9c740",
+          "sky_share": 0.0936,
+          "status": "ok",
+          "tall_wall_px": 44480,
+          "upper_steps": []
+        },
+        "avenue_front_up": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 160,
+            "x": 39219,
+            "y": 27136,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "fea6c0acd598054939debf7e88016c4a2418f945ef86ef5be26e9c572a715202",
+          "sky_share": 0.3097,
+          "status": "ok",
+          "tall_wall_px": 65787,
+          "upper_steps": []
+        },
+        "avenue_north": {
+          "camera": {
+            "angle": 630,
+            "horiz": 100,
+            "x": 36659,
+            "y": 17612,
+            "z": -5024
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "f159cc85755a4e3560da72293cab59ade3c55ddbbaabe5e4a8e77866f58dd52e",
+          "sky_share": 0.1259,
+          "status": "ok",
+          "tall_wall_px": 33575,
+          "upper_steps": []
+        },
+        "avenue_road": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 40,
+            "x": 36352,
+            "y": 40960,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "fc7035d19d78f27cd50b0218a674fb5b768871b61213a19c26cae588cc7f549d",
+          "sky_share": 0.002,
+          "status": "ok",
+          "tall_wall_px": 1467,
+          "upper_steps": []
+        },
+        "avenue_road_level": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 36352,
+            "y": 40960,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "f569f5073f1ed045e065f7442a26969260ac72ae861351cf3f61d49a5e092d7e",
+          "sky_share": 0.1193,
+          "status": "ok",
+          "tall_wall_px": 3329,
+          "upper_steps": []
+        },
+        "avenue_south": {
+          "camera": {
+            "angle": 1473,
+            "horiz": 100,
+            "x": 36352,
+            "y": 34304,
+            "z": -5024
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "a320279e16dd32fd1b62516b5680b0f3b2c31ca980c4b71aac41b3e29868fbcb",
+          "sky_share": 0.0768,
+          "status": "ok",
+          "tall_wall_px": 6585,
+          "upper_steps": []
+        },
+        "avenue_south_up": {
+          "camera": {
+            "angle": 1473,
+            "horiz": 160,
+            "x": 36352,
+            "y": 34304,
+            "z": -5024
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "38da8b2dcece104736a36cfb331f8ae56d3f8b7e7ec6a3408fa7d9a7ddaaf07c",
+          "sky_share": 0.2577,
+          "status": "ok",
+          "tall_wall_px": 10118,
+          "upper_steps": []
+        },
+        "belfry_in": {
+          "camera": {
+            "angle": 1334,
+            "horiz": 100,
+            "x": 33792,
+            "y": 24166,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "8f5f485a7dc52d89a8bd65ae939f7d08d31c767693894275feee5a84567e78b7",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "belfry_out": {
+          "camera": {
+            "angle": 512,
+            "horiz": 100,
+            "x": 33792,
+            "y": 23552,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "9c512cedd2c951da0dc64f65c6f12625628745ecfd28dea5c5ffc55c4a731e0d",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "belfry_up": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 160,
+            "x": 33792,
+            "y": 23756,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "2e11336be198fd57a1c059af1d49d0b7059f629a5077a40c2fa712d6e47155e4",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "cemetery_side": {
+          "camera": {
+            "angle": 1730,
+            "horiz": 160,
+            "x": 24473,
+            "y": 30720,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "9b21d14b4e1e915fc50ca05c7ad124291ffd5f5151dfcaa45a82f559c223e57a",
+          "sky_share": 0.0974,
+          "status": "ok",
+          "tall_wall_px": 23,
+          "upper_steps": []
+        },
+        "chancel_south": {
+          "camera": {
+            "angle": 512,
+            "horiz": 100,
+            "x": 30105,
+            "y": 23552,
+            "z": -17260
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "8501bbb92004d2ec8291404fa663a56aec101a1402997a16f604a6d3a115f663",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "crossing": {
+          "camera": {
+            "angle": 1033,
+            "horiz": 100,
+            "x": 36044,
+            "y": 38092,
+            "z": -5024
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "8e0fcbcb51c45d191df89a875cf81503964bd8a484445fd7d6f38630e7f17b41",
+          "sky_share": 0.1543,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "forecourt": {
+          "camera": {
+            "angle": 415,
+            "horiz": 100,
+            "x": 31232,
+            "y": 13824,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "c7e67293d4eebd334e99cc655373069267059ee154047bb68f7555f3eddb6581",
+          "sky_share": 0.084,
+          "status": "ok",
+          "tall_wall_px": 13948,
+          "upper_steps": []
+        },
+        "foundry_road": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 56832,
+            "y": 30720,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "d0e49be6ddd30cf0705b1e601e5cefa43245009cd9a87f060e2a8780cec446f3",
+          "sky_share": 0.0323,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "hall_band": {
+          "camera": {
+            "angle": 1877,
+            "horiz": 160,
+            "x": 7782,
+            "y": 47308,
+            "z": -26624
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "2b53252043e334ed30488ee1f843682adf84b49b297b6d040d5ac228e38697d6",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "hall_stock_band": {
+          "camera": {
+            "angle": 512,
+            "horiz": 160,
+            "x": 8192,
+            "y": 45056,
+            "z": -26624
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "ac952606c87af43bc79c83d881117fa2ffde2bf52d0988fb9dc5ecda009d2002",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "kerb_along": {
+          "camera": {
+            "angle": 1549,
+            "horiz": 40,
+            "x": 36454,
+            "y": 34816,
+            "z": -5024
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "cf7b50adbc7d9892bfde2d5160a5ac6181deaacc203c72b62e48a646f4d19d42",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 3100,
+          "upper_steps": []
+        },
+        "kerb_close": {
+          "camera": {
+            "angle": 163,
+            "horiz": 40,
+            "x": 36044,
+            "y": 30720,
+            "z": -5024
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "c1e9ae48eb065ff5b97acaa69a07409ae19c1e9657bafb1acfa93037dadacb38",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "mall_north": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 43417,
+            "y": 47513,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "9ce86625bb3503dbe94002294e41b2b90b1b671f65670fd249362797ad50190f",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "mall_rake": {
+          "camera": {
+            "angle": 1853,
+            "horiz": 100,
+            "x": 41369,
+            "y": 47104,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "3c8ed770e49fb065c68e90300fcd97a5005f5afbfbf930709652c1707c37b344",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "market_road": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 40,
+            "x": 17920,
+            "y": 53248,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "d4cfd92a5c945a82175def6d88282fa27ed332745fa0b053c65eec94086732c6",
+          "sky_share": 0.006,
+          "status": "ok",
+          "tall_wall_px": 118,
+          "upper_steps": []
+        },
+        "market_road_level": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 17920,
+            "y": 53248,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "4025e33a3138c0225c5b2b004c43b94f0d4dfe2a484c302fddceb55b5e2795b4",
+          "sky_share": 0.1594,
+          "status": "ok",
+          "tall_wall_px": 463,
+          "upper_steps": []
+        },
+        "monument_close": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 26624,
+            "y": 49664,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "0300bde967414f60ceecd8352c8c1342d265f35a0d86ed2a18085515309c8bd7",
+          "sky_share": 0.1738,
+          "status": "ok",
+          "tall_wall_px": 719,
+          "upper_steps": []
+        },
+        "monument_read": {
+          "camera": {
+            "angle": 1326,
+            "horiz": 100,
+            "x": 29696,
+            "y": 50176,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "1e7163538ee1c30a128e2e59563a736617a85e8bc775f2d43cf869c28c5eeb9b",
+          "sky_share": 0.1628,
+          "status": "ok",
+          "tall_wall_px": 452,
+          "upper_steps": []
+        },
+        "monument_side": {
+          "camera": {
+            "angle": 1822,
+            "horiz": 100,
+            "x": 23552,
+            "y": 48640,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "96b04b3272fcbadf3aa14cc2d74a9ae9ebe73b61e4dd02272a4b4dfd46998ab6",
+          "sky_share": 0.1433,
+          "status": "ok",
+          "tall_wall_px": 819,
+          "upper_steps": []
+        },
+        "narthex_east": {
+          "camera": {
+            "angle": 0,
+            "horiz": 100,
+            "x": 31744,
+            "y": 29388,
+            "z": -11168
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "014dab7547aef39f4baebf3d252eb6dbd8e0a5bf3478abd887c5bd5036057bfa",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "narthex_north": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 32153,
+            "y": 30003,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "fe28dc7edf37517dc5b1ea8da400235437d4cc8eae7cb6716ab791467cf50057",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "nave_north": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 30105,
+            "y": 30515,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "a5146e528184ea15da4e7d00a1a67c252dfd0e7459e4cace8d527de091bc2605",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "nave_roof": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 160,
+            "x": 29696,
+            "y": 30617,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "ecb4d1478ee4f39eed8f65dea8d51152e48790e7f10023f5b116937da697e63a",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "pawn_close": {
+          "camera": {
+            "angle": 169,
+            "horiz": 100,
+            "x": 28876,
+            "y": 2457,
+            "z": -7072
+          },
+          "ceiling_leak_px": 21137,
+          "frame_sha256": "19be91504bdd37e7eecd3ebe97a9667064ea81d8b9ca79ee8816394ad93a4d03",
+          "sky_share": 0.0212,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "pawn_front": {
+          "camera": {
+            "angle": 512,
+            "horiz": 100,
+            "x": 30412,
+            "y": 1638,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "3e409453640e79d251d25b7fc1d15e5338fa9786aee9355f86b91b3ef301b6a9",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "pawn_inside": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 30412,
+            "y": 5734,
+            "z": -4096
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "d91ef91f9b73a09bac28c388a0c4a5d7b2b725529651531bada48d6e6a62c3db",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "pawn_rake": {
+          "camera": {
+            "angle": 87,
+            "horiz": 100,
+            "x": 26112,
+            "y": 2048,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "903a8a7aeae0ef55711f7188cdf252e71eb74f5ae924bfaede1dec4935235058",
+          "sky_share": 0.0221,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "portal": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 37376,
+            "y": 29388,
+            "z": -5024
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "860a4ae7ec8b7e269039e772fe2623cb16319deafeb31c75305b8cbb221f2329",
+          "sky_share": 0.047,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "row_corner": {
+          "camera": {
+            "angle": 313,
+            "horiz": 100,
+            "x": 30720,
+            "y": 18432,
+            "z": -5024
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "a8e3177eb0864897061670b200baa729544ac72fe5f6dbb4a9afce012c2601b5",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 15442,
+          "upper_steps": []
+        },
+        "row_road": {
+          "camera": {
+            "angle": 0,
+            "horiz": 40,
+            "x": 22528,
+            "y": 1843,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "9d0f98a499d3aa02e885dfbe8c61ad2d5e862edbb60f59e49ab50c1b77d88a89",
+          "sky_share": 0.0001,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "row_road_level": {
+          "camera": {
+            "angle": 0,
+            "horiz": 100,
+            "x": 22528,
+            "y": 1843,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "713f1e34f4b6efc78bc03a9a160b6c85dde82a5e43f546877207f9b8b0bd5920",
+          "sky_share": 0.0243,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "sill_close": {
+          "camera": {
+            "angle": 1187,
+            "horiz": 40,
+            "x": 16793,
+            "y": 44032,
+            "z": -10144
+          },
+          "ceiling_leak_px": 4552,
+          "frame_sha256": "e00e0af32c0a0c8fca15aaaec05d646b23c2cde53583ba71474da2b07799420e",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "spawn": {
+          "camera": {
+            "angle": 1291,
+            "horiz": 100,
+            "x": 34304,
+            "y": 54272,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "77c704363d89ae9b482bc5eb2f89f3c9510380f3ac75702a3cb8ab0903ce517b",
+          "sky_share": 0.2104,
+          "status": "ok",
+          "tall_wall_px": 2314,
+          "upper_steps": []
+        },
+        "spawn_north": {
+          "camera": {
+            "angle": 1547,
+            "horiz": 100,
+            "x": 34304,
+            "y": 54272,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "7c19b00f625a79b371e0b7ab29d12395145f7a674c59debb0688f82aa05b3675",
+          "sky_share": 0.1792,
+          "status": "ok",
+          "tall_wall_px": 938,
+          "upper_steps": []
+        },
+        "spawn_wide": {
+          "camera": {
+            "angle": 1415,
+            "horiz": 100,
+            "x": 34304,
+            "y": 54272,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "8509db5532847979709ba471e51f7ccf3e42dcc2d4b44a7ccbd905e4216dea15",
+          "sky_share": 0.2047,
+          "status": "ok",
+          "tall_wall_px": 1008,
+          "upper_steps": []
+        },
+        "super_east": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 18636,
+            "y": 44339,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "009ec007de2964e2f5f0005ba11582e7091781610f3c984461a5fbcd2a4917f7",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "super_east_rake": {
+          "camera": {
+            "angle": 1448,
+            "horiz": 100,
+            "x": 17612,
+            "y": 51712,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "e598c4677527306f64976f1c30c1f1a1a03def9541c163283e793ca34514516f",
+          "sky_share": 0.1182,
+          "status": "ok",
+          "tall_wall_px": 144,
+          "upper_steps": []
+        },
+        "super_inside": {
+          "camera": {
+            "angle": 0,
+            "horiz": 100,
+            "x": 11776,
+            "y": 44339,
+            "z": -32768
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "780dcc07b19b80aec021a0f7edbd1f21c16a3aef9de30cfd713c664f22617ce9",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "super_north": {
+          "camera": {
+            "angle": 512,
+            "horiz": 100,
+            "x": 7372,
+            "y": 39116,
+            "z": -5024
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "e7d3433caf661ea3981df791d48a4a962577f9393c92c04008a4af075163eb12",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "super_north_far": {
+          "camera": {
+            "angle": 886,
+            "horiz": 100,
+            "x": 12902,
+            "y": 39628,
+            "z": -5024
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "47a6fb1674b5418bbe78e12b7cea8679779f349c1a60276bfe931e25d2f0662c",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "super_north_rake": {
+          "camera": {
+            "angle": 935,
+            "horiz": 100,
+            "x": 13312,
+            "y": 40550,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "8df61f201eeda0b788664e08e52c1994c4c640c94573851b520b1b3ce1c4c8aa",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "super_south_pane": {
+          "camera": {
+            "angle": 1310,
+            "horiz": 100,
+            "x": 17203,
+            "y": 51609,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "0dd185e941ad7df77c457b8d922413b59b5db020ae66c206201399e835ae6ec7",
+          "sky_share": 0.0355,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "tower_door": {
+          "camera": {
+            "angle": 1352,
+            "horiz": 100,
+            "x": 36044,
+            "y": 27852,
+            "z": -5024
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "03715bd2c6f110e4e5e21a028796a9d29406998119b0691284017d664705d116",
+          "sky_share": 0.0482,
+          "status": "ok",
+          "tall_wall_px": 25247,
+          "upper_steps": []
+        },
+        "tower_door_close": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 34201,
+            "y": 26214,
+            "z": -7072
+          },
+          "ceiling_leak_px": 1515,
+          "frame_sha256": "000519ae5e631ef88b53fc827c1fd9ea9caf11b7fe1b461e085bd80ab8c4d441",
+          "sky_share": 0.0288,
+          "status": "ok",
+          "tall_wall_px": 34278,
+          "upper_steps": []
+        },
+        "tower_foot": {
+          "camera": {
+            "angle": 848,
+            "horiz": 160,
+            "x": 37376,
+            "y": 22016,
+            "z": -5024
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "d2b14503697ccd0dcfef649efc25656847aa0109ddcf3ef7ecf22ac3df74cb62",
+          "sky_share": 0.3266,
+          "status": "ok",
+          "tall_wall_px": 93212,
+          "upper_steps": []
+        },
+        "tower_room": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 32358,
+            "y": 23859,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "be9ffaa7939b90bb13ae98611e10817229380b714390a70c0baa02d1d4b23c0a",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "tower_room_back": {
+          "camera": {
+            "angle": 0,
+            "horiz": 100,
+            "x": 31744,
+            "y": 23859,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "12fed6ad09d625d16f9928cbd8f82ad976f6e2b99425ded75ecd8d154ebbc02a",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "vestry": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 32153,
+            "y": 25804,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "54966d574e6e8c619d2820565c944f63609a181e0082958236349904e43d8188",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "vista_far": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 36352,
+            "y": 46080,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "9a1136f2686982b40be7d7341434e4b83fe9abeba0ee231e58b104b04f92cd2b",
+          "sky_share": 0.1495,
+          "status": "ok",
+          "tall_wall_px": 2184,
+          "upper_steps": []
+        },
+        "west_road": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 2048,
+            "y": 30720,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "40cc68d4f3b441173d75145eee772572aeaf229ca5d60200cb173d9b0799a3c7",
+          "sky_share": 0.0216,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "west_street_on_road": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 18432,
+            "y": 36864,
+            "z": -5024
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "0d461215844c9ce2e8b2fb34826d0c66211e125b8381c4fff49e11017fa2b45e",
+          "sky_share": 0.0603,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        }
+      },
+      "walls": 2002
+    },
+    "before": {
+      "map": "projects\\blood-city\\experiments\\shopfronts-streets\\before\\observed.MAP",
+      "map_sha256": "64e14cf05d4a8a6c6994bcaccd96a1c130aebb928f1f496a4921b3c84c36333b",
+      "sectors": 274,
+      "skyline": {
+        "by_bodies": {
+          "11.6": 108,
+          "11.7": 3,
+          "13.5": 2,
+          "17.4": 6
+        },
+        "distinct_heights": 4,
+        "lowered_skies": 3,
+        "tallest": 294912,
+        "tallest_sectors": [
+          55,
+          56,
+          57,
+          58,
+          59,
+          60
+        ],
+        "walls": 119
+      },
+      "sprites": 447,
+      "views": {
+        "aisle_north": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 28262,
+            "y": 30720,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "6c604b7ccd8b8db48281b1564ba3446cfb57494cc53b2886fb7bcfcd22a1cb3e",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "avenue_front": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 39219,
+            "y": 27136,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "de700d6245ea12415b4945e1a16598ab54c647e99657daea9968207125a3f8c9",
+          "sky_share": 0.0936,
+          "status": "ok",
+          "tall_wall_px": 44480,
+          "upper_steps": []
+        },
+        "avenue_front_up": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 160,
+            "x": 39219,
+            "y": 27136,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "3815afe0a3de6adbf59e060759712fa29d775277cfed6f057628079d86cf109c",
+          "sky_share": 0.3097,
+          "status": "ok",
+          "tall_wall_px": 65787,
+          "upper_steps": []
+        },
+        "avenue_north": {
+          "camera": {
+            "angle": 630,
+            "horiz": 100,
+            "x": 36659,
+            "y": 17612,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "139f30a7d8184a763a65dd539a046f168d9b16c9448614a837b9f40ec621ba50",
+          "sky_share": 0.1302,
+          "status": "ok",
+          "tall_wall_px": 34402,
+          "upper_steps": []
+        },
+        "avenue_road": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 40,
+            "x": 36352,
+            "y": 40960,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "03fa077e70e68faaf4fb6865d3de8425139c48e7ae5d72060b6c49f9c265fbec",
+          "sky_share": 0.002,
+          "status": "ok",
+          "tall_wall_px": 1467,
+          "upper_steps": []
+        },
+        "avenue_road_level": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 36352,
+            "y": 40960,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "d25857e1ea1c52503ffd5533359ff9f41362774766e4bc10a20f538ad9daca97",
+          "sky_share": 0.1192,
+          "status": "ok",
+          "tall_wall_px": 3329,
+          "upper_steps": []
+        },
+        "avenue_south": {
+          "camera": {
+            "angle": 1473,
+            "horiz": 100,
+            "x": 36352,
+            "y": 34304,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "56f735df193faf682a855366e3809497f75b361c91cb8797981a87f62a5c37e3",
+          "sky_share": 0.0789,
+          "status": "ok",
+          "tall_wall_px": 6677,
+          "upper_steps": []
+        },
+        "avenue_south_up": {
+          "camera": {
+            "angle": 1473,
+            "horiz": 160,
+            "x": 36352,
+            "y": 34304,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "60f4f88b88fd2bd471ad9cf6799dfcc87f378e8473b23a8f7bc69302fa424a16",
+          "sky_share": 0.2627,
+          "status": "ok",
+          "tall_wall_px": 10207,
+          "upper_steps": []
+        },
+        "belfry_in": {
+          "camera": {
+            "angle": 1334,
+            "horiz": 100,
+            "x": 33792,
+            "y": 24166,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "8f5f485a7dc52d89a8bd65ae939f7d08d31c767693894275feee5a84567e78b7",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "belfry_out": {
+          "camera": {
+            "angle": 512,
+            "horiz": 100,
+            "x": 33792,
+            "y": 23552,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "498e4f3220076502958b53c9a8d5baa3b631390aaa2e0299f652336a322866c3",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "belfry_up": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 160,
+            "x": 33792,
+            "y": 23756,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "4722d6970ae38326eb22308fe27f2865f950281968e59083aa1e275e8f5de385",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "cemetery_side": {
+          "camera": {
+            "angle": 1730,
+            "horiz": 160,
+            "x": 24473,
+            "y": 30720,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "0359ad7ce011fe88ae6c39f1aad90fbf020e7ecbd4ad35bdf501e29ac2b546b4",
+          "sky_share": 0.0974,
+          "status": "ok",
+          "tall_wall_px": 23,
+          "upper_steps": []
+        },
+        "chancel_south": {
+          "camera": {
+            "angle": 512,
+            "horiz": 100,
+            "x": 30105,
+            "y": 23552,
+            "z": -17260
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "fdf908360d9e79bda872d66ff4de04c9ae3b5b8fd13ec6f7b0c9a54e9f2249ef",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "crossing": {
+          "camera": {
+            "angle": 1033,
+            "horiz": 100,
+            "x": 36044,
+            "y": 38092,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "ac8bcfbff034bf3c58a22db2d257099336e41bc8be124c82b7dcd4707b6311a7",
+          "sky_share": 0.1623,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "forecourt": {
+          "camera": {
+            "angle": 415,
+            "horiz": 100,
+            "x": 31232,
+            "y": 13824,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "b084b9eaf678e75acf872a74163e561f96872b282703f03c4cfde2233feba55c",
+          "sky_share": 0.0838,
+          "status": "ok",
+          "tall_wall_px": 13948,
+          "upper_steps": []
+        },
+        "foundry_road": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 56832,
+            "y": 30720,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "69af53b3a1b7409018ec53252e2169ce4aad8ea479fae4ec31100e8bb459e203",
+          "sky_share": 0.0323,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "hall_band": {
+          "camera": {
+            "angle": 1877,
+            "horiz": 160,
+            "x": 7782,
+            "y": 47308,
+            "z": -26624
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "91f233f888cd093ee28010c79130933bcf468e4652d80f2069fd359782ddd7cd",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "hall_stock_band": {
+          "camera": {
+            "angle": 512,
+            "horiz": 160,
+            "x": 8192,
+            "y": 45056,
+            "z": -26624
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "28d9f58dbb16a455cee5599de81f910efb0bf3e25d66e71f72c7d61186050063",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "kerb_along": {
+          "camera": {
+            "angle": 1549,
+            "horiz": 40,
+            "x": 36454,
+            "y": 34816,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "505a8c4dce23934b7123a7d3f106015a47f3e0f80bc7d2c7be04ae7c8df2d393",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 3199,
+          "upper_steps": []
+        },
+        "kerb_close": {
+          "camera": {
+            "angle": 163,
+            "horiz": 40,
+            "x": 36044,
+            "y": 30720,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "92610ff5c8769cfe48c4ddb03aaeb505acbc32e6eaffd87362d77715798a7719",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "mall_north": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 43417,
+            "y": 47513,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "98a9c9bea011de1ef6845438e18df63bbed54c8d8983ec5306cdd5e3d0c1d292",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "mall_rake": {
+          "camera": {
+            "angle": 1853,
+            "horiz": 100,
+            "x": 41369,
+            "y": 47104,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "4a31cda2d34461b4e5a72ec538a72c97bf1d00de4f55f3d88a9887a16e681ad6",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "market_road": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 40,
+            "x": 17920,
+            "y": 53248,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "eafd4a48bc53a7db0f30b7d57138b23cff7f2b1a4f156abf42f1447755af8edb",
+          "sky_share": 0.006,
+          "status": "ok",
+          "tall_wall_px": 118,
+          "upper_steps": []
+        },
+        "market_road_level": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 17920,
+            "y": 53248,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "951af97fc76e6c79501f5f6e8009acb5bd6699932c0519ac9b2aa9d01f35f474",
+          "sky_share": 0.1589,
+          "status": "ok",
+          "tall_wall_px": 463,
+          "upper_steps": []
+        },
+        "monument_close": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 26624,
+            "y": 49664,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "53e24f8d502d9c7b56c3ee29a3d35ff2fe2c63513f5ecfb01517ed7bc2681d1d",
+          "sky_share": 0.1738,
+          "status": "ok",
+          "tall_wall_px": 719,
+          "upper_steps": []
+        },
+        "monument_read": {
+          "camera": {
+            "angle": 1326,
+            "horiz": 100,
+            "x": 29696,
+            "y": 50176,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "e59f476baf9ed6a7b1cd54a8165556763da51f0191fa78ab8861d87cbda43475",
+          "sky_share": 0.1628,
+          "status": "ok",
+          "tall_wall_px": 452,
+          "upper_steps": []
+        },
+        "monument_side": {
+          "camera": {
+            "angle": 1822,
+            "horiz": 100,
+            "x": 23552,
+            "y": 48640,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "290f78a3d154df6a8c92b549a02c5a4455dd5a02966e7b1018fc27c6c3768a45",
+          "sky_share": 0.1433,
+          "status": "ok",
+          "tall_wall_px": 819,
+          "upper_steps": []
+        },
+        "narthex_east": {
+          "camera": {
+            "angle": 0,
+            "horiz": 100,
+            "x": 31744,
+            "y": 29388,
+            "z": -11168
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "014dab7547aef39f4baebf3d252eb6dbd8e0a5bf3478abd887c5bd5036057bfa",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "narthex_north": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 32153,
+            "y": 30003,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "d9f75081f705cf78af29654633f3ddfe13dfd89585cb314210747d0b72f4ca52",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "nave_north": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 30105,
+            "y": 30515,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "5183c814785eabb25e326fbd59871d23bb548c7d91e373110685c609745474c6",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "nave_roof": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 160,
+            "x": 29696,
+            "y": 30617,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "0af08389ac0a241e8fd12414d24667daba0cfbcefc5d19e3632aaa3518b8e800",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "pawn_close": {
+          "camera": {
+            "angle": 169,
+            "horiz": 100,
+            "x": 28876,
+            "y": 2457,
+            "z": -7072
+          },
+          "ceiling_leak_px": 27596,
+          "frame_sha256": "f86efe039eab4d44780ab0c8bcb0df33b099f976558d0115915d7e678f803c43",
+          "sky_share": 0.0212,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "pawn_front": {
+          "camera": {
+            "angle": 512,
+            "horiz": 100,
+            "x": 30412,
+            "y": 1638,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "b997acd0364aaff96fa6ba51a1405d29b0db3e932c6cd16389abf1922597e86f",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "pawn_inside": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 30412,
+            "y": 5734,
+            "z": -4096
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "6d28b30bc8aa8732a3fc9a8d23178a38aaefc10fffdb3f5d92cce5ecc80a3fe0",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "pawn_rake": {
+          "camera": {
+            "angle": 87,
+            "horiz": 100,
+            "x": 26112,
+            "y": 2048,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "5c7dd1604d4142fb98bcdd35a97d428c4a733660f76611d887acc733f01cdf3f",
+          "sky_share": 0.0221,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "portal": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 37376,
+            "y": 29388,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "46d317bf7d39bef1a7898ab15f7e71e4fd6dacadc858e3d86f09376155b807ef",
+          "sky_share": 0.0544,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "row_corner": {
+          "camera": {
+            "angle": 313,
+            "horiz": 100,
+            "x": 30720,
+            "y": 18432,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "b7b18e075dbce134f949d034adffb3c9801ef273cbe3cacdf32fe59231bf356d",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 15869,
+          "upper_steps": []
+        },
+        "row_road": {
+          "camera": {
+            "angle": 0,
+            "horiz": 40,
+            "x": 22528,
+            "y": 1843,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "5ed7e0ac33d4d4762d5deea41ec8c7a8fe5ee57b1bdded192d57795a4fc08dfb",
+          "sky_share": 0.0001,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "row_road_level": {
+          "camera": {
+            "angle": 0,
+            "horiz": 100,
+            "x": 22528,
+            "y": 1843,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "bec68fef7d2370f8055cf1b28672751bfe441a1360109326968a171af48c76a7",
+          "sky_share": 0.0243,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "sill_close": {
+          "camera": {
+            "angle": 1187,
+            "horiz": 40,
+            "x": 16793,
+            "y": 44032,
+            "z": -10144
+          },
+          "ceiling_leak_px": 5136,
+          "frame_sha256": "76ded0ba31e5e79b4f074a100987a858297b8384c681a53a682f60f3e404433f",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "spawn": {
+          "camera": {
+            "angle": 1291,
+            "horiz": 100,
+            "x": 34304,
+            "y": 54272,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "112813609de20ef4ac13d0a1ff2475fd55fac7fdc25fa255ccec74332e197512",
+          "sky_share": 0.2104,
+          "status": "ok",
+          "tall_wall_px": 2314,
+          "upper_steps": []
+        },
+        "spawn_north": {
+          "camera": {
+            "angle": 1547,
+            "horiz": 100,
+            "x": 34304,
+            "y": 54272,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "881b7b3b26b56b5319693ae679e84ebd2c786a3fa9863f7a94a9b6b6a16b287f",
+          "sky_share": 0.1792,
+          "status": "ok",
+          "tall_wall_px": 938,
+          "upper_steps": []
+        },
+        "spawn_wide": {
+          "camera": {
+            "angle": 1415,
+            "horiz": 100,
+            "x": 34304,
+            "y": 54272,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "e7e1f15e461a8907e9eebb92b9ff162939c95ac5e90471ad2d6e3a69cdb68b9b",
+          "sky_share": 0.2047,
+          "status": "ok",
+          "tall_wall_px": 1008,
+          "upper_steps": []
+        },
+        "super_east": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 18636,
+            "y": 44339,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "6ea2cf3925c96ac21eebbd18e1fbe6ee58a4a548ff91e0cb88a6884f203910e6",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "super_east_rake": {
+          "camera": {
+            "angle": 1448,
+            "horiz": 100,
+            "x": 17612,
+            "y": 51712,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "a4fd20aee5d3aa7155a965c6db3f004b6bb0b014db5fb4041e8ef75e54bebacd",
+          "sky_share": 0.1182,
+          "status": "ok",
+          "tall_wall_px": 144,
+          "upper_steps": []
+        },
+        "super_inside": {
+          "camera": {
+            "angle": 0,
+            "horiz": 100,
+            "x": 11776,
+            "y": 44339,
+            "z": -32768
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "3b17add1ef2249127aa2c8797b79ba5c39cca34e5a394a581e23e955e053939d",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "super_north": {
+          "camera": {
+            "angle": 512,
+            "horiz": 100,
+            "x": 7372,
+            "y": 39116,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "bf0808edf44dfe89c3bfac9cfb0bbe48f019060bd552f9ec90351b52e93f87bc",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "super_north_far": {
+          "camera": {
+            "angle": 886,
+            "horiz": 100,
+            "x": 12902,
+            "y": 39628,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "358ad1c559708d86d2e70d10fafa02a5d9498917413d7f3aa581240e8ce7deaa",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "super_north_rake": {
+          "camera": {
+            "angle": 935,
+            "horiz": 100,
+            "x": 13312,
+            "y": 40550,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "5a09031496bba815dbe7444f8b53d6a266980f994153083311320d9f3774ec24",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "super_south_pane": {
+          "camera": {
+            "angle": 1310,
+            "horiz": 100,
+            "x": 17203,
+            "y": 51609,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "8de53d5c4b9146cf83accf4107b106a5702c03537c55f275c16846ba9744fa8f",
+          "sky_share": 0.0355,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "tower_door": {
+          "camera": {
+            "angle": 1352,
+            "horiz": 100,
+            "x": 36044,
+            "y": 27852,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "06ebcec1f9d86881f2842b7b7f1e96d36609d5bb596057761b5157d611a9c6ee",
+          "sky_share": 0.0507,
+          "status": "ok",
+          "tall_wall_px": 26006,
+          "upper_steps": []
+        },
+        "tower_door_close": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 34201,
+            "y": 26214,
+            "z": -7072
+          },
+          "ceiling_leak_px": 1515,
+          "frame_sha256": "22ea8b8477e20c0dd638f98019f20729d5899f9ae72bc3fe91c6e74ad6a325b9",
+          "sky_share": 0.0288,
+          "status": "ok",
+          "tall_wall_px": 34278,
+          "upper_steps": []
+        },
+        "tower_foot": {
+          "camera": {
+            "angle": 848,
+            "horiz": 160,
+            "x": 37376,
+            "y": 22016,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "7ee464ae2b803543712b02b706db0f35adabdc8b281245364b69603441bb0a00",
+          "sky_share": 0.3326,
+          "status": "ok",
+          "tall_wall_px": 95438,
+          "upper_steps": []
+        },
+        "tower_room": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 32358,
+            "y": 23859,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "357960f55d3c5c8b1e4498466cfb43378c2d089ed25e93f1d796527da47438a5",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "tower_room_back": {
+          "camera": {
+            "angle": 0,
+            "horiz": 100,
+            "x": 31744,
+            "y": 23859,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "3caac25f261f02c9091a28ec40a8c1a692353f3a6f9adc2a8bbeb0d0a22810b8",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "vestry": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 32153,
+            "y": 25804,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "54966d574e6e8c619d2820565c944f63609a181e0082958236349904e43d8188",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "vista_far": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 36352,
+            "y": 46080,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "a1880d7e2de5a0f67ba1a21e7d72f7d74b25f658b03bf4cc5f0554ed6e61bfa1",
+          "sky_share": 0.1495,
+          "status": "ok",
+          "tall_wall_px": 2184,
+          "upper_steps": []
+        },
+        "west_road": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 2048,
+            "y": 30720,
+            "z": -7072
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "0e9a54d9faf0785947abb758d83f7f52bf105b4be9ce682176c576d9c3a5e7e9",
+          "sky_share": 0.0216,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "west_street_on_road": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 18432,
+            "y": 36864,
+            "z": -5024
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "2fae03212ab6e587da66ecd51796f3062f3ad9c6a25557fe496841d840142675",
+          "sky_share": 0.0603,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        }
+      },
+      "walls": 1792
+    }
+  },
+  "schema_version": 1
+}

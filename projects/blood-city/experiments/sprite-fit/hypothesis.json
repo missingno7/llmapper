@@ -1,0 +1,14 @@
+{
+ "experiment": "sprite-fit",
+ "written": "2026-11-18, AFTER the measurements and the first fixes, before the blind review. Not written before the edits: the owner reported faults and they were fixed as found.",
+ "owner_said": [
+  "sometimes you are placing sprites partially under ground or into space where they don't fit, also sometimes you are using statues on weird places. Lamps are also placed little bit wierdly around the town. Some things are not very logical.",
+  "On some walls you have overlapping sprites, usually letters with other sprites, maybe we can have something like map linting script to give us warnings about things like this?"
+ ],
+ "measured": "tools/sprite_fit.py on the build the owner walked (2a043d9c9dcc): 5.2% of sprites drawn more than a tenth under their floor (town maps 0% to 2.1%); 16 pairs of wall sprites covering each other (E3M1 1, E1M2 6); four statues through a shelf's head; 40 street lamps 1.1 bodies tall, half of them 1,024 from the kerb (DWE3M1: 2.1 bodies, median 512).",
+ "predictions": {
+  "S1": "Sunk at or under the town maps' 2.1%; overlapping pairs at most 1.",
+  "S2": "A blind reviewer, not told what changed, finds the new build better and lists fewer placement faults in it.",
+  "S3": "No new rule error; deterministic; NBlood loads it; suite passes."
+ }
+}

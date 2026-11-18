@@ -70,6 +70,18 @@ class DirectUseDoorTests(unittest.TestCase):
         self.assertEqual(fields["trigger_push"], 1)
         self.assertEqual(fields["trigger_wall_push"], 1)
 
+    def test_a_door_told_to_close_waits_and_retriggers(self):
+        # SetSectorState posts Off only when reTriggerA is set
+        # (blood/src/triggers.cpp:147), so the wait alone would do nothing.
+        fields = z_motion_door(8192, -23552, close_after=30)
+
+        self.assertEqual(fields["wait_time_a"], 30)
+        self.assertEqual(fields["retrigger_a"], 1)
+        self.assertNotIn("wait_time_a", z_motion_door(8192, -23552))
+        from bloodmap.doors import DoorError
+        with self.assertRaises(DoorError):
+            z_motion_door(8192, -23552, close_after=0)
+
     def test_z_motion_door_rejects_instant_or_unwired_remote_motion(self):
         with self.assertRaisesRegex(ValueError, "instant"):
             z_motion_door(8192, -23552, open_time=0)

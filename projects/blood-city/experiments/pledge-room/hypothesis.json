@@ -1,0 +1,25 @@
+{
+  "experiment": "pledge-room",
+  "written": "2026-11-18, before the first build with the change",
+  "owner_said": "I also would like to have more complex interiors.",
+  "observation": {
+    "measured": "Against Blood's own city, Gravesend's interiors are flat. Median per interior (connected roofed sectors of 20 bodies2 or more): E3M1 15.5 floor heights over 2.96 bodies, 10.5 ceiling heights, 14.5 wall tiles, 37 shade steps between darkest and brightest floor. Gravesend 7.5, 1.45, 5.5, 7.5 and 7.5. The pawn shop is one room at one height.",
+    "read": "A blind reviewer, of the pawn shop: 'the pawn's goods say boutique, not pawn ... no caged counter'."
+  },
+  "change": "A pledge room behind the pawn shop, in the dead pocket between it and the Aldermack's lobby: a neck one kerb up, a room two kerbs up with a ceiling 0.5 body lower than the shop's, walled in the owner's pressed metal (215), lit by its own source, and closed by a blocking grille (owner mask 463) across the neck's mouth. You can see in; you cannot go in.",
+  "predictions": {
+    "P1": "The pawn shop's interior goes from 1 or 2 floor heights to at least 4, and its floor-shade spread rises by at least 6.",
+    "P2": "A blind reviewer shown the shop from inside names a barred or caged room, at 'likely' or better, and says what it is for.",
+    "P3": "With the grille removed (tools/whatif.py) the same reviewer reads the room as a back room or store, not a strongroom: the bars carry the meaning.",
+    "P4": "With the vault unlit the reviewer does not mention it, or calls it a dark doorway.",
+    "P5": "The grille's record has no step band; rules, determinism, load oracle and suite hold."
+  },
+  "controls": {
+    "C1": "shopfront frames from the street (pawn_front, super_east) change by fewer than 500 px."
+  },
+  "could_be_wrong": [
+    "A grille on a wall between two floors at different heights shares its scale with the riser: the neck and the vault differ by a kerb, so the mask must stand where they are level, or be refused.",
+    "A 1024 room behind a 512 mouth may show nothing but its back wall.",
+    "Tile 463 at the wall's default repeats may read as a mesh screen, not bars."
+  ]
+}

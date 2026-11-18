@@ -507,18 +507,37 @@ def _open_neighbours_share_a_sky(disk) -> Finding:
                 continue
             seen.add((index, other))
             population += 1
-            gap = abs(int(disk.sectors[index].fields["ceiling_z"])
-                      - int(disk.sectors[other].fields["ceiling_z"]))
-            if gap >= PLAYER_HEIGHT:
+            here = disk.sectors[index].fields
+            there = disk.sectors[other].fields
+            # A sector with no height is not a place: it is the sky BEHIND
+            # something (E3M1 s340, s338, behind its street-end walls; see
+            # `bloodmap.skyline.is_sky_backing`). Nothing stands in it and
+            # nothing is hidden by it.
+            if any(int(s["floor_z"]) == int(s["ceiling_z"])
+                   for s in (here, there)):
+                continue
+            gap = abs(int(here["ceiling_z"]) - int(there["ceiling_z"]))
+            # What the step can still do is clip, so it only matters where a
+            # body can reach it: the lower sky over the higher floor.
+            headroom = (min(int(here["floor_z"]), int(there["floor_z"]))
+                        - max(int(here["ceiling_z"]), int(there["ceiling_z"])))
+            if gap >= PLAYER_HEIGHT and headroom < SKY_OUT_OF_REACH:
                 out.append(Violation(
                     f"sector[{index}]",
-                    f"its sky is {gap} from sector {other}'s"))
+                    f"its sky is {gap} from sector {other}'s, and the lower "
+                    f"of them is {headroom} over the floor"))
     return Finding(population, tuple(out))
+
+
+#: A sky this far over the floor cannot be walked or jumped into, so a step
+#: up from it is only a skyline (`bloodmap.skyline.REACH`): three bodies.
+SKY_OUT_OF_REACH = 3 * PLAYER_HEIGHT
 
 
 register(Rule(
     id="open-neighbours-share-a-sky",
-    statement="two open sectors that touch should hold their sky at one height",
+    statement=("two open sectors that touch should hold their sky at one "
+               "height, unless the lower sky is out of a body's reach"),
     because=(
         "not because the difference is drawn -- it is not. engine.cpp:4688 skips "
         "the upper wall section entirely when *both* sectors are parallax, so two "
@@ -527,7 +546,10 @@ register(Rule(
         "ceiling z still does is clip. The player and every sprite are bounded by "
         "it whether or not anything is drawn there, so a mismatch is an invisible "
         "ceiling to walk into -- and a staircase, whose step ceilings track its "
-        "step floors, carries one down with it a step at a time"),
+        "step floors, carries one down with it a step at a time. A step whose "
+        "lower sky stands three bodies or more over the floor clips nothing and "
+        "is how the campaign makes a skyline: E3M1 steps its sky 15.4 bodies, "
+        "E1M1 and E1M3 3.9, and `bloodmap.skyline` builds on exactly that"),
     source="corpus",
     scope="sector",
     check=_open_neighbours_share_a_sky,

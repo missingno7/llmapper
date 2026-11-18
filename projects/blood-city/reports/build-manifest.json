@@ -5,55 +5,363 @@
   "stack_mouths_at_grade": 1,
   "grate_kerb": 1,
   "light_pools": 9,
+  "sky_aprons": 6,
   "market_furniture": 8,
   "monument_tiers": 3,
   "streets": {
     "runs": 18,
     "laid": [
       {
+        "run": "Theatre_Row_street_west",
+        "district": "theatre_row",
+        "rect": [
+          2048,
+          17408,
+          19968,
+          18432
+        ],
+        "width": 6144,
+        "sidewalk": 2048,
+        "carriageway": 2048,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "Theatre_Row_street_west",
+        "district": "old_crossing",
+        "rect": [
+          2048,
+          18432,
+          19968,
+          19456
+        ],
+        "width": 6144,
+        "sidewalk": 2048,
+        "carriageway": 2048,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "Theatre_Row_street_east",
+        "district": "theatre_row",
+        "rect": [
+          19968,
+          17408,
+          36352,
+          18432
+        ],
+        "width": 6144,
+        "sidewalk": 2048,
+        "carriageway": 2048,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "Theatre_Row_street_east",
+        "district": "old_crossing",
+        "rect": [
+          19968,
+          18432,
+          36352,
+          19456
+        ],
+        "width": 6144,
+        "sidewalk": 2048,
+        "carriageway": 2048,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "Theatre_Row_street_east",
+        "district": "foundry_ward",
+        "rect": [
+          36352,
+          17408,
+          38400,
+          19456
+        ],
+        "width": 6144,
+        "sidewalk": 2048,
+        "carriageway": 2048,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "the_west_street",
+        "district": "old_crossing",
+        "rect": [
+          16384,
+          30464,
+          19456,
+          38400
+        ],
+        "width": 5120,
+        "sidewalk": 1024,
+        "carriageway": 3072,
+        "piece": 0,
+        "of": 2,
+        "half": true
+      },
+      {
+        "run": "the_west_street",
+        "district": "market_slip",
+        "rect": [
+          16384,
+          38400,
+          19456,
+          40448
+        ],
+        "width": 5120,
+        "sidewalk": 1024,
+        "carriageway": 3072,
+        "piece": 0,
+        "of": 2,
+        "half": true
+      },
+      {
         "run": "the_west_street",
         "district": "old_crossing",
         "rect": [
           16640,
-          19456.0,
+          19456,
           19456,
           26880
         ],
         "width": 5120,
         "sidewalk": 1024,
         "carriageway": 2816,
-        "piece": 0,
-        "of": 2
+        "piece": 1,
+        "of": 2,
+        "half": false
       },
       {
-        "run": "the_west_street",
+        "run": "the_avenue_north",
+        "district": "theatre_row",
+        "rect": [
+          34816,
+          7936,
+          36352,
+          17408
+        ],
+        "width": 7168,
+        "sidewalk": 2048,
+        "carriageway": 3072,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "the_avenue_north",
+        "district": "foundry_ward",
+        "rect": [
+          36352,
+          7936,
+          37888,
+          17408
+        ],
+        "width": 7168,
+        "sidewalk": 2048,
+        "carriageway": 3072,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "the_avenue_mid",
         "district": "old_crossing",
         "rect": [
-          16640,
-          30464,
+          35840,
           19456,
-          37376.0
+          36352,
+          38400
+        ],
+        "width": 7168,
+        "sidewalk": 2048,
+        "carriageway": 2048,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "the_avenue_mid",
+        "district": "foundry_ward",
+        "rect": [
+          36352,
+          19456,
+          37888,
+          38400
+        ],
+        "width": 7168,
+        "sidewalk": 2048,
+        "carriageway": 2048,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "the_avenue_mid",
+        "district": "market_slip",
+        "rect": [
+          35840,
+          38400,
+          37888,
+          40448
+        ],
+        "width": 7168,
+        "sidewalk": 2048,
+        "carriageway": 2048,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "the_avenue_south",
+        "district": "market_slip",
+        "rect": [
+          35584,
+          47872,
+          37888,
+          53760
+        ],
+        "width": 7168,
+        "sidewalk": 2048,
+        "carriageway": 2304,
+        "piece": 0,
+        "of": 1,
+        "half": false
+      },
+      {
+        "run": "spur_south",
+        "district": "foundry_ward",
+        "rect": [
+          55296,
+          36352,
+          58368,
+          38400
         ],
         "width": 5120,
         "sidewalk": 1024,
-        "carriageway": 2816,
-        "piece": 1,
-        "of": 2
+        "carriageway": 3072,
+        "piece": 0,
+        "of": 1,
+        "half": true
       },
       {
         "run": "spur_south",
         "district": "market_slip",
         "rect": [
           55296,
-          39424.0,
+          38400,
           58368,
-          54272
+          56320
         ],
         "width": 5120,
         "sidewalk": 1024,
         "carriageway": 3072,
         "piece": 0,
-        "of": 1
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "market_street_west",
+        "district": "old_crossing",
+        "rect": [
+          1024,
+          36864,
+          16384,
+          38400
+        ],
+        "width": 5120,
+        "sidewalk": 1024,
+        "carriageway": 3072,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "market_street_west",
+        "district": "market_slip",
+        "rect": [
+          1024,
+          38400,
+          16384,
+          39936
+        ],
+        "width": 5120,
+        "sidewalk": 1024,
+        "carriageway": 3072,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "market_street_mid",
+        "district": "old_crossing",
+        "rect": [
+          19456,
+          36864,
+          35840,
+          38400
+        ],
+        "width": 5120,
+        "sidewalk": 1024,
+        "carriageway": 3072,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "market_street_mid",
+        "district": "market_slip",
+        "rect": [
+          19456,
+          38400,
+          35840,
+          39936
+        ],
+        "width": 5120,
+        "sidewalk": 1024,
+        "carriageway": 3072,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "market_street_east",
+        "district": "foundry_ward",
+        "rect": [
+          37888,
+          36864,
+          55296,
+          38400
+        ],
+        "width": 5120,
+        "sidewalk": 1024,
+        "carriageway": 3072,
+        "piece": 0,
+        "of": 1,
+        "half": true
+      },
+      {
+        "run": "market_street_east",
+        "district": "market_slip",
+        "rect": [
+          37888,
+          38400,
+          55296,
+          39936
+        ],
+        "width": 5120,
+        "sidewalk": 1024,
+        "carriageway": 3072,
+        "piece": 0,
+        "of": 1,
+        "half": true
       }
     ],
     "pavement": [
@@ -85,55 +393,68 @@
     ],
     "refused": [
       {
-        "run": "Theatre_Row_street_west",
-        "why": "straddles a district seam: Gravesend draws its seams down street CENTRELINES, so half this run belongs to each side and neither half is wide enough for a carriageway plus its pavements. Needs paired half-roads joined across the seam"
-      },
-      {
-        "run": "Theatre_Row_street_east",
-        "why": "straddles a district seam: Gravesend draws its seams down street CENTRELINES, so half this run belongs to each side and neither half is wide enough for a carriageway plus its pavements. Needs paired half-roads joined across the seam"
-      },
-      {
-        "run": "the_avenue_north",
-        "why": "straddles a district seam: Gravesend draws its seams down street CENTRELINES, so half this run belongs to each side and neither half is wide enough for a carriageway plus its pavements. Needs paired half-roads joined across the seam"
-      },
-      {
-        "run": "the_avenue_mid",
-        "why": "straddles a district seam: Gravesend draws its seams down street CENTRELINES, so half this run belongs to each side and neither half is wide enough for a carriageway plus its pavements. Needs paired half-roads joined across the seam"
-      },
-      {
-        "run": "the_avenue_south",
-        "why": "wholly inside carriageways already laid"
-      },
-      {
         "run": "the_rail_spur",
         "why": "would run through gatehouse"
       },
       {
-        "run": "market_street_west",
-        "why": "straddles a district seam: Gravesend draws its seams down street CENTRELINES, so half this run belongs to each side and neither half is wide enough for a carriageway plus its pavements. Needs paired half-roads joined across the seam"
-      },
-      {
-        "run": "market_street_mid",
-        "why": "straddles a district seam: Gravesend draws its seams down street CENTRELINES, so half this run belongs to each side and neither half is wide enough for a carriageway plus its pavements. Needs paired half-roads joined across the seam"
-      },
-      {
-        "run": "market_street_east",
-        "why": "straddles a district seam: Gravesend draws its seams down street CENTRELINES, so half this run belongs to each side and neither half is wide enough for a carriageway plus its pavements. Needs paired half-roads joined across the seam"
-      },
-      {
         "run": "the_quay_west",
-        "why": "wholly inside carriageways already laid"
+        "why": "wholly inside carriageways already laid, or what was left was not a road"
       },
       {
         "run": "the_quay_east",
-        "why": "wholly inside carriageways already laid"
+        "why": "wholly inside carriageways already laid, or what was left was not a road"
       }
     ],
     "kerbs": [
       {
         "kind": "kerb",
         "role": "junction",
+        "run": "Theatre_Row_street_west",
+        "rise": 2048,
+        "above": 4,
+        "below": 352,
+        "why": "E3M1's sidewalk stands 2048 over its roadway on all 22 shared walls; a body steps up it, well inside the 4096 Blood will climb"
+      },
+      {
+        "kind": "kerb",
+        "role": "junction",
+        "run": "Theatre_Row_street_east",
+        "rise": 2048,
+        "above": 4,
+        "below": 352,
+        "why": "E3M1's sidewalk stands 2048 over its roadway on all 22 shared walls; a body steps up it, well inside the 4096 Blood will climb"
+      },
+      {
+        "kind": "kerb",
+        "role": "junction",
         "run": "the_west_street",
+        "rise": 2048,
+        "above": 4,
+        "below": 352,
+        "why": "E3M1's sidewalk stands 2048 over its roadway on all 22 shared walls; a body steps up it, well inside the 4096 Blood will climb"
+      },
+      {
+        "kind": "kerb",
+        "role": "junction",
+        "run": "the_avenue_north",
+        "rise": 2048,
+        "above": 4,
+        "below": 352,
+        "why": "E3M1's sidewalk stands 2048 over its roadway on all 22 shared walls; a body steps up it, well inside the 4096 Blood will climb"
+      },
+      {
+        "kind": "kerb",
+        "role": "junction",
+        "run": "the_avenue_mid",
+        "rise": 2048,
+        "above": 4,
+        "below": 352,
+        "why": "E3M1's sidewalk stands 2048 over its roadway on all 22 shared walls; a body steps up it, well inside the 4096 Blood will climb"
+      },
+      {
+        "kind": "kerb",
+        "role": "junction",
+        "run": "the_avenue_south",
         "rise": 2048,
         "above": 4,
         "below": 352,
@@ -147,28 +468,62 @@
         "above": 4,
         "below": 352,
         "why": "E3M1's sidewalk stands 2048 over its roadway on all 22 shared walls; a body steps up it, well inside the 4096 Blood will climb"
+      },
+      {
+        "kind": "kerb",
+        "role": "junction",
+        "run": "market_street_west",
+        "rise": 2048,
+        "above": 4,
+        "below": 352,
+        "why": "E3M1's sidewalk stands 2048 over its roadway on all 22 shared walls; a body steps up it, well inside the 4096 Blood will climb"
+      },
+      {
+        "kind": "kerb",
+        "role": "junction",
+        "run": "market_street_mid",
+        "rise": 2048,
+        "above": 4,
+        "below": 352,
+        "why": "E3M1's sidewalk stands 2048 over its roadway on all 22 shared walls; a body steps up it, well inside the 4096 Blood will climb"
+      },
+      {
+        "kind": "kerb",
+        "role": "junction",
+        "run": "market_street_east",
+        "rise": 2048,
+        "above": 4,
+        "below": 352,
+        "why": "E3M1's sidewalk stands 2048 over its roadway on all 22 shared walls; a body steps up it, well inside the 4096 Blood will climb"
       }
     ],
     "lamp_slots": [
+      {
+        "id": "Theatre_Row_street_west:lamp:0:low",
+        "kind": "lamp",
+        "x": 9728,
+        "y": 16896,
+        "side": "low"
+      },
+      {
+        "id": "Theatre_Row_street_east:lamp:0:low",
+        "kind": "lamp",
+        "x": 22528,
+        "y": 16896,
+        "side": "low"
+      },
+      {
+        "id": "Theatre_Row_street_east:lamp:1:high",
+        "kind": "lamp",
+        "x": 31744,
+        "y": 19968,
+        "side": "high"
+      },
       {
         "id": "the_west_street:lamp:0:low",
         "kind": "lamp",
         "x": 15872,
         "y": 23424,
-        "side": "low"
-      },
-      {
-        "id": "the_west_street:lamp:0:high",
-        "kind": "lamp",
-        "x": 19968,
-        "y": 23424,
-        "side": "high"
-      },
-      {
-        "id": "the_west_street:lamp:1:low",
-        "kind": "lamp",
-        "x": 15872,
-        "y": 33408,
         "side": "low"
       },
       {
@@ -179,6 +534,34 @@
         "side": "high"
       },
       {
+        "id": "the_avenue_north:lamp:0:low",
+        "kind": "lamp",
+        "x": 34304,
+        "y": 9984,
+        "side": "low"
+      },
+      {
+        "id": "the_avenue_mid:lamp:0:low",
+        "kind": "lamp",
+        "x": 34304,
+        "y": 23424,
+        "side": "low"
+      },
+      {
+        "id": "the_avenue_mid:lamp:1:high",
+        "kind": "lamp",
+        "x": 38400,
+        "y": 33408,
+        "side": "high"
+      },
+      {
+        "id": "the_avenue_south:lamp:0:low",
+        "kind": "lamp",
+        "x": 34304,
+        "y": 46336,
+        "side": "low"
+      },
+      {
         "id": "spur_south:lamp:0:low",
         "kind": "lamp",
         "x": 54784,
@@ -186,15 +569,98 @@
         "side": "low"
       },
       {
-        "id": "spur_south:lamp:0:high",
+        "id": "market_street_west:lamp:0:low",
         "kind": "lamp",
-        "x": 58880,
-        "y": 46336,
+        "x": 9728,
+        "y": 36352,
+        "side": "low"
+      },
+      {
+        "id": "market_street_mid:lamp:0:low",
+        "kind": "lamp",
+        "x": 22528,
+        "y": 36352,
+        "side": "low"
+      },
+      {
+        "id": "market_street_mid:lamp:1:high",
+        "kind": "lamp",
+        "x": 31744,
+        "y": 40448,
+        "side": "high"
+      },
+      {
+        "id": "market_street_east:lamp:0:low",
+        "kind": "lamp",
+        "x": 41472,
+        "y": 36352,
+        "side": "low"
+      },
+      {
+        "id": "market_street_east:lamp:1:high",
+        "kind": "lamp",
+        "x": 51712,
+        "y": 40448,
         "side": "high"
       }
     ]
   },
-  "roadways": 3,
+  "roadways": 22,
+  "street_ends": [
+    {
+      "street": "the_avenue",
+      "edge": "north",
+      "span": [
+        32768,
+        39936
+      ],
+      "rise": 98304,
+      "districts": [
+        "theatre_row",
+        "foundry_ward"
+      ]
+    },
+    {
+      "street": "Theatre_Row",
+      "edge": "west",
+      "span": [
+        15360,
+        21504
+      ],
+      "rise": 98304,
+      "districts": [
+        "theatre_row",
+        "old_crossing"
+      ]
+    },
+    {
+      "street": "market_street_west",
+      "edge": "west",
+      "span": [
+        35840,
+        40960
+      ],
+      "rise": 98304,
+      "districts": [
+        "old_crossing",
+        "market_slip"
+      ]
+    },
+    {
+      "street": "market_street_east",
+      "edge": "east",
+      "span": [
+        35840,
+        40960
+      ],
+      "rise": 98304,
+      "districts": [
+        "foundry_ward",
+        "market_slip"
+      ]
+    }
+  ],
+  "end_walls": 16,
   "stage_curtain": {
     "leaves": 1,
     "slot": "void",
@@ -216,10 +682,14 @@
       "to": "region:gravesend/theatre_row/aldermack/auditorium/house/stage"
     }
   },
+  "pool_lamps": {
+    "posts": 8,
+    "light_only": 1
+  },
   "street_lamps": {
-    "placed": 6,
-    "skipped": 0,
-    "slots": 6
+    "placed": 13,
+    "skipped": 2,
+    "slots": 15
   },
   "greens": {
     "cemetery": {
@@ -359,27 +829,42 @@
     }
   },
   "venue_details": {
-    "wall_details": 13,
+    "wall_details": 12,
     "light_sources": 2,
-    "compositions": 4,
-    "composed_sprites": 55,
+    "compositions": 3,
+    "composed_sprites": 50,
     "skipped": [
+      "theatre:pawn_shop:no_room",
       "mall:unit_c:no_room",
       "church:nave:no_room",
       "church:nave:no_room",
       "station:hall:no_room"
     ]
   },
+  "goods": {
+    "placed": 128,
+    "tiles": 49,
+    "refused": [
+      "market_hall_display_side_2_2937: no room for a roast at (6451, 41344)",
+      "gravesend_arcade_unit_a_window_0_1013: no room for a vase of dried flowers at (42432, 44160)",
+      "saloon/back east: no room for portrait of a ghoul",
+      "gravesend_arcade/unit_e east: no room for painted map",
+      "gravesend_arcade/service south: no room for broom",
+      "st_gallows/narthex north: no room for banner, lion",
+      "ground_cemetery_23552_26624_608: no room for a dry bush at (23552, 26624)"
+    ]
+  },
   "door_frames": 13,
   "lighting": {
-    "lights": 30,
-    "rays_cast": 549489,
-    "surfaces_lit": 780,
-    "surfaces_protected": 167,
-    "walls_lit": 689,
+    "lights": 48,
+    "rays_cast": 841098,
+    "surfaces_lit": 1112,
+    "surfaces_protected": 252,
+    "walls_lit": 981,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
+      "light:gravesend/theatre_row/pawn_shop/vault:pledge_lamp",
       "light:sewer:brazier_0",
       "light:sewer:brazier_1",
       "light:sewer:brazier_2",
@@ -392,7 +877,7 @@
       "light:theatre:brazier_0",
       "light:theatre:brazier_1",
       "light:station_cellar",
-      "light:lamp_0",
+      "light:pool_0",
       "light:lamp_1",
       "light:lamp_2",
       "light:lamp_3",
@@ -401,17 +886,35 @@
       "light:lamp_6",
       "light:lamp_7",
       "light:lamp_8",
+      "light:street_lamp:Theatre_Row_street_west_lamp_0_low",
+      "light:street_lamp:Theatre_Row_street_east_lamp_0_low",
+      "light:street_lamp:Theatre_Row_street_east_lamp_1_high",
       "light:street_lamp:the_west_street_lamp_0_low",
-      "light:street_lamp:the_west_street_lamp_0_high",
-      "light:street_lamp:the_west_street_lamp_1_low",
       "light:street_lamp:the_west_street_lamp_1_high",
+      "light:street_lamp:the_avenue_mid_lamp_1_high",
+      "light:street_lamp:the_avenue_south_lamp_0_low",
       "light:street_lamp:spur_south_lamp_0_low",
-      "light:street_lamp:spur_south_lamp_0_high",
+      "light:street_lamp:market_street_west_lamp_0_low",
+      "light:street_lamp:market_street_mid_lamp_0_low",
+      "light:street_lamp:market_street_mid_lamp_1_high",
+      "light:street_lamp:market_street_east_lamp_0_low",
+      "light:street_lamp:market_street_east_lamp_1_high",
       "light:monument:flame",
+      "light:display_unit_a_window",
+      "light:shop_unit_a_window",
+      "light:display_unit_d_window",
+      "light:shop_unit_d_window",
+      "light:display_pawn_display",
+      "light:shop_pawn_display",
+      "light:display_display_n",
+      "light:shop_display_n",
+      "light:display_display_s",
+      "light:display_display_side",
       "light:venue:station:hall:0",
       "light:venue:station:hall:1"
     ],
     "source_intensities": {
+      "light:gravesend/theatre_row/pawn_shop/vault:pledge_lamp": 1.0,
       "light:sewer:brazier_0": 1.0,
       "light:sewer:brazier_1": 1.0,
       "light:sewer:brazier_2": 1.0,
@@ -424,7 +927,7 @@
       "light:theatre:brazier_0": 1.0,
       "light:theatre:brazier_1": 1.0,
       "light:station_cellar": 1.0,
-      "light:lamp_0": 2.0,
+      "light:pool_0": 2.0,
       "light:lamp_1": 2.0,
       "light:lamp_2": 2.0,
       "light:lamp_3": 2.0,
@@ -433,32 +936,55 @@
       "light:lamp_6": 2.0,
       "light:lamp_7": 2.0,
       "light:lamp_8": 2.0,
+      "light:street_lamp:Theatre_Row_street_west_lamp_0_low": 2.0,
+      "light:street_lamp:Theatre_Row_street_east_lamp_0_low": 2.0,
+      "light:street_lamp:Theatre_Row_street_east_lamp_1_high": 2.0,
       "light:street_lamp:the_west_street_lamp_0_low": 2.0,
-      "light:street_lamp:the_west_street_lamp_0_high": 2.0,
-      "light:street_lamp:the_west_street_lamp_1_low": 2.0,
       "light:street_lamp:the_west_street_lamp_1_high": 2.0,
+      "light:street_lamp:the_avenue_mid_lamp_1_high": 2.0,
+      "light:street_lamp:the_avenue_south_lamp_0_low": 2.0,
       "light:street_lamp:spur_south_lamp_0_low": 2.0,
-      "light:street_lamp:spur_south_lamp_0_high": 2.0,
+      "light:street_lamp:market_street_west_lamp_0_low": 2.0,
+      "light:street_lamp:market_street_mid_lamp_0_low": 2.0,
+      "light:street_lamp:market_street_mid_lamp_1_high": 2.0,
+      "light:street_lamp:market_street_east_lamp_0_low": 2.0,
+      "light:street_lamp:market_street_east_lamp_1_high": 2.0,
       "light:monument:flame": 3.0,
+      "light:display_unit_a_window": 5.0,
+      "light:shop_unit_a_window": 10.0,
+      "light:display_unit_d_window": 5.0,
+      "light:shop_unit_d_window": 10.0,
+      "light:display_pawn_display": 5.0,
+      "light:shop_pawn_display": 10.0,
+      "light:display_display_n": 5.0,
+      "light:shop_display_n": 10.0,
+      "light:display_display_s": 5.0,
+      "light:display_display_side": 5.0,
       "light:venue:station:hall:0": 2.5,
       "light:venue:station:hall:1": 2.5
     },
     "source_heights": {
-      "light:lamp_0": 0.5,
-      "light:lamp_1": 0.5,
-      "light:lamp_2": 0.5,
-      "light:lamp_3": 0.5,
-      "light:lamp_4": 0.5,
-      "light:lamp_5": 0.5,
-      "light:lamp_6": 0.5,
-      "light:lamp_7": 0.5,
-      "light:lamp_8": 0.5,
-      "light:street_lamp:the_west_street_lamp_0_low": 0.5,
-      "light:street_lamp:the_west_street_lamp_0_high": 0.5,
-      "light:street_lamp:the_west_street_lamp_1_low": 0.5,
-      "light:street_lamp:the_west_street_lamp_1_high": 0.5,
-      "light:street_lamp:spur_south_lamp_0_low": 0.5,
-      "light:street_lamp:spur_south_lamp_0_high": 0.5,
+      "light:lamp_1": 1.8,
+      "light:lamp_2": 1.8,
+      "light:lamp_3": 1.8,
+      "light:lamp_4": 1.8,
+      "light:lamp_5": 1.8,
+      "light:lamp_6": 1.8,
+      "light:lamp_7": 1.8,
+      "light:lamp_8": 1.8,
+      "light:street_lamp:Theatre_Row_street_west_lamp_0_low": 1.8,
+      "light:street_lamp:Theatre_Row_street_east_lamp_0_low": 1.8,
+      "light:street_lamp:Theatre_Row_street_east_lamp_1_high": 1.8,
+      "light:street_lamp:the_west_street_lamp_0_low": 1.8,
+      "light:street_lamp:the_west_street_lamp_1_high": 1.8,
+      "light:street_lamp:the_avenue_mid_lamp_1_high": 1.8,
+      "light:street_lamp:the_avenue_south_lamp_0_low": 1.8,
+      "light:street_lamp:spur_south_lamp_0_low": 1.8,
+      "light:street_lamp:market_street_west_lamp_0_low": 1.8,
+      "light:street_lamp:market_street_mid_lamp_0_low": 1.8,
+      "light:street_lamp:market_street_mid_lamp_1_high": 1.8,
+      "light:street_lamp:market_street_east_lamp_0_low": 1.8,
+      "light:street_lamp:market_street_east_lamp_1_high": 1.8,
       "light:monument:flame": 0.6
     }
   },
@@ -471,32 +997,33 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 430,
-    "wall_sprites": 228,
-    "planes": 38,
-    "clashing_pairs": 0,
-    "sprites_involved": 0,
-    "clash_rate_per_100_wall_sprites": 0.0,
+    "sprites": 626,
+    "wall_sprites": 317,
+    "planes": 58,
+    "clashing_pairs": 4,
+    "sprites_involved": 6,
+    "clash_rate_per_100_wall_sprites": 1.26,
     "fully_hidden": 0
   },
   "apertures": {
-    "findings": 25,
-    "seams": 11,
-    "real": 14,
+    "findings": 102,
+    "seams": 82,
+    "real": 20,
     "by_kind": {
-      "lintel": 14
+      "pinch": 10,
+      "lintel": 10
     }
   },
   "curtain_conformance": [
     {
-      "sector": 37,
+      "sector": 34,
       "measured": {
         "leaves": 1,
         "flag_directions": [
           1
         ],
         "motion_set": [
-          37
+          34
         ],
         "undeclared_neighbours": [],
         "fabric_walls": 3,
@@ -547,9 +1074,9 @@
       {
         "name": "region:gravesend/theatre_row/saloon/door",
         "construct": "z_motion_door",
-        "sector": 12,
+        "sector": 9,
         "sectors": [
-          12
+          9
         ],
         "sector_type": 600,
         "wiring": {
@@ -559,7 +1086,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 12,
+          "sector": 9,
           "type": 600,
           "measured": [
             "headroom"
@@ -575,9 +1102,9 @@
       {
         "name": "region:gravesend/theatre_row/parlor/door",
         "construct": "z_motion_door",
-        "sector": 21,
+        "sector": 18,
         "sectors": [
-          21
+          18
         ],
         "sector_type": 600,
         "wiring": {
@@ -587,7 +1114,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 21,
+          "sector": 18,
           "type": 600,
           "measured": [
             "headroom"
@@ -603,9 +1130,9 @@
       {
         "name": "region:gravesend/theatre_row/aldermack/auditorium/house/stage",
         "construct": "sector",
-        "sector": 24,
+        "sector": 21,
         "sectors": [
-          24
+          21
         ],
         "sector_type": 0,
         "wiring": {
@@ -618,9 +1145,9 @@
       {
         "name": "region:gravesend/theatre_row/aldermack/door",
         "construct": "z_motion_door",
-        "sector": 33,
+        "sector": 30,
         "sectors": [
-          33
+          30
         ],
         "sector_type": 600,
         "wiring": {
@@ -630,7 +1157,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 33,
+          "sector": 30,
           "type": 600,
           "measured": [
             "headroom"
@@ -646,9 +1173,9 @@
       {
         "name": "region:gravesend/theatre_row/aldermack/lobby_door",
         "construct": "z_motion_door",
-        "sector": 35,
+        "sector": 32,
         "sectors": [
-          35
+          32
         ],
         "sector_type": 600,
         "wiring": {
@@ -658,7 +1185,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 35,
+          "sector": 32,
           "type": 600,
           "measured": [
             "headroom"
@@ -674,9 +1201,9 @@
       {
         "name": "region:gravesend/theatre_row/aldermack/stage_curtain",
         "construct": "curtain",
-        "sector": 37,
+        "sector": 34,
         "sectors": [
-          37
+          34
         ],
         "sector_type": 614,
         "wiring": {
@@ -700,14 +1227,14 @@
           }
         },
         "conformance": {
-          "construct": "curtain sector 37",
+          "construct": "curtain sector 34",
           "measured": {
             "leaves": 1,
             "flag_directions": [
               1
             ],
             "motion_set": [
-              37
+              34
             ],
             "undeclared_neighbours": [],
             "fabric_walls": 3,
@@ -721,7 +1248,7 @@
           "deviations": []
         },
         "state_pair": {
-          "sector": 37,
+          "sector": 34,
           "type": 614,
           "measured": [
             "area",
@@ -740,9 +1267,9 @@
       {
         "name": "region:gravesend/theatre_row/pawn_shop/pawn_door",
         "construct": "z_motion_door",
-        "sector": 44,
+        "sector": 43,
         "sectors": [
-          44
+          43
         ],
         "sector_type": 600,
         "wiring": {
@@ -752,7 +1279,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 44,
+          "sector": 43,
           "type": 600,
           "measured": [
             "headroom"
@@ -768,31 +1295,31 @@
       {
         "name": "region:gravesend/old_crossing/streets/lightpool_lychgate",
         "construct": "sector",
-        "sector": 50,
+        "sector": 59,
         "sectors": [
-          50
+          59
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/old_crossing/streets/lightpool_well_square",
         "construct": "sector",
-        "sector": 51,
+        "sector": 60,
         "sectors": [
-          51
+          60
         ],
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/old_crossing/st_gallows/avenue_door",
+        "name": "region:gravesend/old_crossing/st_gallows/tower_door",
         "construct": "z_motion_door",
-        "sector": 68,
+        "sector": 93,
         "sectors": [
-          68
+          93
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 68,
+          "sector": 93,
           "type": 600,
           "measured": [
             "headroom"
@@ -806,15 +1333,15 @@
         }
       },
       {
-        "name": "region:gravesend/old_crossing/st_gallows/cemetery_door",
+        "name": "region:gravesend/old_crossing/st_gallows/tower_inner_door",
         "construct": "z_motion_door",
-        "sector": 70,
+        "sector": 95,
         "sectors": [
-          70
+          95
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 70,
+          "sector": 95,
           "type": 600,
           "measured": [
             "headroom"
@@ -830,36 +1357,36 @@
       {
         "name": "region:gravesend/foundry_ward/streets/lightpool_yard_stair",
         "construct": "sector",
-        "sector": 77,
+        "sector": 110,
         "sectors": [
-          77
+          110
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/foundry_ward/streets/lightpool_yard_gate",
         "construct": "sector",
-        "sector": 78,
+        "sector": 111,
         "sectors": [
-          78
+          111
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/foundry_ward/streets/lightpool_spur_junction",
         "construct": "sector",
-        "sector": 79,
+        "sector": 112,
         "sectors": [
-          79
+          112
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/foundry_ward/yard_grate_mouth",
         "construct": "sector",
-        "sector": 85,
+        "sector": 118,
         "sectors": [
-          85
+          118
         ],
         "sector_type": 0,
         "wiring": {
@@ -872,13 +1399,13 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/door",
         "construct": "z_motion_door",
-        "sector": 87,
+        "sector": 120,
         "sectors": [
-          87
+          120
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 87,
+          "sector": 120,
           "type": 600,
           "measured": [
             "headroom"
@@ -894,13 +1421,13 @@
       {
         "name": "region:gravesend/foundry_ward/canteen/door",
         "construct": "z_motion_door",
-        "sector": 94,
+        "sector": 127,
         "sectors": [
-          94
+          127
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 94,
+          "sector": 127,
           "type": 600,
           "measured": [
             "headroom"
@@ -916,13 +1443,13 @@
       {
         "name": "region:gravesend/foundry_ward/canteen/side_door",
         "construct": "z_motion_door",
-        "sector": 96,
+        "sector": 129,
         "sectors": [
-          96
+          129
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 96,
+          "sector": 129,
           "type": 600,
           "measured": [
             "headroom"
@@ -938,31 +1465,31 @@
       {
         "name": "region:gravesend/market_slip/streets/lightpool_plaza_east",
         "construct": "sector",
-        "sector": 101,
+        "sector": 143,
         "sectors": [
-          101
+          143
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/market_slip/streets/lightpool_quay_gate",
         "construct": "sector",
-        "sector": 102,
+        "sector": 144,
         "sectors": [
-          102
+          144
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/market_slip/gravesend_arcade/entry_door",
         "construct": "z_motion_door",
-        "sector": 128,
+        "sector": 171,
         "sectors": [
-          128
+          171
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 128,
+          "sector": 171,
           "type": 600,
           "measured": [
             "headroom"
@@ -978,13 +1505,13 @@
       {
         "name": "region:gravesend/market_slip/gravesend_arcade/service_door",
         "construct": "z_motion_door",
-        "sector": 130,
+        "sector": 173,
         "sectors": [
-          130
+          173
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 130,
+          "sector": 173,
           "type": 600,
           "measured": [
             "headroom"
@@ -1000,31 +1527,31 @@
       {
         "name": "region:gravesend/market_slip/plaza/fountain/fountain_tier2",
         "construct": "sector",
-        "sector": 136,
+        "sector": 179,
         "sectors": [
-          136
+          179
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/market_slip/quay/river",
         "construct": "sector",
-        "sector": 141,
+        "sector": 184,
         "sectors": [
-          141
+          184
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/market_slip/market_hall/door",
         "construct": "z_motion_door",
-        "sector": 163,
+        "sector": 215,
         "sectors": [
-          163
+          215
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 163,
+          "sector": 215,
           "type": 600,
           "measured": [
             "headroom"
@@ -1040,179 +1567,180 @@
       {
         "name": "region:gravesend/sewer/trunk/junction",
         "construct": "sector",
-        "sector": 166,
+        "sector": 228,
         "sectors": [
-          166
+          228
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/trunk/main_duct",
         "construct": "sector",
-        "sector": 168,
+        "sector": 230,
         "sectors": [
-          168
+          230
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/mouths/yard_grate_mouth_below",
         "construct": "sector",
-        "sector": 172,
+        "sector": 234,
         "sectors": [
-          172
+          234
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/mouths/cellar_pit_mouth_below",
         "construct": "sector",
-        "sector": 173,
+        "sector": 235,
         "sectors": [
-          173
+          235
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/nw_corner",
         "construct": "sector",
-        "sector": 174,
+        "sector": 236,
         "sectors": [
-          174
+          236
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/n_channel",
         "construct": "sector",
-        "sector": 176,
+        "sector": 238,
         "sectors": [
-          176
+          238
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/ne_corner",
         "construct": "sector",
-        "sector": 177,
+        "sector": 239,
         "sectors": [
-          177
+          239
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/se_corner",
         "construct": "sector",
-        "sector": 184,
+        "sector": 246,
         "sectors": [
-          184
+          246
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/s_channel",
         "construct": "sector",
-        "sector": 185,
+        "sector": 247,
         "sectors": [
-          185
+          247
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/sw_corner",
         "construct": "sector",
-        "sector": 187,
+        "sector": 249,
         "sectors": [
-          187
+          249
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/chambers/pump_room",
         "construct": "sector",
-        "sector": 195,
+        "sector": 257,
         "sectors": [
-          195
+          257
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/chambers/silt_trap",
         "construct": "sector",
-        "sector": 196,
+        "sector": 258,
         "sectors": [
-          196
+          258
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/chambers/east_annex",
         "construct": "sector",
-        "sector": 197,
+        "sector": 259,
         "sectors": [
-          197
+          259
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/chambers/flooded",
         "construct": "sector",
-        "sector": 198,
+        "sector": 260,
         "sectors": [
-          198
+          260
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/chambers/station_foot",
         "construct": "sector",
-        "sector": 199,
+        "sector": 261,
         "sectors": [
-          199
+          261
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/necks/west_adit",
         "construct": "sector",
-        "sector": 200,
+        "sector": 262,
         "sectors": [
-          200
+          262
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/necks/neck_cistern",
         "construct": "sector",
-        "sector": 201,
+        "sector": 263,
         "sectors": [
-          201
+          263
         ],
         "sector_type": 0
       }
     ]
   },
   "rules": {
-    "total": 453,
+    "total": 681,
     "by_severity": {
-      "note": 435,
-      "warning": 6,
+      "note": 662,
+      "warning": 7,
       "error": 12
     },
     "by_code": {
-      "note:sprite-drawn-square": 12,
+      "note:sprite-drawn-square": 33,
       "note:floor-aligned-sprite-rests-on-a-surface": 2,
-      "note:glass-is-breakable": 24,
-      "note:opening-clears-a-standing-body": 58,
-      "warning:wall-between-rooms-is-not-paper": 1,
+      "note:glass-is-breakable": 20,
+      "note:threshold-follows-the-roofed-side": 2,
+      "note:opening-clears-a-standing-body": 76,
+      "note:lintel-continues-the-facade": 5,
+      "warning:wall-between-rooms-is-not-paper": 2,
       "error:tile-sits-in-an-attested-slot": 12,
-      "note:wall-draws-its-own-tile": 338,
-      "warning:wall-tile-is-drawn-somewhere": 5,
-      "note:rule-ungraded": 1
+      "note:wall-draws-its-own-tile": 524,
+      "warning:wall-tile-is-drawn-somewhere": 5
     }
   },
   "lost_wall_tiles": {
-    "population": 32,
+    "population": 39,
     "tiles": [
       "tile[68]",
       "tile[93]",
@@ -1221,11 +1749,62 @@
       "tile[1011]"
     ],
     "as_readback_differences": [
-      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[68]: authored on 5 wall(s) (124, 127, 134, 170, 172) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
-      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[93]: authored on 9 wall(s) (501, 504, 508, 509, 519, 533 and 3 more) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
-      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[194]: authored on 2 wall(s) (1264, 1316) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
-      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[203]: authored on 3 wall(s) (238, 243, 257) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
-      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[1011]: authored on 3 wall(s) (510, 512, 513) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[68]: authored on 5 wall(s) (109, 112, 119, 155, 157) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[93]: authored on 6 wall(s) (654, 659, 660, 668, 683, 684) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[194]: authored on 2 wall(s) (1620, 1672) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[203]: authored on 3 wall(s) (223, 228, 242) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[1011]: authored on 3 wall(s) (661, 663, 664) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+    ]
+  },
+  "sprite_fit": {
+    "rates": {
+      "sprites": 520,
+      "sunk": 0.0,
+      "through": 0.002,
+      "squeezed": 0.022
+    },
+    "sunk": [],
+    "through": [
+      {
+        "sprite": 427,
+        "tile": 793,
+        "sector": 27
+      }
+    ],
+    "squeezed": [
+      {
+        "sprite": 122,
+        "tile": 809,
+        "sector": 35
+      },
+      {
+        "sprite": 137,
+        "tile": 2377,
+        "sector": 45
+      },
+      {
+        "sprite": 138,
+        "tile": 2377,
+        "sector": 45
+      },
+      {
+        "sprite": 139,
+        "tile": 2377,
+        "sector": 45
+      }
+    ],
+    "overlaps": [
+      {
+        "sprites": [
+          129,
+          130
+        ],
+        "tiles": [
+          73,
+          73
+        ],
+        "sector": 42
+      }
     ]
   }
 }

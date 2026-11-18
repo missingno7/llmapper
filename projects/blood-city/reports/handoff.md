@@ -101,6 +101,13 @@ this project's modules would not exist under that rule.
   one-off with no precedent is allowed but says so in the source and still
   gets the render loop.
 - **A fix you did not re-render did not happen.**
+- **Say what a change will do before making it.** Write the prediction and
+  a control into an `experiments/<name>/hypothesis.json`, render the same
+  poses before and after (`look.py --set ... -o experiments/<name>/<run>`
+  keeps the MAP it looked at), and score it with
+  `python -m tools.judge_experiment`. A failed prediction is a finding.
+- **Have a stranger look.** Hand the frames, and nothing else, to a reviewer
+  that has not been told what the place is. Record what it took it for.
 
 ## Traps that have bitten more than once
 
@@ -275,10 +282,17 @@ from 7% to 11%. The ceiling is structural: every interior room is an
 axis-aligned rectangle because `Assembly.room` joins on named compass
 faces. Grammar request **#10** asks for faces on arbitrary polygons.
 
-**5. No skyline.** Every mass rises to the same sky, so the church tower —
-which `church-patterns.md` asks for as the vista silhouette — cannot be
-seen from the street at all. A massing-layer change, and E3M1's own
-differentiator is its stepped roofscape.
+**5. No skyline -- begun 2026-11-17.** St Gallow's has roofs, a pitched
+nave, a churchyard wall you can see over and a gabled tower
+(`experiments/church-roofs/README.md`). Every other block is still 11.6
+bodies. Three things to know before touching another one:
+
+- **Raise the floor, never lower the sky.** A low parallax ceiling is a lid
+  (`bloodmap.skyline.roof`, not `apron`). The owner caught this in NBlood.
+- **A roof that is seen over forbids a door beneath it.** The room leaks
+  into the sky. Enter through something nothing is seen over; the build
+  runs `skyline.leaks_under_roofs` and refuses a violation.
+- `reports/visual-survey-2026-11-17.md` ranks what is wrong from the ground.
 
 **6. Light props at 19% against the campaign's 3%.** Two reasoned
 deviations (nine street light pools, six sewer corner lights) cover 15 of

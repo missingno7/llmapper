@@ -81,10 +81,33 @@ def wall_owners(disk: Any) -> dict[int, int]:
 
 
 def dominant_wall_tile(disk: Any, sector: int) -> int:
+    """The wall an opening in this sector interrupts: its SOLID wall, by length.
+
+    Until 2026-11-17 this was the commonest picnum per wall RECORD, portals
+    included.  A market hall with sixteen 1024-long crate rims and five long
+    plaster walls therefore had "crate" for a facade, and blood-city's lintel
+    pass -- which repaints the band over a mouth with this tile -- ran a row
+    of crates round the hall under its ceiling (the owner: "these ceiling
+    crates doesn't feel right").  A record count is not a surface.  The
+    facade is what stands where there is no opening, weighed by how much of
+    it there is; only a sector with no solid wall at all falls back to its
+    two-sided records.
+    """
     fields = disk.sectors[sector].fields
     start, count = int(fields["wall_ptr"]), int(fields["wall_count"])
-    tally = Counter(int(disk.walls[w].fields["picnum"]) for w in range(start, start + count))
-    return tally.most_common(1)[0][0]
+    solid: Counter = Counter()
+    every: Counter = Counter()
+    for wall in range(start, start + count):
+        here = disk.walls[wall].fields
+        there = disk.walls[int(here["point2"])].fields
+        length = ((int(there["x"]) - int(here["x"])) ** 2
+                  + (int(there["y"]) - int(here["y"])) ** 2) ** 0.5
+        every[int(here["picnum"])] += length
+        if int(here["next_sector"]) < 0:
+            solid[int(here["picnum"])] += length
+    tally = solid or every
+    #: ties broken by tile number, so the answer does not depend on wall order
+    return max(tally.items(), key=lambda item: (item[1], -item[0]))[0]
 
 
 def perimeter(disk: Any, sector: int) -> float:
@@ -151,6 +174,13 @@ def observe(name: str, disk: Any) -> list[dict[str, Any]]:
         if leaf < WALKABLE_OPENING:
             continue                                # not a way through
         lintel = top - my_ceiling                   # facade above the hole
+        # ...unless both sides are open to the sky.  engine.cpp:4688 skips the
+        # upper section when both ceilings are parallax, so a step between two
+        # skies paints nothing: there is no band above the hole to be a lintel.
+        # (`bloodmap.skyline` builds exactly such steps, and 17 campaign maps
+        # hold 141 of them -- `tools/mine_skylines.py`.)
+        if int(here["ceiling_stat"]) & 1 and int(there["ceiling_stat"]) & 1:
+            lintel = 0
         step = my_floor - bottom                    # facade below it
         facade = my_floor - my_ceiling
 

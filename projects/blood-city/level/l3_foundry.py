@@ -40,6 +40,12 @@ JAMB_TILE = 170
 
 #: Lamp sconce, campaign modal form (decoration registry tile 641).
 LAMP_TILE = 641
+#: ...but 641 is the owner's "lamp hanging on a chain", and in seven town
+#: maps all 13 of it hang under a ceiling. The yard has the sky over it:
+#: the two there hung from nothing. A yard wall carries the bracket (506).
+import props as _props
+YARD_LAMP = _props.fields(_props.FLAME)
+YARD_LAMP_HEIGHT = _props.height_of(_props.FLAME)
 LAMP_FIELDS = {"picnum": 641, "x_repeat": 64, "y_repeat": 64, "cstat": 129,
                "shade": -128, "type": 0}
 
@@ -354,11 +360,12 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
     layout.place_on_wall(
         "lamp:stair_mouth", street_region,
         a1=(yard_x0, top_y0 + 2048), a2=(yard_x0, top_y0),
-        t=0.5, height_player_heights=3.38, **LAMP_FIELDS)
+        #: over the mouth's head (the mouth is 1.45 bodies), not in it
+        t=0.5, height_player_heights=1.9, **YARD_LAMP)
     door_region = dressing["canteen_door"]
     layout.place_on_wall(
         "lamp:canteen_door", street_region,
         a1=(yard_x0 + 1536, yard_y0), a2=(yard_x0 + 3072, yard_y0),
-        t=0.15, height_player_heights=3.38, **LAMP_FIELDS)
+        t=0.15, height_player_heights=YARD_LAMP_HEIGHT, **YARD_LAMP)
     out += ["lamp:stair_mouth", "lamp:canteen_door"]
     return out

@@ -1,0 +1,131 @@
+{
+ "variants": {
+  "nobars": {
+   "source": "projects\\blood-city\\level\\blood-city-current.MAP",
+   "target": "projects\\blood-city\\experiments\\pledge-room\\nobars\\variant.MAP",
+   "source_sha256": "3b11a862a416d04521880b2b813236844ca0e5055725e572d703c77c27e3ded5",
+   "target_sha256": "731ae9f5ccb8aa1820757cede180b074ec7c06e5aa69e2dabf0835775dba6dad",
+   "edits": [
+    {
+     "edit": "the grille removed: no mask, no blocking",
+     "on": "walls",
+     "touched": 2,
+     "dropped": false
+    }
+   ],
+   "claims": {
+    "is_a_build": false,
+    "is_evidence_of": "what the edited records contribute"
+   }
+  },
+  "unlit": {
+   "source": "projects\\blood-city\\level\\blood-city-current.MAP",
+   "target": "projects\\blood-city\\experiments\\pledge-room\\unlit\\variant.MAP",
+   "source_sha256": "3b11a862a416d04521880b2b813236844ca0e5055725e572d703c77c27e3ded5",
+   "target_sha256": "dd3f849f0a8109e0b2fc398945ed4f1a96c0c89b4b5ab089702e9d036f4121de",
+   "edits": [
+    {
+     "edit": "the pledge room at the street's shade",
+     "on": "sectors",
+     "touched": 1,
+     "dropped": false
+    },
+    {
+     "edit": "its walls unlit",
+     "on": "walls",
+     "touched": 4,
+     "dropped": false
+    },
+    {
+     "edit": "its lamp out",
+     "on": "sprites",
+     "touched": 1,
+     "dropped": true
+    }
+   ],
+   "claims": {
+    "is_a_build": false,
+    "is_evidence_of": "what the edited records contribute"
+   }
+  },
+  "empty": {
+   "source": "projects\\blood-city\\level\\blood-city-current.MAP",
+   "target": "projects\\blood-city\\experiments\\pledge-room\\empty\\variant.MAP",
+   "source_sha256": "3b11a862a416d04521880b2b813236844ca0e5055725e572d703c77c27e3ded5",
+   "target_sha256": "65cac931cb2289ee478377e6fe8837a59de2fe789e56a4150cc78790c4e23443",
+   "edits": [
+    {
+     "edit": "the pledges and the lamp removed",
+     "on": "sprites",
+     "touched": 3,
+     "dropped": true
+    }
+   ],
+   "claims": {
+    "is_a_build": false,
+    "is_evidence_of": "what the edited records contribute"
+   }
+  }
+ },
+ "edits": {
+  "nobars": [
+   {
+    "name": "the grille removed: no mask, no blocking",
+    "on": "walls",
+    "where": {
+     "over_picnum": [
+      463
+     ]
+    },
+    "set": {
+     "over_picnum": 0,
+     "cstat": 0
+    }
+   }
+  ],
+  "unlit": [
+   {
+    "name": "the pledge room at the street's shade",
+    "on": "sectors",
+    "where": {
+     "intent": "vault"
+    },
+    "set": {
+     "floor_shade": 32,
+     "ceiling_shade": 34
+    }
+   },
+   {
+    "name": "its walls unlit",
+    "on": "walls",
+    "where": {
+     "intent": "vault"
+    },
+    "set": {
+     "shade": 32
+    }
+   },
+   {
+    "name": "its lamp out",
+    "on": "sprites",
+    "where": {
+     "intent": "vault",
+     "picnum": [
+      641
+     ]
+    },
+    "drop": true
+   }
+  ],
+  "empty": [
+   {
+    "name": "the pledges and the lamp removed",
+    "on": "sprites",
+    "where": {
+     "intent": "vault"
+    },
+    "drop": true
+   }
+  ]
+ }
+}

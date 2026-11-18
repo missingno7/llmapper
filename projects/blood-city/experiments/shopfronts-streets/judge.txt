@@ -1,0 +1,64 @@
+before: 64e14cf05d4a sectors 274 walls 1792 skyline {'11.6': 108, '11.7': 3, '13.5': 2, '17.4': 6}
+after: aebfccf19aab sectors 309 walls 2002 skyline {'11.6': 108, '11.7': 3, '13.5': 2, '17.4': 6}
+before->after
+  pawn_front         sky 0.000->0.000  tall px 0->0  changed 266240
+  pawn_rake          sky 0.022->0.022  tall px 0->0  changed 186445
+  pawn_inside        sky 0.000->0.000  tall px 0->0  changed 136741
+  super_east         sky 0.000->0.000  tall px 0->0  changed 161587
+  super_east_rake    sky 0.118->0.118  tall px 144->144  changed 118363
+  super_north        sky 0.000->0.000  tall px 0->0  changed 297658  POSE MOVED
+  super_north_rake   sky 0.000->0.000  tall px 0->0  changed 225004
+  super_inside       sky 0.000->0.000  tall px 0->0  changed 105712
+  super_south_pane   sky 0.035->0.035  tall px 0->0  changed 84385
+  super_north_far    sky 0.000->0.000  tall px 0->0  changed 238948  POSE MOVED
+  pawn_close         sky 0.021->0.021  tall px 0->0  changed 237850
+  hall_band          sky 0.000->0.000  tall px 0->0  changed 63626
+  hall_stock_band    sky 0.000->0.000  tall px 0->0  changed 56004
+  mall_north         sky 0.000->0.000  tall px 0->0  changed 118455
+  mall_rake          sky 0.000->0.000  tall px 0->0  changed 132273
+  avenue_road        sky 0.002->0.002  tall px 1467->1467  changed 225990
+  avenue_road_level  sky 0.119->0.119  tall px 3329->3329  changed 162767
+  row_road           sky 0.000->0.000  tall px 0->0  changed 218096
+  row_road_level     sky 0.024->0.024  tall px 0->0  changed 162042
+  market_road        sky 0.006->0.006  tall px 118->118  changed 218250
+  market_road_level  sky 0.159->0.159  tall px 463->463  changed 148328
+  west_road          sky 0.022->0.022  tall px 0->0  changed 80348
+  kerb_close         sky 0.000->0.000  tall px 0->0  changed 210738  POSE MOVED
+  kerb_along         sky 0.000->0.000  tall px 3199->3100  changed 201110  POSE MOVED
+  sill_close         sky 0.000->0.000  tall px 0->0  changed 272893
+  west_street_on_road sky 0.060->0.060  tall px 0->0  changed 113753
+  crossing           sky 0.162->0.154  tall px 0->0  changed 151854  POSE MOVED
+  foundry_road       sky 0.032->0.032  tall px 0->0  changed 105386
+  spawn              sky 0.210->0.210  tall px 2314->2314  changed 153376
+  spawn_wide         sky 0.205->0.205  tall px 1008->1008  changed 156741
+  monument_read      sky 0.163->0.163  tall px 452->452  changed 171195
+  monument_close     sky 0.174->0.174  tall px 719->719  changed 141088
+  monument_side      sky 0.143->0.143  tall px 819->819  changed 108309
+  avenue_south       sky 0.079->0.077  tall px 6677->6585  changed 212643  POSE MOVED
+  avenue_south_up    sky 0.263->0.258  tall px 10207->10118  changed 178294  POSE MOVED
+  avenue_north       sky 0.130->0.126  tall px 34402->33575  changed 175093  POSE MOVED
+  avenue_front       sky 0.094->0.094  tall px 44480->44480  changed 150007
+  avenue_front_up    sky 0.310->0.310  tall px 65787->65787  changed 74575
+  portal             sky 0.054->0.047  tall px 0->0  changed 230955  POSE MOVED
+  tower_door         sky 0.051->0.048  tall px 26006->25247  changed 228270  POSE MOVED
+  tower_door_close   sky 0.029->0.029  tall px 34278->34278  changed 117901
+  tower_foot         sky 0.333->0.327  tall px 95438->93212  changed 161702  POSE MOVED
+  row_corner         sky 0.000->0.000  tall px 15869->15442  changed 247962  POSE MOVED
+  forecourt          sky 0.084->0.084  tall px 13948->13948  changed 157269
+  vista_far          sky 0.149->0.149  tall px 2184->2184  changed 159935
+  spawn_north        sky 0.179->0.179  tall px 938->938  changed 137126
+  cemetery_side      sky 0.097->0.097  tall px 23->23  changed 123769
+  belfry_in          sky 0.000->0.000  tall px 0->0  changed 0
+  belfry_out         sky 0.000->0.000  tall px 0->0  changed 66011
+  belfry_up          sky 0.000->0.000  tall px 0->0  changed 231771
+  tower_room         sky 0.000->0.000  tall px 0->0  changed 186877
+  tower_room_back    sky 0.000->0.000  tall px 0->0  changed 115721
+  chancel_south      sky 0.000->0.000  tall px 0->0  changed 126373
+  nave_north         sky 0.000->0.000  tall px 0->0  changed 63788
+  nave_roof          sky 0.000->0.000  tall px 0->0  changed 92318
+  aisle_north        sky 0.000->0.000  tall px 0->0  changed 51604
+  narthex_north      sky 0.000->0.000  tall px 0->0  changed 35019
+  narthex_east       sky 0.000->0.000  tall px 0->0  changed 0
+  vestry             sky 0.000->0.000  tall px 0->0  changed 0
+drawn sky seams: none
+interior ceilings leaking into the sky: {'before': {'pawn_close': 27596, 'sill_close': 5136, 'tower_door_close': 1515}, 'after': {'pawn_close': 21137, 'sill_close': 4552, 'tower_door_close': 1515}}

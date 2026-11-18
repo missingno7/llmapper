@@ -116,6 +116,12 @@ def dress(layout, regions=None) -> dict:
                     - int(getattr(region, "ceiling_z", 0)))
         if clear < MIN_CLEAR:
             continue                      # doorways, and anything crawlable
+        if dict(getattr(region, "intent", {}) or {}).get("kind") in (
+                "roof", "sky_apron", "end_wall", "sky_backing", "roadway"):
+            # A roof is the top of something solid and an apron is a strip of
+            # pavement; neither is a room.  The first build with roofs stood
+            # two headstones on St Gallow's, visible from the avenue.
+            continue
         surfaces = _surfaces_of(region)
         if surfaces is None:
             continue

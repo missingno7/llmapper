@@ -1,0 +1,28 @@
+town-goods, 2026-11-18 -- what was counted, on which map
+
+before  observed.MAP sha256 e1495f082445...  327 sectors / 2086 walls
+full    (the build the blind reviewer saw)   sha256 666d83b79fe4...
+final   observed.MAP sha256 e4e0d325768a...  327 sectors / 2086 walls
+
+distinct decoration tiles (tools.mine_city_assets.variety)
+  before 38   reviewed build 86   final 85
+  E6M1 32, E3M1 61, E3M2 87, DWE3M10 91, E1M4 104, E1M2 109, DWE3M1 142
+decoration sprites                 187 -> 266
+wall / floor / ceiling tiles       37 / 23 / 11, unchanged (E3M1 67 / 29 / 22)
+planned things set down            reviewed build 88 of 93; final 83 of 88
+refused in the final build         a portrait, a painted map, a broom, a banner
+                                   (no room on the wall named), one bush (not
+                                   clear ground)
+tiles used that the owner has not named   46 (references/goods-unnamed-tiles.md)
+
+what-if variants of the reviewed build (whatif.json)
+  nobills    15 sprites: signs, bills, notices, papers
+  nothings   71 sprites: every other newly used tile
+
+rules        12 errors / 7 warnings, unchanged
+determinism  reviewed build and final build: two builds each, same sha256
+NBlood load  final build: pass. A load test; nobody was moved through it.
+suite        final build: 2286 tests, OK (25 skipped, 4 expected failures)
+blind review one reviewer, four unlabelled sets of ten views. The final
+             build (bins and bar flames removed, a statue and a banner moved)
+             was not reviewed blind.

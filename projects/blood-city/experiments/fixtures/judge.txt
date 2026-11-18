@@ -1,0 +1,15 @@
+before: e4e0d325768a sectors 327 walls 2084 skyline {'0.0': 16, '5.8': 8, '11.6': 108, '11.7': 3, '13.5': 2, '17.4': 6}
+after: d24eb4419988 sectors 328 walls 2078 skyline {'0.0': 16, '5.8': 8, '11.6': 108, '11.7': 3, '13.5': 2, '17.4': 6}
+before->after
+  saloon_in          sky 0.000->0.000  tall px 0->0  changed 45870
+  saloon_counter     sky 0.000->0.000  tall px 0->0  changed 118442
+  saloon_shelf       sky 0.000->0.000  tall px 0->0  changed 107404
+  unit_b             sky 0.000->0.000  tall px 0->0  changed 76663
+  unit_c             sky 0.000->0.000  tall px 0->0  changed 64961
+  unit_e             sky 0.000->0.000  tall px 0->0  changed 49271
+  unit_f             sky 0.000->0.000  tall px 0->0  changed 43565
+  unit_b_rake        sky 0.000->0.000  tall px 0->0  changed 143301
+  pawn_front         sky 0.000->0.000  tall px 0->0  changed 0
+  saloon_door        sky 0.000->0.000  tall px 0->0  changed 0
+drawn sky seams: none
+interior ceilings leaking into the sky: {'before': {'saloon_door': 6118}, 'after': {'saloon_door': 6118}}

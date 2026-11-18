@@ -285,10 +285,17 @@ def occupancy(layout) -> dict:
         z = anchor_z(region, float(anchor.get("height_player_heights") or 0.0),
                      above, below)
         key = _plane_key(point, unit)
-        plane = planes.setdefault(key, Plane(key, unit))
         along = point[0] * unit[0] + point[1] * unit[1]
-        plane.taken.append(Rect(along - left, along + right,
-                                z - above, z + below))
+        rect = Rect(along - left, along + right, z - above, z + below)
+        # In its own bucket AND the two beside it. A key is a rounded
+        # offset, so two sprites 8 units apart in depth -- a letter at 0.12
+        # of a player width off the wall, a painting at 0.10 -- could fall
+        # either side of a bucket edge and never be compared. Six signs were
+        # written through pictures that way (`tools/sprite_fit.py` overlap;
+        # the owner saw it first, 2026-11-18).
+        for near in (-1, 0, 1):
+            beside = (key[0], key[1], key[2] + near)
+            planes.setdefault(beside, Plane(beside, unit)).taken.append(rect)
     return planes
 
 
@@ -327,7 +334,17 @@ def portal_spans(layout, region_id: str, a1, a2) -> list:
         low, high = min(first, second), max(first, second)
         if high < lo_line or low > hi_line:
             continue
-        out.append((low, high))
+        # ... and only between the other side's ceiling and floor. A shelf
+        # let into a wall is a portal a body high; the wall over its head is
+        # solid, and a sign belongs there (experiments/fixtures).
+        other = layout.regions.get(connection.region_b
+                                   if connection.region_a == region_id
+                                   else connection.region_a)
+        if other is None or int(other.ceiling_z) >= int(other.floor_z):
+            #: a door is a sector of no height until it opens: all of it
+            out.append((low, high, None, None))
+        else:
+            out.append((low, high, int(other.ceiling_z), int(other.floor_z)))
     return out
 
 
@@ -373,7 +390,8 @@ def find_slot(layout, region_id: str, a1, a2, *, width: float, above: int,
             return None
         along = point[0] * unit[0] + point[1] * unit[1]
         if any(along - half < high and low < along + half
-               for low, high in blocked):
+               and (top is None or (z - above < bottom and top < z + below))
+               for low, high, top, bottom in blocked):
             return None                  # nothing behind it
         if plane is None:
             return z

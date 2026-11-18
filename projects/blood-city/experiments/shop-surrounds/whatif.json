@@ -1,0 +1,553 @@
+{
+ "variants": {
+  "unlit": {
+   "source": "projects\\blood-city\\level\\blood-city-current.MAP",
+   "target": "projects\\blood-city\\experiments\\shop-surrounds\\unlit\\variant.MAP",
+   "source_sha256": "ec4102aaf96fd78dd628786fd309905809626cef98d94ad087ddddbcd260cff9",
+   "target_sha256": "ad129db864f5392bedd83ffd0e6e9e760a9d853a7db6e24250adfc49898fd4c4",
+   "edits": [
+    {
+     "edit": "sector 38 as it was before the lamp",
+     "on": "sectors",
+     "touched": 1,
+     "dropped": false
+    },
+    {
+     "edit": "sector 38 walls",
+     "on": "walls",
+     "touched": 24,
+     "dropped": false
+    },
+    {
+     "edit": "sector 46 as it was before the lamp",
+     "on": "sectors",
+     "touched": 1,
+     "dropped": false
+    },
+    {
+     "edit": "sector 46 walls",
+     "on": "walls",
+     "touched": 6,
+     "dropped": false
+    },
+    {
+     "edit": "sector 147 as it was before the lamp",
+     "on": "sectors",
+     "touched": 1,
+     "dropped": false
+    },
+    {
+     "edit": "sector 147 walls",
+     "on": "walls",
+     "touched": 16,
+     "dropped": false
+    },
+    {
+     "edit": "sector 156 as it was before the lamp",
+     "on": "sectors",
+     "touched": 1,
+     "dropped": false
+    },
+    {
+     "edit": "sector 156 walls",
+     "on": "walls",
+     "touched": 12,
+     "dropped": false
+    },
+    {
+     "edit": "sector 169 as it was before the lamp",
+     "on": "sectors",
+     "touched": 1,
+     "dropped": false
+    },
+    {
+     "edit": "sector 169 walls",
+     "on": "walls",
+     "touched": 4,
+     "dropped": false
+    },
+    {
+     "edit": "sector 172 as it was before the lamp",
+     "on": "sectors",
+     "touched": 1,
+     "dropped": false
+    },
+    {
+     "edit": "sector 172 walls",
+     "on": "walls",
+     "touched": 4,
+     "dropped": false
+    },
+    {
+     "edit": "sector 190 as it was before the lamp",
+     "on": "sectors",
+     "touched": 1,
+     "dropped": false
+    },
+    {
+     "edit": "sector 190 walls",
+     "on": "walls",
+     "touched": 41,
+     "dropped": false
+    },
+    {
+     "edit": "sector 206 as it was before the lamp",
+     "on": "sectors",
+     "touched": 1,
+     "dropped": false
+    },
+    {
+     "edit": "sector 206 walls",
+     "on": "walls",
+     "touched": 6,
+     "dropped": false
+    },
+    {
+     "edit": "sector 210 as it was before the lamp",
+     "on": "sectors",
+     "touched": 1,
+     "dropped": false
+    },
+    {
+     "edit": "sector 210 walls",
+     "on": "walls",
+     "touched": 4,
+     "dropped": false
+    },
+    {
+     "edit": "sector 213 as it was before the lamp",
+     "on": "sectors",
+     "touched": 1,
+     "dropped": false
+    },
+    {
+     "edit": "sector 213 walls",
+     "on": "walls",
+     "touched": 10,
+     "dropped": false
+    },
+    {
+     "edit": "lamps out",
+     "on": "sprites",
+     "touched": 6,
+     "dropped": true
+    }
+   ],
+   "claims": {
+    "is_a_build": false,
+    "is_evidence_of": "what the edited records contribute"
+   }
+  },
+  "unnamed": {
+   "source": "projects\\blood-city\\level\\blood-city-current.MAP",
+   "target": "projects\\blood-city\\experiments\\shop-surrounds\\unnamed\\variant.MAP",
+   "source_sha256": "ec4102aaf96fd78dd628786fd309905809626cef98d94ad087ddddbcd260cff9",
+   "target_sha256": "34522f10ae1866ec06b186d64f0719e4b2e194002c6977212b3b29f17c5298c4",
+   "edits": [
+    {
+     "edit": "fascia letters removed",
+     "on": "sprites",
+     "touched": 30,
+     "dropped": true
+    }
+   ],
+   "claims": {
+    "is_a_build": false,
+    "is_evidence_of": "what the edited records contribute"
+   }
+  },
+  "unfronted": {
+   "source": "projects\\blood-city\\level\\blood-city-current.MAP",
+   "target": "projects\\blood-city\\experiments\\shop-surrounds\\unfronted\\variant.MAP",
+   "source_sha256": "ec4102aaf96fd78dd628786fd309905809626cef98d94ad087ddddbcd260cff9",
+   "target_sha256": "587525406b0331a28858eb4e36770dbe0ead840e8ac8316aed59aa350e7d6581",
+   "edits": [
+    {
+     "edit": "pawnbroker surround in the district facade",
+     "on": "walls",
+     "touched": 6,
+     "dropped": false
+    },
+    {
+     "edit": "market hall surround in the district facade",
+     "on": "walls",
+     "touched": 20,
+     "dropped": false
+    },
+    {
+     "edit": "arcade surrounds in the concourse wall",
+     "on": "walls",
+     "touched": 8,
+     "dropped": false
+    }
+   ],
+   "claims": {
+    "is_a_build": false,
+    "is_evidence_of": "what the edited records contribute"
+   }
+  }
+ },
+ "edits": {
+  "unlit": [
+   {
+    "name": "sector 38 as it was before the lamp",
+    "on": "sectors",
+    "where": {
+     "id": [
+      38
+     ]
+    },
+    "set": {
+     "floor_shade": 32,
+     "ceiling_shade": 34
+    }
+   },
+   {
+    "name": "sector 38 walls",
+    "on": "walls",
+    "where": {
+     "sector": [
+      38
+     ]
+    },
+    "set": {
+     "shade": 32
+    }
+   },
+   {
+    "name": "sector 46 as it was before the lamp",
+    "on": "sectors",
+    "where": {
+     "id": [
+      46
+     ]
+    },
+    "set": {
+     "floor_shade": 32,
+     "ceiling_shade": 34
+    }
+   },
+   {
+    "name": "sector 46 walls",
+    "on": "walls",
+    "where": {
+     "sector": [
+      46
+     ]
+    },
+    "set": {
+     "shade": 32
+    }
+   },
+   {
+    "name": "sector 147 as it was before the lamp",
+    "on": "sectors",
+    "where": {
+     "id": [
+      147
+     ]
+    },
+    "set": {
+     "floor_shade": 32,
+     "ceiling_shade": 34
+    }
+   },
+   {
+    "name": "sector 147 walls",
+    "on": "walls",
+    "where": {
+     "sector": [
+      147
+     ]
+    },
+    "set": {
+     "shade": 32
+    }
+   },
+   {
+    "name": "sector 156 as it was before the lamp",
+    "on": "sectors",
+    "where": {
+     "id": [
+      156
+     ]
+    },
+    "set": {
+     "floor_shade": 32,
+     "ceiling_shade": 34
+    }
+   },
+   {
+    "name": "sector 156 walls",
+    "on": "walls",
+    "where": {
+     "sector": [
+      156
+     ]
+    },
+    "set": {
+     "shade": 32
+    }
+   },
+   {
+    "name": "sector 169 as it was before the lamp",
+    "on": "sectors",
+    "where": {
+     "id": [
+      169
+     ]
+    },
+    "set": {
+     "floor_shade": 32,
+     "ceiling_shade": 34
+    }
+   },
+   {
+    "name": "sector 169 walls",
+    "on": "walls",
+    "where": {
+     "sector": [
+      169
+     ]
+    },
+    "set": {
+     "shade": 32
+    }
+   },
+   {
+    "name": "sector 172 as it was before the lamp",
+    "on": "sectors",
+    "where": {
+     "id": [
+      172
+     ]
+    },
+    "set": {
+     "floor_shade": 32,
+     "ceiling_shade": 34
+    }
+   },
+   {
+    "name": "sector 172 walls",
+    "on": "walls",
+    "where": {
+     "sector": [
+      172
+     ]
+    },
+    "set": {
+     "shade": 32
+    }
+   },
+   {
+    "name": "sector 190 as it was before the lamp",
+    "on": "sectors",
+    "where": {
+     "id": [
+      190
+     ]
+    },
+    "set": {
+     "floor_shade": 32,
+     "ceiling_shade": 27
+    }
+   },
+   {
+    "name": "sector 190 walls",
+    "on": "walls",
+    "where": {
+     "sector": [
+      190
+     ]
+    },
+    "set": {
+     "shade": 25
+    }
+   },
+   {
+    "name": "sector 206 as it was before the lamp",
+    "on": "sectors",
+    "where": {
+     "id": [
+      206
+     ]
+    },
+    "set": {
+     "floor_shade": 32,
+     "ceiling_shade": 34
+    }
+   },
+   {
+    "name": "sector 206 walls",
+    "on": "walls",
+    "where": {
+     "sector": [
+      206
+     ]
+    },
+    "set": {
+     "shade": 32
+    }
+   },
+   {
+    "name": "sector 210 as it was before the lamp",
+    "on": "sectors",
+    "where": {
+     "id": [
+      210
+     ]
+    },
+    "set": {
+     "floor_shade": 32,
+     "ceiling_shade": 34
+    }
+   },
+   {
+    "name": "sector 210 walls",
+    "on": "walls",
+    "where": {
+     "sector": [
+      210
+     ]
+    },
+    "set": {
+     "shade": 32
+    }
+   },
+   {
+    "name": "sector 213 as it was before the lamp",
+    "on": "sectors",
+    "where": {
+     "id": [
+      213
+     ]
+    },
+    "set": {
+     "floor_shade": 32,
+     "ceiling_shade": 33
+    }
+   },
+   {
+    "name": "sector 213 walls",
+    "on": "walls",
+    "where": {
+     "sector": [
+      213
+     ]
+    },
+    "set": {
+     "shade": 32
+    }
+   },
+   {
+    "name": "lamps out",
+    "on": "sprites",
+    "where": {
+     "picnum": [
+      641
+     ],
+     "intent": [
+      "shop_display"
+     ]
+    },
+    "drop": true
+   }
+  ],
+  "unnamed": [
+   {
+    "name": "fascia letters removed",
+    "on": "sprites",
+    "where": {
+     "picnum": [
+      3808,
+      3809,
+      3810,
+      3811,
+      3812,
+      3813,
+      3814,
+      3815,
+      3816,
+      3817,
+      3818,
+      3819,
+      3820,
+      3821,
+      3822,
+      3823,
+      3824,
+      3825,
+      3826,
+      3827,
+      3828,
+      3829,
+      3830,
+      3831,
+      3832,
+      3833
+     ],
+     "intent": [
+      "shopfront"
+     ]
+    },
+    "drop": true
+   }
+  ],
+  "unfronted": [
+   {
+    "name": "pawnbroker surround in the district facade",
+    "on": "walls",
+    "where": {
+     "intent": [
+      "shopfront"
+     ],
+     "rect": [
+      27000,
+      3000,
+      32000,
+      3700
+     ]
+    },
+    "set": {
+     "picnum": 400
+    }
+   },
+   {
+    "name": "market hall surround in the district facade",
+    "on": "walls",
+    "where": {
+     "intent": [
+      "shopfront"
+     ],
+     "rect": [
+      3000,
+      40000,
+      16000,
+      50000
+     ]
+    },
+    "set": {
+     "picnum": 380
+    }
+   },
+   {
+    "name": "arcade surrounds in the concourse wall",
+    "on": "walls",
+    "where": {
+     "intent": [
+      "shopfront"
+     ],
+     "rect": [
+      40000,
+      43000,
+      54000,
+      49000
+     ]
+    },
+    "set": {
+     "picnum": 108
+    }
+   }
+  ]
+ }
+}

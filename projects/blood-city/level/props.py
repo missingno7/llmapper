@@ -114,6 +114,11 @@ GRIME_COUNTS = (1, 1, 2, 2, 2, 3, 3, 4, 5, 5, 7)
 
 FLAME = 506           # the one true bracket: hug 0.92, shade -128
 STREET_LAMP = 640     # stands on the ground, 62% of it outdoors
+#: DWE3M1 draws 18 of its 26 outdoor lamps at repeat 120: 2.1 bodies, a
+#: lamp POST. At the catalogue's 64 it is 1.1 bodies, a lantern at eye
+#: level. DWE3M10 and E1M4 use 64, on piers and fairground stalls.
+STREET_LAMP_REPEAT = 120
+STREET_LAMP_LIGHT = 1.8
 CANDELABRA = 580
 DEAD_TREE = 540
 CHANDELIER = 1701
@@ -131,6 +136,9 @@ def fields(tile: int, **overrides) -> dict:
     out = {"type": 0, "picnum": tile, "cstat": spec["cstat"],
            "x_repeat": spec["x_repeat"], "y_repeat": spec["y_repeat"],
            "shade": spec["shade"], "status": 0}
+    if tile == STREET_LAMP:
+        #: every street lamp, whoever stands it: a post, not a lantern
+        out["x_repeat"] = out["y_repeat"] = STREET_LAMP_REPEAT
     out.update(overrides)
     return out
 
@@ -373,8 +381,16 @@ def stand_on_floor(layout, placement_id: str, region_id: str,
         **fields(tile, **overrides))
 
 
-def solid_faces(layout, region_id: str, rect) -> list[str]:
+def solid_faces(layout, region_id: str, rect, *,
+                over_shelves: bool = False) -> list[str]:
     """Which of a rectangular room's four faces carry no portal.
+
+    `over_shelves`: a shelf let into a wall (`fixtures.shelf_niche`) is a
+    portal half a body high, and the wall over its head is still the wall.
+    A caller that places through `wallplane`, which knows how high each
+    opening is, may count such a face as solid. Without this the first
+    shelves moved four shop names and WHISKEY onto side walls: piercing a
+    wall changes what "a solid wall" is for everything placed by that rule.
 
     A prop hung on a two-sided wall has nothing behind it, and the
     compiler rightly refuses: "wall sprites hang over an opening".  The
@@ -405,6 +421,13 @@ def solid_faces(layout, region_id: str, rect) -> list[str]:
         a1, a2 = connection.a1, connection.a2
         if a1 is None or a2 is None:
             continue
+        if over_shelves:
+            other = layout.regions.get(connection.region_b
+                                       if connection.region_a == region_id
+                                       else connection.region_a)
+            if ((getattr(other, "intent", None) or {}).get("kind")
+                    == "shelf_niche"):
+                continue
         for face, (axis, value) in lines.items():
             index = 0 if axis == "x" else 1
             if abs(a1[index] - value) <= 1 and abs(a2[index] - value) <= 1:

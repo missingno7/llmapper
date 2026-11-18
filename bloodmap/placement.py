@@ -76,6 +76,39 @@ def sprite_extent(tile_height: int, y_repeat: int, cstat: int, *,
     return (scale * centre, scale * (height - centre))
 
 
+def drawn_extent(tile_height: int, y_offset: int, y_repeat: int, cstat: int,
+                 z: int = 0) -> tuple[int, int]:
+    """(top z, bottom z) of a sprite as the RENDERER draws it.
+
+    `sprite_extent` above is Blood's physics box and ignores bit 128. The
+    renderer does not (`engine.cpp`, `setup_globals_sprite1`)::
+
+        z2 = z - ((yoff * yrepeat) << 2);              // the bottom
+        if (cstat & 128) z2 += (yspan * yrepeat) << 1;
+        z1 = z2 - ((yspan * yrepeat) << 2);            // the top
+
+    The two agree when bit 128 is set and differ by half the sprite when it
+    is not. What a player SEES sunk in a floor is this one. The town maps
+    seat by it: for every standing tile in seven of them, the median z over
+    the floor equals this box's bottom to within 8 units
+    (`tools/sprite_fit.py`).
+    """
+    if int(cstat) & SPRITE_ALIGNMENT_MASK == SPRITE_ALIGNMENT_FLOOR:
+        return int(z), int(z)
+    bottom = int(z) - ((int(y_offset) * int(y_repeat)) << 2)
+    if int(cstat) & 128:
+        bottom += (int(tile_height) * int(y_repeat)) << 1
+        if int(tile_height) & 1:
+            bottom += int(y_repeat) << 1
+    return bottom - ((int(tile_height) * int(y_repeat)) << 2), bottom
+
+
+def drawn_lift(tile_height: int, y_offset: int, y_repeat: int, cstat: int) -> int:
+    """How far over a floor a sprite's z must be for it to be DRAWN standing
+    on that floor."""
+    return drawn_extent(tile_height, y_offset, y_repeat, cstat, 0)[1]
+
+
 def drawn_height(tile_height: int, y_repeat: int) -> int:
     """The z units a sprite covers top to bottom."""
     return (int(y_repeat) << 2) * int(tile_height)

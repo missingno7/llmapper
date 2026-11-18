@@ -960,6 +960,36 @@ def run_partition(level: Any, *,
     return out
 
 
+def run_floor(level: Any, run: Sequence[int],
+              owners: Sequence[int] | None = None) -> int:
+    """The floor a run stands on: the one most of its length stands on.
+
+    A run steps across portals, so it can touch sectors at more than one
+    height. Weighed by length rather than taken from the first wall, so the
+    answer does not depend on where the run happens to start; a tie goes to
+    the lower floor, which is the ground rather than something standing on it.
+    """
+    owners = list(owners) if owners is not None else sector_index(level)
+    weight: dict[int, int] = {}
+    for index in run:
+        floor = int(_fields(level.sectors[owners[index]])["floor_z"])
+        weight[floor] = weight.get(floor, 0) + wall_length(level, index)
+    #: Blood's z grows downward, so the larger floor_z is the lower floor.
+    return max(weight.items(), key=lambda item: (item[1], item[0]))[0]
+
+
+def _floor_origin(level: Any, run: Sequence[int], tile: int, y_repeat: int,
+                  art_sizes: dict[int, tuple[int, int]],
+                  owners: Sequence[int]) -> int:
+    """The world z of the tile's top row when its bottom row is on the floor.
+
+    A texel is ``2048 / y_repeat`` z tall (`AlignWalls`: a peg difference of
+    ``tilesizy << 3`` at y_repeat 1 is one whole tile of panning).
+    """
+    height = int(art_sizes[int(tile)][1])
+    return run_floor(level, run, owners) - (height * 2048) // max(1, y_repeat)
+
+
 def frame_map(level: Any, *,
               art_sizes: dict[int, tuple[int, int]] | None = None,
               carry_scale: bool = True,
@@ -968,8 +998,21 @@ def frame_map(level: Any, *,
               skip_moving: bool = True,
               world_phase: set[int] | None = None,
               boundaries: Iterable[int] = (),
-              records: Any = None, owner: str = "surface") -> dict[str, Any]:
+              records: Any = None, owner: str = "surface",
+              v_anchor: str = "first_wall") -> dict[str, Any]:
     """Project every material onto the run it belongs to, in one pass.
+
+    `v_anchor` says where a run's material STANDS. ``"first_wall"`` is the
+    editor's answer -- the run's vertical origin is wherever its first wall
+    happens to peg -- and it keeps a run continuous, which is all the editor
+    promises. It does not make the material mean anything: tile 2294 is
+    plaster over a tiled dado, and a market hall whose run happened to begin
+    on a lintel wore the dado under its ceiling and bare plaster down to the
+    floor (owner, 2026-11-17: "be careful about meaningful texture
+    alignment"). ``"floor"`` puts the tile's bottom row on the floor the run
+    stands on (:func:`run_floor`): the dado, a facade's ground storey, a
+    brick course and a kerb all start where a builder starts them. It is one
+    origin for the whole run, so every join that continued still continues.
 
     The replacement for `texture_align.align_wall_runs` and the floor-anchored
     y pass together, and it differs from them in three ways that are the whole
@@ -1001,6 +1044,8 @@ def frame_map(level: Any, *,
     read-back caught exactly that the first time this pass ran: texel 2.0
     became 0.02.
     """
+    if v_anchor not in ("first_wall", "floor"):
+        raise FrameError(f"unknown v_anchor {v_anchor!r}")
     if art_sizes is None:
         from .texture_align import wall_art_sizes
 
@@ -1050,7 +1095,10 @@ def frame_map(level: Any, *,
             texels_per_unit=max(scale, 1e-6),
             u0=(world_u(level, run[0], texels_per_unit=max(scale, 1e-6))
                 if world else int(head["x_panning"])),
-            v0=wall_z_peg(level, run[0], owners),
+            v0=(_floor_origin(level, run, tile, int(head["y_repeat"]) or 8,
+                              art_sizes, owners)
+                if v_anchor == "floor"
+                else wall_z_peg(level, run[0], owners)),
             y_repeat=int(head["y_repeat"]) or 8,
             flip=int(head["cstat"]) & WALL_FLIP_MASK,
         )

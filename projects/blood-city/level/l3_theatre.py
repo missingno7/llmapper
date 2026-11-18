@@ -148,7 +148,33 @@ MEMBERSHIP = {
     "back_passage_west": ("back_of_house", "west"),
     "back_passage_east": ("back_of_house", "east"),
     "pawn_shop": ("pawn_shop", "shop"),
+    "pawn_vault": ("pawn_shop", "vault"),
+    "pawn_vault_neck": ("pawn_shop", "vault_neck"),
 }
+
+#: THE PLEDGE ROOM.  A pawnbroker's stock is not on the shop floor; it is
+#: behind bars.  A blind reviewer said of this shop, dresses in its window,
+#: "the pawn's goods say 'boutique', not 'pawn' ... no caged counter".  And
+#: measured against Blood's own city (`tools/city_profile.py --interiors`),
+#: Gravesend's interiors are flat: E3M1's median interior holds 15 floor
+#: heights over 3 bodies and 37 shade steps between its darkest floor and
+#: its brightest; this shop held one height and none.
+#:
+#: So: behind the shop, in the dead pocket between it and the Aldermack's
+#: lobby, a strongroom a quarter of a body up, lower-ceilinged, walled in
+#: pressed metal, lit by its own lamp -- and shut off by a grille.  The neck
+#: stands at the room's own floor and ceiling, so the step is at the shop's
+#: side of it and the bars hang where both sides are level.  You see what is
+#: pledged and cannot reach it.  (x0, y0, x1, y1, floor above the shop's,
+#: clear height.)
+PAWN_VAULT = (30976, 6400, 32000, 7424, 4096, 16384)
+PAWN_VAULT_NECK = (30976, 6144, 32000, 6400, 4096, 16384)
+#: The grille stands in the neck's mouth to the vault: the owner's "grate"
+#: mask (463), blocking, on the plane between two volumes -- the same record
+#: law as a pane (`glass.shopfront`).  A thin box round that plane.
+PAWN_GRILLE = (30992, 6384, 31984, 6416)
+GRILLE_TILE = 463
+VAULT_WALL = 215          # owner: "pressed metal"
 
 #: (material key, what it is).  A venue assembly states its own palette, so
 #: a room that keeps it does not have to repeat it and a reader can see
@@ -230,7 +256,7 @@ DOORS = [
 #: avenue end where its door is.  Four full bays make the shop legible
 #: from the street; the west and east masonry piers leave it a real shell.
 WINDOWS = [
-    ("pawn_display", "pawn_shop", "north", 27648, 3072, 31744, 3584, 2048),
+    ("pawn_display", "pawn_shop", "north", 27648, 3072, 31744, 3584, 4096),
 ]
 
 #: Furniture cut into a room's floor: (room, x0, y0, x1, y1, rise, ceiling,
@@ -294,7 +320,8 @@ def build(district, theatre_st):
                 # has two fronts, so the second keeps the name that tells
                 # them apart.
                 return venue_id, (suffix[1:] if stem == venue_id else name)
-        host = next((row[1] for row in WINDOWS if row[0] == name), None)
+        host = next((row[1] for row in WINDOWS
+                     if name == row[0] or name.startswith(row[0] + "_")), None)
         if host is not None:
             venue_id = MEMBERSHIP[host][0]
             local = name[len(venue_id) + 1:] if name.startswith(venue_id + "_") else name
@@ -329,6 +356,26 @@ def build(district, theatre_st):
     for small, sf, big, bf in JOINS:
         citytree.join(rooms[small], rooms[big], at_a=sf, at_b=bf,
                       connection_id=f"connection:venue_{small}_{big}")
+
+    # The pawnbroker's pledge room (see PAWN_VAULT).
+    nx0, ny0, nx1, ny1, nrise, nclear = PAWN_VAULT_NECK
+    vx0, vy0, vx1, vy1, vrise, vclear = PAWN_VAULT
+    neck = make("pawn_vault_neck", nx0, ny0, nx1, ny1, "service",
+                "the recess before the bars, at the pledge room's level", role="gateway",
+                floor_z=GRADE - nrise, clear=nclear)
+    vault = make("pawn_vault", vx0, vy0, vx1, vy1, "service",
+                 "the pledge room: behind bars, two steps up, lit",
+                 floor_z=GRADE - vrise, clear=vclear,
+                 rk={"declared_zero_exit": True})
+    vault.surfaces(wall_picnum=VAULT_WALL)
+    vault.intent.update({"kind": "vault",
+                         "generated_surfaces": ["floor", "ceiling", "wall"]})
+    vault.light_source("pledge_lamp", local=(0.5, 0.5),
+                       height_player_heights=0.55)
+    citytree.join(neck, rooms["pawn_shop"], at_a="north", at_b="south",
+                  connection_id="connection:pawn_vault_neck_shop")
+    citytree.join(neck, vault, at_a="south", at_b="north",
+                  connection_id="connection:pawn_vault_neck_vault")
 
     # Street doors: room -> door -> porch -> street, the reveal chain.
     # Each takes a channel so a lever beside it can open it; it keeps
@@ -372,14 +419,37 @@ def build(district, theatre_st):
                        doorswitch.lever_segment(face, x0, y0, x1, y1), channel))
 
     # Shop windows: a display box, glazed to the street by the glass pass.
+    # The pane sits in a frame: reveal, sash pockets, then the box.  See
+    # `glass.shopfront` for why none of it may be glazed on the facade line.
+    import glass
     for name, room_name, face, x0, y0, x1, y1, plinth in WINDOWS:
-        box = make(name, x0, y0, x1, y1, ROOM_MATERIAL[room_name],
-                   f"the {name.replace('_', ' ')}: goods behind glass",
-                   role="detail", floor_z=GRADE - plinth,
-                   clear=ROOM_HEIGHT.get(room_name, ROOM_H) - plinth)
-        citytree.join(box, rooms[room_name], at_a="south", at_b="north",
+        front = glass.shopfront((x0, y0, x1, y1), face)
+        key = ROOM_MATERIAL[room_name]
+        clear = ROOM_HEIGHT.get(room_name, ROOM_H) - plinth
+        title = name.replace("_", " ")
+
+        def part(part_name, rect, note, _key=key, _clear=clear, _plinth=plinth):
+            return make(part_name, *rect, _key, note, role="detail",
+                        floor_z=GRADE - _plinth, clear=_clear)
+
+        box = part(name, front["box"], f"the {title}: goods behind glass")
+        reveal = part(f"{name}_reveal", front["reveal"],
+                      f"the {title} surround: riser, fascia and the name")
+        glass.surround(front, name=name, kind="pawn", reveal=reveal, box=box,
+                       shop=rooms[room_name], grade=GRADE, sill=plinth,
+                       box_clear=clear, words="PAWNBROKER")
+        out, into = front["outward"], front["inward"]
+        for index, rect in enumerate(front["sashes"]):
+            sash = part(f"{name}_sash_{index}", rect,
+                        "a sash pocket: the pane hangs at its back")
+            sash.surfaces(wall_picnum=glass.JAMB_TILE)
+            citytree.join(sash, reveal, at_a=out, at_b=into,
+                          connection_id=f"connection:{name}_sash_{index}_reveal")
+            citytree.join(sash, box, at_a=into, at_b=out,
+                          connection_id=f"connection:{name}_sash_{index}_box")
+        citytree.join(box, rooms[room_name], at_a=into, at_b=out,
                       connection_id=f"connection:{name}_shop")
-        city.connect(box.face("north"), theatre_st.face("north"),
+        city.connect(reveal.face(out), theatre_st.face("north"),
                      connection_id=f"connection:{name}_street")
 
     # Furniture, through the set-piece constructors.  An object that has a
@@ -422,8 +492,10 @@ def build(district, theatre_st):
     # that leaves the door-side aisle open.
     templates.clothier(rooms["pawn_shop"], material=INTERIORS["shop"],
                        grade=GRADE, host_clear=ROOM_HEIGHT["pawn_shop"])
+    #: The east wall has nothing behind it, and WHISKEY is lettered on it:
+    #: the liquor shelf goes under the word, at the bar's end.
     templates.bar(rooms["saloon_main"], material=INTERIORS["saloon"],
-                  grade=GRADE, host_clear=ROOM_H)
+                  grade=GRADE, host_clear=ROOM_H, shelf=("east", 0.3, 2048))
 
     return rooms, levers, curtain
 
@@ -451,7 +523,10 @@ PICKUPS = [
 # mannequins (2377) in a separate window sector.  This smaller shop takes four
 # garments at the source's height and palette range, plus the three-window
 # mannequin rhythm.  The actual values were captured by tools.mine_e6m1_shop.
-SHOP_CLOTHES = ((0.14, 14), (0.37, 11), (0.60, 12), (0.83, 13))
+#: Hung west of the pledge room's bars and of the LOANS column beside
+#: them: the first shirt used to hang at t 0.14, which is now the middle
+#: of the grille.
+SHOP_CLOTHES = ((0.42, 14), (0.57, 11), (0.72, 12), (0.87, 13))
 SHOP_MANNEQUINS = ((0.25, 12, 385), (0.50, 13, 389), (0.75, 11, 385))
 SHOP_CLOTHES_HEIGHT = 14336 / 16960
 SHOP_MANNEQUIN_ABOVE_FLOOR = 10976
@@ -504,6 +579,41 @@ def populate(layout, rooms, attested, flame_fields, flame_stand) -> int:
             type=417, picnum=73, cstat=144, pal=palette, shade=-8,
             x_repeat=64, y_repeat=64, status=4)
         placed += 1
+    # The pledge room holds what was pledged: coats on its back wall, where
+    # the shop's own stock hangs on the shop's, and a lamp to see them by.
+    vault = rooms.get("pawn_vault")
+    if vault is not None:
+        import glass as _glass
+        vx0, vy0, vx1, vy1 = props.room_rect(vault)
+        for index, (t_along, palette) in enumerate(((0.3, 12), (0.7, 14))):
+            layout.place_on_wall(
+                f"theatre:pawn_pledge_{index}", vault.region_id,
+                a1=(vx1 - 96, vy1), a2=(vx0 + 96, vy1), t=t_along,
+                height_player_heights=0.62,
+                offset_player_widths=0.06, facing="into_region",
+                type=417, picnum=73, cstat=144, pal=palette, shade=-8,
+                x_repeat=48, y_repeat=48, status=4)
+            placed += 1
+        # LOANS, stacked downward beside the bars, where a customer reads
+        # the two together. Vertical: the campaign stacks letters in 11 of
+        # its maps, at 1.25 drawn heights of pitch.
+        import wallplane
+        neck_west = PAWN_VAULT_NECK[0]
+        wallplane.text(
+            layout, "sign:pawn_loans", shop.region_id,
+            (neck_west - 96, sy1), (neck_west - 736, sy1),
+            words="LOANS", style="column_small", vertical=True,
+            height_player_heights=1.38)
+        region = layout.regions[vault.region_id]
+        repeats = _glass.lamp_repeats(int(region.floor_z) - int(region.ceiling_z))
+        layout.add_sprite(
+            "lamp:pawn_vault", vault.region_id,
+            x=(vx0 + vx1) // 2, y=(vy0 + vy1) // 2,
+            z=int(region.ceiling_z) + 128 * repeats[1] * 4,
+            picnum=_glass.DISPLAY_LAMP, cstat=0, shade=-32,
+            x_repeat=repeats[0], y_repeat=repeats[1], status=0)
+        placed += 1
+
     # E6M1 S50: mannequins sit in their own display volume behind the glass,
     # not in the player aisle.  Keeping their source z offset means the feet
     # stand visually on the display plinth without intersecting its walls.

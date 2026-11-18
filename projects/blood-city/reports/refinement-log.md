@@ -2297,3 +2297,293 @@ byte-identical rebuild.
 * The opening view itself: a street lamp stands in the foreground of the
   spawn frame and the plaza reads dark. That is the frame, not the monument,
   and it is worth its own pass.
+
+## 2026-11-17 -- St Gallow's gets a height, and the loop gets predictions
+
+The first entry in this log written against a hypothesis stated beforehand.
+The whole record is `experiments/church-skyline/`; this is the pointer.
+
+### Found
+
+Every one of the city's 141 street walls under open sky was drawn to one
+height, 11.6 bodies -- the church included, and its "tower" stood inside a
+wall twice its own height. No campaign map does that (0 of 38;
+`tools/mine_skylines.py`). The cause is the representation: a mass is a hole,
+and a hole's face is a wall of the street's sector.
+
+### Fixed
+
+`bloodmap.skyline.apron`: a strip of open ground against a face, with the sky
+the face should be drawn to. `l3_church.massing` uses ten of them -- eaves at
+3.9 bodies, a churchyard wall at 3.1, a tower proud of the avenue face with
+six gabled halves and a ridge at 17.4 -- plus buttresses (notches in the
+apron's outline, no sectors), fourteen stained-glass lancets, a belfry room
+under the tower, and a portal 2.4 bodies tall.
+
+### What was predicted, and what happened
+
+Seven predictions, written before the first edit. Five held, including both
+controls (interior and cemetery frames pixel-identical). Two failed, and the
+first failure is the useful one: at 6.8 bodies the eaves showed no sky from
+across the avenue, because a wall shows its top only from about 1.7 heights
+away. The body was redrawn at the height of what actually fronts the street.
+
+### What a stranger saw
+
+Three blind reviews, one per round: "warehouse / fortress (guess)" became
+"church (likely)"; the tower from the market end became "church steeple
+(certain as a silhouette)"; the door became "church door (likely)". From its
+own foot the tower is still "a plain square shaft". My own note on round 3
+said "reads as a steeple", which was right for the far frames only.
+
+### Build
+
+**270 sectors / 1,773 walls / 445 sprites**, sha256 `ebfe5628812e...`,
+deterministic. Rules: 13 errors and 6 warnings, the baseline's exactly.
+Conformance 12/13 and `tree_tests.py` red -- both were already so on the
+untouched baseline, which the committed reports did not show.
+
+### Not done
+
+* The tower's near read; the nave above the low range (needs roof sectors
+  over the interior); the churchyard wall's other two street faces.
+* Every other block in the city. `skyline.apron` is the tool; nothing has
+  decided how tall each should be.
+* Nobody has walked it. `walk_static.py` reads a route off the map and says
+  so in its output.
+* `reports/visual-survey-2026-11-17.md` ranks what is wrong with the rest.
+
+
+## 2026-11-17, afternoon -- the owner walks it; a low sky is a lid
+
+The morning's entry above is superseded in method. Record:
+`experiments/church-roofs/`.
+
+### Found (by the owner, in NBlood, in the first minute)
+
+"When you put parallax sky low it is covering view like a normal ceiling."
+From the churchyard the tower painted 0 pixels and nothing beyond the wall
+existed. Seven cameras that look past something low at something tall
+(`look.py --set over`) now show it.
+
+### Fixed
+
+Height comes from raised floors under the city's own sky
+(`bloodmap.skyline.roof`): the churchyard wall and mausoleum row on all four
+streets, the church's low range, a pitched nave over it with a gable at each
+end, and the tower's fourth face rising out of the roof. Skies lowered by a
+body or more: 5 to 0.
+
+### Found on the way (by a blind reviewer)
+
+"A thin dark pole" in five frames: the avenue porch's ceiling painted into
+the sky. Build keeps one open span per screen column, so a room under a roof
+that is being seen over leaks into it -- 18,000 to 23,000 pixels with the
+portal open. The law was already in `bloodmap/layers.py`.
+
+### Fixed
+
+The avenue portal and the cemetery door are gone. The way in is a door in
+the tower's south return, into a belfry inside the tower's plan, with a
+second door behind it; both shut themselves after three seconds.
+`skyline.leaks_under_roofs` checks the source and the build refuses a leak.
+
+### Also fixed at their source
+
+`look.sector_at` returned the first sector in plan (the roof, once there was
+one); `dressing.dress` stood two headstones on the roof; `wallplane` would
+not hang glass on a stepped wall without being told it is a step.
+
+### Build
+
+**274 sectors / 1,792 walls / 447 sprites**, sha256 `64e14cf05d4a...`,
+deterministic. Rules 13 errors, 5 warnings. NBlood load oracle: pass.
+Conformance 12/13 with the same pre-existing four-sector drift.
+
+### Not done
+
+* The church has no front, and its only door reads as "a closet door". A
+  grand portal that is legal needs a full-height frontispiece block.
+* The loop through the church into the yard went with the cemetery door.
+* Whether NBlood's own renderer leaks the way the observer's does with both
+  tower doors held open: untested.
+
+## 2026-11-17, evening: glass in a frame, streets with a kerb, materials on their floors
+
+Experiment and evidence: `experiments/shopfronts-streets/README.md`.
+
+The owner, after the afternoon's build: the glass should sit in a frame so
+its scaling does not collide with the facade's; the streets look poor; mind
+meaningful texture alignment; "these ceiling crates doesn't feel right".
+
+* **Glass.** Every pane was glazed on the facade's own record, whose one
+  scale it then shared with the lintel and riser (one band was drawn at four
+  times the facade's scale). Now: reveal, sash pocket per bay, box, shop, all
+  at one height, pane between sash and box. 24 of 24 glazed records carried
+  a step band; 0 of 20 do. `glass.shopfront`.
+* **Streets.** Pavement is stone paving (4), carriageway cobble (352) 2048
+  down, kerb face the owner's kerb tile (6). Three stubs became eleven roads
+  on the avenue, Theatre Row, the market street, the west street and the
+  spur, each down the middle of its street and through its junctions. A road
+  on a district seam is a notch in both streets' outlines, joined across the
+  seam; the seam connections are derived, not declared. Lamps 17 to 40.
+* **Alignment.** `frame_map(v_anchor="floor")`: every material stands on its
+  floor. The market hall's dado came down from under its ceiling.
+* **Crates.** The lintel pass's "dominant wall tile" counted wall records;
+  it now weighs solid wall by length.
+* Everything raised in a street (stalls, fountain rim, monument steps) wears
+  its own tile instead of a slice of the district facade.
+
+Two blind reviewers preferred the new build (17 of 19 views, then 15 of
+17). The first objected to a centre strip in the roads, the second to paved
+crossings that stopped a road at every junction; both are gone. Both scored
+the hall's band against it (the dado is correct and tall; left). The final
+build has not been reviewed blind.
+
+### Build
+
+**309 sectors / 2,002 walls / 475 sprites**, sha256 `aebfccf19aab...`.
+Rules 12 errors, 7 warnings. Conformance 12/13, one sector over.
+
+### Not done
+
+* Plaza and lanes are one paved surface; vistas still end in black.
+* The avenue's road sits east of centre beside the church tower.
+* Tile 640 (the street lamp) has no owner anchor.
+* A broken frieze over the arcade's first window, named by both reviewers.
+
+## 2026-11-17, night: a street ends in a wall with the sky behind it
+
+Experiment and evidence: `experiments/street-ends/README.md`.
+
+Every long view ended in a black slab: the city's edge was 11.6 bodies of
+blank masonry. E3M1 ends a street in a mass 5.8 bodies up with a sector of
+no height and a parallax ceiling behind it, so the eye goes over the wall
+into sky; and it lights the wall's face (shade -8). `streets.end_walls`
+builds that at the avenue's north end, Theatre Row's west end and both ends
+of the market street: eight masses, eight backings.
+
+A blind reviewer preferred the new ends in 9 of 9 views ("buildings across
+the street" against "a backdrop or a set wall"), before the faces were lit.
+
+### Build
+
+**325 sectors / 2,074 walls / 469 sprites**, sha256 `b590dda08aed...`.
+Rules 12 errors, 7 warnings.
+
+### Not done
+
+* The rest of the perimeter is still blank masonry to the sky.
+* An end wall is a flat face: no door, no depth.
+* Light. I first wrote here that the city is lit far darker than the
+  campaign; that was read off a few E3M1 records and is wrong. E3M1's road
+  and pavement are at 32 and 34, as ours are. What it has is contrast: lit
+  facade faces (-8) against dark masonry (34); every wall here is a flat 9.
+
+## 2026-11-18: shops with a surround, a name and a light; and a way to ask which matters
+
+Experiment and evidence: `experiments/shop-surrounds/README.md`.
+
+Each shop window's reveal became the shop's surround: a stall riser and a
+fascia in the shop's own material, pilasters between bays, the name lettered
+on the fascia (PAWNBROKER, PROVISIONS, MARKET HALL, DRAPER, CLOCKS), a chain
+lamp in the display, and the rooms behind the glass lit. No new sector.
+
+`tools/whatif.py` makes a variant of a BUILT map with one thing removed. A
+blind reviewer given the before, the full build and three variants,
+unlabelled, worked out which sets differed in what, and rated the sign
+"decisive", the surround "helps", and the missing light "hurts, mildly".
+
+### Not done
+
+* What a shop sells is still not in its window: the pawnbroker shows
+  dresses, the arcade units are empty.
+* The fascia lettering is too small to read from across a street.
+
+## 2026-11-18: a pledge room, and what "more complex interiors" measures as
+
+Experiment and evidence: `experiments/pledge-room/README.md`.
+
+`tools/city_profile.py --interiors` puts a number on the owner's "more
+complex interiors": against E3M1, Gravesend's interiors hold half the floor
+range (1.45 bodies against 2.96), half the wall materials, and a fifth of
+the light and dark (7.5 shade steps against 37).
+
+One room was built: a barred, lit strongroom behind the pawn shop with
+pledged coats in it. A blind reviewer read it correctly, called the goods
+"decisive" and the light "barely", and then said of the shop what the table
+says of the city: "ONE flat box ... flat even light everywhere". The room
+moved none of the measures. The prediction that it would failed.
+
+### Not done, and now the plan
+
+* Light and dark inside one room, before anything else.
+* Levels: a stair, a gallery, a cellar, asked for by the venue's programme.
+* Goods first, as the name came first on the shopfronts.
+
+## 2026-11-18: the town dressed with what Blood's towns are dressed with
+
+Experiment and evidence: `experiments/town-goods/README.md`.
+
+The owner: "more variety of assets ... quite limited set now". Counted:
+38 decoration tiles here against 61 to 142 in Blood's town maps.
+`tools/mine_city_assets.py` records what those maps use and how each tile
+is set down; `level/goods.py` is a plan by place. 85 tiles now: bottles and
+glasses on the saloon's bar, pledges in the pawnbroker's window, a grocer's
+goods, each arcade unit's counter, show bills, a pub sign, candles and a
+banner in the church, dead trees in the churchyard.
+
+A blind reviewer: without the objects the saloon "could be a sauna, a forge
+or a crypt"; with them "a bar, likely". Objects on counters "decisive". It
+also found a tile I had misread (a gore bucket I took for a bin, removed)
+and the fires on the bar's tables (removed).
+
+### Not done
+
+* Fixtures: shelves, a back bar, racks. Goods need something to stand on.
+* Textures: 37 wall tiles against E3M1's 67.
+* 46 tiles used here have no owner anchor (`references/goods-unnamed-tiles.md`).
+
+## 2026-11-17: fixtures, and a key shut behind a counter
+
+Experiment and evidence: `experiments/fixtures/README.md`.
+
+`tools/mine_stands.py` reads what is under every standing thing in Blood's
+town maps. A fixture that carries things is half a body high and wooden; a
+stocked shelf is a niche let into the wall. Gravesend's counters were
+knee-high blocks. The saloon has one plank bar and a liquor shelf under
+WHISKEY now; each arcade unit a counter and a stocked shelf under its name.
+
+A blind reviewer called the stocked shelf "decisive" and the empty one "a
+dark slatted hole". It also saw "a bald scalp" over the bookseller's
+counter: the counters could no longer be stepped over and had shut a zombie,
+a pickup and the arcade's key behind them. No check of mine caught that.
+
+### Not done
+
+* Trade-specific stock and furniture: books, clocks, chairs, stools.
+* The pawn shop and the market hall (no void behind their walls).
+* A reachability check for finds that is not specific to the arcade.
+
+## 2026-11-18: the owner's walk, and a lint for what it found
+
+Experiment and evidence: `experiments/sprite-fit/README.md`.
+
+The owner walked the fixtures build: sprites under ground, statues in odd
+places, lamps placed oddly, letters through pictures. None of it was visible
+to anything the build ran. `tools/sprite_fit.py` now measures all four, as
+the renderer draws, against the town maps' own rates, and the build prints
+it.
+
+Causes, not symptoms: goods were seated by the physics box and not the
+drawn one; nothing asked whether a thing was shorter than its place; a
+rounding edge hid a letter from the picture behind it; lamps were sized and
+spaced by a catalogue default and not by the one town map that has kerbed
+streets.
+
+### Not done
+
+* A reachability check for finds, general (owed since the fixtures turn).
+* Lamp rhythm in the plazas; the campaign's own answer is no street lamps.
+* What an enemy looks like in the game against what the observer draws.
+

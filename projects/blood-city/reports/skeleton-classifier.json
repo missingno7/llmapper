@@ -43,62 +43,171 @@
       "map": "SKELETON",
       "game": "blood",
       "budget": {
-        "sectors": 254,
-        "walls": 1648,
-        "sprites": 406
+        "sectors": 325,
+        "walls": 2074,
+        "sprites": 469
       },
       "street": {
-        "sectors": 25,
-        "area": 2914910208,
-        "area_share_of_map": 0.761,
+        "sectors": 54,
+        "area": 2911764480,
+        "area_share_of_map": 0.736,
         "width_units": {
-          "n": 2721,
+          "n": 2752,
           "min": 512.0,
           "p10": 3072.0,
-          "median": 5504.0,
-          "p90": 49152.0,
+          "median": 5632.0,
+          "p90": 49280.0,
           "max": 59520.0
         },
         "width_player_widths": {
-          "n": 2721,
+          "n": 2752,
           "min": 1.3,
           "p10": 8.0,
-          "median": 14.3,
-          "p90": 128.0,
+          "median": 14.7,
+          "p90": 128.3,
           "max": 155.0
         },
         "canyon_ratio": {
-          "n": 2623,
-          "min": 0.21,
+          "n": 2654,
+          "min": 0.09,
           "p10": 0.25,
-          "median": 2.18,
+          "median": 1.92,
           "p90": 4.0,
-          "max": 24.0
+          "max": 9.6
         },
-        "samples": 2721
+        "samples": 2752
       },
       "street_detection": {
         "indoor_link_merged": 0,
         "scene_sky_components": [
           {
+            "sectors": 3,
+            "area": 45875200,
+            "sample": [
+              71,
+              76,
+              77
+            ]
+          },
+          {
+            "sectors": 2,
+            "area": 17039360,
+            "sample": [
+              78,
+              79
+            ]
+          },
+          {
+            "sectors": 1,
+            "area": 11403264,
+            "sample": [
+              72
+            ]
+          },
+          {
             "sectors": 1,
             "area": 7602176,
             "sample": [
-              94
+              132
+            ]
+          },
+          {
+            "sectors": 2,
+            "area": 7340032,
+            "sample": [
+              55,
+              139
+            ]
+          },
+          {
+            "sectors": 2,
+            "area": 6291456,
+            "sample": [
+              57,
+              106
+            ]
+          },
+          {
+            "sectors": 1,
+            "area": 6160384,
+            "sample": [
+              73
+            ]
+          },
+          {
+            "sectors": 2,
+            "area": 5242880,
+            "sample": [
+              108,
+              228
+            ]
+          },
+          {
+            "sectors": 2,
+            "area": 5242880,
+            "sample": [
+              141,
+              230
+            ]
+          },
+          {
+            "sectors": 1,
+            "area": 4980736,
+            "sample": [
+              74
+            ]
+          },
+          {
+            "sectors": 1,
+            "area": 4849664,
+            "sample": [
+              75
+            ]
+          },
+          {
+            "sectors": 2,
+            "area": 3670016,
+            "sample": [
+              56,
+              140
+            ]
+          },
+          {
+            "sectors": 2,
+            "area": 3145728,
+            "sample": [
+              58,
+              107
+            ]
+          },
+          {
+            "sectors": 2,
+            "area": 2621440,
+            "sample": [
+              109,
+              229
+            ]
+          },
+          {
+            "sectors": 2,
+            "area": 2621440,
+            "sample": [
+              142,
+              231
             ]
           },
           {
             "sectors": 1,
             "area": 2162688,
             "sample": [
-              128
+              179
             ]
           },
           {
             "sectors": 1,
             "area": 1048576,
             "sample": [
-              129
+              180
             ]
           }
         ],
@@ -120,7 +229,7 @@
           "n": 10,
           "min": 1835008.0,
           "p10": 3211264.0,
-          "median": 107855872.0,
+          "median": 109428736.0,
           "p90": 435355648.0,
           "max": 435355648.0
         },
@@ -188,13 +297,13 @@
           },
           {
             "label": 7,
-            "area": 90406912,
+            "area": 93552640,
             "bbox_units": [
-              12288,
+              13824,
               14336
             ],
             "centroid": [
-              26624.0,
+              27392.0,
               28672.0
             ]
           },
@@ -261,13 +370,13 @@
           "n": 9,
           "min": 4194304.0,
           "p10": 4194304.0,
-          "median": 41156608.0,
+          "median": 42008576.0,
           "p90": 426558375.0,
           "max": 426558375.0
         },
         "doorway_records": [
           {
-            "wall": 6,
+            "wall": 13,
             "street_sector": 0,
             "into_sector": 13,
             "interior_component": 0,
@@ -277,7 +386,7 @@
             "block_label": 2
           },
           {
-            "wall": 8,
+            "wall": 15,
             "street_sector": 0,
             "into_sector": 22,
             "interior_component": 0,
@@ -287,7 +396,7 @@
             "block_label": 2
           },
           {
-            "wall": 13,
+            "wall": 20,
             "street_sector": 0,
             "into_sector": 34,
             "interior_component": 0,
@@ -297,7 +406,7 @@
             "block_label": 2
           },
           {
-            "wall": 17,
+            "wall": 24,
             "street_sector": 0,
             "into_sector": 36,
             "interior_component": 0,
@@ -307,241 +416,241 @@
             "block_label": 2
           },
           {
-            "wall": 19,
-            "street_sector": 0,
-            "into_sector": 44,
-            "interior_component": 1,
-            "width": 1024,
-            "gap_z": 31744,
-            "via_door_sector": false,
-            "block_label": 2
-          },
-          {
-            "wall": 23,
+            "wall": 26,
             "street_sector": 0,
             "into_sector": 45,
             "interior_component": 1,
-            "width": 4096,
-            "gap_z": 22528,
+            "width": 1024,
+            "gap_z": 31744,
             "via_door_sector": false,
             "block_label": 2
           },
           {
-            "wall": 538,
-            "street_sector": 72,
-            "into_sector": 95,
-            "interior_component": 6,
-            "width": 2048,
-            "gap_z": 16384,
+            "wall": 30,
+            "street_sector": 0,
+            "into_sector": 47,
+            "interior_component": 1,
+            "width": 4096,
+            "gap_z": 20480,
             "via_door_sector": false,
-            "block_label": 3
+            "block_label": 2
           },
           {
-            "wall": 540,
-            "street_sector": 72,
-            "into_sector": 76,
-            "interior_component": 3,
-            "width": 2048,
-            "gap_z": 24576,
-            "via_door_sector": false,
-            "block_label": 3
-          },
-          {
-            "wall": 542,
-            "street_sector": 72,
-            "into_sector": 93,
-            "interior_component": 5,
+            "wall": 1019,
+            "street_sector": 143,
+            "into_sector": 211,
+            "interior_component": 21,
             "width": 1024,
-            "gap_z": 16384,
-            "via_door_sector": false,
-            "block_label": 3
-          },
-          {
-            "wall": 544,
-            "street_sector": 72,
-            "into_sector": 91,
-            "interior_component": 5,
-            "width": 1024,
-            "gap_z": 16384,
-            "via_door_sector": false,
-            "block_label": 3
-          },
-          {
-            "wall": 548,
-            "street_sector": 72,
-            "into_sector": 82,
-            "interior_component": 4,
-            "width": 1024,
-            "gap_z": 31744,
-            "via_door_sector": false,
-            "block_label": 3
-          },
-          {
-            "wall": 715,
-            "street_sector": 96,
-            "into_sector": 156,
-            "interior_component": 10,
-            "width": 1024,
-            "gap_z": 30720,
+            "gap_z": 28672,
             "via_door_sector": false,
             "block_label": 8
           },
           {
-            "wall": 717,
-            "street_sector": 96,
-            "into_sector": 158,
-            "interior_component": 10,
+            "wall": 1021,
+            "street_sector": 143,
+            "into_sector": 218,
+            "interior_component": 21,
             "width": 2048,
             "gap_z": 31744,
             "via_door_sector": false,
             "block_label": 8
           },
           {
-            "wall": 719,
-            "street_sector": 96,
-            "into_sector": 155,
-            "interior_component": 10,
+            "wall": 1023,
+            "street_sector": 143,
+            "into_sector": 207,
+            "interior_component": 21,
             "width": 3584,
-            "gap_z": 30720,
+            "gap_z": 28672,
             "via_door_sector": false,
             "block_label": 8
           },
           {
-            "wall": 722,
-            "street_sector": 96,
-            "into_sector": 157,
-            "interior_component": 10,
+            "wall": 1026,
+            "street_sector": 143,
+            "into_sector": 214,
+            "interior_component": 21,
             "width": 7168,
-            "gap_z": 30720,
+            "gap_z": 28672,
             "via_door_sector": false,
             "block_label": 8
           },
           {
-            "wall": 733,
-            "street_sector": 96,
-            "into_sector": 125,
-            "interior_component": 7,
+            "wall": 1037,
+            "street_sector": 143,
+            "into_sector": 176,
+            "interior_component": 18,
             "width": 1024,
             "gap_z": 31744,
             "via_door_sector": false,
             "block_label": 9
           },
           {
-            "wall": 362,
-            "street_sector": 48,
-            "into_sector": 67,
-            "interior_component": 2,
-            "width": 2048,
-            "gap_z": 31744,
+            "wall": 524,
+            "street_sector": 69,
+            "into_sector": 95,
+            "interior_component": 7,
+            "width": 384,
+            "gap_z": 40960,
             "via_door_sector": false,
             "block_label": 7
           },
           {
-            "wall": 397,
-            "street_sector": 51,
-            "into_sector": 69,
-            "interior_component": 2,
-            "width": 768,
-            "gap_z": 31744,
+            "wall": 532,
+            "street_sector": 70,
+            "into_sector": 95,
+            "interior_component": 7,
+            "width": 640,
+            "gap_z": 40960,
             "via_door_sector": false,
             "block_label": 7
+          },
+          {
+            "wall": 786,
+            "street_sector": 110,
+            "into_sector": 133,
+            "interior_component": 14,
+            "width": 2048,
+            "gap_z": 16384,
+            "via_door_sector": false,
+            "block_label": 3
+          },
+          {
+            "wall": 788,
+            "street_sector": 110,
+            "into_sector": 114,
+            "interior_component": 11,
+            "width": 2048,
+            "gap_z": 24576,
+            "via_door_sector": false,
+            "block_label": 3
+          },
+          {
+            "wall": 790,
+            "street_sector": 110,
+            "into_sector": 131,
+            "interior_component": 13,
+            "width": 1024,
+            "gap_z": 16384,
+            "via_door_sector": false,
+            "block_label": 3
+          },
+          {
+            "wall": 792,
+            "street_sector": 110,
+            "into_sector": 129,
+            "interior_component": 13,
+            "width": 1024,
+            "gap_z": 16384,
+            "via_door_sector": false,
+            "block_label": 3
+          },
+          {
+            "wall": 796,
+            "street_sector": 110,
+            "into_sector": 120,
+            "interior_component": 12,
+            "width": 1024,
+            "gap_z": 31744,
+            "via_door_sector": false,
+            "block_label": 3
           }
         ],
         "interior_records": [
           {
             "interior_component": 0,
-            "sectors": 44,
-            "area": 177209344,
+            "sectors": 45,
+            "area": 177201152,
             "substantial": true
           },
           {
             "interior_component": 1,
-            "sectors": 11,
-            "area": 15728640,
+            "sectors": 14,
+            "area": 15695872,
             "substantial": true
           },
           {
-            "interior_component": 2,
+            "interior_component": 7,
             "sectors": 23,
-            "area": 41156608,
+            "area": 42008576,
             "substantial": true
           },
           {
-            "interior_component": 3,
+            "interior_component": 11,
             "sectors": 15,
             "area": 32505856,
             "substantial": true
           },
           {
-            "interior_component": 4,
+            "interior_component": 12,
             "sectors": 62,
             "area": 426558375,
             "substantial": true
           },
           {
-            "interior_component": 5,
+            "interior_component": 13,
             "sectors": 13,
             "area": 25427968,
             "substantial": true
           },
           {
-            "interior_component": 6,
+            "interior_component": 14,
             "sectors": 1,
             "area": 4194304,
             "substantial": true
           },
           {
-            "interior_component": 7,
-            "sectors": 32,
+            "interior_component": 18,
+            "sectors": 36,
             "area": 77332480,
             "substantial": true
           },
           {
-            "interior_component": 10,
-            "sectors": 23,
-            "area": 108265472,
+            "interior_component": 21,
+            "sectors": 32,
+            "area": 108150784,
             "substantial": true
           }
         ]
       },
       "facade": {
-        "facade_length_units": 746187,
-        "boundary_walls": 159,
-        "walls_per_1024": 0.22,
-        "masked_windows": 4,
-        "masked_windows_per_1024": 0.005,
-        "red_wall_openings": 14,
-        "red_wall_openings_per_1024": 0.019,
-        "wall_sprites_in_street": 32,
-        "wall_sprites_per_1024": 0.044,
-        "face_sprites_in_street": 34
+        "facade_length_units": 749259,
+        "boundary_walls": 177,
+        "walls_per_1024": 0.24,
+        "masked_windows": 0,
+        "masked_windows_per_1024": 0.0,
+        "red_wall_openings": 18,
+        "red_wall_openings_per_1024": 0.025,
+        "wall_sprites_in_street": 48,
+        "wall_sprites_per_1024": 0.066,
+        "face_sprites_in_street": 76
       },
       "verticality": {
         "skyline": {
-          "roof_sectors": 1,
+          "roof_sectors": 7,
           "height_xy_units": {
-            "n": 1,
+            "n": 7,
             "min": 1632.0,
             "p10": 1632.0,
-            "median": 1632.0,
-            "p90": 1632.0,
-            "max": 1632.0
+            "median": 3328.0,
+            "p90": 4096.0,
+            "max": 4096.0
           },
-          "area_weighted_median_xy": 1632,
-          "tallest_xy": 1632,
-          "tallest_in_standing_heights": 1.5
+          "area_weighted_median_xy": 3328,
+          "tallest_xy": 4096,
+          "tallest_in_standing_heights": 3.9
         },
-        "street_grade_z_median": 8192,
+        "street_grade_z_median": 8192.0,
         "street_grade_z_spread": {
-          "n": 25,
+          "n": 54,
           "min": 4122.0,
-          "p10": 5120.0,
+          "p10": 7168.0,
           "median": 8192.0,
-          "p90": 8192.0,
+          "p90": 10240.0,
           "max": 10240.0
         },
-        "rooftop_sky_sectors": 0,
-        "rooftop_area_share_of_street": 0.0,
+        "rooftop_sky_sectors": 17,
+        "rooftop_area_share_of_street": 0.039,
         "perched_outdoor_sectors": 1,
         "below_grade_sectors": 63,
         "below_grade_area": 442024871,
@@ -551,27 +660,59 @@
             "paired": true,
             "congruent": true,
             "overlaps_in_plan": true,
-            "upper_sector": 81,
-            "lower_sector": 167
+            "upper_sector": 119,
+            "lower_sector": 238
           },
           {
             "family": "stack",
             "paired": true,
             "congruent": true,
             "overlaps_in_plan": true,
-            "upper_sector": 79,
-            "lower_sector": 168
+            "upper_sector": 117,
+            "lower_sector": 239
           }
         ]
       },
       "budget_per_chunk": [
         {
           "zone": 0,
+          "zone_floor_picnum": 4,
+          "street_sectors": 19,
+          "sectors": 284,
+          "walls": 1834,
+          "sprites": 433
+        },
+        {
+          "zone": 2,
           "zone_floor_picnum": 352,
-          "street_sectors": 17,
-          "sectors": 246,
-          "walls": 1608,
-          "sprites": 404
+          "street_sectors": 21,
+          "sectors": 21,
+          "walls": 102,
+          "sprites": 0
+        },
+        {
+          "zone": 4,
+          "zone_floor_picnum": 361,
+          "street_sectors": 1,
+          "sectors": 3,
+          "walls": 38,
+          "sprites": 13
+        },
+        {
+          "zone": 13,
+          "zone_floor_picnum": 352,
+          "street_sectors": 1,
+          "sectors": 3,
+          "walls": 28,
+          "sprites": 19
+        },
+        {
+          "zone": 8,
+          "zone_floor_picnum": 352,
+          "street_sectors": 1,
+          "sectors": 3,
+          "walls": 20,
+          "sprites": 2
         },
         {
           "zone": 1,
@@ -582,19 +723,11 @@
           "sprites": 0
         },
         {
-          "zone": 7,
+          "zone": 12,
           "zone_floor_picnum": 304,
           "street_sectors": 1,
           "sectors": 1,
           "walls": 8,
-          "sprites": 0
-        },
-        {
-          "zone": 2,
-          "zone_floor_picnum": 28,
-          "street_sectors": 1,
-          "sectors": 1,
-          "walls": 4,
           "sprites": 0
         },
         {
@@ -606,16 +739,8 @@
           "sprites": 0
         },
         {
-          "zone": 4,
-          "zone_floor_picnum": 28,
-          "street_sectors": 1,
-          "sectors": 1,
-          "walls": 4,
-          "sprites": 0
-        },
-        {
           "zone": 5,
-          "zone_floor_picnum": 28,
+          "zone_floor_picnum": 352,
           "street_sectors": 1,
           "sectors": 1,
           "walls": 4,
@@ -623,6 +748,14 @@
         },
         {
           "zone": 6,
+          "zone_floor_picnum": 270,
+          "street_sectors": 1,
+          "sectors": 1,
+          "walls": 4,
+          "sprites": 0
+        },
+        {
+          "zone": 7,
           "zone_floor_picnum": 28,
           "street_sectors": 1,
           "sectors": 1,
@@ -630,7 +763,39 @@
           "sprites": 0
         },
         {
-          "zone": 8,
+          "zone": 9,
+          "zone_floor_picnum": 28,
+          "street_sectors": 1,
+          "sectors": 1,
+          "walls": 4,
+          "sprites": 0
+        },
+        {
+          "zone": 10,
+          "zone_floor_picnum": 28,
+          "street_sectors": 1,
+          "sectors": 1,
+          "walls": 4,
+          "sprites": 0
+        },
+        {
+          "zone": 11,
+          "zone_floor_picnum": 28,
+          "street_sectors": 1,
+          "sectors": 1,
+          "walls": 4,
+          "sprites": 0
+        },
+        {
+          "zone": 14,
+          "zone_floor_picnum": 352,
+          "street_sectors": 1,
+          "sectors": 1,
+          "walls": 4,
+          "sprites": 0
+        },
+        {
+          "zone": 15,
           "zone_floor_picnum": 504,
           "street_sectors": 1,
           "sectors": 1,
@@ -640,8 +805,8 @@
       ],
       "mechanisms": {
         "map": "CITY-SKELETON",
-        "user_channels": 6,
-        "reserved_uses": 3,
+        "user_channels": 8,
+        "reserved_uses": 4,
         "channels": [
           {
             "channel": 30,
@@ -709,6 +874,28 @@
             "transmitter_types": [
               20
             ]
+          },
+          {
+            "channel": 340,
+            "transmitters": 3,
+            "receivers": 1,
+            "receiver_types": [
+              614
+            ],
+            "transmitter_types": [
+              0
+            ]
+          },
+          {
+            "channel": 341,
+            "transmitters": 1,
+            "receivers": 1,
+            "receiver_types": [
+              0
+            ],
+            "transmitter_types": [
+              614
+            ]
           }
         ]
       }
@@ -717,22 +904,22 @@
   "summary": {
     "street_width_player_widths": {
       "SKELETON": {
-        "n": 2721,
+        "n": 2752,
         "min": 1.3,
         "p10": 8.0,
-        "median": 14.3,
-        "p90": 128.0,
+        "median": 14.7,
+        "p90": 128.3,
         "max": 155.0
       }
     },
     "canyon_ratio": {
       "SKELETON": {
-        "n": 2623,
-        "min": 0.21,
+        "n": 2654,
+        "min": 0.09,
         "p10": 0.25,
-        "median": 2.18,
+        "median": 1.92,
         "p90": 4.0,
-        "max": 24.0
+        "max": 9.6
       }
     },
     "street_loops": {
@@ -759,28 +946,28 @@
     },
     "skyline_height_xy": {
       "SKELETON": {
-        "n": 1,
+        "n": 7,
         "min": 1632.0,
         "p10": 1632.0,
-        "median": 1632.0,
-        "p90": 1632.0,
-        "max": 1632.0
+        "median": 3328.0,
+        "p90": 4096.0,
+        "max": 4096.0
       }
     },
     "skyline_area_weighted_median_xy": {
-      "SKELETON": 1632
+      "SKELETON": 3328
     },
     "facade_walls_per_1024": {
-      "SKELETON": 0.22
+      "SKELETON": 0.24
     },
     "wall_sprites_per_1024": {
-      "SKELETON": 0.044
+      "SKELETON": 0.066
     },
     "budgets": {
       "SKELETON": {
-        "sectors": 254,
-        "walls": 1648,
-        "sprites": 406
+        "sectors": 325,
+        "walls": 2074,
+        "sprites": 469
       }
     }
   }

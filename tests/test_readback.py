@@ -445,6 +445,39 @@ class GlazeReadBack(unittest.TestCase):
         _assert_agrees(self, result)
 
 
+class GrilleReadBack(unittest.TestCase):
+    """`glass.grille`: bars across an opening, blocking and unbreakable."""
+
+    def test_a_barred_span_reads_back_with_its_bars_drawn(self):
+        from bloodmap.glass import GRILLE_CSTAT, grille
+        from bloodmap.readback import read_back, sentence
+
+        layout = _layout()
+        layout.add_region("cage", _rect(1024, 3072, 3072, 5120),
+                          floor_z=0, ceiling_z=-33280, declared_zero_exit=True,
+                          wall_picnum=200, floor_picnum=201,
+                          ceiling_picnum=202)
+        layout.add_connection("c0", "room", "cage",
+                              a1=(1024, 3072), a2=(3072, 3072), min_width=384)
+        compiled = layout.compile()
+        report = grille(compiled.level, [(1000, 3040, 3100, 3100)], tile=463)
+        self.assertEqual(len(report["barred"]), 2)       # both sides of one wall
+        disk = compiled.level.to_disk_map()
+        for index in report["barred"]:
+            fields = disk.walls[index].fields
+            self.assertEqual(int(fields["over_picnum"]), 463)
+            self.assertEqual(int(fields["cstat"]) & GRILLE_CSTAT, GRILLE_CSTAT)
+            #: no XWALL: nothing a player does opens or breaks it
+            self.assertLessEqual(int(fields["extra"]), 0)
+        sectors = {name: a.sector_id
+                   for name, a in compiled.allocations.items()}
+        result = read_back(disk, [sentence(
+            "glass", name="cage bars", sector=sectors["cage"],
+            sectors=[sectors["cage"], sectors["room"]],
+            visibility={"tiles": [463]})], map_name="barred span")
+        _assert_agrees(self, result)
+
+
 # ---------------------------------------------------------------------------
 # 4. bloodmap.aperture
 # ---------------------------------------------------------------------------
@@ -639,6 +672,8 @@ COVERED: dict[str, str] = {
         "ZMotionDoorReadBack.test_a_z_motion_door_reads_back_as_a_door_that_opens",
     "bloodmap.glass.glaze":
         "GlazeReadBack.test_a_glazed_span_reads_back_with_its_panes_drawn",
+    "bloodmap.glass.grille":
+        "GrilleReadBack.test_a_barred_span_reads_back_with_its_bars_drawn",
     "bloodmap.aperture.pierce":
         "ApertureReadBack.test_a_pierced_opening_reads_back_with_its_jamb_drawn",
     "bloodmap.aperture.maskwall_panel":

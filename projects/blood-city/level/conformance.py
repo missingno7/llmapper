@@ -153,7 +153,7 @@ def main() -> int:
     # the street's at-grade component.
     STREET_JOINED = ("districts", "carved_areas", "gates",
                      "stack_mouths_at_grade", "grate_kerb", "light_pools",
-                     "market_furniture")
+                     "sky_aprons", "market_furniture", "roadways")
     expected_component = sum(int(manifest.get(k, 0)) for k in STREET_JOINED)
     row("street component joined",
         f"{' + '.join(f'{k} {manifest.get(k, 0)}' for k in STREET_JOINED)} "

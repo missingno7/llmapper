@@ -1,0 +1,27 @@
+street-ends, 2026-11-17 -- what was counted, on which map
+
+before  observed.MAP sha256 aebfccf19aab...  309 sectors / 2002 walls / 475 sprites
+after   observed.MAP sha256 b590dda08aed...  325 sectors / 2074 walls / 469 sprites
+
+city-edge masonry drawn to the sky (417, one-sided)   184,320 units
+street ends closed by an end wall with a sky backing  0 -> 4 (8 masses, 8 backings)
+end-wall faces lit to E3M1's shade -8, blocking       16 wall records
+
+sky share, before -> after (tools.judge_experiment; judge.txt)
+  avenue_north_far   0.074 -> 0.086     avenue_north_mid  0.000 -> 0.061
+  avenue_north_near  0.000 -> 0.000     row_west_far      0.090 -> 0.100
+  row_west_near      0.000 -> 0.042     market_west_far   0.118 -> 0.126
+  market_west_near   0.000 -> 0.024     market_east_far   0.023 -> 0.048
+  market_east_near   0.000 -> 0.009
+
+rules            12 errors / 7 warnings, unchanged (8 open-neighbours-share-a-sky
+                 warnings on the first build, before a sector of no height was
+                 exempted)
+conformance.py   12/13; street component 53 declared, 54 measured, unchanged
+determinism      two builds from source, same sha256 (b590dda08aed...)
+NBlood load      python -m bloodmap oracle-nblood: pass. A load test; nobody was
+                 moved through it.
+suite            2236 tests, OK (25 skipped, 4 expected failures)
+blind review     one reviewer, the build before the faces were lit against
+                 before, folders unlabelled: new 9 of 9. The lit build was not
+                 reviewed blind.

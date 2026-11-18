@@ -38,6 +38,7 @@ requires local unsigned mines in `work/` (gitignored). The compiled
 | `sprite-heights-v1.json` | attested seated heights per sprite tile |
 | `stacks-v1.json` | room-over-room pairs and their families |
 | `storeys-v1.json` | storey structure per map |
+| `visual-construction-atlas-v1.json` | how a recognisable thing is assembled from Build primitives: native facts, derived counts and what viewers took it for, kept apart, each record with a status (`observed_once`, `transferred`, `refuted`) |
 | `surface-items-v1.json` | what stands on surfaces, by source |
 | `surface-palettes-v1.json` | surface palettes conditioned on band, with held-out sectors |
 | `switches-v1.json` | switch tiles and the eye heights they sit at |

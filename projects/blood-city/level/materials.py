@@ -97,21 +97,26 @@ ROADWAY = 352
 WALK = 4
 BOARDWALK = 28
 
+#: A district's street floor is its PAVEMENT (owner, 2026-11-17: "roads and
+#: sidewalk attempts ... look poor").  It wore the roadway's cobble, so a
+#: carriageway differed from the pavement beside it by a step and nothing
+#: else.  E3M1 and E6M1 both lay stone paving (4) over cobble (352), and the
+#: owner's sheet names them so; `streets.lay` cuts the cobble in.
 FACADES = {
     # One articulated facade per district identity (ID card), all from
     # E3M1's own facade census, each visually distinct on the contact sheet.
     "theatre_row": Material(
-        wall=400, floor=ROADWAY, ceiling=SKY, opening=417, sky=True,
+        wall=400, floor=WALK, ceiling=SKY, opening=417, sky=True,
         note="grey ashlar with cornice and sash window: the grand street"),
     "old_crossing": Material(
-        wall=384, floor=ROADWAY, ceiling=SKY, opening=417, sky=True,
+        wall=384, floor=WALK, ceiling=SKY, opening=417, sky=True,
         note="red brick with a small window: the humbler pre-boom quarter"),
     "market_slip": Material(
-        wall=380, floor=ROADWAY, ceiling=SKY, opening=417, sky=True,
+        wall=380, floor=WALK, ceiling=SKY, opening=417, sky=True,
         note="stone with pilaster and lattice window: the civic river gate "
              "(replaces 414, which the contact sheet shows is boarding)"),
     "foundry_ward": Material(
-        wall=393, floor=ROADWAY, ceiling=SKY, opening=417, sky=True,
+        wall=393, floor=WALK, ceiling=SKY, opening=417, sky=True,
         note="brown brick with the big arched industrial window"),
 }
 

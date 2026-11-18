@@ -50,6 +50,8 @@ from typing import Any, Iterable, Sequence
 GLASS_TILE = 266
 GLASS_CSTAT = 0x00D5      # blocking | align | masked | hitscan | translucent
 GLASS_REPEATS = (32, 8)
+#: The length E6M1's panes carry those repeats over.
+GLASS_LENGTH = 4096
 #: The XWALL that lets a shot break it. `data` copied from E6M1.
 GLASS_XWALL = {"trigger_vector": 1, "data": 12}
 
@@ -114,8 +116,14 @@ def glaze(level: Any, spans: Iterable[Sequence[int]], *,
           tile: int = GLASS_TILE, cstat: int = GLASS_CSTAT,
           repeats: Sequence[int] = GLASS_REPEATS,
           xwall: dict[str, int] | None = None,
-          owner: str | None = None, records: Any = None) -> dict[str, Any]:
+          owner: str | None = None, records: Any = None,
+          fit: bool = False) -> dict[str, Any]:
     """Turn every two-sided wall inside one of `spans` into breakable glass.
+
+    `fit=True` keeps E6M1's DENSITY rather than its number: its panes are
+    4096 long at x_repeat 32, one repeat per 128 units, so a pane of another
+    length takes `length / 128`. A fixed 32 on a 7168 pane stretched the
+    streaks to nearly twice their size and on an 896 one crushed them.
 
     Both sides of the pair are glazed, which is what E6M1 does and what
     `trTriggerWall` expects when it clears the bits on `pWall2`.
@@ -163,8 +171,13 @@ def glaze(level: Any, spans: Iterable[Sequence[int]], *,
         if records is None or records.may_write(index, name):
             if records is not None:
                 records.claim(index, name)
-            fields["x_repeat"], fields["y_repeat"] = (int(repeats[0]),
-                                                      int(repeats[1]))
+            across = int(repeats[0])
+            if fit:
+                length = ((int(after["x"]) - int(fields["x"])) ** 2
+                          + (int(after["y"]) - int(fields["y"])) ** 2) ** 0.5
+                across = max(1, min(255, round(length * GLASS_REPEATS[0]
+                                               / GLASS_LENGTH)))
+            fields["x_repeat"], fields["y_repeat"] = across, int(repeats[1])
         else:
             #: Somebody else owns the scale here. Say so rather than fight.
             records.concede(index, name)
@@ -172,6 +185,53 @@ def glaze(level: Any, spans: Iterable[Sequence[int]], *,
         attach_xwall(level, index, **(xwall or GLASS_XWALL))
         report["panes"] += 1
         report["walls"].append(index)
+    return report
+
+
+#: blocking | masked | hitscan-sensitive: bars. Not translucent, and with no
+#: XWALL: nothing breaks a grille.
+GRILLE_CSTAT = 1 | 16 | 64
+
+
+def grille(level: Any, spans: Iterable[Sequence[int]], *, tile: int,
+           cstat: int = GRILLE_CSTAT, repeats: Sequence[int] | None = None
+           ) -> dict[str, Any]:
+    """Bars across every two-sided wall inside one of `spans`.
+
+    The same record law as a pane: the mask goes on a wall whose two sides
+    stand at one floor and one ceiling, or the bars share their scale with a
+    step band. A wall that does not is refused rather than barred badly.
+    """
+    spans = [tuple(int(v) for v in span) for span in spans]
+    owner: dict[int, int] = {}
+    for sector_id, sector in enumerate(level.sectors):
+        fields = _fields(sector)
+        for wall in range(int(fields["wall_ptr"]),
+                          int(fields["wall_ptr"]) + int(fields["wall_count"])):
+            owner[wall] = sector_id
+    report = {"barred": [], "refused": []}
+    for index in range(len(level.walls)):
+        fields = _fields(level.walls[index])
+        neighbour = int(fields.get("next_sector", -1))
+        if neighbour < 0:
+            continue
+        after = _fields(level.walls[int(fields["point2"])])
+        mx = (int(fields["x"]) + int(after["x"])) / 2.0
+        my = (int(fields["y"]) + int(after["y"])) / 2.0
+        if not any(x0 <= mx <= x1 and y0 <= my <= y1
+                   for x0, y0, x1, y1 in spans):
+            continue
+        here = _fields(level.sectors[owner[index]])
+        there = _fields(level.sectors[neighbour])
+        fields["over_picnum"] = int(tile)
+        fields["cstat"] = int(fields["cstat"]) | int(cstat)
+        if repeats is not None:
+            fields["x_repeat"], fields["y_repeat"] = (int(repeats[0]),
+                                                      int(repeats[1]))
+        report["barred"].append(index)
+        if (int(here["floor_z"]) != int(there["floor_z"])
+                or int(here["ceiling_z"]) != int(there["ceiling_z"])):
+            report["refused"].append(index)
     return report
 
 
@@ -311,6 +371,40 @@ def _face(entry: Any) -> Any:
     return getattr(entry, "fields", entry)
 
 
+def _frame_has_a_sill(disk: Any, sector_id: int) -> bool:
+    """Does the frame this pocket belongs to stand on a sill somewhere?
+
+    E6M1's pane has the sill directly under it: recess one side, shop floor
+    the other. That puts a step band on the pane's own record, which then
+    shares the glass's texture scale. The other lawful arrangement keeps the
+    pane between two volumes at ONE height -- a sash pocket and the display
+    box behind it -- and puts the sill at the front of the frame, on a record
+    the facade owns. So the question is asked of the whole frame: every
+    sector reachable from the pocket at the same floor and ceiling.
+    """
+    def heights(index: int) -> tuple[int, int]:
+        f = _face(disk.sectors[index])
+        return int(f["floor_z"]), int(f["ceiling_z"])
+
+    want = heights(sector_id)
+    seen, stack = {sector_id}, [sector_id]
+    while stack:
+        fields = _face(disk.sectors[stack.pop()])
+        start = int(fields["wall_ptr"])
+        for wall in range(start, start + int(fields["wall_count"])):
+            nxt = int(_face(disk.walls[wall])["next_sector"])
+            if nxt < 0 or nxt in seen:
+                continue
+            if heights(nxt) == want:
+                seen.add(nxt)
+                stack.append(nxt)
+            elif heights(nxt)[0] > want[0]:
+                #: Blood's z grows downward: a larger floor_z is a LOWER
+                #: floor, so this frame stands above something.
+                return True
+    return False
+
+
 def recess_faults(disk: Any, sector_id: int, *,
                   tile: int = GLASS_TILE) -> list[str]:
     """Is this sector a display recess with the pane on its inner face?
@@ -349,7 +443,8 @@ def recess_faults(disk: Any, sector_id: int, *,
             out.append(f"wall {wall} is glazed but ONE-SIDED")
             continue
         there = _face(disk.sectors[nxt])
-        if int(there["floor_z"]) == int(fields["floor_z"]):
+        if (int(there["floor_z"]) == int(fields["floor_z"])
+                and not _frame_has_a_sill(disk, sector_id)):
             out.append(
                 f"wall {wall}: no sill -- the recess floor is the shop's, so "
                 f"this reads as a doorway (E6M1 lifts it {RECESS_SILL})")

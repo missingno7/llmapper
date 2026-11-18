@@ -1,0 +1,621 @@
+{
+  "$schema": "llmapper.visual-construction-atlas",
+  "schema_version": 1,
+  "note": "How a recognisable thing is assembled from Build primitives, and what was seen when it was. Each record keeps three kinds of statement apart: `native` (read from engine source or map fields), `derived` (counted by a named tool) and `interpreted` (what a viewer took it for, with who the viewer was). `status` is the weakest link: `observed_once` means one build in one context; `transferred` means it held in a second context that differs in size, material and surroundings; `refuted` records stay, with what refuted them. A record is corrected by adding a `supersedes` entry, never by rewriting.",
+  "statuses": [
+    "hypothesis",
+    "observed_once",
+    "transferred",
+    "refuted"
+  ],
+  "records": [
+    {
+      "id": "height-is-the-sky-in-front",
+      "appearance": "a building that is visibly taller or lower than its neighbours",
+      "status": "refuted",
+      "native": [
+        "A one-sided wall is drawn from its own sector's floor to its own sector's ceiling.",
+        "The upper section of a two-sided wall is skipped when both sectors have parallax ceilings (NBlood/source/build/src/engine.cpp:4688), so a step between two skies paints nothing.",
+        "The ceiling still clips the player and sprites whether or not it is drawn."
+      ],
+      "derived": {
+        "tool": "tools/mine_skylines.py --population blood-campaign",
+        "maps_with_open_sky": 38,
+        "maps_drawing_street_walls_to_one_height": 0,
+        "maps_with_three_or_more_wall_heights": 32,
+        "maps_with_a_stepped_sky": 17,
+        "sky_step_portals_of_a_body_or_more": 141,
+        "examples": {
+          "E1M3": 29,
+          "E3M1": 13,
+          "E1M1": 12
+        },
+        "largest_everyday_step_bodies": {
+          "E3M1": 15.4
+        },
+        "blood_city_before": {
+          "distinct_wall_heights": 1,
+          "walls": 141
+        }
+      },
+      "construction": "Put a strip of open ground (an apron) against the face and give it the sky height the face should be drawn to. `bloodmap.skyline.apron`. One sector per distinct height; no change in plan.",
+      "constraints": [
+        "Nothing shows over an apron's wall: the wall is one-sided and what is painted above it is the apron's own sky. A tower set back behind a lower front paints no pixel. For depth, the campaign's other technique is needed: a roof sector with a raised floor (E1M5: seven wall heights, no sky step).",
+        "Where two aprons of different height meet at an inside corner the seam must be a diagonal from the corner, or one sector owns both faces and draws one of them wrong.",
+        "The apron's sky must be out of reach: `skyline.REACH`, three bodies."
+      ],
+      "interpreted": [
+        {
+          "by": "blind reviewer, round 1 frames",
+          "said": "grey block steps up into a taller plain shaft, could be a tower (guess)"
+        },
+        {
+          "by": "author, same frames",
+          "said": "roofline with sky over it; tower visible from the spawn and the market end"
+        }
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/church-skyline (before, round1, round2, after; result.json)",
+        "tests/test_skyline.py"
+      ],
+      "transfer": "Held in a second context inside the same experiment: the churchyard wall (different tile 417, 3.1 bodies, 4096 and 6144 long, no building behind it) and the tower (17.4 bodies, sloped). Not yet tried in another map or district.",
+      "refuted_by": {
+        "when": "2026-11-17",
+        "by": "owner, playing the build in NBlood",
+        "said": "when you put parallax sky low it is covering view like a normal ceiling",
+        "evidence": "projects/blood-city/experiments/church-roofs/before: yard_to_tower (the tower paints 0 px), yard_out_south, avenue_over_wall",
+        "what_survives": "the native facts are true, and RAISING a sky for the one thing taller than the city is sound. Lowering one is what is refuted. See 'height-is-a-raised-floor'."
+      }
+    },
+    {
+      "id": "height-is-a-raised-floor",
+      "supersedes": "height-is-the-sky-in-front",
+      "appearance": "a wall, a building or a roof that is lower than what stands beyond it, with what stands beyond it still visible over it",
+      "status": "transferred",
+      "native": [
+        "A low parallax ceiling is painted from the top of the far wall upward over every column its sector covers; it occludes exactly like a roofed ceiling.",
+        "The lower step of a two-sided wall is drawn from the wall record on the lower side, so a raised sector's face takes its tile from its neighbour's wall."
+      ],
+      "derived": {
+        "tool": "tools/mine_skylines.py --population blood-campaign",
+        "maps_with_three_or_more_wall_heights": 32,
+        "maps_with_a_stepped_sky": 17,
+        "note": "most campaign maps with varied wall heights have no sky step of a body or more; the heights come from floors",
+        "blood_city": {
+          "skies_lowered_a_body_or_more_before": 5,
+          "skies_lowered_a_body_or_more_after": 0
+        }
+      },
+      "construction": "The low thing is a sector whose floor is its top, under the common sky: `bloodmap.skyline.roof`, then `skyline.dress_steps` to paint its face from the side that sees it. Over an interior it is its own layer with a band clear of the rooms beneath.",
+      "interpreted": [
+        {
+          "by": "blind reviewer, low-sky build",
+          "said": "cemetery wall (guess); 'nothing here says cemetery'"
+        },
+        {
+          "by": "blind reviewer, roof build",
+          "said": "graveyard / cemetery (certain); yard_to_tower 'the most church-like frame'"
+        }
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/church-roofs (before, round2, after; result.json; before-after.png)",
+        "tests/test_skyline.py RoofTests"
+      ],
+      "transfer": "Held across three different things in one build: a boundary wall with no building behind it (tile 417, 3.1 bodies), a building's low range over an interior (406, 3.9) and a pitched nave over that (sloped floor, 5.8 to 7.0). Not yet in another map."
+    },
+    {
+      "id": "a-see-over-roof-forbids-a-door-beneath",
+      "appearance": "(a fault) a room's ceiling painted into the sky beside or above a door",
+      "status": "observed_once",
+      "native": [
+        "The classic renderer keeps one open span per screen column (umost/dmost). Columns above a low two-sided wall stay open; a sector reached meanwhile through any portal paints into them.",
+        "bloodmap/layers.py states the same law for storeys: the space you enter the ground floor from must not also open into the storey above it through the same facade."
+      ],
+      "derived": {
+        "porch_under_roof_door_shut_px": "395 to 3,970 across nine frames",
+        "door_open_px": "6,960 to 23,262",
+        "entrance_through_tower_doors_shut_px": 0,
+        "outer_open_px": 0,
+        "both_open_px": "808 to 14,475"
+      },
+      "construction": "Put the way in under something nothing is seen over: a tower or a full-height block, whose one-sided walls close the columns they cover and whose entry room lies inside its plan. Put a second door between that room and the rooms under the roof, and let both shut themselves (`doors.z_motion_door(close_after=30)`). `skyline.leaks_under_roofs(layout)` finds the violations on the source.",
+      "interpreted": [
+        {
+          "by": "blind reviewer",
+          "said": "'a thin dark pole', 'a sky-length seam' in five frames"
+        },
+        {
+          "by": "author, same frames",
+          "said": "took it for the sky tile's painted spires"
+        }
+      ],
+      "constraints": [
+        "Measured in the observer, which is JFBuild's software renderer. NBlood's default renderer is not, and was not tested for this.",
+        "The auto-close is a mitigation: with both doors held open the leak is there."
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/church-roofs: round2, round3-outer-door-open, round3-both-doors-open, measurements.txt",
+        "tests/test_skyline.py LeakTests"
+      ],
+      "transfer": "Not tried elsewhere. The law is the engine's and should hold; the cure has been built once."
+    },
+    {
+      "id": "a-roofline-shows-only-from-1.7-heights-away",
+      "appearance": "sky visible over a building at a level gaze",
+      "status": "observed_once",
+      "native": [
+        "The observer's vertical half-field at 640x480 is about 30 degrees; z is a sixteenth of xy."
+      ],
+      "derived": {
+        "prediction_that_failed": "sky share in avenue_front would rise by 0.15 with the eaves at 6.8 bodies",
+        "measured": {
+          "eaves_6.8_bodies_from_5.2_plan_units": 0.0,
+          "eaves_3.9_bodies_same_pose": 0.133
+        }
+      },
+      "construction": "On a street W wide, what fronts the street must be lower than about 0.6 W (in xy units; multiply by 16 for z) for its top to show from the far kerb. On Gravesend's 7-unit avenue that is about 3.9 bodies. Taller things are skyline for the long view down the street, not for the facade view.",
+      "interpreted": [
+        {
+          "by": "author",
+          "said": "the height that matters on a street is the height of what fronts it; a church's low side range, not its nave"
+        }
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/church-skyline/result.json: before->round1 and before->round2, view avenue_front"
+      ],
+      "transfer": "Untested elsewhere. It is geometry, so it should hold; the 30-degree figure is the observer's and NBlood's field of view may differ."
+    },
+    {
+      "id": "tower-top-by-gables",
+      "appearance": "a tower that ends in a point rather than a flat top",
+      "status": "observed_once",
+      "native": [
+        "A sector has one ceiling plane; a sloped parallax ceiling tilts the top edge of every wall drawn against it.",
+        "Build has no pyramid: a spire is not sayable with walls and one slope per sector."
+      ],
+      "derived": {
+        "tool": "tools/mine_skylines.py",
+        "campaign_maps_with_a_sloped_sky": 10,
+        "sloped_sky_sectors": 23
+      },
+      "construction": "Split the apron on each tower face at the face's centre line; hinge each half on that line and let it fall toward the corner. Mitre the corners. Six sectors for a tower with three street faces.",
+      "interpreted": [
+        {
+          "by": "blind reviewer, round 2 (gable 1.9 bodies on a 15.5-body shaft)",
+          "said": "no spire, reads as a chimney / obelisk"
+        },
+        {
+          "by": "blind reviewer, round 3 (gable 3.9 bodies, ridge 17.4), far views",
+          "said": "church steeple (certain as a silhouette)"
+        },
+        {
+          "by": "blind reviewer, round 3, from the tower's foot",
+          "said": "a plain square shaft, ends flat against the sky; the steeple seen from afar does not match the tower seen up close"
+        },
+        {
+          "by": "author, round 3",
+          "said": "wrote 'reads as a steeple' from the far frames and was half wrong; see critic-round3.md"
+        }
+      ],
+      "constraints": [
+        "A gable under about a quarter of the shaft's visible height is foreshortened to nothing from the street.",
+        "Even a steep gable does not show from the tower's own foot: the far read (silhouette) and the near read (what is at eye height) are separate problems. Gables solve the first only."
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/church-skyline/round2 and after: vista_far, spawn_north, avenue_south_up, tower_foot",
+        "critic-round2.md, critic-round3.md"
+      ],
+      "transfer": "Not tried in a second context. The near read is unsolved."
+    },
+    {
+      "id": "coloured-glass-says-church",
+      "appearance": "a stone building recognised as a church",
+      "status": "observed_once",
+      "native": [
+        "Tile 569 is 32x32, four vertical panes; E1M5 uses it as a masked two-sided wall 512 wide at x_repeat 4, y_repeat 8 between an alcove and the sky."
+      ],
+      "derived": {
+        "campaign_uses_of_569_in_the_five_maps_checked": {
+          "E1M5": 8,
+          "E1M3": 2,
+          "E4M1": 2
+        }
+      },
+      "construction": "Where the wall is one-sided, hang 569 as a wall sprite: x_repeat 48, y_repeat 192 gives a lancet 384 wide and 1.45 bodies tall. One per bay, between buttresses.",
+      "interpreted": [
+        {
+          "by": "blind reviewer, round 1 (massing only, no glass)",
+          "said": "civic or warehouse block (guess); fortress (guess)"
+        },
+        {
+          "by": "blind reviewer, round 2 (same massing lowered, buttresses, glass)",
+          "said": "church/chapel (likely) -- 'purely from the coloured glass'"
+        },
+        {
+          "by": "blind reviewer, round 3",
+          "said": "church (likely), 'but only because of the glass'"
+        }
+      ],
+      "constraints": [
+        "This is an ablation by history, not a controlled one: round 2 changed eaves height, buttresses and glass together. The reviewer named the glass as the cue; that is one reviewer.",
+        "A sprite is flat. From hard against the wall it reads as paint. E1M5's real glazed opening does not."
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/church-skyline/critic-round1.md, critic-round2.md"
+      ],
+      "transfer": "Not tried. Promote only after a second building and a controlled removal of the glass alone."
+    },
+    {
+      "id": "buttress-is-a-notch-in-the-apron",
+      "appearance": "a long wall given bays and depth",
+      "status": "observed_once",
+      "native": [
+        "A notch in a sector's outline is three walls and no sector."
+      ],
+      "construction": "Let small rectangles into the apron's outline against the face: 256 proud, 384 wide, on the bay grid, flanking the portal. They stand exactly as tall as the eaves because they are walls of the same sector.",
+      "interpreted": [
+        {
+          "by": "blind reviewer, round 2",
+          "said": "pilasters either side of the door; top reads as 'a flat crenellated line', fortress or warehouse"
+        }
+      ],
+      "constraints": [
+        "Because each buttress carries the facade tile's cornice round its own top, the roofline steps at every one and reads as battlements. A buttress that stops below the eaves needs its own lower apron."
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/church-skyline/after: portal, avenue_front"
+      ],
+      "transfer": "Not tried."
+    },
+    {
+      "id": "a-pane-hangs-where-there-is-no-step-band",
+      "appearance": "a shop window that reads as glass set into a wall",
+      "status": "observed_once",
+      "native": [
+        "A wall record has one x_repeat/y_repeat; it scales the record's masked middle and its upper and lower step bands alike (AlignWalls, xmapedit/src_blood/xmpmaped.cpp:3024-3050).",
+        "A two-sided wall's step bands are drawn from the record on the side that sees them."
+      ],
+      "derived": [
+        "Gravesend before: 24 of 24 glazed records also carried a step band; 8 were street records. One 1024-long pane's facade band was drawn at 4x the facade's scale, a 7168 one at 0.57x.",
+        "After: 0 of 20 carry a band, 0 are street records; `collinear solid-portal` joins that continue in x rose from 85% to 97% (tools.texture_continuity)."
+      ],
+      "construction": "From the street inward: a reveal, one sash pocket per bay with solid mullions between, a display box, the shop. Reveal, sashes and box share one floor and one ceiling. The street-side record is two-sided to the reveal and carries the facade's lintel and stall riser at the facade's scale. The pane hangs between a sash and the box. `glass.shopfront` in blood-city gives the rectangles; `bloodmap.glass.glaze(fit=True)` keeps E6M1's glass density on a pane of any length.",
+      "interpreted": [
+        {
+          "by": "owner, 2026-11-17",
+          "said": "the glass should sit in a aperure/frame so glass texture scaling won't be colliding with facade texture"
+        },
+        {
+          "by": "blind reviewer, K/R unlabelled",
+          "said": "the glass is set into the wall: a recess, mullions or posts, a sill ledge and a dark frame; the other set looks laid flat on the wall, one pale rain-streaked sheet"
+        }
+      ],
+      "constraints": [
+        "A mullion must not reach the street face, where it would be a full-height slice of the facade's painted windows: the reveal runs unbroken in front of the sashes.",
+        "E6M1 itself hangs its pane between the recess and the shop, with the sill under the glass: that record has a band. `bloodmap.glass.recess_faults` accepts both arrangements by asking the whole frame for a sill."
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/shopfronts-streets/before-after.png: pawn_front, super_north_far, super_south_pane",
+        "tests/test_shopfront.py CityGlassTests"
+      ],
+      "transfer": "Three venues built three ways (theatre, market hall, arcade) took the one helper. Not tried outside this city."
+    },
+    {
+      "id": "a-material-stands-on-its-floor",
+      "appearance": "a dado at the floor, a facade's ground storey at the pavement, a kerb one tile tall",
+      "status": "observed_once",
+      "native": [
+        "GetWallZPeg (xmpmaped.cpp:2991-3022): a one-sided wall hangs from its ceiling; a two-sided one from the top step's ceiling, then the bottom step's floor.",
+        "A texel is 2048 / y_repeat z tall."
+      ],
+      "derived": [
+        "Tile 2294 is 32x256: plaster over a rail and a tiled dado in its bottom 100 rows. In the market hall (192 rows tall) the run's vertical origin was the first wall's peg, a window head: the dado was drawn under the ceiling and never at the floor.",
+        "Tile 6 (owner: kerb) is 64x8: at y_repeat 8 it is exactly E3M1's 2048 kerb."
+      ],
+      "construction": "`bloodmap.texture_frame.frame_map(v_anchor='floor')`: one vertical origin per run, the z at which the tile's bottom row lies on the floor most of the run stands on. Every join that continued still continues.",
+      "interpreted": [
+        {
+          "by": "owner, 2026-11-17",
+          "said": "Be careful abount meaningful texture aligment, it seems like a thing that is sometimes off"
+        },
+        {
+          "by": "blind reviewer",
+          "said": "hall band: 'patchy ... red tile over some openings and plain grey plaster over others ... unfinished'; preferred the old continuous crate frieze 'narrowly' while calling it 'crate art used as wall trim'"
+        }
+      ],
+      "constraints": [
+        "It is a city-wide change of phase: every interior frame changed, the church's included, though nothing in the church was touched.",
+        "A tile with a cornice at its top and a base at its bottom fits only a wall a whole number of tiles tall. Floor wins.",
+        "A facade tile used on something that is not a facade shows a different slice once anchored: the market stalls' edges turned from cornice to brick, which is how that fault was found."
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/shopfronts-streets/before-after.png: hall_band",
+        "tests/test_shopfront.py MaterialStandsOnItsFloorTests"
+      ],
+      "transfer": "Applied to the whole city in one pass. Not tried on another map; the zoo still uses the editor's first-wall anchor."
+    },
+    {
+      "id": "a-facade-is-a-wall-not-a-record-count",
+      "appearance": "the band over an opening continuing the room's wall",
+      "status": "observed_once",
+      "native": [
+        "Build draws a two-sided wall's upper step from that wall's own picnum."
+      ],
+      "derived": [
+        "tools.mine_apertures.dominant_wall_tile took the commonest picnum per wall record, portals included. The market hall has 16 crate rims 1024 long and 11,776 units of plaster: 'facade' came out as crate (452), and blood-city's lintel pass painted 24,064 units of band with it."
+      ],
+      "construction": "The facade is the sector's one-sided wall, weighed by length; two-sided records only when it has no solid wall.",
+      "interpreted": [
+        {
+          "by": "owner, 2026-11-17",
+          "said": "these ceiling crates doesn't feel right"
+        }
+      ],
+      "constraints": [
+        "The campaign aperture census in apertures-v1.json was computed with the old definition and has not been re-run."
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/shopfronts-streets/before-after.png: hall_band",
+        "tests/test_shopfront.py FacadeIsAWallTests"
+      ],
+      "transfer": "Not tried."
+    },
+    {
+      "id": "a-street-is-paving-a-kerb-and-cobble",
+      "appearance": "a street where you can tell the walk from the road",
+      "status": "observed_once",
+      "native": [
+        "The lower step of a two-sided wall is drawn from the lower side's record: a kerb's face is the carriageway's wall."
+      ],
+      "derived": [
+        "E3M1 and E6M1: paving 4 over cobble 352, 2048 step, tile 6 on the road side (13 walls). Owner-anchored as stone paving, cobblestone, kerb.",
+        "The campaign dresses its city street with geometry, not sprites: E3M1 has 6 decoration sprites outdoors in the whole map.",
+        "Campaign street lamps (2493, E2) stand 256 off the facade, not at the kerb, 1100-2500 apart in a cluster."
+      ],
+      "construction": "District street floor = paving; `streets.lay` cuts cobble carriageways 2048 down wearing tile 6 on their own walls. A carriageway that lies on or across a district seam is a NOTCH in each street's outline, not a hole in one: the parts are rooms of their own districts joined across the seam, and every join (street to street, part to street, part to part) is a gate written from the finished shapes. Each run reaches a junction's depth past its end nodes, so roads meet edge to edge. The clear space is found as maximal rectangles, longest first.",
+      "interpreted": [
+        {
+          "by": "blind reviewer",
+          "said": "pavement, raised kerb, cobble road and lamps, 'the clearest street read in either set'; the old set: 'you can almost never tell'"
+        },
+        {
+          "by": "blind reviewer, first build",
+          "said": "'a grey stripe down the middle of the road ... pavement should never be a stripe down the road'"
+        },
+        {
+          "by": "second blind reviewer, centred roads with paved crossings",
+          "said": "'a clean central road, kerbs on both sides and lamps ... the best street frame'; junctions: 'the avenue's road ends at a kerb. That reads as an error: carts would hit a kerb'"
+        },
+        {
+          "by": "owner, 2026-11-17",
+          "said": "asked for the road down the middle rather than on one side of the seam"
+        }
+      ],
+      "constraints": [
+        "A hole may not touch its street's outline; a road on a seam must be a notch. `Room.faces` resolves at compile time, so the outline can be replaced after other code has named the street's faces, but any face used with `at=`/`width=` must be re-derived.",
+        "A guillotine tiling of the street minus its obstacles is not the clear space: it loses the full-width stretch beyond an obstacle on one side.",
+        "A run ends at a junction's centre. Two roads that stop at their nodes leave the junction to nobody.",
+        "Anything raised in a street is drawn from the street's record and wears the facade unless dressed: `skyline.dress_steps(only_from=street sectors)`.",
+        "Plazas and lanes are one paved surface; both reviewers count that as still unseparated.",
+        "A camera pose exactly on a kerb line is in no sector and the observer writes no frame, silently."
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/shopfronts-streets/before-after.png: avenue_road_level, kerb_along, avenue_south, west_street_on_road",
+        "tests/test_shopfront.py CityStreetTests, SeamClipTests",
+        "tests/test_street_model.py"
+      ],
+      "transfer": "Not tried."
+    },
+    {
+      "id": "a-street-ends-in-a-wall-with-the-sky-behind-it",
+      "appearance": "the far end of a street: a building face a few storeys tall with sky over it",
+      "status": "observed_once",
+      "native": [
+        "A one-sided wall of a parallax sector is drawn to that sector's sky height.",
+        "A sector whose floor and ceiling are at one z draws no wall.",
+        "Where both sectors of a two-sided wall are parallax the upper step is not drawn (engine.cpp:4688).",
+        "E3M1 s340 and s338: floor 8192, ceiling 8192, ceiling_stat 3, behind the end masses s0 and s339.",
+        "E3M1 end-wall faces: facade tile at shade -8, cstat 1; the masonry beside them 24 to 34."
+      ],
+      "derived": [
+        "E3M1's three end masses stand 3.86 to 5.80 bodies over the road, floor tile 379 (bloodmap.street.end_wall).",
+        "Gravesend before: 184,320 units of perimeter masonry drawn 11.6 bodies tall; the avenue is 57,000 units long."
+      ],
+      "construction": "A mass across the street's mouth, outside the map's edge, 5.8 bodies up under the common sky, faced in the district facade (the face is the street's record: dress it, light it to -8, make it blocking). Behind it a parallax sector of no height at grade. `streets.end_walls`; `bloodmap.skyline.is_sky_backing`.",
+      "interpreted": [
+        {
+          "by": "blind reviewer, faces not yet lit",
+          "said": "before: 'a tall black slab ... a void or an unlit box'; after: 'the ends read as buildings across the street', far ones 'low enough to read as distant, unlit buildings under the sky. Not good, but not slabs'"
+        },
+        {
+          "by": "the same",
+          "said": "'the facades look pasted onto' the masonry either side; 'the street just stops against a picture of a building'"
+        }
+      ],
+      "constraints": [
+        "It is the opposite of a lowered sky and must not be reported as one: a backing hides nothing because it is put where nothing stands. `lowered_skies` and the open-neighbours rule exempt a sector of no height.",
+        "Unlit, at 30,000 units, the end wall is still a dark block, only shorter. The sky does the work at distance; the lit face does it up close.",
+        "A mouth that lies in two districts is two masses, each in its own district's facade. That read as two buildings.",
+        "Nobody walks onto it: the geometry audit needs `declared_zero_exit`."
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/street-ends/before-after.png",
+        "tests/test_shopfront.py CityStreetEndTests"
+      ],
+      "transfer": "Four street ends in one city. Not tried elsewhere, and not on the rest of the perimeter."
+    },
+    {
+      "id": "a-shop-is-a-surround-a-name-and-a-light",
+      "appearance": "a shopfront that says what it is",
+      "status": "observed_once",
+      "native": [
+        "The step bands of a two-sided wall are drawn from the record on the side that sees them.",
+        "A region that states its own floor, ceiling or wall shade is protected from LightBomb unless its intent lists that surface under generated_surfaces (planar_layout)."
+      ],
+      "derived": [
+        "Rooms behind glass against the street floor, by shade: DukCity3 24 and 37; E3M1 24 and 32; Gravesend 32 and 32 before, about 21 and 32 after.",
+        "Letter sprites outdoors per map: DukCity 38 to 73, E1M4 33, E3M1 0.",
+        "A campaign sign letter hangs a median 2.54 bodies over the street (range 1.69 to 5.13); a fascia 0.72 body over a head at 1.45 puts it at 1.81."
+      ],
+      "construction": "Give the window's reveal the street's floor and a ceiling a fascia over the window's head: the bands under and over each pane are then the reveal's own record (riser and fascia in the shop's material), the wall between two sashes is a pilaster, and the street's record over the mouth is still the facade's. Letter the name on the fascia. Hang a lamp in the display over a declared source and mark the display's and the shop's surfaces as generated. `glass.surround`, `write_names`, `hang_lamps`, `stand_pilasters` (blood-city level).",
+      "interpreted": [
+        {
+          "by": "blind reviewer, five unlabelled sets",
+          "said": "sign: 'decisive. It turns the pawn from a dress shop into a pawnbroker and the super from a storeroom into a grocer'; surround: 'helps ... the sign has nothing to sit on'; unlit: 'hurts, mildly ... it hides the goods'"
+        },
+        {
+          "by": "the same",
+          "said": "'The pawn's goods say boutique, not pawn'; 'the mall units sell nothing'"
+        }
+      ],
+      "constraints": [
+        "A lamp at an indoor bracket's strength in a room that states its shade lights nothing.",
+        "A chain lamp of fixed length hangs at eye level in a low display: cut it to the display.",
+        "The lintel pass takes a sector's solid wall for its facade: stand the pilasters after it, or one pilaster outvotes two jambs and repaints the surround.",
+        "Lettering sized for a fascia is not legible from across a street."
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/shop-surrounds/what-if.png",
+        "projects/blood-city/experiments/shop-surrounds/before-after.png",
+        "tests/test_whatif.py ShopSurroundTests"
+      ],
+      "transfer": "Three venues built three ways took one helper. The name-first ordering has not been tried on a venue that is not a shop."
+    },
+    {
+      "id": "a-room-behind-bars-is-a-detail-not-depth",
+      "appearance": "a barred strongroom in a shop's back wall",
+      "status": "observed_once",
+      "native": [
+        "A masked wall's overlay shares its record's scale with that record's step bands, bars as much as glass."
+      ],
+      "derived": [
+        "Per interior, medians: E3M1 15.5 floor heights over 2.96 bodies, 10.5 ceiling heights, 14.5 wall tiles, 37 shade steps between darkest and brightest floor; Gravesend 7.5, 1.45, 5.5, 7.5 and 7.5 (tools/city_profile.py --interiors).",
+        "The pawn shop's interior before and after the pledge room: floor heights 5 and 5, range 0.48 and 0.48 body, ceiling heights 3 and 4, wall tiles 10 and 13, shade spread 17 and 18."
+      ],
+      "construction": "A recess at the strongroom's own floor and ceiling, a step up from the shop, with a blocking masked wall (`bloodmap.glass.grille`, the owner's grate 463) between recess and room; the room lit, lower-ceilinged, in its own material, with goods on its back wall.",
+      "interpreted": [
+        {
+          "by": "blind reviewer, five unlabelled sets",
+          "said": "goods inside: 'decisive. It turns a jail cell into a shop's secure stock'; bars removed: 'helps depth and legibility, and hurts the pawn-cage identity'; light: 'barely'"
+        },
+        {
+          "by": "the same",
+          "said": "'The room is ONE flat box ... flat even light everywhere, no level change, no shadowed corner, no light source and no pool of light'"
+        }
+      ],
+      "constraints": [
+        "It moves none of the measures that separate these interiors from the campaign's: a small room on one wall adds a ceiling height and some tiles.",
+        "Piercing a wall changes which wall is 'the longest solid one'; anything placed by that rule moves. The shop's sign left every view.",
+        "A cage nothing meets and nobody can open reads as decoration."
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/pledge-room/what-if.png",
+        "tests/test_whatif.py PledgeRoomTests, GrilleTests",
+        "tests/test_readback.py GrilleReadBack"
+      ],
+      "transfer": "Not tried elsewhere."
+    },
+    {
+      "id": "a-place-is-what-stands-on-its-counters",
+      "appearance": "a room that says what it is for without a sign",
+      "status": "observed_once",
+      "native": [
+        "Blood's goods are breakable 'thing' sprites (types 416 and 417, status 4, cstat 385): blocking, hitscan-sensitive, one-sided face sprites."
+      ],
+      "derived": [
+        "Distinct decoration tiles: Gravesend 38 before, 85 after; E3M1 61, E1M4 104, E1M2 109, DWE3M1 142 (tools/mine_city_assets.py).",
+        "335 decoration tiles across seven of Blood's town maps; 119 in two or more that Gravesend did not use."
+      ],
+      "construction": "A plan by place (`goods.py`): things on furniture that is already geometry (a bar, a card table, a counter, a display, an altar), things on a room's wall, printed matter on a street's wall, things on a yard's ground. Each tile set down with the fields the town maps give it (`references/city-assets.json`). Run after the venues' own wall compositions.",
+      "interpreted": [
+        {
+          "by": "blind reviewer, four unlabelled sets",
+          "said": "the saloon bare: 'could be a sauna, a forge or a crypt'; dressed: 'bar or saloon, likely'. 'Props on counters and tables: decisive.' 'Altar dressing: decisive for church versus crypt.'"
+        },
+        {
+          "by": "the same",
+          "said": "'It is a small kit ... Interiors get 1 to 3 props each'; 'shops have no fixtures'"
+        }
+      ],
+      "constraints": [
+        "A tile read off its picture can be wrong in place: 505 looked like a waste bin and is a bucket of gore. It stood at three doors until a stranger saw it.",
+        "Where a view has lettering, objects only confirm it; where it has none, only objects can say what the place is.",
+        "A wall-placement pass run before a venue's own composition takes its wall.",
+        "Goods need something to stand ON: on a display's floor they read as lumps."
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/town-goods/before-after.png",
+        "tests/test_town_goods.py"
+      ],
+      "transfer": "Not tried outside this city."
+    },
+    {
+      "id": "goods-stand-on-a-bar-or-in-a-shelf-let-into-the-wall",
+      "appearance": "a shop or a bar where the stock is on something",
+      "status": "observed_once",
+      "native": [
+        "A sprite's z is not its foot; the foot is the tile's height and y offset below it."
+      ],
+      "derived": [
+        "Seven town maps, indoor standing decoration by what is under it (tools/mine_stands.py): 91 thing-carrying fixtures, median rise 0.48 body, top tile 34 on 35; a niche is 0.75 x 2.0 player widths with its head 0.72 body under the room's.",
+        "Gravesend before and after: island rise 0.18 and 0.43; share of things on a ledge or in a niche 15% and 44%."
+      ],
+      "construction": "`fixtures.BAR` (one piece, 8192 high, top 34, face 28) and `fixtures.shelf_niche` (a recess in a wall with void behind it: floor 8192 up, 12288 clear, 384 deep), stocked by `goods.ROWS` at a thing every 340 units. A counter stops `templates.COUNTER_PASS` short of one wall.",
+      "interpreted": [
+        {
+          "by": "blind reviewer, three unlabelled sets",
+          "said": "'Back-bar or back shelf stocked with goods ... decisive. It is the single thing that turns these boxes from room with a counter into a specific trade'; empty: 'a dark slatted hole ... unfinished'"
+        },
+        {
+          "by": "the same",
+          "said": "'The four shops are one kit'; 'the bookshop has no books'; 'the sign is currently doing all the work'"
+        }
+      ],
+      "constraints": [
+        "A counter too high to step over shuts whatever is behind it: here the level's key.",
+        "A shelf is a portal: anything placed on 'a solid wall' moves unless the rule knows how high the opening is.",
+        "A niche needs void behind the wall."
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/fixtures/before-after.png",
+        "projects/blood-city/references/town-fixtures.png",
+        "tests/test_fixtures_goods.py"
+      ],
+      "transfer": "Not tried outside the saloon and the arcade."
+    },
+    {
+      "id": "a-sprite-is-seated-by-the-box-the-renderer-draws",
+      "appearance": "a thing standing on a floor, a counter or a shelf; a sign on a wall",
+      "status": "observed_once",
+      "native": [
+        "engine.cpp setup_globals_sprite1: bottom = z - yoff*yrepeat*4, plus half the height when cstat bit 128 is set; top = bottom - height*yrepeat*4.",
+        "db.h GetSpriteExtents (physics) ignores bit 128. The two boxes agree only when the bit is set."
+      ],
+      "derived": [
+        "Seven town maps: for standing tiles 712, 739, 1009, 1013, 3540 the median z over the floor equals the drawn box's bottom to within 8 units.",
+        "Share of sprites drawn over a tenth under their floor: town maps 0% to 2.1%; Gravesend 5.2% before, 0% after. Wall-sprite pairs covering each other: E3M1 1, E1M2 6, Gravesend 16 before, 1 after.",
+        "Tile 640 outdoors in DWE3M1: 18 of 26 at repeat 120 (2.1 bodies), median 512 from the kerb's edge, median 8,192 to the next. E3M1 has none."
+      ],
+      "construction": "`bloodmap.placement.drawn_extent` / `drawn_lift`; `goods.put_floor` refuses a thing that hangs in the town maps, is taller than its place, wider than its row, or is floor-only on a fixture; `tools/sprite_fit.py` lints the built map.",
+      "interpreted": [
+        {
+          "by": "the owner, walking the map",
+          "said": "'sprites partially under ground or into space where they don't fit ... statues on weird places ... lamps placed little bit weirdly ... overlapping sprites, usually letters with other sprites'"
+        },
+        {
+          "by": "blind reviewer, two unlabelled builds",
+          "said": "'M is clearly better'; before: 'statues ... crammed into the shelf', 'lettering on top of art', lamps 'miniature'"
+        }
+      ],
+      "constraints": [
+        "The lint knows geometry, not meaning: what belongs where is still a rule someone wrote.",
+        "An actor's picture in the map is not what the game draws."
+      ],
+      "evidence": [
+        "projects/blood-city/experiments/sprite-fit/before-after.png",
+        "tests/test_sprite_fit.py"
+      ],
+      "transfer": "The lint runs on any Blood map."
+    }
+  ]
+}
