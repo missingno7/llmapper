@@ -26,6 +26,7 @@ curated, conversions) and 46 Duke3D maps, as of 2026-11-19.
 
 | You are about to... | Read |
 | --- | --- |
+| start a session as an agent | [AGENTS.md](AGENTS.md) -- the lookups, the rules, the loop, what not to do |
 | build or change a map | [what is in the toolkit](docs/toolkit-index.md) -- one page, "reach for X, not Y" |
 | look something up about Blood before building it | [the library](knowledge/blood/LIBRARY.md) -- tiles, places, studies, ideas |
 | add a module, a sensor or a tool | [architecture](docs/architecture.md) -- which module owns which kind of fact |

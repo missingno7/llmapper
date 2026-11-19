@@ -1,5 +1,9 @@
 # Agent Start Here
 
+> **Start at [`AGENTS.md`](../../AGENTS.md) in the repository root.** This page is the handbook's own
+> reading order and phase log as of early September 2026; its phase notes are history, and the
+> lookups, rules and loop an agent needs today are on that page.
+
 You are working on `llmapper`, especially the Blood level-understanding and
 authoring pipeline.
 
@@ -19,7 +23,7 @@ Read in this order:
 **Phase 0a (corpus integration) is done (2026-08-31).** The corpus registry
 resolves populations from the directory layout
 (`maps/blood/{campaign,curated,conversions,community,tiered,mechanism}` with
-`multiplayer/` mode subdirectories); see `bloodmap/patterns.py`,
+`multiplayer/` mode subdirectories); see `bloodmap/corpus.py`,
 `maps/blood/README.md`, and the measured counts in `07_...md`. Enumerate with
 `list_corpus_maps` / `list_original_maps`, never by globbing a directory.
 **Phase 1 (general relation extraction) is done (2026-08-31).**
