@@ -698,6 +698,15 @@ def build(city, street):
         TRACKS.append(bore.region_id)
         station.connect(bore.face("west"), previous.face("east"),
                         connection_id=f"connection:station_tunnel_{index}")
+        if index == len(TUNNEL) - 1:
+            # THE WAY OUT. The city had none: the reader that marks the
+            # campaign said so on 2026-11-19. The line leaves by this tunnel
+            # and so does the player. E2M4 ends a level the same way, by
+            # walking: its exit sector sends command 1 on entering, reports
+            # ON, and locks dudes out so a monster cannot end the level.
+            wires.wire("station:way-out").when(
+                wiring.region(bore.region_id), "enter", command=1,
+                dude_lockout=1)
         previous = bore
     #: the tunnel mouth is barred: the line goes on, the player does not
     store = room("goods_store", STORE, floor_z=BED_Z, clear=49152,

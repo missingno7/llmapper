@@ -129,7 +129,8 @@ class CityStatusTests(unittest.TestCase):
         self.assertGreaterEqual(len(wires["declared"]), 1)
         for row in wires["declared"]:
             self.assertTrue(row["says"].strip(), row["name"])
-            self.assertGreaterEqual(row["channel"], 100, row["name"])
+            if row["engine"] is None:
+                self.assertGreaterEqual(row["channel"], 100, row["name"])
         disk = read_map(LEVEL / "blood-city-current.MAP")
         self.assertEqual([node["id"] for node in wiring.silent_senders(disk)], [])
         self.assertEqual(manifest["character"]["engine_channels_wired"], [])
@@ -160,11 +161,26 @@ class CityStatusTests(unittest.TestCase):
         self.assertEqual(wires["undeclared"], [])
         self.assertEqual(wires["idle"], [], "a planned wire has no end declared")
         self.assertGreaterEqual(len(wires["declared"]), 14)
-        numbers = [row["channel"] for row in wires["declared"]]
+        numbers = sorted(row["channel"] for row in wires["declared"]
+                         if row["engine"] is None)
         self.assertEqual(numbers, list(range(100, 100 + len(numbers))))
         for row in wires["wires"]:
             self.assertTrue(row["senders"], row["name"])
-            self.assertTrue(row["answers"], row["name"])
+            if row["engine"] is None:
+                self.assertTrue(row["answers"], row["name"])
+
+    def test_the_city_ends_by_walking_out_through_the_station_tunnel(self):
+        """It had no exit at all. The way out is declared like any wire,
+        ends at the engine, and lies behind the gate the lever raises."""
+        finish = self.status["finish"]
+        self.assertTrue(finish["exit_reached"])
+        (way_out,) = finish["exits"]
+        self.assertEqual((way_out["cause"], way_out["to"]),
+                         ("enter", "kChannelLevelExitNormal"))
+        self.assertFalse([row for row in self.status["open"]
+                          if row["kind"] == "cannot-finish" and "exit" in row["says"]])
+        (wire,) = [row for row in self.status["wires"] if row["name"] == "station:way-out"]
+        self.assertEqual(wire["engine"], "kChannelLevelExitNormal")
 
     def test_the_plan_numbers_a_wire_by_its_place(self):
         added = str(LEVEL) not in sys.path

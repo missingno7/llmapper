@@ -47,6 +47,15 @@ PLAN: tuple[tuple[str, str], ...] = (
      "the signal box's lever raises the roll-up gate in the tunnel's mouth"),
 )
 
+#: Wires one end of which is the engine. They take the engine's channel and
+#: no number of the city's, so adding one renumbers nothing.
+ENGINE_PLAN: tuple[tuple[str, str, str], ...] = (
+    ("station:way-out",
+     "walking on into the tunnel the line leaves by, past the roll-up gate "
+     "the signal box's lever raises, ends the level",
+     "kChannelLevelExitNormal"),
+)
+
 #: Levers beside street doors come after the plan, one wire a door.
 LEVER_SAYS = ("the lever beside the {door} door opens it from the street; "
               "pushing the door itself still works")
@@ -66,6 +75,8 @@ def begin() -> wiring.Circuit:
     _CIRCUIT = wiring.Circuit()
     for name, says in PLAN:
         _CIRCUIT.wire(name, says, channel=channel(name))
+    for name, says, engine in ENGINE_PLAN:
+        _CIRCUIT.wire(name, says, engine=engine)
     return _CIRCUIT
 
 

@@ -2,8 +2,8 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "f80ea8c510355889224e883854420939385f2f7cd7b635fbb0292dd16ec42da4",
-  "map_sha256": "5ab1be0477a5c6beb546cf7a8dca20b9939c5734fb7e7889deb59e5e3140aaf2",
+  "manifest_sha256": "84218f6efd8af313b5afc0306512b532e5597c8006a9699052a51c27b74a8bdd",
+  "map_sha256": "1ed572d1d32a6f9b083c0390b09992a22845574ff8a6c50861cb766d07d37bd1",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
@@ -186,8 +186,16 @@
   }
  ],
  "finish": {
-  "exits": [],
-  "exit_reached": false,
+  "exits": [
+   {
+    "root": "sector 391",
+    "cause": "enter",
+    "sector": 391,
+    "to": "kChannelLevelExitNormal",
+    "reached": true
+   }
+  ],
+  "exit_reached": true,
   "keys": [
    {
     "sprite": 288,
@@ -488,6 +496,16 @@
    "then": [
     "region region:gravesend/gravesend_station/tunnel_gate"
    ]
+  },
+  {
+   "name": "station:way-out",
+   "says": "walking on into the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
+   "channel": 4,
+   "engine": "kChannelLevelExitNormal",
+   "when": [
+    "enter on region region:gravesend/gravesend_station/tunnel_1"
+   ],
+   "then": []
   },
   {
    "name": "lever:saloon",
@@ -1027,13 +1045,6 @@
   {
    "kind": "cannot-finish",
    "place": null,
-   "says": "no chain ends at the level's exit",
-   "owner": "bloodmap/completion.py (the reader reaches the exit in 38 of 43 campaign maps: check a shortfall before believing it)",
-   "see": "python -m tools.catalog map projects/blood-city/level/blood-city-current.MAP"
-  },
-  {
-   "kind": "cannot-finish",
-   "place": null,
    "says": "25 of 474 player-space sectors never reached",
    "owner": "bloodmap/completion.py (the reader reaches the exit in 38 of 43 campaign maps: check a shortfall before believing it)",
    "see": "python -m tools.catalog map projects/blood-city/level/blood-city-current.MAP"
@@ -1398,7 +1409,7 @@
   }
  ],
  "open_by_kind": {
-  "cannot-finish": 2,
+  "cannot-finish": 1,
   "cramped": 3,
   "critique": 8,
   "dropped": 8,
