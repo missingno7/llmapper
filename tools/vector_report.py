@@ -21,8 +21,9 @@ import matplotlib.pyplot as plt
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from tools.build2d_core import Build2DModel
 from tools import vector_solver as vs
+from bloodmap.player_space import PLAYER_PROFILES
 
-PW = 384.0
+PW = float(PLAYER_PROFILES["blood"].body_width)
 
 
 def reach(model, start):

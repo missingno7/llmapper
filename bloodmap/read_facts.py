@@ -661,7 +661,7 @@ def recover(path: Any, *, art_sizes: dict | None = None,
     if lessons is None and curriculum is None:
         import os
 
-        from .patterns import corpus_map_path
+        from .corpus import corpus_map_path
 
         lessons = os.environ.get(
             "BLOODMAP_LESSONS",

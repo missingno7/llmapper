@@ -1,6 +1,6 @@
 """Run every reader and store what it emits. The project orchestrates; that is all.
 
-    PYTHONPATH=. python projects/e3m1-decompiled/source/build_facts.py
+    python -m tools.decompile_stages.build_facts projects/<map>-decompiled
 
 Writes one JSONL per predicate under `projects/e3m1-decompiled/facts/`, with
 the base facts (the records as the map stores them) and every derived fact
@@ -14,7 +14,7 @@ from __future__ import annotations
 
 import json
 
-from _common import MAP_NAME, PROJECT, art_dir, art_sizes, level
+from ._common import map_name, project, art_dir, art_sizes, level
 
 import os
 
@@ -22,7 +22,7 @@ from bloodmap import read_facts, read_intent
 from bloodmap.anchors import find_bundles
 from bloodmap.curriculum import mine_map
 from bloodmap.format import read_map
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 from bloodmap.read_mechanisms import curriculum_index, read_mechanisms
 from bloodmap.read_store import FactStore, base_facts
 from bloodmap.read_edges import read_edges
@@ -60,7 +60,7 @@ def main() -> int:
                           sources=(f"sector:{here}", f"sector:{there}"),
                           reader="map")
 
-    hierarchy = json.loads((PROJECT / "hierarchy.json").read_text(encoding="utf-8"))
+    hierarchy = json.loads((project() / "hierarchy.json").read_text(encoding="utf-8"))
     store.extend(read_facts.layer1(world, hierarchy))
 
     sizes = art_sizes()
@@ -82,8 +82,8 @@ def main() -> int:
     plan = read_plan(world, kinds["kinds"], owners=owners)
     store.extend(read_facts.layer7(world, plan))
 
-    disk = read_map(corpus_map_path(MAP_NAME))
-    reading = mine_map(corpus_map_path(MAP_NAME))
+    disk = read_map(corpus_map_path(map_name()))
+    reading = mine_map(corpus_map_path(map_name()))
     mechanisms = read_mechanisms(world, disk, lessons=lessons_dir(),
                                  reading=reading)
     store.extend(read_facts.layer5(world, mechanisms))
@@ -109,8 +109,8 @@ def main() -> int:
     #: The selection passes run LAST, over every candidate any reader left.
     store.extend(read_facts.selections(store))
 
-    written = store.write(PROJECT / "facts")
-    print(f"{MAP_NAME} fact store: {sum(written.values())} rows in "
+    written = store.write(project() / "facts")
+    print(f"{map_name()} fact store: {sum(written.values())} rows in "
           f"{len(written)} predicates")
     for predicate, count in sorted(written.items(), key=lambda row: -row[1]):
         print(f"    {predicate:16s} {count:6d}")

@@ -25,6 +25,7 @@ from typing import Any
 from bloodmap.design import _polygon_loops, _signed_area
 from bloodmap.format import read_map
 from bloodmap.morphology import _turn_deg
+from bloodmap.player_space import PLAYER_PROFILES
 from bloodmap.structures import detect_structures
 
 SCHEMA = "llmapper.abstraction-candidates"
@@ -33,9 +34,8 @@ SCHEMA_VERSION = 1
 FIT_EPISODES = ("E1", "E2", "E3")
 HELD_OUT_EPISODES = ("E4", "E6")
 
-PLAYER_WIDTH = 384
 
-from bloodmap.player_space import PLAYER_PROFILES
+PLAYER_WIDTH = PLAYER_PROFILES["blood"].body_width
 
 #: One standing human, from the player profile. Never hardcode this: it was
 #: 0x1600 in a dozen modules, which is `POSTURE.eyeAboveZ` -- an offset from

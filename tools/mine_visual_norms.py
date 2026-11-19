@@ -43,15 +43,14 @@ so two runs of the same corpus produce the same norms.
 from __future__ import annotations
 
 import argparse
-import glob
 import json
 import pathlib
-import re
 import statistics
 import tempfile
 from collections import Counter
 from typing import Any
 
+from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map
 from bloodmap.player_space import PLAYER_PROFILES
 from bloodmap.reachability import design_sectors
@@ -60,7 +59,6 @@ from bloodmap.visual import ObservationRequest, Viewpoint, run_observation
 SCHEMA = "llmapper.blood-visual-norms"
 SCHEMA_VERSION = 1
 
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 
 #: Surface kinds the observer reports.
 KINDS = ("wall", "upper", "lower", "masked", "floor", "ceiling", "sky", "sprite")
@@ -222,7 +220,7 @@ def compare(rows: list[dict[str, Any]], norms: dict[str, Any]) -> list[dict[str,
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--maps", default="maps/blood")
+    parser.add_argument("--maps", help="corpus root or a directory of maps (default: the local corpus)")
     parser.add_argument("--art", default="reference/blood")
     parser.add_argument("--sample", type=int, default=24,
                         help="playable sectors sampled per map")
@@ -231,10 +229,8 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     per_map: dict[str, list[dict[str, Any]]] = {}
-    for path in sorted(glob.glob(str(pathlib.Path(args.maps) / "*.MAP"))):
-        name = pathlib.Path(path).stem.upper()
-        if not CAMPAIGN.match(name) or name in per_map:
-            continue
+    for path in campaign_maps(args.maps, required=True):
+        name = path.stem.upper()
         try:
             per_map[name] = observe_map(path, sample=args.sample, resource_dir=args.art)
         except Exception as error:

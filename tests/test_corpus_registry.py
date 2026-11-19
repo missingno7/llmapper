@@ -16,20 +16,11 @@ import unittest
 from pathlib import Path
 
 from bloodmap.format import encode_map
-from bloodmap.patterns import (
-    CORPUS_VIEWS,
-    POPULATIONS,
-    PatternError,
-    build_corpus_manifest,
-    classify_map_population,
-    clear_corpus_cache,
-    corpus_map_path,
-    corpus_root,
-    filename_population_hint,
-    list_corpus_maps,
-    list_original_maps,
-    observed_mode,
-    resolve_corpus_map,
+from bloodmap.corpus import (
+    CORPUS_VIEWS, POPULATIONS, CorpusError, build_corpus_manifest,
+    campaign_maps, classify_map_population, clear_corpus_cache,
+    corpus_map_path, corpus_root, filename_population_hint, list_corpus_maps,
+    list_original_maps, named_maps, observed_mode, resolve_corpus_map,
     unadmitted_corpus_maps,
 )
 from tests.helpers import synthetic_map
@@ -126,7 +117,7 @@ class SyntheticCorpusTests(unittest.TestCase):
         # the editor on corpus files daily (2026-09-02: "ignore them"). The
         # name check already quarantines them out of every population; the
         # predicate lets a hygiene gate tell that debris from a real stray.
-        from bloodmap.patterns import is_editor_autosave
+        from bloodmap.corpus import is_editor_autosave
 
         payload = encode_map(synthetic_map())
         strays = [self.root / "campaign" / "ASAVE1.map",
@@ -208,13 +199,13 @@ class SyntheticCorpusTests(unittest.TestCase):
             clear_corpus_cache()
 
     def test_unknown_population_and_view_fail_closed(self):
-        with self.assertRaises(PatternError):
+        with self.assertRaises(CorpusError):
             list_corpus_maps(self.root, population="canonical")
-        with self.assertRaises(PatternError):
+        with self.assertRaises(CorpusError):
             list_corpus_maps(self.root, view="everything")
-        with self.assertRaises(PatternError):
+        with self.assertRaises(CorpusError):
             list_corpus_maps(self.root, tier="AAA")
-        with self.assertRaises(PatternError):
+        with self.assertRaises(CorpusError):
             resolve_corpus_map(self.root / "scratch" / "X.MAP", root=self.root)
 
     def test_manifest_records_layout_populations_and_views(self):
@@ -252,6 +243,91 @@ class SyntheticCorpusTests(unittest.TestCase):
                 os.environ.pop("BLOODMAP_CORPUS", None)
             else:
                 os.environ["BLOODMAP_CORPUS"] = previous
+
+    # -- `campaign_maps` and `named_maps`: the two lists every miner starts
+    # from. Seventeen tools used to spell the first as a regex over
+    # `glob("maps/blood/*.MAP")`. When the corpus became provenance
+    # directories that glob matched nothing, and a miner run with its
+    # defaults wrote an empty knowledge file and exited 0.
+
+    def test_the_campaign_is_the_episode_maps_and_nothing_else(self):
+        self.assertEqual([path.name for path in campaign_maps(self.root)],
+                         ["E1M1.MAP", "E6M9.MAP"])
+
+    def test_the_population_directory_given_directly_answers_the_same(self):
+        """What `--maps maps/blood/campaign` means: a flat directory."""
+        self.assertEqual(campaign_maps(self.root / "campaign"),
+                         campaign_maps(self.root))
+
+    def test_a_campaign_name_in_the_bulk_community_set_is_not_the_campaign(self):
+        self.assertNotIn("BCE1M1.MAP",
+                         [path.name for path in campaign_maps(self.root)])
+
+    def test_an_empty_corpus_is_an_error_when_the_caller_needs_one(self):
+        empty = self.root / "mechanism" / "Vanilla"      # holds no campaign map
+        self.assertEqual(campaign_maps(empty), [])
+        with self.assertRaises(CorpusError) as caught:
+            campaign_maps(empty, required=True)
+        self.assertIn("no campaign maps", str(caught.exception))
+        with self.assertRaises(CorpusError):
+            campaign_maps(self.root / "does-not-exist", required=True)
+
+    def test_named_maps_is_the_flat_corpus_that_used_to_be(self):
+        names = sorted(path.name for path in named_maps(self.root))
+        self.assertEqual(names, sorted([
+            "E1M1.MAP", "E6M9.MAP", "BB1.MAP", "DWE1M1.MAP", "TEDE1M4.MAP",
+            "SSHIVE.MAP", "DWBB2.MAP", "DM3.MAP", "DNE3L1.MAP"]))
+
+    def test_named_maps_of_a_plain_directory_is_every_map_in_it(self):
+        found = named_maps(self.root / "community")
+        self.assertEqual(sorted(path.name for path in found),
+                         ["BCE1M1.MAP", "WHATEVER.MAP"])
+
+    def test_an_editor_autosave_is_never_a_named_map(self):
+        autosave = self.root / "curated" / "ASAVE1.map"
+        autosave.write_bytes((self.root / "curated" / "DWE1M1.MAP").read_bytes())
+        try:
+            clear_corpus_cache()
+            self.assertNotIn("ASAVE1.map",
+                             [path.name for path in named_maps(self.root)])
+        finally:
+            autosave.unlink()
+            clear_corpus_cache()
+
+
+class OneEnumerationTests(unittest.TestCase):
+    """Nothing outside the registry spells the campaign by hand."""
+
+    def test_no_tool_or_library_module_globs_for_the_campaign(self):
+        offenders = []
+        for folder in ("bloodmap", "tools"):
+            for path in sorted((ROOT / folder).rglob("*.py")):
+                if path.name == "corpus.py":
+                    continue
+                text = path.read_text(encoding="utf-8")
+                if 're.compile(r"^E[1-46]M[1-9]$")' in text:
+                    offenders.append(path.relative_to(ROOT).as_posix())
+        self.assertEqual(offenders, [],
+                         "use bloodmap.corpus.campaign_maps instead")
+
+    def test_the_cli_reads_a_corpus_root_as_its_named_maps(self):
+        """`roundtrip-all maps/blood` printed "0/0 maps passed" and exited 0."""
+        from bloodmap.cli import _map_files
+
+        with tempfile.TemporaryDirectory(prefix="llmapper-cli-") as tmp:
+            root = Path(tmp)
+            payload = encode_map(synthetic_map())
+            for relative in ("campaign/E1M1.MAP", "curated/DWE1M1.MAP",
+                             "community/ANY.MAP"):
+                (root / relative).parent.mkdir(parents=True, exist_ok=True)
+                (root / relative).write_bytes(payload)
+            clear_corpus_cache()
+            self.assertEqual(sorted(p.name for p in _map_files(root)),
+                             ["DWE1M1.MAP", "E1M1.MAP"])
+            self.assertEqual(len(_map_files(root, recursive=True)), 3)
+            self.assertEqual([p.name for p in _map_files(root / "campaign")],
+                             ["E1M1.MAP"])
+        clear_corpus_cache()
 
 
 class NamedMapLookupTests(unittest.TestCase):
@@ -306,11 +382,11 @@ class NamedMapLookupTests(unittest.TestCase):
         """Its filenames are arbitrary. A name lookup that reached into it
         would answer questions about original Blood with somebody else's map.
         """
-        with self.assertRaises(PatternError):
+        with self.assertRaises(CorpusError):
             self.resolve("WHATEVER")
 
     def test_a_missing_map_says_what_it_searched(self):
-        with self.assertRaises(PatternError) as caught:
+        with self.assertRaises(CorpusError) as caught:
             self.resolve("NOSUCH")
         message = str(caught.exception)
         self.assertIn("NOSUCH.MAP", message)
@@ -327,7 +403,7 @@ class NamedMapLookupTests(unittest.TestCase):
                          self.root / "campaign" / "E1M1.MAP")
 
     def test_the_population_search_order_is_a_named_argument(self):
-        with self.assertRaises(PatternError):
+        with self.assertRaises(CorpusError):
             self.resolve("E1M1", populations=("community-curated",))
 
 

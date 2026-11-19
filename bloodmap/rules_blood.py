@@ -702,11 +702,11 @@ register(Rule(
 
 def _openings_clear_a_standing_body(disk) -> Finding:
     """A way between two rooms that a standing player cannot walk through."""
-    from tools.mine_apertures import observe
+    from bloodmap.aperture import observe_openings
 
     population = 0
     violations = []
-    for row in observe("map", disk):
+    for row in observe_openings("map", disk):
         if row["kind"] == "door_sector":
             continue                    # stored shut; its opening is its motion
         population += 1
@@ -737,11 +737,11 @@ register(Rule(
 
 def _lintel_continues_the_facade(disk) -> Finding:
     """The band above a mouth should be made of the wall it is cut in."""
-    from tools.mine_apertures import observe
+    from bloodmap.aperture import observe_openings
 
     population = 0
     violations = []
-    for row in observe("map", disk):
+    for row in observe_openings("map", disk):
         if not row["aperture"] or row["lintel_player_heights"] <= 0:
             continue
         population += 1
@@ -778,18 +778,18 @@ register(Rule(
 
 def _walls_are_thick_enough(disk) -> Finding:
     """Solid mass between two rooms that share a height range."""
-    from tools.mine_wall_thickness import MIN_WALL_LENGTH, observe
+    from bloodmap.layout import MIN_WALL, observe_wall_thickness
 
     population = 0
     violations = []
     seen: set[tuple[int, int]] = set()
-    for row in observe("map", disk):
+    for row in observe_wall_thickness("map", disk):
         pair = (min(row["sector"], row["other"]), max(row["sector"], row["other"]))
         if pair in seen:
             continue
         seen.add(pair)
         population += 1
-        if row["thickness"] < 128:
+        if row["thickness"] < MIN_WALL:
             violations.append(Violation(
                 "wall %d" % row["wall"],
                 "%d units (%.2f body widths) of stone between sectors %d and %d"
@@ -820,8 +820,7 @@ register(Rule(
 # --------------------------------------------------------------------------
 
 def _keyed_doors_say_which_key(disk) -> Finding:
-    from bloodmap.keys import EMBLEM_NAME, PLACARD_REACH, emblem_for
-    from tools.mine_keys import key_of
+    from bloodmap.keys import EMBLEM_NAME, PLACARD_REACH, emblem_for, key_of
 
     locks = []
     for index, sector in enumerate(disk.sectors):

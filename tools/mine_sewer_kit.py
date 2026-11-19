@@ -16,6 +16,7 @@ import collections
 import json
 from pathlib import Path
 
+from bloodmap.corpus import named_maps
 from bloodmap.format import read_map
 
 
@@ -87,15 +88,14 @@ def snapshot(disk, sector_id):
     }
 
 
-def mine(roots: list[Path]):
+def mine(paths: list[Path]):
     maps = []
-    for root in roots:
-        for path in sorted(root.glob("*.[Mm][Aa][Pp]")):
-            try:
-                disk = read_map(path)
-            except Exception:
-                continue
-            maps.append((path, disk))
+    for path in paths:
+        try:
+            disk = read_map(path)
+        except Exception:
+            continue
+        maps.append((path, disk))
     report = {"$schema": "llmapper.sewer-kit", "schema_version": 1,
               "role_assets": {name: list(tiles) for name, tiles in ASSETS.items()},
               "roles": {}}
@@ -125,15 +125,12 @@ def mine(roots: list[Path]):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     # The reference corpus: original campaign plus the owner's curated picks
-    # and conversions, matching the pre-reorganization flat maps/blood.
-    parser.add_argument("--maps", nargs="*", default=[
-        "maps/blood/campaign", "maps/blood/campaign/multiplayer",
-        "maps/blood/curated", "maps/blood/curated/multiplayer",
-        "maps/blood/conversions",
-    ])
+    # and conversions -- `bloodmap.corpus.named_maps`.
+    parser.add_argument("--maps", help="corpus root or a directory of maps "
+                                       "(default: the local corpus)")
     parser.add_argument("-o", "--output", required=True)
     args = parser.parse_args(argv)
-    report = mine([Path(root) for root in args.maps])
+    report = mine(named_maps(args.maps))
     output = Path(args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")

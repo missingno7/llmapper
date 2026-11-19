@@ -1,5 +1,5 @@
 import unittest
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 from bloodmap.format import read_map, encode_map
 from bloodmap.construction import LevelBuilder
 from bloodmap.conditional import build_graph, Held

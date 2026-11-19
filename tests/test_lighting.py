@@ -6,25 +6,16 @@ the campaign's answer is not a light model but a rule about *facing*.
 
 from __future__ import annotations
 
-import glob
 import math
-import re
 import statistics
 import unittest
 from collections import defaultdict
 from pathlib import Path
 
+from tests.helpers import campaign_maps
+
 ROOT = Path(__file__).resolve().parent.parent
-#: The campaign population directory (corpus reorganized 2026-08-31).
-MAPS = ROOT / "maps" / "blood" / "campaign"
 CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP"
-
-
-def campaign_maps() -> list[str]:
-    return [
-        path for path in sorted(glob.glob(str(MAPS / "*.MAP")))
-        if re.match(r"^E[1-46]M[1-9]$", Path(path).stem.upper())
-    ]
 
 
 def have_campaign() -> bool:

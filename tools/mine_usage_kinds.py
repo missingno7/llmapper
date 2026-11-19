@@ -32,7 +32,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from bloodmap.format import read_map                            # noqa: E402
-from bloodmap.patterns import list_corpus_maps                  # noqa: E402
+from bloodmap.corpus import list_corpus_maps  # noqa: E402
 from bloodmap.render_slots import (                             # noqa: E402
     MASKED_MIDDLE, ONE_SIDED_MIDDLE, ONEWAY_MIDDLE, RENDERED_WALL_SLOTS,
     TWO_SIDED_LOWER, TWO_SIDED_UPPER, bands_showing_picnum, render_slots,

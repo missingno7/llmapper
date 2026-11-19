@@ -53,6 +53,7 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
 from .model import DiskMap
+from .sector_geom import wall_owners
 
 SCHEMA = "llmapper.reachability"
 SCHEMA_VERSION = 1
@@ -85,16 +86,6 @@ class ReachabilityError(ValueError):
 # ---------------------------------------------------------------------------
 # Geometry
 # ---------------------------------------------------------------------------
-
-def wall_owners(disk: DiskMap) -> dict[int, int]:
-    owners: dict[int, int] = {}
-    for index, sector in enumerate(disk.sectors):
-        first = int(sector.fields["wall_ptr"])
-        count = int(sector.fields["wall_count"])
-        for wall in range(first, first + count):
-            owners[wall] = index
-    return owners
-
 
 def portal_graph(disk: DiskMap) -> dict[int, set[int]]:
     """Sector adjacency through two-sided walls, gating ignored.

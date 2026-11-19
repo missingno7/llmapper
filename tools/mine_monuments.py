@@ -36,9 +36,10 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
 from bloodmap.format import read_map
-from bloodmap.patterns import CORPUS_VIEWS, list_corpus_maps
+from bloodmap.corpus import CORPUS_VIEWS, list_corpus_maps
+from bloodmap.player_space import PLAYER_PROFILES
 
-PLAYER = 16960
+PLAYER = PLAYER_PROFILES["blood"].standing_height
 PLAN = 1024
 #: A tier is smaller than this; above it the thing is a building.
 TIER_AREA = 9_000_000

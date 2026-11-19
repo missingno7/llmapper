@@ -17,7 +17,7 @@ evidence rather than with an assertion.
 
 .. code-block:: bash
 
-    python -m tools.propose_areas maps/blood/E2M3.MAP \\
+    python -m tools.propose_areas maps/blood/campaign/E2M3.MAP \\
         --hierarchy projects/e2m3-decompiled/hierarchy.json \\
         --packet work/obs-e2m3/packet.json \\
         -o projects/e2m3-decompiled/references/area-proposals.json

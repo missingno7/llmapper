@@ -1,3 +1,9 @@
+"""`BuildIR`: one game-neutral contract for Build sectors, walls and sprites, with a lossless native envelope.
+
+Shared structural validation lives here; Blood and Duke maps both
+lower into it and rebuild from it byte for byte.
+"""
+
 from __future__ import annotations
 
 import copy

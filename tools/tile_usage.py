@@ -45,6 +45,7 @@ import statistics
 import sys
 from collections import Counter
 from typing import Any
+from bloodmap.player_space import PLAYER_PROFILES
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
@@ -54,7 +55,7 @@ DATABASE = ROOT / "knowledge" / "blood" / "design" / "tile-usage-v1.json"
 PICTURES = ROOT / "reports" / "tiles"
 ART_DIR = ROOT / "reference" / "blood"
 PALETTE = ART_DIR / "xmapedit" / "palettes" / "import" / "BLOOD.PAL"
-BODY = 16960
+BODY = PLAYER_PROFILES["blood"].standing_height
 #: sector types that MOVE: a wall of one, or facing one, is a leaf
 MOVERS = set(range(600, 620))
 POPULATIONS = ("blood-campaign", "community-curated")
@@ -63,7 +64,7 @@ ROLES = ("wall", "step_face", "leaf", "mask", "floor", "top", "ceiling",
 
 
 def corpus() -> list[pathlib.Path]:
-    from bloodmap.patterns import list_corpus_maps
+    from bloodmap.corpus import list_corpus_maps
 
     out = []
     for population in POPULATIONS:

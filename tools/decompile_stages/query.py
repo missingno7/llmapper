@@ -1,6 +1,6 @@
 """Every number a report quotes, as a query over `facts/`. Nothing is typed.
 
-    PYTHONPATH=. python projects/e3m1-decompiled/source/query.py
+    python -m tools.decompile_stages.query projects/<map>-decompiled
 
 Writes `residue-ledger.json` -- which is now a QUERY RESULT over the fact
 store rather than a document anybody maintains -- and prints the same figures.
@@ -14,7 +14,7 @@ import json
 from collections import Counter, defaultdict
 from typing import Any
 
-from _common import MAP_NAME, PROJECT
+from ._common import map_name, project
 
 from bloodmap.channels import ADDITIVE, EXCLUSIVE
 from bloodmap.read_store import FactStore
@@ -139,8 +139,8 @@ def residue_by_aspect(store: FactStore) -> dict[str, int]:
 
 
 def build() -> dict[str, Any]:
-    store = FactStore.read(PROJECT / "facts")
-    provenance = json.loads((PROJECT / "provenance.json").read_text(encoding="utf-8"))
+    store = FactStore.read(project() / "facts")
+    provenance = json.loads((project() / "provenance.json").read_text(encoding="utf-8"))
     return {
         "$schema": "llmapper.residue-ledger",
         "schema_version": 3,
@@ -221,16 +221,16 @@ def panels(store: FactStore) -> tuple[dict, dict]:
 
 def main() -> int:
     payload = build()
-    store = FactStore.read(PROJECT / "facts")
+    store = FactStore.read(project() / "facts")
     claims, candidates = panels(store)
-    (PROJECT / "claims.json").write_text(
+    (project() / "claims.json").write_text(
         json.dumps(claims, indent=1, sort_keys=True), encoding="utf-8")
-    (PROJECT / "candidates.json").write_text(
+    (project() / "candidates.json").write_text(
         json.dumps(candidates, indent=1, sort_keys=True), encoding="utf-8")
-    (PROJECT / "residue-ledger.json").write_text(
+    (project() / "residue-ledger.json").write_text(
         json.dumps(payload, indent=1, sort_keys=True), encoding="utf-8")
     u = payload["understanding"]
-    print(f"{MAP_NAME}, queried from the fact store: "
+    print(f"{map_name()}, queried from the fact store: "
           f"{u['fields_with_a_claim']} of {u['claimable_fields']} claimable "
           f"fields have a claim ({u['understood_percent']}%)")
     for layer, row in payload["layers"].items():

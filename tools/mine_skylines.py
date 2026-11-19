@@ -27,9 +27,10 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from bloodmap.format import read_map
-from bloodmap.patterns import list_original_maps
+from bloodmap.corpus import list_original_maps
+from bloodmap.player_space import PLAYER_PROFILES
 
-BODY = 16960
+BODY = PLAYER_PROFILES["blood"].standing_height
 
 
 def measure(disk) -> dict:

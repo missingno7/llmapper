@@ -65,9 +65,10 @@ from collections import Counter
 from typing import Any, Iterable, Sequence
 
 from .levelprog import Frame, LevelProgramError, Room
+from .player_space import PLAYER_PROFILES
 
 #: One standing Blood human, in Build z units.
-STANDING_HEIGHT = 16960
+STANDING_HEIGHT = PLAYER_PROFILES["blood"].standing_height
 
 #: The lowest sky an apron may hold, above its floor.  A player's eye is 0.83 of
 #: a body and a jump adds well under one; three bodies is out of reach with

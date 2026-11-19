@@ -273,7 +273,7 @@ class CorpusCurtainsTest(unittest.TestCase):
 
     def _campaign(self, stem):
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         found = [e for e in list_corpus_maps(population="blood-campaign")
                  if e.path.stem.upper() == stem]
@@ -304,7 +304,7 @@ class CorpusCurtainsTest(unittest.TestCase):
         # over_picnum 1060, so 1060 draws in the middle band, full height;
         # the 146 on their picnum is never on screen.
         from bloodmap.format import read_map
-        from bloodmap.patterns import corpus_root
+        from bloodmap.corpus import corpus_root
 
         path = corpus_root() / "mechanism" / "Vanilla" / "DOOR-CURTAINSD.map"
         if not path.exists():

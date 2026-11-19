@@ -5,15 +5,15 @@ off a tile -- `joins.py` says surface kind is not readable from one), then
 looks up every two-sided record in `joins.ROWS`. No row is added. A pair with
 no row is residue, named, with its records.
 
-    PYTHONPATH=. python projects/e3m1-decompiled/source/stage3_joins.py
+    python -m tools.decompile_stages.stage3_joins projects/<map>-decompiled
 """
 
 from __future__ import annotations
 
 from collections import defaultdict
 
-from _common import MAP_NAME, level, write
-from _review import Tree, answers, write_pack
+from ._common import map_name, level, write
+from ._review import Tree, answers, write_pack
 
 from bloodmap.read_joins import read_joins, summary
 from bloodmap.texture_frame import sector_index
@@ -29,7 +29,7 @@ def _review(world, result, owners) -> dict:
     """
     kinds = result["kinds"]["kinds"]
     census = result["census"]
-    tree = Tree(len(world.sectors), f"{MAP_NAME} -- joins the writer's table describes")
+    tree = Tree(len(world.sectors), f"{map_name()} -- joins the writer's table describes")
     by_kind: dict[str, dict[str, list[int]]] = defaultdict(dict)
     for key, records in census["described_records"].items():
         by_kind[key.split("|")[0]][key] = records
@@ -77,7 +77,7 @@ def _review(world, result, owners) -> dict:
                                  "one map"),
          "evidence": "references/join-census.json: undescribed"},
     ]
-    return write_pack(3, tree, f"{MAP_NAME} layer 3: joins", questions)
+    return write_pack(3, tree, f"{map_name()} layer 3: joins", questions)
 
 
 def main() -> int:
@@ -128,7 +128,7 @@ def main() -> int:
     payload["owner_marks_read_back"] = answers(3)
     write("join-census.json", payload)
 
-    print(f"{MAP_NAME} joins: {stats['two_sided_records']} two-sided records, "
+    print(f"{map_name()} joins: {stats['two_sided_records']} two-sided records, "
           f"{stats['rows_used']} of the table's rows used")
     print(f"  kinds              : {stats['kinds']}")
     print(f"  measured rise      : {kinds['measured_rise']} "

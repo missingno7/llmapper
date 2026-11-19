@@ -22,7 +22,7 @@ space carries its basis; either it is
 is the residue of this layer: the sector is in the tree and the tree says
 nothing about it.
 
-    PYTHONPATH=. python projects/e3m1-decompiled/source/stage1_space_tree.py
+    python -m tools.decompile_stages.stage1_space_tree projects/<map>-decompiled
 """
 
 from __future__ import annotations
@@ -30,14 +30,14 @@ from __future__ import annotations
 import json
 from collections import Counter
 
-from _common import MAP_NAME, PROJECT, level, write
-from _review import Tree, answers, write_pack
+from ._common import map_name, project, level, write
+from ._review import Tree, answers, write_pack
 
 SINGLETON = "retained as a reviewable singleton"
 
 
 def read_space_tree() -> dict:
-    hierarchy = json.loads((PROJECT / "hierarchy.json").read_text(encoding="utf-8"))
+    hierarchy = json.loads((project() / "hierarchy.json").read_text(encoding="utf-8"))
     nodes = hierarchy["nodes"]
     spaces = [node for node in nodes if node["kind"] == "space"]
     assemblies = [node for node in nodes if node["kind"] == "assembly"]
@@ -73,10 +73,10 @@ def _review(payload: dict) -> dict:
     pack would colour every one of them as an answer -- the map must show
     the 108 sectors nothing grouped as residue, because that is what they are.
     """
-    hierarchy = json.loads((PROJECT / "hierarchy.json").read_text(encoding="utf-8"))
+    hierarchy = json.loads((project() / "hierarchy.json").read_text(encoding="utf-8"))
     nodes = {node["id"]: node for node in hierarchy["nodes"]}
     sectors = len(nodes[hierarchy["primary_root"]]["sectors"])
-    tree = Tree(sectors, f"{MAP_NAME} -- spaces a sensor grouped")
+    tree = Tree(sectors, f"{map_name()} -- spaces a sensor grouped")
     for node in hierarchy["nodes"]:
         if node["kind"] != "assembly":
             continue
@@ -106,7 +106,7 @@ def _review(payload: dict) -> dict:
                                "count, which is what this layer does"),
         "evidence": "references/space-tree.json: residue_sectors",
     }]
-    return write_pack(1, tree, f"{MAP_NAME} layer 1: the space tree", questions)
+    return write_pack(1, tree, f"{map_name()} layer 1: the space tree", questions)
 
 
 def main() -> int:
@@ -136,7 +136,7 @@ def main() -> int:
     payload["review"] = _review(payload)
     payload["owner_marks_read_back"] = answers(1)
     write("space-tree.json", payload)
-    print(f"{MAP_NAME} space tree: {payload['assemblies']} assemblies, "
+    print(f"{map_name()} space tree: {payload['assemblies']} assemblies, "
           f"{payload['spaces']} spaces, {payload['structures']} structures")
     print(f"  grouped by evidence : {len(payload['sectors_claimed_by_a_grouped_space'])} sectors "
           f"in {payload['spaces_with_grouping_evidence']} spaces")

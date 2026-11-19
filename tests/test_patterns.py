@@ -6,15 +6,10 @@ import unittest
 
 import copy
 
+from bloodmap.corpus import classify_map_population
 from bloodmap.patterns import (
-    OBJECT_AREA_BANDS,
-    OBJECT_HEIGHT_BANDS,
-    _object_context_signature,
-    classify_map_population,
-    cluster_samples,
-    observe_object_context,
-    observe_spawn_neighborhoods,
-    query_catalog,
+    OBJECT_AREA_BANDS, OBJECT_HEIGHT_BANDS, _object_context_signature, cluster_samples,
+    observe_object_context, observe_spawn_neighborhoods, query_catalog,
 )
 from bloodmap.format import encode_map, parse_map
 from tests.helpers import synthetic_two_sector_map

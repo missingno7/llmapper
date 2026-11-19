@@ -1,3 +1,5 @@
+"""Classic Duke Nukem 3D v7 MAP bytes, mirrored exactly as `DukeDiskMap`."""
+
 from __future__ import annotations
 
 import struct

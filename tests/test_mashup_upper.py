@@ -7,7 +7,7 @@ import unittest
 from experiments.mashup_upper import build, verify, standing_routes, layer_view
 from bloodmap import layers
 from bloodmap.format import encode_map
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 
 try:
     AVAILABLE = all(corpus_map_path(n+'.MAP').is_file() for n in ('E1M2','E1M3','E1M4'))

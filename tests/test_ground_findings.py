@@ -167,7 +167,8 @@ class W4OneOutdoorSpaceWearsOneSky(unittest.TestCase):
 
     def test_the_campaign_itself_passes_its_own_law(self):
         # The reader side, on originals: E3M1 has one sky over its streets.
-        from bloodmap.patterns import corpus_map_path, read_map
+        from bloodmap.corpus import corpus_map_path
+        from bloodmap.format import read_map
 
         try:
             disk = read_map(corpus_map_path("E3M1"))

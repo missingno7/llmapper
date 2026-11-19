@@ -55,10 +55,15 @@ whose floor-to-ceiling ranges overlap by a standing body are separated by a wall
 
 from __future__ import annotations
 
+import math
+from collections import defaultdict
 from dataclasses import dataclass, field
-from typing import Iterable, Sequence
+from typing import Any, Iterable, Sequence
 
+from .planar_geom import point_in_loop
 from .player_space import PLAYER_PROFILES
+from .reachability import design_sectors
+from .sector_geom import sector_loops
 
 PLAYER_WIDTH = PLAYER_PROFILES["blood"].body_width
 
@@ -294,3 +299,136 @@ def check_thickness(extent: int, *, what: str = "wall") -> None:
     -- the planar compiler's own squeeze check, for instance.
     """
     Wall(name=what, extent=int(extent))
+
+
+# ---------------------------------------------------------------------------
+# Reading wall thickness back off a map
+# ---------------------------------------------------------------------------
+#
+# The sensor `MIN_WALL` was measured with, and the one the thin-wall rule in
+# `rules_blood.py` reads a built map through. It lived in
+# `tools/mine_wall_thickness.py`, which is now its corpus run.
+
+#: How far out to look, and how finely. 2048 is five and a bit body widths --
+#: past that a mass is not a wall you might accidentally make thin.
+PROBE_REACH = 2048
+PROBE_STEP = 16
+
+#: Sample the wall at these fractions of its length. A wall is thin where it is
+#: thin, and only sampling the midpoint misses a wedge.
+PROBE_SAMPLES = (0.25, 0.5, 0.75)
+
+#: Walls shorter than this are chamfers and joins, not surfaces a player reads.
+PROBE_MIN_WALL_LENGTH = 128
+
+#: How much vertical overlap makes two sectors neighbours rather than stacked.
+#: A standing body: if a player in one could stand at heights the other also
+#: spans, the mass between them is a wall they can both see.
+COEXIST_HEIGHT = PLAYER_PROFILES["blood"].standing_height
+
+_CELL = 1024
+
+
+def _index_sectors(disk: Any, playable: frozenset[int]) -> tuple[dict, dict]:
+    """Bucket playable sectors by grid cell, and keep their loops."""
+    loops = {s: sector_loops(disk, s) for s in playable}
+    grid: dict[tuple[int, int], list[int]] = defaultdict(list)
+    for sector, sector_loop in loops.items():
+        if not sector_loop:
+            continue
+        xs = [p[0] for loop in sector_loop for p in loop]
+        ys = [p[1] for loop in sector_loop for p in loop]
+        for cx in range(min(xs) // _CELL, max(xs) // _CELL + 1):
+            for cy in range(min(ys) // _CELL, max(ys) // _CELL + 1):
+                grid[(cx, cy)].append(sector)
+    return loops, grid
+
+
+def _sector_at(point: tuple[int, int], loops: dict, grid: dict) -> int | None:
+    """The smallest playable sector holding this point, or None."""
+    found = []
+    for sector in grid.get((point[0] // _CELL, point[1] // _CELL), ()):
+        sector_loop = loops[sector]
+        if not sector_loop:
+            continue
+        if point_in_loop(point, sector_loop[0]) <= 0:
+            continue
+        # A point inside a hole is not inside the sector.
+        if any(point_in_loop(point, hole) > 0 for hole in sector_loop[1:]):
+            continue
+        area = abs(sum(
+            sector_loop[0][i][0] * sector_loop[0][(i + 1) % len(sector_loop[0])][1]
+            - sector_loop[0][(i + 1) % len(sector_loop[0])][0] * sector_loop[0][i][1]
+            for i in range(len(sector_loop[0]))))
+        found.append((area, sector))
+    if not found:
+        return None
+    return min(found)[1]
+
+
+def observe_wall_thickness(name: str, disk: Any) -> list[dict[str, Any]]:
+    playable = design_sectors(disk)
+    if not playable:
+        return []
+    loops, grid = _index_sectors(disk, playable)
+
+    owner: dict[int, int] = {}
+    for sector in playable:
+        fields = disk.sectors[sector].fields
+        start = int(fields["wall_ptr"])
+        for wall in range(start, start + int(fields["wall_count"])):
+            owner[wall] = sector
+
+    span = {}
+    for sector in playable:
+        fields = disk.sectors[sector].fields
+        span[sector] = (int(fields["ceiling_z"]), int(fields["floor_z"]))
+
+    def coexist(a: int, b: int) -> bool:
+        top = max(span[a][0], span[b][0])
+        bottom = min(span[a][1], span[b][1])
+        return bottom - top >= COEXIST_HEIGHT
+
+    out = []
+    for wall_id, wall in enumerate(disk.walls):
+        fields = wall.fields
+        if int(fields["next_sector"]) >= 0:
+            continue                       # an opening, not a mass
+        mine = owner.get(wall_id)
+        if mine is None:
+            continue
+        nxt = disk.walls[int(fields["point2"])].fields
+        ax, ay = int(fields["x"]), int(fields["y"])
+        bx, by = int(nxt["x"]), int(nxt["y"])
+        length = math.hypot(bx - ax, by - ay)
+        if length < PROBE_MIN_WALL_LENGTH:
+            continue
+        # Outward normal. Build's winding puts the interior on one side; find
+        # which by probing a single step and seeing which one leaves the sector.
+        nx, ny = (by - ay) / length, -(bx - ax) / length
+        midx, midy = (ax + bx) / 2.0, (ay + by) / 2.0
+        probe = (int(round(midx + nx * PROBE_STEP)), int(round(midy + ny * PROBE_STEP)))
+        if _sector_at(probe, loops, grid) == mine:
+            nx, ny = -nx, -ny
+
+        for fraction in PROBE_SAMPLES:
+            px = ax + (bx - ax) * fraction
+            py = ay + (by - ay) * fraction
+            hit = None
+            for distance in range(PROBE_STEP, PROBE_REACH + 1, PROBE_STEP):
+                point = (int(round(px + nx * distance)), int(round(py + ny * distance)))
+                found = _sector_at(point, loops, grid)
+                if found is not None and found != mine and coexist(mine, found):
+                    hit = (distance, found)
+                    break
+            if hit is None:
+                continue
+            out.append({
+                "map": name,
+                "wall": wall_id,
+                "sector": mine,
+                "other": hit[1],
+                "thickness": hit[0],
+                "thickness_player_widths": round(hit[0] / PLAYER_WIDTH, 3),
+            })
+    return out

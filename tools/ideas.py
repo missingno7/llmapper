@@ -57,7 +57,7 @@ POPULATIONS = ("blood-campaign", "community-curated")
 
 
 def _maps() -> dict[str, pathlib.Path]:
-    from bloodmap.patterns import list_corpus_maps
+    from bloodmap.corpus import list_corpus_maps
 
     out = {}
     for population in POPULATIONS:

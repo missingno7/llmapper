@@ -24,6 +24,7 @@ import pathlib
 from typing import Any
 
 from bloodmap.format import read_map
+from bloodmap.sector_geom import wall_owners
 
 
 ASSETS = {
@@ -52,16 +53,6 @@ SPRITE_FIELDS = ("x", "y", "z", "cstat", "picnum", "shade", "pal",
 
 def _fields(item) -> dict[str, Any]:
     return item.fields
-
-
-def _wall_owner(disk) -> dict[int, int]:
-    return {
-        wall_index: sector_index
-        for sector_index, sector in enumerate(disk.sectors)
-        for wall_index in range(int(_fields(sector)["wall_ptr"]),
-                                int(_fields(sector)["wall_ptr"])
-                                + int(_fields(sector)["wall_count"]))
-    }
 
 
 def _bounds(disk, sector_id: int) -> list[int]:
@@ -161,7 +152,7 @@ def _asset_occurrences(disk, wall_owner: dict[int, int], picnums: tuple[int, ...
 
 def mine(path: pathlib.Path) -> dict[str, Any]:
     disk = read_map(path)
-    wall_owner = _wall_owner(disk)
+    wall_owner = wall_owners(disk)
     focus = set(FOCUS_SECTORS)
     report = {
         "$schema": "llmapper.e6m1-shop",

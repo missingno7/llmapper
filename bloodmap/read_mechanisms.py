@@ -26,6 +26,7 @@ from __future__ import annotations
 import pathlib
 from collections import Counter, defaultdict
 from typing import Any, Sequence
+from .model import record_extra, record_fields
 
 #: `kWallGib`: the wall that breaks. 18 of E3M1's walls carry it and none of
 #: them is a sector mechanism, so a reader that only walks sector types loses
@@ -36,14 +37,12 @@ DEFAULT_LESSONS = "maps/blood/mechanism/Vanilla"
 
 
 def _fields(item: Any) -> dict[str, Any]:
-    return dict(item["fields"] if isinstance(item, dict) else item.fields)
+    return dict(record_fields(item))
 
 
 def _extra(item: Any) -> dict[str, Any] | None:
-    extra = item["blood"] if isinstance(item, dict) else getattr(item, "extra", None)
-    if extra is None:
-        return None
-    return dict(extra["fields"] if isinstance(extra, dict) else extra.fields)
+    extra = record_extra(item)
+    return None if extra is None else dict(extra)
 
 
 def curriculum_index(folder: str | pathlib.Path = DEFAULT_LESSONS

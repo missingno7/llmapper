@@ -33,12 +33,15 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
 from .build_ir import BuildIR
-from .patterns import list_corpus_maps
+from .corpus import list_corpus_maps
 from .player_space import player_profile
 from .relations import (
     CONTEXT_FACETS, OBJECT_FACETS, context_signature, extract_relations,
     signature_facets,
 )
+
+#: Blood's player, the one body every measurement here is denominated in.
+_BLOOD = player_profile("blood")
 
 
 SCHEMA = "llmapper.anchor-query"
@@ -557,7 +560,7 @@ CONTRAST_FEATURES: dict[str, str] = {
 
 #: Blood's step limit, from `vocabulary.staircase`. A neighbour higher than
 #: this cannot be walked into.
-MAX_STEP_PLAYER_HEIGHTS = 4096 / 16960
+MAX_STEP_PLAYER_HEIGHTS = _BLOOD.max_step / _BLOOD.standing_height
 
 BOOLEAN_FEATURES = (
     "enterable", "solid_closed_volume", "stands_above_a_neighbour",
@@ -597,7 +600,7 @@ def carrier_features(
     )
 
     fields = build.sectors[sector_id]["fields"]
-    clear = (int(fields["floor_z"]) - int(fields["ceiling_z"])) / 16960
+    clear = (int(fields["floor_z"]) - int(fields["ceiling_z"])) / _BLOOD.standing_height
     loops = _polygon_loops(build, sector_id)
     area = abs(sum(_signed_area(loop) for loop in loops)) / (384 ** 2)
     first, count = int(fields["wall_ptr"]), int(fields["wall_count"])
@@ -616,7 +619,7 @@ def carrier_features(
         if not other_loops:
             continue
         other_area = abs(sum(_signed_area(loop) for loop in other_loops)) / (384 ** 2)
-        other_clear = (int(other_fields["floor_z"]) - int(other_fields["ceiling_z"])) / 16960
+        other_clear = (int(other_fields["floor_z"]) - int(other_fields["ceiling_z"])) / _BLOOD.standing_height
         if area > 0 and abs(other_area - area) / area <= 0.05 and abs(other_clear - clear) <= 0.05:
             twins += 1
 
@@ -629,7 +632,7 @@ def carrier_features(
         other = _id(item["object"] if item["subject"] == ref else item["subject"])
         if 0 <= other < len(build.sectors):
             neighbour_floors.append(int(build.sectors[other]["fields"]["floor_z"]))
-    rise = (max(neighbour_floors) - floor_z) / 16960 if neighbour_floors else 0.0
+    rise = (max(neighbour_floors) - floor_z) / _BLOOD.standing_height if neighbour_floors else 0.0
 
     return {
         "objects_held": len(own),
@@ -1171,7 +1174,7 @@ def _picnum_profile(rows: list[dict[str, Any]]) -> dict[str, Any]:
 #: The player's step limit, from `vocabulary.staircase`. A floor raised by more
 #: than this cannot be walked onto, which is what makes a counter a counter
 #: rather than a kerb.
-STEP_LIMIT = 4096
+STEP_LIMIT = _BLOOD.max_step
 
 #: Waist height: raised by more than one step but no more than half a body.
 #: Measured, not chosen -- of 958 campaign blocking islands the rise

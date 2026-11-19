@@ -379,7 +379,13 @@ def write_bb2_reconstruction_v3(
 
 
 if __name__ == "__main__":
-    compiled = write_bb2_reconstruction_v3()
+    import argparse
+
+    _parser = argparse.ArgumentParser()
+    _parser.add_argument("-o", "--output", default="work/BB2-semantic-reconstruction-v3.MAP")
+    _parser.add_argument("--report", default="reports/BB2-v3-build-report.json")
+    _args = _parser.parse_args()
+    compiled = write_bb2_reconstruction_v3(map_path=_args.output, report_path=_args.report)
     print(
         f"v3: {len(compiled.level.sectors)} sectors, {len(compiled.level.walls)} walls, "
         f"{len(compiled.level.sprites)} sprites, conserved={compiled.conservation.conserved}"

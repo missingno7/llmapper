@@ -88,10 +88,11 @@ class HandWrittenMinerEquivalenceTests(unittest.TestCase):
         self.assertEqual({item["sector"] for item in found}, sectors)
 
     def test_it_agrees_with_the_shop_miner(self):
-        from tools.mine_e6m1_shop import _asset_occurrences, _wall_owner
+        from bloodmap.sector_geom import wall_owners
+        from tools.mine_e6m1_shop import _asset_occurrences
 
         disk = parse_map(encode_map(_tiled_disk()))
-        theirs = _asset_occurrences(disk, _wall_owner(disk), (900,))
+        theirs = _asset_occurrences(disk, wall_owners(disk), (900,))
         found = find_occurrences(disk.to_build_ir(), (900,))
         mine = {
             "sprites": sum(1 for item in found if item["kind"] == "sprite"),
@@ -286,7 +287,7 @@ class ReferenceReproductionTests(unittest.TestCase):
         if not SEWER_REFERENCE.exists():
             self.skipTest("the sewer-kit reference report is absent")
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         maps = list_corpus_maps(population=None, view="reference")
         maps += list_corpus_maps(population="own-conversion")
@@ -311,7 +312,7 @@ class ReferenceReproductionTests(unittest.TestCase):
         """The hand-written miner globs `maps/blood/campaign/*.MAP` raw and so
         counts an editor autosave as a campaign map. The registry quarantines
         it, which is why `maps_with_use` differs by one for two sewer roles."""
-        from bloodmap.patterns import list_corpus_maps, unadmitted_corpus_maps
+        from bloodmap.corpus import list_corpus_maps, unadmitted_corpus_maps
 
         maps = list_corpus_maps(population=None, view="reference")
         if not maps:
@@ -323,7 +324,7 @@ class ReferenceReproductionTests(unittest.TestCase):
 
 class AnchorMiningTests(unittest.TestCase):
     def test_an_anchor_query_reports_provenance_enrichment_and_skips(self):
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         if not list_corpus_maps(population="blood-campaign"):
             self.skipTest("no local Blood campaign maps")
@@ -342,7 +343,7 @@ class AnchorMiningTests(unittest.TestCase):
         self.assertTrue(payload["limitations"])
 
     def test_an_anchor_nothing_uses_fails_closed(self):
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         if not list_corpus_maps(population="blood-campaign"):
             self.skipTest("no local Blood campaign maps")

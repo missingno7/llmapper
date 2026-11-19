@@ -47,7 +47,7 @@ import numpy as np
 from bloodmap.doors import MOTION_TYPES as BLOOD_DOOR_SECTOR_TYPES
 from bloodmap.duke import read_duke_map
 from bloodmap.format import read_map
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 from bloodmap.player_space import PLAYER_PROFILES
 from tools.mine_mechanisms import observe as observe_channels
 from tools.mine_stacks import observe as observe_stacks

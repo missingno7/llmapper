@@ -18,7 +18,7 @@ from bloodmap.effects import (
 from bloodmap.doors import PLAYER_HEIGHT
 
 try:
-    from bloodmap.patterns import list_corpus_maps
+    from bloodmap.corpus import list_corpus_maps
     CORPUS = bool(list_corpus_maps(population="blood-campaign"))
 except Exception:
     CORPUS = False
@@ -182,7 +182,7 @@ class CorpusTest(unittest.TestCase):
     def test_one_campaign_map_reads_end_to_end(self):
         from bloodmap.effects import read_map_mechanisms
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         entry = [item for item in list_corpus_maps(population="blood-campaign")
                  if item.path.stem == "E1M1"][0]

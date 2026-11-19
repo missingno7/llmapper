@@ -24,7 +24,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 from bloodmap.format import read_map
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 from bloodmap.viewplan import angle_toward, eye_z, interior_point
 from bloodmap.visual import ObservationRequest, Viewpoint, run_observation
 from bloodmap.viewpoints import _contains, _sector_loops

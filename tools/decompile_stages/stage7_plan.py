@@ -5,13 +5,13 @@ the street graph with width classes, the islands with their bands and the
 blocks with their envelopes, in `city_plan.py`'s language: no picnums, no z,
 no Build units, one stated conversion.
 
-    PYTHONPATH=. python projects/e3m1-decompiled/source/stage7_plan.py
+    python -m tools.decompile_stages.stage7_plan projects/<map>-decompiled
 """
 
 from __future__ import annotations
 
-from _common import MAP_NAME, level, write
-from _review import Tree, answers, write_pack
+from ._common import map_name, level, write
+from ._review import Tree, answers, write_pack
 
 from bloodmap.read_joins import surface_kinds
 from bloodmap.read_plan import PLAN_UNIT, WIDTH_CLASSES, read_plan, summary
@@ -19,7 +19,7 @@ from bloodmap.texture_frame import sector_index
 
 
 def _review(world, plan) -> dict:
-    tree = Tree(len(world.sectors), f"{MAP_NAME} -- the plan")
+    tree = Tree(len(world.sectors), f"{map_name()} -- the plan")
     tree.add("streets", "plan", f"the street graph ({len(plan['edges'])} edges, "
              f"{len(plan['junctions'])} junctions)", tree.root.id,
              [index for run in plan["corridors"] for index in run["sectors"]])
@@ -90,7 +90,7 @@ def _review(world, plan) -> dict:
                                  "same number so the two can be compared"),
          "evidence": "references/plan.json: rectangular_fill"},
     ]
-    return write_pack(7, tree, f"{MAP_NAME} layer 7: the plan", questions)
+    return write_pack(7, tree, f"{map_name()} layer 7: the plan", questions)
 
 
 def main() -> int:
@@ -130,7 +130,7 @@ def main() -> int:
     payload["owner_marks_read_back"] = answers(7)
     write("plan.json", payload)
 
-    print(f"{MAP_NAME} plan, 1 pu = {PLAN_UNIT} Build units")
+    print(f"{map_name()} plan, 1 pu = {PLAN_UNIT} Build units")
     for run in plan["corridors"]:
         print(f"    {run['corridor_id']} {run['role']:8s} sectors "
               f"{run['sectors']} ratio {run['ratio']:5.2f}  carriageway "

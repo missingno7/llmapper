@@ -42,6 +42,7 @@ from __future__ import annotations
 from typing import Any
 
 from .doors import MOTION_TYPES, Z_MOTION_TYPES
+from .model import record_extra
 from .player_space import PLAYER_PROFILES
 
 PLAYER_HEIGHT = PLAYER_PROFILES["blood"].standing_height
@@ -85,10 +86,8 @@ def is_switch(sprite: Any) -> bool:
 
 
 def _extra(item: Any) -> dict:
-    extra = getattr(item, "extra", None)
-    if extra is None or not hasattr(extra, "fields"):
-        return {}
-    return extra.fields
+    extra = record_extra(item)
+    return {} if extra is None else extra
 
 
 def pressed_switch(*, tile: int = PRESSED_TILES[0], tx_id: int,
@@ -244,7 +243,7 @@ def contrast_hidden_switches(
         DISCRIMINATOR_FLOOR, _counterexamples, _map_transfer, _separation,
     )
     from .format import read_map
-    from .patterns import list_corpus_maps
+    from .corpus import list_corpus_maps
 
     selected = list_corpus_maps(directory, population=population, view=view)
     if not selected:

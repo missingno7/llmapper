@@ -119,7 +119,7 @@ class WaterIsAPaletteNotATile(unittest.TestCase):
         # legitimate stone faces with the twenty-five wet ones.
         from bloodmap.format import read_map
         from bloodmap.joins import is_water
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         entries = list(list_corpus_maps(population="blood-campaign"))
         if not entries:
@@ -373,7 +373,8 @@ class WaterIsReadThroughBothShapes(unittest.TestCase):
 
     @staticmethod
     def _dwe3m10():
-        from bloodmap.patterns import corpus_map_path, read_map
+        from bloodmap.corpus import corpus_map_path
+        from bloodmap.format import read_map
 
         try:
             return read_map(corpus_map_path("DWE3M10"))
@@ -474,7 +475,7 @@ class IndoorsIsOneLawNotEleven(unittest.TestCase):
         # records before these rows, 198 after -- 1122 of them the three
         # interior|interior classes.
         from bloodmap.format import read_map
-        from bloodmap.patterns import corpus_map_path
+        from bloodmap.corpus import corpus_map_path
         from bloodmap.read_joins import join_census, surface_kinds
         from bloodmap.texture_frame import sector_index
 

@@ -288,7 +288,7 @@ class SignatureBoundFeatureTests(unittest.TestCase):
 
 class FailClosedTests(unittest.TestCase):
     def test_a_contrast_with_an_empty_side_refuses(self):
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         if not list_corpus_maps(population="blood-campaign"):
             self.skipTest("no local Blood campaign maps")
@@ -378,7 +378,7 @@ class LiveContrastTests(unittest.TestCase):
     """One end-to-end run on real maps, on the smallest population."""
 
     def setUp(self):
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         if not list_corpus_maps(population="blood-bloodbath"):
             self.skipTest("no local Blood BloodBath maps")

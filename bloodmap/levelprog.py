@@ -46,14 +46,14 @@ from typing import Any, Callable, Iterable, Sequence
 
 from .planar_geom import Point, area2
 from .planar_layout import PlanarLayout, PlanarLayoutError
+from .player_space import PLAYER_PROFILES
 from .vocabulary import Anchor, Decoration, Structure, recess, sprite_repeats, staircase
 
 SCHEMA = "llmapper.level-program"
 SCHEMA_VERSION = 1
 
-PLAYER_WIDTH = 384
 
-from .player_space import PLAYER_PROFILES
+PLAYER_WIDTH = PLAYER_PROFILES["blood"].body_width
 
 #: One standing human, from the player profile. Never hardcode this: it was
 #: 0x1600 in a dozen modules, which is `POSTURE.eyeAboveZ` -- an offset from

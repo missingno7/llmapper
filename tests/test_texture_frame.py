@@ -19,7 +19,7 @@ VANILLA = Path("maps/blood/mechanism/Vanilla")
 
 def _campaign(stem):
     from bloodmap.format import read_map
-    from bloodmap.patterns import list_corpus_maps
+    from bloodmap.corpus import list_corpus_maps
 
     found = [entry for entry in list_corpus_maps(population="blood-campaign")
              if entry.path.stem.upper() == stem]
@@ -380,7 +380,7 @@ class TheCampaignSetsTheStandard(unittest.TestCase):
         # their own minimum.
         from bloodmap import rules_blood                       # noqa: F401
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
         from bloodmap.rules import RULES
 
         rule = RULES["texture-continues-across-a-join"]
@@ -442,7 +442,7 @@ class TheMagnitudeGate(unittest.TestCase):
 
     def test_the_campaign_is_inside_its_own_envelope(self):
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         rule = self._rule()
         entries = list(list_corpus_maps(population="blood-campaign"))

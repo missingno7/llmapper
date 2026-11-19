@@ -1,3 +1,9 @@
+"""The exact models: `DiskMap` mirrors the file, `LevelIR` is its editable JSON form.
+
+Also the two functions that read a record whichever of those shapes holds it,
+`record_fields` and `record_extra`.
+"""
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -62,6 +68,32 @@ class DiskObject:
             self.fields[name] = int(value)
         else:
             object.__setattr__(self, name, value)
+
+
+def record_fields(item: Any) -> dict[str, Any]:
+    """A sector, wall or sprite's base fields, whichever shape holds it.
+
+    A `DiskObject` keeps them on `.fields`; a `LevelIR` or `BuildIR` record is
+    a dict that keeps them under `"fields"`. Twelve modules each wrote this
+    line for themselves.
+    """
+    return item["fields"] if isinstance(item, dict) else item.fields
+
+
+def record_extra(item: Any) -> dict[str, Any] | None:
+    """A record's Blood extension fields (XSECTOR/XWALL/XSPRITE), or None.
+
+    The two shapes disagree about where it lives -- `.extra` on a
+    `DiskObject`, the `"blood"` key on a `LevelIR` record -- and a reader that
+    knows only one returns nothing for the other without complaint. That has
+    already cost evidence once: `getattr(sector, "extra", None)` is None for
+    every decompiled level, and on DWE3M10 it lost 4 of 22 panning sectors.
+    The mapping returned is the record's own; copy it before changing it.
+    """
+    extra = item.get("blood") if isinstance(item, dict) else getattr(item, "extra", None)
+    if extra is None:
+        return None
+    return extra["fields"] if isinstance(extra, dict) else extra.fields
 
 
 @dataclass

@@ -28,7 +28,7 @@ from pathlib import Path
 from bloodmap.art import read_art_directory, read_palette, tile_preview_png
 from bloodmap.format import parse_map
 from bloodmap.owner_anchors import load_owner_anchors
-from bloodmap.patterns import corpus_root, corpus_map_path, list_corpus_maps
+from bloodmap.corpus import corpus_root, corpus_map_path, list_corpus_maps
 
 ROOT = Path(__file__).resolve().parents[1]
 ART_DIR = ROOT / "reference" / "blood"

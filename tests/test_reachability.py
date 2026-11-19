@@ -6,8 +6,6 @@ themselves are tested on fixtures that need nothing.
 
 from __future__ import annotations
 
-import glob
-import re
 import unittest
 from pathlib import Path
 
@@ -30,19 +28,12 @@ from bloodmap.reachability import (
     portal_graph,
 )
 
+from tests.helpers import campaign_maps
+
 U = 384
 PH = 0x1600
 
 ROOT = Path(__file__).resolve().parent.parent
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
-
-
-def campaign_maps() -> list[Path]:
-    result = []
-    for path in sorted(glob.glob(str(ROOT / "maps" / "blood" / "campaign" / "*.MAP"))):
-        if CAMPAIGN.match(Path(path).stem.upper()):
-            result.append(Path(path))
-    return result
 
 
 HAVE_CAMPAIGN = bool(campaign_maps())

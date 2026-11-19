@@ -17,7 +17,7 @@ import unittest
 
 def _map(stem: str):
     from bloodmap.format import read_map
-    from bloodmap.patterns import corpus_map_path
+    from bloodmap.corpus import corpus_map_path
 
     path = corpus_map_path(stem, missing_ok=True)
     if not path.exists():
@@ -147,7 +147,7 @@ class TheShadeStepEnvelope(unittest.TestCase):
     def test_the_network_definition_is_named_in_the_answer(self):
         """The gate must say which network it means, because the answer moves
         with it. A function that returned a bare number could not."""
-        from bloodmap.patterns import corpus_map_path
+        from bloodmap.corpus import corpus_map_path
         from bloodmap.read_light import (
             NETWORK_ALL_OUTDOOR, shade_step_envelope)
 
@@ -161,7 +161,7 @@ class TheShadeStepEnvelope(unittest.TestCase):
         self.assertIn("envelope", rows)
 
     def test_e3m1s_own_step_is_outside_the_gate_under_both_definitions(self):
-        from bloodmap.patterns import corpus_map_path
+        from bloodmap.corpus import corpus_map_path
         from bloodmap.read_light import (
             NETWORK_ALL_OUTDOOR, NETWORK_LARGEST_COMPONENT,
             shade_step_envelope)
@@ -179,7 +179,7 @@ class TheShadeStepEnvelope(unittest.TestCase):
     def test_the_campaign_envelope_moves_with_the_network(self):
         """The whole reason the gate has to name one: the two readings of
         "the network" give different medians over the same 43 maps."""
-        from bloodmap.patterns import list_original_maps
+        from bloodmap.corpus import list_original_maps
         from bloodmap.read_light import (
             NETWORK_ALL_OUTDOOR, NETWORK_LARGEST_COMPONENT,
             shade_step_envelope)

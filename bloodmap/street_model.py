@@ -30,6 +30,7 @@ from __future__ import annotations
 import math
 import statistics
 from typing import Any, Iterable, Sequence
+from .model import record_fields as _fields
 
 #: E3M1's, and Gravesend's choice. Not a campaign law -- see the module note.
 KERB_TILE = 6
@@ -39,10 +40,6 @@ KERB_RISE = 2048
 
 class StreetModelError(ValueError):
     """A street that does not read as one."""
-
-
-def _fields(item: Any) -> Any:
-    return item["fields"] if isinstance(item, dict) else item.fields
 
 
 def kerb_faults(disk: Any, declared: Sequence[dict], *,

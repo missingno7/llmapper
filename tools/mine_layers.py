@@ -29,18 +29,17 @@ they are. This file measures both.
 from __future__ import annotations
 
 import argparse
-import glob
 import json
 import math
 import pathlib
-import re
 from collections import deque
 from typing import Any
 
+from bloodmap.corpus import campaign_maps, corpus_map_path, corpus_root
 from bloodmap.format import read_map
 from bloodmap.planar_geom import polygon_relation, z_interval, z_relation
+from bloodmap.sector_geom import sector_loops
 
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 
 #: cstat bits 4-5 select how a sprite is drawn; 32 is "floor-aligned".
 CSTAT_ALIGNMENT = 48
@@ -60,35 +59,6 @@ OVERLAPPING = {
     "full_containment_a_in_b",
     "full_containment_b_in_a",
 }
-
-
-def sector_loops(disk: Any, sector_id: int) -> list[list[tuple[int, int]]]:
-    """Split one sector's wall run into its closed loops.
-
-    A Build sector owns a contiguous run of walls holding an outer loop and then
-    one loop per hole; ``point2`` is what closes each of them.
-    """
-    fields = disk.sectors[sector_id].fields
-    first, count = int(fields["wall_ptr"]), int(fields["wall_count"])
-    last = min(first + count, len(disk.walls))
-    loops: list[list[tuple[int, int]]] = []
-    seen: set[int] = set()
-    cursor = first
-    while cursor < last:
-        if cursor in seen:
-            cursor += 1
-            continue
-        loop: list[tuple[int, int]] = []
-        walk = cursor
-        while walk not in seen and first <= walk < last:
-            seen.add(walk)
-            wall = disk.walls[walk].fields
-            loop.append((int(wall["x"]), int(wall["y"])))
-            walk = int(wall["point2"])
-        if len(loop) >= 3:
-            loops.append(loop)
-        cursor += 1
-    return loops
 
 
 def bbox(loops: list[list[tuple[int, int]]]) -> tuple[int, int, int, int]:
@@ -354,7 +324,7 @@ def summarise(rows: list[dict[str, Any]], selector: str) -> dict[str, Any]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--maps", default="maps/blood")
+    parser.add_argument("--maps", help="corpus root or a directory of maps (default: the local corpus)")
     parser.add_argument("--reference", default="BB4",
                         help="comma-separated maps to measure separately as a "
                              "worked example of the technique")
@@ -364,19 +334,21 @@ def main(argv: list[str] | None = None) -> int:
     wanted = {name.strip().upper() for name in args.reference.split(",") if name.strip()}
     rows: list[dict[str, Any]] = []
     reference: list[dict[str, Any]] = []
-    for path in sorted(glob.glob(str(pathlib.Path(args.maps) / "*.MAP"))):
-        name = pathlib.Path(path).stem.upper()
-        if not CAMPAIGN.match(name) and name not in wanted:
-            continue
+    campaign = campaign_maps(args.maps, required=True)
+    worked = wanted - {path.stem.upper() for path in campaign}
+    paths = campaign + [corpus_map_path(name, root=args.maps) for name in worked]
+    for path in sorted(paths, key=lambda item: item.stem.upper()):
+        name = path.stem.upper()
         row = measure(name, read_map(path))
-        (rows if CAMPAIGN.match(name) else reference).append(row)
+        (reference if name in worked else rows).append(row)
         print("{:6s} sectors={:4d} overlaps={:4d} z-clash={:4d} confusable={:3d} "
               "unresolved={:2d} floor-sprites={:4d}".format(
                   name, row["sectors"], row["overlap_pairs"], row["z_clashing_pairs"],
                   row["confusable_pairs"], row["unresolved_pairs"],
                   row["blocking_floor_aligned_sprites"]))
 
-    document = summarise(rows, "E[1-46]M[1-9] under " + args.maps)
+    document = summarise(
+        rows, "E[1-46]M[1-9] under " + corpus_root(args.maps).as_posix())
     if reference:
         document["reference"] = {
             "why": (

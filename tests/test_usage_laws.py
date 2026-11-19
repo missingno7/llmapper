@@ -126,7 +126,7 @@ class PayloadShapeTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         found = [e for e in list_corpus_maps(population="blood-campaign")
                  if e.path.stem.upper().startswith("E1M1")]

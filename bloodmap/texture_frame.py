@@ -117,6 +117,7 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass, field
 from typing import Any, Iterable, Sequence
+from .model import record_fields as _fields
 
 #: `common_game.h:344-353`. The two "origin" names are the same bit: on a
 #: one-sided wall cstat 4 means "hang from the floor", on a two-sided wall it
@@ -190,10 +191,6 @@ def c_div(numerator: int, denominator: int) -> int:
     """
     quotient = abs(int(numerator)) // abs(int(denominator))
     return -quotient if (numerator < 0) != (denominator < 0) else quotient
-
-
-def _fields(item: Any) -> Any:
-    return item["fields"] if isinstance(item, dict) else item.fields
 
 
 def wall_length(level: Any, index: int) -> int:

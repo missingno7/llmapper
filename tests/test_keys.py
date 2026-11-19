@@ -148,8 +148,7 @@ class CandidateKeyTests(unittest.TestCase):
 
     def test_the_level_still_holds_the_key_it_asks_for(self):
         from bloodmap.format import read_map
-        from bloodmap.keys import KEY_ITEM_TYPE
-        from tools.mine_keys import key_of
+        from bloodmap.keys import KEY_ITEM_TYPE, key_of
 
         disk = read_map(CANDIDATE)
         wanted = {key_of(s) for s in disk.sectors if key_of(s)}

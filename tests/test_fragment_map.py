@@ -19,7 +19,7 @@ FRAGMENTS = pathlib.Path("projects/e3m1-decompiled/fragments")
 
 def _e3m1():
     from bloodmap.format import read_map
-    from bloodmap.patterns import corpus_map_path
+    from bloodmap.corpus import corpus_map_path
 
     try:
         return read_map(corpus_map_path("E3M1"))
@@ -72,7 +72,7 @@ class ACutIsStillAMap(unittest.TestCase):
 
     def test_every_wall_that_led_away_is_sealed_and_blocking(self):
         from bloodmap.format import read_map
-        from bloodmap.patterns import corpus_map_path
+        from bloodmap.corpus import corpus_map_path
         from tools.fragment_map import BLOCKING, cut
 
         before = read_map(corpus_map_path("E3M1"))

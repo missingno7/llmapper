@@ -4,7 +4,7 @@ The authoring loop can look at a generated candidate.  It had no way to look at
 an original, which meant every comparison with the corpus was being made from
 memory.  This closes that.
 
-    python -m tools.render_precedent maps/blood/E2M3.MAP \\
+    python -m tools.render_precedent maps/blood/campaign/E2M3.MAP \\
         --sectors 105,41,37,44 --resource-dir reference/blood \\
         -o work/precedent-views/E2M3
 

@@ -18,7 +18,7 @@ What it is not: byte-exact.  ``E2M3.MAP`` stays the authority and is what the
 provenance points at.  The program is a *re-expression* whose fidelity is
 measured rather than assumed, and the measurement is written into the file.
 
-    python -m tools.emit_level_program maps/blood/E2M3.MAP \\
+    python -m tools.emit_level_program maps/blood/campaign/E2M3.MAP \\
         -o projects/e2m3-decompiled/source/E2M3.py
 """
 
@@ -33,12 +33,12 @@ from typing import Any
 from bloodmap.decompiler import decompile_level
 from bloodmap.format import read_map
 from bloodmap.planar_geom import area2, polygon_relation, validate_loop
+from bloodmap.player_space import PLAYER_PROFILES
 from bloodmap.structures import detect_structures
 from bloodmap.viewpoints import _sector_loops
 
-PLAYER_WIDTH = 384
 
-from bloodmap.player_space import PLAYER_PROFILES
+PLAYER_WIDTH = PLAYER_PROFILES["blood"].body_width
 
 #: One standing human, from the player profile. Never hardcode this: it was
 #: 0x1600 in a dozen modules, which is `POSTURE.eyeAboveZ` -- an offset from

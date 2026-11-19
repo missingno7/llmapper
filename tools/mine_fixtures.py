@@ -43,7 +43,7 @@ import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from bloodmap.format import read_map
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 
 SOURCES = ("DWE3M1", "DWE3M10", "E6M1", "E4M9", "E1M4")
 HOST_AREA = 4_000_000

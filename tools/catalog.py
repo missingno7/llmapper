@@ -196,7 +196,7 @@ def build_places() -> dict:
     from bloodmap.blood_types import SPRITE_TYPES
     from bloodmap.format import read_map
     from bloodmap.lettering import read_sign
-    from bloodmap.patterns import list_corpus_maps
+    from bloodmap.corpus import list_corpus_maps
     from tools import place_character as pc
 
     rows = []
@@ -408,7 +408,7 @@ def mechanisms(name: str, only: set[int] | None = None) -> list[dict]:
     from bloodmap.blood_types import (RESERVED_CHANNELS, SECTOR_TYPES,
                                       SPRITE_TYPES, WALL_TYPES)
     from bloodmap.format import read_map
-    from bloodmap.patterns import corpus_map_path
+    from bloodmap.corpus import corpus_map_path
 
     path = (pathlib.Path(name) if name.upper().endswith(".MAP")
             else corpus_map_path(name))
@@ -719,7 +719,7 @@ def main(argv=None) -> int:
         only = None
         if args.place:
             from bloodmap.format import read_map
-            from bloodmap.patterns import corpus_map_path
+            from bloodmap.corpus import corpus_map_path
             from tools import place_character as pc
             geom = pc.Geometry(read_map(corpus_map_path(args.map)))
             only = pc.place_of(geom, int(args.place.split(":")[1]))

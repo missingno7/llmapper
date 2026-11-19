@@ -47,7 +47,7 @@ def _level(path):
 
 
 def _corpus(name):
-    from bloodmap.patterns import corpus_map_path
+    from bloodmap.corpus import corpus_map_path
 
     try:
         return _level(corpus_map_path(name))

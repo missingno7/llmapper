@@ -13,7 +13,7 @@ import unittest
 
 from bloodmap.build_ir import BuildIR
 from bloodmap.format import encode_map, parse_map
-from bloodmap.patterns import list_corpus_maps
+from bloodmap.corpus import list_corpus_maps
 from bloodmap.relations import (
     FORBIDDEN_MEASURE_KEYS,
     context_signature,

@@ -28,22 +28,20 @@ share of the corpus.
 from __future__ import annotations
 
 import argparse
-import glob
 import json
 import pathlib
-import re
 import statistics
 from collections import defaultdict
 from typing import Any
 
 from bloodmap.art import read_art_directory
+from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map
 from bloodmap.player_space import PLAYER_PROFILES
 
 SCHEMA = "llmapper.blood-sprite-heights"
 SCHEMA_VERSION = 1
 
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 
 #: A sprite is measured against a *body*, not against the camera. This read
 #: `eye_height` back when both fields held 0x1600 and the difference did not
@@ -136,7 +134,7 @@ def offenders(disk: Any, art: dict[int, Any], tiles: dict[str, Any]) -> list[dic
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--maps", default="maps/blood")
+    parser.add_argument("--maps", help="corpus root or a directory of maps (default: the local corpus)")
     parser.add_argument("--art", default="reference/blood")
     parser.add_argument("--against")
     parser.add_argument("-o", "--output")
@@ -149,9 +147,7 @@ def main(argv: list[str] | None = None) -> int:
 
     seen: dict[int, list[float]] = defaultdict(list)
     maps = 0
-    for path in sorted(glob.glob(str(pathlib.Path(args.maps) / "*.MAP"))):
-        if not CAMPAIGN.match(pathlib.Path(path).stem.upper()):
-            continue
+    for path in campaign_maps(args.maps, required=True):
         observe(path, art, seen)
         maps += 1
     document = build(seen)

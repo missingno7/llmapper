@@ -25,6 +25,9 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Any, Iterable
 
+from .model import record_extra
+from .sector_geom import wall_owners
+
 # ---------------------------------------------------------------------------
 # 1. MARKED-WALL MOTION
 # ---------------------------------------------------------------------------
@@ -54,15 +57,6 @@ def sector_walls(disk: Any, sector_id: int) -> range:
     fields = disk.sectors[sector_id].fields
     start = int(fields["wall_ptr"])
     return range(start, start + int(fields["wall_count"]))
-
-
-def wall_owners(disk: Any) -> dict[int, int]:
-    """Which sector owns each wall."""
-    owners: dict[int, int] = {}
-    for sector_id in range(len(disk.sectors)):
-        for wall_id in sector_walls(disk, sector_id):
-            owners[wall_id] = sector_id
-    return owners
 
 
 def flagged_walls(disk: Any, sector_id: int) -> dict[int, int]:
@@ -943,10 +937,8 @@ def build_stack_link(layout: Any, link_id: int, *, upper_region: str,
 
 
 def _extra(item: Any) -> dict[str, Any]:
-    payload = getattr(item, "extra", None)
-    if payload is None:
-        return {}
-    return payload.fields if hasattr(payload, "fields") else {}
+    extra = record_extra(item)
+    return {} if extra is None else extra
 
 
 def no_op_wirings(disk: Any) -> list[str]:

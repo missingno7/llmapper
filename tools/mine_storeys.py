@@ -34,9 +34,10 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
 from bloodmap import overlap_visibility as ov
 from bloodmap.format import read_map
+from bloodmap.player_space import PLAYER_PROFILES
 
 #: One standing Blood human. `bloodmap.player_space`.
-PH = 16960
+PH = PLAYER_PROFILES["blood"].standing_height
 
 #: A storey band is where floors cluster; anything within this of each other is
 #: the same storey. Half a body: smaller than any floor-to-floor in the corpus

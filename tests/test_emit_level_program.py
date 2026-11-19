@@ -6,8 +6,6 @@ planar subdivision does not, and what the emitter has to do about it.
 
 from __future__ import annotations
 
-import glob
-import re
 import unittest
 from pathlib import Path
 
@@ -21,21 +19,10 @@ from tools.emit_level_program import (
     _splice_flush_hole,
 )
 
+from tests.helpers import campaign_maps
+
 ROOT = Path(__file__).resolve().parent.parent
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 E2M3 = ROOT / "maps" / "blood" / "campaign" / "E2M3.MAP"
-
-
-def campaign_maps() -> list[Path]:
-    seen: set[str] = set()
-    result = []
-    for path in sorted(glob.glob(str(ROOT / "maps" / "blood" / "campaign" / "*.MAP"))):
-        name = Path(path).stem.upper()
-        if name in seen or not CAMPAIGN.match(name):
-            continue
-        seen.add(name)
-        result.append(Path(path))
-    return result
 
 
 class SegmentTests(unittest.TestCase):

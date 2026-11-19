@@ -303,7 +303,7 @@ def places(geom: Geometry) -> list[set[int]]:
 
 
 def campaign_maps() -> list[pathlib.Path]:
-    from bloodmap.patterns import list_corpus_maps
+    from bloodmap.corpus import list_corpus_maps
 
     return [m.path for m in list_corpus_maps(population="blood-campaign")]
 

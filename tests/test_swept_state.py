@@ -53,7 +53,7 @@ class TranslateSectorTest(unittest.TestCase):
         # two caps move in opposite directions.
         from bloodmap.format import read_map
         from bloodmap.motion_sim import blood_sweep
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         found = [e for e in list_corpus_maps(population="blood-campaign")
                  if e.path.stem.upper().startswith("E1M1")]

@@ -86,9 +86,10 @@ from .planar_geom import (
 )
 from . import drawsort
 from .planar_layout import PlanarLayoutError
+from .player_space import PLAYER_PROFILES
 
 #: One standing Blood human, in Build z units. See `bloodmap.player_space`.
-STANDING_HEIGHT = 16960
+STANDING_HEIGHT = PLAYER_PROFILES["blood"].standing_height
 
 #: The vertical acceleration MoveDude adds per game frame (blood/src/actor.h:186).
 DUDE_GRAVITY = 58254

@@ -9,15 +9,15 @@ The gate is the replay, and it is asymmetric on purpose. A frame fitted to a
 single record always reproduces it, so a record only counts as explained when
 it sits in a surface of two or more that ONE frame reproduces exactly.
 
-    PYTHONPATH=. python projects/e3m1-decompiled/source/stage2_surfaces.py
+    python -m tools.decompile_stages.stage2_surfaces projects/<map>-decompiled
 """
 
 from __future__ import annotations
 
 from collections import Counter
 
-from _common import MAP_NAME, art_sizes, level, write
-from _review import Tree, answers, write_pack
+from ._common import map_name, art_sizes, level, write
+from ._review import Tree, answers, write_pack
 
 from bloodmap.read_stairs import read_stairs
 from bloodmap.read_surfaces import read_surfaces, summary
@@ -32,7 +32,7 @@ def _review(level_ir, result, owners, stairs) -> dict:
     surface touches is unowned -- which is this layer's residue drawn on the
     map: the parts of this map where every wall carries its own projection.
     """
-    tree = Tree(len(level_ir.sectors), f"{MAP_NAME} -- surfaces of more than one record")
+    tree = Tree(len(level_ir.sectors), f"{map_name()} -- surfaces of more than one record")
     by_tile: dict[int, list] = {}
     for item in result["surfaces"]:
         if len(item.records) > 1:
@@ -91,7 +91,7 @@ def _review(level_ir, result, owners, stairs) -> dict:
                                  "a coverage report reaches 100%"),
          "evidence": "references/surfaces.json: residue_solitary_records"},
     ]
-    return write_pack(2, tree, f"{MAP_NAME} layer 2: surfaces and frames", questions)
+    return write_pack(2, tree, f"{map_name()} layer 2: surfaces and frames", questions)
 
 
 FRAME_FIELDS = ("picnum", "x_repeat", "x_panning", "y_repeat", "y_panning")
@@ -194,7 +194,7 @@ def main() -> int:
     payload["owner_marks_read_back"] = answers(2)
     write("surfaces.json", payload)
 
-    print(f"{MAP_NAME} surfaces: {stats['surfaces']} recovered, "
+    print(f"{map_name()} surfaces: {stats['surfaces']} recovered, "
           f"{stats['surfaces_of_more_than_one_record']} of more than one record")
     print(f"  explained          : {stats['records_explained']} of "
           f"{stats['records']} records ({100 - stats['residue_percent']:.2f}%)")

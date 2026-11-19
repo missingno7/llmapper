@@ -12,7 +12,7 @@ Neither is about z. `wallfront` (engine.cpp:2227) never reads it.
 
 .. code-block:: bash
 
-    python -m tools.measure_draw_order maps/blood/BB4.MAP
+    python -m tools.measure_draw_order maps/blood/campaign/multiplayer/BB4.MAP
     python -m tools.measure_draw_order projects/vertical-fragment/level/MALTX.MAP \\
         --conflicts projects/vertical-fragment/reports/render-conflicts.json
 """
@@ -32,7 +32,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 from bloodmap.format import read_map
 from bloodmap.layers import OVERLAPPING_KINDS, STANDING_HEIGHT as STANDING
 from bloodmap.planar_geom import polygon_relation, same_ground
-from tools.mine_layers import sector_loops as _sector_loops
+from bloodmap.sector_geom import sector_loops as _sector_loops
 
 def sector_box(disk, sid: int) -> tuple[int, int, int, int]:
     loops = _sector_loops(disk, sid)

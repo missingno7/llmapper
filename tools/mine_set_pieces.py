@@ -30,9 +30,10 @@ import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from bloodmap.format import read_map
-from bloodmap.patterns import CORPUS_VIEWS, list_corpus_maps
+from bloodmap.corpus import CORPUS_VIEWS, list_corpus_maps
+from bloodmap.player_space import PLAYER_PROFILES
 
-PLAYER = 16960          # a standing human, in z units
+PLAYER = PLAYER_PROFILES["blood"].standing_height          # a standing human, in z units
 PLAN = 1024             # the project's plan unit, for footprints
 
 #: A sector big enough to stand around in is a room, not furniture.

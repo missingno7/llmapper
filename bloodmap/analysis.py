@@ -1,3 +1,5 @@
+"""Structural validation of a Blood map, its channel graph, corpus statistics and a diagnostic SVG."""
+
 from __future__ import annotations
 
 from collections import Counter, defaultdict

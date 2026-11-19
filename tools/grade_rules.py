@@ -14,26 +14,23 @@ describes nothing at all shows up as breaking half the corpus.
 from __future__ import annotations
 
 import argparse
-import glob
 import pathlib
-import re
 
 from bloodmap import rules_blood            # noqa: F401  -- registers the rules
+from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map
 from bloodmap.rules import (
     ERROR_RATE, RULES, WARNING_RATE, evaluate, grade, load_grades, save_grades,
     unresolved_sources,
 )
 
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 
 
-def campaign_maps(directory: str) -> list[tuple[str, object]]:
+def campaign_disks(directory: str | None) -> list[tuple[str, object]]:
+    """Every campaign map, read: `(name, disk)` in name order."""
     out = []
-    for path in sorted(glob.glob(str(pathlib.Path(directory) / "*.MAP"))):
-        name = pathlib.Path(path).stem.upper()
-        if not CAMPAIGN.match(name):
-            continue
+    for path in campaign_maps(directory):
+        name = path.stem.upper()
         try:
             out.append((name, read_map(path)))
         except Exception as error:
@@ -43,7 +40,7 @@ def campaign_maps(directory: str) -> list[tuple[str, object]]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--maps", default="maps/blood")
+    parser.add_argument("--maps", help="corpus root or a directory of maps (default: the local corpus)")
     parser.add_argument("--against", help="judge this map by the measured grades")
     parser.add_argument("--no-write", action="store_true")
     args = parser.parse_args(argv)
@@ -55,7 +52,7 @@ def main(argv: list[str] | None = None) -> int:
             print("   ", line)
         return 1
 
-    maps = campaign_maps(args.maps)
+    maps = campaign_disks(args.maps)
     if not maps:
         print("no campaign maps")
         return 1

@@ -96,6 +96,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from .planar_geom import same_ground, loops_equivalent, polygon_relation
+from .sector_geom import sector_loops
 
 #: build/include/buildtypes.h:154. The only flag that cuts the flood.
 CSTAT_WALL_1WAY = 1 << 5
@@ -188,35 +189,6 @@ class Verdict:
 # ---------------------------------------------------------------------------
 # the graph
 # ---------------------------------------------------------------------------
-
-def sector_loops(disk: Any, sector_id: int) -> list[list[tuple[int, int]]]:
-    """One sector's wall run split into closed loops, following `point2`.
-
-    Inner loops come out separately, which is what stops a carved hole from
-    reading as an overlap with whatever fills it.
-    """
-    fields = disk.sectors[sector_id].fields
-    first, count = int(fields["wall_ptr"]), int(fields["wall_count"])
-    last = min(first + count, len(disk.walls))
-    loops: list[list[tuple[int, int]]] = []
-    seen: set[int] = set()
-    cursor = first
-    while cursor < last:
-        if cursor in seen:
-            cursor += 1
-            continue
-        loop: list[tuple[int, int]] = []
-        walk = cursor
-        while walk not in seen and first <= walk < last:
-            seen.add(walk)
-            wall = disk.walls[walk].fields
-            loop.append((int(wall["x"]), int(wall["y"])))
-            walk = int(wall["point2"])
-        if len(loop) >= 3:
-            loops.append(loop)
-        cursor += 1
-    return loops
-
 
 def flood_graph(disk: Any) -> tuple[list[set[int]], list[set[int]]]:
     """The directed graph the renderer's traversal condition allows, and its reverse.

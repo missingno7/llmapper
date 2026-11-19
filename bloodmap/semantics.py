@@ -1,3 +1,5 @@
+"""Semantic observations over `LevelIR`: stable references, the trigger graph, and the lowering to `SemanticLevel`."""
+
 from __future__ import annotations
 
 from collections import Counter, defaultdict

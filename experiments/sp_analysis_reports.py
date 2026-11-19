@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from bloodmap.format import read_map
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 from bloodmap.placement import mine_attachments
 from bloodmap.progression import analyze_progression, classify_mechanisms, compact_progression_report, completion_witness
 from bloodmap.sp_understand import (

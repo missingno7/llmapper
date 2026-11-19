@@ -1,3 +1,5 @@
+"""The `python -m bloodmap` command line: one subcommand per library capability."""
+
 from __future__ import annotations
 
 import argparse
@@ -29,10 +31,13 @@ from .understanding import understand_map
 from .geometry_audit import (
     audit_geometry, audit_markdown, audit_svg, validate_authored_level,
 )
+from .corpus import (
+    CORPUS_VIEWS, MODES, POPULATIONS, TIERS, corpus_map_path,
+    is_structured_corpus, named_maps,
+)
 from .patterns import (
-    CORPUS_VIEWS, MODES, POPULATIONS, TIERS, PatternError, corpus_map_path,
-    inspect_pattern, load_catalog, mine_directory, pattern_aware_understanding,
-    query_catalog,
+    PatternError, inspect_pattern, load_catalog, mine_directory,
+    pattern_aware_understanding, query_catalog,
 )
 from .placement import PlacementError, mine_attachments, validate_attachments
 from .progression import ProgressionError, analyze_progression, classify_mechanisms, completion_witness
@@ -91,9 +96,19 @@ def _write_text(path: str | None, value: str) -> None:
 
 
 def _map_files(directory: Path, pattern: str | None = None, *, recursive: bool = False) -> list[Path]:
+    """The MAP files a directory argument means.
+
+    A Blood corpus root keeps no maps at its top level: it means its named
+    maps (campaign, BloodBath, curated, conversions), which is what the same
+    argument meant while the corpus was one flat directory. `recursive` walks
+    everything instead, the bulk community maps included.
+    """
     from fnmatch import fnmatch
-    walk = directory.rglob("*") if recursive else directory.iterdir()
-    files = sorted(path for path in walk if path.is_file() and path.suffix.lower() == ".map")
+    if not recursive and is_structured_corpus(directory):
+        files = named_maps(directory)
+    else:
+        walk = directory.rglob("*") if recursive else directory.iterdir()
+        files = sorted(path for path in walk if path.is_file() and path.suffix.lower() == ".map")
     if pattern:
         files = [path for path in files if fnmatch(path.name, pattern)]
     return files
@@ -149,7 +164,7 @@ def _inventory(
 def cmd_corpus(args: argparse.Namespace) -> int:
     directory = Path(args.directory)
     if args.population or args.view:
-        from .patterns import list_corpus_maps
+        from .corpus import list_corpus_maps
 
         paths = [item.path for item in list_corpus_maps(
             directory, population=args.population, view=args.view, attach_tiers=False)]
@@ -202,7 +217,7 @@ def cmd_corpus_tier(args: argparse.Namespace) -> int:
 
 def cmd_corpus_manifest(args: argparse.Namespace) -> int:
     """Record the reorganized corpus layout, populations, views and tiers."""
-    from .patterns import build_corpus_manifest
+    from .corpus import build_corpus_manifest
 
     manifest = build_corpus_manifest(args.directory)
     _write_text(args.output, _json(manifest))
@@ -221,7 +236,7 @@ def cmd_corpus_manifest(args: argparse.Namespace) -> int:
 
 def cmd_corpus_health(args: argparse.Namespace) -> int:
     """Fail-closed parse/losslessness gate over one population or view."""
-    from .patterns import list_corpus_maps
+    from .corpus import list_corpus_maps
 
     selection = list_corpus_maps(
         args.maps, population=args.population, view=args.view, mode=args.mode, tier=args.tier,
@@ -458,6 +473,12 @@ def cmd_roundtrip_all(args: argparse.Namespace) -> int:
         print(_json(summary), end="")
     else:
         print(f"{summary['passed']}/{summary['maps']} maps passed parse, byte roundtrip, IR roundtrip, and validation")
+    if not results:
+        # A gate that examined nothing has not passed. `roundtrip-all maps/blood`
+        # printed "0/0 maps passed" and exited 0 for as long as the corpus root
+        # held only provenance directories.
+        print(f"no MAP files under {args.directory}", file=sys.stderr)
+        return 1
     return 1 if failed else 0
 
 
@@ -906,7 +927,7 @@ def cmd_understand(args: argparse.Namespace) -> int:
         raise BloodMapError("understand currently bundles Blood sensors only")
     disk = read_map(args.map)
     if args.patterns:
-        from .patterns import classify_map_population
+        from .corpus import classify_map_population
         payload = pattern_aware_understanding(
             disk, load_catalog(args.patterns),
             map_id=Path(args.map).name,
@@ -1023,7 +1044,7 @@ def cmd_anchor_contrast(args: argparse.Namespace) -> int:
 def cmd_relation_dump(args: argparse.Namespace) -> int:
     """Object-scale relations in one local neighborhood."""
     from .relations import extract_relations
-    from .patterns import classify_map_population
+    from .corpus import classify_map_population
 
     path = Path(args.map)
     document = extract_relations(
@@ -1163,36 +1184,6 @@ def cmd_validate_authored(args: argparse.Namespace) -> int:
     return 1 if errors else 0
 
 
-def cmd_design_bb2_v3(args: argparse.Namespace) -> int:
-    from experiments.bb2_reconstruction_v3 import write_bb2_reconstruction_v3
-    compiled = write_bb2_reconstruction_v3(map_path=args.output, report_path=args.report)
-    print(
-        f"WROTE {args.output}: v3 {len(compiled.level.sectors)} sectors, "
-        f"{len(compiled.level.walls)} walls, {len(compiled.level.sprites)} sprites"
-    )
-    return 0
-
-
-def cmd_design_sp_v1(args: argparse.Namespace) -> int:
-    from experiments.sp_progression_v1 import write_sp_progression_v1
-    compiled = write_sp_progression_v1(map_path=args.output, report_path=args.report)
-    print(
-        f"WROTE {args.output}: SP-v1 {len(compiled.level.sectors)} sectors, "
-        f"{len(compiled.level.walls)} walls, {len(compiled.level.sprites)} sprites"
-    )
-    return 0
-
-
-def cmd_design_sp_v2(args: argparse.Namespace) -> int:
-    from experiments.sp_progression_v2 import write_sp_progression_v2
-    compiled = write_sp_progression_v2(map_path=args.output, report_path=args.report)
-    print(
-        f"WROTE {args.output}: SP-v2 {len(compiled.level.sectors)} sectors, "
-        f"{len(compiled.level.walls)} walls, {len(compiled.level.sprites)} sprites"
-    )
-    return 0
-
-
 def cmd_sprite_context_mine(args: argparse.Namespace) -> int:
     from .assets import mine_sprite_context
     payload = mine_sprite_context(args.maps, population=args.population)
@@ -1234,24 +1225,6 @@ def cmd_door_query(args: argparse.Namespace) -> int:
             f"{item.get('family')} key={item.get('key')} faces={item.get('distinct_approach_faces')}"
         )
     return 0
-
-
-def cmd_door_audit(args: argparse.Namespace) -> int:
-    if args.blueprint == "sp-v1":
-        from experiments.sp_progression_v1 import make_layout as make
-    elif args.blueprint == "sp-v2":
-        from experiments.sp_progression_v2 import make_layout as make
-    else:
-        raise DoorError(f"unknown blueprint {args.blueprint}")
-    compiled = make().compile()
-    audit = authored_gate_audit(compiled)
-    affordance = door_affordance_report(compiled)
-    payload = {"audit": audit, "affordance": affordance}
-    _write_text(args.json, _json(payload))
-    if args.markdown:
-        _write_text(args.markdown, gate_audit_markdown(audit))
-    print(f"{args.blueprint}: {audit['gate_count']} gates affordance_ok={affordance['ok']}")
-    return 0 if affordance["ok"] or args.blueprint == "sp-v1" else 1
 
 
 def cmd_inspect_space(args: argparse.Namespace) -> int:
@@ -2176,18 +2149,6 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("map")
     p.add_argument("--json", action="store_true")
     p.set_defaults(func=cmd_validate_authored)
-    p = sub.add_parser("design-bb2-v3", help="compile the replayable BB2 reconstruction v3 blueprint")
-    p.add_argument("-o", "--output", default="work/BB2-semantic-reconstruction-v3.MAP")
-    p.add_argument("--report", default="reports/BB2-v3-build-report.json")
-    p.set_defaults(func=cmd_design_bb2_v3)
-    p = sub.add_parser("design-sp-v1", help="compile the independent SP progression v1 blueprint")
-    p.add_argument("-o", "--output", default="work/SP-progression-v1.MAP")
-    p.add_argument("--report", default="reports/SP-progression-v1-build.json")
-    p.set_defaults(func=cmd_design_sp_v1)
-    p = sub.add_parser("design-sp-v2", help="compile the persistent SP progression v2 blueprint")
-    p.add_argument("-o", "--output", default="work/SP-progression-v2.MAP")
-    p.add_argument("--report", default="reports/SP-v2-build.json")
-    p.set_defaults(func=cmd_design_sp_v2)
     p = sub.add_parser("door-mine", help="mine original-map door/gate implementation families")
     p.add_argument("--maps", default="maps/blood")
     p.add_argument("--population", default="blood-campaign", choices=tuple(POPULATIONS))
@@ -2210,11 +2171,6 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--limit", type=int, default=8)
     p.add_argument("-o", "--output")
     p.set_defaults(func=cmd_door_query)
-    p = sub.add_parser("door-audit", help="forensic affordance audit of an authored SP blueprint")
-    p.add_argument("--blueprint", default="sp-v1", choices=("sp-v1", "sp-v2"))
-    p.add_argument("--json", required=True)
-    p.add_argument("--markdown")
-    p.set_defaults(func=cmd_door_audit)
     p = sub.add_parser("channels", help="derive the Blood TX/RX graph")
     p.add_argument("map"); p.add_argument("--channel", type=int); p.set_defaults(func=cmd_channels)
     p = sub.add_parser("render", help="render a deterministic top-down SVG")

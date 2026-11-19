@@ -95,12 +95,12 @@ class ApronTests(unittest.TestCase):
 
 class ApertureAuditTests(unittest.TestCase):
     def test_a_step_between_two_skies_is_not_a_lintel(self):
-        from tools.mine_apertures import observe
+        from bloodmap.aperture import observe_openings
 
         level, _strip = _street_with_a_mass()
         disk = level.compile().compile().level.to_disk_map()
 
-        rows = observe("fixture", disk)
+        rows = observe_openings("fixture", disk)
         self.assertTrue(rows)
         self.assertNotIn("lintel", {row["kind"] for row in rows})
         self.assertEqual({row["lintel_player_heights"] for row in rows}, {0.0})

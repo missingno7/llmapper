@@ -47,7 +47,7 @@ def _art():
 
 def _e3m1():
     from bloodmap.format import read_map
-    from bloodmap.patterns import list_corpus_maps
+    from bloodmap.corpus import list_corpus_maps
 
     found = [item for item in list_corpus_maps(population="blood-campaign")
              if item.path.stem.upper() == "E3M1"]

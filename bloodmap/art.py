@@ -1,3 +1,5 @@
+"""Build ART tile archives and palettes: sizes, pixels, appearance features and nearest-tile matching."""
+
 from __future__ import annotations
 
 import math

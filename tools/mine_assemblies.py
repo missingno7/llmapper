@@ -26,16 +26,14 @@ from __future__ import annotations
 import argparse
 import json
 import pathlib
-import re
 import statistics
 from collections import Counter, defaultdict
 from typing import Any
 
 from bloodmap.assembly import Assembly, assembly_around
 from bloodmap.format import read_map
-from bloodmap.patterns import list_corpus_maps
+from bloodmap.corpus import campaign_maps, list_corpus_maps
 
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 
 #: Fields that are addresses or runtime scratch: never comparable across maps.
 IGNORED = frozenset({
@@ -75,12 +73,11 @@ def instances(directory: str, root_type: int, *, campaign_only: bool = True) -> 
     # These used to be two globs over a flat corpus. The corpus is now a
     # registry of provenance directories, so ask it for the population the
     # docstring above names: the shipped episodes, or the mechanism samples.
-    population = "blood-campaign" if campaign_only else "mechanism-tutorial"
-    for path in sorted(str(item.path) for item in
-                       list_corpus_maps(directory or None, population=population)):
+    paths = (campaign_maps(directory or None) if campaign_only
+             else [item.path for item in list_corpus_maps(
+                 directory or None, population="mechanism-tutorial")])
+    for path in sorted(str(path) for path in paths):
         name = pathlib.Path(path).stem.upper()
-        if campaign_only and not CAMPAIGN.match(name):
-            continue
         try:
             disk = read_map(path)
         except Exception:

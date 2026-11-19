@@ -2,7 +2,7 @@
 
 .. code-block:: bash
 
-    python -m tools.sweep_views maps/blood/BB4.MAP -o work/sweep/bb4
+    python -m tools.sweep_views maps/blood/campaign/multiplayer/BB4.MAP -o work/sweep/bb4
 
 The overlap-visibility validator can *prove* two sectors are never co-rendered,
 but where it cannot prove it the answer is not "unsafe" -- it is "not proved".

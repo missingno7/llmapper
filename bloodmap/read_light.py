@@ -41,6 +41,7 @@ from collections import Counter, defaultdict
 from typing import Any, Sequence
 
 from .light_field import LEVEL_FLOOR, MAX_LEVELS, STEP, STEP_ENVELOPE
+from .model import record_fields as _face, record_extra as _extra
 from .read_joins import adjacency, street_network
 from .texture_frame import sector_index
 
@@ -56,10 +57,6 @@ CLUSTER_DEGREES = 8.0
 UNITS_PER_TURN = 2048
 
 
-def _face(item: Any) -> Any:
-    return item["fields"] if isinstance(item, dict) else item.fields
-
-
 def _bearing(p: tuple[int, int], q: tuple[int, int]) -> float:
     return math.degrees(math.atan2(q[1] - p[1], q[0] - p[0])) % 360.0
 
@@ -70,13 +67,6 @@ def _axis(bearing: float) -> float:
 
 def _to_units(degrees: float) -> int:
     return int(round((degrees % 360.0) * UNITS_PER_TURN / 360.0))
-
-
-def _extra(item: Any) -> dict[str, Any] | None:
-    extra = item["blood"] if isinstance(item, dict) else getattr(item, "extra", None)
-    if extra is None:
-        return None
-    return extra["fields"] if isinstance(extra, dict) else extra.fields
 
 
 def has_a_light_wave(sector: Any) -> bool:
@@ -524,7 +514,8 @@ def shade_step_envelope(paths: Iterable[Any] | None = None, *,
     """
     import statistics
 
-    from .patterns import list_original_maps, read_map
+    from .corpus import list_original_maps
+    from .format import read_map
     from .texture_frame import sector_index
 
     if envelope is None:

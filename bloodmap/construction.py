@@ -1,3 +1,9 @@
+"""`LevelBuilder`: direct, deterministic construction of a `LevelIR`, sector by sector in absolute coordinates.
+
+The low-level constructor the conversion profile and small fixtures use. A level
+meant to be read and edited is a `levelprog.LevelProgram` instead.
+"""
+
 from __future__ import annotations
 
 import copy

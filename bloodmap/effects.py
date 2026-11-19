@@ -40,6 +40,7 @@ from .doors import (
     PLAYER_HEIGHT, ROTATE_TYPES, SLIDE_TYPES, Z_MOTION_TYPES,
     _wall_owners, observe_motion_sector,
 )
+from .model import record_extra
 from .player_space import PLAYER_PROFILES
 
 SCHEMA = "llmapper.blood-effects"
@@ -797,8 +798,8 @@ def _clip_shade(value: int) -> int:
 
 
 def _x(item: Any) -> dict[str, Any]:
-    extra = getattr(item, "extra", None)
-    return dict(extra.fields) if extra is not None else {}
+    extra = record_extra(item)
+    return {} if extra is None else dict(extra)
 
 
 def shade_at(disk: Any, sector_id: int, busy: int) -> dict[str, Any]:

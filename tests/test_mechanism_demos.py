@@ -57,7 +57,7 @@ class SwitchWiringTest(unittest.TestCase):
     def test_the_campaign_almost_never_ships_a_silent_sender(self):
         from bloodmap.format import read_map
         from bloodmap.motion import silent_transmitters
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         entries = list(list_corpus_maps(population="blood-campaign"))[:8]
         if not entries:

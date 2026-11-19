@@ -7,10 +7,10 @@ the facts that were previously found one at a time by playing the level.
 
 from __future__ import annotations
 
-import glob
-import re
 import unittest
 from pathlib import Path
+
+from tests.helpers import campaign_maps
 
 ROOT = Path(__file__).resolve().parent.parent
 #: The campaign population directory (corpus reorganized 2026-08-31).
@@ -19,10 +19,7 @@ CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v
 
 
 def have_campaign() -> bool:
-    return bool([
-        p for p in glob.glob(str(MAPS / "*.MAP"))
-        if re.match(r"^E[1-46]M[1-9]$", Path(p).stem.upper())
-    ])
+    return bool(campaign_maps())
 
 
 class RoleTests(unittest.TestCase):

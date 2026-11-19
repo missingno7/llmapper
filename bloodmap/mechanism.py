@@ -24,6 +24,7 @@ from math import atan2, hypot, pi
 from typing import Any
 
 from . import motion
+from .model import record_fields as _fields
 from .planar_layout import PlanarLayout
 from .texture_align import natural_x_repeat
 from .player_space import PLAYER_PROFILES
@@ -73,10 +74,6 @@ POSE_DRAWN_OPEN = (0, 0)
 
 class MechanismError(ValueError):
     pass
-
-
-def _fields(item: Any) -> dict[str, Any]:
-    return item["fields"] if isinstance(item, dict) else item.fields
 
 
 def _direction(a: tuple[int, int], b: tuple[int, int]) -> int:
@@ -653,7 +650,7 @@ CURTAIN_SEAM = 256
 CURTAIN_DEPTH = 128
 CURTAIN_SHOULDER = 64
 #: One player width; the opening a body needs.
-BODY_WIDTH = 384
+BODY_WIDTH = PLAYER_PROFILES["blood"].body_width
 
 
 def _sign(value: int) -> int:

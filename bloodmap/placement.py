@@ -15,9 +15,10 @@ from typing import Any
 from .blood_types import classify
 from .format import read_map
 from .model import DiskMap
-from .patterns import classify_map_population, list_original_maps
+from .corpus import classify_map_population, list_original_maps
 from .planar_geom import point_in_loop
 from .player_space import PLAYER_PROFILES
+from .sector_geom import wall_segment as _wall_segment
 
 
 SCHEMA = "llmapper.object-placement"
@@ -157,15 +158,6 @@ def repeat_to_fit(floor_z: int, ceiling_z: int, tile_height: int, *,
 
 def _id(ref: str) -> int:
     return int(str(ref).split(":", 1)[1])
-
-
-def _wall_segment(disk: DiskMap, wall_id: int) -> tuple[tuple[int, int], tuple[int, int]]:
-    wall = disk.walls[wall_id]
-    nxt = disk.walls[int(wall.fields["point2"])]
-    return (
-        (int(wall.fields["x"]), int(wall.fields["y"])),
-        (int(nxt.fields["x"]), int(nxt.fields["y"])),
-    )
 
 
 def point_segment_distance(px: float, py: float, ax: float, ay: float, bx: float, by: float) -> tuple[float, float]:

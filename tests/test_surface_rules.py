@@ -34,15 +34,14 @@ this one already used.
 
 from __future__ import annotations
 
-import glob
-import re
 import statistics
 import unittest
 from pathlib import Path
 
+from bloodmap.sector_geom import wall_owners
+from tests.helpers import campaign_maps
+
 ROOT = Path(__file__).resolve().parent.parent
-#: The campaign population directory (corpus reorganized 2026-08-31).
-MAPS = ROOT / "maps" / "blood" / "campaign"
 ART = ROOT / "reference" / "blood"
 CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP"
 
@@ -51,24 +50,8 @@ CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v
 STEPPABLE = 0.4 * 5632
 
 
-def campaign_maps() -> list[str]:
-    return [
-        path for path in sorted(glob.glob(str(MAPS / "*.MAP")))
-        if re.match(r"^E[1-46]M[1-9]$", Path(path).stem.upper())
-    ]
-
-
 def power_of_two(value: int) -> bool:
     return value > 0 and (value & (value - 1)) == 0
-
-
-def wall_owners(disk) -> dict[int, int]:
-    owner = {}
-    for index, sector in enumerate(disk.sectors):
-        start = int(sector.fields["wall_ptr"])
-        for wall in range(start, start + int(sector.fields["wall_count"])):
-            owner[wall] = index
-    return owner
 
 
 def flat_offenders(disk, art) -> list[tuple[int, str, int]]:

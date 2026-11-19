@@ -36,6 +36,7 @@ import pathlib
 import statistics
 import sys
 from typing import Any
+from bloodmap.player_space import PLAYER_PROFILES
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
@@ -49,7 +50,7 @@ TOWN_MAPS = (
     "maps/blood/curated/DWE3M10.MAP",
 )
 ALPHABET = frozenset(range(3808, 3834))
-BODY = 16960
+BODY = PLAYER_PROFILES["blood"].standing_height
 
 
 def is_decoration(fields: Any) -> bool:

@@ -28,15 +28,13 @@ it is seven, and all seven are real.
 from __future__ import annotations
 
 import argparse
-import glob
 import pathlib
-import re
 from collections import Counter, defaultdict
 from typing import Any
 
+from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map
 
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 
 #: Fields holding the index of another object. Their values are addresses, not
 #: intent, and are only meaningful within the map that wrote them.
@@ -55,11 +53,9 @@ RUNTIME_FIELDS = frozenset({
 POSE_TYPES = frozenset({600, 601, 602, 613, 614, 615, 616, 617, 618})
 
 
-def campaign_distribution(directory: str) -> dict[tuple[str, int, str], Counter]:
+def campaign_distribution(directory: str | None) -> dict[tuple[str, int, str], Counter]:
     dist: dict[tuple[str, int, str], Counter] = defaultdict(Counter)
-    for path in sorted(glob.glob(str(pathlib.Path(directory) / "*.MAP"))):
-        if not CAMPAIGN.match(pathlib.Path(path).stem.upper()):
-            continue
+    for path in campaign_maps(directory):
         try:
             disk = read_map(path)
         except Exception:
@@ -117,12 +113,10 @@ def unattested(disk: Any, dist: dict[tuple[str, int, str], Counter],
     return out
 
 
-def statnum_distribution(directory: str) -> dict[int, Counter]:
+def statnum_distribution(directory: str | None) -> dict[int, Counter]:
     """type -> how the campaign distributes that type across statnums."""
     dist: dict[int, Counter] = defaultdict(Counter)
-    for path in sorted(glob.glob(str(pathlib.Path(directory) / "*.MAP"))):
-        if not CAMPAIGN.match(pathlib.Path(path).stem.upper()):
-            continue
+    for path in campaign_maps(directory):
         try:
             disk = read_map(path)
         except Exception:
@@ -170,7 +164,7 @@ def misfiled_sprites(disk: Any, dist: dict[int, Counter]) -> list[dict[str, Any]
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("map")
-    parser.add_argument("--corpus", default="maps/blood")
+    parser.add_argument("--corpus", help="corpus root or a directory of maps (default: the local corpus)")
     parser.add_argument("--rare-share", type=float, default=0.0,
                         help="also report values this rare or rarer (0 = never used)")
     args = parser.parse_args(argv)

@@ -244,7 +244,7 @@ class ARoadHasAnEnd(unittest.TestCase):
         # ABSOLUTE, off the map: floor 379, sky ceiling 3491 parallaxed, and
         # blocking faces. Read rather than trusted.
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
         from bloodmap.street import END_WALL_FLOOR_TILE
 
         found = [e for e in list_corpus_maps(population="blood-campaign")

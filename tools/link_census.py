@@ -37,7 +37,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from bloodmap.effects import (                                   # noqa: E402
     LINK, LINK_DRIVEN_MOVER_TYPES, receiver_index, transmission)
 from bloodmap.format import read_map                             # noqa: E402
-from bloodmap.patterns import list_corpus_maps                   # noqa: E402
+from bloodmap.corpus import list_corpus_maps  # noqa: E402
 
 #: The sector types that are a mechanism at all, for the denominator.
 MECHANISM_TYPES = (600, 602, 612, 613, 614, 615, 616, 617, 618, 619)

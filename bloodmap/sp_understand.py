@@ -13,7 +13,8 @@ from typing import Any
 from .blood_types import classify
 from .format import read_map
 from .model import DiskMap
-from .patterns import classify_map_population, list_original_maps, observe_vertical
+from .corpus import classify_map_population, list_original_maps
+from .patterns import observe_vertical
 from .placement import observe_sprite_attachment, SWITCH_TYPES
 from .player_space import PLAYER_PROFILES
 from .progression import (

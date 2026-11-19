@@ -49,6 +49,8 @@ from .joins import (
     B_ABOVE, END_WALL, EQUAL, HORIZON, JoinError, PAVEMENT, ROAD, SEA, SHORE,
     TILE_CLASSES, height_relation, rule,
 )
+from .model import record_fields as _face, record_extra as _extra
+from .player_space import PLAYER_PROFILES
 from .texture_frame import sector_index
 
 #: Reader-only kinds. The writer's table has no rows for these and none are
@@ -82,34 +84,17 @@ FACADE = "facade"
 #: `interior|interior`, which say nothing about a way in.
 OPENING = "opening"
 
-#: `Blood`'s step-up limit. A body climbs 4096 without jumping, so an outdoor
-#: floor more than that above every neighbour is not ground -- it is a top.
-AUTOSTEP = 4096
+#: The design step, from the player profile: the rise two floors may differ by
+#: and still be one walking level. An outdoor floor more than this above every
+#: neighbour is not ground -- it is a top. This is the threshold the readers
+#: classify with, not the engine's clip: a walking body actually clears about
+#: 6656 (`effects.STEP_UP`, from `cliptestsector`), so a rise between the two
+#: can be climbed and still was not built as a step.
+AUTOSTEP = PLAYER_PROFILES["blood"].max_step
 
 
 class KindReadError(ValueError):
     """The map's surface kinds cannot be read with the evidence available."""
-
-
-def _face(item: Any) -> Any:
-    return item["fields"] if isinstance(item, dict) else item.fields
-
-
-def _extra(item: Any) -> dict[str, Any] | None:
-    """The Blood extra of a sector, wall or sprite, however it is carried.
-
-    `assembly._x`'s accessor, repeated here because `joins.is_water` does not
-    have it: it reads `getattr(sector, "extra", None)`, which is `None` for
-    every `LevelIR` sector (they carry the extra under the key `"blood"`), so
-    its panning clause never runs on a decompiled level and only its palette
-    clause does. On DWE3M10 -- the map the shore and sea rows were mined from
-    -- that loses 4 of its 22 panning sectors (393-396, palette 0). Reported,
-    not patched: `joins.py` is the writer.
-    """
-    extra = item["blood"] if isinstance(item, dict) else getattr(item, "extra", None)
-    if extra is None:
-        return None
-    return extra["fields"] if isinstance(extra, dict) else extra.fields
 
 
 def reads_as_water(sector: Any) -> bool:

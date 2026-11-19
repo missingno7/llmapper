@@ -52,7 +52,7 @@ class TheStepIsMeasuredNotInherited(unittest.TestCase):
 
         from bloodmap.format import read_map
         from bloodmap.light_field import STEP, STEP_ENVELOPE
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
         from bloodmap.texture_frame import sector_index
 
         entries = list(list_corpus_maps(population="blood-campaign"))
@@ -96,7 +96,7 @@ class TheStepIsMeasuredNotInherited(unittest.TestCase):
         from collections import Counter
 
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
         from bloodmap.texture_frame import sector_index
 
         entries = list(list_corpus_maps(population="blood-campaign"))

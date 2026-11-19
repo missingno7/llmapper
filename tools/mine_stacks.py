@@ -38,7 +38,6 @@ in plan (parked apart, or genuinely stacked), and how far apart they sit.
 from __future__ import annotations
 
 import argparse
-import glob
 import json
 import math
 import pathlib
@@ -47,15 +46,16 @@ import statistics
 from collections import Counter, defaultdict
 from typing import Any
 
+from bloodmap.corpus import campaign_maps, list_corpus_maps
 from bloodmap.format import read_map
+from bloodmap.player_space import PLAYER_PROFILES
 
 SCHEMA = "llmapper.blood-stacks"
 SCHEMA_VERSION = 1
 
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 DEATHWISH = re.compile(r"^DWE1M\d+$")
 
-PLAYER_WIDTH = 384.0
+PLAYER_WIDTH = float(PLAYER_PROFILES["blood"].body_width)
 
 #: type -> (name, partner type, "upper" or "lower")
 MARKERS = {
@@ -220,18 +220,20 @@ def summarise(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--maps", default="maps/blood")
+    parser.add_argument("--maps", help="corpus root or a directory of maps (default: the local corpus)")
     parser.add_argument("--include-deathwish", action="store_true")
     parser.add_argument("-o", "--output")
     args = parser.parse_args(argv)
 
     rows: list[dict[str, Any]] = []
     seen = 0
-    for path in sorted(glob.glob(str(pathlib.Path(args.maps) / "*.MAP"))):
-        name = pathlib.Path(path).stem.upper()
-        ours = CAMPAIGN.match(name) or (args.include_deathwish and DEATHWISH.match(name))
-        if not ours:
-            continue
+    paths = campaign_maps(args.maps, required=True)
+    if args.include_deathwish:
+        paths += [item.path for item in list_corpus_maps(
+                      args.maps, population="community-curated", attach_tiers=False)
+                  if DEATHWISH.match(item.path.stem.upper())]
+    for path in sorted(paths, key=lambda item: item.stem.upper()):
+        name = path.stem.upper()
         try:
             rows.extend(observe(name, read_map(path)))
         except Exception as error:

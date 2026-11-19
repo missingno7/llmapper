@@ -14,7 +14,7 @@ from bloodmap.switches import (
 )
 
 try:
-    from bloodmap.patterns import list_corpus_maps
+    from bloodmap.corpus import list_corpus_maps
     CORPUS = bool(list_corpus_maps(population="blood-campaign"))
 except Exception:
     CORPUS = False

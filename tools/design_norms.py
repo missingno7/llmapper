@@ -20,17 +20,16 @@ is to hand back a list of specific, separable things to look at.
 from __future__ import annotations
 
 import argparse
-import glob
 import json
 import pathlib
 import re
 import statistics
 from typing import Any
 
+from bloodmap.corpus import CAMPAIGN_NAME, named_maps
 from bloodmap.format import read_map
 from bloodmap.level_profile import flatten, level_profile
 
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 
 #: Metrics where being *below* the campaign range is the interesting direction
 #: and being above is not a defect (a level may legitimately be huge).
@@ -82,8 +81,8 @@ SIZE_DEPENDENT = {
 def corpus_profiles(directory: pathlib.Path, *, pattern: re.Pattern[str]) -> list[dict[str, Any]]:
     profiles = []
     seen: set[str] = set()
-    for path in sorted(glob.glob(str(directory / "*.MAP"))):
-        name = pathlib.Path(path).stem.upper()
+    for path in named_maps(directory):
+        name = path.stem.upper()
         if name in seen or not pattern.match(name):
             continue
         seen.add(name)
@@ -191,7 +190,7 @@ def compare(profile: dict[str, Any], norms: dict[str, Any]) -> dict[str, Any]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--corpus", help="directory of Blood MAPs to build norms from")
-    parser.add_argument("--pattern", default=CAMPAIGN.pattern,
+    parser.add_argument("--pattern", default=CAMPAIGN_NAME.pattern,
                         help="regex a map stem must match to count as corpus")
     parser.add_argument("--against", help="a candidate MAP to compare")
     parser.add_argument("--norms", help="an existing norms document to compare against")

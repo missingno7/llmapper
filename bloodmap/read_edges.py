@@ -36,6 +36,7 @@ from collections import Counter, defaultdict
 from typing import Any, Sequence
 
 from .joins import CHASM_TILES
+from .model import record_fields as _face
 from .read_joins import (
     AUTOSTEP, FACADE, INTERIOR, MECHANISM_AT_REST, OPENING, SOLID, adjacency,
     reads_as_water,
@@ -58,10 +59,6 @@ GATE = "gate"
 ENCLOSURE_BACKDROP = "enclosure_backdrop"
 INTERIOR_DOORWAY = "interior_doorway"
 UNCLASSIFIED = "unclassified"
-
-
-def _face(item: Any) -> Any:
-    return item["fields"] if isinstance(item, dict) else item.fields
 
 
 #: The kinds that ARE ground: what a body stands on. An end wall is inside

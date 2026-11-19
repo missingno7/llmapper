@@ -1,6 +1,6 @@
 """Build a searchable decompiled-level project from one original MAP.
 
-    python -m tools.decompile_project maps/blood/E2M3.MAP \\
+    python -m tools.decompile_project maps/blood/campaign/E2M3.MAP \\
         -o projects/e2m3-decompiled --art reference/blood
 
 The exact ``LevelIR`` stays authoritative and is deliberately *not* written
@@ -25,11 +25,12 @@ from typing import Any
 from bloodmap.decompiler import decompile_level
 from bloodmap.format import read_map
 from bloodmap.structures import detect_structures
+from bloodmap.player_space import PLAYER_PROFILES
 
 SCHEMA = "llmapper.decompiled-project"
 SCHEMA_VERSION = 1
 
-PLAYER_WIDTH = 384
+PLAYER_WIDTH = PLAYER_PROFILES["blood"].body_width
 
 
 def _top(counts: dict[str, int], limit: int = 4) -> list[dict[str, Any]]:

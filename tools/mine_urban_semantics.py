@@ -41,7 +41,7 @@ from typing import Any
 
 import numpy as np
 
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 
 from tools.mine_city_norms import (
     CELL, MapGeom, StreetRaster, _full_walk_adjacency, doorways,

@@ -32,36 +32,26 @@ every repeat.
 from __future__ import annotations
 
 import argparse
-import glob
 import json
 import pathlib
-import re
 import statistics
 from collections import Counter, defaultdict
 from typing import Any
 
+from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map
 from bloodmap.player_space import PLAYER_PROFILES
 from bloodmap.reachability import design_sectors
 from bloodmap.rules import art_sizes
+from bloodmap.sector_geom import wall_owners
 
 SCHEMA = "llmapper.blood-texture-fit"
 SCHEMA_VERSION = 1
 
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 PLAYER_HEIGHT = PLAYER_PROFILES["blood"].standing_height
 
 #: Below this a band is a kerb or a step riser, not a surface anybody reads.
 MIN_BAND = 2048
-
-
-def wall_owners(disk: Any) -> dict[int, int]:
-    owner: dict[int, int] = {}
-    for index, sector in enumerate(disk.sectors):
-        start = int(sector.fields["wall_ptr"])
-        for wall in range(start, start + int(sector.fields["wall_count"])):
-            owner[wall] = index
-    return owner
 
 
 def observe(name: str, disk: Any, sizes: dict[int, tuple[int, int]]) -> list[dict[str, Any]]:
@@ -162,7 +152,7 @@ def summarise(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--maps", default="maps/blood")
+    parser.add_argument("--maps", help="corpus root or a directory of maps (default: the local corpus)")
     parser.add_argument("-o", "--output")
     args = parser.parse_args(argv)
 
@@ -173,10 +163,8 @@ def main(argv: list[str] | None = None) -> int:
 
     rows: list[dict[str, Any]] = []
     seen = 0
-    for path in sorted(glob.glob(str(pathlib.Path(args.maps) / "*.MAP"))):
-        name = pathlib.Path(path).stem.upper()
-        if not CAMPAIGN.match(name):
-            continue
+    for path in campaign_maps(args.maps, required=True):
+        name = path.stem.upper()
         try:
             rows.extend(observe(name, read_map(path), sizes))
         except Exception as error:

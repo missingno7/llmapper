@@ -5,7 +5,7 @@ Two ways in, one packet out:
 .. code-block:: bash
 
     python -m tools.observe program experiments.nested_authoring -o work/obs-nested
-    python -m tools.observe decompiled maps/blood/E2M3.MAP \
+    python -m tools.observe decompiled maps/blood/campaign/E2M3.MAP \
         --hierarchy projects/e2m3-decompiled/hierarchy.json -o work/obs-e2m3
 
 ``program`` takes a module with ``build_level() -> LevelProgram``, compiles it,

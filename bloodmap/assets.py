@@ -19,7 +19,7 @@ from .doors import (
     SIGNIFIER_RADIUS_PW,
 )
 from .format import read_map
-from .patterns import classify_map_population, list_original_maps
+from .corpus import classify_map_population, list_original_maps
 from .placement import PlacementError, observe_sprite_attachment
 from .player_space import PLAYER_PROFILES
 

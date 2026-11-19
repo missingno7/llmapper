@@ -44,6 +44,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Any, Iterable
+from .model import record_extra
 
 # --- surface kinds ---------------------------------------------------------
 
@@ -385,11 +386,8 @@ def _x(item: Any) -> dict[str, Any]:
     panning sectors, the ones at palette 0 whose only evidence is that they
     move.
     """
-    extra = item["blood"] if isinstance(item, dict) else getattr(
-        item, "extra", None)
-    if extra is None:
-        return {}
-    return dict(extra["fields"] if isinstance(extra, dict) else extra.fields)
+    extra = record_extra(item)
+    return {} if extra is None else dict(extra)
 
 
 def is_water(sector: Any) -> bool:

@@ -10,22 +10,22 @@ The denominator is the supervisor's inventory and the reader reproduces it:
 616 x1, 617 x6, 618 x1; 18 walls of type 511; 26 sectors with a tx, 54 with an
 rx, 4 key-locked; 61 with a light wave, 45 with shade_always.
 
-    PYTHONPATH=. python projects/e3m1-decompiled/source/stage5_mechanisms.py
+    python -m tools.decompile_stages.stage5_mechanisms projects/<map>-decompiled
 """
 
 from __future__ import annotations
 
 from collections import Counter
 
-from _common import MAP_NAME, level, write
-from _review import Tree, answers, write_pack
+from ._common import map_name, level, write
+from ._review import Tree, answers, write_pack
 
 from bloodmap.curriculum import mine_map
 from bloodmap.format import read_map
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 from bloodmap.read_mechanisms import read_mechanisms, summary
 
-import build_facts
+from . import build_facts
 
 
 def _example(off_course) -> str:
@@ -38,7 +38,7 @@ def _example(off_course) -> str:
 
 
 def _review(world, result) -> dict:
-    tree = Tree(len(world.sectors), f"{MAP_NAME} -- mechanisms as sentences")
+    tree = Tree(len(world.sectors), f"{map_name()} -- mechanisms as sentences")
     by_kind: dict[str, list[str]] = {}
     for row in result["sentences"]:
         by_kind.setdefault(row["kind"], []).append(row["id"])
@@ -133,13 +133,13 @@ def _review(world, result) -> dict:
                                     "every other one"),
             "evidence": "references/mechanisms.json: stacks"})
     questions = questions[:10]
-    return write_pack(5, tree, f"{MAP_NAME} layer 5: mechanisms as sentences",
+    return write_pack(5, tree, f"{map_name()} layer 5: mechanisms as sentences",
                       questions)
 
 
 def main() -> int:
     world = level()
-    path = corpus_map_path(MAP_NAME)
+    path = corpus_map_path(map_name())
     disk = read_map(path)
     result = read_mechanisms(world, disk, lessons=build_facts.lessons_dir(),
                              reading=mine_map(path))
@@ -178,7 +178,7 @@ def main() -> int:
     payload["owner_marks_read_back"] = answers(5)
     write("mechanisms.json", payload)
 
-    print(f"{MAP_NAME} mechanisms: {stats['sentences']} sentences {stats['by_kind']}")
+    print(f"{map_name()} mechanisms: {stats['sentences']} sentences {stats['by_kind']}")
     print(f"  inventory          : {stats['inventory']['xsector']} XSECTOR, "
           f"{stats['inventory']['xwall']} XWALL, "
           f"{stats['inventory']['xsprite']} XSPRITE; sector types "

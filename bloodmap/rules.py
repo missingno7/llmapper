@@ -43,6 +43,7 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable, Iterable, Sequence
+from .sector_geom import wall_owners as _wall_owners
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -250,15 +251,6 @@ def evaluate(disk: Any, *, grades: dict[str, Grade] | None = None,
 # ---------------------------------------------------------------------------
 # helpers the checkers share
 # ---------------------------------------------------------------------------
-
-def _wall_owners(disk: Any) -> dict[int, int]:
-    owner: dict[int, int] = {}
-    for index, sector in enumerate(disk.sectors):
-        start = int(sector.fields["wall_ptr"])
-        for wall in range(start, start + int(sector.fields["wall_count"])):
-            owner[wall] = index
-    return owner
-
 
 def _power_of_two(value: int) -> bool:
     return value > 0 and (value & (value - 1)) == 0

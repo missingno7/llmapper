@@ -7,18 +7,17 @@ would fail.  The corpus cases skip themselves without the Blood maps.
 
 from __future__ import annotations
 
-import glob
 import unittest
 from pathlib import Path
 
+from tests.helpers import campaign_maps
+
 ROOT = Path(__file__).resolve().parent.parent
-#: The campaign population directory (corpus reorganized 2026-08-31).
-MAPS = ROOT / "maps" / "blood" / "campaign"
 ART = ROOT / "reference" / "blood"
 
 
 def have_campaign() -> bool:
-    return bool(glob.glob(str(MAPS / "E?M?.MAP")))
+    return bool(campaign_maps())
 
 
 class BandingTests(unittest.TestCase):
@@ -56,13 +55,8 @@ class SurfaceEvidenceTests(unittest.TestCase):
         import tools.mine_surface_palettes as mod
 
         rows = []
-        seen = set()
-        for path in sorted(glob.glob(str(MAPS / "*.MAP"))):
-            name = Path(path).stem.upper()
-            if name in seen or not mod.CAMPAIGN.match(name):
-                continue
-            seen.add(name)
-            rows.extend(mod.observe_map(Path(path)))
+        for path in campaign_maps():
+            rows.extend(mod.observe_map(path))
         cls.rows = rows
         cls.predictors = mod.compare_predictors(rows)["accuracy"]
 
@@ -101,13 +95,8 @@ class DecorationEvidenceTests(unittest.TestCase):
 
         art = read_art_directory(str(ART))
         rows = []
-        seen = set()
-        for path in sorted(glob.glob(str(MAPS / "*.MAP"))):
-            name = Path(path).stem.upper()
-            if name in seen or not mod.CAMPAIGN.match(name):
-                continue
-            seen.add(name)
-            rows.extend(mod.observe(Path(path), art))
+        for path in campaign_maps():
+            rows.extend(mod.observe(path, art))
         cls.document = mod.build(rows, min_uses=20)
 
     def test_decorations_are_drawn_at_their_natural_size(self):
@@ -138,13 +127,8 @@ class MechanismEvidenceTests(unittest.TestCase):
         import tools.mine_mechanisms as mod
 
         observations = []
-        seen = set()
-        for path in sorted(glob.glob(str(MAPS / "*.MAP"))):
-            name = Path(path).stem.upper()
-            if name in seen or not mod.CAMPAIGN.match(name):
-                continue
-            seen.add(name)
-            observations.append(mod.observe(Path(path)))
+        for path in campaign_maps():
+            observations.append(mod.observe(path))
         cls.document = mod.build(observations)
 
     def test_a_level_is_dozens_of_wired_mechanisms(self):
@@ -162,7 +146,6 @@ class MechanismEvidenceTests(unittest.TestCase):
         orphans = shapes["orphan_receiver"]["share"] + shapes["orphan_transmitter"]["share"]
         self.assertGreater(orphans, 0.02)
         self.assertLess(orphans, 0.25)
-
 
 
 class DecorationTableTests(unittest.TestCase):
@@ -236,7 +219,7 @@ class PatchShareTests(unittest.TestCase):
         from bloodmap.level_profile import level_profile
 
         shares = []
-        for path in sorted(glob.glob(str(MAPS / "E?M?.MAP")))[:8]:
+        for path in campaign_maps()[:8]:
             profile = level_profile(read_map(path))
             shares.append(profile["materials"]["floor_patch_share"])
         self.assertGreater(min(shares), 0.4)
@@ -253,7 +236,6 @@ class PatchShareTests(unittest.TestCase):
 
         self.assertEqual(_patch_share(None, playable, chain, every_room_its_own), 0.0)
         self.assertEqual(_patch_share(None, playable, chain, one_finish), 1.0)
-
 
 
 class BlockedPortalTests(unittest.TestCase):
@@ -309,7 +291,7 @@ class CoincidentSolidPairTests(unittest.TestCase):
         from bloodmap.format import read_map
         from bloodmap.level_profile import coincident_solid_pairs
 
-        for path in sorted(glob.glob(str(MAPS / "E?M?.MAP"))):
+        for path in campaign_maps():
             with self.subTest(map=Path(path).stem):
                 self.assertEqual(coincident_solid_pairs(read_map(path)), [])
 
@@ -664,9 +646,7 @@ class XSpriteRequiredTests(unittest.TestCase):
 
     @staticmethod
     def _campaign():
-        import re
-        return [p for p in sorted(glob.glob(str(MAPS / "*.MAP")))
-                if re.match(r"^E[1-46]M[1-9]$", Path(p).stem.upper())]
+        return campaign_maps()
 
     def test_the_campaign_never_omits_one(self):
         """15,071 of 15,071 -- but unanimity is not the same as necessity."""

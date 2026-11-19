@@ -25,7 +25,7 @@ from collections import Counter, defaultdict
 from typing import Any
 
 from bloodmap.blood_types import SPRITE_TYPES
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 from tools.mine_city_norms import MapGeom, load_source
 from tools.mine_mechanisms import observe as observe_channels
 from tools.mine_stacks import observe as observe_stacks

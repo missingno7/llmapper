@@ -1,3 +1,5 @@
+"""Composition recipes: a JSON list of fragment operations replayed into one map."""
+
 from __future__ import annotations
 
 import copy

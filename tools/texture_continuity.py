@@ -41,7 +41,7 @@ from typing import Any
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
 from bloodmap.format import read_map                             # noqa: E402
-from bloodmap.patterns import list_corpus_maps                   # noqa: E402
+from bloodmap.corpus import list_corpus_maps  # noqa: E402
 from bloodmap.texture_align import wall_art_sizes                # noqa: E402
 from bloodmap.texture_frame import continuity_rows               # noqa: E402
 

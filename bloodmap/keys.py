@@ -313,6 +313,21 @@ def sign_the_locks(layout: Any) -> list[dict[str, Any]]:
     return signed
 
 
+def key_of(item: Any) -> int:
+    """The key an item demands, out of its Blood extension.
+
+    Not `fields["key"]`: that is the base Build struct, which has no such
+    member. Blood keeps it in the XSECTOR / XSPRITE / XWALL extension hanging
+    off `.extra`, and reading the wrong one silently returns nothing -- a first
+    pass reported 0 keyed things across all 43 maps, next to 200 placards, which
+    should have been the tell.
+    """
+    extra = getattr(item, "extra", None)
+    if extra is None or not hasattr(extra, "fields"):
+        return 0
+    return int(extra.fields.get("key", 0) or 0)
+
+
 def check(disk: Any) -> list[str]:
     """Do this map's placards and its locks agree?
 
@@ -323,8 +338,6 @@ def check(disk: Any) -> list[str]:
     * a keyed door with no placard within reach -- a lock the player cannot read;
     * a placard whose emblem is not the emblem of the nearest lock's key.
     """
-    from tools.mine_keys import key_of
-
     complaints: list[str] = []
     locks = []
     for index, sector in enumerate(disk.sectors):

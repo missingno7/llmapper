@@ -14,7 +14,7 @@ import unittest
 
 def _e3m1():
     from bloodmap.format import read_map
-    from bloodmap.patterns import list_corpus_maps
+    from bloodmap.corpus import list_corpus_maps
 
     found = [item for item in list_corpus_maps(population="blood-campaign")
              if item.path.stem.upper() == "E3M1"]
@@ -164,7 +164,7 @@ class TheNames(unittest.TestCase):
         import json
 
         from bloodmap.curriculum import mine_map
-        from bloodmap.patterns import corpus_map_path
+        from bloodmap.corpus import corpus_map_path
         from bloodmap.read_intent import name_mechanisms, summary
         from bloodmap.read_mechanisms import curriculum_index, read_mechanisms
 

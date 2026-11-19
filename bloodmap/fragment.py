@@ -1,3 +1,5 @@
+"""Room fragments: a closed set of sectors cut out of a `LevelIR` with everything it depends on."""
+
 from __future__ import annotations
 
 import copy

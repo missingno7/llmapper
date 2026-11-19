@@ -46,9 +46,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
 from bloodmap.art import read_art_directory
 from bloodmap.format import read_map
-from bloodmap.patterns import (
-    CORPUS_VIEWS, corpus_map_path, list_corpus_maps,
-)
+from bloodmap.corpus import CORPUS_VIEWS, corpus_map_path, list_corpus_maps
 from bloodmap.placement import sprite_extent
 
 #: cstat bits 4-5: 00 face, 01 wall, 10 floor.

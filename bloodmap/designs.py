@@ -1,3 +1,5 @@
+"""One scratch-authored demonstration: the first two-switch puzzle room, built with `LevelBuilder`."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

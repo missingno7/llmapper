@@ -54,12 +54,11 @@ its own.
 
 ## Layout
 
-Identical to E3M1's, and produced by the same `source/`. `facts/` is one JSONL
+Identical to E3M1's, and produced by the same stage program, `tools/decompile_stages/`. `facts/` is one JSONL
 per predicate, `references/` the per-layer evidence, `review/` the eight owner
 packs, `residue-ledger.json` the deliverable.
 
 ```bash
 BLOODMAP_CORPUS=<absolute path to maps/blood> \
-PYTHONPATH=".;projects/e1m2-decompiled/source" \
-python projects/e1m2-decompiled/source/run_all.py
+python -m tools.decompile_stages.run_all projects/e1m2-decompiled
 ```

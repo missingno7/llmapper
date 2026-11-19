@@ -385,7 +385,7 @@ class FacadeIsAWallTests(unittest.TestCase):
         return disk
 
     def test_many_short_crate_rims_do_not_outvote_one_long_wall(self):
-        from tools.mine_apertures import dominant_wall_tile
+        from bloodmap.aperture import dominant_wall_tile
 
         disk = self._disk([
             (0, 0, 2294, -1),            # 8192 of plaster
@@ -396,14 +396,14 @@ class FacadeIsAWallTests(unittest.TestCase):
         self.assertEqual(dominant_wall_tile(disk, 0), 2294)
 
     def test_length_decides_between_two_solid_tiles(self):
-        from tools.mine_apertures import dominant_wall_tile
+        from bloodmap.aperture import dominant_wall_tile
 
         disk = self._disk([(0, 0, 10, -1), (100, 0, 20, -1),
                            (100, 4000, 10, -1), (0, 4000, 20, -1)])
         self.assertEqual(dominant_wall_tile(disk, 0), 20)
 
     def test_a_sector_with_no_solid_wall_falls_back_to_what_it_has(self):
-        from tools.mine_apertures import dominant_wall_tile
+        from bloodmap.aperture import dominant_wall_tile
 
         disk = self._disk([(0, 0, 7, 1), (100, 0, 7, 1), (100, 100, 9, 1)])
         self.assertEqual(dominant_wall_tile(disk, 0), 7)

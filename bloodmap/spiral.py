@@ -100,10 +100,11 @@ from typing import Any
 
 from .planar_geom import area2
 from .vocabulary import Anchor, Structure, VocabularyError
+from .player_space import PLAYER_PROFILES
 
 #: One standing Blood human and one body width. `bloodmap.player_space`.
-PLAYER_HEIGHT = 16960
-PLAYER_WIDTH = 384
+PLAYER_HEIGHT = PLAYER_PROFILES["blood"].standing_height
+PLAYER_WIDTH = PLAYER_PROFILES["blood"].body_width
 
 #: E3M1, measured. Sixteen steps to a turn.
 STEP_ANGLE = 22.5

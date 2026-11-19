@@ -1,7 +1,6 @@
 """Answer every open question in the review packs by census or invariant.
 
-    PYTHONPATH=".;projects/e3m1-decompiled/source" \
-        python projects/e3m1-decompiled/source/close_questions.py
+    PYTHONPATH=. python projects/e3m1-decompiled/source/close_questions.py
 
 The owner's review channel is the walk and the fragment
 (`10_AGENT_EXECUTION_PROTOCOL.md`), so the eight per-layer packs stop being

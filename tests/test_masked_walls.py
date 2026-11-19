@@ -32,14 +32,12 @@ grates (tile 266, the campaign's own commonest), the belfry window's grille
 
 from __future__ import annotations
 
-import glob
-import re
 import unittest
 from pathlib import Path
 
+from tests.helpers import campaign_maps
+
 ROOT = Path(__file__).resolve().parent.parent
-#: The campaign population directory (corpus reorganized 2026-08-31).
-MAPS = ROOT / "maps" / "blood" / "campaign"
 CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP"
 
 CSTAT_MASKED = 16
@@ -52,13 +50,6 @@ LEGITIMATE = {
     463: "the grille in the belfry window",
     1005: "the cascade, falling across the mouth of the grotto",
 }
-
-
-def campaign_maps() -> list[str]:
-    return [
-        path for path in sorted(glob.glob(str(MAPS / "*.MAP")))
-        if re.match(r"^E[1-46]M[1-9]$", Path(path).stem.upper())
-    ]
 
 
 def masked_walls(disk) -> list[int]:

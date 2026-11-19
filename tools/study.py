@@ -270,7 +270,7 @@ def _frames(map_path, geom, place, host, out_dir: pathlib.Path) -> list[str]:
 def study_seed(seed: str, folder: pathlib.Path, floor: int | None) -> dict:
     from bloodmap.blood_types import SPRITE_TYPES
     from bloodmap.format import read_map
-    from bloodmap.patterns import corpus_map_path
+    from bloodmap.corpus import corpus_map_path
     from tools import place_character as pc
 
     name, sector = seed.split(":")

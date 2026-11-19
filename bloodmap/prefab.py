@@ -34,8 +34,9 @@ from typing import Any, Iterable
 
 from .planar_layout import PlanarLayout
 from .vocabulary import Anchor, VocabularyError, recess
+from .player_space import PLAYER_PROFILES
 
-PLAYER_WIDTH = 384
+PLAYER_WIDTH = PLAYER_PROFILES["blood"].body_width
 
 
 class PrefabError(ValueError):

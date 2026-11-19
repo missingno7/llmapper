@@ -38,6 +38,7 @@ from statistics import mean, pstdev
 from typing import Any, Iterable, Sequence
 
 from .build_ir import BuildIR
+from .corpus import list_corpus_maps
 from .design import _polygon_loops, _signed_area
 from .blood_types import sprite_visibility
 from .placement import build_angle, inward_normal, point_segment_distance
@@ -892,7 +893,6 @@ def mine_relations(
     maps and produces comparable output; it is not a corpus-wide statistic.
     """
     from .format import read_map
-    from .patterns import list_corpus_maps
     from .reachability import sector_kinds as reachability_sector_kinds
 
     selected = list_corpus_maps(directory, population=population)[:maps]

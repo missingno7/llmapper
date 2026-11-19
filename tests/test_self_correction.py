@@ -11,7 +11,7 @@ import unittest
 
 def _campaign(stem):
     from bloodmap.format import read_map
-    from bloodmap.patterns import list_corpus_maps
+    from bloodmap.corpus import list_corpus_maps
 
     found = [entry for entry in list_corpus_maps(population="blood-campaign")
              if entry.path.stem.upper().startswith(stem)]

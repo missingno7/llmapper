@@ -28,6 +28,7 @@ from typing import Any, Iterable, Sequence
 
 from .planar_geom import Point, area2
 from .planar_layout import PlanarLayout, PlanarLayoutError
+from .player_space import PLAYER_PROFILES
 
 SCHEMA = "llmapper.authoring-vocabulary"
 SCHEMA_VERSION = 1
@@ -219,11 +220,10 @@ class Decoration:
 
 WHERE_VALUES = {"flank", "tread", "back", "floor"}
 
+
 #: Blood's player, restated so this module stays free of a profile lookup at
 #: import time.  ``bloodmap.player_space.player_profile("blood")`` is the source.
-PLAYER_WIDTH = 384
-
-from .player_space import PLAYER_PROFILES
+PLAYER_WIDTH = PLAYER_PROFILES["blood"].body_width
 
 #: One standing human, from the player profile. Never hardcode this: it was
 #: 0x1600 in a dozen modules, which is `POSTURE.eyeAboveZ` -- an offset from

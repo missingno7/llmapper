@@ -7,13 +7,13 @@ chain is then the runs of consecutive records of one kind, in Build's own
 `point2` order, so a segment is a stretch a body walking the edge would call
 one thing.
 
-    PYTHONPATH=. python projects/e3m1-decompiled/source/stage6_edges.py
+    python -m tools.decompile_stages.stage6_edges projects/<map>-decompiled
 """
 
 from __future__ import annotations
 
-from _common import MAP_NAME, level, write
-from _review import Tree, answers, write_pack
+from ._common import map_name, level, write
+from ._review import Tree, answers, write_pack
 
 from bloodmap.read_edges import read_edges, summary
 from bloodmap.read_joins import surface_kinds
@@ -61,7 +61,7 @@ def _claims(world, result) -> list[dict]:
 
 
 def _review(world, result, kinds) -> dict:
-    tree = Tree(len(world.sectors), f"{MAP_NAME} -- the edge chain")
+    tree = Tree(len(world.sectors), f"{map_name()} -- the edge chain")
     ground = result["ground_sectors"]
     tree.add("ground", "ground", f"the ground the chain bounds "
              f"({len(ground)} sectors)", tree.root.id, ground)
@@ -115,7 +115,7 @@ def _review(world, result, kinds) -> dict:
                                  "gate"),
          "evidence": "references/edge-chain.json: segments"},
     ]
-    return write_pack(6, tree, f"{MAP_NAME} layer 6: the edge chain", questions)
+    return write_pack(6, tree, f"{map_name()} layer 6: the edge chain", questions)
 
 
 def main() -> int:
@@ -177,7 +177,7 @@ def main() -> int:
     payload["owner_marks_read_back"] = answers(6)
     write("edge-chain.json", payload)
 
-    print(f"{MAP_NAME} edge chain: {len(result['ground_sectors'])} ground sectors, "
+    print(f"{map_name()} edge chain: {len(result['ground_sectors'])} ground sectors, "
           f"{len(result['boundary_records'])} boundary records in "
           f"{len(result['segments'])} segments")
     for kind, count in sorted(result["counts"].items(), key=lambda row: -row[1]):

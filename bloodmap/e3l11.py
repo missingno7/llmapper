@@ -1,3 +1,9 @@
+"""The playable Duke3D-to-Blood conversion profile, with E3L11 as its regression board.
+
+Role-aware surface matching, population translation and the lowering of Duke
+mechanisms to native Blood records. A playable approximation, not equivalence.
+"""
+
 from __future__ import annotations
 
 from collections import Counter, defaultdict
@@ -9,6 +15,7 @@ from .analysis import validate_map
 from .art import ArtError, nearest_art_tiles
 from .construction import LevelBuilder, portal_profiles
 from .composition import _point_in_sector, _sector_surface_z
+from .corpus import named_maps
 from .conversion import DUKE_TO_BLOOD_MATERIAL_EXACT, _scale, convert_build_ir, native_scale
 from .duke import DukeDiskMap
 from .duke_motion import (
@@ -267,7 +274,7 @@ def _surface_candidates(blood_maps: Path) -> dict[str, set[int]]:
     candidate family distinct before doing the visual match.
     """
     result: dict[str, set[int]] = {"ceiling": set(), "floor": set(), "wall": set(), "sky": set()}
-    paths = sorted({path.resolve() for path in blood_maps.glob("*.MAP")} | {path.resolve() for path in blood_maps.glob("*.map")})
+    paths = named_maps(blood_maps)
     for path in paths:
         disk = read_map(path)
         for sector in disk.sectors:

@@ -22,7 +22,7 @@ def _pack(claims=None, candidates=None) -> str:
     import sys
     from pathlib import Path
 
-    from bloodmap.patterns import corpus_map_path
+    from bloodmap.corpus import corpus_map_path
 
     path = corpus_map_path("E3M1", missing_ok=True)
     if not path.exists():

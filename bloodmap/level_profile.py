@@ -29,6 +29,7 @@ from typing import Any
 
 from .doors import KEY_TYPES
 from .reachability import analyze_reachability, design_sectors, portal_graph
+from .player_space import PLAYER_PROFILES
 
 #: Blood sector types that move geometry.
 MOVING_SECTOR_RANGE = range(600, 620)
@@ -39,7 +40,7 @@ NUMERIC_COMMAND_BASE = 64
 SECRET_FOUND_CHANNEL = 2
 TOTAL_SECRETS_CHANNEL = 1
 
-PLAYER_WIDTH = 384
+PLAYER_WIDTH = PLAYER_PROFILES["blood"].body_width
 
 DUDE_RANGE = range(200, 261)
 WEAPON_AMMO_RANGE = range(40, 80)

@@ -47,7 +47,9 @@ from typing import Any
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-BODY = 16960
+from bloodmap.player_space import PLAYER_PROFILES  # noqa: E402
+
+BODY = PLAYER_PROFILES["blood"].standing_height
 #: share of the sprite's own height under the floor (or over the ceiling)
 SUNK = 0.10
 #: nearest cutting wall closer than this share of the half width

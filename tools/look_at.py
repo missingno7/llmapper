@@ -124,7 +124,7 @@ def look_at(map_name: str, out: pathlib.Path, *, tile=None, at=None,
             empty: bool = False) -> dict:
     import look
     from bloodmap.format import read_map
-    from bloodmap.patterns import corpus_map_path
+    from bloodmap.corpus import corpus_map_path
 
     path = pathlib.Path(map_name)
     if not path.exists():

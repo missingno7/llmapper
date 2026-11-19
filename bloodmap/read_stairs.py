@@ -18,12 +18,9 @@ what is new.
 from __future__ import annotations
 
 from typing import Any, Sequence
+from .model import record_fields as _face
 
 STAIR = "stepped_run"
-
-
-def _face(item: Any) -> Any:
-    return item["fields"] if isinstance(item, dict) else item.fields
 
 
 def fit_run(level: Any, sectors: Sequence[int]) -> dict[str, Any]:

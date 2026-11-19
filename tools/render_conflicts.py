@@ -58,6 +58,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent))
 
 from bloodmap.format import read_map
 from bloodmap.planar_geom import classify_segment_pair
+from bloodmap.sector_geom import wall_owners
 from tools.measure_draw_order import classify_conflicts
 
 #: The three ways `classify_segment_pair` says "these two lie on one line".
@@ -66,16 +67,6 @@ COINCIDENT = {
     "exact_same_direction_coincident",
     "partial_collinear_overlap",
 }
-
-
-def wall_owners(disk) -> dict[int, int]:
-    owner: dict[int, int] = {}
-    for index, sector in enumerate(disk.sectors):
-        first = int(sector.fields["wall_ptr"])
-        count = int(sector.fields["wall_count"])
-        for wall in range(first, first + count):
-            owner[wall] = index
-    return owner
 
 
 def segments(disk) -> list[tuple[tuple[int, int], tuple[int, int]]]:

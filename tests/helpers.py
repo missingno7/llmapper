@@ -8,9 +8,9 @@ from bloodmap.format import (
     encode_map, parse_map,
 )
 from bloodmap.model import DiskMap, DiskObject, ExtraHeader, PackedExtra
-from bloodmap.patterns import (
-    NAMED_POPULATIONS, corpus_map_path, corpus_root, is_structured_corpus,
-    list_corpus_maps,
+from bloodmap.corpus import campaign_maps as _campaign_maps
+from bloodmap.corpus import (
+    corpus_map_path, corpus_root, is_structured_corpus, named_maps,
 )
 
 
@@ -43,25 +43,15 @@ def corpus_map(filename: str) -> Path:
 def named_corpus_maps() -> list[Path]:
     """Campaign, BloodBath, curated and own-conversion maps, sorted.
 
-    This is the set the native losslessness gate is expected to hold for. The
-    bulk `community/` population is deliberately excluded: those maps have not
-    passed the gate, and the fail-closed health report covers them instead.
-    `NAMED_POPULATIONS` is the same set `corpus_map_path` searches by name,
-    and for the same reason.
+    The set the native losslessness gate is expected to hold for; see
+    `bloodmap.corpus.named_maps`, which owns the definition.
     """
-    from bloodmap.patterns import is_editor_autosave
+    return named_maps(blood_corpus_root())
 
-    root = blood_corpus_root()
-    found: dict[str, Path] = {}
-    for population in NAMED_POPULATIONS:
-        for item in list_corpus_maps(root, population=population, attach_tiers=False):
-            # XMapEdit autosaves land in the corpus whenever the owner opens
-            # the editor; they are quarantined by the registry and are never
-            # part of the losslessness gate (owner, 2026-09-02: ignore them).
-            if is_editor_autosave(item.path):
-                continue
-            found.setdefault(item.name.upper(), item.path)
-    return sorted(found.values())
+
+def campaign_maps() -> list[Path]:
+    """The original campaign, one path per map; empty when the corpus is absent."""
+    return _campaign_maps(blood_corpus_root())
 
 
 def synthetic_map() -> DiskMap:

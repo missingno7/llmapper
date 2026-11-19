@@ -4,7 +4,7 @@ import copy, hashlib, json, argparse, dataclasses, shutil, sys
 from pathlib import Path
 from experiments.mashup_gate import build as build_v1, initial_pose
 from bloodmap.format import read_map, encode_map, parse_map
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 from bloodmap.construction import LevelBuilder, portal_profiles
 from bloodmap.planar_layout import PlanarLayout
 from bloodmap.prefab import sprite_bridge

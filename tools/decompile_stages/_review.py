@@ -24,9 +24,9 @@ import subprocess
 import sys
 from typing import Any, Iterable
 
-PROJECT = pathlib.Path(__file__).resolve().parent.parent
-REVIEW = PROJECT / "review"
-REPO = PROJECT.parent.parent
+from ._common import map_name, project
+
+REPO = pathlib.Path(__file__).resolve().parents[2]
 
 MAX_QUESTIONS = 10
 
@@ -81,9 +81,7 @@ class Tree:
 def write_pack(layer: int, tree: Tree, title: str,
                questions: list[dict[str, Any]]) -> dict[str, Any]:
     """Write the layer's hierarchy, run the pack, and write its questions."""
-    from _common import MAP_NAME
-
-    from bloodmap.patterns import corpus_map_path
+    from bloodmap.corpus import corpus_map_path
 
     if len(questions) > MAX_QUESTIONS:
         raise SystemExit(f"layer {layer} asks {len(questions)} questions; the "
@@ -97,24 +95,25 @@ def write_pack(layer: int, tree: Tree, title: str,
         if not item.get("recommended_default"):
             raise SystemExit(f"question on {item['node']!r} has no recommended "
                              f"default")
-    REVIEW.mkdir(parents=True, exist_ok=True)
-    hierarchy = REVIEW / f"layer{layer}-hierarchy.json"
+    review = project() / "review"
+    review.mkdir(parents=True, exist_ok=True)
+    hierarchy = review / f"layer{layer}-hierarchy.json"
     hierarchy.write_text(json.dumps(tree.to_dict(), indent=1), encoding="utf-8")
-    (REVIEW / f"questions-layer{layer}.json").write_text(
+    (review / f"questions-layer{layer}.json").write_text(
         json.dumps({"layer": layer, "questions": questions}, indent=1),
         encoding="utf-8")
-    out = REVIEW / f"layer{layer}.html"
-    command = [sys.executable, str(REPO / "tools" / "review_pack.py"),
-               str(corpus_map_path(MAP_NAME)), str(hierarchy), "-o", str(out),
+    out = review / f"layer{layer}.html"
+    command = [sys.executable, "-m", "tools.review_pack",
+               str(corpus_map_path(map_name())), str(hierarchy), "-o", str(out),
                "--title", title]
     #: The shared ledger, so a record's fact panel lists every claim on its
     #: fields and every field nothing claims. It is written by `ledger.py`
     #: from every layer's claims, so on a first run of a layer it may be one
     #: run behind -- rerun `ledger.py` and then the stage to close that.
-    shared = PROJECT / "claims.json"
+    shared = project() / "claims.json"
     if shared.exists():
         command += ["--claims", str(shared)]
-    maybe = PROJECT / "candidates.json"
+    maybe = project() / "candidates.json"
     if maybe.exists():
         command += ["--candidates", str(maybe)]
     subprocess.run(command, check=True, cwd=str(REPO))
@@ -124,7 +123,7 @@ def write_pack(layer: int, tree: Tree, title: str,
           f"{len(questions)} owner questions)")
     return {"pack": str(out.relative_to(REPO)),
             "hierarchy": str(hierarchy.relative_to(REPO)),
-            "questions": str((REVIEW / f'questions-layer{layer}.json').relative_to(REPO)),
+            "questions": str((review / f'questions-layer{layer}.json').relative_to(REPO)),
             "sectors_unowned": residue}
 
 
@@ -135,7 +134,7 @@ def answers(layer: int) -> list[dict[str, Any]]:
     A missing file is "the owner has not reviewed this layer", never "the
     owner agreed".
     """
-    path = REVIEW / f"answers-layer{layer}.json"
+    path = project() / "review" / f"answers-layer{layer}.json"
     if not path.exists():
         return []
     payload = json.loads(path.read_text(encoding="utf-8"))

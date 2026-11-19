@@ -35,7 +35,6 @@ to maps the fit never saw rather than only that it exists.
 from __future__ import annotations
 
 import argparse
-import glob
 import json
 import math
 import pathlib
@@ -44,16 +43,16 @@ import statistics
 from collections import Counter, defaultdict
 from typing import Any
 
+from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map
+from bloodmap.player_space import PLAYER_PROFILES
 from bloodmap.reachability import design_sectors, portal_graph
 
 SCHEMA = "llmapper.surface-palettes"
 SCHEMA_VERSION = 1
 
-PLAYER_WIDTH = 384
+PLAYER_WIDTH = PLAYER_PROFILES["blood"].body_width
 PLAYER_AREA = float(PLAYER_WIDTH * PLAYER_WIDTH)
-
-from bloodmap.player_space import PLAYER_PROFILES
 
 #: One standing human, from the player profile. Never hardcode this: it was
 #: 0x1600 in a dozen modules, which is `POSTURE.eyeAboveZ` -- an offset from
@@ -306,7 +305,7 @@ def build(rows: list[dict[str, Any]], keys: tuple[str, ...], *, limit: int,
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--maps", default="maps/blood")
+    parser.add_argument("--maps", help="corpus root or a directory of maps (default: the local corpus)")
     parser.add_argument("--keys", default="area,height,sky",
                         help="comma-separated context keys to condition on")
     parser.add_argument("--limit", type=int, default=6, help="tiles listed per role")
@@ -316,10 +315,8 @@ def main(argv: list[str] | None = None) -> int:
 
     rows: list[dict[str, Any]] = []
     seen: set[str] = set()
-    for path in sorted(glob.glob(str(pathlib.Path(args.maps) / "*.MAP"))):
-        name = pathlib.Path(path).stem.upper()
-        if name in seen or not CAMPAIGN.match(name):
-            continue
+    for path in campaign_maps(args.maps, required=True):
+        name = path.stem.upper()
         seen.add(name)
         try:
             rows.extend(observe_map(pathlib.Path(path)))

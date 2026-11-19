@@ -32,8 +32,9 @@ import collections
 
 
 def _rows(disk):
-    from tools.mine_apertures import observe
-    return [row for row in observe("candidate", disk) if row["aperture"]]
+    from bloodmap.aperture import observe_openings
+    return [row for row in observe_openings("candidate", disk)
+            if row["aperture"]]
 
 
 def seam(row) -> bool:

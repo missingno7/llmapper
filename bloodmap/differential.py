@@ -1,3 +1,5 @@
+"""Differential analysis of an independently authored Duke/Blood map pair: scale, correspondences, materials."""
+
 from __future__ import annotations
 
 import hashlib

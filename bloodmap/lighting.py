@@ -54,6 +54,7 @@ from __future__ import annotations
 
 from math import hypot
 from typing import Any, Iterable
+from .model import record_fields as _fields
 
 #: The two decoration tiles the campaign actually lights with. Both are drawn at
 #: shade -128 in the great majority of their uses -- tile 506 in 132 of 138 and
@@ -133,10 +134,6 @@ def _sector_walls(level: Any, sector_index: int) -> range:
     fields = sector["fields"] if isinstance(sector, dict) else sector.fields
     start = int(fields["wall_ptr"])
     return range(start, start + int(fields["wall_count"]))
-
-
-def _fields(item: Any) -> dict[str, Any]:
-    return item["fields"] if isinstance(item, dict) else item.fields
 
 
 def lights_by_sector(level: Any, *, tiles: Iterable[int] = LIGHT_TILES,
@@ -274,7 +271,6 @@ def light_direction(level: Any, sector_index: int,
     return ((widest[1] - cx) / length, (widest[2] - cy) / length)
 
 
-
 #: What a room's shade spread should be, before it is halved into an amplitude.
 #:
 #: A single number gave every room in this level a spread of exactly 12 -- q1,
@@ -377,8 +373,6 @@ def shade_walls_directionally(level: Any, *, tiles: Iterable[int] = LIGHT_TILES,
             "comes from the room's size, its lamps and whether it is open to sky"
         ),
     }
-
-
 
 
 #: What a Blood sector's shade is, given only what kind of space it is.
@@ -500,7 +494,6 @@ def match_corpus_shade(level: Any, *, targets: dict[str, int] | None = None,
         "sprites to read against"
     )
     return report
-
 
 
 #: What the campaign's underwater sectors sit at: floor shade median 26 (q1 16,

@@ -270,7 +270,7 @@ class RegistryWiringTests(unittest.TestCase):
             tier_corpus(tempfile.mkdtemp(), population="canonical")
 
     def test_an_empty_population_is_refused_rather_than_tiered(self):
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
         from bloodmap.tiering import tier_corpus
 
         import tempfile

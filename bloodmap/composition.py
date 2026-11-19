@@ -1,3 +1,5 @@
+"""Fragment composition over `LevelIR`: insertion, allocation, channel remapping, portal attachment and pathways."""
+
 from __future__ import annotations
 
 import copy

@@ -27,23 +27,21 @@ all carry a type and are excluded: they are placement questions, not dressing.
 from __future__ import annotations
 
 import argparse
-import glob
 import json
 import math
 import pathlib
-import re
 import statistics
 from collections import Counter, defaultdict
 from typing import Any
 
 from bloodmap.art import read_art_directory
+from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map
 from bloodmap.reachability import design_sectors
 
 SCHEMA = "llmapper.decoration-evidence"
 SCHEMA_VERSION = 1
 
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 
 from bloodmap.player_space import PLAYER_PROFILES
 
@@ -52,7 +50,7 @@ from bloodmap.player_space import PLAYER_PROFILES
 #: the sprite's centre, not a body -- and every height in the project was
 #: denominated in a unit 3x too small.
 PLAYER_HEIGHT = PLAYER_PROFILES["blood"].standing_height
-PLAYER_WIDTH = 384
+PLAYER_WIDTH = PLAYER_PROFILES["blood"].body_width
 
 CSTAT_INVISIBLE = 32768
 CSTAT_WALL_ALIGNED = 16
@@ -241,7 +239,7 @@ def build(rows: list[dict[str, Any]], *, min_uses: int) -> dict[str, Any]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--maps", default="maps/blood")
+    parser.add_argument("--maps", help="corpus root or a directory of maps (default: the local corpus)")
     parser.add_argument("--art", default="reference/blood")
     parser.add_argument("--min-uses", type=int, default=20)
     parser.add_argument("-o", "--output")
@@ -250,10 +248,8 @@ def main(argv: list[str] | None = None) -> int:
     art = read_art_directory(args.art)
     rows: list[dict[str, Any]] = []
     seen: set[str] = set()
-    for path in sorted(glob.glob(str(pathlib.Path(args.maps) / "*.MAP"))):
-        name = pathlib.Path(path).stem.upper()
-        if name in seen or not CAMPAIGN.match(name):
-            continue
+    for path in campaign_maps(args.maps, required=True):
+        name = path.stem.upper()
         seen.add(name)
         try:
             rows.extend(observe(pathlib.Path(path), art))

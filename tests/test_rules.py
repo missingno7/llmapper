@@ -23,22 +23,13 @@ registry itself:
 
 from __future__ import annotations
 
-import glob
-import re
 import unittest
 from pathlib import Path
 
+from tests.helpers import campaign_maps
+
 ROOT = Path(__file__).resolve().parent.parent
-#: The campaign population directory (corpus reorganized 2026-08-31).
-MAPS = ROOT / "maps" / "blood" / "campaign"
 CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v7.MAP"
-
-
-def campaign_paths() -> list[str]:
-    return [
-        path for path in sorted(glob.glob(str(MAPS / "*.MAP")))
-        if re.match(r"^E[1-46]M[1-9]$", Path(path).stem.upper())
-    ]
 
 
 class RegistryTests(unittest.TestCase):
@@ -82,12 +73,12 @@ class RegistryTests(unittest.TestCase):
             source="corpus", scope="map",
             check=lambda disk: Finding(1, (Violation("map", "everything"),)),
         )
-        disk = read_map(campaign_paths()[0])
+        disk = read_map(campaign_maps()[0])
         findings = evaluate(disk, grades={}, rules=[invented])
         self.assertEqual([f.code for f in findings], ["rule-ungraded"])
 
 
-@unittest.skipUnless(bool(campaign_paths()), "no Blood campaign maps")
+@unittest.skipUnless(bool(campaign_maps()), "no Blood campaign maps")
 class GradeTests(unittest.TestCase):
 
     @classmethod
@@ -128,7 +119,7 @@ class GradeTests(unittest.TestCase):
         self.assertEqual(grade.severity, "note")
 
 
-@unittest.skipUnless(CANDIDATE.exists() and bool(campaign_paths()), "no candidate")
+@unittest.skipUnless(CANDIDATE.exists() and bool(campaign_maps()), "no candidate")
 class CandidateTests(unittest.TestCase):
 
     #: One known finding, named rather than hidden. `transmitter-reports-an-
@@ -191,7 +182,7 @@ class CandidateTests(unittest.TestCase):
         self.assertEqual(errors & self.KNOWN, self.KNOWN)
 
 
-@unittest.skipUnless(bool(campaign_paths()), "no Blood campaign maps")
+@unittest.skipUnless(bool(campaign_maps()), "no Blood campaign maps")
 class RoomOverRoomTests(unittest.TestCase):
     """The stack constructor, checked by the rules and by the miner.
 

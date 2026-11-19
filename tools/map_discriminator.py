@@ -31,18 +31,16 @@ be dull to walk through. Passing is necessary and nowhere near sufficient.
 from __future__ import annotations
 
 import argparse
-import glob
 import json
 import pathlib
-import re
 import statistics
 import tempfile
 from typing import Any
 
+from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map
 from bloodmap.level_profile import flatten, level_profile
 
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 
 #: Features that measure size rather than character. A level built to a
 #: different scale is not thereby a fake one, and including these would score
@@ -184,7 +182,7 @@ def blandness(target: dict[str, float], others: list[dict[str, float]]) -> float
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--maps", default="maps/blood")
+    parser.add_argument("--maps", help="corpus root or a directory of maps (default: the local corpus)")
     parser.add_argument("--art", default="reference/blood")
     parser.add_argument("--against", required=True)
     parser.add_argument("--sample", type=int, default=24)
@@ -195,10 +193,8 @@ def main(argv: list[str] | None = None) -> int:
 
     visual = not args.no_visual
     corpus: dict[str, dict[str, float]] = {}
-    for path in sorted(glob.glob(str(pathlib.Path(args.maps) / "*.MAP"))):
-        name = pathlib.Path(path).stem.upper()
-        if not CAMPAIGN.match(name) or name in corpus:
-            continue
+    for path in campaign_maps(args.maps, required=True):
+        name = path.stem.upper()
         try:
             corpus[name] = features_for(path, sample=args.sample, art=args.art, visual=visual)
         except Exception as error:

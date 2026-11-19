@@ -12,6 +12,7 @@ from collections import Counter, defaultdict
 from statistics import mean, median
 from typing import Any
 
+from .corpus import named_maps
 from .format import read_map
 from .model import DiskMap
 
@@ -126,7 +127,7 @@ def style_tile_usage(style: dict[str, Any], role: str, tile: int) -> dict[str, i
 def corpus_parallax_tiles(blood_maps) -> dict[int, int]:
     """Tiles Blood authors actually used as parallax ceilings, with frequencies."""
     counts: Counter[int] = Counter()
-    paths = sorted({path.resolve() for path in blood_maps.glob("*.MAP")} | {path.resolve() for path in blood_maps.glob("*.map")})
+    paths = named_maps(blood_maps)
     for path in paths:
         disk = read_map(path)
         for sector in disk.sectors:

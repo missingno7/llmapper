@@ -26,17 +26,15 @@ from collections import Counter, defaultdict
 from typing import Any
 
 from bloodmap.blood_types import SPRITE_TYPES
+from bloodmap.corpus import corpus_map_path
 from bloodmap.doors import MOTION_TYPES, ROTATE_TYPES, SLIDE_TYPES, SWITCH_TYPES, Z_MOTION_TYPES
 from tools.mine_city_norms import MapGeom, indoor_components, doorways, load_source
 
 SCHEMA = "llmapper.venue-anatomy"
 SCHEMA_VERSION = 1
 
-SOURCES = [
-    ("E1M4", "blood", "maps/blood/E1M4.MAP"),
-    ("E3M1", "blood", "maps/blood/E3M1.MAP"),
-    ("DWE3M1", "blood", "maps/blood/DWE3M1.MAP"),
-]
+#: Corpus maps by name; where each lives is the registry's business.
+SOURCES = ["E1M4", "E3M1", "DWE3M1"]
 
 FIRST_USER_CHANNEL = 30
 
@@ -228,8 +226,8 @@ def venue_record(geom: MapGeom, public: set[int], component: set[int],
     }
 
 
-def analyze_map(name: str, game: str, path: str) -> dict[str, Any]:
-    geom = load_source(name, game, path)
+def analyze_map(name: str) -> dict[str, Any]:
+    geom = load_source(name, "blood", str(corpus_map_path(name)))
     public = {i for i in range(len(geom.sectors)) if geom.parallax[i]}
     components, membership = indoor_components(geom, public)
     doors = doorways(geom, public, membership)
@@ -272,7 +270,7 @@ def main(argv: list[str] | None = None) -> int:
         "$schema": SCHEMA,
         "schema_version": SCHEMA_VERSION,
         "scope": {
-            "sources": [n for n, _g, _p in SOURCES],
+            "sources": list(SOURCES),
             "method": __doc__,
             "thresholds": {
                 "min_venue_area": MIN_VENUE_AREA,
@@ -280,7 +278,7 @@ def main(argv: list[str] | None = None) -> int:
                 "platform_band_z": [PLATFORM_MIN_Z, PLATFORM_MAX_Z],
             },
         },
-        "per_map": [analyze_map(*source) for source in SOURCES],
+        "per_map": [analyze_map(name) for name in SOURCES],
     }
     out = pathlib.Path(args.output)
     out.parent.mkdir(parents=True, exist_ok=True)

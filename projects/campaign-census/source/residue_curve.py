@@ -49,7 +49,7 @@ KINDS = ("sector", "wall", "sprite", "xsector", "xwall", "xsprite")
 def lessons_dir() -> str:
     import os
 
-    from bloodmap.patterns import corpus_map_path
+    from bloodmap.corpus import corpus_map_path
 
     return os.environ.get(
         "BLOODMAP_LESSONS",

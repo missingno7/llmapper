@@ -515,7 +515,13 @@ def write_sp_progression_v2(
 
 
 if __name__ == "__main__":
-    compiled = write_sp_progression_v2()
+    import argparse
+
+    _parser = argparse.ArgumentParser()
+    _parser.add_argument("-o", "--output", default="work/SP-progression-v2.MAP")
+    _parser.add_argument("--report", default="reports/SP-v2-build.json")
+    _args = _parser.parse_args()
+    compiled = write_sp_progression_v2(map_path=_args.output, report_path=_args.report)
     print(
         f"sp-v2: {len(compiled.level.sectors)} sectors, {len(compiled.level.walls)} walls, "
         f"{len(compiled.level.sprites)} sprites, conserved={compiled.conservation.conserved}"

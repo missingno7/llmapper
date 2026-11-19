@@ -42,192 +42,20 @@ for the correction and its evidence.
 from __future__ import annotations
 
 import argparse
-import glob
 import json
 import pathlib
-import re
 import statistics
 from collections import Counter
 from typing import Any
 
+from bloodmap.aperture import (
+    PLAYER_HEIGHT, PLAYER_WIDTH, dominant_wall_tile, observe_openings,
+)
+from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map
-from bloodmap.player_space import PLAYER_PROFILES
 
 SCHEMA = "llmapper.blood-apertures"
 SCHEMA_VERSION = 1
-
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
-
-#: One standing human, from the player profile. Never hardcode this.
-PLAYER_HEIGHT = PLAYER_PROFILES["blood"].standing_height
-PLAYER_WIDTH = float(PLAYER_PROFILES["blood"].body_width)
-
-#: Below this an opening is not a way through -- it is a window, a grate, or a
-#: gap under a door.
-WALKABLE_OPENING = 4096
-
-#: Below this share of the smaller room's outline, a connection is a hole cut in
-#: a wall rather than the seam where two halves of one space meet.
-PINCH = 0.25
-
-
-def wall_owners(disk: Any) -> dict[int, int]:
-    owner: dict[int, int] = {}
-    for index, sector in enumerate(disk.sectors):
-        start = int(sector.fields["wall_ptr"])
-        for wall in range(start, start + int(sector.fields["wall_count"])):
-            owner[wall] = index
-    return owner
-
-
-def dominant_wall_tile(disk: Any, sector: int) -> int:
-    """The wall an opening in this sector interrupts: its SOLID wall, by length.
-
-    Until 2026-11-17 this was the commonest picnum per wall RECORD, portals
-    included.  A market hall with sixteen 1024-long crate rims and five long
-    plaster walls therefore had "crate" for a facade, and blood-city's lintel
-    pass -- which repaints the band over a mouth with this tile -- ran a row
-    of crates round the hall under its ceiling (the owner: "these ceiling
-    crates doesn't feel right").  A record count is not a surface.  The
-    facade is what stands where there is no opening, weighed by how much of
-    it there is; only a sector with no solid wall at all falls back to its
-    two-sided records.
-    """
-    fields = disk.sectors[sector].fields
-    start, count = int(fields["wall_ptr"]), int(fields["wall_count"])
-    solid: Counter = Counter()
-    every: Counter = Counter()
-    for wall in range(start, start + count):
-        here = disk.walls[wall].fields
-        there = disk.walls[int(here["point2"])].fields
-        length = ((int(there["x"]) - int(here["x"])) ** 2
-                  + (int(there["y"]) - int(here["y"])) ** 2) ** 0.5
-        every[int(here["picnum"])] += length
-        if int(here["next_sector"]) < 0:
-            solid[int(here["picnum"])] += length
-    tally = solid or every
-    #: ties broken by tile number, so the answer does not depend on wall order
-    return max(tally.items(), key=lambda item: (item[1], -item[0]))[0]
-
-
-def perimeter(disk: Any, sector: int) -> float:
-    fields = disk.sectors[sector].fields
-    start, count = int(fields["wall_ptr"]), int(fields["wall_count"])
-    total = 0.0
-    for wall in range(start, start + count):
-        here = disk.walls[wall].fields
-        there = disk.walls[int(here["point2"])].fields
-        total += ((int(there["x"]) - int(here["x"])) ** 2
-                  + (int(there["y"]) - int(here["y"])) ** 2) ** 0.5
-    return total
-
-
-def observe(name: str, disk: Any) -> list[dict[str, Any]]:
-    """Every walkable two-sided wall, classified.
-
-    The classification matters more than the measurements. A first pass over the
-    campaign called 60.86% of openings "full height", which would have made
-    cathedral portals the Blood norm. They are not: most two-sided walls are
-    *seams* inside one continuous space -- a hall split into three sectors so the
-    middle one can be darker, a room divided to carry a slope -- and a seam has
-    no lintel and no step because there is no wall there to have one.
-
-    An aperture is a narrowing. Something about it is smaller than the room:
-
-    door_sector   one side is a Z-motion door (600/602); a door by fiat
-    lintel        the facade continues above the hole
-    pinch         the connection is a small share of the room's outline
-    step_only     a sill but no header -- a window ledge, a pool edge
-    seam          none of the above; two sectors of one space meeting
-    """
-    owner = wall_owners(disk)
-    shared: Counter = Counter()
-    for index, wall in enumerate(disk.walls):
-        other = int(wall.fields["next_sector"])
-        mine = owner.get(index)
-        if other < 0 or mine is None:
-            continue
-        nxt = disk.walls[int(wall.fields["point2"])].fields
-        shared[(mine, other)] += (
-            (int(nxt["x"]) - int(wall.fields["x"])) ** 2
-            + (int(nxt["y"]) - int(wall.fields["y"])) ** 2) ** 0.5
-
-    dominant: dict[int, int] = {}
-    around: dict[int, float] = {}
-    out = []
-    for index, wall in enumerate(disk.walls):
-        fields = wall.fields
-        other = int(fields["next_sector"])
-        if other < 0:
-            continue
-        mine = owner.get(index)
-        if mine is None or not 0 <= other < len(disk.sectors):
-            continue
-        here = disk.sectors[mine].fields
-        there = disk.sectors[other].fields
-        my_ceiling, my_floor = int(here["ceiling_z"]), int(here["floor_z"])
-        their_ceiling, their_floor = int(there["ceiling_z"]), int(there["floor_z"])
-
-        top = max(my_ceiling, their_ceiling)        # the lower of the two ceilings
-        bottom = min(my_floor, their_floor)         # the higher of the two floors
-        leaf = bottom - top
-        if leaf < WALKABLE_OPENING:
-            continue                                # not a way through
-        lintel = top - my_ceiling                   # facade above the hole
-        # ...unless both sides are open to the sky.  engine.cpp:4688 skips the
-        # upper section when both ceilings are parallax, so a step between two
-        # skies paints nothing: there is no band above the hole to be a lintel.
-        # (`bloodmap.skyline` builds exactly such steps, and 17 campaign maps
-        # hold 141 of them -- `tools/mine_skylines.py`.)
-        if int(here["ceiling_stat"]) & 1 and int(there["ceiling_stat"]) & 1:
-            lintel = 0
-        step = my_floor - bottom                    # facade below it
-        facade = my_floor - my_ceiling
-
-        for sector in (mine, other):
-            if sector not in dominant:
-                dominant[sector] = dominant_wall_tile(disk, sector)
-                around[sector] = perimeter(disk, sector)
-
-        nxt = disk.walls[int(fields["point2"])].fields
-        length = ((int(nxt["x"]) - int(fields["x"])) ** 2
-                  + (int(nxt["y"]) - int(fields["y"])) ** 2) ** 0.5
-        openness = shared[(mine, other)] / max(1.0, min(around[mine], around[other]))
-
-        if int(here["type"]) in (600, 602) or int(there["type"]) in (600, 602):
-            kind = "door_sector"
-        elif lintel > 0:
-            kind = "lintel"
-        elif openness < PINCH:
-            kind = "pinch"
-        elif step > 0:
-            kind = "step_only"
-        else:
-            kind = "seam"
-
-        out.append({
-            "map": name,
-            "wall": index,
-            "sector": mine,
-            "next_sector": other,
-            "kind": kind,
-            "aperture": kind in ("door_sector", "lintel", "pinch"),
-            "leaf_player_heights": round(leaf / PLAYER_HEIGHT, 3),
-            "facade_player_heights": round(facade / PLAYER_HEIGHT, 3),
-            "lintel_player_heights": round(lintel / PLAYER_HEIGHT, 3),
-            "step_player_heights": round(step / PLAYER_HEIGHT, 3),
-            "width_player_widths": round(length / PLAYER_WIDTH, 2),
-            "openness": round(openness, 3),
-            "full_height": lintel <= 0 and step <= 0,
-            # Build takes the upper section from this wall's own picnum, so the
-            # band above the hole is the viewing room's to paint.
-            "lintel_continues_facade": int(fields["picnum"]) == dominant[mine],
-            "wall_picnum": int(fields["picnum"]),
-            "facade_picnum": dominant[mine],
-            "sector_type": int(here["type"]),
-            "masked": bool(int(fields["cstat"]) & 16),
-        })
-    return out
 
 
 def band(values: list[float], digits: int = 2) -> dict[str, float]:
@@ -292,18 +120,16 @@ def summarise(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--maps", default="maps/blood")
+    parser.add_argument("--maps", help="corpus root or a directory of maps (default: the local corpus)")
     parser.add_argument("-o", "--output")
     args = parser.parse_args(argv)
 
     rows: list[dict[str, Any]] = []
     seen = 0
-    for path in sorted(glob.glob(str(pathlib.Path(args.maps) / "*.MAP"))):
-        name = pathlib.Path(path).stem.upper()
-        if not CAMPAIGN.match(name):
-            continue
+    for path in campaign_maps(args.maps, required=True):
+        name = path.stem.upper()
         try:
-            rows.extend(observe(name, read_map(path)))
+            rows.extend(observe_openings(name, read_map(path)))
         except Exception as error:
             print(f"skipped {name}: {type(error).__name__}: {error}")
             continue

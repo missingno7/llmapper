@@ -44,10 +44,9 @@ What it does not have is as useful as what it does:
 
 ## Layout
 
-Identical to the other two, and produced by the same `source/`.
+Identical to the other two, and produced by the same stage program, `tools/decompile_stages/`.
 
 ```bash
 BLOODMAP_CORPUS=<absolute path to maps/blood> \
-PYTHONPATH=".;projects/e4m8-decompiled/source" \
-python projects/e4m8-decompiled/source/run_all.py
+python -m tools.decompile_stages.run_all projects/e4m8-decompiled
 ```

@@ -31,7 +31,8 @@ from collections import Counter, defaultdict
 from typing import Any, Iterable, Sequence
 
 from .joins import TILE_CLASSES
-from .read_joins import INTERIOR, adjacency, surface_kinds
+from .model import record_fields as _face, record_extra
+from .read_joins import AUTOSTEP, INTERIOR, adjacency, surface_kinds
 from .texture_frame import (
     _fields, join_class, join_continues, sector_index, wall_visible,
 )
@@ -45,15 +46,9 @@ END_WALL_PAIRS = ("road|end_wall", "pavement|end_wall",
                   "road|facade", "pavement|facade")
 
 
-def _face(item: Any) -> Any:
-    return item["fields"] if isinstance(item, dict) else item.fields
-
-
 def _extra(item: Any) -> dict[str, Any] | None:
-    extra = item["blood"] if isinstance(item, dict) else getattr(item, "extra", None)
-    if extra is None:
-        return None
-    return dict(extra["fields"] if isinstance(extra, dict) else extra.fields)
+    extra = record_extra(item)
+    return None if extra is None else dict(extra)
 
 
 def _spread(values: Sequence[float]) -> dict[str, Any]:
@@ -208,8 +203,6 @@ def _relation(here: int, there: int, step: int) -> str:
         return "a step up" if delta < 0 else "a step down"
     return "far above" if delta < 0 else "far below"
 
-
-AUTOSTEP = 4096
 
 
 def interior_pairs(level: Any, kinds: dict[int, str] | None = None, *,

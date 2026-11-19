@@ -26,9 +26,10 @@ import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from bloodmap.format import read_map
-from bloodmap.patterns import CORPUS_VIEWS, list_corpus_maps
+from bloodmap.corpus import CORPUS_VIEWS, list_corpus_maps
+from bloodmap.player_space import PLAYER_PROFILES
 
-PLAYER = 16960
+PLAYER = PLAYER_PROFILES["blood"].standing_height
 #: Sprites that are furniture/props rather than actors, pickups or markers.
 def is_prop(sp) -> bool:
     return sp.status == 0 and sp.type == 0 and sp.picnum > 0

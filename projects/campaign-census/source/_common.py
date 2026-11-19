@@ -28,7 +28,7 @@ def art_sizes() -> dict:
 
 def campaign() -> list:
     """Every campaign map, by path, in a stable order."""
-    from bloodmap.patterns import list_corpus_maps
+    from bloodmap.corpus import list_corpus_maps
 
     return sorted((item.path for item in list_corpus_maps(population=POPULATION)),
                   key=lambda path: path.stem.upper())

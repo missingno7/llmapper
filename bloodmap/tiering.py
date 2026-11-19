@@ -1152,7 +1152,7 @@ def tier_corpus(
     checkout is meaningless in another, which is exactly what went wrong with
     the manifest this replaces.
     """
-    from .patterns import corpus_root, list_corpus_maps
+    from .corpus import corpus_root, list_corpus_maps
 
     root = corpus_root(directory)
     output_root = Path(output_directory)

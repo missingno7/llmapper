@@ -38,6 +38,7 @@ from __future__ import annotations
 from collections import defaultdict
 from typing import Any, Sequence
 
+from .model import record_fields as _face
 from .read_islands import read_islands
 from .read_joins import adjacency, street_network, surface_kinds
 from .texture_frame import sector_index
@@ -59,10 +60,6 @@ CORRIDOR_RATIO = 2.0
 #: `candidate` both ways and left to the selection pass, which is Manifold's
 #: rule: do not commit to an interpretation inside a reader.
 AMBIGUOUS_LOW, AMBIGUOUS_HIGH = 1.2, 2.5
-
-
-def _face(item: Any) -> Any:
-    return item["fields"] if isinstance(item, dict) else item.fields
 
 
 def _pu(value: float) -> float:

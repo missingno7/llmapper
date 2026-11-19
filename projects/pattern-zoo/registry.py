@@ -927,6 +927,11 @@ SKIP: dict[str, str] = {
         "reads a facade off an existing map; a reading, not a constructor",
     "bloodmap.aperture.audit":
         "checks an authored aperture; a validator, not a built thing",
+    "bloodmap.aperture.observe_openings":
+        "the sensor behind `audit` and the campaign's aperture numbers: reads "
+        "every walkable two-sided wall off a map; a reading, not a constructor",
+    "bloodmap.aperture.dominant_wall_tile":
+        "reads a sector's facade tile off its solid walls, by length; a reading",
     "bloodmap.aperture.tile_span_z":
         "a helper: how much z one tile repeat covers",
     "bloodmap.aperture.snap_leaf":

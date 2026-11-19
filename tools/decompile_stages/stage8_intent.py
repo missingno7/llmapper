@@ -8,7 +8,7 @@ selection pass and none is a refusal.
 
 E2M3 named 8 of its 340 sectors. The refusal is the part being copied.
 
-    PYTHONPATH=. python projects/e3m1-decompiled/source/stage8_intent.py
+    python -m tools.decompile_stages.stage8_intent projects/<map>-decompiled
 """
 
 from __future__ import annotations
@@ -16,12 +16,12 @@ from __future__ import annotations
 import json
 from collections import Counter
 
-from _common import MAP_NAME, PROJECT, level, write
-from _review import Tree, answers, write_pack
+from ._common import map_name, project, level, write
+from ._review import Tree, answers, write_pack
 
 from bloodmap.curriculum import mine_map
 from bloodmap.format import read_map
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 from bloodmap.anchors import find_bundles
 from bloodmap.read_intent import (
     PROP_MAJORITY,
@@ -31,13 +31,13 @@ from bloodmap.read_mechanisms import curriculum_index, read_mechanisms
 from bloodmap.read_stairs import read_stairs
 from bloodmap.texture_frame import sector_index
 
-import build_facts
+from . import build_facts
 
 SINGLETON = "retained as a reviewable singleton"
 
 
 def _review(world, places, names) -> dict:
-    tree = Tree(len(world.sectors), f"{MAP_NAME} -- names, and the refusals")
+    tree = Tree(len(world.sectors), f"{map_name()} -- names, and the refusals")
     named = places["named"]
     if named:
         tree.add("places", "intent", f"places one measurement names "
@@ -96,20 +96,20 @@ def _review(world, places, names) -> dict:
                                     "answer and the rate is the measurement"),
             "evidence": "references/intent.json: mechanisms.refused"})
     questions = questions[:10]
-    return write_pack(8, tree, f"{MAP_NAME} layer 8: intent", questions)
+    return write_pack(8, tree, f"{map_name()} layer 8: intent", questions)
 
 
 def main() -> int:
     world = level()
     owners = sector_index(world)
-    path = corpus_map_path(MAP_NAME)
+    path = corpus_map_path(map_name())
     disk = read_map(path)
     kinds = surface_kinds(world, owners=owners)["kinds"]
     lessons = build_facts.lessons_dir()
     mechanisms = read_mechanisms(world, disk, lessons=lessons,
                                  reading=mine_map(path))
     stairs = read_stairs(world)
-    hierarchy = json.loads((PROJECT / "hierarchy.json").read_text(encoding="utf-8"))
+    hierarchy = json.loads((project() / "hierarchy.json").read_text(encoding="utf-8"))
     spaces = [node for node in hierarchy["nodes"]
               if node["kind"] == "space"
               and not any(SINGLETON in basis for basis in node.get("basis", []))]
@@ -154,7 +154,7 @@ def main() -> int:
     payload["owner_marks_read_back"] = answers(8)
     write("intent.json", payload)
 
-    print(f"{MAP_NAME} intent")
+    print(f"{map_name()} intent")
     print(f"  mechanisms         : {stats['mechanisms']['named']} named, "
           f"{stats['mechanisms']['candidates']} candidates, "
           f"{stats['mechanisms']['refused']} refused of "

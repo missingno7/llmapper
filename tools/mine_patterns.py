@@ -34,7 +34,6 @@ Every one is measured only over playable sectors, in standing humans.
 from __future__ import annotations
 
 import argparse
-import glob
 import json
 import math
 import pathlib
@@ -42,6 +41,7 @@ import statistics
 from collections import Counter
 from typing import Any
 
+from bloodmap.corpus import named_maps
 from bloodmap.format import read_map
 from bloodmap.player_space import PLAYER_PROFILES
 from bloodmap.reachability import design_sectors, portal_graph
@@ -187,16 +187,14 @@ def observe(name: str, disk: Any) -> dict[str, Any]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--maps", default="maps/blood")
+    parser.add_argument("--maps", help="corpus root or a directory of maps (default: the local corpus)")
     parser.add_argument("--only", nargs="*", help="map stems to include")
     parser.add_argument("--against", help="an extra map to profile alongside")
     parser.add_argument("-o", "--output")
     args = parser.parse_args(argv)
 
-    paths: dict[str, str] = {}
-    for pattern in ("*.MAP", "*.map"):
-        for path in glob.glob(str(pathlib.Path(args.maps) / pattern)):
-            paths.setdefault(pathlib.Path(path).stem.upper(), path)
+    paths: dict[str, str] = {
+        path.stem.upper(): str(path) for path in named_maps(args.maps)}
     if args.only:
         wanted = {name.upper() for name in args.only}
         paths = {k: v for k, v in paths.items() if k in wanted}

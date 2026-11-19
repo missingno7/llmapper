@@ -37,7 +37,7 @@ def _disk(path):
 
 
 def _corpus(name):
-    from bloodmap.patterns import corpus_map_path
+    from bloodmap.corpus import corpus_map_path
 
     try:
         return _disk(corpus_map_path(name))
@@ -143,7 +143,7 @@ class TheCampaignStillWorks(unittest.TestCase):
 
     def test_e3m1s_collapsing_house_is_still_a_realised_chain(self):
         from bloodmap.curriculum import mine_map
-        from bloodmap.patterns import corpus_map_path
+        from bloodmap.corpus import corpus_map_path
         from bloodmap.read_mechanisms import read_mechanisms
 
         disk = _corpus("E3M1")
@@ -160,7 +160,7 @@ class TheCampaignStillWorks(unittest.TestCase):
 
     def test_a_map_may_carry_some_dead_channels_without_losing_the_rest(self):
         from bloodmap.curriculum import mine_map
-        from bloodmap.patterns import corpus_map_path
+        from bloodmap.corpus import corpus_map_path
         from bloodmap.read_mechanisms import read_mechanisms
 
         disk = _corpus("E1M2")

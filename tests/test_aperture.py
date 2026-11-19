@@ -203,9 +203,9 @@ class CandidateAuditTests(unittest.TestCase):
 
     def test_the_candidate_does_not_break_the_facade_worse_than_blood_by_much(self):
         from bloodmap.format import read_map
-        from tools.mine_apertures import observe
+        from bloodmap.aperture import observe_openings
 
-        rows = [r for r in observe("candidate", read_map(CANDIDATE))
+        rows = [r for r in observe_openings("candidate", read_map(CANDIDATE))
                 if r["aperture"] and r["lintel_player_heights"] > 0]
         self.assertTrue(rows)
         broke = sum(1 for r in rows if not r["lintel_continues_facade"])

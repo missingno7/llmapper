@@ -28,52 +28,22 @@ What is measured
 from __future__ import annotations
 
 import argparse
-import glob
 import json
 import math
 import pathlib
-import re
 import statistics
 from collections import Counter, defaultdict
 from typing import Any
 
+from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map
+from bloodmap.keys import EMBLEM_NAME, PLACARD_REACH, key_of
 from bloodmap.player_space import PLAYER_PROFILES
 
 SCHEMA = "llmapper.blood-keys"
 SCHEMA_VERSION = 1
 
-CAMPAIGN = re.compile(r"^E[1-46]M[1-9]$")
 PLAYER_HEIGHT = PLAYER_PROFILES["blood"].standing_height
-
-#: The six emblems, in tile order. Named from rendering them, not from memory.
-PLACARD_TILES = {
-    2540: "skull",
-    2541: "eye",
-    2542: "flame",
-    2543: "dagger",
-    2544: "spider",
-    2545: "moon",
-}
-
-#: How far from a keyed door a placard can be and still be about that door.
-NEAR = 3072
-
-
-def key_of(item: Any) -> int:
-    """The key an item demands, out of its Blood extension.
-
-    Not `fields["key"]`: that is the base Build struct, which has no such
-    member. Blood keeps it in the XSECTOR / XSPRITE / XWALL extension hanging
-    off `.extra`, and reading the wrong one silently returns nothing -- a first
-    pass reported 0 keyed things across all 43 maps, next to 200 placards, which
-    should have been the tell.
-    """
-    extra = getattr(item, "extra", None)
-    if extra is None or not hasattr(extra, "fields"):
-        return 0
-    return int(extra.fields.get("key", 0) or 0)
-
 
 def keyed_things(disk: Any) -> list[dict[str, Any]]:
     """Everything in the map that demands a key."""
@@ -108,14 +78,14 @@ def observe(name: str, disk: Any) -> dict[str, Any]:
     placards = []
     for index, sprite in enumerate(disk.sprites):
         picnum = int(sprite.fields["picnum"])
-        if picnum not in PLACARD_TILES:
+        if picnum not in EMBLEM_NAME:
             continue
         sector = int(sprite.fields["sector"])
         floor = (int(disk.sectors[sector].fields["floor_z"])
                  if 0 <= sector < len(disk.sectors) else 0)
         placards.append({
             "map": name, "index": index, "picnum": picnum,
-            "emblem": PLACARD_TILES[picnum],
+            "emblem": EMBLEM_NAME[picnum],
             "x": int(sprite.fields["x"]), "y": int(sprite.fields["y"]),
             "z": int(sprite.fields["z"]),
             "above_floor": floor - int(sprite.fields["z"]),
@@ -139,7 +109,7 @@ def observe(name: str, disk: Any) -> dict[str, Any]:
             distance = math.hypot(door["x"] - placard["x"], door["y"] - placard["y"])
             if best is None or distance < best[0]:
                 best = (distance, door)
-        if best and best[0] <= NEAR:
+        if best and best[0] <= PLACARD_REACH:
             pairs.append({"picnum": placard["picnum"], "key": best[1]["key"],
                           "distance": round(best[0], 1),
                           "above_floor_humans": placard["above_floor_humans"]})
@@ -147,7 +117,7 @@ def observe(name: str, disk: Any) -> dict[str, Any]:
     for door in doors:
         for placard in placards:
             if math.hypot(door["x"] - placard["x"],
-                          door["y"] - placard["y"]) <= NEAR:
+                          door["y"] - placard["y"]) <= PLACARD_REACH:
                 marked += 1
                 break
     return {"placards": placards, "keyed": doors, "pairs": pairs,
@@ -156,7 +126,7 @@ def observe(name: str, disk: Any) -> dict[str, Any]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--maps", default="maps/blood")
+    parser.add_argument("--maps", help="corpus root or a directory of maps (default: the local corpus)")
     parser.add_argument("-o", "--output")
     args = parser.parse_args(argv)
 
@@ -164,10 +134,8 @@ def main(argv: list[str] | None = None) -> int:
     pairs: list[dict] = []
     keyed = marked = 0
     seen = 0
-    for path in sorted(glob.glob(str(pathlib.Path(args.maps) / "*.MAP"))):
-        name = pathlib.Path(path).stem.upper()
-        if not CAMPAIGN.match(name):
-            continue
+    for path in campaign_maps(args.maps, required=True):
+        name = path.stem.upper()
         try:
             row = observe(name, read_map(path))
         except Exception as error:
@@ -190,14 +158,14 @@ def main(argv: list[str] | None = None) -> int:
 
     print("%d maps, %d placards, %d keyed things, %d of them with a placard "
           "within %d units (%.0f%%)"
-          % (seen, len(placards), keyed, marked, NEAR,
+          % (seen, len(placards), keyed, marked, PLACARD_REACH,
              100 * marked / max(1, keyed)))
     print()
     print("key value -> emblem, by what sits next to the door:")
     for key in sorted(mapping):
         top = mapping[key].most_common(3)
         print("  key %d: %s" % (key, ", ".join(
-            "%s(%d) x%d" % (PLACARD_TILES[p], p, n) for p, n in top)))
+            "%s(%d) x%d" % (EMBLEM_NAME[p], p, n) for p, n in top)))
     print()
     ordered = sorted(heights)
     if ordered:
@@ -214,7 +182,7 @@ def main(argv: list[str] | None = None) -> int:
         out.write_text(json.dumps({
             "$schema": SCHEMA, "schema_version": SCHEMA_VERSION,
             "maps": seen,
-            "tiles": {str(k): v for k, v in PLACARD_TILES.items()},
+            "tiles": {str(k): v for k, v in EMBLEM_NAME.items()},
             "key_to_tile": {str(k): v.most_common(1)[0][0]
                             for k, v in mapping.items() if v},
             "key_to_tile_votes": {str(k): dict(v) for k, v in mapping.items()},

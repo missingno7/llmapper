@@ -239,7 +239,7 @@ class TheToleranceReportsWhatItDropsTest(unittest.TestCase):
     def test_a_grazing_crossing_is_marked_not_dropped(self):
         from bloodmap.motion_sim import closure_health
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         found = [e for e in list_corpus_maps(population="blood-campaign")
                  if e.path.stem.upper() == "E1M8"]
@@ -264,7 +264,7 @@ class TheToleranceReportsWhatItDropsTest(unittest.TestCase):
 
         from bloodmap import motion_sim
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         found = [e for e in list_corpus_maps(population="blood-campaign")
                  if e.path.stem.upper() == "E1M8"]
@@ -305,7 +305,7 @@ class AssemblyTest(unittest.TestCase):
         # the assembly rule exists for.
         from bloodmap.motion_sim import co_driven_walls, drag_closure
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         found = [e for e in list_corpus_maps(population="blood-campaign")
                  if e.path.stem.upper() == "E1M4"]
@@ -321,7 +321,7 @@ class AssemblyTest(unittest.TestCase):
     def test_a_co_driven_hub_is_a_note_and_never_a_problem(self):
         from bloodmap.motion_sim import closure_health
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         found = [e for e in list_corpus_maps(population="blood-campaign")
                  if e.path.stem.upper() == "E1M4"]
@@ -343,7 +343,7 @@ class AssemblyTest(unittest.TestCase):
         # hub breaks -- which is why the default is not this.
         from bloodmap.motion_sim import closure_health
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         found = [e for e in list_corpus_maps(population="blood-campaign")
                  if e.path.stem.upper() == "E1M4"]

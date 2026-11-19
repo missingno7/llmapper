@@ -49,7 +49,7 @@ different values is a `conflict`, recorded with both owners; agreeing is
 corroboration; `shade` is additive, so a sun and a lamp both writing it is
 normal.
 
-**No percentage in any report here is typed.** `source/query.py` computes
+**No percentage in any report here is typed.** `tools/decompile_stages/query.py` computes
 every one of them from `facts/` and writes `residue-ledger.json`.
 
 ## Running it
@@ -57,11 +57,14 @@ every one of them from `facts/` and writes `residue-ledger.json`.
 Absolute paths in a worktree, never a junction:
 
 ```bash
-BLOODMAP_CORPUS=D:/Games/DOS/llmapper/maps/blood BLOODMAP_ART=D:/Games/DOS/llmapper/reference/blood PYTHONPATH=".;projects/e3m1-decompiled/source" python projects/e3m1-decompiled/source/run_all.py
+BLOODMAP_CORPUS=D:/Games/DOS/llmapper/maps/blood BLOODMAP_ART=D:/Games/DOS/llmapper/reference/blood python -m tools.decompile_stages.run_all projects/e3m1-decompiled
 ```
 
-`run_all.py` builds the store, queries it, then rebuilds every stage's
-evidence and review pack, in that order.
+`run_all` builds the store, queries it, then rebuilds every stage's
+evidence and review pack, in that order. The stage program is shared by every
+`projects/<map>-decompiled` and lives in `tools/decompile_stages/`; each stage,
+`build_facts` and `query` run alone the same way
+(`python -m tools.decompile_stages.query projects/e3m1-decompiled`).
 
 | stage | layer | reader | evidence |
 | --- | --- | --- | --- |
@@ -108,7 +111,7 @@ in the next report.
 | `hierarchy.json`, `structures.json`, `assets.json`, `nodes.jsonl` | the layer-1 reading view |
 | `references/` | one human-readable evidence file per layer |
 | `review/` | one pack, one hierarchy and one question set per layer |
-| `source/` | the orchestration: `build_facts.py`, `query.py`, one stage per layer |
+| `source/` | `close_questions.py`, the one E3M1-specific script; the orchestration (`build_facts`, `query`, one stage per layer) is `tools/decompile_stages/` |
 
 ## The rule the ledger keeps
 

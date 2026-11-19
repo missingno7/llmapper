@@ -52,6 +52,7 @@ import pathlib
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from typing import Any, Iterable, Sequence
+from .model import record_extra, record_fields
 
 SCHEMA = "llmapper.fact-store"
 SCHEMA_VERSION = 1
@@ -264,14 +265,12 @@ class FactStore:
 # ---------------------------------------------------------------------------
 
 def _fields(item: Any) -> dict[str, Any]:
-    return dict(item["fields"] if isinstance(item, dict) else item.fields)
+    return dict(record_fields(item))
 
 
 def _extra(item: Any) -> dict[str, Any] | None:
-    extra = item["blood"] if isinstance(item, dict) else getattr(item, "extra", None)
-    if extra is None:
-        return None
-    return dict(extra["fields"] if isinstance(extra, dict) else extra.fields)
+    extra = record_extra(item)
+    return None if extra is None else dict(extra)
 
 
 def base_facts(level: Any, *, source: str = "map") -> list[Fact]:

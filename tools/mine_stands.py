@@ -40,8 +40,9 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from tools.mine_city_assets import TOWN_MAPS, is_decoration  # noqa: E402
+from bloodmap.player_space import PLAYER_PROFILES
 
-BODY = 16960
+BODY = PLAYER_PROFILES["blood"].standing_height
 #: a player's width, the unit plan sizes are stated in
 WIDTH = 1024
 #: a sprite this far over its sector's floor is not standing on it

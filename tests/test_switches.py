@@ -21,6 +21,8 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
+from tests.helpers import campaign_maps
+
 ROOT = Path(__file__).resolve().parent.parent
 CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v7.MAP"
 
@@ -109,16 +111,13 @@ class CandidateSwitchTests(unittest.TestCase):
         individually they carry one to seventeen samples each, which is not a
         distribution.
         """
-        import glob
-        import re
         from collections import defaultdict
         from bloodmap.format import read_map
         from bloodmap.player_space import PLAYER_PROFILES
 
         body = PLAYER_PROFILES["blood"].standing_height
         letters = set(range(3808, 3834))
-        maps = [p for p in sorted(glob.glob(str(ROOT / "maps" / "blood" / "campaign" / "*.MAP")))
-                if re.match(r"^E[1-46]M[1-9]$", Path(p).stem.upper())]
+        maps = campaign_maps()
         if not maps:
             self.skipTest("no Blood campaign maps")
 

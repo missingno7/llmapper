@@ -23,8 +23,9 @@ from typing import Any, Iterable
 from .blood_types import classify
 from .format import read_map
 from .model import DiskMap
-from .patterns import classify_map_population, list_original_maps
+from .corpus import classify_map_population, list_original_maps
 from .player_space import PLAYER_PROFILES
+from .sector_geom import wall_segment as _wall_segment
 
 
 SCHEMA = "llmapper.blood-doors"
@@ -159,15 +160,6 @@ def _wall_owners(disk: DiskMap) -> list[int]:
         for wall_id in range(first, first + count):
             owners[wall_id] = sector_id
     return owners
-
-
-def _wall_segment(disk: DiskMap, wall_id: int) -> tuple[tuple[int, int], tuple[int, int]]:
-    wall = disk.walls[wall_id]
-    nxt = disk.walls[int(wall.fields["point2"])]
-    return (
-        (int(wall.fields["x"]), int(wall.fields["y"])),
-        (int(nxt.fields["x"]), int(nxt.fields["y"])),
-    )
 
 
 def _midpoint(a: tuple[int, int], b: tuple[int, int]) -> tuple[float, float]:

@@ -12,7 +12,7 @@ import subprocess
 import sys
 from pathlib import Path
 from bloodmap.format import read_map, encode_map, parse_map
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 from bloodmap.construction import LevelBuilder, new_level, portal_profiles
 from bloodmap.analysis import validate_map
 from bloodmap.composition import find_layout_conflicts

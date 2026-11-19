@@ -1,3 +1,10 @@
+"""Blood v7 MAP bytes: parse and encode, with the encryption, the CRC and the packed extended records.
+
+Nothing here interprets a value. `parse_map` and `encode_map` are exact inverses
+on every map in the corpus, and the writer rebuilds the file from decoded fields
+rather than from a retained blob.
+"""
+
 from __future__ import annotations
 
 import struct

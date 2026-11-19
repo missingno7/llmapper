@@ -21,7 +21,7 @@ import functools
 
 from bloodmap.doors import z_motion_door
 from bloodmap.format import read_map
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 from bloodmap.levelprog import Frame, RECT_FACES, Style
 from bloodmap.prefab import breakable
 

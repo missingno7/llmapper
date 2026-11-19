@@ -1,3 +1,5 @@
+"""Cross-game conversion through `BuildIR` under an explicit fidelity policy, with the measured scale profiles."""
+
 from __future__ import annotations
 
 import copy

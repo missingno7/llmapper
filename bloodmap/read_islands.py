@@ -37,15 +37,12 @@ from __future__ import annotations
 from collections import Counter, defaultdict
 from typing import Any, Sequence
 
+from .model import record_fields as _face
 from .overlay import HeightIsland, kerb_records
 from .read_joins import AUTOSTEP, adjacency, measured_rise, street_network
 from .texture_frame import sector_index
 
 Point = tuple[int, int]
-
-
-def _face(item: Any) -> Any:
-    return item["fields"] if isinstance(item, dict) else item.fields
 
 
 def boundary_loops(level: Any, group: set[int], owners: Sequence[int]

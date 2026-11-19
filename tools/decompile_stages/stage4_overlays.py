@@ -6,15 +6,15 @@ recovered. `bloodmap.read_light` recovers the sun's bearing from the shade
 boundaries -- the axis from the oblique ones, the sign from the perpendicular
 ones -- then the field's levels, then which corner threw each shadow.
 
-    PYTHONPATH=. python projects/e3m1-decompiled/source/stage4_overlays.py
+    python -m tools.decompile_stages.stage4_overlays projects/<map>-decompiled
 """
 
 from __future__ import annotations
 
 from collections import Counter
 
-from _common import MAP_NAME, level, write
-from _review import Tree, answers, write_pack
+from ._common import map_name, level, write
+from ._review import Tree, answers, write_pack
 
 from bloodmap.light_field import MAX_LEVELS, STEP, STEP_ENVELOPE
 from bloodmap.read_islands import read_islands, summary as island_summary
@@ -29,7 +29,7 @@ def _review(world, islands, light, network) -> dict:
     voids = sum(row["what_the_other_side_is"].get("void", 0)
                 for row in islands["islands_the_writer_over_claims"])
     cast = light["casters"]
-    tree = Tree(len(world.sectors), f"{MAP_NAME} -- islands and the light field")
+    tree = Tree(len(world.sectors), f"{map_name()} -- islands and the light field")
     tree.add("scope", "out_of_scope",
              "not this layer's population (indoors, off the street network)",
              tree.root.id,
@@ -115,7 +115,7 @@ def _review(world, islands, light, network) -> dict:
                                     "caster the geometry does not choose"),
             "evidence": "references/overlays.json: light.casters"})
     questions = questions[:10]
-    return write_pack(4, tree, f"{MAP_NAME} layer 4: islands and the light field",
+    return write_pack(4, tree, f"{map_name()} layer 4: islands and the light field",
                       questions)
 
 
@@ -175,7 +175,7 @@ def main() -> int:
     payload["owner_marks_read_back"] = answers(4)
     write("overlays.json", payload)
 
-    print(f"{MAP_NAME} overlays, on {len(network)} street sectors")
+    print(f"{map_name()} overlays, on {len(network)} street sectors")
     print(f"  islands            : {len(islands['islands'])} at rise "
           f"{islands['rise']}, kerb tiles {islands['kerb_tiles_seen']}")
     print(f"  kerb records       : the map makes "
@@ -248,7 +248,7 @@ def _campaign_step() -> dict:
     it is 15 and 43%.
     """
     from bloodmap.format import read_map
-    from bloodmap.patterns import list_corpus_maps
+    from bloodmap.corpus import list_corpus_maps
     from bloodmap.read_joins import adjacency, street_network
     from bloodmap.read_light import shade_edges
 

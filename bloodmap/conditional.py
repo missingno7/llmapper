@@ -41,6 +41,7 @@ from .effects import (
     swept_opening,
 )
 from .fragment import SYSTEM_CHANNELS
+from .model import record_extra
 from .reachability import analyze_reachability
 
 SCHEMA = "llmapper.conditional-traversability"
@@ -121,10 +122,8 @@ class ConditionalError(ValueError):
 
 
 def _extra(item: Any) -> dict[str, Any]:
-    payload = getattr(item, "extra", None)
-    if payload is None or not hasattr(payload, "fields"):
-        return {}
-    return payload.fields
+    extra = record_extra(item)
+    return {} if extra is None else extra
 
 
 def channel_name(channel: int) -> str | None:

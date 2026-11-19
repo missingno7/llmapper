@@ -140,7 +140,7 @@ class TheKerbIsTheIslandsOwnEdge(unittest.TestCase):
         # The fixture behind the constant, read off the map rather than
         # trusted: every road-side record at a road/pavement boundary.
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
         from bloodmap.texture_frame import sector_index
 
         found = [e for e in list_corpus_maps(population="blood-campaign")

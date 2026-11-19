@@ -372,11 +372,12 @@ class OneRotorIsADoorTests(unittest.TestCase):
 
     def rotor_reaches(self, name, sector):
         from bloodmap.format import read_map
-        from bloodmap.patterns import PatternError, corpus_map_path
+        from bloodmap.corpus import corpus_map_path
+        from bloodmap.corpus import CorpusError
 
         try:
             path = corpus_map_path(name)
-        except PatternError:
+        except CorpusError:
             self.skipTest(f"{name} is not in the local corpus")
         if not path.exists():
             self.skipTest(f"{name} is not in the local corpus")
@@ -429,11 +430,12 @@ class CorpusAgreementTests(unittest.TestCase):
 
     def rotors(self, name, sectors):
         from bloodmap.format import read_map
-        from bloodmap.patterns import PatternError, corpus_map_path
+        from bloodmap.corpus import corpus_map_path
+        from bloodmap.corpus import CorpusError
 
         try:
             path = corpus_map_path(name)
-        except PatternError:
+        except CorpusError:
             self.skipTest(f"{name} is not in the local corpus")
         if not path.exists():
             self.skipTest(f"{name} is not in the local corpus")

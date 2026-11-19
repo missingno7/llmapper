@@ -19,7 +19,7 @@ import sys
 import tempfile
 import unittest
 
-from bloodmap.patterns import CORPUS_VIEWS, list_corpus_maps
+from bloodmap.corpus import CORPUS_VIEWS, list_corpus_maps
 
 
 #: Every miner that used to glob the flat corpus, and the artifact it wrote.

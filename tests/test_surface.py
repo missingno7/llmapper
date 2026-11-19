@@ -19,7 +19,7 @@ from pathlib import Path
 
 def _campaign(stem):
     from bloodmap.format import read_map
-    from bloodmap.patterns import list_corpus_maps
+    from bloodmap.corpus import list_corpus_maps
 
     found = [entry for entry in list_corpus_maps(population="blood-campaign")
              if entry.path.stem.upper() == stem]
@@ -187,7 +187,7 @@ class TheCampaignShareRecordsButNeverFarApart(unittest.TestCase):
     def test_only_the_one_outlier_is_flagged(self):
         from bloodmap import rules_blood                       # noqa: F401
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
         from bloodmap.rules import RULES
         from bloodmap.texture_align import wall_art_sizes
 

@@ -54,6 +54,7 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 from typing import Any, Iterable, Sequence
+from .model import record_fields as _fields
 
 #: Blood's z axis is 16 units to one horizontal unit, so a distance that mixes
 #: them has to bring z back down before adding.
@@ -140,10 +141,6 @@ class Surfaces:
     sector_area: list[float]
     wall_area: list[float]
     wall_normal: list[tuple[float, float]]
-
-
-def _fields(item: Any) -> Any:
-    return item["fields"] if isinstance(item, dict) else item.fields
 
 
 def _walls_of(level: Any, index: int) -> range:

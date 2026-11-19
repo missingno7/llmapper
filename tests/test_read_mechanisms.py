@@ -14,7 +14,7 @@ import unittest
 
 def _corpus():
     from bloodmap.format import read_map
-    from bloodmap.patterns import corpus_map_path
+    from bloodmap.corpus import corpus_map_path
 
     path = corpus_map_path("E3M1", missing_ok=True)
     if not path.exists():
@@ -23,7 +23,7 @@ def _corpus():
 
 
 def _lessons():
-    from bloodmap.patterns import corpus_map_path
+    from bloodmap.corpus import corpus_map_path
 
     path = corpus_map_path("E1M1", missing_ok=True)
     lessons = path.parent.parent / "mechanism" / "Vanilla"
@@ -115,7 +115,7 @@ class TheInventory(unittest.TestCase):
         from pathlib import Path
 
         from bloodmap.curriculum import mine_map
-        from bloodmap.patterns import corpus_root
+        from bloodmap.corpus import corpus_root
 
         folder = corpus_root() / "mechanism" / "Vanilla"
         found = [path for path in folder.glob("*")

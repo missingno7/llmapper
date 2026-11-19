@@ -16,7 +16,7 @@ from pathlib import Path
 
 def _e3m1():
     from bloodmap.format import read_map
-    from bloodmap.patterns import list_corpus_maps
+    from bloodmap.corpus import list_corpus_maps
 
     found = [item for item in list_corpus_maps(population="blood-campaign")
              if item.path.stem.upper() == "E3M1"]
@@ -223,7 +223,7 @@ class TheStepDependsOnWhatTheNetworkMeans(unittest.TestCase):
 
     @staticmethod
     def _paths():
-        from bloodmap.patterns import list_original_maps
+        from bloodmap.corpus import list_original_maps
 
         try:
             return list_original_maps(population="blood-campaign")[:6]
@@ -276,7 +276,7 @@ class AMapWithNoSun(unittest.TestCase):
     @staticmethod
     def _e1m2():
         from bloodmap.format import read_map
-        from bloodmap.patterns import list_corpus_maps
+        from bloodmap.corpus import list_corpus_maps
 
         found = [item for item in list_corpus_maps(population="blood-campaign")
                  if item.path.stem.upper() == "E1M2"]
@@ -339,7 +339,7 @@ class TheEnvelopeIsDecidedPerNetwork(unittest.TestCase):
         self.assertEqual(DECIDED_ENVELOPE[NETWORK_ALL_OUTDOOR], (8, 16))
 
     def test_the_census_uses_its_network_s_envelope_unasked(self):
-        from bloodmap.patterns import list_original_maps
+        from bloodmap.corpus import list_original_maps
         from bloodmap.read_light import (
             NETWORK_LARGEST_COMPONENT, shade_step_envelope)
 
@@ -351,7 +351,7 @@ class TheEnvelopeIsDecidedPerNetwork(unittest.TestCase):
         self.assertEqual(tuple(found["envelope"]), (8, 18))
 
     def test_a_caller_may_still_state_one(self):
-        from bloodmap.patterns import list_original_maps
+        from bloodmap.corpus import list_original_maps
         from bloodmap.read_light import shade_step_envelope
 
         try:
@@ -417,7 +417,7 @@ class TheEnvelopeSaysWhatItMeasured(unittest.TestCase):
         self.assertAlmostEqual(found["inside"], 0.5885, places=3)
 
     def test_a_caller_supplied_path_list_says_so_rather_than_naming_a_population(self):
-        from bloodmap.patterns import list_original_maps
+        from bloodmap.corpus import list_original_maps
         from bloodmap.read_light import shade_step_envelope
 
         paths = list(list_original_maps(population="blood-campaign"))[:4]

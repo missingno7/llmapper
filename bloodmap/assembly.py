@@ -33,6 +33,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from math import atan2, hypot, pi
 from typing import Any, Iterable
+from .model import record_fields as _f, record_extra as _x
 
 #: cstat bits that make a sprite travel with (8192) or against (16384) a moving
 #: sector. A sprite carrying one of these is part of the machine, not scenery.
@@ -48,17 +49,6 @@ MARKER_STATNUM = 10
 #: comes from the XMapEdit samples.
 PATH_MARKER_TYPE = 15
 PATH_MARKER_STATNUM = 16
-
-
-def _f(item: Any) -> dict[str, Any]:
-    return item["fields"] if isinstance(item, dict) else item.fields
-
-
-def _x(item: Any) -> dict[str, Any] | None:
-    extra = item["blood"] if isinstance(item, dict) else item.extra
-    if extra is None:
-        return None
-    return extra["fields"] if isinstance(extra, dict) else extra.fields
 
 
 @dataclass

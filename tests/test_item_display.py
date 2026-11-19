@@ -15,24 +15,15 @@ fails on any field that has drifted.
 
 from __future__ import annotations
 
-import glob
-import re
 import unittest
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from tests.helpers import campaign_maps
+
 ROOT = Path(__file__).resolve().parent.parent
-#: The campaign population directory (corpus reorganized 2026-08-31).
-MAPS = ROOT / "maps" / "blood" / "campaign"
 
 FIELDS = ("picnum", "cstat", "x_repeat", "y_repeat", "status", "pal")
-
-
-def campaign_maps() -> list[str]:
-    return [
-        path for path in sorted(glob.glob(str(MAPS / "*.MAP")))
-        if re.match(r"^E[1-46]M[1-9]$", Path(path).stem.upper())
-    ]
 
 
 @unittest.skipUnless(bool(campaign_maps()), "no Blood campaign maps")

@@ -6,7 +6,7 @@ from pathlib import Path
 
 from bloodmap.analysis import channel_graph, geometry_view, validate_map
 from bloodmap.format import encode_map, parse_map, read_map
-from bloodmap.patterns import list_corpus_maps
+from bloodmap.corpus import list_corpus_maps
 from tests.helpers import campaign_directory, corpus_map, named_corpus_maps
 
 

@@ -25,7 +25,7 @@ import pathlib
 
 from bloodmap.decompiler import decompile_level
 from bloodmap.format import read_map
-from bloodmap.patterns import corpus_map_path
+from bloodmap.corpus import corpus_map_path
 
 #: The corpus is a registry of provenance directories, not a flat
 #: folder; missing_ok so importing this module without a local corpus

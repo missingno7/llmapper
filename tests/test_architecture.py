@@ -19,8 +19,8 @@ PACKAGE = Path(__file__).resolve().parents[1] / "bloodmap"
 def module_level_imports(module: str) -> set[str]:
     """Sibling modules imported at import time, not inside a function.
 
-    A function-level import is how `relations.py` reaches the corpus registry
-    without closing a cycle, so the distinction is the whole point.
+    A function-level import is how a module reaches a layer above it without
+    closing a cycle, so the distinction is the whole point.
     """
     tree = ast.parse((PACKAGE / f"{module}.py").read_text(encoding="utf-8"))
     found: set[str] = set()
@@ -35,22 +35,54 @@ def module_level_imports(module: str) -> set[str]:
 
 
 class LayeringTests(unittest.TestCase):
+    def test_the_corpus_registry_is_a_leaf_below_every_sensor(self):
+        """`corpus.py` answers "where did this map come from". It sat inside
+        `patterns.py` until 2026-11-19, so a tool that only wanted a list of
+        maps imported the whole sensor stack, `relations.py` could reach it
+        only from inside a function, and seventeen miners globbed a directory
+        instead. It reads maps and nothing else."""
+        self.assertEqual(module_level_imports("corpus"), {"format"})
+
     def test_the_pattern_pipeline_does_not_import_the_anchor_query(self):
-        """The cycle that moved `context_signature`. `patterns.py` owns the
-        corpus registry that `anchors.py` needs, so the arrow only points one
-        way: anchors -> patterns, never back."""
+        """The cycle that moved `context_signature`: the arrow only points one
+        way, anchors -> patterns, never back."""
         self.assertNotIn("anchors", module_level_imports("patterns"))
 
     def test_the_anchor_query_may_depend_on_both_layers_below_it(self):
         imports = module_level_imports("anchors")
-        self.assertIn("patterns", imports)
+        self.assertIn("corpus", imports)
         self.assertIn("relations", imports)
 
     def test_relations_does_not_import_the_pattern_pipeline_at_module_level(self):
-        """`relations.mine_relations` needs the corpus registry, and reaches it
-        inside the function body. Hoisting that import would close the cycle
-        from the other side."""
-        self.assertNotIn("patterns", module_level_imports("relations"))
+        """`relations.mine_relations` needs the corpus registry and takes it
+        from `corpus.py`. Reaching for `patterns.py` instead would close the
+        cycle from the other side."""
+        imports = module_level_imports("relations")
+        self.assertNotIn("patterns", imports)
+        self.assertIn("corpus", imports)
+
+    def test_the_library_imports_nothing_from_the_scripts_around_it(self):
+        """A sensor lives in the library and a tool is its corpus run, never
+        the other way. Until 2026-11-19 `aperture.audit`, `keys.check` and
+        four rules in `rules_blood.py` imported their own evidence from
+        `tools/mine_*.py`, and the command line imported three blueprints from
+        `experiments/`. Function-local imports, so nothing failed until the
+        package was used without the scripts beside it -- which is what
+        installing it does (`pyproject.toml` packages `bloodmap*` only)."""
+        offenders = []
+        for path in sorted(PACKAGE.glob("*.py")):
+            tree = ast.parse(path.read_text(encoding="utf-8"))
+            for node in ast.walk(tree):
+                if isinstance(node, ast.ImportFrom) and node.level == 0:
+                    names = [node.module or ""]
+                elif isinstance(node, ast.Import):
+                    names = [alias.name for alias in node.names]
+                else:
+                    continue
+                for name in names:
+                    if name.split(".")[0] in ("tools", "experiments", "projects"):
+                        offenders.append(f"{path.name}:{node.lineno} imports {name}")
+        self.assertEqual(offenders, [])
 
     def test_the_type_catalog_stays_a_leaf(self):
         """`blood_types.py` answers "what does this native number mean". If it
@@ -176,7 +208,7 @@ class EvidenceRuleTests(unittest.TestCase):
     def test_a_generated_map_is_never_a_population_that_can_be_cited(self):
         """The rule every phase repeats. `generated` exists so a reconstruction
         cannot be mined as convention."""
-        from bloodmap.patterns import POPULATIONS, classify_map_population
+        from bloodmap.corpus import POPULATIONS, classify_map_population
 
         self.assertEqual(
             classify_map_population("work/BB2-semantic-reconstruction-v3.MAP"),

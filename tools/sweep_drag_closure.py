@@ -29,7 +29,7 @@ if str(ROOT) not in sys.path:
 
 from bloodmap.format import read_map                        # noqa: E402
 from bloodmap.motion_sim import SWEEP_GRAZE, closure_health  # noqa: E402
-from bloodmap.patterns import corpus_root, list_corpus_maps  # noqa: E402
+from bloodmap.corpus import corpus_root, list_corpus_maps  # noqa: E402
 
 SWEPT_TYPES = (614, 615, 616, 617)
 OUT = ROOT / "reports" / "blood-mechanism-drag-closure.json"
