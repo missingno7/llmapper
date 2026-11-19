@@ -96,6 +96,7 @@ convenient.
 | which sector owns a wall, a sector's loops, a wall's two ends | `sector_geom.py` | a loop over `wall_ptr`/`wall_count` in the module that needed it |
 | area, containment, intersection of point lists | `planar_geom.py` | a shoelace sum beside the caller |
 | how tall and wide the player is, and what it can step | `player_space.PLAYER_PROFILES` | the literal 16960, 384 or 4096 |
+| how big a map may be | `build_ir.BUILD_LIMITS` (the ports: an error past it), `build_ir.VANILLA_LIMITS` (the DOS game: a warning), `analysis.BLOOD_X_LIMITS` | the literal 1024, 8192 or 4096 |
 | whether the player can get to a sector, and what off-map geometry is for | `reachability.py` | a fresh flood fill |
 | what a mechanism is made of and how its parts relate | `assembly.py` | a second grouping pass |
 | how one dynamic family works in detail (doors, lifts) | `doors.py`, `mechanism.py` | `assembly.py`, which owns membership, not behaviour |
@@ -209,7 +210,10 @@ spatial/player/material evidence and never becomes compilation authority. See
 
 Shared validation checks engine-level topology and references without interpreting
 game tags: object limits, sector wall ranges, wall loops, portal pairs, sprite
-sectors, player start, and Build angles. Game-native validation then adds Blood or
+sectors, player start, and Build angles. The limits are the target ports': NBlood and
+EDuke32 compile with 4096 sectors, 16384 walls and 16384 sprites, and a map past
+those is an error. A map past the original DOS game's 1024/8192/4096 is a warning:
+it loads in the ports, and how large a map may be is its author's decision. Game-native validation then adds Blood or
 Duke-specific requirements.
 
 Validation distinguishes engine-breaking structure from accepted original-map

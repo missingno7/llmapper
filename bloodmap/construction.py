@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from math import hypot
 from typing import Any, Iterable
 
-from .analysis import validate_map
+from .analysis import BLOOD_X_LIMITS, validate_map
 from .composition import _point_in_sector, _sector_surface_z, _segment_conflict
 from .format import SECTOR_FIELDS, SPRITE_FIELDS, WALL_FIELDS, XSECTOR_SCHEMA, XSPRITE_SCHEMA, XWALL_SCHEMA
 from .model import LevelIR
@@ -225,7 +225,7 @@ class LevelBuilder:
             extra_id = 1
             while extra_id in used:
                 extra_id += 1
-            if extra_id >= {"sector": 1024, "wall": 8192, "sprite": 4096}[kind]:
+            if extra_id >= BLOOD_X_LIMITS[kind]:
                 raise ConstructionError(f"no free X{kind.upper()} id remains")
             blood_fields = _empty_fields(schemas[kind])
             blood_fields["reference"] = int(object_id)

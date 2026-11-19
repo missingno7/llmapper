@@ -170,6 +170,40 @@ class BuildIR:
         return validate_build_ir(self)
 
 
+#: What the target ports compile with: NBlood and EDuke32 build with the V8
+#: figures (`MAXSECTORSV8` and its neighbours, NBlood build.h:48-50). A map
+#: past these loads nowhere, so that is an error.
+BUILD_LIMITS = {"sectors": 4096, "walls": 16384, "sprites": 16384}
+
+#: The original DOS engines' limits, the V7 figures (build.h:52-54). A map past
+#: these loads in the ports and not in the game as shipped, which is the map
+#: author's choice to make -- the owner's, 2026-09-02: "our map is larger than
+#: E3M1 and that is fine" -- so it is a warning.
+VANILLA_LIMITS = {"sectors": 1024, "walls": 8192, "sprites": 4096}
+
+
+def limit_diagnostics(counts: dict[str, int]) -> list[tuple[str, str, str]]:
+    """`(severity, code, message)` for object counts against both limit sets.
+
+    The one statement of the limits. `validate_build_ir` and Blood's
+    `analysis.validate_map` both ask it; until 2026-11-19 the first enforced
+    the port's limits and the second the DOS game's, so one map was valid or
+    not depending on which validator read it.
+    """
+    out = []
+    for label, count in counts.items():
+        if count > BUILD_LIMITS[label]:
+            out.append(("error", "count-limit",
+                        f"{count} {label} exceeds the Build limit "
+                        f"{BUILD_LIMITS[label]}; no port loads it"))
+        elif count > VANILLA_LIMITS[label]:
+            out.append(("warning", "count-vanilla-limit",
+                        f"{count} {label} exceeds the original game's "
+                        f"{VANILLA_LIMITS[label]}; the map loads in NBlood "
+                        f"and EDuke32, not in the DOS engine"))
+    return out
+
+
 def validate_build_ir(build: BuildIR) -> list[BuildDiagnostic]:
     """Validate the shared Build topology without interpreting game tags."""
     out: list[BuildDiagnostic] = []
@@ -178,9 +212,9 @@ def validate_build_ir(build: BuildIR) -> list[BuildDiagnostic]:
         out.append(BuildDiagnostic(severity, code, message, location))
 
     ns, nw, nsp = len(build.sectors), len(build.walls), len(build.sprites)
-    for label, count, maximum in (("sectors", ns, 4096), ("walls", nw, 16384), ("sprites", nsp, 16384)):
-        if count > maximum:
-            emit("error", "count-limit", f"{count} {label} exceeds the supported Build limit {maximum}", "header")
+    for severity, code, message in limit_diagnostics(
+            {"sectors": ns, "walls": nw, "sprites": nsp}):
+        emit(severity, code, message, "header")
     start_sector = int(build.player_start["sector"])
     if not 0 <= start_sector < ns:
         emit("error", "start-sector", f"start sector {start_sector} is outside 0..{ns - 1}", "header")

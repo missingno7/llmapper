@@ -8,7 +8,8 @@ from fractions import Fraction
 from math import ceil, hypot, isqrt
 from typing import Any
 
-from .analysis import validate_map
+from .analysis import BLOOD_X_LIMITS, validate_map
+from .build_ir import BUILD_LIMITS
 from .fragment import FragmentError, FragmentRelationship, LevelFragment, SYSTEM_CHANNELS
 from .model import LevelIR
 
@@ -321,19 +322,19 @@ def insert_fragment(
     )
     result = copy.deepcopy(level)
     sector_base, wall_base, sprite_base = len(result.sectors), len(result.walls), len(result.sprites)
-    if sector_base + len(fragment.sectors) > 1024:
-        raise CompositionError("composition exceeds the v7 sector limit 1024")
-    if wall_base + len(fragment.walls) > 8192:
-        raise CompositionError("composition exceeds the v7 wall limit 8192")
-    if sprite_base + len(fragment.sprites) > 4096:
-        raise CompositionError("composition exceeds the v7 sprite limit 4096")
+    for label, total in (("sectors", sector_base + len(fragment.sectors)),
+                         ("walls", wall_base + len(fragment.walls)),
+                         ("sprites", sprite_base + len(fragment.sprites))):
+        if total > BUILD_LIMITS[label]:
+            raise CompositionError(
+                f"composition exceeds the Build limit of {BUILD_LIMITS[label]} {label}")
 
     sector_map = DestinationMap("sector", {i: sector_base + i for i in range(len(fragment.sectors))})
     wall_map = DestinationMap("wall", {i: wall_base + i for i in range(len(fragment.walls))})
     sprite_map = DestinationMap("sprite", {i: sprite_base + i for i in range(len(fragment.sprites))})
-    xsector_map = _allocate_extra_map("xsector", fragment.sectors, result.sectors, 1024)
-    xwall_map = _allocate_extra_map("xwall", fragment.walls, result.walls, 8192)
-    xsprite_map = _allocate_extra_map("xsprite", fragment.sprites, result.sprites, 4096)
+    xsector_map = _allocate_extra_map("xsector", fragment.sectors, result.sectors, BLOOD_X_LIMITS["sector"])
+    xwall_map = _allocate_extra_map("xwall", fragment.walls, result.walls, BLOOD_X_LIMITS["wall"])
+    xsprite_map = _allocate_extra_map("xsprite", fragment.sprites, result.sprites, BLOOD_X_LIMITS["sprite"])
     allocations = {
         "sector": sector_map, "wall": wall_map, "sprite": sprite_map,
         "xsector": xsector_map, "xwall": xwall_map, "xsprite": xsprite_map,

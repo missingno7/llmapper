@@ -8,6 +8,7 @@ from math import hypot
 from pathlib import Path
 from typing import Any
 
+from .build_ir import limit_diagnostics
 from .model import DiskMap, DiskObject, LevelIR
 
 
@@ -35,6 +36,11 @@ MARKER_STATNUM = 10
 #: never a reason to reject a map that works.
 XSPRITE_EXPECTED_STATNUMS = frozenset({3, 4, 11, 12})
 
+#: How many extended records NBlood holds: `kMaxXSectors`, `kMaxXWalls` and
+#: `kMaxXSprites` (NBlood db.h:25-27). An `extra` index at or past these is out
+#: of range for the port the maps are built for.
+BLOOD_X_LIMITS = {"sector": 4096, "wall": 16384, "sprite": 16384}
+
 
 @dataclass(frozen=True)
 class Diagnostic:
@@ -52,9 +58,9 @@ def validate_map(disk: DiskMap) -> list[Diagnostic]:
 
     ns, nw, nsp = len(disk.sectors), len(disk.walls), len(disk.sprites)
     h = disk.header
-    for label, count, maximum in (("sectors", ns, 1024), ("walls", nw, 8192), ("sprites", nsp, 4096)):
-        if count > maximum:
-            emit("error", "count-limit", f"{count} {label} exceeds the corpus-version limit {maximum}", "header")
+    for severity, code, message in limit_diagnostics(
+            {"sectors": ns, "walls": nw, "sprites": nsp}):
+        emit(severity, code, message, "header")
     if h["start_sector"] < 0 or h["start_sector"] >= ns:
         emit("error", "start-sector", f"start sector {h['start_sector']} is outside 0..{ns-1}", "header")
     if not 0 <= h["start_angle"] < 2048:
@@ -135,7 +141,8 @@ def validate_map(disk: DiskMap) -> list[Diagnostic]:
         # Sprite angle is a signed 16-bit disk field. Build angle consumers mask it
         # modulo 2048, and original maps intentionally contain negative values.
 
-    for label, items, limit in (("sector", disk.sectors, 1024), ("wall", disk.walls, 8192), ("sprite", disk.sprites, 4096)):
+    for label, items in (("sector", disk.sectors), ("wall", disk.walls), ("sprite", disk.sprites)):
+        limit = BLOOD_X_LIMITS[label]
         owners: dict[int, int] = {}
         for index, obj in enumerate(items):
             ref = obj.fields["extra"]
