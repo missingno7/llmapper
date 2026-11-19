@@ -1,5 +1,8 @@
 # Architect handoff — 2026-09-01
 
+> **Historical record (2026-09-01).** A dated memo, kept as written. Paths, limits and module names in it are those of
+> that day; the living guidance is [architecture](../architecture.md) and [the toolkit index](../toolkit-index.md).
+
 Written for a fresh architect model. It separates evidence from belief; the
 current plan is one proposal among possible ones, and your job is to
 independently reassess. Where evidence surprised us or contradicted us, it is

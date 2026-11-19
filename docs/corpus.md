@@ -36,8 +36,9 @@ override directory still works: with none of the population subdirectories
 present, enumeration falls back to filename classification. Tests skip the
 corresponding corpus gate cleanly when no maps are available.
 
-Enumerate through the registry in `bloodmap/patterns.py`
-(`list_corpus_maps`, `list_original_maps`), never by globbing a directory:
+Enumerate through the registry in `bloodmap/corpus.py`
+(`campaign_maps`, `named_maps`, `corpus_map_path`, `list_corpus_maps`), never by
+globbing a directory:
 
 ```text
 python -m bloodmap corpus-manifest maps/blood -o maps/blood/corpus.json

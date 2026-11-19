@@ -1,6 +1,12 @@
 # LevelIR authoring and semantic observations
 
-`LevelIR` is the canonical authoring model. Binary MAP structures are an import and
+> **Where this sits.** `LevelIR` is the lossless, editable form of one Blood map and
+> the layer every writer lowers into. A new level is not hand-built here: its
+> source is a `LevelProgram` ([level programs](level-programs.md),
+> [toolkit](toolkit-index.md)), which compiles through `PlanarLayout` into `LevelIR`.
+> Use the operations below to read, cut, attach and patch existing maps.
+
+`LevelIR` is the canonical editable model of a map. Binary MAP structures are an import and
 export concern only:
 
 ```text
@@ -14,9 +20,9 @@ bounded LevelIR operations.
 ## First-class operations
 
 ```python
-level = read_map("maps/blood/E1M2.MAP").to_level_ir()
-room = read_map("maps/blood/E1M1.MAP").to_level_ir().extract([12, 13])
-closed_room = read_map("maps/blood/E1M1.MAP").to_level_ir().extract_closed([12, 13])
+level = read_map("maps/blood/campaign/E1M2.MAP").to_level_ir()
+room = read_map("maps/blood/campaign/E1M1.MAP").to_level_ir().extract([12, 13])
+closed_room = read_map("maps/blood/campaign/E1M1.MAP").to_level_ir().extract_closed([12, 13])
 
 observation = level.observe([14])
 attached = level.attach(
@@ -48,7 +54,7 @@ selection it provides:
 With selected sectors it instead focuses the response:
 
 ```text
-python -m bloodmap observe maps/blood/E1M2.MAP --sectors 14 \
+python -m bloodmap observe maps/blood/campaign/E1M2.MAP --sectors 14 \
   -o work/E1M2-sector-14.json
 ```
 

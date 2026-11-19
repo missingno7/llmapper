@@ -211,7 +211,7 @@ bash tools/bot_layering.sh
 ## First supplied-data runtime check
 
 On 2026-08-18, the modified executable was built and launched against the
-workspace Blood data plus `maps/blood/E1M1.MAP` with a 10-second timeout and a
+workspace Blood data plus `maps/blood/campaign/E1M1.MAP` with a 10-second timeout and a
 5-second stall watchdog. The run completed cleanly and reported `STALLED` after
 5 simulated seconds, with two observed sectors and 13 trajectory samples. It
 therefore validates the in-process launch, real map loading, GINPUT/FIFO frame

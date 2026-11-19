@@ -26,7 +26,7 @@ key), and exit channels 4/5. It is not a player simulator. Destruction,
 one-shot walls, and undocumented types stay unknown.
 
 ```text
-python -m bloodmap progression maps/blood/E2M2.MAP -o reports/E2M2-progression.json
+python -m bloodmap progression maps/blood/campaign/E2M2.MAP -o reports/E2M2-progression.json
 ```
 
 A completion witness is a greedy grounded trace: spawn → collect reachable
@@ -63,10 +63,10 @@ logic into SP design; import the step size and the low/high split.
 5. Independent `Understand(generated)` without the E2M2 target in the prompt.
 
 ```text
-python -m bloodmap design-sp-v1 \
+python -m experiments.sp_progression_v1 \
   -o work/SP-progression-v1.MAP \
   --report reports/SP-progression-v1-build.json
-python -m bloodmap design-sp-v2 \
+python -m experiments.sp_progression_v2 \
   -o work/SP-progression-v2.MAP \
   --report reports/SP-v2-build.json
 python -m bloodmap door-mine --maps maps/blood -o reports/blood-door-families.json \

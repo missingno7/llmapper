@@ -1,5 +1,8 @@
 # Architect reassessment — 2026-09-01
 
+> **Historical record (2026-09-01).** A dated memo, kept as written. Paths, limits and module names in it are those of
+> that day; the living guidance is [architecture](../architecture.md) and [the toolkit index](../toolkit-index.md).
+
 A fresh reading of `HANDOFF-ARCHITECT-2026-09-01.md`, checked against the
 repository rather than taken on trust. It keeps what the handoff got right,
 corrects what it got wrong, and proposes a different order of work. It is a

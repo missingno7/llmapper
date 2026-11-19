@@ -10,6 +10,23 @@ not unqueryable. The agent never learned it was there.
 So: one page, no search, no index to maintain. If you are about to write
 something, look for it here first.
 
+This page is the short list of things to reach for. The complete list -- every
+library module and every tool, one line each, generated from the code so it
+cannot go stale -- is [the module map](module-map.md). Which module owns which
+kind of fact is [architecture](architecture.md).
+
+## Before any of it: the map, the record, the body
+
+| I want to… | Reach for | Not |
+| --- | --- | --- |
+| every campaign map | `corpus.campaign_maps()` | `glob("maps/blood/*.MAP")`, which matches nothing |
+| one map by name | `corpus.corpus_map_path("E3M1")` | a path typed by hand |
+| the maps a conversion draws Blood's vocabulary from | `corpus.named_maps()` | a directory listing |
+| a record's fields, on a `DiskMap` or a `LevelIR` | `model.record_fields`, `model.record_extra` | `item.fields`, `getattr(item, "extra", None)` |
+| which sector owns a wall; a sector's loops; a wall's ends | `sector_geom.wall_owners`, `sector_loops`, `wall_segment` | a loop over `wall_ptr` |
+| the player's height, width and step | `player_space.PLAYER_PROFILES["blood"]` | 16960, 384, 4096 |
+| every opening in a built map, classified | `aperture.observe_openings` | walking two-sided walls yourself |
+
 ---
 
 ## Building a level

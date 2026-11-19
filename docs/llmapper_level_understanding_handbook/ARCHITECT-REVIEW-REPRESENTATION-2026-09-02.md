@@ -1,5 +1,8 @@
 # Architect review — how appearance and ownership are represented, and what stands between us and a system that understands a level
 
+> **Historical record (2026-09-02).** A dated memo, kept as written. Paths, limits and module names in it are those of
+> that day; the living guidance is [architecture](../architecture.md) and [the toolkit index](../toolkit-index.md).
+
 Date 2026-09-02. Written after the owner's walk (texture seams, shop glass
 on the facade line, cut crate tops, sunken roadways) and after reading the
 representation stack end to end: `bloodmap/format.py` (disk) →

@@ -1,6 +1,11 @@
 # Scratch LevelIR construction
 
-`LevelBuilder` is the deterministic starting point for maps that do not inherit an
+> **Where this sits.** `LevelBuilder` is direct native construction: sector by
+> sector, in absolute coordinates. The conversion profile and small fixtures use
+> it. A level meant to be read and edited is written as a `LevelProgram`
+> ([level programs](level-programs.md)) instead.
+
+`LevelBuilder` is the deterministic low-level constructor for maps that do not inherit an
 original MAP. It creates and edits only `LevelIR`; binary encoding remains the same
 verified final boundary used by every other workflow.
 

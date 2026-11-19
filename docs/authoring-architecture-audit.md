@@ -1,5 +1,8 @@
 # Authoring architecture audit
 
+> **Historical record (2026-08-22).** The audit that led to `LevelProgram`: it describes `LevelBuilder` versus `PlanarLayout` as they stood then. Kept as written; for the system as it is now see
+> [architecture](architecture.md) and [what is in the toolkit](toolkit-index.md).
+
 What compiles a generated level today, which of it is real source, and what was
 added so a level reads as an editable program.
 

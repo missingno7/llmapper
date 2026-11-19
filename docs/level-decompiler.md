@@ -52,7 +52,7 @@ with a semantic name, description, and confidence while retaining the evidence.
 Decompile one original Blood level to the canonical document and a Python view:
 
 ```text
-python -m bloodmap decompile maps/blood/E1M1.MAP \
+python -m bloodmap decompile maps/blood/campaign/E1M1.MAP \
   -o work/E1M1.level-source.json \
   --python work/E1M1.level-source.py
 ```

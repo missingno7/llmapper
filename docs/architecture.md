@@ -92,19 +92,33 @@ convenient.
 | A fact about... | Belongs in | Not in |
 | --- | --- | --- |
 | what a native type *means* (`type 709 is kSoundSector`, and that it is never drawn) | `blood_types.py` | wherever you noticed it |
+| a record's base fields or its Blood extension, whichever shape holds it (`DiskObject` or a `LevelIR` dict) | `model.record_fields`, `model.record_extra` | `getattr(item, "extra", None)`, which is None for every decompiled level |
+| which sector owns a wall, a sector's loops, a wall's two ends | `sector_geom.py` | a loop over `wall_ptr`/`wall_count` in the module that needed it |
+| area, containment, intersection of point lists | `planar_geom.py` | a shoelace sum beside the caller |
+| how tall and wide the player is, and what it can step | `player_space.PLAYER_PROFILES` | the literal 16960, 384 or 4096 |
 | whether the player can get to a sector, and what off-map geometry is for | `reachability.py` | a fresh flood fill |
 | what a mechanism is made of and how its parts relate | `assembly.py` | a second grouping pass |
 | how one dynamic family works in detail (doors, lifts) | `doors.py`, `mechanism.py` | `assembly.py`, which owns membership, not behaviour |
 | a derived spatial view over sectors (adjacency, portals, loops) | `spatial.py` | recomputing from walls |
 | an object-scale relation between a sprite, a wall and a sector | `relations.py` | `patterns.py` |
 | a reduction of relations to a comparable key | `relations.py` (`context_signature`) | its consumers |
-| where a corpus map came from, and which population it is | `patterns.py` (the corpus registry) | globbing a directory |
+| where a corpus map came from, which population it is, and how to list "the campaign" | `corpus.py` (`campaign_maps`, `named_maps`, `corpus_map_path`) | globbing a directory, or a regex over filenames |
 | a recurring unsigned signature family | `patterns.py` (`observe_*` + `_SIGNATURES`) | a new pipeline |
 | what surrounds a labelled anchor, and whether that context means anything | `anchors.py` | `patterns.py` |
 | an architectural structure candidate with parameters and residual (stairs, recesses) | `structures.py` | `relations.py` |
+| what an opening in a wall is: leaf, lintel, step, and which are apertures | `aperture.observe_openings` | the miner that runs it over the corpus |
+| how much solid mass stands between two rooms | `layout.observe_wall_thickness` | the miner that runs it over the corpus |
 | which tile the renderer shows on which band of a wall (steps, mask, one-way) | `render_slots.py` | a `next_sector < 0` test in the consumer |
 | a measured, versioned, citable design number | `knowledge/blood/design/*-vN.json` | a constant in the module that needed it |
 | something an author should be able to *write* | a `vocabulary.py` / `prefab.py` constructor | the knowledge store |
+
+A sensor lives in the library; a tool is its run over a corpus. `tools/mine_*.py`
+enumerate maps through `corpus.py`, call a library sensor, summarise, and write
+a knowledge file. The library never imports from `tools/` or `experiments/`
+(`tests/test_architecture.py` holds that), because a rule that reads a built map
+through a script's function stops working the day the package is installed
+without the scripts beside it. The full list of what exists, one line per
+module and tool, is [the module map](module-map.md).
 
 Two directions, and they are not symmetric. A fact is **observed** into a
 sensor module and, once it recurs and is understood, **promoted** into a

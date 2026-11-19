@@ -21,6 +21,36 @@ operate on `LevelIR` or a documented derivative such as `LevelFragment`.
 authoring APIs. New LLM-facing observations must use stable semantic references
 and label unknown numeric semantics instead of inventing names.
 
+## Before adding a helper, a miner or a module
+
+Most of what this repository needed consolidating in 2026-11 was written by
+someone who did not know the thing already existed. Five habits prevent it:
+
+1. **Look first.** [The module map](docs/module-map.md) lists every library
+   module and tool in one line each. A new module is placed in a layer in
+   `tools/module_map.py`, opens with a one-sentence docstring, and the page is
+   regenerated with `python -m tools.module_map`; `tests/test_module_map.py`
+   fails otherwise.
+2. **Maps come from the registry.** `bloodmap.corpus.campaign_maps()` for the
+   campaign, `named_maps()` for everything a bare filename names,
+   `corpus_map_path("E3M1")` for one map. Never glob a directory or match a
+   filename regex. A miner whose output is a knowledge file asks with
+   `required=True`, so an empty corpus is an error and not an empty document.
+3. **A sensor lives in the library; a tool is its corpus run.** The library
+   never imports from `tools/`, `experiments/` or `projects/`. If a rule needs
+   what a miner measures, the measuring function moves into the module that
+   owns the concept and the miner calls it.
+4. **Read records and sectors through the shared functions.**
+   `model.record_fields` and `model.record_extra` for either record shape;
+   `sector_geom.wall_owners`, `sector_loops` and `wall_segment` for a sector's
+   walls; `planar_geom` for point-list geometry.
+5. **Units come from the profile.** `player_space.PLAYER_PROFILES["blood"]`
+   holds the body. Do not type 16960, 384 or 4096.
+
+When a refactor moves a sensor, run its miner before and after and compare the
+files byte for byte. That check is cheap and is the only one that notices a
+changed map order or a helper that differed in its edge cases.
+
 ## Change gates
 
 Changes to binary parsing, packing, models, or conversion logic must include:
@@ -36,7 +66,7 @@ the optional baseline/candidate NBlood load smoke when local game data is availa
 
 ```text
 python -m bloodmap oracle-nblood work/candidate.MAP \
-  --baseline maps/blood/E1M2.MAP \
+  --baseline maps/blood/campaign/E1M2.MAP \
   --nblood reference/blood/nblood.exe \
   --game-dir reference/blood \
   -o work/oracle.json

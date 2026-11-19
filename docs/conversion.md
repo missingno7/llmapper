@@ -17,7 +17,9 @@ and wall array order.
 | Exact scaled ceiling/floor Z samples | 433 / 464 |
 
 The 3:2 ratio is therefore an empirical authoring-scale profile. Player eye
-heights—Duke `38 << 8`, Blood standing posture `0x1600`—are retained as separate
+figures—Duke `38 << 8`, Blood's `eyeAboveZ` `0x1600`, which is an offset from the
+sprite's centre and not a body height (a standing Blood player is 16960; see
+[player-space](player-space.md))—are retained as separate
 gameplay evidence and are not used to override the geometry measurement.
 
 For ordinary matched wall shades, 1,387 of 1,621 samples satisfy

@@ -14,7 +14,7 @@ Blood map editor list and is processed by `asound.cpp` on `kStatAmbience`, but
 it is not a named constant in `common_game.h` (the gap between 709 and 711).
 
 ```text
-python -m bloodmap contents maps/blood/BB2.MAP --mechanisms --multiplayer
+python -m bloodmap contents maps/blood/campaign/multiplayer/BB2.MAP --mechanisms --multiplayer
 ```
 
 ## Geometric sight
@@ -30,8 +30,8 @@ line of sight.
 - height, slopes, sprites, and lighting are ignored
 
 ```text
-python -m bloodmap sightline maps/blood/BB2.MAP --spawns --multiplayer-only
-python -m bloodmap sightline maps/blood/BB2.MAP --from-x 0 --from-y 0 --to-x 1024 --to-y 0
+python -m bloodmap sightline maps/blood/campaign/multiplayer/BB2.MAP --spawns --multiplayer-only
+python -m bloodmap sightline maps/blood/campaign/multiplayer/BB2.MAP --from-x 0 --from-y 0 --to-x 1024 --to-y 0
 ```
 
 ## Contents / multiplayer layout
@@ -100,7 +100,7 @@ See [design-pattern-discovery.md](design-pattern-discovery.md).
 push motion, and exit channels 4/5 are a separate graph:
 
 ```text
-python -m bloodmap progression maps/blood/E2M2.MAP -o reports/E2M2-progression.json
+python -m bloodmap progression maps/blood/campaign/E2M2.MAP -o reports/E2M2-progression.json
 ```
 
 Object-to-wall attachment is mined separately (`placement-mine`). See

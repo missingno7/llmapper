@@ -28,7 +28,7 @@ Authoritative sources:
 - GZDoom `wadsrc/static/xlat/base.txt` and `xlat/doom.txt` special translation
 - GZDoom `wadsrc/static/mapinfo/doomitems.txt` thing editor numbers
 - NBlood `source/tools/src/wad2map.cpp` Doom→Build scale and sector chaining
-- `maps/blood/TEDE1M9.MAP` Blood-native recreation of Doom E1M1 (scale/height oracle)
+- `maps/blood/curated/TEDE1M9.MAP` Blood-native recreation of Doom E1M1 (scale/height oracle)
 
 Explicitly **out of scope**: Hexen-format (`BEHAVIOR`), UDMF (`TEXTMAP`), Boom
 generalized linedefs, ACS, 3D floors, and arbitrary ZDoom extensions. Those
@@ -77,7 +77,7 @@ followed by successful lossy output is not allowed.
 
 XY and Z follow Ken Silverman's `wad2map.cpp` in NBlood
 (`reference/NBlood/source/tools/src/wad2map.cpp`), confirmed against
-`maps/blood/TEDE1M9.MAP` (a Blood-native recreation of Doom E1M1):
+`maps/blood/curated/TEDE1M9.MAP` (a Blood-native recreation of Doom E1M1):
 
 | Axis | Ratio | Evidence |
 |---|---|---|

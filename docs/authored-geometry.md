@@ -14,7 +14,7 @@ engine tricks that are legal to load and illegal to author from a blueprint.
 Both return **all** diagnostics. The first conflict does not stop the scan.
 
 ```text
-python -m bloodmap validate maps/blood/BB2.MAP
+python -m bloodmap validate maps/blood/campaign/multiplayer/BB2.MAP
 python -m bloodmap validate-authored work/BB2-semantic-reconstruction-v3.MAP
 python -m bloodmap geometry-audit work/BB2-semantic-reconstruction-v2.MAP \
     --json reports/BB2-v2-geometry-audit.json \

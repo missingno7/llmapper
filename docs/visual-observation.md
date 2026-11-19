@@ -85,7 +85,7 @@ widths from the map rather than in whatever the renderer happened to keep.
 ```bash
 mingw32-make -C xmapedit/src_blood/observe
 python -m tools.observe program experiments.nested_authoring -o work/obs-nested --structures
-python -m tools.observe decompiled maps/blood/E2M3.MAP \
+python -m tools.observe decompiled maps/blood/campaign/E2M3.MAP \
     --hierarchy projects/e2m3-decompiled/hierarchy.json -o work/obs-e2m3
 ```
 

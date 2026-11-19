@@ -1,5 +1,8 @@
 # External review of f6247f5: what is adopted, where it goes, what is not (2026-09-02)
 
+> **Historical record (2026-09-02).** A dated memo, kept as written. Paths, limits and module names in it are those of
+> that day; the living guidance is [architecture](../architecture.md) and [the toolkit index](../toolkit-index.md).
+
 The owner had a second AI review the repository at commit f6247f5. Its
 thesis: the project has sensors and miners enough; what it lacks is a
 closed learning loop that discovers a recurring relation by itself,

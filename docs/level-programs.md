@@ -111,7 +111,7 @@ yet and inventing one to avoid a single raw call would be the worse trade.
 `tools.emit_level_program` turns an original MAP into one of these programs.
 
 ```bash
-python -m tools.emit_level_program maps/blood/E2M3.MAP \
+python -m tools.emit_level_program maps/blood/campaign/E2M3.MAP \
     --art-dir reference/blood \
     --names projects/e2m3-decompiled/references/names.json \
     --escape-until-compiles \

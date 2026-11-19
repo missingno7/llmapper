@@ -1,5 +1,8 @@
 # Supervisor brief — systemic engine mismatches, and the prompts that close them
 
+> **Historical record (2026-09-01).** A dated memo, kept as written. Paths, limits and module names in it are those of
+> that day; the living guidance is [architecture](../architecture.md) and [the toolkit index](../toolkit-index.md).
+
 Date 2026-09-01. Written by the supervising architect after re-reading the
 engine (`NBlood/`, `xmapedit/`, both read-only submodules), the mechanism
 curriculum (`maps/blood/mechanism/`, 173 maps + the 981-page manual) and the

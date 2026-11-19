@@ -1,5 +1,8 @@
 # Verification report
 
+> **Historical record (2026-08-16).** Counts below are from that date (44 Blood maps meant 43 campaign maps plus one
+> conversion; 84 tests). Current gates: `python -m bloodmap roundtrip-all maps/blood`, `python -m unittest discover -s tests`.
+
 Verified locally on 2026-08-16 against ignored commercial corpora and independent
 engine installations.
 

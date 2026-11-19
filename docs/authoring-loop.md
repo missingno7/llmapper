@@ -5,13 +5,13 @@ into an iterative one. It does not add analysis; it arranges existing analysis
 into one bounded evidence packet an external reasoning agent can act on.
 
 ```text
-LLM writes Python / PlanarLayout source
+LLM writes a LevelProgram (or, in the first pilot, PlanarLayout source)
     -> compile candidate MAP                 (bloodmap.planar_layout)
     -> hard structural gates                 (analysis, geometry_audit, placement, progression)
     -> independent decompilation             (bloodmap.decompiler.decompile_level)
     -> design probes                         (bloodmap.probes)
     -> ART and corpus-relative evidence      (materials, player_space, morphology)
-    -> optional NBlood viewpoint capture     (bloodmap.oracle, bloodmap.viewpoints)
+    -> optional structured observation       (bloodmap.visual, bloodmap.viewplan; XMapEdit observer)
     -> concise evidence packet               (llmapper.authoring-iteration)
     -> external agent compares with intent   (llmapper.authoring-review)
     -> source-level revision

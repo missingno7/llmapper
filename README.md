@@ -18,41 +18,56 @@ The project separates these concerns:
 4. `LevelIR` remains the richer Blood authoring layer for triggers, channels,
    fragments, room attachment, corridors, stairs, and scratch construction.
 
-Neither writer caches the original file blob. The 44-map Blood corpus and 41-map
-Duke3D corpus both pass byte-exact native and `BuildIR` roundtrips.
+Neither writer caches the original file blob. The local corpora pass byte-exact
+native and `BuildIR` roundtrips: the 102 named Blood maps (campaign, BloodBath,
+curated, conversions) and 46 Duke3D maps, as of 2026-11-19.
+
+## Where to start
+
+| You are about to... | Read |
+| --- | --- |
+| build or change a map | [what is in the toolkit](docs/toolkit-index.md) -- one page, "reach for X, not Y" |
+| look something up about Blood before building it | [the library](knowledge/blood/LIBRARY.md) -- tiles, places, studies, ideas |
+| add a module, a sensor or a tool | [architecture](docs/architecture.md) -- which module owns which kind of fact |
+| find out whether something already exists | [the module map](docs/module-map.md) -- every library module and tool, by layer |
+| change parsing, conversion or the authoring loop | [CONTRIBUTING](CONTRIBUTING.md) -- the gates each kind of change must pass |
+
+The corpus is never globbed. `bloodmap.corpus` knows where every map lives:
+`campaign_maps()` for the original campaign, `named_maps()` for everything a
+bare filename names, `corpus_map_path("E3M1")` for one map.
 
 ## Quick start
 
 Python 3.10 or newer is sufficient; there are no runtime dependencies.
 
 ```text
-python -m bloodmap roundtrip-all maps/blood
+python -m bloodmap roundtrip-all maps/blood        # the named maps; --recursive adds the bulk community set
 python -m bloodmap roundtrip-all maps/duke3d
 python -m bloodmap validate maps/duke3d/E3L1.MAP
 python -m bloodmap dump-build maps/duke3d/E3L1.MAP -o work/E3L1.build.json
 python -m bloodmap build-build work/E3L1.build.json -o work/E3L1.rebuilt.MAP
 python -m bloodmap transform maps/duke3d/E1L1.MAP -o work/turned.MAP rotate --turns 1
 python -m bloodmap compare-e3l1 --duke maps/duke3d/E3L1.MAP \
-  --blood maps/blood/DNE3L1.MAP -o work/e3l1-differential.json
-python -m bloodmap design-fingerprint maps/blood/E1M1.MAP --sectors 12,13 \
+  --blood maps/blood/conversions/DNE3L1.MAP -o work/e3l1-differential.json
+python -m bloodmap design-fingerprint maps/blood/campaign/E1M1.MAP --sectors 12,13 \
   -o work/E1M1.design.json
 python -m bloodmap design-index maps/blood -o work/blood.design-index.json
 python -m bloodmap design-search work/blood.design-index.json \
   --motif repeated-bays --limit 5
-python -m bloodmap analyze-space maps/blood/E1M1.MAP --sectors 12,13 \
+python -m bloodmap analyze-space maps/blood/campaign/E1M1.MAP --sectors 12,13 \
   -o work/E1M1.spatial.json
-python -m bloodmap decompile maps/blood/E1M1.MAP \
+python -m bloodmap decompile maps/blood/campaign/E1M1.MAP \
   -o work/E1M1.level-source.json --python work/E1M1.level-source.py
 python -m bloodmap compile-source work/E1M1.level-source.json \
   -o work/E1M1.rebuilt.MAP
-python -m bloodmap inspect-space maps/blood/E1M1.MAP --sectors 12 \
+python -m bloodmap inspect-space maps/blood/campaign/E1M1.MAP --sectors 12 \
   --corpus work/blood.spatial-corpus.json
-python -m bloodmap compare-space maps/blood/E1M1.MAP --from 12 --to 18
+python -m bloodmap compare-space maps/blood/campaign/E1M1.MAP --from 12 --to 18
 python -m bloodmap design-index maps/duke3d --include-spatial \
   -o work/duke.spatial-index.json
 python -m bloodmap design-search work/duke.spatial-index.json \
   --region-kind mechanism_region --limit 5
-python -m bloodmap probe-route maps/blood/E1M1.MAP \
+python -m bloodmap probe-route maps/blood/campaign/E1M1.MAP \
   --from-sector 22 --to-sector 0 -o work/E1M1-route.json
 python -m bloodmap project-init projects/crypt --name "Monastery crypt"
 ```
@@ -75,11 +90,22 @@ details:
 ```text
 python -m experiments.nested_authoring --tree
 python -m experiments.nested_authoring --room lobby
-python -m tools.emit_level_program maps/blood/E2M3.MAP --art-dir reference/blood     --names projects/e2m3-decompiled/references/names.json -o work/E2M3.py
+python -m tools.emit_level_program maps/blood/campaign/E2M3.MAP --art-dir reference/blood     --names projects/e2m3-decompiled/references/names.json -o work/E2M3.py
 ```
 
 See [level programs](docs/level-programs.md) and
 [E2M3 decompiled](projects/e2m3-decompiled/README.md).
+
+Three campaign maps are read further, layer by layer, into a fact store where
+every derived fact names the reader and the facts it came from. One stage
+program serves all of them:
+
+```text
+python -m tools.decompile_stages.run_all projects/e3m1-decompiled
+python -m tools.decompile_stages.query projects/e3m1-decompiled
+```
+
+See [E3M1 decompiled](projects/e3m1-decompiled/README.md).
 
 A source node can ask what it actually looks like. The XMapEdit fork builds a
 small headless observer that renders a pose and reports what the renderer
@@ -88,7 +114,7 @@ painted, joined back to the node that owns it:
 ```text
 mingw32-make -C xmapedit/src_blood/observe
 python -m tools.observe program experiments.nested_authoring -o work/obs --structures
-python -m tools.observe decompiled maps/blood/E2M3.MAP \
+python -m tools.observe decompiled maps/blood/campaign/E2M3.MAP \
   --hierarchy projects/e2m3-decompiled/hierarchy.json -o work/obs-e2m3
 ```
 
@@ -104,7 +130,7 @@ Cross-game conversion requires an explicit fidelity policy:
 python -m bloodmap convert maps/duke3d/E3L1.MAP --to blood \
   --policy geometry-only --report work/E3L1-to-blood.json \
   -o work/E3L1-geometry-blood.MAP
-python -m bloodmap convert maps/blood/DNE3L1.MAP --to duke3d \
+python -m bloodmap convert maps/blood/conversions/DNE3L1.MAP --to duke3d \
   --policy semantic --report work/DNE3L1-to-duke.json \
   -o work/DNE3L1-semantic-duke.MAP
 python -m bloodmap doom-corpus maps/doom/doom.wad -o work/doom-corpus.json
@@ -137,11 +163,11 @@ python -m bloodmap convert-playable maps/duke3d/E3L3.MAP \
   -o work/E3L3-BLOOD.MAP
 python -m bloodmap convert-playable maps/duke3d/E2L1.MAP \
   --duke-art reference/duke3d --blood-art reference/blood \
-  --blood-maps maps/blood --style-map maps/blood/DWE2M3.MAP \
+  --blood-maps maps/blood --style-map maps/blood/curated/DWE2M3.MAP \
   --report work/E2L1-BLOOD.report.json \
   -o work/E2L1-BLOOD.MAP
 python -m bloodmap compare-e3l1 --duke maps/duke3d/E3L3.MAP \
-  --blood maps/blood/DNE3L3.map -o work/e3l3-differential.json
+  --blood maps/blood/conversions/DNE3L3.map -o work/e3l3-differential.json
 ```
 
 The profile converts doors, lifts, rotating/sliding/swinging sectors, paired water
@@ -153,24 +179,24 @@ playable approximation, not a claim of exact game equivalence.
 Blood-specific authoring remains available through `LevelIR`:
 
 ```text
-python -m bloodmap observe maps/blood/E1M1.MAP --sectors 12,13 -o work/room.json
-python -m bloodmap extract-closed maps/blood/E1M1.MAP --sectors 12,13 -o work/fragment.json
-python -m bloodmap attach maps/blood/E1M2.MAP work/fragment.json \
+python -m bloodmap observe maps/blood/campaign/E1M1.MAP --sectors 12,13 -o work/room.json
+python -m bloodmap extract-closed maps/blood/campaign/E1M1.MAP --sectors 12,13 -o work/fragment.json
+python -m bloodmap attach maps/blood/campaign/E1M2.MAP work/fragment.json \
   --destination-wall 120 --fragment-wall 3 -o work/attached.MAP
 python -m bloodmap design-first-room --report work/first-room.json \
   -o work/first-puzzle-room.MAP
-python -m bloodmap design-bb2-v3 --report reports/BB2-v3-build-report.json \
+python -m experiments.bb2_reconstruction_v3 --report reports/BB2-v3-build-report.json \
   -o work/BB2-semantic-reconstruction-v3.MAP
 python -m bloodmap geometry-audit work/BB2-semantic-reconstruction-v2.MAP \
   --markdown reports/BB2-v2-geometry-audit.md
 python -m bloodmap pattern-mine --maps maps/blood --population blood-bloodbath \
   -o work/blood-pattern-unsigned-bloodbath.json
-python -m bloodmap understand maps/blood/BB6.MAP --multiplayer-only \
+python -m bloodmap understand maps/blood/campaign/multiplayer/BB6.MAP --multiplayer-only \
   --patterns knowledge/blood/design/catalog-v1.json \
   -o reports/BB6-understanding.json
 ```
 
-See [authored-geometry.md](authored-geometry.md) for the planar compiler and
+See [authored-geometry.md](docs/authored-geometry.md) for the planar compiler and
 strict authored-geometry gate. `geometry-audit` on a frozen MAP is fail-closed
 without blueprint declarations; compile-time validation passes the declared
 water/partition/gated specials. Quality-diversity search is a second-order layer
@@ -183,7 +209,7 @@ python -m bloodmap oracle-eduke32 work/DNE3L1-geometry-duke.MAP \
   --baseline maps/duke3d/E3L1.MAP --eduke32 reference/duke3d/eduke32.exe \
   --game-dir reference/duke3d -o work/eduke-report.json
 python -m bloodmap oracle-nblood work/E3L1-geometry-blood.MAP \
-  --baseline maps/blood/DNE3L1.MAP --nblood reference/blood/nblood.exe \
+  --baseline maps/blood/conversions/DNE3L1.MAP --nblood reference/blood/nblood.exe \
   --game-dir reference/blood -o work/nblood-report.json
 ```
 
@@ -196,6 +222,9 @@ python -m unittest discover -s tests -v
 ## Documentation
 
 - [Architecture and invariants](docs/architecture.md)
+- [The module map: every module and tool, one line each](docs/module-map.md)
+- [What is in the toolkit, and when to reach for it](docs/toolkit-index.md)
+- [The library of Blood: tiles, places, studies, ideas](knowledge/blood/LIBRARY.md)
 - [Reasoned authoring loop](docs/authoring-loop.md)
 - [Shared authoring toolkit](docs/authoring-toolkit.md)
 - [Level programs: hierarchical, editable level source](docs/level-programs.md)
@@ -228,6 +257,12 @@ python -m unittest discover -s tests -v
 - [Cross-game normalization and conversion](docs/conversion.md)
 - [LevelIR authoring](docs/level-ir.md)
 - [Corpus policy](docs/corpus.md)
+- [Blood v7 MAP format](docs/format.md)
+- [Room fragments](docs/fragments.md) and [fragment composition](docs/composition.md)
+- [Level decompiler](docs/level-decompiler.md)
+- [Design probes](docs/design-probes.md)
+- [Duke mechanisms lowered to Blood](docs/duke-blood-mechanisms.md) and [Duke's moving sectors](docs/duke-moving-sectors.md)
+- [The NBlood playtest bot](docs/nblood-autonomous-playtest-bot.md)
 - [Local reference oracles](docs/reference-oracles.md)
 - [Long-term roadmap](docs/roadmap.md)
 - [Current verification](reports/verification.md)

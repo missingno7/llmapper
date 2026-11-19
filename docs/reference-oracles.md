@@ -38,7 +38,7 @@ belong in the repository.
 
 NBlood `source/tools/src/wad2map.cpp` is the historical Doom→Build converter
 (Ken Silverman). Doom→Blood XY×16 and Z×256 come from that tool, confirmed
-against `maps/blood/TEDE1M9.MAP`. `oracle-gzdoom` is an optional GZDoom map-load
+against `maps/blood/curated/TEDE1M9.MAP`. `oracle-gzdoom` is an optional GZDoom map-load
 smoke; GZDoom is an oracle, not a package dependency.
 
 ## Bounded EDuke32 load smoke
@@ -77,7 +77,7 @@ markers, and fatal indicators as JSON. On Windows the child is created hidden.
 
 ```text
 python -m bloodmap oracle-nblood work/oracle_composed.MAP \
-  --baseline maps/blood/E1M2.MAP \
+  --baseline maps/blood/campaign/E1M2.MAP \
   --nblood reference/blood/nblood.exe \
   --game-dir reference/blood \
   --seconds 6 \
@@ -88,9 +88,9 @@ python -m bloodmap oracle-nblood work/oracle_composed.MAP \
 The current composition fixture is reproducible from the ignored corpus:
 
 ```text
-python -m bloodmap extract maps/blood/E1M1.MAP --sectors 0 \
+python -m bloodmap extract maps/blood/campaign/E1M1.MAP --sectors 0 \
   -o work/oracle/fragment.json
-python -m bloodmap compose maps/blood/E1M2.MAP work/oracle/fragment.json \
+python -m bloodmap compose maps/blood/campaign/E1M2.MAP work/oracle/fragment.json \
   --x 1000000 --y 1000000 --channel-policy remap \
   --report work/oracle/composition.json \
   -o work/oracle/oracle_composed.MAP
@@ -163,14 +163,14 @@ three quarter-turns, aligns floors with a Z offset, and verifies the result agai
 the untouched E1M2 baseline:
 
 ```text
-python -m bloodmap extract maps/blood/E1M1.MAP --sectors 1 \
+python -m bloodmap extract maps/blood/campaign/E1M1.MAP --sectors 1 \
   -o work/attachment-room.json
-python -m bloodmap attach maps/blood/E1M2.MAP work/attachment-room.json \
+python -m bloodmap attach maps/blood/campaign/E1M2.MAP work/attachment-room.json \
   --destination-wall 138 --fragment-wall 0 --z -36864 \
   --channel-policy remap --report reports/attachment_fixture.json \
   -o work/real-attachment.MAP
 python -m bloodmap oracle-nblood work/real-attachment.MAP \
-  --baseline maps/blood/E1M2.MAP --nblood reference/blood/nblood.exe \
+  --baseline maps/blood/campaign/E1M2.MAP --nblood reference/blood/nblood.exe \
   --game-dir reference/blood --seconds 6 \
   -o reports/nblood_attachment_oracle.json
 ```

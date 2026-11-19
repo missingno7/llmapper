@@ -1,5 +1,8 @@
 # Research: representing a level as overlapping graphs (2026-09-02)
 
+> **Historical record (2026-09-02).** A dated memo, kept as written. Paths, limits and module names in it are those of
+> that day; the living guidance is [architecture](../architecture.md) and [the toolkit index](../toolkit-index.md).
+
 Owner's question: a Blood map is many overlapping layers and links at
 once (space, surfaces, joins, islands, light, mechanisms, keys, edges,
 plan, intent), E3M1 already overlaps them heavily and a Death Wish map

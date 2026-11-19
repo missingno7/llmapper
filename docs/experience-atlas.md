@@ -10,13 +10,13 @@ Each probe works from `BuildIR`, the multi-view spatial analysis, and a declared
 world state. It returns concise JSON with its model and limitations.
 
 ```text
-python -m bloodmap probe-route maps/blood/E1M1.MAP \
+python -m bloodmap probe-route maps/blood/campaign/E1M1.MAP \
   --from-sector 22 --to-sector 0 -o work/route.json
-python -m bloodmap probe-transition maps/blood/E1M1.MAP \
+python -m bloodmap probe-transition maps/blood/campaign/E1M1.MAP \
   --from-sector 22 --to-sector 59
-python -m bloodmap probe-visibility maps/blood/E1M1.MAP \
+python -m bloodmap probe-visibility maps/blood/campaign/E1M1.MAP \
   --from-sector 22 --target-sector 0
-python -m bloodmap probe-progression maps/blood/E1M1.MAP
+python -m bloodmap probe-progression maps/blood/campaign/E1M1.MAP
 ```
 
 Level 0 currently supports deterministic shortest routes, static reachability,
@@ -54,7 +54,7 @@ python -m bloodmap project-decision projects/crypt \
   --intent "Make the gate memorable" \
   --decision "Keep it visible from the church entrance" \
   --expected "The player forms a long-term objective"
-python -m bloodmap project-slice projects/crypt maps/blood/E1M1.MAP \
+python -m bloodmap project-slice projects/crypt maps/blood/campaign/E1M1.MAP \
   --sectors 22,59,120 --id precedent:approach
 ```
 

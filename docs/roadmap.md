@@ -1,5 +1,8 @@
 # Long-term roadmap
 
+> **Historical record (status lines stop at 2026-09-03).** Capability milestones through the first city walks. Later work (the city, the library, critique, the tile sheet) is recorded in the project reports, not here. Kept as written; for the system as it is now see
+> [architecture](architecture.md) and [what is in the toolkit](toolkit-index.md).
+
 This roadmap preserves the project's central rule: evidence and roundtrip gates
 come before abstraction or generation. Milestones are capability gates, not dates.
 

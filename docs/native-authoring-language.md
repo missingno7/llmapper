@@ -1,5 +1,8 @@
 # Native Blood authoring language
 
+> **Historical record (2026-08-17).** The first statement of authoring from grounded Blood knowledge, before the aperture, door and mechanism constructors existed. Kept as written; for the system as it is now see
+> [architecture](architecture.md) and [what is in the toolkit](toolkit-index.md).
+
 llmapper can emit a valid MAP. That is not the same as authoring the way a
 Blood mapper does: a locked crypt door is a moving boundary, a Use/wall-push
 trigger, a key condition, a recognizable face, a frame of neighboring fill,

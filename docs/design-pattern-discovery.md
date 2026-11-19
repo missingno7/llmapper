@@ -21,7 +21,7 @@ and not a room name. The same place may match several patterns.
 ## Populations
 
 Provenance is **the directory a map lives in**, resolved by the corpus registry
-in `bloodmap/patterns.py`; filename prefixes are only a sanity cross-check.
+in `bloodmap/corpus.py`; filename prefixes are only a sanity cross-check.
 Populations are never mixed while mining. Layout and owner-provenance notes:
 [`maps/blood/README.md`](../maps/blood/README.md) (local-only) and
 `docs/llmapper_level_understanding_handbook/07_...md`.

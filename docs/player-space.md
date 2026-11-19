@@ -30,7 +30,7 @@ Meters are optional intuition only. They are never the primary abstraction.
 
 | Game | Body width | Standing height | Step | Jump | Crouch |
 | --- | ---: | ---: | ---: | --- | --- |
-| Blood | 384 (`clipdist<<2`) | 0x1600 | 4096 at-rest | yes | yes (0x800) |
+| Blood | 384 (`clipdist<<2`) | 16960 (the drawn figure) | 4096 at-rest; the engine clears ~6656 | yes | yes (13376) |
 | Duke3D | 328 (`clipdist` 164) | 38<<8 | 20<<8 autostep | yes | yes, no named crouch clip height |
 | Doom | 32 (radius 16) | 56 | 24 | no | no |
 
@@ -53,13 +53,13 @@ raw / player-relative / corpus-relative evidence. `--question` returns only the
 requested facet.
 
 ```text
-python -m bloodmap inspect-space maps/blood/E1M1.MAP --sectors 12 \
+python -m bloodmap inspect-space maps/blood/campaign/E1M1.MAP --sectors 12 \
   --corpus work/blood.spatial-corpus.json
-python -m bloodmap inspect-space maps/blood/E1M1.MAP --sectors 12 --full
-python -m bloodmap inspect-space maps/blood/E1M1.MAP --sectors 12 --question enclosure
-python -m bloodmap inspect-connection maps/blood/E1M1.MAP --wall 44 \
+python -m bloodmap inspect-space maps/blood/campaign/E1M1.MAP --sectors 12 --full
+python -m bloodmap inspect-space maps/blood/campaign/E1M1.MAP --sectors 12 --question enclosure
+python -m bloodmap inspect-connection maps/blood/campaign/E1M1.MAP --wall 44 \
   --corpus work/blood.spatial-corpus.json
-python -m bloodmap compare-space maps/blood/E1M1.MAP --from 12 --to 18
+python -m bloodmap compare-space maps/blood/campaign/E1M1.MAP --from 12 --to 18
 python -m bloodmap spatial-corpus --maps maps/blood --glob E*.MAP \
   -o work/blood.spatial-corpus.json
 python -m bloodmap spatial-corpus --wad maps/doom/doom.wad \
