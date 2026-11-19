@@ -27,16 +27,16 @@ What the campaign says about walls
 ----------------------------------
 
 ``knowledge/blood/design/wall-thickness-v1.json``, from all 43 campaign maps:
-48,019 probes stepping outward from every solid wall of a playable sector to the
+51,521 probes stepping outward from every solid wall of a playable sector to the
 next playable sector that shares its height range.
 
 ===================  =========
 thinner than          share
 ===================  =========
-64 units (0.17 bw)      1.42%
-128 units (0.33 bw)     2.79%
-192 units (0.50 bw)     6.30%
-256 units (0.67 bw)     8.38%
+64 units (0.17 bw)      1.38%
+128 units (0.33 bw)     2.84%
+192 units (0.50 bw)     6.37%
+256 units (0.67 bw)     8.59%
 ===================  =========
 
 The histogram is modal on multiples of 128 -- 128, 256, 384, and a large tail at
@@ -63,12 +63,12 @@ from typing import Any, Iterable, Sequence
 from .planar_geom import point_in_loop
 from .player_space import PLAYER_PROFILES
 from .reachability import design_sectors
-from .sector_geom import sector_loops
+from .sector_geom import outline_and_holes
 
 PLAYER_WIDTH = PLAYER_PROFILES["blood"].body_width
 
 #: The thinnest mass this compiler will put between two rooms without being told
-#: to. Derived from the campaign: 2.79% of Blood's own walls are thinner, and its
+#: to. Derived from the campaign: 2.84% of Blood's own walls are thinner, and its
 #: histogram's first mode sits here.
 MIN_WALL = 128
 
@@ -139,7 +139,7 @@ class Wall(Fixed):
             raise LayoutError(
                 "%s: a wall %d units thick (%.2f body widths) is thinner than "
                 "anything this compiler builds unasked. Blood goes below %d "
-                "units on 2.79%% of its walls, and always because it means "
+                "units on 2.84%% of its walls, and always because it means "
                 "something.\n"
                 "  If this one is meant to be thin, say why: "
                 "thin_because='fake_wall' (or %s).\n"
@@ -330,8 +330,17 @@ _CELL = 1024
 
 
 def _index_sectors(disk: Any, playable: frozenset[int]) -> tuple[dict, dict]:
-    """Bucket playable sectors by grid cell, and keep their loops."""
-    loops = {s: sector_loops(disk, s) for s in playable}
+    """Bucket playable sectors by grid cell, and keep their loops.
+
+    Outline first, then the holes. The wall run does not come that way: 514
+    of the campaign's 867 sectors with holes trace a hole before the outline,
+    and until 2026-11-19 this kept the run's order, so `_sector_at` tested
+    those sectors against a hole and never found them.
+    """
+    loops = {}
+    for s in playable:
+        outline, holes = outline_and_holes(disk, s)
+        loops[s] = [outline, *holes] if outline else []
     grid: dict[tuple[int, int], list[int]] = defaultdict(list)
     for sector, sector_loop in loops.items():
         if not sector_loop:

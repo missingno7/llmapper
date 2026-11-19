@@ -312,9 +312,9 @@
   "wall-between-rooms-is-not-paper": {
    "rule": "wall-between-rooms-is-not-paper",
    "maps": 43,
-   "population": 8318,
-   "violations": 220,
-   "rate": 0.02645,
+   "population": 8284,
+   "violations": 224,
+   "rate": 0.02704,
    "severity": "warning",
    "statement": "the mass between two rooms is at least 128 units thick",
    "source": "corpus"

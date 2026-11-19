@@ -123,7 +123,7 @@ Do not add a check anywhere else. If it is worth enforcing it is worth grading.
 
 Everything measured lives in `knowledge/blood/design/`. Before inventing a
 number, look for it: `layers-v1.json` (stacking, and BB4), `norms-v1.json`,
-`wall-thickness-v1.json` (median 544, commonest 512), `overlooks-v1.json`,
+`wall-thickness-v1.json` (median 528, commonest 512), `overlooks-v1.json`,
 `apertures-v1.json`, `sprite-heights-v1.json`, `stacks-v1.json`,
 `surface-palettes-v1.json`, `rules-v1.json` (the grades), `e3m8-reference-v1.json`.
 

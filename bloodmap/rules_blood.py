@@ -805,7 +805,7 @@ register(Rule(
         "a wall nobody sized absorbs every rounding error in the layout, and "
         "the engine draws the result without complaint. Blood's own masonry is "
         "modal on multiples of 128 -- 128, 256, 384, and a long tail past 512 -- "
-        "and it goes below 128 on 2.79% of the 48,019 places its solid walls "
+        "and it goes below 128 on 2.84% of the 51,521 places its solid walls "
         "face another room at the same height. Those thin ones are fake walls "
         "and hidden doors, which is to say they are on purpose"),
     source="corpus",
