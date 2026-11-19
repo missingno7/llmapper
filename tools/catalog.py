@@ -961,11 +961,35 @@ def map_reading(name: str, rooms: int = 12, shapes: int = 10) -> str:
     lines.append("  in phrases: " + ", ".join(
         f"{phrase['name']} {phrase['chains']}"
         for phrase in examples.idioms(index) if phrase["chains"]))
+    # Each shape beside how often Blood wires the same thing. A shape the
+    # campaign never has is not wrong, but it is the first place to look:
+    # an author's intent the campaign expresses some other way.
+    known = {(row["cause"], row["sender"], tuple(row["answers"])): row
+             for row in (mechanism_index() or {}).get("wiring", ())}
+    in_campaign = key in set((mechanism_index() or {}).get("maps", ()))
+    unattested = []
+    for row in index["wiring"]:
+        there = known.get((row["cause"], row["sender"], tuple(row["answers"])))
+        if there is None:
+            unattested.append(row)
     for row in index["wiring"][:shapes]:
-        lines.append(f"  {_wire(row)}".replace(f": {row['count']} in 1 maps",
-                                             f": x{row['count']}"))
+        there = known.get((row["cause"], row["sender"], tuple(row["answers"])))
+        said = f"  {_wire(row)}".replace(f": {row['count']} in 1 maps",
+                                         f": x{row['count']}")
+        if not in_campaign:
+            said += ("  [the campaign: never]" if there is None else
+                     f"  [the campaign: {there['count']} in {there['maps']} maps]")
+        lines.append(said)
     if len(index["wiring"]) > shapes:
         lines.append(f"  ... {len(index['wiring']) - shapes} more shapes")
+    if not in_campaign:
+        lines.append(f"  {len(index['wiring']) - len(unattested)} of "
+                     f"{len(index['wiring'])} shapes are ones the campaign has; "
+                     f"{len(unattested)} it never has"
+                     + (": " + "; ".join(
+                         f"{row['cause']} on {row['sender']} -> "
+                         f"{', '.join(row['answers']) or 'nothing'}"
+                         for row in unattested[:6]) if unattested else ""))
 
     lines.append("MATERIALS  (python -m tools.catalog show <tile>)")
     walls = Counter(int(record_fields(wall)["picnum"]) for wall in disk.walls

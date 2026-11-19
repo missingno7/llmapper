@@ -56,13 +56,45 @@ def reached_sectors(progression: dict[str, Any]) -> set[int]:
     return reached
 
 
+def player_space(disk: Any, kinds: dict[int, str] | None = None) -> set[int]:
+    """Sectors a body could ever stand in: not behind a wall nothing opens.
+
+    `reachability.sector_kinds` calls a sector reachable when portals join it
+    to the start, and a horizon, a sky backing and a vault seen through bars
+    are all joined by portals. A blocking wall that no gib wall reopens and
+    no travelling leaf carries away is shut for ever (`conditional.KWALLGIB`),
+    so what lies only behind one is scenery. Counted as player space, the
+    city's sea and street ends were 25 sectors "never reached".
+    """
+    from . import conditional
+
+    kinds = reachability.sector_kinds(disk) if kinds is None else kinds
+    graph = conditional.build_graph(disk)
+    shut = set(conditional.blocking_crossings(disk))
+    shut -= {edge.sectors for edge in graph.edges if edge.mechanism_kind == "wall"}
+    shut -= set(graph.swept_blocked)
+    seen, pending = {graph.start}, [graph.start]
+    links = conditional._non_portal_pairs(graph.reach)
+    step = {}
+    for left, right in links:
+        step.setdefault(left, set()).add(right)
+    while pending:
+        here = pending.pop()
+        for there in set(graph.reach.graph.get(here, ())) | step.get(here, set()):
+            if there in seen or ((here, there) in shut and (here, there) not in links):
+                continue
+            seen.add(there)
+            pending.append(there)
+    return {sector for sector in seen if kinds.get(sector) == "reachable"}
+
+
 def read(disk: Any, name: str = "") -> dict[str, Any]:
     """One map's mark: what a finished map must have, and what the readers found."""
     views = bundle.build_bundle(disk, map_name=name)["views"]
     progression = views.get("progression") or {}
     reached = reached_sectors(progression)
     kinds = reachability.sector_kinds(disk)
-    space = sorted(sector for sector, kind in kinds.items() if kind == "reachable")
+    space = sorted(player_space(disk, kinds))
     every = wiring.nodes(disk)
     by_id = {node["id"]: node for node in every}
     found = wiring.chains(disk, reach=kinds)

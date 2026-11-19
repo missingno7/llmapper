@@ -1234,8 +1234,14 @@ class ConditionalGraph:
         # Native XWALL push transmitters are controls too. E1M4 wall 3111
         # operates sector 359 without a switch sprite. This is sector-level
         # availability; use distance and line of sight still need checking.
+        # A wall is pushed from in front of it, and a door's face belongs to
+        # the door's sector, not to the room a body stands in to push it. So
+        # the walls of a sector one portal from where a body stands can be
+        # pushed too. Asking that the body stand in the wall's own sector
+        # left every door that is its own button unpushable once it was shut.
+        in_reach = self.within_shot(reached, 1)
         for sector, record in enumerate(self.disk.sectors):
-            if sector not in reached:
+            if sector not in in_reach:
                 continue
             first = int(record.fields["wall_ptr"])
             for index in range(first, first + int(record.fields["wall_count"])):
@@ -1266,7 +1272,10 @@ class ConditionalGraph:
             if not node["causes"] or node["tx"] in done or not _can_send(node):
                 continue
             if node["sector"] not in reached and not (
-                    node["causes"][0] in far and node["sector"] in in_shot):
+                    node["causes"][0] in far and node["sector"] in in_shot) and not (
+                    node["kind"] in ("wall", "sector")
+                    and node["causes"][0] in ("push", "wall_push")
+                    and node["sector"] in in_reach):
                 continue
             if node["key"] and node["key"] not in held.keys:
                 continue
@@ -1654,6 +1663,36 @@ def build_graph(disk: Any, *, owners: Sequence[int] | None = None,
                     swept[(left, right)] = mover
                     break
     summary["blocking_carried_away_by_a_leaf"] = len(swept)
+    # A LOCKED LEAF IS SHUT UNTIL IT IS WORKED. This is an inference and not
+    # a measurement: which state of a slide or rotate door is the shut one
+    # needs a polygon sweep this reader does not have, and of the campaign's
+    # 654 such doors it measures none. But a lock on a door that stands open
+    # is no lock, so for the 41 keyed ones that join exactly two sectors the
+    # way through is taken to be shut until the key has worked it. Without
+    # this no key gate on a sliding door is a gate at all, and E1M1's dagger
+    # door opened onto nothing.
+    locked = 0
+    if base == BASE_BLOCKING_AWARE:
+        owners_of = _wall_owners(disk) if owners is None else list(owners)
+        wires = transmitters(disk)
+        for sector_id, sector in enumerate(disk.sectors):
+            if int(sector.fields["type"]) not in SWEPT_TYPES:
+                continue
+            record = observe_motion_sector(disk, sector_id, owners=owners_of)
+            if record is None:
+                continue
+            keyed = int(record["key"] or 0) or any(
+                item.key for item in _causes_for(record, wires))
+            sides = sorted({int(portal["next_sector"]) for portal in record["portals"]})
+            if not keyed or len(sides) != 2:
+                continue
+            for side in sides:
+                for pair in ((sector_id, side), (side, sector_id)):
+                    if pair not in swept:
+                        swept[pair] = sector_id
+                        graph.get(pair[0], set()).discard(pair[1])
+            locked += 1
+    summary["locked_leaves_taken_as_shut"] = locked
     return ConditionalGraph(disk=disk, edges=edges, summary=summary,
                             start=start, base=graph, gated=gated, reach=reach,
                             fired_at_start=fired, swept_blocked=swept)

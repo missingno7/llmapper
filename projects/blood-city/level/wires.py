@@ -51,8 +51,8 @@ PLAN: tuple[tuple[str, str], ...] = (
 #: no number of the city's, so adding one renumbers nothing.
 ENGINE_PLAN: tuple[tuple[str, str, str], ...] = (
     ("station:way-out",
-     "walking on into the tunnel the line leaves by, past the roll-up gate "
-     "the signal box's lever raises, ends the level",
+     "pushing the switch at the end of the tunnel the line leaves by, past "
+     "the roll-up gate the signal box's lever raises, ends the level",
      "kChannelLevelExitNormal"),
 )
 

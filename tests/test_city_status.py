@@ -169,14 +169,19 @@ class CityStatusTests(unittest.TestCase):
             if row["engine"] is None:
                 self.assertTrue(row["answers"], row["name"])
 
-    def test_the_city_ends_by_walking_out_through_the_station_tunnel(self):
+    def test_the_city_ends_at_a_switch_in_the_station_tunnel(self):
         """It had no exit at all. The way out is declared like any wire,
-        ends at the engine, and lies behind the gate the lever raises."""
+        ends at the engine, and lies behind the gate the lever raises. It is
+        a pushed switch because that is how the campaign ends a level: the
+        first version ended it by walking in, a shape the campaign never
+        has, and the reading of the city beside the campaign said so."""
         finish = self.status["finish"]
         self.assertTrue(finish["exit_reached"])
         (way_out,) = finish["exits"]
         self.assertEqual((way_out["cause"], way_out["to"]),
-                         ("enter", "kChannelLevelExitNormal"))
+                         ("push", "kChannelLevelExitNormal"))
+        self.assertEqual(finish["reached"], finish["space"],
+                         "player space is what a body can stand in: no scenery")
         self.assertFalse([row for row in self.status["open"]
                           if row["kind"] == "cannot-finish" and "exit" in row["says"]])
         (wire,) = [row for row in self.status["wires"] if row["name"] == "station:way-out"]

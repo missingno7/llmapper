@@ -1015,11 +1015,11 @@
       },
       {
         "name": "station:way-out",
-        "says": "walking on into the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
+        "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "when": [
-          "enter on region region:gravesend/gravesend_station/tunnel_1"
+          "push on placement station:exit_switch"
         ],
         "then": []
       },
@@ -1135,16 +1135,16 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 210",
-          "sprite 211"
+          "sprite 211",
+          "sprite 212"
         ],
         "answers": [
           "sector 93",
           "sector 94",
           "sector 95",
-          "sprite 212",
           "sprite 213",
-          "sprite 214"
+          "sprite 214",
+          "sprite 215"
         ],
         "faults": []
       },
@@ -1154,13 +1154,13 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 280"
+          "sprite 281"
         ],
         "answers": [
           "sector 198",
-          "sprite 281",
           "sprite 282",
-          "sprite 283"
+          "sprite 283",
+          "sprite 284"
         ],
         "faults": []
       },
@@ -1199,7 +1199,7 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 177"
+          "sprite 178"
         ],
         "answers": [
           "sector 363"
@@ -1221,11 +1221,11 @@
       },
       {
         "name": "station:way-out",
-        "says": "walking on into the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
+        "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sector 391"
+          "sprite 172"
         ],
         "answers": [],
         "faults": []
@@ -1236,7 +1236,7 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 350"
+          "sprite 351"
         ],
         "answers": [
           "sector 9"
@@ -1249,7 +1249,7 @@
         "channel": 110,
         "engine": null,
         "senders": [
-          "sprite 351"
+          "sprite 352"
         ],
         "answers": [
           "sector 18"
@@ -1262,7 +1262,7 @@
         "channel": 111,
         "engine": null,
         "senders": [
-          "sprite 352"
+          "sprite 353"
         ],
         "answers": [
           "sector 30"
@@ -1275,7 +1275,7 @@
         "channel": 112,
         "engine": null,
         "senders": [
-          "sprite 353"
+          "sprite 354"
         ],
         "answers": [
           "sector 32"
@@ -1288,7 +1288,7 @@
         "channel": 113,
         "engine": null,
         "senders": [
-          "sprite 354"
+          "sprite 355"
         ],
         "answers": [
           "sector 39"
@@ -1454,9 +1454,9 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 816,
-    "wall_sprites": 425,
-    "planes": 91,
+    "sprites": 817,
+    "wall_sprites": 426,
+    "planes": 92,
     "clashing_pairs": 4,
     "sprites_involved": 6,
     "clash_rate_per_100_wall_sprites": 0.94,
@@ -1506,7 +1506,7 @@
     "$schema": "llmapper.readback",
     "schema_version": 1,
     "map": "blood-city-current.MAP",
-    "sentences": 61,
+    "sentences": 60,
     "agrees": true,
     "differences": [],
     "unmeasured": [],
@@ -2514,21 +2514,6 @@
           "whole_circles": false,
           "changes": true
         }
-      },
-      {
-        "name": "region:gravesend/gravesend_station/tunnel_1",
-        "construct": "sector",
-        "sector": 391,
-        "sectors": [
-          391
-        ],
-        "sector_type": 0,
-        "wiring": {
-          "rx_id": 0,
-          "tx_id": 4,
-          "command": 1,
-          "state": 0
-        }
       }
     ]
   },
@@ -2699,7 +2684,7 @@
     "sunk": [],
     "through": [
       {
-        "sprite": 614,
+        "sprite": 615,
         "tile": 793,
         "sector": 27
       }
@@ -2708,8 +2693,8 @@
     "overlaps": [
       {
         "sprites": [
-          320,
-          321
+          321,
+          322
         ],
         "tiles": [
           73,

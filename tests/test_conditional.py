@@ -712,7 +712,13 @@ class CampaignTest(unittest.TestCase):
             self.assertNotEqual(int(disk.walls[wall_id].fields["type"]), KWALLGIB)
         graph = build_graph(disk, base=BASE_BLOCKING_AWARE)
         self.assertIn(28, graph.base.get(30, set()))
-        self.assertGreater(len(graph.reachable(graph.at_rest())), 90)
+        # 84, not 100: the sixteen sectors behind the dagger door are shut
+        # until the key has worked it, now that a locked leaf is a gate.
+        at_rest = graph.reachable(graph.at_rest())
+        self.assertGreater(len(at_rest), 80)
+        self.assertNotIn(109, at_rest)
+        from bloodmap.conditional import frontier
+        self.assertIn(109, frontier(disk, graph=graph)["reached_sectors"])
 
     def test_the_e1m1_casket_opens_on_the_level_start_broadcast(self):
         # The player start is inside a closed casket and the switch that

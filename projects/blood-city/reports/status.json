@@ -2,14 +2,14 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "84218f6efd8af313b5afc0306512b532e5597c8006a9699052a51c27b74a8bdd",
-  "map_sha256": "1ed572d1d32a6f9b083c0390b09992a22845574ff8a6c50861cb766d07d37bd1",
+  "manifest_sha256": "994fb34fe884b3238876267d3baae22b4bdab159558dd02a2d4f36b5890ec630",
+  "map_sha256": "735a990518ea9b8b56597d76a6c0d5355a5b9ad39d2e255c2bdb3ffe3f190644",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
   "sectors": 474,
   "walls": 3187,
-  "sprites": 816,
+  "sprites": 817,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
@@ -188,8 +188,8 @@
  "finish": {
   "exits": [
    {
-    "root": "sector 391",
-    "cause": "enter",
+    "root": "sprite 172",
+    "cause": "push",
     "sector": 391,
     "to": "kChannelLevelExitNormal",
     "reached": true
@@ -198,7 +198,7 @@
   "exit_reached": true,
   "keys": [
    {
-    "sprite": 288,
+    "sprite": 289,
     "name": "kItemKeyEye",
     "sector": 180,
     "reached": true
@@ -223,7 +223,7 @@
    "credited_normal": 3,
    "credited_super": 0
   },
-  "space": 474,
+  "space": 449,
   "reached": 449,
   "gated_areas": [
    {
@@ -245,7 +245,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 350 (channel 109)"
+     "use switch sprite 351 (channel 109)"
     ],
     "sectors": 34,
     "first_sector": 3
@@ -253,7 +253,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 351 (channel 110)"
+     "use switch sprite 352 (channel 110)"
     ],
     "sectors": 1,
     "first_sector": 18
@@ -261,7 +261,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 352 (channel 111)"
+     "use switch sprite 353 (channel 111)"
     ],
     "sectors": 1,
     "first_sector": 30
@@ -269,7 +269,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 353 (channel 112)"
+     "use switch sprite 354 (channel 112)"
     ],
     "sectors": 1,
     "first_sector": 32
@@ -293,7 +293,7 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 210 (channel 103)"
+     "destroy sprite 211 (channel 103)"
     ],
     "sectors": 9,
     "first_sector": 92
@@ -325,7 +325,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 354 (channel 113)"
+     "use switch sprite 355 (channel 113)"
     ],
     "sectors": 7,
     "first_sector": 35
@@ -365,7 +365,7 @@
    {
     "round": 3,
     "opened_by": [
-     "destroy sprite 280 (channel 104)"
+     "destroy sprite 281 (channel 104)"
     ],
     "sectors": 3,
     "first_sector": 198
@@ -499,11 +499,11 @@
   },
   {
    "name": "station:way-out",
-   "says": "walking on into the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
+   "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
    "channel": 4,
    "engine": "kChannelLevelExitNormal",
    "when": [
-    "enter on region region:gravesend/gravesend_station/tunnel_1"
+    "push on placement station:exit_switch"
    ],
    "then": []
   },
@@ -1043,13 +1043,6 @@
    "see": "python -m tools.place_character --help"
   },
   {
-   "kind": "cannot-finish",
-   "place": null,
-   "says": "25 of 474 player-space sectors never reached",
-   "owner": "bloodmap/completion.py (the reader reaches the exit in 38 of 43 campaign maps: check a shortfall before believing it)",
-   "see": "python -m tools.catalog map projects/blood-city/level/blood-city-current.MAP"
-  },
-  {
    "kind": "rule-warning",
    "place": null,
    "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 255 and 166",
@@ -1366,7 +1359,7 @@
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 27, \"sprite\": 614, \"tile\": 793}",
+   "says": "{\"sector\": 27, \"sprite\": 615, \"tile\": 793}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[27]"
@@ -1374,7 +1367,7 @@
   {
    "kind": "sprite-overlaps",
    "place": null,
-   "says": "{\"sector\": 38, \"sprites\": [320, 321], \"tiles\": [73, 73]}",
+   "says": "{\"sector\": 38, \"sprites\": [321, 322], \"tiles\": [73, 73]}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[38]"
@@ -1409,7 +1402,6 @@
   }
  ],
  "open_by_kind": {
-  "cannot-finish": 1,
   "cramped": 3,
   "critique": 8,
   "dropped": 8,

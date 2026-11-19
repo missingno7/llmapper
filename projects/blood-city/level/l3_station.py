@@ -148,6 +148,8 @@ TUNNEL = ((30976, 34816, 30), (34816, 38912, 60))
 #: store the line serves.
 GATE_X = (30720, 30976)
 GATE_CHANNEL = wires.channel("station:gate")
+#: where the exit switch hangs: set when the tunnel's last bore is built
+WAY_OUT: dict = {}
 STORE = (38912, -25856, 44032, -15616)
 #: (rectangle, how high it stands)
 CRATES = (((42240, -25344, 43520, -24064), 16384),
@@ -701,12 +703,12 @@ def build(city, street):
         if index == len(TUNNEL) - 1:
             # THE WAY OUT. The city had none: the reader that marks the
             # campaign said so on 2026-11-19. The line leaves by this tunnel
-            # and so does the player. E2M4 ends a level the same way, by
-            # walking: its exit sector sends command 1 on entering, reports
-            # ON, and locks dudes out so a monster cannot end the level.
-            wires.wire("station:way-out").when(
-                wiring.region(bore.region_id), "enter", command=1,
-                dude_lockout=1)
+            # and so does the player; the switch that ends the level hangs
+            # on the bore's side wall near its far end (placed with the
+            # levers, below). The end wall itself is an opening onto the
+            # dark beyond, and the build refuses a switch hung on air.
+            WAY_OUT.update(region=bore.region_id, a1=(x0, by0 + 512),
+                           a2=(x1, by0 + 512))
         previous = bore
     #: the tunnel mouth is barred: the line goes on, the player does not
     store = room("goods_store", STORE, floor_z=BED_Z, clear=49152,
@@ -938,6 +940,20 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
                      ((mid + 512, SIGNAL_BOX[3]), (mid - 512, SIGNAL_BOX[3])),
                      GATE_CHANNEL)
     wires.wire("station:gate").when(wiring.placement("station:gate_lever"), "push")
+    # The exit, as the campaign ends a level: a pushed switch wearing the
+    # tile that says so, 42 of its 43 maps. It was first made a sector that
+    # ends the level when walked into; shown beside the campaign's wiring
+    # (`catalog map`), that shape occurs in it nowhere.
+    from bloodmap.switches import exit_switch
+
+    way_out = dict(exit_switch())
+    layout.place_on_wall(
+        "station:exit_switch", WAY_OUT["region"], a1=WAY_OUT["a1"],
+        a2=WAY_OUT["a2"], t=0.85,
+        height_player_heights=way_out.pop("height_player_heights"),
+        offset_player_widths=0.06, status=0, **way_out)
+    wires.wire("station:way-out").when(
+        wiring.placement("station:exit_switch"), "push", command=1)
     report["rail"] = 0
     #: two lengths: the tile is 128 texels, 1,536 wide at this repeat
     #: (four of them lay over each other: the sprite lint's pairs)
